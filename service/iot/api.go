@@ -1943,6 +1943,113 @@ func (c *IoT) CreateCertificateFromCsrWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateCertificateProvider = "CreateCertificateProvider"
+
+// CreateCertificateProviderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCertificateProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCertificateProvider for more information on using the CreateCertificateProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCertificateProviderRequest method.
+//	req, resp := client.CreateCertificateProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) CreateCertificateProviderRequest(input *CreateCertificateProviderInput) (req *request.Request, output *CreateCertificateProviderOutput) {
+	op := &request.Operation{
+		Name:       opCreateCertificateProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/certificate-providers/{certificateProviderName}",
+	}
+
+	if input == nil {
+		input = &CreateCertificateProviderInput{}
+	}
+
+	output = &CreateCertificateProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCertificateProvider API operation for AWS IoT.
+//
+// Creates an Amazon Web Services IoT Core certificate provider. You can use
+// Amazon Web Services IoT Core certificate provider to customize how to sign
+// a certificate signing request (CSR) in IoT fleet provisioning. For more information,
+// see Customizing certificate signing using Amazon Web Services IoT Core certificate
+// provider (https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html)
+// from Amazon Web Services IoT Core Developer Guide.
+//
+// Requires permission to access the CreateCertificateProvider (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// After you create a certificate provider, the behavior of CreateCertificateFromCsr
+// API for fleet provisioning (https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr)
+// will change and all API calls to CreateCertificateFromCsr will invoke the
+// certificate provider to create the certificates. It can take up to a few
+// minutes for this behavior to change after a certificate provider is created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateCertificateProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     A limit has been exceeded.
+//
+//   - ResourceAlreadyExistsException
+//     The resource already exists.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - UnauthorizedException
+//     You are not authorized to perform this operation.
+//
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) CreateCertificateProvider(input *CreateCertificateProviderInput) (*CreateCertificateProviderOutput, error) {
+	req, out := c.CreateCertificateProviderRequest(input)
+	return out, req.Send()
+}
+
+// CreateCertificateProviderWithContext is the same as CreateCertificateProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCertificateProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreateCertificateProviderWithContext(ctx aws.Context, input *CreateCertificateProviderInput, opts ...request.Option) (*CreateCertificateProviderOutput, error) {
+	req, out := c.CreateCertificateProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCustomMetric = "CreateCustomMetric"
 
 // CreateCustomMetricRequest generates a "aws/request.Request" representing the
@@ -4985,6 +5092,107 @@ func (c *IoT) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertifica
 // for more information on using Contexts.
 func (c *IoT) DeleteCertificateWithContext(ctx aws.Context, input *DeleteCertificateInput, opts ...request.Option) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCertificateProvider = "DeleteCertificateProvider"
+
+// DeleteCertificateProviderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCertificateProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCertificateProvider for more information on using the DeleteCertificateProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCertificateProviderRequest method.
+//	req, resp := client.DeleteCertificateProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) DeleteCertificateProviderRequest(input *DeleteCertificateProviderInput) (req *request.Request, output *DeleteCertificateProviderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCertificateProvider,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/certificate-providers/{certificateProviderName}",
+	}
+
+	if input == nil {
+		input = &DeleteCertificateProviderInput{}
+	}
+
+	output = &DeleteCertificateProviderOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCertificateProvider API operation for AWS IoT.
+//
+// Deletes a certificate provider.
+//
+// Requires permission to access the DeleteCertificateProvider (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// If you delete the certificate provider resource, the behavior of CreateCertificateFromCsr
+// will resume, and IoT will create certificates signed by IoT from a certificate
+// signing request (CSR).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteCertificateProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - DeleteConflictException
+//     You can't delete the resource because it is attached to one or more resources.
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - UnauthorizedException
+//     You are not authorized to perform this operation.
+//
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) DeleteCertificateProvider(input *DeleteCertificateProviderInput) (*DeleteCertificateProviderOutput, error) {
+	req, out := c.DeleteCertificateProviderRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCertificateProviderWithContext is the same as DeleteCertificateProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCertificateProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeleteCertificateProviderWithContext(ctx aws.Context, input *DeleteCertificateProviderInput, opts ...request.Option) (*DeleteCertificateProviderOutput, error) {
+	req, out := c.DeleteCertificateProviderRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8394,6 +8602,99 @@ func (c *IoT) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCer
 // for more information on using Contexts.
 func (c *IoT) DescribeCertificateWithContext(ctx aws.Context, input *DescribeCertificateInput, opts ...request.Option) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCertificateProvider = "DescribeCertificateProvider"
+
+// DescribeCertificateProviderRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCertificateProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCertificateProvider for more information on using the DescribeCertificateProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeCertificateProviderRequest method.
+//	req, resp := client.DescribeCertificateProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) DescribeCertificateProviderRequest(input *DescribeCertificateProviderInput) (req *request.Request, output *DescribeCertificateProviderOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCertificateProvider,
+		HTTPMethod: "GET",
+		HTTPPath:   "/certificate-providers/{certificateProviderName}",
+	}
+
+	if input == nil {
+		input = &DescribeCertificateProviderInput{}
+	}
+
+	output = &DescribeCertificateProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCertificateProvider API operation for AWS IoT.
+//
+// Describes a certificate provider.
+//
+// Requires permission to access the DescribeCertificateProvider (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeCertificateProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - UnauthorizedException
+//     You are not authorized to perform this operation.
+//
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) DescribeCertificateProvider(input *DescribeCertificateProviderInput) (*DescribeCertificateProviderOutput, error) {
+	req, out := c.DescribeCertificateProviderRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCertificateProviderWithContext is the same as DescribeCertificateProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCertificateProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeCertificateProviderWithContext(ctx aws.Context, input *DescribeCertificateProviderInput, opts ...request.Option) (*DescribeCertificateProviderOutput, error) {
+	req, out := c.DescribeCertificateProviderRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14362,6 +14663,96 @@ func (c *IoT) ListCACertificatesPagesWithContext(ctx aws.Context, input *ListCAC
 	}
 
 	return p.Err()
+}
+
+const opListCertificateProviders = "ListCertificateProviders"
+
+// ListCertificateProvidersRequest generates a "aws/request.Request" representing the
+// client's request for the ListCertificateProviders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCertificateProviders for more information on using the ListCertificateProviders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCertificateProvidersRequest method.
+//	req, resp := client.ListCertificateProvidersRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) ListCertificateProvidersRequest(input *ListCertificateProvidersInput) (req *request.Request, output *ListCertificateProvidersOutput) {
+	op := &request.Operation{
+		Name:       opListCertificateProviders,
+		HTTPMethod: "GET",
+		HTTPPath:   "/certificate-providers/",
+	}
+
+	if input == nil {
+		input = &ListCertificateProvidersInput{}
+	}
+
+	output = &ListCertificateProvidersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCertificateProviders API operation for AWS IoT.
+//
+// Lists all your certificate providers in your Amazon Web Services account.
+//
+// Requires permission to access the ListCertificateProviders (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListCertificateProviders for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - UnauthorizedException
+//     You are not authorized to perform this operation.
+//
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) ListCertificateProviders(input *ListCertificateProvidersInput) (*ListCertificateProvidersOutput, error) {
+	req, out := c.ListCertificateProvidersRequest(input)
+	return out, req.Send()
+}
+
+// ListCertificateProvidersWithContext is the same as ListCertificateProviders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCertificateProviders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListCertificateProvidersWithContext(ctx aws.Context, input *ListCertificateProvidersInput, opts ...request.Option) (*ListCertificateProvidersOutput, error) {
+	req, out := c.ListCertificateProvidersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListCertificates = "ListCertificates"
@@ -24417,6 +24808,99 @@ func (c *IoT) UpdateCertificateWithContext(ctx aws.Context, input *UpdateCertifi
 	return out, req.Send()
 }
 
+const opUpdateCertificateProvider = "UpdateCertificateProvider"
+
+// UpdateCertificateProviderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCertificateProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCertificateProvider for more information on using the UpdateCertificateProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCertificateProviderRequest method.
+//	req, resp := client.UpdateCertificateProviderRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *IoT) UpdateCertificateProviderRequest(input *UpdateCertificateProviderInput) (req *request.Request, output *UpdateCertificateProviderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCertificateProvider,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/certificate-providers/{certificateProviderName}",
+	}
+
+	if input == nil {
+		input = &UpdateCertificateProviderInput{}
+	}
+
+	output = &UpdateCertificateProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCertificateProvider API operation for AWS IoT.
+//
+// Updates a certificate provider.
+//
+// Requires permission to access the UpdateCertificateProvider (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateCertificateProvider for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource does not exist.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ThrottlingException
+//     The rate exceeds the limit.
+//
+//   - UnauthorizedException
+//     You are not authorized to perform this operation.
+//
+//   - ServiceUnavailableException
+//     The service is temporarily unavailable.
+//
+//   - InternalFailureException
+//     An unexpected error has occurred.
+func (c *IoT) UpdateCertificateProvider(input *UpdateCertificateProviderInput) (*UpdateCertificateProviderOutput, error) {
+	req, out := c.UpdateCertificateProviderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCertificateProviderWithContext is the same as UpdateCertificateProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCertificateProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdateCertificateProviderWithContext(ctx aws.Context, input *UpdateCertificateProviderInput, opts ...request.Option) (*UpdateCertificateProviderOutput, error) {
+	req, out := c.UpdateCertificateProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCustomMetric = "UpdateCustomMetric"
 
 // UpdateCustomMetricRequest generates a "aws/request.Request" representing the
@@ -31279,6 +31763,47 @@ func (s *CertificateDescription) SetValidity(v *CertificateValidity) *Certificat
 	return s
 }
 
+// The certificate provider summary.
+type CertificateProviderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the certificate provider.
+	CertificateProviderArn *string `locationName:"certificateProviderArn" type:"string"`
+
+	// The name of the certificate provider.
+	CertificateProviderName *string `locationName:"certificateProviderName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateProviderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateProviderSummary) GoString() string {
+	return s.String()
+}
+
+// SetCertificateProviderArn sets the CertificateProviderArn field's value.
+func (s *CertificateProviderSummary) SetCertificateProviderArn(v string) *CertificateProviderSummary {
+	s.CertificateProviderArn = &v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *CertificateProviderSummary) SetCertificateProviderName(v string) *CertificateProviderSummary {
+	s.CertificateProviderName = &v
+	return s
+}
+
 // The certificate operation is not allowed.
 type CertificateStateException struct {
 	_            struct{}                  `type:"structure"`
@@ -32690,6 +33215,159 @@ func (s *CreateCertificateFromCsrOutput) SetCertificateId(v string) *CreateCerti
 // SetCertificatePem sets the CertificatePem field's value.
 func (s *CreateCertificateFromCsrOutput) SetCertificatePem(v string) *CreateCertificateFromCsrOutput {
 	s.CertificatePem = &v
+	return s
+}
+
+type CreateCertificateProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the operations that the certificate provider will use to generate
+	// certificates. Valid value: CreateCertificateFromCsr.
+	//
+	// AccountDefaultForOperations is a required field
+	AccountDefaultForOperations []*string `locationName:"accountDefaultForOperations" min:"1" type:"list" required:"true" enum:"CertificateProviderOperation"`
+
+	// The name of the certificate provider.
+	//
+	// CertificateProviderName is a required field
+	CertificateProviderName *string `location:"uri" locationName:"certificateProviderName" min:"1" type:"string" required:"true"`
+
+	// A string that you can optionally pass in the CreateCertificateProvider request
+	// to make sure the request is idempotent.
+	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The ARN of the Lambda function that defines the authentication logic.
+	//
+	// LambdaFunctionArn is a required field
+	LambdaFunctionArn *string `locationName:"lambdaFunctionArn" type:"string" required:"true"`
+
+	// Metadata which can be used to manage the certificate provider.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCertificateProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCertificateProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCertificateProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCertificateProviderInput"}
+	if s.AccountDefaultForOperations == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountDefaultForOperations"))
+	}
+	if s.AccountDefaultForOperations != nil && len(s.AccountDefaultForOperations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountDefaultForOperations", 1))
+	}
+	if s.CertificateProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateProviderName"))
+	}
+	if s.CertificateProviderName != nil && len(*s.CertificateProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateProviderName", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.LambdaFunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaFunctionArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountDefaultForOperations sets the AccountDefaultForOperations field's value.
+func (s *CreateCertificateProviderInput) SetAccountDefaultForOperations(v []*string) *CreateCertificateProviderInput {
+	s.AccountDefaultForOperations = v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *CreateCertificateProviderInput) SetCertificateProviderName(v string) *CreateCertificateProviderInput {
+	s.CertificateProviderName = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateCertificateProviderInput) SetClientToken(v string) *CreateCertificateProviderInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetLambdaFunctionArn sets the LambdaFunctionArn field's value.
+func (s *CreateCertificateProviderInput) SetLambdaFunctionArn(v string) *CreateCertificateProviderInput {
+	s.LambdaFunctionArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCertificateProviderInput) SetTags(v []*Tag) *CreateCertificateProviderInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCertificateProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the certificate provider.
+	CertificateProviderArn *string `locationName:"certificateProviderArn" type:"string"`
+
+	// The name of the certificate provider.
+	CertificateProviderName *string `locationName:"certificateProviderName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCertificateProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCertificateProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificateProviderArn sets the CertificateProviderArn field's value.
+func (s *CreateCertificateProviderOutput) SetCertificateProviderArn(v string) *CreateCertificateProviderOutput {
+	s.CertificateProviderArn = &v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *CreateCertificateProviderOutput) SetCertificateProviderName(v string) *CreateCertificateProviderOutput {
+	s.CertificateProviderName = &v
 	return s
 }
 
@@ -37618,6 +38296,77 @@ func (s DeleteCertificateOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteCertificateProviderInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the certificate provider.
+	//
+	// CertificateProviderName is a required field
+	CertificateProviderName *string `location:"uri" locationName:"certificateProviderName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCertificateProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCertificateProviderInput"}
+	if s.CertificateProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateProviderName"))
+	}
+	if s.CertificateProviderName != nil && len(*s.CertificateProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *DeleteCertificateProviderInput) SetCertificateProviderName(v string) *DeleteCertificateProviderInput {
+	s.CertificateProviderName = &v
+	return s
+}
+
+type DeleteCertificateProviderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCertificateProviderOutput) GoString() string {
+	return s.String()
+}
+
 // You can't delete the resource because it is attached to one or more resources.
 type DeleteConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -40904,6 +41653,133 @@ func (s DescribeCertificateOutput) GoString() string {
 // SetCertificateDescription sets the CertificateDescription field's value.
 func (s *DescribeCertificateOutput) SetCertificateDescription(v *CertificateDescription) *DescribeCertificateOutput {
 	s.CertificateDescription = v
+	return s
+}
+
+type DescribeCertificateProviderInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the certificate provider.
+	//
+	// CertificateProviderName is a required field
+	CertificateProviderName *string `location:"uri" locationName:"certificateProviderName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCertificateProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCertificateProviderInput"}
+	if s.CertificateProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateProviderName"))
+	}
+	if s.CertificateProviderName != nil && len(*s.CertificateProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *DescribeCertificateProviderInput) SetCertificateProviderName(v string) *DescribeCertificateProviderInput {
+	s.CertificateProviderName = &v
+	return s
+}
+
+type DescribeCertificateProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the operations that the certificate provider will use to generate
+	// certificates. Valid value: CreateCertificateFromCsr.
+	AccountDefaultForOperations []*string `locationName:"accountDefaultForOperations" min:"1" type:"list" enum:"CertificateProviderOperation"`
+
+	// The ARN of the certificate provider.
+	CertificateProviderArn *string `locationName:"certificateProviderArn" type:"string"`
+
+	// The name of the certificate provider.
+	CertificateProviderName *string `locationName:"certificateProviderName" min:"1" type:"string"`
+
+	// The date-time string that indicates when the certificate provider was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The Lambda function ARN that's associated with the certificate provider.
+	LambdaFunctionArn *string `locationName:"lambdaFunctionArn" type:"string"`
+
+	// The date-time string that indicates when the certificate provider was last
+	// updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCertificateProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountDefaultForOperations sets the AccountDefaultForOperations field's value.
+func (s *DescribeCertificateProviderOutput) SetAccountDefaultForOperations(v []*string) *DescribeCertificateProviderOutput {
+	s.AccountDefaultForOperations = v
+	return s
+}
+
+// SetCertificateProviderArn sets the CertificateProviderArn field's value.
+func (s *DescribeCertificateProviderOutput) SetCertificateProviderArn(v string) *DescribeCertificateProviderOutput {
+	s.CertificateProviderArn = &v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *DescribeCertificateProviderOutput) SetCertificateProviderName(v string) *DescribeCertificateProviderOutput {
+	s.CertificateProviderName = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeCertificateProviderOutput) SetCreationDate(v time.Time) *DescribeCertificateProviderOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLambdaFunctionArn sets the LambdaFunctionArn field's value.
+func (s *DescribeCertificateProviderOutput) SetLambdaFunctionArn(v string) *DescribeCertificateProviderOutput {
+	s.LambdaFunctionArn = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DescribeCertificateProviderOutput) SetLastModifiedDate(v time.Time) *DescribeCertificateProviderOutput {
+	s.LastModifiedDate = &v
 	return s
 }
 
@@ -51982,6 +52858,86 @@ func (s *ListCACertificatesOutput) SetNextMarker(v string) *ListCACertificatesOu
 	return s
 }
 
+type ListCertificateProvidersInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Returns the list of certificate providers in ascending alphabetical order.
+	AscendingOrder *bool `location:"querystring" locationName:"isAscendingOrder" type:"boolean"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificateProvidersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificateProvidersInput) GoString() string {
+	return s.String()
+}
+
+// SetAscendingOrder sets the AscendingOrder field's value.
+func (s *ListCertificateProvidersInput) SetAscendingOrder(v bool) *ListCertificateProvidersInput {
+	s.AscendingOrder = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificateProvidersInput) SetNextToken(v string) *ListCertificateProvidersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCertificateProvidersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of certificate providers in your Amazon Web Services account.
+	CertificateProviders []*CertificateProviderSummary `locationName:"certificateProviders" type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificateProvidersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCertificateProvidersOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificateProviders sets the CertificateProviders field's value.
+func (s *ListCertificateProvidersOutput) SetCertificateProviders(v []*CertificateProviderSummary) *ListCertificateProvidersOutput {
+	s.CertificateProviders = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificateProvidersOutput) SetNextToken(v string) *ListCertificateProvidersOutput {
+	s.NextToken = &v
+	return s
+}
+
 // The input to the ListCertificatesByCA operation.
 type ListCertificatesByCAInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
@@ -58271,8 +59227,8 @@ func (s *MetricDimension) SetOperator(v string) *MetricDimension {
 type MetricToRetain struct {
 	_ struct{} `type:"structure"`
 
-	// Value added in both Behavior and AdditionalMetricsToRetainV2 to indicate
-	// if Device Defender Detect should export the corresponding metrics.
+	// The value indicates exporting metrics related to the MetricToRetain when
+	// it's true.
 	ExportMetric *bool `locationName:"exportMetric" type:"boolean"`
 
 	// What is measured by the behavior.
@@ -68649,6 +69605,117 @@ func (s UpdateCertificateOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateCertificateProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the operations that the certificate provider will use to generate
+	// certificates. Valid value: CreateCertificateFromCsr.
+	AccountDefaultForOperations []*string `locationName:"accountDefaultForOperations" min:"1" type:"list" enum:"CertificateProviderOperation"`
+
+	// The name of the certificate provider.
+	//
+	// CertificateProviderName is a required field
+	CertificateProviderName *string `location:"uri" locationName:"certificateProviderName" min:"1" type:"string" required:"true"`
+
+	// The Lambda function ARN that's associated with the certificate provider.
+	LambdaFunctionArn *string `locationName:"lambdaFunctionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCertificateProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCertificateProviderInput"}
+	if s.AccountDefaultForOperations != nil && len(s.AccountDefaultForOperations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountDefaultForOperations", 1))
+	}
+	if s.CertificateProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateProviderName"))
+	}
+	if s.CertificateProviderName != nil && len(*s.CertificateProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountDefaultForOperations sets the AccountDefaultForOperations field's value.
+func (s *UpdateCertificateProviderInput) SetAccountDefaultForOperations(v []*string) *UpdateCertificateProviderInput {
+	s.AccountDefaultForOperations = v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *UpdateCertificateProviderInput) SetCertificateProviderName(v string) *UpdateCertificateProviderInput {
+	s.CertificateProviderName = &v
+	return s
+}
+
+// SetLambdaFunctionArn sets the LambdaFunctionArn field's value.
+func (s *UpdateCertificateProviderInput) SetLambdaFunctionArn(v string) *UpdateCertificateProviderInput {
+	s.LambdaFunctionArn = &v
+	return s
+}
+
+type UpdateCertificateProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the certificate provider.
+	CertificateProviderArn *string `locationName:"certificateProviderArn" type:"string"`
+
+	// The name of the certificate provider.
+	CertificateProviderName *string `locationName:"certificateProviderName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCertificateProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetCertificateProviderArn sets the CertificateProviderArn field's value.
+func (s *UpdateCertificateProviderOutput) SetCertificateProviderArn(v string) *UpdateCertificateProviderOutput {
+	s.CertificateProviderArn = &v
+	return s
+}
+
+// SetCertificateProviderName sets the CertificateProviderName field's value.
+func (s *UpdateCertificateProviderOutput) SetCertificateProviderName(v string) *UpdateCertificateProviderOutput {
+	s.CertificateProviderName = &v
+	return s
+}
+
 type UpdateCustomMetricInput struct {
 	_ struct{} `type:"structure"`
 
@@ -72803,6 +73870,18 @@ func CertificateMode_Values() []string {
 	return []string{
 		CertificateModeDefault,
 		CertificateModeSniOnly,
+	}
+}
+
+const (
+	// CertificateProviderOperationCreateCertificateFromCsr is a CertificateProviderOperation enum value
+	CertificateProviderOperationCreateCertificateFromCsr = "CreateCertificateFromCsr"
+)
+
+// CertificateProviderOperation_Values returns all elements of the CertificateProviderOperation enum
+func CertificateProviderOperation_Values() []string {
+	return []string{
+		CertificateProviderOperationCreateCertificateFromCsr,
 	}
 }
 

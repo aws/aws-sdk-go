@@ -21075,6 +21075,9 @@ const (
 	// PlatformTypeWindowsServer2019 is a PlatformType enum value
 	PlatformTypeWindowsServer2019 = "WINDOWS_SERVER_2019"
 
+	// PlatformTypeWindowsServer2022 is a PlatformType enum value
+	PlatformTypeWindowsServer2022 = "WINDOWS_SERVER_2022"
+
 	// PlatformTypeAmazonLinux2 is a PlatformType enum value
 	PlatformTypeAmazonLinux2 = "AMAZON_LINUX2"
 )
@@ -21085,6 +21088,7 @@ func PlatformType_Values() []string {
 		PlatformTypeWindows,
 		PlatformTypeWindowsServer2016,
 		PlatformTypeWindowsServer2019,
+		PlatformTypeWindowsServer2022,
 		PlatformTypeAmazonLinux2,
 	}
 }

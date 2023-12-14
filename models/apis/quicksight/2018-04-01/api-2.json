@@ -2562,6 +2562,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateDashboardLinks":{
+      "name":"UpdateDashboardLinks",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/dashboards/{DashboardId}/linked-entities"
+      },
+      "input":{"shape":"UpdateDashboardLinksRequest"},
+      "output":{"shape":"UpdateDashboardLinksResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateDashboardPermissions":{
       "name":"UpdateDashboardPermissions",
       "http":{
@@ -5173,6 +5190,7 @@
         "PrimaryYAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "SecondaryYAxisDisplayOptions":{"shape":"AxisDisplayOptions"},
         "SecondaryYAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "SingleAxisOptions":{"shape":"SingleAxisOptions"},
         "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "Legend":{"shape":"LegendOptions"},
         "BarDataLabels":{"shape":"DataLabelOptions"},
@@ -5554,7 +5572,8 @@
         "Definition":{"shape":"DashboardVersionDefinition"},
         "ValidationStrategy":{"shape":"ValidationStrategy"},
         "FolderArns":{"shape":"FolderArnList"},
-        "LinkSharingConfiguration":{"shape":"LinkSharingConfiguration"}
+        "LinkSharingConfiguration":{"shape":"LinkSharingConfiguration"},
+        "LinkEntities":{"shape":"LinkEntityArnList"}
       }
     },
     "CreateDashboardResponse":{
@@ -6471,7 +6490,8 @@
         "Version":{"shape":"DashboardVersion"},
         "CreatedTime":{"shape":"Timestamp"},
         "LastPublishedTime":{"shape":"Timestamp"},
-        "LastUpdatedTime":{"shape":"Timestamp"}
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "LinkEntities":{"shape":"LinkEntityArnList"}
       }
     },
     "DashboardBehavior":{
@@ -12465,6 +12485,7 @@
         "PrimaryYAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "SecondaryYAxisDisplayOptions":{"shape":"LineSeriesAxisDisplayOptions"},
         "SecondaryYAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "SingleAxisOptions":{"shape":"SingleAxisOptions"},
         "DefaultSeriesSettings":{"shape":"LineChartDefaultSeriesSettings"},
         "Series":{"shape":"SeriesItemList"},
         "Legend":{"shape":"LegendOptions"},
@@ -12576,6 +12597,17 @@
         "AxisOptions":{"shape":"AxisDisplayOptions"},
         "MissingDataConfigurations":{"shape":"MissingDataConfigurationList"}
       }
+    },
+    "LinkEntityArn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^arn:aws:quicksight:[\\w\\-]+:\\d+:analysis/[\\w\\-]{1,512}"
+    },
+    "LinkEntityArnList":{
+      "type":"list",
+      "member":{"shape":"LinkEntityArn"},
+      "max":5
     },
     "LinkSharingConfiguration":{
       "type":"structure",
@@ -16170,6 +16202,7 @@
       "type":"structure",
       "members":{
         "FieldWells":{"shape":"ScatterPlotFieldWells"},
+        "SortConfiguration":{"shape":"ScatterPlotSortConfiguration"},
         "XAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "XAxisDisplayOptions":{"shape":"AxisDisplayOptions"},
         "YAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
@@ -16185,6 +16218,12 @@
       "members":{
         "ScatterPlotCategoricallyAggregatedFieldWells":{"shape":"ScatterPlotCategoricallyAggregatedFieldWells"},
         "ScatterPlotUnaggregatedFieldWells":{"shape":"ScatterPlotUnaggregatedFieldWells"}
+      }
+    },
+    "ScatterPlotSortConfiguration":{
+      "type":"structure",
+      "members":{
+        "ScatterPlotLimitConfiguration":{"shape":"ItemsLimitConfiguration"}
       }
     },
     "ScatterPlotUnaggregatedFieldWells":{
@@ -16974,6 +17013,16 @@
         "NONE"
       ]
     },
+    "SingleAxisOptions":{
+      "type":"structure",
+      "members":{
+        "YAxisOptions":{"shape":"YAxisOptions"}
+      }
+    },
+    "SingleYAxisOption":{
+      "type":"string",
+      "enum":["PRIMARY_Y_AXIS"]
+    },
     "SiteBaseUrl":{
       "type":"string",
       "max":1024,
@@ -17187,6 +17236,7 @@
     },
     "SnapshotS3DestinationConfiguration":{
       "type":"structure",
+      "required":["BucketConfiguration"],
       "members":{
         "BucketConfiguration":{"shape":"S3BucketConfiguration"}
       }
@@ -19174,6 +19224,39 @@
         "RequestId":{"shape":"String"}
       }
     },
+    "UpdateDashboardLinksRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "DashboardId",
+        "LinkEntities"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "DashboardId":{
+          "shape":"ShortRestrictiveResourceId",
+          "location":"uri",
+          "locationName":"DashboardId"
+        },
+        "LinkEntities":{"shape":"LinkEntityArnList"}
+      }
+    },
+    "UpdateDashboardLinksResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "DashboardArn":{"shape":"Arn"},
+        "LinkEntities":{"shape":"LinkEntityArnList"}
+      }
+    },
     "UpdateDashboardPermissionsRequest":{
       "type":"structure",
       "required":[
@@ -20652,6 +20735,13 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "YAxisOptions":{
+      "type":"structure",
+      "required":["YAxis"],
+      "members":{
+        "YAxis":{"shape":"SingleYAxisOption"}
+      }
     },
     "boolean":{"type":"boolean"}
   }

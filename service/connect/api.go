@@ -20460,6 +20460,100 @@ func (c *Connect) SuspendContactRecordingWithContext(ctx aws.Context, input *Sus
 	return out, req.Send()
 }
 
+const opTagContact = "TagContact"
+
+// TagContactRequest generates a "aws/request.Request" representing the
+// client's request for the TagContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagContact for more information on using the TagContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagContactRequest method.
+//	req, resp := client.TagContactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TagContact
+func (c *Connect) TagContactRequest(input *TagContactInput) (req *request.Request, output *TagContactOutput) {
+	op := &request.Operation{
+		Name:       opTagContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/tags",
+	}
+
+	if input == nil {
+		input = &TagContactInput{}
+	}
+
+	output = &TagContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagContact API operation for Amazon Connect Service.
+//
+// Adds the specified tags to the contact resource. For more information about
+// this API is used, see Set up granular billing for a detailed view of your
+// Amazon Connect usage (https://docs.aws.amazon.com/connect/latest/adminguide/granular-billing.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation TagContact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TagContact
+func (c *Connect) TagContact(input *TagContactInput) (*TagContactOutput, error) {
+	req, out := c.TagContactRequest(input)
+	return out, req.Send()
+}
+
+// TagContactWithContext is the same as TagContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) TagContactWithContext(ctx aws.Context, input *TagContactInput, opts ...request.Option) (*TagContactOutput, error) {
+	req, out := c.TagContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -20670,6 +20764,100 @@ func (c *Connect) TransferContact(input *TransferContactInput) (*TransferContact
 // for more information on using Contexts.
 func (c *Connect) TransferContactWithContext(ctx aws.Context, input *TransferContactInput, opts ...request.Option) (*TransferContactOutput, error) {
 	req, out := c.TransferContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagContact = "UntagContact"
+
+// UntagContactRequest generates a "aws/request.Request" representing the
+// client's request for the UntagContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagContact for more information on using the UntagContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagContactRequest method.
+//	req, resp := client.UntagContactRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UntagContact
+func (c *Connect) UntagContactRequest(input *UntagContactInput) (req *request.Request, output *UntagContactOutput) {
+	op := &request.Operation{
+		Name:       opUntagContact,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact/tags/{InstanceId}/{ContactId}",
+	}
+
+	if input == nil {
+		input = &UntagContactInput{}
+	}
+
+	output = &UntagContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagContact API operation for Amazon Connect Service.
+//
+// Removes the specified tags from the contact resource. For more information
+// about this API is used, see Set up granular billing for a detailed view of
+// your Amazon Connect usage (https://docs.aws.amazon.com/connect/latest/adminguide/granular-billing.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UntagContact for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UntagContact
+func (c *Connect) UntagContact(input *UntagContactInput) (*UntagContactOutput, error) {
+	req, out := c.UntagContactRequest(input)
+	return out, req.Send()
+}
+
+// UntagContactWithContext is the same as UntagContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UntagContactWithContext(ctx aws.Context, input *UntagContactInput, opts ...request.Option) (*UntagContactOutput, error) {
+	req, out := c.UntagContactRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -25395,7 +25583,7 @@ type AgentStatus struct {
 	State *string `type:"string" enum:"AgentStatusState"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of agent status.
@@ -28270,7 +28458,7 @@ type ClaimPhoneNumberInput struct {
 	PhoneNumberDescription *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
@@ -28453,7 +28641,7 @@ type ClaimedPhoneNumberSummary struct {
 	SourcePhoneNumberArn *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution
@@ -28645,6 +28833,10 @@ type Contact struct {
 	// flow.
 	ScheduledTimestamp *time.Time `type:"timestamp"`
 
+	// Tags associated with the contact. This contains both Amazon Web Services
+	// generated and user-defined tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
 	// Information about Amazon Connect Wisdom.
 	WisdomInfo *WisdomInfo `type:"structure"`
 }
@@ -28754,6 +28946,12 @@ func (s *Contact) SetRelatedContactId(v string) *Contact {
 // SetScheduledTimestamp sets the ScheduledTimestamp field's value.
 func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
 	s.ScheduledTimestamp = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Contact) SetTags(v map[string]*string) *Contact {
+	s.Tags = v
 	return s
 }
 
@@ -28916,7 +29114,7 @@ type ContactFlow struct {
 	State *string `type:"string" enum:"ContactFlowState"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of the flow. For descriptions of the available types, see Choose
@@ -29018,7 +29216,7 @@ type ContactFlowModule struct {
 	Status *string `type:"string" enum:"ContactFlowModuleStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -29431,7 +29629,7 @@ type CreateAgentStatusInput struct {
 	State *string `type:"string" required:"true" enum:"AgentStatusState"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -29588,7 +29786,7 @@ type CreateContactFlowInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of the flow. For descriptions of the available types, see Choose
@@ -29715,7 +29913,7 @@ type CreateContactFlowModuleInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -30085,7 +30283,7 @@ type CreateHoursOfOperationInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone of the hours of operation.
@@ -30432,7 +30630,7 @@ type CreateIntegrationAssociationInput struct {
 	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -30922,7 +31120,7 @@ type CreatePromptInput struct {
 	S3Uri *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -31082,7 +31280,7 @@ type CreateQueueInput struct {
 	QuickConnectIds []*string `min:"1" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -31255,7 +31453,7 @@ type CreateQuickConnectInput struct {
 	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -31428,7 +31626,7 @@ type CreateRoutingProfileInput struct {
 	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -31831,7 +32029,7 @@ type CreateSecurityProfileInput struct {
 	TagRestrictedResources []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -32210,7 +32408,7 @@ type CreateTrafficDistributionGroupInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -32349,7 +32547,7 @@ type CreateUseCaseInput struct {
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of use case to associate to the integration association. Each integration
@@ -32489,7 +32687,7 @@ type CreateUserHierarchyGroupInput struct {
 	ParentGroupId *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -32646,7 +32844,7 @@ type CreateUserInput struct {
 	SecurityProfileIds []*string `min:"1" type:"list" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The user name for the account. For instances not using SAML for identity
@@ -33150,7 +33348,7 @@ type CreateVocabularyInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// A unique name of the custom vocabulary.
@@ -39853,7 +40051,7 @@ type Evaluation struct {
 	Status *string `type:"string" required:"true" enum:"EvaluationStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -40123,7 +40321,7 @@ type EvaluationForm struct {
 	Status *string `type:"string" required:"true" enum:"EvaluationFormVersionStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// A title of the evaluation form.
@@ -44331,7 +44529,7 @@ type GetTaskTemplateOutput struct {
 	Status *string `type:"string" enum:"TaskTemplateStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -44577,7 +44775,7 @@ type HierarchyGroup struct {
 	Name *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -45388,7 +45586,7 @@ type HoursOfOperation struct {
 	Name *string `min:"1" type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone for the hours of operation.
@@ -45863,7 +46061,7 @@ type ImportPhoneNumberInput struct {
 	SourcePhoneNumberArn *string `type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -53568,7 +53766,7 @@ type NotificationRecipientType struct {
 	UserIds []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon Connect users
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon Connect users
 	// with the specified tags will be notified.
 	UserTags map[string]*string `type:"map"`
 }
@@ -54528,7 +54726,7 @@ type Prompt struct {
 	PromptId *string `min:"1" type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -55012,7 +55210,7 @@ type Queue struct {
 	Status *string `type:"string" enum:"QueueStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -55450,7 +55648,7 @@ type QuickConnect struct {
 	QuickConnectId *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -57506,7 +57704,7 @@ type RoutingProfile struct {
 	RoutingProfileId *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -58108,7 +58306,7 @@ type Rule struct {
 	RuleId *string `min:"1" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The event source to trigger the rule.
@@ -60116,7 +60314,7 @@ type SecurityProfile struct {
 	TagRestrictedResources []*string `type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -60272,7 +60470,7 @@ type SecurityProfileSearchSummary struct {
 	SecurityProfileName *string `type:"string"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -63110,6 +63308,116 @@ func (s *TagCondition) SetTagValue(v string) *TagCondition {
 	return s
 }
 
+type TagContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The tags to be assigned to the contact resource. For example, { "Tags": {"key1":"value1",
+	// "key2":"value2"} }.
+	//
+	// Authorization is not supported by this tag.
+	//
+	// Tags is a required field
+	Tags map[string]*string `min:"1" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *TagContactInput) SetContactId(v string) *TagContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *TagContactInput) SetInstanceId(v string) *TagContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagContactInput) SetTags(v map[string]*string) *TagContactInput {
+	s.Tags = v
+	return s
+}
+
+type TagContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagContactOutput) GoString() string {
+	return s.String()
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -63119,7 +63427,7 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
@@ -64149,7 +64457,7 @@ type TrafficDistributionGroup struct {
 	Status *string `type:"string" enum:"TrafficDistributionGroupStatus"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -64508,6 +64816,114 @@ func (s *TransferContactOutput) SetContactArn(v string) *TransferContactOutput {
 func (s *TransferContactOutput) SetContactId(v string) *TransferContactOutput {
 	s.ContactId = &v
 	return s
+}
+
+type UntagContactInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A list of tag keys. Existing tags on the contact whose keys are members of
+	// this list will be removed.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"TagKeys" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *UntagContactInput) SetContactId(v string) *UntagContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UntagContactInput) SetInstanceId(v string) *UntagContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagContactInput) SetTagKeys(v []*string) *UntagContactInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagContactOutput) GoString() string {
+	return s.String()
 }
 
 type UntagResourceInput struct {
@@ -70836,7 +71252,7 @@ type UserSearchSummary struct {
 	SecurityProfileIds []*string `min:"1" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The name of the user.
@@ -71453,7 +71869,7 @@ type Vocabulary struct {
 	State *string `type:"string" required:"true" enum:"VocabularyState"`
 
 	// The tags used to organize, track, or control access for this resource. For
-	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 

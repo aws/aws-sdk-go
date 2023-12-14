@@ -1,13 +1,13 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Web Services Billing Conductor is a fully managed service that you can use to customize a <a href=\"https://docs.aws.amazon.com/billingconductor/latest/userguide/understanding-eb.html#eb-other-definitions\">pro forma</a> version of your billing data each month, to accurately show or chargeback your end customers. Amazon Web Services Billing Conductor doesn't change the way you're billed by Amazon Web Services each month by design. Instead, it provides you with a mechanism to configure, generate, and display rates to certain customers over a given billing period. You can also analyze the difference between the rates you apply to your accounting groupings relative to your actual rates from Amazon Web Services. As a result of your Amazon Web Services Billing Conductor configuration, the payer account can also see the custom rate applied on the billing details page of the <a href=\"https://console.aws.amazon.com/billing\">Amazon Web Services Billing console</a>, or configure a cost and usage report per billing group.</p> <p>This documentation shows how you can configure Amazon Web Services Billing Conductor using its API. For more information about using the <a href=\"https://console.aws.amazon.com/billingconductor/\">Amazon Web Services Billing Conductor</a> user interface, see the <a href=\"https://docs.aws.amazon.com/billingconductor/latest/userguide/what-is-billingconductor.html\"> Amazon Web Services Billing Conductor User Guide</a>.</p>",
+  "service": "<p>Amazon Web Services Billing Conductor is a fully managed service that you can use to customize a <a href=\"https://docs.aws.amazon.com/billingconductor/latest/userguide/understanding-eb.html#eb-other-definitions\">proforma</a> version of your billing data each month, to accurately show or chargeback your end customers. Amazon Web Services Billing Conductor doesn't change the way you're billed by Amazon Web Services each month by design. Instead, it provides you with a mechanism to configure, generate, and display rates to certain customers over a given billing period. You can also analyze the difference between the rates you apply to your accounting groupings relative to your actual rates from Amazon Web Services. As a result of your Amazon Web Services Billing Conductor configuration, the payer account can also see the custom rate applied on the billing details page of the <a href=\"https://console.aws.amazon.com/billing\">Amazon Web Services Billing console</a>, or configure a cost and usage report per billing group.</p> <p>This documentation shows how you can configure Amazon Web Services Billing Conductor using its API. For more information about using the <a href=\"https://console.aws.amazon.com/billingconductor/\">Amazon Web Services Billing Conductor</a> user interface, see the <a href=\"https://docs.aws.amazon.com/billingconductor/latest/userguide/what-is-billingconductor.html\"> Amazon Web Services Billing Conductor User Guide</a>.</p>",
   "operations": {
     "AssociateAccounts": "<p>Connects an array of account IDs in a consolidated billing family to a predefined billing group. The account IDs must be a part of the consolidated billing family during the current month, and not already associated with another billing group. The maximum number of accounts that can be associated in one call is 30. </p>",
     "AssociatePricingRules": "<p>Connects an array of <code>PricingRuleArns</code> to a defined <code>PricingPlan</code>. The maximum number <code>PricingRuleArn</code> that can be associated in one call is 30. </p>",
     "BatchAssociateResourcesToCustomLineItem": "<p> Associates a batch of resources to a percentage custom line item. </p>",
     "BatchDisassociateResourcesFromCustomLineItem": "<p> Disassociates a batch of resources from a percentage custom line item. </p>",
     "CreateBillingGroup": "<p> Creates a billing group that resembles a consolidated billing family that Amazon Web Services charges, based off of the predefined pricing plan computation. </p>",
-    "CreateCustomLineItem": "<p> Creates a custom line item that can be used to create a one-time fixed charge that can be applied to a single billing group for the current or previous billing period. The one-time fixed charge is either a fee or discount. </p>",
+    "CreateCustomLineItem": "<p>Creates a custom line item that can be used to create a one-time fixed charge that can be applied to a single billing group for the current or previous billing period. The one-time fixed charge is either a fee or discount. </p>",
     "CreatePricingPlan": "<p>Creates a pricing plan that is used for computing Amazon Web Services charges for billing groups. </p>",
     "CreatePricingRule": "<p> Creates a pricing rule can be associated to a pricing plan, or a set of pricing plans. </p>",
     "DeleteBillingGroup": "<p> Deletes a billing group. </p>",
@@ -16,6 +16,7 @@
     "DeletePricingRule": "<p> Deletes the pricing rule that's identified by the input Amazon Resource Name (ARN). </p>",
     "DisassociateAccounts": "<p>Removes the specified list of account IDs from the given billing group. </p>",
     "DisassociatePricingRules": "<p> Disassociates a list of pricing rules from a pricing plan. </p>",
+    "GetBillingGroupCostReport": "<p>Retrieves the margin summary report, which includes the Amazon Web Services cost and charged amount (pro forma cost) by Amazon Web Service for a specific billing group.</p>",
     "ListAccountAssociations": "<p> This is a paginated call to list linked accounts that are linked to the payer account for the specified time period. If no information is provided, the current billing period is used. The response will optionally include the billing group that's associated with the linked account.</p>",
     "ListBillingGroupCostReports": "<p>A paginated call to retrieve a summary report of actual Amazon Web Services charges and the calculated Amazon Web Services charges based on the associated pricing plan of a billing group.</p>",
     "ListBillingGroups": "<p>A paginated call to retrieve a list of billing groups for the given billing period. If you don't provide a billing group, the current billing period is used.</p>",
@@ -38,7 +39,8 @@
     "AWSCost": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$AWSCost": "<p>The actual Amazon Web Services charges for the billing group.</p>"
+        "BillingGroupCostReportElement$AWSCost": "<p>The actual Amazon Web Services charges for the billing group.</p>",
+        "BillingGroupCostReportResultElement$AWSCost": "<p>The actual Amazon Web Services charges for the billing group.</p>"
       }
     },
     "AccessDeniedException": {
@@ -166,6 +168,18 @@
         "ListAccountAssociationsFilter$Association": "<p> <code>MONITORED</code>: linked accounts that are associated to billing groups.</p> <p> <code>UNMONITORED</code>: linked accounts that are not associated to billing groups.</p> <p> <code>Billing Group Arn</code>: linked accounts that are associated to the provided Billing Group Arn.</p>"
       }
     },
+    "Attribute": {
+      "base": "<p>The key-value pair that represents the attribute by which the <code>BillingGroupCostReportResults</code> are grouped. For example, if you want a service-level breakdown for Amazon Simple Storage Service (Amazon S3) of the billing group, the attribute will be a key-value pair of <code>\"PRODUCT_NAME\"</code> and <code>\"S3\"</code>.</p>",
+      "refs": {
+        "AttributesList$member": null
+      }
+    },
+    "AttributesList": {
+      "base": null,
+      "refs": {
+        "BillingGroupCostReportResultElement$Attributes": "<p>The list of key-value pairs that represent the attributes by which the <code>BillingGroupCostReportResults</code> are grouped. For example, if you want the Amazon S3 service-level breakdown of a billing group for November 2023, the attributes list will contain a key-value pair of <code>\"PRODUCT_NAME\"</code> and <code>\"S3\"</code> and a key-value pair of <code>\"BILLING_PERIOD\"</code> and <code>\"Nov 2023\"</code>.</p>"
+      }
+    },
     "BatchAssociateResourcesToCustomLineItemInput": {
       "base": null,
       "refs": {
@@ -202,6 +216,7 @@
         "AssociateAccountsOutput$Arn": "<p> The Amazon Resource Name (ARN) of the billing group that associates the array of account IDs. </p>",
         "BillingGroupArnList$member": null,
         "BillingGroupCostReportElement$Arn": "<p>The Amazon Resource Name (ARN) of a billing group.</p>",
+        "BillingGroupCostReportResultElement$Arn": "<p>The Amazon Resource Number (ARN) that uniquely identifies the billing group.</p>",
         "BillingGroupListElement$Arn": "<p>The Amazon Resource Number (ARN) that can be used to uniquely identify the billing group.</p>",
         "CreateBillingGroupOutput$Arn": "<p>The Amazon Resource Name (ARN) of the created billing group. </p>",
         "CreateCustomLineItemInput$BillingGroupArn": "<p> The Amazon Resource Name (ARN) that references the billing group where the custom line item applies to. </p>",
@@ -211,6 +226,7 @@
         "DeleteBillingGroupOutput$Arn": "<p>The Amazon Resource Name (ARN) of the deleted billing group.</p>",
         "DisassociateAccountsInput$Arn": "<p>The Amazon Resource Name (ARN) of the billing group that the array of account IDs will disassociate from. </p>",
         "DisassociateAccountsOutput$Arn": "<p>The Amazon Resource Name (ARN) of the billing group that the array of account IDs is disassociated from. </p>",
+        "GetBillingGroupCostReportInput$Arn": "<p>The Amazon Resource Number (ARN) that uniquely identifies the billing group.</p>",
         "UpdateBillingGroupInput$Arn": "<p>The Amazon Resource Name (ARN) of the billing group being updated. </p>",
         "UpdateBillingGroupOutput$Arn": "<p>The Amazon Resource Name (ARN) of the billing group that was updated. </p>"
       }
@@ -233,6 +249,18 @@
       "base": null,
       "refs": {
         "ListBillingGroupCostReportsOutput$BillingGroupCostReports": "<p>A list of <code>BillingGroupCostReportElement</code> retrieved. </p>"
+      }
+    },
+    "BillingGroupCostReportResultElement": {
+      "base": "<p>A paginated call to retrieve a list of summary reports of actual Amazon Web Services charges and the calculated Amazon Web Services charges, broken down by attributes.</p>",
+      "refs": {
+        "BillingGroupCostReportResultsList$member": null
+      }
+    },
+    "BillingGroupCostReportResultsList": {
+      "base": null,
+      "refs": {
+        "GetBillingGroupCostReportOutput$BillingGroupCostReportResults": "<p>The list of margin summary reports.</p>"
       }
     },
     "BillingGroupDescription": {
@@ -296,6 +324,8 @@
     "BillingPeriod": {
       "base": null,
       "refs": {
+        "BillingPeriodRange$InclusiveStartBillingPeriod": "<p>The inclusive start billing period that defines a billing period range for the margin summary.</p>",
+        "BillingPeriodRange$ExclusiveEndBillingPeriod": "<p>The exclusive end billing period that defines a billing period range for the margin summary. For example, if you choose a billing period that starts in October 2023 and ends in December 2023, the margin summary will only include data from October 2023 and November 2023.</p>",
         "CustomLineItemBillingPeriodRange$InclusiveStartBillingPeriod": "<p>The inclusive start billing period that defines a billing period range where a custom line is applied.</p>",
         "CustomLineItemBillingPeriodRange$ExclusiveEndBillingPeriod": "<p>The inclusive end billing period that defines a billing period range where a custom line is applied.</p>",
         "CustomLineItemVersionListElement$StartBillingPeriod": "<p>The start billing period of the custom line item version.</p>",
@@ -316,6 +346,12 @@
         "ListPricingRulesOutput$BillingPeriod": "<p> The billing period for which the described pricing rules are applicable. </p>",
         "ListResourcesAssociatedToCustomLineItemInput$BillingPeriod": "<p> The billing period for which the resource associations will be listed. </p>",
         "ListResourcesAssociatedToCustomLineItemResponseElement$EndBillingPeriod": "<p>The end billing period of the associated resource.</p>"
+      }
+    },
+    "BillingPeriodRange": {
+      "base": "<p>A time range for which the margin summary is effective. The time range can be up to 12 months.</p>",
+      "refs": {
+        "GetBillingGroupCostReportInput$BillingPeriodRange": "<p>A time range for which the margin summary is effective. You can specify up to 12 months.</p>"
       }
     },
     "Boolean": {
@@ -410,7 +446,8 @@
     "Currency": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$Currency": "<p>The displayed currency.</p>"
+        "BillingGroupCostReportElement$Currency": "<p>The displayed currency.</p>",
+        "BillingGroupCostReportResultElement$Currency": "<p>The displayed currency.</p>"
       }
     },
     "CurrencyCode": {
@@ -430,7 +467,7 @@
         "CustomLineItemListElement$Arn": "<p>The Amazon Resource Names (ARNs) for custom line items.</p>",
         "CustomLineItemVersionListElement$Arn": "<p> A list of custom line item Amazon Resource Names (ARNs) to retrieve information. </p>",
         "DeleteCustomLineItemInput$Arn": "<p> The ARN of the custom line item to be deleted. </p>",
-        "DeleteCustomLineItemOutput$Arn": "<p> Then ARN of the deleted custom line item. </p>",
+        "DeleteCustomLineItemOutput$Arn": "<p>The ARN of the deleted custom line item. </p>",
         "ListCustomLineItemVersionsInput$Arn": "<p>The Amazon Resource Name (ARN) for the custom line item.</p>",
         "ListResourcesAssociatedToCustomLineItemInput$Arn": "<p> The ARN of the custom line item for which the resource associations will be listed. </p>",
         "ListResourcesAssociatedToCustomLineItemOutput$Arn": "<p> The custom line item ARN for which the resource associations are listed. </p>",
@@ -666,6 +703,28 @@
       "base": "<p> The possible Amazon Web Services Free Tier configurations. </p>",
       "refs": {
         "Tiering$FreeTier": "<p> The possible Amazon Web Services Free Tier configurations. </p>"
+      }
+    },
+    "GetBillingGroupCostReportInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBillingGroupCostReportOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GroupByAttributeName": {
+      "base": null,
+      "refs": {
+        "GroupByAttributesList$member": null
+      }
+    },
+    "GroupByAttributesList": {
+      "base": null,
+      "refs": {
+        "GetBillingGroupCostReportInput$GroupBy": "<p>A list of strings that specify the attributes that are used to break down costs in the margin summary reports for the billing group. For example, you can view your costs by the Amazon Web Service name or the billing period.</p>"
       }
     },
     "Instant": {
@@ -930,19 +989,27 @@
     "Margin": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$Margin": "<p>The billing group margin.</p>"
+        "BillingGroupCostReportElement$Margin": "<p>The billing group margin.</p>",
+        "BillingGroupCostReportResultElement$Margin": "<p>The billing group margin.</p>"
       }
     },
     "MarginPercentage": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$MarginPercentage": "<p>The percentage of billing group margin.</p>"
+        "BillingGroupCostReportElement$MarginPercentage": "<p>The percentage of billing group margin.</p>",
+        "BillingGroupCostReportResultElement$MarginPercentage": "<p>The percentage of the billing group margin.</p>"
       }
     },
     "MatchOption": {
       "base": null,
       "refs": {
         "LineItemFilter$MatchOption": "<p>The match criteria of the line item filter. This parameter specifies whether not to include the resource value from the billing group total cost.</p>"
+      }
+    },
+    "MaxBillingGroupCostReportResults": {
+      "base": null,
+      "refs": {
+        "GetBillingGroupCostReportInput$MaxResults": "<p>The maximum number of margin summary reports to retrieve.</p>"
       }
     },
     "MaxBillingGroupResults": {
@@ -1169,7 +1236,8 @@
     "ProformaCost": {
       "base": null,
       "refs": {
-        "BillingGroupCostReportElement$ProformaCost": "<p>The hypothetical Amazon Web Services charges based on the associated pricing plan of a billing group.</p>"
+        "BillingGroupCostReportElement$ProformaCost": "<p>The hypothetical Amazon Web Services charges based on the associated pricing plan of a billing group.</p>",
+        "BillingGroupCostReportResultElement$ProformaCost": "<p>The hypothetical Amazon Web Services charges based on the associated pricing plan of a billing group.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1202,6 +1270,8 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "AssociateResourceError$Message": "<p>The reason why the resource association failed.</p>",
+        "Attribute$Key": "<p>The key in a key-value pair that describes the margin summary.</p>",
+        "Attribute$Value": "<p>The value in a key-value pair that describes the margin summary.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>Identifier of the resource in use. </p>",
         "ConflictException$ResourceType": "<p>Type of the resource in use. </p>",
@@ -1282,6 +1352,8 @@
     "Token": {
       "base": null,
       "refs": {
+        "GetBillingGroupCostReportInput$NextToken": "<p>The pagination token used on subsequent calls to get reports.</p>",
+        "GetBillingGroupCostReportOutput$NextToken": "<p>The pagination token used on subsequent calls to get reports.</p>",
         "ListAccountAssociationsInput$NextToken": "<p> The pagination token that's used on subsequent calls to retrieve accounts. </p>",
         "ListAccountAssociationsOutput$NextToken": "<p> The pagination token that's used on subsequent calls to get accounts. </p>",
         "ListBillingGroupCostReportsInput$NextToken": "<p>The pagination token that's used on subsequent calls to get reports. </p>",

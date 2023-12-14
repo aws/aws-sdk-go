@@ -276,6 +276,23 @@
       ],
       "idempotent":true
     },
+    "GetBillingGroupCostReport":{
+      "name":"GetBillingGroupCostReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/get-billing-group-cost-report",
+        "responseCode":200
+      },
+      "input":{"shape":"GetBillingGroupCostReportInput"},
+      "output":{"shape":"GetBillingGroupCostReportOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListAccountAssociations":{
       "name":"ListAccountAssociations",
       "http":{
@@ -701,6 +718,17 @@
       "type":"string",
       "pattern":"((arn:aws(-cn)?:billingconductor::[0-9]{12}:billinggroup/)?[0-9]{12}|MONITORED|UNMONITORED)"
     },
+    "Attribute":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "AttributesList":{
+      "type":"list",
+      "member":{"shape":"Attribute"}
+    },
     "BatchAssociateResourcesToCustomLineItemInput":{
       "type":"structure",
       "required":[
@@ -768,6 +796,22 @@
       "type":"list",
       "member":{"shape":"BillingGroupCostReportElement"}
     },
+    "BillingGroupCostReportResultElement":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"BillingGroupArn"},
+        "AWSCost":{"shape":"AWSCost"},
+        "ProformaCost":{"shape":"ProformaCost"},
+        "Margin":{"shape":"Margin"},
+        "MarginPercentage":{"shape":"MarginPercentage"},
+        "Currency":{"shape":"Currency"},
+        "Attributes":{"shape":"AttributesList"}
+      }
+    },
+    "BillingGroupCostReportResultsList":{
+      "type":"list",
+      "member":{"shape":"BillingGroupCostReportResultElement"}
+    },
     "BillingGroupDescription":{
       "type":"string",
       "max":1024,
@@ -822,6 +866,17 @@
     "BillingPeriod":{
       "type":"string",
       "pattern":"\\d{4}-(0?[1-9]|1[012])"
+    },
+    "BillingPeriodRange":{
+      "type":"structure",
+      "required":[
+        "InclusiveStartBillingPeriod",
+        "ExclusiveEndBillingPeriod"
+      ],
+      "members":{
+        "InclusiveStartBillingPeriod":{"shape":"BillingPeriod"},
+        "ExclusiveEndBillingPeriod":{"shape":"BillingPeriod"}
+      }
     },
     "Boolean":{
       "type":"boolean",
@@ -1267,6 +1322,35 @@
         "Activated":{"shape":"TieringActivated"}
       }
     },
+    "GetBillingGroupCostReportInput":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"BillingGroupArn"},
+        "BillingPeriodRange":{"shape":"BillingPeriodRange"},
+        "GroupBy":{"shape":"GroupByAttributesList"},
+        "MaxResults":{"shape":"MaxBillingGroupCostReportResults"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetBillingGroupCostReportOutput":{
+      "type":"structure",
+      "members":{
+        "BillingGroupCostReportResults":{"shape":"BillingGroupCostReportResultsList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GroupByAttributeName":{
+      "type":"string",
+      "enum":[
+        "PRODUCT_NAME",
+        "BILLING_PERIOD"
+      ]
+    },
+    "GroupByAttributesList":{
+      "type":"list",
+      "member":{"shape":"GroupByAttributeName"}
+    },
     "Instant":{"type":"long"},
     "InternalServerException":{
       "type":"structure",
@@ -1614,6 +1698,12 @@
     "MatchOption":{
       "type":"string",
       "enum":["NOT_EQUAL"]
+    },
+    "MaxBillingGroupCostReportResults":{
+      "type":"integer",
+      "box":true,
+      "max":300,
+      "min":200
     },
     "MaxBillingGroupResults":{
       "type":"integer",

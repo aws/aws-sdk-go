@@ -56,9 +56,9 @@ func (c *B2bi) CreateCapabilityRequest(input *CreateCapabilityInput) (req *reque
 
 // CreateCapability API operation for AWS B2B Data Interchange.
 //
-// Instantiates a capability based on the specified parameters. Capabilities
-// contain the information necessary to process incoming EDI (electronic data
-// interchange) documents.
+// Instantiates a capability based on the specified parameters. A trading capability
+// contains the information required to transform incoming EDI documents into
+// JSON or XML outputs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -164,10 +164,9 @@ func (c *B2bi) CreatePartnershipRequest(input *CreatePartnershipInput) (req *req
 // CreatePartnership API operation for AWS B2B Data Interchange.
 //
 // Creates a partnership between a customer and a trading partner, based on
-// the supplied parameters. Partnerships link trading partners with your profile
-// and a specific transformer, so that the EDI (electronic data interchange)
-// documents that they upload to Amazon S3 can be processed according to their
-// specifications.
+// the supplied parameters. A partnership represents the connection between
+// you and your trading partner. It ties together a profile and one or more
+// trading capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -273,8 +272,8 @@ func (c *B2bi) CreateProfileRequest(input *CreateProfileInput) (req *request.Req
 // CreateProfile API operation for AWS B2B Data Interchange.
 //
 // Creates a customer profile. You can have up to five customer profiles, each
-// representing a distinct private network. Profiles contain basic information
-// about you and your business.
+// representing a distinct private network. A profile is the mechanism used
+// to create the concept of a private network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -379,8 +378,8 @@ func (c *B2bi) CreateTransformerRequest(input *CreateTransformerInput) (req *req
 
 // CreateTransformer API operation for AWS B2B Data Interchange.
 //
-// Creates a transformer. Transformers describe how to process the incoming
-// EDI (electronic data interchange) documents, and extract the necessary information.
+// Creates a transformer. A transformer describes how to process the incoming
+// EDI documents and extract the necessary information to the output file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -486,8 +485,8 @@ func (c *B2bi) DeleteCapabilityRequest(input *DeleteCapabilityInput) (req *reque
 
 // DeleteCapability API operation for AWS B2B Data Interchange.
 //
-// Deletes the specified capability. Capabilities contain the information necessary
-// to process incoming EDI (electronic data interchange) documents.
+// Deletes the specified capability. A trading capability contains the information
+// required to transform incoming EDI documents into JSON or XML outputs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -588,10 +587,9 @@ func (c *B2bi) DeletePartnershipRequest(input *DeletePartnershipInput) (req *req
 
 // DeletePartnership API operation for AWS B2B Data Interchange.
 //
-// Deletes the specified partnership. Partnerships link trading partners with
-// your profile and a specific transformer, so that the EDI (electronic data
-// interchange) documents that they upload to Amazon S3 can be processed according
-// to their specifications.
+// Deletes the specified partnership. A partnership represents the connection
+// between you and your trading partner. It ties together a profile and one
+// or more trading capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -692,8 +690,8 @@ func (c *B2bi) DeleteProfileRequest(input *DeleteProfileInput) (req *request.Req
 
 // DeleteProfile API operation for AWS B2B Data Interchange.
 //
-// Deletes the specified profile. Profiles contain basic information about you
-// and your business.
+// Deletes the specified profile. A profile is the mechanism used to create
+// the concept of a private network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -794,9 +792,9 @@ func (c *B2bi) DeleteTransformerRequest(input *DeleteTransformerInput) (req *req
 
 // DeleteTransformer API operation for AWS B2B Data Interchange.
 //
-// Deletes the specified transformer. Transformers describe how to process the
-// incoming EDI (electronic data interchange) documents, and extract the necessary
-// information.
+// Deletes the specified transformer. A transformer describes how to process
+// the incoming EDI documents and extract the necessary information to the output
+// file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -896,9 +894,9 @@ func (c *B2bi) GetCapabilityRequest(input *GetCapabilityInput) (req *request.Req
 
 // GetCapability API operation for AWS B2B Data Interchange.
 //
-// Retrieves the details for the specified capability. Capabilities contain
-// the information necessary to process incoming EDI (electronic data interchange)
-// documents.
+// Retrieves the details for the specified capability. A trading capability
+// contains the information required to transform incoming EDI documents into
+// JSON or XML outputs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -995,9 +993,8 @@ func (c *B2bi) GetPartnershipRequest(input *GetPartnershipInput) (req *request.R
 // GetPartnership API operation for AWS B2B Data Interchange.
 //
 // Retrieves the details for a partnership, based on the partner and profile
-// IDs specified. Partnerships link trading partners with your profile and a
-// specific transformer, so that the EDI (electronic data interchange) documents
-// that they upload to Amazon S3 can be processed according to their specifications.
+// IDs specified. A partnership represents the connection between you and your
+// trading partner. It ties together a profile and one or more trading capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1093,8 +1090,8 @@ func (c *B2bi) GetProfileRequest(input *GetProfileInput) (req *request.Request, 
 
 // GetProfile API operation for AWS B2B Data Interchange.
 //
-// Retrieves the details for the profile specified by the profile ID. Profiles
-// contain basic information about you and your business.
+// Retrieves the details for the profile specified by the profile ID. A profile
+// is the mechanism used to create the concept of a private network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1191,8 +1188,8 @@ func (c *B2bi) GetTransformerRequest(input *GetTransformerInput) (req *request.R
 // GetTransformer API operation for AWS B2B Data Interchange.
 //
 // Retrieves the details for the transformer specified by the transformer ID.
-// Transformers describe how to process the incoming EDI (electronic data interchange)
-// documents, and extract the necessary information.
+// A transformer describes how to process the incoming EDI documents and extract
+// the necessary information to the output file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1392,8 +1389,8 @@ func (c *B2bi) ListCapabilitiesRequest(input *ListCapabilitiesInput) (req *reque
 // ListCapabilities API operation for AWS B2B Data Interchange.
 //
 // Lists the capabilities associated with your Amazon Web Services account for
-// your current or specified region. Capabilities contain the information necessary
-// to process incoming EDI (electronic data interchange) documents.
+// your current or specified region. A trading capability contains the information
+// required to transform incoming EDI documents into JSON or XML outputs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1524,10 +1521,9 @@ func (c *B2bi) ListPartnershipsRequest(input *ListPartnershipsInput) (req *reque
 // ListPartnerships API operation for AWS B2B Data Interchange.
 //
 // Lists the partnerships associated with your Amazon Web Services account for
-// your current or specified region. Partnerships link trading partners with
-// your profile and a specific transformer, so that the EDI (electronic data
-// interchange) documents that they upload to Amazon S3 can be processed according
-// to their specifications.
+// your current or specified region. A partnership represents the connection
+// between you and your trading partner. It ties together a profile and one
+// or more trading capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1681,8 +1677,8 @@ func (c *B2bi) ListProfilesRequest(input *ListProfilesInput) (req *request.Reque
 // ListProfiles API operation for AWS B2B Data Interchange.
 //
 // Lists the profiles associated with your Amazon Web Services account for your
-// current or specified region. Profiles contain basic information about you
-// and your business.
+// current or specified region. A profile is the mechanism used to create the
+// concept of a private network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1898,9 +1894,9 @@ func (c *B2bi) ListTransformersRequest(input *ListTransformersInput) (req *reque
 
 // ListTransformers API operation for AWS B2B Data Interchange.
 //
-// Lists the available transformers. Transformers describe how to process the
-// incoming EDI (electronic data interchange) documents, and extract the necessary
-// information.
+// Lists the available transformers. A transformer describes how to process
+// the incoming EDI documents and extract the necessary information to the output
+// file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2026,6 +2022,11 @@ func (c *B2bi) StartTransformerJobRequest(input *StartTransformerJobInput) (req 
 //
 // Runs a job, using a transformer, to parse input EDI (electronic data interchange)
 // file into the output structures used by Amazon Web Services B2BI Data Interchange.
+//
+// If you only want to transform EDI (electronic data interchange) documents,
+// you don't need to create profiles, partnerships or capabilities. Just create
+// and configure a transformer, and then run the StartTransformerJob API to
+// process your files.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2215,7 +2216,9 @@ func (c *B2bi) TestMappingRequest(input *TestMappingInput) (req *request.Request
 
 // TestMapping API operation for AWS B2B Data Interchange.
 //
-// Maps the input file according to the provided template file.
+// Maps the input file according to the provided template file. The API call
+// downloads the file contents from the Amazon S3 location, and passes the contents
+// in as a string, to the inputFileContent parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2496,8 +2499,8 @@ func (c *B2bi) UpdateCapabilityRequest(input *UpdateCapabilityInput) (req *reque
 // UpdateCapability API operation for AWS B2B Data Interchange.
 //
 // Updates some of the parameters for a capability, based on the specified parameters.
-// Capabilities contain the information necessary to process incoming EDI (electronic
-// data interchange) documents.
+// A trading capability contains the information required to transform incoming
+// EDI documents into JSON or XML outputs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2603,9 +2606,8 @@ func (c *B2bi) UpdatePartnershipRequest(input *UpdatePartnershipInput) (req *req
 // UpdatePartnership API operation for AWS B2B Data Interchange.
 //
 // Updates some of the parameters for a partnership between a customer and trading
-// partner. Partnerships link trading partners with your profile and a specific
-// transformer, so that the EDI (electronic data interchange) documents that
-// they upload to Amazon S3 can be processed according to their specifications.
+// partner. A partnership represents the connection between you and your trading
+// partner. It ties together a profile and one or more trading capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2710,8 +2712,8 @@ func (c *B2bi) UpdateProfileRequest(input *UpdateProfileInput) (req *request.Req
 
 // UpdateProfile API operation for AWS B2B Data Interchange.
 //
-// Updates the specified parameters for a profile. Profiles contain basic information
-// about you and your business.
+// Updates the specified parameters for a profile. A profile is the mechanism
+// used to create the concept of a private network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2816,9 +2818,9 @@ func (c *B2bi) UpdateTransformerRequest(input *UpdateTransformerInput) (req *req
 
 // UpdateTransformer API operation for AWS B2B Data Interchange.
 //
-// Updates the specified parameters for a transformer. Transformers describe
-// how to process the incoming EDI (electronic data interchange) documents,
-// and extract the necessary information.
+// Updates the specified parameters for a transformer. A transformer describes
+// how to process the incoming EDI documents and extract the necessary information
+// to the output file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2945,8 +2947,8 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // A capability object. Currently, only EDI (electronic data interchange) capabilities
-// are supported. Capabilities contain the information necessary to process
-// incoming EDI (electronic data interchange) documents.
+// are supported. A trading capability contains the information required to
+// transform incoming EDI documents into JSON or XML outputs.
 type CapabilityConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2993,8 +2995,9 @@ func (s *CapabilityConfiguration) SetEdi(v *EdiConfiguration) *CapabilityConfigu
 	return s
 }
 
-// Returns the capability summary details. Capabilities contain the information
-// necessary to process incoming EDI (electronic data interchange) documents.
+// Returns the capability summary details. A trading capability contains the
+// information required to transform incoming EDI documents into JSON or XML
+// outputs.
 type CapabilitySummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5991,10 +5994,9 @@ func (s *ListTransformersOutput) SetTransformers(v []*TransformerSummary) *ListT
 	return s
 }
 
-// A structure that contains the details for a partnership. Partnerships link
-// trading partners with your profile and a specific transformer, so that the
-// EDI (electronic data interchange) documents that they upload to Amazon S3
-// can be processed according to their specifications.
+// A structure that contains the details for a partnership. A partnership represents
+// the connection between you and your trading partner. It ties together a profile
+// and one or more trading capabilities.
 type PartnershipSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6088,8 +6090,8 @@ func (s *PartnershipSummary) SetTradingPartnerId(v string) *PartnershipSummary {
 	return s
 }
 
-// Contains the details for a profile. Profiles contain basic information about
-// you and your business.
+// Contains the details for a profile. A profile is the mechanism used to create
+// the concept of a private network.
 type ProfileSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6700,8 +6702,8 @@ type TestMappingInput struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Specify the EDI (electronic data interchange) file that is used as input
-	// for the transform.
+	// Specify the contents of the EDI (electronic data interchange) XML or JSON
+	// file that is used as input for the transform.
 	//
 	// InputFileContent is a required field
 	InputFileContent *string `locationName:"inputFileContent" type:"string" required:"true"`
@@ -6987,9 +6989,9 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains the details for a transformer object. Transformers describe how
-// to process the incoming EDI (electronic data interchange) documents, and
-// extract the necessary information.
+// Contains the details for a transformer object. A transformer describes how
+// to process the incoming EDI documents and extract the necessary information
+// to the output file.
 type TransformerSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8165,6 +8167,10 @@ func (s *ValidationException) RequestID() string {
 
 // A structure that contains the X12 transaction set and version. The X12 structure
 // is used when the system transforms an EDI (electronic data interchange) file.
+//
+// If an EDI input file contains more than one transaction, each transaction
+// must have the same transaction set and version, for example 214/4010. If
+// not, the transformer cannot parse the file.
 type X12Details struct {
 	_ struct{} `type:"structure"`
 
