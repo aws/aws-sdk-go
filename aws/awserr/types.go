@@ -87,6 +87,14 @@ func (b baseError) Message() string {
 	return b.message
 }
 
+// Unwrap provides the underlying implementation for the stdlib
+// [errors.Is] and [errors.As] functions.
+// Starting in Go 1.21, prefer use of those functions,
+// instead of this method or the OrigErr/OrigErrs methods.
+func (b baseError) Unwrap() []error {
+	return b.errs
+}
+
 // OrigErr returns the original error if one was set. Nil is returned if no
 // error was set. This only returns the first element in the list. If the full
 // list is needed, use BatchedErrors.
