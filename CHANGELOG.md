@@ -1,3 +1,25 @@
+Release v1.49.3 (2023-12-14)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API
+  * This release includes support for images of Windows Server 2022 platform.
+* `service/b2bi`: Updates service documentation and examples
+* `service/billingconductor`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/controltower`: Updates service documentation
+* `service/firehose`: Updates service API and documentation
+  * This release, 1) adds configurable buffering hints for the Splunk destination, and 2) reduces the minimum configurable buffering interval for supported destinations
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift adds the ability to add and update the game properties of active game sessions.
+* `service/iot`: Updates service API and documentation
+  * This release adds the ability to self-manage certificate signing in AWS IoT Core fleet provisioning using the new certificate provider resource.
+* `service/opensearch`: Updates service documentation
+* `service/quicksight`: Updates service API and documentation
+  * Update Dashboard Links support; SingleAxisOptions support; Scatterplot Query limit support.
+* `service/workspaces`: Updates service documentation
+  * Updated note to ensure customers understand running modes.
+
 Release v1.49.2 (2023-12-13)
 ===
 

@@ -5341,7 +5341,8 @@
         "MaximumPlayerSessionCount":{"shape":"WholeNumber"},
         "Name":{"shape":"NonZeroAndMaxString"},
         "PlayerSessionCreationPolicy":{"shape":"PlayerSessionCreationPolicy"},
-        "ProtectionPolicy":{"shape":"ProtectionPolicy"}
+        "ProtectionPolicy":{"shape":"ProtectionPolicy"},
+        "GameProperties":{"shape":"GamePropertyList"}
       }
     },
     "UpdateGameSessionOutput":{

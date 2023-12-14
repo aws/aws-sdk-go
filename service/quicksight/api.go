@@ -282,8 +282,7 @@ func (c *QuickSight) CreateAccountSubscriptionRequest(input *CreateAccountSubscr
 // Q.
 //
 // The Amazon Web Services Region for the account is derived from what is configured
-// in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region,
-// South America (Sao Paulo) Region, or Asia Pacific (Singapore) Region.
+// in the CLI or SDK.
 //
 // Before you use this operation, make sure that you can connect to an existing
 // Amazon Web Services account. If you don't have an Amazon Web Services account,
@@ -16875,6 +16874,104 @@ func (c *QuickSight) UpdateDashboardWithContext(ctx aws.Context, input *UpdateDa
 	return out, req.Send()
 }
 
+const opUpdateDashboardLinks = "UpdateDashboardLinks"
+
+// UpdateDashboardLinksRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDashboardLinks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDashboardLinks for more information on using the UpdateDashboardLinks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateDashboardLinksRequest method.
+//	req, resp := client.UpdateDashboardLinksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateDashboardLinks
+func (c *QuickSight) UpdateDashboardLinksRequest(input *UpdateDashboardLinksInput) (req *request.Request, output *UpdateDashboardLinksOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDashboardLinks,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/dashboards/{DashboardId}/linked-entities",
+	}
+
+	if input == nil {
+		input = &UpdateDashboardLinksInput{}
+	}
+
+	output = &UpdateDashboardLinksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDashboardLinks API operation for Amazon QuickSight.
+//
+// Updates the linked analyses on a dashboard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateDashboardLinks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateDashboardLinks
+func (c *QuickSight) UpdateDashboardLinks(input *UpdateDashboardLinksInput) (*UpdateDashboardLinksOutput, error) {
+	req, out := c.UpdateDashboardLinksRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDashboardLinksWithContext is the same as UpdateDashboardLinks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDashboardLinks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateDashboardLinksWithContext(ctx aws.Context, input *UpdateDashboardLinksInput, opts ...request.Option) (*UpdateDashboardLinksOutput, error) {
+	req, out := c.UpdateDashboardLinksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDashboardPermissions = "UpdateDashboardPermissions"
 
 // UpdateDashboardPermissionsRequest generates a "aws/request.Request" representing the
@@ -29536,6 +29633,9 @@ type ComboChartConfiguration struct {
 	// of a combo chart's secondary y-axis(line) field well.
 	SecondaryYAxisLabelOptions *ChartAxisLabelOptions `type:"structure"`
 
+	// The settings of a chart's single axis configuration.
+	SingleAxisOptions *SingleAxisOptions `type:"structure"`
+
 	// The sort configuration of a ComboChartVisual.
 	SortConfiguration *ComboChartSortConfiguration `type:"structure"`
 
@@ -29610,6 +29710,11 @@ func (s *ComboChartConfiguration) Validate() error {
 	if s.SecondaryYAxisLabelOptions != nil {
 		if err := s.SecondaryYAxisLabelOptions.Validate(); err != nil {
 			invalidParams.AddNested("SecondaryYAxisLabelOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SingleAxisOptions != nil {
+		if err := s.SingleAxisOptions.Validate(); err != nil {
+			invalidParams.AddNested("SingleAxisOptions", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SortConfiguration != nil {
@@ -29709,6 +29814,12 @@ func (s *ComboChartConfiguration) SetSecondaryYAxisDisplayOptions(v *AxisDisplay
 // SetSecondaryYAxisLabelOptions sets the SecondaryYAxisLabelOptions field's value.
 func (s *ComboChartConfiguration) SetSecondaryYAxisLabelOptions(v *ChartAxisLabelOptions) *ComboChartConfiguration {
 	s.SecondaryYAxisLabelOptions = v
+	return s
+}
+
+// SetSingleAxisOptions sets the SingleAxisOptions field's value.
+func (s *ComboChartConfiguration) SetSingleAxisOptions(v *SingleAxisOptions) *ComboChartConfiguration {
+	s.SingleAxisOptions = v
 	return s
 }
 
@@ -31938,6 +32049,9 @@ type CreateDashboardInput struct {
 	// folders.
 	FolderArns []*string `type:"list"`
 
+	// A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+	LinkEntities []*string `type:"list"`
+
 	// A structure that contains the permissions of a shareable link to the dashboard.
 	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
 
@@ -32121,6 +32235,12 @@ func (s *CreateDashboardInput) SetDefinition(v *DashboardVersionDefinition) *Cre
 // SetFolderArns sets the FolderArns field's value.
 func (s *CreateDashboardInput) SetFolderArns(v []*string) *CreateDashboardInput {
 	s.FolderArns = v
+	return s
+}
+
+// SetLinkEntities sets the LinkEntities field's value.
+func (s *CreateDashboardInput) SetLinkEntities(v []*string) *CreateDashboardInput {
+	s.LinkEntities = v
 	return s
 }
 
@@ -37117,6 +37237,9 @@ type Dashboard struct {
 	// The last time that this dashboard was updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
+	// A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+	LinkEntities []*string `type:"list"`
+
 	// A display name for the dashboard.
 	Name *string `min:"1" type:"string"`
 
@@ -37169,6 +37292,12 @@ func (s *Dashboard) SetLastPublishedTime(v time.Time) *Dashboard {
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *Dashboard) SetLastUpdatedTime(v time.Time) *Dashboard {
 	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetLinkEntities sets the LinkEntities field's value.
+func (s *Dashboard) SetLinkEntities(v []*string) *Dashboard {
+	s.LinkEntities = v
 	return s
 }
 
@@ -65257,6 +65386,9 @@ type LineChartConfiguration struct {
 	// The series item configuration of a line chart.
 	Series []*SeriesItem `type:"list"`
 
+	// The settings of a chart's single axis configuration.
+	SingleAxisOptions *SingleAxisOptions `type:"structure"`
+
 	// The small multiples setup for the visual.
 	SmallMultiplesOptions *SmallMultiplesOptions `type:"structure"`
 
@@ -65363,6 +65495,11 @@ func (s *LineChartConfiguration) Validate() error {
 			}
 		}
 	}
+	if s.SingleAxisOptions != nil {
+		if err := s.SingleAxisOptions.Validate(); err != nil {
+			invalidParams.AddNested("SingleAxisOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SmallMultiplesOptions != nil {
 		if err := s.SmallMultiplesOptions.Validate(); err != nil {
 			invalidParams.AddNested("SmallMultiplesOptions", err.(request.ErrInvalidParams))
@@ -65464,6 +65601,12 @@ func (s *LineChartConfiguration) SetSecondaryYAxisLabelOptions(v *ChartAxisLabel
 // SetSeries sets the Series field's value.
 func (s *LineChartConfiguration) SetSeries(v []*SeriesItem) *LineChartConfiguration {
 	s.Series = v
+	return s
+}
+
+// SetSingleAxisOptions sets the SingleAxisOptions field's value.
+func (s *LineChartConfiguration) SetSingleAxisOptions(v *SingleAxisOptions) *LineChartConfiguration {
+	s.SingleAxisOptions = v
 	return s
 }
 
@@ -82714,6 +82857,9 @@ type ScatterPlotConfiguration struct {
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
+	// The sort configuration of a scatter plot.
+	SortConfiguration *ScatterPlotSortConfiguration `type:"structure"`
+
 	// The legend display setup of the visual.
 	Tooltip *TooltipOptions `type:"structure"`
 
@@ -82810,6 +82956,12 @@ func (s *ScatterPlotConfiguration) SetFieldWells(v *ScatterPlotFieldWells) *Scat
 // SetLegend sets the Legend field's value.
 func (s *ScatterPlotConfiguration) SetLegend(v *LegendOptions) *ScatterPlotConfiguration {
 	s.Legend = v
+	return s
+}
+
+// SetSortConfiguration sets the SortConfiguration field's value.
+func (s *ScatterPlotConfiguration) SetSortConfiguration(v *ScatterPlotSortConfiguration) *ScatterPlotConfiguration {
+	s.SortConfiguration = v
 	return s
 }
 
@@ -82912,6 +83064,38 @@ func (s *ScatterPlotFieldWells) SetScatterPlotCategoricallyAggregatedFieldWells(
 // SetScatterPlotUnaggregatedFieldWells sets the ScatterPlotUnaggregatedFieldWells field's value.
 func (s *ScatterPlotFieldWells) SetScatterPlotUnaggregatedFieldWells(v *ScatterPlotUnaggregatedFieldWells) *ScatterPlotFieldWells {
 	s.ScatterPlotUnaggregatedFieldWells = v
+	return s
+}
+
+// The sort configuration of a scatter plot.
+type ScatterPlotSortConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The limit configuration of the visual display for an axis.
+	ScatterPlotLimitConfiguration *ItemsLimitConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScatterPlotSortConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScatterPlotSortConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetScatterPlotLimitConfiguration sets the ScatterPlotLimitConfiguration field's value.
+func (s *ScatterPlotSortConfiguration) SetScatterPlotLimitConfiguration(v *ItemsLimitConfiguration) *ScatterPlotSortConfiguration {
+	s.ScatterPlotLimitConfiguration = v
 	return s
 }
 
@@ -86132,6 +86316,53 @@ func (s *SimpleClusterMarker) SetColor(v string) *SimpleClusterMarker {
 	return s
 }
 
+// The settings of a chart's single axis configuration.
+type SingleAxisOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The Y axis options of a single axis configuration.
+	YAxisOptions *YAxisOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleAxisOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleAxisOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SingleAxisOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SingleAxisOptions"}
+	if s.YAxisOptions != nil {
+		if err := s.YAxisOptions.Validate(); err != nil {
+			invalidParams.AddNested("YAxisOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetYAxisOptions sets the YAxisOptions field's value.
+func (s *SingleAxisOptions) SetYAxisOptions(v *YAxisOptions) *SingleAxisOptions {
+	s.YAxisOptions = v
+	return s
+}
+
 // The display options of a control.
 type SliderControlDisplayOptions struct {
 	_ struct{} `type:"structure"`
@@ -87023,7 +87254,9 @@ type SnapshotS3DestinationConfiguration struct {
 
 	// A structure that contains details about the Amazon S3 bucket that the generated
 	// dashboard snapshot is saved in.
-	BucketConfiguration *S3BucketConfiguration `type:"structure"`
+	//
+	// BucketConfiguration is a required field
+	BucketConfiguration *S3BucketConfiguration `type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -87047,6 +87280,9 @@ func (s SnapshotS3DestinationConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SnapshotS3DestinationConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SnapshotS3DestinationConfiguration"}
+	if s.BucketConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketConfiguration"))
+	}
 	if s.BucketConfiguration != nil {
 		if err := s.BucketConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("BucketConfiguration", err.(request.ErrInvalidParams))
@@ -97848,6 +98084,145 @@ func (s *UpdateDashboardInput) SetVersionDescription(v string) *UpdateDashboardI
 	return s
 }
 
+type UpdateDashboardLinksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the dashboard whose
+	// links you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The ID for the dashboard.
+	//
+	// DashboardId is a required field
+	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
+
+	// list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+	//
+	// LinkEntities is a required field
+	LinkEntities []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDashboardLinksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDashboardLinksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDashboardLinksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDashboardLinksInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.DashboardId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DashboardId"))
+	}
+	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
+	}
+	if s.LinkEntities == nil {
+		invalidParams.Add(request.NewErrParamRequired("LinkEntities"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateDashboardLinksInput) SetAwsAccountId(v string) *UpdateDashboardLinksInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetDashboardId sets the DashboardId field's value.
+func (s *UpdateDashboardLinksInput) SetDashboardId(v string) *UpdateDashboardLinksInput {
+	s.DashboardId = &v
+	return s
+}
+
+// SetLinkEntities sets the LinkEntities field's value.
+func (s *UpdateDashboardLinksInput) SetLinkEntities(v []*string) *UpdateDashboardLinksInput {
+	s.LinkEntities = v
+	return s
+}
+
+type UpdateDashboardLinksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dashboard.
+	DashboardArn *string `type:"string"`
+
+	// A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.
+	LinkEntities []*string `type:"list"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDashboardLinksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDashboardLinksOutput) GoString() string {
+	return s.String()
+}
+
+// SetDashboardArn sets the DashboardArn field's value.
+func (s *UpdateDashboardLinksOutput) SetDashboardArn(v string) *UpdateDashboardLinksOutput {
+	s.DashboardArn = &v
+	return s
+}
+
+// SetLinkEntities sets the LinkEntities field's value.
+func (s *UpdateDashboardLinksOutput) SetLinkEntities(v []*string) *UpdateDashboardLinksOutput {
+	s.LinkEntities = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateDashboardLinksOutput) SetRequestId(v string) *UpdateDashboardLinksOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateDashboardLinksOutput) SetStatus(v int64) *UpdateDashboardLinksOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateDashboardOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -105261,6 +105636,56 @@ func (s *WordCloudVisual) SetVisualId(v string) *WordCloudVisual {
 	return s
 }
 
+// The options that are available for a single Y axis in a chart.
+type YAxisOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The Y axis type to be used in the chart.
+	//
+	// If you choose PRIMARY_Y_AXIS, the primary Y Axis is located on the leftmost
+	// vertical axis of the chart.
+	//
+	// YAxis is a required field
+	YAxis *string `type:"string" required:"true" enum:"SingleYAxisOption"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s YAxisOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s YAxisOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *YAxisOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "YAxisOptions"}
+	if s.YAxis == nil {
+		invalidParams.Add(request.NewErrParamRequired("YAxis"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetYAxis sets the YAxis field's value.
+func (s *YAxisOptions) SetYAxis(v string) *YAxisOptions {
+	s.YAxis = &v
+	return s
+}
+
 const (
 	// AnalysisErrorTypeAccessDenied is a AnalysisErrorType enum value
 	AnalysisErrorTypeAccessDenied = "ACCESS_DENIED"
@@ -109230,6 +109655,18 @@ func SimpleTotalAggregationFunction_Values() []string {
 		SimpleTotalAggregationFunctionMin,
 		SimpleTotalAggregationFunctionMax,
 		SimpleTotalAggregationFunctionNone,
+	}
+}
+
+const (
+	// SingleYAxisOptionPrimaryYAxis is a SingleYAxisOption enum value
+	SingleYAxisOptionPrimaryYAxis = "PRIMARY_Y_AXIS"
+)
+
+// SingleYAxisOption_Values returns all elements of the SingleYAxisOption enum
+func SingleYAxisOption_Values() []string {
+	return []string{
+		SingleYAxisOptionPrimaryYAxis,
 	}
 }
 

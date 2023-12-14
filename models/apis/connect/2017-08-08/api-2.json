@@ -2952,6 +2952,23 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "TagContact":{
+      "name":"TagContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/tags"
+      },
+      "input":{"shape":"TagContactRequest"},
+      "output":{"shape":"TagContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -2984,6 +3001,23 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
       ]
+    },
+    "UntagContact":{
+      "name":"UntagContact",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/contact/tags/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"UntagContactRequest"},
+      "output":{"shape":"UntagContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -4596,7 +4630,8 @@
         "LastUpdateTimestamp":{"shape":"timestamp"},
         "ScheduledTimestamp":{"shape":"timestamp"},
         "RelatedContactId":{"shape":"ContactId"},
-        "WisdomInfo":{"shape":"WisdomInfo"}
+        "WisdomInfo":{"shape":"WisdomInfo"},
+        "Tags":{"shape":"ContactTagMap"}
       }
     },
     "ContactDataRequest":{
@@ -4805,6 +4840,29 @@
       "type":"list",
       "member":{"shape":"ContactState"},
       "max":9
+    },
+    "ContactTagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "ContactTagKeys":{
+      "type":"list",
+      "member":{"shape":"ContactTagKey"},
+      "max":6,
+      "min":1
+    },
+    "ContactTagMap":{
+      "type":"map",
+      "key":{"shape":"ContactTagKey"},
+      "value":{"shape":"ContactTagValue"},
+      "max":6,
+      "min":1
+    },
+    "ContactTagValue":{
+      "type":"string",
+      "max":256
     },
     "Content":{
       "type":"string",
@@ -12807,6 +12865,24 @@
         "TagValue":{"shape":"String"}
       }
     },
+    "TagContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "InstanceId",
+        "Tags"
+      ],
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "Tags":{"shape":"ContactTagMap"}
+      }
+    },
+    "TagContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -13203,6 +13279,36 @@
         "COUNT",
         "PERCENT"
       ]
+    },
+    "UntagContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "InstanceId",
+        "TagKeys"
+      ],
+      "members":{
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "TagKeys":{
+          "shape":"ContactTagKeys",
+          "location":"querystring",
+          "locationName":"TagKeys"
+        }
+      }
+    },
+    "UntagContactResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UntagResourceRequest":{
       "type":"structure",

@@ -22,6 +22,7 @@
     "CreateAuthorizer": "<p>Creates an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateAuthorizer</a> action.</p>",
     "CreateBillingGroup": "<p>Creates a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateBillingGroup</a> action.</p>",
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCertificateFromCsr</a> action. </p> <note> <p>The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-521 curves. For supported certificates, consult <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms\"> Certificate signing algorithms supported by IoT</a>. </p> </note> <note> <p>Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> </note> <p>You can create multiple certificates in a batch by creating a directory, copying multiple <code>.csr</code> files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs. In the following commands, we assume that a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is: </p> <p> <code>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</code> </p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the <code>aws iot create-certificate-from-csr</code> Amazon Web Services CLI command to create a certificate for the corresponding CSR. </p> <p>You can also run the <code>aws iot create-certificate-from-csr</code> part of the command in parallel to speed up the certificate creation process:</p> <p> <code>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{} </code> </p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p> <code>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_} </code> </p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p> <code>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\" </code> </p>",
+    "CreateCertificateProvider": "<p>Creates an Amazon Web Services IoT Core certificate provider. You can use Amazon Web Services IoT Core certificate provider to customize how to sign a certificate signing request (CSR) in IoT fleet provisioning. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html\">Customizing certificate signing using Amazon Web Services IoT Core certificate provider</a> from <i>Amazon Web Services IoT Core Developer Guide</i>.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCertificateProvider</a> action.</p> <important> <p>After you create a certificate provider, the behavior of <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr\"> <code>CreateCertificateFromCsr</code> API for fleet provisioning</a> will change and all API calls to <code>CreateCertificateFromCsr</code> will invoke the certificate provider to create the certificates. It can take up to a few minutes for this behavior to change after a certificate provider is created.</p> </important>",
     "CreateCustomMetric": "<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCustomMetric</a> action.</p>",
     "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDimension</a> action.</p>",
     "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDomainConfiguration</a> action.</p>",
@@ -54,6 +55,7 @@
     "DeleteBillingGroup": "<p>Deletes the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteBillingGroup</a> action.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCACertificate</a> action.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPolicy</a> action to detach all policies. Next, use the <a>UpdateCertificate</a> action to set the certificate to the INACTIVE status.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCertificate</a> action.</p>",
+    "DeleteCertificateProvider": "<p>Deletes a certificate provider.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCertificateProvider</a> action. </p> <p>If you delete the certificate provider resource, the behavior of <code>CreateCertificateFromCsr</code> will resume, and IoT will create certificates signed by IoT from a certificate signing request (CSR).</p>",
     "DeleteCustomMetric": "<p> Deletes a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCustomMetric</a> action.</p> <note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note>",
     "DeleteDimension": "<p>Removes the specified dimension from your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDimension</a> action.</p>",
     "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDomainConfiguration</a> action.</p>",
@@ -91,6 +93,7 @@
     "DescribeBillingGroup": "<p>Returns information about a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeBillingGroup</a> action.</p>",
     "DescribeCACertificate": "<p>Describes a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCACertificate</a> action.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCertificate</a> action.</p>",
+    "DescribeCertificateProvider": "<p>Describes a certificate provider.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCertificateProvider</a> action. </p>",
     "DescribeCustomMetric": "<p> Gets information about a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCustomMetric</a> action.</p>",
     "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDefaultAuthorizer</a> action.</p>",
     "DescribeDetectMitigationActionsTask": "<p> Gets information about a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDetectMitigationActionsTask</a> action.</p>",
@@ -150,6 +153,7 @@
     "ListAuthorizers": "<p>Lists the authorizers registered in your account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuthorizers</a> action.</p>",
     "ListBillingGroups": "<p>Lists the billing groups you have created.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListBillingGroups</a> action.</p>",
     "ListCACertificates": "<p>Lists the CA certificates registered for your Amazon Web Services account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCACertificates</a> action.</p>",
+    "ListCertificateProviders": "<p>Lists all your certificate providers in your Amazon Web Services account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCertificateProviders</a> action. </p>",
     "ListCertificates": "<p>Lists the certificates registered in your Amazon Web Services account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCertificates</a> action.</p>",
     "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCertificatesByCA</a> action.</p>",
     "ListCustomMetrics": "<p> Lists your Device Defender detect custom metrics. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCustomMetrics</a> action.</p>",
@@ -230,6 +234,7 @@
     "UpdateBillingGroup": "<p>Updates information about the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateBillingGroup</a> action.</p>",
     "UpdateCACertificate": "<p>Updates a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCACertificate</a> action.</p>",
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCertificate</a> action.</p> <p>Certificates must be in the ACTIVE state to authenticate devices that use a certificate to connect to IoT.</p> <p>Within a few minutes of updating a certificate from the ACTIVE state to any other state, IoT disconnects all devices that used that certificate to connect. Devices cannot use a certificate that is not in the ACTIVE state to reconnect.</p>",
+    "UpdateCertificateProvider": "<p>Updates a certificate provider.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCertificateProvider</a> action. </p>",
     "UpdateCustomMetric": "<p>Updates a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCustomMetric</a> action.</p>",
     "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDimension</a> action.</p>",
     "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDomainConfiguration</a> action.</p>",
@@ -486,6 +491,7 @@
         "ListAuditSuppressionsRequest$ascendingOrder": "<p> Determines whether suppressions are listed in ascending order by expiration date or not. If parameter isn't provided, <code>ascendingOrder=true</code>. </p>",
         "ListAuthorizersRequest$ascendingOrder": "<p>Return the list of authorizers in ascending alphabetical order.</p>",
         "ListCACertificatesRequest$ascendingOrder": "<p>Determines the order of the results.</p>",
+        "ListCertificateProvidersRequest$ascendingOrder": "<p>Returns the list of certificate providers in ascending alphabetical order.</p>",
         "ListCertificatesByCARequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListCertificatesRequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
         "ListOutgoingCertificatesRequest$ascendingOrder": "<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>",
@@ -1571,6 +1577,62 @@
         "RegisterThingResponse$certificatePem": "<p>The certificate data, in PEM format.</p>"
       }
     },
+    "CertificateProviderAccountDefaultForOperations": {
+      "base": null,
+      "refs": {
+        "CreateCertificateProviderRequest$accountDefaultForOperations": "<p>A list of the operations that the certificate provider will use to generate certificates. Valid value: <code>CreateCertificateFromCsr</code>.</p>",
+        "DescribeCertificateProviderResponse$accountDefaultForOperations": "<p>A list of the operations that the certificate provider will use to generate certificates. Valid value: <code>CreateCertificateFromCsr</code>.</p>",
+        "UpdateCertificateProviderRequest$accountDefaultForOperations": "<p>A list of the operations that the certificate provider will use to generate certificates. Valid value: <code>CreateCertificateFromCsr</code>.</p>"
+      }
+    },
+    "CertificateProviderArn": {
+      "base": null,
+      "refs": {
+        "CertificateProviderSummary$certificateProviderArn": "<p>The ARN of the certificate provider.</p>",
+        "CreateCertificateProviderResponse$certificateProviderArn": "<p>The ARN of the certificate provider.</p>",
+        "DescribeCertificateProviderResponse$certificateProviderArn": "<p>The ARN of the certificate provider.</p>",
+        "UpdateCertificateProviderResponse$certificateProviderArn": "<p>The ARN of the certificate provider.</p>"
+      }
+    },
+    "CertificateProviderFunctionArn": {
+      "base": null,
+      "refs": {
+        "CreateCertificateProviderRequest$lambdaFunctionArn": "<p>The ARN of the Lambda function that defines the authentication logic.</p>",
+        "DescribeCertificateProviderResponse$lambdaFunctionArn": "<p>The Lambda function ARN that's associated with the certificate provider.</p>",
+        "UpdateCertificateProviderRequest$lambdaFunctionArn": "<p>The Lambda function ARN that's associated with the certificate provider.</p>"
+      }
+    },
+    "CertificateProviderName": {
+      "base": null,
+      "refs": {
+        "CertificateProviderSummary$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "CreateCertificateProviderRequest$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "CreateCertificateProviderResponse$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "DeleteCertificateProviderRequest$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "DescribeCertificateProviderRequest$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "DescribeCertificateProviderResponse$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "UpdateCertificateProviderRequest$certificateProviderName": "<p>The name of the certificate provider.</p>",
+        "UpdateCertificateProviderResponse$certificateProviderName": "<p>The name of the certificate provider.</p>"
+      }
+    },
+    "CertificateProviderOperation": {
+      "base": null,
+      "refs": {
+        "CertificateProviderAccountDefaultForOperations$member": null
+      }
+    },
+    "CertificateProviderSummary": {
+      "base": "<p>The certificate provider summary.</p>",
+      "refs": {
+        "CertificateProviders$member": null
+      }
+    },
+    "CertificateProviders": {
+      "base": null,
+      "refs": {
+        "ListCertificateProvidersResponse$certificateProviders": "<p>The list of certificate providers in your Amazon Web Services account.</p>"
+      }
+    },
     "CertificateSigningRequest": {
       "base": null,
       "refs": {
@@ -1672,6 +1734,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "CreateCertificateProviderRequest$clientToken": "<p>A string that you can optionally pass in the <code>CreateCertificateProvider</code> request to make sure the request is idempotent.</p>",
         "CreatePackageRequest$clientToken": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
         "CreatePackageVersionRequest$clientToken": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
         "DeletePackageRequest$clientToken": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>",
@@ -1868,6 +1931,16 @@
     },
     "CreateCertificateFromCsrResponse": {
       "base": "<p>The output from the CreateCertificateFromCsr operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateCertificateProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCertificateProviderResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2222,6 +2295,8 @@
         "CertificateValidity$notBefore": "<p>The certificate is not valid before this date.</p>",
         "CertificateValidity$notAfter": "<p>The certificate is not valid after this date.</p>",
         "CreateProvisioningClaimResponse$expiration": "<p>The provisioning claim expiration time.</p>",
+        "DescribeCertificateProviderResponse$creationDate": "<p>The date-time string that indicates when the certificate provider was created.</p>",
+        "DescribeCertificateProviderResponse$lastModifiedDate": "<p>The date-time string that indicates when the certificate provider was last updated.</p>",
         "DescribeDomainConfigurationResponse$lastStatusChangeDate": "<p>The date and time the domain configuration's status was last changed.</p>",
         "DescribeJobTemplateResponse$createdAt": "<p>The time, in seconds since the epoch, when the job template was created.</p>",
         "DescribeProvisioningTemplateResponse$creationDate": "<p>The date when the provisioning template was created.</p>",
@@ -2345,6 +2420,16 @@
     },
     "DeleteCACertificateResponse": {
       "base": "<p>The output for the DeleteCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteCertificateProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCertificateProviderResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2711,6 +2796,16 @@
     },
     "DescribeCACertificateResponse": {
       "base": "<p>The output from the DescribeCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeCertificateProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCertificateProviderResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -3508,7 +3603,7 @@
       "base": null,
       "refs": {
         "Behavior$exportMetric": "<p>Value indicates exporting metrics related to the behavior when it is true.</p>",
-        "MetricToRetain$exportMetric": "<p>Value added in both Behavior and AdditionalMetricsToRetainV2 to indicate if Device Defender Detect should export the corresponding metrics.</p>"
+        "MetricToRetain$exportMetric": "<p>The value indicates exporting metrics related to the <code>MetricToRetain </code> when it's true.</p>"
       }
     },
     "FailedChecksCount": {
@@ -4678,6 +4773,16 @@
       "refs": {
       }
     },
+    "ListCertificateProvidersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCertificateProvidersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCertificatesByCARequest": {
       "base": "<p>The input to the ListCertificatesByCA operation.</p>",
       "refs": {
@@ -5314,6 +5419,8 @@
         "ListAuthorizersResponse$nextMarker": "<p>A marker used to get the next set of results.</p>",
         "ListCACertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListCACertificatesResponse$nextMarker": "<p>The current position within the list of CA certificates.</p>",
+        "ListCertificateProvidersRequest$nextToken": "<p>The token for the next set of results, or <code>null</code> if there are no more results.</p>",
+        "ListCertificateProvidersResponse$nextToken": "<p>The token for the next set of results, or <code>null</code> if there are no more results.</p>",
         "ListCertificatesByCARequest$marker": "<p>The marker for the next set of results.</p>",
         "ListCertificatesByCAResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListCertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
@@ -7796,6 +7903,7 @@
       "refs": {
         "CreateAuthorizerRequest$tags": "<p>Metadata which can be used to manage the custom authorizer.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
+        "CreateCertificateProviderRequest$tags": "<p>Metadata which can be used to manage the certificate provider.</p>",
         "CreateCustomMetricRequest$tags": "<p> Metadata that can be used to manage the custom metric. </p>",
         "CreateDimensionRequest$tags": "<p>Metadata that can be used to manage the dimension.</p>",
         "CreateDomainConfigurationRequest$tags": "<p>Metadata which can be used to manage the domain configuration.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
@@ -8720,6 +8828,16 @@
     },
     "UpdateCACertificateRequest": {
       "base": "<p>The input to the UpdateCACertificate operation.</p>",
+      "refs": {
+      }
+    },
+    "UpdateCertificateProviderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCertificateProviderResponse": {
+      "base": null,
       "refs": {
       }
     },

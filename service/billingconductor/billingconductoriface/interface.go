@@ -116,6 +116,10 @@ type BillingConductorAPI interface {
 	DisassociatePricingRulesWithContext(aws.Context, *billingconductor.DisassociatePricingRulesInput, ...request.Option) (*billingconductor.DisassociatePricingRulesOutput, error)
 	DisassociatePricingRulesRequest(*billingconductor.DisassociatePricingRulesInput) (*request.Request, *billingconductor.DisassociatePricingRulesOutput)
 
+	GetBillingGroupCostReport(*billingconductor.GetBillingGroupCostReportInput) (*billingconductor.GetBillingGroupCostReportOutput, error)
+	GetBillingGroupCostReportWithContext(aws.Context, *billingconductor.GetBillingGroupCostReportInput, ...request.Option) (*billingconductor.GetBillingGroupCostReportOutput, error)
+	GetBillingGroupCostReportRequest(*billingconductor.GetBillingGroupCostReportInput) (*request.Request, *billingconductor.GetBillingGroupCostReportOutput)
+
 	ListAccountAssociations(*billingconductor.ListAccountAssociationsInput) (*billingconductor.ListAccountAssociationsOutput, error)
 	ListAccountAssociationsWithContext(aws.Context, *billingconductor.ListAccountAssociationsInput, ...request.Option) (*billingconductor.ListAccountAssociationsOutput, error)
 	ListAccountAssociationsRequest(*billingconductor.ListAccountAssociationsInput) (*request.Request, *billingconductor.ListAccountAssociationsOutput)

@@ -735,6 +735,10 @@ type QuickSightAPI interface {
 	UpdateDashboardWithContext(aws.Context, *quicksight.UpdateDashboardInput, ...request.Option) (*quicksight.UpdateDashboardOutput, error)
 	UpdateDashboardRequest(*quicksight.UpdateDashboardInput) (*request.Request, *quicksight.UpdateDashboardOutput)
 
+	UpdateDashboardLinks(*quicksight.UpdateDashboardLinksInput) (*quicksight.UpdateDashboardLinksOutput, error)
+	UpdateDashboardLinksWithContext(aws.Context, *quicksight.UpdateDashboardLinksInput, ...request.Option) (*quicksight.UpdateDashboardLinksOutput, error)
+	UpdateDashboardLinksRequest(*quicksight.UpdateDashboardLinksInput) (*request.Request, *quicksight.UpdateDashboardLinksOutput)
+
 	UpdateDashboardPermissions(*quicksight.UpdateDashboardPermissionsInput) (*quicksight.UpdateDashboardPermissionsOutput, error)
 	UpdateDashboardPermissionsWithContext(aws.Context, *quicksight.UpdateDashboardPermissionsInput, ...request.Option) (*quicksight.UpdateDashboardPermissionsOutput, error)
 	UpdateDashboardPermissionsRequest(*quicksight.UpdateDashboardPermissionsInput) (*request.Request, *quicksight.UpdateDashboardPermissionsOutput)

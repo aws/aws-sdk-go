@@ -144,7 +144,9 @@ func (c *OpenSearchService) AddDataSourceRequest(input *AddDataSourceInput) (req
 
 // AddDataSource API operation for Amazon OpenSearch Service.
 //
-// Adds the data source on the domain.
+// Creates a new direct-query data source to the specified domain. For more
+// information, see Creating Amazon OpenSearch Service data source integrations
+// with Amazon S3 (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1014,7 +1016,8 @@ func (c *OpenSearchService) DeleteDataSourceRequest(input *DeleteDataSourceInput
 
 // DeleteDataSource API operation for Amazon OpenSearch Service.
 //
-// Deletes the data source.
+// Deletes a direct-query data source. For more information, see Deleting an
+// Amazon OpenSearch Service data source with Amazon S3 (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-delete.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3452,7 +3455,7 @@ func (c *OpenSearchService) GetDataSourceRequest(input *GetDataSourceInput) (req
 
 // GetDataSource API operation for Amazon OpenSearch Service.
 //
-// Describes the data source details.
+// Retrieves information about a direct query data source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4035,7 +4038,9 @@ func (c *OpenSearchService) ListDataSourcesRequest(input *ListDataSourcesInput) 
 
 // ListDataSources API operation for Amazon OpenSearch Service.
 //
-// A list of the data source details of the domain.
+// Lists direct-query data sources for a specific domain. For more information,
+// see For more information, see Working with Amazon OpenSearch Service direct
+// queries with Amazon S3 (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6012,7 +6017,8 @@ func (c *OpenSearchService) UpdateDataSourceRequest(input *UpdateDataSourceInput
 
 // UpdateDataSource API operation for Amazon OpenSearch Service.
 //
-// Updates the data source on the domain.
+// Updates a direct-query data source. For more information, see Working with
+// Amazon OpenSearch Service data source integrations with Amazon S3 (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/direct-query-s3-creating.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6835,12 +6841,12 @@ type AddDataSourceInput struct {
 	// A description of the data source.
 	Description *string `type:"string"`
 
-	// The name of the domain.
+	// The name of the domain to add the data source to.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The name of the data source.
+	// A name for the data source.
 	//
 	// Name is a required field
 	Name *string `min:"3" type:"string" required:"true"`
@@ -6922,7 +6928,7 @@ func (s *AddDataSourceInput) SetName(v string) *AddDataSourceInput {
 type AddDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A message associated with the data source.
+	// A message associated with creation of the data source.
 	Message *string `type:"string"`
 }
 
@@ -9855,7 +9861,7 @@ func (s *CrossClusterSearchConnectionProperties) SetSkipUnavailable(v string) *C
 	return s
 }
 
-// Details about the data sources.
+// Details about a direct-query data source.
 type DataSourceDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -9905,11 +9911,11 @@ func (s *DataSourceDetails) SetName(v string) *DataSourceDetails {
 	return s
 }
 
-// Information about the data source.
+// The type of data source.
 type DataSourceType struct {
 	_ struct{} `type:"structure"`
 
-	// The data source for the AWS S3 Glue Data Catalog.
+	// An Amazon S3 data source.
 	S3GlueDataCatalog *S3GlueDataCatalog `type:"structure"`
 }
 
@@ -9961,7 +9967,7 @@ type DeleteDataSourceInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The name of the data source.
+	// The name of the data source to delete.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"DataSourceName" min:"3" type:"string" required:"true"`
@@ -10023,7 +10029,7 @@ func (s *DeleteDataSourceInput) SetName(v string) *DeleteDataSourceInput {
 type DeleteDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A message associated with the initiated request.
+	// A message associated with deletion of the data source.
 	Message *string `type:"string"`
 }
 
@@ -12620,17 +12626,11 @@ type DomainEndpointOptions struct {
 	// Specify the TLS security policy to apply to the HTTPS endpoint of the domain.
 	// The policy can be one of the following values:
 	//
-	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy which supports TLS version
+	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy that supports TLS version
 	//    1.0 to TLS version 1.2
 	//
-	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy which supports only
-	//    TLS version 1.2
-	//
-	//    * Policy-Min-TLS-1-0-2023-10: TLS security policy which supports TLS version
-	//    1.0 to TLS version 1.3
-	//
-	//    * Policy-Min-TLS-1-2-2023-10: TLS security policy which supports TLS version
-	//    1.2 to TLS version 1.3 with perfect forward secrecy cipher suites
+	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy that supports only TLS
+	//    version 1.2
 	TLSSecurityPolicy *string `type:"string" enum:"TLSSecurityPolicy"`
 }
 
@@ -14062,7 +14062,7 @@ type GetDataSourceInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The name of the data source.
+	// The name of the data source to get information about.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"DataSourceName" min:"3" type:"string" required:"true"`
@@ -15364,7 +15364,7 @@ func (s *ListDataSourcesInput) SetDomainName(v string) *ListDataSourcesInput {
 type ListDataSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the data sources.
+	// A list of data sources associated with specified domain.
 	DataSources []*DataSourceDetails `type:"list"`
 }
 
@@ -18297,11 +18297,11 @@ func (s RevokeVpcEndpointAccessOutput) GoString() string {
 	return s.String()
 }
 
-// Information about the AWS S3 Glue Data Catalog.
+// Information about the Amazon S3 Glue Data Catalog.
 type S3GlueDataCatalog struct {
 	_ struct{} `type:"structure"`
 
-	// The role ARN for the AWS S3 Glue Data Catalog.
+	// >The Amazon Resource Name (ARN) for the S3 Glue Data Catalog.
 	RoleArn *string `min:"20" type:"string"`
 }
 
@@ -19501,7 +19501,7 @@ type UpdateDataSourceInput struct {
 	// DataSourceType is a required field
 	DataSourceType *DataSourceType `type:"structure" required:"true"`
 
-	// A description of the data source.
+	// A new description of the data source.
 	Description *string `type:"string"`
 
 	// The name of the domain.
@@ -19509,7 +19509,7 @@ type UpdateDataSourceInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
-	// The name of the data source.
+	// The name of the data source to modify.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"DataSourceName" min:"3" type:"string" required:"true"`
@@ -19591,7 +19591,7 @@ func (s *UpdateDataSourceInput) SetName(v string) *UpdateDataSourceInput {
 type UpdateDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A message associated with the data source.
+	// A message associated with the updated data source.
 	Message *string `type:"string"`
 }
 

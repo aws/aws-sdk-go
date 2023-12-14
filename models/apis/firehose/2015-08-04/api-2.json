@@ -88,6 +88,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InvalidKMSResourceException"},
+        {"shape":"InvalidSourceException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -103,6 +104,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"InvalidKMSResourceException"},
+        {"shape":"InvalidSourceException"},
         {"shape":"ServiceUnavailableException"}
       ]
     },
@@ -200,7 +202,7 @@
     "AmazonOpenSearchServerlessBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "AmazonOpenSearchServerlessBufferingSizeInMBs":{
       "type":"integer",
@@ -295,7 +297,7 @@
     "AmazonopensearchserviceBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "AmazonopensearchserviceBufferingSizeInMBs":{
       "type":"integer",
@@ -775,7 +777,7 @@
     "ElasticsearchBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "ElasticsearchBufferingSizeInMBs":{
       "type":"integer",
@@ -1046,7 +1048,7 @@
     "HttpEndpointBufferingIntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "HttpEndpointBufferingSizeInMBs":{
       "type":"integer",
@@ -1179,7 +1181,7 @@
     "IntervalInSeconds":{
       "type":"integer",
       "max":900,
-      "min":60
+      "min":0
     },
     "InvalidArgumentException":{
       "type":"structure",
@@ -1189,6 +1191,14 @@
       "exception":true
     },
     "InvalidKMSResourceException":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ErrorCode"},
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidSourceException":{
       "type":"structure",
       "members":{
         "code":{"shape":"ErrorCode"},
@@ -1815,6 +1825,23 @@
         "MSKSourceDescription":{"shape":"MSKSourceDescription"}
       }
     },
+    "SplunkBufferingHints":{
+      "type":"structure",
+      "members":{
+        "IntervalInSeconds":{"shape":"SplunkBufferingIntervalInSeconds"},
+        "SizeInMBs":{"shape":"SplunkBufferingSizeInMBs"}
+      }
+    },
+    "SplunkBufferingIntervalInSeconds":{
+      "type":"integer",
+      "max":60,
+      "min":0
+    },
+    "SplunkBufferingSizeInMBs":{
+      "type":"integer",
+      "max":5,
+      "min":1
+    },
     "SplunkDestinationConfiguration":{
       "type":"structure",
       "required":[
@@ -1832,7 +1859,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkDestinationDescription":{
@@ -1846,7 +1874,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3DestinationDescription":{"shape":"S3DestinationDescription"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkDestinationUpdate":{
@@ -1860,7 +1889,8 @@
         "S3BackupMode":{"shape":"SplunkS3BackupMode"},
         "S3Update":{"shape":"S3DestinationUpdate"},
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
-        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"}
+        "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
+        "BufferingHints":{"shape":"SplunkBufferingHints"}
       }
     },
     "SplunkRetryDurationInSeconds":{

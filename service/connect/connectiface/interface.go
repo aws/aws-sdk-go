@@ -946,6 +946,10 @@ type ConnectAPI interface {
 	SuspendContactRecordingWithContext(aws.Context, *connect.SuspendContactRecordingInput, ...request.Option) (*connect.SuspendContactRecordingOutput, error)
 	SuspendContactRecordingRequest(*connect.SuspendContactRecordingInput) (*request.Request, *connect.SuspendContactRecordingOutput)
 
+	TagContact(*connect.TagContactInput) (*connect.TagContactOutput, error)
+	TagContactWithContext(aws.Context, *connect.TagContactInput, ...request.Option) (*connect.TagContactOutput, error)
+	TagContactRequest(*connect.TagContactInput) (*request.Request, *connect.TagContactOutput)
+
 	TagResource(*connect.TagResourceInput) (*connect.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *connect.TagResourceInput, ...request.Option) (*connect.TagResourceOutput, error)
 	TagResourceRequest(*connect.TagResourceInput) (*request.Request, *connect.TagResourceOutput)
@@ -953,6 +957,10 @@ type ConnectAPI interface {
 	TransferContact(*connect.TransferContactInput) (*connect.TransferContactOutput, error)
 	TransferContactWithContext(aws.Context, *connect.TransferContactInput, ...request.Option) (*connect.TransferContactOutput, error)
 	TransferContactRequest(*connect.TransferContactInput) (*request.Request, *connect.TransferContactOutput)
+
+	UntagContact(*connect.UntagContactInput) (*connect.UntagContactOutput, error)
+	UntagContactWithContext(aws.Context, *connect.UntagContactInput, ...request.Option) (*connect.UntagContactOutput, error)
+	UntagContactRequest(*connect.UntagContactInput) (*request.Request, *connect.UntagContactOutput)
 
 	UntagResource(*connect.UntagResourceInput) (*connect.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *connect.UntagResourceInput, ...request.Option) (*connect.UntagResourceOutput, error)

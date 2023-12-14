@@ -632,6 +632,10 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 //     KMS service throws one of the following exception types: AccessDeniedException,
 //     InvalidStateException, DisabledException, or NotFoundException.
 //
+//   - InvalidSourceException
+//     Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression
+//     is enabled.
+//
 //   - ServiceUnavailableException
 //     The service is unavailable. Back off and retry the operation. If you continue
 //     to see the exception, throughput limits for the delivery stream may have
@@ -794,6 +798,10 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 //     or to start or stop delivery stream encryption fails. This happens when the
 //     KMS service throws one of the following exception types: AccessDeniedException,
 //     InvalidStateException, DisabledException, or NotFoundException.
+//
+//   - InvalidSourceException
+//     Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression
+//     is enabled.
 //
 //   - ServiceUnavailableException
 //     The service is unavailable. Back off and retry the operation. If you continue
@@ -1395,7 +1403,7 @@ type AmazonOpenSearchServerlessBufferingHints struct {
 
 	// Buffer incoming data for the specified period of time, in seconds, before
 	// delivering it to the destination. The default value is 300 (5 minutes).
-	IntervalInSeconds *int64 `min:"60" type:"integer"`
+	IntervalInSeconds *int64 `type:"integer"`
 
 	// Buffer incoming data to the specified size, in MBs, before delivering it
 	// to the destination. The default value is 5.
@@ -1427,9 +1435,6 @@ func (s AmazonOpenSearchServerlessBufferingHints) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AmazonOpenSearchServerlessBufferingHints) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AmazonOpenSearchServerlessBufferingHints"}
-	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
-	}
 	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
 	}
@@ -1927,7 +1932,7 @@ type AmazonopensearchserviceBufferingHints struct {
 
 	// Buffer incoming data for the specified period of time, in seconds, before
 	// delivering it to the destination. The default value is 300 (5 minutes).
-	IntervalInSeconds *int64 `min:"60" type:"integer"`
+	IntervalInSeconds *int64 `type:"integer"`
 
 	// Buffer incoming data to the specified size, in MBs, before delivering it
 	// to the destination. The default value is 5.
@@ -1959,9 +1964,6 @@ func (s AmazonopensearchserviceBufferingHints) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AmazonopensearchserviceBufferingHints) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AmazonopensearchserviceBufferingHints"}
-	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
-	}
 	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
 	}
@@ -2673,7 +2675,7 @@ type BufferingHints struct {
 	// delivering it to the destination. The default value is 300. This parameter
 	// is optional but if you specify a value for it, you must also specify a value
 	// for SizeInMBs, and vice versa.
-	IntervalInSeconds *int64 `min:"60" type:"integer"`
+	IntervalInSeconds *int64 `type:"integer"`
 
 	// Buffer incoming data to the specified size, in MiBs, before delivering it
 	// to the destination. The default value is 5. This parameter is optional but
@@ -2708,9 +2710,6 @@ func (s BufferingHints) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BufferingHints) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BufferingHints"}
-	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
-	}
 	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
 	}
@@ -4102,7 +4101,7 @@ type ElasticsearchBufferingHints struct {
 
 	// Buffer incoming data for the specified period of time, in seconds, before
 	// delivering it to the destination. The default value is 300 (5 minutes).
-	IntervalInSeconds *int64 `min:"60" type:"integer"`
+	IntervalInSeconds *int64 `type:"integer"`
 
 	// Buffer incoming data to the specified size, in MBs, before delivering it
 	// to the destination. The default value is 5.
@@ -4134,9 +4133,6 @@ func (s ElasticsearchBufferingHints) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ElasticsearchBufferingHints) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchBufferingHints"}
-	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
-	}
 	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
 	}
@@ -5516,7 +5512,7 @@ type HttpEndpointBufferingHints struct {
 
 	// Buffer incoming data for the specified period of time, in seconds, before
 	// delivering it to the destination. The default value is 300 (5 minutes).
-	IntervalInSeconds *int64 `min:"60" type:"integer"`
+	IntervalInSeconds *int64 `type:"integer"`
 
 	// Buffer incoming data to the specified size, in MBs, before delivering it
 	// to the destination. The default value is 5.
@@ -5548,9 +5544,6 @@ func (s HttpEndpointBufferingHints) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *HttpEndpointBufferingHints) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HttpEndpointBufferingHints"}
-	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
-	}
 	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
 	}
@@ -6473,6 +6466,73 @@ func (s *InvalidKMSResourceException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidKMSResourceException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression
+// is enabled.
+type InvalidSourceException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidSourceException(v protocol.ResponseMetadata) error {
+	return &InvalidSourceException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidSourceException) Code() string {
+	return "InvalidSourceException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidSourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidSourceException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidSourceException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidSourceException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidSourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -9448,9 +9508,70 @@ func (s *SourceDescription) SetMSKSourceDescription(v *MSKSourceDescription) *So
 	return s
 }
 
+// The buffering options. If no value is specified, the default values for Splunk
+// are used.
+type SplunkBufferingHints struct {
+	_ struct{} `type:"structure"`
+
+	// Buffer incoming data for the specified period of time, in seconds, before
+	// delivering it to the destination. The default value is 60 (1 minute).
+	IntervalInSeconds *int64 `type:"integer"`
+
+	// Buffer incoming data to the specified size, in MBs, before delivering it
+	// to the destination. The default value is 5.
+	SizeInMBs *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SplunkBufferingHints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SplunkBufferingHints) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SplunkBufferingHints) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SplunkBufferingHints"}
+	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntervalInSeconds sets the IntervalInSeconds field's value.
+func (s *SplunkBufferingHints) SetIntervalInSeconds(v int64) *SplunkBufferingHints {
+	s.IntervalInSeconds = &v
+	return s
+}
+
+// SetSizeInMBs sets the SizeInMBs field's value.
+func (s *SplunkBufferingHints) SetSizeInMBs(v int64) *SplunkBufferingHints {
+	s.SizeInMBs = &v
+	return s
+}
+
 // Describes the configuration of a destination in Splunk.
 type SplunkDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// The buffering options. If no value is specified, the default values for Splunk
+	// are used.
+	BufferingHints *SplunkBufferingHints `type:"structure"`
 
 	// The Amazon CloudWatch logging options for your delivery stream.
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
@@ -9537,6 +9658,11 @@ func (s *SplunkDestinationConfiguration) Validate() error {
 	if s.S3Configuration == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
 	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -9552,6 +9678,12 @@ func (s *SplunkDestinationConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *SplunkDestinationConfiguration) SetBufferingHints(v *SplunkBufferingHints) *SplunkDestinationConfiguration {
+	s.BufferingHints = v
+	return s
 }
 
 // SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
@@ -9612,6 +9744,10 @@ func (s *SplunkDestinationConfiguration) SetS3Configuration(v *S3DestinationConf
 type SplunkDestinationDescription struct {
 	_ struct{} `type:"structure"`
 
+	// The buffering options. If no value is specified, the default values for Splunk
+	// are used.
+	BufferingHints *SplunkBufferingHints `type:"structure"`
+
 	// The Amazon CloudWatch logging options for your delivery stream.
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
 
@@ -9665,6 +9801,12 @@ func (s SplunkDestinationDescription) String() string {
 // value will be replaced with "sensitive".
 func (s SplunkDestinationDescription) GoString() string {
 	return s.String()
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *SplunkDestinationDescription) SetBufferingHints(v *SplunkBufferingHints) *SplunkDestinationDescription {
+	s.BufferingHints = v
+	return s
 }
 
 // SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
@@ -9724,6 +9866,10 @@ func (s *SplunkDestinationDescription) SetS3DestinationDescription(v *S3Destinat
 // Describes an update for a destination in Splunk.
 type SplunkDestinationUpdate struct {
 	_ struct{} `type:"structure"`
+
+	// The buffering options. If no value is specified, the default values for Splunk
+	// are used.
+	BufferingHints *SplunkBufferingHints `type:"structure"`
 
 	// The Amazon CloudWatch logging options for your delivery stream.
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
@@ -9790,6 +9936,11 @@ func (s *SplunkDestinationUpdate) Validate() error {
 	if s.HECAcknowledgmentTimeoutInSeconds != nil && *s.HECAcknowledgmentTimeoutInSeconds < 180 {
 		invalidParams.Add(request.NewErrParamMinValue("HECAcknowledgmentTimeoutInSeconds", 180))
 	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProcessingConfiguration != nil {
 		if err := s.ProcessingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
@@ -9805,6 +9956,12 @@ func (s *SplunkDestinationUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *SplunkDestinationUpdate) SetBufferingHints(v *SplunkBufferingHints) *SplunkDestinationUpdate {
+	s.BufferingHints = v
+	return s
 }
 
 // SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.

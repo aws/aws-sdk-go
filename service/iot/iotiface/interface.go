@@ -140,6 +140,10 @@ type IoTAPI interface {
 	CreateCertificateFromCsrWithContext(aws.Context, *iot.CreateCertificateFromCsrInput, ...request.Option) (*iot.CreateCertificateFromCsrOutput, error)
 	CreateCertificateFromCsrRequest(*iot.CreateCertificateFromCsrInput) (*request.Request, *iot.CreateCertificateFromCsrOutput)
 
+	CreateCertificateProvider(*iot.CreateCertificateProviderInput) (*iot.CreateCertificateProviderOutput, error)
+	CreateCertificateProviderWithContext(aws.Context, *iot.CreateCertificateProviderInput, ...request.Option) (*iot.CreateCertificateProviderOutput, error)
+	CreateCertificateProviderRequest(*iot.CreateCertificateProviderInput) (*request.Request, *iot.CreateCertificateProviderOutput)
+
 	CreateCustomMetric(*iot.CreateCustomMetricInput) (*iot.CreateCustomMetricOutput, error)
 	CreateCustomMetricWithContext(aws.Context, *iot.CreateCustomMetricInput, ...request.Option) (*iot.CreateCustomMetricOutput, error)
 	CreateCustomMetricRequest(*iot.CreateCustomMetricInput) (*request.Request, *iot.CreateCustomMetricOutput)
@@ -267,6 +271,10 @@ type IoTAPI interface {
 	DeleteCertificate(*iot.DeleteCertificateInput) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateWithContext(aws.Context, *iot.DeleteCertificateInput, ...request.Option) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateRequest(*iot.DeleteCertificateInput) (*request.Request, *iot.DeleteCertificateOutput)
+
+	DeleteCertificateProvider(*iot.DeleteCertificateProviderInput) (*iot.DeleteCertificateProviderOutput, error)
+	DeleteCertificateProviderWithContext(aws.Context, *iot.DeleteCertificateProviderInput, ...request.Option) (*iot.DeleteCertificateProviderOutput, error)
+	DeleteCertificateProviderRequest(*iot.DeleteCertificateProviderInput) (*request.Request, *iot.DeleteCertificateProviderOutput)
 
 	DeleteCustomMetric(*iot.DeleteCustomMetricInput) (*iot.DeleteCustomMetricOutput, error)
 	DeleteCustomMetricWithContext(aws.Context, *iot.DeleteCustomMetricInput, ...request.Option) (*iot.DeleteCustomMetricOutput, error)
@@ -415,6 +423,10 @@ type IoTAPI interface {
 	DescribeCertificate(*iot.DescribeCertificateInput) (*iot.DescribeCertificateOutput, error)
 	DescribeCertificateWithContext(aws.Context, *iot.DescribeCertificateInput, ...request.Option) (*iot.DescribeCertificateOutput, error)
 	DescribeCertificateRequest(*iot.DescribeCertificateInput) (*request.Request, *iot.DescribeCertificateOutput)
+
+	DescribeCertificateProvider(*iot.DescribeCertificateProviderInput) (*iot.DescribeCertificateProviderOutput, error)
+	DescribeCertificateProviderWithContext(aws.Context, *iot.DescribeCertificateProviderInput, ...request.Option) (*iot.DescribeCertificateProviderOutput, error)
+	DescribeCertificateProviderRequest(*iot.DescribeCertificateProviderInput) (*request.Request, *iot.DescribeCertificateProviderOutput)
 
 	DescribeCustomMetric(*iot.DescribeCustomMetricInput) (*iot.DescribeCustomMetricOutput, error)
 	DescribeCustomMetricWithContext(aws.Context, *iot.DescribeCustomMetricInput, ...request.Option) (*iot.DescribeCustomMetricOutput, error)
@@ -684,6 +696,10 @@ type IoTAPI interface {
 
 	ListCACertificatesPages(*iot.ListCACertificatesInput, func(*iot.ListCACertificatesOutput, bool) bool) error
 	ListCACertificatesPagesWithContext(aws.Context, *iot.ListCACertificatesInput, func(*iot.ListCACertificatesOutput, bool) bool, ...request.Option) error
+
+	ListCertificateProviders(*iot.ListCertificateProvidersInput) (*iot.ListCertificateProvidersOutput, error)
+	ListCertificateProvidersWithContext(aws.Context, *iot.ListCertificateProvidersInput, ...request.Option) (*iot.ListCertificateProvidersOutput, error)
+	ListCertificateProvidersRequest(*iot.ListCertificateProvidersInput) (*request.Request, *iot.ListCertificateProvidersOutput)
 
 	ListCertificates(*iot.ListCertificatesInput) (*iot.ListCertificatesOutput, error)
 	ListCertificatesWithContext(aws.Context, *iot.ListCertificatesInput, ...request.Option) (*iot.ListCertificatesOutput, error)
@@ -1148,6 +1164,10 @@ type IoTAPI interface {
 	UpdateCertificate(*iot.UpdateCertificateInput) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateWithContext(aws.Context, *iot.UpdateCertificateInput, ...request.Option) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateRequest(*iot.UpdateCertificateInput) (*request.Request, *iot.UpdateCertificateOutput)
+
+	UpdateCertificateProvider(*iot.UpdateCertificateProviderInput) (*iot.UpdateCertificateProviderOutput, error)
+	UpdateCertificateProviderWithContext(aws.Context, *iot.UpdateCertificateProviderInput, ...request.Option) (*iot.UpdateCertificateProviderOutput, error)
+	UpdateCertificateProviderRequest(*iot.UpdateCertificateProviderInput) (*request.Request, *iot.UpdateCertificateProviderOutput)
 
 	UpdateCustomMetric(*iot.UpdateCustomMetricInput) (*iot.UpdateCustomMetricOutput, error)
 	UpdateCustomMetricWithContext(aws.Context, *iot.UpdateCustomMetricInput, ...request.Option) (*iot.UpdateCustomMetricOutput, error)

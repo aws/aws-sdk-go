@@ -1338,6 +1338,99 @@ func (c *BillingConductor) DisassociatePricingRulesWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opGetBillingGroupCostReport = "GetBillingGroupCostReport"
+
+// GetBillingGroupCostReportRequest generates a "aws/request.Request" representing the
+// client's request for the GetBillingGroupCostReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBillingGroupCostReport for more information on using the GetBillingGroupCostReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetBillingGroupCostReportRequest method.
+//	req, resp := client.GetBillingGroupCostReportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/billingconductor-2021-07-30/GetBillingGroupCostReport
+func (c *BillingConductor) GetBillingGroupCostReportRequest(input *GetBillingGroupCostReportInput) (req *request.Request, output *GetBillingGroupCostReportOutput) {
+	op := &request.Operation{
+		Name:       opGetBillingGroupCostReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/get-billing-group-cost-report",
+	}
+
+	if input == nil {
+		input = &GetBillingGroupCostReportInput{}
+	}
+
+	output = &GetBillingGroupCostReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBillingGroupCostReport API operation for AWSBillingConductor.
+//
+// Retrieves the margin summary report, which includes the Amazon Web Services
+// cost and charged amount (pro forma cost) by Amazon Web Service for a specific
+// billing group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSBillingConductor's
+// API operation GetBillingGroupCostReport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The input doesn't match with the constraints specified by Amazon Web Services.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ResourceNotFoundException
+//     The request references a resource that doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/billingconductor-2021-07-30/GetBillingGroupCostReport
+func (c *BillingConductor) GetBillingGroupCostReport(input *GetBillingGroupCostReportInput) (*GetBillingGroupCostReportOutput, error) {
+	req, out := c.GetBillingGroupCostReportRequest(input)
+	return out, req.Send()
+}
+
+// GetBillingGroupCostReportWithContext is the same as GetBillingGroupCostReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBillingGroupCostReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *BillingConductor) GetBillingGroupCostReportWithContext(ctx aws.Context, input *GetBillingGroupCostReportInput, opts ...request.Option) (*GetBillingGroupCostReportOutput, error) {
+	req, out := c.GetBillingGroupCostReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccountAssociations = "ListAccountAssociations"
 
 // ListAccountAssociationsRequest generates a "aws/request.Request" representing the
@@ -3937,6 +4030,50 @@ func (s *AssociateResourceResponseElement) SetError(v *AssociateResourceError) *
 	return s
 }
 
+// The key-value pair that represents the attribute by which the BillingGroupCostReportResults
+// are grouped. For example, if you want a service-level breakdown for Amazon
+// Simple Storage Service (Amazon S3) of the billing group, the attribute will
+// be a key-value pair of "PRODUCT_NAME" and "S3".
+type Attribute struct {
+	_ struct{} `type:"structure"`
+
+	// The key in a key-value pair that describes the margin summary.
+	Key *string `type:"string"`
+
+	// The value in a key-value pair that describes the margin summary.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Attribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Attribute) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Attribute) SetKey(v string) *Attribute {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Attribute) SetValue(v string) *Attribute {
+	s.Value = &v
+	return s
+}
+
 type BatchAssociateResourcesToCustomLineItemInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4254,6 +4391,99 @@ func (s *BillingGroupCostReportElement) SetProformaCost(v string) *BillingGroupC
 	return s
 }
 
+// A paginated call to retrieve a list of summary reports of actual Amazon Web
+// Services charges and the calculated Amazon Web Services charges, broken down
+// by attributes.
+type BillingGroupCostReportResultElement struct {
+	_ struct{} `type:"structure"`
+
+	// The actual Amazon Web Services charges for the billing group.
+	AWSCost *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) that uniquely identifies the billing group.
+	Arn *string `type:"string"`
+
+	// The list of key-value pairs that represent the attributes by which the BillingGroupCostReportResults
+	// are grouped. For example, if you want the Amazon S3 service-level breakdown
+	// of a billing group for November 2023, the attributes list will contain a
+	// key-value pair of "PRODUCT_NAME" and "S3" and a key-value pair of "BILLING_PERIOD"
+	// and "Nov 2023".
+	Attributes []*Attribute `type:"list"`
+
+	// The displayed currency.
+	Currency *string `type:"string"`
+
+	// The billing group margin.
+	Margin *string `type:"string"`
+
+	// The percentage of the billing group margin.
+	MarginPercentage *string `type:"string"`
+
+	// The hypothetical Amazon Web Services charges based on the associated pricing
+	// plan of a billing group.
+	ProformaCost *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BillingGroupCostReportResultElement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BillingGroupCostReportResultElement) GoString() string {
+	return s.String()
+}
+
+// SetAWSCost sets the AWSCost field's value.
+func (s *BillingGroupCostReportResultElement) SetAWSCost(v string) *BillingGroupCostReportResultElement {
+	s.AWSCost = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *BillingGroupCostReportResultElement) SetArn(v string) *BillingGroupCostReportResultElement {
+	s.Arn = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *BillingGroupCostReportResultElement) SetAttributes(v []*Attribute) *BillingGroupCostReportResultElement {
+	s.Attributes = v
+	return s
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *BillingGroupCostReportResultElement) SetCurrency(v string) *BillingGroupCostReportResultElement {
+	s.Currency = &v
+	return s
+}
+
+// SetMargin sets the Margin field's value.
+func (s *BillingGroupCostReportResultElement) SetMargin(v string) *BillingGroupCostReportResultElement {
+	s.Margin = &v
+	return s
+}
+
+// SetMarginPercentage sets the MarginPercentage field's value.
+func (s *BillingGroupCostReportResultElement) SetMarginPercentage(v string) *BillingGroupCostReportResultElement {
+	s.MarginPercentage = &v
+	return s
+}
+
+// SetProformaCost sets the ProformaCost field's value.
+func (s *BillingGroupCostReportResultElement) SetProformaCost(v string) *BillingGroupCostReportResultElement {
+	s.ProformaCost = &v
+	return s
+}
+
 // A representation of a billing group.
 type BillingGroupListElement struct {
 	_ struct{} `type:"structure"`
@@ -4384,6 +4614,72 @@ func (s *BillingGroupListElement) SetStatus(v string) *BillingGroupListElement {
 // SetStatusReason sets the StatusReason field's value.
 func (s *BillingGroupListElement) SetStatusReason(v string) *BillingGroupListElement {
 	s.StatusReason = &v
+	return s
+}
+
+// A time range for which the margin summary is effective. The time range can
+// be up to 12 months.
+type BillingPeriodRange struct {
+	_ struct{} `type:"structure"`
+
+	// The exclusive end billing period that defines a billing period range for
+	// the margin summary. For example, if you choose a billing period that starts
+	// in October 2023 and ends in December 2023, the margin summary will only include
+	// data from October 2023 and November 2023.
+	//
+	// ExclusiveEndBillingPeriod is a required field
+	ExclusiveEndBillingPeriod *string `type:"string" required:"true"`
+
+	// The inclusive start billing period that defines a billing period range for
+	// the margin summary.
+	//
+	// InclusiveStartBillingPeriod is a required field
+	InclusiveStartBillingPeriod *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BillingPeriodRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BillingPeriodRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BillingPeriodRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BillingPeriodRange"}
+	if s.ExclusiveEndBillingPeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExclusiveEndBillingPeriod"))
+	}
+	if s.InclusiveStartBillingPeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("InclusiveStartBillingPeriod"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExclusiveEndBillingPeriod sets the ExclusiveEndBillingPeriod field's value.
+func (s *BillingPeriodRange) SetExclusiveEndBillingPeriod(v string) *BillingPeriodRange {
+	s.ExclusiveEndBillingPeriod = &v
+	return s
+}
+
+// SetInclusiveStartBillingPeriod sets the InclusiveStartBillingPeriod field's value.
+func (s *BillingPeriodRange) SetInclusiveStartBillingPeriod(v string) *BillingPeriodRange {
+	s.InclusiveStartBillingPeriod = &v
 	return s
 }
 
@@ -6031,7 +6327,7 @@ func (s *DeleteCustomLineItemInput) SetBillingPeriodRange(v *CustomLineItemBilli
 type DeleteCustomLineItemOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Then ARN of the deleted custom line item.
+	// The ARN of the deleted custom line item.
 	Arn *string `type:"string"`
 }
 
@@ -6478,6 +6774,139 @@ func (s FreeTierConfig) GoString() string {
 // SetActivated sets the Activated field's value.
 func (s *FreeTierConfig) SetActivated(v bool) *FreeTierConfig {
 	s.Activated = &v
+	return s
+}
+
+type GetBillingGroupCostReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) that uniquely identifies the billing group.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// A time range for which the margin summary is effective. You can specify up
+	// to 12 months.
+	BillingPeriodRange *BillingPeriodRange `type:"structure"`
+
+	// A list of strings that specify the attributes that are used to break down
+	// costs in the margin summary reports for the billing group. For example, you
+	// can view your costs by the Amazon Web Service name or the billing period.
+	GroupBy []*string `type:"list" enum:"GroupByAttributeName"`
+
+	// The maximum number of margin summary reports to retrieve.
+	MaxResults *int64 `min:"200" type:"integer"`
+
+	// The pagination token used on subsequent calls to get reports.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBillingGroupCostReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBillingGroupCostReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBillingGroupCostReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBillingGroupCostReportInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 200))
+	}
+	if s.BillingPeriodRange != nil {
+		if err := s.BillingPeriodRange.Validate(); err != nil {
+			invalidParams.AddNested("BillingPeriodRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetBillingGroupCostReportInput) SetArn(v string) *GetBillingGroupCostReportInput {
+	s.Arn = &v
+	return s
+}
+
+// SetBillingPeriodRange sets the BillingPeriodRange field's value.
+func (s *GetBillingGroupCostReportInput) SetBillingPeriodRange(v *BillingPeriodRange) *GetBillingGroupCostReportInput {
+	s.BillingPeriodRange = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *GetBillingGroupCostReportInput) SetGroupBy(v []*string) *GetBillingGroupCostReportInput {
+	s.GroupBy = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetBillingGroupCostReportInput) SetMaxResults(v int64) *GetBillingGroupCostReportInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBillingGroupCostReportInput) SetNextToken(v string) *GetBillingGroupCostReportInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetBillingGroupCostReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of margin summary reports.
+	BillingGroupCostReportResults []*BillingGroupCostReportResultElement `type:"list"`
+
+	// The pagination token used on subsequent calls to get reports.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBillingGroupCostReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBillingGroupCostReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetBillingGroupCostReportResults sets the BillingGroupCostReportResults field's value.
+func (s *GetBillingGroupCostReportOutput) SetBillingGroupCostReportResults(v []*BillingGroupCostReportResultElement) *GetBillingGroupCostReportOutput {
+	s.BillingGroupCostReportResults = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBillingGroupCostReportOutput) SetNextToken(v string) *GetBillingGroupCostReportOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -10746,6 +11175,22 @@ func CustomLineItemType_Values() []string {
 	return []string{
 		CustomLineItemTypeCredit,
 		CustomLineItemTypeFee,
+	}
+}
+
+const (
+	// GroupByAttributeNameProductName is a GroupByAttributeName enum value
+	GroupByAttributeNameProductName = "PRODUCT_NAME"
+
+	// GroupByAttributeNameBillingPeriod is a GroupByAttributeName enum value
+	GroupByAttributeNameBillingPeriod = "BILLING_PERIOD"
+)
+
+// GroupByAttributeName_Values returns all elements of the GroupByAttributeName enum
+func GroupByAttributeName_Values() []string {
+	return []string{
+		GroupByAttributeNameProductName,
+		GroupByAttributeNameBillingPeriod,
 	}
 }
 

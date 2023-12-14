@@ -656,6 +656,7 @@
       "base": null,
       "refs": {
         "InvalidKMSResourceException$code": null,
+        "InvalidSourceException$code": null,
         "PutRecordBatchResponseEntry$ErrorCode": "<p>The error code for an individual record result.</p>"
       }
     },
@@ -665,6 +666,7 @@
         "ConcurrentModificationException$message": "<p>A message that provides information about the error.</p>",
         "InvalidArgumentException$message": "<p>A message that provides information about the error.</p>",
         "InvalidKMSResourceException$message": null,
+        "InvalidSourceException$message": null,
         "LimitExceededException$message": "<p>A message that provides information about the error.</p>",
         "PutRecordBatchResponseEntry$ErrorMessage": "<p>The error message for an individual record result.</p>",
         "ResourceInUseException$message": "<p>A message that provides information about the error.</p>",
@@ -890,6 +892,11 @@
     },
     "InvalidKMSResourceException": {
       "base": "<p>Kinesis Data Firehose throws this exception when an attempt to put records or to start or stop delivery stream encryption fails. This happens when the KMS service throws one of the following exception types: <code>AccessDeniedException</code>, <code>InvalidStateException</code>, <code>DisabledException</code>, or <code>NotFoundException</code>.</p>",
+      "refs": {
+      }
+    },
+    "InvalidSourceException": {
+      "base": "<p>Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression is enabled.</p>",
       "refs": {
       }
     },
@@ -1437,6 +1444,26 @@
       "base": "<p>Details about a Kinesis data stream used as the source for a Kinesis Data Firehose delivery stream.</p>",
       "refs": {
         "DeliveryStreamDescription$Source": "<p>If the <code>DeliveryStreamType</code> parameter is <code>KinesisStreamAsSource</code>, a <a>SourceDescription</a> object describing the source Kinesis data stream.</p>"
+      }
+    },
+    "SplunkBufferingHints": {
+      "base": "<p>The buffering options. If no value is specified, the default values for Splunk are used.</p>",
+      "refs": {
+        "SplunkDestinationConfiguration$BufferingHints": "<p>The buffering options. If no value is specified, the default values for Splunk are used.</p>",
+        "SplunkDestinationDescription$BufferingHints": "<p>The buffering options. If no value is specified, the default values for Splunk are used.</p>",
+        "SplunkDestinationUpdate$BufferingHints": "<p>The buffering options. If no value is specified, the default values for Splunk are used.</p>"
+      }
+    },
+    "SplunkBufferingIntervalInSeconds": {
+      "base": null,
+      "refs": {
+        "SplunkBufferingHints$IntervalInSeconds": "<p>Buffer incoming data for the specified period of time, in seconds, before delivering it to the destination. The default value is 60 (1 minute).</p>"
+      }
+    },
+    "SplunkBufferingSizeInMBs": {
+      "base": null,
+      "refs": {
+        "SplunkBufferingHints$SizeInMBs": "<p>Buffer incoming data to the specified size, in MBs, before delivering it to the destination. The default value is 5. </p>"
       }
     },
     "SplunkDestinationConfiguration": {

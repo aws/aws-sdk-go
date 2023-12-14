@@ -4,7 +4,7 @@
   "operations": {
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
     "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
-    "CreateAccountSubscription": "<p>Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight Q.</p> <p>The Amazon Web Services Region for the account is derived from what is configured in the CLI or SDK. This operation isn't supported in the US East (Ohio) Region, South America (Sao Paulo) Region, or Asia Pacific (Singapore) Region. </p> <p>Before you use this operation, make sure that you can connect to an existing Amazon Web Services account. If you don't have an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html\">Sign up for Amazon Web Services</a> in the <i>Amazon QuickSight User Guide</i>. The person who signs up for Amazon QuickSight needs to have the correct Identity and Access Management (IAM) permissions. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html\">IAM Policy Examples for Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code> actions, make sure that both actions are set to <code>Allow</code>. If either action is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call fails.</p> <p>You can't pass an existing IAM role to access other Amazon Web Services services using this API operation. To pass your existing IAM role to Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role\">Passing IAM roles to Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>You can't set default resource access on the new account from the Amazon QuickSight API. Instead, add default resource access from the Amazon QuickSight console. For more information about setting default resource access to Amazon Web Services services, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html\">Setting default resource access to Amazon Web Services services</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
+    "CreateAccountSubscription": "<p>Creates an Amazon QuickSight account, or subscribes to Amazon QuickSight Q.</p> <p>The Amazon Web Services Region for the account is derived from what is configured in the CLI or SDK.</p> <p>Before you use this operation, make sure that you can connect to an existing Amazon Web Services account. If you don't have an Amazon Web Services account, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/setting-up-aws-sign-up.html\">Sign up for Amazon Web Services</a> in the <i>Amazon QuickSight User Guide</i>. The person who signs up for Amazon QuickSight needs to have the correct Identity and Access Management (IAM) permissions. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/iam-policy-examples.html\">IAM Policy Examples for Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>If your IAM policy includes both the <code>Subscribe</code> and <code>CreateAccountSubscription</code> actions, make sure that both actions are set to <code>Allow</code>. If either action is set to <code>Deny</code>, the <code>Deny</code> action prevails and your API call fails.</p> <p>You can't pass an existing IAM role to access other Amazon Web Services services using this API operation. To pass your existing IAM role to Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html#security-create-iam-role\">Passing IAM roles to Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>You can't set default resource access on the new account from the Amazon QuickSight API. Instead, add default resource access from the Amazon QuickSight console. For more information about setting default resource access to Amazon Web Services services, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/scoping-policies-defaults.html\">Setting default resource access to Amazon Web Services services</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight. Analyses can be created either from a template or from an <code>AnalysisDefinition</code>.</p>",
     "CreateDashboard": "<p>Creates a dashboard from either a template or directly with a <code>DashboardDefinition</code>. To first create a template, see the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
     "CreateDataSet": "<p>Creates a dataset. This operation doesn't support datasets that include uploaded files as a source.</p>",
@@ -146,6 +146,7 @@
     "UpdateAnalysis": "<p>Updates an analysis in Amazon QuickSight</p>",
     "UpdateAnalysisPermissions": "<p>Updates the read and write permissions for an analysis.</p>",
     "UpdateDashboard": "<p>Updates a dashboard in an Amazon Web Services account.</p> <note> <p>Updating a Dashboard creates a new dashboard version but does not immediately publish the new version. You can update the published version of a dashboard by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateDashboardPublishedVersion.html\">UpdateDashboardPublishedVersion</a> </code> API operation.</p> </note>",
+    "UpdateDashboardLinks": "<p>Updates the linked analyses on a dashboard.</p>",
     "UpdateDashboardPermissions": "<p>Updates read and write permissions on a dashboard.</p>",
     "UpdateDashboardPublishedVersion": "<p>Updates the published version of a dashboard.</p>",
     "UpdateDataSet": "<p>Updates a dataset. This operation doesn't support datasets that include uploaded files as a source. Partial updates are not supported by this operation.</p>",
@@ -636,6 +637,7 @@
         "UpdateAnalysisPermissionsResponse$AnalysisArn": "<p>The Amazon Resource Name (ARN) of the analysis that you updated.</p>",
         "UpdateAnalysisRequest$ThemeArn": "<p>The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're creating. To see the theme in the Amazon QuickSight console, make sure that you have access to it.</p>",
         "UpdateAnalysisResponse$Arn": "<p>The ARN of the analysis that you're updating.</p>",
+        "UpdateDashboardLinksResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "UpdateDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "UpdateDashboardPublishedVersionResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "UpdateDashboardRequest$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If you add a value for this field, it overrides the value that was originally associated with the entity. The theme ARN must exist in the same Amazon Web Services account where you create the dashboard.</p>",
@@ -1520,6 +1522,7 @@
         "UpdateAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.</p>",
         "UpdateAnalysisPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis whose permissions you're updating. You must be using the Amazon Web Services account that the analysis is in.</p>",
         "UpdateAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis that you're updating.</p>",
+        "UpdateDashboardLinksRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard whose links you want to update.</p>",
         "UpdateDashboardPermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard whose permissions you're updating.</p>",
         "UpdateDashboardPublishedVersionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're updating.</p>",
         "UpdateDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're updating.</p>",
@@ -6399,6 +6402,7 @@
         "RadarChartSortConfiguration$ColorItemsLimit": "<p>The color items limit of a radar chart.</p>",
         "SankeyDiagramSortConfiguration$SourceItemsLimit": "<p>The limit on the number of source nodes that are displayed in a sankey diagram.</p>",
         "SankeyDiagramSortConfiguration$DestinationItemsLimit": "<p>The limit on the number of destination nodes that are displayed in a sankey diagram.</p>",
+        "ScatterPlotSortConfiguration$ScatterPlotLimitConfiguration": null,
         "TreeMapSortConfiguration$TreeMapGroupItemsLimitConfiguration": "<p>The limit on the number of groups that are displayed.</p>",
         "WaterfallChartSortConfiguration$BreakdownItemsLimit": "<p>The limit on the number of bar groups that are displayed.</p>",
         "WordCloudSortConfiguration$CategoryItemsLimit": "<p>The limit on the number of groups that are displayed in a word cloud.</p>"
@@ -6747,6 +6751,21 @@
       "refs": {
         "LineChartConfiguration$PrimaryYAxisDisplayOptions": "<p>The series axis configuration of a line chart.</p>",
         "LineChartConfiguration$SecondaryYAxisDisplayOptions": "<p>The series axis configuration of a line chart.</p>"
+      }
+    },
+    "LinkEntityArn": {
+      "base": null,
+      "refs": {
+        "LinkEntityArnList$member": null
+      }
+    },
+    "LinkEntityArnList": {
+      "base": null,
+      "refs": {
+        "CreateDashboardRequest$LinkEntities": "<p>A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.</p>",
+        "Dashboard$LinkEntities": "<p>A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.</p>",
+        "UpdateDashboardLinksRequest$LinkEntities": "<p> list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.</p>",
+        "UpdateDashboardLinksResponse$LinkEntities": "<p>A list of analysis Amazon Resource Names (ARNs) to be linked to the dashboard.</p>"
       }
     },
     "LinkSharingConfiguration": {
@@ -9223,6 +9242,12 @@
         "ScatterPlotConfiguration$FieldWells": "<p>The field wells of the visual.</p>"
       }
     },
+    "ScatterPlotSortConfiguration": {
+      "base": "<p>The sort configuration of a scatter plot.</p>",
+      "refs": {
+        "ScatterPlotConfiguration$SortConfiguration": "<p>The sort configuration of a scatter plot.</p>"
+      }
+    },
     "ScatterPlotUnaggregatedFieldWells": {
       "base": "<p>The unaggregated field wells of a scatter plot.</p>",
       "refs": {
@@ -9994,6 +10019,7 @@
         "UpdateAnalysisPermissionsResponse$AnalysisId": "<p>The ID of the analysis that you updated permissions for.</p>",
         "UpdateAnalysisRequest$AnalysisId": "<p>The ID for the analysis that you're updating. This ID displays in the URL of the analysis.</p>",
         "UpdateAnalysisResponse$AnalysisId": "<p>The ID of the analysis.</p>",
+        "UpdateDashboardLinksRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPublishedVersionRequest$DashboardId": "<p>The ID for the dashboard.</p>",
@@ -10050,6 +10076,19 @@
       "base": null,
       "refs": {
         "TotalAggregationFunction$SimpleTotalAggregationFunction": "<p>A built in aggregation function for total values.</p>"
+      }
+    },
+    "SingleAxisOptions": {
+      "base": "<p>The settings of a chart's single axis configuration.</p>",
+      "refs": {
+        "ComboChartConfiguration$SingleAxisOptions": null,
+        "LineChartConfiguration$SingleAxisOptions": null
+      }
+    },
+    "SingleYAxisOption": {
+      "base": null,
+      "refs": {
+        "YAxisOptions$YAxis": "<p>The Y axis type to be used in the chart.</p> <p>If you choose <code>PRIMARY_Y_AXIS</code>, the primary Y Axis is located on the leftmost vertical axis of the chart.</p>"
       }
     },
     "SiteBaseUrl": {
@@ -10536,6 +10575,7 @@
         "UpdateAccountSettingsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAnalysisPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDashboardLinksResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateDashboardPublishedVersionResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -10916,6 +10956,7 @@
         "UpdateAccountSettingsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateAnalysisPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateDashboardLinksResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateDashboardPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateDashboardPublishedVersionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -12347,6 +12388,16 @@
       "refs": {
       }
     },
+    "UpdateDashboardLinksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDashboardLinksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDashboardPermissionsRequest": {
       "base": null,
       "refs": {
@@ -13221,6 +13272,12 @@
       "base": null,
       "refs": {
         "AthenaParameters$WorkGroup": "<p>The workgroup that Amazon Athena uses.</p>"
+      }
+    },
+    "YAxisOptions": {
+      "base": "<p>The options that are available for a single Y axis in a chart.</p>",
+      "refs": {
+        "SingleAxisOptions$YAxisOptions": "<p>The Y axis options of a single axis configuration.</p>"
       }
     },
     "boolean": {
