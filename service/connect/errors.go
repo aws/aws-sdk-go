@@ -14,6 +14,13 @@ const (
 	// You do not have sufficient permissions to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Operation cannot be performed at this time as there is a conflict with another
+	// operation or contact state.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeContactFlowNotPublishedException for service response error code
 	// "ContactFlowNotPublishedException".
 	//
@@ -159,6 +166,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":                newErrorAccessDeniedException,
+	"ConflictException":                    newErrorConflictException,
 	"ContactFlowNotPublishedException":     newErrorContactFlowNotPublishedException,
 	"ContactNotFoundException":             newErrorContactNotFoundException,
 	"DestinationNotAllowedException":       newErrorDestinationNotAllowedException,

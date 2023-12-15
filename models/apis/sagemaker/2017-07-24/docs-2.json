@@ -11,8 +11,8 @@
     "CreateApp": "<p>Creates a running app for the specified UserProfile. This operation is automatically invoked by Amazon SageMaker upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
     "CreateAppImageConfig": "<p>Creates a configuration for running a SageMaker image as a KernelGateway app. The configuration specifies the Amazon Elastic File System (EFS) storage volume on the image, and a list of the kernels in the image.</p>",
     "CreateArtifact": "<p>Creates an <i>artifact</i>. An artifact is a lineage tracking entity that represents a URI addressable object or data. Some examples are the S3 URI of a dataset and the ECR registry path of an image. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
-    "CreateAutoMLJob": "<p>Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.</p> <note> <p>We recommend using the new versions <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a>, which offer backward compatibility.</p> <p> <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning).</p> <p>Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2\">Migrate a CreateAutoMLJob to CreateAutoMLJobV2</a>.</p> </note> <p>You can find the best-performing model after you run an AutoML job by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a> (recommended) or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html\">DescribeAutoMLJob</a>.</p>",
-    "CreateAutoMLJobV2": "<p>Creates an Autopilot job also referred to as Autopilot experiment or AutoML job V2.</p> <note> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a> are new versions of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html\">CreateAutoMLJob</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html\">DescribeAutoMLJob</a> which offer backward compatibility.</p> <p> <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning).</p> <p>Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment-api.html#autopilot-create-experiment-api-migrate-v1-v2\">Migrate a CreateAutoMLJob to CreateAutoMLJobV2</a>.</p> </note> <p>For the list of available problem types supported by <code>CreateAutoMLJobV2</code>, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html\">AutoMLProblemTypeConfig</a>.</p> <p>You can find the best-performing model after you run an AutoML job V2 by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a>.</p>",
+    "CreateAutoMLJob": "<p>Creates an Autopilot job also referred to as Autopilot experiment or AutoML job.</p> <note> <p>We recommend using the new versions <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a>, which offer backward compatibility.</p> <p> <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning).</p> <p>Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2\">Migrate a CreateAutoMLJob to CreateAutoMLJobV2</a>.</p> </note> <p>You can find the best-performing model after you run an AutoML job by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a> (recommended) or <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html\">DescribeAutoMLJob</a>.</p>",
+    "CreateAutoMLJobV2": "<p>Creates an Autopilot job also referred to as Autopilot experiment or AutoML job V2.</p> <note> <p> <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJobV2.html\">CreateAutoMLJobV2</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a> are new versions of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html\">CreateAutoMLJob</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJob.html\">DescribeAutoMLJob</a> which offer backward compatibility.</p> <p> <code>CreateAutoMLJobV2</code> can manage tabular problem types identical to those of its previous version <code>CreateAutoMLJob</code>, as well as time-series forecasting, non-tabular problem types such as image or text classification, and text generation (LLMs fine-tuning).</p> <p>Find guidelines about how to migrate a <code>CreateAutoMLJob</code> to <code>CreateAutoMLJobV2</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-create-experiment.html#autopilot-create-experiment-api-migrate-v1-v2\">Migrate a CreateAutoMLJob to CreateAutoMLJobV2</a>.</p> </note> <p>For the list of available problem types supported by <code>CreateAutoMLJobV2</code>, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLProblemTypeConfig.html\">AutoMLProblemTypeConfig</a>.</p> <p>You can find the best-performing model after you run an AutoML job V2 by calling <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeAutoMLJobV2.html\">DescribeAutoMLJobV2</a>.</p>",
     "CreateCluster": "<p>Creates a SageMaker HyperPod cluster. SageMaker HyperPod is a capability of SageMaker for creating and managing persistent clusters for developing large machine learning models, such as large language models (LLMs) and diffusion models. To learn more, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod.html\">Amazon SageMaker HyperPod</a> in the <i>Amazon SageMaker Developer Guide</i>.</p>",
     "CreateCodeRepository": "<p>Creates a Git repository as a resource in your SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">Amazon Web Services CodeCommit</a> or in any other Git repository.</p>",
     "CreateCompilationJob": "<p>Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify. </p> <p>If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with Amazon Web Services IoT Greengrass. In that case, deploy them as an ML resource.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p>A name for the compilation job</p> </li> <li> <p> Information about the input model artifacts </p> </li> <li> <p>The output location for the compiled model and the device (target) that the model runs on </p> </li> <li> <p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job. </p> </li> </ul> <p>You can also provide a <code>Tag</code> to track the model compilation job's resource use and costs. The response body contains the <code>CompilationJobArn</code> for the compiled job.</p> <p>To stop a model compilation job, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StopCompilationJob.html\">StopCompilationJob</a>. To get information about a particular model compilation job, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeCompilationJob.html\">DescribeCompilationJob</a>. To get information about multiple model compilation jobs, use <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ListCompilationJobs.html\">ListCompilationJobs</a>.</p>",
@@ -70,6 +70,7 @@
     "DeleteAssociation": "<p>Deletes an association.</p>",
     "DeleteCluster": "<p>Delete a SageMaker HyperPod cluster.</p>",
     "DeleteCodeRepository": "<p>Deletes the specified Git repository from your account.</p>",
+    "DeleteCompilationJob": "<p>Deletes the specified compilation job. This action deletes only the compilation job resource in Amazon SageMaker. It doesn't delete other resources that are related to that job, such as the model artifacts that the job creates, the compilation logs in CloudWatch, the compiled model, or the IAM role.</p> <p>You can delete a compilation job only if its current status is <code>COMPLETED</code>, <code>FAILED</code>, or <code>STOPPED</code>. If the job status is <code>STARTING</code> or <code>INPROGRESS</code>, stop the job, and then delete it after its status becomes <code>STOPPED</code>.</p>",
     "DeleteContext": "<p>Deletes an context.</p>",
     "DeleteDataQualityJobDefinition": "<p>Deletes a data quality monitoring job definition.</p>",
     "DeleteDeviceFleet": "<p>Deletes a fleet.</p>",
@@ -742,6 +743,19 @@
         "ModelDigests$ArtifactDigest": "<p>Provides a hash value that uniquely identifies the stored model artifacts.</p>"
       }
     },
+    "ArtifactProperties": {
+      "base": null,
+      "refs": {
+        "CreateArtifactRequest$Properties": "<p>A list of properties to add to the artifact.</p>",
+        "UpdateArtifactRequest$Properties": "<p>The new list of properties. Overwrites the current property list.</p>"
+      }
+    },
+    "ArtifactPropertyValue": {
+      "base": null,
+      "refs": {
+        "ArtifactProperties$value": null
+      }
+    },
     "ArtifactSource": {
       "base": "<p>A structure describing the source of an artifact.</p>",
       "refs": {
@@ -1185,7 +1199,12 @@
     "AutoMLMaxResults": {
       "base": null,
       "refs": {
-        "ListAutoMLJobsRequest$MaxResults": "<p>Request a list of jobs up to a specified limit.</p>",
+        "ListAutoMLJobsRequest$MaxResults": "<p>Request a list of jobs up to a specified limit.</p>"
+      }
+    },
+    "AutoMLMaxResultsForTrials": {
+      "base": null,
+      "refs": {
         "ListCandidatesForAutoMLJobRequest$MaxResults": "<p>List the job's candidates up to a specified limit.</p>"
       }
     },
@@ -2471,6 +2490,22 @@
         "UpdateContextResponse$ContextArn": "<p>The Amazon Resource Name (ARN) of the context.</p>"
       }
     },
+    "ContextName": {
+      "base": null,
+      "refs": {
+        "ContextSummary$ContextName": "<p>The name of the context.</p>",
+        "CreateContextRequest$ContextName": "<p>The name of the context. Must be unique to your account in an Amazon Web Services Region.</p>",
+        "DeleteContextRequest$ContextName": "<p>The name of the context to delete.</p>",
+        "DescribeContextResponse$ContextName": "<p>The name of the context.</p>",
+        "UpdateContextRequest$ContextName": "<p>The name of the context to update.</p>"
+      }
+    },
+    "ContextNameOrArn": {
+      "base": null,
+      "refs": {
+        "DescribeContextRequest$ContextName": "<p>The name of the context to describe.</p>"
+      }
+    },
     "ContextSource": {
       "base": "<p>A structure describing the source of a context.</p>",
       "refs": {
@@ -3075,7 +3110,6 @@
         "CodeRepositorySummary$CreationTime": "<p>The date and time that the Git repository was created.</p>",
         "CompilationJobSummary$CreationTime": "<p>The time when the model compilation job was created.</p>",
         "DescribeAlgorithmOutput$CreationTime": "<p>A timestamp specifying when the algorithm was created.</p>",
-        "DescribeAppResponse$CreationTime": "<p>The creation time.</p>",
         "DescribeCodeRepositoryOutput$CreationTime": "<p>The date and time that the repository was created.</p>",
         "DescribeCompilationJobResponse$CreationTime": "<p>The time that the model compilation job was created.</p>",
         "DescribeDomainResponse$CreationTime": "<p>The creation time.</p>",
@@ -3450,6 +3484,11 @@
       }
     },
     "DeleteCodeRepositoryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCompilationJobRequest": {
       "base": null,
       "refs": {
       }
@@ -5300,6 +5339,7 @@
         "CreateModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p> <p>This parameter is required for unversioned models. It is not applicable to versioned models.</p>",
         "DeleteAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to delete.</p>",
         "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to delete.</p>",
+        "DeleteCompilationJobRequest$CompilationJobName": "<p>The name of the compilation job to delete.</p>",
         "DeleteDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet to delete.</p>",
         "DeleteEdgeDeploymentPlanRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan to delete.</p>",
         "DeleteEdgeDeploymentStageRequest$EdgeDeploymentPlanName": "<p>The name of the edge deployment plan from which the stage will be deleted.</p>",
@@ -5513,10 +5553,8 @@
         "AssociateTrialComponentRequest$TrialName": "<p>The name of the trial to associate with.</p>",
         "AssociationSummary$SourceName": "<p>The name of the source.</p>",
         "AssociationSummary$DestinationName": "<p>The name of the destination.</p>",
-        "ContextSummary$ContextName": "<p>The name of the context.</p>",
         "CreateActionRequest$ActionName": "<p>The name of the action. Must be unique to your account in an Amazon Web Services Region.</p>",
         "CreateArtifactRequest$ArtifactName": "<p>The name of the artifact. Must be unique to your account in an Amazon Web Services Region.</p>",
-        "CreateContextRequest$ContextName": "<p>The name of the context. Must be unique to your account in an Amazon Web Services Region.</p>",
         "CreateExperimentRequest$ExperimentName": "<p>The name of the experiment. The name must be unique in your Amazon Web Services account and is not case-sensitive.</p>",
         "CreateExperimentRequest$DisplayName": "<p>The name of the experiment as displayed. The name doesn't need to be unique. If you don't specify <code>DisplayName</code>, the value in <code>ExperimentName</code> is displayed.</p>",
         "CreateTrialComponentRequest$TrialComponentName": "<p>The name of the component. The name must be unique in your Amazon Web Services account and is not case-sensitive.</p>",
@@ -5525,12 +5563,9 @@
         "CreateTrialRequest$DisplayName": "<p>The name of the trial as displayed. The name doesn't need to be unique. If <code>DisplayName</code> isn't specified, <code>TrialName</code> is displayed.</p>",
         "CreateTrialRequest$ExperimentName": "<p>The name of the experiment to associate the trial with.</p>",
         "DeleteActionRequest$ActionName": "<p>The name of the action to delete.</p>",
-        "DeleteContextRequest$ContextName": "<p>The name of the context to delete.</p>",
         "DeleteExperimentRequest$ExperimentName": "<p>The name of the experiment to delete.</p>",
         "DeleteTrialComponentRequest$TrialComponentName": "<p>The name of the component to delete.</p>",
         "DeleteTrialRequest$TrialName": "<p>The name of the trial to delete.</p>",
-        "DescribeActionRequest$ActionName": "<p>The name of the action to describe.</p>",
-        "DescribeContextResponse$ContextName": "<p>The name of the context.</p>",
         "DescribeExperimentRequest$ExperimentName": "<p>The name of the experiment to describe.</p>",
         "DescribeExperimentResponse$ExperimentName": "<p>The name of the experiment.</p>",
         "DescribeExperimentResponse$DisplayName": "<p>The name of the experiment as displayed. If <code>DisplayName</code> isn't specified, <code>ExperimentName</code> is displayed.</p>",
@@ -5576,7 +5611,6 @@
         "TrialSummary$DisplayName": "<p>The name of the trial as displayed. If <code>DisplayName</code> isn't specified, <code>TrialName</code> is displayed.</p>",
         "UpdateActionRequest$ActionName": "<p>The name of the action to update.</p>",
         "UpdateArtifactRequest$ArtifactName": "<p>The new name for the artifact.</p>",
-        "UpdateContextRequest$ContextName": "<p>The name of the context to update.</p>",
         "UpdateExperimentRequest$ExperimentName": "<p>The name of the experiment to update.</p>",
         "UpdateExperimentRequest$DisplayName": "<p>The name of the experiment as displayed. The name doesn't need to be unique. If <code>DisplayName</code> isn't specified, <code>ExperimentName</code> is displayed.</p>",
         "UpdateTrialComponentRequest$TrialComponentName": "<p>The name of the component to update.</p>",
@@ -5588,9 +5622,9 @@
     "ExperimentEntityNameOrArn": {
       "base": null,
       "refs": {
+        "DescribeActionRequest$ActionName": "<p>The name of the action to describe.</p>",
         "DescribeActionResponse$ActionName": "<p>The name of the action.</p>",
         "DescribeArtifactResponse$ArtifactName": "<p>The name of the artifact.</p>",
-        "DescribeContextRequest$ContextName": "<p>The name of the context to describe.</p>",
         "DescribeTrialComponentRequest$TrialComponentName": "<p>The name of the trial component to describe.</p>"
       }
     },
@@ -5918,6 +5952,7 @@
     "FileSystemConfig": {
       "base": "<p>The Amazon Elastic File System (EFS) storage configuration for a SageMaker image.</p>",
       "refs": {
+        "JupyterLabAppImageConfig$FileSystemConfig": null,
         "KernelGatewayImageConfig$FileSystemConfig": "<p>The Amazon Elastic File System (EFS) storage configuration for a SageMaker image.</p>"
       }
     },
@@ -7039,7 +7074,7 @@
     "ImageVersionAlias": {
       "base": null,
       "refs": {
-        "ResourceSpec$SageMakerImageVersionAlias": "<p>The SageMakerImageVersionAlias.</p>"
+        "ResourceSpec$SageMakerImageVersionAlias": "<p>The SageMakerImageVersionAlias of the image to launch with. This value is in SemVer 2.0.0 versioning format.</p>"
       }
     },
     "ImageVersionArn": {
@@ -7523,6 +7558,7 @@
         "ModelCardVersionSummary$ModelCardVersion": "<p>A version of the model card.</p>",
         "ModelDashboardModelCard$ModelCardVersion": "<p>The model card version.</p>",
         "ModelLatencyThreshold$ValueInMilliseconds": "<p>The model latency percentile value in milliseconds.</p>",
+        "PipelineExecutionStep$AttemptCount": "<p>The current attempt of the execution step. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html\">Retry Policy for SageMaker Pipelines steps</a>.</p>",
         "RecommendationJobStoppingConditions$MaxInvocations": "<p>The maximum number of requests per minute expected for the endpoint.</p>",
         "RecommendationMetrics$MaxInvocations": "<p>The expected maximum number of requests per minute for the instance.</p>",
         "RecommendationMetrics$ModelLatency": "<p>The expected model latency at maximum invocation per minute for the instance.</p>",
@@ -7548,12 +7584,6 @@
       "base": null,
       "refs": {
         "ParameterRanges$IntegerParameterRanges": "<p>The array of <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_IntegerParameterRange.html\">IntegerParameterRange</a> objects that specify ranges of integer hyperparameters that a hyperparameter tuning job searches.</p>"
-      }
-    },
-    "IntegerValue": {
-      "base": null,
-      "refs": {
-        "PipelineExecutionStep$AttemptCount": "<p>The current attempt of the execution step. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-retry-policy.html\">Retry Policy for SageMaker Pipelines steps</a>.</p>"
       }
     },
     "InvocationEndTime": {
@@ -7670,7 +7700,7 @@
       }
     },
     "KeepAlivePeriodInSeconds": {
-      "base": null,
+      "base": "Optional. Customer requested period in seconds for which the Training cluster is kept alive after the job is finished.",
       "refs": {
         "ResourceConfig$KeepAlivePeriodInSeconds": "<p>The duration of time in seconds to retain configured resources in a warm pool for subsequent training jobs.</p>",
         "ResourceConfigForUpdate$KeepAlivePeriodInSeconds": "<p>The <code>KeepAlivePeriodInSeconds</code> value specified in the <code>ResourceConfig</code> to update.</p>"
@@ -7762,7 +7792,7 @@
         "MonitoringOutputConfig$KmsKeyId": "<p>The Key Management Service (KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.</p>",
         "OnlineStoreSecurityConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (KMS) key ARN that SageMaker Feature Store uses to encrypt the Amazon S3 objects at rest using Amazon S3 server-side encryption.</p> <p>The caller (either user or IAM role) of <code>CreateFeatureGroup</code> must have below permissions to the <code>OnlineStore</code> <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Encrypt\"</code> </p> </li> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> <li> <p> <code>\"kms:DescribeKey\"</code> </p> </li> <li> <p> <code>\"kms:CreateGrant\"</code> </p> </li> <li> <p> <code>\"kms:RetireGrant\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptFrom\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptTo\"</code> </p> </li> <li> <p> <code>\"kms:GenerateDataKey\"</code> </p> </li> <li> <p> <code>\"kms:ListAliases\"</code> </p> </li> <li> <p> <code>\"kms:ListGrants\"</code> </p> </li> <li> <p> <code>\"kms:RevokeGrant\"</code> </p> </li> </ul> <p>The caller (either user or IAM role) to all DataPlane operations (<code>PutRecord</code>, <code>GetRecord</code>, <code>DeleteRecord</code>) must have the following permissions to the <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> </ul>",
         "OutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service key (Amazon Web Services KMS) that Amazon SageMaker uses to encrypt your output models with Amazon S3 server-side encryption after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
-        "OutputDataConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your KMS key, the SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, SageMaker uses the default KMS key for Amazon S3 for your role's account. SageMaker uses server-side encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateTrainingJob</code>, <code>CreateTransformJob</code>, or <code>CreateHyperParameterTuningJob</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>",
+        "OutputDataConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your KMS key, the SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, SageMaker uses the default KMS key for Amazon S3 for your role's account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide</i>. If the output data is stored in Amazon S3 Express One Zone, it is encrypted with server-side encryption with Amazon S3 managed keys (SSE-S3). KMS key is not supported for Amazon S3 Express One Zone</p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateTrainingJob</code>, <code>CreateTransformJob</code>, or <code>CreateHyperParameterTuningJob</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>",
         "ProcessingClusterConfig$VolumeKmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job. </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>VolumeKmsKeyId</code> when using an instance type with local storage.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "ProcessingOutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt the processing job output. <code>KmsKeyId</code> can be an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS key. The <code>KmsKeyId</code> is applied to all outputs.</p>",
         "ProductionVariantCoreDumpConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that SageMaker uses to encrypt the core dump data at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your KMS key, the SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, SageMaker uses the default KMS key for Amazon S3 for your role's account. SageMaker uses server-side encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code> and <code>UpdateEndpoint</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services Key Management Service Developer Guide</i>.</p>",
@@ -7955,7 +7985,7 @@
     "LandingUri": {
       "base": null,
       "refs": {
-        "CreatePresignedDomainUrlRequest$LandingUri": "<p>The landing page that the user is directed to when accessing the presigned URL. Using this value, users can access Studio or Studio Classic, even if it is not the default experience for the domain. The supported values are:</p> <ul> <li> <p> <code>studio::relative/path</code>: Directs users to the relative path in Studio.</p> </li> <li> <p> <code>app:JupyterServer:relative/path</code>: Directs users to the relative path in the Studio Classic application.</p> </li> <li> <p> <code>app:JupyterLab:relative/path</code>: Directs users to the relative path in the JupyterLab application.</p> </li> <li> <p> <code>app:RStudioServerPro:relative/path</code>: Directs users to the relative path in the RStudio application.</p> </li> <li> <p> <code>app:Canvas:relative/path</code>: Directs users to the relative path in the Canvas application.</p> </li> </ul>",
+        "CreatePresignedDomainUrlRequest$LandingUri": "<p>The landing page that the user is directed to when accessing the presigned URL. Using this value, users can access Studio or Studio Classic, even if it is not the default experience for the domain. The supported values are:</p> <ul> <li> <p> <code>studio::relative/path</code>: Directs users to the relative path in Studio.</p> </li> <li> <p> <code>app:JupyterServer:relative/path</code>: Directs users to the relative path in the Studio Classic application.</p> </li> <li> <p> <code>app:JupyterLab:relative/path</code>: Directs users to the relative path in the JupyterLab application.</p> </li> <li> <p> <code>app:RStudioServerPro:relative/path</code>: Directs users to the relative path in the RStudio application.</p> </li> <li> <p> <code>app:CodeEditor:relative/path</code>: Directs users to the relative path in the Code Editor, based on Code-OSS, Visual Studio Code - Open Source application.</p> </li> <li> <p> <code>app:Canvas:relative/path</code>: Directs users to the relative path in the Canvas application.</p> </li> </ul>",
         "UserSettings$DefaultLandingUri": "<p>The default experience that the user is directed to when accessing the domain. The supported values are:</p> <ul> <li> <p> <code>studio::</code>: Indicates that Studio is the default experience. This value can only be passed if <code>StudioWebPortal</code> is set to <code>ENABLED</code>.</p> </li> <li> <p> <code>app:JupyterServer:</code>: Indicates that Studio Classic is the default experience.</p> </li> </ul>"
       }
     },
@@ -8018,13 +8048,11 @@
       "base": null,
       "refs": {
         "CreateActionRequest$Properties": "<p>A list of properties to add to the action.</p>",
-        "CreateArtifactRequest$Properties": "<p>A list of properties to add to the artifact.</p>",
         "CreateContextRequest$Properties": "<p>A list of properties to add to the context.</p>",
         "DescribeActionResponse$Properties": "<p>A list of the action's properties.</p>",
         "DescribeArtifactResponse$Properties": "<p>A list of the artifact's properties.</p>",
         "DescribeContextResponse$Properties": "<p>A list of the context's properties.</p>",
         "UpdateActionRequest$Properties": "<p>The new list of properties. Overwrites the current property list.</p>",
-        "UpdateArtifactRequest$Properties": "<p>The new list of properties. Overwrites the current property list.</p>",
         "UpdateContextRequest$Properties": "<p>The new list of properties. Overwrites the current property list.</p>"
       }
     },
@@ -9289,7 +9317,8 @@
     "ModelAccessConfig": {
       "base": "<p>The access configuration file for the ML model. You can explicitly accept the model end-user license agreement (EULA) within the <code>ModelAccessConfig</code>. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-choose.html#jumpstart-foundation-models-choose-eula\">End-user license agreements</a>.</p>",
       "refs": {
-        "S3ModelDataSource$ModelAccessConfig": "<p>Specifies the access configuration file for the ML model. You can explicitly accept the model end-user license agreement (EULA) within the <code>ModelAccessConfig</code>. You are responsible for reviewing and complying with any applicable license terms and making sure they are acceptable for your use case before downloading or using a model.</p>"
+        "S3ModelDataSource$ModelAccessConfig": "<p>Specifies the access configuration file for the ML model. You can explicitly accept the model end-user license agreement (EULA) within the <code>ModelAccessConfig</code>. You are responsible for reviewing and complying with any applicable license terms and making sure they are acceptable for your use case before downloading or using a model.</p>",
+        "TextGenerationJobConfig$ModelAccessConfig": null
       }
     },
     "ModelApprovalStatus": {
@@ -12323,6 +12352,12 @@
         "InferenceRecommendationsJob$JobDescription": "<p>The job description.</p>"
       }
     },
+    "RecommendationJobFrameworkVersion": {
+      "base": null,
+      "refs": {
+        "RecommendationJobContainerConfig$FrameworkVersion": "<p>The framework version of the container image.</p>"
+      }
+    },
     "RecommendationJobInferenceBenchmark": {
       "base": "<p>The details for a specific benchmark from an Inference Recommender job.</p>",
       "refs": {
@@ -12383,6 +12418,12 @@
       "refs": {
         "CreateInferenceRecommendationsJobRequest$StoppingConditions": "<p>A set of conditions for stopping a recommendation job. If any of the conditions are met, the job is automatically stopped.</p>",
         "DescribeInferenceRecommendationsJobResponse$StoppingConditions": "<p>The stopping conditions that you provided when you initiated the job.</p>"
+      }
+    },
+    "RecommendationJobSupportedContentType": {
+      "base": null,
+      "refs": {
+        "RecommendationJobSupportedContentTypes$member": null
       }
     },
     "RecommendationJobSupportedContentTypes": {
@@ -12709,7 +12750,7 @@
       }
     },
     "ResourceRetainedBillableTimeInSeconds": {
-      "base": null,
+      "base": "Optional. Indicates how many seconds the resource stayed in ResourceRetained state. Populated only after resource reaches ResourceReused or ResourceReleased state.",
       "refs": {
         "WarmPoolStatus$ResourceRetainedBillableTimeInSeconds": "<p>The billable time in seconds used by the warm pool. Billable time refers to the absolute wall-clock time.</p> <p>Multiply <code>ResourceRetainedBillableTimeInSeconds</code> by the number of instances (<code>InstanceCount</code>) in your training cluster to get the total compute time SageMaker bills you if you run warm pool training. The formula is as follows: <code>ResourceRetainedBillableTimeInSeconds * InstanceCount</code>.</p>"
       }
@@ -12995,6 +13036,7 @@
         "ProfilerConfigForUpdate$S3OutputPath": "<p>Path to Amazon S3 storage location for system and framework metrics.</p>",
         "ProfilerRuleConfiguration$S3OutputPath": "<p>Path to Amazon S3 storage location for rules.</p>",
         "RecommendationJobCompiledOutputConfig$S3OutputUri": "<p>Identifies the Amazon S3 bucket where you want SageMaker to store the compiled model artifacts.</p>",
+        "RecommendationJobPayloadConfig$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
         "RedshiftDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where the Redshift query results are stored.</p>",
         "S3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example: </p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code> </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> A manifest is an S3 object which is a JSON file consisting of an array of elements. The first element is a prefix which is followed by one or more suffixes. SageMaker appends the suffix elements to the prefix to get a full set of <code>S3Uri</code>. Note that the prefix must be a valid non-empty <code>S3Uri</code> that precludes users from specifying a manifest whose individual <code>S3Uri</code> is sourced from different S3 buckets.</p> <p> The following code example shows a valid manifest format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> \"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> This JSON is equivalent to the following <code>S3Uri</code> list:</p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p>The complete set of <code>S3Uri</code> in this manifest is the input data for the channel for this data source. The object that each <code>S3Uri</code> points to must be readable by the IAM role that SageMaker uses to perform tasks on your behalf. </p> </li> </ul> <p>Your input bucket must be located in same Amazon Web Services region as your training job.</p>",
         "S3StorageConfig$S3Uri": "<p>The S3 URI, or location in Amazon S3, of <code>OfflineStore</code>.</p> <p>S3 URIs have a format similar to the following: <code>s3://example-bucket/prefix/</code>.</p>",
@@ -13335,7 +13377,7 @@
     "SingleSignOnApplicationArn": {
       "base": null,
       "refs": {
-        "DescribeDomainResponse$SingleSignOnApplicationArn": "<p>The ARN of the application managed by SageMaker in IAM Identity Center. This value is only returned for domains created after September 19, 2023.</p>"
+        "DescribeDomainResponse$SingleSignOnApplicationArn": "<p>The ARN of the application managed by SageMaker in IAM Identity Center. This value is only returned for domains created after October 1, 2023.</p>"
       }
     },
     "SingleSignOnUserIdentifier": {
@@ -13529,6 +13571,9 @@
     "SourceUri": {
       "base": null,
       "refs": {
+        "ActionSource$SourceUri": "<p>The URI of the source.</p>",
+        "ArtifactSource$SourceUri": "<p>The URI of the source.</p>",
+        "ContextSource$SourceUri": "<p>The URI of the source.</p>",
         "ListActionsRequest$SourceUri": "<p>A filter that returns only actions with the specified source URI.</p>",
         "ListArtifactsRequest$SourceUri": "<p>A filter that returns only artifacts with the specified source URI.</p>",
         "ListContextsRequest$SourceUri": "<p>A filter that returns only contexts with the specified source URI.</p>"
@@ -13909,10 +13954,7 @@
         "RecommendationJobContainerConfig$Domain": "<p>The machine learning domain of the model and its components.</p> <p>Valid Values: <code>COMPUTER_VISION | NATURAL_LANGUAGE_PROCESSING | MACHINE_LEARNING</code> </p>",
         "RecommendationJobContainerConfig$Task": "<p>The machine learning task that the model accomplishes.</p> <p>Valid Values: <code>IMAGE_CLASSIFICATION | OBJECT_DETECTION | TEXT_GENERATION | IMAGE_SEGMENTATION | FILL_MASK | CLASSIFICATION | REGRESSION | OTHER</code> </p>",
         "RecommendationJobContainerConfig$Framework": "<p>The machine learning framework of the container image.</p> <p>Valid Values: <code>TENSORFLOW | PYTORCH | XGBOOST | SAGEMAKER-SCIKIT-LEARN</code> </p>",
-        "RecommendationJobContainerConfig$FrameworkVersion": "<p>The framework version of the container image.</p>",
         "RecommendationJobContainerConfig$NearestModelName": "<p>The name of a pre-trained machine learning model benchmarked by Amazon SageMaker Inference Recommender that matches your model.</p> <p>Valid Values: <code>efficientnetb7 | unet | xgboost | faster-rcnn-resnet101 | nasnetlarge | vgg16 | inception-v3 | mask-rcnn | sagemaker-scikit-learn | densenet201-gluon | resnet18v2-gluon | xception | densenet201 | yolov4 | resnet152 | bert-base-cased | xceptionV1-keras | resnet50 | retinanet</code> </p>",
-        "RecommendationJobPayloadConfig$SamplePayloadUrl": "<p>The Amazon Simple Storage Service (Amazon S3) path where the sample payload is stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
-        "RecommendationJobSupportedContentTypes$member": null,
         "RecommendationJobSupportedInstanceTypes$member": null,
         "RenderUiTemplateResponse$RenderedContent": "<p>A Liquid template that renders the HTML for the worker UI.</p>",
         "RenderingError$Code": "<p>A unique identifier for a specific class of errors.</p>",
@@ -13936,7 +13978,7 @@
         "ClarifyCheckStepMetadata$ViolationReport": "<p>The Amazon S3 URI of the violation report if violations are detected.</p>",
         "CreateDomainResponse$Url": "<p>The URL to the created domain.</p>",
         "DescribeDomainResponse$Url": "<p>The domain's URL.</p>",
-        "DescribeSpaceResponse$Url": "<p>Returns the URL of the space. If the space is created with Amazon Web Services IAM Identity Center (Successor to Amazon Web Services Single Sign-On) authentication, users can navigate to the URL after appending the respective redirect parameter for the application type to be federated through Amazon Web Services IAM Identity Center.</p> <p>The following application types are supported:</p> <ul> <li> <p>Studio Classic: <code>&amp;redirect=JupyterServer</code> </p> </li> <li> <p>JupyterLab: <code>&amp;redirect=JupyterLab</code> </p> </li> </ul>",
+        "DescribeSpaceResponse$Url": "<p>Returns the URL of the space. If the space is created with Amazon Web Services IAM Identity Center (Successor to Amazon Web Services Single Sign-On) authentication, users can navigate to the URL after appending the respective redirect parameter for the application type to be federated through Amazon Web Services IAM Identity Center.</p> <p>The following application types are supported:</p> <ul> <li> <p>Studio Classic: <code>&amp;redirect=JupyterServer</code> </p> </li> <li> <p>JupyterLab: <code>&amp;redirect=JupyterLab</code> </p> </li> <li> <p>Code Editor, based on Code-OSS, Visual Studio Code - Open Source: <code>&amp;redirect=CodeEditor</code> </p> </li> </ul>",
         "DomainDetails$Url": "<p>The domain's URL.</p>",
         "EMRStepMetadata$LogFilePath": "<p>The path to the log file where the cluster step's failure root cause is recorded.</p>",
         "OutputParameter$Value": "<p>The value of the output parameter.</p>",
@@ -13962,14 +14004,6 @@
         "SubscribedWorkteam$MarketplaceDescription": "<p>The description of the vendor from the Amazon Marketplace.</p>",
         "UpdateWorkteamRequest$Description": "<p>An updated description for the work team.</p>",
         "Workteam$Description": "<p>A description of the work team.</p>"
-      }
-    },
-    "String2048": {
-      "base": null,
-      "refs": {
-        "ActionSource$SourceUri": "<p>The URI of the source.</p>",
-        "ArtifactSource$SourceUri": "<p>The URI of the source.</p>",
-        "ContextSource$SourceUri": "<p>The URI of the source.</p>"
       }
     },
     "String256": {
@@ -14053,6 +14087,7 @@
     "StringParameterValue": {
       "base": null,
       "refs": {
+        "ArtifactProperties$key": null,
         "LineageEntityParameters$key": null,
         "LineageEntityParameters$value": null,
         "ListLineageEntityParameterKey$member": null,
@@ -14548,6 +14583,7 @@
         "DescribeAppImageConfigResponse$LastModifiedTime": "<p>When the AppImageConfig was last modified.</p>",
         "DescribeAppResponse$LastHealthCheckTimestamp": "<p>The timestamp of the last health check.</p>",
         "DescribeAppResponse$LastUserActivityTimestamp": "<p>The timestamp of the last user's activity. <code>LastUserActivityTimestamp</code> is also updated when SageMaker performs health checks without user activity. As a result, this value is set to the same value as <code>LastHealthCheckTimestamp</code>.</p>",
+        "DescribeAppResponse$CreationTime": "<p>The creation time.</p>",
         "DescribeArtifactResponse$CreationTime": "<p>When the artifact was created.</p>",
         "DescribeArtifactResponse$LastModifiedTime": "<p>When the artifact was last modified.</p>",
         "DescribeAutoMLJobResponse$CreationTime": "<p>Returns the creation time of the AutoML job.</p>",
@@ -15393,17 +15429,22 @@
         "UpdateTrialComponentRequest$OutputArtifacts": "<p>Replaces all of the component's output artifacts with the specified artifacts or adds new output artifacts. Existing output artifacts are replaced if the trial component is updated with an identical output artifact key.</p>"
       }
     },
-    "TrialComponentKey256": {
-      "base": null,
-      "refs": {
-        "ListTrialComponentKey256$member": null,
-        "TrialComponentParameters$key": null
-      }
-    },
-    "TrialComponentKey64": {
+    "TrialComponentKey128": {
       "base": null,
       "refs": {
         "TrialComponentArtifacts$key": null
+      }
+    },
+    "TrialComponentKey256": {
+      "base": null,
+      "refs": {
+        "ListTrialComponentKey256$member": null
+      }
+    },
+    "TrialComponentKey320": {
+      "base": null,
+      "refs": {
+        "TrialComponentParameters$key": null
       }
     },
     "TrialComponentMetricSummaries": {
