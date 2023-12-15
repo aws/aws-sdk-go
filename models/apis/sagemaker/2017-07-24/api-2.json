@@ -590,7 +590,8 @@
       "output":{"shape":"CreatePipelineResponse"},
       "errors":[
         {"shape":"ResourceNotFound"},
-        {"shape":"ResourceLimitExceeded"}
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ConflictException"}
       ]
     },
     "CreatePresignedDomainUrl":{
@@ -771,7 +772,10 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteAlgorithmInput"}
+      "input":{"shape":"DeleteAlgorithmInput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "DeleteApp":{
       "name":"DeleteApp",
@@ -840,6 +844,17 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteCodeRepositoryInput"}
+    },
+    "DeleteCompilationJob":{
+      "name":"DeleteCompilationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCompilationJobRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DeleteContext":{
       "name":"DeleteContext",
@@ -1163,7 +1178,8 @@
       "input":{"shape":"DeletePipelineRequest"},
       "output":{"shape":"DeletePipelineResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteProject":{
@@ -1944,7 +1960,8 @@
       "input":{"shape":"DescribeUserProfileRequest"},
       "output":{"shape":"DescribeUserProfileResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
       ]
     },
     "DescribeWorkforce":{
@@ -2817,7 +2834,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"PutModelPackageGroupPolicyInput"},
-      "output":{"shape":"PutModelPackageGroupPolicyOutput"}
+      "output":{"shape":"PutModelPackageGroupPolicyOutput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "QueryLineage":{
       "name":"QueryLineage",
@@ -2887,7 +2907,8 @@
       "output":{"shape":"SendPipelineExecutionStepFailureResponse"},
       "errors":[
         {"shape":"ResourceNotFound"},
-        {"shape":"ResourceLimitExceeded"}
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ConflictException"}
       ]
     },
     "SendPipelineExecutionStepSuccess":{
@@ -2900,7 +2921,8 @@
       "output":{"shape":"SendPipelineExecutionStepSuccessResponse"},
       "errors":[
         {"shape":"ResourceNotFound"},
-        {"shape":"ResourceLimitExceeded"}
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ConflictException"}
       ]
     },
     "StartEdgeDeploymentStage":{
@@ -2956,7 +2978,8 @@
       "output":{"shape":"StartPipelineExecutionResponse"},
       "errors":[
         {"shape":"ResourceNotFound"},
-        {"shape":"ResourceLimitExceeded"}
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ConflictException"}
       ]
     },
     "StopAutoMLJob":{
@@ -3071,7 +3094,8 @@
       "input":{"shape":"StopPipelineExecutionRequest"},
       "output":{"shape":"StopPipelineExecutionResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
       ]
     },
     "StopProcessingJob":{
@@ -3166,7 +3190,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"UpdateCodeRepositoryInput"},
-      "output":{"shape":"UpdateCodeRepositoryOutput"}
+      "output":{"shape":"UpdateCodeRepositoryOutput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "UpdateContext":{
       "name":"UpdateContext",
@@ -3260,7 +3287,8 @@
       "input":{"shape":"UpdateFeatureGroupRequest"},
       "output":{"shape":"UpdateFeatureGroupResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
       ]
     },
     "UpdateFeatureMetadata":{
@@ -3370,7 +3398,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"UpdateModelPackageInput"},
-      "output":{"shape":"UpdateModelPackageOutput"}
+      "output":{"shape":"UpdateModelPackageOutput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "UpdateMonitoringAlert":{
       "name":"UpdateMonitoringAlert",
@@ -3431,7 +3462,8 @@
       "input":{"shape":"UpdatePipelineRequest"},
       "output":{"shape":"UpdatePipelineResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdatePipelineExecution":{
@@ -3443,7 +3475,8 @@
       "input":{"shape":"UpdatePipelineExecutionRequest"},
       "output":{"shape":"UpdatePipelineExecutionResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
       ]
     },
     "UpdateProject":{
@@ -3453,7 +3486,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"UpdateProjectInput"},
-      "output":{"shape":"UpdateProjectOutput"}
+      "output":{"shape":"UpdateProjectOutput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "UpdateSpace":{
       "name":"UpdateSpace",
@@ -3478,7 +3514,8 @@
       "input":{"shape":"UpdateTrainingJobRequest"},
       "output":{"shape":"UpdateTrainingJobResponse"},
       "errors":[
-        {"shape":"ResourceNotFound"}
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
       ]
     },
     "UpdateTrial":{
@@ -3555,6 +3592,8 @@
     "AcceptEula":{"type":"boolean"},
     "AccountId":{
       "type":"string",
+      "max":12,
+      "min":12,
       "pattern":"^\\d+$"
     },
     "ActionArn":{
@@ -3566,7 +3605,7 @@
       "type":"structure",
       "required":["SourceUri"],
       "members":{
-        "SourceUri":{"shape":"String2048"},
+        "SourceUri":{"shape":"SourceUri"},
         "SourceType":{"shape":"String256"},
         "SourceId":{"shape":"String256"}
       }
@@ -3858,11 +3897,11 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
+        "SpaceName":{"shape":"SpaceName"},
         "AppType":{"shape":"AppType"},
         "AppName":{"shape":"AppName"},
         "Status":{"shape":"AppStatus"},
         "CreationTime":{"shape":"CreationTime"},
-        "SpaceName":{"shape":"SpaceName"},
         "ResourceSpec":{"shape":"ResourceSpec"}
       }
     },
@@ -4019,11 +4058,19 @@
       "enum":[
         "JupyterServer",
         "KernelGateway",
+        "DetailedProfiler",
         "TensorBoard",
-        "RStudioServerPro",
-        "RSessionGateway",
+        "VSCode",
+        "Savitur",
+        "CodeEditor",
         "JupyterLab",
-        "CodeEditor"
+        "RStudioServerPro",
+        "RSession",
+        "RSessionGateway",
+        "Canvas",
+        "DatasetManager",
+        "SageMakerLite",
+        "Local"
       ]
     },
     "ApprovalDescription":{
@@ -4046,11 +4093,22 @@
       "type":"string",
       "pattern":"^[\\w:]+$"
     },
+    "ArtifactProperties":{
+      "type":"map",
+      "key":{"shape":"StringParameterValue"},
+      "value":{"shape":"ArtifactPropertyValue"},
+      "max":30
+    },
+    "ArtifactPropertyValue":{
+      "type":"string",
+      "max":4096,
+      "pattern":".*"
+    },
     "ArtifactSource":{
       "type":"structure",
       "required":["SourceUri"],
       "members":{
-        "SourceUri":{"shape":"String2048"},
+        "SourceUri":{"shape":"SourceUri"},
         "SourceTypes":{"shape":"ArtifactSourceTypes"}
       }
     },
@@ -4124,7 +4182,8 @@
         "ContributedTo",
         "AssociatedWith",
         "DerivedFrom",
-        "Produced"
+        "Produced",
+        "SameAs"
       ]
     },
     "AssociationEntityArn":{
@@ -4357,10 +4416,7 @@
     },
     "AutoMLChannel":{
       "type":"structure",
-      "required":[
-        "DataSource",
-        "TargetAttributeName"
-      ],
+      "required":["TargetAttributeName"],
       "members":{
         "DataSource":{"shape":"AutoMLDataSource"},
         "CompressionType":{"shape":"CompressionType"},
@@ -4458,8 +4514,8 @@
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
-        "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
         "CandidateGenerationConfig":{"shape":"AutoMLCandidateGenerationConfig"},
+        "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
         "Mode":{"shape":"AutoMLMode"}
       }
     },
@@ -4493,22 +4549,22 @@
       "type":"string",
       "enum":[
         "Starting",
-        "AnalyzingData",
-        "FeatureEngineering",
-        "ModelTuning",
         "MaxCandidatesReached",
         "Failed",
         "Stopped",
         "MaxAutoMLJobRuntimeReached",
         "Stopping",
         "CandidateDefinitionsGenerated",
-        "GeneratingExplainabilityReport",
         "Completed",
         "ExplainabilityError",
         "DeployingModel",
         "ModelDeploymentError",
         "GeneratingModelInsightsReport",
         "ModelInsightsError",
+        "AnalyzingData",
+        "FeatureEngineering",
+        "ModelTuning",
+        "GeneratingExplainabilityReport",
         "TrainingModels",
         "PreTraining"
       ]
@@ -4560,6 +4616,11 @@
       "max":100,
       "min":1
     },
+    "AutoMLMaxResultsForTrials":{
+      "type":"integer",
+      "max":300,
+      "min":1
+    },
     "AutoMLMetricEnum":{
       "type":"string",
       "enum":[
@@ -4569,13 +4630,13 @@
         "F1macro",
         "AUC",
         "RMSE",
-        "MAE",
-        "R2",
         "BalancedAccuracy",
-        "Precision",
-        "PrecisionMacro",
+        "R2",
         "Recall",
         "RecallMacro",
+        "Precision",
+        "PrecisionMacro",
+        "MAE",
         "MAPE",
         "MASE",
         "WAPE",
@@ -4651,8 +4712,8 @@
       "members":{
         "ImageClassificationJobConfig":{"shape":"ImageClassificationJobConfig"},
         "TextClassificationJobConfig":{"shape":"TextClassificationJobConfig"},
-        "TabularJobConfig":{"shape":"TabularJobConfig"},
         "TimeSeriesForecastingJobConfig":{"shape":"TimeSeriesForecastingJobConfig"},
+        "TabularJobConfig":{"shape":"TabularJobConfig"},
         "TextGenerationJobConfig":{"shape":"TextGenerationJobConfig"}
       },
       "union":true
@@ -4662,8 +4723,8 @@
       "enum":[
         "ImageClassification",
         "TextClassification",
-        "Tabular",
         "TimeSeriesForecasting",
+        "Tabular",
         "TextGeneration"
       ]
     },
@@ -4770,7 +4831,10 @@
       "type":"string",
       "enum":[
         "AWS/Rekognition/DetectModerationLabels/Image/V3",
-        "AWS/Textract/AnalyzeDocument/Forms/V1"
+        "AWS/Textract/AnalyzeDocument/Forms/V1",
+        "AWS/Textract/AnalyzeExpense",
+        "AWS/Handshake/VerifyIdentity",
+        "AWS/Bedrock/ModelEvaluation"
       ]
     },
     "BacktestResultsLocation":{
@@ -5021,8 +5085,8 @@
         "ModelRegisterSettings":{"shape":"ModelRegisterSettings"},
         "WorkspaceSettings":{"shape":"WorkspaceSettings"},
         "IdentityProviderOAuthSettings":{"shape":"IdentityProviderOAuthSettings"},
-        "KendraSettings":{"shape":"KendraSettings"},
-        "DirectDeploySettings":{"shape":"DirectDeploySettings"}
+        "DirectDeploySettings":{"shape":"DirectDeploySettings"},
+        "KendraSettings":{"shape":"KendraSettings"}
       }
     },
     "CapacitySize":{
@@ -5058,7 +5122,8 @@
       "type":"string",
       "enum":[
         "Input",
-        "Output"
+        "Output",
+        "InputAndOutput"
       ]
     },
     "CaptureOption":{
@@ -5071,7 +5136,7 @@
     "CaptureOptionList":{
       "type":"list",
       "member":{"shape":"CaptureOption"},
-      "max":2,
+      "max":32,
       "min":1
     },
     "CaptureStatus":{
@@ -5965,11 +6030,11 @@
         "ImageConfig":{"shape":"ImageConfig"},
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
+        "ModelDataSource":{"shape":"ModelDataSource"},
         "Environment":{"shape":"EnvironmentMap"},
         "ModelPackageName":{"shape":"VersionedArnOrName"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "MultiModelConfig":{"shape":"MultiModelConfig"},
-        "ModelDataSource":{"shape":"ModelDataSource"}
+        "MultiModelConfig":{"shape":"MultiModelConfig"}
       }
     },
     "ContainerDefinitionList":{
@@ -6041,11 +6106,23 @@
       "max":256,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:context/.*"
     },
+    "ContextName":{
+      "type":"string",
+      "max":120,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,119}"
+    },
+    "ContextNameOrArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:context\\/)?([a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,119})"
+    },
     "ContextSource":{
       "type":"structure",
       "required":["SourceUri"],
       "members":{
-        "SourceUri":{"shape":"String2048"},
+        "SourceUri":{"shape":"SourceUri"},
         "SourceType":{"shape":"String256"},
         "SourceId":{"shape":"String256"}
       }
@@ -6058,7 +6135,7 @@
       "type":"structure",
       "members":{
         "ContextArn":{"shape":"ContextArn"},
-        "ContextName":{"shape":"ExperimentEntityName"},
+        "ContextName":{"shape":"ContextName"},
         "Source":{"shape":"ContextSource"},
         "ContextType":{"shape":"String256"},
         "CreationTime":{"shape":"Timestamp"},
@@ -6181,11 +6258,11 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
+        "SpaceName":{"shape":"SpaceName"},
         "AppType":{"shape":"AppType"},
         "AppName":{"shape":"AppName"},
         "Tags":{"shape":"TagList"},
-        "ResourceSpec":{"shape":"ResourceSpec"},
-        "SpaceName":{"shape":"SpaceName"}
+        "ResourceSpec":{"shape":"ResourceSpec"}
       }
     },
     "CreateAppResponse":{
@@ -6204,7 +6281,7 @@
         "ArtifactName":{"shape":"ExperimentEntityName"},
         "Source":{"shape":"ArtifactSource"},
         "ArtifactType":{"shape":"String256"},
-        "Properties":{"shape":"LineageEntityParameters"},
+        "Properties":{"shape":"ArtifactProperties"},
         "MetadataProperties":{"shape":"MetadataProperties"},
         "Tags":{"shape":"TagList"}
       }
@@ -6345,7 +6422,7 @@
         "ContextType"
       ],
       "members":{
-        "ContextName":{"shape":"ExperimentEntityName"},
+        "ContextName":{"shape":"ContextName"},
         "Source":{"shape":"ContextSource"},
         "ContextType":{"shape":"String256"},
         "Description":{"shape":"ExperimentDescription"},
@@ -6417,6 +6494,7 @@
         "DomainName":{"shape":"DomainName"},
         "AuthMode":{"shape":"AuthMode"},
         "DefaultUserSettings":{"shape":"UserSettings"},
+        "DomainSettings":{"shape":"DomainSettings"},
         "SubnetIds":{"shape":"Subnets"},
         "VpcId":{"shape":"VpcId"},
         "Tags":{"shape":"TagList"},
@@ -6428,7 +6506,6 @@
         },
         "KmsKeyId":{"shape":"KmsKeyId"},
         "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"},
-        "DomainSettings":{"shape":"DomainSettings"},
         "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"}
       }
     },
@@ -6587,7 +6664,6 @@
       "type":"structure",
       "required":[
         "FlowDefinitionName",
-        "HumanLoopConfig",
         "OutputConfig",
         "RoleArn"
       ],
@@ -6992,11 +7068,11 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
-        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "Domain":{"shape":"String"},
         "Task":{"shape":"String"},
         "SamplePayloadUrl":{"shape":"S3Uri"},
+        "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
+        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "SkipModelValidation":{"shape":"SkipModelValidation"}
       }
@@ -7231,9 +7307,9 @@
         "SpaceName":{"shape":"SpaceName"},
         "Tags":{"shape":"TagList"},
         "SpaceSettings":{"shape":"SpaceSettings"},
-        "SpaceDisplayName":{"shape":"NonEmptyString64"},
         "OwnershipSettings":{"shape":"OwnershipSettings"},
-        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"}
+        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"}
       }
     },
     "CreateSpaceResponse":{
@@ -7623,7 +7699,7 @@
     },
     "DataInputConfig":{
       "type":"string",
-      "max":1024,
+      "max":16384,
       "min":1,
       "pattern":"[\\S\\s]+"
     },
@@ -7813,9 +7889,9 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
+        "SpaceName":{"shape":"SpaceName"},
         "AppType":{"shape":"AppType"},
-        "AppName":{"shape":"AppName"},
-        "SpaceName":{"shape":"SpaceName"}
+        "AppName":{"shape":"AppName"}
       }
     },
     "DeleteArtifactRequest":{
@@ -7870,11 +7946,18 @@
         "CodeRepositoryName":{"shape":"EntityName"}
       }
     },
+    "DeleteCompilationJobRequest":{
+      "type":"structure",
+      "required":["CompilationJobName"],
+      "members":{
+        "CompilationJobName":{"shape":"EntityName"}
+      }
+    },
     "DeleteContextRequest":{
       "type":"structure",
       "required":["ContextName"],
       "members":{
-        "ContextName":{"shape":"ExperimentEntityName"}
+        "ContextName":{"shape":"ContextName"}
       }
     },
     "DeleteContextResponse":{
@@ -8277,8 +8360,8 @@
       "type":"structure",
       "members":{
         "BlueGreenUpdatePolicy":{"shape":"BlueGreenUpdatePolicy"},
-        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"},
-        "RollingUpdatePolicy":{"shape":"RollingUpdatePolicy"}
+        "RollingUpdatePolicy":{"shape":"RollingUpdatePolicy"},
+        "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"}
       }
     },
     "DeploymentRecommendation":{
@@ -8349,7 +8432,7 @@
       "type":"structure",
       "required":["ActionName"],
       "members":{
-        "ActionName":{"shape":"ExperimentEntityName"}
+        "ActionName":{"shape":"ExperimentEntityNameOrArn"}
       }
     },
     "DescribeActionResponse":{
@@ -8429,9 +8512,9 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
+        "SpaceName":{"shape":"SpaceName"},
         "AppType":{"shape":"AppType"},
-        "AppName":{"shape":"AppName"},
-        "SpaceName":{"shape":"SpaceName"}
+        "AppName":{"shape":"AppName"}
       }
     },
     "DescribeAppResponse":{
@@ -8442,13 +8525,13 @@
         "AppName":{"shape":"AppName"},
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
+        "SpaceName":{"shape":"SpaceName"},
         "Status":{"shape":"AppStatus"},
         "LastHealthCheckTimestamp":{"shape":"Timestamp"},
         "LastUserActivityTimestamp":{"shape":"Timestamp"},
-        "CreationTime":{"shape":"CreationTime"},
+        "CreationTime":{"shape":"Timestamp"},
         "FailureReason":{"shape":"FailureReason"},
-        "ResourceSpec":{"shape":"ResourceSpec"},
-        "SpaceName":{"shape":"SpaceName"}
+        "ResourceSpec":{"shape":"ResourceSpec"}
       }
     },
     "DescribeArtifactRequest":{
@@ -8546,6 +8629,7 @@
         "RoleArn":{"shape":"RoleArn"},
         "AutoMLJobObjective":{"shape":"AutoMLJobObjective"},
         "AutoMLProblemTypeConfig":{"shape":"AutoMLProblemTypeConfig"},
+        "AutoMLProblemTypeConfigName":{"shape":"AutoMLProblemTypeConfigName"},
         "CreationTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
@@ -8554,13 +8638,12 @@
         "BestCandidate":{"shape":"AutoMLCandidate"},
         "AutoMLJobStatus":{"shape":"AutoMLJobStatus"},
         "AutoMLJobSecondaryStatus":{"shape":"AutoMLJobSecondaryStatus"},
+        "AutoMLJobArtifacts":{"shape":"AutoMLJobArtifacts"},
+        "ResolvedAttributes":{"shape":"AutoMLResolvedAttributes"},
         "ModelDeployConfig":{"shape":"ModelDeployConfig"},
         "ModelDeployResult":{"shape":"ModelDeployResult"},
         "DataSplitConfig":{"shape":"AutoMLDataSplitConfig"},
-        "SecurityConfig":{"shape":"AutoMLSecurityConfig"},
-        "AutoMLJobArtifacts":{"shape":"AutoMLJobArtifacts"},
-        "ResolvedAttributes":{"shape":"AutoMLResolvedAttributes"},
-        "AutoMLProblemTypeConfigName":{"shape":"AutoMLProblemTypeConfigName"}
+        "SecurityConfig":{"shape":"AutoMLSecurityConfig"}
       }
     },
     "DescribeClusterNodeRequest":{
@@ -8675,13 +8758,13 @@
       "type":"structure",
       "required":["ContextName"],
       "members":{
-        "ContextName":{"shape":"ExperimentEntityNameOrArn"}
+        "ContextName":{"shape":"ContextNameOrArn"}
       }
     },
     "DescribeContextResponse":{
       "type":"structure",
       "members":{
-        "ContextName":{"shape":"ExperimentEntityName"},
+        "ContextName":{"shape":"ContextName"},
         "ContextArn":{"shape":"ContextArn"},
         "Source":{"shape":"ContextSource"},
         "ContextType":{"shape":"String256"},
@@ -8807,8 +8890,10 @@
         "CreationTime":{"shape":"CreationTime"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
         "FailureReason":{"shape":"FailureReason"},
+        "SecurityGroupIdForDomainBoundary":{"shape":"SecurityGroupId"},
         "AuthMode":{"shape":"AuthMode"},
         "DefaultUserSettings":{"shape":"UserSettings"},
+        "DomainSettings":{"shape":"DomainSettings"},
         "AppNetworkAccessType":{"shape":"AppNetworkAccessType"},
         "HomeEfsFileSystemKmsKeyId":{
           "shape":"KmsKeyId",
@@ -8819,9 +8904,7 @@
         "Url":{"shape":"String1024"},
         "VpcId":{"shape":"VpcId"},
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "DomainSettings":{"shape":"DomainSettings"},
         "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"},
-        "SecurityGroupIdForDomainBoundary":{"shape":"SecurityGroupId"},
         "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"}
       }
     },
@@ -8931,7 +9014,6 @@
       "required":[
         "EndpointName",
         "EndpointArn",
-        "EndpointConfigName",
         "EndpointStatus",
         "CreationTime",
         "LastModifiedTime"
@@ -9059,7 +9141,6 @@
         "FlowDefinitionName",
         "FlowDefinitionStatus",
         "CreationTime",
-        "HumanLoopConfig",
         "OutputConfig",
         "RoleArn"
       ],
@@ -9208,10 +9289,10 @@
         "BestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
+        "Autotune":{"shape":"Autotune"},
         "FailureReason":{"shape":"FailureReason"},
         "TuningJobCompletionDetails":{"shape":"HyperParameterTuningJobCompletionDetails"},
-        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"},
-        "Autotune":{"shape":"Autotune"}
+        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"}
       }
     },
     "DescribeImageRequest":{
@@ -9650,11 +9731,11 @@
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastModifiedBy":{"shape":"UserContext"},
         "ApprovalDescription":{"shape":"ApprovalDescription"},
-        "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
-        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "Domain":{"shape":"String"},
         "Task":{"shape":"String"},
         "SamplePayloadUrl":{"shape":"String"},
+        "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
+        "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
         "SkipModelValidation":{"shape":"SkipModelValidation"}
       }
@@ -9933,10 +10014,10 @@
         "CreationTime":{"shape":"CreationTime"},
         "FailureReason":{"shape":"FailureReason"},
         "SpaceSettings":{"shape":"SpaceSettings"},
-        "Url":{"shape":"String1024"},
-        "SpaceDisplayName":{"shape":"NonEmptyString64"},
         "OwnershipSettings":{"shape":"OwnershipSettings"},
-        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"}
+        "SpaceSharingSettings":{"shape":"SpaceSharingSettings"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"},
+        "Url":{"shape":"String1024"}
       }
     },
     "DescribeStudioLifecycleConfigRequest":{
@@ -10007,6 +10088,7 @@
         "InputDataConfig":{"shape":"InputDataConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "ResourceConfig":{"shape":"ResourceConfig"},
+        "WarmPoolStatus":{"shape":"WarmPoolStatus"},
         "VpcConfig":{"shape":"VpcConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "CreationTime":{"shape":"Timestamp"},
@@ -10030,9 +10112,8 @@
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
         "ProfilerRuleEvaluationStatuses":{"shape":"ProfilerRuleEvaluationStatuses"},
         "ProfilingStatus":{"shape":"ProfilingStatus"},
-        "RetryStrategy":{"shape":"RetryStrategy"},
         "Environment":{"shape":"TrainingEnvironmentMap"},
-        "WarmPoolStatus":{"shape":"WarmPoolStatus"},
+        "RetryStrategy":{"shape":"RetryStrategy"},
         "InfraCheckConfig":{"shape":"InfraCheckConfig"}
       }
     },
@@ -10472,7 +10553,8 @@
     },
     "DomainId":{
       "type":"string",
-      "max":63
+      "max":63,
+      "pattern":"^d-(-*[a-z0-9]){1,61}"
     },
     "DomainList":{
       "type":"list",
@@ -10906,7 +10988,6 @@
     },
     "EndpointInfo":{
       "type":"structure",
-      "required":["EndpointName"],
       "members":{
         "EndpointName":{"shape":"EndpointName"}
       }
@@ -10935,9 +11016,9 @@
       "type":"structure",
       "members":{
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
+        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"},
         "InferenceSpecificationName":{"shape":"InferenceSpecificationName"},
-        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"},
-        "ServerlessConfig":{"shape":"ProductionVariantServerlessConfig"}
+        "EnvironmentParameterRanges":{"shape":"EnvironmentParameterRanges"}
       }
     },
     "EndpointInputConfigurations":{
@@ -11244,6 +11325,10 @@
     },
     "FeatureDefinition":{
       "type":"structure",
+      "required":[
+        "FeatureName",
+        "FeatureType"
+      ],
       "members":{
         "FeatureName":{"shape":"FeatureName"},
         "FeatureType":{"shape":"FeatureType"},
@@ -11472,6 +11557,7 @@
     },
     "FileSystemId":{
       "type":"string",
+      "max":21,
       "min":11,
       "pattern":"^(fs-[0-9a-f]{8,})$"
     },
@@ -11584,7 +11670,7 @@
     "FlowDefinitionArn":{
       "type":"string",
       "max":1024,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:flow-definition/.*"
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]+:[0-9]{12}:flow-definition/.*"
     },
     "FlowDefinitionName":{
       "type":"string",
@@ -11631,7 +11717,6 @@
     },
     "FlowDefinitionTaskAvailabilityLifetimeInSeconds":{
       "type":"integer",
-      "max":864000,
       "min":1
     },
     "FlowDefinitionTaskCount":{
@@ -11659,7 +11744,6 @@
     },
     "FlowDefinitionTaskTimeLimitInSeconds":{
       "type":"integer",
-      "max":28800,
       "min":30
     },
     "FlowDefinitionTaskTitle":{
@@ -12146,7 +12230,7 @@
     "HumanTaskUiArn":{
       "type":"string",
       "max":1024,
-      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:human-task-ui/.*"
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]+:[0-9]{12}:human-task-ui/.*"
     },
     "HumanTaskUiName":{
       "type":"string",
@@ -12243,13 +12327,13 @@
         "VpcConfig":{"shape":"VpcConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
         "ResourceConfig":{"shape":"ResourceConfig"},
+        "HyperParameterTuningResourceConfig":{"shape":"HyperParameterTuningResourceConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "EnableNetworkIsolation":{"shape":"Boolean"},
         "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
         "EnableManagedSpotTraining":{"shape":"Boolean"},
         "CheckpointConfig":{"shape":"CheckpointConfig"},
         "RetryStrategy":{"shape":"RetryStrategy"},
-        "HyperParameterTuningResourceConfig":{"shape":"HyperParameterTuningResourceConfig"},
         "Environment":{"shape":"HyperParameterTrainingJobEnvironmentMap"}
       }
     },
@@ -12413,9 +12497,9 @@
         "OverallBestTrainingJob":{"shape":"HyperParameterTrainingJobSummary"},
         "WarmStartConfig":{"shape":"HyperParameterTuningJobWarmStartConfig"},
         "FailureReason":{"shape":"FailureReason"},
-        "Tags":{"shape":"TagList"},
         "TuningJobCompletionDetails":{"shape":"HyperParameterTuningJobCompletionDetails"},
-        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"}
+        "ConsumedResources":{"shape":"HyperParameterTuningJobConsumedResources"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "HyperParameterTuningJobSortByOptions":{
@@ -12433,7 +12517,9 @@
         "InProgress",
         "Failed",
         "Stopped",
-        "Stopping"
+        "Stopping",
+        "Deleting",
+        "DeleteFailed"
       ]
     },
     "HyperParameterTuningJobStrategyConfig":{
@@ -13042,10 +13128,10 @@
         "ModelConfiguration"
       ],
       "members":{
+        "RecommendationId":{"shape":"String"},
         "Metrics":{"shape":"RecommendationMetrics"},
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
         "ModelConfiguration":{"shape":"ModelConfiguration"},
-        "RecommendationId":{"shape":"String"},
         "InvocationEndTime":{"shape":"InvocationEndTime"},
         "InvocationStartTime":{"shape":"InvocationStartTime"}
       }
@@ -13320,7 +13406,6 @@
       "max":30,
       "min":0
     },
-    "IntegerValue":{"type":"integer"},
     "InvocationEndTime":{"type":"timestamp"},
     "InvocationStartTime":{"type":"timestamp"},
     "InvocationsMaxRetries":{
@@ -13392,6 +13477,7 @@
     "JupyterLabAppImageConfig":{
       "type":"structure",
       "members":{
+        "FileSystemConfig":{"shape":"FileSystemConfig"},
         "ContainerConfig":{"shape":"ContainerConfig"}
       }
     },
@@ -13458,7 +13544,7 @@
     "KernelSpecs":{
       "type":"list",
       "member":{"shape":"KernelSpec"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "Key":{
@@ -13907,7 +13993,7 @@
         "SortOrder":{"shape":"AutoMLSortOrder"},
         "SortBy":{"shape":"CandidateSortBy"},
         "MaxResults":{
-          "shape":"AutoMLMaxResults",
+          "shape":"AutoMLMaxResultsForTrials",
           "box":true
         },
         "NextToken":{"shape":"NextToken"}
@@ -14283,10 +14369,7 @@
     },
     "ListFeatureGroupsResponse":{
       "type":"structure",
-      "required":[
-        "FeatureGroupSummaries",
-        "NextToken"
-      ],
+      "required":["FeatureGroupSummaries"],
       "members":{
         "FeatureGroupSummaries":{"shape":"FeatureGroupSummaries"},
         "NextToken":{"shape":"NextToken"}
@@ -16043,7 +16126,6 @@
     },
     "ModelDataSource":{
       "type":"structure",
-      "required":["S3DataSource"],
       "members":{
         "S3DataSource":{"shape":"S3ModelDataSource"}
       }
@@ -16197,7 +16279,7 @@
     "ModelName":{
       "type":"string",
       "max":63,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9]([\\-a-zA-Z0-9]*[a-zA-Z0-9])?"
     },
     "ModelNameContains":{
       "type":"string",
@@ -16424,7 +16506,7 @@
       "type":"list",
       "member":{"shape":"ModelPackageValidationProfile"},
       "max":1,
-      "min":1
+      "min":0
     },
     "ModelPackageValidationSpecification":{
       "type":"structure",
@@ -17381,7 +17463,6 @@
     },
     "OidcMemberDefinition":{
       "type":"structure",
-      "required":["Groups"],
       "members":{
         "Groups":{"shape":"Groups"}
       }
@@ -17524,7 +17605,7 @@
     "ParameterList":{
       "type":"list",
       "member":{"shape":"Parameter"},
-      "max":50,
+      "max":200,
       "min":0
     },
     "ParameterName":{
@@ -17663,7 +17744,7 @@
     },
     "PipelineArn":{
       "type":"string",
-      "max":256,
+      "max":2048,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:pipeline/.*"
     },
     "PipelineDefinition":{
@@ -17705,13 +17786,13 @@
         "CreatedBy":{"shape":"UserContext"},
         "LastModifiedBy":{"shape":"UserContext"},
         "ParallelismConfiguration":{"shape":"ParallelismConfiguration"},
-        "PipelineParameters":{"shape":"ParameterList"},
-        "SelectiveExecutionConfig":{"shape":"SelectiveExecutionConfig"}
+        "SelectiveExecutionConfig":{"shape":"SelectiveExecutionConfig"},
+        "PipelineParameters":{"shape":"ParameterList"}
       }
     },
     "PipelineExecutionArn":{
       "type":"string",
-      "max":256,
+      "max":2048,
       "pattern":"^arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:pipeline\\/.*\\/execution\\/.*$"
     },
     "PipelineExecutionDescription":{
@@ -17751,9 +17832,9 @@
         "EndTime":{"shape":"Timestamp"},
         "StepStatus":{"shape":"StepStatus"},
         "CacheHitResult":{"shape":"CacheHitResult"},
-        "AttemptCount":{"shape":"IntegerValue"},
         "FailureReason":{"shape":"FailureReason"},
         "Metadata":{"shape":"PipelineExecutionStepMetadata"},
+        "AttemptCount":{"shape":"Integer"},
         "SelectiveExecutionResult":{"shape":"SelectiveExecutionResult"}
       }
     },
@@ -17775,9 +17856,9 @@
         "Condition":{"shape":"ConditionStepMetadata"},
         "Callback":{"shape":"CallbackStepMetadata"},
         "Lambda":{"shape":"LambdaStepMetadata"},
+        "EMR":{"shape":"EMRStepMetadata"},
         "QualityCheck":{"shape":"QualityCheckStepMetadata"},
         "ClarifyCheck":{"shape":"ClarifyCheckStepMetadata"},
-        "EMR":{"shape":"EMRStepMetadata"},
         "Fail":{"shape":"FailStepMetadata"},
         "AutoMLJob":{"shape":"AutoMLJobStepMetadata"}
       }
@@ -17826,7 +17907,10 @@
     },
     "PipelineStatus":{
       "type":"string",
-      "enum":["Active"]
+      "enum":[
+        "Active",
+        "Deleting"
+      ]
     },
     "PipelineSummary":{
       "type":"structure",
@@ -18065,7 +18149,7 @@
     },
     "ProcessingMaxRuntimeInSeconds":{
       "type":"integer",
-      "max":604800,
+      "max":777600,
       "min":1
     },
     "ProcessingOutput":{
@@ -18303,6 +18387,7 @@
         "ml.inf1.2xlarge",
         "ml.inf1.6xlarge",
         "ml.inf1.24xlarge",
+        "ml.dl1.24xlarge",
         "ml.c6i.large",
         "ml.c6i.xlarge",
         "ml.c6i.2xlarge",
@@ -18380,11 +18465,39 @@
         "ml.p4de.24xlarge",
         "ml.trn1.2xlarge",
         "ml.trn1.32xlarge",
+        "ml.trn1n.32xlarge",
         "ml.inf2.xlarge",
         "ml.inf2.8xlarge",
         "ml.inf2.24xlarge",
         "ml.inf2.48xlarge",
-        "ml.p5.48xlarge"
+        "ml.p5.48xlarge",
+        "ml.m7i.large",
+        "ml.m7i.xlarge",
+        "ml.m7i.2xlarge",
+        "ml.m7i.4xlarge",
+        "ml.m7i.8xlarge",
+        "ml.m7i.12xlarge",
+        "ml.m7i.16xlarge",
+        "ml.m7i.24xlarge",
+        "ml.m7i.48xlarge",
+        "ml.c7i.large",
+        "ml.c7i.xlarge",
+        "ml.c7i.2xlarge",
+        "ml.c7i.4xlarge",
+        "ml.c7i.8xlarge",
+        "ml.c7i.12xlarge",
+        "ml.c7i.16xlarge",
+        "ml.c7i.24xlarge",
+        "ml.c7i.48xlarge",
+        "ml.r7i.large",
+        "ml.r7i.xlarge",
+        "ml.r7i.2xlarge",
+        "ml.r7i.4xlarge",
+        "ml.r7i.8xlarge",
+        "ml.r7i.12xlarge",
+        "ml.r7i.16xlarge",
+        "ml.r7i.24xlarge",
+        "ml.r7i.48xlarge"
       ]
     },
     "ProductionVariantList":{
@@ -18897,12 +19010,12 @@
         "Domain":{"shape":"String"},
         "Task":{"shape":"String"},
         "Framework":{"shape":"String"},
-        "FrameworkVersion":{"shape":"String"},
+        "FrameworkVersion":{"shape":"RecommendationJobFrameworkVersion"},
         "PayloadConfig":{"shape":"RecommendationJobPayloadConfig"},
         "NearestModelName":{"shape":"String"},
         "SupportedInstanceTypes":{"shape":"RecommendationJobSupportedInstanceTypes"},
-        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"},
         "SupportedEndpointType":{"shape":"RecommendationJobSupportedEndpointType"},
+        "DataInputConfig":{"shape":"RecommendationJobDataInputConfig"},
         "SupportedResponseMIMETypes":{"shape":"RecommendationJobSupportedResponseMIMETypes"}
       }
     },
@@ -18916,15 +19029,21 @@
       "type":"string",
       "max":128
     },
+    "RecommendationJobFrameworkVersion":{
+      "type":"string",
+      "max":10,
+      "min":3,
+      "pattern":"[0-9]\\.[A-Za-z0-9.-]+"
+    },
     "RecommendationJobInferenceBenchmark":{
       "type":"structure",
       "required":["ModelConfiguration"],
       "members":{
         "Metrics":{"shape":"RecommendationMetrics"},
+        "EndpointMetrics":{"shape":"InferenceMetrics"},
         "EndpointConfiguration":{"shape":"EndpointOutputConfiguration"},
         "ModelConfiguration":{"shape":"ModelConfiguration"},
         "FailureReason":{"shape":"RecommendationFailureReason"},
-        "EndpointMetrics":{"shape":"InferenceMetrics"},
         "InvocationEndTime":{"shape":"InvocationEndTime"},
         "InvocationStartTime":{"shape":"InvocationStartTime"}
       }
@@ -18933,6 +19052,7 @@
       "type":"structure",
       "members":{
         "ModelPackageVersionArn":{"shape":"ModelPackageArn"},
+        "ModelName":{"shape":"ModelName"},
         "JobDurationInSeconds":{"shape":"JobDurationInSeconds"},
         "TrafficPattern":{"shape":"TrafficPattern"},
         "ResourceLimit":{"shape":"RecommendationJobResourceLimit"},
@@ -18940,8 +19060,7 @@
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "ContainerConfig":{"shape":"RecommendationJobContainerConfig"},
         "Endpoints":{"shape":"Endpoints"},
-        "VpcConfig":{"shape":"RecommendationJobVpcConfig"},
-        "ModelName":{"shape":"ModelName"}
+        "VpcConfig":{"shape":"RecommendationJobVpcConfig"}
       }
     },
     "RecommendationJobName":{
@@ -18960,7 +19079,7 @@
     "RecommendationJobPayloadConfig":{
       "type":"structure",
       "members":{
-        "SamplePayloadUrl":{"shape":"String"},
+        "SamplePayloadUrl":{"shape":"S3Uri"},
         "SupportedContentTypes":{"shape":"RecommendationJobSupportedContentTypes"}
       }
     },
@@ -18979,7 +19098,9 @@
         "COMPLETED",
         "FAILED",
         "STOPPING",
-        "STOPPED"
+        "STOPPED",
+        "DELETING",
+        "DELETED"
       ]
     },
     "RecommendationJobStoppingConditions":{
@@ -18990,9 +19111,14 @@
         "FlatInvocations":{"shape":"FlatInvocations"}
       }
     },
+    "RecommendationJobSupportedContentType":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
     "RecommendationJobSupportedContentTypes":{
       "type":"list",
-      "member":{"shape":"String"}
+      "member":{"shape":"RecommendationJobSupportedContentType"}
     },
     "RecommendationJobSupportedEndpointType":{
       "type":"string",
@@ -19316,8 +19442,8 @@
         "InstanceCount":{"shape":"TrainingInstanceCount"},
         "VolumeSizeInGB":{"shape":"VolumeSizeInGB"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "InstanceGroups":{"shape":"InstanceGroups"},
-        "KeepAlivePeriodInSeconds":{"shape":"KeepAlivePeriodInSeconds"}
+        "KeepAlivePeriodInSeconds":{"shape":"KeepAlivePeriodInSeconds"},
+        "InstanceGroups":{"shape":"InstanceGroups"}
       }
     },
     "ResourceConfigForUpdate":{
@@ -19394,16 +19520,18 @@
         "ExperimentTrial",
         "ExperimentTrialComponent",
         "Endpoint",
+        "Model",
         "ModelPackage",
         "ModelPackageGroup",
         "Pipeline",
         "PipelineExecution",
         "FeatureGroup",
-        "Project",
         "FeatureMetadata",
+        "Image",
+        "ImageVersion",
+        "Project",
         "HyperParameterTuningJob",
-        "ModelCard",
-        "Model"
+        "ModelCard"
       ]
     },
     "ResponseMIMEType":{
@@ -19691,11 +19819,11 @@
         "Pipeline":{"shape":"Pipeline"},
         "PipelineExecution":{"shape":"PipelineExecution"},
         "FeatureGroup":{"shape":"FeatureGroup"},
-        "Project":{"shape":"Project"},
         "FeatureMetadata":{"shape":"FeatureMetadata"},
+        "Project":{"shape":"Project"},
         "HyperParameterTuningJob":{"shape":"HyperParameterTuningJobSearchEntity"},
-        "Model":{"shape":"ModelDashboardModel"},
-        "ModelCard":{"shape":"ModelCard"}
+        "ModelCard":{"shape":"ModelCard"},
+        "Model":{"shape":"ModelDashboardModel"}
       }
     },
     "SearchRequest":{
@@ -19750,7 +19878,8 @@
         "Interrupted",
         "MaxWaitTimeExceeded",
         "Updating",
-        "Restarting"
+        "Restarting",
+        "Pending"
       ]
     },
     "SecondaryStatusTransition":{
@@ -20098,6 +20227,7 @@
     "SourceUri":{
       "type":"string",
       "max":2048,
+      "min":1,
       "pattern":".*"
     },
     "SpaceArn":{
@@ -20119,10 +20249,10 @@
         "Status":{"shape":"SpaceStatus"},
         "CreationTime":{"shape":"CreationTime"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
-        "SpaceDisplayName":{"shape":"NonEmptyString64"},
         "SpaceSettingsSummary":{"shape":"SpaceSettingsSummary"},
         "SpaceSharingSettingsSummary":{"shape":"SpaceSharingSettingsSummary"},
-        "OwnershipSettingsSummary":{"shape":"OwnershipSettingsSummary"}
+        "OwnershipSettingsSummary":{"shape":"OwnershipSettingsSummary"},
+        "SpaceDisplayName":{"shape":"NonEmptyString64"}
       }
     },
     "SpaceEbsVolumeSizeInGb":{
@@ -20151,10 +20281,10 @@
       "members":{
         "JupyterServerAppSettings":{"shape":"JupyterServerAppSettings"},
         "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"},
-        "JupyterLabAppSettings":{"shape":"SpaceJupyterLabAppSettings"},
         "CodeEditorAppSettings":{"shape":"SpaceCodeEditorAppSettings"},
-        "SpaceStorageSettings":{"shape":"SpaceStorageSettings"},
+        "JupyterLabAppSettings":{"shape":"SpaceJupyterLabAppSettings"},
         "AppType":{"shape":"AppType"},
+        "SpaceStorageSettings":{"shape":"SpaceStorageSettings"},
         "CustomFileSystems":{"shape":"CustomFileSystems"}
       }
     },
@@ -20504,10 +20634,6 @@
       "min":1,
       "pattern":".+"
     },
-    "String2048":{
-      "type":"string",
-      "max":2048
-    },
     "String256":{
       "type":"string",
       "max":256
@@ -20530,7 +20656,7 @@
     },
     "StringParameterValue":{
       "type":"string",
-      "max":256,
+      "max":2500,
       "pattern":".*"
     },
     "StudioLifecycleConfigAppType":{
@@ -20538,8 +20664,10 @@
       "enum":[
         "JupyterServer",
         "KernelGateway",
-        "JupyterLab",
-        "CodeEditor"
+        "VSCode",
+        "Savitur",
+        "CodeEditor",
+        "JupyterLab"
       ]
     },
     "StudioLifecycleConfigArn":{
@@ -20623,6 +20751,7 @@
     "TableFormat":{
       "type":"string",
       "enum":[
+        "Default",
         "Glue",
         "Iceberg"
       ]
@@ -20698,8 +20827,10 @@
         "lambda",
         "ml_m4",
         "ml_m5",
+        "ml_m6g",
         "ml_c4",
         "ml_c5",
+        "ml_c6g",
         "ml_p2",
         "ml_p3",
         "ml_g4dn",
@@ -20712,6 +20843,7 @@
         "jetson_nano",
         "jetson_xavier",
         "rasp3b",
+        "rasp4b",
         "imx8qm",
         "deeplens",
         "rk3399",
@@ -20898,7 +21030,8 @@
       "members":{
         "CompletionCriteria":{"shape":"AutoMLJobCompletionCriteria"},
         "BaseModelName":{"shape":"BaseModelName"},
-        "TextGenerationHyperParameters":{"shape":"TextGenerationHyperParameters"}
+        "TextGenerationHyperParameters":{"shape":"TextGenerationHyperParameters"},
+        "ModelAccessConfig":{"shape":"ModelAccessConfig"}
       }
     },
     "TextGenerationResolvedAttributes":{
@@ -21094,6 +21227,8 @@
         "ml.p3.16xlarge",
         "ml.p3dn.24xlarge",
         "ml.p4d.24xlarge",
+        "ml.p4de.24xlarge",
+        "ml.p5.48xlarge",
         "ml.c5.xlarge",
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
@@ -21115,7 +21250,23 @@
         "ml.trn1.2xlarge",
         "ml.trn1.32xlarge",
         "ml.trn1n.32xlarge",
-        "ml.p5.48xlarge"
+        "ml.m6i.large",
+        "ml.m6i.xlarge",
+        "ml.m6i.2xlarge",
+        "ml.m6i.4xlarge",
+        "ml.m6i.8xlarge",
+        "ml.m6i.12xlarge",
+        "ml.m6i.16xlarge",
+        "ml.m6i.24xlarge",
+        "ml.m6i.32xlarge",
+        "ml.c6i.xlarge",
+        "ml.c6i.2xlarge",
+        "ml.c6i.8xlarge",
+        "ml.c6i.4xlarge",
+        "ml.c6i.12xlarge",
+        "ml.c6i.16xlarge",
+        "ml.c6i.24xlarge",
+        "ml.c6i.32xlarge"
       ]
     },
     "TrainingInstanceTypes":{
@@ -21399,6 +21550,7 @@
         "Environment":{"shape":"TransformEnvironmentMap"},
         "TransformInput":{"shape":"TransformInput"},
         "TransformOutput":{"shape":"TransformOutput"},
+        "DataCaptureConfig":{"shape":"BatchDataCaptureConfig"},
         "TransformResources":{"shape":"TransformResources"},
         "CreationTime":{"shape":"Timestamp"},
         "TransformStartTime":{"shape":"Timestamp"},
@@ -21407,8 +21559,7 @@
         "AutoMLJobArn":{"shape":"AutoMLJobArn"},
         "DataProcessing":{"shape":"DataProcessing"},
         "ExperimentConfig":{"shape":"ExperimentConfig"},
-        "Tags":{"shape":"TagList"},
-        "DataCaptureConfig":{"shape":"BatchDataCaptureConfig"}
+        "Tags":{"shape":"TagList"}
       }
     },
     "TransformJobArn":{
@@ -21583,18 +21734,23 @@
     },
     "TrialComponentArtifacts":{
       "type":"map",
-      "key":{"shape":"TrialComponentKey64"},
+      "key":{"shape":"TrialComponentKey128"},
       "value":{"shape":"TrialComponentArtifact"},
-      "max":30
+      "max":60
+    },
+    "TrialComponentKey128":{
+      "type":"string",
+      "max":128,
+      "pattern":".*"
     },
     "TrialComponentKey256":{
       "type":"string",
       "max":256,
       "pattern":".*"
     },
-    "TrialComponentKey64":{
+    "TrialComponentKey320":{
       "type":"string",
-      "max":64,
+      "max":320,
       "pattern":".*"
     },
     "TrialComponentMetricSummaries":{
@@ -21624,9 +21780,9 @@
     },
     "TrialComponentParameters":{
       "type":"map",
-      "key":{"shape":"TrialComponentKey256"},
+      "key":{"shape":"TrialComponentKey320"},
       "value":{"shape":"TrialComponentParameterValue"},
-      "max":150
+      "max":300
     },
     "TrialComponentPrimaryStatus":{
       "type":"string",
@@ -21845,7 +22001,7 @@
       "members":{
         "ArtifactArn":{"shape":"ArtifactArn"},
         "ArtifactName":{"shape":"ExperimentEntityName"},
-        "Properties":{"shape":"LineageEntityParameters"},
+        "Properties":{"shape":"ArtifactProperties"},
         "PropertiesToRemove":{"shape":"ListLineageEntityParameterKey"}
       }
     },
@@ -21892,7 +22048,7 @@
       "type":"structure",
       "required":["ContextName"],
       "members":{
-        "ContextName":{"shape":"ExperimentEntityName"},
+        "ContextName":{"shape":"ContextName"},
         "Description":{"shape":"ExperimentDescription"},
         "Properties":{"shape":"LineageEntityParameters"},
         "PropertiesToRemove":{"shape":"ListLineageEntityParameterKey"}
@@ -21936,8 +22092,8 @@
         "DomainId":{"shape":"DomainId"},
         "DefaultUserSettings":{"shape":"UserSettings"},
         "DomainSettingsForUpdate":{"shape":"DomainSettingsForUpdate"},
-        "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"},
         "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"},
+        "DefaultSpaceSettings":{"shape":"DefaultSpaceSettings"},
         "SubnetIds":{"shape":"Subnets"},
         "AppNetworkAccessType":{"shape":"AppNetworkAccessType"}
       }
@@ -22505,8 +22661,8 @@
         "RStudioServerProAppSettings":{"shape":"RStudioServerProAppSettings"},
         "RSessionAppSettings":{"shape":"RSessionAppSettings"},
         "CanvasAppSettings":{"shape":"CanvasAppSettings"},
-        "JupyterLabAppSettings":{"shape":"JupyterLabAppSettings"},
         "CodeEditorAppSettings":{"shape":"CodeEditorAppSettings"},
+        "JupyterLabAppSettings":{"shape":"JupyterLabAppSettings"},
         "SpaceStorageSettings":{"shape":"DefaultSpaceStorageSettings"},
         "DefaultLandingUri":{"shape":"LandingUri"},
         "StudioWebPortal":{"shape":"StudioWebPortal"},

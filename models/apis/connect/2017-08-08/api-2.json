@@ -2519,6 +2519,25 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "PauseContact":{
+      "name":"PauseContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/pause"
+      },
+      "input":{"shape":"PauseContactRequest"},
+      "output":{"shape":"PauseContactResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "PutUserStatus":{
       "name":"PutUserStatus",
       "http":{
@@ -2570,6 +2589,24 @@
         {"shape":"InternalServiceException"},
         {"shape":"ResourceNotReadyException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "ResumeContact":{
+      "name":"ResumeContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/resume"
+      },
+      "input":{"shape":"ResumeContactRequest"},
+      "output":{"shape":"ResumeContactResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"}
       ]
     },
     "ResumeContactRecording":{
@@ -3754,7 +3791,10 @@
         "CREATE_TASK",
         "ASSIGN_CONTACT_CATEGORY",
         "GENERATE_EVENTBRIDGE_EVENT",
-        "SEND_NOTIFICATION"
+        "SEND_NOTIFICATION",
+        "CREATE_CASE",
+        "UPDATE_CASE",
+        "END_ASSOCIATED_TASKS"
       ]
     },
     "ActivateEvaluationFormRequest":{
@@ -3834,13 +3874,18 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"AgentResourceId"},
-        "ConnectedToAgentTimestamp":{"shape":"timestamp"}
+        "ConnectedToAgentTimestamp":{"shape":"timestamp"},
+        "AgentPauseDurationInSeconds":{"shape":"AgentPauseDurationInSeconds"}
       }
     },
     "AgentLastName":{
       "type":"string",
       "max":100,
       "min":1
+    },
+    "AgentPauseDurationInSeconds":{
+      "type":"integer",
+      "min":0
     },
     "AgentResourceId":{
       "type":"string",
@@ -4605,6 +4650,14 @@
       "max":10,
       "min":1
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ConnectionData":{
       "type":"structure",
       "members":{
@@ -4628,6 +4681,10 @@
         "InitiationTimestamp":{"shape":"timestamp"},
         "DisconnectTimestamp":{"shape":"timestamp"},
         "LastUpdateTimestamp":{"shape":"timestamp"},
+        "LastPausedTimestamp":{"shape":"timestamp"},
+        "LastResumedTimestamp":{"shape":"timestamp"},
+        "TotalPauseCount":{"shape":"TotalPauseCount"},
+        "TotalPauseDurationInSeconds":{"shape":"TotalPauseDurationInSeconds"},
         "ScheduledTimestamp":{"shape":"timestamp"},
         "RelatedContactId":{"shape":"ContactId"},
         "WisdomInfo":{"shape":"WisdomInfo"},
@@ -4910,6 +4967,17 @@
       "members":{
         "AgentStatusARN":{"shape":"ARN"},
         "AgentStatusId":{"shape":"AgentStatusId"}
+      }
+    },
+    "CreateCaseActionDefinition":{
+      "type":"structure",
+      "required":[
+        "Fields",
+        "TemplateId"
+      ],
+      "members":{
+        "Fields":{"shape":"FieldValues"},
+        "TemplateId":{"shape":"TemplateId"}
       }
     },
     "CreateContactFlowModuleRequest":{
@@ -7099,6 +7167,7 @@
       "type":"list",
       "member":{"shape":"Distribution"}
     },
+    "Double":{"type":"double"},
     "DuplicateResourceException":{
       "type":"structure",
       "members":{
@@ -7115,6 +7184,11 @@
         "Value":{"shape":"ReferenceValue"}
       }
     },
+    "EmptyFieldValue":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "EncryptionConfig":{
       "type":"structure",
       "required":[
@@ -7129,6 +7203,11 @@
     "EncryptionType":{
       "type":"string",
       "enum":["KMS"]
+    },
+    "EndAssociatedTasksActionDefinition":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Endpoint":{
       "type":"structure",
@@ -7676,7 +7755,9 @@
         "OnZendeskTicketStatusUpdate",
         "OnSalesforceCaseCreate",
         "OnContactEvaluationSubmit",
-        "OnMetricDataUpdate"
+        "OnMetricDataUpdate",
+        "OnCaseCreate",
+        "OnCaseUpdate"
       ]
     },
     "FailedRequest":{
@@ -7705,6 +7786,40 @@
         "IDEMPOTENCY_EXCEPTION",
         "INTERNAL_ERROR"
       ]
+    },
+    "FieldStringValue":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
+    "FieldValue":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Value"
+      ],
+      "members":{
+        "Id":{"shape":"FieldValueId"},
+        "Value":{"shape":"FieldValueUnion"}
+      }
+    },
+    "FieldValueId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "FieldValueUnion":{
+      "type":"structure",
+      "members":{
+        "BooleanValue":{"shape":"Boolean"},
+        "DoubleValue":{"shape":"Double"},
+        "EmptyValue":{"shape":"EmptyFieldValue"},
+        "StringValue":{"shape":"FieldStringValue"}
+      }
+    },
+    "FieldValues":{
+      "type":"list",
+      "member":{"shape":"FieldValue"}
     },
     "FilterV2":{
       "type":"structure",
@@ -10519,6 +10634,23 @@
       "type":"string",
       "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/"
     },
+    "PauseContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "InstanceId"
+      ],
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactFlowId":{"shape":"ContactFlowId"}
+      }
+    },
+    "PauseContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Percentage":{
       "type":"integer",
       "max":100,
@@ -11742,6 +11874,23 @@
       "members":{
       }
     },
+    "ResumeContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "InstanceId"
+      ],
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactFlowId":{"shape":"ContactFlowId"}
+      }
+    },
+    "ResumeContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RoutingProfile":{
       "type":"structure",
       "members":{
@@ -11920,7 +12069,10 @@
         "TaskAction":{"shape":"TaskActionDefinition"},
         "EventBridgeAction":{"shape":"EventBridgeActionDefinition"},
         "AssignContactCategoryAction":{"shape":"AssignContactCategoryActionDefinition"},
-        "SendNotificationAction":{"shape":"SendNotificationActionDefinition"}
+        "SendNotificationAction":{"shape":"SendNotificationActionDefinition"},
+        "CreateCaseAction":{"shape":"CreateCaseActionDefinition"},
+        "UpdateCaseAction":{"shape":"UpdateCaseActionDefinition"},
+        "EndAssociatedTasksAction":{"shape":"EndAssociatedTasksActionDefinition"}
       }
     },
     "RuleActions":{
@@ -12472,7 +12624,8 @@
       "type":"string",
       "enum":[
         "SALESFORCE",
-        "ZENDESK"
+        "ZENDESK",
+        "CASES"
       ]
     },
     "StartChatContactRequest":{
@@ -12593,6 +12746,10 @@
         "InstanceId"
       ],
       "members":{
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "References":{"shape":"ContactReferences"},
+        "RelatedContactId":{"shape":"ContactId"},
         "DestinationPhoneNumber":{"shape":"PhoneNumber"},
         "ContactFlowId":{"shape":"ContactFlowId"},
         "InstanceId":{"shape":"InstanceId"},
@@ -13118,6 +13275,11 @@
         "Distributions":{"shape":"DistributionList"}
       }
     },
+    "TemplateId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
     "Threshold":{
       "type":"structure",
       "members":{
@@ -13168,6 +13330,15 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "TotalPauseCount":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
+    "TotalPauseDurationInSeconds":{
+      "type":"integer",
+      "min":0
     },
     "TrafficDistributionGroup":{
       "type":"structure",
@@ -13359,6 +13530,13 @@
           "box":true
         },
         "ResetOrderNumber":{"shape":"Boolean"}
+      }
+    },
+    "UpdateCaseActionDefinition":{
+      "type":"structure",
+      "required":["Fields"],
+      "members":{
+        "Fields":{"shape":"FieldValues"}
       }
     },
     "UpdateContactAttributesRequest":{

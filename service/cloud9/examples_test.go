@@ -33,7 +33,7 @@ func ExampleCloud9_CreateEnvironmentEC2_shared00() {
 	input := &cloud9.CreateEnvironmentEC2Input{
 		AutomaticStopTimeMinutes: aws.Int64(60),
 		Description:              aws.String("This is my demonstration environment."),
-		ImageId:                  aws.String("amazonlinux-2-x86_64"),
+		ImageId:                  aws.String("amazonlinux-2023-x86_64"),
 		InstanceType:             aws.String("t2.micro"),
 		Name:                     aws.String("my-demo-environment"),
 		OwnerArn:                 aws.String("arn:aws:iam::123456789012:user/MyDemoUser"),

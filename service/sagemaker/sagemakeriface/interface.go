@@ -332,6 +332,10 @@ type SageMakerAPI interface {
 	DeleteCodeRepositoryWithContext(aws.Context, *sagemaker.DeleteCodeRepositoryInput, ...request.Option) (*sagemaker.DeleteCodeRepositoryOutput, error)
 	DeleteCodeRepositoryRequest(*sagemaker.DeleteCodeRepositoryInput) (*request.Request, *sagemaker.DeleteCodeRepositoryOutput)
 
+	DeleteCompilationJob(*sagemaker.DeleteCompilationJobInput) (*sagemaker.DeleteCompilationJobOutput, error)
+	DeleteCompilationJobWithContext(aws.Context, *sagemaker.DeleteCompilationJobInput, ...request.Option) (*sagemaker.DeleteCompilationJobOutput, error)
+	DeleteCompilationJobRequest(*sagemaker.DeleteCompilationJobInput) (*request.Request, *sagemaker.DeleteCompilationJobOutput)
+
 	DeleteContext(*sagemaker.DeleteContextInput) (*sagemaker.DeleteContextOutput, error)
 	DeleteContextWithContext(aws.Context, *sagemaker.DeleteContextInput, ...request.Option) (*sagemaker.DeleteContextOutput, error)
 	DeleteContextRequest(*sagemaker.DeleteContextInput) (*request.Request, *sagemaker.DeleteContextOutput)

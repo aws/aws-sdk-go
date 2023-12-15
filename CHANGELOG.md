@@ -1,3 +1,18 @@
+Release v1.49.4 (2023-12-15)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service documentation and examples
+  * Updated Cloud9 API documentation for AL2023 release
+* `service/connect`: Updates service API and documentation
+* `service/connectcases`: Updates service API
+* `service/kms`: Updates service documentation
+  * Documentation updates for AWS Key Management Service
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation by adding code examples
+* `service/sagemaker`: Updates service API and documentation
+  * This release 1) introduces a new API: DeleteCompilationJob , and 2) adds InfraCheckConfig for Create/Describe training job API
+
 Release v1.49.3 (2023-12-14)
 ===
 

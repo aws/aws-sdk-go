@@ -808,6 +808,10 @@ type ConnectAPI interface {
 	MonitorContactWithContext(aws.Context, *connect.MonitorContactInput, ...request.Option) (*connect.MonitorContactOutput, error)
 	MonitorContactRequest(*connect.MonitorContactInput) (*request.Request, *connect.MonitorContactOutput)
 
+	PauseContact(*connect.PauseContactInput) (*connect.PauseContactOutput, error)
+	PauseContactWithContext(aws.Context, *connect.PauseContactInput, ...request.Option) (*connect.PauseContactOutput, error)
+	PauseContactRequest(*connect.PauseContactInput) (*request.Request, *connect.PauseContactOutput)
+
 	PutUserStatus(*connect.PutUserStatusInput) (*connect.PutUserStatusOutput, error)
 	PutUserStatusWithContext(aws.Context, *connect.PutUserStatusInput, ...request.Option) (*connect.PutUserStatusOutput, error)
 	PutUserStatusRequest(*connect.PutUserStatusInput) (*request.Request, *connect.PutUserStatusOutput)
@@ -819,6 +823,10 @@ type ConnectAPI interface {
 	ReplicateInstance(*connect.ReplicateInstanceInput) (*connect.ReplicateInstanceOutput, error)
 	ReplicateInstanceWithContext(aws.Context, *connect.ReplicateInstanceInput, ...request.Option) (*connect.ReplicateInstanceOutput, error)
 	ReplicateInstanceRequest(*connect.ReplicateInstanceInput) (*request.Request, *connect.ReplicateInstanceOutput)
+
+	ResumeContact(*connect.ResumeContactInput) (*connect.ResumeContactOutput, error)
+	ResumeContactWithContext(aws.Context, *connect.ResumeContactInput, ...request.Option) (*connect.ResumeContactOutput, error)
+	ResumeContactRequest(*connect.ResumeContactInput) (*request.Request, *connect.ResumeContactOutput)
 
 	ResumeContactRecording(*connect.ResumeContactRecordingInput) (*connect.ResumeContactRecordingOutput, error)
 	ResumeContactRecordingWithContext(aws.Context, *connect.ResumeContactRecordingInput, ...request.Option) (*connect.ResumeContactRecordingOutput, error)
