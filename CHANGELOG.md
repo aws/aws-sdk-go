@@ -1,3 +1,13 @@
+Release v1.49.5 (2023-12-18)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service documentation
+  * A docs-only release to add missing entities to the API reference.
+* `service/route53resolver`: Updates service API and documentation
+
 Release v1.49.4 (2023-12-15)
 ===
 

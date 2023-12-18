@@ -71,8 +71,8 @@ func (c *Route53Resolver) AssociateFirewallRuleGroupRequest(input *AssociateFire
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - LimitExceededException
 //     The request caused one or more limits to be exceeded.
@@ -491,8 +491,8 @@ func (c *Route53Resolver) CreateFirewallDomainListRequest(input *CreateFirewallD
 //     The request caused one or more limits to be exceeded.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -585,8 +585,8 @@ func (c *Route53Resolver) CreateFirewallRuleRequest(input *CreateFirewallRuleInp
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - LimitExceededException
 //     The request caused one or more limits to be exceeded.
@@ -682,8 +682,8 @@ func (c *Route53Resolver) CreateFirewallRuleGroupRequest(input *CreateFirewallRu
 //     The request caused one or more limits to be exceeded.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -760,7 +760,7 @@ func (c *Route53Resolver) CreateOutpostResolverRequest(input *CreateOutpostResol
 
 // CreateOutpostResolver API operation for Amazon Route 53 Resolver.
 //
-// Creates an Route 53 Resolver on an Outpost.
+// Creates a Route 53 Resolver on an Outpost.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -788,8 +788,8 @@ func (c *Route53Resolver) CreateOutpostResolverRequest(input *CreateOutpostResol
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateOutpostResolver
 func (c *Route53Resolver) CreateOutpostResolver(input *CreateOutpostResolverInput) (*CreateOutpostResolverOutput, error) {
@@ -885,6 +885,10 @@ func (c *Route53Resolver) CreateResolverEndpointRequest(input *CreateResolverEnd
 //
 //   - ResourceExistsException
 //     The resource that you tried to create already exists.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 //   - LimitExceededException
 //     The request caused one or more limits to be exceeded.
@@ -1106,6 +1110,10 @@ func (c *Route53Resolver) CreateResolverRuleRequest(input *CreateResolverRuleInp
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 //   - ThrottlingException
 //     The request was throttled. Try again in a few minutes.
@@ -1378,8 +1386,8 @@ func (c *Route53Resolver) DeleteFirewallRuleGroupRequest(input *DeleteFirewallRu
 //     import domains into a domain list that is in the process of being deleted.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -1486,8 +1494,8 @@ func (c *Route53Resolver) DeleteOutpostResolverRequest(input *DeleteOutpostResol
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteOutpostResolver
 func (c *Route53Resolver) DeleteOutpostResolver(input *DeleteOutpostResolverInput) (*DeleteOutpostResolverOutput, error) {
@@ -1869,8 +1877,8 @@ func (c *Route53Resolver) DisassociateFirewallRuleGroupRequest(input *Disassocia
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -2274,8 +2282,8 @@ func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
 func (c *Route53Resolver) GetFirewallConfig(input *GetFirewallConfigInput) (*GetFirewallConfigOutput, error) {
@@ -2626,8 +2634,8 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -2733,8 +2741,8 @@ func (c *Route53Resolver) GetOutpostResolverRequest(input *GetOutpostResolverInp
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetOutpostResolver
 func (c *Route53Resolver) GetOutpostResolver(input *GetOutpostResolverInput) (*GetOutpostResolverOutput, error) {
@@ -2830,8 +2838,8 @@ func (c *Route53Resolver) GetResolverConfigRequest(input *GetResolverConfigInput
 //     the specified Resolver operation.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
 func (c *Route53Resolver) GetResolverConfig(input *GetResolverConfigInput) (*GetResolverConfigOutput, error) {
@@ -3666,8 +3674,8 @@ func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3777,8 +3785,8 @@ func (c *Route53Resolver) ListFirewallConfigsRequest(input *ListFirewallConfigsI
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -3929,8 +3937,8 @@ func (c *Route53Resolver) ListFirewallDomainListsRequest(input *ListFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4083,8 +4091,8 @@ func (c *Route53Resolver) ListFirewallDomainsRequest(input *ListFirewallDomainsI
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4234,8 +4242,8 @@ func (c *Route53Resolver) ListFirewallRuleGroupAssociationsRequest(input *ListFi
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4385,8 +4393,8 @@ func (c *Route53Resolver) ListFirewallRuleGroupsRequest(input *ListFirewallRuleG
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4540,8 +4548,8 @@ func (c *Route53Resolver) ListFirewallRulesRequest(input *ListFirewallRulesInput
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -4701,8 +4709,8 @@ func (c *Route53Resolver) ListOutpostResolversRequest(input *ListOutpostResolver
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListOutpostResolvers
 func (c *Route53Resolver) ListOutpostResolvers(input *ListOutpostResolversInput) (*ListOutpostResolversOutput, error) {
@@ -4858,8 +4866,8 @@ func (c *Route53Resolver) ListResolverConfigsRequest(input *ListResolverConfigsI
 //     the specified Resolver operation.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
 func (c *Route53Resolver) ListResolverConfigs(input *ListResolverConfigsInput) (*ListResolverConfigsOutput, error) {
@@ -6197,8 +6205,8 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -6673,8 +6681,8 @@ func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfi
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - ResourceNotFoundException
 //     The specified resource doesn't exist.
@@ -6766,8 +6774,8 @@ func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDoma
 // Returned Error Types:
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - AccessDeniedException
 //     The current account doesn't have the IAM permissions required to perform
@@ -6870,8 +6878,8 @@ func (c *Route53Resolver) UpdateFirewallRuleRequest(input *UpdateFirewallRuleInp
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - ConflictException
 //     The requested state transition isn't valid. For example, you can't delete
@@ -6969,8 +6977,8 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationRequest(input *Updat
 //     The specified resource doesn't exist.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 //   - ConflictException
 //     The requested state transition isn't valid. For example, you can't delete
@@ -7086,8 +7094,8 @@ func (c *Route53Resolver) UpdateOutpostResolverRequest(input *UpdateOutpostResol
 //     The request was throttled. Try again in a few minutes.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateOutpostResolver
 func (c *Route53Resolver) UpdateOutpostResolver(input *UpdateOutpostResolverInput) (*UpdateOutpostResolverOutput, error) {
@@ -7192,8 +7200,8 @@ func (c *Route53Resolver) UpdateResolverConfigRequest(input *UpdateResolverConfi
 //     the specified Resolver operation.
 //
 //   - ValidationException
-//     You have provided an invalid command. Supported values are ADD, REMOVE, or
-//     REPLACE a domain.
+//     You have provided an invalid command. If you ran the UpdateFirewallDomains
+//     request. supported values are ADD, REMOVE, or REPLACE a domain.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
 func (c *Route53Resolver) UpdateResolverConfig(input *UpdateResolverConfigInput) (*UpdateResolverConfigOutput, error) {
@@ -7356,7 +7364,7 @@ func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEnd
 
 // UpdateResolverEndpoint API operation for Amazon Route 53 Resolver.
 //
-// Updates the name, or enpoint type for an inbound or an outbound Resolver
+// Updates the name, or endpoint type for an inbound or an outbound Resolver
 // endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type
 // can't be updated to other type.
 //
@@ -7377,6 +7385,10 @@ func (c *Route53Resolver) UpdateResolverEndpointRequest(input *UpdateResolverEnd
 //
 //   - InvalidRequestException
 //     The request is invalid.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 //   - InternalServiceErrorException
 //     We encountered an unknown error. Try again in a few minutes.
@@ -7482,6 +7494,10 @@ func (c *Route53Resolver) UpdateResolverRuleRequest(input *UpdateResolverRuleInp
 //
 //   - ThrottlingException
 //     The request was throttled. Try again in a few minutes.
+//
+//   - AccessDeniedException
+//     The current account doesn't have the IAM permissions required to perform
+//     the specified Resolver operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverRule
 func (c *Route53Resolver) UpdateResolverRule(input *UpdateResolverRuleInput) (*UpdateResolverRuleOutput, error) {
@@ -8775,8 +8791,11 @@ type CreateResolverEndpointInput struct {
 	// (for outbound endpoints) or that you forward DNS queries to (for inbound
 	// endpoints). The subnet ID uniquely identifies a VPC.
 	//
+	// Even though the minimum is 1, Route 53 requires that you create at least
+	// two.
+	//
 	// IpAddresses is a required field
-	IpAddresses []*IpAddressRequest `min:"1" type:"list" required:"true"`
+	IpAddresses []*IpAddressRequest `min:"2" type:"list" required:"true"`
 
 	// A friendly name that lets you easily find a configuration in the Resolver
 	// dashboard in the Route 53 console.
@@ -8789,6 +8808,34 @@ type CreateResolverEndpointInput struct {
 	// The instance type. If you specify this, you must also specify a value for
 	// the OutpostArn.
 	PreferredInstanceType *string `min:"1" type:"string"`
+
+	// The protocols you want to use for the endpoint. DoH-FIPS is applicable for
+	// inbound endpoints only.
+	//
+	// For an inbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 and DoH-FIPS in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * DoH-FIPS alone.
+	//
+	//    * None, which is treated as Do53.
+	//
+	// For an outbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * None, which is treated as Do53.
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
 
 	// For the endpoint type you can choose either IPv4, IPv6, or dual-stack. A
 	// dual-stack endpoint means that it will resolve via both IPv4 and IPv6. This
@@ -8842,14 +8889,17 @@ func (s *CreateResolverEndpointInput) Validate() error {
 	if s.IpAddresses == nil {
 		invalidParams.Add(request.NewErrParamRequired("IpAddresses"))
 	}
-	if s.IpAddresses != nil && len(s.IpAddresses) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("IpAddresses", 1))
+	if s.IpAddresses != nil && len(s.IpAddresses) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAddresses", 2))
 	}
 	if s.OutpostArn != nil && len(*s.OutpostArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutpostArn", 1))
 	}
 	if s.PreferredInstanceType != nil && len(*s.PreferredInstanceType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PreferredInstanceType", 1))
+	}
+	if s.Protocols != nil && len(s.Protocols) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Protocols", 1))
 	}
 	if s.SecurityGroupIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
@@ -8914,6 +8964,12 @@ func (s *CreateResolverEndpointInput) SetOutpostArn(v string) *CreateResolverEnd
 // SetPreferredInstanceType sets the PreferredInstanceType field's value.
 func (s *CreateResolverEndpointInput) SetPreferredInstanceType(v string) *CreateResolverEndpointInput {
 	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *CreateResolverEndpointInput) SetProtocols(v []*string) *CreateResolverEndpointInput {
+	s.Protocols = v
 	return s
 }
 
@@ -9122,9 +9178,7 @@ type CreateResolverRuleInput struct {
 	// specify in TargetIps. If a query matches multiple Resolver rules (example.com
 	// and www.example.com), outbound DNS queries are routed using the Resolver
 	// rule that contains the most specific domain name (www.example.com).
-	//
-	// DomainName is a required field
-	DomainName *string `min:"1" type:"string" required:"true"`
+	DomainName *string `min:"1" type:"string"`
 
 	// A friendly name that lets you easily find a rule in the Resolver dashboard
 	// in the Route 53 console.
@@ -9189,9 +9243,6 @@ func (s *CreateResolverRuleInput) Validate() error {
 	}
 	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
-	}
-	if s.DomainName == nil {
-		invalidParams.Add(request.NewErrParamRequired("DomainName"))
 	}
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
@@ -14436,7 +14487,8 @@ type ListResolverDnssecConfigsOutput struct {
 
 	// An array that contains one ResolverDnssecConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html)
 	// element for each configuration for DNSSEC validation that is associated with
-	// the current Amazon Web Services account.
+	// the current Amazon Web Services account. It doesn't contain disabled DNSSEC
+	// configurations for the resource.
 	ResolverDnssecConfigs []*ResolverDnssecConfig `type:"list"`
 }
 
@@ -16196,6 +16248,34 @@ type ResolverEndpoint struct {
 	// The Amazon EC2 instance type.
 	PreferredInstanceType *string `min:"1" type:"string"`
 
+	// Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints
+	// only.
+	//
+	// For an inbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 and DoH-FIPS in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * DoH-FIPS alone.
+	//
+	//    * None, which is treated as Do53.
+	//
+	// For an outbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * None, which is treated as Do53.
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
+
 	// The Resolver endpoint IP address type.
 	ResolverEndpointType *string `type:"string" enum:"ResolverEndpointType"`
 
@@ -16325,6 +16405,12 @@ func (s *ResolverEndpoint) SetOutpostArn(v string) *ResolverEndpoint {
 // SetPreferredInstanceType sets the PreferredInstanceType field's value.
 func (s *ResolverEndpoint) SetPreferredInstanceType(v string) *ResolverEndpoint {
 	s.PreferredInstanceType = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *ResolverEndpoint) SetProtocols(v []*string) *ResolverEndpoint {
+	s.Protocols = v
 	return s
 }
 
@@ -17478,6 +17564,34 @@ type TargetAddress struct {
 
 	// The port at Ip that you want to forward DNS queries to.
 	Port *int64 `type:"integer"`
+
+	// The protocols for the Resolver endpoints. DoH-FIPS is applicable for inbound
+	// endpoints only.
+	//
+	// For an inbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 and DoH-FIPS in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * DoH-FIPS alone.
+	//
+	//    * None, which is treated as Do53.
+	//
+	// For an outbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * None, which is treated as Do53.
+	Protocol *string `type:"string" enum:"Protocol"`
 }
 
 // String returns the string representation.
@@ -17529,6 +17643,12 @@ func (s *TargetAddress) SetIpv6(v string) *TargetAddress {
 // SetPort sets the Port field's value.
 func (s *TargetAddress) SetPort(v int64) *TargetAddress {
 	s.Port = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *TargetAddress) SetProtocol(v string) *TargetAddress {
+	s.Protocol = &v
 	return s
 }
 
@@ -18720,6 +18840,41 @@ type UpdateResolverEndpointInput struct {
 	// The name of the Resolver endpoint that you want to update.
 	Name *string `type:"string"`
 
+	// The protocols you want to use for the endpoint. DoH-FIPS is applicable for
+	// inbound endpoints only.
+	//
+	// For an inbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 and DoH-FIPS in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * DoH-FIPS alone.
+	//
+	//    * None, which is treated as Do53.
+	//
+	// For an outbound endpoint you can apply the protocols as follows:
+	//
+	//    * Do53 and DoH in combination.
+	//
+	//    * Do53 alone.
+	//
+	//    * DoH alone.
+	//
+	//    * None, which is treated as Do53.
+	//
+	// You can't change the protocol of an inbound endpoint directly from only Do53
+	// to only DoH, or DoH-FIPS. This is to prevent a sudden disruption to incoming
+	// traffic that relies on Do53. To change the protocol from Do53 to DoH, or
+	// DoH-FIPS, you must first enable both Do53 and DoH, or Do53 and DoH-FIPS,
+	// to make sure that all incoming traffic has transferred to using the DoH protocol,
+	// or DoH-FIPS, and then remove the Do53.
+	Protocols []*string `min:"1" type:"list" enum:"Protocol"`
+
 	// The ID of the Resolver endpoint that you want to update.
 	//
 	// ResolverEndpointId is a required field
@@ -18758,6 +18913,9 @@ func (s UpdateResolverEndpointInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateResolverEndpointInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateResolverEndpointInput"}
+	if s.Protocols != nil && len(s.Protocols) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Protocols", 1))
+	}
 	if s.ResolverEndpointId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResolverEndpointId"))
 	}
@@ -18784,6 +18942,12 @@ func (s *UpdateResolverEndpointInput) Validate() error {
 // SetName sets the Name field's value.
 func (s *UpdateResolverEndpointInput) SetName(v string) *UpdateResolverEndpointInput {
 	s.Name = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *UpdateResolverEndpointInput) SetProtocols(v []*string) *UpdateResolverEndpointInput {
+	s.Protocols = v
 	return s
 }
 
@@ -18935,8 +19099,8 @@ func (s *UpdateResolverRuleOutput) SetResolverRule(v *ResolverRule) *UpdateResol
 	return s
 }
 
-// You have provided an invalid command. Supported values are ADD, REMOVE, or
-// REPLACE a domain.
+// You have provided an invalid command. If you ran the UpdateFirewallDomains
+// request. supported values are ADD, REMOVE, or REPLACE a domain.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19297,6 +19461,26 @@ func OutpostResolverStatus_Values() []string {
 		OutpostResolverStatusActionNeeded,
 		OutpostResolverStatusFailedCreation,
 		OutpostResolverStatusFailedDeletion,
+	}
+}
+
+const (
+	// ProtocolDoH is a Protocol enum value
+	ProtocolDoH = "DoH"
+
+	// ProtocolDo53 is a Protocol enum value
+	ProtocolDo53 = "Do53"
+
+	// ProtocolDoHFips is a Protocol enum value
+	ProtocolDoHFips = "DoH-FIPS"
+)
+
+// Protocol_Values returns all elements of the Protocol enum
+func Protocol_Values() []string {
+	return []string{
+		ProtocolDoH,
+		ProtocolDo53,
+		ProtocolDoHFips,
 	}
 }
 

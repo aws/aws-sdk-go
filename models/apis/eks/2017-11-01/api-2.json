@@ -13,6 +13,21 @@
     "uid":"eks-2017-11-01"
   },
   "operations":{
+    "AssociateAccessPolicy":{
+      "name":"AssociateAccessPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}/access-policies"
+      },
+      "input":{"shape":"AssociateAccessPolicyRequest"},
+      "output":{"shape":"AssociateAccessPolicyResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "AssociateEncryptionConfig":{
       "name":"AssociateEncryptionConfig",
       "http":{
@@ -45,6 +60,23 @@
         {"shape":"ResourceInUseException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "CreateAccessEntry":{
+      "name":"CreateAccessEntry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/access-entries"
+      },
+      "input":{"shape":"CreateAccessEntryRequest"},
+      "output":{"shape":"CreateAccessEntryResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "CreateAddon":{
@@ -148,6 +180,20 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "DeleteAccessEntry":{
+      "name":"DeleteAccessEntry",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}"
+      },
+      "input":{"shape":"DeleteAccessEntryRequest"},
+      "output":{"shape":"DeleteAccessEntryResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeleteAddon":{
@@ -259,6 +305,20 @@
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeAccessEntry":{
+      "name":"DescribeAccessEntry",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}"
+      },
+      "input":{"shape":"DescribeAccessEntryRequest"},
+      "output":{"shape":"DescribeAccessEntryResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeAddon":{
@@ -412,6 +472,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisassociateAccessPolicy":{
+      "name":"DisassociateAccessPolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}/access-policies/{policyArn}"
+      },
+      "input":{"shape":"DisassociateAccessPolicyRequest"},
+      "output":{"shape":"DisassociateAccessPolicyResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DisassociateIdentityProviderConfig":{
       "name":"DisassociateIdentityProviderConfig",
       "http":{
@@ -429,6 +503,33 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ListAccessEntries":{
+      "name":"ListAccessEntries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/access-entries"
+      },
+      "input":{"shape":"ListAccessEntriesRequest"},
+      "output":{"shape":"ListAccessEntriesResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "ListAccessPolicies":{
+      "name":"ListAccessPolicies",
+      "http":{
+        "method":"GET",
+        "requestUri":"/access-policies"
+      },
+      "input":{"shape":"ListAccessPoliciesRequest"},
+      "output":{"shape":"ListAccessPoliciesResponse"},
+      "errors":[
+        {"shape":"ServerException"}
+      ]
+    },
     "ListAddons":{
       "name":"ListAddons",
       "http":{
@@ -443,6 +544,20 @@
         {"shape":"ClientException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServerException"}
+      ]
+    },
+    "ListAssociatedAccessPolicies":{
+      "name":"ListAssociatedAccessPolicies",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}/access-policies"
+      },
+      "input":{"shape":"ListAssociatedAccessPoliciesRequest"},
+      "output":{"shape":"ListAssociatedAccessPoliciesResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "ListClusters":{
@@ -610,6 +725,21 @@
         {"shape":"NotFoundException"}
       ]
     },
+    "UpdateAccessEntry":{
+      "name":"UpdateAccessEntry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/access-entries/{principalArn}"
+      },
+      "input":{"shape":"UpdateAccessEntryRequest"},
+      "output":{"shape":"UpdateAccessEntryResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "UpdateAddon":{
       "name":"UpdateAddon",
       "http":{
@@ -745,6 +875,13 @@
         "WINDOWS_FULL_2022_x86_64"
       ]
     },
+    "AccessConfigResponse":{
+      "type":"structure",
+      "members":{
+        "bootstrapClusterCreatorAdminPermissions":{"shape":"BoxedBoolean"},
+        "authenticationMode":{"shape":"AuthenticationMode"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -752,6 +889,45 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "AccessEntry":{
+      "type":"structure",
+      "members":{
+        "clusterName":{"shape":"String"},
+        "principalArn":{"shape":"String"},
+        "kubernetesGroups":{"shape":"StringList"},
+        "accessEntryArn":{"shape":"String"},
+        "createdAt":{"shape":"Timestamp"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "tags":{"shape":"TagMap"},
+        "username":{"shape":"String"},
+        "type":{"shape":"String"}
+      }
+    },
+    "AccessPoliciesList":{
+      "type":"list",
+      "member":{"shape":"AccessPolicy"}
+    },
+    "AccessPolicy":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "arn":{"shape":"String"}
+      }
+    },
+    "AccessScope":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"AccessScopeType"},
+        "namespaces":{"shape":"StringList"}
+      }
+    },
+    "AccessScopeType":{
+      "type":"string",
+      "enum":[
+        "cluster",
+        "namespace"
+      ]
     },
     "Addon":{
       "type":"structure",
@@ -844,6 +1020,37 @@
       "type":"list",
       "member":{"shape":"AddonInfo"}
     },
+    "AssociateAccessPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn",
+        "policyArn",
+        "accessScope"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        },
+        "policyArn":{"shape":"String"},
+        "accessScope":{"shape":"AccessScope"}
+      }
+    },
+    "AssociateAccessPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "clusterName":{"shape":"String"},
+        "principalArn":{"shape":"String"},
+        "associatedAccessPolicy":{"shape":"AssociatedAccessPolicy"}
+      }
+    },
     "AssociateEncryptionConfigRequest":{
       "type":"structure",
       "required":[
@@ -895,6 +1102,27 @@
         "update":{"shape":"Update"},
         "tags":{"shape":"TagMap"}
       }
+    },
+    "AssociatedAccessPoliciesList":{
+      "type":"list",
+      "member":{"shape":"AssociatedAccessPolicy"}
+    },
+    "AssociatedAccessPolicy":{
+      "type":"structure",
+      "members":{
+        "policyArn":{"shape":"String"},
+        "accessScope":{"shape":"AccessScope"},
+        "associatedAt":{"shape":"Timestamp"},
+        "modifiedAt":{"shape":"Timestamp"}
+      }
+    },
+    "AuthenticationMode":{
+      "type":"string",
+      "enum":[
+        "API",
+        "API_AND_CONFIG_MAP",
+        "CONFIG_MAP"
+      ]
     },
     "AutoScalingGroup":{
       "type":"structure",
@@ -975,7 +1203,8 @@
         "connectorConfig":{"shape":"ConnectorConfigResponse"},
         "id":{"shape":"String"},
         "health":{"shape":"ClusterHealth"},
-        "outpostConfig":{"shape":"OutpostConfigResponse"}
+        "outpostConfig":{"shape":"OutpostConfigResponse"},
+        "accessConfig":{"shape":"AccessConfigResponse"}
       }
     },
     "ClusterHealth":{
@@ -1096,6 +1325,42 @@
         "groupName":{"shape":"String"}
       }
     },
+    "CreateAccessConfigRequest":{
+      "type":"structure",
+      "members":{
+        "bootstrapClusterCreatorAdminPermissions":{"shape":"BoxedBoolean"},
+        "authenticationMode":{"shape":"AuthenticationMode"}
+      }
+    },
+    "CreateAccessEntryRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{"shape":"String"},
+        "kubernetesGroups":{"shape":"StringList"},
+        "tags":{"shape":"TagMap"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "username":{"shape":"String"},
+        "type":{"shape":"String"}
+      }
+    },
+    "CreateAccessEntryResponse":{
+      "type":"structure",
+      "members":{
+        "accessEntry":{"shape":"AccessEntry"}
+      }
+    },
     "CreateAddonRequest":{
       "type":"structure",
       "required":[
@@ -1146,7 +1411,8 @@
         },
         "tags":{"shape":"TagMap"},
         "encryptionConfig":{"shape":"EncryptionConfigList"},
-        "outpostConfig":{"shape":"OutpostConfigRequest"}
+        "outpostConfig":{"shape":"OutpostConfigRequest"},
+        "accessConfig":{"shape":"CreateAccessConfigRequest"}
       }
     },
     "CreateClusterResponse":{
@@ -1280,6 +1546,30 @@
       "type":"structure",
       "members":{
         "association":{"shape":"PodIdentityAssociation"}
+      }
+    },
+    "DeleteAccessEntryRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        }
+      }
+    },
+    "DeleteAccessEntryResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteAddonRequest":{
@@ -1436,6 +1726,31 @@
       "type":"structure",
       "members":{
         "cluster":{"shape":"Cluster"}
+      }
+    },
+    "DescribeAccessEntryRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        }
+      }
+    },
+    "DescribeAccessEntryResponse":{
+      "type":"structure",
+      "members":{
+        "accessEntry":{"shape":"AccessEntry"}
       }
     },
     "DescribeAddonConfigurationRequest":{
@@ -1706,6 +2021,36 @@
       "type":"structure",
       "members":{
         "update":{"shape":"Update"}
+      }
+    },
+    "DisassociateAccessPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn",
+        "policyArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        },
+        "policyArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"policyArn"
+        }
+      }
+    },
+    "DisassociateAccessPolicyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DisassociateIdentityProviderConfigRequest":{
@@ -1981,6 +2326,73 @@
         "id":{"shape":"String"}
       }
     },
+    "ListAccessEntriesRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "associatedPolicyArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"associatedPolicyArn"
+        },
+        "maxResults":{
+          "shape":"ListAccessEntriesRequestMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAccessEntriesRequestMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListAccessEntriesResponse":{
+      "type":"structure",
+      "members":{
+        "accessEntries":{"shape":"StringList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListAccessPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"ListAccessPoliciesRequestMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAccessPoliciesRequestMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListAccessPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "accessPolicies":{"shape":"AccessPoliciesList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListAddonsRequest":{
       "type":"structure",
       "required":["clusterName"],
@@ -2013,6 +2425,50 @@
       "members":{
         "addons":{"shape":"StringList"},
         "nextToken":{"shape":"String"}
+      }
+    },
+    "ListAssociatedAccessPoliciesRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        },
+        "maxResults":{
+          "shape":"ListAssociatedAccessPoliciesRequestMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAssociatedAccessPoliciesRequestMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListAssociatedAccessPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "clusterName":{"shape":"String"},
+        "principalArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "associatedAccessPolicies":{"shape":"AssociatedAccessPoliciesList"}
       }
     },
     "ListClustersRequest":{
@@ -2761,6 +3217,43 @@
         "errors":{"shape":"ErrorDetails"}
       }
     },
+    "UpdateAccessConfigRequest":{
+      "type":"structure",
+      "members":{
+        "authenticationMode":{"shape":"AuthenticationMode"}
+      }
+    },
+    "UpdateAccessEntryRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "principalArn"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "principalArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"principalArn"
+        },
+        "kubernetesGroups":{"shape":"StringList"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "username":{"shape":"String"}
+      }
+    },
+    "UpdateAccessEntryResponse":{
+      "type":"structure",
+      "members":{
+        "accessEntry":{"shape":"AccessEntry"}
+      }
+    },
     "UpdateAddonRequest":{
       "type":"structure",
       "required":[
@@ -2808,7 +3301,8 @@
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "accessConfig":{"shape":"UpdateAccessConfigRequest"}
       }
     },
     "UpdateClusterConfigResponse":{
@@ -2975,7 +3469,8 @@
         "MaxUnavailablePercentage",
         "ConfigurationValues",
         "SecurityGroups",
-        "Subnets"
+        "Subnets",
+        "AuthenticationMode"
       ]
     },
     "UpdateParams":{
@@ -3039,7 +3534,8 @@
         "DisassociateIdentityProviderConfig",
         "AssociateEncryptionConfig",
         "AddonUpdate",
-        "VpcConfigUpdate"
+        "VpcConfigUpdate",
+        "AccessConfigUpdate"
       ]
     },
     "VpcConfigRequest":{
