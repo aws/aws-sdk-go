@@ -9,7 +9,7 @@
     "CreateFirewallDomainList": "<p>Creates an empty firewall domain list for use in DNS Firewall rules. You can populate the domains for the new list with a file, using <a>ImportFirewallDomains</a>, or with domain strings, using <a>UpdateFirewallDomains</a>. </p>",
     "CreateFirewallRule": "<p>Creates a single DNS Firewall rule in the specified rule group, using the specified domain list.</p>",
     "CreateFirewallRuleGroup": "<p>Creates an empty DNS Firewall rule group for filtering DNS network traffic in a VPC. You can add rules to the new rule group by calling <a>CreateFirewallRule</a>. </p>",
-    "CreateOutpostResolver": "<p>Creates an Route 53 Resolver on an Outpost.</p>",
+    "CreateOutpostResolver": "<p>Creates a Route 53 Resolver on an Outpost.</p>",
     "CreateResolverEndpoint": "<p>Creates a Resolver endpoint. There are two types of Resolver endpoints, inbound and outbound:</p> <ul> <li> <p>An <i>inbound Resolver endpoint</i> forwards DNS queries to the DNS service for a VPC from your network.</p> </li> <li> <p>An <i>outbound Resolver endpoint</i> forwards DNS queries from the DNS service for a VPC to your network.</p> </li> </ul>",
     "CreateResolverQueryLogConfig": "<p>Creates a Resolver query logging configuration, which defines where you want Resolver to save DNS query logs that originate in your VPCs. Resolver can log queries only for VPCs that are in the same Region as the query logging configuration.</p> <p>To specify which VPCs you want to log queries for, you use <code>AssociateResolverQueryLogConfig</code>. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverQueryLogConfig.html\">AssociateResolverQueryLogConfig</a>. </p> <p>You can optionally use Resource Access Manager (RAM) to share a query logging configuration with other Amazon Web Services accounts. The other accounts can then associate VPCs with the configuration. The query logs that Resolver creates for a configuration include all DNS queries that originate in all VPCs that are associated with the configuration.</p>",
     "CreateResolverRule": "<p>For DNS queries that originate in your VPCs, specifies which Resolver endpoint the queries pass through, one domain name that you want to forward to your network, and the IP addresses of the DNS resolvers in your network.</p>",
@@ -68,7 +68,7 @@
     "UpdateOutpostResolver": "<p>You can use <code>UpdateOutpostResolver</code> to update the instance count, type, or name of a Resolver on an Outpost.</p>",
     "UpdateResolverConfig": "<p>Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "UpdateResolverDnssecConfig": "<p>Updates an existing DNSSEC validation configuration. If there is no existing DNSSEC validation configuration, one is created.</p>",
-    "UpdateResolverEndpoint": "<p>Updates the name, or enpoint type for an inbound or an outbound Resolver endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated to other type. </p>",
+    "UpdateResolverEndpoint": "<p>Updates the name, or endpoint type for an inbound or an outbound Resolver endpoint. You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated to other type. </p>",
     "UpdateResolverRule": "<p>Updates settings for a specified Resolver rule. <code>ResolverRuleId</code> is required, and all other parameters are optional. If you don't specify a parameter, it retains its current value.</p>"
   },
   "shapes": {
@@ -881,7 +881,7 @@
     "IpAddressesRequest": {
       "base": null,
       "refs": {
-        "CreateResolverEndpointRequest$IpAddresses": "<p>The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC. </p>"
+        "CreateResolverEndpointRequest$IpAddresses": "<p>The subnets and IP addresses in your VPC that DNS queries originate from (for outbound endpoints) or that you forward DNS queries to (for inbound endpoints). The subnet ID uniquely identifies a VPC. </p> <note> <p>Even though the minimum is 1, Route 53 requires that you create at least two.</p> </note>"
       }
     },
     "IpAddressesResponse": {
@@ -1252,6 +1252,21 @@
         "UpdateFirewallRuleRequest$Priority": "<p>The setting that determines the processing order of the rule in the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.</p> <p>You must specify a unique priority for each rule in a rule group. To make it easier to insert rules later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for the rules in a rule group at any time.</p>"
       }
     },
+    "Protocol": {
+      "base": null,
+      "refs": {
+        "ProtocolList$member": null,
+        "TargetAddress$Protocol": "<p> The protocols for the Resolver endpoints. DoH-FIPS is applicable for inbound endpoints only. </p> <p>For an inbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 and DoH-FIPS in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>DoH-FIPS alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul> <p>For an outbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul>"
+      }
+    },
+    "ProtocolList": {
+      "base": null,
+      "refs": {
+        "CreateResolverEndpointRequest$Protocols": "<p> The protocols you want to use for the endpoint. DoH-FIPS is applicable for inbound endpoints only. </p> <p>For an inbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 and DoH-FIPS in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>DoH-FIPS alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul> <p>For an outbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul>",
+        "ResolverEndpoint$Protocols": "<p> Protocols used for the endpoint. DoH-FIPS is applicable for inbound endpoints only. </p> <p>For an inbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 and DoH-FIPS in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>DoH-FIPS alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul> <p>For an outbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul>",
+        "UpdateResolverEndpointRequest$Protocols": "<p> The protocols you want to use for the endpoint. DoH-FIPS is applicable for inbound endpoints only. </p> <p>For an inbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 and DoH-FIPS in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>DoH-FIPS alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul> <p>For an outbound endpoint you can apply the protocols as follows:</p> <ul> <li> <p> Do53 and DoH in combination.</p> </li> <li> <p>Do53 alone.</p> </li> <li> <p>DoH alone.</p> </li> <li> <p>None, which is treated as Do53.</p> </li> </ul> <important> <p> You can't change the protocol of an inbound endpoint directly from only Do53 to only DoH, or DoH-FIPS. This is to prevent a sudden disruption to incoming traffic that relies on Do53. To change the protocol from Do53 to DoH, or DoH-FIPS, you must first enable both Do53 and DoH, or Do53 and DoH-FIPS, to make sure that all incoming traffic has transferred to using the DoH protocol, or DoH-FIPS, and then remove the Do53.</p> </important>"
+      }
+    },
     "PutFirewallRuleGroupPolicyRequest": {
       "base": null,
       "refs": {
@@ -1319,7 +1334,7 @@
     "ResolverDnssecConfigList": {
       "base": null,
       "refs": {
-        "ListResolverDnssecConfigsResponse$ResolverDnssecConfigs": "<p>An array that contains one <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html\">ResolverDnssecConfig</a> element for each configuration for DNSSEC validation that is associated with the current Amazon Web Services account.</p>"
+        "ListResolverDnssecConfigsResponse$ResolverDnssecConfigs": "<p>An array that contains one <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html\">ResolverDnssecConfig</a> element for each configuration for DNSSEC validation that is associated with the current Amazon Web Services account. It doesn't contain disabled DNSSEC configurations for the resource.</p>"
       }
     },
     "ResolverEndpoint": {
@@ -1908,7 +1923,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>You have provided an invalid command. Supported values are <code>ADD</code>, <code>REMOVE</code>, or <code>REPLACE</code> a domain.</p>",
+      "base": "<p>You have provided an invalid command. If you ran the <code>UpdateFirewallDomains</code> request. supported values are <code>ADD</code>, <code>REMOVE</code>, or <code>REPLACE</code> a domain.</p>",
       "refs": {
       }
     }

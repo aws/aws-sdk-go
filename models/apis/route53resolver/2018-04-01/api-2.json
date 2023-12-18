@@ -166,6 +166,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
@@ -206,6 +207,7 @@
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceUnavailableException"},
         {"shape":"InternalServiceErrorException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -1120,6 +1122,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
       ]
@@ -1139,7 +1142,8 @@
         {"shape":"ResourceUnavailableException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceErrorException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     }
   },
@@ -1432,6 +1436,14 @@
         },
         "Direction":{"shape":"ResolverEndpointDirection"},
         "IpAddresses":{"shape":"IpAddressesRequest"},
+        "OutpostArn":{
+          "shape":"OutpostArn",
+          "box":true
+        },
+        "PreferredInstanceType":{
+          "shape":"OutpostInstanceType",
+          "box":true
+        },
         "Tags":{
           "shape":"TagList",
           "box":true
@@ -1440,12 +1452,8 @@
           "shape":"ResolverEndpointType",
           "box":true
         },
-        "OutpostArn":{
-          "shape":"OutpostArn",
-          "box":true
-        },
-        "PreferredInstanceType":{
-          "shape":"OutpostInstanceType",
+        "Protocols":{
+          "shape":"ProtocolList",
           "box":true
         }
       }
@@ -1486,14 +1494,16 @@
       "type":"structure",
       "required":[
         "CreatorRequestId",
-        "RuleType",
-        "DomainName"
+        "RuleType"
       ],
       "members":{
         "CreatorRequestId":{"shape":"CreatorRequestId"},
         "Name":{"shape":"Name"},
         "RuleType":{"shape":"RuleTypeOption"},
-        "DomainName":{"shape":"DomainName"},
+        "DomainName":{
+          "shape":"DomainName",
+          "box":true
+        },
         "TargetIps":{
           "shape":"TargetList",
           "box":true
@@ -2232,7 +2242,7 @@
       "type":"list",
       "member":{"shape":"IpAddressRequest"},
       "max":20,
-      "min":1
+      "min":2
     },
     "IpAddressesResponse":{
       "type":"list",
@@ -2725,6 +2735,20 @@
       "min":0
     },
     "Priority":{"type":"integer"},
+    "Protocol":{
+      "type":"string",
+      "enum":[
+        "DoH",
+        "Do53",
+        "DoH-FIPS"
+      ]
+    },
+    "ProtocolList":{
+      "type":"list",
+      "member":{"shape":"Protocol"},
+      "max":2,
+      "min":1
+    },
     "PutFirewallRuleGroupPolicyRequest":{
       "type":"structure",
       "required":[
@@ -2839,9 +2863,10 @@
         "StatusMessage":{"shape":"StatusMessage"},
         "CreationTime":{"shape":"Rfc3339TimeString"},
         "ModificationTime":{"shape":"Rfc3339TimeString"},
-        "ResolverEndpointType":{"shape":"ResolverEndpointType"},
         "OutpostArn":{"shape":"OutpostArn"},
-        "PreferredInstanceType":{"shape":"OutpostInstanceType"}
+        "PreferredInstanceType":{"shape":"OutpostInstanceType"},
+        "ResolverEndpointType":{"shape":"ResolverEndpointType"},
+        "Protocols":{"shape":"ProtocolList"}
       }
     },
     "ResolverEndpointDirection":{
@@ -3174,6 +3199,10 @@
         "Ipv6":{
           "shape":"Ipv6",
           "box":true
+        },
+        "Protocol":{
+          "shape":"Protocol",
+          "box":true
         }
       }
     },
@@ -3413,6 +3442,10 @@
         },
         "UpdateIpAddresses":{
           "shape":"UpdateIpAddresses",
+          "box":true
+        },
+        "Protocols":{
+          "shape":"ProtocolList",
           "box":true
         }
       }

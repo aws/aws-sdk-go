@@ -168,7 +168,9 @@ func (c *CognitoIdentityProvider) AdminAddUserToGroupRequest(input *AdminAddUser
 
 // AdminAddUserToGroup API operation for Amazon Cognito Identity Provider.
 //
-// Adds the specified user to the specified group.
+// Adds a user to a group. A user who is in a group can present a preferred-role
+// claim to an identity pool, and populates a cognito:groups claim to their
+// access and identity tokens.
 //
 // Amazon Cognito evaluates Identity and Access Management (IAM) policies in
 // requests for this API operation. For this operation, you must use IAM credentials
@@ -277,8 +279,18 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 
 // AdminConfirmSignUp API operation for Amazon Cognito Identity Provider.
 //
-// Confirms user registration as an admin without using a confirmation code.
-// Works on any user.
+// This IAM-authenticated API operation provides a code that Amazon Cognito
+// sent to your user when they signed up in your user pool. After your user
+// enters their code, they confirm ownership of the email address or phone number
+// that they provided, and their user account becomes active. Depending on your
+// user pool configuration, your users will receive their confirmation code
+// in an email or SMS message.
+//
+// Local users who signed up in your user pool are the only type of user who
+// can confirm sign-up with a code. Users who federate through an external identity
+// provider (IdP) have already been confirmed by their IdP. Administrator-created
+// users confirm their accounts when they respond to their invitation email
+// message and choose a password.
 //
 // Amazon Cognito evaluates Identity and Access Management (IAM) policies in
 // requests for this API operation. For this operation, you must use IAM credentials
@@ -1905,7 +1917,7 @@ func (c *CognitoIdentityProvider) AdminListGroupsForUserRequest(input *AdminList
 
 // AdminListGroupsForUser API operation for Amazon Cognito Identity Provider.
 //
-// Lists the groups that the user belongs to.
+// Lists the groups that a user belongs to.
 //
 // Amazon Cognito evaluates Identity and Access Management (IAM) policies in
 // requests for this API operation. For this operation, you must use IAM credentials
@@ -2509,7 +2521,15 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 
 // AdminRespondToAuthChallenge API operation for Amazon Cognito Identity Provider.
 //
-// Responds to an authentication challenge, as an administrator.
+// Some API operations in a user pool generate a challenge, like a prompt for
+// an MFA code, for device authentication that bypasses MFA, or for a custom
+// authentication challenge. An AdminRespondToAuthChallenge API request provides
+// the answer to that challenge, like a code or a secure remote password (SRP).
+// The parameters of a response to an authentication challenge vary with the
+// type of challenge.
+//
+// For more information about custom authentication challenges, see Custom authentication
+// challenge Lambda triggers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -3444,15 +3464,26 @@ func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUser
 
 // AdminUserGlobalSignOut API operation for Amazon Cognito Identity Provider.
 //
-// Signs out a user from all devices. AdminUserGlobalSignOut invalidates all
-// identity, access and refresh tokens that Amazon Cognito has issued to a user.
-// A user can still use a hosted UI cookie to retrieve new tokens for the duration
-// of the 1-hour cookie validity period.
+// Invalidates the identity, access, and refresh tokens that Amazon Cognito
+// issued to a user. Call this operation with your administrative credentials
+// when your user signs out of your app. This results in the following behavior.
 //
-// Your app isn't aware that a user's access token is revoked unless it attempts
-// to authorize a user pools API request with an access token that contains
-// the scope aws.cognito.signin.user.admin. Your app might otherwise accept
-// access tokens until they expire.
+//   - Amazon Cognito no longer accepts token-authorized user operations that
+//     you authorize with a signed-out user's access tokens. For more information,
+//     see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+//     Amazon Cognito returns an Access Token has been revoked error when your
+//     app attempts to authorize a user pools API request with a revoked access
+//     token that contains the scope aws.cognito.signin.user.admin.
+//
+//   - Amazon Cognito no longer accepts a signed-out user's ID token in a GetId
+//     (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html)
+//     request to an identity pool with ServerSideTokenCheck enabled for its
+//     user pool IdP configuration in CognitoIdentityProvider (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html).
+//
+//   - Amazon Cognito no longer accepts a signed-out user's refresh tokens
+//     in refresh requests.
+//
+// Other requests might be valid until your user's token expires.
 //
 // Amazon Cognito evaluates Identity and Access Management (IAM) policies in
 // requests for this API operation. For this operation, you must use IAM credentials
@@ -4079,7 +4110,20 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 
 // ConfirmSignUp API operation for Amazon Cognito Identity Provider.
 //
-// Confirms registration of a new user.
+// This public API operation provides a code that Amazon Cognito sent to your
+// user when they signed up in your user pool via the SignUp (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html)
+// API operation. After your user enters their code, they confirm ownership
+// of the email address or phone number that they provided, and their user account
+// becomes active. Depending on your user pool configuration, your users will
+// receive their confirmation code in an email or SMS message.
+//
+// Local users who signed up in your user pool are the only type of user who
+// can confirm sign-up with a code. Users who federate through an external identity
+// provider (IdP) have already been confirmed by their IdP. Administrator-created
+// users, users created with the AdminCreateUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html)
+// API operation, confirm their accounts when they respond to their invitation
+// email message and choose a password. They do not receive a confirmation code.
+// Instead, they receive a temporary password.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
@@ -7882,15 +7926,26 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 
 // GlobalSignOut API operation for Amazon Cognito Identity Provider.
 //
-// Signs out a user from all devices. GlobalSignOut invalidates all identity,
-// access and refresh tokens that Amazon Cognito has issued to a user. A user
-// can still use a hosted UI cookie to retrieve new tokens for the duration
-// of the 1-hour cookie validity period.
+// Invalidates the identity, access, and refresh tokens that Amazon Cognito
+// issued to a user. Call this operation when your user signs out of your app.
+// This results in the following behavior.
 //
-// Your app isn't aware that a user's access token is revoked unless it attempts
-// to authorize a user pools API request with an access token that contains
-// the scope aws.cognito.signin.user.admin. Your app might otherwise accept
-// access tokens until they expire.
+//   - Amazon Cognito no longer accepts token-authorized user operations that
+//     you authorize with a signed-out user's access tokens. For more information,
+//     see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+//     Amazon Cognito returns an Access Token has been revoked error when your
+//     app attempts to authorize a user pools API request with a revoked access
+//     token that contains the scope aws.cognito.signin.user.admin.
+//
+//   - Amazon Cognito no longer accepts a signed-out user's ID token in a GetId
+//     (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html)
+//     request to an identity pool with ServerSideTokenCheck enabled for its
+//     user pool IdP configuration in CognitoIdentityProvider (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html).
+//
+//   - Amazon Cognito no longer accepts a signed-out user's refresh tokens
+//     in refresh requests.
+//
+// Other requests might be valid until your user's token expires.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
@@ -9773,7 +9828,15 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 
 // RespondToAuthChallenge API operation for Amazon Cognito Identity Provider.
 //
-// Responds to the authentication challenge.
+// Some API operations in a user pool generate a challenge, like a prompt for
+// an MFA code, for device authentication that bypasses MFA, or for a custom
+// authentication challenge. A RespondToAuthChallenge API request provides the
+// answer to that challenge, like a code or a secure remote password (SRP).
+// The parameters of a response to an authentication challenge vary with the
+// type of challenge.
+//
+// For more information about custom authentication challenges, see Custom authentication
+// challenge Lambda triggers (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html).
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
@@ -11845,7 +11908,11 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 
 // UpdateUserAttributes API operation for Amazon Cognito Identity Provider.
 //
-// Allows a user to update a specific attribute (one at a time).
+// With this operation, your users can update one or more of their attributes
+// with their own credentials. You authorize this API request with the user's
+// access token. To delete an attribute from your user, submit the attribute
+// in your API request with a blank value. Custom attribute values in this request
+// must include the custom: prefix.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
@@ -13027,7 +13094,7 @@ func (s AddCustomAttributesOutput) GoString() string {
 type AdminAddUserToGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The group name.
+	// The name of the group that you want to add your user to.
 	//
 	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
@@ -13037,7 +13104,10 @@ type AdminAddUserToGroupInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The username for the user.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminAddUserToGroupInput's
@@ -13172,7 +13242,10 @@ type AdminConfirmSignUpInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name for which you want to confirm user registration.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminConfirmSignUpInput's
@@ -13471,18 +13544,18 @@ type AdminCreateUserInput struct {
 	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The user's validation data. This is an array of name-value pairs that contain
-	// user attributes and attribute values that you can use for custom validation,
-	// such as restricting the types of user accounts that can be registered. For
-	// example, you might choose to allow or disallow user sign-up based on the
-	// user's domain.
+	// Temporary user attributes that contribute to the outcomes of your pre sign-up
+	// Lambda trigger. This set of key-value pairs are for custom validation of
+	// information that you collect from your users but don't need to retain.
 	//
-	// To configure custom validation, you must create a Pre Sign-up Lambda trigger
-	// for the user pool as described in the Amazon Cognito Developer Guide. The
-	// Lambda trigger receives the validation data and uses it in the validation
-	// process.
+	// Your Lambda function can analyze this additional data and act on it. Your
+	// function might perform external API operations like logging user attributes
+	// and validation data to Amazon CloudWatch Logs. Validation data might also
+	// affect the response that your function returns to Amazon Cognito, like automatically
+	// confirming the user if they sign up from within your network.
 	//
-	// The user's validation data isn't persisted.
+	// For more information about the pre sign-up Lambda trigger, see Pre sign-up
+	// Lambda trigger (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html).
 	ValidationData []*AttributeType `type:"list"`
 }
 
@@ -13649,7 +13722,10 @@ type AdminDeleteUserAttributesInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user from which you would like to delete attributes.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDeleteUserAttributesInput's
@@ -13753,7 +13829,10 @@ type AdminDeleteUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user you want to delete.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDeleteUserInput's
@@ -13933,7 +14012,10 @@ type AdminDisableUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user you want to disable.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDisableUserInput's
@@ -14028,7 +14110,10 @@ type AdminEnableUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user you want to enable.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminEnableUserInput's
@@ -14128,7 +14213,10 @@ type AdminForgetDeviceInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminForgetDeviceInput's
@@ -14238,7 +14326,10 @@ type AdminGetDeviceInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminGetDeviceInput's
@@ -14356,7 +14447,10 @@ type AdminGetUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user you want to retrieve.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminGetUserInput's
@@ -14662,8 +14756,6 @@ type AdminInitiateAuthInput struct {
 	//
 	//    * Define auth challenge
 	//
-	//    * Verify auth challenge
-	//
 	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
@@ -14839,7 +14931,7 @@ type AdminInitiateAuthOutput struct {
 	//
 	//    * MFA_SETUP: For users who are required to set up an MFA factor before
 	//    they can sign in. The MFA types activated for the user pool will be listed
-	//    in the challenge parameters MFA_CAN_SETUP value. To set up software token
+	//    in the challenge parameters MFAS_CAN_SETUP value. To set up software token
 	//    MFA, use the session returned here from InitiateAuth as an input to AssociateSoftwareToken,
 	//    and use the session returned by VerifySoftwareToken as an input to RespondToAuthChallenge
 	//    with challenge name MFA_SETUP to complete sign-in. To set up SMS MFA,
@@ -15069,7 +15161,12 @@ type AdminListDevicesInput struct {
 	// The limit of the devices request.
 	Limit *int64 `type:"integer"`
 
-	// The pagination token.
+	// This API operation returns a limited number of results. The pagination token
+	// is an identifier that you can present in an additional API request with the
+	// same parameters. When you include the pagination token, Amazon Cognito returns
+	// the next set of items after the current list. Subsequent requests return
+	// a new pagination token. By use of this token, you can paginate through the
+	// full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID.
@@ -15077,7 +15174,10 @@ type AdminListDevicesInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListDevicesInput's
@@ -15161,7 +15261,10 @@ type AdminListDevicesOutput struct {
 	// The devices in the list of devices response.
 	Devices []*DeviceType `type:"list"`
 
-	// The pagination token.
+	// The identifier that Amazon Cognito returned with the previous request to
+	// this operation. When you include a pagination token in your request, Amazon
+	// Cognito returns the next set of items in the list. By use of this token,
+	// you can paginate through the full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 }
 
@@ -15210,7 +15313,10 @@ type AdminListGroupsForUserInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The username for the user.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListGroupsForUserInput's
@@ -15343,7 +15449,10 @@ type AdminListUserAuthEventsInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user pool username or an alias.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListUserAuthEventsInput's
@@ -15474,7 +15583,10 @@ type AdminRemoveUserFromGroupInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The username for the user.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminRemoveUserFromGroupInput's
@@ -15610,7 +15722,10 @@ type AdminResetUserPasswordInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user whose password you want to reset.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminResetUserPasswordInput's
@@ -15714,39 +15829,74 @@ type AdminRespondToAuthChallengeInput struct {
 	// ChallengeName is a required field
 	ChallengeName *string `type:"string" required:"true" enum:"ChallengeNameType"`
 
-	// The challenge responses. These are inputs corresponding to the value of ChallengeName,
-	// for example:
+	// The responses to the challenge that you received in the previous request.
+	// Each challenge has its own required response parameters. The following examples
+	// are partial JSON request bodies that highlight challenge-response parameters.
 	//
-	//    * SMS_MFA: SMS_MFA_CODE, USERNAME, SECRET_HASH (if app client is configured
-	//    with client secret).
+	// You must provide a SECRET_HASH parameter in all challenge responses to an
+	// app client that has a client secret.
 	//
-	//    * PASSWORD_VERIFIER: PASSWORD_CLAIM_SIGNATURE, PASSWORD_CLAIM_SECRET_BLOCK,
-	//    TIMESTAMP, USERNAME, SECRET_HASH (if app client is configured with client
-	//    secret). PASSWORD_VERIFIER requires DEVICE_KEY when signing in with a
-	//    remembered device.
+	// SMS_MFA
 	//
-	//    * ADMIN_NO_SRP_AUTH: PASSWORD, USERNAME, SECRET_HASH (if app client is
-	//    configured with client secret).
+	// "ChallengeName": "SMS_MFA", "ChallengeResponses": {"SMS_MFA_CODE": "[SMS_code]",
+	// "USERNAME": "[username]"}
 	//
-	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, USERNAME, SECRET_HASH (if app client
-	//    is configured with client secret). To set any required attributes that
-	//    Amazon Cognito returned as requiredAttributes in the AdminInitiateAuth
-	//    response, add a userAttributes.attributename parameter. This parameter
-	//    can also set values for writable attributes that aren't required by your
-	//    user pool. In a NEW_PASSWORD_REQUIRED challenge response, you can't modify
-	//    a required attribute that already has a value. In AdminRespondToAuthChallenge,
-	//    set a value for any keys that Amazon Cognito returned in the requiredAttributes
-	//    parameter, then use the AdminUpdateUserAttributes API operation to modify
-	//    the value of any additional attributes.
+	// PASSWORD_VERIFIER
 	//
-	//    * MFA_SETUP requires USERNAME, plus you must use the session value returned
-	//    by VerifySoftwareToken in the Session parameter.
+	// "ChallengeName": "PASSWORD_VERIFIER", "ChallengeResponses": {"PASSWORD_CLAIM_SIGNATURE":
+	// "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK": "[secret_block]", "TIMESTAMP":
+	// [timestamp], "USERNAME": "[username]"}
 	//
-	// The value of the USERNAME attribute must be the user's actual username, not
-	// an alias (such as an email address or phone number). To make this simpler,
-	// the AdminInitiateAuth response includes the actual username value in the
-	// USERNAMEUSER_ID_FOR_SRP attribute. This happens even if you specified an
-	// alias in your call to AdminInitiateAuth.
+	// Add "DEVICE_KEY" when you sign in with a remembered device.
+	//
+	// CUSTOM_CHALLENGE
+	//
+	// "ChallengeName": "CUSTOM_CHALLENGE", "ChallengeResponses": {"USERNAME": "[username]",
+	// "ANSWER": "[challenge_answer]"}
+	//
+	// Add "DEVICE_KEY" when you sign in with a remembered device.
+	//
+	// NEW_PASSWORD_REQUIRED
+	//
+	// "ChallengeName": "NEW_PASSWORD_REQUIRED", "ChallengeResponses": {"NEW_PASSWORD":
+	// "[new_password]", "USERNAME": "[username]"}
+	//
+	// To set any required attributes that InitiateAuth returned in an requiredAttributes
+	// parameter, add "userAttributes.[attribute_name]": "[attribute_value]". This
+	// parameter can also set values for writable attributes that aren't required
+	// by your user pool.
+	//
+	// In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
+	// attribute that already has a value. In RespondToAuthChallenge, set a value
+	// for any keys that Amazon Cognito returned in the requiredAttributes parameter,
+	// then use the UpdateUserAttributes API operation to modify the value of any
+	// additional attributes.
+	//
+	// SOFTWARE_TOKEN_MFA
+	//
+	// "ChallengeName": "SOFTWARE_TOKEN_MFA", "ChallengeResponses": {"USERNAME":
+	// "[username]", "SOFTWARE_TOKEN_MFA_CODE": [authenticator_code]}
+	//
+	// DEVICE_SRP_AUTH
+	//
+	// "ChallengeName": "DEVICE_SRP_AUTH", "ChallengeResponses": {"USERNAME": "[username]",
+	// "DEVICE_KEY": "[device_key]", "SRP_A": "[srp_a]"}
+	//
+	// DEVICE_PASSWORD_VERIFIER
+	//
+	// "ChallengeName": "DEVICE_PASSWORD_VERIFIER", "ChallengeResponses": {"DEVICE_KEY":
+	// "[device_key]", "PASSWORD_CLAIM_SIGNATURE": "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK":
+	// "[secret_block]", "TIMESTAMP": [timestamp], "USERNAME": "[username]"}
+	//
+	// MFA_SETUP
+	//
+	// "ChallengeName": "MFA_SETUP", "ChallengeResponses": {"USERNAME": "[username]"},
+	// "SESSION": "[Session ID from VerifySoftwareToken]"
+	//
+	// SELECT_MFA_TYPE
+	//
+	// "ChallengeName": "SELECT_MFA_TYPE", "ChallengeResponses": {"USERNAME": "[username]",
+	// "ANSWER": "[SMS_MFA or SOFTWARE_TOKEN_MFA]"}
 	//
 	// For more information about SECRET_HASH, see Computing secret hash values
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash).
@@ -16017,7 +16167,10 @@ type AdminSetUserMFAPreferenceInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user pool username or alias.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserMFAPreferenceInput's
@@ -16133,7 +16286,10 @@ type AdminSetUserPasswordInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user whose password you want to set.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserPasswordInput's
@@ -16248,7 +16404,10 @@ type AdminSetUserSettingsInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user whose options you're setting.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserSettingsInput's
@@ -16374,7 +16533,10 @@ type AdminUpdateAuthEventFeedbackInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user pool username.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateAuthEventFeedbackInput's
@@ -16496,7 +16658,10 @@ type AdminUpdateDeviceStatusInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateDeviceStatusInput's
@@ -16660,7 +16825,10 @@ type AdminUpdateUserAttributesInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name of the user for whom you want to update user attributes.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateUserAttributesInput's
@@ -16780,7 +16948,10 @@ type AdminUserGlobalSignOutInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user name.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUserGlobalSignOutInput's
@@ -18201,8 +18372,10 @@ type ConfirmForgotPasswordInput struct {
 	// String and GoString methods.
 	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
-	// The user name of the user for whom you want to enter a code to retrieve a
-	// forgotten password.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmForgotPasswordInput's
@@ -18414,7 +18587,10 @@ type ConfirmSignUpInput struct {
 	// String and GoString methods.
 	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
-	// The user name of the user whose registration you want to confirm.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmSignUpInput's
@@ -19407,7 +19583,19 @@ type CreateUserPoolClientInput struct {
 	//    user existence related errors aren't prevented.
 	PreventUserExistenceErrors *string `type:"string" enum:"PreventUserExistenceErrorTypes"`
 
-	// The read attributes.
+	// The list of user attributes that you want your app client to have read-only
+	// access to. After your user authenticates in your app, their access token
+	// authorizes them to read their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when your user selects a link
+	// to view their profile information. Your app makes a GetUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUser.html)
+	// API request to retrieve and display your user's profile data.
+	//
+	// When you don't specify the ReadAttributes for your app client, your app can
+	// read the values of email_verified, phone_number_verified, and the Standard
+	// attributes of your user pool. When your user pool has read access to these
+	// default attributes, ReadAttributes doesn't return any information. Amazon
+	// Cognito only populates ReadAttributes in the API response if you have specified
+	// your own custom set of read attributes.
 	ReadAttributes []*string `type:"list"`
 
 	// The refresh token time limit. After this limit expires, your user can't use
@@ -19443,7 +19631,19 @@ type CreateUserPoolClientInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user pool attributes that the app client can write to.
+	// The list of user attributes that you want your app client to have write access
+	// to. After your user authenticates in your app, their access token authorizes
+	// them to set or modify their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when you present your user with
+	// a form to update their profile information and they change their last name.
+	// Your app then makes an UpdateUserAttributes (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserAttributes.html)
+	// API request and sets family_name to the new value.
+	//
+	// When you don't specify the WriteAttributes for your app client, your app
+	// can write the values of the Standard attributes of your user pool. When your
+	// user pool has write access to these default attributes, WriteAttributes doesn't
+	// return any information. Amazon Cognito only populates WriteAttributes in
+	// the API response if you have specified your own custom set of write attributes.
 	//
 	// If your app client allows users to sign in through an IdP, this array must
 	// include all attributes that you have mapped to IdP attributes. Amazon Cognito
@@ -20259,19 +20459,21 @@ func (s *CustomDomainConfigType) SetCertificateArn(v string) *CustomDomainConfig
 	return s
 }
 
-// A custom email sender Lambda configuration type.
+// The properties of a custom email sender Lambda trigger.
 type CustomEmailLambdaVersionConfigType struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-	// activates to send email notifications to users.
+	// The Amazon Resource Name (ARN) of the function that you want to assign to
+	// your Lambda trigger.
 	//
 	// LambdaArn is a required field
 	LambdaArn *string `min:"20" type:"string" required:"true"`
 
-	// Signature of the "request" attribute in the "event" information Amazon Cognito
-	// passes to your custom email Lambda function. The only supported value is
-	// V1_0.
+	// The user pool trigger version of the request that Amazon Cognito sends to
+	// your Lambda function. Higher-numbered versions add fields that support new
+	// features.
+	//
+	// You must use a LambdaVersion of V1_0 with a custom sender function.
 	//
 	// LambdaVersion is a required field
 	LambdaVersion *string `type:"string" required:"true" enum:"CustomEmailSenderLambdaVersionType"`
@@ -20326,19 +20528,21 @@ func (s *CustomEmailLambdaVersionConfigType) SetLambdaVersion(v string) *CustomE
 	return s
 }
 
-// A custom SMS sender Lambda configuration type.
+// The properties of a custom SMS sender Lambda trigger.
 type CustomSMSLambdaVersionConfigType struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-	// activates to send SMS notifications to users.
+	// The Amazon Resource Name (ARN) of the function that you want to assign to
+	// your Lambda trigger.
 	//
 	// LambdaArn is a required field
 	LambdaArn *string `min:"20" type:"string" required:"true"`
 
-	// Signature of the "request" attribute in the "event" information that Amazon
-	// Cognito passes to your custom SMS Lambda function. The only supported value
-	// is V1_0.
+	// The user pool trigger version of the request that Amazon Cognito sends to
+	// your Lambda function. Higher-numbered versions add fields that support new
+	// features.
+	//
+	// You must use a LambdaVersion of V1_0 with a custom sender function.
 	//
 	// LambdaVersion is a required field
 	LambdaVersion *string `type:"string" required:"true" enum:"CustomSMSSenderLambdaVersionType"`
@@ -22781,8 +22985,10 @@ type ForgotPasswordInput struct {
 	// String and GoString methods.
 	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
-	// The user name of the user for whom you want to enter a code to reset a forgotten
-	// password.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ForgotPasswordInput's
@@ -24440,8 +24646,6 @@ type InitiateAuthInput struct {
 	//
 	//    * Define auth challenge
 	//
-	//    * Verify auth challenge
-	//
 	// For more information, see Customizing user pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
 	// in the Amazon Cognito Developer Guide.
@@ -24555,8 +24759,7 @@ type InitiateAuthOutput struct {
 	AuthenticationResult *AuthenticationResultType `type:"structure"`
 
 	// The name of the challenge that you're responding to with this call. This
-	// name is returned in the AdminInitiateAuth response if you must pass another
-	// challenge.
+	// name is returned in the InitiateAuth response if you must pass another challenge.
 	//
 	// Valid values include the following:
 	//
@@ -24594,7 +24797,7 @@ type InitiateAuthOutput struct {
 	//
 	//    * MFA_SETUP: For users who are required to setup an MFA factor before
 	//    they can sign in. The MFA types activated for the user pool will be listed
-	//    in the challenge parameters MFA_CAN_SETUP value. To set up software token
+	//    in the challenge parameters MFAS_CAN_SETUP value. To set up software token
 	//    MFA, use the session returned here from InitiateAuth as an input to AssociateSoftwareToken.
 	//    Use the session returned by VerifySoftwareToken as an input to RespondToAuthChallenge
 	//    with challenge name MFA_SETUP to complete sign-in. To set up SMS MFA,
@@ -25295,8 +25498,19 @@ type LambdaConfigType struct {
 	// A pre-registration Lambda trigger.
 	PreSignUp *string `min:"20" type:"string"`
 
-	// A Lambda trigger that is invoked before token generation.
+	// The Amazon Resource Name (ARN) of the function that you want to assign to
+	// your Lambda trigger.
+	//
+	// Set this parameter for legacy purposes. If you also set an ARN in PreTokenGenerationConfig,
+	// its value must be identical to PreTokenGeneration. For new instances of pre
+	// token generation triggers, set the LambdaArn of PreTokenGenerationConfig.
+	//
+	// You can set
 	PreTokenGeneration *string `min:"20" type:"string"`
+
+	// The detailed configuration of a pre token generation trigger. If you also
+	// set an ARN in PreTokenGeneration, its value must be identical to PreTokenGenerationConfig.
+	PreTokenGenerationConfig *PreTokenGenerationVersionConfigType `type:"structure"`
 
 	// The user migration Lambda config type.
 	UserMigration *string `min:"20" type:"string"`
@@ -25369,6 +25583,11 @@ func (s *LambdaConfigType) Validate() error {
 			invalidParams.AddNested("CustomSMSSender", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PreTokenGenerationConfig != nil {
+		if err := s.PreTokenGenerationConfig.Validate(); err != nil {
+			invalidParams.AddNested("PreTokenGenerationConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -25439,6 +25658,12 @@ func (s *LambdaConfigType) SetPreSignUp(v string) *LambdaConfigType {
 // SetPreTokenGeneration sets the PreTokenGeneration field's value.
 func (s *LambdaConfigType) SetPreTokenGeneration(v string) *LambdaConfigType {
 	s.PreTokenGeneration = &v
+	return s
+}
+
+// SetPreTokenGenerationConfig sets the PreTokenGenerationConfig field's value.
+func (s *LambdaConfigType) SetPreTokenGenerationConfig(v *PreTokenGenerationVersionConfigType) *LambdaConfigType {
+	s.PreTokenGenerationConfig = v
 	return s
 }
 
@@ -25537,7 +25762,12 @@ type ListDevicesInput struct {
 	// The limit of the device request.
 	Limit *int64 `type:"integer"`
 
-	// The pagination token for the list request.
+	// This API operation returns a limited number of results. The pagination token
+	// is an identifier that you can present in an additional API request with the
+	// same parameters. When you include the pagination token, Amazon Cognito returns
+	// the next set of items after the current list. Subsequent requests return
+	// a new pagination token. By use of this token, you can paginate through the
+	// full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 }
 
@@ -25600,7 +25830,10 @@ type ListDevicesOutput struct {
 	// The devices returned in the list devices response.
 	Devices []*DeviceType `type:"list"`
 
-	// The pagination token for the list device response.
+	// The identifier that Amazon Cognito returned with the previous request to
+	// this operation. When you include a pagination token in your request, Amazon
+	// Cognito returns the next set of items in the list. By use of this token,
+	// you can paginate through the full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 }
 
@@ -26063,8 +26296,12 @@ type ListUserImportJobsInput struct {
 	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
-	// An identifier that was returned from the previous call to ListUserImportJobs,
-	// which can be used to return the next set of import jobs in the list.
+	// This API operation returns a limited number of results. The pagination token
+	// is an identifier that you can present in an additional API request with the
+	// same parameters. When you include the pagination token, Amazon Cognito returns
+	// the next set of items after the current list. Subsequent requests return
+	// a new pagination token. By use of this token, you can paginate through the
+	// full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID for the user pool that the users are being imported into.
@@ -26139,8 +26376,10 @@ func (s *ListUserImportJobsInput) SetUserPoolId(v string) *ListUserImportJobsInp
 type ListUserImportJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier that can be used to return the next set of user import jobs
-	// in the list.
+	// The identifier that Amazon Cognito returned with the previous request to
+	// this operation. When you include a pagination token in your request, Amazon
+	// Cognito returns the next set of items in the list. By use of this token,
+	// you can paginate through the full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user import jobs.
@@ -26409,7 +26648,7 @@ type ListUsersInGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
-	// The limit of the request to list users.
+	// The maximum number of users that you want to retrieve before pagination.
 	Limit *int64 `type:"integer"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -26496,7 +26735,7 @@ type ListUsersInGroupOutput struct {
 	// of items in the list.
 	NextToken *string `min:"1" type:"string"`
 
-	// The users returned in the request to list users.
+	// A list of users in the group, and their attributes.
 	Users []*UserType `type:"list"`
 }
 
@@ -26538,6 +26777,12 @@ type ListUsersInput struct {
 	// Amazon Cognito to include in the response for each user. When you don't provide
 	// an AttributesToGet parameter, Amazon Cognito returns all attributes for each
 	// user.
+	//
+	// Use AttributesToGet with required attributes in your user pool, or in conjunction
+	// with Filter. Amazon Cognito returns an error if not all users in the results
+	// have set a value for the attribute you request. Attributes that you can't
+	// filter on, including custom attributes, must have a value set in every user
+	// profile before an AttributesToGet parameter returns results.
 	AttributesToGet []*string `type:"list"`
 
 	// A filter string of the form "AttributeName Filter-Type "AttributeValue"".
@@ -26599,8 +26844,12 @@ type ListUsersInput struct {
 	// Maximum number of users to be returned.
 	Limit *int64 `type:"integer"`
 
-	// An identifier that was returned from the previous call to this operation,
-	// which can be used to return the next set of items in the list.
+	// This API operation returns a limited number of results. The pagination token
+	// is an identifier that you can present in an additional API request with the
+	// same parameters. When you include the pagination token, Amazon Cognito returns
+	// the next set of items after the current list. Subsequent requests return
+	// a new pagination token. By use of this token, you can paginate through the
+	// full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID for the user pool on which the search should be performed.
@@ -26680,8 +26929,10 @@ func (s *ListUsersInput) SetUserPoolId(v string) *ListUsersInput {
 type ListUsersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier that was returned from the previous call to this operation,
-	// which can be used to return the next set of items in the list.
+	// The identifier that Amazon Cognito returned with the previous request to
+	// this operation. When you include a pagination token in your request, Amazon
+	// Cognito returns the next set of items in the list. By use of this token,
+	// you can paginate through the full list of items.
 	PaginationToken *string `min:"1" type:"string"`
 
 	// A list of the user pool users, and their attributes, that match your query.
@@ -27406,7 +27657,9 @@ type PasswordPolicyType struct {
 
 	// The number of days a temporary password is valid in the password policy.
 	// If the user doesn't sign in during this time, an administrator must reset
-	// their password.
+	// their password. Defaults to 7. If you submit a value of 0, Amazon Cognito
+	// treats it as a null value and sets TemporaryPasswordValidityDays to its default
+	// value.
 	//
 	// When you set TemporaryPasswordValidityDays for a user pool, you can no longer
 	// set a value for the legacy UnusedAccountValidityDays parameter in that user
@@ -27544,6 +27797,76 @@ func (s *PasswordResetRequiredException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *PasswordResetRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The properties of a pre token generation Lambda trigger.
+type PreTokenGenerationVersionConfigType struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the function that you want to assign to
+	// your Lambda trigger.
+	//
+	// This parameter and the PreTokenGeneration property of LambdaConfig have the
+	// same value. For new instances of pre token generation triggers, set LambdaArn.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `min:"20" type:"string" required:"true"`
+
+	// The user pool trigger version of the request that Amazon Cognito sends to
+	// your Lambda function. Higher-numbered versions add fields that support new
+	// features.
+	//
+	// LambdaVersion is a required field
+	LambdaVersion *string `type:"string" required:"true" enum:"PreTokenGenerationLambdaVersionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreTokenGenerationVersionConfigType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PreTokenGenerationVersionConfigType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PreTokenGenerationVersionConfigType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PreTokenGenerationVersionConfigType"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 20))
+	}
+	if s.LambdaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *PreTokenGenerationVersionConfigType) SetLambdaArn(v string) *PreTokenGenerationVersionConfigType {
+	s.LambdaArn = &v
+	return s
+}
+
+// SetLambdaVersion sets the LambdaVersion field's value.
+func (s *PreTokenGenerationVersionConfigType) SetLambdaVersion(v string) *PreTokenGenerationVersionConfigType {
+	s.LambdaVersion = &v
+	return s
 }
 
 // This exception is thrown when a precondition is not met.
@@ -27865,8 +28188,10 @@ type ResendConfirmationCodeInput struct {
 	// String and GoString methods.
 	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
-	// The username attribute of the user to whom you want to resend a confirmation
-	// code.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ResendConfirmationCodeInput's
@@ -28197,39 +28522,74 @@ type RespondToAuthChallengeInput struct {
 	// ChallengeName is a required field
 	ChallengeName *string `type:"string" required:"true" enum:"ChallengeNameType"`
 
-	// The challenge responses. These are inputs corresponding to the value of ChallengeName,
-	// for example:
+	// The responses to the challenge that you received in the previous request.
+	// Each challenge has its own required response parameters. The following examples
+	// are partial JSON request bodies that highlight challenge-response parameters.
 	//
-	// SECRET_HASH (if app client is configured with client secret) applies to all
-	// of the inputs that follow (including SOFTWARE_TOKEN_MFA).
+	// You must provide a SECRET_HASH parameter in all challenge responses to an
+	// app client that has a client secret.
 	//
-	//    * SMS_MFA: SMS_MFA_CODE, USERNAME.
+	// SMS_MFA
 	//
-	//    * PASSWORD_VERIFIER: PASSWORD_CLAIM_SIGNATURE, PASSWORD_CLAIM_SECRET_BLOCK,
-	//    TIMESTAMP, USERNAME. PASSWORD_VERIFIER requires DEVICE_KEY when you sign
-	//    in with a remembered device.
+	// "ChallengeName": "SMS_MFA", "ChallengeResponses": {"SMS_MFA_CODE": "[SMS_code]",
+	// "USERNAME": "[username]"}
 	//
-	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, USERNAME, SECRET_HASH (if app client
-	//    is configured with client secret). To set any required attributes that
-	//    Amazon Cognito returned as requiredAttributes in the InitiateAuth response,
-	//    add a userAttributes.attributename parameter. This parameter can also
-	//    set values for writable attributes that aren't required by your user pool.
-	//    In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
-	//    attribute that already has a value. In RespondToAuthChallenge, set a value
-	//    for any keys that Amazon Cognito returned in the requiredAttributes parameter,
-	//    then use the UpdateUserAttributes API operation to modify the value of
-	//    any additional attributes.
+	// PASSWORD_VERIFIER
 	//
-	//    * SOFTWARE_TOKEN_MFA: USERNAME and SOFTWARE_TOKEN_MFA_CODE are required
-	//    attributes.
+	// "ChallengeName": "PASSWORD_VERIFIER", "ChallengeResponses": {"PASSWORD_CLAIM_SIGNATURE":
+	// "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK": "[secret_block]", "TIMESTAMP":
+	// [timestamp], "USERNAME": "[username]"}
 	//
-	//    * DEVICE_SRP_AUTH requires USERNAME, DEVICE_KEY, SRP_A (and SECRET_HASH).
+	// Add "DEVICE_KEY" when you sign in with a remembered device.
 	//
-	//    * DEVICE_PASSWORD_VERIFIER requires everything that PASSWORD_VERIFIER
-	//    requires, plus DEVICE_KEY.
+	// CUSTOM_CHALLENGE
 	//
-	//    * MFA_SETUP requires USERNAME, plus you must use the session value returned
-	//    by VerifySoftwareToken in the Session parameter.
+	// "ChallengeName": "CUSTOM_CHALLENGE", "ChallengeResponses": {"USERNAME": "[username]",
+	// "ANSWER": "[challenge_answer]"}
+	//
+	// Add "DEVICE_KEY" when you sign in with a remembered device.
+	//
+	// NEW_PASSWORD_REQUIRED
+	//
+	// "ChallengeName": "NEW_PASSWORD_REQUIRED", "ChallengeResponses": {"NEW_PASSWORD":
+	// "[new_password]", "USERNAME": "[username]"}
+	//
+	// To set any required attributes that InitiateAuth returned in an requiredAttributes
+	// parameter, add "userAttributes.[attribute_name]": "[attribute_value]". This
+	// parameter can also set values for writable attributes that aren't required
+	// by your user pool.
+	//
+	// In a NEW_PASSWORD_REQUIRED challenge response, you can't modify a required
+	// attribute that already has a value. In RespondToAuthChallenge, set a value
+	// for any keys that Amazon Cognito returned in the requiredAttributes parameter,
+	// then use the UpdateUserAttributes API operation to modify the value of any
+	// additional attributes.
+	//
+	// SOFTWARE_TOKEN_MFA
+	//
+	// "ChallengeName": "SOFTWARE_TOKEN_MFA", "ChallengeResponses": {"USERNAME":
+	// "[username]", "SOFTWARE_TOKEN_MFA_CODE": [authenticator_code]}
+	//
+	// DEVICE_SRP_AUTH
+	//
+	// "ChallengeName": "DEVICE_SRP_AUTH", "ChallengeResponses": {"USERNAME": "[username]",
+	// "DEVICE_KEY": "[device_key]", "SRP_A": "[srp_a]"}
+	//
+	// DEVICE_PASSWORD_VERIFIER
+	//
+	// "ChallengeName": "DEVICE_PASSWORD_VERIFIER", "ChallengeResponses": {"DEVICE_KEY":
+	// "[device_key]", "PASSWORD_CLAIM_SIGNATURE": "[claim_signature]", "PASSWORD_CLAIM_SECRET_BLOCK":
+	// "[secret_block]", "TIMESTAMP": [timestamp], "USERNAME": "[username]"}
+	//
+	// MFA_SETUP
+	//
+	// "ChallengeName": "MFA_SETUP", "ChallengeResponses": {"USERNAME": "[username]"},
+	// "SESSION": "[Session ID from VerifySoftwareToken]"
+	//
+	// SELECT_MFA_TYPE
+	//
+	// "ChallengeName": "SELECT_MFA_TYPE", "ChallengeResponses": {"USERNAME": "[username]",
+	// "ANSWER": "[SMS_MFA or SOFTWARE_TOKEN_MFA]"}
 	//
 	// For more information about SECRET_HASH, see Computing secret hash values
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash).
@@ -28752,7 +29112,10 @@ func (s *SMSMfaSettingsType) SetPreferredMfa(v bool) *SMSMfaSettingsType {
 type SchemaAttributeType struct {
 	_ struct{} `type:"structure"`
 
-	// The data format of the values for your attribute.
+	// The data format of the values for your attribute. When you choose an AttributeDataType,
+	// Amazon Cognito validates the input against the data type. A custom attribute
+	// value in your user's ID token is always a string, for example "custom:isMember"
+	// : "true" or "custom:YearsAsMember" : "12".
 	AttributeDataType *string `type:"string" enum:"AttributeDataType"`
 
 	//
@@ -28776,7 +29139,14 @@ type SchemaAttributeType struct {
 	// Mappings for Your User Pool (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	Mutable *bool `type:"boolean"`
 
-	// The name of your user pool attribute, for example username or custom:costcenter.
+	// The name of your user pool attribute. When you create or update a user pool,
+	// adding a schema attribute creates a custom or developer-only attribute. When
+	// you add an attribute with a Name value of MyAttribute, Amazon Cognito creates
+	// the custom attribute custom:MyAttribute. When DeveloperOnlyAttribute is true,
+	// Amazon Cognito creates your attribute as dev:MyAttribute. In an operation
+	// that describes a user pool, Amazon Cognito returns this value as value for
+	// standard attributes, custom:value for custom attributes, and dev:value for
+	// developer-only attributes..
 	Name *string `min:"1" type:"string"`
 
 	// Specifies the constraints for an attribute of the number type.
@@ -29711,7 +30081,8 @@ type SignUpInput struct {
 	// String and GoString methods.
 	UserContextData *UserContextDataType `type:"structure" sensitive:"true"`
 
-	// The user name of the user you want to register.
+	// The username of the user that you want to sign up. The value of this parameter
+	// is typically a username, but can be any alias attribute in your user pool.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SignUpInput's
@@ -29720,7 +30091,18 @@ type SignUpInput struct {
 	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The validation data in the request to register a user.
+	// Temporary user attributes that contribute to the outcomes of your pre sign-up
+	// Lambda trigger. This set of key-value pairs are for custom validation of
+	// information that you collect from your users but don't need to retain.
+	//
+	// Your Lambda function can analyze this additional data and act on it. Your
+	// function might perform external API operations like logging user attributes
+	// and validation data to Amazon CloudWatch Logs. Validation data might also
+	// affect the response that your function returns to Amazon Cognito, like automatically
+	// confirming the user if they sign up from within your network.
+	//
+	// For more information about the pre sign-up Lambda trigger, see Pre sign-up
+	// Lambda trigger (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html).
 	ValidationData []*AttributeType `type:"list"`
 }
 
@@ -31326,7 +31708,10 @@ type UpdateAuthEventFeedbackInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The user pool username.
+	// The username of the user that you want to query or modify. The value of this
+	// parameter is typically your user's username, but it can be any of their alias
+	// attributes. If username isn't an alias attribute in your user pool, you can
+	// also use their sub in this request.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateAuthEventFeedbackInput's
@@ -32292,7 +32677,19 @@ type UpdateUserPoolClientInput struct {
 	//    user existence related errors aren't prevented.
 	PreventUserExistenceErrors *string `type:"string" enum:"PreventUserExistenceErrorTypes"`
 
-	// The read-only attributes of the user pool.
+	// The list of user attributes that you want your app client to have read-only
+	// access to. After your user authenticates in your app, their access token
+	// authorizes them to read their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when your user selects a link
+	// to view their profile information. Your app makes a GetUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUser.html)
+	// API request to retrieve and display your user's profile data.
+	//
+	// When you don't specify the ReadAttributes for your app client, your app can
+	// read the values of email_verified, phone_number_verified, and the Standard
+	// attributes of your user pool. When your user pool has read access to these
+	// default attributes, ReadAttributes doesn't return any information. Amazon
+	// Cognito only populates ReadAttributes in the API response if you have specified
+	// your own custom set of read attributes.
 	ReadAttributes []*string `type:"list"`
 
 	// The refresh token time limit. After this limit expires, your user can't use
@@ -32329,7 +32726,27 @@ type UpdateUserPoolClientInput struct {
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
-	// The writeable attributes of the user pool.
+	// The list of user attributes that you want your app client to have write access
+	// to. After your user authenticates in your app, their access token authorizes
+	// them to set or modify their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when you present your user with
+	// a form to update their profile information and they change their last name.
+	// Your app then makes an UpdateUserAttributes (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserAttributes.html)
+	// API request and sets family_name to the new value.
+	//
+	// When you don't specify the WriteAttributes for your app client, your app
+	// can write the values of the Standard attributes of your user pool. When your
+	// user pool has write access to these default attributes, WriteAttributes doesn't
+	// return any information. Amazon Cognito only populates WriteAttributes in
+	// the API response if you have specified your own custom set of write attributes.
+	//
+	// If your app client allows users to sign in through an IdP, this array must
+	// include all attributes that you have mapped to IdP attributes. Amazon Cognito
+	// updates mapped attributes when users sign in to your application through
+	// an IdP. If your app client does not have write access to a mapped attribute,
+	// Amazon Cognito throws an error when it tries to update the attribute. For
+	// more information, see Specifying IdP Attribute Mappings for Your user pool
+	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	WriteAttributes []*string `type:"list"`
 }
 
@@ -33943,7 +34360,19 @@ type UserPoolClientType struct {
 	//    existence related errors aren't prevented.
 	PreventUserExistenceErrors *string `type:"string" enum:"PreventUserExistenceErrorTypes"`
 
-	// The Read-only attributes.
+	// The list of user attributes that you want your app client to have read-only
+	// access to. After your user authenticates in your app, their access token
+	// authorizes them to read their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when your user selects a link
+	// to view their profile information. Your app makes a GetUser (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUser.html)
+	// API request to retrieve and display your user's profile data.
+	//
+	// When you don't specify the ReadAttributes for your app client, your app can
+	// read the values of email_verified, phone_number_verified, and the Standard
+	// attributes of your user pool. When your user pool has read access to these
+	// default attributes, ReadAttributes doesn't return any information. Amazon
+	// Cognito only populates ReadAttributes in the API response if you have specified
+	// your own custom set of read attributes.
 	ReadAttributes []*string `type:"list"`
 
 	// The refresh token time limit. After this limit expires, your user can't use
@@ -33976,7 +34405,27 @@ type UserPoolClientType struct {
 	// The user pool ID for the user pool client.
 	UserPoolId *string `min:"1" type:"string"`
 
-	// The writeable attributes.
+	// The list of user attributes that you want your app client to have write access
+	// to. After your user authenticates in your app, their access token authorizes
+	// them to set or modify their own attribute value for any attribute in this
+	// list. An example of this kind of activity is when you present your user with
+	// a form to update their profile information and they change their last name.
+	// Your app then makes an UpdateUserAttributes (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserAttributes.html)
+	// API request and sets family_name to the new value.
+	//
+	// When you don't specify the WriteAttributes for your app client, your app
+	// can write the values of the Standard attributes of your user pool. When your
+	// user pool has write access to these default attributes, WriteAttributes doesn't
+	// return any information. Amazon Cognito only populates WriteAttributes in
+	// the API response if you have specified your own custom set of write attributes.
+	//
+	// If your app client allows users to sign in through an IdP, this array must
+	// include all attributes that you have mapped to IdP attributes. Amazon Cognito
+	// updates mapped attributes when users sign in to your application through
+	// an IdP. If your app client does not have write access to a mapped attribute,
+	// Amazon Cognito throws an error when it tries to update the attribute. For
+	// more information, see Specifying IdP Attribute Mappings for Your user pool
+	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html).
 	WriteAttributes []*string `type:"list"`
 }
 
@@ -34487,7 +34936,7 @@ type UserPoolType struct {
 	// This parameter is no longer used. See VerificationMessageTemplateType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html).
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
-	// The status of a user pool.
+	// This parameter is no longer used.
 	//
 	// Deprecated: This property is no longer available.
 	Status *string `deprecated:"true" type:"string" enum:"StatusType"`
@@ -35915,6 +36364,22 @@ func OAuthFlowType_Values() []string {
 		OAuthFlowTypeCode,
 		OAuthFlowTypeImplicit,
 		OAuthFlowTypeClientCredentials,
+	}
+}
+
+const (
+	// PreTokenGenerationLambdaVersionTypeV10 is a PreTokenGenerationLambdaVersionType enum value
+	PreTokenGenerationLambdaVersionTypeV10 = "V1_0"
+
+	// PreTokenGenerationLambdaVersionTypeV20 is a PreTokenGenerationLambdaVersionType enum value
+	PreTokenGenerationLambdaVersionTypeV20 = "V2_0"
+)
+
+// PreTokenGenerationLambdaVersionType_Values returns all elements of the PreTokenGenerationLambdaVersionType enum
+func PreTokenGenerationLambdaVersionType_Values() []string {
+	return []string{
+		PreTokenGenerationLambdaVersionTypeV10,
+		PreTokenGenerationLambdaVersionTypeV20,
 	}
 }
 

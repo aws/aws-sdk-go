@@ -73,7 +73,7 @@ const (
 	//
 	// The specified resource could not be found. You can view your available clusters
 	// with ListClusters. You can view your available managed node groups with ListNodegroups.
-	// Amazon EKS clusters and node groups are Region-specific.
+	// Amazon EKS clusters and node groups are Amazon Web Services Region specific.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeResourcePropagationDelayException for service response error code

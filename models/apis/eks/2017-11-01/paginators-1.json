@@ -6,11 +6,33 @@
       "output_token": "nextToken",
       "result_key": "addons"
     },
+    "ListAccessEntries": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "accessEntries"
+    },
+    "ListAccessPolicies": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "accessPolicies"
+    },
     "ListAddons": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "addons"
+    },
+    "ListAssociatedAccessPolicies": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "non_aggregate_keys": [
+        "clusterName",
+        "principalArn"
+      ],
+      "output_token": "nextToken",
+      "result_key": "associatedAccessPolicies"
     },
     "ListClusters": {
       "input_token": "nextToken",
