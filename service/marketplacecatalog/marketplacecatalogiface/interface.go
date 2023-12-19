@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Marketplace Catalog Service.
 //	func myFunc(svc marketplacecatalogiface.MarketplaceCatalogAPI) bool {
-//	    // Make svc.CancelChangeSet request
+//	    // Make svc.BatchDescribeEntities request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockMarketplaceCatalogClient struct {
 //	    marketplacecatalogiface.MarketplaceCatalogAPI
 //	}
-//	func (m *mockMarketplaceCatalogClient) CancelChangeSet(input *marketplacecatalog.CancelChangeSetInput) (*marketplacecatalog.CancelChangeSetOutput, error) {
+//	func (m *mockMarketplaceCatalogClient) BatchDescribeEntities(input *marketplacecatalog.BatchDescribeEntitiesInput) (*marketplacecatalog.BatchDescribeEntitiesOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MarketplaceCatalogAPI interface {
+	BatchDescribeEntities(*marketplacecatalog.BatchDescribeEntitiesInput) (*marketplacecatalog.BatchDescribeEntitiesOutput, error)
+	BatchDescribeEntitiesWithContext(aws.Context, *marketplacecatalog.BatchDescribeEntitiesInput, ...request.Option) (*marketplacecatalog.BatchDescribeEntitiesOutput, error)
+	BatchDescribeEntitiesRequest(*marketplacecatalog.BatchDescribeEntitiesInput) (*request.Request, *marketplacecatalog.BatchDescribeEntitiesOutput)
+
 	CancelChangeSet(*marketplacecatalog.CancelChangeSetInput) (*marketplacecatalog.CancelChangeSetOutput, error)
 	CancelChangeSetWithContext(aws.Context, *marketplacecatalog.CancelChangeSetInput, ...request.Option) (*marketplacecatalog.CancelChangeSetOutput, error)
 	CancelChangeSetRequest(*marketplacecatalog.CancelChangeSetInput) (*request.Request, *marketplacecatalog.CancelChangeSetOutput)

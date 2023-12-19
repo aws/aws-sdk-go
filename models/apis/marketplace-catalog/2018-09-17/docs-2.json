@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace. </p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
+    "BatchDescribeEntities": "<p>Returns metadata and content for multiple entities.</p>",
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
     "DeleteResourcePolicy": "<p>Deletes a resource-based policy on an entity that is identified by its resource ARN.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
@@ -23,6 +24,7 @@
         "ChangeSetSummaryListItem$ChangeSetArn": "<p>The ARN associated with the unique identifier for the change set referenced in this request.</p>",
         "DescribeChangeSetResponse$ChangeSetArn": "<p>The ARN associated with the unique identifier for the change set referenced in this request.</p>",
         "DescribeEntityResponse$EntityArn": "<p>The ARN associated to the unique identifier for the entity referenced in this request.</p>",
+        "EntityDetail$EntityArn": "<p>The Amazon Resource Name (ARN) of the entity.</p>",
         "EntitySummary$EntityArn": "<p>The ARN associated with the unique identifier for the entity.</p>",
         "StartChangeSetResponse$ChangeSetArn": "<p>The ARN associated to the unique identifier generated for the request.</p>"
       }
@@ -125,6 +127,34 @@
         "AmiProductVisibilityFilterValueList$member": null
       }
     },
+    "BatchDescribeEntitiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDescribeEntitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDescribeErrorCodeString": {
+      "base": null,
+      "refs": {
+        "BatchDescribeErrorDetail$ErrorCode": "<p>The error code returned.</p>"
+      }
+    },
+    "BatchDescribeErrorDetail": {
+      "base": "<p>An object that contains an error code and error message.</p>",
+      "refs": {
+        "Errors$value": null
+      }
+    },
+    "BatchDescribeErrorMessageContent": {
+      "base": null,
+      "refs": {
+        "BatchDescribeErrorDetail$ErrorMessage": "<p>The error message returned.</p>"
+      }
+    },
     "CancelChangeSetRequest": {
       "base": null,
       "refs": {
@@ -141,6 +171,7 @@
         "CancelChangeSetRequest$Catalog": "<p>Required. The catalog related to the request. Fixed value: <code>AWSMarketplace</code>.</p>",
         "DescribeChangeSetRequest$Catalog": "<p>Required. The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>",
         "DescribeEntityRequest$Catalog": "<p>Required. The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>",
+        "EntityRequest$Catalog": "<p>The name of the catalog the entity is present in. The only value at this time is <code>AWSMarketplace</code>.</p>",
         "ListChangeSetsRequest$Catalog": "<p>The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>",
         "ListEntitiesRequest$Catalog": "<p>The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>",
         "StartChangeSetRequest$Catalog": "<p>The catalog related to the request. Fixed value: <code>AWSMarketplace</code> </p>"
@@ -201,7 +232,7 @@
     "ChangeType": {
       "base": null,
       "refs": {
-        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope. For more information on change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information about change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
+        "Change$ChangeType": "<p>Change types are single string values that describe your intention for the change. Each change type is unique for each <code>EntityType</code> provided in the change's scope. For more information about change types available for single-AMI products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products\">Working with single-AMI products</a>. Also, for more information about change types available for container-based products, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products\">Working with container products</a>.</p>",
         "ChangeSummary$ChangeType": "<p>The type of the change.</p>"
       }
     },
@@ -411,6 +442,7 @@
         "DescribeChangeSetResponse$StartTime": "<p>The date and time, in ISO 8601 format (2018-02-27T13:45:22Z), the request started. </p>",
         "DescribeChangeSetResponse$EndTime": "<p>The date and time, in ISO 8601 format (2018-02-27T13:45:22Z), the request transitioned to a terminal state. The change cannot transition to a different state. Null if the request is not in a terminal state. </p>",
         "DescribeEntityResponse$LastModifiedDate": "<p>The last modified date of the entity, in ISO 8601 format (2018-02-27T13:45:22Z).</p>",
+        "EntityDetail$LastModifiedDate": "<p>The last time the entity was modified.</p>",
         "EntitySummary$LastModifiedDate": "<p>The last time the entity was published, using ISO 8601 format (2018-02-27T13:45:22Z).</p>",
         "OfferAvailabilityEndDateFilterDateRange$AfterValue": "<p>Allows filtering on the <code>AvailabilityEndDate</code> of an offer after a date.</p>",
         "OfferAvailabilityEndDateFilterDateRange$BeforeValue": "<p>Allows filtering on the <code>AvailabilityEndDate</code> of an offer before a date.</p>",
@@ -471,10 +503,42 @@
         "ChangeSummary$Entity": "<p>The entity to be changed.</p>"
       }
     },
+    "EntityDetail": {
+      "base": "<p>An object that contains metadata and details about the entity.</p>",
+      "refs": {
+        "EntityDetails$value": null
+      }
+    },
+    "EntityDetails": {
+      "base": null,
+      "refs": {
+        "BatchDescribeEntitiesResponse$EntityDetails": "<p>Details about each entity.</p>"
+      }
+    },
+    "EntityId": {
+      "base": null,
+      "refs": {
+        "EntityDetails$key": null,
+        "EntityRequest$EntityId": "<p>The ID of the entity.</p>",
+        "Errors$key": null
+      }
+    },
     "EntityNameString": {
       "base": null,
       "refs": {
         "EntitySummary$Name": "<p>The name for the entity. This value is not unique. It is defined by the seller.</p>"
+      }
+    },
+    "EntityRequest": {
+      "base": "<p>An object that contains entity ID and the catalog in which the entity is present.</p>",
+      "refs": {
+        "EntityRequestList$member": null
+      }
+    },
+    "EntityRequestList": {
+      "base": null,
+      "refs": {
+        "BatchDescribeEntitiesRequest$EntityRequestList": "<p>List of entity IDs and the catalogs the entities are present in.</p>"
       }
     },
     "EntitySummary": {
@@ -494,8 +558,9 @@
       "refs": {
         "DescribeEntityResponse$EntityType": "<p>The named type of the entity, in the format of <code>EntityType@Version</code>.</p>",
         "Entity$Type": "<p>The type of entity.</p>",
+        "EntityDetail$EntityType": "<p>The entity type of the entity, in the format of <code>EntityType@Version</code>.</p>",
         "EntitySummary$EntityType": "<p>The type of the entity.</p>",
-        "ListEntitiesRequest$EntityType": "<p>The type of entities to retrieve. Valid values are: <code>ServerProduct</code>, <code>AmiProduct</code>, <code>ContainerProduct</code>, <code>DataProduct</code>, <code>SaaSProduct</code>, <code>ProcurementPolicy</code>, <code>Experience</code>, <code>Audience</code>, <code>BrandingSettings</code>, <code>Offer</code>, <code>Seller</code>, <code>ResaleAuthorization</code>.</p>"
+        "ListEntitiesRequest$EntityType": "<p>The type of entities to retrieve. Valid values are: <code>AmiProduct</code>, <code>ContainerProduct</code>, <code>DataProduct</code>, <code>SaaSProduct</code>, <code>ProcurementPolicy</code>, <code>Experience</code>, <code>Audience</code>, <code>BrandingSettings</code>, <code>Offer</code>, <code>Seller</code>, <code>ResaleAuthorization</code>.</p>"
       }
     },
     "EntityTypeFilters": {
@@ -526,6 +591,12 @@
       "base": null,
       "refs": {
         "ChangeSummary$ErrorDetailList": "<p>An array of <code>ErrorDetail</code> objects associated with the change.</p>"
+      }
+    },
+    "Errors": {
+      "base": null,
+      "refs": {
+        "BatchDescribeEntitiesResponse$Errors": "<p>A map of errors returned, with <code>EntityId</code> as the key and <code>errorDetail</code> as the value.</p>"
       }
     },
     "ExceptionMessageContent": {
@@ -589,7 +660,8 @@
       "base": null,
       "refs": {
         "DescribeEntityResponse$EntityIdentifier": "<p>The identifier of the entity, in the format of <code>EntityId@RevisionId</code>.</p>",
-        "Entity$Identifier": "<p>The identifier for the entity.</p>"
+        "Entity$Identifier": "<p>The identifier for the entity.</p>",
+        "EntityDetail$EntityIdentifier": "<p>The ID of the entity, in the format of <code>EntityId@RevisionId</code>.</p>"
       }
     },
     "InternalServiceException": {
@@ -610,7 +682,8 @@
       "refs": {
         "Change$DetailsDocument": "<p>Alternative field that accepts a JSON value instead of a string for <code>ChangeType</code> details. You can use either <code>Details</code> or <code>DetailsDocument</code>, but not both.</p>",
         "ChangeSummary$DetailsDocument": "<p>The JSON value of the details specific to the change type of the requested change.</p>",
-        "DescribeEntityResponse$DetailsDocument": "<p>The JSON value of the details specific to the entity.</p>"
+        "DescribeEntityResponse$DetailsDocument": "<p>The JSON value of the details specific to the entity.</p>",
+        "EntityDetail$DetailsDocument": "<p>An object that contains all the details of the entity.</p>"
       }
     },
     "ListChangeSetsMaxResultInteger": {

@@ -12,6 +12,33 @@
     "uid": "marketplace-catalog-2018-09-17"
   },
   "operations": {
+    "BatchDescribeEntities": {
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "InternalServiceException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/BatchDescribeEntities"
+      },
+      "input": {
+        "shape": "BatchDescribeEntitiesRequest"
+      },
+      "name": "BatchDescribeEntities",
+      "output": {
+        "shape": "BatchDescribeEntitiesResponse"
+      }
+    },
     "CancelChangeSet": {
       "errors": [
         {
@@ -539,6 +566,51 @@
         "Restricted",
         "Draft"
       ],
+      "type": "string"
+    },
+    "BatchDescribeEntitiesRequest": {
+      "members": {
+        "EntityRequestList": {
+          "shape": "EntityRequestList"
+        }
+      },
+      "required": [
+        "EntityRequestList"
+      ],
+      "type": "structure"
+    },
+    "BatchDescribeEntitiesResponse": {
+      "members": {
+        "EntityDetails": {
+          "shape": "EntityDetails"
+        },
+        "Errors": {
+          "shape": "Errors"
+        }
+      },
+      "type": "structure"
+    },
+    "BatchDescribeErrorCodeString": {
+      "max": 72,
+      "min": 1,
+      "pattern": "^[a-zA-Z_]+$",
+      "type": "string"
+    },
+    "BatchDescribeErrorDetail": {
+      "members": {
+        "ErrorCode": {
+          "shape": "BatchDescribeErrorCodeString"
+        },
+        "ErrorMessage": {
+          "shape": "BatchDescribeErrorMessageContent"
+        }
+      },
+      "type": "structure"
+    },
+    "BatchDescribeErrorMessageContent": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^(.)+$",
       "type": "string"
     },
     "CancelChangeSetRequest": {
@@ -1102,11 +1174,66 @@
       ],
       "type": "structure"
     },
+    "EntityDetail": {
+      "members": {
+        "EntityArn": {
+          "shape": "ARN"
+        },
+        "EntityIdentifier": {
+          "shape": "Identifier"
+        },
+        "EntityType": {
+          "shape": "EntityType"
+        },
+        "LastModifiedDate": {
+          "shape": "DateTimeISO8601"
+        }
+      },
+      "type": "structure"
+    },
+    "EntityDetails": {
+      "key": {
+        "shape": "EntityId"
+      },
+      "type": "map",
+      "value": {
+        "shape": "EntityDetail"
+      }
+    },
+    "EntityId": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
     "EntityNameString": {
       "max": 255,
       "min": 1,
       "pattern": "^\\\\S+[\\\\S\\\\s]*",
       "type": "string"
+    },
+    "EntityRequest": {
+      "members": {
+        "Catalog": {
+          "shape": "Catalog"
+        },
+        "EntityId": {
+          "shape": "EntityId"
+        }
+      },
+      "required": [
+        "Catalog",
+        "EntityId"
+      ],
+      "type": "structure"
+    },
+    "EntityRequestList": {
+      "max": 20,
+      "member": {
+        "shape": "EntityRequest"
+      },
+      "min": 1,
+      "type": "list"
     },
     "EntitySummary": {
       "members": {
@@ -1231,6 +1358,15 @@
         "shape": "ErrorDetail"
       },
       "type": "list"
+    },
+    "Errors": {
+      "key": {
+        "shape": "EntityId"
+      },
+      "type": "map",
+      "value": {
+        "shape": "BatchDescribeErrorDetail"
+      }
     },
     "ExceptionMessageContent": {
       "max": 2048,

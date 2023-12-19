@@ -6151,7 +6151,8 @@
       "members":{
         "Cidr":{"shape":"String"},
         "Asn":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "NetworkBorderGroup":{"shape":"String"}
       }
     },
     "AdvertiseByoipCidrResult":{
@@ -8235,6 +8236,10 @@
         "State":{
           "shape":"ByoipCidrState",
           "locationName":"state"
+        },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
         }
       }
     },
@@ -36411,7 +36416,8 @@
           "shape":"TagSpecificationList",
           "locationName":"PoolTagSpecification"
         },
-        "MultiRegion":{"shape":"Boolean"}
+        "MultiRegion":{"shape":"Boolean"},
+        "NetworkBorderGroup":{"shape":"String"}
       }
     },
     "ProvisionByoipCidrResult":{

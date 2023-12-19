@@ -2170,7 +2170,8 @@
         "SnapshotIds":{"shape":"SnapshotIds"},
         "Filters":{"shape":"SnapshotFilters"},
         "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "IncludeShared":{"shape":"IncludeShared"}
       }
     },
     "DescribeSnapshotsResponse":{
@@ -2605,6 +2606,7 @@
       "max":6,
       "min":1
     },
+    "IncludeShared":{"type":"boolean"},
     "IncompatibleParameterError":{
       "type":"structure",
       "required":["Parameter"],
@@ -3151,7 +3153,8 @@
         "DeleteClonedVolumes":{"shape":"Flag"},
         "DeleteIntermediateData":{"shape":"Flag"},
         "SourceSnapshotARN":{"shape":"ResourceARN"},
-        "DestinationSnapshot":{"shape":"SnapshotId"}
+        "DestinationSnapshot":{"shape":"SnapshotId"},
+        "CopyStrategy":{"shape":"OpenZFSCopyStrategy"}
       }
     },
     "OrganizationalUnitDistinguishedName":{

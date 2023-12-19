@@ -12,6 +12,102 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchDescribeEntities = "BatchDescribeEntities"
+
+// BatchDescribeEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDescribeEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDescribeEntities for more information on using the BatchDescribeEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDescribeEntitiesRequest method.
+//	req, resp := client.BatchDescribeEntitiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/BatchDescribeEntities
+func (c *MarketplaceCatalog) BatchDescribeEntitiesRequest(input *BatchDescribeEntitiesInput) (req *request.Request, output *BatchDescribeEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opBatchDescribeEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/BatchDescribeEntities",
+	}
+
+	if input == nil {
+		input = &BatchDescribeEntitiesInput{}
+	}
+
+	output = &BatchDescribeEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDescribeEntities API operation for AWS Marketplace Catalog Service.
+//
+// Returns metadata and content for multiple entities.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Catalog Service's
+// API operation BatchDescribeEntities for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Access is denied.
+//
+//     HTTP status code: 403
+//
+//   - InternalServiceException
+//     There was an internal service exception.
+//
+//     HTTP status code: 500
+//
+//   - ThrottlingException
+//     Too many requests.
+//
+//     HTTP status code: 429
+//
+//   - ValidationException
+//     An error occurred during validation.
+//
+//     HTTP status code: 422
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/marketplace-catalog-2018-09-17/BatchDescribeEntities
+func (c *MarketplaceCatalog) BatchDescribeEntities(input *BatchDescribeEntitiesInput) (*BatchDescribeEntitiesOutput, error) {
+	req, out := c.BatchDescribeEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// BatchDescribeEntitiesWithContext is the same as BatchDescribeEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDescribeEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MarketplaceCatalog) BatchDescribeEntitiesWithContext(ctx aws.Context, input *BatchDescribeEntitiesInput, opts ...request.Option) (*BatchDescribeEntitiesOutput, error) {
+	req, out := c.BatchDescribeEntitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelChangeSet = "CancelChangeSet"
 
 // CancelChangeSetRequest generates a "aws/request.Request" representing the
@@ -1875,6 +1971,147 @@ func (s *AmiProductVisibilityFilter) SetValueList(v []*string) *AmiProductVisibi
 	return s
 }
 
+type BatchDescribeEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// List of entity IDs and the catalogs the entities are present in.
+	//
+	// EntityRequestList is a required field
+	EntityRequestList []*EntityRequest `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDescribeEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDescribeEntitiesInput"}
+	if s.EntityRequestList == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityRequestList"))
+	}
+	if s.EntityRequestList != nil && len(s.EntityRequestList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityRequestList", 1))
+	}
+	if s.EntityRequestList != nil {
+		for i, v := range s.EntityRequestList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityRequestList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityRequestList sets the EntityRequestList field's value.
+func (s *BatchDescribeEntitiesInput) SetEntityRequestList(v []*EntityRequest) *BatchDescribeEntitiesInput {
+	s.EntityRequestList = v
+	return s
+}
+
+type BatchDescribeEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about each entity.
+	EntityDetails map[string]*EntityDetail `type:"map"`
+
+	// A map of errors returned, with EntityId as the key and errorDetail as the
+	// value.
+	Errors map[string]*BatchDescribeErrorDetail `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityDetails sets the EntityDetails field's value.
+func (s *BatchDescribeEntitiesOutput) SetEntityDetails(v map[string]*EntityDetail) *BatchDescribeEntitiesOutput {
+	s.EntityDetails = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchDescribeEntitiesOutput) SetErrors(v map[string]*BatchDescribeErrorDetail) *BatchDescribeEntitiesOutput {
+	s.Errors = v
+	return s
+}
+
+// An object that contains an error code and error message.
+type BatchDescribeErrorDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The error code returned.
+	ErrorCode *string `min:"1" type:"string"`
+
+	// The error message returned.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeErrorDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeErrorDetail) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchDescribeErrorDetail) SetErrorCode(v string) *BatchDescribeErrorDetail {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchDescribeErrorDetail) SetErrorMessage(v string) *BatchDescribeErrorDetail {
+	s.ErrorMessage = &v
+	return s
+}
+
 type CancelChangeSetInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -1991,7 +2228,7 @@ type Change struct {
 
 	// Change types are single string values that describe your intention for the
 	// change. Each change type is unique for each EntityType provided in the change's
-	// scope. For more information on change types available for single-AMI products,
+	// scope. For more information about change types available for single-AMI products,
 	// see Working with single-AMI products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#working-with-single-AMI-products).
 	// Also, for more information about change types available for container-based
 	// products, see Working with container products (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/container-products.html#working-with-container-products).
@@ -3585,6 +3822,134 @@ func (s *Entity) SetType(v string) *Entity {
 	return s
 }
 
+// An object that contains metadata and details about the entity.
+type EntityDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	EntityArn *string `min:"1" type:"string"`
+
+	// The ID of the entity, in the format of EntityId@RevisionId.
+	EntityIdentifier *string `min:"1" type:"string"`
+
+	// The entity type of the entity, in the format of EntityType@Version.
+	EntityType *string `min:"1" type:"string"`
+
+	// The last time the entity was modified.
+	LastModifiedDate *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDetail) GoString() string {
+	return s.String()
+}
+
+// SetEntityArn sets the EntityArn field's value.
+func (s *EntityDetail) SetEntityArn(v string) *EntityDetail {
+	s.EntityArn = &v
+	return s
+}
+
+// SetEntityIdentifier sets the EntityIdentifier field's value.
+func (s *EntityDetail) SetEntityIdentifier(v string) *EntityDetail {
+	s.EntityIdentifier = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *EntityDetail) SetEntityType(v string) *EntityDetail {
+	s.EntityType = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *EntityDetail) SetLastModifiedDate(v string) *EntityDetail {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// An object that contains entity ID and the catalog in which the entity is
+// present.
+type EntityRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the catalog the entity is present in. The only value at this
+	// time is AWSMarketplace.
+	//
+	// Catalog is a required field
+	Catalog *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the entity.
+	//
+	// EntityId is a required field
+	EntityId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityRequest"}
+	if s.Catalog == nil {
+		invalidParams.Add(request.NewErrParamRequired("Catalog"))
+	}
+	if s.Catalog != nil && len(*s.Catalog) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Catalog", 1))
+	}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalog sets the Catalog field's value.
+func (s *EntityRequest) SetCatalog(v string) *EntityRequest {
+	s.Catalog = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *EntityRequest) SetEntityId(v string) *EntityRequest {
+	s.EntityId = &v
+	return s
+}
+
 // This object is a container for common summary information about the entity.
 // The summary doesn't contain the whole entity structure, but it does contain
 // information common across all entities.
@@ -4346,9 +4711,9 @@ type ListEntitiesInput struct {
 	// Catalog is a required field
 	Catalog *string `min:"1" type:"string" required:"true"`
 
-	// The type of entities to retrieve. Valid values are: ServerProduct, AmiProduct,
-	// ContainerProduct, DataProduct, SaaSProduct, ProcurementPolicy, Experience,
-	// Audience, BrandingSettings, Offer, Seller, ResaleAuthorization.
+	// The type of entities to retrieve. Valid values are: AmiProduct, ContainerProduct,
+	// DataProduct, SaaSProduct, ProcurementPolicy, Experience, Audience, BrandingSettings,
+	// Offer, Seller, ResaleAuthorization.
 	//
 	// EntityType is a required field
 	EntityType *string `min:"1" type:"string" required:"true"`

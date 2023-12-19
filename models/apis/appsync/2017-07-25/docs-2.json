@@ -939,6 +939,14 @@
       "refs": {
       }
     },
+    "GraphQLApiIntrospectionConfig": {
+      "base": null,
+      "refs": {
+        "CreateGraphqlApiRequest$introspectionConfig": "<p>Sets the value of the GraphQL API to enable (<code>ENABLED</code>) or disable (<code>DISABLED</code>) introspection. If no value is provided, the introspection configuration will be set to <code>ENABLED</code> by default. This field will produce an error if the operation attempts to use the introspection feature while this field is disabled.</p> <p>For more information about introspection, see <a href=\"https://graphql.org/learn/introspection/\">GraphQL introspection</a>.</p>",
+        "GraphqlApi$introspectionConfig": "<p>Sets the value of the GraphQL API to enable (<code>ENABLED</code>) or disable (<code>DISABLED</code>) introspection. If no value is provided, the introspection configuration will be set to <code>ENABLED</code> by default. This field will produce an error if the operation attempts to use the introspection feature while this field is disabled.</p> <p>For more information about introspection, see <a href=\"https://graphql.org/learn/introspection/\">GraphQL introspection</a>.</p>",
+        "UpdateGraphqlApiRequest$introspectionConfig": "<p>Sets the value of the GraphQL API to enable (<code>ENABLED</code>) or disable (<code>DISABLED</code>) introspection. If no value is provided, the introspection configuration will be set to <code>ENABLED</code> by default. This field will produce an error if the operation attempts to use the introspection feature while this field is disabled.</p> <p>For more information about introspection, see <a href=\"https://graphql.org/learn/introspection/\">GraphQL introspection</a>.</p>"
+      }
+    },
     "GraphQLApiType": {
       "base": null,
       "refs": {
@@ -1284,6 +1292,14 @@
         "UpdateResolverRequest$pipelineConfig": "<p>The <code>PipelineConfig</code>.</p>"
       }
     },
+    "QueryDepthLimit": {
+      "base": null,
+      "refs": {
+        "CreateGraphqlApiRequest$queryDepthLimit": "<p>The maximum depth a query can have in a single request. Depth refers to the amount of nested levels allowed in the body of query. The default value is <code>0</code> (or unspecified), which indicates there's no depth limit. If you set a limit, it can be between <code>1</code> and <code>75</code> nested levels. This field will produce a limit error if the operation falls out of bounds.</p> <p>Note that fields can still be set to nullable or non-nullable. If a non-nullable field produces an error, the error will be thrown upwards to the first nullable field available.</p>",
+        "GraphqlApi$queryDepthLimit": "<p>The maximum depth a query can have in a single request. Depth refers to the amount of nested levels allowed in the body of query. The default value is <code>0</code> (or unspecified), which indicates there's no depth limit. If you set a limit, it can be between <code>1</code> and <code>75</code> nested levels. This field will produce a limit error if the operation falls out of bounds.</p> <p>Note that fields can still be set to nullable or non-nullable. If a non-nullable field produces an error, the error will be thrown upwards to the first nullable field available.</p>",
+        "UpdateGraphqlApiRequest$queryDepthLimit": "<p>The maximum depth a query can have in a single request. Depth refers to the amount of nested levels allowed in the body of query. The default value is <code>0</code> (or unspecified), which indicates there's no depth limit. If you set a limit, it can be between <code>1</code> and <code>75</code> nested levels. This field will produce a limit error if the operation falls out of bounds.</p> <p>Note that fields can still be set to nullable or non-nullable. If a non-nullable field produces an error, the error will be thrown upwards to the first nullable field available.</p>"
+      }
+    },
     "RdsDataApiConfig": {
       "base": "<p>Contains the metadata required to introspect the RDS cluster.</p>",
       "refs": {
@@ -1335,6 +1351,14 @@
         "GetResolverResponse$resolver": "<p>The <code>Resolver</code> object.</p>",
         "Resolvers$member": null,
         "UpdateResolverResponse$resolver": "<p>The updated <code>Resolver</code> object.</p>"
+      }
+    },
+    "ResolverCountLimit": {
+      "base": null,
+      "refs": {
+        "CreateGraphqlApiRequest$resolverCountLimit": "<p>The maximum number of resolvers that can be invoked in a single request. The default value is <code>0</code> (or unspecified), which will set the limit to <code>10000</code>. When specified, the limit value can be between <code>1</code> and <code>10000</code>. This field will produce a limit error if the operation falls out of bounds.</p>",
+        "GraphqlApi$resolverCountLimit": "<p>The maximum number of resolvers that can be invoked in a single request. The default value is <code>0</code> (or unspecified), which will set the limit to <code>10000</code>. When specified, the limit value can be between <code>1</code> and <code>10000</code>. This field will produce a limit error if the operation falls out of bounds.</p>",
+        "UpdateGraphqlApiRequest$resolverCountLimit": "<p>The maximum number of resolvers that can be invoked in a single request. The default value is <code>0</code> (or unspecified), which will set the limit to <code>10000</code>. When specified, the limit value can be between <code>1</code> and <code>10000</code>. This field will produce a limit error if the operation falls out of bounds.</p>"
       }
     },
     "ResolverKind": {

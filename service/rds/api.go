@@ -8118,6 +8118,137 @@ func (c *RDS) DescribeDBProxyTargetsPagesWithContext(ctx aws.Context, input *Des
 	return p.Err()
 }
 
+const opDescribeDBRecommendations = "DescribeDBRecommendations"
+
+// DescribeDBRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDBRecommendations for more information on using the DescribeDBRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDBRecommendationsRequest method.
+//	req, resp := client.DescribeDBRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBRecommendations
+func (c *RDS) DescribeDBRecommendationsRequest(input *DescribeDBRecommendationsInput) (req *request.Request, output *DescribeDBRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDBRecommendationsInput{}
+	}
+
+	output = &DescribeDBRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDBRecommendations API operation for Amazon Relational Database Service.
+//
+// Describes the recommendations to resolve the issues for your DB instances,
+// DB clusters, and DB parameter groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeDBRecommendations for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBRecommendations
+func (c *RDS) DescribeDBRecommendations(input *DescribeDBRecommendationsInput) (*DescribeDBRecommendationsOutput, error) {
+	req, out := c.DescribeDBRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDBRecommendationsWithContext is the same as DescribeDBRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDBRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBRecommendationsWithContext(ctx aws.Context, input *DescribeDBRecommendationsInput, opts ...request.Option) (*DescribeDBRecommendationsOutput, error) {
+	req, out := c.DescribeDBRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDBRecommendationsPages iterates over the pages of a DescribeDBRecommendations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBRecommendations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeDBRecommendations operation.
+//	pageNum := 0
+//	err := client.DescribeDBRecommendationsPages(params,
+//	    func(page *rds.DescribeDBRecommendationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *RDS) DescribeDBRecommendationsPages(input *DescribeDBRecommendationsInput, fn func(*DescribeDBRecommendationsOutput, bool) bool) error {
+	return c.DescribeDBRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBRecommendationsPagesWithContext same as DescribeDBRecommendationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBRecommendationsPagesWithContext(ctx aws.Context, input *DescribeDBRecommendationsInput, fn func(*DescribeDBRecommendationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBRecommendationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBRecommendationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDBSecurityGroups = "DescribeDBSecurityGroups"
 
 // DescribeDBSecurityGroupsRequest generates a "aws/request.Request" representing the
@@ -12753,6 +12884,80 @@ func (c *RDS) ModifyDBProxyTargetGroup(input *ModifyDBProxyTargetGroupInput) (*M
 // for more information on using Contexts.
 func (c *RDS) ModifyDBProxyTargetGroupWithContext(ctx aws.Context, input *ModifyDBProxyTargetGroupInput, opts ...request.Option) (*ModifyDBProxyTargetGroupOutput, error) {
 	req, out := c.ModifyDBProxyTargetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyDBRecommendation = "ModifyDBRecommendation"
+
+// ModifyDBRecommendationRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBRecommendation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyDBRecommendation for more information on using the ModifyDBRecommendation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ModifyDBRecommendationRequest method.
+//	req, resp := client.ModifyDBRecommendationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBRecommendation
+func (c *RDS) ModifyDBRecommendationRequest(input *ModifyDBRecommendationInput) (req *request.Request, output *ModifyDBRecommendationOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBRecommendation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBRecommendationInput{}
+	}
+
+	output = &ModifyDBRecommendationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyDBRecommendation API operation for Amazon Relational Database Service.
+//
+// Updates the recommendation status and recommended action status for the specified
+// recommendation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyDBRecommendation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBRecommendation
+func (c *RDS) ModifyDBRecommendation(input *ModifyDBRecommendationInput) (*ModifyDBRecommendationOutput, error) {
+	req, out := c.ModifyDBRecommendationRequest(input)
+	return out, req.Send()
+}
+
+// ModifyDBRecommendationWithContext is the same as ModifyDBRecommendation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyDBRecommendation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) ModifyDBRecommendationWithContext(ctx aws.Context, input *ModifyDBRecommendationInput, opts ...request.Option) (*ModifyDBRecommendationOutput, error) {
+	req, out := c.ModifyDBRecommendationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -18990,6 +19195,47 @@ func (s *ConnectionPoolConfigurationInfo) SetMaxIdleConnectionsPercent(v int64) 
 // SetSessionPinningFilters sets the SessionPinningFilters field's value.
 func (s *ConnectionPoolConfigurationInfo) SetSessionPinningFilters(v []*string) *ConnectionPoolConfigurationInfo {
 	s.SessionPinningFilters = v
+	return s
+}
+
+// The additional attributes of RecommendedAction data type.
+type ContextAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The key of ContextAttribute.
+	Key *string `type:"string"`
+
+	// The value of ContextAttribute.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContextAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContextAttribute) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *ContextAttribute) SetKey(v string) *ContextAttribute {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ContextAttribute) SetValue(v string) *ContextAttribute {
+	s.Value = &v
 	return s
 }
 
@@ -31073,6 +31319,252 @@ func (s *DBProxyTargetGroup) SetUpdatedDate(v time.Time) *DBProxyTargetGroup {
 	return s
 }
 
+// The recommendation for your DB instances, DB clusters, and DB parameter groups.
+type DBRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// Additional information about the recommendation. The information might contain
+	// markdown.
+	AdditionalInfo *string `type:"string"`
+
+	// The category of the recommendation.
+	//
+	// Valid values:
+	//
+	//    * performance efficiency
+	//
+	//    * security
+	//
+	//    * reliability
+	//
+	//    * cost optimization
+	//
+	//    * operational excellence
+	//
+	//    * sustainability
+	Category *string `type:"string"`
+
+	// The time when the recommendation was created. For example, 2023-09-28T01:13:53.931000+00:00.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// A detailed description of the recommendation. The description might contain
+	// markdown.
+	Description *string `type:"string"`
+
+	// A short description of the issue identified for this recommendation. The
+	// description might contain markdown.
+	Detection *string `type:"string"`
+
+	// A short description that explains the possible impact of an issue.
+	Impact *string `type:"string"`
+
+	// Details of the issue that caused the recommendation.
+	IssueDetails *IssueDetails `type:"structure"`
+
+	// A link to documentation that provides additional information about the recommendation.
+	Links []*DocLink `type:"list"`
+
+	// The reason why this recommendation was created. The information might contain
+	// markdown.
+	Reason *string `type:"string"`
+
+	// A short description of the recommendation to resolve an issue. The description
+	// might contain markdown.
+	Recommendation *string `type:"string"`
+
+	// The unique identifier of the recommendation.
+	RecommendationId *string `type:"string"`
+
+	// A list of recommended actions.
+	RecommendedActions []*RecommendedAction `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the RDS resource associated with the recommendation.
+	ResourceArn *string `type:"string"`
+
+	// The severity level of the recommendation. The severity level can help you
+	// decide the urgency with which to address the recommendation.
+	//
+	// Valid values:
+	//
+	//    * high
+	//
+	//    * medium
+	//
+	//    * low
+	//
+	//    * informational
+	Severity *string `type:"string"`
+
+	// The Amazon Web Services service that generated the recommendations.
+	Source *string `type:"string"`
+
+	// The current status of the recommendation.
+	//
+	// Valid values:
+	//
+	//    * active - The recommendations which are ready for you to apply.
+	//
+	//    * pending - The applied or scheduled recommendations which are in progress.
+	//
+	//    * resolved - The recommendations which are completed.
+	//
+	//    * dismissed - The recommendations that you dismissed.
+	Status *string `type:"string"`
+
+	// A short description of the recommendation type. The description might contain
+	// markdown.
+	TypeDetection *string `type:"string"`
+
+	// A value that indicates the type of recommendation. This value determines
+	// how the description is rendered.
+	TypeId *string `type:"string"`
+
+	// A short description that summarizes the recommendation to fix all the issues
+	// of the recommendation type. The description might contain markdown.
+	TypeRecommendation *string `type:"string"`
+
+	// The time when the recommendation was last updated.
+	UpdatedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DBRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *DBRecommendation) SetAdditionalInfo(v string) *DBRecommendation {
+	s.AdditionalInfo = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *DBRecommendation) SetCategory(v string) *DBRecommendation {
+	s.Category = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DBRecommendation) SetCreatedTime(v time.Time) *DBRecommendation {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DBRecommendation) SetDescription(v string) *DBRecommendation {
+	s.Description = &v
+	return s
+}
+
+// SetDetection sets the Detection field's value.
+func (s *DBRecommendation) SetDetection(v string) *DBRecommendation {
+	s.Detection = &v
+	return s
+}
+
+// SetImpact sets the Impact field's value.
+func (s *DBRecommendation) SetImpact(v string) *DBRecommendation {
+	s.Impact = &v
+	return s
+}
+
+// SetIssueDetails sets the IssueDetails field's value.
+func (s *DBRecommendation) SetIssueDetails(v *IssueDetails) *DBRecommendation {
+	s.IssueDetails = v
+	return s
+}
+
+// SetLinks sets the Links field's value.
+func (s *DBRecommendation) SetLinks(v []*DocLink) *DBRecommendation {
+	s.Links = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *DBRecommendation) SetReason(v string) *DBRecommendation {
+	s.Reason = &v
+	return s
+}
+
+// SetRecommendation sets the Recommendation field's value.
+func (s *DBRecommendation) SetRecommendation(v string) *DBRecommendation {
+	s.Recommendation = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *DBRecommendation) SetRecommendationId(v string) *DBRecommendation {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetRecommendedActions sets the RecommendedActions field's value.
+func (s *DBRecommendation) SetRecommendedActions(v []*RecommendedAction) *DBRecommendation {
+	s.RecommendedActions = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DBRecommendation) SetResourceArn(v string) *DBRecommendation {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *DBRecommendation) SetSeverity(v string) *DBRecommendation {
+	s.Severity = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DBRecommendation) SetSource(v string) *DBRecommendation {
+	s.Source = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBRecommendation) SetStatus(v string) *DBRecommendation {
+	s.Status = &v
+	return s
+}
+
+// SetTypeDetection sets the TypeDetection field's value.
+func (s *DBRecommendation) SetTypeDetection(v string) *DBRecommendation {
+	s.TypeDetection = &v
+	return s
+}
+
+// SetTypeId sets the TypeId field's value.
+func (s *DBRecommendation) SetTypeId(v string) *DBRecommendation {
+	s.TypeId = &v
+	return s
+}
+
+// SetTypeRecommendation sets the TypeRecommendation field's value.
+func (s *DBRecommendation) SetTypeRecommendation(v string) *DBRecommendation {
+	s.TypeRecommendation = &v
+	return s
+}
+
+// SetUpdatedTime sets the UpdatedTime field's value.
+func (s *DBRecommendation) SetUpdatedTime(v time.Time) *DBRecommendation {
+	s.UpdatedTime = &v
+	return s
+}
+
 // Contains the details for an Amazon RDS DB security group.
 //
 // This data type is used as a response element in the DescribeDBSecurityGroups
@@ -37612,6 +38104,214 @@ func (s *DescribeDBProxyTargetsOutput) SetTargets(v []*DBProxyTarget) *DescribeD
 	return s
 }
 
+type DescribeDBRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that specifies one or more recommendations to describe.
+	//
+	// Supported Filters:
+	//
+	//    * recommendation-id - Accepts a list of recommendation identifiers. The
+	//    results list only includes the recommendations whose identifier is one
+	//    of the specified filter values.
+	//
+	//    * status - Accepts a list of recommendation statuses. Valid values: active
+	//    - The recommendations which are ready for you to apply. pending - The
+	//    applied or scheduled recommendations which are in progress. resolved -
+	//    The recommendations which are completed. dismissed - The recommendations
+	//    that you dismissed. The results list only includes the recommendations
+	//    whose status is one of the specified filter values.
+	//
+	//    * severity - Accepts a list of recommendation severities. The results
+	//    list only includes the recommendations whose severity is one of the specified
+	//    filter values. Valid values: high medium low informational
+	//
+	//    * type-id - Accepts a list of recommendation type identifiers. The results
+	//    list only includes the recommendations whose type is one of the specified
+	//    filter values.
+	//
+	//    * dbi-resource-id - Accepts a list of database resource identifiers. The
+	//    results list only includes the recommendations that generated for the
+	//    specified databases.
+	//
+	//    * cluster-resource-id - Accepts a list of cluster resource identifiers.
+	//    The results list only includes the recommendations that generated for
+	//    the specified clusters.
+	//
+	//    * pg-arn - Accepts a list of parameter group ARNs. The results list only
+	//    includes the recommendations that generated for the specified parameter
+	//    groups.
+	//
+	//    * cluster-pg-arn - Accepts a list of cluster parameter group ARNs. The
+	//    results list only includes the recommendations that generated for the
+	//    specified cluster parameter groups.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// A filter to include only the recommendations that were updated after this
+	// specified time.
+	LastUpdatedAfter *time.Time `type:"timestamp"`
+
+	// A filter to include only the recommendations that were updated before this
+	// specified time.
+	LastUpdatedBefore *time.Time `type:"timestamp"`
+
+	// The language that you choose to return the list of recommendations.
+	//
+	// Valid values:
+	//
+	//    * en
+	//
+	//    * en_UK
+	//
+	//    * de
+	//
+	//    * es
+	//
+	//    * fr
+	//
+	//    * id
+	//
+	//    * it
+	//
+	//    * ja
+	//
+	//    * ko
+	//
+	//    * pt_BR
+	//
+	//    * zh_TW
+	//
+	//    * zh_CN
+	Locale *string `type:"string"`
+
+	// An optional pagination token provided by a previous DescribeDBRecommendations
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of recommendations to include in the response. If more
+	// records exist than the specified MaxRecords value, a pagination token called
+	// a marker is included in the response so that you can retrieve the remaining
+	// results.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDBRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDBRecommendationsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBRecommendationsInput) SetFilters(v []*Filter) *DescribeDBRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetLastUpdatedAfter sets the LastUpdatedAfter field's value.
+func (s *DescribeDBRecommendationsInput) SetLastUpdatedAfter(v time.Time) *DescribeDBRecommendationsInput {
+	s.LastUpdatedAfter = &v
+	return s
+}
+
+// SetLastUpdatedBefore sets the LastUpdatedBefore field's value.
+func (s *DescribeDBRecommendationsInput) SetLastUpdatedBefore(v time.Time) *DescribeDBRecommendationsInput {
+	s.LastUpdatedBefore = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *DescribeDBRecommendationsInput) SetLocale(v string) *DescribeDBRecommendationsInput {
+	s.Locale = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBRecommendationsInput) SetMarker(v string) *DescribeDBRecommendationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBRecommendationsInput) SetMaxRecords(v int64) *DescribeDBRecommendationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeDBRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of recommendations which is returned from DescribeDBRecommendations
+	// API request.
+	DBRecommendations []*DBRecommendation `type:"list"`
+
+	// An optional pagination token provided by a previous DBRecommendationsMessage
+	// request. This token can be used later in a DescribeDBRecomendations request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDBRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBRecommendations sets the DBRecommendations field's value.
+func (s *DescribeDBRecommendationsOutput) SetDBRecommendations(v []*DBRecommendation) *DescribeDBRecommendationsOutput {
+	s.DBRecommendations = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBRecommendationsOutput) SetMarker(v string) *DescribeDBRecommendationsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeDBSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41090,6 +41790,47 @@ func (s *DescribeValidDBInstanceModificationsOutput) SetValidDBInstanceModificat
 	return s
 }
 
+// A link to documentation that provides additional information for a recommendation.
+type DocLink struct {
+	_ struct{} `type:"structure"`
+
+	// The text with the link to documentation for the recommendation.
+	Text *string `type:"string"`
+
+	// The URL for the documentation for the recommendation.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocLink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocLink) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *DocLink) SetText(v string) *DocLink {
+	s.Text = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *DocLink) SetUrl(v string) *DocLink {
+	s.Url = &v
+	return s
+}
+
 // An Active Directory Domain membership record associated with the DB instance
 // or cluster.
 type DomainMembership struct {
@@ -42356,6 +43097,8 @@ func (s *FailoverState) SetToDbClusterArn(v string) *FailoverState {
 //
 //   - DescribeDBInstances
 //
+//   - DescribeDBRecommendations
+//
 //   - DescribePendingMaintenanceActions
 type Filter struct {
 	_ struct{} `type:"structure"`
@@ -42821,6 +43564,39 @@ func (s *IntegrationError) SetErrorMessage(v string) *IntegrationError {
 	return s
 }
 
+// The details of an issue with your DB instances, DB clusters, and DB parameter
+// groups.
+type IssueDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed description of the issue when the recommendation category is performance.
+	PerformanceIssueDetails *PerformanceIssueDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IssueDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IssueDetails) GoString() string {
+	return s.String()
+}
+
+// SetPerformanceIssueDetails sets the PerformanceIssueDetails field's value.
+func (s *IssueDetails) SetPerformanceIssueDetails(v *PerformanceIssueDetails) *IssueDetails {
+	s.PerformanceIssueDetails = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -42991,6 +43767,140 @@ func (s *MasterUserSecret) SetSecretArn(v string) *MasterUserSecret {
 // SetSecretStatus sets the SecretStatus field's value.
 func (s *MasterUserSecret) SetSecretStatus(v string) *MasterUserSecret {
 	s.SecretStatus = &v
+	return s
+}
+
+// The representation of a metric.
+type Metric struct {
+	_ struct{} `type:"structure"`
+
+	// The query to retrieve metric data points.
+	MetricQuery *MetricQuery `type:"structure"`
+
+	// The name of a metric.
+	Name *string `type:"string"`
+
+	// A list of metric references (thresholds).
+	References []*MetricReference `type:"list"`
+
+	// The details of different statistics for a metric. The description might contain
+	// markdown.
+	StatisticsDetails *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metric) GoString() string {
+	return s.String()
+}
+
+// SetMetricQuery sets the MetricQuery field's value.
+func (s *Metric) SetMetricQuery(v *MetricQuery) *Metric {
+	s.MetricQuery = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Metric) SetName(v string) *Metric {
+	s.Name = &v
+	return s
+}
+
+// SetReferences sets the References field's value.
+func (s *Metric) SetReferences(v []*MetricReference) *Metric {
+	s.References = v
+	return s
+}
+
+// SetStatisticsDetails sets the StatisticsDetails field's value.
+func (s *Metric) SetStatisticsDetails(v string) *Metric {
+	s.StatisticsDetails = &v
+	return s
+}
+
+// The query to retrieve metric data points.
+type MetricQuery struct {
+	_ struct{} `type:"structure"`
+
+	// The Performance Insights query that you can use to retrieve Performance Insights
+	// metric data points.
+	PerformanceInsightsMetricQuery *PerformanceInsightsMetricQuery `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricQuery) GoString() string {
+	return s.String()
+}
+
+// SetPerformanceInsightsMetricQuery sets the PerformanceInsightsMetricQuery field's value.
+func (s *MetricQuery) SetPerformanceInsightsMetricQuery(v *PerformanceInsightsMetricQuery) *MetricQuery {
+	s.PerformanceInsightsMetricQuery = v
+	return s
+}
+
+// The reference (threshold) for a metric.
+type MetricReference struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric reference.
+	Name *string `type:"string"`
+
+	// The details of a performance issue.
+	ReferenceDetails *ReferenceDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *MetricReference) SetName(v string) *MetricReference {
+	s.Name = &v
+	return s
+}
+
+// SetReferenceDetails sets the ReferenceDetails field's value.
+func (s *MetricReference) SetReferenceDetails(v *ReferenceDetails) *MetricReference {
+	s.ReferenceDetails = v
 	return s
 }
 
@@ -46993,6 +47903,127 @@ func (s *ModifyDBProxyTargetGroupOutput) SetDBProxyTargetGroup(v *DBProxyTargetG
 	return s
 }
 
+type ModifyDBRecommendationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the modified recommendation.
+	Locale *string `type:"string"`
+
+	// The identifier of the recommendation to update.
+	//
+	// RecommendationId is a required field
+	RecommendationId *string `type:"string" required:"true"`
+
+	// The list of recommended action status to update. You can update multiple
+	// recommended actions at one time.
+	RecommendedActionUpdates []*RecommendedActionUpdate `type:"list"`
+
+	// The recommendation status to update.
+	//
+	// Valid values:
+	//
+	//    * active
+	//
+	//    * dismissed
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyDBRecommendationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyDBRecommendationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDBRecommendationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDBRecommendationInput"}
+	if s.RecommendationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationId"))
+	}
+	if s.RecommendedActionUpdates != nil {
+		for i, v := range s.RecommendedActionUpdates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RecommendedActionUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocale sets the Locale field's value.
+func (s *ModifyDBRecommendationInput) SetLocale(v string) *ModifyDBRecommendationInput {
+	s.Locale = &v
+	return s
+}
+
+// SetRecommendationId sets the RecommendationId field's value.
+func (s *ModifyDBRecommendationInput) SetRecommendationId(v string) *ModifyDBRecommendationInput {
+	s.RecommendationId = &v
+	return s
+}
+
+// SetRecommendedActionUpdates sets the RecommendedActionUpdates field's value.
+func (s *ModifyDBRecommendationInput) SetRecommendedActionUpdates(v []*RecommendedActionUpdate) *ModifyDBRecommendationInput {
+	s.RecommendedActionUpdates = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyDBRecommendationInput) SetStatus(v string) *ModifyDBRecommendationInput {
+	s.Status = &v
+	return s
+}
+
+type ModifyDBRecommendationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The recommendation for your DB instances, DB clusters, and DB parameter groups.
+	DBRecommendation *DBRecommendation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyDBRecommendationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyDBRecommendationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBRecommendation sets the DBRecommendation field's value.
+func (s *ModifyDBRecommendationOutput) SetDBRecommendation(v *DBRecommendation) *ModifyDBRecommendationOutput {
+	s.DBRecommendation = v
+	return s
+}
+
 type ModifyDBSnapshotAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -49601,6 +50632,205 @@ func (s *PendingModifiedValues) SetStorageType(v string) *PendingModifiedValues 
 	return s
 }
 
+// A logical grouping of Performance Insights metrics for a related subject
+// area. For example, the db.sql dimension group consists of the following dimensions:
+//
+//   - db.sql.id - The hash of a running SQL statement, generated by Performance
+//     Insights.
+//
+//   - db.sql.db_id - Either the SQL ID generated by the database engine, or
+//     a value generated by Performance Insights that begins with pi-.
+//
+//   - db.sql.statement - The full text of the SQL statement that is running,
+//     for example, SELECT * FROM employees.
+//
+//   - db.sql_tokenized.id - The hash of the SQL digest generated by Performance
+//     Insights.
+//
+// Each response element returns a maximum of 500 bytes. For larger elements,
+// such as SQL statements, only the first 500 bytes are returned.
+type PerformanceInsightsMetricDimensionGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of specific dimensions from a dimension group. If this list isn't
+	// included, then all of the dimensions in the group were requested, or are
+	// present in the response.
+	Dimensions []*string `type:"list"`
+
+	// The available dimension groups for Performance Insights metric type.
+	Group *string `type:"string"`
+
+	// The maximum number of items to fetch for this dimension group.
+	Limit *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) GoString() string {
+	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetDimensions(v []*string) *PerformanceInsightsMetricDimensionGroup {
+	s.Dimensions = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetGroup(v string) *PerformanceInsightsMetricDimensionGroup {
+	s.Group = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetLimit(v int64) *PerformanceInsightsMetricDimensionGroup {
+	s.Limit = &v
+	return s
+}
+
+// A single Performance Insights metric query to process. You must provide the
+// metric to the query. If other parameters aren't specified, Performance Insights
+// returns all data points for the specified metric. Optionally, you can request
+// the data points to be aggregated by dimension group (GroupBy) and return
+// only those data points that match your criteria (Filter).
+//
+// Constraints:
+//
+//   - Must be a valid Performance Insights query.
+type PerformanceInsightsMetricQuery struct {
+	_ struct{} `type:"structure"`
+
+	// A specification for how to aggregate the data points from a query result.
+	// You must specify a valid dimension group. Performance Insights will return
+	// all of the dimensions within that group, unless you provide the names of
+	// specific dimensions within that group. You can also request that Performance
+	// Insights return a limited number of values for a dimension.
+	GroupBy *PerformanceInsightsMetricDimensionGroup `type:"structure"`
+
+	// The name of a Performance Insights metric to be measured.
+	//
+	// Valid Values:
+	//
+	//    * db.load.avg - A scaled representation of the number of active sessions
+	//    for the database engine.
+	//
+	//    * db.sampledload.avg - The raw number of active sessions for the database
+	//    engine.
+	//
+	//    * The counter metrics listed in Performance Insights operating system
+	//    counters (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS)
+	//    in the Amazon Aurora User Guide.
+	//
+	// If the number of active sessions is less than an internal Performance Insights
+	// threshold, db.load.avg and db.sampledload.avg are the same value. If the
+	// number of active sessions is greater than the internal threshold, Performance
+	// Insights samples the active sessions, with db.load.avg showing the scaled
+	// values, db.sampledload.avg showing the raw values, and db.sampledload.avg
+	// less than db.load.avg. For most use cases, you can query db.load.avg only.
+	Metric *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) GoString() string {
+	return s.String()
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *PerformanceInsightsMetricQuery) SetGroupBy(v *PerformanceInsightsMetricDimensionGroup) *PerformanceInsightsMetricQuery {
+	s.GroupBy = v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *PerformanceInsightsMetricQuery) SetMetric(v string) *PerformanceInsightsMetricQuery {
+	s.Metric = &v
+	return s
+}
+
+// Details of the performance issue.
+type PerformanceIssueDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The analysis of the performance issue. The information might contain markdown.
+	Analysis *string `type:"string"`
+
+	// The time when the performance issue stopped.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The metrics that are relevant to the performance issue.
+	Metrics []*Metric `type:"list"`
+
+	// The time when the performance issue started.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceIssueDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceIssueDetails) GoString() string {
+	return s.String()
+}
+
+// SetAnalysis sets the Analysis field's value.
+func (s *PerformanceIssueDetails) SetAnalysis(v string) *PerformanceIssueDetails {
+	s.Analysis = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *PerformanceIssueDetails) SetEndTime(v time.Time) *PerformanceIssueDetails {
+	s.EndTime = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *PerformanceIssueDetails) SetMetrics(v []*Metric) *PerformanceIssueDetails {
+	s.Metrics = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *PerformanceIssueDetails) SetStartTime(v time.Time) *PerformanceIssueDetails {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the processor features of a DB instance class.
 //
 // To specify the number of CPU cores, use the coreCount feature name for the
@@ -50330,6 +51560,237 @@ func (s *RebootDBInstanceOutput) SetDBInstance(v *DBInstance) *RebootDBInstanceO
 	return s
 }
 
+// The recommended actions to apply to resolve the issues associated with your
+// DB instances, DB clusters, and DB parameter groups.
+type RecommendedAction struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the recommended action.
+	ActionId *string `type:"string"`
+
+	// The methods to apply the recommended action.
+	//
+	// Valid values:
+	//
+	//    * manual - The action requires you to resolve the recommendation manually.
+	//
+	//    * immediately - The action is applied immediately.
+	//
+	//    * next-maintainance-window - The action is applied during the next scheduled
+	//    maintainance.
+	ApplyModes []*string `type:"list"`
+
+	// The supporting attributes to explain the recommended action.
+	ContextAttributes []*ContextAttribute `type:"list"`
+
+	// A detailed description of the action. The description might contain markdown.
+	Description *string `type:"string"`
+
+	// The details of the issue.
+	IssueDetails *IssueDetails `type:"structure"`
+
+	// An API operation for the action.
+	Operation *string `type:"string"`
+
+	// The parameters for the API operation.
+	Parameters []*RecommendedActionParameter `type:"list"`
+
+	// The status of the action.
+	//
+	//    * ready
+	//
+	//    * applied
+	//
+	//    * scheduled
+	//
+	//    * resolved
+	Status *string `type:"string"`
+
+	// A short description to summarize the action. The description might contain
+	// markdown.
+	Title *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedAction) GoString() string {
+	return s.String()
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *RecommendedAction) SetActionId(v string) *RecommendedAction {
+	s.ActionId = &v
+	return s
+}
+
+// SetApplyModes sets the ApplyModes field's value.
+func (s *RecommendedAction) SetApplyModes(v []*string) *RecommendedAction {
+	s.ApplyModes = v
+	return s
+}
+
+// SetContextAttributes sets the ContextAttributes field's value.
+func (s *RecommendedAction) SetContextAttributes(v []*ContextAttribute) *RecommendedAction {
+	s.ContextAttributes = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *RecommendedAction) SetDescription(v string) *RecommendedAction {
+	s.Description = &v
+	return s
+}
+
+// SetIssueDetails sets the IssueDetails field's value.
+func (s *RecommendedAction) SetIssueDetails(v *IssueDetails) *RecommendedAction {
+	s.IssueDetails = v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *RecommendedAction) SetOperation(v string) *RecommendedAction {
+	s.Operation = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *RecommendedAction) SetParameters(v []*RecommendedActionParameter) *RecommendedAction {
+	s.Parameters = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommendedAction) SetStatus(v string) *RecommendedAction {
+	s.Status = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *RecommendedAction) SetTitle(v string) *RecommendedAction {
+	s.Title = &v
+	return s
+}
+
+// A single parameter to use with the RecommendedAction API operation to apply
+// the action.
+type RecommendedActionParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the parameter to use with the RecommendedAction API operation.
+	Key *string `type:"string"`
+
+	// The value of the parameter to use with the RecommendedAction API operation.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedActionParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedActionParameter) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *RecommendedActionParameter) SetKey(v string) *RecommendedActionParameter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RecommendedActionParameter) SetValue(v string) *RecommendedActionParameter {
+	s.Value = &v
+	return s
+}
+
+// The recommended status to update for the specified recommendation action
+// ID.
+type RecommendedActionUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier of the updated recommendation action.
+	//
+	// ActionId is a required field
+	ActionId *string `type:"string" required:"true"`
+
+	// The status of the updated recommendation action.
+	//
+	//    * applied
+	//
+	//    * scheduled
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedActionUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedActionUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendedActionUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendedActionUpdate"}
+	if s.ActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionId"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *RecommendedActionUpdate) SetActionId(v string) *RecommendedActionUpdate {
+	s.ActionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommendedActionUpdate) SetStatus(v string) *RecommendedActionUpdate {
+	s.Status = &v
+	return s
+}
+
 // This data type is used as a response element in the DescribeReservedDBInstances
 // and DescribeReservedDBInstancesOfferings actions.
 type RecurringCharge struct {
@@ -50369,6 +51830,38 @@ func (s *RecurringCharge) SetRecurringChargeAmount(v float64) *RecurringCharge {
 // SetRecurringChargeFrequency sets the RecurringChargeFrequency field's value.
 func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge {
 	s.RecurringChargeFrequency = &v
+	return s
+}
+
+// The reference details of a metric.
+type ReferenceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The metric reference details when the reference is a scalar.
+	ScalarReferenceDetails *ScalarReferenceDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceDetails) GoString() string {
+	return s.String()
+}
+
+// SetScalarReferenceDetails sets the ScalarReferenceDetails field's value.
+func (s *ReferenceDetails) SetScalarReferenceDetails(v *ScalarReferenceDetails) *ReferenceDetails {
+	s.ScalarReferenceDetails = v
 	return s
 }
 
@@ -55779,6 +57272,38 @@ func (s RevokeDBSecurityGroupIngressOutput) GoString() string {
 // SetDBSecurityGroup sets the DBSecurityGroup field's value.
 func (s *RevokeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGroup) *RevokeDBSecurityGroupIngressOutput {
 	s.DBSecurityGroup = v
+	return s
+}
+
+// The metric reference details when the reference is a scalar.
+type ScalarReferenceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The value of a scalar reference.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScalarReferenceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScalarReferenceDetails) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *ScalarReferenceDetails) SetValue(v float64) *ScalarReferenceDetails {
+	s.Value = &v
 	return s
 }
 

@@ -114,6 +114,12 @@
       "output_token": "Marker",
       "result_key": "Targets"
     },
+    "DescribeDBRecommendations": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBRecommendations"
+    },
     "DescribeDBSecurityGroups": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",
