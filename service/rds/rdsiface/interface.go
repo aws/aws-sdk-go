@@ -413,6 +413,13 @@ type RDSAPI interface {
 	DescribeDBProxyTargetsPages(*rds.DescribeDBProxyTargetsInput, func(*rds.DescribeDBProxyTargetsOutput, bool) bool) error
 	DescribeDBProxyTargetsPagesWithContext(aws.Context, *rds.DescribeDBProxyTargetsInput, func(*rds.DescribeDBProxyTargetsOutput, bool) bool, ...request.Option) error
 
+	DescribeDBRecommendations(*rds.DescribeDBRecommendationsInput) (*rds.DescribeDBRecommendationsOutput, error)
+	DescribeDBRecommendationsWithContext(aws.Context, *rds.DescribeDBRecommendationsInput, ...request.Option) (*rds.DescribeDBRecommendationsOutput, error)
+	DescribeDBRecommendationsRequest(*rds.DescribeDBRecommendationsInput) (*request.Request, *rds.DescribeDBRecommendationsOutput)
+
+	DescribeDBRecommendationsPages(*rds.DescribeDBRecommendationsInput, func(*rds.DescribeDBRecommendationsOutput, bool) bool) error
+	DescribeDBRecommendationsPagesWithContext(aws.Context, *rds.DescribeDBRecommendationsInput, func(*rds.DescribeDBRecommendationsOutput, bool) bool, ...request.Option) error
+
 	DescribeDBSecurityGroups(*rds.DescribeDBSecurityGroupsInput) (*rds.DescribeDBSecurityGroupsOutput, error)
 	DescribeDBSecurityGroupsWithContext(aws.Context, *rds.DescribeDBSecurityGroupsInput, ...request.Option) (*rds.DescribeDBSecurityGroupsOutput, error)
 	DescribeDBSecurityGroupsRequest(*rds.DescribeDBSecurityGroupsInput) (*request.Request, *rds.DescribeDBSecurityGroupsOutput)
@@ -625,6 +632,10 @@ type RDSAPI interface {
 	ModifyDBProxyTargetGroup(*rds.ModifyDBProxyTargetGroupInput) (*rds.ModifyDBProxyTargetGroupOutput, error)
 	ModifyDBProxyTargetGroupWithContext(aws.Context, *rds.ModifyDBProxyTargetGroupInput, ...request.Option) (*rds.ModifyDBProxyTargetGroupOutput, error)
 	ModifyDBProxyTargetGroupRequest(*rds.ModifyDBProxyTargetGroupInput) (*request.Request, *rds.ModifyDBProxyTargetGroupOutput)
+
+	ModifyDBRecommendation(*rds.ModifyDBRecommendationInput) (*rds.ModifyDBRecommendationOutput, error)
+	ModifyDBRecommendationWithContext(aws.Context, *rds.ModifyDBRecommendationInput, ...request.Option) (*rds.ModifyDBRecommendationOutput, error)
+	ModifyDBRecommendationRequest(*rds.ModifyDBRecommendationInput) (*request.Request, *rds.ModifyDBRecommendationOutput)
 
 	ModifyDBSnapshot(*rds.ModifyDBSnapshotInput) (*rds.ModifyDBSnapshotOutput, error)
 	ModifyDBSnapshotWithContext(aws.Context, *rds.ModifyDBSnapshotInput, ...request.Option) (*rds.ModifyDBSnapshotOutput, error)

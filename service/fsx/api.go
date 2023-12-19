@@ -9301,7 +9301,11 @@ type CreateFileSystemOntapConfiguration struct {
 	// conditions:
 	//
 	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
-	//    not the same value
+	//    not the same value for file systems with one HA pair.
+	//
+	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
+	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
+	//    6).
 	//
 	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
 	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
@@ -14600,6 +14604,11 @@ type DescribeSnapshotsInput struct {
 	// The filters structure. The supported names are file-system-id or volume-id.
 	Filters []*SnapshotFilter `type:"list"`
 
+	// Set to false (default) if you want to only see the snapshots in your Amazon
+	// Web Services account. Set to true if you want to see the snapshots in your
+	// account and the ones shared with you from another account.
+	IncludeShared *bool `type:"boolean"`
+
 	// The maximum number of resources to return in the response. This value must
 	// be an integer greater than zero.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -14652,6 +14661,12 @@ func (s *DescribeSnapshotsInput) Validate() error {
 // SetFilters sets the Filters field's value.
 func (s *DescribeSnapshotsInput) SetFilters(v []*SnapshotFilter) *DescribeSnapshotsInput {
 	s.Filters = v
+	return s
+}
+
+// SetIncludeShared sets the IncludeShared field's value.
+func (s *DescribeSnapshotsInput) SetIncludeShared(v bool) *DescribeSnapshotsInput {
+	s.IncludeShared = &v
 	return s
 }
 
@@ -19187,6 +19202,23 @@ func (s *OpenZFSUserOrGroupQuota) SetType(v string) *OpenZFSUserOrGroupQuota {
 type OpenZFSVolumeConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the strategy used when copying data from the snapshot to the new
+	// volume.
+	//
+	//    * CLONE - The new volume references the data in the origin snapshot. Cloning
+	//    a snapshot is faster than copying data from the snapshot to a new volume
+	//    and doesn't consume disk throughput. However, the origin snapshot can't
+	//    be deleted if there is a volume using its copied data.
+	//
+	//    * FULL_COPY - Copies all data from the snapshot to the new volume. Specify
+	//    this option to create the volume from a snapshot on another FSx for OpenZFS
+	//    file system.
+	//
+	// The INCREMENTAL_COPY option is only for updating an existing volume by using
+	// a snapshot from another FSx for OpenZFS file system. For more information,
+	// see CopySnapshotAndUpdateVolume (https://docs.aws.amazon.com/fsx/latest/APIReference/API_CopySnapshotAndUpdateVolume.html).
+	CopyStrategy *string `type:"string" enum:"OpenZFSCopyStrategy"`
+
 	// A Boolean value indicating whether tags for the volume should be copied to
 	// snapshots. This value defaults to false. If it's set to true, all tags for
 	// the volume are copied to snapshots where the user doesn't specify tags. If
@@ -19287,6 +19319,12 @@ func (s OpenZFSVolumeConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s OpenZFSVolumeConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetCopyStrategy sets the CopyStrategy field's value.
+func (s *OpenZFSVolumeConfiguration) SetCopyStrategy(v string) *OpenZFSVolumeConfiguration {
+	s.CopyStrategy = &v
+	return s
 }
 
 // SetCopyTagsToSnapshots sets the CopyTagsToSnapshots field's value.
@@ -22524,10 +22562,14 @@ type UpdateFileSystemOntapConfiguration struct {
 	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
 	// conditions:
 	//
-	// The value of ThroughputCapacity and ThroughputCapacityPerHAPair are not the
-	// same value.
+	//    * The value of ThroughputCapacity and ThroughputCapacityPerHAPair are
+	//    not the same value for file systems with one HA pair.
 	//
-	// The value of ThroughputCapacityPerHAPair is not a valid value.
+	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
+	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
+	//    6).
+	//
+	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
 	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
 
 	// A recurring weekly time, in the format D:HH:MM.

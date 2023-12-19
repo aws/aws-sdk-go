@@ -1,3 +1,16 @@
+Release v1.49.6 (2023-12-19)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Provision BYOIPv4 address ranges and advertise them by specifying the network border groups option in Los Angeles, Phoenix and Dallas AWS Local Zones.
+* `service/fsx`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * RDS - The release adds two new APIs: DescribeDBRecommendations and ModifyDBRecommendation
+
 Release v1.49.5 (2023-12-18)
 ===
 

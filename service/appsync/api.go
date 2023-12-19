@@ -8187,6 +8187,14 @@ type CreateGraphqlApiInput struct {
 	// AuthenticationType is a required field
 	AuthenticationType *string `locationName:"authenticationType" type:"string" required:"true" enum:"AuthenticationType"`
 
+	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
+	// introspection. If no value is provided, the introspection configuration will
+	// be set to ENABLED by default. This field will produce an error if the operation
+	// attempts to use the introspection feature while this field is disabled.
+	//
+	// For more information about introspection, see GraphQL introspection (https://graphql.org/learn/introspection/).
+	IntrospectionConfig *string `locationName:"introspectionConfig" type:"string" enum:"GraphQLApiIntrospectionConfig"`
+
 	// Configuration for Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
@@ -8211,6 +8219,23 @@ type CreateGraphqlApiInput struct {
 	//
 	// This field accepts any string input with a length of 0 - 256 characters.
 	OwnerContact *string `locationName:"ownerContact" type:"string"`
+
+	// The maximum depth a query can have in a single request. Depth refers to the
+	// amount of nested levels allowed in the body of query. The default value is
+	// 0 (or unspecified), which indicates there's no depth limit. If you set a
+	// limit, it can be between 1 and 75 nested levels. This field will produce
+	// a limit error if the operation falls out of bounds.
+	//
+	// Note that fields can still be set to nullable or non-nullable. If a non-nullable
+	// field produces an error, the error will be thrown upwards to the first nullable
+	// field available.
+	QueryDepthLimit *int64 `locationName:"queryDepthLimit" type:"integer"`
+
+	// The maximum number of resolvers that can be invoked in a single request.
+	// The default value is 0 (or unspecified), which will set the limit to 10000.
+	// When specified, the limit value can be between 1 and 10000. This field will
+	// produce a limit error if the operation falls out of bounds.
+	ResolverCountLimit *int64 `locationName:"resolverCountLimit" type:"integer"`
 
 	// A TagMap object.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -8312,6 +8337,12 @@ func (s *CreateGraphqlApiInput) SetAuthenticationType(v string) *CreateGraphqlAp
 	return s
 }
 
+// SetIntrospectionConfig sets the IntrospectionConfig field's value.
+func (s *CreateGraphqlApiInput) SetIntrospectionConfig(v string) *CreateGraphqlApiInput {
+	s.IntrospectionConfig = &v
+	return s
+}
+
 // SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
 func (s *CreateGraphqlApiInput) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *CreateGraphqlApiInput {
 	s.LambdaAuthorizerConfig = v
@@ -8345,6 +8376,18 @@ func (s *CreateGraphqlApiInput) SetOpenIDConnectConfig(v *OpenIDConnectConfig) *
 // SetOwnerContact sets the OwnerContact field's value.
 func (s *CreateGraphqlApiInput) SetOwnerContact(v string) *CreateGraphqlApiInput {
 	s.OwnerContact = &v
+	return s
+}
+
+// SetQueryDepthLimit sets the QueryDepthLimit field's value.
+func (s *CreateGraphqlApiInput) SetQueryDepthLimit(v int64) *CreateGraphqlApiInput {
+	s.QueryDepthLimit = &v
+	return s
+}
+
+// SetResolverCountLimit sets the ResolverCountLimit field's value.
+func (s *CreateGraphqlApiInput) SetResolverCountLimit(v int64) *CreateGraphqlApiInput {
+	s.ResolverCountLimit = &v
 	return s
 }
 
@@ -12291,6 +12334,14 @@ type GraphqlApi struct {
 	// The DNS records for the API.
 	Dns map[string]*string `locationName:"dns" type:"map"`
 
+	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
+	// introspection. If no value is provided, the introspection configuration will
+	// be set to ENABLED by default. This field will produce an error if the operation
+	// attempts to use the introspection feature while this field is disabled.
+	//
+	// For more information about introspection, see GraphQL introspection (https://graphql.org/learn/introspection/).
+	IntrospectionConfig *string `locationName:"introspectionConfig" type:"string" enum:"GraphQLApiIntrospectionConfig"`
+
 	// Configuration for Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
@@ -12316,6 +12367,23 @@ type GraphqlApi struct {
 	//
 	// This field accepts any string input with a length of 0 - 256 characters.
 	OwnerContact *string `locationName:"ownerContact" type:"string"`
+
+	// The maximum depth a query can have in a single request. Depth refers to the
+	// amount of nested levels allowed in the body of query. The default value is
+	// 0 (or unspecified), which indicates there's no depth limit. If you set a
+	// limit, it can be between 1 and 75 nested levels. This field will produce
+	// a limit error if the operation falls out of bounds.
+	//
+	// Note that fields can still be set to nullable or non-nullable. If a non-nullable
+	// field produces an error, the error will be thrown upwards to the first nullable
+	// field available.
+	QueryDepthLimit *int64 `locationName:"queryDepthLimit" type:"integer"`
+
+	// The maximum number of resolvers that can be invoked in a single request.
+	// The default value is 0 (or unspecified), which will set the limit to 10000.
+	// When specified, the limit value can be between 1 and 10000. This field will
+	// produce a limit error if the operation falls out of bounds.
+	ResolverCountLimit *int64 `locationName:"resolverCountLimit" type:"integer"`
 
 	// The tags.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -12393,6 +12461,12 @@ func (s *GraphqlApi) SetDns(v map[string]*string) *GraphqlApi {
 	return s
 }
 
+// SetIntrospectionConfig sets the IntrospectionConfig field's value.
+func (s *GraphqlApi) SetIntrospectionConfig(v string) *GraphqlApi {
+	s.IntrospectionConfig = &v
+	return s
+}
+
 // SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
 func (s *GraphqlApi) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *GraphqlApi {
 	s.LambdaAuthorizerConfig = v
@@ -12432,6 +12506,18 @@ func (s *GraphqlApi) SetOwner(v string) *GraphqlApi {
 // SetOwnerContact sets the OwnerContact field's value.
 func (s *GraphqlApi) SetOwnerContact(v string) *GraphqlApi {
 	s.OwnerContact = &v
+	return s
+}
+
+// SetQueryDepthLimit sets the QueryDepthLimit field's value.
+func (s *GraphqlApi) SetQueryDepthLimit(v int64) *GraphqlApi {
+	s.QueryDepthLimit = &v
+	return s
+}
+
+// SetResolverCountLimit sets the ResolverCountLimit field's value.
+func (s *GraphqlApi) SetResolverCountLimit(v int64) *GraphqlApi {
+	s.ResolverCountLimit = &v
 	return s
 }
 
@@ -16526,6 +16612,14 @@ type UpdateGraphqlApiInput struct {
 	// The new authentication type for the GraphqlApi object.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
+	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
+	// introspection. If no value is provided, the introspection configuration will
+	// be set to ENABLED by default. This field will produce an error if the operation
+	// attempts to use the introspection feature while this field is disabled.
+	//
+	// For more information about introspection, see GraphQL introspection (https://graphql.org/learn/introspection/).
+	IntrospectionConfig *string `locationName:"introspectionConfig" type:"string" enum:"GraphQLApiIntrospectionConfig"`
+
 	// Configuration for Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
@@ -16550,6 +16644,23 @@ type UpdateGraphqlApiInput struct {
 	//
 	// This field accepts any string input with a length of 0 - 256 characters.
 	OwnerContact *string `locationName:"ownerContact" type:"string"`
+
+	// The maximum depth a query can have in a single request. Depth refers to the
+	// amount of nested levels allowed in the body of query. The default value is
+	// 0 (or unspecified), which indicates there's no depth limit. If you set a
+	// limit, it can be between 1 and 75 nested levels. This field will produce
+	// a limit error if the operation falls out of bounds.
+	//
+	// Note that fields can still be set to nullable or non-nullable. If a non-nullable
+	// field produces an error, the error will be thrown upwards to the first nullable
+	// field available.
+	QueryDepthLimit *int64 `locationName:"queryDepthLimit" type:"integer"`
+
+	// The maximum number of resolvers that can be invoked in a single request.
+	// The default value is 0 (or unspecified), which will set the limit to 10000.
+	// When specified, the limit value can be between 1 and 10000. This field will
+	// produce a limit error if the operation falls out of bounds.
+	ResolverCountLimit *int64 `locationName:"resolverCountLimit" type:"integer"`
 
 	// The new Amazon Cognito user pool configuration for the ~GraphqlApi object.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
@@ -16643,6 +16754,12 @@ func (s *UpdateGraphqlApiInput) SetAuthenticationType(v string) *UpdateGraphqlAp
 	return s
 }
 
+// SetIntrospectionConfig sets the IntrospectionConfig field's value.
+func (s *UpdateGraphqlApiInput) SetIntrospectionConfig(v string) *UpdateGraphqlApiInput {
+	s.IntrospectionConfig = &v
+	return s
+}
+
 // SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
 func (s *UpdateGraphqlApiInput) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *UpdateGraphqlApiInput {
 	s.LambdaAuthorizerConfig = v
@@ -16676,6 +16793,18 @@ func (s *UpdateGraphqlApiInput) SetOpenIDConnectConfig(v *OpenIDConnectConfig) *
 // SetOwnerContact sets the OwnerContact field's value.
 func (s *UpdateGraphqlApiInput) SetOwnerContact(v string) *UpdateGraphqlApiInput {
 	s.OwnerContact = &v
+	return s
+}
+
+// SetQueryDepthLimit sets the QueryDepthLimit field's value.
+func (s *UpdateGraphqlApiInput) SetQueryDepthLimit(v int64) *UpdateGraphqlApiInput {
+	s.QueryDepthLimit = &v
+	return s
+}
+
+// SetResolverCountLimit sets the ResolverCountLimit field's value.
+func (s *UpdateGraphqlApiInput) SetResolverCountLimit(v int64) *UpdateGraphqlApiInput {
+	s.ResolverCountLimit = &v
 	return s
 }
 
@@ -17613,6 +17742,22 @@ func FieldLogLevel_Values() []string {
 		FieldLogLevelNone,
 		FieldLogLevelError,
 		FieldLogLevelAll,
+	}
+}
+
+const (
+	// GraphQLApiIntrospectionConfigEnabled is a GraphQLApiIntrospectionConfig enum value
+	GraphQLApiIntrospectionConfigEnabled = "ENABLED"
+
+	// GraphQLApiIntrospectionConfigDisabled is a GraphQLApiIntrospectionConfig enum value
+	GraphQLApiIntrospectionConfigDisabled = "DISABLED"
+)
+
+// GraphQLApiIntrospectionConfig_Values returns all elements of the GraphQLApiIntrospectionConfig enum
+func GraphQLApiIntrospectionConfig_Values() []string {
+	return []string{
+		GraphQLApiIntrospectionConfigEnabled,
+		GraphQLApiIntrospectionConfigDisabled,
 	}
 }
 

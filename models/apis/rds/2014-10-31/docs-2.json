@@ -76,6 +76,7 @@
     "DescribeDBProxyEndpoints": "<p>Returns information about DB proxy endpoints.</p>",
     "DescribeDBProxyTargetGroups": "<p>Returns information about DB proxy target groups, represented by <code>DBProxyTargetGroup</code> data structures.</p>",
     "DescribeDBProxyTargets": "<p>Returns information about <code>DBProxyTarget</code> objects. This API supports pagination.</p>",
+    "DescribeDBRecommendations": "<p>Describes the recommendations to resolve the issues for your DB instances, DB clusters, and DB parameter groups.</p>",
     "DescribeDBSecurityGroups": "<p>Returns a list of <code>DBSecurityGroup</code> descriptions. If a <code>DBSecurityGroupName</code> is specified, the list will contain only the descriptions of the specified DB security group.</p> <note> <p>EC2-Classic was retired on August 15, 2022. If you haven't migrated from EC2-Classic to a VPC, we recommend that you migrate as soon as possible. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon EC2 User Guide</i>, the blog <a href=\"http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/\">EC2-Classic Networking is Retiring – Here’s How to Prepare</a>, and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Non-VPC2VPC.html\">Moving a DB instance not in a VPC into a VPC</a> in the <i>Amazon RDS User Guide</i>.</p> </note>",
     "DescribeDBSnapshotAttributes": "<p>Returns a list of DB snapshot attribute names and values for a manual DB snapshot.</p> <p>When sharing snapshots with other Amazon Web Services accounts, <code>DescribeDBSnapshotAttributes</code> returns the <code>restore</code> attribute and a list of IDs for the Amazon Web Services accounts that are authorized to copy or restore the manual DB snapshot. If <code>all</code> is included in the list of values for the <code>restore</code> attribute, then the manual DB snapshot is public and can be copied or restored by all Amazon Web Services accounts.</p> <p>To add or remove access for an Amazon Web Services account to copy or restore a manual DB snapshot, or to make the manual DB snapshot public or private, use the <code>ModifyDBSnapshotAttribute</code> API action.</p>",
     "DescribeDBSnapshotTenantDatabases": "<p>Describes the tenant databases that exist in a DB snapshot. This command only applies to RDS for Oracle DB instances in the multi-tenant configuration.</p> <p>You can use this command to inspect the tenant databases within a snapshot before restoring it. You can't directly interact with the tenant databases in a DB snapshot. If you restore a snapshot that was taken from DB instance using the multi-tenant configuration, you restore all its tenant databases.</p>",
@@ -115,6 +116,7 @@
     "ModifyDBProxy": "<p>Changes the settings for an existing DB proxy.</p>",
     "ModifyDBProxyEndpoint": "<p>Changes the settings for an existing DB proxy endpoint.</p>",
     "ModifyDBProxyTargetGroup": "<p>Modifies the properties of a <code>DBProxyTargetGroup</code>.</p>",
+    "ModifyDBRecommendation": "<p>Updates the recommendation status and recommended action status for the specified recommendation.</p>",
     "ModifyDBSnapshot": "<p>Updates a manual DB snapshot with a new engine version. The snapshot can be encrypted or unencrypted, but not shared or public. </p> <p>Amazon RDS supports upgrading DB snapshots for MySQL, PostgreSQL, and Oracle. This operation doesn't apply to RDS Custom or RDS for Db2.</p>",
     "ModifyDBSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB snapshot.</p> <p>To share a manual DB snapshot with other Amazon Web Services accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the Amazon Web Services accounts that are authorized to restore the manual DB snapshot. Uses the value <code>all</code> to make the manual DB snapshot public, which means it can be copied or restored by all Amazon Web Services accounts.</p> <note> <p>Don't add the <code>all</code> value for any manual DB snapshots that contain private information that you don't want available to all Amazon Web Services accounts.</p> </note> <p>If the manual DB snapshot is encrypted, it can be shared, but only by specifying a list of authorized Amazon Web Services account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p> <p>To view which Amazon Web Services accounts have access to copy or restore a manual DB snapshot, or whether a manual DB snapshot public or private, use the <a>DescribeDBSnapshotAttributes</a> API operation. The accounts are returned as values for the <code>restore</code> attribute.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the Amazon Web Services Region.</p>",
@@ -800,6 +802,18 @@
       "base": "<p>Displays the settings that control the size and behavior of the connection pool associated with a <code>DBProxyTarget</code>.</p>",
       "refs": {
         "DBProxyTargetGroup$ConnectionPoolConfig": "<p>The settings that determine the size and behavior of the connection pool for the target group.</p>"
+      }
+    },
+    "ContextAttribute": {
+      "base": "<p>The additional attributes of <code>RecommendedAction</code> data type.</p>",
+      "refs": {
+        "ContextAttributeList$member": null
+      }
+    },
+    "ContextAttributeList": {
+      "base": null,
+      "refs": {
+        "RecommendedAction$ContextAttributes": "<p>The supporting attributes to explain the recommended action.</p>"
       }
     },
     "CopyDBClusterParameterGroupMessage": {
@@ -1693,6 +1707,29 @@
       "refs": {
       }
     },
+    "DBRecommendation": {
+      "base": "<p>The recommendation for your DB instances, DB clusters, and DB parameter groups.</p>",
+      "refs": {
+        "DBRecommendationList$member": null,
+        "DBRecommendationMessage$DBRecommendation": null
+      }
+    },
+    "DBRecommendationList": {
+      "base": null,
+      "refs": {
+        "DBRecommendationsMessage$DBRecommendations": "<p>A list of recommendations which is returned from <code>DescribeDBRecommendations</code> API request.</p>"
+      }
+    },
+    "DBRecommendationMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DBRecommendationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DBSecurityGroup": {
       "base": "<p>Contains the details for an Amazon RDS DB security group.</p> <p>This data type is used as a response element in the <code>DescribeDBSecurityGroups</code> action.</p>",
       "refs": {
@@ -2214,6 +2251,11 @@
       "refs": {
       }
     },
+    "DescribeDBRecommendationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDBSecurityGroupsMessage": {
       "base": "<p/>",
       "refs": {
@@ -2356,6 +2398,18 @@
         "ModifyCustomDBEngineVersionMessage$Description": "<p>An optional description of your CEV.</p>"
       }
     },
+    "DocLink": {
+      "base": "<p>A link to documentation that provides additional information for a recommendation.</p>",
+      "refs": {
+        "DocLinkList$member": null
+      }
+    },
+    "DocLinkList": {
+      "base": null,
+      "refs": {
+        "DBRecommendation$Links": "<p>A link to documentation that provides additional information about the recommendation.</p>"
+      }
+    },
     "DomainMembership": {
       "base": "<p>An Active Directory Domain membership record associated with the DB instance or cluster.</p>",
       "refs": {
@@ -2383,7 +2437,8 @@
         "ReservedDBInstance$FixedPrice": "<p>The fixed price charged for this reserved DB instance.</p>",
         "ReservedDBInstance$UsagePrice": "<p>The hourly price charged for this reserved DB instance.</p>",
         "ReservedDBInstancesOffering$FixedPrice": "<p>The fixed price charged for this offering.</p>",
-        "ReservedDBInstancesOffering$UsagePrice": "<p>The hourly price charged for this offering.</p>"
+        "ReservedDBInstancesOffering$UsagePrice": "<p>The hourly price charged for this offering.</p>",
+        "ScalarReferenceDetails$Value": "<p>The value of a scalar reference.</p>"
       }
     },
     "DoubleOptional": {
@@ -2620,7 +2675,7 @@
       }
     },
     "Filter": {
-      "base": "<p>A filter name and value pair that is used to return a more specific list of results from a describe operation. Filters can be used to match a set of resources by specific criteria, such as IDs. The filters supported by a describe operation are documented with the describe operation.</p> <note> <p>Currently, wildcards are not supported in filters.</p> </note> <p>The following actions can be filtered:</p> <ul> <li> <p> <code>DescribeDBClusterBacktracks</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>DescribeDBClusters</code> </p> </li> <li> <p> <code>DescribeDBInstances</code> </p> </li> <li> <p> <code>DescribePendingMaintenanceActions</code> </p> </li> </ul>",
+      "base": "<p>A filter name and value pair that is used to return a more specific list of results from a describe operation. Filters can be used to match a set of resources by specific criteria, such as IDs. The filters supported by a describe operation are documented with the describe operation.</p> <note> <p>Currently, wildcards are not supported in filters.</p> </note> <p>The following actions can be filtered:</p> <ul> <li> <p> <code>DescribeDBClusterBacktracks</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>DescribeDBClusters</code> </p> </li> <li> <p> <code>DescribeDBInstances</code> </p> </li> <li> <p> <code>DescribeDBRecommendations</code> </p> </li> <li> <p> <code>DescribePendingMaintenanceActions</code> </p> </li> </ul>",
       "refs": {
         "FilterList$member": null
       }
@@ -2647,6 +2702,7 @@
         "DescribeDBProxyEndpointsRequest$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBProxyTargetGroupsRequest$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBProxyTargetsRequest$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeDBRecommendationsMessage$Filters": "<p>A filter that specifies one or more recommendations to describe.</p> <p>Supported Filters:</p> <ul> <li> <p> <code>recommendation-id</code> - Accepts a list of recommendation identifiers. The results list only includes the recommendations whose identifier is one of the specified filter values.</p> </li> <li> <p> <code>status</code> - Accepts a list of recommendation statuses.</p> <p>Valid values:</p> <ul> <li> <p> <code>active</code> - The recommendations which are ready for you to apply.</p> </li> <li> <p> <code>pending</code> - The applied or scheduled recommendations which are in progress.</p> </li> <li> <p> <code>resolved</code> - The recommendations which are completed.</p> </li> <li> <p> <code>dismissed</code> - The recommendations that you dismissed.</p> </li> </ul> <p>The results list only includes the recommendations whose status is one of the specified filter values.</p> </li> <li> <p> <code>severity</code> - Accepts a list of recommendation severities. The results list only includes the recommendations whose severity is one of the specified filter values.</p> <p>Valid values:</p> <ul> <li> <p> <code>high</code> </p> </li> <li> <p> <code>medium</code> </p> </li> <li> <p> <code>low</code> </p> </li> <li> <p> <code>informational</code> </p> </li> </ul> </li> <li> <p> <code>type-id</code> - Accepts a list of recommendation type identifiers. The results list only includes the recommendations whose type is one of the specified filter values.</p> </li> <li> <p> <code>dbi-resource-id</code> - Accepts a list of database resource identifiers. The results list only includes the recommendations that generated for the specified databases.</p> </li> <li> <p> <code>cluster-resource-id</code> - Accepts a list of cluster resource identifiers. The results list only includes the recommendations that generated for the specified clusters.</p> </li> <li> <p> <code>pg-arn</code> - Accepts a list of parameter group ARNs. The results list only includes the recommendations that generated for the specified parameter groups.</p> </li> <li> <p> <code>cluster-pg-arn</code> - Accepts a list of cluster parameter group ARNs. The results list only includes the recommendations that generated for the specified cluster parameter groups.</p> </li> </ul>",
         "DescribeDBSecurityGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeDBSnapshotTenantDatabasesMessage$Filters": "<p>A filter that specifies one or more tenant databases to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>tenant-db-name</code> - Tenant database names. The results list only includes information about the tenant databases that match these tenant DB names.</p> </li> <li> <p> <code>tenant-database-resource-id</code> - Tenant database resource identifiers. The results list only includes information about the tenant databases contained within the DB snapshots.</p> </li> <li> <p> <code>dbi-resource-id</code> - DB instance resource identifiers. The results list only includes information about snapshots containing tenant databases contained within the DB instances identified by these resource identifiers.</p> </li> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs).</p> </li> <li> <p> <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.</p> </li> <li> <p> <code>snapshot-type</code> - Accepts types of DB snapshots.</p> </li> </ul>",
         "DescribeDBSnapshotsMessage$Filters": "<p>A filter that specifies one or more DB snapshots to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs).</p> </li> <li> <p> <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.</p> </li> <li> <p> <code>dbi-resource-id</code> - Accepts identifiers of source DB instances.</p> </li> <li> <p> <code>snapshot-type</code> - Accepts types of DB snapshots.</p> </li> <li> <p> <code>engine</code> - Accepts names of database engines.</p> </li> </ul>",
@@ -2818,6 +2874,7 @@
         "Endpoint$Port": "<p>Specifies the port that the database engine is listening on.</p>",
         "ExportTask$PercentProgress": "<p>The progress of the snapshot or cluster export task as a percentage.</p>",
         "ExportTask$TotalExtractedDataInGB": "<p>The total amount of data exported, in gigabytes.</p>",
+        "PerformanceInsightsMetricDimensionGroup$Limit": "<p>The maximum number of items to fetch for this dimension group.</p>",
         "Range$From": "<p>The minimum value in the range.</p>",
         "Range$To": "<p>The maximum value in the range.</p>",
         "ReservedDBInstance$Duration": "<p>The duration of the reservation in seconds.</p>",
@@ -2895,6 +2952,7 @@
         "DescribeDBLogFilesMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so you can retrieve the remaining results.</p>",
         "DescribeDBParameterGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBParametersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeDBRecommendationsMessage$MaxRecords": "<p>The maximum number of recommendations to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p>",
         "DescribeDBSecurityGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBSnapshotTenantDatabasesMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p>",
         "DescribeDBSnapshotsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -3194,6 +3252,13 @@
       "refs": {
       }
     },
+    "IssueDetails": {
+      "base": "<p>The details of an issue with your DB instances, DB clusters, and DB parameter groups.</p>",
+      "refs": {
+        "DBRecommendation$IssueDetails": "<p>Details of the issue that caused the recommendation.</p>",
+        "RecommendedAction$IssueDetails": "<p>The details of the issue.</p>"
+      }
+    },
     "KMSKeyNotAccessibleFault": {
       "base": "<p>An error occurred accessing an Amazon Web Services KMS key.</p>",
       "refs": {
@@ -3289,6 +3354,36 @@
         "DescribeDBProxyTargetGroupsRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBProxyTargetsRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeExportTasksMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified value, a pagination token called a marker is included in the response. You can use the marker in a later <code>DescribeExportTasks</code> request to retrieve the remaining results.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>"
+      }
+    },
+    "Metric": {
+      "base": "<p>The representation of a metric.</p>",
+      "refs": {
+        "MetricList$member": null
+      }
+    },
+    "MetricList": {
+      "base": null,
+      "refs": {
+        "PerformanceIssueDetails$Metrics": "<p>The metrics that are relevant to the performance issue.</p>"
+      }
+    },
+    "MetricQuery": {
+      "base": "<p>The query to retrieve metric data points.</p>",
+      "refs": {
+        "Metric$MetricQuery": "<p>The query to retrieve metric data points.</p>"
+      }
+    },
+    "MetricReference": {
+      "base": "<p>The reference (threshold) for a metric.</p>",
+      "refs": {
+        "MetricReferenceList$member": null
+      }
+    },
+    "MetricReferenceList": {
+      "base": null,
+      "refs": {
+        "Metric$References": "<p>A list of metric references (thresholds).</p>"
       }
     },
     "MinimumEngineVersionPerAllowedValue": {
@@ -3404,6 +3499,11 @@
       }
     },
     "ModifyDBProxyTargetGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyDBRecommendationMessage": {
       "base": null,
       "refs": {
       }
@@ -3709,6 +3809,24 @@
         "DBInstance$PendingModifiedValues": "<p>Information about pending changes to the DB instance. This information is returned only when there are pending changes. Specific changes are identified by subelements.</p>"
       }
     },
+    "PerformanceInsightsMetricDimensionGroup": {
+      "base": "<p>A logical grouping of Performance Insights metrics for a related subject area. For example, the <code>db.sql</code> dimension group consists of the following dimensions: </p> <ul> <li> <p> <code>db.sql.id</code> - The hash of a running SQL statement, generated by Performance Insights.</p> </li> <li> <p> <code>db.sql.db_id</code> - Either the SQL ID generated by the database engine, or a value generated by Performance Insights that begins with <code>pi-</code>.</p> </li> <li> <p> <code>db.sql.statement</code> - The full text of the SQL statement that is running, for example, <code>SELECT * FROM employees</code>.</p> </li> <li> <p> <code>db.sql_tokenized.id</code> - The hash of the SQL digest generated by Performance Insights.</p> </li> </ul> <note> <p>Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements, only the first 500 bytes are returned.</p> </note>",
+      "refs": {
+        "PerformanceInsightsMetricQuery$GroupBy": "<p>A specification for how to aggregate the data points from a query result. You must specify a valid dimension group. Performance Insights will return all of the dimensions within that group, unless you provide the names of specific dimensions within that group. You can also request that Performance Insights return a limited number of values for a dimension.</p>"
+      }
+    },
+    "PerformanceInsightsMetricQuery": {
+      "base": "<p>A single Performance Insights metric query to process. You must provide the metric to the query. If other parameters aren't specified, Performance Insights returns all data points for the specified metric. Optionally, you can request the data points to be aggregated by dimension group (<code>GroupBy</code>) and return only those data points that match your criteria (<code>Filter</code>).</p> <p>Constraints:</p> <ul> <li> <p>Must be a valid Performance Insights query.</p> </li> </ul>",
+      "refs": {
+        "MetricQuery$PerformanceInsightsMetricQuery": "<p>The Performance Insights query that you can use to retrieve Performance Insights metric data points.</p>"
+      }
+    },
+    "PerformanceIssueDetails": {
+      "base": "<p>Details of the performance issue.</p>",
+      "refs": {
+        "IssueDetails$PerformanceIssueDetails": "<p>A detailed description of the issue when the recommendation category is <code>performance</code>.</p>"
+      }
+    },
     "PointInTimeRestoreNotEnabledFault": {
       "base": "<p> <code>SourceDBInstanceIdentifier</code> refers to a DB instance with <code>BackupRetentionPeriod</code> equal to 0.</p>",
       "refs": {
@@ -3837,6 +3955,42 @@
       "refs": {
       }
     },
+    "RecommendedAction": {
+      "base": "<p>The recommended actions to apply to resolve the issues associated with your DB instances, DB clusters, and DB parameter groups.</p>",
+      "refs": {
+        "RecommendedActionList$member": null
+      }
+    },
+    "RecommendedActionList": {
+      "base": null,
+      "refs": {
+        "DBRecommendation$RecommendedActions": "<p>A list of recommended actions.</p>"
+      }
+    },
+    "RecommendedActionParameter": {
+      "base": "<p>A single parameter to use with the <code>RecommendedAction</code> API operation to apply the action.</p>",
+      "refs": {
+        "RecommendedActionParameterList$member": null
+      }
+    },
+    "RecommendedActionParameterList": {
+      "base": null,
+      "refs": {
+        "RecommendedAction$Parameters": "<p>The parameters for the API operation.</p>"
+      }
+    },
+    "RecommendedActionUpdate": {
+      "base": "<p>The recommended status to update for the specified recommendation action ID.</p>",
+      "refs": {
+        "RecommendedActionUpdateList$member": null
+      }
+    },
+    "RecommendedActionUpdateList": {
+      "base": null,
+      "refs": {
+        "ModifyDBRecommendationMessage$RecommendedActionUpdates": "<p>The list of recommended action status to update. You can update multiple recommended actions at one time.</p>"
+      }
+    },
     "RecurringCharge": {
       "base": "<p>This data type is used as a response element in the <code>DescribeReservedDBInstances</code> and <code>DescribeReservedDBInstancesOfferings</code> actions.</p>",
       "refs": {
@@ -3848,6 +4002,12 @@
       "refs": {
         "ReservedDBInstance$RecurringCharges": "<p>The recurring price charged to run this reserved DB instance.</p>",
         "ReservedDBInstancesOffering$RecurringCharges": "<p>The recurring price charged to run this reserved DB instance.</p>"
+      }
+    },
+    "ReferenceDetails": {
+      "base": "<p>The reference details of a metric.</p>",
+      "refs": {
+        "MetricReference$ReferenceDetails": "<p>The details of a performance issue.</p>"
       }
     },
     "RegisterDBProxyTargetsRequest": {
@@ -4071,6 +4231,12 @@
     "SNSTopicArnNotFoundFault": {
       "base": "<p>The SNS topic ARN does not exist.</p>",
       "refs": {
+      }
+    },
+    "ScalarReferenceDetails": {
+      "base": "<p>The metric reference details when the reference is a scalar.</p>",
+      "refs": {
+        "ReferenceDetails$ScalarReferenceDetails": "<p>The metric reference details when the reference is a scalar.</p>"
       }
     },
     "ScalingConfiguration": {
@@ -4321,6 +4487,8 @@
         "ClusterPendingModifiedValues$StorageType": "<p>The storage type for the DB cluster.</p>",
         "ConnectionPoolConfiguration$InitQuery": "<p>One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>.</p> <p>Default: no initialization query</p>",
         "ConnectionPoolConfigurationInfo$InitQuery": "<p>One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. This setting is empty by default. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>.</p>",
+        "ContextAttribute$Key": "<p>The key of <code>ContextAttribute</code>.</p>",
+        "ContextAttribute$Value": "<p>The value of <code>ContextAttribute</code>.</p>",
         "CopyDBClusterParameterGroupMessage$SourceDBClusterParameterGroupIdentifier": "<p>The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon Aurora User Guide</i>.</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid DB cluster parameter group.</p> </li> </ul>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupIdentifier": "<p>The identifier for the copied DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Can't be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster-param-group1</code> </p>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupDescription": "<p>A description for the copied DB cluster parameter group.</p>",
@@ -4662,6 +4830,22 @@
         "DBProxyTargetGroup$TargetGroupName": "<p>The identifier for the target group. This name must be unique for all target groups owned by your Amazon Web Services account in the specified Amazon Web Services Region.</p>",
         "DBProxyTargetGroup$TargetGroupArn": "<p>The Amazon Resource Name (ARN) representing the target group.</p>",
         "DBProxyTargetGroup$Status": "<p>The current status of this target group. A status of <code>available</code> means the target group is correctly associated with a database. Other values indicate that you must wait for the target group to be ready, or take some action to resolve an issue.</p>",
+        "DBRecommendation$RecommendationId": "<p>The unique identifier of the recommendation.</p>",
+        "DBRecommendation$TypeId": "<p>A value that indicates the type of recommendation. This value determines how the description is rendered.</p>",
+        "DBRecommendation$Severity": "<p>The severity level of the recommendation. The severity level can help you decide the urgency with which to address the recommendation.</p> <p>Valid values:</p> <ul> <li> <p> <code>high</code> </p> </li> <li> <p> <code>medium</code> </p> </li> <li> <p> <code>low</code> </p> </li> <li> <p> <code>informational</code> </p> </li> </ul>",
+        "DBRecommendation$ResourceArn": "<p>The Amazon Resource Name (ARN) of the RDS resource associated with the recommendation.</p>",
+        "DBRecommendation$Status": "<p>The current status of the recommendation.</p> <p>Valid values:</p> <ul> <li> <p> <code>active</code> - The recommendations which are ready for you to apply.</p> </li> <li> <p> <code>pending</code> - The applied or scheduled recommendations which are in progress.</p> </li> <li> <p> <code>resolved</code> - The recommendations which are completed.</p> </li> <li> <p> <code>dismissed</code> - The recommendations that you dismissed.</p> </li> </ul>",
+        "DBRecommendation$Detection": "<p>A short description of the issue identified for this recommendation. The description might contain markdown.</p>",
+        "DBRecommendation$Recommendation": "<p>A short description of the recommendation to resolve an issue. The description might contain markdown.</p>",
+        "DBRecommendation$Description": "<p>A detailed description of the recommendation. The description might contain markdown.</p>",
+        "DBRecommendation$Reason": "<p>The reason why this recommendation was created. The information might contain markdown.</p>",
+        "DBRecommendation$Category": "<p>The category of the recommendation.</p> <p>Valid values:</p> <ul> <li> <p> <code>performance efficiency</code> </p> </li> <li> <p> <code>security</code> </p> </li> <li> <p> <code>reliability</code> </p> </li> <li> <p> <code>cost optimization</code> </p> </li> <li> <p> <code>operational excellence</code> </p> </li> <li> <p> <code>sustainability</code> </p> </li> </ul>",
+        "DBRecommendation$Source": "<p>The Amazon Web Services service that generated the recommendations.</p>",
+        "DBRecommendation$TypeDetection": "<p>A short description of the recommendation type. The description might contain markdown.</p>",
+        "DBRecommendation$TypeRecommendation": "<p>A short description that summarizes the recommendation to fix all the issues of the recommendation type. The description might contain markdown.</p>",
+        "DBRecommendation$Impact": "<p>A short description that explains the possible impact of an issue.</p>",
+        "DBRecommendation$AdditionalInfo": "<p>Additional information about the recommendation. The information might contain markdown.</p>",
+        "DBRecommendationsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DBRecommendationsMessage</code> request. This token can be used later in a <code>DescribeDBRecomendations</code> request. </p>",
         "DBSecurityGroup$OwnerId": "<p>Provides the Amazon Web Services ID of the owner of a specific DB security group.</p>",
         "DBSecurityGroup$DBSecurityGroupName": "<p>Specifies the name of the DB security group.</p>",
         "DBSecurityGroup$DBSecurityGroupDescription": "<p>Provides the description of the DB security group.</p>",
@@ -4795,6 +4979,8 @@
         "DescribeDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code> to describe.</p>",
         "DescribeDBProxyTargetsRequest$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBProxyTargetsResponse$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeDBRecommendationsMessage$Locale": "<p>The language that you choose to return the list of recommendations.</p> <p>Valid values:</p> <ul> <li> <p> <code>en</code> </p> </li> <li> <p> <code>en_UK</code> </p> </li> <li> <p> <code>de</code> </p> </li> <li> <p> <code>es</code> </p> </li> <li> <p> <code>fr</code> </p> </li> <li> <p> <code>id</code> </p> </li> <li> <p> <code>it</code> </p> </li> <li> <p> <code>ja</code> </p> </li> <li> <p> <code>ko</code> </p> </li> <li> <p> <code>pt_BR</code> </p> </li> <li> <p> <code>zh_TW</code> </p> </li> <li> <p> <code>zh_CN</code> </p> </li> </ul>",
+        "DescribeDBRecommendationsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBRecommendations</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeDBSecurityGroupsMessage$DBSecurityGroupName": "<p>The name of the DB security group to return details for.</p>",
         "DescribeDBSecurityGroupsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBSecurityGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBSnapshotAttributesMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to describe the attributes for.</p>",
@@ -4859,6 +5045,8 @@
         "DescribeTenantDatabasesMessage$TenantDBName": "<p>The user-supplied tenant database name, which must match the name of an existing tenant database on the specified DB instance owned by your Amazon Web Services account. This parameter isn’t case-sensitive.</p>",
         "DescribeTenantDatabasesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeTenantDatabases</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeValidDBInstanceModificationsMessage$DBInstanceIdentifier": "<p>The customer identifier or the ARN of your DB instance.</p>",
+        "DocLink$Text": "<p>The text with the link to documentation for the recommendation.</p>",
+        "DocLink$Url": "<p>The URL for the documentation for the recommendation.</p>",
         "DomainMembership$Domain": "<p>The identifier of the Active Directory Domain.</p>",
         "DomainMembership$Status": "<p>The status of the Active Directory Domain membership for the DB instance or cluster. Values include <code>joined</code>, <code>pending-join</code>, <code>failed</code>, and so on.</p>",
         "DomainMembership$FQDN": "<p>The fully qualified domain name (FQDN) of the Active Directory Domain.</p>",
@@ -4932,6 +5120,9 @@
         "MasterUserSecret$SecretArn": "<p>The Amazon Resource Name (ARN) of the secret.</p>",
         "MasterUserSecret$SecretStatus": "<p>The status of the secret.</p> <p>The possible status values include the following:</p> <ul> <li> <p> <code>creating</code> - The secret is being created.</p> </li> <li> <p> <code>active</code> - The secret is available for normal use and rotation.</p> </li> <li> <p> <code>rotating</code> - The secret is being rotated.</p> </li> <li> <p> <code>impaired</code> - The secret can be used to access database credentials, but it can't be rotated. A secret might have this status if, for example, permissions are changed so that RDS can no longer access either the secret or the KMS key for the secret.</p> <p>When a secret has this status, you can correct the condition that caused the status. Alternatively, modify the DB instance to turn off automatic management of database credentials, and then modify the DB instance again to turn on automatic management of database credentials.</p> </li> </ul>",
         "MasterUserSecret$KmsKeyId": "<p>The Amazon Web Services KMS key identifier that is used to encrypt the secret.</p>",
+        "Metric$Name": "<p>The name of a metric.</p>",
+        "Metric$StatisticsDetails": "<p>The details of different statistics for a metric. The description might contain markdown.</p>",
+        "MetricReference$Name": "<p>The name of the metric reference.</p>",
         "MinimumEngineVersionPerAllowedValue$AllowedValue": "<p>The allowed value for an option setting.</p>",
         "MinimumEngineVersionPerAllowedValue$MinimumEngineVersion": "<p>The minimum DB engine version required for the allowed value.</p>",
         "ModifyActivityStreamRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the RDS for Oracle or Microsoft SQL Server DB instance. For example, <code>arn:aws:rds:us-east-1:12345667890:instance:my-orcl-db</code>.</p>",
@@ -4995,6 +5186,9 @@
         "ModifyDBProxyTargetGroupRequest$TargetGroupName": "<p>The name of the target group to modify.</p>",
         "ModifyDBProxyTargetGroupRequest$DBProxyName": "<p>The name of the proxy.</p>",
         "ModifyDBProxyTargetGroupRequest$NewName": "<p>The new name for the modified <code>DBProxyTarget</code>. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.</p>",
+        "ModifyDBRecommendationMessage$RecommendationId": "<p>The identifier of the recommendation to update.</p>",
+        "ModifyDBRecommendationMessage$Locale": "<p>The language of the modified recommendation.</p>",
+        "ModifyDBRecommendationMessage$Status": "<p>The recommendation status to update.</p> <p>Valid values:</p> <ul> <li> <p>active</p> </li> <li> <p>dismissed</p> </li> </ul>",
         "ModifyDBSnapshotAttributeMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to modify the attributes for.</p>",
         "ModifyDBSnapshotAttributeMessage$AttributeName": "<p>The name of the DB snapshot attribute to modify.</p> <p>To manage authorization for other Amazon Web Services accounts to copy or restore a manual DB snapshot, set this value to <code>restore</code>.</p> <note> <p>To view the list of attributes available to modify, use the <a>DescribeDBSnapshotAttributes</a> API operation.</p> </note>",
         "ModifyDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier of the DB snapshot to modify.</p>",
@@ -5079,6 +5273,9 @@
         "PendingModifiedValues$CACertificateIdentifier": "<p>The identifier of the CA certificate for the DB instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html\">Using SSL/TLS to encrypt a connection to a DB instance</a> in the <i>Amazon RDS User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html\"> Using SSL/TLS to encrypt a connection to a DB cluster</a> in the <i>Amazon Aurora User Guide</i>.</p>",
         "PendingModifiedValues$DBSubnetGroupName": "<p>The DB subnet group for the DB instance.</p>",
         "PendingModifiedValues$Engine": "<p>The database engine of the DB instance.</p>",
+        "PerformanceInsightsMetricDimensionGroup$Group": "<p>The available dimension groups for Performance Insights metric type.</p>",
+        "PerformanceInsightsMetricQuery$Metric": "<p>The name of a Performance Insights metric to be measured.</p> <p>Valid Values:</p> <ul> <li> <p> <code>db.load.avg</code> - A scaled representation of the number of active sessions for the database engine.</p> </li> <li> <p> <code>db.sampledload.avg</code> - The raw number of active sessions for the database engine.</p> </li> <li> <p>The counter metrics listed in <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights_Counters.html#USER_PerfInsights_Counters.OS\">Performance Insights operating system counters</a> in the <i>Amazon Aurora User Guide</i>.</p> </li> </ul> <p>If the number of active sessions is less than an internal Performance Insights threshold, <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If the number of active sessions is greater than the internal threshold, Performance Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code> less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code> only.</p>",
+        "PerformanceIssueDetails$Analysis": "<p>The analysis of the performance issue. The information might contain markdown.</p>",
         "ProcessorFeature$Name": "<p>The name of the processor feature. Valid names are <code>coreCount</code> and <code>threadsPerCore</code>.</p>",
         "ProcessorFeature$Value": "<p>The value of a processor feature name.</p>",
         "PromoteReadReplicaDBClusterMessage$DBClusterIdentifier": "<p>The identifier of the DB cluster read replica to promote. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DB cluster read replica.</p> </li> </ul> <p>Example: <code>my-cluster-replica1</code> </p>",
@@ -5094,6 +5291,15 @@
         "ReadersArnList$member": null,
         "RebootDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
+        "RecommendedAction$ActionId": "<p>The unique identifier of the recommended action.</p>",
+        "RecommendedAction$Title": "<p>A short description to summarize the action. The description might contain markdown.</p>",
+        "RecommendedAction$Description": "<p>A detailed description of the action. The description might contain markdown.</p>",
+        "RecommendedAction$Operation": "<p>An API operation for the action.</p>",
+        "RecommendedAction$Status": "<p>The status of the action.</p> <ul> <li> <p> <code>ready</code> </p> </li> <li> <p> <code>applied</code> </p> </li> <li> <p> <code>scheduled</code> </p> </li> <li> <p> <code>resolved</code> </p> </li> </ul>",
+        "RecommendedActionParameter$Key": "<p>The key of the parameter to use with the <code>RecommendedAction</code> API operation.</p>",
+        "RecommendedActionParameter$Value": "<p>The value of the parameter to use with the <code>RecommendedAction</code> API operation.</p>",
+        "RecommendedActionUpdate$ActionId": "<p>A unique identifier of the updated recommendation action.</p>",
+        "RecommendedActionUpdate$Status": "<p>The status of the updated recommendation action.</p> <ul> <li> <p> <code>applied</code> </p> </li> <li> <p> <code>scheduled</code> </p> </li> </ul>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
         "RegisterDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> that is associated with the <code>DBProxyTargetGroup</code>.</p>",
         "RegisterDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code>.</p>",
@@ -5357,6 +5563,8 @@
         "ModifyDBProxyEndpointRequest$VpcSecurityGroupIds": "<p>The VPC security group IDs for the DB proxy endpoint. When the DB proxy endpoint uses a different VPC than the original proxy, you also specify a different set of security group IDs than for the original proxy.</p>",
         "ModifyDBProxyRequest$SecurityGroups": "<p>The new list of security groups for the <code>DBProxy</code>.</p>",
         "OrderableDBInstanceOption$SupportedNetworkTypes": "<p>The network types supported by the DB instance (<code>IPV4</code> or <code>DUAL</code>).</p> <p>A DB instance can support only the IPv4 protocol or the IPv4 and the IPv6 protocols (<code>DUAL</code>).</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html\"> Working with a DB instance in a VPC</a> in the <i>Amazon RDS User Guide.</i> </p>",
+        "PerformanceInsightsMetricDimensionGroup$Dimensions": "<p>A list of specific dimensions from a dimension group. If this list isn't included, then all of the dimensions in the group were requested, or are present in the response.</p>",
+        "RecommendedAction$ApplyModes": "<p>The methods to apply the recommended action.</p> <p>Valid values:</p> <ul> <li> <p> <code>manual</code> - The action requires you to resolve the recommendation manually.</p> </li> <li> <p> <code>immediately</code> - The action is applied immediately.</p> </li> <li> <p> <code>next-maintainance-window</code> - The action is applied during the next scheduled maintainance.</p> </li> </ul>",
         "RegisterDBProxyTargetsRequest$DBInstanceIdentifiers": "<p>One or more DB instance identifiers.</p>",
         "RegisterDBProxyTargetsRequest$DBClusterIdentifiers": "<p>One or more DB cluster identifiers.</p>",
         "RestoreDBInstanceFromDBSnapshotMessage$DomainDnsIps": "<p>The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers.</p> <p>Constraints:</p> <ul> <li> <p>Two IP addresses must be provided. If there isn't a secondary domain controller, use the IP address of the primary domain controller for both entries in the list.</p> </li> </ul> <p>Example: <code>123.124.125.126,234.235.236.237</code> </p>",
@@ -5503,11 +5711,15 @@
         "DBProxyEndpoint$CreatedDate": "<p>The date and time when the DB proxy endpoint was first created.</p>",
         "DBProxyTargetGroup$CreatedDate": "<p>The date and time when the target group was first created.</p>",
         "DBProxyTargetGroup$UpdatedDate": "<p>The date and time when the target group was last updated.</p>",
+        "DBRecommendation$CreatedTime": "<p>The time when the recommendation was created. For example, <code>2023-09-28T01:13:53.931000+00:00</code>.</p>",
+        "DBRecommendation$UpdatedTime": "<p>The time when the recommendation was last updated.</p>",
         "DBSnapshot$SnapshotCreateTime": "<p>Specifies when the snapshot was taken in Coordinated Universal Time (UTC). Changes for the copy when the snapshot is copied.</p>",
         "DBSnapshot$InstanceCreateTime": "<p>Specifies the time in Coordinated Universal Time (UTC) when the DB instance, from which the snapshot was taken, was created.</p>",
         "DBSnapshot$OriginalSnapshotCreateTime": "<p>Specifies the time of the CreateDBSnapshot operation in Coordinated Universal Time (UTC). Doesn't change when the snapshot is copied.</p>",
         "DBSnapshot$SnapshotDatabaseTime": "<p>The timestamp of the most recent transaction applied to the database that you're backing up. Thus, if you restore a snapshot, SnapshotDatabaseTime is the most recent transaction in the restored DB instance. In contrast, originalSnapshotCreateTime specifies the system time that the snapshot completed.</p> <p>If you back up a read replica, you can determine the replica lag by comparing SnapshotDatabaseTime with originalSnapshotCreateTime. For example, if originalSnapshotCreateTime is two hours later than SnapshotDatabaseTime, then the replica lag is two hours.</p>",
         "DBSnapshotTenantDatabase$TenantDatabaseCreateTime": "<p>The time the DB snapshot was taken, specified in Coordinated Universal Time (UTC). If you copy the snapshot, the creation time changes.</p>",
+        "DescribeDBRecommendationsMessage$LastUpdatedAfter": "<p>A filter to include only the recommendations that were updated after this specified time.</p>",
+        "DescribeDBRecommendationsMessage$LastUpdatedBefore": "<p>A filter to include only the recommendations that were updated before this specified time.</p>",
         "DescribeEventsMessage$StartTime": "<p>The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>",
         "DescribeEventsMessage$EndTime": "<p>The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>",
         "Event$Date": "<p>Specifies the date and time of the event.</p>",
@@ -5520,6 +5732,8 @@
         "PendingMaintenanceAction$ForcedApplyDate": "<p>The date when the maintenance action is automatically applied.</p> <p>On this date, the maintenance action is applied to the resource as soon as possible, regardless of the maintenance window for the resource. There might be a delay of one or more days from this date before the maintenance action is applied.</p>",
         "PendingMaintenanceAction$CurrentApplyDate": "<p>The effective date when the pending maintenance action is applied to the resource. This date takes into account opt-in requests received from the <code>ApplyPendingMaintenanceAction</code> API, the <code>AutoAppliedAfterDate</code>, and the <code>ForcedApplyDate</code>. This value is blank if an opt-in request has not been received and nothing has been specified as <code>AutoAppliedAfterDate</code> or <code>ForcedApplyDate</code>.</p>",
         "PendingModifiedValues$ResumeFullAutomationModeTime": "<p>The number of minutes to pause the automation. When the time period ends, RDS Custom resumes full automation. The minimum value is 60 (default). The maximum value is 1,440.</p>",
+        "PerformanceIssueDetails$StartTime": "<p>The time when the performance issue started.</p>",
+        "PerformanceIssueDetails$EndTime": "<p>The time when the performance issue stopped.</p>",
         "ReservedDBInstance$StartTime": "<p>The time the reservation started.</p>",
         "RestoreDBClusterToPointInTimeMessage$RestoreToTime": "<p>The date and time to restore the DB cluster to.</p> <p>Valid Values: Value must be a time in Universal Coordinated Time (UTC) format</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the DB instance</p> </li> <li> <p>Must be specified if <code>UseLatestRestorableTime</code> parameter isn't provided</p> </li> <li> <p>Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled</p> </li> <li> <p>Can't be specified if the <code>RestoreType</code> parameter is <code>copy-on-write</code> </p> </li> </ul> <p>Example: <code>2015-03-07T23:45:00Z</code> </p> <p>Valid for: Aurora DB clusters and Multi-AZ DB clusters</p>",
         "RestoreDBInstanceToPointInTimeMessage$RestoreTime": "<p>The date and time to restore from.</p> <p>Constraints:</p> <ul> <li> <p>Must be a time in Universal Coordinated Time (UTC) format.</p> </li> <li> <p>Must be before the latest restorable time for the DB instance.</p> </li> <li> <p>Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled.</p> </li> </ul> <p>Example: <code>2009-09-07T23:45:00Z</code> </p>",

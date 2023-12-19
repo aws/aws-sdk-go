@@ -1473,7 +1473,10 @@
         "visibility":{"shape":"GraphQLApiVisibility"},
         "apiType":{"shape":"GraphQLApiType"},
         "mergedApiExecutionRoleArn":{"shape":"String"},
-        "ownerContact":{"shape":"String"}
+        "ownerContact":{"shape":"String"},
+        "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
+        "queryDepthLimit":{"shape":"QueryDepthLimit"},
+        "resolverCountLimit":{"shape":"ResolverCountLimit"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -2358,6 +2361,13 @@
         "type":{"shape":"Type"}
       }
     },
+    "GraphQLApiIntrospectionConfig":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "GraphQLApiType":{
       "type":"string",
       "enum":[
@@ -2401,7 +2411,10 @@
         "apiType":{"shape":"GraphQLApiType"},
         "mergedApiExecutionRoleArn":{"shape":"String"},
         "owner":{"shape":"String"},
-        "ownerContact":{"shape":"String"}
+        "ownerContact":{"shape":"String"},
+        "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
+        "queryDepthLimit":{"shape":"QueryDepthLimit"},
+        "resolverCountLimit":{"shape":"ResolverCountLimit"}
       }
     },
     "GraphqlApis":{
@@ -2887,6 +2900,11 @@
         "functions":{"shape":"FunctionsIds"}
       }
     },
+    "QueryDepthLimit":{
+      "type":"integer",
+      "max":75,
+      "min":0
+    },
     "RdsDataApiConfig":{
       "type":"structure",
       "required":[
@@ -2955,6 +2973,11 @@
         "runtime":{"shape":"AppSyncRuntime"},
         "code":{"shape":"Code"}
       }
+    },
+    "ResolverCountLimit":{
+      "type":"integer",
+      "max":10000,
+      "min":0
     },
     "ResolverKind":{
       "type":"string",
@@ -3386,7 +3409,10 @@
         "xrayEnabled":{"shape":"Boolean"},
         "lambdaAuthorizerConfig":{"shape":"LambdaAuthorizerConfig"},
         "mergedApiExecutionRoleArn":{"shape":"String"},
-        "ownerContact":{"shape":"String"}
+        "ownerContact":{"shape":"String"},
+        "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
+        "queryDepthLimit":{"shape":"QueryDepthLimit"},
+        "resolverCountLimit":{"shape":"ResolverCountLimit"}
       }
     },
     "UpdateGraphqlApiResponse":{

@@ -355,6 +355,12 @@
         "Content":{"shape":"MediaCapabilities"}
       }
     },
+    "AttendeeFeatures":{
+      "type":"structure",
+      "members":{
+        "MaxCount":{"shape":"AttendeeMax"}
+      }
+    },
     "AttendeeIdItem":{
       "type":"structure",
       "required":["AttendeeId"],
@@ -371,6 +377,11 @@
     "AttendeeList":{
       "type":"list",
       "member":{"shape":"Attendee"}
+    },
+    "AttendeeMax":{
+      "type":"integer",
+      "max":250,
+      "min":1
     },
     "AudioFeatures":{
       "type":"structure",
@@ -448,6 +459,20 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ContentFeatures":{
+      "type":"structure",
+      "members":{
+        "MaxResolution":{"shape":"ContentResolution"}
+      }
+    },
+    "ContentResolution":{
+      "type":"string",
+      "enum":[
+        "None",
+        "FHD",
+        "UHD"
+      ]
     },
     "CreateAttendeeError":{
       "type":"structure",
@@ -806,7 +831,10 @@
     "MeetingFeaturesConfiguration":{
       "type":"structure",
       "members":{
-        "Audio":{"shape":"AudioFeatures"}
+        "Audio":{"shape":"AudioFeatures"},
+        "Video":{"shape":"VideoFeatures"},
+        "Content":{"shape":"ContentFeatures"},
+        "Attendee":{"shape":"AttendeeFeatures"}
       }
     },
     "NotFoundException":{
@@ -1182,6 +1210,20 @@
       "members":{
         "Attendee":{"shape":"Attendee"}
       }
+    },
+    "VideoFeatures":{
+      "type":"structure",
+      "members":{
+        "MaxResolution":{"shape":"VideoResolution"}
+      }
+    },
+    "VideoResolution":{
+      "type":"string",
+      "enum":[
+        "None",
+        "HD",
+        "FHD"
+      ]
     }
   }
 }

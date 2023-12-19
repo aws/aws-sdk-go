@@ -171,6 +171,15 @@ func (c *ChimeSDKMeetings) BatchUpdateAttendeeCapabilitiesExceptRequest(input *B
 //
 // When using capabilities, be aware of these corner cases:
 //
+//   - If you specify MeetingFeatures:Video:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Video will be rejected with ValidationError 400.
+//
+//   - If you specify MeetingFeatures:Content:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Content will be rejected with ValidationError
+//     400.
+//
 //   - You can't set content capabilities to SendReceive or Receive unless
 //     you also set video capabilities to SendReceive or Receive. If you don't
 //     set the video capability to receive, the response will contain an HTTP
@@ -1271,10 +1280,18 @@ func (c *ChimeSDKMeetings) StartMeetingTranscriptionRequest(input *StartMeetingT
 // refer to the StartStreamTranscription (https://docs.aws.amazon.com/transcribe/latest/APIReference/API_streaming_StartStreamTranscription.html)
 // API in the Amazon Transcribe Developer Guide.
 //
-// Amazon Chime SDK live transcription is powered by Amazon Transcribe. Use
-// of Amazon Transcribe is subject to the AWS Service Terms (https://aws.amazon.com/service-terms/),
-// including the terms specific to the AWS Machine Learning and Artificial Intelligence
-// Services.
+// By default, Amazon Transcribe may use and store audio content processed by
+// the service to develop and improve Amazon Web Services AI/ML services as
+// further described in section 50 of the Amazon Web Services Service Terms
+// (https://aws.amazon.com/service-terms/). Using Amazon Transcribe may be subject
+// to federal and state laws or regulations regarding the recording or interception
+// of electronic communications. It is your and your end users’ responsibility
+// to comply with all applicable laws regarding the recording, including properly
+// notifying all participants in a recorded session or communication that the
+// session or communication is being recorded, and obtaining all necessary consents.
+// You can opt out from Amazon Web Services using audio content to develop and
+// improve AWS AI/ML services by configuring an AI services opt out policy using
+// Amazon Web Services Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1383,10 +1400,18 @@ func (c *ChimeSDKMeetings) StopMeetingTranscriptionRequest(input *StopMeetingTra
 // to Using Amazon Chime SDK live transcription (https://docs.aws.amazon.com/chime-sdk/latest/dg/meeting-transcription.html)
 // in the Amazon Chime SDK Developer Guide.
 //
-// Amazon Chime SDK live transcription is powered by Amazon Transcribe. Use
-// of Amazon Transcribe is subject to the AWS Service Terms (https://aws.amazon.com/service-terms/),
-// including the terms specific to the AWS Machine Learning and Artificial Intelligence
-// Services.
+// By default, Amazon Transcribe may use and store audio content processed by
+// the service to develop and improve Amazon Web Services AI/ML services as
+// further described in section 50 of the Amazon Web Services Service Terms
+// (https://aws.amazon.com/service-terms/). Using Amazon Transcribe may be subject
+// to federal and state laws or regulations regarding the recording or interception
+// of electronic communications. It is your and your end users’ responsibility
+// to comply with all applicable laws regarding the recording, including properly
+// notifying all participants in a recorded session or communication that the
+// session or communication is being recorded, and obtaining all necessary consents.
+// You can opt out from Amazon Web Services using audio content to develop and
+// improve Amazon Web Services AI/ML services by configuring an AI services
+// opt out policy using Amazon Web Services Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1602,8 +1627,8 @@ func (c *ChimeSDKMeetings) UntagResourceRequest(input *UntagResourceInput) (req 
 //     tags. For more information, see the documentation for the service whose
 //     resource you want to untag.
 //
-//   - You can only tag resources that are located in the specified AWS Region
-//     for the calling AWS account.
+//   - You can only tag resources that are located in the specified Amazon
+//     Web Services Region for the calling Amazon Web Services account.
 //
 // # Minimum permissions
 //
@@ -1723,6 +1748,15 @@ func (c *ChimeSDKMeetings) UpdateAttendeeCapabilitiesRequest(input *UpdateAttend
 //
 // When using capabilities, be aware of these corner cases:
 //
+//   - If you specify MeetingFeatures:Video:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Video will be rejected with ValidationError 400.
+//
+//   - If you specify MeetingFeatures:Content:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Content will be rejected with ValidationError
+//     400.
+//
 //   - You can't set content capabilities to SendReceive or Receive unless
 //     you also set video capabilities to SendReceive or Receive. If you don't
 //     set the video capability to receive, the response will contain an HTTP
@@ -1815,6 +1849,15 @@ type Attendee struct {
 	//
 	// When using capabilities, be aware of these corner cases:
 	//
+	//    * If you specify MeetingFeatures:Video:MaxResolution:None when you create
+	//    a meeting, all API requests that include SendReceive, Send, or Receive
+	//    for AttendeeCapabilities:Video will be rejected with ValidationError 400.
+	//
+	//    * If you specify MeetingFeatures:Content:MaxResolution:None when you create
+	//    a meeting, all API requests that include SendReceive, Send, or Receive
+	//    for AttendeeCapabilities:Content will be rejected with ValidationError
+	//    400.
+	//
 	//    * You can't set content capabilities to SendReceive or Receive unless
 	//    you also set video capabilities to SendReceive or Receive. If you don't
 	//    set the video capability to receive, the response will contain an HTTP
@@ -1897,10 +1940,18 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 // The media capabilities of an attendee: audio, video, or content.
 //
 // You use the capabilities with a set of values that control what the capabilities
-// can do, such as SendReceive data. For more information about those values,
-// see .
+// can do, such as SendReceive data. For more information, refer to and .
 //
 // When using capabilities, be aware of these corner cases:
+//
+//   - If you specify MeetingFeatures:Video:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Video will be rejected with ValidationError 400.
+//
+//   - If you specify MeetingFeatures:Content:MaxResolution:None when you create
+//     a meeting, all API requests that include SendReceive, Send, or Receive
+//     for AttendeeCapabilities:Content will be rejected with ValidationError
+//     400.
 //
 //   - You can't set content capabilities to SendReceive or Receive unless
 //     you also set video capabilities to SendReceive or Receive. If you don't
@@ -1909,11 +1960,11 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 //     to receive and you set your content capability to not receive.
 //
 //   - When you change an audio capability from None or Receive to Send or
-//     SendReceive , and if the attendee left their microphone unmuted, audio
-//     will flow from the attendee to the other meeting participants.
+//     SendReceive , and an attendee unmutes their microphone, audio flows from
+//     the attendee to the other meeting participants.
 //
 //   - When you change a video or content capability from None or Receive to
-//     Send or SendReceive , and if the attendee turned on their video or content
+//     Send or SendReceive , and the attendee turns on their video or content
 //     streams, remote attendees can receive those streams, but only after media
 //     renegotiation between the client and the Amazon Chime back-end server.
 type AttendeeCapabilities struct {
@@ -1987,6 +2038,55 @@ func (s *AttendeeCapabilities) SetContent(v string) *AttendeeCapabilities {
 // SetVideo sets the Video field's value.
 func (s *AttendeeCapabilities) SetVideo(v string) *AttendeeCapabilities {
 	s.Video = &v
+	return s
+}
+
+// Lists the maximum number of attendees allowed into the meeting.
+//
+// If you specify FHD for MeetingFeatures:Video:MaxResolution, or if you specify
+// UHD for MeetingFeatures:Content:MaxResolution, the maximum number of attendees
+// changes from the default of 250 to 25.
+type AttendeeFeatures struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of attendees allowed into the meeting.
+	MaxCount *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeFeatures) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttendeeFeatures) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AttendeeFeatures) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AttendeeFeatures"}
+	if s.MaxCount != nil && *s.MaxCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxCount sets the MaxCount field's value.
+func (s *AttendeeFeatures) SetMaxCount(v int64) *AttendeeFeatures {
+	s.MaxCount = &v
 	return s
 }
 
@@ -2442,6 +2542,46 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Lists the content (screen share) features for the meeting. Applies to all
+// attendees.
+//
+// If you specify MeetingFeatures:Content:MaxResolution:None when you create
+// a meeting, all API requests that include SendReceive, Send, or Receive for
+// AttendeeCapabilities:Content will be rejected with ValidationError 400.
+type ContentFeatures struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum resolution for the meeting content.
+	//
+	// Defaults to FHD. To use UHD, you must also provide a MeetingFeatures:Attendee:MaxCount
+	// value and override the default size limit of 250 attendees.
+	MaxResolution *string `type:"string" enum:"ContentResolution"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentFeatures) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentFeatures) GoString() string {
+	return s.String()
+}
+
+// SetMaxResolution sets the MaxResolution field's value.
+func (s *ContentFeatures) SetMaxResolution(v string) *ContentFeatures {
+	s.MaxResolution = &v
+	return s
+}
+
 // The list of errors returned when errors are encountered during the BatchCreateAttendee
 // and CreateAttendee actions. This includes external user IDs, error codes,
 // and error messages.
@@ -2516,6 +2656,15 @@ type CreateAttendeeInput struct {
 	// see .
 	//
 	// When using capabilities, be aware of these corner cases:
+	//
+	//    * If you specify MeetingFeatures:Video:MaxResolution:None when you create
+	//    a meeting, all API requests that include SendReceive, Send, or Receive
+	//    for AttendeeCapabilities:Video will be rejected with ValidationError 400.
+	//
+	//    * If you specify MeetingFeatures:Content:MaxResolution:None when you create
+	//    a meeting, all API requests that include SendReceive, Send, or Receive
+	//    for AttendeeCapabilities:Content will be rejected with ValidationError
+	//    400.
 	//
 	//    * You can't set content capabilities to SendReceive or Receive unless
 	//    you also set video capabilities to SendReceive or Receive. If you don't
@@ -2755,7 +2904,8 @@ type CreateMeetingInput struct {
 	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
 	// us-west-2.
 	//
-	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
+	// Available values in Amazon Web Services GovCloud (US) Regions: us-gov-east-1,
+	// us-gov-west-1.
 	//
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
@@ -2791,8 +2941,8 @@ type CreateMeetingInput struct {
 	//    and Usage Conventions (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
 	//    in the AWS General Reference.
 	//
-	//    * You can only tag resources that are located in the specified AWS Region
-	//    for the AWS account.
+	//    * You can only tag resources that are located in the specified Amazon
+	//    Web Services Region for the Amazon Web Services account.
 	//
 	//    * To add tags to a resource, you need the necessary permissions for the
 	//    service that the resource belongs to as well as permissions for adding
@@ -2869,6 +3019,11 @@ func (s *CreateMeetingInput) Validate() error {
 	}
 	if s.TenantIds != nil && len(s.TenantIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TenantIds", 1))
+	}
+	if s.MeetingFeatures != nil {
+		if err := s.MeetingFeatures.Validate(); err != nil {
+			invalidParams.AddNested("MeetingFeatures", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.NotificationsConfiguration != nil {
 		if err := s.NotificationsConfiguration.Validate(); err != nil {
@@ -3014,7 +3169,8 @@ type CreateMeetingWithAttendeesInput struct {
 	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
 	// us-west-2.
 	//
-	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
+	// Available values in Amazon Web Services GovCloud (US) Regions: us-gov-east-1,
+	// us-gov-west-1.
 	//
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
@@ -3104,6 +3260,11 @@ func (s *CreateMeetingWithAttendeesInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attendees", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.MeetingFeatures != nil {
+		if err := s.MeetingFeatures.Validate(); err != nil {
+			invalidParams.AddNested("MeetingFeatures", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.NotificationsConfiguration != nil {
@@ -3410,8 +3571,8 @@ type EngineTranscribeMedicalSettings struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"TranscribeMedicalLanguageCode"`
 
-	// The AWS Region passed to Amazon Transcribe Medical. If you don't specify
-	// a Region, Amazon Chime uses the meeting's Region.
+	// The Amazon Web Services Region passed to Amazon Transcribe Medical. If you
+	// don't specify a Region, Amazon Chime uses the meeting's Region.
 	Region *string `type:"string" enum:"TranscribeMedicalRegion"`
 
 	// The specialty specified for the Amazon Transcribe Medical engine.
@@ -3599,7 +3760,7 @@ type EngineTranscribeSettings struct {
 	// You can only use this parameter if you include IdentifyLanguage and LanguageOptions.
 	PreferredLanguage *string `type:"string" enum:"TranscribeLanguageCode"`
 
-	// The AWS Region in which to use Amazon Transcribe.
+	// The Amazon Web Services Region in which to use Amazon Transcribe.
 	//
 	// If you don't specify a Region, then the MediaRegion (https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_meeting-chime_CreateMeeting.html)
 	// of the meeting is used. However, if Amazon Transcribe is not available in
@@ -4321,18 +4482,26 @@ type MediaPlacement struct {
 	EventIngestionUrl *string `type:"string"`
 
 	// The screen data URL.
+	//
+	// This parameter is deprecated and no longer used by the Amazon Chime SDK.
 	ScreenDataUrl *string `type:"string"`
 
 	// The screen sharing URL.
+	//
+	// This parameter is deprecated and no longer used by the Amazon Chime SDK.
 	ScreenSharingUrl *string `type:"string"`
 
 	// The screen viewing URL.
+	//
+	// This parameter is deprecated and no longer used by the Amazon Chime SDK.
 	ScreenViewingUrl *string `type:"string"`
 
 	// The signaling URL.
 	SignalingUrl *string `type:"string"`
 
 	// The turn control URL.
+	//
+	// This parameter is deprecated and no longer used by the Amazon Chime SDK.
 	TurnControlUrl *string `type:"string"`
 }
 
@@ -4426,7 +4595,8 @@ type Meeting struct {
 	// ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2,
 	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
 	//
-	// Available values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1.
+	// Available values in Amazon Web Services GovCloud (US) Regions: us-gov-east-1,
+	// us-gov-west-1.
 	MediaRegion *string `min:"2" type:"string"`
 
 	// The ARN of the meeting.
@@ -4528,8 +4698,17 @@ func (s *Meeting) SetTenantIds(v []*string) *Meeting {
 type MeetingFeaturesConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration settings for the attendee features available to a meeting.
+	Attendee *AttendeeFeatures `type:"structure"`
+
 	// The configuration settings for the audio features available to a meeting.
 	Audio *AudioFeatures `type:"structure"`
+
+	// The configuration settings for the content features available to a meeting.
+	Content *ContentFeatures `type:"structure"`
+
+	// The configuration settings for the video features available to a meeting.
+	Video *VideoFeatures `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4550,9 +4729,42 @@ func (s MeetingFeaturesConfiguration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeetingFeaturesConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeetingFeaturesConfiguration"}
+	if s.Attendee != nil {
+		if err := s.Attendee.Validate(); err != nil {
+			invalidParams.AddNested("Attendee", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendee sets the Attendee field's value.
+func (s *MeetingFeaturesConfiguration) SetAttendee(v *AttendeeFeatures) *MeetingFeaturesConfiguration {
+	s.Attendee = v
+	return s
+}
+
 // SetAudio sets the Audio field's value.
 func (s *MeetingFeaturesConfiguration) SetAudio(v *AudioFeatures) *MeetingFeaturesConfiguration {
 	s.Audio = v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *MeetingFeaturesConfiguration) SetContent(v *ContentFeatures) *MeetingFeaturesConfiguration {
+	s.Content = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *MeetingFeaturesConfiguration) SetVideo(v *VideoFeatures) *MeetingFeaturesConfiguration {
+	s.Video = v
 	return s
 }
 
@@ -4630,7 +4842,7 @@ func (s *NotFoundException) RequestID() string {
 type NotificationsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the AWS Lambda function in the notifications configuration.
+	// The ARN of the Amazon Web Services Lambda function in the notifications configuration.
 	//
 	// LambdaFunctionArn is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by NotificationsConfiguration's
@@ -5784,6 +5996,65 @@ func (s *UpdateAttendeeCapabilitiesOutput) SetAttendee(v *Attendee) *UpdateAtten
 	return s
 }
 
+// The video features set for the meeting. Applies to all attendees.
+//
+// If you specify MeetingFeatures:Video:MaxResolution:None when you create a
+// meeting, all API requests that include SendReceive, Send, or Receive for
+// AttendeeCapabilities:Video will be rejected with ValidationError 400.
+type VideoFeatures struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum video resolution for the meeting. Applies to all attendees.
+	//
+	// Defaults to HD. To use FHD, you must also provide a MeetingFeatures:Attendee:MaxCount
+	// value and override the default size limit of 250 attendees.
+	MaxResolution *string `type:"string" enum:"VideoResolution"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoFeatures) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoFeatures) GoString() string {
+	return s.String()
+}
+
+// SetMaxResolution sets the MaxResolution field's value.
+func (s *VideoFeatures) SetMaxResolution(v string) *VideoFeatures {
+	s.MaxResolution = &v
+	return s
+}
+
+const (
+	// ContentResolutionNone is a ContentResolution enum value
+	ContentResolutionNone = "None"
+
+	// ContentResolutionFhd is a ContentResolution enum value
+	ContentResolutionFhd = "FHD"
+
+	// ContentResolutionUhd is a ContentResolution enum value
+	ContentResolutionUhd = "UHD"
+)
+
+// ContentResolution_Values returns all elements of the ContentResolution enum
+func ContentResolution_Values() []string {
+	return []string{
+		ContentResolutionNone,
+		ContentResolutionFhd,
+		ContentResolutionUhd,
+	}
+}
+
 const (
 	// MediaCapabilitiesSendReceive is a MediaCapabilities enum value
 	MediaCapabilitiesSendReceive = "SendReceive"
@@ -6117,5 +6388,25 @@ func TranscribeVocabularyFilterMethod_Values() []string {
 		TranscribeVocabularyFilterMethodRemove,
 		TranscribeVocabularyFilterMethodMask,
 		TranscribeVocabularyFilterMethodTag,
+	}
+}
+
+const (
+	// VideoResolutionNone is a VideoResolution enum value
+	VideoResolutionNone = "None"
+
+	// VideoResolutionHd is a VideoResolution enum value
+	VideoResolutionHd = "HD"
+
+	// VideoResolutionFhd is a VideoResolution enum value
+	VideoResolutionFhd = "FHD"
+)
+
+// VideoResolution_Values returns all elements of the VideoResolution enum
+func VideoResolution_Values() []string {
+	return []string{
+		VideoResolutionNone,
+		VideoResolutionHd,
+		VideoResolutionFhd,
 	}
 }

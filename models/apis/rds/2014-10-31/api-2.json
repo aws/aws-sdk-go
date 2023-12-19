@@ -1284,6 +1284,18 @@
         {"shape":"InvalidDBProxyStateFault"}
       ]
     },
+    "DescribeDBRecommendations":{
+      "name":"DescribeDBRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBRecommendationsMessage"},
+      "output":{
+        "shape":"DBRecommendationsMessage",
+        "resultWrapper":"DescribeDBRecommendationsResult"
+      }
+    },
     "DescribeDBSecurityGroups":{
       "name":"DescribeDBSecurityGroups",
       "http":{
@@ -1916,6 +1928,19 @@
         {"shape":"DBProxyTargetGroupNotFoundFault"},
         {"shape":"InvalidDBProxyStateFault"}
       ]
+    },
+    "ModifyDBRecommendation":{
+      "name":"ModifyDBRecommendation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBRecommendationMessage"},
+      "output":{
+        "shape":"DBRecommendationMessage",
+        "resultWrapper":"ModifyDBRecommendationResult"
+      },
+      "errors":[]
     },
     "ModifyDBSnapshot":{
       "name":"ModifyDBSnapshot",
@@ -3174,6 +3199,17 @@
         "SessionPinningFilters":{"shape":"StringList"},
         "InitQuery":{"shape":"String"}
       }
+    },
+    "ContextAttribute":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "ContextAttributeList":{
+      "type":"list",
+      "member":{"shape":"ContextAttribute"}
     },
     "CopyDBClusterParameterGroupMessage":{
       "type":"structure",
@@ -5071,6 +5107,48 @@
       },
       "exception":true
     },
+    "DBRecommendation":{
+      "type":"structure",
+      "members":{
+        "RecommendationId":{"shape":"String"},
+        "TypeId":{"shape":"String"},
+        "Severity":{"shape":"String"},
+        "ResourceArn":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "CreatedTime":{"shape":"TStamp"},
+        "UpdatedTime":{"shape":"TStamp"},
+        "Detection":{"shape":"String"},
+        "Recommendation":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Reason":{"shape":"String"},
+        "RecommendedActions":{"shape":"RecommendedActionList"},
+        "Category":{"shape":"String"},
+        "Source":{"shape":"String"},
+        "TypeDetection":{"shape":"String"},
+        "TypeRecommendation":{"shape":"String"},
+        "Impact":{"shape":"String"},
+        "AdditionalInfo":{"shape":"String"},
+        "Links":{"shape":"DocLinkList"},
+        "IssueDetails":{"shape":"IssueDetails"}
+      }
+    },
+    "DBRecommendationList":{
+      "type":"list",
+      "member":{"shape":"DBRecommendation"}
+    },
+    "DBRecommendationMessage":{
+      "type":"structure",
+      "members":{
+        "DBRecommendation":{"shape":"DBRecommendation"}
+      }
+    },
+    "DBRecommendationsMessage":{
+      "type":"structure",
+      "members":{
+        "DBRecommendations":{"shape":"DBRecommendationList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DBSecurityGroup":{
       "type":"structure",
       "members":{
@@ -5939,6 +6017,17 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeDBRecommendationsMessage":{
+      "type":"structure",
+      "members":{
+        "LastUpdatedAfter":{"shape":"TStamp"},
+        "LastUpdatedBefore":{"shape":"TStamp"},
+        "Locale":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeDBSecurityGroupsMessage":{
       "type":"structure",
       "members":{
@@ -6207,6 +6296,17 @@
       "max":1000,
       "min":1,
       "pattern":".*"
+    },
+    "DocLink":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"String"},
+        "Url":{"shape":"String"}
+      }
+    },
+    "DocLinkList":{
+      "type":"list",
+      "member":{"shape":"DocLink"}
     },
     "DomainMembership":{
       "type":"structure",
@@ -7189,6 +7289,12 @@
       },
       "exception":true
     },
+    "IssueDetails":{
+      "type":"structure",
+      "members":{
+        "PerformanceIssueDetails":{"shape":"PerformanceIssueDetails"}
+      }
+    },
     "KMSKeyNotAccessibleFault":{
       "type":"structure",
       "members":{
@@ -7251,6 +7357,36 @@
       "type":"integer",
       "max":100,
       "min":20
+    },
+    "Metric":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "References":{"shape":"MetricReferenceList"},
+        "StatisticsDetails":{"shape":"String"},
+        "MetricQuery":{"shape":"MetricQuery"}
+      }
+    },
+    "MetricList":{
+      "type":"list",
+      "member":{"shape":"Metric"}
+    },
+    "MetricQuery":{
+      "type":"structure",
+      "members":{
+        "PerformanceInsightsMetricQuery":{"shape":"PerformanceInsightsMetricQuery"}
+      }
+    },
+    "MetricReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "ReferenceDetails":{"shape":"ReferenceDetails"}
+      }
+    },
+    "MetricReferenceList":{
+      "type":"list",
+      "member":{"shape":"MetricReference"}
     },
     "MinimumEngineVersionPerAllowedValue":{
       "type":"structure",
@@ -7550,6 +7686,16 @@
       "type":"structure",
       "members":{
         "DBProxyTargetGroup":{"shape":"DBProxyTargetGroup"}
+      }
+    },
+    "ModifyDBRecommendationMessage":{
+      "type":"structure",
+      "required":["RecommendationId"],
+      "members":{
+        "RecommendationId":{"shape":"String"},
+        "Locale":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "RecommendedActionUpdates":{"shape":"RecommendedActionUpdateList"}
       }
     },
     "ModifyDBSnapshotAttributeMessage":{
@@ -8068,6 +8214,30 @@
         "MultiTenant":{"shape":"BooleanOptional"}
       }
     },
+    "PerformanceInsightsMetricDimensionGroup":{
+      "type":"structure",
+      "members":{
+        "Dimensions":{"shape":"StringList"},
+        "Group":{"shape":"String"},
+        "Limit":{"shape":"Integer"}
+      }
+    },
+    "PerformanceInsightsMetricQuery":{
+      "type":"structure",
+      "members":{
+        "GroupBy":{"shape":"PerformanceInsightsMetricDimensionGroup"},
+        "Metric":{"shape":"String"}
+      }
+    },
+    "PerformanceIssueDetails":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"TStamp"},
+        "EndTime":{"shape":"TStamp"},
+        "Metrics":{"shape":"MetricList"},
+        "Analysis":{"shape":"String"}
+      }
+    },
     "PointInTimeRestoreNotEnabledFault":{
       "type":"structure",
       "members":{
@@ -8223,6 +8393,50 @@
         "DBInstance":{"shape":"DBInstance"}
       }
     },
+    "RecommendedAction":{
+      "type":"structure",
+      "members":{
+        "ActionId":{"shape":"String"},
+        "Title":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Operation":{"shape":"String"},
+        "Parameters":{"shape":"RecommendedActionParameterList"},
+        "ApplyModes":{"shape":"StringList"},
+        "Status":{"shape":"String"},
+        "IssueDetails":{"shape":"IssueDetails"},
+        "ContextAttributes":{"shape":"ContextAttributeList"}
+      }
+    },
+    "RecommendedActionList":{
+      "type":"list",
+      "member":{"shape":"RecommendedAction"}
+    },
+    "RecommendedActionParameter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "RecommendedActionParameterList":{
+      "type":"list",
+      "member":{"shape":"RecommendedActionParameter"}
+    },
+    "RecommendedActionUpdate":{
+      "type":"structure",
+      "required":[
+        "ActionId",
+        "Status"
+      ],
+      "members":{
+        "ActionId":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "RecommendedActionUpdateList":{
+      "type":"list",
+      "member":{"shape":"RecommendedActionUpdate"}
+    },
     "RecurringCharge":{
       "type":"structure",
       "members":{
@@ -8236,6 +8450,12 @@
       "member":{
         "shape":"RecurringCharge",
         "locationName":"RecurringCharge"
+      }
+    },
+    "ReferenceDetails":{
+      "type":"structure",
+      "members":{
+        "ScalarReferenceDetails":{"shape":"ScalarReferenceDetails"}
       }
     },
     "RegisterDBProxyTargetsRequest":{
@@ -8849,6 +9069,12 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ScalarReferenceDetails":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"Double"}
+      }
     },
     "ScalingConfiguration":{
       "type":"structure",
