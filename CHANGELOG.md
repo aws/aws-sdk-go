@@ -1,3 +1,17 @@
+Release v1.49.7 (2023-12-20)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This release introduces configurable clipboard, allowing admins to specify the maximum length of text that can be copied by the users from their device to the remote session and vice-versa.
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/guardduty`: Updates service API and documentation
+  * This release 1) introduces a new API: GetOrganizationStatistics , and 2) adds a new UsageStatisticType TOP_ACCOUNTS_BY_FEATURE for GetUsageStatistics API
+* `service/managedblockchain-query`: Updates service API and documentation
+* `service/mediatailor`: Updates service API and documentation
+* `service/route53`: Updates service API and documentation
+  * Amazon Route 53 now supports the Canada West (Calgary) Region (ca-west-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+
 Release v1.49.6 (2023-12-19)
 ===
 

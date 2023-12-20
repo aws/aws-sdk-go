@@ -720,7 +720,8 @@
           "shape":"__mapOf__string",
           "locationName":"tags"
         },
-        "Tier":{"shape":"Tier"}
+        "Tier":{"shape":"Tier"},
+        "TimeShiftConfiguration":{"shape":"TimeShiftConfiguration"}
       }
     },
     "CreateChannelResponse":{
@@ -738,7 +739,8 @@
           "shape":"__mapOf__string",
           "locationName":"tags"
         },
-        "Tier":{"shape":"__string"}
+        "Tier":{"shape":"__string"},
+        "TimeShiftConfiguration":{"shape":"TimeShiftConfiguration"}
       }
     },
     "CreateLiveSourceRequest":{
@@ -1155,7 +1157,8 @@
           "shape":"__mapOf__string",
           "locationName":"tags"
         },
-        "Tier":{"shape":"__string"}
+        "Tier":{"shape":"__string"},
+        "TimeShiftConfiguration":{"shape":"TimeShiftConfiguration"}
       }
     },
     "DescribeLiveSourceRequest":{
@@ -2105,6 +2108,13 @@
         "STANDARD"
       ]
     },
+    "TimeShiftConfiguration":{
+      "type":"structure",
+      "required":["MaxTimeDelaySeconds"],
+      "members":{
+        "MaxTimeDelaySeconds":{"shape":"__integer"}
+      }
+    },
     "TimeSignalMessage":{
       "type":"structure",
       "members":{
@@ -2164,7 +2174,8 @@
           "locationName":"ChannelName"
         },
         "FillerSlate":{"shape":"SlateSource"},
-        "Outputs":{"shape":"RequestOutputs"}
+        "Outputs":{"shape":"RequestOutputs"},
+        "TimeShiftConfiguration":{"shape":"TimeShiftConfiguration"}
       }
     },
     "UpdateChannelResponse":{
@@ -2182,7 +2193,8 @@
           "shape":"__mapOf__string",
           "locationName":"tags"
         },
-        "Tier":{"shape":"__string"}
+        "Tier":{"shape":"__string"},
+        "TimeShiftConfiguration":{"shape":"TimeShiftConfiguration"}
       }
     },
     "UpdateLiveSourceRequest":{

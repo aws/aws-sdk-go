@@ -290,7 +290,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidRoleException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "CreateStreamingURL":{
@@ -3597,7 +3598,8 @@
       ],
       "members":{
         "Action":{"shape":"Action"},
-        "Permission":{"shape":"Permission"}
+        "Permission":{"shape":"Permission"},
+        "MaximumLength":{"shape":"Integer"}
       }
     },
     "UserSettingList":{

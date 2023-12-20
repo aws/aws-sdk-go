@@ -550,6 +550,19 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "GetOrganizationStatistics":{
+      "name":"GetOrganizationStatistics",
+      "http":{
+        "method":"GET",
+        "requestUri":"/organization/statistics",
+        "responseCode":200
+      },
+      "output":{"shape":"GetOrganizationStatisticsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "GetRemainingFreeTrialDays":{
       "name":"GetRemainingFreeTrialDays",
       "http":{
@@ -3890,6 +3903,15 @@
         }
       }
     },
+    "GetOrganizationStatisticsResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationDetails":{
+          "shape":"OrganizationDetails",
+          "locationName":"organizationDetails"
+        }
+      }
+    },
     "GetRemainingFreeTrialDaysRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -5484,6 +5506,19 @@
         }
       }
     },
+    "OrganizationDetails":{
+      "type":"structure",
+      "members":{
+        "UpdatedAt":{
+          "shape":"Timestamp",
+          "locationName":"updatedAt"
+        },
+        "OrganizationStatistics":{
+          "shape":"OrganizationStatistics",
+          "locationName":"organizationStatistics"
+        }
+      }
+    },
     "OrganizationEbsVolumes":{
       "type":"structure",
       "members":{
@@ -5535,6 +5570,44 @@
           "locationName":"additionalConfiguration"
         }
       }
+    },
+    "OrganizationFeatureStatistics":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeature",
+          "locationName":"name"
+        },
+        "EnabledAccountsCount":{
+          "shape":"Integer",
+          "locationName":"enabledAccountsCount"
+        },
+        "AdditionalConfiguration":{
+          "shape":"OrganizationFeatureStatisticsAdditionalConfigurations",
+          "locationName":"additionalConfiguration"
+        }
+      }
+    },
+    "OrganizationFeatureStatisticsAdditionalConfiguration":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"OrgFeatureAdditionalConfiguration",
+          "locationName":"name"
+        },
+        "EnabledAccountsCount":{
+          "shape":"Integer",
+          "locationName":"enabledAccountsCount"
+        }
+      }
+    },
+    "OrganizationFeatureStatisticsAdditionalConfigurations":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureStatisticsAdditionalConfiguration"}
+    },
+    "OrganizationFeatureStatisticsResults":{
+      "type":"list",
+      "member":{"shape":"OrganizationFeatureStatistics"}
     },
     "OrganizationFeaturesConfigurations":{
       "type":"list",
@@ -5637,6 +5710,31 @@
         "EbsVolumes":{
           "shape":"OrganizationEbsVolumesResult",
           "locationName":"ebsVolumes"
+        }
+      }
+    },
+    "OrganizationStatistics":{
+      "type":"structure",
+      "members":{
+        "TotalAccountsCount":{
+          "shape":"Integer",
+          "locationName":"totalAccountsCount"
+        },
+        "MemberAccountsCount":{
+          "shape":"Integer",
+          "locationName":"memberAccountsCount"
+        },
+        "ActiveAccountsCount":{
+          "shape":"Integer",
+          "locationName":"activeAccountsCount"
+        },
+        "EnabledAccountsCount":{
+          "shape":"Integer",
+          "locationName":"enabledAccountsCount"
+        },
+        "CountByFeature":{
+          "shape":"OrganizationFeatureStatisticsResults",
+          "locationName":"countByFeature"
         }
       }
     },
@@ -7322,7 +7420,8 @@
         "SUM_BY_DATA_SOURCE",
         "SUM_BY_RESOURCE",
         "TOP_RESOURCES",
-        "SUM_BY_FEATURES"
+        "SUM_BY_FEATURES",
+        "TOP_ACCOUNTS_BY_FEATURE"
       ]
     },
     "UsageStatistics":{
@@ -7331,6 +7430,10 @@
         "SumByAccount":{
           "shape":"UsageAccountResultList",
           "locationName":"sumByAccount"
+        },
+        "TopAccountsByFeature":{
+          "shape":"UsageTopAccountsResultList",
+          "locationName":"topAccountsByFeature"
         },
         "SumByDataSource":{
           "shape":"UsageDataSourceResultList",
@@ -7349,6 +7452,40 @@
           "locationName":"sumByFeature"
         }
       }
+    },
+    "UsageTopAccountResult":{
+      "type":"structure",
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "locationName":"accountId"
+        },
+        "Total":{
+          "shape":"Total",
+          "locationName":"total"
+        }
+      }
+    },
+    "UsageTopAccountsByFeatureList":{
+      "type":"list",
+      "member":{"shape":"UsageTopAccountResult"}
+    },
+    "UsageTopAccountsResult":{
+      "type":"structure",
+      "members":{
+        "Feature":{
+          "shape":"UsageFeature",
+          "locationName":"feature"
+        },
+        "Accounts":{
+          "shape":"UsageTopAccountsByFeatureList",
+          "locationName":"accounts"
+        }
+      }
+    },
+    "UsageTopAccountsResultList":{
+      "type":"list",
+      "member":{"shape":"UsageTopAccountsResult"}
     },
     "Volume":{
       "type":"structure",

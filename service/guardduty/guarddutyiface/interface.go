@@ -218,6 +218,10 @@ type GuardDutyAPI interface {
 	GetMembersWithContext(aws.Context, *guardduty.GetMembersInput, ...request.Option) (*guardduty.GetMembersOutput, error)
 	GetMembersRequest(*guardduty.GetMembersInput) (*request.Request, *guardduty.GetMembersOutput)
 
+	GetOrganizationStatistics(*guardduty.GetOrganizationStatisticsInput) (*guardduty.GetOrganizationStatisticsOutput, error)
+	GetOrganizationStatisticsWithContext(aws.Context, *guardduty.GetOrganizationStatisticsInput, ...request.Option) (*guardduty.GetOrganizationStatisticsOutput, error)
+	GetOrganizationStatisticsRequest(*guardduty.GetOrganizationStatisticsInput) (*request.Request, *guardduty.GetOrganizationStatisticsOutput)
+
 	GetRemainingFreeTrialDays(*guardduty.GetRemainingFreeTrialDaysInput) (*guardduty.GetRemainingFreeTrialDaysOutput, error)
 	GetRemainingFreeTrialDaysWithContext(aws.Context, *guardduty.GetRemainingFreeTrialDaysInput, ...request.Option) (*guardduty.GetRemainingFreeTrialDaysOutput, error)
 	GetRemainingFreeTrialDaysRequest(*guardduty.GetRemainingFreeTrialDaysInput) (*request.Request, *guardduty.GetRemainingFreeTrialDaysOutput)
