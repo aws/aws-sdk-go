@@ -28,6 +28,7 @@
     "DescribeEksAnywhereSubscription": "<p>Returns descriptive information about a subscription.</p>",
     "DescribeFargateProfile": "<p>Describes an Fargate profile.</p>",
     "DescribeIdentityProviderConfig": "<p>Describes an identity provider configuration.</p>",
+    "DescribeInsight": "<p>Returns details about an insight that you specify using its ID.</p>",
     "DescribeNodegroup": "<p>Describes a managed node group.</p>",
     "DescribePodIdentityAssociation": "<p>Returns descriptive information about an EKS Pod Identity association.</p> <p>This action requires the ID of the association. You can get the ID from the response to the <code>CreatePodIdentityAssocation</code> for newly created associations. Or, you can list the IDs for associations with <code>ListPodIdentityAssociations</code> and filter the list by namespace or service account.</p>",
     "DescribeUpdate": "<p>Describes an update to an Amazon EKS resource.</p> <p>When the status of the update is <code>Succeeded</code>, the update is complete. If an update fails, the status is <code>Failed</code>, and an error detail explains the reason for the failure.</p>",
@@ -41,6 +42,7 @@
     "ListEksAnywhereSubscriptions": "<p>Displays the full description of the subscription.</p>",
     "ListFargateProfiles": "<p>Lists the Fargate profiles associated with the specified cluster in your Amazon Web Services account in the specified Amazon Web Services Region.</p>",
     "ListIdentityProviderConfigs": "<p>Lists the identity provider configurations for your cluster.</p>",
+    "ListInsights": "<p>Returns a list of all insights checked for against the specified cluster. You can filter which insights are returned by category, associated Kubernetes version, and status.</p>",
     "ListNodegroups": "<p>Lists the managed node groups associated with the specified cluster in your Amazon Web Services account in the specified Amazon Web Services Region. Self-managed node groups aren't listed.</p>",
     "ListPodIdentityAssociations": "<p>List the EKS Pod Identity associations in a cluster. You can filter the list by the namespace that the association is in or the service account that the association uses.</p>",
     "ListTagsForResource": "<p>List the tags for an Amazon EKS resource.</p>",
@@ -107,6 +109,12 @@
       "base": null,
       "refs": {
         "AccessScope$type": "<p>The scope type of an access policy.</p>"
+      }
+    },
+    "AdditionalInfoMap": {
+      "base": null,
+      "refs": {
+        "Insight$additionalInfo": "<p>Links to sources that provide additional context on the insight.</p>"
       }
     },
     "Addon": {
@@ -283,6 +291,20 @@
         "Nodegroup$capacityType": "<p>The capacity type of your managed node group.</p>"
       }
     },
+    "Category": {
+      "base": null,
+      "refs": {
+        "CategoryList$member": null,
+        "Insight$category": "<p>The category of the insight.</p>",
+        "InsightSummary$category": "<p>The category of the insight.</p>"
+      }
+    },
+    "CategoryList": {
+      "base": null,
+      "refs": {
+        "InsightsFilter$categories": "<p>The categories to use to filter insights.</p>"
+      }
+    },
     "Certificate": {
       "base": "<p>An object representing the <code>certificate-authority-data</code> for your cluster.</p>",
       "refs": {
@@ -292,6 +314,18 @@
     "ClientException": {
       "base": "<p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>",
       "refs": {
+      }
+    },
+    "ClientStat": {
+      "base": "<p>Details about clients using the deprecated resources.</p>",
+      "refs": {
+        "ClientStats$member": null
+      }
+    },
+    "ClientStats": {
+      "base": null,
+      "refs": {
+        "DeprecationDetail$clientStats": "<p>Details about Kubernetes clients using the deprecated resources.</p>"
       }
     },
     "Cluster": {
@@ -535,6 +569,18 @@
       "refs": {
       }
     },
+    "DeprecationDetail": {
+      "base": "<p>The summary information about deprecated resource usage for an insight check in the <code>UPGRADE_READINESS</code> category.</p>",
+      "refs": {
+        "DeprecationDetails$member": null
+      }
+    },
+    "DeprecationDetails": {
+      "base": null,
+      "refs": {
+        "InsightCategorySpecificSummary$deprecationDetails": "<p>The summary information about deprecated resource usage for an insight check in the <code>UPGRADE_READINESS</code> category.</p>"
+      }
+    },
     "DeregisterClusterRequest": {
       "base": null,
       "refs": {
@@ -627,6 +673,16 @@
       }
     },
     "DescribeIdentityProviderConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInsightRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInsightResponse": {
       "base": null,
       "refs": {
       }
@@ -838,9 +894,73 @@
         "ListClustersRequest$include": "<p>Indicates whether external clusters are included in the returned list. Use '<code>all</code>' to return <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/eks-connector.html\">https://docs.aws.amazon.com/eks/latest/userguide/eks-connector.html</a>connected clusters, or blank to return only Amazon EKS clusters. '<code>all</code>' must be in lowercase otherwise an error occurs.</p>"
       }
     },
+    "Insight": {
+      "base": "<p>A check that provides recommendations to remedy potential upgrade-impacting issues.</p>",
+      "refs": {
+        "DescribeInsightResponse$insight": "<p>The full description of the insight.</p>"
+      }
+    },
+    "InsightCategorySpecificSummary": {
+      "base": "<p>Summary information that relates to the category of the insight. Currently only returned with certain insights having category <code>UPGRADE_READINESS</code>.</p>",
+      "refs": {
+        "Insight$categorySpecificSummary": "<p>Summary information that relates to the category of the insight. Currently only returned with certain insights having category <code>UPGRADE_READINESS</code>.</p>"
+      }
+    },
+    "InsightResourceDetail": {
+      "base": "<p>Returns information about the resource being evaluated.</p>",
+      "refs": {
+        "InsightResourceDetails$member": null
+      }
+    },
+    "InsightResourceDetails": {
+      "base": null,
+      "refs": {
+        "Insight$resources": "<p>The details about each resource listed in the insight check result.</p>"
+      }
+    },
+    "InsightStatus": {
+      "base": "<p>The status of the insight.</p>",
+      "refs": {
+        "Insight$insightStatus": "<p>An object containing more detail on the status of the insight resource.</p>",
+        "InsightResourceDetail$insightStatus": "<p>An object containing more detail on the status of the insight resource.</p>",
+        "InsightSummary$insightStatus": "<p>An object containing more detail on the status of the insight.</p>"
+      }
+    },
+    "InsightStatusValue": {
+      "base": null,
+      "refs": {
+        "InsightStatus$status": "<p>The status of the resource.</p>",
+        "InsightStatusValueList$member": null
+      }
+    },
+    "InsightStatusValueList": {
+      "base": null,
+      "refs": {
+        "InsightsFilter$statuses": "<p>The statuses to use to filter the insights. </p>"
+      }
+    },
+    "InsightSummaries": {
+      "base": null,
+      "refs": {
+        "ListInsightsResponse$insights": "<p>The returned list of insights.</p>"
+      }
+    },
+    "InsightSummary": {
+      "base": "<p>The summarized description of the insight.</p>",
+      "refs": {
+        "InsightSummaries$member": null
+      }
+    },
+    "InsightsFilter": {
+      "base": "<p>The criteria to use for the insights.</p>",
+      "refs": {
+        "ListInsightsRequest$filter": "<p>The criteria to filter your list of insights for your cluster. You can filter which insights are returned by category, associated Kubernetes version, and status.</p>"
+      }
+    },
     "Integer": {
       "base": null,
       "refs": {
+        "ClientStat$numberOfRequestsLast30Days": "<p>The number of requests from the Kubernetes client seen over the last 30 days.</p>",
         "CreateEksAnywhereSubscriptionRequest$licenseQuantity": "<p>The number of licenses to purchase with the subscription. Valid values are between 1 and 100. This value can't be changed after creating the subscription.</p>",
         "EksAnywhereSubscription$licenseQuantity": "<p>The number of licenses included in a subscription. Valid values are between 1 and 100.</p>",
         "EksAnywhereSubscriptionTerm$duration": "<p>The duration of the subscription term. Valid values are 12 and 36, indicating a 12 month or 36 month subscription.</p>"
@@ -1013,6 +1133,22 @@
       }
     },
     "ListIdentityProviderConfigsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInsightsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListInsightsRequest$maxResults": "<p>The maximum number of identity provider configurations returned by <code>ListInsights</code> in paginated output. When you use this parameter, <code>ListInsights</code> returns only <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. You can see the remaining results of the initial request by sending another <code>ListInsights</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If you don't use this parameter, <code>ListInsights</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>"
+      }
+    },
+    "ListInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInsightsResponse": {
       "base": null,
       "refs": {
       }
@@ -1308,6 +1444,8 @@
         "AccessEntry$type": "<p>The type of the access entry.</p>",
         "AccessPolicy$name": "<p>The name of the access policy.</p>",
         "AccessPolicy$arn": "<p>The ARN of the access policy.</p>",
+        "AdditionalInfoMap$key": null,
+        "AdditionalInfoMap$value": null,
         "Addon$addonName": "<p>The name of the add-on.</p>",
         "Addon$addonVersion": "<p>The version of the add-on.</p>",
         "Addon$addonArn": "<p>The Amazon Resource Name (ARN) of the add-on.</p>",
@@ -1339,6 +1477,7 @@
         "ClientException$addonName": "<p>The Amazon EKS add-on name associated with the exception.</p>",
         "ClientException$subscriptionId": "<p>The Amazon EKS subscription ID with the exception.</p>",
         "ClientException$message": "<p>These errors are usually caused by a client action. Actions can include using an action or resource on behalf of an <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html\">IAM principal</a> that doesn't have permissions to use the action or resource or specifying an identifier that is not valid.</p>",
+        "ClientStat$userAgent": "<p>The user agent of the Kubernetes client using the deprecated resource.</p>",
         "Cluster$name": "<p>The name of your cluster.</p>",
         "Cluster$arn": "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "Cluster$version": "<p>The Kubernetes server version for the cluster.</p>",
@@ -1357,10 +1496,10 @@
         "ControlPlanePlacementRequest$groupName": "<p>The name of the placement group for the Kubernetes control plane instances. This setting can't be changed after cluster creation. </p>",
         "ControlPlanePlacementResponse$groupName": "<p>The name of the placement group for the Kubernetes control plane instances.</p>",
         "CreateAccessEntryRequest$clusterName": "<p>The name of your cluster.</p>",
-        "CreateAccessEntryRequest$principalArn": "<p>The ARN of the IAM principal for the <code>AccessEntry</code>. You can specify one ARN for each access entry. You can't specify the same ARN in more than one access entry. This value can't be changed after access entry creation.</p> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-users-federation-idp\">IAM best practices</a> recommend using IAM roles with temporary credentials, rather than IAM users with long-term credentials. </p>",
+        "CreateAccessEntryRequest$principalArn": "<p>The ARN of the IAM principal for the <code>AccessEntry</code>. You can specify one ARN for each access entry. You can't specify the same ARN in more than one access entry. This value can't be changed after access entry creation.</p> <p>The valid principals differ depending on the type of the access entry in the <code>type</code> field. The only valid ARN is IAM roles for the types of access entries for nodes: <code/> <code/>. You can use every IAM principal type for <code>STANDARD</code> access entries. You can't use the STS session principal type with access entries because this is a temporary principal for each session and not a permanent identity that can be assigned permissions.</p> <p> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-users-federation-idp\">IAM best practices</a> recommend using IAM roles with temporary credentials, rather than IAM users with long-term credentials. </p>",
         "CreateAccessEntryRequest$clientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateAccessEntryRequest$username": "<p>The username to authenticate to Kubernetes with. We recommend not specifying a username and letting Amazon EKS specify it for you. For more information about the value Amazon EKS specifies for you, or constraints before specifying your own username, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html#creating-access-entries\">Creating access entries</a> in the <i>Amazon EKS User Guide</i>.</p>",
-        "CreateAccessEntryRequest$type": "<p>If the <code>principalArn</code> is for an IAM role that's used for self-managed Amazon EC2 nodes, specify <code>EC2_LINUX</code> or <code>EC2_WINDOWS</code>. Amazon EKS grants the necessary permissions to the node for you. If the <code>principalArn</code> is for any other purpose, specify <code>STANDARD</code>. If you don't specify a value, Amazon EKS sets the value to <code>STANDARD</code>. It's unnecessary to create access entries for IAM roles used with Fargate profiles or managed Amazon EC2 nodes, because Amazon EKS creates entries in the <code>aws-auth</code> <code>ConfigMap</code> for the roles. You can't change this value once you've created the access entry.</p> <p>If you set the value to <code>EC2_LINUX</code> or <code>EC2_WINDOWS</code>, you can't specify values for <code>kubernetesGroups</code>, or associate an <code>AccessPolicy</code> to the access entry.</p>",
+        "CreateAccessEntryRequest$type": "<p>The type of the new access entry. Valid values are <code>Standard</code>, <code>FARGATE_LINUX</code>, <code>EC2_LINUX</code>, and <code>EC2_WINDOWS</code>.</p> <p>If the <code>principalArn</code> is for an IAM role that's used for self-managed Amazon EC2 nodes, specify <code>EC2_LINUX</code> or <code>EC2_WINDOWS</code>. Amazon EKS grants the necessary permissions to the node for you. If the <code>principalArn</code> is for any other purpose, specify <code>STANDARD</code>. If you don't specify a value, Amazon EKS sets the value to <code>STANDARD</code>. It's unnecessary to create access entries for IAM roles used with Fargate profiles or managed Amazon EC2 nodes, because Amazon EKS creates entries in the <code>aws-auth</code> <code>ConfigMap</code> for the roles. You can't change this value once you've created the access entry.</p> <p>If you set the value to <code>EC2_LINUX</code> or <code>EC2_WINDOWS</code>, you can't specify values for <code>kubernetesGroups</code>, or associate an <code>AccessPolicy</code> to the access entry.</p>",
         "CreateAddonRequest$addonName": "<p>The name of the add-on. The name must match one of the names returned by <code>DescribeAddonVersions</code>.</p>",
         "CreateAddonRequest$addonVersion": "<p>The version of the add-on. The version must match one of the versions returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.</p>",
         "CreateAddonRequest$clientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
@@ -1395,6 +1534,10 @@
         "DeleteNodegroupRequest$nodegroupName": "<p>The name of the node group to delete.</p>",
         "DeletePodIdentityAssociationRequest$clusterName": "<p>The cluster name that</p>",
         "DeletePodIdentityAssociationRequest$associationId": "<p>The ID of the association to be deleted.</p>",
+        "DeprecationDetail$usage": "<p>The deprecated version of the resource.</p>",
+        "DeprecationDetail$replacedWith": "<p>The newer version of the resource to migrate to if applicable. </p>",
+        "DeprecationDetail$stopServingVersion": "<p>The version of the software where the deprecated resource version will stop being served.</p>",
+        "DeprecationDetail$startServingReplacementVersion": "<p>The version of the software where the newer resource version became available to migrate to if applicable.</p>",
         "DeregisterClusterRequest$name": "<p>The name of the connected cluster to deregister.</p>",
         "DescribeAccessEntryRequest$clusterName": "<p>The name of your cluster.</p>",
         "DescribeAccessEntryRequest$principalArn": "<p>The ARN of the IAM principal for the <code>AccessEntry</code>.</p>",
@@ -1413,6 +1556,8 @@
         "DescribeFargateProfileRequest$clusterName": "<p>The name of your cluster.</p>",
         "DescribeFargateProfileRequest$fargateProfileName": "<p>The name of the Fargate profile to describe.</p>",
         "DescribeIdentityProviderConfigRequest$clusterName": "<p>The name of your cluster.</p>",
+        "DescribeInsightRequest$clusterName": "<p>The name of the cluster to describe the insight for.</p>",
+        "DescribeInsightRequest$id": "<p>The identity of the insight to describe.</p>",
         "DescribeNodegroupRequest$clusterName": "<p>The name of your cluster.</p>",
         "DescribeNodegroupRequest$nodegroupName": "<p>The name of the node group to describe.</p>",
         "DescribePodIdentityAssociationRequest$clusterName": "<p>The name of the cluster that the association is in.</p>",
@@ -1440,6 +1585,18 @@
         "IdentityProviderConfig$type": "<p>The type of the identity provider configuration. The only type available is <code>oidc</code>.</p>",
         "IdentityProviderConfig$name": "<p>The name of the identity provider configuration.</p>",
         "IncludeClustersList$member": null,
+        "Insight$id": "<p>The ID of the insight.</p>",
+        "Insight$name": "<p>The name of the insight.</p>",
+        "Insight$kubernetesVersion": "<p>The Kubernetes minor version associated with an insight if applicable.</p>",
+        "Insight$description": "<p>The description of the insight which includes alert criteria, remediation recommendation, and additional resources (contains Markdown).</p>",
+        "Insight$recommendation": "<p>A summary of how to remediate the finding of this insight if applicable. </p>",
+        "InsightResourceDetail$kubernetesResourceUri": "<p>The Kubernetes resource URI if applicable.</p>",
+        "InsightResourceDetail$arn": "<p>The Amazon Resource Name (ARN) if applicable.</p>",
+        "InsightStatus$reason": "<p>Explanation on the reasoning for the status of the resource. </p>",
+        "InsightSummary$id": "<p>The ID of the insight.</p>",
+        "InsightSummary$name": "<p>The name of the insight.</p>",
+        "InsightSummary$kubernetesVersion": "<p>The Kubernetes minor version associated with an insight if applicable. </p>",
+        "InsightSummary$description": "<p>The description of the insight which includes alert criteria, remediation recommendation, and additional resources (contains Markdown).</p>",
         "InvalidParameterException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
         "InvalidParameterException$nodegroupName": "<p>The Amazon EKS managed node group associated with the exception.</p>",
         "InvalidParameterException$fargateProfileName": "<p>The Fargate profile associated with the exception.</p>",
@@ -1481,7 +1638,10 @@
         "ListFargateProfilesResponse$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated request, where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListIdentityProviderConfigsRequest$clusterName": "<p>The name of your cluster.</p>",
         "ListIdentityProviderConfigsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated request, where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
-        "ListIdentityProviderConfigsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListIdentityProviderConfigsResponse</code> request. When the results of a <code>ListIdentityProviderConfigsResponse</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListIdentityProviderConfigsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListIdentityProviderConfigsResponse</code> request. When the results of a <code>ListIdentityProviderConfigsResponse</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListInsightsRequest$clusterName": "<p>The name of the Amazon EKS cluster associated with the insights.</p>",
+        "ListInsightsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListInsights</code> request. When the results of a <code>ListInsights</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListInsightsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListInsights</code> request. When the results of a <code>ListInsights</code> request exceed <code>maxResults</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListNodegroupsRequest$clusterName": "<p>The name of your cluster.</p>",
         "ListNodegroupsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated request, where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListNodegroupsResponse$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated request, where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
@@ -1620,6 +1780,7 @@
         "EncryptionConfig$resources": "<p>Specifies the resources to be encrypted. The only supported value is <code>secrets</code>.</p>",
         "ErrorDetail$resourceIds": "<p>An optional field that contains the resource IDs associated with the error.</p>",
         "FargateProfile$subnets": "<p>The IDs of subnets to launch a <code>Pod</code> into.</p>",
+        "InsightsFilter$kubernetesVersions": "<p>The Kubernetes versions to use to filter the insights.</p>",
         "Issue$resourceIds": "<p>The Amazon Web Services resources that are afflicted by this issue.</p>",
         "ListAccessEntriesResponse$accessEntries": "<p>The list of access entries that exist for the cluster.</p>",
         "ListAddonsResponse$addons": "<p>A list of installed add-ons.</p>",
@@ -1717,12 +1878,17 @@
         "Addon$modifiedAt": "<p>The Unix epoch timestamp for the last modification to the object.</p>",
         "AssociatedAccessPolicy$associatedAt": "<p>The date and time the <code>AccessPolicy</code> was associated with an <code>AccessEntry</code>.</p>",
         "AssociatedAccessPolicy$modifiedAt": "<p>The Unix epoch timestamp for the last modification to the object.</p>",
+        "ClientStat$lastRequestTime": "<p>The timestamp of the last request seen from the Kubernetes client.</p>",
         "Cluster$createdAt": "<p>The Unix epoch timestamp at object creation.</p>",
         "ConnectorConfigResponse$activationExpiry": "<p>The expiration time of the connected cluster. The cluster's YAML file must be applied through the native provider.</p>",
         "EksAnywhereSubscription$createdAt": "<p>The Unix timestamp in seconds for when the subscription was created.</p>",
         "EksAnywhereSubscription$effectiveDate": "<p>The Unix timestamp in seconds for when the subscription is effective.</p>",
         "EksAnywhereSubscription$expirationDate": "<p>The Unix timestamp in seconds for when the subscription will expire or auto renew, depending on the auto renew configuration of the subscription object.</p>",
         "FargateProfile$createdAt": "<p>The Unix epoch timestamp at object creation.</p>",
+        "Insight$lastRefreshTime": "<p>The time Amazon EKS last successfully completed a refresh of this insight check on the cluster.</p>",
+        "Insight$lastTransitionTime": "<p>The time the status of the insight last changed.</p>",
+        "InsightSummary$lastRefreshTime": "<p>The time Amazon EKS last successfully completed a refresh of this insight check on the cluster.</p>",
+        "InsightSummary$lastTransitionTime": "<p>The time the status of the insight last changed.</p>",
         "Nodegroup$createdAt": "<p>The Unix epoch timestamp at object creation.</p>",
         "Nodegroup$modifiedAt": "<p>The Unix epoch timestamp for the last modification to the object.</p>",
         "PodIdentityAssociation$createdAt": "<p>The timestamp that the association was created at.</p>",

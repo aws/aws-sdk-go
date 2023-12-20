@@ -4884,6 +4884,9 @@ type CreateChannelInput struct {
 
 	// The tier of the channel.
 	Tier *string `type:"string" enum:"Tier"`
+
+	// The time-shifted viewing configuration you want to associate to the channel.
+	TimeShiftConfiguration *TimeShiftConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4929,6 +4932,11 @@ func (s *CreateChannelInput) Validate() error {
 			}
 		}
 	}
+	if s.TimeShiftConfiguration != nil {
+		if err := s.TimeShiftConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TimeShiftConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4972,6 +4980,12 @@ func (s *CreateChannelInput) SetTier(v string) *CreateChannelInput {
 	return s
 }
 
+// SetTimeShiftConfiguration sets the TimeShiftConfiguration field's value.
+func (s *CreateChannelInput) SetTimeShiftConfiguration(v *TimeShiftConfiguration) *CreateChannelInput {
+	s.TimeShiftConfiguration = v
+	return s
+}
+
 type CreateChannelOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5008,6 +5022,9 @@ type CreateChannelOutput struct {
 
 	// The tier of the channel.
 	Tier *string `type:"string"`
+
+	// The time-shifted viewing configuration assigned to the channel.
+	TimeShiftConfiguration *TimeShiftConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5085,6 +5102,12 @@ func (s *CreateChannelOutput) SetTags(v map[string]*string) *CreateChannelOutput
 // SetTier sets the Tier field's value.
 func (s *CreateChannelOutput) SetTier(v string) *CreateChannelOutput {
 	s.Tier = &v
+	return s
+}
+
+// SetTimeShiftConfiguration sets the TimeShiftConfiguration field's value.
+func (s *CreateChannelOutput) SetTimeShiftConfiguration(v *TimeShiftConfiguration) *CreateChannelOutput {
+	s.TimeShiftConfiguration = v
 	return s
 }
 
@@ -7093,6 +7116,9 @@ type DescribeChannelOutput struct {
 
 	// The channel's tier.
 	Tier *string `type:"string"`
+
+	// The time-shifted viewing configuration for the channel.
+	TimeShiftConfiguration *TimeShiftConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7176,6 +7202,12 @@ func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOu
 // SetTier sets the Tier field's value.
 func (s *DescribeChannelOutput) SetTier(v string) *DescribeChannelOutput {
 	s.Tier = &v
+	return s
+}
+
+// SetTimeShiftConfiguration sets the TimeShiftConfiguration field's value.
+func (s *DescribeChannelOutput) SetTimeShiftConfiguration(v *TimeShiftConfiguration) *DescribeChannelOutput {
+	s.TimeShiftConfiguration = v
 	return s
 }
 
@@ -11910,6 +11942,55 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The configuration for time-shifted viewing.
+type TimeShiftConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum time delay for time-shifted viewing. The minimum allowed maximum
+	// time delay is 0 seconds, and the maximum allowed maximum time delay is 21600
+	// seconds (6 hours).
+	//
+	// MaxTimeDelaySeconds is a required field
+	MaxTimeDelaySeconds *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeShiftConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeShiftConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeShiftConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeShiftConfiguration"}
+	if s.MaxTimeDelaySeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxTimeDelaySeconds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxTimeDelaySeconds sets the MaxTimeDelaySeconds field's value.
+func (s *TimeShiftConfiguration) SetMaxTimeDelaySeconds(v int64) *TimeShiftConfiguration {
+	s.MaxTimeDelaySeconds = &v
+	return s
+}
+
 // The SCTE-35 time_signal message can be sent with one or more segmentation_descriptor
 // messages. A time_signal message can be sent only if a single segmentation_descriptor
 // message is sent.
@@ -12159,6 +12240,9 @@ type UpdateChannelInput struct {
 	//
 	// Outputs is a required field
 	Outputs []*RequestOutputItem `type:"list" required:"true"`
+
+	// The time-shifted viewing configuration you want to associate to the channel.
+	TimeShiftConfiguration *TimeShiftConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12201,6 +12285,11 @@ func (s *UpdateChannelInput) Validate() error {
 			}
 		}
 	}
+	if s.TimeShiftConfiguration != nil {
+		if err := s.TimeShiftConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TimeShiftConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12223,6 +12312,12 @@ func (s *UpdateChannelInput) SetFillerSlate(v *SlateSource) *UpdateChannelInput 
 // SetOutputs sets the Outputs field's value.
 func (s *UpdateChannelInput) SetOutputs(v []*RequestOutputItem) *UpdateChannelInput {
 	s.Outputs = v
+	return s
+}
+
+// SetTimeShiftConfiguration sets the TimeShiftConfiguration field's value.
+func (s *UpdateChannelInput) SetTimeShiftConfiguration(v *TimeShiftConfiguration) *UpdateChannelInput {
+	s.TimeShiftConfiguration = v
 	return s
 }
 
@@ -12268,6 +12363,9 @@ type UpdateChannelOutput struct {
 
 	// The tier associated with this Channel.
 	Tier *string `type:"string"`
+
+	// The time-shifted viewing configuration for the channel.
+	TimeShiftConfiguration *TimeShiftConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12345,6 +12443,12 @@ func (s *UpdateChannelOutput) SetTags(v map[string]*string) *UpdateChannelOutput
 // SetTier sets the Tier field's value.
 func (s *UpdateChannelOutput) SetTier(v string) *UpdateChannelOutput {
 	s.Tier = &v
+	return s
+}
+
+// SetTimeShiftConfiguration sets the TimeShiftConfiguration field's value.
+func (s *UpdateChannelOutput) SetTimeShiftConfiguration(v *TimeShiftConfiguration) *UpdateChannelOutput {
+	s.TimeShiftConfiguration = v
 	return s
 }
 

@@ -2761,6 +2761,98 @@ func (c *EKS) DescribeIdentityProviderConfigWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDescribeInsight = "DescribeInsight"
+
+// DescribeInsightRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInsight operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInsight for more information on using the DescribeInsight
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeInsightRequest method.
+//	req, resp := client.DescribeInsightRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeInsight
+func (c *EKS) DescribeInsightRequest(input *DescribeInsightInput) (req *request.Request, output *DescribeInsightOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInsight,
+		HTTPMethod: "GET",
+		HTTPPath:   "/clusters/{name}/insights/{id}",
+	}
+
+	if input == nil {
+		input = &DescribeInsightInput{}
+	}
+
+	output = &DescribeInsightOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInsight API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns details about an insight that you specify using its ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DescribeInsight for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Amazon Web Services Region specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DescribeInsight
+func (c *EKS) DescribeInsight(input *DescribeInsightInput) (*DescribeInsightOutput, error) {
+	req, out := c.DescribeInsightRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInsightWithContext is the same as DescribeInsight with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInsight for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DescribeInsightWithContext(ctx aws.Context, input *DescribeInsightInput, opts ...request.Option) (*DescribeInsightOutput, error) {
+	req, out := c.DescribeInsightRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeNodegroup = "DescribeNodegroup"
 
 // DescribeNodegroupRequest generates a "aws/request.Request" representing the
@@ -4429,6 +4521,157 @@ func (c *EKS) ListIdentityProviderConfigsPagesWithContext(ctx aws.Context, input
 
 	for p.Next() {
 		if !fn(p.Page().(*ListIdentityProviderConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListInsights = "ListInsights"
+
+// ListInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInsights for more information on using the ListInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListInsightsRequest method.
+//	req, resp := client.ListInsightsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListInsights
+func (c *EKS) ListInsightsRequest(input *ListInsightsInput) (req *request.Request, output *ListInsightsOutput) {
+	op := &request.Operation{
+		Name:       opListInsights,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/insights",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInsightsInput{}
+	}
+
+	output = &ListInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInsights API operation for Amazon Elastic Kubernetes Service.
+//
+// Returns a list of all insights checked for against the specified cluster.
+// You can filter which insights are returned by category, associated Kubernetes
+// version, and status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation ListInsights for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServerException
+//     These errors are usually caused by a server-side issue.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be found. You can view your available clusters
+//     with ListClusters. You can view your available managed node groups with ListNodegroups.
+//     Amazon EKS clusters and node groups are Amazon Web Services Region specific.
+//
+//   - InvalidRequestException
+//     The request is invalid given the state of the cluster. Check the state of
+//     the cluster and the associated operations.
+//
+//   - InvalidParameterException
+//     The specified parameter is invalid. Review the available parameters for the
+//     API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/ListInsights
+func (c *EKS) ListInsights(input *ListInsightsInput) (*ListInsightsOutput, error) {
+	req, out := c.ListInsightsRequest(input)
+	return out, req.Send()
+}
+
+// ListInsightsWithContext is the same as ListInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListInsightsWithContext(ctx aws.Context, input *ListInsightsInput, opts ...request.Option) (*ListInsightsOutput, error) {
+	req, out := c.ListInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInsightsPages iterates over the pages of a ListInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListInsights operation.
+//	pageNum := 0
+//	err := client.ListInsightsPages(params,
+//	    func(page *eks.ListInsightsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EKS) ListInsightsPages(input *ListInsightsInput, fn func(*ListInsightsOutput, bool) bool) error {
+	return c.ListInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInsightsPagesWithContext same as ListInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) ListInsightsPagesWithContext(ctx aws.Context, input *ListInsightsInput, fn func(*ListInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInsightsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -7499,6 +7742,56 @@ func (s *ClientException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Details about clients using the deprecated resources.
+type ClientStat struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the last request seen from the Kubernetes client.
+	LastRequestTime *time.Time `locationName:"lastRequestTime" type:"timestamp"`
+
+	// The number of requests from the Kubernetes client seen over the last 30 days.
+	NumberOfRequestsLast30Days *int64 `locationName:"numberOfRequestsLast30Days" type:"integer"`
+
+	// The user agent of the Kubernetes client using the deprecated resource.
+	UserAgent *string `locationName:"userAgent" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClientStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClientStat) GoString() string {
+	return s.String()
+}
+
+// SetLastRequestTime sets the LastRequestTime field's value.
+func (s *ClientStat) SetLastRequestTime(v time.Time) *ClientStat {
+	s.LastRequestTime = &v
+	return s
+}
+
+// SetNumberOfRequestsLast30Days sets the NumberOfRequestsLast30Days field's value.
+func (s *ClientStat) SetNumberOfRequestsLast30Days(v int64) *ClientStat {
+	s.NumberOfRequestsLast30Days = &v
+	return s
+}
+
+// SetUserAgent sets the UserAgent field's value.
+func (s *ClientStat) SetUserAgent(v string) *ClientStat {
+	s.UserAgent = &v
+	return s
+}
+
 // An object representing an Amazon EKS cluster.
 type Cluster struct {
 	_ struct{} `type:"structure"`
@@ -8151,6 +8444,13 @@ type CreateAccessEntryInput struct {
 	// for each access entry. You can't specify the same ARN in more than one access
 	// entry. This value can't be changed after access entry creation.
 	//
+	// The valid principals differ depending on the type of the access entry in
+	// the type field. The only valid ARN is IAM roles for the types of access entries
+	// for nodes: . You can use every IAM principal type for STANDARD access entries.
+	// You can't use the STS session principal type with access entries because
+	// this is a temporary principal for each session and not a permanent identity
+	// that can be assigned permissions.
+	//
 	// IAM best practices (https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-users-federation-idp)
 	// recommend using IAM roles with temporary credentials, rather than IAM users
 	// with long-term credentials.
@@ -8163,6 +8463,9 @@ type CreateAccessEntryInput struct {
 	// any other cluster or Amazon Web Services resources.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// The type of the new access entry. Valid values are Standard, FARGATE_LINUX,
+	// EC2_LINUX, and EC2_WINDOWS.
+	//
 	// If the principalArn is for an IAM role that's used for self-managed Amazon
 	// EC2 nodes, specify EC2_LINUX or EC2_WINDOWS. Amazon EKS grants the necessary
 	// permissions to the node for you. If the principalArn is for any other purpose,
@@ -10193,6 +10496,77 @@ func (s *DeletePodIdentityAssociationOutput) SetAssociation(v *PodIdentityAssoci
 	return s
 }
 
+// The summary information about deprecated resource usage for an insight check
+// in the UPGRADE_READINESS category.
+type DeprecationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Details about Kubernetes clients using the deprecated resources.
+	ClientStats []*ClientStat `locationName:"clientStats" type:"list"`
+
+	// The newer version of the resource to migrate to if applicable.
+	ReplacedWith *string `locationName:"replacedWith" type:"string"`
+
+	// The version of the software where the newer resource version became available
+	// to migrate to if applicable.
+	StartServingReplacementVersion *string `locationName:"startServingReplacementVersion" type:"string"`
+
+	// The version of the software where the deprecated resource version will stop
+	// being served.
+	StopServingVersion *string `locationName:"stopServingVersion" type:"string"`
+
+	// The deprecated version of the resource.
+	Usage *string `locationName:"usage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecationDetail) GoString() string {
+	return s.String()
+}
+
+// SetClientStats sets the ClientStats field's value.
+func (s *DeprecationDetail) SetClientStats(v []*ClientStat) *DeprecationDetail {
+	s.ClientStats = v
+	return s
+}
+
+// SetReplacedWith sets the ReplacedWith field's value.
+func (s *DeprecationDetail) SetReplacedWith(v string) *DeprecationDetail {
+	s.ReplacedWith = &v
+	return s
+}
+
+// SetStartServingReplacementVersion sets the StartServingReplacementVersion field's value.
+func (s *DeprecationDetail) SetStartServingReplacementVersion(v string) *DeprecationDetail {
+	s.StartServingReplacementVersion = &v
+	return s
+}
+
+// SetStopServingVersion sets the StopServingVersion field's value.
+func (s *DeprecationDetail) SetStopServingVersion(v string) *DeprecationDetail {
+	s.StopServingVersion = &v
+	return s
+}
+
+// SetUsage sets the Usage field's value.
+func (s *DeprecationDetail) SetUsage(v string) *DeprecationDetail {
+	s.Usage = &v
+	return s
+}
+
 type DeregisterClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -11094,6 +11468,103 @@ func (s DescribeIdentityProviderConfigOutput) GoString() string {
 // SetIdentityProviderConfig sets the IdentityProviderConfig field's value.
 func (s *DescribeIdentityProviderConfigOutput) SetIdentityProviderConfig(v *IdentityProviderConfigResponse) *DescribeIdentityProviderConfigOutput {
 	s.IdentityProviderConfig = v
+	return s
+}
+
+type DescribeInsightInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the cluster to describe the insight for.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The identity of the insight to describe.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInsightInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInsightInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInsightInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInsightInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DescribeInsightInput) SetClusterName(v string) *DescribeInsightInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeInsightInput) SetId(v string) *DescribeInsightInput {
+	s.Id = &v
+	return s
+}
+
+type DescribeInsightOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full description of the insight.
+	Insight *Insight `locationName:"insight" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInsightOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInsightOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsight sets the Insight field's value.
+func (s *DescribeInsightOutput) SetInsight(v *Insight) *DescribeInsightOutput {
+	s.Insight = v
 	return s
 }
 
@@ -12195,6 +12666,413 @@ func (s IdentityProviderConfigResponse) GoString() string {
 // SetOidc sets the Oidc field's value.
 func (s *IdentityProviderConfigResponse) SetOidc(v *OidcIdentityProviderConfig) *IdentityProviderConfigResponse {
 	s.Oidc = v
+	return s
+}
+
+// A check that provides recommendations to remedy potential upgrade-impacting
+// issues.
+type Insight struct {
+	_ struct{} `type:"structure"`
+
+	// Links to sources that provide additional context on the insight.
+	AdditionalInfo map[string]*string `locationName:"additionalInfo" type:"map"`
+
+	// The category of the insight.
+	Category *string `locationName:"category" type:"string" enum:"Category"`
+
+	// Summary information that relates to the category of the insight. Currently
+	// only returned with certain insights having category UPGRADE_READINESS.
+	CategorySpecificSummary *InsightCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure"`
+
+	// The description of the insight which includes alert criteria, remediation
+	// recommendation, and additional resources (contains Markdown).
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the insight.
+	Id *string `locationName:"id" type:"string"`
+
+	// An object containing more detail on the status of the insight resource.
+	InsightStatus *InsightStatus `locationName:"insightStatus" type:"structure"`
+
+	// The Kubernetes minor version associated with an insight if applicable.
+	KubernetesVersion *string `locationName:"kubernetesVersion" type:"string"`
+
+	// The time Amazon EKS last successfully completed a refresh of this insight
+	// check on the cluster.
+	LastRefreshTime *time.Time `locationName:"lastRefreshTime" type:"timestamp"`
+
+	// The time the status of the insight last changed.
+	LastTransitionTime *time.Time `locationName:"lastTransitionTime" type:"timestamp"`
+
+	// The name of the insight.
+	Name *string `locationName:"name" type:"string"`
+
+	// A summary of how to remediate the finding of this insight if applicable.
+	Recommendation *string `locationName:"recommendation" type:"string"`
+
+	// The details about each resource listed in the insight check result.
+	Resources []*InsightResourceDetail `locationName:"resources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Insight) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Insight) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *Insight) SetAdditionalInfo(v map[string]*string) *Insight {
+	s.AdditionalInfo = v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *Insight) SetCategory(v string) *Insight {
+	s.Category = &v
+	return s
+}
+
+// SetCategorySpecificSummary sets the CategorySpecificSummary field's value.
+func (s *Insight) SetCategorySpecificSummary(v *InsightCategorySpecificSummary) *Insight {
+	s.CategorySpecificSummary = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Insight) SetDescription(v string) *Insight {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Insight) SetId(v string) *Insight {
+	s.Id = &v
+	return s
+}
+
+// SetInsightStatus sets the InsightStatus field's value.
+func (s *Insight) SetInsightStatus(v *InsightStatus) *Insight {
+	s.InsightStatus = v
+	return s
+}
+
+// SetKubernetesVersion sets the KubernetesVersion field's value.
+func (s *Insight) SetKubernetesVersion(v string) *Insight {
+	s.KubernetesVersion = &v
+	return s
+}
+
+// SetLastRefreshTime sets the LastRefreshTime field's value.
+func (s *Insight) SetLastRefreshTime(v time.Time) *Insight {
+	s.LastRefreshTime = &v
+	return s
+}
+
+// SetLastTransitionTime sets the LastTransitionTime field's value.
+func (s *Insight) SetLastTransitionTime(v time.Time) *Insight {
+	s.LastTransitionTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Insight) SetName(v string) *Insight {
+	s.Name = &v
+	return s
+}
+
+// SetRecommendation sets the Recommendation field's value.
+func (s *Insight) SetRecommendation(v string) *Insight {
+	s.Recommendation = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *Insight) SetResources(v []*InsightResourceDetail) *Insight {
+	s.Resources = v
+	return s
+}
+
+// Summary information that relates to the category of the insight. Currently
+// only returned with certain insights having category UPGRADE_READINESS.
+type InsightCategorySpecificSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The summary information about deprecated resource usage for an insight check
+	// in the UPGRADE_READINESS category.
+	DeprecationDetails []*DeprecationDetail `locationName:"deprecationDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightCategorySpecificSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightCategorySpecificSummary) GoString() string {
+	return s.String()
+}
+
+// SetDeprecationDetails sets the DeprecationDetails field's value.
+func (s *InsightCategorySpecificSummary) SetDeprecationDetails(v []*DeprecationDetail) *InsightCategorySpecificSummary {
+	s.DeprecationDetails = v
+	return s
+}
+
+// Returns information about the resource being evaluated.
+type InsightResourceDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) if applicable.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// An object containing more detail on the status of the insight resource.
+	InsightStatus *InsightStatus `locationName:"insightStatus" type:"structure"`
+
+	// The Kubernetes resource URI if applicable.
+	KubernetesResourceUri *string `locationName:"kubernetesResourceUri" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightResourceDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightResourceDetail) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *InsightResourceDetail) SetArn(v string) *InsightResourceDetail {
+	s.Arn = &v
+	return s
+}
+
+// SetInsightStatus sets the InsightStatus field's value.
+func (s *InsightResourceDetail) SetInsightStatus(v *InsightStatus) *InsightResourceDetail {
+	s.InsightStatus = v
+	return s
+}
+
+// SetKubernetesResourceUri sets the KubernetesResourceUri field's value.
+func (s *InsightResourceDetail) SetKubernetesResourceUri(v string) *InsightResourceDetail {
+	s.KubernetesResourceUri = &v
+	return s
+}
+
+// The status of the insight.
+type InsightStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Explanation on the reasoning for the status of the resource.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The status of the resource.
+	Status *string `locationName:"status" type:"string" enum:"InsightStatusValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightStatus) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *InsightStatus) SetReason(v string) *InsightStatus {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InsightStatus) SetStatus(v string) *InsightStatus {
+	s.Status = &v
+	return s
+}
+
+// The summarized description of the insight.
+type InsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The category of the insight.
+	Category *string `locationName:"category" type:"string" enum:"Category"`
+
+	// The description of the insight which includes alert criteria, remediation
+	// recommendation, and additional resources (contains Markdown).
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the insight.
+	Id *string `locationName:"id" type:"string"`
+
+	// An object containing more detail on the status of the insight.
+	InsightStatus *InsightStatus `locationName:"insightStatus" type:"structure"`
+
+	// The Kubernetes minor version associated with an insight if applicable.
+	KubernetesVersion *string `locationName:"kubernetesVersion" type:"string"`
+
+	// The time Amazon EKS last successfully completed a refresh of this insight
+	// check on the cluster.
+	LastRefreshTime *time.Time `locationName:"lastRefreshTime" type:"timestamp"`
+
+	// The time the status of the insight last changed.
+	LastTransitionTime *time.Time `locationName:"lastTransitionTime" type:"timestamp"`
+
+	// The name of the insight.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *InsightSummary) SetCategory(v string) *InsightSummary {
+	s.Category = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *InsightSummary) SetDescription(v string) *InsightSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *InsightSummary) SetId(v string) *InsightSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInsightStatus sets the InsightStatus field's value.
+func (s *InsightSummary) SetInsightStatus(v *InsightStatus) *InsightSummary {
+	s.InsightStatus = v
+	return s
+}
+
+// SetKubernetesVersion sets the KubernetesVersion field's value.
+func (s *InsightSummary) SetKubernetesVersion(v string) *InsightSummary {
+	s.KubernetesVersion = &v
+	return s
+}
+
+// SetLastRefreshTime sets the LastRefreshTime field's value.
+func (s *InsightSummary) SetLastRefreshTime(v time.Time) *InsightSummary {
+	s.LastRefreshTime = &v
+	return s
+}
+
+// SetLastTransitionTime sets the LastTransitionTime field's value.
+func (s *InsightSummary) SetLastTransitionTime(v time.Time) *InsightSummary {
+	s.LastTransitionTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InsightSummary) SetName(v string) *InsightSummary {
+	s.Name = &v
+	return s
+}
+
+// The criteria to use for the insights.
+type InsightsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The categories to use to filter insights.
+	Categories []*string `locationName:"categories" type:"list" enum:"Category"`
+
+	// The Kubernetes versions to use to filter the insights.
+	KubernetesVersions []*string `locationName:"kubernetesVersions" type:"list"`
+
+	// The statuses to use to filter the insights.
+	Statuses []*string `locationName:"statuses" type:"list" enum:"InsightStatusValue"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsFilter) GoString() string {
+	return s.String()
+}
+
+// SetCategories sets the Categories field's value.
+func (s *InsightsFilter) SetCategories(v []*string) *InsightsFilter {
+	s.Categories = v
+	return s
+}
+
+// SetKubernetesVersions sets the KubernetesVersions field's value.
+func (s *InsightsFilter) SetKubernetesVersions(v []*string) *InsightsFilter {
+	s.KubernetesVersions = v
+	return s
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *InsightsFilter) SetStatuses(v []*string) *InsightsFilter {
+	s.Statuses = v
 	return s
 }
 
@@ -13675,6 +14553,9 @@ type ListIdentityProviderConfigsOutput struct {
 	// request. When the results of a ListIdentityProviderConfigsResponse request
 	// exceed maxResults, you can use this value to retrieve the next page of results.
 	// This value is null when there are no more results to return.
+	//
+	// This token should be treated as an opaque identifier that is used only to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -13704,6 +14585,139 @@ func (s *ListIdentityProviderConfigsOutput) SetIdentityProviderConfigs(v []*Iden
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListIdentityProviderConfigsOutput) SetNextToken(v string) *ListIdentityProviderConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInsightsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon EKS cluster associated with the insights.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The criteria to filter your list of insights for your cluster. You can filter
+	// which insights are returned by category, associated Kubernetes version, and
+	// status.
+	Filter *InsightsFilter `locationName:"filter" type:"structure"`
+
+	// The maximum number of identity provider configurations returned by ListInsights
+	// in paginated output. When you use this parameter, ListInsights returns only
+	// maxResults results in a single page along with a nextToken response element.
+	// You can see the remaining results of the initial request by sending another
+	// ListInsights request with the returned nextToken value. This value can be
+	// between 1 and 100. If you don't use this parameter, ListInsights returns
+	// up to 100 results and a nextToken value, if applicable.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The nextToken value returned from a previous paginated ListInsights request.
+	// When the results of a ListInsights request exceed maxResults, you can use
+	// this value to retrieve the next page of results. This value is null when
+	// there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInsightsInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *ListInsightsInput) SetClusterName(v string) *ListInsightsInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListInsightsInput) SetFilter(v *InsightsFilter) *ListInsightsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInsightsInput) SetMaxResults(v int64) *ListInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInsightsInput) SetNextToken(v string) *ListInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The returned list of insights.
+	Insights []*InsightSummary `locationName:"insights" type:"list"`
+
+	// The nextToken value to include in a future ListInsights request. When the
+	// results of a ListInsights request exceed maxResults, you can use this value
+	// to retrieve the next page of results. This value is null when there are no
+	// more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsights sets the Insights field's value.
+func (s *ListInsightsOutput) SetInsights(v []*InsightSummary) *ListInsightsOutput {
+	s.Insights = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInsightsOutput) SetNextToken(v string) *ListInsightsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -18286,6 +19300,18 @@ func CapacityTypes_Values() []string {
 }
 
 const (
+	// CategoryUpgradeReadiness is a Category enum value
+	CategoryUpgradeReadiness = "UPGRADE_READINESS"
+)
+
+// Category_Values returns all elements of the Category enum
+func Category_Values() []string {
+	return []string{
+		CategoryUpgradeReadiness,
+	}
+}
+
+const (
 	// ClusterIssueCodeAccessDenied is a ClusterIssueCode enum value
 	ClusterIssueCodeAccessDenied = "AccessDenied"
 
@@ -18622,6 +19648,30 @@ func FargateProfileStatus_Values() []string {
 		FargateProfileStatusDeleting,
 		FargateProfileStatusCreateFailed,
 		FargateProfileStatusDeleteFailed,
+	}
+}
+
+const (
+	// InsightStatusValuePassing is a InsightStatusValue enum value
+	InsightStatusValuePassing = "PASSING"
+
+	// InsightStatusValueWarning is a InsightStatusValue enum value
+	InsightStatusValueWarning = "WARNING"
+
+	// InsightStatusValueError is a InsightStatusValue enum value
+	InsightStatusValueError = "ERROR"
+
+	// InsightStatusValueUnknown is a InsightStatusValue enum value
+	InsightStatusValueUnknown = "UNKNOWN"
+)
+
+// InsightStatusValue_Values returns all elements of the InsightStatusValue enum
+func InsightStatusValue_Values() []string {
+	return []string{
+		InsightStatusValuePassing,
+		InsightStatusValueWarning,
+		InsightStatusValueError,
+		InsightStatusValueUnknown,
 	}
 }
 

@@ -426,6 +426,21 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribeInsight":{
+      "name":"DescribeInsight",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/insights/{id}"
+      },
+      "input":{"shape":"DescribeInsightRequest"},
+      "output":{"shape":"DescribeInsightResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "DescribeNodegroup":{
       "name":"DescribeNodegroup",
       "http":{
@@ -619,6 +634,21 @@
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListInsights":{
+      "name":"ListInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/insights"
+      },
+      "input":{"shape":"ListInsightsRequest"},
+      "output":{"shape":"ListInsightsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ListNodegroups":{
@@ -929,6 +959,11 @@
         "namespace"
       ]
     },
+    "AdditionalInfoMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
     "Addon":{
       "type":"structure",
       "members":{
@@ -1163,6 +1198,14 @@
         "SPOT"
       ]
     },
+    "Category":{
+      "type":"string",
+      "enum":["UPGRADE_READINESS"]
+    },
+    "CategoryList":{
+      "type":"list",
+      "member":{"shape":"Category"}
+    },
     "Certificate":{
       "type":"structure",
       "members":{
@@ -1180,6 +1223,18 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ClientStat":{
+      "type":"structure",
+      "members":{
+        "userAgent":{"shape":"String"},
+        "numberOfRequestsLast30Days":{"shape":"Integer"},
+        "lastRequestTime":{"shape":"Timestamp"}
+      }
+    },
+    "ClientStats":{
+      "type":"list",
+      "member":{"shape":"ClientStat"}
     },
     "Cluster":{
       "type":"structure",
@@ -1711,6 +1766,20 @@
         "association":{"shape":"PodIdentityAssociation"}
       }
     },
+    "DeprecationDetail":{
+      "type":"structure",
+      "members":{
+        "usage":{"shape":"String"},
+        "replacedWith":{"shape":"String"},
+        "stopServingVersion":{"shape":"String"},
+        "startServingReplacementVersion":{"shape":"String"},
+        "clientStats":{"shape":"ClientStats"}
+      }
+    },
+    "DeprecationDetails":{
+      "type":"list",
+      "member":{"shape":"DeprecationDetail"}
+    },
     "DeregisterClusterRequest":{
       "type":"structure",
       "required":["name"],
@@ -1936,6 +2005,31 @@
       "type":"structure",
       "members":{
         "identityProviderConfig":{"shape":"IdentityProviderConfigResponse"}
+      }
+    },
+    "DescribeInsightRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "id"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "id":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DescribeInsightResponse":{
+      "type":"structure",
+      "members":{
+        "insight":{"shape":"Insight"}
       }
     },
     "DescribeNodegroupRequest":{
@@ -2257,6 +2351,86 @@
     "IncludeClustersList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "Insight":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "name":{"shape":"String"},
+        "category":{"shape":"Category"},
+        "kubernetesVersion":{"shape":"String"},
+        "lastRefreshTime":{"shape":"Timestamp"},
+        "lastTransitionTime":{"shape":"Timestamp"},
+        "description":{"shape":"String"},
+        "insightStatus":{"shape":"InsightStatus"},
+        "recommendation":{"shape":"String"},
+        "additionalInfo":{"shape":"AdditionalInfoMap"},
+        "resources":{"shape":"InsightResourceDetails"},
+        "categorySpecificSummary":{"shape":"InsightCategorySpecificSummary"}
+      }
+    },
+    "InsightCategorySpecificSummary":{
+      "type":"structure",
+      "members":{
+        "deprecationDetails":{"shape":"DeprecationDetails"}
+      }
+    },
+    "InsightResourceDetail":{
+      "type":"structure",
+      "members":{
+        "insightStatus":{"shape":"InsightStatus"},
+        "kubernetesResourceUri":{"shape":"String"},
+        "arn":{"shape":"String"}
+      }
+    },
+    "InsightResourceDetails":{
+      "type":"list",
+      "member":{"shape":"InsightResourceDetail"}
+    },
+    "InsightStatus":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"InsightStatusValue"},
+        "reason":{"shape":"String"}
+      }
+    },
+    "InsightStatusValue":{
+      "type":"string",
+      "enum":[
+        "PASSING",
+        "WARNING",
+        "ERROR",
+        "UNKNOWN"
+      ]
+    },
+    "InsightStatusValueList":{
+      "type":"list",
+      "member":{"shape":"InsightStatusValue"}
+    },
+    "InsightSummaries":{
+      "type":"list",
+      "member":{"shape":"InsightSummary"}
+    },
+    "InsightSummary":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"String"},
+        "name":{"shape":"String"},
+        "category":{"shape":"Category"},
+        "kubernetesVersion":{"shape":"String"},
+        "lastRefreshTime":{"shape":"Timestamp"},
+        "lastTransitionTime":{"shape":"Timestamp"},
+        "description":{"shape":"String"},
+        "insightStatus":{"shape":"InsightStatus"}
+      }
+    },
+    "InsightsFilter":{
+      "type":"structure",
+      "members":{
+        "categories":{"shape":"CategoryList"},
+        "kubernetesVersions":{"shape":"StringList"},
+        "statuses":{"shape":"InsightStatusValueList"}
+      }
     },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
@@ -2596,6 +2770,33 @@
       "type":"structure",
       "members":{
         "identityProviderConfigs":{"shape":"IdentityProviderConfigs"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListInsightsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListInsightsRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "filter":{"shape":"InsightsFilter"},
+        "maxResults":{"shape":"ListInsightsMaxResults"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "insights":{"shape":"InsightSummaries"},
         "nextToken":{"shape":"String"}
       }
     },

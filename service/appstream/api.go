@@ -1611,6 +1611,9 @@ func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Re
 //   - InvalidParameterCombinationException
 //     Indicates an incorrect combination of parameters, or a missing parameter.
 //
+//   - OperationNotPermittedException
+//     The attempted operation is not permitted.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStack
 func (c *AppStream) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
 	req, out := c.CreateStackRequest(input)
@@ -20231,6 +20234,22 @@ type UserSetting struct {
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"Action"`
 
+	// Specifies the number of characters that can be copied by end users from the
+	// local device to the remote session, and to the local device from the remote
+	// session.
+	//
+	// This can be specified only for the CLIPBOARD_COPY_FROM_LOCAL_DEVICE and CLIPBOARD_COPY_TO_LOCAL_DEVICE
+	// actions.
+	//
+	// This defaults to 20,971,520 (20 MB) when unspecified and the permission is
+	// ENABLED. This can't be specified when the permission is DISABLED.
+	//
+	// This can only be specified for AlwaysOn and OnDemand fleets. The attribute
+	// is not supported on Elastic fleets.
+	//
+	// The value can be between 1 and 20,971,520 (20 MB).
+	MaximumLength *int64 `type:"integer"`
+
 	// Indicates whether the action is enabled or disabled.
 	//
 	// Permission is a required field
@@ -20274,6 +20293,12 @@ func (s *UserSetting) Validate() error {
 // SetAction sets the Action field's value.
 func (s *UserSetting) SetAction(v string) *UserSetting {
 	s.Action = &v
+	return s
+}
+
+// SetMaximumLength sets the MaximumLength field's value.
+func (s *UserSetting) SetMaximumLength(v int64) *UserSetting {
+	s.MaximumLength = &v
 	return s
 }
 

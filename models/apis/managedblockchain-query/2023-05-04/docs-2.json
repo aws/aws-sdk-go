@@ -111,6 +111,12 @@
         "TransactionEvent$contractAddress": "<p>The blockchain address. for the contract</p>"
       }
     },
+    "ConfirmationStatus": {
+      "base": null,
+      "refs": {
+        "Transaction$confirmationStatus": "<p>Specifies whether the transaction has reached Finality.</p>"
+      }
+    },
     "ContractFilter": {
       "base": "<p>The contract or wallet address by which to filter the request.</p>",
       "refs": {
@@ -146,6 +152,12 @@
         "ServiceQuotaExceededException$message": "<p>The container for the exception message.</p>",
         "ThrottlingException$message": "<p>The container for the exception message.</p>",
         "ValidationException$message": "<p>The container for the exception message.</p>"
+      }
+    },
+    "ExecutionStatus": {
+      "base": null,
+      "refs": {
+        "Transaction$executionStatus": "<p>Identifies whether the transaction has succeeded or failed.</p>"
       }
     },
     "GetAssetContractInput": {
@@ -362,7 +374,7 @@
     "QueryTransactionStatus": {
       "base": null,
       "refs": {
-        "Transaction$status": "<p>The status of the transaction.</p>"
+        "Transaction$status": "<p>The status of the transaction.</p> <important> <p>This property is deprecated. You must use the <code>confirmationStatus</code> and the <code>executionStatus</code> properties to determine if the <code>status</code> of the transaction is <code>FINAL</code> or <code>FAILED</code>.</p> <ul> <li> <p>Transactions with a <code>status</code> of <code>FINAL</code> will now have the <code>confirmationStatus</code> set to <code>FINAL</code> and the <code>executionStatus</code> set to <code>SUCCEEDED</code>.</p> </li> <li> <p>Transactions with a <code>status</code> of <code>FAILED</code> will now have the <code>confirmationStatus</code> set to <code>FINAL</code> and the <code>executionStatus</code> set to <code>FAILED</code>.</p> </li> </ul> </important>"
       }
     },
     "QuotaCode": {

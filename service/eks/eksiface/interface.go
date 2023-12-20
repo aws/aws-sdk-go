@@ -167,6 +167,10 @@ type EKSAPI interface {
 	DescribeIdentityProviderConfigWithContext(aws.Context, *eks.DescribeIdentityProviderConfigInput, ...request.Option) (*eks.DescribeIdentityProviderConfigOutput, error)
 	DescribeIdentityProviderConfigRequest(*eks.DescribeIdentityProviderConfigInput) (*request.Request, *eks.DescribeIdentityProviderConfigOutput)
 
+	DescribeInsight(*eks.DescribeInsightInput) (*eks.DescribeInsightOutput, error)
+	DescribeInsightWithContext(aws.Context, *eks.DescribeInsightInput, ...request.Option) (*eks.DescribeInsightOutput, error)
+	DescribeInsightRequest(*eks.DescribeInsightInput) (*request.Request, *eks.DescribeInsightOutput)
+
 	DescribeNodegroup(*eks.DescribeNodegroupInput) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.Option) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupRequest(*eks.DescribeNodegroupInput) (*request.Request, *eks.DescribeNodegroupOutput)
@@ -242,6 +246,13 @@ type EKSAPI interface {
 
 	ListIdentityProviderConfigsPages(*eks.ListIdentityProviderConfigsInput, func(*eks.ListIdentityProviderConfigsOutput, bool) bool) error
 	ListIdentityProviderConfigsPagesWithContext(aws.Context, *eks.ListIdentityProviderConfigsInput, func(*eks.ListIdentityProviderConfigsOutput, bool) bool, ...request.Option) error
+
+	ListInsights(*eks.ListInsightsInput) (*eks.ListInsightsOutput, error)
+	ListInsightsWithContext(aws.Context, *eks.ListInsightsInput, ...request.Option) (*eks.ListInsightsOutput, error)
+	ListInsightsRequest(*eks.ListInsightsInput) (*request.Request, *eks.ListInsightsOutput)
+
+	ListInsightsPages(*eks.ListInsightsInput, func(*eks.ListInsightsOutput, bool) bool) error
+	ListInsightsPagesWithContext(aws.Context, *eks.ListInsightsInput, func(*eks.ListInsightsOutput, bool) bool, ...request.Option) error
 
 	ListNodegroups(*eks.ListNodegroupsInput) (*eks.ListNodegroupsOutput, error)
 	ListNodegroupsWithContext(aws.Context, *eks.ListNodegroupsInput, ...request.Option) (*eks.ListNodegroupsOutput, error)
