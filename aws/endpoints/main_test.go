@@ -33,15 +33,15 @@ func TestMain(m *testing.M) {
 	for _, p := range partitions {
 		switch p.ID {
 		case "aws":
-			awsPartition = p
+			awsPartition = &p
 		case "aws-cn":
-			awscnPartition = p
+			awscnPartition = &p
 		case "aws-us-gov":
-			awsusgovPartition = p
+			awsusgovPartition = &p
 		case "aws-iso":
-			awsisoPartition = p
+			awsisoPartition = &p
 		case "aws-iso-b":
-			awsisobPartition = p
+			awsisobPartition = &p
 		default:
 			panic("unknown endpoints partition " + p.ID)
 		}

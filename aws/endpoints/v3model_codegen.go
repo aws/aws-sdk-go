@@ -230,6 +230,7 @@ package endpoints
 
 import (
 	"regexp"
+	"sync"
 )
 
 	{{ template "partition consts" $.Resolver }}
@@ -279,33 +280,58 @@ import (
 	//
 	// Use DefaultPartitions() to get the list of the default partitions.
 	func DefaultResolver() Resolver {
+		initDefaultPartitions()
 		return defaultPartitions
 	}
 
 	// DefaultPartitions returns a list of the partitions the SDK is bundled
 	// with. The available partitions are: {{ ListPartitionNames . }}.
 	//
-	//    partitions := endpoints.DefaultPartitions
+	//    partitions := endpoints.DefaultPartitions()
 	//    for _, p := range partitions {
 	//        // ... inspect partitions
 	//    }
 	func DefaultPartitions() []Partition {
+		initDefaultPartitions()
 		return defaultPartitions.Partitions()
 	}
 
-	var defaultPartitions = partitions{
-		{{ range $_, $partition := . -}}
-			{{ PartitionVarName $partition.ID }},
-		{{ end }}
+	var (
+		defaultPartitions partitions = partitions{}
+		defaultPartitionsOnce sync.Once
+	)
+
+	func initDefaultPartitions() {
+		defaultPartitionsOnce.Do(func() {
+			{{ range $_, $partition := . -}}
+			init{{ PartitionGetter $partition.ID }}()
+			{{ end }}
+			defaultPartitions = partitions{
+				{{ range $_, $partition := . -}}
+					*{{ PartitionVarName $partition.ID }},
+				{{ end }}
+			}
+		})
 	}
 	
 	{{ range $_, $partition := . -}}
 		{{ $name := PartitionGetter $partition.ID -}}
 		// {{ $name }} returns the Resolver for {{ $partition.Name }}.
 		func {{ $name }}() Partition {
+			init{{ PartitionGetter $partition.ID }}()
 			return  {{ PartitionVarName $partition.ID }}.Partition()
 		}
-		var {{ PartitionVarName $partition.ID }} = {{ template "gocode Partition" $partition }}
+
+		var (
+			{{ PartitionVarName $partition.ID }} *partition = nil
+			{{ PartitionGetter $partition.ID }}Once sync.Once 
+		)
+
+		func init{{ PartitionGetter $partition.ID }}() {
+			{{ PartitionGetter $partition.ID }}Once.Do(func() {
+				{{ PartitionVarName $partition.ID }} = &{{ template "gocode Partition" $partition }}
+			})
+		}
 	{{ end }}
 {{ end }}
 
