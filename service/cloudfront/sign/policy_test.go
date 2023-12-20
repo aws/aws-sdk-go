@@ -5,7 +5,6 @@ import (
 	"crypto"
 	"crypto/rsa"
 	"crypto/sha1"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"math/rand"
@@ -103,7 +102,7 @@ var testTime = time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
 func TestEncodePolicy(t *testing.T) {
 	const (
 		expectedJSONPolicy = `{"Statement":[{"Resource":"https://example.com/a","Condition":{"DateLessThan":{"AWS:EpochTime":1257894000}}}]}`
-		expectedB64Policy  = `eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9hIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxMjU3ODk0MDAwfX19XX0=`
+		expectedB64Policy  = `eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9hIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxMjU3ODk0MDAwfX19XX0_`
 	)
 	p := NewCannedPolicy("https://example.com/a", testTime)
 
@@ -124,7 +123,7 @@ func TestEncodePolicy(t *testing.T) {
 func TestEncodePolicyWithQueryParams(t *testing.T) {
 	const (
 		expectedJSONPolicy = `{"Statement":[{"Resource":"https://example.com/a?b=1&c=2","Condition":{"DateLessThan":{"AWS:EpochTime":1257894000}}}]}`
-		expectedB64Policy  = `eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9hP2I9MSZjPTIiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjEyNTc4OTQwMDB9fX1dfQ==`
+		expectedB64Policy  = `eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9leGFtcGxlLmNvbS9hP2I9MSZjPTIiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjEyNTc4OTQwMDB9fX1dfQ__`
 	)
 	p := NewCannedPolicy("https://example.com/a?b=1&c=2", testTime)
 
@@ -166,21 +165,12 @@ func TestSignEncodedPolicy(t *testing.T) {
 		t.Fatalf("Unexpected hash error, %#v", err)
 	}
 
-	decodedSig, err := base64.StdEncoding.DecodeString(string(b64Signature))
+	decodedSig, err := customBase64Encoding.DecodeString(string(b64Signature))
 	if err != nil {
 		t.Fatalf("Unexpected base64 decode signature, %#v", err)
 	}
 
 	if err := rsa.VerifyPKCS1v15(&privKey.PublicKey, crypto.SHA1, hash.Sum(nil), decodedSig); err != nil {
 		t.Fatalf("Unable to verify signature, %#v", err)
-	}
-}
-
-func TestAWSEscape(t *testing.T) {
-	expect := "a-b_c~"
-	actual := []byte("a+b=c/")
-	awsEscapeEncoded(actual)
-	if string(actual) != expect {
-		t.Errorf("expect: %s, actual: %s", expect, string(actual))
 	}
 }
