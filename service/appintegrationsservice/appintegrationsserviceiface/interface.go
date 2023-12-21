@@ -72,6 +72,10 @@ type AppIntegrationsServiceAPI interface {
 	CreateEventIntegrationWithContext(aws.Context, *appintegrationsservice.CreateEventIntegrationInput, ...request.Option) (*appintegrationsservice.CreateEventIntegrationOutput, error)
 	CreateEventIntegrationRequest(*appintegrationsservice.CreateEventIntegrationInput) (*request.Request, *appintegrationsservice.CreateEventIntegrationOutput)
 
+	DeleteApplication(*appintegrationsservice.DeleteApplicationInput) (*appintegrationsservice.DeleteApplicationOutput, error)
+	DeleteApplicationWithContext(aws.Context, *appintegrationsservice.DeleteApplicationInput, ...request.Option) (*appintegrationsservice.DeleteApplicationOutput, error)
+	DeleteApplicationRequest(*appintegrationsservice.DeleteApplicationInput) (*request.Request, *appintegrationsservice.DeleteApplicationOutput)
+
 	DeleteDataIntegration(*appintegrationsservice.DeleteDataIntegrationInput) (*appintegrationsservice.DeleteDataIntegrationOutput, error)
 	DeleteDataIntegrationWithContext(aws.Context, *appintegrationsservice.DeleteDataIntegrationInput, ...request.Option) (*appintegrationsservice.DeleteDataIntegrationOutput, error)
 	DeleteDataIntegrationRequest(*appintegrationsservice.DeleteDataIntegrationInput) (*request.Request, *appintegrationsservice.DeleteDataIntegrationOutput)
@@ -91,6 +95,13 @@ type AppIntegrationsServiceAPI interface {
 	GetEventIntegration(*appintegrationsservice.GetEventIntegrationInput) (*appintegrationsservice.GetEventIntegrationOutput, error)
 	GetEventIntegrationWithContext(aws.Context, *appintegrationsservice.GetEventIntegrationInput, ...request.Option) (*appintegrationsservice.GetEventIntegrationOutput, error)
 	GetEventIntegrationRequest(*appintegrationsservice.GetEventIntegrationInput) (*request.Request, *appintegrationsservice.GetEventIntegrationOutput)
+
+	ListApplicationAssociations(*appintegrationsservice.ListApplicationAssociationsInput) (*appintegrationsservice.ListApplicationAssociationsOutput, error)
+	ListApplicationAssociationsWithContext(aws.Context, *appintegrationsservice.ListApplicationAssociationsInput, ...request.Option) (*appintegrationsservice.ListApplicationAssociationsOutput, error)
+	ListApplicationAssociationsRequest(*appintegrationsservice.ListApplicationAssociationsInput) (*request.Request, *appintegrationsservice.ListApplicationAssociationsOutput)
+
+	ListApplicationAssociationsPages(*appintegrationsservice.ListApplicationAssociationsInput, func(*appintegrationsservice.ListApplicationAssociationsOutput, bool) bool) error
+	ListApplicationAssociationsPagesWithContext(aws.Context, *appintegrationsservice.ListApplicationAssociationsInput, func(*appintegrationsservice.ListApplicationAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListApplications(*appintegrationsservice.ListApplicationsInput) (*appintegrationsservice.ListApplicationsOutput, error)
 	ListApplicationsWithContext(aws.Context, *appintegrationsservice.ListApplicationsInput, ...request.Option) (*appintegrationsservice.ListApplicationsOutput, error)

@@ -116,6 +116,10 @@ type ConnectAPI interface {
 	AssociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.AssociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.AssociateTrafficDistributionGroupUserOutput, error)
 	AssociateTrafficDistributionGroupUserRequest(*connect.AssociateTrafficDistributionGroupUserInput) (*request.Request, *connect.AssociateTrafficDistributionGroupUserOutput)
 
+	AssociateUserProficiencies(*connect.AssociateUserProficienciesInput) (*connect.AssociateUserProficienciesOutput, error)
+	AssociateUserProficienciesWithContext(aws.Context, *connect.AssociateUserProficienciesInput, ...request.Option) (*connect.AssociateUserProficienciesOutput, error)
+	AssociateUserProficienciesRequest(*connect.AssociateUserProficienciesInput) (*request.Request, *connect.AssociateUserProficienciesOutput)
+
 	BatchAssociateAnalyticsDataSet(*connect.BatchAssociateAnalyticsDataSetInput) (*connect.BatchAssociateAnalyticsDataSetOutput, error)
 	BatchAssociateAnalyticsDataSetWithContext(aws.Context, *connect.BatchAssociateAnalyticsDataSetInput, ...request.Option) (*connect.BatchAssociateAnalyticsDataSetOutput, error)
 	BatchAssociateAnalyticsDataSetRequest(*connect.BatchAssociateAnalyticsDataSetInput) (*request.Request, *connect.BatchAssociateAnalyticsDataSetOutput)
@@ -171,6 +175,10 @@ type ConnectAPI interface {
 	CreatePersistentContactAssociation(*connect.CreatePersistentContactAssociationInput) (*connect.CreatePersistentContactAssociationOutput, error)
 	CreatePersistentContactAssociationWithContext(aws.Context, *connect.CreatePersistentContactAssociationInput, ...request.Option) (*connect.CreatePersistentContactAssociationOutput, error)
 	CreatePersistentContactAssociationRequest(*connect.CreatePersistentContactAssociationInput) (*request.Request, *connect.CreatePersistentContactAssociationOutput)
+
+	CreatePredefinedAttribute(*connect.CreatePredefinedAttributeInput) (*connect.CreatePredefinedAttributeOutput, error)
+	CreatePredefinedAttributeWithContext(aws.Context, *connect.CreatePredefinedAttributeInput, ...request.Option) (*connect.CreatePredefinedAttributeOutput, error)
+	CreatePredefinedAttributeRequest(*connect.CreatePredefinedAttributeInput) (*request.Request, *connect.CreatePredefinedAttributeOutput)
 
 	CreatePrompt(*connect.CreatePromptInput) (*connect.CreatePromptOutput, error)
 	CreatePromptWithContext(aws.Context, *connect.CreatePromptInput, ...request.Option) (*connect.CreatePromptOutput, error)
@@ -259,6 +267,10 @@ type ConnectAPI interface {
 	DeleteIntegrationAssociation(*connect.DeleteIntegrationAssociationInput) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationWithContext(aws.Context, *connect.DeleteIntegrationAssociationInput, ...request.Option) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationRequest(*connect.DeleteIntegrationAssociationInput) (*request.Request, *connect.DeleteIntegrationAssociationOutput)
+
+	DeletePredefinedAttribute(*connect.DeletePredefinedAttributeInput) (*connect.DeletePredefinedAttributeOutput, error)
+	DeletePredefinedAttributeWithContext(aws.Context, *connect.DeletePredefinedAttributeInput, ...request.Option) (*connect.DeletePredefinedAttributeOutput, error)
+	DeletePredefinedAttributeRequest(*connect.DeletePredefinedAttributeInput) (*request.Request, *connect.DeletePredefinedAttributeOutput)
 
 	DeletePrompt(*connect.DeletePromptInput) (*connect.DeletePromptOutput, error)
 	DeletePromptWithContext(aws.Context, *connect.DeletePromptInput, ...request.Option) (*connect.DeletePromptOutput, error)
@@ -360,6 +372,10 @@ type ConnectAPI interface {
 	DescribePhoneNumberWithContext(aws.Context, *connect.DescribePhoneNumberInput, ...request.Option) (*connect.DescribePhoneNumberOutput, error)
 	DescribePhoneNumberRequest(*connect.DescribePhoneNumberInput) (*request.Request, *connect.DescribePhoneNumberOutput)
 
+	DescribePredefinedAttribute(*connect.DescribePredefinedAttributeInput) (*connect.DescribePredefinedAttributeOutput, error)
+	DescribePredefinedAttributeWithContext(aws.Context, *connect.DescribePredefinedAttributeInput, ...request.Option) (*connect.DescribePredefinedAttributeOutput, error)
+	DescribePredefinedAttributeRequest(*connect.DescribePredefinedAttributeInput) (*request.Request, *connect.DescribePredefinedAttributeOutput)
+
 	DescribePrompt(*connect.DescribePromptInput) (*connect.DescribePromptOutput, error)
 	DescribePromptWithContext(aws.Context, *connect.DescribePromptInput, ...request.Option) (*connect.DescribePromptOutput, error)
 	DescribePromptRequest(*connect.DescribePromptInput) (*request.Request, *connect.DescribePromptOutput)
@@ -455,6 +471,10 @@ type ConnectAPI interface {
 	DisassociateTrafficDistributionGroupUser(*connect.DisassociateTrafficDistributionGroupUserInput) (*connect.DisassociateTrafficDistributionGroupUserOutput, error)
 	DisassociateTrafficDistributionGroupUserWithContext(aws.Context, *connect.DisassociateTrafficDistributionGroupUserInput, ...request.Option) (*connect.DisassociateTrafficDistributionGroupUserOutput, error)
 	DisassociateTrafficDistributionGroupUserRequest(*connect.DisassociateTrafficDistributionGroupUserInput) (*request.Request, *connect.DisassociateTrafficDistributionGroupUserOutput)
+
+	DisassociateUserProficiencies(*connect.DisassociateUserProficienciesInput) (*connect.DisassociateUserProficienciesOutput, error)
+	DisassociateUserProficienciesWithContext(aws.Context, *connect.DisassociateUserProficienciesInput, ...request.Option) (*connect.DisassociateUserProficienciesOutput, error)
+	DisassociateUserProficienciesRequest(*connect.DisassociateUserProficienciesInput) (*request.Request, *connect.DisassociateUserProficienciesOutput)
 
 	DismissUserContact(*connect.DismissUserContactInput) (*connect.DismissUserContactOutput, error)
 	DismissUserContactWithContext(aws.Context, *connect.DismissUserContactInput, ...request.Option) (*connect.DismissUserContactOutput, error)
@@ -660,6 +680,13 @@ type ConnectAPI interface {
 	ListPhoneNumbersV2Pages(*connect.ListPhoneNumbersV2Input, func(*connect.ListPhoneNumbersV2Output, bool) bool) error
 	ListPhoneNumbersV2PagesWithContext(aws.Context, *connect.ListPhoneNumbersV2Input, func(*connect.ListPhoneNumbersV2Output, bool) bool, ...request.Option) error
 
+	ListPredefinedAttributes(*connect.ListPredefinedAttributesInput) (*connect.ListPredefinedAttributesOutput, error)
+	ListPredefinedAttributesWithContext(aws.Context, *connect.ListPredefinedAttributesInput, ...request.Option) (*connect.ListPredefinedAttributesOutput, error)
+	ListPredefinedAttributesRequest(*connect.ListPredefinedAttributesInput) (*request.Request, *connect.ListPredefinedAttributesOutput)
+
+	ListPredefinedAttributesPages(*connect.ListPredefinedAttributesInput, func(*connect.ListPredefinedAttributesOutput, bool) bool) error
+	ListPredefinedAttributesPagesWithContext(aws.Context, *connect.ListPredefinedAttributesInput, func(*connect.ListPredefinedAttributesOutput, bool) bool, ...request.Option) error
+
 	ListPrompts(*connect.ListPromptsInput) (*connect.ListPromptsOutput, error)
 	ListPromptsWithContext(aws.Context, *connect.ListPromptsInput, ...request.Option) (*connect.ListPromptsOutput, error)
 	ListPromptsRequest(*connect.ListPromptsInput) (*request.Request, *connect.ListPromptsOutput)
@@ -783,6 +810,13 @@ type ConnectAPI interface {
 	ListUserHierarchyGroupsPages(*connect.ListUserHierarchyGroupsInput, func(*connect.ListUserHierarchyGroupsOutput, bool) bool) error
 	ListUserHierarchyGroupsPagesWithContext(aws.Context, *connect.ListUserHierarchyGroupsInput, func(*connect.ListUserHierarchyGroupsOutput, bool) bool, ...request.Option) error
 
+	ListUserProficiencies(*connect.ListUserProficienciesInput) (*connect.ListUserProficienciesOutput, error)
+	ListUserProficienciesWithContext(aws.Context, *connect.ListUserProficienciesInput, ...request.Option) (*connect.ListUserProficienciesOutput, error)
+	ListUserProficienciesRequest(*connect.ListUserProficienciesInput) (*request.Request, *connect.ListUserProficienciesOutput)
+
+	ListUserProficienciesPages(*connect.ListUserProficienciesInput, func(*connect.ListUserProficienciesOutput, bool) bool) error
+	ListUserProficienciesPagesWithContext(aws.Context, *connect.ListUserProficienciesInput, func(*connect.ListUserProficienciesOutput, bool) bool, ...request.Option) error
+
 	ListUsers(*connect.ListUsersInput) (*connect.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *connect.ListUsersInput, ...request.Option) (*connect.ListUsersOutput, error)
 	ListUsersRequest(*connect.ListUsersInput) (*request.Request, *connect.ListUsersOutput)
@@ -839,12 +873,26 @@ type ConnectAPI interface {
 	SearchAvailablePhoneNumbersPages(*connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool) error
 	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *connect.SearchAvailablePhoneNumbersInput, func(*connect.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
+	SearchContacts(*connect.SearchContactsInput) (*connect.SearchContactsOutput, error)
+	SearchContactsWithContext(aws.Context, *connect.SearchContactsInput, ...request.Option) (*connect.SearchContactsOutput, error)
+	SearchContactsRequest(*connect.SearchContactsInput) (*request.Request, *connect.SearchContactsOutput)
+
+	SearchContactsPages(*connect.SearchContactsInput, func(*connect.SearchContactsOutput, bool) bool) error
+	SearchContactsPagesWithContext(aws.Context, *connect.SearchContactsInput, func(*connect.SearchContactsOutput, bool) bool, ...request.Option) error
+
 	SearchHoursOfOperations(*connect.SearchHoursOfOperationsInput) (*connect.SearchHoursOfOperationsOutput, error)
 	SearchHoursOfOperationsWithContext(aws.Context, *connect.SearchHoursOfOperationsInput, ...request.Option) (*connect.SearchHoursOfOperationsOutput, error)
 	SearchHoursOfOperationsRequest(*connect.SearchHoursOfOperationsInput) (*request.Request, *connect.SearchHoursOfOperationsOutput)
 
 	SearchHoursOfOperationsPages(*connect.SearchHoursOfOperationsInput, func(*connect.SearchHoursOfOperationsOutput, bool) bool) error
 	SearchHoursOfOperationsPagesWithContext(aws.Context, *connect.SearchHoursOfOperationsInput, func(*connect.SearchHoursOfOperationsOutput, bool) bool, ...request.Option) error
+
+	SearchPredefinedAttributes(*connect.SearchPredefinedAttributesInput) (*connect.SearchPredefinedAttributesOutput, error)
+	SearchPredefinedAttributesWithContext(aws.Context, *connect.SearchPredefinedAttributesInput, ...request.Option) (*connect.SearchPredefinedAttributesOutput, error)
+	SearchPredefinedAttributesRequest(*connect.SearchPredefinedAttributesInput) (*request.Request, *connect.SearchPredefinedAttributesOutput)
+
+	SearchPredefinedAttributesPages(*connect.SearchPredefinedAttributesInput, func(*connect.SearchPredefinedAttributesOutput, bool) bool) error
+	SearchPredefinedAttributesPagesWithContext(aws.Context, *connect.SearchPredefinedAttributesInput, func(*connect.SearchPredefinedAttributesOutput, bool) bool, ...request.Option) error
 
 	SearchPrompts(*connect.SearchPromptsInput) (*connect.SearchPromptsOutput, error)
 	SearchPromptsWithContext(aws.Context, *connect.SearchPromptsInput, ...request.Option) (*connect.SearchPromptsOutput, error)
@@ -1010,6 +1058,10 @@ type ConnectAPI interface {
 	UpdateContactFlowNameWithContext(aws.Context, *connect.UpdateContactFlowNameInput, ...request.Option) (*connect.UpdateContactFlowNameOutput, error)
 	UpdateContactFlowNameRequest(*connect.UpdateContactFlowNameInput) (*request.Request, *connect.UpdateContactFlowNameOutput)
 
+	UpdateContactRoutingData(*connect.UpdateContactRoutingDataInput) (*connect.UpdateContactRoutingDataOutput, error)
+	UpdateContactRoutingDataWithContext(aws.Context, *connect.UpdateContactRoutingDataInput, ...request.Option) (*connect.UpdateContactRoutingDataOutput, error)
+	UpdateContactRoutingDataRequest(*connect.UpdateContactRoutingDataInput) (*request.Request, *connect.UpdateContactRoutingDataOutput)
+
 	UpdateContactSchedule(*connect.UpdateContactScheduleInput) (*connect.UpdateContactScheduleOutput, error)
 	UpdateContactScheduleWithContext(aws.Context, *connect.UpdateContactScheduleInput, ...request.Option) (*connect.UpdateContactScheduleOutput, error)
 	UpdateContactScheduleRequest(*connect.UpdateContactScheduleInput) (*request.Request, *connect.UpdateContactScheduleOutput)
@@ -1041,6 +1093,10 @@ type ConnectAPI interface {
 	UpdatePhoneNumberMetadata(*connect.UpdatePhoneNumberMetadataInput) (*connect.UpdatePhoneNumberMetadataOutput, error)
 	UpdatePhoneNumberMetadataWithContext(aws.Context, *connect.UpdatePhoneNumberMetadataInput, ...request.Option) (*connect.UpdatePhoneNumberMetadataOutput, error)
 	UpdatePhoneNumberMetadataRequest(*connect.UpdatePhoneNumberMetadataInput) (*request.Request, *connect.UpdatePhoneNumberMetadataOutput)
+
+	UpdatePredefinedAttribute(*connect.UpdatePredefinedAttributeInput) (*connect.UpdatePredefinedAttributeOutput, error)
+	UpdatePredefinedAttributeWithContext(aws.Context, *connect.UpdatePredefinedAttributeInput, ...request.Option) (*connect.UpdatePredefinedAttributeOutput, error)
+	UpdatePredefinedAttributeRequest(*connect.UpdatePredefinedAttributeInput) (*request.Request, *connect.UpdatePredefinedAttributeOutput)
 
 	UpdatePrompt(*connect.UpdatePromptInput) (*connect.UpdatePromptOutput, error)
 	UpdatePromptWithContext(aws.Context, *connect.UpdatePromptInput, ...request.Option) (*connect.UpdatePromptOutput, error)
@@ -1129,6 +1185,10 @@ type ConnectAPI interface {
 	UpdateUserPhoneConfig(*connect.UpdateUserPhoneConfigInput) (*connect.UpdateUserPhoneConfigOutput, error)
 	UpdateUserPhoneConfigWithContext(aws.Context, *connect.UpdateUserPhoneConfigInput, ...request.Option) (*connect.UpdateUserPhoneConfigOutput, error)
 	UpdateUserPhoneConfigRequest(*connect.UpdateUserPhoneConfigInput) (*request.Request, *connect.UpdateUserPhoneConfigOutput)
+
+	UpdateUserProficiencies(*connect.UpdateUserProficienciesInput) (*connect.UpdateUserProficienciesOutput, error)
+	UpdateUserProficienciesWithContext(aws.Context, *connect.UpdateUserProficienciesInput, ...request.Option) (*connect.UpdateUserProficienciesOutput, error)
+	UpdateUserProficienciesRequest(*connect.UpdateUserProficienciesInput) (*request.Request, *connect.UpdateUserProficienciesOutput)
 
 	UpdateUserRoutingProfile(*connect.UpdateUserRoutingProfileInput) (*connect.UpdateUserRoutingProfileOutput, error)
 	UpdateUserRoutingProfileWithContext(aws.Context, *connect.UpdateUserRoutingProfileInput, ...request.Option) (*connect.UpdateUserRoutingProfileOutput, error)

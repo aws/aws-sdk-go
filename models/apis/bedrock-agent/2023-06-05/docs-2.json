@@ -317,6 +317,15 @@
         "StartIngestionJobRequest$clientToken": null
       }
     },
+    "ColumnName": {
+      "base": "<p>Name of the column</p>",
+      "refs": {
+        "RdsFieldMapping$primaryKeyField": null,
+        "RdsFieldMapping$vectorField": null,
+        "RdsFieldMapping$textField": null,
+        "RdsFieldMapping$metadataField": null
+      }
+    },
     "ConflictException": {
       "base": "<p>This exception is thrown when there is a conflict performing an operation</p>",
       "refs": {
@@ -1265,6 +1274,36 @@
         "PromptConfiguration$promptType": null
       }
     },
+    "RdsArn": {
+      "base": "<p>Arn of a RDS Resource.</p>",
+      "refs": {
+        "RdsConfiguration$resourceArn": null
+      }
+    },
+    "RdsConfiguration": {
+      "base": "<p>Contains the configurations to use RDS to store knowledge base data.</p>",
+      "refs": {
+        "StorageConfiguration$rdsConfiguration": null
+      }
+    },
+    "RdsDatabaseName": {
+      "base": "<p>Name of the database within RDS</p>",
+      "refs": {
+        "RdsConfiguration$databaseName": null
+      }
+    },
+    "RdsFieldMapping": {
+      "base": "<p>A mapping of Bedrock Knowledge Base fields to RDS column names</p>",
+      "refs": {
+        "RdsConfiguration$fieldMapping": null
+      }
+    },
+    "RdsTableName": {
+      "base": "<p>Name of the table within RDS</p>",
+      "refs": {
+        "RdsConfiguration$tableName": null
+      }
+    },
     "RecommendedAction": {
       "base": "<p>The recommended action users can take to resolve an error in failureReasons.</p>",
       "refs": {
@@ -1353,6 +1392,7 @@
       "base": "<p>Arn of a SecretsManager Secret.</p>",
       "refs": {
         "PineconeConfiguration$credentialsSecretArn": null,
+        "RdsConfiguration$credentialsSecretArn": null,
         "RedisEnterpriseCloudConfiguration$credentialsSecretArn": null
       }
     },

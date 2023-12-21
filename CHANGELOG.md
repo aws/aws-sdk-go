@@ -1,3 +1,21 @@
+Release v1.49.8 (2023-12-21)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/appintegrations`: Updates service API, documentation, paginators, and examples
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/codecommit`: Updates service API and documentation
+  * AWS CodeCommit now supports customer managed keys from AWS Key Management Service. UpdateRepositoryEncryptionKey is added for updating the key configuration. CreateRepository, GetRepository, BatchGetRepositories are updated with new input or output parameters.
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/medialive`: Updates service API and documentation
+  * MediaLive now supports the ability to configure the audio that an AWS Elemental Link UHD device produces, when the device is configured as the source for a flow in AWS Elemental MediaConnect.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for using RDS Data API with Aurora PostgreSQL Serverless v2 and provisioned DB clusters.
+* `service/rds-data`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Training now provides model training container access for debugging purposes. Amazon SageMaker Search now provides the ability to use visibility conditions to limit resource access to a single domain or multiple domains.
+
 Release v1.49.7 (2023-12-20)
 ===
 

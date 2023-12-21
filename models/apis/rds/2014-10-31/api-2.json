@@ -1606,6 +1606,22 @@
         {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
+    "DisableHttpEndpoint":{
+      "name":"DisableHttpEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableHttpEndpointRequest"},
+      "output":{
+        "shape":"DisableHttpEndpointResponse",
+        "resultWrapper":"DisableHttpEndpointResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidResourceStateFault"}
+      ]
+    },
     "DownloadDBLogFilePortion":{
       "name":"DownloadDBLogFilePortion",
       "http":{
@@ -1620,6 +1636,22 @@
       "errors":[
         {"shape":"DBInstanceNotFoundFault"},
         {"shape":"DBLogFileNotFoundFault"}
+      ]
+    },
+    "EnableHttpEndpoint":{
+      "name":"EnableHttpEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableHttpEndpointRequest"},
+      "output":{
+        "shape":"EnableHttpEndpointResponse",
+        "resultWrapper":"EnableHttpEndpointResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidResourceStateFault"}
       ]
     },
     "FailoverDBCluster":{
@@ -6297,6 +6329,20 @@
       "min":1,
       "pattern":".*"
     },
+    "DisableHttpEndpointRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"}
+      }
+    },
+    "DisableHttpEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "HttpEndpointEnabled":{"shape":"Boolean"}
+      }
+    },
     "DocLink":{
       "type":"structure",
       "members":{
@@ -6401,6 +6447,20 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "EnableHttpEndpointRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"String"}
+      }
+    },
+    "EnableHttpEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "HttpEndpointEnabled":{"shape":"Boolean"}
+      }
     },
     "EncryptionContextMap":{
       "type":"map",
@@ -7240,6 +7300,17 @@
       },
       "error":{
         "code":"InvalidOptionGroupStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidResourceStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidResourceStateFault",
         "httpStatusCode":400,
         "senderFault":true
       },

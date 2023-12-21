@@ -16,6 +16,7 @@
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
     "AssociateTrafficDistributionGroupUser": "<p>Associates an agent with a traffic distribution group.</p>",
+    "AssociateUserProficiencies": "<p>&gt;Associates a set of proficiencies with a user.</p>",
     "BatchAssociateAnalyticsDataSet": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a list of analytics datasets for a given Amazon Connect instance to a target account. You can associate multiple datasets in a single call.</p>",
     "BatchDisassociateAnalyticsDataSet": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Removes a list of analytics datasets associated with a given Amazon Connect instance. You can disassociate multiple datasets in a single call.</p>",
     "BatchGetFlowAssociation": "<p>Retrieve the flow associations for the given resources.</p>",
@@ -30,6 +31,7 @@
     "CreateIntegrationAssociation": "<p>Creates an Amazon Web Services resource association with an Amazon Connect instance.</p>",
     "CreateParticipant": "<p>Adds a new participant into an on-going chat contact. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html\">Customize chat flow experiences by integrating custom participants</a>.</p>",
     "CreatePersistentContactAssociation": "<p>Enables rehydration of chats for the lifespan of a contact. For more information about chat rehydration, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html\">Enable persistent chat</a> in the <i>Amazon Connect Administrator Guide</i>. </p>",
+    "CreatePredefinedAttribute": "<p>Creates a new predefined attribute for the specified Amazon Connect instance.</p>",
     "CreatePrompt": "<p>Creates a prompt. For more information about prompts, such as supported file types and maximum length, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html\">Create prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.</p>",
     "CreateQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a new queue for the specified Amazon Connect instance.</p> <important> <ul> <li> <p>If the phone number is claimed to a traffic distribution group that was created in the same Region as the Amazon Connect instance where you are calling this API, then you can use a full phone number ARN or a UUID for <code>OutboundCallerIdNumberId</code>. However, if the phone number is claimed to a traffic distribution group that is in one Region, and you are calling this API from an instance in another Amazon Web Services Region that is associated with the traffic distribution group, you must provide a full phone number ARN. If a UUID is provided in this scenario, you will receive a <code>ResourceNotFoundException</code>.</p> </li> <li> <p>Only use the phone number ARN format that doesn't contain <code>instance</code> in the path, for example, <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This is the same ARN format that is returned when you call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html\">ListPhoneNumbersV2</a> API.</p> </li> <li> <p>If you plan to use IAM policies to allow/deny access to this API for phone number resources claimed to a traffic distribution group, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region\">Allow or Deny queue API actions for phone numbers in a replica Region</a>.</p> </li> </ul> </important>",
     "CreateQuickConnect": "<p>Creates a quick connect for the specified Amazon Connect instance.</p>",
@@ -52,6 +54,7 @@
     "DeleteHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes an hours of operation.</p>",
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an Amazon Web Services resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
+    "DeletePredefinedAttribute": "<p>Deletes a predefined attribute from the specified Amazon Connect instance.</p>",
     "DeletePrompt": "<p>Deletes a prompt.</p>",
     "DeleteQueue": "<p>Deletes a queue.</p>",
     "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
@@ -77,6 +80,7 @@
     "DescribeInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified instance attribute.</p>",
     "DescribeInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.</p>",
     "DescribePhoneNumber": "<p>Gets details and status of a phone number that’s claimed to your Amazon Connect instance or traffic distribution group.</p> <important> <p>If the number is claimed to a traffic distribution group, and you are calling in the Amazon Web Services Region where the traffic distribution group was created, you can use either a phone number ARN or UUID value for the <code>PhoneNumberId</code> URI request parameter. However, if the number is claimed to a traffic distribution group and you are calling this API in the alternate Amazon Web Services Region associated with the traffic distribution group, you must provide a full phone number ARN. If a UUID is provided in this scenario, you will receive a <code>ResourceNotFoundException</code>.</p> </important>",
+    "DescribePredefinedAttribute": "<p>Describes a predefined attribute for the specified Amazon Connect instance.</p>",
     "DescribePrompt": "<p>Describes the prompt.</p>",
     "DescribeQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified queue.</p>",
     "DescribeQuickConnect": "<p>Describes the quick connect.</p>",
@@ -101,6 +105,7 @@
     "DisassociateRoutingProfileQueues": "<p>Disassociates a set of queues from a routing profile.</p>",
     "DisassociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the specified security key.</p>",
     "DisassociateTrafficDistributionGroupUser": "<p>Disassociates an agent from a traffic distribution group.</p>",
+    "DisassociateUserProficiencies": "<p>Disassociates a set of proficiencies from a user.</p>",
     "DismissUserContact": "<p>Dismisses contacts from an agent’s CCP and returns the agent to an available state, which allows the agent to receive a new routed contact. Contacts can only be dismissed if they are in a <code>MISSED</code>, <code>ERROR</code>, <code>ENDED</code>, or <code>REJECTED</code> state in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html\">Agent Event Stream</a>.</p>",
     "GetContactAttributes": "<p>Retrieves the contact attributes for the specified contact.</p>",
     "GetCurrentMetricData": "<p>Gets the real-time metric data from the specified Amazon Connect instance.</p> <p>For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html\">Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -134,6 +139,7 @@
     "ListLexBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all the Amazon Lex V1 bots currently associated with the instance. To return both Amazon Lex V1 and V2 bots, use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListBots.html\">ListBots</a> API. </p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <important> <ul> <li> <p>We recommend using <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html\">ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers doesn't support number types <code>UIFN</code>, <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it returns numbers of those types, it incorrectly lists them as <code>TOLL_FREE</code> or <code>DID</code>. </p> </li> <li> <p>The phone number <code>Arn</code> value that is returned from each of the items in the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList\">PhoneNumberSummaryList</a> cannot be used to tag phone number resources. It will fail with a <code>ResourceNotFoundException</code>. Instead, use the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html\">ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can be used to tag phone number resources.</p> </li> </ul> </important>",
     "ListPhoneNumbersV2": "<p>Lists phone numbers claimed to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with traffic distribution group.</p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <note> <ul> <li> <p>When given an instance ARN, <code>ListPhoneNumbersV2</code> returns only the phone numbers claimed to the instance.</p> </li> <li> <p>When given a traffic distribution group ARN <code>ListPhoneNumbersV2</code> returns only the phone numbers claimed to the traffic distribution group.</p> </li> </ul> </note>",
+    "ListPredefinedAttributes": "<p>Lists predefined attributes for the specified Amazon Connect instance.</p>",
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
     "ListQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the quick connects associated with a queue.</p>",
     "ListQueues": "<p>Provides information about the queues for the specified Amazon Connect instance.</p> <p>If you do not specify a <code>QueueTypes</code> parameter, both standard and agent queues are returned. This might cause an unexpected truncation of results if you have more than 1000 agents and you limit the number of results of the API call in code.</p> <p>For more information about queues, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html\">Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -152,6 +158,7 @@
     "ListTrafficDistributionGroups": "<p>Lists traffic distribution groups.</p>",
     "ListUseCases": "<p>Lists the use cases for the integration association. </p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListUserProficiencies": "<p>Lists proficiencies associated with a user.</p>",
     "ListUsers": "<p>Provides summary information about the users for the specified Amazon Connect instance.</p>",
     "ListViewVersions": "<p>Returns all the available versions for the specified Amazon Connect instance and view identifier.</p> <p>Results will be sorted from highest to lowest.</p>",
     "ListViews": "<p>Returns views in the given instance.</p> <p>Results are sorted primarily by type, and secondarily by name.</p>",
@@ -163,7 +170,9 @@
     "ResumeContact": "<p>Allows resuming a task contact in a paused state.</p>",
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording whatever recording is selected in the flow configuration: call, screen, or both. If only call recording or only screen recording is enabled, then it would resume.</p> <p>Voice and screen recordings are supported.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for available phone numbers that you can claim to your Amazon Connect instance or traffic distribution group. If the provided <code>TargetArn</code> is a traffic distribution group, you can call this API in both Amazon Web Services Regions associated with the traffic distribution group.</p>",
+    "SearchContacts": "<p>Searches contacts in an Amazon Connect instance.</p>",
     "SearchHoursOfOperations": "<p>Searches the hours of operation in an Amazon Connect instance, with optional filtering.</p>",
+    "SearchPredefinedAttributes": "<p>Predefined attributes that meet certain criteria.</p>",
     "SearchPrompts": "<p>Searches prompts in an Amazon Connect instance, with optional filtering.</p>",
     "SearchQueues": "<p>Searches queues in an Amazon Connect instance, with optional filtering.</p>",
     "SearchQuickConnects": "<p>Searches quick connects in an Amazon Connect instance, with optional filtering.</p>",
@@ -199,6 +208,7 @@
     "UpdateContactFlowModuleContent": "<p>Updates specified flow module for the specified Amazon Connect instance. </p>",
     "UpdateContactFlowModuleMetadata": "<p>Updates metadata about specified flow module.</p>",
     "UpdateContactFlowName": "<p>The name of the flow.</p> <p>You can also create and update flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html\">Amazon Connect Flow language</a>.</p>",
+    "UpdateContactRoutingData": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates routing priority and age on the contact (<b>QueuePriority</b> and <b>QueueTimeAdjustmentInSeconds</b>). These properties can be used to change a customer's position in the queue. For example, you can move a contact to the back of the queue by setting a lower routing priority relative to other contacts in queue; or you can move a contact to the front of the queue by increasing the routing age which will make the contact look artificially older and therefore higher up in the first-in-first-out routing order. Note that adjusting the routing age of a contact affects only its position in queue, and not its actual queue wait time as reported through metrics. These properties can also be updated by using <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html\">the Set routing priority / age flow block</a>.</p>",
     "UpdateContactSchedule": "<p>Updates the scheduled time of a task contact that is already scheduled.</p>",
     "UpdateEvaluationForm": "<p>Updates details about a specific evaluation form version in the specified Amazon Connect instance. Question and section identifiers cannot be duplicated within the same evaluation form.</p> <p>This operation does not support partial updates. Instead it does a full update of evaluation form content.</p>",
     "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
@@ -207,6 +217,7 @@
     "UpdateParticipantRoleConfig": "<p>Updates timeouts for when human chat participants are to be considered idle, and when agents are automatically disconnected from a chat due to idleness. You can set four timers:</p> <ul> <li> <p>Customer idle timeout</p> </li> <li> <p>Customer auto-disconnect timeout</p> </li> <li> <p>Agent idle timeout</p> </li> <li> <p>Agent auto-disconnect timeout</p> </li> </ul> <p>For more information about how chat timeouts work, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html\">Set up chat timeouts for human participants</a>. </p>",
     "UpdatePhoneNumber": "<p>Updates your claimed phone number from its current Amazon Connect instance or traffic distribution group to another Amazon Connect instance or traffic distribution group in the same Amazon Web Services Region.</p> <important> <p>After using this API, you must verify that the phone number is attached to the correct flow in the target instance or traffic distribution group. You need to do this because the API switches only the phone number to a new instance or traffic distribution group. It doesn't migrate the flow configuration of the phone number, too.</p> <p>You can call <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API to verify the status of a previous <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html\">UpdatePhoneNumber</a> operation.</p> </important>",
     "UpdatePhoneNumberMetadata": "<p>Updates a phone number’s metadata.</p> <important> <p>To verify the status of a previous UpdatePhoneNumberMetadata operation, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html\">DescribePhoneNumber</a> API.</p> </important>",
+    "UpdatePredefinedAttribute": "<p>Updates a predefined attribute for the specified Amazon Connect instance.</p>",
     "UpdatePrompt": "<p>Updates a prompt.</p>",
     "UpdateQueueHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation for the specified queue.</p>",
     "UpdateQueueMaxContacts": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the maximum number of contacts allowed in a queue before it is considered full.</p>",
@@ -229,6 +240,7 @@
     "UpdateUserHierarchyStructure": "<p>Updates the user hierarchy structure: add, remove, and rename user hierarchy levels.</p>",
     "UpdateUserIdentityInfo": "<p>Updates the identity information for the specified user.</p> <important> <p>We strongly recommend limiting who has the ability to invoke <code>UpdateUserIdentityInfo</code>. Someone with that ability can change the login credentials of other users by changing their email address. This poses a security risk to your organization. They can change the email address of a user to the attacker's email address, and then reset the password through email. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html\">Best Practices for Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p> </important>",
     "UpdateUserPhoneConfig": "<p>Updates the phone configuration settings for the specified user.</p>",
+    "UpdateUserProficiencies": "<p>Updates the properties associated with the proficiencies of a user.</p>",
     "UpdateUserRoutingProfile": "<p>Assigns the specified routing profile to the specified user.</p>",
     "UpdateUserSecurityProfiles": "<p>Assigns the specified security profiles to the specified user.</p>",
     "UpdateViewContent": "<p>Updates the view content of the given view identifier in the specified Amazon Connect instance.</p> <p>It performs content validation if <code>Status</code> is set to <code>SAVED</code> and performs full content validation if <code>Status</code> is <code>PUBLISHED</code>. Note that the <code>$SAVED</code> alias' content will always be updated, but the <code>$LATEST</code> alias' content will only be updated if <code>Status</code> is <code>PUBLISHED</code>.</p>",
@@ -256,6 +268,7 @@
         "ContactFlowModule$Arn": "<p>The Amazon Resource Name (ARN).</p>",
         "ContactFlowModuleSummary$Arn": "<p>The Amazon Resource Name (ARN) of the flow module.</p>",
         "ContactFlowSummary$Arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
+        "ContactSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact</p>",
         "CreateAgentStatusResponse$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "CreateContactFlowModuleResponse$Arn": "<p>The Amazon Resource Name (ARN) of the flow module.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
@@ -452,6 +465,12 @@
         "UserIdentityInfoLite$FirstName": "<p>The user's first name.</p>"
       }
     },
+    "AgentHierarchyGroups": {
+      "base": "<p>A structure that defines agent hierarchy group levels which can be used to filter search results. Important: Agent hierarchy group level information in search result is a snapshot, it does not represent current agent hierarchy who handled the contact.</p>",
+      "refs": {
+        "SearchCriteria$AgentHierarchyGroups": "<p>The agent hierarchy groups</p>"
+      }
+    },
     "AgentInfo": {
       "base": "<p>Information about the agent who accepted the contact.</p>",
       "refs": {
@@ -475,9 +494,17 @@
       "base": null,
       "refs": {
         "AgentInfo$Id": "<p>The identifier of the agent who accepted the contact.</p>",
+        "AgentResourceIdList$member": null,
+        "ContactSearchSummaryAgentInfo$Id": "<p>The identifier of the agent who accepted the contact.</p>",
         "GetFederationTokenResponse$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
         "MonitorContactRequest$UserId": "<p>The identifier of the user account.</p>",
         "TransferContactRequest$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>"
+      }
+    },
+    "AgentResourceIdList": {
+      "base": null,
+      "refs": {
+        "SearchCriteria$AgentIds": "<p>The array of agent ids</p>"
       }
     },
     "AgentStatus": {
@@ -649,6 +676,7 @@
         "GetCurrentMetricDataResponse$ApproximateTotalCount": "<p>The total count of the result, regardless of the current page size. </p>",
         "GetCurrentUserDataResponse$ApproximateTotalCount": "<p>The total count of the result, regardless of the current page size.</p>",
         "SearchHoursOfOperationsResponse$ApproximateTotalCount": "<p>The total number of hours of operations which matched your search query.</p>",
+        "SearchPredefinedAttributesResponse$ApproximateTotalCount": "<p>The approximate number of predefined attributes which matched your search query.</p>",
         "SearchPromptsResponse$ApproximateTotalCount": "<p>The total number of quick connects which matched your search query.</p>",
         "SearchQueuesResponse$ApproximateTotalCount": "<p>The total number of queues which matched your search query.</p>",
         "SearchQuickConnectsResponse$ApproximateTotalCount": "<p>The total number of quick connects which matched your search query.</p>",
@@ -766,6 +794,11 @@
       }
     },
     "AssociateTrafficDistributionGroupUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateUserProficienciesRequest": {
       "base": null,
       "refs": {
       }
@@ -979,13 +1012,21 @@
       "base": null,
       "refs": {
         "AgentContactReference$Channel": "<p>The channel of the contact.</p>",
+        "ChannelList$member": null,
         "ChannelToCountMap$key": null,
         "Channels$member": null,
         "Contact$Channel": "<p>How the contact reached your contact center.</p>",
+        "ContactSearchSummary$Channel": "<p>How the contact reached your contact center.</p>",
         "Dimensions$Channel": "<p>The channel used for grouping and filters.</p>",
         "MediaConcurrency$Channel": "<p>The channels that agents can handle in the Contact Control Panel (CCP).</p>",
         "RoutingProfileQueueConfigSummary$Channel": "<p>The channels this queue supports.</p>",
         "RoutingProfileQueueReference$Channel": "<p>The channels agents can handle in the Contact Control Panel (CCP) for this routing profile.</p>"
+      }
+    },
+    "ChannelList": {
+      "base": null,
+      "refs": {
+        "SearchCriteria$Channels": "<p>The array of channels</p>"
       }
     },
     "ChannelToCountMap": {
@@ -1146,6 +1187,12 @@
       "base": "<p>Contains information about a contact.</p>",
       "refs": {
         "DescribeContactResponse$Contact": "<p>Information about the contact.</p>"
+      }
+    },
+    "ContactAnalysis": {
+      "base": "<p>A structure that defines filters can be used to search within outputs analyzed by Amazon Connect Contact Lens in a contact.</p>",
+      "refs": {
+        "SearchCriteria$ContactAnalysis": "<p>The ContactAnalysis object used in search criteria</p>"
       }
     },
     "ContactDataRequest": {
@@ -1346,6 +1393,9 @@
         "Contact$InitialContactId": "<p>If this contact is related to other contacts, this is the ID of the initial contact.</p>",
         "Contact$PreviousContactId": "<p>If this contact is not the first contact, this is the ID of the previous contact.</p>",
         "Contact$RelatedContactId": "<p>The contactId that is <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid\">related</a> to this contact.</p>",
+        "ContactSearchSummary$Id": "<p>The identifier of the contact summary.</p>",
+        "ContactSearchSummary$InitialContactId": "<p>If this contact is related to other contacts, this is the ID of the initial contact.</p>",
+        "ContactSearchSummary$PreviousContactId": "<p>If this contact is not the first contact, this is the ID of the previous contact.</p>",
         "CreateParticipantRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. Only contacts in the CHAT channel are supported.</p>",
         "CreatePersistentContactAssociationRequest$InitialContactId": "<p>This is the contactId of the current contact that the <code>CreatePersistentContactAssociation</code> API is being called from.</p>",
         "CreatePersistentContactAssociationRequest$SourceContactId": "<p>The contactId from which a persistent chat session must be started.</p>",
@@ -1392,6 +1442,7 @@
         "UntagContactRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "UpdateContactAttributesRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "UpdateContactRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with your contact center.</p>",
+        "UpdateContactRoutingDataRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>",
         "UpdateContactScheduleRequest$ContactId": "<p>The identifier of the contact.</p>",
         "UpdateParticipantRoleConfigRequest$ContactId": "<p>The identifier of the contact in this instance of Amazon Connect. </p>"
       }
@@ -1400,7 +1451,9 @@
       "base": null,
       "refs": {
         "AgentContactReference$InitiationMethod": "<p>How the contact was initiated.</p>",
-        "Contact$InitiationMethod": "<p>Indicates how the contact was initiated.</p>"
+        "Contact$InitiationMethod": "<p>Indicates how the contact was initiated.</p>",
+        "ContactSearchSummary$InitiationMethod": "<p>Indicates how the contact was initiated.</p>",
+        "InitiationMethodList$member": null
       }
     },
     "ContactNotFoundException": {
@@ -1416,6 +1469,24 @@
         "StartWebRTCContactRequest$References": "<p>A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following reference types at the time of creation: <code>URL</code> | <code>NUMBER</code> | <code>STRING</code> | <code>DATE</code> | <code>EMAIL</code>. <code>ATTACHMENT</code> is not a supported reference type during task creation.</p>",
         "TaskActionDefinition$References": "<p>Information about the reference when the <code>referenceType</code> is <code>URL</code>. Otherwise, null. (Supports variable injection in the <code>Value</code> field.)</p>",
         "UpdateContactRequest$References": "<p>Well-formed data on contact, shown to agents on Contact Control Panel (CCP).</p>"
+      }
+    },
+    "ContactSearchSummary": {
+      "base": "<p>Information of returned contact.</p>",
+      "refs": {
+        "Contacts$member": null
+      }
+    },
+    "ContactSearchSummaryAgentInfo": {
+      "base": "<p>Information about the agent who accepted the contact.</p>",
+      "refs": {
+        "ContactSearchSummary$AgentInfo": "<p>Information about the agent who accepted the contact.</p>"
+      }
+    },
+    "ContactSearchSummaryQueueInfo": {
+      "base": "<p>If this contact was queued, this contains information about the queue.</p>",
+      "refs": {
+        "ContactSearchSummary$QueueInfo": "<p>If this contact was queued, this contains information about the queue.</p>"
       }
     },
     "ContactState": {
@@ -1455,6 +1526,12 @@
       "base": null,
       "refs": {
         "ContactTagMap$value": null
+      }
+    },
+    "Contacts": {
+      "base": null,
+      "refs": {
+        "SearchContactsResponse$Contacts": "<p>Information about the contacts.</p>"
       }
     },
     "Content": {
@@ -1573,6 +1650,11 @@
       }
     },
     "CreatePersistentContactAssociationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePredefinedAttributeRequest": {
       "base": null,
       "refs": {
       }
@@ -1890,6 +1972,11 @@
       "refs": {
       }
     },
+    "DeletePredefinedAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeletePromptRequest": {
       "base": null,
       "refs": {
@@ -2091,6 +2178,16 @@
       }
     },
     "DescribePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePredefinedAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePredefinedAttributeResponse": {
       "base": null,
       "refs": {
       }
@@ -2365,6 +2462,11 @@
       }
     },
     "DisassociateTrafficDistributionGroupUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateUserProficienciesRequest": {
       "base": null,
       "refs": {
       }
@@ -3123,6 +3225,7 @@
         "DeleteUserHierarchyGroupRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "DescribeUserHierarchyGroupRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "HierarchyGroup$Id": "<p>The identifier of the hierarchy group.</p>",
+        "HierarchyGroupIdList$member": null,
         "HierarchyGroupSummary$Id": "<p>The identifier of the hierarchy group.</p>",
         "HierarchyGroupSummaryReference$Id": "<p>The unique identifier for the hierarchy group.</p>",
         "UpdateUserHierarchyGroupNameRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
@@ -3130,6 +3233,16 @@
         "User$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>",
         "UserDataHierarchyGroups$member": null,
         "UserSearchSummary$HierarchyGroupId": "<p>The identifier of the user's hierarchy group.</p>"
+      }
+    },
+    "HierarchyGroupIdList": {
+      "base": null,
+      "refs": {
+        "AgentHierarchyGroups$L1Ids": "<p>The identifiers for level 1 hierarchy groups.</p>",
+        "AgentHierarchyGroups$L2Ids": "<p>The identifiers for level 2 hierarchy groups.</p>",
+        "AgentHierarchyGroups$L3Ids": "<p>The identifiers for level 3 hierarchy groups.</p>",
+        "AgentHierarchyGroups$L4Ids": "<p>The identifiers for level 4 hierarchy groups.</p>",
+        "AgentHierarchyGroups$L5Ids": "<p>The identifiers for level 5 hierarchy groups.</p>"
       }
     },
     "HierarchyGroupMatchType": {
@@ -3415,6 +3528,12 @@
         "InstanceSummary$InboundCallsEnabled": "<p>Whether inbound calls are enabled.</p>"
       }
     },
+    "InitiationMethodList": {
+      "base": null,
+      "refs": {
+        "SearchCriteria$InitiationMethods": "<p>The array of initiaton methods</p>"
+      }
+    },
     "Instance": {
       "base": "<p>The Amazon Connect instance.</p>",
       "refs": {
@@ -3460,6 +3579,7 @@
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "AssociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "AssociateUserProficienciesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN of the instance).</p>",
         "BatchAssociateAnalyticsDataSetRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "BatchDisassociateAnalyticsDataSetRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "BatchGetFlowAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3475,6 +3595,7 @@
         "CreateIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateParticipantRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. </p>",
         "CreatePersistentContactAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "CreatePredefinedAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreatePromptRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "CreateQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3495,6 +3616,7 @@
         "DeleteHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DeletePredefinedAttributeRequest$InstanceId": "<p> The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeletePromptRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DeleteQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3516,6 +3638,7 @@
         "DescribeInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DescribePredefinedAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribePromptRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DescribeQuickConnectRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3538,6 +3661,7 @@
         "DisassociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DisassociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "DisassociateTrafficDistributionGroupUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "DisassociateUserProficienciesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "DismissUserContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetCurrentMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3573,6 +3697,7 @@
         "ListPhoneNumbersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListPhoneNumbersSummary$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListPhoneNumbersV2Request$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. If both <code>TargetArn</code> and <code>InstanceId</code> are not provided, this API lists numbers claimed to all the Amazon Connect instances belonging to your account in the same AWS Region as the request.</p>",
+        "ListPredefinedAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListPromptsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListQueueQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3588,6 +3713,7 @@
         "ListTaskTemplatesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListUseCasesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListUserHierarchyGroupsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "ListUserProficienciesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "ListUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "MonitorContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "PauseContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the <code>instanceId</code> in the ARN of the instance.</p>",
@@ -3597,7 +3723,9 @@
         "ResumeContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the <code>instanceId</code> in the ARN of the instance.</p>",
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchAvailablePhoneNumbersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter <code>InstanceId</code> or <code>TargetArn</code>. </p>",
+        "SearchContactsRequest$InstanceId": "<p>The identifier of Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance</p>",
         "SearchHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "SearchPredefinedAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchPromptsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchQuickConnectsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3631,6 +3759,7 @@
         "UpdateContactFlowModuleMetadataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactFlowNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "UpdateContactRoutingDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateContactScheduleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateEvaluationFormRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3638,6 +3767,7 @@
         "UpdateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateParticipantRoleConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdatePhoneNumberRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter <code>InstanceId</code> or <code>TargetArn</code>. </p>",
+        "UpdatePredefinedAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdatePromptRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateQueueHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateQueueMaxContactsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -3660,6 +3790,7 @@
         "UpdateUserHierarchyStructureRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateUserIdentityInfoRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
+        "UpdateUserProficienciesRequest$InstanceId": "<p> The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateUserRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "UpdateUserSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>"
       }
@@ -3858,7 +3989,9 @@
         "ListRealtimeContactAnalysisSegmentsV2Request$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListRealtimeContactAnalysisSegmentsV2Response$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchAvailablePhoneNumbersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
-        "SearchAvailablePhoneNumbersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
+        "SearchAvailablePhoneNumbersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchContactsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchContactsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
       }
     },
     "LexBot": {
@@ -4145,6 +4278,16 @@
       "refs": {
       }
     },
+    "ListPredefinedAttributesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListPredefinedAttributesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListPromptsRequest": {
       "base": null,
       "refs": {
@@ -4325,6 +4468,16 @@
       "refs": {
       }
     },
+    "ListUserProficienciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListUserProficienciesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListUsersRequest": {
       "base": null,
       "refs": {
@@ -4383,12 +4536,16 @@
         "ListEvaluationFormVersionsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListEvaluationFormsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListIntegrationAssociationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListPredefinedAttributesRequest$MaxResults": "<p>The maximum number of results to return per page. </p>",
         "ListQueueQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListRealtimeContactAnalysisSegmentsV2Request$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListRoutingProfileQueuesRequest$MaxResults": "<p>The maximum number of results to return per page. The default MaxResult size is 100.</p>",
         "ListTaskTemplatesRequest$MaxResults": "<p>The maximum number of results to return per page.</p> <important> <p>It is not expected that you set this.</p> </important>",
         "ListUseCasesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListUserProficienciesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchContactsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchHoursOfOperationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "SearchPredefinedAttributesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchPromptsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchQueuesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "SearchQuickConnectsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
@@ -4710,6 +4867,8 @@
         "ListLexBotsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListPhoneNumbersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListPhoneNumbersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListPredefinedAttributesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListPredefinedAttributesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListPromptsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListPromptsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListQueueQuickConnectsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -4742,6 +4901,8 @@
         "ListUseCasesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListUserHierarchyGroupsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListUserHierarchyGroupsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListUserProficienciesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListUserProficienciesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListUsersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
       }
@@ -4753,6 +4914,8 @@
         "GetMetricDataV2Response$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchHoursOfOperationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchHoursOfOperationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "SearchPredefinedAttributesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "SearchPredefinedAttributesResponse$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchPromptsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "SearchPromptsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "SearchQueuesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -4896,7 +5059,8 @@
         "ParticipantDetailsToAdd$ParticipantRole": "<p>The role of the participant being added.</p>",
         "RealTimeContactAnalysisSegmentAttachments$ParticipantRole": "<p>The role of the participant. For example, is it a customer, agent, or system.</p>",
         "RealTimeContactAnalysisSegmentEvent$ParticipantRole": "<p>The role of the participant. For example, is it a customer, agent, or system.</p>",
-        "RealTimeContactAnalysisSegmentTranscript$ParticipantRole": "<p>The role of the participant. For example, is it a customer, agent, or system.</p>"
+        "RealTimeContactAnalysisSegmentTranscript$ParticipantRole": "<p>The role of the participant. For example, is it a customer, agent, or system.</p>",
+        "TranscriptCriteria$ParticipantRole": "<p>The participant role in a transcript</p>"
       }
     },
     "ParticipantTimerAction": {
@@ -5119,6 +5283,80 @@
         "UserPhoneConfig$PhoneType": "<p>The phone type.</p>"
       }
     },
+    "PredefinedAttribute": {
+      "base": "<p>Information about a predefined attribute.</p>",
+      "refs": {
+        "DescribePredefinedAttributeResponse$PredefinedAttribute": "<p>Information about the predefined attribute.</p>",
+        "PredefinedAttributeSearchSummaryList$member": null
+      }
+    },
+    "PredefinedAttributeName": {
+      "base": null,
+      "refs": {
+        "CreatePredefinedAttributeRequest$Name": "<p> The name of the predefined attribute. </p>",
+        "DeletePredefinedAttributeRequest$Name": "<p> The name of the predefined attribute.</p>",
+        "DescribePredefinedAttributeRequest$Name": "<p>The name of the predefined attribute.</p>",
+        "PredefinedAttribute$Name": "<p>The name of the predefined attribute.</p>",
+        "PredefinedAttributeSummary$Name": "<p>The name of the predefined attribute.</p>",
+        "UpdatePredefinedAttributeRequest$Name": "<p>The name of the predefined attribute.</p>",
+        "UserProficiency$AttributeName": "<p>The name of user's proficiency. You must use name of predefined attribute present in the Amazon Connect instance.</p>",
+        "UserProficiencyDisassociate$AttributeName": "<p>The name of user's proficiency.</p>"
+      }
+    },
+    "PredefinedAttributeSearchConditionList": {
+      "base": null,
+      "refs": {
+        "PredefinedAttributeSearchCriteria$OrConditions": "<p>A list of conditions which would be applied together with an <code>OR</code> condition.</p>",
+        "PredefinedAttributeSearchCriteria$AndConditions": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>"
+      }
+    },
+    "PredefinedAttributeSearchCriteria": {
+      "base": "<p>The search criteria to be used to return predefined attributes.</p>",
+      "refs": {
+        "PredefinedAttributeSearchConditionList$member": null,
+        "SearchPredefinedAttributesRequest$SearchCriteria": "<p>The search criteria to be used to return predefined attributes.</p>"
+      }
+    },
+    "PredefinedAttributeSearchSummaryList": {
+      "base": null,
+      "refs": {
+        "SearchPredefinedAttributesResponse$PredefinedAttributes": "<p>Predefined attributes matched by the search criteria.</p>"
+      }
+    },
+    "PredefinedAttributeStringValue": {
+      "base": null,
+      "refs": {
+        "PredefinedAttributeStringValuesList$member": null,
+        "UserProficiency$AttributeValue": "<p>The value of user's proficiency. You must use value of predefined attribute present in the Amazon Connect instance.</p>",
+        "UserProficiencyDisassociate$AttributeValue": "<p>The value of user's proficiency.</p>"
+      }
+    },
+    "PredefinedAttributeStringValuesList": {
+      "base": null,
+      "refs": {
+        "PredefinedAttributeValues$StringList": "<p>Predefined attribute values of type string list.</p>"
+      }
+    },
+    "PredefinedAttributeSummary": {
+      "base": "<p>Summary of a predefined attribute.</p>",
+      "refs": {
+        "PredefinedAttributeSummaryList$member": null
+      }
+    },
+    "PredefinedAttributeSummaryList": {
+      "base": null,
+      "refs": {
+        "ListPredefinedAttributesResponse$PredefinedAttributeSummaryList": "<p>Summary of the predefined attributes.</p>"
+      }
+    },
+    "PredefinedAttributeValues": {
+      "base": "<p>Information about values of a predefined attribute.</p>",
+      "refs": {
+        "CreatePredefinedAttributeRequest$Values": "<p> The values of the predefined attribute. </p>",
+        "PredefinedAttribute$Values": "<p>The values of the predefined attribute.</p>",
+        "UpdatePredefinedAttributeRequest$Values": "<p>The values of the predefined attribute.</p>"
+      }
+    },
     "Prefix": {
       "base": null,
       "refs": {
@@ -5150,6 +5388,12 @@
       "refs": {
         "InvalidContactFlowException$problems": "<p>The problems with the flow. Please fix before trying again.</p>",
         "InvalidContactFlowModuleException$Problems": null
+      }
+    },
+    "ProficiencyLevel": {
+      "base": null,
+      "refs": {
+        "UserProficiency$Level": "<p>The level of the proficiency. The valid values are 1, 2, 3, 4 and 5.</p>"
       }
     },
     "Prompt": {
@@ -5283,6 +5527,7 @@
       "refs": {
         "AssociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
         "ContactDataRequest$QueueId": "<p>The identifier of the queue associated with the Amazon Connect instance in which contacts that are created will be queued.</p>",
+        "ContactSearchSummaryQueueInfo$Id": "<p>The unique identifier for the queue.</p>",
         "CreateQueueResponse$QueueId": "<p>The identifier for the queue.</p>",
         "CreateRoutingProfileRequest$DefaultOutboundQueueId": "<p>The default outbound queue for the routing profile.</p>",
         "DeleteQueueRequest$QueueId": "<p>The identifier for the queue.</p>",
@@ -5290,6 +5535,7 @@
         "DisassociateQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
         "ListQueueQuickConnectsRequest$QueueId": "<p>The identifier for the queue.</p>",
         "Queue$QueueId": "<p>The identifier for the queue.</p>",
+        "QueueIdList$member": null,
         "QueueInfo$Id": "<p>The unique identifier for the queue.</p>",
         "QueueQuickConnectConfig$QueueId": "<p>The identifier for the queue.</p>",
         "QueueReference$Id": "<p>The identifier of the queue.</p>",
@@ -5306,6 +5552,12 @@
         "UpdateQueueOutboundCallerConfigRequest$QueueId": "<p>The identifier for the queue.</p>",
         "UpdateQueueStatusRequest$QueueId": "<p>The identifier for the queue.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$DefaultOutboundQueueId": "<p>The identifier for the default outbound queue.</p>"
+      }
+    },
+    "QueueIdList": {
+      "base": null,
+      "refs": {
+        "SearchCriteria$QueueIds": "<p>The array of queue ids.</p>"
       }
     },
     "QueueInfo": {
@@ -5327,6 +5579,13 @@
       "refs": {
         "QueueSummary$Name": "<p>The name of the queue.</p>",
         "RoutingProfileQueueConfigSummary$QueueName": "<p>The name of the queue.</p>"
+      }
+    },
+    "QueuePriority": {
+      "base": null,
+      "refs": {
+        "Contact$QueuePriority": "<p>An integer that represents the queue priority to be applied to the contact (lower priorities are routed preferentially). Cannot be specified if the QueueTimeAdjustmentSeconds is specified. Must be statically defined, must be larger than zero, and a valid integer value. Default Value is 5.</p>",
+        "UpdateContactRoutingDataRequest$QueuePriority": "<p>Priority of the contact in the queue. The default priority for new contacts is 5. You can raise the priority of a contact compared to other contacts in the queue by assigning them a higher priority, such as 1 or 2.</p>"
       }
     },
     "QueueQuickConnectConfig": {
@@ -5385,6 +5644,13 @@
       "base": null,
       "refs": {
         "ListQueuesResponse$QueueSummaryList": "<p>Information about the queues.</p>"
+      }
+    },
+    "QueueTimeAdjustmentSeconds": {
+      "base": null,
+      "refs": {
+        "Contact$QueueTimeAdjustmentSeconds": "<p>An integer that represents the queue time adjust to be applied to the contact, in seconds (longer / larger queue time are routed preferentially). Cannot be specified if the QueuePriority is specified. Must be statically defined and a valid integer value.</p>",
+        "UpdateContactRoutingDataRequest$QueueTimeAdjustmentSeconds": "<p>The number of seconds to add or subtract from the contact's routing age. Contacts are routed to agents on a first-come, first-serve basis. This means that changing their amount of time in queue compared to others also changes their position in queue.</p>"
       }
     },
     "QueueType": {
@@ -5837,6 +6103,9 @@
         "ListRoutingProfileQueuesResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
         "ListSecurityProfileApplicationsResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
         "ListSecurityProfilePermissionsResponse$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
+        "ListUserProficienciesResponse$LastModifiedRegion": "<p>The region in which a user's proficiencies were last modified.</p>",
+        "PredefinedAttribute$LastModifiedRegion": "<p>Last modified region.</p>",
+        "PredefinedAttributeSummary$LastModifiedRegion": "<p>Last modified region.</p>",
         "Prompt$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
         "PromptSummary$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
         "Queue$LastModifiedRegion": "<p>The Amazon Web Services Region where this resource was last modified.</p>",
@@ -5992,6 +6261,19 @@
     "ResumeContactResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "RoutingExpression": {
+      "base": null,
+      "refs": {
+        "Dimensions$RoutingStepExpression": "<p>The expression of a step in a routing criteria.</p>",
+        "RoutingExpressions$member": null
+      }
+    },
+    "RoutingExpressions": {
+      "base": null,
+      "refs": {
+        "Filters$RoutingStepExpressions": "<p>A list of expressions as a filter, in which an expression is an object of a step in a routing criteria.</p>"
       }
     },
     "RoutingProfile": {
@@ -6233,12 +6515,58 @@
       "refs": {
       }
     },
+    "SearchContactsMatchType": {
+      "base": null,
+      "refs": {
+        "SearchableContactAttributes$MatchType": "<p>The match type of multiple searchable contact attributes criteria.</p>",
+        "Transcript$MatchType": "<p>The match type of multiple transcript criteira</p>",
+        "TranscriptCriteria$MatchType": "<p>The match type of search texts in a transcript criteria.</p>"
+      }
+    },
+    "SearchContactsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchContactsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchContactsTimeRange": {
+      "base": "<p>A structure of time range that you want to search results</p>",
+      "refs": {
+        "SearchContactsRequest$TimeRange": "<p>Time range that you want to search results</p>"
+      }
+    },
+    "SearchContactsTimeRangeType": {
+      "base": null,
+      "refs": {
+        "SearchContactsTimeRange$Type": "<p>The type of timestamp to search</p>"
+      }
+    },
+    "SearchCriteria": {
+      "base": "<p>A structure of search criteria to be used to return contacts</p>",
+      "refs": {
+        "SearchContactsRequest$SearchCriteria": "<p>The search criteria to be used to return contacts.</p>"
+      }
+    },
     "SearchHoursOfOperationsRequest": {
       "base": null,
       "refs": {
       }
     },
     "SearchHoursOfOperationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchPredefinedAttributesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchPredefinedAttributesResponse": {
       "base": null,
       "refs": {
       }
@@ -6303,6 +6631,18 @@
       "refs": {
       }
     },
+    "SearchText": {
+      "base": null,
+      "refs": {
+        "SearchTextList$member": null
+      }
+    },
+    "SearchTextList": {
+      "base": null,
+      "refs": {
+        "TranscriptCriteria$SearchText": "<p>The words or phrases used to search within a transcript.</p>"
+      }
+    },
     "SearchUsersRequest": {
       "base": null,
       "refs": {
@@ -6321,6 +6661,42 @@
     "SearchVocabulariesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "SearchableContactAttributeKey": {
+      "base": null,
+      "refs": {
+        "SearchableContactAttributesCriteria$Key": "<p>The searchable contact attribute key</p>"
+      }
+    },
+    "SearchableContactAttributeValue": {
+      "base": null,
+      "refs": {
+        "SearchableContactAttributeValueList$member": null
+      }
+    },
+    "SearchableContactAttributeValueList": {
+      "base": null,
+      "refs": {
+        "SearchableContactAttributesCriteria$Values": "<p>The array of contact attribute values used to filter search results.</p>"
+      }
+    },
+    "SearchableContactAttributes": {
+      "base": "<p>A structure that defines searchable contact attributes which can be used to filter search results. </p>",
+      "refs": {
+        "SearchCriteria$SearchableContactAttributes": "<p>The SearchableContactAttributes object used in search criteria</p>"
+      }
+    },
+    "SearchableContactAttributesCriteria": {
+      "base": "<p>The criteria of searchable contact attributes.</p>",
+      "refs": {
+        "SearchableContactAttributesCriteriaList$member": null
+      }
+    },
+    "SearchableContactAttributesCriteriaList": {
+      "base": null,
+      "refs": {
+        "SearchableContactAttributes$Criteria": "<p>The array of searhale contact attribute criteria</p>"
       }
     },
     "SearchableQueueType": {
@@ -6551,10 +6927,23 @@
         "GetTaskTemplateRequest$SnapshotVersion": "<p>The system generated version of a task template that is associated with a task, when the task is created.</p>"
       }
     },
+    "Sort": {
+      "base": "<p>A structure that defines the sort by and a sort order</p>",
+      "refs": {
+        "SearchContactsRequest$Sort": "<p>Specifies a field to sort by and a sort order</p>"
+      }
+    },
     "SortOrder": {
       "base": null,
       "refs": {
-        "CurrentMetricSortCriteria$SortOrder": "<p>The way to sort.</p>"
+        "CurrentMetricSortCriteria$SortOrder": "<p>The way to sort.</p>",
+        "Sort$Order": "<p>An ascending or descending sort.</p>"
+      }
+    },
+    "SortableFieldName": {
+      "base": null,
+      "refs": {
+        "Sort$FieldName": "<p>The name of the field on which to sort.</p>"
       }
     },
     "SourceApplicationName": {
@@ -6728,9 +7117,10 @@
       }
     },
     "StringCondition": {
-      "base": "<p>A leaf node condition which can be used to specify a string condition. </p>",
+      "base": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code> and <code>description</code>.</p> </note>",
       "refs": {
         "HoursOfOperationSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, <code>timezone</code>, and <code>resourceID</code>.</p> </note>",
+        "PredefinedAttributeSearchCriteria$StringCondition": null,
         "PromptSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "QueueSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "QuickConnectSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
@@ -7209,8 +7599,11 @@
         "ListRoutingProfileQueuesResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "ListSecurityProfileApplicationsResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "ListSecurityProfilePermissionsResponse$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
+        "ListUserProficienciesResponse$LastModifiedTime": "<p>The last time that the user's proficiencies are were modified.</p>",
         "MetricInterval$StartTime": "<p>The timestamp, in UNIX Epoch time format. Start time is based on the interval period selected. </p>",
         "MetricInterval$EndTime": "<p>The timestamp, in UNIX Epoch time format. End time is based on the interval period selected. For example, If <code>IntervalPeriod</code> is selected <code>THIRTY_MIN</code>, <code>StartTime</code> and <code>EndTime</code> in the API request differs by 1 day, then 48 results are returned in the response. Each result is aggregated by the 30 minutes period, with each <code>StartTime</code> and <code>EndTime</code> differing by 30 minutes. </p>",
+        "PredefinedAttribute$LastModifiedTime": "<p>Last modified time.</p>",
+        "PredefinedAttributeSummary$LastModifiedTime": "<p>Last modified time.</p>",
         "Prompt$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "PromptSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "Queue$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
@@ -7223,6 +7616,8 @@
         "Rule$LastUpdatedTime": "<p>The timestamp for the when the rule was last updated.</p>",
         "RuleSummary$CreatedTime": "<p>The timestamp for when the rule was created. </p>",
         "RuleSummary$LastUpdatedTime": "<p>The timestamp for when the rule was last updated.</p>",
+        "SearchContactsTimeRange$StartTime": "<p>The start time of the time range.</p>",
+        "SearchContactsTimeRange$EndTime": "<p>The end time of the time range.</p>",
         "SecurityProfile$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "SecurityProfileSummary$LastModifiedTime": "<p>The timestamp when this resource was last modified.</p>",
         "StartTaskContactRequest$ScheduledTime": "<p>The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future. </p>",
@@ -7236,6 +7631,12 @@
     "TooManyRequestsException": {
       "base": "<p>Displayed when rate-related API limits are exceeded.</p>",
       "refs": {
+      }
+    },
+    "TotalCount": {
+      "base": null,
+      "refs": {
+        "SearchContactsResponse$TotalCount": "<p>The total number of contacts which matched your search query.</p>"
       }
     },
     "TotalPauseCount": {
@@ -7321,6 +7722,24 @@
       "base": null,
       "refs": {
         "StartOutboundVoiceContactRequest$TrafficType": "<p>Denotes the class of traffic. Calls with different traffic types are handled differently by Amazon Connect. The default value is <code>GENERAL</code>. Use <code>CAMPAIGN</code> if <code>EnableAnswerMachineDetection</code> is set to <code>true</code>. For all other cases, use <code>GENERAL</code>. </p>"
+      }
+    },
+    "Transcript": {
+      "base": "<p>The transcript object used to search results.</p>",
+      "refs": {
+        "ContactAnalysis$Transcript": "<p>A structure that defines filters can be used to search with text within an Amazon Connect Contact Lens analyzed transcript.</p>"
+      }
+    },
+    "TranscriptCriteria": {
+      "base": "<p>The transcript criteria used to search</p>",
+      "refs": {
+        "TranscriptCriteriaList$member": null
+      }
+    },
+    "TranscriptCriteriaList": {
+      "base": null,
+      "refs": {
+        "Transcript$Criteria": "<p>The array of transcript search criteria</p>"
       }
     },
     "TransferContactRequest": {
@@ -7464,6 +7883,16 @@
       "refs": {
       }
     },
+    "UpdateContactRoutingDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactRoutingDataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateContactScheduleRequest": {
       "base": null,
       "refs": {
@@ -7532,6 +7961,11 @@
       }
     },
     "UpdatePhoneNumberResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePredefinedAttributeRequest": {
       "base": null,
       "refs": {
       }
@@ -7667,6 +8101,11 @@
       "refs": {
       }
     },
+    "UpdateUserProficienciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserRoutingProfileRequest": {
       "base": null,
       "refs": {
@@ -7773,16 +8212,20 @@
       "refs": {
         "AgentsMinOneMaxHundred$member": null,
         "AssociateTrafficDistributionGroupUserRequest$UserId": "<p>The identifier of the user account. This can be the ID or the ARN of the user. </p>",
+        "AssociateUserProficienciesRequest$UserId": "<p>The identifier of the user account.</p>",
         "CreateUserResponse$UserId": "<p>The identifier of the user account.</p>",
         "DeleteUserRequest$UserId": "<p>The identifier of the user.</p>",
         "DescribeUserRequest$UserId": "<p>The identifier of the user account.</p>",
         "DisassociateTrafficDistributionGroupUserRequest$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
+        "DisassociateUserProficienciesRequest$UserId": "<p>The identifier of the user account.</p>",
         "DismissUserContactRequest$UserId": "<p>The identifier of the user account.</p>",
+        "ListUserProficienciesRequest$UserId": "<p>The identifier of the user account.</p>",
         "PutUserStatusRequest$UserId": "<p>The identifier of the user.</p>",
         "TrafficDistributionGroupUserSummary$UserId": "<p>The identifier for the user. This can be the ID or the ARN of the user.</p>",
         "UpdateUserHierarchyRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserIdentityInfoRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserPhoneConfigRequest$UserId": "<p>The identifier of the user account.</p>",
+        "UpdateUserProficienciesRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserRoutingProfileRequest$UserId": "<p>The identifier of the user account.</p>",
         "UpdateUserSecurityProfilesRequest$UserId": "<p>The identifier of the user account.</p>",
         "User$Id": "<p>The identifier of the user account.</p>",
@@ -7825,6 +8268,32 @@
         "UpdateUserPhoneConfigRequest$PhoneConfig": "<p>Information about phone configuration settings for the user.</p>",
         "User$PhoneConfig": "<p>Information about the phone configuration for the user.</p>",
         "UserSearchSummary$PhoneConfig": null
+      }
+    },
+    "UserProficiency": {
+      "base": "<p>Information about proficiency of a user.</p>",
+      "refs": {
+        "UserProficiencyList$member": null
+      }
+    },
+    "UserProficiencyDisassociate": {
+      "base": "<p>Information about proficiency to be disassociated from the user.</p>",
+      "refs": {
+        "UserProficiencyDisassociateList$member": null
+      }
+    },
+    "UserProficiencyDisassociateList": {
+      "base": null,
+      "refs": {
+        "DisassociateUserProficienciesRequest$UserProficiencies": "<p>The proficiencies to disassociate from the user.</p>"
+      }
+    },
+    "UserProficiencyList": {
+      "base": null,
+      "refs": {
+        "AssociateUserProficienciesRequest$UserProficiencies": "<p>The proficiencies to associate with the user.</p>",
+        "ListUserProficienciesResponse$UserProficiencyList": "<p>Information about the user proficiencies.</p>",
+        "UpdateUserProficienciesRequest$UserProficiencies": "<p>The proficiencies to be updated for the user. Proficiencies must first be associated to the user. You can do this using AssociateUserProficiencies API.</p>"
       }
     },
     "UserQuickConnectConfig": {
@@ -8220,6 +8689,11 @@
         "Contact$LastPausedTimestamp": "<p>The timestamp when the contact was last paused.</p>",
         "Contact$LastResumedTimestamp": "<p>The timestamp when the contact was last resumed.</p>",
         "Contact$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow. </p>",
+        "ContactSearchSummary$InitiationTimestamp": "<p>The date and time this contact was initiated, in UTC time. For INBOUND, this is when the contact arrived. For OUTBOUND, this is when the agent began dialing. For CALLBACK, this is when the callback contact was created. For TRANSFER and QUEUE_TRANSFER, this is when the transfer was initiated. For API, this is when the request arrived. For EXTERNAL_OUTBOUND, this is when the agent started dialing the external participant. For MONITOR, this is when the supervisor started listening to a contact.</p>",
+        "ContactSearchSummary$DisconnectTimestamp": "<p>The timestamp when the customer endpoint disconnected from Amazon Connect.</p>",
+        "ContactSearchSummary$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow.</p>",
+        "ContactSearchSummaryAgentInfo$ConnectedToAgentTimestamp": "<p>The timestamp when the contact was connected to the agent.</p>",
+        "ContactSearchSummaryQueueInfo$EnqueueTimestamp": "<p>The timestamp when the contact was added to the queue.</p>",
         "Credentials$AccessTokenExpiration": "<p>A token generated with an expiration time for the session a user is logged in to Amazon Connect.</p>",
         "Credentials$RefreshTokenExpiration": "<p>Renews the expiration timer for a generated token.</p>",
         "GetCurrentMetricDataResponse$DataSnapshotTime": "<p>The time at which the metrics were retrieved and cached for pagination.</p>",

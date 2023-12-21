@@ -5,11 +5,13 @@
     "CreateApplication": "<p>This API is in preview release and subject to change.</p> <p>Creates and persists an Application resource.</p>",
     "CreateDataIntegration": "<p>Creates and persists a DataIntegration resource.</p> <note> <p>You cannot create a DataIntegration association for a DataIntegration that has been previously associated. Use a different DataIntegration, or recreate the DataIntegration using the <code>CreateDataIntegration</code> API.</p> </note>",
     "CreateEventIntegration": "<p>Creates an EventIntegration, given a specified name, description, and a reference to an Amazon EventBridge bus in your account and a partner event source that pushes events to that bus. No objects are created in the your account, only metadata that is persisted on the EventIntegration control plane.</p>",
+    "DeleteApplication": "<p>Deletes the Application. Only Applications that don't have any Application Associations can be deleted.</p>",
     "DeleteDataIntegration": "<p>Deletes the DataIntegration. Only DataIntegrations that don't have any DataIntegrationAssociations can be deleted. Deleting a DataIntegration also deletes the underlying Amazon AppFlow flow and service linked role. </p> <note> <p>You cannot create a DataIntegration association for a DataIntegration that has been previously associated. Use a different DataIntegration, or recreate the DataIntegration using the <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> API.</p> </note>",
     "DeleteEventIntegration": "<p>Deletes the specified existing event integration. If the event integration is associated with clients, the request is rejected.</p>",
     "GetApplication": "<p>This API is in preview release and subject to change.</p> <p>Get an Application resource.</p>",
     "GetDataIntegration": "<p>Returns information about the DataIntegration.</p> <note> <p>You cannot create a DataIntegration association for a DataIntegration that has been previously associated. Use a different DataIntegration, or recreate the DataIntegration using the <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> API.</p> </note>",
     "GetEventIntegration": "<p>Returns information about the event integration.</p>",
+    "ListApplicationAssociations": "<p>Returns a paginated list of application associations for an application.</p>",
     "ListApplications": "<p>This API is in preview release and subject to change.</p> <p>Lists applications in the account.</p>",
     "ListDataIntegrationAssociations": "<p>Returns a paginated list of DataIntegration associations in the account.</p> <note> <p>You cannot create a DataIntegration association for a DataIntegration that has been previously associated. Use a different DataIntegration, or recreate the DataIntegration using the <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> API.</p> </note>",
     "ListDataIntegrations": "<p>Returns a paginated list of DataIntegrations in the account.</p> <note> <p>You cannot create a DataIntegration association for a DataIntegration that has been previously associated. Use a different DataIntegration, or recreate the DataIntegration using the <a href=\"https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html\">CreateDataIntegration</a> API.</p> </note>",
@@ -32,6 +34,18 @@
       "base": null,
       "refs": {
         "ExternalUrlConfig$ApprovedOrigins": "<p>Additional URLs to allow list if different than the access URL.</p>"
+      }
+    },
+    "ApplicationAssociationSummary": {
+      "base": "<p>Summary information about the Application Association.</p>",
+      "refs": {
+        "ApplicationAssociationsList$member": null
+      }
+    },
+    "ApplicationAssociationsList": {
+      "base": null,
+      "refs": {
+        "ListApplicationAssociationsResponse$ApplicationAssociations": "<p>List of Application Associations for the Application.</p>"
       }
     },
     "ApplicationName": {
@@ -80,6 +94,8 @@
     "Arn": {
       "base": null,
       "refs": {
+        "ApplicationAssociationSummary$ApplicationAssociationArn": "<p>The Amazon Resource Name (ARN) of the Application Association.</p>",
+        "ApplicationAssociationSummary$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the Application.</p>",
         "ApplicationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the Application.</p>",
         "CreateApplicationResponse$Arn": "<p>The Amazon Resource Name (ARN) of the Application.</p>",
         "CreateDataIntegrationResponse$Arn": "<p>The Amazon Resource Name (ARN)</p>",
@@ -100,7 +116,9 @@
     "ArnOrUUID": {
       "base": null,
       "refs": {
+        "DeleteApplicationRequest$Arn": "<p>The Amazon Resource Name (ARN) of the Application.</p>",
         "GetApplicationRequest$Arn": "<p>The Amazon Resource Name (ARN) of the Application.</p>",
+        "ListApplicationAssociationsRequest$ApplicationId": "<p>A unique identifier for the Application.</p>",
         "UpdateApplicationRequest$Arn": "<p>The Amazon Resource Name (ARN) of the Application.</p>"
       }
     },
@@ -113,6 +131,7 @@
     "ClientId": {
       "base": null,
       "refs": {
+        "ApplicationAssociationSummary$ClientId": "<p>The identifier for the client that is associated with the Application Association.</p>",
         "DataIntegrationAssociationSummary$ClientId": "<p>The identifier for the client that is associated with the DataIntegration association.</p>",
         "EventIntegrationAssociation$ClientId": "<p>The identifier for the client that is associated with the event integration.</p>"
       }
@@ -169,6 +188,16 @@
       "base": null,
       "refs": {
         "ListDataIntegrationsResponse$DataIntegrations": "<p>The DataIntegrations associated with this account.</p>"
+      }
+    },
+    "DeleteApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApplicationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteDataIntegrationRequest": {
@@ -370,6 +399,16 @@
       "refs": {
       }
     },
+    "ListApplicationAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationAssociationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListApplicationsRequest": {
       "base": null,
       "refs": {
@@ -433,6 +472,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListApplicationAssociationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListApplicationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListDataIntegrationAssociationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListDataIntegrationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
@@ -449,7 +489,8 @@
         "InvalidRequestException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ResourceQuotaExceededException$Message": null,
-        "ThrottlingException$Message": null
+        "ThrottlingException$Message": null,
+        "UnsupportedOperationException$Message": null
       }
     },
     "Name": {
@@ -473,6 +514,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListApplicationAssociationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListApplicationAssociationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListApplicationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListApplicationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListDataIntegrationAssociationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -517,6 +560,20 @@
         "CreateDataIntegrationRequest$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>",
         "CreateDataIntegrationResponse$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>",
         "GetDataIntegrationResponse$ObjectConfiguration": "<p>The configuration for what data should be pulled from the source.</p>"
+      }
+    },
+    "Permission": {
+      "base": "<p>The permission of an event or request that the application has access to.</p>",
+      "refs": {
+        "PermissionList$member": null
+      }
+    },
+    "PermissionList": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$Permissions": "<p>The configuration of events or requests that the application has access to.</p>",
+        "GetApplicationResponse$Permissions": "<p>The configuration of events or requests that the application has access to.</p>",
+        "UpdateApplicationRequest$Permissions": "<p>The configuration of events or requests that the application has access to.</p>"
       }
     },
     "Publication": {
@@ -653,6 +710,11 @@
         "EventIntegrationAssociation$EventIntegrationAssociationId": "<p>The identifier for the event integration association.</p>",
         "GetApplicationResponse$Id": "<p>A unique identifier for the Application.</p>",
         "GetDataIntegrationResponse$Id": "<p>A unique identifier.</p>"
+      }
+    },
+    "UnsupportedOperationException": {
+      "base": "<p>The operation is not supported.</p>",
+      "refs": {
       }
     },
     "UntagResourceRequest": {

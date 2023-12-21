@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "ListApplicationAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ApplicationAssociations"
+    },
     "ListApplications": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

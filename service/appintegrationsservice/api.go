@@ -87,6 +87,9 @@ func (c *AppIntegrationsService) CreateApplicationRequest(input *CreateApplicati
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
 //
+//   - UnsupportedOperationException
+//     The operation is not supported.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/CreateApplication
 func (c *AppIntegrationsService) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
@@ -299,6 +302,99 @@ func (c *AppIntegrationsService) CreateEventIntegration(input *CreateEventIntegr
 // for more information on using Contexts.
 func (c *AppIntegrationsService) CreateEventIntegrationWithContext(ctx aws.Context, input *CreateEventIntegrationInput, opts ...request.Option) (*CreateEventIntegrationOutput, error) {
 	req, out := c.CreateEventIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteApplication = "DeleteApplication"
+
+// DeleteApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteApplication for more information on using the DeleteApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteApplicationRequest method.
+//	req, resp := client.DeleteApplicationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/DeleteApplication
+func (c *AppIntegrationsService) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteApplication,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/applications/{ApplicationIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteApplicationInput{}
+	}
+
+	output = &DeleteApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteApplication API operation for Amazon AppIntegrations Service.
+//
+// Deletes the Application. Only Applications that don't have any Application
+// Associations can be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation DeleteApplication for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceError
+//     Request processing failed due to an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/DeleteApplication
+func (c *AppIntegrationsService) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
+	req, out := c.DeleteApplicationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteApplicationWithContext is the same as DeleteApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) DeleteApplicationWithContext(ctx aws.Context, input *DeleteApplicationInput, opts ...request.Option) (*DeleteApplicationOutput, error) {
+	req, out := c.DeleteApplicationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -525,7 +621,7 @@ func (c *AppIntegrationsService) GetApplicationRequest(input *GetApplicationInpu
 	op := &request.Operation{
 		Name:       opGetApplication,
 		HTTPMethod: "GET",
-		HTTPPath:   "/applications/{Arn}",
+		HTTPPath:   "/applications/{ApplicationIdentifier}",
 	}
 
 	if input == nil {
@@ -774,6 +870,154 @@ func (c *AppIntegrationsService) GetEventIntegrationWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListApplicationAssociations = "ListApplicationAssociations"
+
+// ListApplicationAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListApplicationAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApplicationAssociations for more information on using the ListApplicationAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListApplicationAssociationsRequest method.
+//	req, resp := client.ListApplicationAssociationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListApplicationAssociations
+func (c *AppIntegrationsService) ListApplicationAssociationsRequest(input *ListApplicationAssociationsInput) (req *request.Request, output *ListApplicationAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListApplicationAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{ApplicationIdentifier}/associations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListApplicationAssociationsInput{}
+	}
+
+	output = &ListApplicationAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApplicationAssociations API operation for Amazon AppIntegrations Service.
+//
+// Returns a paginated list of application associations for an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation ListApplicationAssociations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServiceError
+//     Request processing failed due to an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListApplicationAssociations
+func (c *AppIntegrationsService) ListApplicationAssociations(input *ListApplicationAssociationsInput) (*ListApplicationAssociationsOutput, error) {
+	req, out := c.ListApplicationAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListApplicationAssociationsWithContext is the same as ListApplicationAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApplicationAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) ListApplicationAssociationsWithContext(ctx aws.Context, input *ListApplicationAssociationsInput, opts ...request.Option) (*ListApplicationAssociationsOutput, error) {
+	req, out := c.ListApplicationAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListApplicationAssociationsPages iterates over the pages of a ListApplicationAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListApplicationAssociations operation.
+//	pageNum := 0
+//	err := client.ListApplicationAssociationsPages(params,
+//	    func(page *appintegrationsservice.ListApplicationAssociationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *AppIntegrationsService) ListApplicationAssociationsPages(input *ListApplicationAssociationsInput, fn func(*ListApplicationAssociationsOutput, bool) bool) error {
+	return c.ListApplicationAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationAssociationsPagesWithContext same as ListApplicationAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) ListApplicationAssociationsPagesWithContext(ctx aws.Context, input *ListApplicationAssociationsInput, fn func(*ListApplicationAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListApplications = "ListApplications"
@@ -1814,7 +2058,7 @@ func (c *AppIntegrationsService) UpdateApplicationRequest(input *UpdateApplicati
 	op := &request.Operation{
 		Name:       opUpdateApplication,
 		HTTPMethod: "PATCH",
-		HTTPPath:   "/applications/{Arn}",
+		HTTPPath:   "/applications/{ApplicationIdentifier}",
 	}
 
 	if input == nil {
@@ -1856,6 +2100,9 @@ func (c *AppIntegrationsService) UpdateApplicationRequest(input *UpdateApplicati
 //
 //   - AccessDeniedException
 //     You do not have sufficient access to perform this action.
+//
+//   - UnsupportedOperationException
+//     The operation is not supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/UpdateApplication
 func (c *AppIntegrationsService) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -2132,6 +2379,56 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Summary information about the Application Association.
+type ApplicationAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Application.
+	ApplicationArn *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Application Association.
+	ApplicationAssociationArn *string `min:"1" type:"string"`
+
+	// The identifier for the client that is associated with the Application Association.
+	ClientId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApplicationAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *ApplicationAssociationSummary) SetApplicationArn(v string) *ApplicationAssociationSummary {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetApplicationAssociationArn sets the ApplicationAssociationArn field's value.
+func (s *ApplicationAssociationSummary) SetApplicationAssociationArn(v string) *ApplicationAssociationSummary {
+	s.ApplicationAssociationArn = &v
+	return s
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *ApplicationAssociationSummary) SetClientId(v string) *ApplicationAssociationSummary {
+	s.ClientId = &v
+	return s
+}
+
 // The configuration for where the application should be loaded from.
 type ApplicationSourceConfig struct {
 	_ struct{} `type:"structure"`
@@ -2271,7 +2568,7 @@ type CreateApplicationInput struct {
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the application.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the application.
 	//
@@ -2283,11 +2580,18 @@ type CreateApplicationInput struct {
 	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 
+	// The configuration of events or requests that the application has access to.
+	Permissions []*string `type:"list"`
+
 	// The events that the application publishes.
-	Publications []*Publication `type:"list"`
+	//
+	// Deprecated: Publications has been replaced with Permissions
+	Publications []*Publication `deprecated:"true" type:"list"`
 
 	// The events that the application subscribes.
-	Subscriptions []*Subscription `type:"list"`
+	//
+	// Deprecated: Subscriptions has been replaced with Permissions
+	Subscriptions []*Subscription `deprecated:"true" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
@@ -2320,9 +2624,6 @@ func (s *CreateApplicationInput) Validate() error {
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -2401,6 +2702,12 @@ func (s *CreateApplicationInput) SetNamespace(v string) *CreateApplicationInput 
 	return s
 }
 
+// SetPermissions sets the Permissions field's value.
+func (s *CreateApplicationInput) SetPermissions(v []*string) *CreateApplicationInput {
+	s.Permissions = v
+	return s
+}
+
 // SetPublications sets the Publications field's value.
 func (s *CreateApplicationInput) SetPublications(v []*Publication) *CreateApplicationInput {
 	s.Publications = v
@@ -2469,7 +2776,7 @@ type CreateDataIntegrationInput struct {
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description of the DataIntegration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The configuration for what files should be pulled from the source.
 	FileConfiguration *FileConfiguration `type:"structure"`
@@ -2523,9 +2830,6 @@ func (s *CreateDataIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDataIntegrationInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.KmsKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("KmsKey"))
@@ -2632,7 +2936,7 @@ type CreateDataIntegrationOutput struct {
 	ClientToken *string `min:"1" type:"string"`
 
 	// A description of the DataIntegration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The configuration for what files should be pulled from the source.
 	FileConfiguration *FileConfiguration `type:"structure"`
@@ -2754,7 +3058,7 @@ type CreateEventIntegrationInput struct {
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the event integration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The EventBridge bus.
 	//
@@ -2799,9 +3103,6 @@ func (s *CreateEventIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateEventIntegrationInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.EventBridgeBus == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventBridgeBus"))
@@ -2999,6 +3300,77 @@ func (s *DataIntegrationSummary) SetName(v string) *DataIntegrationSummary {
 func (s *DataIntegrationSummary) SetSourceURI(v string) *DataIntegrationSummary {
 	s.SourceURI = &v
 	return s
+}
+
+type DeleteApplicationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the Application.
+	//
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"ApplicationIdentifier" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteApplicationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteApplicationInput) SetArn(v string) *DeleteApplicationInput {
+	s.Arn = &v
+	return s
+}
+
+type DeleteApplicationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteApplicationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDataIntegrationInput struct {
@@ -3262,7 +3634,7 @@ type EventIntegration struct {
 	_ struct{} `type:"structure"`
 
 	// The event integration description.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The Amazon EventBridge bus for the event integration.
 	EventBridgeBus *string `min:"1" type:"string"`
@@ -3539,7 +3911,7 @@ type GetApplicationInput struct {
 	// The Amazon Resource Name (ARN) of the Application.
 	//
 	// Arn is a required field
-	Arn *string `location:"uri" locationName:"Arn" min:"1" type:"string" required:"true"`
+	Arn *string `location:"uri" locationName:"ApplicationIdentifier" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -3595,7 +3967,7 @@ type GetApplicationOutput struct {
 	CreatedTime *time.Time `type:"timestamp"`
 
 	// The description of the application.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// A unique identifier for the Application.
 	Id *string `type:"string"`
@@ -3609,11 +3981,18 @@ type GetApplicationOutput struct {
 	// The namespace of the application.
 	Namespace *string `min:"1" type:"string"`
 
+	// The configuration of events or requests that the application has access to.
+	Permissions []*string `type:"list"`
+
 	// The events that the application publishes.
-	Publications []*Publication `type:"list"`
+	//
+	// Deprecated: Publications has been replaced with Permissions
+	Publications []*Publication `deprecated:"true" type:"list"`
 
 	// The events that the application subscribes.
-	Subscriptions []*Subscription `type:"list"`
+	//
+	// Deprecated: Subscriptions has been replaced with Permissions
+	Subscriptions []*Subscription `deprecated:"true" type:"list"`
 
 	// The tags used to organize, track, or control access for this resource. For
 	// example, { "tags": {"key1":"value1", "key2":"value2"} }.
@@ -3683,6 +4062,12 @@ func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 // SetNamespace sets the Namespace field's value.
 func (s *GetApplicationOutput) SetNamespace(v string) *GetApplicationOutput {
 	s.Namespace = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *GetApplicationOutput) SetPermissions(v []*string) *GetApplicationOutput {
+	s.Permissions = v
 	return s
 }
 
@@ -3760,7 +4145,7 @@ type GetDataIntegrationOutput struct {
 	Arn *string `min:"1" type:"string"`
 
 	// The KMS key for the DataIntegration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The configuration for what files should be pulled from the source.
 	FileConfiguration *FileConfiguration `type:"structure"`
@@ -3919,7 +4304,7 @@ type GetEventIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the event integration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The EventBridge bus.
 	EventBridgeBus *string `min:"1" type:"string"`
@@ -4118,6 +4503,120 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListApplicationAssociationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique identifier for the Application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"ApplicationIdentifier" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApplicationAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApplicationAssociationsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ListApplicationAssociationsInput) SetApplicationId(v string) *ListApplicationAssociationsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListApplicationAssociationsInput) SetMaxResults(v int64) *ListApplicationAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationAssociationsInput) SetNextToken(v string) *ListApplicationAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListApplicationAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of Application Associations for the Application.
+	ApplicationAssociations []*ApplicationAssociationSummary `min:"1" type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListApplicationAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationAssociations sets the ApplicationAssociations field's value.
+func (s *ListApplicationAssociationsOutput) SetApplicationAssociations(v []*ApplicationAssociationSummary) *ListApplicationAssociationsOutput {
+	s.ApplicationAssociations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationAssociationsOutput) SetNextToken(v string) *ListApplicationAssociationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListApplicationsInput struct {
@@ -4724,7 +5223,7 @@ type Publication struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the publication.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the publication.
 	//
@@ -4758,9 +5257,6 @@ func (s Publication) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Publication) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Publication"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Event == nil {
 		invalidParams.Add(request.NewErrParamRequired("Event"))
 	}
@@ -5006,7 +5502,7 @@ type Subscription struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the subscription.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the subscription.
 	//
@@ -5035,9 +5531,6 @@ func (s Subscription) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Subscription) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Subscription"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Event == nil {
 		invalidParams.Add(request.NewErrParamRequired("Event"))
 	}
@@ -5216,6 +5709,70 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The operation is not supported.
+type UnsupportedOperationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
+	return &UnsupportedOperationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedOperationException) Code() string {
+	return "UnsupportedOperationException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedOperationException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedOperationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedOperationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5313,19 +5870,26 @@ type UpdateApplicationInput struct {
 	// The Amazon Resource Name (ARN) of the Application.
 	//
 	// Arn is a required field
-	Arn *string `location:"uri" locationName:"Arn" min:"1" type:"string" required:"true"`
+	Arn *string `location:"uri" locationName:"ApplicationIdentifier" min:"1" type:"string" required:"true"`
 
 	// The description of the application.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the application.
 	Name *string `min:"1" type:"string"`
 
+	// The configuration of events or requests that the application has access to.
+	Permissions []*string `type:"list"`
+
 	// The events that the application publishes.
-	Publications []*Publication `type:"list"`
+	//
+	// Deprecated: Publications has been replaced with Permissions
+	Publications []*Publication `deprecated:"true" type:"list"`
 
 	// The events that the application subscribes.
-	Subscriptions []*Subscription `type:"list"`
+	//
+	// Deprecated: Subscriptions has been replaced with Permissions
+	Subscriptions []*Subscription `deprecated:"true" type:"list"`
 }
 
 // String returns the string representation.
@@ -5354,9 +5918,6 @@ func (s *UpdateApplicationInput) Validate() error {
 	}
 	if s.Arn != nil && len(*s.Arn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -5417,6 +5978,12 @@ func (s *UpdateApplicationInput) SetName(v string) *UpdateApplicationInput {
 	return s
 }
 
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateApplicationInput) SetPermissions(v []*string) *UpdateApplicationInput {
+	s.Permissions = v
+	return s
+}
+
 // SetPublications sets the Publications field's value.
 func (s *UpdateApplicationInput) SetPublications(v []*Publication) *UpdateApplicationInput {
 	s.Publications = v
@@ -5455,7 +6022,7 @@ type UpdateDataIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the DataIntegration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// A unique identifier for the DataIntegration.
 	//
@@ -5487,9 +6054,6 @@ func (s UpdateDataIntegrationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateDataIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDataIntegrationInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Identifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("Identifier"))
 	}
@@ -5550,7 +6114,7 @@ type UpdateEventIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the event integration.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the event integration.
 	//
@@ -5579,9 +6143,6 @@ func (s UpdateEventIntegrationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEventIntegrationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEventIntegrationInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}

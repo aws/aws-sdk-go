@@ -49,6 +49,12 @@ const (
 	//
 	// The throttling limit has been exceeded.
 	ErrCodeThrottlingException = "ThrottlingException"
+
+	// ErrCodeUnsupportedOperationException for service response error code
+	// "UnsupportedOperationException".
+	//
+	// The operation is not supported.
+	ErrCodeUnsupportedOperationException = "UnsupportedOperationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -59,4 +65,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 	"ResourceQuotaExceededException": newErrorResourceQuotaExceededException,
 	"ThrottlingException":            newErrorThrottlingException,
+	"UnsupportedOperationException":  newErrorUnsupportedOperationException,
 }
