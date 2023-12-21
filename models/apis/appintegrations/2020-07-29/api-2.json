@@ -26,7 +26,8 @@
         {"shape":"DuplicateResourceException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "CreateDataIntegration":{
@@ -59,6 +60,22 @@
         {"shape":"ResourceQuotaExceededException"},
         {"shape":"DuplicateResourceException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteApplication":{
+      "name":"DeleteApplication",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/applications/{ApplicationIdentifier}"
+      },
+      "input":{"shape":"DeleteApplicationRequest"},
+      "output":{"shape":"DeleteApplicationResponse"},
+      "errors":[
+        {"shape":"InternalServiceError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"},
         {"shape":"AccessDeniedException"}
       ]
@@ -99,7 +116,7 @@
       "name":"GetApplication",
       "http":{
         "method":"GET",
-        "requestUri":"/applications/{Arn}"
+        "requestUri":"/applications/{ApplicationIdentifier}"
       },
       "input":{"shape":"GetApplicationRequest"},
       "output":{"shape":"GetApplicationResponse"},
@@ -135,6 +152,22 @@
       },
       "input":{"shape":"GetEventIntegrationRequest"},
       "output":{"shape":"GetEventIntegrationResponse"},
+      "errors":[
+        {"shape":"InternalServiceError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListApplicationAssociations":{
+      "name":"ListApplicationAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{ApplicationIdentifier}/associations"
+      },
+      "input":{"shape":"ListApplicationAssociationsRequest"},
+      "output":{"shape":"ListApplicationAssociationsResponse"},
       "errors":[
         {"shape":"InternalServiceError"},
         {"shape":"ThrottlingException"},
@@ -269,7 +302,7 @@
       "name":"UpdateApplication",
       "http":{
         "method":"PATCH",
-        "requestUri":"/applications/{Arn}"
+        "requestUri":"/applications/{ApplicationIdentifier}"
       },
       "input":{"shape":"UpdateApplicationRequest"},
       "output":{"shape":"UpdateApplicationResponse"},
@@ -278,7 +311,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "UpdateDataIntegration":{
@@ -326,6 +360,20 @@
     "ApplicationApprovedOrigins":{
       "type":"list",
       "member":{"shape":"ApplicationTrustedSource"},
+      "max":50,
+      "min":1
+    },
+    "ApplicationAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "ApplicationAssociationArn":{"shape":"Arn"},
+        "ApplicationArn":{"shape":"Arn"},
+        "ClientId":{"shape":"ClientId"}
+      }
+    },
+    "ApplicationAssociationsList":{
+      "type":"list",
+      "member":{"shape":"ApplicationAssociationSummary"},
       "max":50,
       "min":1
     },
@@ -405,13 +453,22 @@
         "Namespace":{"shape":"ApplicationNamespace"},
         "Description":{"shape":"Description"},
         "ApplicationSourceConfig":{"shape":"ApplicationSourceConfig"},
-        "Subscriptions":{"shape":"SubscriptionList"},
-        "Publications":{"shape":"PublicationList"},
+        "Subscriptions":{
+          "shape":"SubscriptionList",
+          "deprecated":true,
+          "deprecatedMessage":"Subscriptions has been replaced with Permissions"
+        },
+        "Publications":{
+          "shape":"PublicationList",
+          "deprecated":true,
+          "deprecatedMessage":"Publications has been replaced with Permissions"
+        },
         "ClientToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "Permissions":{"shape":"PermissionList"}
       }
     },
     "CreateApplicationResponse":{
@@ -512,6 +569,22 @@
       "max":50,
       "min":1
     },
+    "DeleteApplicationRequest":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{
+          "shape":"ArnOrUUID",
+          "location":"uri",
+          "locationName":"ApplicationIdentifier"
+        }
+      }
+    },
+    "DeleteApplicationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDataIntegrationRequest":{
       "type":"structure",
       "required":["DataIntegrationIdentifier"],
@@ -547,7 +620,7 @@
     "Description":{
       "type":"string",
       "max":1000,
-      "min":1,
+      "min":0,
       "pattern":".*"
     },
     "DuplicateResourceException":{
@@ -669,7 +742,7 @@
         "Arn":{
           "shape":"ArnOrUUID",
           "location":"uri",
-          "locationName":"Arn"
+          "locationName":"ApplicationIdentifier"
         }
       }
     },
@@ -682,11 +755,20 @@
         "Namespace":{"shape":"ApplicationNamespace"},
         "Description":{"shape":"Description"},
         "ApplicationSourceConfig":{"shape":"ApplicationSourceConfig"},
-        "Subscriptions":{"shape":"SubscriptionList"},
-        "Publications":{"shape":"PublicationList"},
+        "Subscriptions":{
+          "shape":"SubscriptionList",
+          "deprecated":true,
+          "deprecatedMessage":"Subscriptions has been replaced with Permissions"
+        },
+        "Publications":{
+          "shape":"PublicationList",
+          "deprecated":true,
+          "deprecatedMessage":"Publications has been replaced with Permissions"
+        },
         "CreatedTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "Permissions":{"shape":"PermissionList"}
       }
     },
     "GetDataIntegrationRequest":{
@@ -765,6 +847,34 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ListApplicationAssociationsRequest":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{
+          "shape":"ArnOrUUID",
+          "location":"uri",
+          "locationName":"ApplicationIdentifier"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListApplicationAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationAssociations":{"shape":"ApplicationAssociationsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListApplicationsRequest":{
       "type":"structure",
@@ -946,6 +1056,18 @@
       "key":{"shape":"NonBlankString"},
       "value":{"shape":"FieldsMap"}
     },
+    "Permission":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\/\\._\\-\\*]+$"
+    },
+    "PermissionList":{
+      "type":"list",
+      "member":{"shape":"Permission"},
+      "max":150,
+      "min":0
+    },
     "Publication":{
       "type":"structure",
       "required":[
@@ -1077,6 +1199,14 @@
       "type":"string",
       "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
     },
+    "UnsupportedOperationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1108,13 +1238,22 @@
         "Arn":{
           "shape":"ArnOrUUID",
           "location":"uri",
-          "locationName":"Arn"
+          "locationName":"ApplicationIdentifier"
         },
         "Name":{"shape":"ApplicationName"},
         "Description":{"shape":"Description"},
         "ApplicationSourceConfig":{"shape":"ApplicationSourceConfig"},
-        "Subscriptions":{"shape":"SubscriptionList"},
-        "Publications":{"shape":"PublicationList"}
+        "Subscriptions":{
+          "shape":"SubscriptionList",
+          "deprecated":true,
+          "deprecatedMessage":"Subscriptions has been replaced with Permissions"
+        },
+        "Publications":{
+          "shape":"PublicationList",
+          "deprecated":true,
+          "deprecatedMessage":"Publications has been replaced with Permissions"
+        },
+        "Permissions":{"shape":"PermissionList"}
       }
     },
     "UpdateApplicationResponse":{

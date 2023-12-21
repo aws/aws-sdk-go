@@ -297,6 +297,15 @@
       "refs": {
       }
     },
+    "KmsKeyArn": {
+      "base": "<p>A KMS Key ARN.</p>",
+      "refs": {
+        "CreateWorkspaceRequest$kmsKeyArn": "<p>Optional, customer managed KMS key used to encrypt data for this workspace</p>",
+        "CreateWorkspaceResponse$kmsKeyArn": "<p>Customer managed KMS key ARN for this workspace</p>",
+        "WorkspaceDescription$kmsKeyArn": "<p>The customer managed KMS key of this workspace.</p>",
+        "WorkspaceSummary$kmsKeyArn": "<p>Customer managed KMS key ARN for this workspace</p>"
+      }
+    },
     "ListRuleGroupsNamespacesRequest": {
       "base": "<p>Represents the input of a ListRuleGroupsNamespaces operation.</p>",
       "refs": {

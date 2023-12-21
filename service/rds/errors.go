@@ -684,6 +684,12 @@ const (
 	// The option group isn't in the available state.
 	ErrCodeInvalidOptionGroupStateFault = "InvalidOptionGroupStateFault"
 
+	// ErrCodeInvalidResourceStateFault for service response error code
+	// "InvalidResourceStateFault".
+	//
+	// The operation can't be performed because another operation is in progress.
+	ErrCodeInvalidResourceStateFault = "InvalidResourceStateFault"
+
 	// ErrCodeInvalidRestoreFault for service response error code
 	// "InvalidRestoreFault".
 	//

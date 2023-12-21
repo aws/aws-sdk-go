@@ -11292,6 +11292,203 @@ func (s *PromptOverrideConfiguration) SetPromptConfigurations(v []*PromptConfigu
 	return s
 }
 
+// Contains the configurations to use RDS to store knowledge base data.
+type RdsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Arn of a SecretsManager Secret.
+	//
+	// CredentialsSecretArn is a required field
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
+
+	// Name of the database within RDS
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
+
+	// A mapping of Bedrock Knowledge Base fields to RDS column names
+	//
+	// FieldMapping is a required field
+	FieldMapping *RdsFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
+
+	// Arn of a RDS Resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+
+	// Name of the table within RDS
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RdsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RdsConfiguration"}
+	if s.CredentialsSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsSecretArn"))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.FieldMapping == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldMapping"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.FieldMapping != nil {
+		if err := s.FieldMapping.Validate(); err != nil {
+			invalidParams.AddNested("FieldMapping", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *RdsConfiguration) SetCredentialsSecretArn(v string) *RdsConfiguration {
+	s.CredentialsSecretArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RdsConfiguration) SetDatabaseName(v string) *RdsConfiguration {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetFieldMapping sets the FieldMapping field's value.
+func (s *RdsConfiguration) SetFieldMapping(v *RdsFieldMapping) *RdsConfiguration {
+	s.FieldMapping = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RdsConfiguration) SetResourceArn(v string) *RdsConfiguration {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *RdsConfiguration) SetTableName(v string) *RdsConfiguration {
+	s.TableName = &v
+	return s
+}
+
+// A mapping of Bedrock Knowledge Base fields to RDS column names
+type RdsFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the column
+	//
+	// MetadataField is a required field
+	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
+
+	// Name of the column
+	//
+	// PrimaryKeyField is a required field
+	PrimaryKeyField *string `locationName:"primaryKeyField" type:"string" required:"true"`
+
+	// Name of the column
+	//
+	// TextField is a required field
+	TextField *string `locationName:"textField" type:"string" required:"true"`
+
+	// Name of the column
+	//
+	// VectorField is a required field
+	VectorField *string `locationName:"vectorField" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RdsFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RdsFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RdsFieldMapping"}
+	if s.MetadataField == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetadataField"))
+	}
+	if s.PrimaryKeyField == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrimaryKeyField"))
+	}
+	if s.TextField == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextField"))
+	}
+	if s.VectorField == nil {
+		invalidParams.Add(request.NewErrParamRequired("VectorField"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetadataField sets the MetadataField field's value.
+func (s *RdsFieldMapping) SetMetadataField(v string) *RdsFieldMapping {
+	s.MetadataField = &v
+	return s
+}
+
+// SetPrimaryKeyField sets the PrimaryKeyField field's value.
+func (s *RdsFieldMapping) SetPrimaryKeyField(v string) *RdsFieldMapping {
+	s.PrimaryKeyField = &v
+	return s
+}
+
+// SetTextField sets the TextField field's value.
+func (s *RdsFieldMapping) SetTextField(v string) *RdsFieldMapping {
+	s.TextField = &v
+	return s
+}
+
+// SetVectorField sets the VectorField field's value.
+func (s *RdsFieldMapping) SetVectorField(v string) *RdsFieldMapping {
+	s.VectorField = &v
+	return s
+}
+
 // Contains the configurations to use Redis Enterprise Cloud to store knowledge
 // base data.
 type RedisEnterpriseCloudConfiguration struct {
@@ -11891,6 +12088,9 @@ type StorageConfiguration struct {
 	// Contains the configurations to use Pinecone to store knowledge base data.
 	PineconeConfiguration *PineconeConfiguration `locationName:"pineconeConfiguration" type:"structure"`
 
+	// Contains the configurations to use RDS to store knowledge base data.
+	RdsConfiguration *RdsConfiguration `locationName:"rdsConfiguration" type:"structure"`
+
 	// Contains the configurations to use Redis Enterprise Cloud to store knowledge
 	// base data.
 	RedisEnterpriseCloudConfiguration *RedisEnterpriseCloudConfiguration `locationName:"redisEnterpriseCloudConfiguration" type:"structure"`
@@ -11935,6 +12135,11 @@ func (s *StorageConfiguration) Validate() error {
 			invalidParams.AddNested("PineconeConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RdsConfiguration != nil {
+		if err := s.RdsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RdsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RedisEnterpriseCloudConfiguration != nil {
 		if err := s.RedisEnterpriseCloudConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("RedisEnterpriseCloudConfiguration", err.(request.ErrInvalidParams))
@@ -11956,6 +12161,12 @@ func (s *StorageConfiguration) SetOpensearchServerlessConfiguration(v *OpenSearc
 // SetPineconeConfiguration sets the PineconeConfiguration field's value.
 func (s *StorageConfiguration) SetPineconeConfiguration(v *PineconeConfiguration) *StorageConfiguration {
 	s.PineconeConfiguration = v
+	return s
+}
+
+// SetRdsConfiguration sets the RdsConfiguration field's value.
+func (s *StorageConfiguration) SetRdsConfiguration(v *RdsConfiguration) *StorageConfiguration {
+	s.RdsConfiguration = v
 	return s
 }
 
@@ -13702,6 +13913,9 @@ const (
 
 	// KnowledgeBaseStorageTypeRedisEnterpriseCloud is a KnowledgeBaseStorageType enum value
 	KnowledgeBaseStorageTypeRedisEnterpriseCloud = "REDIS_ENTERPRISE_CLOUD"
+
+	// KnowledgeBaseStorageTypeRds is a KnowledgeBaseStorageType enum value
+	KnowledgeBaseStorageTypeRds = "RDS"
 )
 
 // KnowledgeBaseStorageType_Values returns all elements of the KnowledgeBaseStorageType enum
@@ -13710,6 +13924,7 @@ func KnowledgeBaseStorageType_Values() []string {
 		KnowledgeBaseStorageTypeOpensearchServerless,
 		KnowledgeBaseStorageTypePinecone,
 		KnowledgeBaseStorageTypeRedisEnterpriseCloud,
+		KnowledgeBaseStorageTypeRds,
 	}
 }
 

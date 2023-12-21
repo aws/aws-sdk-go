@@ -321,6 +321,8 @@
         {"shape":"EncryptionKeyDisabledException"},
         {"shape":"EncryptionKeyNotFoundException"},
         {"shape":"EncryptionKeyUnavailableException"},
+        {"shape":"EncryptionKeyInvalidIdException"},
+        {"shape":"EncryptionKeyInvalidUsageException"},
         {"shape":"InvalidTagsMapException"},
         {"shape":"TooManyTagsException"},
         {"shape":"InvalidSystemTagUsageException"},
@@ -1935,6 +1937,28 @@
         {"shape":"EncryptionKeyUnavailableException"}
       ]
     },
+    "UpdateRepositoryEncryptionKey":{
+      "name":"UpdateRepositoryEncryptionKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRepositoryEncryptionKeyInput"},
+      "output":{"shape":"UpdateRepositoryEncryptionKeyOutput"},
+      "errors":[
+        {"shape":"RepositoryNameRequiredException"},
+        {"shape":"RepositoryDoesNotExistException"},
+        {"shape":"InvalidRepositoryNameException"},
+        {"shape":"EncryptionKeyRequiredException"},
+        {"shape":"EncryptionIntegrityChecksFailedException"},
+        {"shape":"EncryptionKeyAccessDeniedException"},
+        {"shape":"EncryptionKeyInvalidIdException"},
+        {"shape":"EncryptionKeyInvalidUsageException"},
+        {"shape":"EncryptionKeyDisabledException"},
+        {"shape":"EncryptionKeyNotFoundException"},
+        {"shape":"EncryptionKeyUnavailableException"}
+      ]
+    },
     "UpdateRepositoryName":{
       "name":"UpdateRepositoryName",
       "http":{
@@ -2299,6 +2323,30 @@
         "errors":{"shape":"BatchGetCommitsErrorsList"}
       }
     },
+    "BatchGetRepositoriesError":{
+      "type":"structure",
+      "members":{
+        "repositoryId":{"shape":"RepositoryId"},
+        "repositoryName":{"shape":"RepositoryName"},
+        "errorCode":{"shape":"BatchGetRepositoriesErrorCodeEnum"},
+        "errorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "BatchGetRepositoriesErrorCodeEnum":{
+      "type":"string",
+      "enum":[
+        "EncryptionIntegrityChecksFailedException",
+        "EncryptionKeyAccessDeniedException",
+        "EncryptionKeyDisabledException",
+        "EncryptionKeyNotFoundException",
+        "EncryptionKeyUnavailableException",
+        "RepositoryDoesNotExistException"
+      ]
+    },
+    "BatchGetRepositoriesErrorsList":{
+      "type":"list",
+      "member":{"shape":"BatchGetRepositoriesError"}
+    },
     "BatchGetRepositoriesInput":{
       "type":"structure",
       "required":["repositoryNames"],
@@ -2310,7 +2358,8 @@
       "type":"structure",
       "members":{
         "repositories":{"shape":"RepositoryMetadataList"},
-        "repositoriesNotFound":{"shape":"RepositoryNotFoundList"}
+        "repositoriesNotFound":{"shape":"RepositoryNotFoundList"},
+        "errors":{"shape":"BatchGetRepositoriesErrorsList"}
       }
     },
     "BeforeCommitIdAndAfterCommitIdAreSameException":{
@@ -2738,7 +2787,8 @@
       "members":{
         "repositoryName":{"shape":"RepositoryName"},
         "repositoryDescription":{"shape":"RepositoryDescription"},
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "kmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateRepositoryOutput":{
@@ -3014,7 +3064,25 @@
       },
       "exception":true
     },
+    "EncryptionKeyInvalidIdException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "EncryptionKeyInvalidUsageException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "EncryptionKeyNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "EncryptionKeyRequiredException":{
       "type":"structure",
       "members":{
       },
@@ -3986,6 +4054,10 @@
     "IsMove":{"type":"boolean"},
     "IsObjectTypeConflict":{"type":"boolean"},
     "KeepEmptyFolders":{"type":"boolean"},
+    "KmsKeyId":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9:/_-]+$"
+    },
     "LastModifiedDate":{"type":"timestamp"},
     "Limit":{
       "type":"integer",
@@ -4994,7 +5066,8 @@
         "creationDate":{"shape":"CreationDate"},
         "cloneUrlHttp":{"shape":"CloneUrlHttp"},
         "cloneUrlSsh":{"shape":"CloneUrlSsh"},
-        "Arn":{"shape":"Arn"}
+        "Arn":{"shape":"Arn"},
+        "kmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "RepositoryMetadataList":{
@@ -5555,6 +5628,25 @@
       "members":{
         "repositoryName":{"shape":"RepositoryName"},
         "repositoryDescription":{"shape":"RepositoryDescription"}
+      }
+    },
+    "UpdateRepositoryEncryptionKeyInput":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "kmsKeyId"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "kmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "UpdateRepositoryEncryptionKeyOutput":{
+      "type":"structure",
+      "members":{
+        "repositoryId":{"shape":"RepositoryId"},
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "originalKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "UpdateRepositoryNameInput":{

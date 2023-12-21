@@ -83,23 +83,52 @@ func (c *RDSDataService) BatchExecuteStatementRequest(input *BatchExecuteStateme
 //
 // Returned Error Types:
 //
+//   - SecretsErrorException
+//     There was a problem with the Secrets Manager secret used with the request,
+//     caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+//
+//   - HttpEndpointNotEnabledException
+//     The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+//
+//   - DatabaseErrorException
+//     There was an error in processing the SQL statement.
+//
+//   - DatabaseUnavailableException
+//     The writer instance in the DB cluster isn't available.
+//
+//   - TransactionNotFoundException
+//     The transaction ID wasn't found.
+//
+//   - InvalidSecretException
+//     The Secrets Manager secret used with the request isn't valid.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter isn't available.
+//
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - DatabaseNotFoundException
+//     The DB cluster doesn't have a DB instance.
+//
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - StatementTimeoutException
 //     The execution of the SQL statement timed out.
 //
 //   - InternalServerErrorException
 //     An internal error occurred.
-//
-//   - ForbiddenException
-//     There are insufficient privileges to make the call.
-//
-//   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BatchExecuteStatement
 func (c *RDSDataService) BatchExecuteStatement(input *BatchExecuteStatementInput) (*BatchExecuteStatementOutput, error) {
@@ -187,23 +216,52 @@ func (c *RDSDataService) BeginTransactionRequest(input *BeginTransactionInput) (
 //
 // Returned Error Types:
 //
+//   - SecretsErrorException
+//     There was a problem with the Secrets Manager secret used with the request,
+//     caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+//
+//   - HttpEndpointNotEnabledException
+//     The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+//
+//   - DatabaseErrorException
+//     There was an error in processing the SQL statement.
+//
+//   - DatabaseUnavailableException
+//     The writer instance in the DB cluster isn't available.
+//
+//   - TransactionNotFoundException
+//     The transaction ID wasn't found.
+//
+//   - InvalidSecretException
+//     The Secrets Manager secret used with the request isn't valid.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter isn't available.
+//
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - DatabaseNotFoundException
+//     The DB cluster doesn't have a DB instance.
+//
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - StatementTimeoutException
 //     The execution of the SQL statement timed out.
 //
 //   - InternalServerErrorException
 //     An internal error occurred.
-//
-//   - ForbiddenException
-//     There are insufficient privileges to make the call.
-//
-//   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/BeginTransaction
 func (c *RDSDataService) BeginTransaction(input *BeginTransactionInput) (*BeginTransactionOutput, error) {
@@ -282,23 +340,52 @@ func (c *RDSDataService) CommitTransactionRequest(input *CommitTransactionInput)
 //
 // Returned Error Types:
 //
+//   - SecretsErrorException
+//     There was a problem with the Secrets Manager secret used with the request,
+//     caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+//
+//   - HttpEndpointNotEnabledException
+//     The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+//
+//   - DatabaseErrorException
+//     There was an error in processing the SQL statement.
+//
+//   - DatabaseUnavailableException
+//     The writer instance in the DB cluster isn't available.
+//
+//   - TransactionNotFoundException
+//     The transaction ID wasn't found.
+//
+//   - InvalidSecretException
+//     The Secrets Manager secret used with the request isn't valid.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter isn't available.
+//
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - DatabaseNotFoundException
+//     The DB cluster doesn't have a DB instance.
+//
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - StatementTimeoutException
 //     The execution of the SQL statement timed out.
 //
 //   - InternalServerErrorException
 //     An internal error occurred.
-//
-//   - ForbiddenException
-//     There are insufficient privileges to make the call.
-//
-//   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
 //
 //   - NotFoundException
 //     The resourceArn, secretArn, or transactionId value can't be found.
@@ -375,8 +462,9 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 //
 // Runs one or more SQL statements.
 //
-// This operation is deprecated. Use the BatchExecuteStatement or ExecuteStatement
-// operation.
+// This operation isn't supported for Aurora PostgreSQL Serverless v2 and provisioned
+// DB clusters, and for Aurora Serverless v1 DB clusters, the operation is deprecated.
+// Use the BatchExecuteStatement or ExecuteStatement operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -388,10 +476,11 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 // Returned Error Types:
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - InternalServerErrorException
 //     An internal error occurred.
@@ -400,7 +489,7 @@ func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request
 //     There are insufficient privileges to make the call.
 //
 //   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
+//     The service specified by the resourceArn parameter isn't available.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteSql
 //
@@ -488,11 +577,46 @@ func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (
 //
 // Returned Error Types:
 //
+//   - SecretsErrorException
+//     There was a problem with the Secrets Manager secret used with the request,
+//     caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+//
+//   - HttpEndpointNotEnabledException
+//     The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+//
+//   - DatabaseErrorException
+//     There was an error in processing the SQL statement.
+//
+//   - DatabaseUnavailableException
+//     The writer instance in the DB cluster isn't available.
+//
+//   - TransactionNotFoundException
+//     The transaction ID wasn't found.
+//
+//   - InvalidSecretException
+//     The Secrets Manager secret used with the request isn't valid.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter isn't available.
+//
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - DatabaseNotFoundException
+//     The DB cluster doesn't have a DB instance.
+//
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - StatementTimeoutException
 //     The execution of the SQL statement timed out.
@@ -500,11 +624,14 @@ func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (
 //   - InternalServerErrorException
 //     An internal error occurred.
 //
-//   - ForbiddenException
-//     There are insufficient privileges to make the call.
+//   - UnsupportedResultException
+//     There was a problem with the result because of one of the following conditions:
 //
-//   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
+//   - It contained an unsupported data type.
+//
+//   - It contained a multidimensional array.
+//
+//   - The size was too large.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-data-2018-08-01/ExecuteStatement
 func (c *RDSDataService) ExecuteStatement(input *ExecuteStatementInput) (*ExecuteStatementOutput, error) {
@@ -583,23 +710,52 @@ func (c *RDSDataService) RollbackTransactionRequest(input *RollbackTransactionIn
 //
 // Returned Error Types:
 //
+//   - SecretsErrorException
+//     There was a problem with the Secrets Manager secret used with the request,
+//     caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+//
+//   - HttpEndpointNotEnabledException
+//     The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+//
+//   - DatabaseErrorException
+//     There was an error in processing the SQL statement.
+//
+//   - DatabaseUnavailableException
+//     The writer instance in the DB cluster isn't available.
+//
+//   - TransactionNotFoundException
+//     The transaction ID wasn't found.
+//
+//   - InvalidSecretException
+//     The Secrets Manager secret used with the request isn't valid.
+//
+//   - ServiceUnavailableError
+//     The service specified by the resourceArn parameter isn't available.
+//
+//   - ForbiddenException
+//     There are insufficient privileges to make the call.
+//
+//   - DatabaseNotFoundException
+//     The DB cluster doesn't have a DB instance.
+//
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access to perform this action.
 //
 //   - BadRequestException
-//     There is an error in the call or in a SQL statement.
+//     There is an error in the call or in a SQL statement. (This error only appears
+//     in calls from Aurora Serverless v1 databases.)
 //
 //   - StatementTimeoutException
 //     The execution of the SQL statement timed out.
 //
 //   - InternalServerErrorException
 //     An internal error occurred.
-//
-//   - ForbiddenException
-//     There are insufficient privileges to make the call.
-//
-//   - ServiceUnavailableError
-//     The service specified by the resourceArn parameter is not available.
 //
 //   - NotFoundException
 //     The resourceArn, secretArn, or transactionId value can't be found.
@@ -626,7 +782,7 @@ func (c *RDSDataService) RollbackTransactionWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// You do not have sufficient access to perform this action.
+// You don't have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -758,7 +914,8 @@ func (s *ArrayValue) SetStringValues(v []*string) *ArrayValue {
 	return s
 }
 
-// There is an error in the call or in a SQL statement.
+// There is an error in the call or in a SQL statement. (This error only appears
+// in calls from Aurora Serverless v1 databases.)
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1374,6 +1531,198 @@ func (s *CommitTransactionOutput) SetTransactionStatus(v string) *CommitTransact
 	return s
 }
 
+// There was an error in processing the SQL statement.
+type DatabaseErrorException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorDatabaseErrorException(v protocol.ResponseMetadata) error {
+	return &DatabaseErrorException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DatabaseErrorException) Code() string {
+	return "DatabaseErrorException"
+}
+
+// Message returns the exception's message.
+func (s *DatabaseErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DatabaseErrorException) OrigErr() error {
+	return nil
+}
+
+func (s *DatabaseErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DatabaseErrorException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DatabaseErrorException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The DB cluster doesn't have a DB instance.
+type DatabaseNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorDatabaseNotFoundException(v protocol.ResponseMetadata) error {
+	return &DatabaseNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DatabaseNotFoundException) Code() string {
+	return "DatabaseNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *DatabaseNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DatabaseNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *DatabaseNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DatabaseNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DatabaseNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The writer instance in the DB cluster isn't available.
+type DatabaseUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatabaseUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorDatabaseUnavailableException(v protocol.ResponseMetadata) error {
+	return &DatabaseUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DatabaseUnavailableException) Code() string {
+	return "DatabaseUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *DatabaseUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DatabaseUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *DatabaseUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DatabaseUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DatabaseUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The request parameters represent the input of a request to run one or more
 // SQL statements.
 type ExecuteSqlInput struct {
@@ -1713,10 +2062,10 @@ type ExecuteStatementOutput struct {
 
 	// Values for fields generated during a DML request.
 	//
-	//    <note> <p>The <code>generatedFields</code> data isn't supported by Aurora
-	//    PostgreSQL. To get the values of generated fields, use the <code>RETURNING</code>
-	//    clause. For more information, see <a href="https://www.postgresql.org/docs/10/dml-returning.html">Returning
-	//    Data From Modified Rows</a> in the PostgreSQL documentation.</p> </note>
+	// The generatedFields data isn't supported by Aurora PostgreSQL. To get the
+	// values of generated fields, use the RETURNING clause. For more information,
+	// see Returning Data From Modified Rows (https://www.postgresql.org/docs/10/dml-returning.html)
+	// in the PostgreSQL documentation.
 	GeneratedFields []*Field `locationName:"generatedFields" type:"list"`
 
 	// The number of records updated by the request.
@@ -1927,6 +2276,70 @@ func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+type HttpEndpointNotEnabledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HttpEndpointNotEnabledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HttpEndpointNotEnabledException) GoString() string {
+	return s.String()
+}
+
+func newErrorHttpEndpointNotEnabledException(v protocol.ResponseMetadata) error {
+	return &HttpEndpointNotEnabledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *HttpEndpointNotEnabledException) Code() string {
+	return "HttpEndpointNotEnabledException"
+}
+
+// Message returns the exception's message.
+func (s *HttpEndpointNotEnabledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *HttpEndpointNotEnabledException) OrigErr() error {
+	return nil
+}
+
+func (s *HttpEndpointNotEnabledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *HttpEndpointNotEnabledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *HttpEndpointNotEnabledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // An internal error occurred.
 type InternalServerErrorException struct {
 	_            struct{}                  `type:"structure"`
@@ -1988,6 +2401,70 @@ func (s *InternalServerErrorException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerErrorException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The Secrets Manager secret used with the request isn't valid.
+type InvalidSecretException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSecretException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidSecretException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidSecretException(v protocol.ResponseMetadata) error {
+	return &InvalidSecretException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidSecretException) Code() string {
+	return "InvalidSecretException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidSecretException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidSecretException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidSecretException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidSecretException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidSecretException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2341,7 +2818,78 @@ func (s *RollbackTransactionOutput) SetTransactionStatus(v string) *RollbackTran
 	return s
 }
 
-// The service specified by the resourceArn parameter is not available.
+// There was a problem with the Secrets Manager secret used with the request,
+// caused by one of the following conditions:
+//
+//   - RDS Data API timed out retrieving the secret.
+//
+//   - The secret provided wasn't found.
+//
+//   - The secret couldn't be decrypted.
+type SecretsErrorException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretsErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecretsErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorSecretsErrorException(v protocol.ResponseMetadata) error {
+	return &SecretsErrorException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SecretsErrorException) Code() string {
+	return "SecretsErrorException"
+}
+
+// Message returns the exception's message.
+func (s *SecretsErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SecretsErrorException) OrigErr() error {
+	return nil
+}
+
+func (s *SecretsErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SecretsErrorException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SecretsErrorException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The service specified by the resourceArn parameter isn't available.
 type ServiceUnavailableError struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2476,9 +3024,8 @@ func (s *SqlParameter) SetValue(v *Field) *SqlParameter {
 
 // The result of a SQL statement.
 //
-//	<note> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
-//	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//	operation instead.</p> </note>
+// This data structure is only used with the deprecated ExecuteSql operation.
+// Use the BatchExecuteStatement or ExecuteStatement operation instead.
 type SqlStatementResult struct {
 	_ struct{} `type:"structure"`
 
@@ -2622,6 +3169,140 @@ func (s *StructValue) SetAttributes(v []*Value) *StructValue {
 	return s
 }
 
+// The transaction ID wasn't found.
+type TransactionNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorTransactionNotFoundException(v protocol.ResponseMetadata) error {
+	return &TransactionNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TransactionNotFoundException) Code() string {
+	return "TransactionNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *TransactionNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TransactionNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *TransactionNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TransactionNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TransactionNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// There was a problem with the result because of one of the following conditions:
+//
+//   - It contained an unsupported data type.
+//
+//   - It contained a multidimensional array.
+//
+//   - The size was too large.
+type UnsupportedResultException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedResultException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnsupportedResultException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedResultException(v protocol.ResponseMetadata) error {
+	return &UnsupportedResultException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedResultException) Code() string {
+	return "UnsupportedResultException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedResultException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedResultException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedResultException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedResultException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedResultException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The response elements represent the results of an update.
 type UpdateResult struct {
 	_ struct{} `type:"structure"`
@@ -2656,9 +3337,8 @@ func (s *UpdateResult) SetGeneratedFields(v []*Field) *UpdateResult {
 
 // Contains the value of a column.
 //
-//	<note> <p>This data structure is only used with the deprecated <code>ExecuteSql</code>
-//	operation. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code>
-//	operation instead.</p> </note>
+// This data structure is only used with the deprecated ExecuteSql operation.
+// Use the BatchExecuteStatement or ExecuteStatement operation instead.
 type Value struct {
 	_ struct{} `type:"structure"`
 

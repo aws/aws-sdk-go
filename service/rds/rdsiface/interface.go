@@ -562,12 +562,20 @@ type RDSAPI interface {
 	DescribeValidDBInstanceModificationsWithContext(aws.Context, *rds.DescribeValidDBInstanceModificationsInput, ...request.Option) (*rds.DescribeValidDBInstanceModificationsOutput, error)
 	DescribeValidDBInstanceModificationsRequest(*rds.DescribeValidDBInstanceModificationsInput) (*request.Request, *rds.DescribeValidDBInstanceModificationsOutput)
 
+	DisableHttpEndpoint(*rds.DisableHttpEndpointInput) (*rds.DisableHttpEndpointOutput, error)
+	DisableHttpEndpointWithContext(aws.Context, *rds.DisableHttpEndpointInput, ...request.Option) (*rds.DisableHttpEndpointOutput, error)
+	DisableHttpEndpointRequest(*rds.DisableHttpEndpointInput) (*request.Request, *rds.DisableHttpEndpointOutput)
+
 	DownloadDBLogFilePortion(*rds.DownloadDBLogFilePortionInput) (*rds.DownloadDBLogFilePortionOutput, error)
 	DownloadDBLogFilePortionWithContext(aws.Context, *rds.DownloadDBLogFilePortionInput, ...request.Option) (*rds.DownloadDBLogFilePortionOutput, error)
 	DownloadDBLogFilePortionRequest(*rds.DownloadDBLogFilePortionInput) (*request.Request, *rds.DownloadDBLogFilePortionOutput)
 
 	DownloadDBLogFilePortionPages(*rds.DownloadDBLogFilePortionInput, func(*rds.DownloadDBLogFilePortionOutput, bool) bool) error
 	DownloadDBLogFilePortionPagesWithContext(aws.Context, *rds.DownloadDBLogFilePortionInput, func(*rds.DownloadDBLogFilePortionOutput, bool) bool, ...request.Option) error
+
+	EnableHttpEndpoint(*rds.EnableHttpEndpointInput) (*rds.EnableHttpEndpointOutput, error)
+	EnableHttpEndpointWithContext(aws.Context, *rds.EnableHttpEndpointInput, ...request.Option) (*rds.EnableHttpEndpointOutput, error)
+	EnableHttpEndpointRequest(*rds.EnableHttpEndpointInput) (*request.Request, *rds.EnableHttpEndpointOutput)
 
 	FailoverDBCluster(*rds.FailoverDBClusterInput) (*rds.FailoverDBClusterOutput, error)
 	FailoverDBClusterWithContext(aws.Context, *rds.FailoverDBClusterInput, ...request.Option) (*rds.FailoverDBClusterOutput, error)

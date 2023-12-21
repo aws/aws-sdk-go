@@ -11,14 +11,33 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action.
+	// You don't have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
-	// There is an error in the call or in a SQL statement.
+	// There is an error in the call or in a SQL statement. (This error only appears
+	// in calls from Aurora Serverless v1 databases.)
 	ErrCodeBadRequestException = "BadRequestException"
+
+	// ErrCodeDatabaseErrorException for service response error code
+	// "DatabaseErrorException".
+	//
+	// There was an error in processing the SQL statement.
+	ErrCodeDatabaseErrorException = "DatabaseErrorException"
+
+	// ErrCodeDatabaseNotFoundException for service response error code
+	// "DatabaseNotFoundException".
+	//
+	// The DB cluster doesn't have a DB instance.
+	ErrCodeDatabaseNotFoundException = "DatabaseNotFoundException"
+
+	// ErrCodeDatabaseUnavailableException for service response error code
+	// "DatabaseUnavailableException".
+	//
+	// The writer instance in the DB cluster isn't available.
+	ErrCodeDatabaseUnavailableException = "DatabaseUnavailableException"
 
 	// ErrCodeForbiddenException for service response error code
 	// "ForbiddenException".
@@ -26,11 +45,23 @@ const (
 	// There are insufficient privileges to make the call.
 	ErrCodeForbiddenException = "ForbiddenException"
 
+	// ErrCodeHttpEndpointNotEnabledException for service response error code
+	// "HttpEndpointNotEnabledException".
+	//
+	// The HTTP endpoint for using RDS Data API isn't enabled for the DB cluster.
+	ErrCodeHttpEndpointNotEnabledException = "HttpEndpointNotEnabledException"
+
 	// ErrCodeInternalServerErrorException for service response error code
 	// "InternalServerErrorException".
 	//
 	// An internal error occurred.
 	ErrCodeInternalServerErrorException = "InternalServerErrorException"
+
+	// ErrCodeInvalidSecretException for service response error code
+	// "InvalidSecretException".
+	//
+	// The Secrets Manager secret used with the request isn't valid.
+	ErrCodeInvalidSecretException = "InvalidSecretException"
 
 	// ErrCodeNotFoundException for service response error code
 	// "NotFoundException".
@@ -38,10 +69,23 @@ const (
 	// The resourceArn, secretArn, or transactionId value can't be found.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeSecretsErrorException for service response error code
+	// "SecretsErrorException".
+	//
+	// There was a problem with the Secrets Manager secret used with the request,
+	// caused by one of the following conditions:
+	//
+	//    * RDS Data API timed out retrieving the secret.
+	//
+	//    * The secret provided wasn't found.
+	//
+	//    * The secret couldn't be decrypted.
+	ErrCodeSecretsErrorException = "SecretsErrorException"
+
 	// ErrCodeServiceUnavailableError for service response error code
 	// "ServiceUnavailableError".
 	//
-	// The service specified by the resourceArn parameter is not available.
+	// The service specified by the resourceArn parameter isn't available.
 	ErrCodeServiceUnavailableError = "ServiceUnavailableError"
 
 	// ErrCodeStatementTimeoutException for service response error code
@@ -49,14 +93,40 @@ const (
 	//
 	// The execution of the SQL statement timed out.
 	ErrCodeStatementTimeoutException = "StatementTimeoutException"
+
+	// ErrCodeTransactionNotFoundException for service response error code
+	// "TransactionNotFoundException".
+	//
+	// The transaction ID wasn't found.
+	ErrCodeTransactionNotFoundException = "TransactionNotFoundException"
+
+	// ErrCodeUnsupportedResultException for service response error code
+	// "UnsupportedResultException".
+	//
+	// There was a problem with the result because of one of the following conditions:
+	//
+	//    * It contained an unsupported data type.
+	//
+	//    * It contained a multidimensional array.
+	//
+	//    * The size was too large.
+	ErrCodeUnsupportedResultException = "UnsupportedResultException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":        newErrorAccessDeniedException,
-	"BadRequestException":          newErrorBadRequestException,
-	"ForbiddenException":           newErrorForbiddenException,
-	"InternalServerErrorException": newErrorInternalServerErrorException,
-	"NotFoundException":            newErrorNotFoundException,
-	"ServiceUnavailableError":      newErrorServiceUnavailableError,
-	"StatementTimeoutException":    newErrorStatementTimeoutException,
+	"AccessDeniedException":           newErrorAccessDeniedException,
+	"BadRequestException":             newErrorBadRequestException,
+	"DatabaseErrorException":          newErrorDatabaseErrorException,
+	"DatabaseNotFoundException":       newErrorDatabaseNotFoundException,
+	"DatabaseUnavailableException":    newErrorDatabaseUnavailableException,
+	"ForbiddenException":              newErrorForbiddenException,
+	"HttpEndpointNotEnabledException": newErrorHttpEndpointNotEnabledException,
+	"InternalServerErrorException":    newErrorInternalServerErrorException,
+	"InvalidSecretException":          newErrorInvalidSecretException,
+	"NotFoundException":               newErrorNotFoundException,
+	"SecretsErrorException":           newErrorSecretsErrorException,
+	"ServiceUnavailableError":         newErrorServiceUnavailableError,
+	"StatementTimeoutException":       newErrorStatementTimeoutException,
+	"TransactionNotFoundException":    newErrorTransactionNotFoundException,
+	"UnsupportedResultException":      newErrorUnsupportedResultException,
 }

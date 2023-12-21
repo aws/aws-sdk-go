@@ -683,7 +683,8 @@
           "shape":"IdempotencyToken",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "CreateWorkspaceResponse":{
@@ -697,7 +698,8 @@
         "workspaceId":{"shape":"WorkspaceId"},
         "arn":{"shape":"WorkspaceArn"},
         "status":{"shape":"WorkspaceStatus"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "DeleteAlertManagerDefinitionRequest":{
@@ -975,6 +977,12 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:kms:[a-z0-9\\-]+:\\d+:key/[a-f0-9\\-]+"
     },
     "ListRuleGroupsNamespacesRequest":{
       "type":"structure",
@@ -1658,7 +1666,8 @@
         "status":{"shape":"WorkspaceStatus"},
         "prometheusEndpoint":{"shape":"Uri"},
         "createdAt":{"shape":"Timestamp"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "WorkspaceId":{
@@ -1698,7 +1707,8 @@
         "arn":{"shape":"WorkspaceArn"},
         "status":{"shape":"WorkspaceStatus"},
         "createdAt":{"shape":"Timestamp"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "WorkspaceSummaryList":{

@@ -5077,6 +5077,13 @@
         "UpdateDeviceFleetRequest$EnableIotRoleAlias": "<p>Whether to create an Amazon Web Services IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: \"SageMakerEdge-{DeviceFleetName}\".</p> <p>For example, if your device fleet is called \"demo-fleet\", the name of the role alias will be \"SageMakerEdge-demo-fleet\".</p>"
       }
     },
+    "EnableRemoteDebug": {
+      "base": null,
+      "refs": {
+        "RemoteDebugConfig$EnableRemoteDebug": "<p>If set to True, enables remote debugging.</p>",
+        "RemoteDebugConfigForUpdate$EnableRemoteDebug": "<p>If set to True, enables remote debugging.</p>"
+      }
+    },
     "EnableSagemakerServicecatalogPortfolioInput": {
       "base": null,
       "refs": {
@@ -12581,6 +12588,19 @@
         "UpdateImageVersionRequest$ReleaseNotes": "<p>The maintainer description of the image version.</p>"
       }
     },
+    "RemoteDebugConfig": {
+      "base": "<p>Configuration for remote debugging for the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html\">CreateTrainingJob</a> API. To learn more about the remote debugging functionality of SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html\">Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging</a>.</p>",
+      "refs": {
+        "CreateTrainingJobRequest$RemoteDebugConfig": "<p>Configuration for remote debugging. To learn more about the remote debugging functionality of SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html\">Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging</a>.</p>",
+        "DescribeTrainingJobResponse$RemoteDebugConfig": "<p>Configuration for remote debugging. To learn more about the remote debugging functionality of SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html\">Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging</a>.</p>"
+      }
+    },
+    "RemoteDebugConfigForUpdate": {
+      "base": "<p>Configuration for remote debugging for the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateTrainingJob.html\">UpdateTrainingJob</a> API. To learn more about the remote debugging functionality of SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html\">Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging</a>.</p>",
+      "refs": {
+        "UpdateTrainingJobRequest$RemoteDebugConfig": "<p>Configuration for remote debugging while the training job is running. You can update the remote debugging configuration when the <code>SecondaryStatus</code> of the job is <code>Downloading</code> or <code>Training</code>.To learn more about the remote debugging functionality of SageMaker, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html\">Access a training container through Amazon Web Services Systems Manager (SSM) for remote debugging</a>.</p>"
+      }
+    },
     "RenderUiTemplateRequest": {
       "base": null,
       "refs": {
@@ -13760,7 +13780,7 @@
     "StatusMessage": {
       "base": null,
       "refs": {
-        "SecondaryStatusTransition$StatusMessage": "<p>A detailed description of the progress within a secondary status. </p> <p>SageMaker provides secondary statuses and status messages that apply to each of them:</p> <dl> <dt>Starting</dt> <dd> <ul> <li> <p>Starting the training job.</p> </li> <li> <p>Launching requested ML instances.</p> </li> <li> <p>Insufficient capacity error from EC2 while launching instances, retrying!</p> </li> <li> <p>Launched instance was unhealthy, replacing it!</p> </li> <li> <p>Preparing the instances for training.</p> </li> </ul> </dd> <dt>Training</dt> <dd> <ul> <li> <p>Downloading the training image.</p> </li> <li> <p>Training image download completed. Training in progress.</p> </li> </ul> </dd> </dl> <important> <p>Status messages are subject to change. Therefore, we recommend not including them in code that programmatically initiates actions. For examples, don't use status messages in if statements.</p> </important> <p>To have an overview of your training job's progress, view <code>TrainingJobStatus</code> and <code>SecondaryStatus</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html\">DescribeTrainingJob</a>, and <code>StatusMessage</code> together. For example, at the start of a training job, you might see the following:</p> <ul> <li> <p> <code>TrainingJobStatus</code> - InProgress</p> </li> <li> <p> <code>SecondaryStatus</code> - Training</p> </li> <li> <p> <code>StatusMessage</code> - Downloading the training image</p> </li> </ul>"
+        "SecondaryStatusTransition$StatusMessage": "<p>A detailed description of the progress within a secondary status. </p> <p>SageMaker provides secondary statuses and status messages that apply to each of them:</p> <dl> <dt>Starting</dt> <dd> <ul> <li> <p>Starting the training job.</p> </li> <li> <p>Launching requested ML instances.</p> </li> <li> <p>Insufficient capacity error from EC2 while launching instances, retrying!</p> </li> <li> <p>Launched instance was unhealthy, replacing it!</p> </li> <li> <p>Preparing the instances for training.</p> </li> </ul> </dd> <dt>Training</dt> <dd> <ul> <li> <p>Training image download completed. Training in progress.</p> </li> </ul> </dd> </dl> <important> <p>Status messages are subject to change. Therefore, we recommend not including them in code that programmatically initiates actions. For examples, don't use status messages in if statements.</p> </important> <p>To have an overview of your training job's progress, view <code>TrainingJobStatus</code> and <code>SecondaryStatus</code> in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeTrainingJob.html\">DescribeTrainingJob</a>, and <code>StatusMessage</code> together. For example, at the start of a training job, you might see the following:</p> <ul> <li> <p> <code>TrainingJobStatus</code> - InProgress</p> </li> <li> <p> <code>SecondaryStatus</code> - Training</p> </li> <li> <p> <code>StatusMessage</code> - Downloading the training image</p> </li> </ul>"
       }
     },
     "StepDescription": {
@@ -16232,6 +16252,30 @@
       "base": null,
       "refs": {
         "QueryLineageResponse$Vertices": "<p>A list of vertices connected to the start entity(ies) in the lineage graph.</p>"
+      }
+    },
+    "VisibilityConditions": {
+      "base": "<p>The list of key-value pairs that you specify for your resources.</p>",
+      "refs": {
+        "VisibilityConditionsList$member": null
+      }
+    },
+    "VisibilityConditionsKey": {
+      "base": null,
+      "refs": {
+        "VisibilityConditions$Key": "<p>The key for that specifies the tag that you're using to filter the search results. The key must start with <code>Tags.</code>.</p>"
+      }
+    },
+    "VisibilityConditionsList": {
+      "base": null,
+      "refs": {
+        "SearchRequest$VisibilityConditions": "<p> Limits the results of your search request to the resources that you can access. </p>"
+      }
+    },
+    "VisibilityConditionsValue": {
+      "base": null,
+      "refs": {
+        "VisibilityConditions$Value": "<p>The value for the tag that you're using to filter the search results.</p>"
       }
     },
     "VolumeSizeInGB": {
