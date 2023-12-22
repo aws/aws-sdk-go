@@ -17,6 +17,7 @@
     "DeregisterGatewayInstance" : "Deregisters an instance. Before you deregister an instance, all bridges running on the instance must be stopped. If you want to deregister an instance without stopping the bridges, you must use the --force option.",
     "DescribeBridge" : "Displays the details of a bridge.",
     "DescribeFlow" : "Displays the details of a flow. The response includes the flow ARN, name, and Availability Zone, as well as details about the source, outputs, and entitlements.",
+    "DescribeFlowSourceMetadata" : "Displays details of the flow's source stream. The response contains information about the contents of the stream and its programs.",
     "DescribeGateway" : "Displays the details of a gateway. The response includes the gateway ARN, name, and CIDR blocks, as well as details about the networks.",
     "DescribeGatewayInstance" : "Displays the details of an instance.",
     "DescribeOffering" : "Displays the details of an offering. The response includes the offering description, duration, outbound bandwidth, price, and Amazon Resource Name (ARN).",
@@ -311,6 +312,10 @@
       "base" : "The result of a successful DescribeFlow request.",
       "refs" : { }
     },
+    "DescribeFlowSourceMetadataResponse" : {
+      "base" : "The result of a successful DescribeFlowSourceMetadata request.",
+      "refs" : { }
+    },
     "DescribeGatewayInstanceResponse" : {
       "base" : "The result of a successful DescribeGatewayInstance request.",
       "refs" : { }
@@ -452,6 +457,12 @@
     "ForbiddenException" : {
       "base" : "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs" : { }
+    },
+    "FrameResolution" : {
+      "base" : "The frame resolution used by the video stream.",
+      "refs" : {
+        "TransportStream$FrameResolution" : null
+      }
     },
     "Gateway" : {
       "base" : "The settings for a gateway, including its networks.",
@@ -908,6 +919,24 @@
         "Source$Transport" : "Attributes related to the transport stream that are used in the source."
       }
     },
+    "TransportMediaInfo" : {
+      "base" : "The metadata of the transport stream in the current flow's source.",
+      "refs" : {
+        "DescribeFlowSourceMetadataResponse$TransportMediaInfo" : null
+      }
+    },
+    "TransportStream" : {
+      "base" : "The metadata of an elementary transport stream.",
+      "refs" : {
+        "__listOfTransportStream$member" : null
+      }
+    },
+    "TransportStreamProgram" : {
+      "base" : "The metadata of a single transport stream program.",
+      "refs" : {
+        "__listOfTransportStreamProgram$member" : null
+      }
+    },
     "UpdateBridgeFlowSourceRequest" : {
       "base" : "Update the flow source of the bridge.",
       "refs" : {
@@ -1106,6 +1135,8 @@
         "EgressGatewayBridge$MaxBitrate" : "The maximum expected bitrate (in bps) of the egress bridge.",
         "Entitlement$DataTransferSubscriberFeePercent" : "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "FailoverConfig$RecoveryWindow" : "Search window time to look for dash-7 packets",
+        "FrameResolution$FrameHeight" : "The number of pixels in the height of the video frame.",
+        "FrameResolution$FrameWidth" : "The number of pixels in the width of the video frame.",
         "GatewayInstance$RunningBridgeCount" : "The running bridge count.",
         "GrantEntitlementRequest$DataTransferSubscriberFeePercent" : "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "IngressGatewayBridge$MaxBitrate" : "The maximum expected bitrate (in bps) of the ingress bridge.",
@@ -1138,6 +1169,13 @@
         "Transport$SenderControlPort" : "The port that the flow uses to send outbound requests to initiate connection with the sender.",
         "Transport$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
         "Transport$SourceListenerPort" : "Source port for SRT-caller protocol.",
+        "TransportStream$Channels" : "The number of channels in the audio stream.",
+        "TransportStream$Pid" : "The Packet ID (PID) as it is reported in the Program Map Table.",
+        "TransportStream$SampleRate" : "The sample rate used by the audio stream.",
+        "TransportStream$SampleSize" : "The sample bit size used by the audio stream.",
+        "TransportStreamProgram$PcrPid" : "The Program Clock Reference (PCR) Packet ID (PID) as it is reported in the Program Association Table.",
+        "TransportStreamProgram$ProgramNumber" : "The program number as it is reported in the Program Association Table.",
+        "TransportStreamProgram$ProgramPid" : "The program Packet ID (PID) as it is reported in the Program Association Table.",
         "UpdateBridgeNetworkOutputRequest$Port" : "The network output port.",
         "UpdateBridgeNetworkOutputRequest$Ttl" : "The network output TTL.",
         "UpdateBridgeNetworkSourceRequest$Port" : "The network source port.",
@@ -1315,6 +1353,7 @@
       "base" : null,
       "refs" : {
         "Bridge$BridgeMessages" : null,
+        "DescribeFlowSourceMetadataResponse$Messages" : "Provides a status code and message regarding issues found with the flow source metadata.",
         "Gateway$GatewayMessages" : null,
         "GatewayInstance$InstanceMessages" : null
       }
@@ -1350,6 +1389,18 @@
       "refs" : {
         "AddFlowSourcesResponse$Sources" : "The details of the newly added sources.",
         "Flow$Sources" : null
+      }
+    },
+    "__listOfTransportStream" : {
+      "base" : null,
+      "refs" : {
+        "TransportStreamProgram$Streams" : "The list of elementary transport streams in the program. The list includes video, audio, and data streams."
+      }
+    },
+    "__listOfTransportStreamProgram" : {
+      "base" : null,
+      "refs" : {
+        "TransportMediaInfo$Programs" : "The list of transport stream programs in the current flow's source."
       }
     },
     "__listOfVpcInterface" : {
@@ -1447,6 +1498,7 @@
         "DeleteFlowResponse$FlowArn" : "The ARN of the flow that was deleted.",
         "DeleteGatewayResponse$GatewayArn" : "The Amazon Resource Name (ARN) of the gateway that was deleted.",
         "DeregisterGatewayInstanceResponse$GatewayInstanceArn" : "The Amazon Resource Name (ARN) of the instance.",
+        "DescribeFlowSourceMetadataResponse$FlowArn" : "The ARN of the flow that DescribeFlowSourceMetadata was performed on.",
         "DestinationConfiguration$DestinationIp" : "The IP address where contents of the media stream will be sent.",
         "DestinationConfiguration$OutboundIp" : "The IP address that the receiver requires in order to establish a connection with the flow. This value is represented by the elastic network interface IP address of the VPC. This field applies only to outputs that use the CDI or ST 2110 JPEG XS protocol.",
         "DestinationConfigurationRequest$DestinationIp" : "The IP address where you want MediaConnect to send contents of the media stream.",
@@ -1585,6 +1637,10 @@
         "Transport$SenderIpAddress" : "The IP address that the flow communicates with to initiate connection with the sender.",
         "Transport$SourceListenerAddress" : "Source IP or domain name for SRT-caller protocol.",
         "Transport$StreamId" : "The stream ID that you want to use for this transport. This parameter applies only to Zixi and SRT caller-based streams.",
+        "TransportStream$Codec" : "The codec used by the stream.",
+        "TransportStream$FrameRate" : "The frame rate used by the video stream.",
+        "TransportStream$StreamType" : "The Stream Type as it is reported in the Program Map Table.",
+        "TransportStreamProgram$ProgramName" : "The program name as it is reported in the Program Association Table.",
         "UpdateBridgeFlowSourceRequest$FlowArn" : "The ARN of the cloud flow to use as a source of this bridge.",
         "UpdateBridgeNetworkOutputRequest$IpAddress" : "The network output IP Address.",
         "UpdateBridgeNetworkOutputRequest$NetworkName" : "The network output's gateway network name.",
@@ -1632,6 +1688,12 @@
         "VpcInterfaceRequest$SubnetId" : "Subnet must be in the AZ of the Flow",
         "__listOf__string$member" : null,
         "__mapOf__string$member" : null
+      }
+    },
+    "__timestampIso8601" : {
+      "base" : null,
+      "refs" : {
+        "DescribeFlowSourceMetadataResponse$Timestamp" : "The timestamp of the most recent change in metadata for this flow’s source."
       }
     }
   }

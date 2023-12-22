@@ -120,6 +120,10 @@ type MediaConnectAPI interface {
 	DescribeFlowWithContext(aws.Context, *mediaconnect.DescribeFlowInput, ...request.Option) (*mediaconnect.DescribeFlowOutput, error)
 	DescribeFlowRequest(*mediaconnect.DescribeFlowInput) (*request.Request, *mediaconnect.DescribeFlowOutput)
 
+	DescribeFlowSourceMetadata(*mediaconnect.DescribeFlowSourceMetadataInput) (*mediaconnect.DescribeFlowSourceMetadataOutput, error)
+	DescribeFlowSourceMetadataWithContext(aws.Context, *mediaconnect.DescribeFlowSourceMetadataInput, ...request.Option) (*mediaconnect.DescribeFlowSourceMetadataOutput, error)
+	DescribeFlowSourceMetadataRequest(*mediaconnect.DescribeFlowSourceMetadataInput) (*request.Request, *mediaconnect.DescribeFlowSourceMetadataOutput)
+
 	DescribeGateway(*mediaconnect.DescribeGatewayInput) (*mediaconnect.DescribeGatewayOutput, error)
 	DescribeGatewayWithContext(aws.Context, *mediaconnect.DescribeGatewayInput, ...request.Option) (*mediaconnect.DescribeGatewayOutput, error)
 	DescribeGatewayRequest(*mediaconnect.DescribeGatewayInput) (*request.Request, *mediaconnect.DescribeGatewayOutput)

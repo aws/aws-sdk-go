@@ -1,3 +1,19 @@
+Release v1.49.9 (2023-12-22)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API
+* `service/glue`: Updates service API and documentation
+  * This release adds additional configurations for Query Session Context on the following APIs: GetUnfilteredTableMetadata, GetUnfilteredPartitionMetadata, GetUnfilteredPartitionsMetadata.
+* `service/lakeformation`: Updates service API and documentation
+* `service/mediaconnect`: Updates service API and documentation
+* `service/networkmonitor`: Adds new service
+* `service/omics`: Updates service documentation
+* `service/s3`: Updates service examples
+  * Added additional examples for some operations.
+* `service/secretsmanager`: Adds new service
+  * Update endpoint rules and examples.
+
 Release v1.49.8 (2023-12-21)
 ===
 

@@ -1066,6 +1066,7 @@ func (c *Glue) BatchGetPartitionRequest(input *BatchGetPartitionInput) (req *req
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetPartition
 func (c *Glue) BatchGetPartition(input *BatchGetPartitionInput) (*BatchGetPartitionOutput, error) {
@@ -2195,6 +2196,9 @@ func (c *Glue) CreateConnectionRequest(input *CreateConnectionInput) (req *reque
 // CreateConnection API operation for AWS Glue.
 //
 // Creates a connection definition in the Data Catalog.
+//
+// Connections used for creating federated resources require the IAM glue:PassConnection
+// permission.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10396,6 +10400,7 @@ func (c *Glue) GetPartitionRequest(input *GetPartitionInput) (req *request.Reque
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetPartition
 func (c *Glue) GetPartition(input *GetPartitionInput) (*GetPartitionOutput, error) {
@@ -10652,6 +10657,7 @@ func (c *Glue) GetPartitionsRequest(input *GetPartitionsInput) (req *request.Req
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetPartitions
 func (c *Glue) GetPartitions(input *GetPartitionsInput) (*GetPartitionsOutput, error) {
@@ -11995,6 +12001,7 @@ func (c *Glue) GetTableRequest(input *GetTableInput) (req *request.Request, outp
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTable
 func (c *Glue) GetTable(input *GetTableInput) (*GetTableOutput, error) {
@@ -12425,6 +12432,7 @@ func (c *Glue) GetTablesRequest(input *GetTablesInput) (req *request.Request, ou
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTables
 func (c *Glue) GetTables(input *GetTablesInput) (*GetTablesOutput, error) {
@@ -12900,6 +12908,7 @@ func (c *Glue) GetUnfilteredPartitionMetadataRequest(input *GetUnfilteredPartiti
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionMetadata
 func (c *Glue) GetUnfilteredPartitionMetadata(input *GetUnfilteredPartitionMetadataInput) (*GetUnfilteredPartitionMetadataOutput, error) {
@@ -13009,6 +13018,7 @@ func (c *Glue) GetUnfilteredPartitionsMetadataRequest(input *GetUnfilteredPartit
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredPartitionsMetadata
 func (c *Glue) GetUnfilteredPartitionsMetadata(input *GetUnfilteredPartitionsMetadataInput) (*GetUnfilteredPartitionsMetadataOutput, error) {
@@ -13162,6 +13172,7 @@ func (c *Glue) GetUnfilteredTableMetadataRequest(input *GetUnfilteredTableMetada
 //     A federation source failed.
 //
 //   - FederationSourceRetryableException
+//     A federation source failed, but the operation may be retried.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetUnfilteredTableMetadata
 func (c *Glue) GetUnfilteredTableMetadata(input *GetUnfilteredTableMetadataInput) (*GetUnfilteredTableMetadataOutput, error) {
@@ -42843,10 +42854,12 @@ func (s *FederationSourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A federation source failed, but the operation may be retried.
 type FederationSourceRetryableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -50811,6 +50824,15 @@ type GetUnfilteredPartitionMetadataInput struct {
 	// PartitionValues is a required field
 	PartitionValues []*string `type:"list" required:"true"`
 
+	// A structure used as a protocol between query engines and Lake Formation or
+	// Glue. Contains both a Lake Formation generated authorization identifier and
+	// information from the request's authorization context.
+	QuerySessionContext *QuerySessionContext `type:"structure"`
+
+	// Specified only if the base tables belong to a different Amazon Web Services
+	// Region.
+	Region *string `type:"string"`
+
 	// (Required) A list of supported permission types.
 	//
 	// SupportedPermissionTypes is a required field
@@ -50870,6 +50892,11 @@ func (s *GetUnfilteredPartitionMetadataInput) Validate() error {
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
 	}
+	if s.QuerySessionContext != nil {
+		if err := s.QuerySessionContext.Validate(); err != nil {
+			invalidParams.AddNested("QuerySessionContext", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -50898,6 +50925,18 @@ func (s *GetUnfilteredPartitionMetadataInput) SetDatabaseName(v string) *GetUnfi
 // SetPartitionValues sets the PartitionValues field's value.
 func (s *GetUnfilteredPartitionMetadataInput) SetPartitionValues(v []*string) *GetUnfilteredPartitionMetadataInput {
 	s.PartitionValues = v
+	return s
+}
+
+// SetQuerySessionContext sets the QuerySessionContext field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetQuerySessionContext(v *QuerySessionContext) *GetUnfilteredPartitionMetadataInput {
+	s.QuerySessionContext = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *GetUnfilteredPartitionMetadataInput) SetRegion(v string) *GetUnfilteredPartitionMetadataInput {
+	s.Region = &v
 	return s
 }
 
@@ -51067,6 +51106,15 @@ type GetUnfilteredPartitionsMetadataInput struct {
 	// A continuation token, if this is not the first call to retrieve these partitions.
 	NextToken *string `type:"string"`
 
+	// A structure used as a protocol between query engines and Lake Formation or
+	// Glue. Contains both a Lake Formation generated authorization identifier and
+	// information from the request's authorization context.
+	QuerySessionContext *QuerySessionContext `type:"structure"`
+
+	// Specified only if the base tables belong to a different Amazon Web Services
+	// Region.
+	Region *string `type:"string"`
+
 	// The segment of the table's partitions to scan in this request.
 	Segment *Segment `type:"structure"`
 
@@ -51129,6 +51177,11 @@ func (s *GetUnfilteredPartitionsMetadataInput) Validate() error {
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
 	}
+	if s.QuerySessionContext != nil {
+		if err := s.QuerySessionContext.Validate(); err != nil {
+			invalidParams.AddNested("QuerySessionContext", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Segment != nil {
 		if err := s.Segment.Validate(); err != nil {
 			invalidParams.AddNested("Segment", err.(request.ErrInvalidParams))
@@ -51174,6 +51227,18 @@ func (s *GetUnfilteredPartitionsMetadataInput) SetMaxResults(v int64) *GetUnfilt
 // SetNextToken sets the NextToken field's value.
 func (s *GetUnfilteredPartitionsMetadataInput) SetNextToken(v string) *GetUnfilteredPartitionsMetadataInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetQuerySessionContext sets the QuerySessionContext field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetQuerySessionContext(v *QuerySessionContext) *GetUnfilteredPartitionsMetadataInput {
+	s.QuerySessionContext = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *GetUnfilteredPartitionsMetadataInput) SetRegion(v string) *GetUnfilteredPartitionsMetadataInput {
+	s.Region = &v
 	return s
 }
 
@@ -51257,6 +51322,23 @@ type GetUnfilteredTableMetadataInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The Lake Formation data permissions of the caller on the table. Used to authorize
+	// the call when no view context is found.
+	Permissions []*string `type:"list" enum:"Permission"`
+
+	// A structure used as a protocol between query engines and Lake Formation or
+	// Glue. Contains both a Lake Formation generated authorization identifier and
+	// information from the request's authorization context.
+	QuerySessionContext *QuerySessionContext `type:"structure"`
+
+	// Specified only if the base tables belong to a different Amazon Web Services
+	// Region.
+	Region *string `type:"string"`
+
+	// A structure specifying the dialect and dialect version used by the query
+	// engine.
+	SupportedDialect *SupportedDialect `type:"structure"`
+
 	// (Required) A list of supported permission types.
 	//
 	// SupportedPermissionTypes is a required field
@@ -51308,6 +51390,16 @@ func (s *GetUnfilteredTableMetadataInput) Validate() error {
 	if s.SupportedPermissionTypes != nil && len(s.SupportedPermissionTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SupportedPermissionTypes", 1))
 	}
+	if s.QuerySessionContext != nil {
+		if err := s.QuerySessionContext.Validate(); err != nil {
+			invalidParams.AddNested("QuerySessionContext", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SupportedDialect != nil {
+		if err := s.SupportedDialect.Validate(); err != nil {
+			invalidParams.AddNested("SupportedDialect", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -51339,6 +51431,30 @@ func (s *GetUnfilteredTableMetadataInput) SetName(v string) *GetUnfilteredTableM
 	return s
 }
 
+// SetPermissions sets the Permissions field's value.
+func (s *GetUnfilteredTableMetadataInput) SetPermissions(v []*string) *GetUnfilteredTableMetadataInput {
+	s.Permissions = v
+	return s
+}
+
+// SetQuerySessionContext sets the QuerySessionContext field's value.
+func (s *GetUnfilteredTableMetadataInput) SetQuerySessionContext(v *QuerySessionContext) *GetUnfilteredTableMetadataInput {
+	s.QuerySessionContext = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *GetUnfilteredTableMetadataInput) SetRegion(v string) *GetUnfilteredTableMetadataInput {
+	s.Region = &v
+	return s
+}
+
+// SetSupportedDialect sets the SupportedDialect field's value.
+func (s *GetUnfilteredTableMetadataInput) SetSupportedDialect(v *SupportedDialect) *GetUnfilteredTableMetadataInput {
+	s.SupportedDialect = v
+	return s
+}
+
 // SetSupportedPermissionTypes sets the SupportedPermissionTypes field's value.
 func (s *GetUnfilteredTableMetadataInput) SetSupportedPermissionTypes(v []*string) *GetUnfilteredTableMetadataInput {
 	s.SupportedPermissionTypes = v
@@ -51357,6 +51473,17 @@ type GetUnfilteredTableMetadataOutput struct {
 	// A Boolean value that indicates whether the partition location is registered
 	// with Lake Formation.
 	IsRegisteredWithLakeFormation *bool `type:"boolean"`
+
+	// The Lake Formation data permissions of the caller on the table. Used to authorize
+	// the call when no view context is found.
+	Permissions []*string `type:"list" enum:"Permission"`
+
+	// A cryptographically generated query identifier generated by Glue or Lake
+	// Formation.
+	QueryAuthorizationId *string `min:"1" type:"string"`
+
+	// The resource ARN of the parent resource extracted from the request.
+	ResourceArn *string `min:"20" type:"string"`
 
 	// A Table object containing the table metadata.
 	Table *TableData `type:"structure"`
@@ -51395,6 +51522,24 @@ func (s *GetUnfilteredTableMetadataOutput) SetCellFilters(v []*ColumnRowFilter) 
 // SetIsRegisteredWithLakeFormation sets the IsRegisteredWithLakeFormation field's value.
 func (s *GetUnfilteredTableMetadataOutput) SetIsRegisteredWithLakeFormation(v bool) *GetUnfilteredTableMetadataOutput {
 	s.IsRegisteredWithLakeFormation = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetPermissions(v []*string) *GetUnfilteredTableMetadataOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetQueryAuthorizationId sets the QueryAuthorizationId field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetQueryAuthorizationId(v string) *GetUnfilteredTableMetadataOutput {
+	s.QueryAuthorizationId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetResourceArn(v string) *GetUnfilteredTableMetadataOutput {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -62215,6 +62360,93 @@ func (s *QuerySchemaVersionMetadataOutput) SetSchemaVersionId(v string) *QuerySc
 	return s
 }
 
+// A structure used as a protocol between query engines and Lake Formation or
+// Glue. Contains both a Lake Formation generated authorization identifier and
+// information from the request's authorization context.
+type QuerySessionContext struct {
+	_ struct{} `type:"structure"`
+
+	// An opaque string-string map passed by the query engine.
+	AdditionalContext map[string]*string `type:"map"`
+
+	// An identifier string for the consumer cluster.
+	ClusterId *string `type:"string"`
+
+	// A cryptographically generated query identifier generated by Glue or Lake
+	// Formation.
+	QueryAuthorizationId *string `min:"1" type:"string"`
+
+	// A unique identifier generated by the query engine for the query.
+	QueryId *string `min:"1" type:"string"`
+
+	// A timestamp provided by the query engine for when the query started.
+	QueryStartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuerySessionContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QuerySessionContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QuerySessionContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QuerySessionContext"}
+	if s.QueryAuthorizationId != nil && len(*s.QueryAuthorizationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryAuthorizationId", 1))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdditionalContext sets the AdditionalContext field's value.
+func (s *QuerySessionContext) SetAdditionalContext(v map[string]*string) *QuerySessionContext {
+	s.AdditionalContext = v
+	return s
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *QuerySessionContext) SetClusterId(v string) *QuerySessionContext {
+	s.ClusterId = &v
+	return s
+}
+
+// SetQueryAuthorizationId sets the QueryAuthorizationId field's value.
+func (s *QuerySessionContext) SetQueryAuthorizationId(v string) *QuerySessionContext {
+	s.QueryAuthorizationId = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *QuerySessionContext) SetQueryId(v string) *QuerySessionContext {
+	s.QueryId = &v
+	return s
+}
+
+// SetQueryStartTime sets the QueryStartTime field's value.
+func (s *QuerySessionContext) SetQueryStartTime(v time.Time) *QuerySessionContext {
+	s.QueryStartTime = &v
+	return s
+}
+
 // A Glue Studio node that uses a Glue DataBrew recipe in Glue jobs.
 type Recipe struct {
 	_ struct{} `type:"structure"`
@@ -71327,6 +71559,61 @@ func (s *StringColumnStatisticsData) SetNumberOfNulls(v int64) *StringColumnStat
 	return s
 }
 
+// A structure specifying the dialect and dialect version used by the query
+// engine.
+type SupportedDialect struct {
+	_ struct{} `type:"structure"`
+
+	// The dialect of the query engine.
+	Dialect *string `type:"string" enum:"ViewDialect"`
+
+	// The version of the dialect of the query engine. For example, 3.0.0.
+	DialectVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SupportedDialect) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SupportedDialect) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SupportedDialect) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SupportedDialect"}
+	if s.DialectVersion != nil && len(*s.DialectVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DialectVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDialect sets the Dialect field's value.
+func (s *SupportedDialect) SetDialect(v string) *SupportedDialect {
+	s.Dialect = &v
+	return s
+}
+
+// SetDialectVersion sets the DialectVersion field's value.
+func (s *SupportedDialect) SetDialectVersion(v string) *SupportedDialect {
+	s.DialectVersion = &v
+	return s
+}
+
 // The database and table in the Glue Data Catalog that is used for input or
 // output data.
 type Table struct {
@@ -80054,6 +80341,26 @@ func UpdateCatalogBehavior_Values() []string {
 	return []string{
 		UpdateCatalogBehaviorUpdateInDatabase,
 		UpdateCatalogBehaviorLog,
+	}
+}
+
+const (
+	// ViewDialectRedshift is a ViewDialect enum value
+	ViewDialectRedshift = "REDSHIFT"
+
+	// ViewDialectAthena is a ViewDialect enum value
+	ViewDialectAthena = "ATHENA"
+
+	// ViewDialectSpark is a ViewDialect enum value
+	ViewDialectSpark = "SPARK"
+)
+
+// ViewDialect_Values returns all elements of the ViewDialect enum
+func ViewDialect_Values() []string {
+	return []string{
+		ViewDialectRedshift,
+		ViewDialectAthena,
+		ViewDialectSpark,
 	}
 }
 

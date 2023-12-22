@@ -548,6 +548,40 @@
         }
       ]
     },
+    "DescribeFlowSourceMetadata": {
+      "name": "DescribeFlowSourceMetadata",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/flows/{flowArn}/source-metadata",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeFlowSourceMetadataRequest"
+      },
+      "output": {
+        "shape": "DescribeFlowSourceMetadataResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "DescribeGateway": {
       "name": "DescribeGateway",
       "http": {
@@ -2785,6 +2819,40 @@
         }
       }
     },
+    "DescribeFlowSourceMetadataRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        }
+      },
+      "required": [
+        "FlowArn"
+      ]
+    },
+    "DescribeFlowSourceMetadataResponse": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "Messages": {
+          "shape": "__listOfMessageDetail",
+          "locationName": "messages"
+        },
+        "Timestamp": {
+          "shape": "__timestampIso8601",
+          "locationName": "timestamp"
+        },
+        "TransportMediaInfo": {
+          "shape": "TransportMediaInfo",
+          "locationName": "transportMediaInfo"
+        }
+      }
+    },
     "DescribeGatewayInstanceRequest": {
       "type": "structure",
       "members": {
@@ -3272,6 +3340,23 @@
       "error": {
         "httpStatusCode": 403
       }
+    },
+    "FrameResolution": {
+      "type": "structure",
+      "members": {
+        "FrameHeight": {
+          "shape": "__integer",
+          "locationName": "frameHeight"
+        },
+        "FrameWidth": {
+          "shape": "__integer",
+          "locationName": "frameWidth"
+        }
+      },
+      "required": [
+        "FrameWidth",
+        "FrameHeight"
+      ]
     },
     "Gateway": {
       "type": "structure",
@@ -5153,6 +5238,90 @@
         "Protocol"
       ]
     },
+    "TransportMediaInfo": {
+      "type": "structure",
+      "members": {
+        "Programs": {
+          "shape": "__listOfTransportStreamProgram",
+          "locationName": "programs"
+        }
+      },
+      "required": [
+        "Programs"
+      ]
+    },
+    "TransportStream": {
+      "type": "structure",
+      "members": {
+        "Channels": {
+          "shape": "__integer",
+          "locationName": "channels"
+        },
+        "Codec": {
+          "shape": "__string",
+          "locationName": "codec"
+        },
+        "FrameRate": {
+          "shape": "__string",
+          "locationName": "frameRate"
+        },
+        "FrameResolution": {
+          "shape": "FrameResolution",
+          "locationName": "frameResolution"
+        },
+        "Pid": {
+          "shape": "__integer",
+          "locationName": "pid"
+        },
+        "SampleRate": {
+          "shape": "__integer",
+          "locationName": "sampleRate"
+        },
+        "SampleSize": {
+          "shape": "__integer",
+          "locationName": "sampleSize"
+        },
+        "StreamType": {
+          "shape": "__string",
+          "locationName": "streamType"
+        }
+      },
+      "required": [
+        "StreamType",
+        "Pid"
+      ]
+    },
+    "TransportStreamProgram": {
+      "type": "structure",
+      "members": {
+        "PcrPid": {
+          "shape": "__integer",
+          "locationName": "pcrPid"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        },
+        "ProgramNumber": {
+          "shape": "__integer",
+          "locationName": "programNumber"
+        },
+        "ProgramPid": {
+          "shape": "__integer",
+          "locationName": "programPid"
+        },
+        "Streams": {
+          "shape": "__listOfTransportStream",
+          "locationName": "streams"
+        }
+      },
+      "required": [
+        "ProgramPid",
+        "PcrPid",
+        "ProgramNumber",
+        "Streams"
+      ]
+    },
     "UntagResourceRequest": {
       "type": "structure",
       "members": {
@@ -6116,6 +6285,18 @@
       "type": "list",
       "member": {
         "shape": "Source"
+      }
+    },
+    "__listOfTransportStream": {
+      "type": "list",
+      "member": {
+        "shape": "TransportStream"
+      }
+    },
+    "__listOfTransportStreamProgram": {
+      "type": "list",
+      "member": {
+        "shape": "TransportStreamProgram"
       }
     },
     "__listOfVpcInterface": {

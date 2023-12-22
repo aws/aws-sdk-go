@@ -4,6 +4,7 @@ package mediaconnect
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -1651,6 +1652,113 @@ func (c *MediaConnect) DescribeFlow(input *DescribeFlowInput) (*DescribeFlowOutp
 // for more information on using Contexts.
 func (c *MediaConnect) DescribeFlowWithContext(ctx aws.Context, input *DescribeFlowInput, opts ...request.Option) (*DescribeFlowOutput, error) {
 	req, out := c.DescribeFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFlowSourceMetadata = "DescribeFlowSourceMetadata"
+
+// DescribeFlowSourceMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFlowSourceMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFlowSourceMetadata for more information on using the DescribeFlowSourceMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeFlowSourceMetadataRequest method.
+//	req, resp := client.DescribeFlowSourceMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceMetadata
+func (c *MediaConnect) DescribeFlowSourceMetadataRequest(input *DescribeFlowSourceMetadataInput) (req *request.Request, output *DescribeFlowSourceMetadataOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFlowSourceMetadata,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/flows/{flowArn}/source-metadata",
+	}
+
+	if input == nil {
+		input = &DescribeFlowSourceMetadataInput{}
+	}
+
+	output = &DescribeFlowSourceMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFlowSourceMetadata API operation for AWS MediaConnect.
+//
+// Displays details of the flow's source stream. The response contains information
+// about the contents of the stream and its programs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation DescribeFlowSourceMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+//   - InternalServerErrorException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+//   - ForbiddenException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+//   - NotFoundException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+//   - ServiceUnavailableException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+//   - TooManyRequestsException
+//     Exception raised by AWS Elemental MediaConnect. See the error message and
+//     documentation for the operation for more information on the cause of this
+//     exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceMetadata
+func (c *MediaConnect) DescribeFlowSourceMetadata(input *DescribeFlowSourceMetadataInput) (*DescribeFlowSourceMetadataOutput, error) {
+	req, out := c.DescribeFlowSourceMetadataRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFlowSourceMetadataWithContext is the same as DescribeFlowSourceMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFlowSourceMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) DescribeFlowSourceMetadataWithContext(ctx aws.Context, input *DescribeFlowSourceMetadataInput, opts ...request.Option) (*DescribeFlowSourceMetadataOutput, error) {
+	req, out := c.DescribeFlowSourceMetadataRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9221,6 +9329,113 @@ func (s *DescribeFlowOutput) SetMessages(v *Messages) *DescribeFlowOutput {
 	return s
 }
 
+type DescribeFlowSourceMetadataInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlowSourceMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlowSourceMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFlowSourceMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFlowSourceMetadataInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *DescribeFlowSourceMetadataInput) SetFlowArn(v string) *DescribeFlowSourceMetadataInput {
+	s.FlowArn = &v
+	return s
+}
+
+// The result of a successful DescribeFlowSourceMetadata request.
+type DescribeFlowSourceMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that DescribeFlowSourceMetadata was performed on.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// Provides a status code and message regarding issues found with the flow source
+	// metadata.
+	Messages []*MessageDetail `locationName:"messages" type:"list"`
+
+	// The timestamp of the most recent change in metadata for this flow’s source.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The metadata of the transport stream in the current flow's source.
+	TransportMediaInfo *TransportMediaInfo `locationName:"transportMediaInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlowSourceMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeFlowSourceMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *DescribeFlowSourceMetadataOutput) SetFlowArn(v string) *DescribeFlowSourceMetadataOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMessages sets the Messages field's value.
+func (s *DescribeFlowSourceMetadataOutput) SetMessages(v []*MessageDetail) *DescribeFlowSourceMetadataOutput {
+	s.Messages = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *DescribeFlowSourceMetadataOutput) SetTimestamp(v time.Time) *DescribeFlowSourceMetadataOutput {
+	s.Timestamp = &v
+	return s
+}
+
+// SetTransportMediaInfo sets the TransportMediaInfo field's value.
+func (s *DescribeFlowSourceMetadataOutput) SetTransportMediaInfo(v *TransportMediaInfo) *DescribeFlowSourceMetadataOutput {
+	s.TransportMediaInfo = v
+	return s
+}
+
 type DescribeGatewayInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10557,6 +10772,51 @@ func (s *ForbiddenException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The frame resolution used by the video stream.
+type FrameResolution struct {
+	_ struct{} `type:"structure"`
+
+	// The number of pixels in the height of the video frame.
+	//
+	// FrameHeight is a required field
+	FrameHeight *int64 `locationName:"frameHeight" type:"integer" required:"true"`
+
+	// The number of pixels in the width of the video frame.
+	//
+	// FrameWidth is a required field
+	FrameWidth *int64 `locationName:"frameWidth" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrameResolution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FrameResolution) GoString() string {
+	return s.String()
+}
+
+// SetFrameHeight sets the FrameHeight field's value.
+func (s *FrameResolution) SetFrameHeight(v int64) *FrameResolution {
+	s.FrameHeight = &v
+	return s
+}
+
+// SetFrameWidth sets the FrameWidth field's value.
+func (s *FrameResolution) SetFrameWidth(v int64) *FrameResolution {
+	s.FrameWidth = &v
+	return s
 }
 
 // The settings for a gateway, including its networks.
@@ -15732,6 +15992,218 @@ func (s *Transport) SetSourceListenerPort(v int64) *Transport {
 // SetStreamId sets the StreamId field's value.
 func (s *Transport) SetStreamId(v string) *Transport {
 	s.StreamId = &v
+	return s
+}
+
+// The metadata of the transport stream in the current flow's source.
+type TransportMediaInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The list of transport stream programs in the current flow's source.
+	//
+	// Programs is a required field
+	Programs []*TransportStreamProgram `locationName:"programs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportMediaInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportMediaInfo) GoString() string {
+	return s.String()
+}
+
+// SetPrograms sets the Programs field's value.
+func (s *TransportMediaInfo) SetPrograms(v []*TransportStreamProgram) *TransportMediaInfo {
+	s.Programs = v
+	return s
+}
+
+// The metadata of an elementary transport stream.
+type TransportStream struct {
+	_ struct{} `type:"structure"`
+
+	// The number of channels in the audio stream.
+	Channels *int64 `locationName:"channels" type:"integer"`
+
+	// The codec used by the stream.
+	Codec *string `locationName:"codec" type:"string"`
+
+	// The frame rate used by the video stream.
+	FrameRate *string `locationName:"frameRate" type:"string"`
+
+	// The frame resolution used by the video stream.
+	FrameResolution *FrameResolution `locationName:"frameResolution" type:"structure"`
+
+	// The Packet ID (PID) as it is reported in the Program Map Table.
+	//
+	// Pid is a required field
+	Pid *int64 `locationName:"pid" type:"integer" required:"true"`
+
+	// The sample rate used by the audio stream.
+	SampleRate *int64 `locationName:"sampleRate" type:"integer"`
+
+	// The sample bit size used by the audio stream.
+	SampleSize *int64 `locationName:"sampleSize" type:"integer"`
+
+	// The Stream Type as it is reported in the Program Map Table.
+	//
+	// StreamType is a required field
+	StreamType *string `locationName:"streamType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportStream) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportStream) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *TransportStream) SetChannels(v int64) *TransportStream {
+	s.Channels = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *TransportStream) SetCodec(v string) *TransportStream {
+	s.Codec = &v
+	return s
+}
+
+// SetFrameRate sets the FrameRate field's value.
+func (s *TransportStream) SetFrameRate(v string) *TransportStream {
+	s.FrameRate = &v
+	return s
+}
+
+// SetFrameResolution sets the FrameResolution field's value.
+func (s *TransportStream) SetFrameResolution(v *FrameResolution) *TransportStream {
+	s.FrameResolution = v
+	return s
+}
+
+// SetPid sets the Pid field's value.
+func (s *TransportStream) SetPid(v int64) *TransportStream {
+	s.Pid = &v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *TransportStream) SetSampleRate(v int64) *TransportStream {
+	s.SampleRate = &v
+	return s
+}
+
+// SetSampleSize sets the SampleSize field's value.
+func (s *TransportStream) SetSampleSize(v int64) *TransportStream {
+	s.SampleSize = &v
+	return s
+}
+
+// SetStreamType sets the StreamType field's value.
+func (s *TransportStream) SetStreamType(v string) *TransportStream {
+	s.StreamType = &v
+	return s
+}
+
+// The metadata of a single transport stream program.
+type TransportStreamProgram struct {
+	_ struct{} `type:"structure"`
+
+	// The Program Clock Reference (PCR) Packet ID (PID) as it is reported in the
+	// Program Association Table.
+	//
+	// PcrPid is a required field
+	PcrPid *int64 `locationName:"pcrPid" type:"integer" required:"true"`
+
+	// The program name as it is reported in the Program Association Table.
+	ProgramName *string `locationName:"programName" type:"string"`
+
+	// The program number as it is reported in the Program Association Table.
+	//
+	// ProgramNumber is a required field
+	ProgramNumber *int64 `locationName:"programNumber" type:"integer" required:"true"`
+
+	// The program Packet ID (PID) as it is reported in the Program Association
+	// Table.
+	//
+	// ProgramPid is a required field
+	ProgramPid *int64 `locationName:"programPid" type:"integer" required:"true"`
+
+	// The list of elementary transport streams in the program. The list includes
+	// video, audio, and data streams.
+	//
+	// Streams is a required field
+	Streams []*TransportStream `locationName:"streams" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportStreamProgram) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransportStreamProgram) GoString() string {
+	return s.String()
+}
+
+// SetPcrPid sets the PcrPid field's value.
+func (s *TransportStreamProgram) SetPcrPid(v int64) *TransportStreamProgram {
+	s.PcrPid = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *TransportStreamProgram) SetProgramName(v string) *TransportStreamProgram {
+	s.ProgramName = &v
+	return s
+}
+
+// SetProgramNumber sets the ProgramNumber field's value.
+func (s *TransportStreamProgram) SetProgramNumber(v int64) *TransportStreamProgram {
+	s.ProgramNumber = &v
+	return s
+}
+
+// SetProgramPid sets the ProgramPid field's value.
+func (s *TransportStreamProgram) SetProgramPid(v int64) *TransportStreamProgram {
+	s.ProgramPid = &v
+	return s
+}
+
+// SetStreams sets the Streams field's value.
+func (s *TransportStreamProgram) SetStreams(v []*TransportStream) *TransportStreamProgram {
+	s.Streams = v
 	return s
 }
 

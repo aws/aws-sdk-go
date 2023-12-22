@@ -931,6 +931,11 @@
         "PartitionValues":{"shape":"PartitionValuesList"}
       }
     },
+    "AdditionalContextMap":{
+      "type":"map",
+      "key":{"shape":"ContextKey"},
+      "value":{"shape":"ContextValue"}
+    },
     "AllRowsWildcard":{
       "type":"structure",
       "members":{
@@ -1124,6 +1129,16 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "ContextKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ContextValue":{
+      "type":"string",
+      "max":256,
+      "min":0
     },
     "CreateDataCellsFilterRequest":{
       "type":"structure",
@@ -1715,7 +1730,9 @@
         "Permissions":{"shape":"PermissionList"},
         "DurationSeconds":{"shape":"CredentialTimeoutDurationSecondInteger"},
         "AuditContext":{"shape":"AuditContext"},
-        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
+        "S3Path":{"shape":"PathString"},
+        "QuerySessionContext":{"shape":"QuerySessionContext"}
       }
     },
     "GetTemporaryGlueTableCredentialsResponse":{
@@ -1724,7 +1741,8 @@
         "AccessKeyId":{"shape":"AccessKeyIdString"},
         "SecretAccessKey":{"shape":"SecretAccessKeyString"},
         "SessionToken":{"shape":"SessionTokenString"},
-        "Expiration":{"shape":"ExpirationTimestamp"}
+        "Expiration":{"shape":"ExpirationTimestamp"},
+        "VendedS3Path":{"shape":"PathStringList"}
       }
     },
     "GetWorkUnitResultsRequest":{
@@ -1808,6 +1826,12 @@
       "type":"structure",
       "members":{
       }
+    },
+    "HashString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "IAMRoleArn":{
       "type":"string",
@@ -2073,6 +2097,10 @@
       "type":"boolean",
       "box":true
     },
+    "NullableString":{
+      "type":"string",
+      "box":true
+    },
     "NumberOfBytes":{"type":"long"},
     "NumberOfItems":{"type":"long"},
     "NumberOfMilliseconds":{"type":"long"},
@@ -2134,6 +2162,11 @@
     "PartitionedTableObjectsList":{
       "type":"list",
       "member":{"shape":"PartitionObjects"}
+    },
+    "PathString":{"type":"string"},
+    "PathStringList":{
+      "type":"list",
+      "member":{"shape":"PathString"}
     },
     "Permission":{
       "type":"string",
@@ -2255,6 +2288,16 @@
       "type":"string",
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "QuerySessionContext":{
+      "type":"structure",
+      "members":{
+        "QueryId":{"shape":"HashString"},
+        "QueryStartTime":{"shape":"Timestamp"},
+        "ClusterId":{"shape":"NullableString"},
+        "QueryAuthorizationId":{"shape":"HashString"},
+        "AdditionalContext":{"shape":"AdditionalContextMap"}
+      }
     },
     "QueryStateString":{
       "type":"string",

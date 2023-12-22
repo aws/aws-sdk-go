@@ -51,7 +51,7 @@
     "ListAnnotationImportJobs": "<p>Retrieves a list of annotation import jobs.</p>",
     "ListAnnotationStoreVersions": "<p> Lists the versions of an annotation store. </p>",
     "ListAnnotationStores": "<p>Retrieves a list of annotation stores.</p>",
-    "ListMultipartReadSetUploads": "<p> Lists all multipart read set uploads and their statuses. </p>",
+    "ListMultipartReadSetUploads": "<p> Lists multipart read set uploads and for in progress uploads. Once the upload is completed, a read set is created and the upload will no longer be returned in the respone. </p>",
     "ListReadSetActivationJobs": "<p>Retrieves a list of read set activation jobs.</p>",
     "ListReadSetExportJobs": "<p>Retrieves a list of read set export jobs.</p>",
     "ListReadSetImportJobs": "<p>Retrieves a list of read set import jobs.</p>",
@@ -492,7 +492,7 @@
     "CreateWorkflowRequestStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "CreateWorkflowRequest$storageCapacity": "<p>A storage capacity for the workflow in gigabytes.</p>"
+        "CreateWorkflowRequest$storageCapacity": "<p>A storage capacity for the workflow in gibibytes.</p>"
       }
     },
     "CreateWorkflowResponse": {

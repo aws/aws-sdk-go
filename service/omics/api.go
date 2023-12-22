@@ -5039,7 +5039,9 @@ func (c *Omics) ListMultipartReadSetUploadsRequest(input *ListMultipartReadSetUp
 
 // ListMultipartReadSetUploads API operation for Amazon Omics.
 //
-// Lists all multipart read set uploads and their statuses.
+// Lists multipart read set uploads and for in progress uploads. Once the upload
+// is completed, a read set is created and the upload will no longer be returned
+// in the respone.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12326,7 +12328,7 @@ type CreateWorkflowInput struct {
 	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A storage capacity for the workflow in gigabytes.
+	// A storage capacity for the workflow in gibibytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// Tags for the workflow.
