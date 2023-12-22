@@ -108,6 +108,8 @@ const (
 
 	// ErrCodeFederationSourceRetryableException for service response error code
 	// "FederationSourceRetryableException".
+	//
+	// A federation source failed, but the operation may be retried.
 	ErrCodeFederationSourceRetryableException = "FederationSourceRetryableException"
 
 	// ErrCodeIdempotentParameterMismatchException for service response error code

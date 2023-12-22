@@ -3353,6 +3353,11 @@
       "type":"list",
       "member":{"shape":"Action"}
     },
+    "AdditionalContextMap":{
+      "type":"map",
+      "key":{"shape":"ContextKey"},
+      "value":{"shape":"ContextValue"}
+    },
     "AdditionalOptionKeys":{
       "type":"string",
       "enum":[
@@ -4980,6 +4985,16 @@
       "type":"map",
       "key":{"shape":"GenericString"},
       "value":{"shape":"GenericString"}
+    },
+    "ContextKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ContextValue":{
+      "type":"string",
+      "max":256,
+      "min":0
     },
     "ContextWords":{
       "type":"list",
@@ -8347,12 +8362,14 @@
         "SupportedPermissionTypes"
       ],
       "members":{
+        "Region":{"shape":"ValueString"},
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "TableName":{"shape":"NameString"},
         "PartitionValues":{"shape":"ValueStringList"},
         "AuditContext":{"shape":"AuditContext"},
-        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
+        "QuerySessionContext":{"shape":"QuerySessionContext"}
       }
     },
     "GetUnfilteredPartitionMetadataResponse":{
@@ -8372,6 +8389,7 @@
         "SupportedPermissionTypes"
       ],
       "members":{
+        "Region":{"shape":"ValueString"},
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "TableName":{"shape":"NameString"},
@@ -8380,7 +8398,8 @@
         "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
         "NextToken":{"shape":"Token"},
         "Segment":{"shape":"Segment"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"PageSize"},
+        "QuerySessionContext":{"shape":"QuerySessionContext"}
       }
     },
     "GetUnfilteredPartitionsMetadataResponse":{
@@ -8399,11 +8418,15 @@
         "SupportedPermissionTypes"
       ],
       "members":{
+        "Region":{"shape":"ValueString"},
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "Name":{"shape":"NameString"},
         "AuditContext":{"shape":"AuditContext"},
-        "SupportedPermissionTypes":{"shape":"PermissionTypeList"}
+        "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
+        "SupportedDialect":{"shape":"SupportedDialect"},
+        "Permissions":{"shape":"PermissionList"},
+        "QuerySessionContext":{"shape":"QuerySessionContext"}
       }
     },
     "GetUnfilteredTableMetadataResponse":{
@@ -8412,7 +8435,10 @@
         "Table":{"shape":"Table"},
         "AuthorizedColumns":{"shape":"NameStringList"},
         "IsRegisteredWithLakeFormation":{"shape":"Boolean"},
-        "CellFilters":{"shape":"ColumnRowFilterList"}
+        "CellFilters":{"shape":"ColumnRowFilterList"},
+        "QueryAuthorizationId":{"shape":"HashString"},
+        "ResourceArn":{"shape":"ArnString"},
+        "Permissions":{"shape":"PermissionList"}
       }
     },
     "GetUserDefinedFunctionRequest":{
@@ -10063,6 +10089,10 @@
       "type":"integer",
       "box":true
     },
+    "NullableString":{
+      "type":"string",
+      "box":true
+    },
     "OneInput":{
       "type":"list",
       "member":{"shape":"NodeId"},
@@ -10617,6 +10647,16 @@
         "MetadataInfoMap":{"shape":"MetadataInfoMap"},
         "SchemaVersionId":{"shape":"SchemaVersionIdString"},
         "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "QuerySessionContext":{
+      "type":"structure",
+      "members":{
+        "QueryId":{"shape":"HashString"},
+        "QueryStartTime":{"shape":"Timestamp"},
+        "ClusterId":{"shape":"NullableString"},
+        "QueryAuthorizationId":{"shape":"HashString"},
+        "AdditionalContext":{"shape":"AdditionalContextMap"}
       }
     },
     "QuoteChar":{
@@ -12215,6 +12255,13 @@
       "type":"list",
       "member":{"shape":"GenericString"}
     },
+    "SupportedDialect":{
+      "type":"structure",
+      "members":{
+        "Dialect":{"shape":"ViewDialect"},
+        "DialectVersion":{"shape":"ViewDialectVersionString"}
+      }
+    },
     "Table":{
       "type":"structure",
       "required":["Name"],
@@ -13287,6 +13334,19 @@
       "max":100000,
       "min":1,
       "pattern":"[1-9][0-9]*|[1-9][0-9]*-[1-9][0-9]*"
+    },
+    "ViewDialect":{
+      "type":"string",
+      "enum":[
+        "REDSHIFT",
+        "ATHENA",
+        "SPARK"
+      ]
+    },
+    "ViewDialectVersionString":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "ViewTextString":{
       "type":"string",
