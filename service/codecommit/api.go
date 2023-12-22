@@ -1606,6 +1606,14 @@ func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req 
 //   - EncryptionKeyUnavailableException
 //     The encryption key is not available.
 //
+//   - EncryptionKeyInvalidIdException
+//     The Key Management Service encryption key is not valid.
+//
+//   - EncryptionKeyInvalidUsageException
+//     A KMS encryption key was used to try and encrypt or decrypt a repository,
+//     but either the repository or the key was not in a valid state to support
+//     the operation.
+//
 //   - InvalidTagsMapException
 //     The map of tags is not valid.
 //
@@ -10734,6 +10742,122 @@ func (c *CodeCommit) UpdateRepositoryDescriptionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opUpdateRepositoryEncryptionKey = "UpdateRepositoryEncryptionKey"
+
+// UpdateRepositoryEncryptionKeyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRepositoryEncryptionKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRepositoryEncryptionKey for more information on using the UpdateRepositoryEncryptionKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateRepositoryEncryptionKeyRequest method.
+//	req, resp := client.UpdateRepositoryEncryptionKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryEncryptionKey
+func (c *CodeCommit) UpdateRepositoryEncryptionKeyRequest(input *UpdateRepositoryEncryptionKeyInput) (req *request.Request, output *UpdateRepositoryEncryptionKeyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRepositoryEncryptionKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateRepositoryEncryptionKeyInput{}
+	}
+
+	output = &UpdateRepositoryEncryptionKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRepositoryEncryptionKey API operation for AWS CodeCommit.
+//
+// Updates the Key Management Service encryption key used to encrypt and decrypt
+// a CodeCommit repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeCommit's
+// API operation UpdateRepositoryEncryptionKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - RepositoryNameRequiredException
+//     A repository name is required, but was not specified.
+//
+//   - RepositoryDoesNotExistException
+//     The specified repository does not exist.
+//
+//   - InvalidRepositoryNameException
+//     A specified repository name is not valid.
+//
+//     This exception occurs only when a specified repository name is not valid.
+//     Other exceptions occur when a required repository parameter is missing, or
+//     when a specified repository does not exist.
+//
+//   - EncryptionKeyRequiredException
+//     A KMS encryption key ID is required but was not specified.
+//
+//   - EncryptionIntegrityChecksFailedException
+//     An encryption integrity check failed.
+//
+//   - EncryptionKeyAccessDeniedException
+//     An encryption key could not be accessed.
+//
+//   - EncryptionKeyInvalidIdException
+//     The Key Management Service encryption key is not valid.
+//
+//   - EncryptionKeyInvalidUsageException
+//     A KMS encryption key was used to try and encrypt or decrypt a repository,
+//     but either the repository or the key was not in a valid state to support
+//     the operation.
+//
+//   - EncryptionKeyDisabledException
+//     The encryption key is disabled.
+//
+//   - EncryptionKeyNotFoundException
+//     No encryption key was found.
+//
+//   - EncryptionKeyUnavailableException
+//     The encryption key is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codecommit-2015-04-13/UpdateRepositoryEncryptionKey
+func (c *CodeCommit) UpdateRepositoryEncryptionKey(input *UpdateRepositoryEncryptionKeyInput) (*UpdateRepositoryEncryptionKeyOutput, error) {
+	req, out := c.UpdateRepositoryEncryptionKeyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRepositoryEncryptionKeyWithContext is the same as UpdateRepositoryEncryptionKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRepositoryEncryptionKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeCommit) UpdateRepositoryEncryptionKeyWithContext(ctx aws.Context, input *UpdateRepositoryEncryptionKeyInput, opts ...request.Option) (*UpdateRepositoryEncryptionKeyOutput, error) {
+	req, out := c.UpdateRepositoryEncryptionKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRepositoryName = "UpdateRepositoryName"
 
 // UpdateRepositoryNameRequest generates a "aws/request.Request" representing the
@@ -12855,6 +12979,68 @@ func (s *BatchGetCommitsOutput) SetErrors(v []*BatchGetCommitsError) *BatchGetCo
 	return s
 }
 
+// Returns information about errors in a BatchGetRepositories operation.
+type BatchGetRepositoriesError struct {
+	_ struct{} `type:"structure"`
+
+	// An error code that specifies the type of failure.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"BatchGetRepositoriesErrorCodeEnum"`
+
+	// An error message that provides detail about why the repository either was
+	// not found or was not in a valid state.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The ID of a repository that either could not be found or was not in a valid
+	// state.
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
+
+	// The name of a repository that either could not be found or was not in a valid
+	// state.
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetRepositoriesError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetRepositoriesError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetRepositoriesError) SetErrorCode(v string) *BatchGetRepositoriesError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetRepositoriesError) SetErrorMessage(v string) *BatchGetRepositoriesError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetRepositoryId sets the RepositoryId field's value.
+func (s *BatchGetRepositoriesError) SetRepositoryId(v string) *BatchGetRepositoriesError {
+	s.RepositoryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *BatchGetRepositoriesError) SetRepositoryName(v string) *BatchGetRepositoriesError {
+	s.RepositoryName = &v
+	return s
+}
+
 // Represents the input of a batch get repositories operation.
 type BatchGetRepositoriesInput struct {
 	_ struct{} `type:"structure"`
@@ -12909,6 +13095,10 @@ func (s *BatchGetRepositoriesInput) SetRepositoryNames(v []*string) *BatchGetRep
 type BatchGetRepositoriesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns information about any errors returned when attempting to retrieve
+	// information about the repositories.
+	Errors []*BatchGetRepositoriesError `locationName:"errors" type:"list"`
+
 	// A list of repositories returned by the batch get repositories operation.
 	Repositories []*RepositoryMetadata `locationName:"repositories" type:"list"`
 
@@ -12932,6 +13122,12 @@ func (s BatchGetRepositoriesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s BatchGetRepositoriesOutput) GoString() string {
 	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetRepositoriesOutput) SetErrors(v []*BatchGetRepositoriesError) *BatchGetRepositoriesOutput {
+	s.Errors = v
+	return s
 }
 
 // SetRepositories sets the Repositories field's value.
@@ -16012,6 +16208,15 @@ func (s *CreatePullRequestOutput) SetPullRequest(v *PullRequest) *CreatePullRequ
 type CreateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the encryption key. You can view the ID of an encryption key in
+	// the KMS console, or use the KMS APIs to programmatically retrieve a key ID.
+	// For more information about acceptable values for kmsKeyID, see KeyId (https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
+	// in the Decrypt API description in the Key Management Service API Reference.
+	//
+	// If no key is specified, the default aws/codecommit Amazon Web Services managed
+	// key is used.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
 	// A comment or description about the new repository.
 	//
 	// The description field for a repository accepts all HTML characters and all
@@ -16068,6 +16273,12 @@ func (s *CreateRepositoryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateRepositoryInput) SetKmsKeyId(v string) *CreateRepositoryInput {
+	s.KmsKeyId = &v
+	return s
 }
 
 // SetRepositoryDescription sets the RepositoryDescription field's value.
@@ -17868,6 +18079,136 @@ func (s *EncryptionKeyDisabledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The Key Management Service encryption key is not valid.
+type EncryptionKeyInvalidIdException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyInvalidIdException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyInvalidIdException) GoString() string {
+	return s.String()
+}
+
+func newErrorEncryptionKeyInvalidIdException(v protocol.ResponseMetadata) error {
+	return &EncryptionKeyInvalidIdException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EncryptionKeyInvalidIdException) Code() string {
+	return "EncryptionKeyInvalidIdException"
+}
+
+// Message returns the exception's message.
+func (s *EncryptionKeyInvalidIdException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EncryptionKeyInvalidIdException) OrigErr() error {
+	return nil
+}
+
+func (s *EncryptionKeyInvalidIdException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EncryptionKeyInvalidIdException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EncryptionKeyInvalidIdException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A KMS encryption key was used to try and encrypt or decrypt a repository,
+// but either the repository or the key was not in a valid state to support
+// the operation.
+type EncryptionKeyInvalidUsageException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyInvalidUsageException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyInvalidUsageException) GoString() string {
+	return s.String()
+}
+
+func newErrorEncryptionKeyInvalidUsageException(v protocol.ResponseMetadata) error {
+	return &EncryptionKeyInvalidUsageException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EncryptionKeyInvalidUsageException) Code() string {
+	return "EncryptionKeyInvalidUsageException"
+}
+
+// Message returns the exception's message.
+func (s *EncryptionKeyInvalidUsageException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EncryptionKeyInvalidUsageException) OrigErr() error {
+	return nil
+}
+
+func (s *EncryptionKeyInvalidUsageException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EncryptionKeyInvalidUsageException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EncryptionKeyInvalidUsageException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // No encryption key was found.
 type EncryptionKeyNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -17929,6 +18270,70 @@ func (s *EncryptionKeyNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *EncryptionKeyNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A KMS encryption key ID is required but was not specified.
+type EncryptionKeyRequiredException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyRequiredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionKeyRequiredException) GoString() string {
+	return s.String()
+}
+
+func newErrorEncryptionKeyRequiredException(v protocol.ResponseMetadata) error {
+	return &EncryptionKeyRequiredException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EncryptionKeyRequiredException) Code() string {
+	return "EncryptionKeyRequiredException"
+}
+
+// Message returns the exception's message.
+func (s *EncryptionKeyRequiredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EncryptionKeyRequiredException) OrigErr() error {
+	return nil
+}
+
+func (s *EncryptionKeyRequiredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EncryptionKeyRequiredException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EncryptionKeyRequiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -32543,6 +32948,10 @@ type RepositoryMetadata struct {
 	// The repository's default branch name.
 	DefaultBranch *string `locationName:"defaultBranch" min:"1" type:"string"`
 
+	// The ID of the Key Management Service encryption key used to encrypt and decrypt
+	// the repository.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
 	// The date and time the repository was last modified, in timestamp format.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
@@ -32607,6 +33016,12 @@ func (s *RepositoryMetadata) SetCreationDate(v time.Time) *RepositoryMetadata {
 // SetDefaultBranch sets the DefaultBranch field's value.
 func (s *RepositoryMetadata) SetDefaultBranch(v string) *RepositoryMetadata {
 	s.DefaultBranch = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RepositoryMetadata) SetKmsKeyId(v string) *RepositoryMetadata {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -36186,6 +36601,122 @@ func (s UpdateRepositoryDescriptionOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateRepositoryEncryptionKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the encryption key. You can view the ID of an encryption key in
+	// the KMS console, or use the KMS APIs to programmatically retrieve a key ID.
+	// For more information about acceptable values for keyID, see KeyId (https://docs.aws.amazon.com/APIReference/API_Decrypt.html#KMS-Decrypt-request-KeyId)
+	// in the Decrypt API description in the Key Management Service API Reference.
+	//
+	// KmsKeyId is a required field
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string" required:"true"`
+
+	// The name of the repository for which you want to update the KMS encryption
+	// key used to encrypt and decrypt the repository.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRepositoryEncryptionKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRepositoryEncryptionKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRepositoryEncryptionKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRepositoryEncryptionKeyInput"}
+	if s.KmsKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateRepositoryEncryptionKeyInput) SetKmsKeyId(v string) *UpdateRepositoryEncryptionKeyInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UpdateRepositoryEncryptionKeyInput) SetRepositoryName(v string) *UpdateRepositoryEncryptionKeyInput {
+	s.RepositoryName = &v
+	return s
+}
+
+type UpdateRepositoryEncryptionKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the encryption key.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The ID of the encryption key formerly used to encrypt and decrypt the repository.
+	OriginalKmsKeyId *string `locationName:"originalKmsKeyId" type:"string"`
+
+	// The ID of the repository.
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRepositoryEncryptionKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRepositoryEncryptionKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateRepositoryEncryptionKeyOutput) SetKmsKeyId(v string) *UpdateRepositoryEncryptionKeyOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOriginalKmsKeyId sets the OriginalKmsKeyId field's value.
+func (s *UpdateRepositoryEncryptionKeyOutput) SetOriginalKmsKeyId(v string) *UpdateRepositoryEncryptionKeyOutput {
+	s.OriginalKmsKeyId = &v
+	return s
+}
+
+// SetRepositoryId sets the RepositoryId field's value.
+func (s *UpdateRepositoryEncryptionKeyOutput) SetRepositoryId(v string) *UpdateRepositoryEncryptionKeyOutput {
+	s.RepositoryId = &v
+	return s
+}
+
 // Represents the input of an update repository description operation.
 type UpdateRepositoryNameInput struct {
 	_ struct{} `type:"structure"`
@@ -36339,6 +36870,38 @@ func ApprovalState_Values() []string {
 	return []string{
 		ApprovalStateApprove,
 		ApprovalStateRevoke,
+	}
+}
+
+const (
+	// BatchGetRepositoriesErrorCodeEnumEncryptionIntegrityChecksFailedException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumEncryptionIntegrityChecksFailedException = "EncryptionIntegrityChecksFailedException"
+
+	// BatchGetRepositoriesErrorCodeEnumEncryptionKeyAccessDeniedException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumEncryptionKeyAccessDeniedException = "EncryptionKeyAccessDeniedException"
+
+	// BatchGetRepositoriesErrorCodeEnumEncryptionKeyDisabledException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumEncryptionKeyDisabledException = "EncryptionKeyDisabledException"
+
+	// BatchGetRepositoriesErrorCodeEnumEncryptionKeyNotFoundException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumEncryptionKeyNotFoundException = "EncryptionKeyNotFoundException"
+
+	// BatchGetRepositoriesErrorCodeEnumEncryptionKeyUnavailableException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumEncryptionKeyUnavailableException = "EncryptionKeyUnavailableException"
+
+	// BatchGetRepositoriesErrorCodeEnumRepositoryDoesNotExistException is a BatchGetRepositoriesErrorCodeEnum enum value
+	BatchGetRepositoriesErrorCodeEnumRepositoryDoesNotExistException = "RepositoryDoesNotExistException"
+)
+
+// BatchGetRepositoriesErrorCodeEnum_Values returns all elements of the BatchGetRepositoriesErrorCodeEnum enum
+func BatchGetRepositoriesErrorCodeEnum_Values() []string {
+	return []string{
+		BatchGetRepositoriesErrorCodeEnumEncryptionIntegrityChecksFailedException,
+		BatchGetRepositoriesErrorCodeEnumEncryptionKeyAccessDeniedException,
+		BatchGetRepositoriesErrorCodeEnumEncryptionKeyDisabledException,
+		BatchGetRepositoriesErrorCodeEnumEncryptionKeyNotFoundException,
+		BatchGetRepositoriesErrorCodeEnumEncryptionKeyUnavailableException,
+		BatchGetRepositoriesErrorCodeEnumRepositoryDoesNotExistException,
 	}
 }
 

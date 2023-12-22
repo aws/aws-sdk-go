@@ -1174,6 +1174,12 @@
       "min":33,
       "pattern":"[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "ColumnName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"[a-zA-Z0-9_\\-]+"
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -2117,7 +2123,8 @@
       "enum":[
         "OPENSEARCH_SERVERLESS",
         "PINECONE",
-        "REDIS_ENTERPRISE_CLOUD"
+        "REDIS_ENTERPRISE_CLOUD",
+        "RDS"
       ]
     },
     "KnowledgeBaseSummaries":{
@@ -2533,6 +2540,54 @@
         "KNOWLEDGE_BASE_RESPONSE_GENERATION"
       ]
     },
+    "RdsArn":{
+      "type":"string",
+      "pattern":"arn:aws(|-cn|-us-gov):rds:[a-zA-Z0-9-]*:[0-9]{12}:cluster:[a-zA-Z0-9-]{1,63}"
+    },
+    "RdsConfiguration":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "credentialsSecretArn",
+        "databaseName",
+        "tableName",
+        "fieldMapping"
+      ],
+      "members":{
+        "resourceArn":{"shape":"RdsArn"},
+        "credentialsSecretArn":{"shape":"SecretArn"},
+        "databaseName":{"shape":"RdsDatabaseName"},
+        "tableName":{"shape":"RdsTableName"},
+        "fieldMapping":{"shape":"RdsFieldMapping"}
+      }
+    },
+    "RdsDatabaseName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"[a-zA-Z0-9_\\-]+"
+    },
+    "RdsFieldMapping":{
+      "type":"structure",
+      "required":[
+        "primaryKeyField",
+        "vectorField",
+        "textField",
+        "metadataField"
+      ],
+      "members":{
+        "primaryKeyField":{"shape":"ColumnName"},
+        "vectorField":{"shape":"ColumnName"},
+        "textField":{"shape":"ColumnName"},
+        "metadataField":{"shape":"ColumnName"}
+      }
+    },
+    "RdsTableName":{
+      "type":"string",
+      "max":63,
+      "min":0,
+      "pattern":"[a-zA-Z0-9_\\.\\-]+"
+    },
     "RecommendedAction":{
       "type":"string",
       "max":2048,
@@ -2641,7 +2696,7 @@
     },
     "SecretArn":{
       "type":"string",
-      "pattern":"arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9/_+=.@-]{1,63}"
+      "pattern":"arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}"
     },
     "ServerSideEncryptionConfiguration":{
       "type":"structure",
@@ -2717,7 +2772,8 @@
         "type":{"shape":"KnowledgeBaseStorageType"},
         "opensearchServerlessConfiguration":{"shape":"OpenSearchServerlessConfiguration"},
         "pineconeConfiguration":{"shape":"PineconeConfiguration"},
-        "redisEnterpriseCloudConfiguration":{"shape":"RedisEnterpriseCloudConfiguration"}
+        "redisEnterpriseCloudConfiguration":{"shape":"RedisEnterpriseCloudConfiguration"},
+        "rdsConfiguration":{"shape":"RdsConfiguration"}
       }
     },
     "String":{"type":"string"},

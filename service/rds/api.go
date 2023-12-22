@@ -11040,6 +11040,96 @@ func (c *RDS) DescribeValidDBInstanceModificationsWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDisableHttpEndpoint = "DisableHttpEndpoint"
+
+// DisableHttpEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DisableHttpEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisableHttpEndpoint for more information on using the DisableHttpEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisableHttpEndpointRequest method.
+//	req, resp := client.DisableHttpEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DisableHttpEndpoint
+func (c *RDS) DisableHttpEndpointRequest(input *DisableHttpEndpointInput) (req *request.Request, output *DisableHttpEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDisableHttpEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisableHttpEndpointInput{}
+	}
+
+	output = &DisableHttpEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisableHttpEndpoint API operation for Amazon Relational Database Service.
+//
+// Disables the HTTP endpoint for the specified DB cluster. Disabling this endpoint
+// disables RDS Data API.
+//
+// For more information, see Using RDS Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+// in the Amazon Aurora User Guide.
+//
+// This operation applies only to Aurora PostgreSQL Serverless v2 and provisioned
+// DB clusters. To disable the HTTP endpoint for Aurora Serverless v1 DB clusters,
+// use the EnableHttpEndpoint parameter of the ModifyDBCluster operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DisableHttpEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//     The specified resource ID was not found.
+//
+//   - ErrCodeInvalidResourceStateFault "InvalidResourceStateFault"
+//     The operation can't be performed because another operation is in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DisableHttpEndpoint
+func (c *RDS) DisableHttpEndpoint(input *DisableHttpEndpointInput) (*DisableHttpEndpointOutput, error) {
+	req, out := c.DisableHttpEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DisableHttpEndpointWithContext is the same as DisableHttpEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableHttpEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DisableHttpEndpointWithContext(ctx aws.Context, input *DisableHttpEndpointInput, opts ...request.Option) (*DisableHttpEndpointOutput, error) {
+	req, out := c.DisableHttpEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 
 // DownloadDBLogFilePortionRequest generates a "aws/request.Request" representing the
@@ -11179,6 +11269,100 @@ func (c *RDS) DownloadDBLogFilePortionPagesWithContext(ctx aws.Context, input *D
 	}
 
 	return p.Err()
+}
+
+const opEnableHttpEndpoint = "EnableHttpEndpoint"
+
+// EnableHttpEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the EnableHttpEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EnableHttpEndpoint for more information on using the EnableHttpEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the EnableHttpEndpointRequest method.
+//	req, resp := client.EnableHttpEndpointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EnableHttpEndpoint
+func (c *RDS) EnableHttpEndpointRequest(input *EnableHttpEndpointInput) (req *request.Request, output *EnableHttpEndpointOutput) {
+	op := &request.Operation{
+		Name:       opEnableHttpEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &EnableHttpEndpointInput{}
+	}
+
+	output = &EnableHttpEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// EnableHttpEndpoint API operation for Amazon Relational Database Service.
+//
+// Enables the HTTP endpoint for the DB cluster. By default, the HTTP endpoint
+// isn't enabled.
+//
+// When enabled, this endpoint provides a connectionless web service API (RDS
+// Data API) for running SQL queries on the Aurora DB cluster. You can also
+// query your database from inside the RDS console with the RDS query editor.
+//
+// For more information, see Using RDS Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+// in the Amazon Aurora User Guide.
+//
+// This operation applies only to Aurora PostgreSQL Serverless v2 and provisioned
+// DB clusters. To enable the HTTP endpoint for Aurora Serverless v1 DB clusters,
+// use the EnableHttpEndpoint parameter of the ModifyDBCluster operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation EnableHttpEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceNotFoundFault "ResourceNotFoundFault"
+//     The specified resource ID was not found.
+//
+//   - ErrCodeInvalidResourceStateFault "InvalidResourceStateFault"
+//     The operation can't be performed because another operation is in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EnableHttpEndpoint
+func (c *RDS) EnableHttpEndpoint(input *EnableHttpEndpointInput) (*EnableHttpEndpointOutput, error) {
+	req, out := c.EnableHttpEndpointRequest(input)
+	return out, req.Send()
+}
+
+// EnableHttpEndpointWithContext is the same as EnableHttpEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableHttpEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) EnableHttpEndpointWithContext(ctx aws.Context, input *EnableHttpEndpointInput, opts ...request.Option) (*EnableHttpEndpointOutput, error) {
+	req, out := c.EnableHttpEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opFailoverDBCluster = "FailoverDBCluster"
@@ -21396,14 +21580,20 @@ type CreateDBClusterInput struct {
 	// Valid for Cluster Type: Aurora DB clusters only
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
-	// Specifies whether to enable the HTTP endpoint for an Aurora Serverless v1
-	// DB cluster. By default, the HTTP endpoint is disabled.
+	// Specifies whether to enable the HTTP endpoint for the DB cluster. By default,
+	// the HTTP endpoint isn't enabled.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
-	// query your database from inside the RDS console with the query editor.
+	// (RDS Data API) for running SQL queries on the DB cluster. You can also query
+	// your database from inside the RDS console with the RDS query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// RDS Data API is supported with the following DB clusters:
+	//
+	//    * Aurora PostgreSQL Serverless v2 and provisioned
+	//
+	//    * Aurora PostgreSQL and Aurora MySQL Serverless v1
+	//
+	// For more information, see Using RDS Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	//
 	// Valid for Cluster Type: Aurora DB clusters only
@@ -27029,14 +27219,13 @@ type DBCluster struct {
 	// The ID that Amazon Route 53 assigns when you create a hosted zone.
 	HostedZoneId *string `type:"string"`
 
-	// Indicates whether the HTTP endpoint for an Aurora Serverless v1 DB cluster
-	// is enabled.
+	// Indicates whether the HTTP endpoint is enabled for an Aurora DB cluster.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
-	// query your database from inside the RDS console with the query editor.
+	// (RDS Data API) for running SQL queries on the DB cluster. You can also query
+	// your database from inside the RDS console with the RDS query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// For more information, see Using RDS Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
 	HttpEndpointEnabled *bool `type:"boolean"`
 
@@ -41790,6 +41979,92 @@ func (s *DescribeValidDBInstanceModificationsOutput) SetValidDBInstanceModificat
 	return s
 }
 
+type DisableHttpEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableHttpEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableHttpEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableHttpEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableHttpEndpointInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DisableHttpEndpointInput) SetResourceArn(v string) *DisableHttpEndpointInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DisableHttpEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the HTTP endpoint is enabled or disabled for the DB cluster.
+	HttpEndpointEnabled *bool `type:"boolean"`
+
+	// The ARN of the DB cluster.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableHttpEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisableHttpEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpointEnabled sets the HttpEndpointEnabled field's value.
+func (s *DisableHttpEndpointOutput) SetHttpEndpointEnabled(v bool) *DisableHttpEndpointOutput {
+	s.HttpEndpointEnabled = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DisableHttpEndpointOutput) SetResourceArn(v string) *DisableHttpEndpointOutput {
+	s.ResourceArn = &v
+	return s
+}
+
 // A link to documentation that provides additional information for a recommendation.
 type DocLink struct {
 	_ struct{} `type:"structure"`
@@ -42182,6 +42457,92 @@ func (s *EC2SecurityGroup) SetEC2SecurityGroupOwnerId(v string) *EC2SecurityGrou
 // SetStatus sets the Status field's value.
 func (s *EC2SecurityGroup) SetStatus(v string) *EC2SecurityGroup {
 	s.Status = &v
+	return s
+}
+
+type EnableHttpEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the DB cluster.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableHttpEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableHttpEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableHttpEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableHttpEndpointInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *EnableHttpEndpointInput) SetResourceArn(v string) *EnableHttpEndpointInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type EnableHttpEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the HTTP endpoint is enabled or disabled for the DB cluster.
+	HttpEndpointEnabled *bool `type:"boolean"`
+
+	// The ARN of the DB cluster.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableHttpEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableHttpEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpointEnabled sets the HttpEndpointEnabled field's value.
+func (s *EnableHttpEndpointOutput) SetHttpEndpointEnabled(v bool) *EnableHttpEndpointOutput {
+	s.HttpEndpointEnabled = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *EnableHttpEndpointOutput) SetResourceArn(v string) *EnableHttpEndpointOutput {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -45198,14 +45559,19 @@ type ModifyDBClusterInput struct {
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// Specifies whether to enable the HTTP endpoint for an Aurora Serverless v1
-	// DB cluster. By default, the HTTP endpoint is disabled.
+	// DB cluster. By default, the HTTP endpoint isn't enabled.
 	//
 	// When enabled, the HTTP endpoint provides a connectionless web service API
-	// for running SQL queries on the Aurora Serverless v1 DB cluster. You can also
-	// query your database from inside the RDS console with the query editor.
+	// (RDS Data API) for running SQL queries on the Aurora Serverless v1 DB cluster.
+	// You can also query your database from inside the RDS console with the RDS
+	// query editor.
 	//
-	// For more information, see Using the Data API for Aurora Serverless v1 (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
+	// For more information, see Using RDS Data API (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// This parameter applies only to Aurora Serverless v1 DB clusters. To enable
+	// or disable the HTTP endpoint for an Aurora PostgreSQL Serverless v2 or provisioned
+	// DB cluster, use the EnableHttpEndpoint and DisableHttpEndpoint operations.
 	//
 	// Valid for Cluster Type: Aurora DB clusters only
 	EnableHttpEndpoint *bool `type:"boolean"`

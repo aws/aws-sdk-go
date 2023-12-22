@@ -138,6 +138,12 @@
       "output_token": "NextToken",
       "result_key": "ListPhoneNumbersSummaryList"
     },
+    "ListPredefinedAttributes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PredefinedAttributeSummaryList"
+    },
     "ListPrompts": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -255,6 +261,16 @@
       "output_token": "NextToken",
       "result_key": "UserHierarchyGroupSummaryList"
     },
+    "ListUserProficiencies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "LastModifiedTime",
+        "LastModifiedRegion"
+      ],
+      "output_token": "NextToken",
+      "result_key": "UserProficiencyList"
+    },
     "ListUsers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -279,6 +295,15 @@
       "output_token": "NextToken",
       "result_key": "AvailableNumbersList"
     },
+    "SearchContacts": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "TotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "Contacts"
+    },
     "SearchHoursOfOperations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -287,6 +312,15 @@
       ],
       "output_token": "NextToken",
       "result_key": "HoursOfOperations"
+    },
+    "SearchPredefinedAttributes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "non_aggregate_keys": [
+        "ApproximateTotalCount"
+      ],
+      "output_token": "NextToken",
+      "result_key": "PredefinedAttributes"
     },
     "SearchPrompts": {
       "input_token": "NextToken",

@@ -410,6 +410,10 @@ type CodeCommitAPI interface {
 	UpdateRepositoryDescriptionWithContext(aws.Context, *codecommit.UpdateRepositoryDescriptionInput, ...request.Option) (*codecommit.UpdateRepositoryDescriptionOutput, error)
 	UpdateRepositoryDescriptionRequest(*codecommit.UpdateRepositoryDescriptionInput) (*request.Request, *codecommit.UpdateRepositoryDescriptionOutput)
 
+	UpdateRepositoryEncryptionKey(*codecommit.UpdateRepositoryEncryptionKeyInput) (*codecommit.UpdateRepositoryEncryptionKeyOutput, error)
+	UpdateRepositoryEncryptionKeyWithContext(aws.Context, *codecommit.UpdateRepositoryEncryptionKeyInput, ...request.Option) (*codecommit.UpdateRepositoryEncryptionKeyOutput, error)
+	UpdateRepositoryEncryptionKeyRequest(*codecommit.UpdateRepositoryEncryptionKeyInput) (*request.Request, *codecommit.UpdateRepositoryEncryptionKeyOutput)
+
 	UpdateRepositoryName(*codecommit.UpdateRepositoryNameInput) (*codecommit.UpdateRepositoryNameOutput, error)
 	UpdateRepositoryNameWithContext(aws.Context, *codecommit.UpdateRepositoryNameInput, ...request.Option) (*codecommit.UpdateRepositoryNameOutput, error)
 	UpdateRepositoryNameRequest(*codecommit.UpdateRepositoryNameInput) (*request.Request, *codecommit.UpdateRepositoryNameOutput)

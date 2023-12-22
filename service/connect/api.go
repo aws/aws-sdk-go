@@ -1379,6 +1379,98 @@ func (c *Connect) AssociateTrafficDistributionGroupUserWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opAssociateUserProficiencies = "AssociateUserProficiencies"
+
+// AssociateUserProficienciesRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateUserProficiencies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateUserProficiencies for more information on using the AssociateUserProficiencies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateUserProficienciesRequest method.
+//	req, resp := client.AssociateUserProficienciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateUserProficiencies
+func (c *Connect) AssociateUserProficienciesRequest(input *AssociateUserProficienciesInput) (req *request.Request, output *AssociateUserProficienciesOutput) {
+	op := &request.Operation{
+		Name:       opAssociateUserProficiencies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/associate-proficiencies",
+	}
+
+	if input == nil {
+		input = &AssociateUserProficienciesInput{}
+	}
+
+	output = &AssociateUserProficienciesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateUserProficiencies API operation for Amazon Connect Service.
+//
+// >Associates a set of proficiencies with a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateUserProficiencies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateUserProficiencies
+func (c *Connect) AssociateUserProficiencies(input *AssociateUserProficienciesInput) (*AssociateUserProficienciesOutput, error) {
+	req, out := c.AssociateUserProficienciesRequest(input)
+	return out, req.Send()
+}
+
+// AssociateUserProficienciesWithContext is the same as AssociateUserProficiencies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateUserProficiencies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateUserProficienciesWithContext(ctx aws.Context, input *AssociateUserProficienciesInput, opts ...request.Option) (*AssociateUserProficienciesOutput, error) {
+	req, out := c.AssociateUserProficienciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchAssociateAnalyticsDataSet = "BatchAssociateAnalyticsDataSet"
 
 // BatchAssociateAnalyticsDataSetRequest generates a "aws/request.Request" representing the
@@ -2769,6 +2861,104 @@ func (c *Connect) CreatePersistentContactAssociation(input *CreatePersistentCont
 // for more information on using Contexts.
 func (c *Connect) CreatePersistentContactAssociationWithContext(ctx aws.Context, input *CreatePersistentContactAssociationInput, opts ...request.Option) (*CreatePersistentContactAssociationOutput, error) {
 	req, out := c.CreatePersistentContactAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePredefinedAttribute = "CreatePredefinedAttribute"
+
+// CreatePredefinedAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePredefinedAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePredefinedAttribute for more information on using the CreatePredefinedAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePredefinedAttributeRequest method.
+//	req, resp := client.CreatePredefinedAttributeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePredefinedAttribute
+func (c *Connect) CreatePredefinedAttributeRequest(input *CreatePredefinedAttributeInput) (req *request.Request, output *CreatePredefinedAttributeOutput) {
+	op := &request.Operation{
+		Name:       opCreatePredefinedAttribute,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/predefined-attributes/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreatePredefinedAttributeInput{}
+	}
+
+	output = &CreatePredefinedAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreatePredefinedAttribute API operation for Amazon Connect Service.
+//
+// Creates a new predefined attribute for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreatePredefinedAttribute for usage and error information.
+//
+// Returned Error Types:
+//
+//   - DuplicateResourceException
+//     A resource with the specified name already exists.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - LimitExceededException
+//     The allowed limit for the resource has been exceeded.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreatePredefinedAttribute
+func (c *Connect) CreatePredefinedAttribute(input *CreatePredefinedAttributeInput) (*CreatePredefinedAttributeOutput, error) {
+	req, out := c.CreatePredefinedAttributeRequest(input)
+	return out, req.Send()
+}
+
+// CreatePredefinedAttributeWithContext is the same as CreatePredefinedAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePredefinedAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreatePredefinedAttributeWithContext(ctx aws.Context, input *CreatePredefinedAttributeInput, opts ...request.Option) (*CreatePredefinedAttributeOutput, error) {
+	req, out := c.CreatePredefinedAttributeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4941,6 +5131,101 @@ func (c *Connect) DeleteIntegrationAssociation(input *DeleteIntegrationAssociati
 // for more information on using Contexts.
 func (c *Connect) DeleteIntegrationAssociationWithContext(ctx aws.Context, input *DeleteIntegrationAssociationInput, opts ...request.Option) (*DeleteIntegrationAssociationOutput, error) {
 	req, out := c.DeleteIntegrationAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePredefinedAttribute = "DeletePredefinedAttribute"
+
+// DeletePredefinedAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePredefinedAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePredefinedAttribute for more information on using the DeletePredefinedAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePredefinedAttributeRequest method.
+//	req, resp := client.DeletePredefinedAttributeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeletePredefinedAttribute
+func (c *Connect) DeletePredefinedAttributeRequest(input *DeletePredefinedAttributeInput) (req *request.Request, output *DeletePredefinedAttributeOutput) {
+	op := &request.Operation{
+		Name:       opDeletePredefinedAttribute,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/predefined-attributes/{InstanceId}/{Name}",
+	}
+
+	if input == nil {
+		input = &DeletePredefinedAttributeInput{}
+	}
+
+	output = &DeletePredefinedAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePredefinedAttribute API operation for Amazon Connect Service.
+//
+// Deletes a predefined attribute from the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeletePredefinedAttribute for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceInUseException
+//     That resource is already in use. Please try another.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeletePredefinedAttribute
+func (c *Connect) DeletePredefinedAttribute(input *DeletePredefinedAttributeInput) (*DeletePredefinedAttributeOutput, error) {
+	req, out := c.DeletePredefinedAttributeRequest(input)
+	return out, req.Send()
+}
+
+// DeletePredefinedAttributeWithContext is the same as DeletePredefinedAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePredefinedAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeletePredefinedAttributeWithContext(ctx aws.Context, input *DeletePredefinedAttributeInput, opts ...request.Option) (*DeletePredefinedAttributeOutput, error) {
+	req, out := c.DeletePredefinedAttributeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7303,6 +7588,97 @@ func (c *Connect) DescribePhoneNumberWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribePredefinedAttribute = "DescribePredefinedAttribute"
+
+// DescribePredefinedAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePredefinedAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePredefinedAttribute for more information on using the DescribePredefinedAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribePredefinedAttributeRequest method.
+//	req, resp := client.DescribePredefinedAttributeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePredefinedAttribute
+func (c *Connect) DescribePredefinedAttributeRequest(input *DescribePredefinedAttributeInput) (req *request.Request, output *DescribePredefinedAttributeOutput) {
+	op := &request.Operation{
+		Name:       opDescribePredefinedAttribute,
+		HTTPMethod: "GET",
+		HTTPPath:   "/predefined-attributes/{InstanceId}/{Name}",
+	}
+
+	if input == nil {
+		input = &DescribePredefinedAttributeInput{}
+	}
+
+	output = &DescribePredefinedAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePredefinedAttribute API operation for Amazon Connect Service.
+//
+// Describes a predefined attribute for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribePredefinedAttribute for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribePredefinedAttribute
+func (c *Connect) DescribePredefinedAttribute(input *DescribePredefinedAttributeInput) (*DescribePredefinedAttributeOutput, error) {
+	req, out := c.DescribePredefinedAttributeRequest(input)
+	return out, req.Send()
+}
+
+// DescribePredefinedAttributeWithContext is the same as DescribePredefinedAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePredefinedAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribePredefinedAttributeWithContext(ctx aws.Context, input *DescribePredefinedAttributeInput, opts ...request.Option) (*DescribePredefinedAttributeOutput, error) {
+	req, out := c.DescribePredefinedAttributeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribePrompt = "DescribePrompt"
 
 // DescribePromptRequest generates a "aws/request.Request" representing the
@@ -9545,6 +9921,98 @@ func (c *Connect) DisassociateTrafficDistributionGroupUser(input *DisassociateTr
 // for more information on using Contexts.
 func (c *Connect) DisassociateTrafficDistributionGroupUserWithContext(ctx aws.Context, input *DisassociateTrafficDistributionGroupUserInput, opts ...request.Option) (*DisassociateTrafficDistributionGroupUserOutput, error) {
 	req, out := c.DisassociateTrafficDistributionGroupUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateUserProficiencies = "DisassociateUserProficiencies"
+
+// DisassociateUserProficienciesRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateUserProficiencies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateUserProficiencies for more information on using the DisassociateUserProficiencies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateUserProficienciesRequest method.
+//	req, resp := client.DisassociateUserProficienciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateUserProficiencies
+func (c *Connect) DisassociateUserProficienciesRequest(input *DisassociateUserProficienciesInput) (req *request.Request, output *DisassociateUserProficienciesOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateUserProficiencies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/disassociate-proficiencies",
+	}
+
+	if input == nil {
+		input = &DisassociateUserProficienciesInput{}
+	}
+
+	output = &DisassociateUserProficienciesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateUserProficiencies API operation for Amazon Connect Service.
+//
+// Disassociates a set of proficiencies from a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateUserProficiencies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateUserProficiencies
+func (c *Connect) DisassociateUserProficiencies(input *DisassociateUserProficienciesInput) (*DisassociateUserProficienciesOutput, error) {
+	req, out := c.DisassociateUserProficienciesRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateUserProficienciesWithContext is the same as DisassociateUserProficiencies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateUserProficiencies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateUserProficienciesWithContext(ctx aws.Context, input *DisassociateUserProficienciesInput, opts ...request.Option) (*DisassociateUserProficienciesOutput, error) {
+	req, out := c.DisassociateUserProficienciesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14027,6 +14495,154 @@ func (c *Connect) ListPhoneNumbersV2PagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListPredefinedAttributes = "ListPredefinedAttributes"
+
+// ListPredefinedAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPredefinedAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPredefinedAttributes for more information on using the ListPredefinedAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPredefinedAttributesRequest method.
+//	req, resp := client.ListPredefinedAttributesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPredefinedAttributes
+func (c *Connect) ListPredefinedAttributesRequest(input *ListPredefinedAttributesInput) (req *request.Request, output *ListPredefinedAttributesOutput) {
+	op := &request.Operation{
+		Name:       opListPredefinedAttributes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/predefined-attributes/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPredefinedAttributesInput{}
+	}
+
+	output = &ListPredefinedAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPredefinedAttributes API operation for Amazon Connect Service.
+//
+// Lists predefined attributes for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListPredefinedAttributes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPredefinedAttributes
+func (c *Connect) ListPredefinedAttributes(input *ListPredefinedAttributesInput) (*ListPredefinedAttributesOutput, error) {
+	req, out := c.ListPredefinedAttributesRequest(input)
+	return out, req.Send()
+}
+
+// ListPredefinedAttributesWithContext is the same as ListPredefinedAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPredefinedAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPredefinedAttributesWithContext(ctx aws.Context, input *ListPredefinedAttributesInput, opts ...request.Option) (*ListPredefinedAttributesOutput, error) {
+	req, out := c.ListPredefinedAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPredefinedAttributesPages iterates over the pages of a ListPredefinedAttributes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPredefinedAttributes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPredefinedAttributes operation.
+//	pageNum := 0
+//	err := client.ListPredefinedAttributesPages(params,
+//	    func(page *connect.ListPredefinedAttributesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListPredefinedAttributesPages(input *ListPredefinedAttributesInput, fn func(*ListPredefinedAttributesOutput, bool) bool) error {
+	return c.ListPredefinedAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPredefinedAttributesPagesWithContext same as ListPredefinedAttributesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPredefinedAttributesPagesWithContext(ctx aws.Context, input *ListPredefinedAttributesInput, fn func(*ListPredefinedAttributesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPredefinedAttributesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPredefinedAttributesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPredefinedAttributesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPrompts = "ListPrompts"
 
 // ListPromptsRequest generates a "aws/request.Request" representing the
@@ -16664,6 +17280,154 @@ func (c *Connect) ListUserHierarchyGroupsPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListUserProficiencies = "ListUserProficiencies"
+
+// ListUserProficienciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListUserProficiencies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUserProficiencies for more information on using the ListUserProficiencies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListUserProficienciesRequest method.
+//	req, resp := client.ListUserProficienciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserProficiencies
+func (c *Connect) ListUserProficienciesRequest(input *ListUserProficienciesInput) (req *request.Request, output *ListUserProficienciesOutput) {
+	op := &request.Operation{
+		Name:       opListUserProficiencies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/proficiencies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUserProficienciesInput{}
+	}
+
+	output = &ListUserProficienciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUserProficiencies API operation for Amazon Connect Service.
+//
+// Lists proficiencies associated with a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListUserProficiencies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserProficiencies
+func (c *Connect) ListUserProficiencies(input *ListUserProficienciesInput) (*ListUserProficienciesOutput, error) {
+	req, out := c.ListUserProficienciesRequest(input)
+	return out, req.Send()
+}
+
+// ListUserProficienciesWithContext is the same as ListUserProficiencies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUserProficiencies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListUserProficienciesWithContext(ctx aws.Context, input *ListUserProficienciesInput, opts ...request.Option) (*ListUserProficienciesOutput, error) {
+	req, out := c.ListUserProficienciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUserProficienciesPages iterates over the pages of a ListUserProficiencies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUserProficiencies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListUserProficiencies operation.
+//	pageNum := 0
+//	err := client.ListUserProficienciesPages(params,
+//	    func(page *connect.ListUserProficienciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) ListUserProficienciesPages(input *ListUserProficienciesInput, fn func(*ListUserProficienciesOutput, bool) bool) error {
+	return c.ListUserProficienciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUserProficienciesPagesWithContext same as ListUserProficienciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListUserProficienciesPagesWithContext(ctx aws.Context, input *ListUserProficienciesInput, fn func(*ListUserProficienciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUserProficienciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUserProficienciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUserProficienciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a "aws/request.Request" representing the
@@ -17990,6 +18754,154 @@ func (c *Connect) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opSearchContacts = "SearchContacts"
+
+// SearchContactsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchContacts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchContacts for more information on using the SearchContacts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchContactsRequest method.
+//	req, resp := client.SearchContactsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContacts
+func (c *Connect) SearchContactsRequest(input *SearchContactsInput) (req *request.Request, output *SearchContactsOutput) {
+	op := &request.Operation{
+		Name:       opSearchContacts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-contacts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchContactsInput{}
+	}
+
+	output = &SearchContactsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchContacts API operation for Amazon Connect Service.
+//
+// Searches contacts in an Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchContacts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchContacts
+func (c *Connect) SearchContacts(input *SearchContactsInput) (*SearchContactsOutput, error) {
+	req, out := c.SearchContactsRequest(input)
+	return out, req.Send()
+}
+
+// SearchContactsWithContext is the same as SearchContacts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchContacts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactsWithContext(ctx aws.Context, input *SearchContactsInput, opts ...request.Option) (*SearchContactsOutput, error) {
+	req, out := c.SearchContactsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchContactsPages iterates over the pages of a SearchContacts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchContacts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchContacts operation.
+//	pageNum := 0
+//	err := client.SearchContactsPages(params,
+//	    func(page *connect.SearchContactsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchContactsPages(input *SearchContactsInput, fn func(*SearchContactsOutput, bool) bool) error {
+	return c.SearchContactsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchContactsPagesWithContext same as SearchContactsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchContactsPagesWithContext(ctx aws.Context, input *SearchContactsInput, fn func(*SearchContactsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchContactsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchContactsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchContactsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchHoursOfOperations = "SearchHoursOfOperations"
 
 // SearchHoursOfOperationsRequest generates a "aws/request.Request" representing the
@@ -18132,6 +19044,154 @@ func (c *Connect) SearchHoursOfOperationsPagesWithContext(ctx aws.Context, input
 
 	for p.Next() {
 		if !fn(p.Page().(*SearchHoursOfOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSearchPredefinedAttributes = "SearchPredefinedAttributes"
+
+// SearchPredefinedAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchPredefinedAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchPredefinedAttributes for more information on using the SearchPredefinedAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SearchPredefinedAttributesRequest method.
+//	req, resp := client.SearchPredefinedAttributesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchPredefinedAttributes
+func (c *Connect) SearchPredefinedAttributesRequest(input *SearchPredefinedAttributesInput) (req *request.Request, output *SearchPredefinedAttributesOutput) {
+	op := &request.Operation{
+		Name:       opSearchPredefinedAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/search-predefined-attributes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchPredefinedAttributesInput{}
+	}
+
+	output = &SearchPredefinedAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchPredefinedAttributes API operation for Amazon Connect Service.
+//
+// Predefined attributes that meet certain criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchPredefinedAttributes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchPredefinedAttributes
+func (c *Connect) SearchPredefinedAttributes(input *SearchPredefinedAttributesInput) (*SearchPredefinedAttributesOutput, error) {
+	req, out := c.SearchPredefinedAttributesRequest(input)
+	return out, req.Send()
+}
+
+// SearchPredefinedAttributesWithContext is the same as SearchPredefinedAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchPredefinedAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchPredefinedAttributesWithContext(ctx aws.Context, input *SearchPredefinedAttributesInput, opts ...request.Option) (*SearchPredefinedAttributesOutput, error) {
+	req, out := c.SearchPredefinedAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchPredefinedAttributesPages iterates over the pages of a SearchPredefinedAttributes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchPredefinedAttributes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a SearchPredefinedAttributes operation.
+//	pageNum := 0
+//	err := client.SearchPredefinedAttributesPages(params,
+//	    func(page *connect.SearchPredefinedAttributesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Connect) SearchPredefinedAttributesPages(input *SearchPredefinedAttributesInput, fn func(*SearchPredefinedAttributesOutput, bool) bool) error {
+	return c.SearchPredefinedAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchPredefinedAttributesPagesWithContext same as SearchPredefinedAttributesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchPredefinedAttributesPagesWithContext(ctx aws.Context, input *SearchPredefinedAttributesInput, fn func(*SearchPredefinedAttributesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchPredefinedAttributesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchPredefinedAttributesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchPredefinedAttributesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -22038,6 +23098,112 @@ func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateContactRoutingData = "UpdateContactRoutingData"
+
+// UpdateContactRoutingDataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactRoutingData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactRoutingData for more information on using the UpdateContactRoutingData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateContactRoutingDataRequest method.
+//	req, resp := client.UpdateContactRoutingDataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactRoutingData
+func (c *Connect) UpdateContactRoutingDataRequest(input *UpdateContactRoutingDataInput) (req *request.Request, output *UpdateContactRoutingDataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactRoutingData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contacts/{InstanceId}/{ContactId}/routing-data",
+	}
+
+	if input == nil {
+		input = &UpdateContactRoutingDataInput{}
+	}
+
+	output = &UpdateContactRoutingDataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactRoutingData API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates routing priority and age on the contact (QueuePriority and QueueTimeAdjustmentInSeconds).
+// These properties can be used to change a customer's position in the queue.
+// For example, you can move a contact to the back of the queue by setting a
+// lower routing priority relative to other contacts in queue; or you can move
+// a contact to the front of the queue by increasing the routing age which will
+// make the contact look artificially older and therefore higher up in the first-in-first-out
+// routing order. Note that adjusting the routing age of a contact affects only
+// its position in queue, and not its actual queue wait time as reported through
+// metrics. These properties can also be updated by using the Set routing priority
+// / age flow block (https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactRoutingData for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactRoutingData
+func (c *Connect) UpdateContactRoutingData(input *UpdateContactRoutingDataInput) (*UpdateContactRoutingDataOutput, error) {
+	req, out := c.UpdateContactRoutingDataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactRoutingDataWithContext is the same as UpdateContactRoutingData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactRoutingData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactRoutingDataWithContext(ctx aws.Context, input *UpdateContactRoutingDataInput, opts ...request.Option) (*UpdateContactRoutingDataOutput, error) {
+	req, out := c.UpdateContactRoutingDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateContactSchedule = "UpdateContactSchedule"
 
 // UpdateContactScheduleRequest generates a "aws/request.Request" representing the
@@ -22834,6 +24000,98 @@ func (c *Connect) UpdatePhoneNumberMetadata(input *UpdatePhoneNumberMetadataInpu
 // for more information on using Contexts.
 func (c *Connect) UpdatePhoneNumberMetadataWithContext(ctx aws.Context, input *UpdatePhoneNumberMetadataInput, opts ...request.Option) (*UpdatePhoneNumberMetadataOutput, error) {
 	req, out := c.UpdatePhoneNumberMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePredefinedAttribute = "UpdatePredefinedAttribute"
+
+// UpdatePredefinedAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePredefinedAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePredefinedAttribute for more information on using the UpdatePredefinedAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePredefinedAttributeRequest method.
+//	req, resp := client.UpdatePredefinedAttributeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePredefinedAttribute
+func (c *Connect) UpdatePredefinedAttributeRequest(input *UpdatePredefinedAttributeInput) (req *request.Request, output *UpdatePredefinedAttributeOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePredefinedAttribute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/predefined-attributes/{InstanceId}/{Name}",
+	}
+
+	if input == nil {
+		input = &UpdatePredefinedAttributeInput{}
+	}
+
+	output = &UpdatePredefinedAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePredefinedAttribute API operation for Amazon Connect Service.
+//
+// Updates a predefined attribute for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdatePredefinedAttribute for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdatePredefinedAttribute
+func (c *Connect) UpdatePredefinedAttribute(input *UpdatePredefinedAttributeInput) (*UpdatePredefinedAttributeOutput, error) {
+	req, out := c.UpdatePredefinedAttributeRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePredefinedAttributeWithContext is the same as UpdatePredefinedAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePredefinedAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdatePredefinedAttributeWithContext(ctx aws.Context, input *UpdatePredefinedAttributeInput, opts ...request.Option) (*UpdatePredefinedAttributeOutput, error) {
+	req, out := c.UpdatePredefinedAttributeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -24943,6 +26201,98 @@ func (c *Connect) UpdateUserPhoneConfigWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateUserProficiencies = "UpdateUserProficiencies"
+
+// UpdateUserProficienciesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUserProficiencies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUserProficiencies for more information on using the UpdateUserProficiencies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateUserProficienciesRequest method.
+//	req, resp := client.UpdateUserProficienciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserProficiencies
+func (c *Connect) UpdateUserProficienciesRequest(input *UpdateUserProficienciesInput) (req *request.Request, output *UpdateUserProficienciesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUserProficiencies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/users/{InstanceId}/{UserId}/proficiencies",
+	}
+
+	if input == nil {
+		input = &UpdateUserProficienciesInput{}
+	}
+
+	output = &UpdateUserProficienciesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateUserProficiencies API operation for Amazon Connect Service.
+//
+// Updates the properties associated with the proficiencies of a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateUserProficiencies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InvalidParameterException
+//     One or more of the specified parameters are not valid.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserProficiencies
+func (c *Connect) UpdateUserProficiencies(input *UpdateUserProficienciesInput) (*UpdateUserProficienciesOutput, error) {
+	req, out := c.UpdateUserProficienciesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserProficienciesWithContext is the same as UpdateUserProficiencies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUserProficiencies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateUserProficienciesWithContext(ctx aws.Context, input *UpdateUserProficienciesInput, opts ...request.Option) (*UpdateUserProficienciesOutput, error) {
+	req, out := c.UpdateUserProficienciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserRoutingProfile = "UpdateUserRoutingProfile"
 
 // UpdateUserRoutingProfileRequest generates a "aws/request.Request" representing the
@@ -25711,6 +27061,77 @@ func (s *AgentContactReference) SetQueue(v *QueueReference) *AgentContactReferen
 // SetStateStartTimestamp sets the StateStartTimestamp field's value.
 func (s *AgentContactReference) SetStateStartTimestamp(v time.Time) *AgentContactReference {
 	s.StateStartTimestamp = &v
+	return s
+}
+
+// A structure that defines agent hierarchy group levels which can be used to
+// filter search results. Important: Agent hierarchy group level information
+// in search result is a snapshot, it does not represent current agent hierarchy
+// who handled the contact.
+type AgentHierarchyGroups struct {
+	_ struct{} `type:"structure"`
+
+	// The identifiers for level 1 hierarchy groups.
+	L1Ids []*string `type:"list"`
+
+	// The identifiers for level 2 hierarchy groups.
+	L2Ids []*string `type:"list"`
+
+	// The identifiers for level 3 hierarchy groups.
+	L3Ids []*string `type:"list"`
+
+	// The identifiers for level 4 hierarchy groups.
+	L4Ids []*string `type:"list"`
+
+	// The identifiers for level 5 hierarchy groups.
+	L5Ids []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentHierarchyGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentHierarchyGroups) GoString() string {
+	return s.String()
+}
+
+// SetL1Ids sets the L1Ids field's value.
+func (s *AgentHierarchyGroups) SetL1Ids(v []*string) *AgentHierarchyGroups {
+	s.L1Ids = v
+	return s
+}
+
+// SetL2Ids sets the L2Ids field's value.
+func (s *AgentHierarchyGroups) SetL2Ids(v []*string) *AgentHierarchyGroups {
+	s.L2Ids = v
+	return s
+}
+
+// SetL3Ids sets the L3Ids field's value.
+func (s *AgentHierarchyGroups) SetL3Ids(v []*string) *AgentHierarchyGroups {
+	s.L3Ids = v
+	return s
+}
+
+// SetL4Ids sets the L4Ids field's value.
+func (s *AgentHierarchyGroups) SetL4Ids(v []*string) *AgentHierarchyGroups {
+	s.L4Ids = v
+	return s
+}
+
+// SetL5Ids sets the L5Ids field's value.
+func (s *AgentHierarchyGroups) SetL5Ids(v []*string) *AgentHierarchyGroups {
+	s.L5Ids = v
 	return s
 }
 
@@ -27617,6 +29038,119 @@ func (s AssociateTrafficDistributionGroupUserOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateUserProficienciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN of the instance).
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+
+	// The proficiencies to associate with the user.
+	//
+	// UserProficiencies is a required field
+	UserProficiencies []*UserProficiency `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserProficienciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserProficienciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateUserProficienciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateUserProficienciesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.UserProficiencies == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserProficiencies"))
+	}
+	if s.UserProficiencies != nil {
+		for i, v := range s.UserProficiencies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserProficiencies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateUserProficienciesInput) SetInstanceId(v string) *AssociateUserProficienciesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *AssociateUserProficienciesInput) SetUserId(v string) *AssociateUserProficienciesInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserProficiencies sets the UserProficiencies field's value.
+func (s *AssociateUserProficienciesInput) SetUserProficiencies(v []*UserProficiency) *AssociateUserProficienciesInput {
+	s.UserProficiencies = v
+	return s
+}
+
+type AssociateUserProficienciesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserProficienciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateUserProficienciesOutput) GoString() string {
+	return s.String()
+}
+
 // Information about a reference when the referenceType is ATTACHMENT. Otherwise,
 // null.
 type AttachmentReference struct {
@@ -29106,6 +30640,18 @@ type Contact struct {
 	// If this contact was queued, this contains information about the queue.
 	QueueInfo *QueueInfo `type:"structure"`
 
+	// An integer that represents the queue priority to be applied to the contact
+	// (lower priorities are routed preferentially). Cannot be specified if the
+	// QueueTimeAdjustmentSeconds is specified. Must be statically defined, must
+	// be larger than zero, and a valid integer value. Default Value is 5.
+	QueuePriority *int64 `min:"1" type:"long"`
+
+	// An integer that represents the queue time adjust to be applied to the contact,
+	// in seconds (longer / larger queue time are routed preferentially). Cannot
+	// be specified if the QueuePriority is specified. Must be statically defined
+	// and a valid integer value.
+	QueueTimeAdjustmentSeconds *int64 `type:"integer"`
+
 	// The contactId that is related (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid)
 	// to this contact.
 	RelatedContactId *string `min:"1" type:"string"`
@@ -29236,6 +30782,18 @@ func (s *Contact) SetQueueInfo(v *QueueInfo) *Contact {
 	return s
 }
 
+// SetQueuePriority sets the QueuePriority field's value.
+func (s *Contact) SetQueuePriority(v int64) *Contact {
+	s.QueuePriority = &v
+	return s
+}
+
+// SetQueueTimeAdjustmentSeconds sets the QueueTimeAdjustmentSeconds field's value.
+func (s *Contact) SetQueueTimeAdjustmentSeconds(v int64) *Contact {
+	s.QueueTimeAdjustmentSeconds = &v
+	return s
+}
+
 // SetRelatedContactId sets the RelatedContactId field's value.
 func (s *Contact) SetRelatedContactId(v string) *Contact {
 	s.RelatedContactId = &v
@@ -29269,6 +30827,55 @@ func (s *Contact) SetTotalPauseDurationInSeconds(v int64) *Contact {
 // SetWisdomInfo sets the WisdomInfo field's value.
 func (s *Contact) SetWisdomInfo(v *WisdomInfo) *Contact {
 	s.WisdomInfo = v
+	return s
+}
+
+// A structure that defines filters can be used to search within outputs analyzed
+// by Amazon Connect Contact Lens in a contact.
+type ContactAnalysis struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that defines filters can be used to search with text within an
+	// Amazon Connect Contact Lens analyzed transcript.
+	Transcript *Transcript `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactAnalysis) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactAnalysis) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContactAnalysis) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContactAnalysis"}
+	if s.Transcript != nil {
+		if err := s.Transcript.Validate(); err != nil {
+			invalidParams.AddNested("Transcript", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTranscript sets the Transcript field's value.
+func (s *ContactAnalysis) SetTranscript(v *Transcript) *ContactAnalysis {
+	s.Transcript = v
 	return s
 }
 
@@ -29855,6 +31462,219 @@ func (s *ContactNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ContactNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information of returned contact.
+type ContactSearchSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the agent who accepted the contact.
+	AgentInfo *ContactSearchSummaryAgentInfo `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact
+	Arn *string `type:"string"`
+
+	// How the contact reached your contact center.
+	Channel *string `type:"string" enum:"Channel"`
+
+	// The timestamp when the customer endpoint disconnected from Amazon Connect.
+	DisconnectTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the contact summary.
+	Id *string `min:"1" type:"string"`
+
+	// If this contact is related to other contacts, this is the ID of the initial
+	// contact.
+	InitialContactId *string `min:"1" type:"string"`
+
+	// Indicates how the contact was initiated.
+	InitiationMethod *string `type:"string" enum:"ContactInitiationMethod"`
+
+	// The date and time this contact was initiated, in UTC time. For INBOUND, this
+	// is when the contact arrived. For OUTBOUND, this is when the agent began dialing.
+	// For CALLBACK, this is when the callback contact was created. For TRANSFER
+	// and QUEUE_TRANSFER, this is when the transfer was initiated. For API, this
+	// is when the request arrived. For EXTERNAL_OUTBOUND, this is when the agent
+	// started dialing the external participant. For MONITOR, this is when the supervisor
+	// started listening to a contact.
+	InitiationTimestamp *time.Time `type:"timestamp"`
+
+	// If this contact is not the first contact, this is the ID of the previous
+	// contact.
+	PreviousContactId *string `min:"1" type:"string"`
+
+	// If this contact was queued, this contains information about the queue.
+	QueueInfo *ContactSearchSummaryQueueInfo `type:"structure"`
+
+	// The timestamp, in Unix epoch time format, at which to start running the inbound
+	// flow.
+	ScheduledTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummary) GoString() string {
+	return s.String()
+}
+
+// SetAgentInfo sets the AgentInfo field's value.
+func (s *ContactSearchSummary) SetAgentInfo(v *ContactSearchSummaryAgentInfo) *ContactSearchSummary {
+	s.AgentInfo = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactSearchSummary) SetArn(v string) *ContactSearchSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *ContactSearchSummary) SetChannel(v string) *ContactSearchSummary {
+	s.Channel = &v
+	return s
+}
+
+// SetDisconnectTimestamp sets the DisconnectTimestamp field's value.
+func (s *ContactSearchSummary) SetDisconnectTimestamp(v time.Time) *ContactSearchSummary {
+	s.DisconnectTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactSearchSummary) SetId(v string) *ContactSearchSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *ContactSearchSummary) SetInitialContactId(v string) *ContactSearchSummary {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInitiationMethod sets the InitiationMethod field's value.
+func (s *ContactSearchSummary) SetInitiationMethod(v string) *ContactSearchSummary {
+	s.InitiationMethod = &v
+	return s
+}
+
+// SetInitiationTimestamp sets the InitiationTimestamp field's value.
+func (s *ContactSearchSummary) SetInitiationTimestamp(v time.Time) *ContactSearchSummary {
+	s.InitiationTimestamp = &v
+	return s
+}
+
+// SetPreviousContactId sets the PreviousContactId field's value.
+func (s *ContactSearchSummary) SetPreviousContactId(v string) *ContactSearchSummary {
+	s.PreviousContactId = &v
+	return s
+}
+
+// SetQueueInfo sets the QueueInfo field's value.
+func (s *ContactSearchSummary) SetQueueInfo(v *ContactSearchSummaryQueueInfo) *ContactSearchSummary {
+	s.QueueInfo = v
+	return s
+}
+
+// SetScheduledTimestamp sets the ScheduledTimestamp field's value.
+func (s *ContactSearchSummary) SetScheduledTimestamp(v time.Time) *ContactSearchSummary {
+	s.ScheduledTimestamp = &v
+	return s
+}
+
+// Information about the agent who accepted the contact.
+type ContactSearchSummaryAgentInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the contact was connected to the agent.
+	ConnectedToAgentTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the agent who accepted the contact.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummaryAgentInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummaryAgentInfo) GoString() string {
+	return s.String()
+}
+
+// SetConnectedToAgentTimestamp sets the ConnectedToAgentTimestamp field's value.
+func (s *ContactSearchSummaryAgentInfo) SetConnectedToAgentTimestamp(v time.Time) *ContactSearchSummaryAgentInfo {
+	s.ConnectedToAgentTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactSearchSummaryAgentInfo) SetId(v string) *ContactSearchSummaryAgentInfo {
+	s.Id = &v
+	return s
+}
+
+// If this contact was queued, this contains information about the queue.
+type ContactSearchSummaryQueueInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the contact was added to the queue.
+	EnqueueTimestamp *time.Time `type:"timestamp"`
+
+	// The unique identifier for the queue.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummaryQueueInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactSearchSummaryQueueInfo) GoString() string {
+	return s.String()
+}
+
+// SetEnqueueTimestamp sets the EnqueueTimestamp field's value.
+func (s *ContactSearchSummaryQueueInfo) SetEnqueueTimestamp(v time.Time) *ContactSearchSummaryQueueInfo {
+	s.EnqueueTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactSearchSummaryQueueInfo) SetId(v string) *ContactSearchSummaryQueueInfo {
+	s.Id = &v
+	return s
 }
 
 // An object that can be used to specify Tag conditions inside the SearchFilter.
@@ -31477,6 +33297,114 @@ func (s CreatePersistentContactAssociationOutput) GoString() string {
 func (s *CreatePersistentContactAssociationOutput) SetContinuedFromContactId(v string) *CreatePersistentContactAssociationOutput {
 	s.ContinuedFromContactId = &v
 	return s
+}
+
+type CreatePredefinedAttributeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the predefined attribute.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The values of the predefined attribute.
+	//
+	// Values is a required field
+	Values *PredefinedAttributeValues `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePredefinedAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePredefinedAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePredefinedAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePredefinedAttributeInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil {
+		if err := s.Values.Validate(); err != nil {
+			invalidParams.AddNested("Values", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreatePredefinedAttributeInput) SetInstanceId(v string) *CreatePredefinedAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePredefinedAttributeInput) SetName(v string) *CreatePredefinedAttributeInput {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *CreatePredefinedAttributeInput) SetValues(v *PredefinedAttributeValues) *CreatePredefinedAttributeInput {
+	s.Values = v
+	return s
+}
+
+type CreatePredefinedAttributeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePredefinedAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePredefinedAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type CreatePromptInput struct {
@@ -35048,6 +36976,95 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePredefinedAttributeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the predefined attribute.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePredefinedAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePredefinedAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePredefinedAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePredefinedAttributeInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeletePredefinedAttributeInput) SetInstanceId(v string) *DeletePredefinedAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeletePredefinedAttributeInput) SetName(v string) *DeletePredefinedAttributeInput {
+	s.Name = &v
+	return s
+}
+
+type DeletePredefinedAttributeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePredefinedAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePredefinedAttributeOutput) GoString() string {
+	return s.String()
+}
+
 type DeletePromptInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -37448,6 +39465,104 @@ func (s *DescribePhoneNumberOutput) SetClaimedPhoneNumberSummary(v *ClaimedPhone
 	return s
 }
 
+type DescribePredefinedAttributeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the predefined attribute.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePredefinedAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePredefinedAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePredefinedAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePredefinedAttributeInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribePredefinedAttributeInput) SetInstanceId(v string) *DescribePredefinedAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribePredefinedAttributeInput) SetName(v string) *DescribePredefinedAttributeInput {
+	s.Name = &v
+	return s
+}
+
+type DescribePredefinedAttributeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the predefined attribute.
+	PredefinedAttribute *PredefinedAttribute `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePredefinedAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribePredefinedAttributeOutput) GoString() string {
+	return s.String()
+}
+
+// SetPredefinedAttribute sets the PredefinedAttribute field's value.
+func (s *DescribePredefinedAttributeOutput) SetPredefinedAttribute(v *PredefinedAttribute) *DescribePredefinedAttributeOutput {
+	s.PredefinedAttribute = v
+	return s
+}
+
 type DescribePromptInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -38686,6 +40801,9 @@ type Dimensions struct {
 
 	// Information about the routing profile assigned to the user.
 	RoutingProfile *RoutingProfileReference `type:"structure"`
+
+	// The expression of a step in a routing criteria.
+	RoutingStepExpression *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -38721,6 +40839,12 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 // SetRoutingProfile sets the RoutingProfile field's value.
 func (s *Dimensions) SetRoutingProfile(v *RoutingProfileReference) *Dimensions {
 	s.RoutingProfile = v
+	return s
+}
+
+// SetRoutingStepExpression sets the RoutingStepExpression field's value.
+func (s *Dimensions) SetRoutingStepExpression(v string) *Dimensions {
+	s.RoutingStepExpression = &v
 	return s
 }
 
@@ -39923,6 +42047,119 @@ func (s DisassociateTrafficDistributionGroupUserOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateTrafficDistributionGroupUserOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateUserProficienciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+
+	// The proficiencies to disassociate from the user.
+	//
+	// UserProficiencies is a required field
+	UserProficiencies []*UserProficiencyDisassociate `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserProficienciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserProficienciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateUserProficienciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateUserProficienciesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.UserProficiencies == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserProficiencies"))
+	}
+	if s.UserProficiencies != nil {
+		for i, v := range s.UserProficiencies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserProficiencies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateUserProficienciesInput) SetInstanceId(v string) *DisassociateUserProficienciesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DisassociateUserProficienciesInput) SetUserId(v string) *DisassociateUserProficienciesInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserProficiencies sets the UserProficiencies field's value.
+func (s *DisassociateUserProficienciesInput) SetUserProficiencies(v []*UserProficiencyDisassociate) *DisassociateUserProficienciesInput {
+	s.UserProficiencies = v
+	return s
+}
+
+type DisassociateUserProficienciesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserProficienciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateUserProficienciesOutput) GoString() string {
 	return s.String()
 }
 
@@ -42724,6 +44961,10 @@ type Filters struct {
 
 	// A list of up to 100 routing profile IDs or ARNs.
 	RoutingProfiles []*string `min:"1" type:"list"`
+
+	// A list of expressions as a filter, in which an expression is an object of
+	// a step in a routing criteria.
+	RoutingStepExpressions []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -42775,6 +45016,12 @@ func (s *Filters) SetQueues(v []*string) *Filters {
 // SetRoutingProfiles sets the RoutingProfiles field's value.
 func (s *Filters) SetRoutingProfiles(v []*string) *Filters {
 	s.RoutingProfiles = v
+	return s
+}
+
+// SetRoutingStepExpressions sets the RoutingStepExpressions field's value.
+func (s *Filters) SetRoutingStepExpressions(v []*string) *Filters {
+	s.RoutingStepExpressions = v
 	return s
 }
 
@@ -50783,6 +53030,118 @@ func (s *ListPhoneNumbersV2Output) SetNextToken(v string) *ListPhoneNumbersV2Out
 	return s
 }
 
+type ListPredefinedAttributesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPredefinedAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPredefinedAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPredefinedAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPredefinedAttributesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListPredefinedAttributesInput) SetInstanceId(v string) *ListPredefinedAttributesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPredefinedAttributesInput) SetMaxResults(v int64) *ListPredefinedAttributesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPredefinedAttributesInput) SetNextToken(v string) *ListPredefinedAttributesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPredefinedAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Summary of the predefined attributes.
+	PredefinedAttributeSummaryList []*PredefinedAttributeSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPredefinedAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPredefinedAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPredefinedAttributesOutput) SetNextToken(v string) *ListPredefinedAttributesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPredefinedAttributeSummaryList sets the PredefinedAttributeSummaryList field's value.
+func (s *ListPredefinedAttributesOutput) SetPredefinedAttributeSummaryList(v []*PredefinedAttributeSummary) *ListPredefinedAttributesOutput {
+	s.PredefinedAttributeSummaryList = v
+	return s
+}
+
 type ListPromptsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -53095,6 +55454,153 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 	return s
 }
 
+type ListUserProficienciesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProficienciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProficienciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUserProficienciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUserProficienciesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListUserProficienciesInput) SetInstanceId(v string) *ListUserProficienciesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUserProficienciesInput) SetMaxResults(v int64) *ListUserProficienciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUserProficienciesInput) SetNextToken(v string) *ListUserProficienciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ListUserProficienciesInput) SetUserId(v string) *ListUserProficienciesInput {
+	s.UserId = &v
+	return s
+}
+
+type ListUserProficienciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The region in which a user's proficiencies were last modified.
+	LastModifiedRegion *string `type:"string"`
+
+	// The last time that the user's proficiencies are were modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Information about the user proficiencies.
+	UserProficiencyList []*UserProficiency `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProficienciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListUserProficienciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *ListUserProficienciesOutput) SetLastModifiedRegion(v string) *ListUserProficienciesOutput {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ListUserProficienciesOutput) SetLastModifiedTime(v time.Time) *ListUserProficienciesOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUserProficienciesOutput) SetNextToken(v string) *ListUserProficienciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserProficiencyList sets the UserProficiencyList field's value.
+func (s *ListUserProficienciesOutput) SetUserProficiencyList(v []*UserProficiency) *ListUserProficienciesOutput {
+	s.UserProficiencyList = v
+	return s
+}
+
 type ListUsersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -55334,6 +57840,212 @@ func (s *PhoneNumberSummary) SetPhoneNumberCountryCode(v string) *PhoneNumberSum
 // SetPhoneNumberType sets the PhoneNumberType field's value.
 func (s *PhoneNumberSummary) SetPhoneNumberType(v string) *PhoneNumberSummary {
 	s.PhoneNumberType = &v
+	return s
+}
+
+// Information about a predefined attribute.
+type PredefinedAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// Last modified region.
+	LastModifiedRegion *string `type:"string"`
+
+	// Last modified time.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the predefined attribute.
+	Name *string `min:"1" type:"string"`
+
+	// The values of the predefined attribute.
+	Values *PredefinedAttributeValues `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttribute) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *PredefinedAttribute) SetLastModifiedRegion(v string) *PredefinedAttribute {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PredefinedAttribute) SetLastModifiedTime(v time.Time) *PredefinedAttribute {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PredefinedAttribute) SetName(v string) *PredefinedAttribute {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *PredefinedAttribute) SetValues(v *PredefinedAttributeValues) *PredefinedAttribute {
+	s.Values = v
+	return s
+}
+
+// The search criteria to be used to return predefined attributes.
+type PredefinedAttributeSearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndConditions []*PredefinedAttributeSearchCriteria `type:"list"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*PredefinedAttributeSearchCriteria `type:"list"`
+
+	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name and description.
+	StringCondition *StringCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeSearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeSearchCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAndConditions sets the AndConditions field's value.
+func (s *PredefinedAttributeSearchCriteria) SetAndConditions(v []*PredefinedAttributeSearchCriteria) *PredefinedAttributeSearchCriteria {
+	s.AndConditions = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *PredefinedAttributeSearchCriteria) SetOrConditions(v []*PredefinedAttributeSearchCriteria) *PredefinedAttributeSearchCriteria {
+	s.OrConditions = v
+	return s
+}
+
+// SetStringCondition sets the StringCondition field's value.
+func (s *PredefinedAttributeSearchCriteria) SetStringCondition(v *StringCondition) *PredefinedAttributeSearchCriteria {
+	s.StringCondition = v
+	return s
+}
+
+// Summary of a predefined attribute.
+type PredefinedAttributeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Last modified region.
+	LastModifiedRegion *string `type:"string"`
+
+	// Last modified time.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the predefined attribute.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeSummary) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedRegion sets the LastModifiedRegion field's value.
+func (s *PredefinedAttributeSummary) SetLastModifiedRegion(v string) *PredefinedAttributeSummary {
+	s.LastModifiedRegion = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PredefinedAttributeSummary) SetLastModifiedTime(v time.Time) *PredefinedAttributeSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PredefinedAttributeSummary) SetName(v string) *PredefinedAttributeSummary {
+	s.Name = &v
+	return s
+}
+
+// Information about values of a predefined attribute.
+type PredefinedAttributeValues struct {
+	_ struct{} `type:"structure"`
+
+	// Predefined attribute values of type string list.
+	StringList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PredefinedAttributeValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PredefinedAttributeValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PredefinedAttributeValues"}
+	if s.StringList != nil && len(s.StringList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StringList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStringList sets the StringList field's value.
+func (s *PredefinedAttributeValues) SetStringList(v []*string) *PredefinedAttributeValues {
+	s.StringList = v
 	return s
 }
 
@@ -59734,6 +62446,360 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+type SearchContactsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of Amazon Connect instance. You can find the instance ID in
+	// the Amazon Resource Name (ARN) of the instance
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return contacts.
+	SearchCriteria *SearchCriteria `type:"structure"`
+
+	// Specifies a field to sort by and a sort order
+	Sort *Sort `type:"structure"`
+
+	// Time range that you want to search results
+	//
+	// TimeRange is a required field
+	TimeRange *SearchContactsTimeRange `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchContactsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchContactsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.TimeRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeRange"))
+	}
+	if s.SearchCriteria != nil {
+		if err := s.SearchCriteria.Validate(); err != nil {
+			invalidParams.AddNested("SearchCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sort != nil {
+		if err := s.Sort.Validate(); err != nil {
+			invalidParams.AddNested("Sort", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeRange != nil {
+		if err := s.TimeRange.Validate(); err != nil {
+			invalidParams.AddNested("TimeRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchContactsInput) SetInstanceId(v string) *SearchContactsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchContactsInput) SetMaxResults(v int64) *SearchContactsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactsInput) SetNextToken(v string) *SearchContactsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchContactsInput) SetSearchCriteria(v *SearchCriteria) *SearchContactsInput {
+	s.SearchCriteria = v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *SearchContactsInput) SetSort(v *Sort) *SearchContactsInput {
+	s.Sort = v
+	return s
+}
+
+// SetTimeRange sets the TimeRange field's value.
+func (s *SearchContactsInput) SetTimeRange(v *SearchContactsTimeRange) *SearchContactsInput {
+	s.TimeRange = v
+	return s
+}
+
+type SearchContactsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the contacts.
+	//
+	// Contacts is a required field
+	Contacts []*ContactSearchSummary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The total number of contacts which matched your search query.
+	TotalCount *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContacts sets the Contacts field's value.
+func (s *SearchContactsOutput) SetContacts(v []*ContactSearchSummary) *SearchContactsOutput {
+	s.Contacts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchContactsOutput) SetNextToken(v string) *SearchContactsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *SearchContactsOutput) SetTotalCount(v int64) *SearchContactsOutput {
+	s.TotalCount = &v
+	return s
+}
+
+// A structure of time range that you want to search results
+type SearchContactsTimeRange struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the time range.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// The start time of the time range.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+
+	// The type of timestamp to search
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"SearchContactsTimeRangeType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsTimeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchContactsTimeRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchContactsTimeRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchContactsTimeRange"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *SearchContactsTimeRange) SetEndTime(v time.Time) *SearchContactsTimeRange {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *SearchContactsTimeRange) SetStartTime(v time.Time) *SearchContactsTimeRange {
+	s.StartTime = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SearchContactsTimeRange) SetType(v string) *SearchContactsTimeRange {
+	s.Type = &v
+	return s
+}
+
+// A structure of search criteria to be used to return contacts
+type SearchCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The agent hierarchy groups
+	AgentHierarchyGroups *AgentHierarchyGroups `type:"structure"`
+
+	// The array of agent ids
+	AgentIds []*string `type:"list"`
+
+	// The array of channels
+	Channels []*string `type:"list" enum:"Channel"`
+
+	// The ContactAnalysis object used in search criteria
+	ContactAnalysis *ContactAnalysis `type:"structure"`
+
+	// The array of initiaton methods
+	InitiationMethods []*string `type:"list" enum:"ContactInitiationMethod"`
+
+	// The array of queue ids.
+	QueueIds []*string `type:"list"`
+
+	// The SearchableContactAttributes object used in search criteria
+	SearchableContactAttributes *SearchableContactAttributes `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchCriteria"}
+	if s.ContactAnalysis != nil {
+		if err := s.ContactAnalysis.Validate(); err != nil {
+			invalidParams.AddNested("ContactAnalysis", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SearchableContactAttributes != nil {
+		if err := s.SearchableContactAttributes.Validate(); err != nil {
+			invalidParams.AddNested("SearchableContactAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentHierarchyGroups sets the AgentHierarchyGroups field's value.
+func (s *SearchCriteria) SetAgentHierarchyGroups(v *AgentHierarchyGroups) *SearchCriteria {
+	s.AgentHierarchyGroups = v
+	return s
+}
+
+// SetAgentIds sets the AgentIds field's value.
+func (s *SearchCriteria) SetAgentIds(v []*string) *SearchCriteria {
+	s.AgentIds = v
+	return s
+}
+
+// SetChannels sets the Channels field's value.
+func (s *SearchCriteria) SetChannels(v []*string) *SearchCriteria {
+	s.Channels = v
+	return s
+}
+
+// SetContactAnalysis sets the ContactAnalysis field's value.
+func (s *SearchCriteria) SetContactAnalysis(v *ContactAnalysis) *SearchCriteria {
+	s.ContactAnalysis = v
+	return s
+}
+
+// SetInitiationMethods sets the InitiationMethods field's value.
+func (s *SearchCriteria) SetInitiationMethods(v []*string) *SearchCriteria {
+	s.InitiationMethods = v
+	return s
+}
+
+// SetQueueIds sets the QueueIds field's value.
+func (s *SearchCriteria) SetQueueIds(v []*string) *SearchCriteria {
+	s.QueueIds = v
+	return s
+}
+
+// SetSearchableContactAttributes sets the SearchableContactAttributes field's value.
+func (s *SearchCriteria) SetSearchableContactAttributes(v *SearchableContactAttributes) *SearchCriteria {
+	s.SearchableContactAttributes = v
+	return s
+}
+
 type SearchHoursOfOperationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -59874,6 +62940,141 @@ func (s *SearchHoursOfOperationsOutput) SetHoursOfOperations(v []*HoursOfOperati
 // SetNextToken sets the NextToken field's value.
 func (s *SearchHoursOfOperationsOutput) SetNextToken(v string) *SearchHoursOfOperationsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type SearchPredefinedAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The search criteria to be used to return predefined attributes.
+	SearchCriteria *PredefinedAttributeSearchCriteria `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPredefinedAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPredefinedAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchPredefinedAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchPredefinedAttributesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchPredefinedAttributesInput) SetInstanceId(v string) *SearchPredefinedAttributesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchPredefinedAttributesInput) SetMaxResults(v int64) *SearchPredefinedAttributesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchPredefinedAttributesInput) SetNextToken(v string) *SearchPredefinedAttributesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchCriteria sets the SearchCriteria field's value.
+func (s *SearchPredefinedAttributesInput) SetSearchCriteria(v *PredefinedAttributeSearchCriteria) *SearchPredefinedAttributesInput {
+	s.SearchCriteria = v
+	return s
+}
+
+type SearchPredefinedAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The approximate number of predefined attributes which matched your search
+	// query.
+	ApproximateTotalCount *int64 `type:"long"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Predefined attributes matched by the search criteria.
+	PredefinedAttributes []*PredefinedAttribute `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPredefinedAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchPredefinedAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApproximateTotalCount sets the ApproximateTotalCount field's value.
+func (s *SearchPredefinedAttributesOutput) SetApproximateTotalCount(v int64) *SearchPredefinedAttributesOutput {
+	s.ApproximateTotalCount = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchPredefinedAttributesOutput) SetNextToken(v string) *SearchPredefinedAttributesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPredefinedAttributes sets the PredefinedAttributes field's value.
+func (s *SearchPredefinedAttributesOutput) SetPredefinedAttributes(v []*PredefinedAttribute) *SearchPredefinedAttributesOutput {
+	s.PredefinedAttributes = v
 	return s
 }
 
@@ -61037,6 +64238,138 @@ func (s *SearchVocabulariesOutput) SetVocabularySummaryList(v []*VocabularySumma
 	return s
 }
 
+// A structure that defines searchable contact attributes which can be used
+// to filter search results.
+type SearchableContactAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The array of searhale contact attribute criteria
+	//
+	// Criteria is a required field
+	Criteria []*SearchableContactAttributesCriteria `type:"list" required:"true"`
+
+	// The match type of multiple searchable contact attributes criteria.
+	MatchType *string `type:"string" enum:"SearchContactsMatchType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchableContactAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchableContactAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchableContactAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchableContactAttributes"}
+	if s.Criteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("Criteria"))
+	}
+	if s.Criteria != nil {
+		for i, v := range s.Criteria {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Criteria", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *SearchableContactAttributes) SetCriteria(v []*SearchableContactAttributesCriteria) *SearchableContactAttributes {
+	s.Criteria = v
+	return s
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *SearchableContactAttributes) SetMatchType(v string) *SearchableContactAttributes {
+	s.MatchType = &v
+	return s
+}
+
+// The criteria of searchable contact attributes.
+type SearchableContactAttributesCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The searchable contact attribute key
+	//
+	// Key is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchableContactAttributesCriteria's
+	// String and GoString methods.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true" sensitive:"true"`
+
+	// The array of contact attribute values used to filter search results.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchableContactAttributesCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchableContactAttributesCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchableContactAttributesCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchableContactAttributesCriteria"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchableContactAttributesCriteria) SetKey(v string) *SearchableContactAttributesCriteria {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SearchableContactAttributesCriteria) SetValues(v []*string) *SearchableContactAttributesCriteria {
+	s.Values = v
+	return s
+}
+
 // Configuration information of the security key.
 type SecurityKey struct {
 	_ struct{} `type:"structure"`
@@ -61219,6 +64552,8 @@ type SecurityProfileSearchCriteria struct {
 	OrConditions []*SecurityProfileSearchCriteria `type:"list"`
 
 	// A leaf node condition which can be used to specify a string condition.
+	//
+	// The currently supported values for FieldName are name and description.
 	StringCondition *StringCondition `type:"structure"`
 }
 
@@ -62026,6 +65361,67 @@ func (s *SingleSelectQuestionRuleCategoryAutomation) SetCondition(v string) *Sin
 // SetOptionRefId sets the OptionRefId field's value.
 func (s *SingleSelectQuestionRuleCategoryAutomation) SetOptionRefId(v string) *SingleSelectQuestionRuleCategoryAutomation {
 	s.OptionRefId = &v
+	return s
+}
+
+// A structure that defines the sort by and a sort order
+type Sort struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field on which to sort.
+	//
+	// FieldName is a required field
+	FieldName *string `type:"string" required:"true" enum:"SortableFieldName"`
+
+	// An ascending or descending sort.
+	//
+	// Order is a required field
+	Order *string `type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Sort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Sort) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Sort) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Sort"}
+	if s.FieldName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldName"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldName sets the FieldName field's value.
+func (s *Sort) SetFieldName(v string) *Sort {
+	s.FieldName = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *Sort) SetOrder(v string) *Sort {
+	s.Order = &v
 	return s
 }
 
@@ -63761,6 +67157,8 @@ func (s StopContactStreamingOutput) GoString() string {
 }
 
 // A leaf node condition which can be used to specify a string condition.
+//
+// The currently supported values for FieldName are name and description.
 type StringCondition struct {
 	_ struct{} `type:"structure"`
 
@@ -65529,6 +68927,147 @@ func (s *TrafficDistributionGroupUserSummary) SetUserId(v string) *TrafficDistri
 	return s
 }
 
+// The transcript object used to search results.
+type Transcript struct {
+	_ struct{} `type:"structure"`
+
+	// The array of transcript search criteria
+	//
+	// Criteria is a required field
+	Criteria []*TranscriptCriteria `type:"list" required:"true"`
+
+	// The match type of multiple transcript criteira
+	MatchType *string `type:"string" enum:"SearchContactsMatchType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Transcript) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Transcript) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Transcript) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Transcript"}
+	if s.Criteria == nil {
+		invalidParams.Add(request.NewErrParamRequired("Criteria"))
+	}
+	if s.Criteria != nil {
+		for i, v := range s.Criteria {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Criteria", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCriteria sets the Criteria field's value.
+func (s *Transcript) SetCriteria(v []*TranscriptCriteria) *Transcript {
+	s.Criteria = v
+	return s
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *Transcript) SetMatchType(v string) *Transcript {
+	s.MatchType = &v
+	return s
+}
+
+// The transcript criteria used to search
+type TranscriptCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The match type of search texts in a transcript criteria.
+	//
+	// MatchType is a required field
+	MatchType *string `type:"string" required:"true" enum:"SearchContactsMatchType"`
+
+	// The participant role in a transcript
+	//
+	// ParticipantRole is a required field
+	ParticipantRole *string `type:"string" required:"true" enum:"ParticipantRole"`
+
+	// The words or phrases used to search within a transcript.
+	//
+	// SearchText is a required field
+	SearchText []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranscriptCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranscriptCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TranscriptCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TranscriptCriteria"}
+	if s.MatchType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchType"))
+	}
+	if s.ParticipantRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantRole"))
+	}
+	if s.SearchText == nil {
+		invalidParams.Add(request.NewErrParamRequired("SearchText"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *TranscriptCriteria) SetMatchType(v string) *TranscriptCriteria {
+	s.MatchType = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *TranscriptCriteria) SetParticipantRole(v string) *TranscriptCriteria {
+	s.ParticipantRole = &v
+	return s
+}
+
+// SetSearchText sets the SearchText field's value.
+func (s *TranscriptCriteria) SetSearchText(v []*string) *TranscriptCriteria {
+	s.SearchText = v
+	return s
+}
+
 type TransferContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -67007,6 +70546,122 @@ func (s UpdateContactOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateContactRoutingDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact in this instance of Amazon Connect.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
+	// in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Priority of the contact in the queue. The default priority for new contacts
+	// is 5. You can raise the priority of a contact compared to other contacts
+	// in the queue by assigning them a higher priority, such as 1 or 2.
+	QueuePriority *int64 `min:"1" type:"long"`
+
+	// The number of seconds to add or subtract from the contact's routing age.
+	// Contacts are routed to agents on a first-come, first-serve basis. This means
+	// that changing their amount of time in queue compared to others also changes
+	// their position in queue.
+	QueueTimeAdjustmentSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactRoutingDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactRoutingDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactRoutingDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactRoutingDataInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueuePriority != nil && *s.QueuePriority < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("QueuePriority", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *UpdateContactRoutingDataInput) SetContactId(v string) *UpdateContactRoutingDataInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactRoutingDataInput) SetInstanceId(v string) *UpdateContactRoutingDataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueuePriority sets the QueuePriority field's value.
+func (s *UpdateContactRoutingDataInput) SetQueuePriority(v int64) *UpdateContactRoutingDataInput {
+	s.QueuePriority = &v
+	return s
+}
+
+// SetQueueTimeAdjustmentSeconds sets the QueueTimeAdjustmentSeconds field's value.
+func (s *UpdateContactRoutingDataInput) SetQueueTimeAdjustmentSeconds(v int64) *UpdateContactRoutingDataInput {
+	s.QueueTimeAdjustmentSeconds = &v
+	return s
+}
+
+type UpdateContactRoutingDataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactRoutingDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactRoutingDataOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateContactScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -68089,6 +71744,109 @@ func (s *UpdatePhoneNumberOutput) SetPhoneNumberArn(v string) *UpdatePhoneNumber
 func (s *UpdatePhoneNumberOutput) SetPhoneNumberId(v string) *UpdatePhoneNumberOutput {
 	s.PhoneNumberId = &v
 	return s
+}
+
+type UpdatePredefinedAttributeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the predefined attribute.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
+
+	// The values of the predefined attribute.
+	Values *PredefinedAttributeValues `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePredefinedAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePredefinedAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePredefinedAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePredefinedAttributeInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Values != nil {
+		if err := s.Values.Validate(); err != nil {
+			invalidParams.AddNested("Values", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdatePredefinedAttributeInput) SetInstanceId(v string) *UpdatePredefinedAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePredefinedAttributeInput) SetName(v string) *UpdatePredefinedAttributeInput {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *UpdatePredefinedAttributeInput) SetValues(v *PredefinedAttributeValues) *UpdatePredefinedAttributeInput {
+	s.Values = v
+	return s
+}
+
+type UpdatePredefinedAttributeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePredefinedAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePredefinedAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type UpdatePromptInput struct {
@@ -70781,6 +74539,121 @@ func (s UpdateUserPhoneConfigOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateUserProficienciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instance
+	// ID in the Amazon Resource Name (ARN) of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the user account.
+	//
+	// UserId is a required field
+	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
+
+	// The proficiencies to be updated for the user. Proficiencies must first be
+	// associated to the user. You can do this using AssociateUserProficiencies
+	// API.
+	//
+	// UserProficiencies is a required field
+	UserProficiencies []*UserProficiency `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserProficienciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserProficienciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserProficienciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserProficienciesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.UserProficiencies == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserProficiencies"))
+	}
+	if s.UserProficiencies != nil {
+		for i, v := range s.UserProficiencies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserProficiencies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateUserProficienciesInput) SetInstanceId(v string) *UpdateUserProficienciesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UpdateUserProficienciesInput) SetUserId(v string) *UpdateUserProficienciesInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserProficiencies sets the UserProficiencies field's value.
+func (s *UpdateUserProficienciesInput) SetUserProficiencies(v []*UserProficiency) *UpdateUserProficienciesInput {
+	s.UserProficiencies = v
+	return s
+}
+
+type UpdateUserProficienciesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserProficienciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateUserProficienciesOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateUserRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -71937,6 +75810,159 @@ func (s *UserPhoneConfig) SetDeskPhoneNumber(v string) *UserPhoneConfig {
 // SetPhoneType sets the PhoneType field's value.
 func (s *UserPhoneConfig) SetPhoneType(v string) *UserPhoneConfig {
 	s.PhoneType = &v
+	return s
+}
+
+// Information about proficiency of a user.
+type UserProficiency struct {
+	_ struct{} `type:"structure"`
+
+	// The name of user's proficiency. You must use name of predefined attribute
+	// present in the Amazon Connect instance.
+	//
+	// AttributeName is a required field
+	AttributeName *string `min:"1" type:"string" required:"true"`
+
+	// The value of user's proficiency. You must use value of predefined attribute
+	// present in the Amazon Connect instance.
+	//
+	// AttributeValue is a required field
+	AttributeValue *string `min:"1" type:"string" required:"true"`
+
+	// The level of the proficiency. The valid values are 1, 2, 3, 4 and 5.
+	//
+	// Level is a required field
+	Level *float64 `min:"1" type:"float" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProficiency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProficiency) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserProficiency) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserProficiency"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+	if s.AttributeValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeValue"))
+	}
+	if s.AttributeValue != nil && len(*s.AttributeValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeValue", 1))
+	}
+	if s.Level == nil {
+		invalidParams.Add(request.NewErrParamRequired("Level"))
+	}
+	if s.Level != nil && *s.Level < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Level", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *UserProficiency) SetAttributeName(v string) *UserProficiency {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValue sets the AttributeValue field's value.
+func (s *UserProficiency) SetAttributeValue(v string) *UserProficiency {
+	s.AttributeValue = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *UserProficiency) SetLevel(v float64) *UserProficiency {
+	s.Level = &v
+	return s
+}
+
+// Information about proficiency to be disassociated from the user.
+type UserProficiencyDisassociate struct {
+	_ struct{} `type:"structure"`
+
+	// The name of user's proficiency.
+	//
+	// AttributeName is a required field
+	AttributeName *string `min:"1" type:"string" required:"true"`
+
+	// The value of user's proficiency.
+	//
+	// AttributeValue is a required field
+	AttributeValue *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProficiencyDisassociate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserProficiencyDisassociate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserProficiencyDisassociate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserProficiencyDisassociate"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+	if s.AttributeValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeValue"))
+	}
+	if s.AttributeValue != nil && len(*s.AttributeValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *UserProficiencyDisassociate) SetAttributeName(v string) *UserProficiencyDisassociate {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValue sets the AttributeValue field's value.
+func (s *UserProficiencyDisassociate) SetAttributeValue(v string) *UserProficiencyDisassociate {
+	s.AttributeValue = &v
 	return s
 }
 
@@ -73721,6 +77747,9 @@ const (
 
 	// GroupingRoutingProfile is a Grouping enum value
 	GroupingRoutingProfile = "ROUTING_PROFILE"
+
+	// GroupingRoutingStepExpression is a Grouping enum value
+	GroupingRoutingStepExpression = "ROUTING_STEP_EXPRESSION"
 )
 
 // Grouping_Values returns all elements of the Grouping enum
@@ -73729,6 +77758,7 @@ func Grouping_Values() []string {
 		GroupingQueue,
 		GroupingChannel,
 		GroupingRoutingProfile,
+		GroupingRoutingStepExpression,
 	}
 }
 
@@ -75594,6 +79624,46 @@ func RulePublishStatus_Values() []string {
 }
 
 const (
+	// SearchContactsMatchTypeMatchAll is a SearchContactsMatchType enum value
+	SearchContactsMatchTypeMatchAll = "MATCH_ALL"
+
+	// SearchContactsMatchTypeMatchAny is a SearchContactsMatchType enum value
+	SearchContactsMatchTypeMatchAny = "MATCH_ANY"
+)
+
+// SearchContactsMatchType_Values returns all elements of the SearchContactsMatchType enum
+func SearchContactsMatchType_Values() []string {
+	return []string{
+		SearchContactsMatchTypeMatchAll,
+		SearchContactsMatchTypeMatchAny,
+	}
+}
+
+const (
+	// SearchContactsTimeRangeTypeInitiationTimestamp is a SearchContactsTimeRangeType enum value
+	SearchContactsTimeRangeTypeInitiationTimestamp = "INITIATION_TIMESTAMP"
+
+	// SearchContactsTimeRangeTypeScheduledTimestamp is a SearchContactsTimeRangeType enum value
+	SearchContactsTimeRangeTypeScheduledTimestamp = "SCHEDULED_TIMESTAMP"
+
+	// SearchContactsTimeRangeTypeConnectedToAgentTimestamp is a SearchContactsTimeRangeType enum value
+	SearchContactsTimeRangeTypeConnectedToAgentTimestamp = "CONNECTED_TO_AGENT_TIMESTAMP"
+
+	// SearchContactsTimeRangeTypeDisconnectTimestamp is a SearchContactsTimeRangeType enum value
+	SearchContactsTimeRangeTypeDisconnectTimestamp = "DISCONNECT_TIMESTAMP"
+)
+
+// SearchContactsTimeRangeType_Values returns all elements of the SearchContactsTimeRangeType enum
+func SearchContactsTimeRangeType_Values() []string {
+	return []string{
+		SearchContactsTimeRangeTypeInitiationTimestamp,
+		SearchContactsTimeRangeTypeScheduledTimestamp,
+		SearchContactsTimeRangeTypeConnectedToAgentTimestamp,
+		SearchContactsTimeRangeTypeDisconnectTimestamp,
+	}
+}
+
+const (
 	// SearchableQueueTypeStandard is a SearchableQueueType enum value
 	SearchableQueueTypeStandard = "STANDARD"
 )
@@ -75634,6 +79704,38 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// SortableFieldNameInitiationTimestamp is a SortableFieldName enum value
+	SortableFieldNameInitiationTimestamp = "INITIATION_TIMESTAMP"
+
+	// SortableFieldNameScheduledTimestamp is a SortableFieldName enum value
+	SortableFieldNameScheduledTimestamp = "SCHEDULED_TIMESTAMP"
+
+	// SortableFieldNameConnectedToAgentTimestamp is a SortableFieldName enum value
+	SortableFieldNameConnectedToAgentTimestamp = "CONNECTED_TO_AGENT_TIMESTAMP"
+
+	// SortableFieldNameDisconnectTimestamp is a SortableFieldName enum value
+	SortableFieldNameDisconnectTimestamp = "DISCONNECT_TIMESTAMP"
+
+	// SortableFieldNameInitiationMethod is a SortableFieldName enum value
+	SortableFieldNameInitiationMethod = "INITIATION_METHOD"
+
+	// SortableFieldNameChannel is a SortableFieldName enum value
+	SortableFieldNameChannel = "CHANNEL"
+)
+
+// SortableFieldName_Values returns all elements of the SortableFieldName enum
+func SortableFieldName_Values() []string {
+	return []string{
+		SortableFieldNameInitiationTimestamp,
+		SortableFieldNameScheduledTimestamp,
+		SortableFieldNameConnectedToAgentTimestamp,
+		SortableFieldNameDisconnectTimestamp,
+		SortableFieldNameInitiationMethod,
+		SortableFieldNameChannel,
 	}
 }
 

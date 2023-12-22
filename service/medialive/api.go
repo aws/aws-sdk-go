@@ -15771,7 +15771,7 @@ type EncoderSettings struct {
 	// Settings for caption decriptions
 	CaptionDescriptions []*CaptionDescription `locationName:"captionDescriptions" type:"list"`
 
-	// Color correction settings
+	// Color Correction Settings
 	ColorCorrectionSettings *ColorCorrectionSettings `locationName:"colorCorrectionSettings" type:"structure"`
 
 	// Feature Activations
@@ -20082,9 +20082,63 @@ func (s *InputDestinationVpc) SetNetworkInterfaceId(v string) *InputDestinationV
 	return s
 }
 
+// One audio configuration that specifies the format for one audio pair that
+// the device produces as output.
+type InputDeviceConfigurableAudioChannelPairConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for one audio pair configuration, a value from 1 to 8.
+	Id *int64 `locationName:"id" type:"integer"`
+
+	// The profile to set for one audio pair configuration. Choose an enumeration
+	// value. Each value describes one audio configuration using the format (rate
+	// control algorithm)-(codec)_(quality)-(bitrate in bytes). For example, CBR-AAC_HQ-192000.
+	// Or choose DISABLED, in which case the device won't produce audio for this
+	// pair.
+	Profile *string `locationName:"profile" type:"string" enum:"InputDeviceConfigurableAudioChannelPairProfile"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceConfigurableAudioChannelPairConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceConfigurableAudioChannelPairConfig) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *InputDeviceConfigurableAudioChannelPairConfig) SetId(v int64) *InputDeviceConfigurableAudioChannelPairConfig {
+	s.Id = &v
+	return s
+}
+
+// SetProfile sets the Profile field's value.
+func (s *InputDeviceConfigurableAudioChannelPairConfig) SetProfile(v string) *InputDeviceConfigurableAudioChannelPairConfig {
+	s.Profile = &v
+	return s
+}
+
 // Configurable settings for the input device.
 type InputDeviceConfigurableSettings struct {
 	_ struct{} `type:"structure"`
+
+	// An array of eight audio configurations, one for each audio pair in the source.
+	// Set up each audio configuration either to exclude the pair, or to format
+	// it and include it in the output from the device. This parameter applies only
+	// to UHD devices, and only when the device is configured as the source for
+	// a MediaConnect flow. For an HD device, you configure the audio by setting
+	// up audio selectors in the channel configuration.
+	AudioChannelPairs []*InputDeviceConfigurableAudioChannelPairConfig `locationName:"audioChannelPairs" type:"list"`
 
 	// Choose the codec for the video that the device produces. Only UHD devices
 	// can specify this parameter.
@@ -20125,6 +20179,12 @@ func (s InputDeviceConfigurableSettings) String() string {
 // value will be replaced with "sensitive".
 func (s InputDeviceConfigurableSettings) GoString() string {
 	return s.String()
+}
+
+// SetAudioChannelPairs sets the AudioChannelPairs field's value.
+func (s *InputDeviceConfigurableSettings) SetAudioChannelPairs(v []*InputDeviceConfigurableAudioChannelPairConfig) *InputDeviceConfigurableSettings {
+	s.AudioChannelPairs = v
+	return s
 }
 
 // SetCodec sets the Codec field's value.
@@ -20695,6 +20755,51 @@ func (s *InputDeviceSummary) SetUhdDeviceSettings(v *InputDeviceUhdSettings) *In
 	return s
 }
 
+// One audio configuration that specifies the format for one audio pair that
+// the device produces as output.
+type InputDeviceUhdAudioChannelPairConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for one audio pair configuration, a value from 1 to 8.
+	Id *int64 `locationName:"id" type:"integer"`
+
+	// The profile for one audio pair configuration. This property describes one
+	// audio configuration in the format (rate control algorithm)-(codec)_(quality)-(bitrate
+	// in bytes). For example, CBR-AAC_HQ-192000. Or DISABLED, in which case the
+	// device won't produce audio for this pair.
+	Profile *string `locationName:"profile" type:"string" enum:"InputDeviceUhdAudioChannelPairProfile"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceUhdAudioChannelPairConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InputDeviceUhdAudioChannelPairConfig) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *InputDeviceUhdAudioChannelPairConfig) SetId(v int64) *InputDeviceUhdAudioChannelPairConfig {
+	s.Id = &v
+	return s
+}
+
+// SetProfile sets the Profile field's value.
+func (s *InputDeviceUhdAudioChannelPairConfig) SetProfile(v string) *InputDeviceUhdAudioChannelPairConfig {
+	s.Profile = &v
+	return s
+}
+
 // Settings that describe the active source from the input device, and the video
 // characteristics of that source.
 type InputDeviceUhdSettings struct {
@@ -20703,6 +20808,12 @@ type InputDeviceUhdSettings struct {
 	// If you specified Auto as the configured input, specifies which of the sources
 	// is currently active (SDI or HDMI).
 	ActiveInput *string `locationName:"activeInput" type:"string" enum:"InputDeviceActiveInput"`
+
+	// An array of eight audio configurations, one for each audio pair in the source.
+	// Each audio configuration specifies either to exclude the pair, or to format
+	// it and include it in the output from the UHD device. Applies only when the
+	// device is configured as the source for a MediaConnect flow.
+	AudioChannelPairs []*InputDeviceUhdAudioChannelPairConfig `locationName:"audioChannelPairs" type:"list"`
 
 	// The codec for the video that the device produces.
 	Codec *string `locationName:"codec" type:"string" enum:"InputDeviceCodec"`
@@ -20760,6 +20871,12 @@ func (s InputDeviceUhdSettings) GoString() string {
 // SetActiveInput sets the ActiveInput field's value.
 func (s *InputDeviceUhdSettings) SetActiveInput(v string) *InputDeviceUhdSettings {
 	s.ActiveInput = &v
+	return s
+}
+
+// SetAudioChannelPairs sets the AudioChannelPairs field's value.
+func (s *InputDeviceUhdSettings) SetAudioChannelPairs(v []*InputDeviceUhdAudioChannelPairConfig) *InputDeviceUhdSettings {
+	s.AudioChannelPairs = v
 	return s
 }
 
@@ -37066,6 +37183,48 @@ func InputDeviceCodec_Values() []string {
 	}
 }
 
+// Property of InputDeviceConfigurableAudioChannelPairConfig, which configures
+// one audio channel that the device produces.
+const (
+	// InputDeviceConfigurableAudioChannelPairProfileDisabled is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileDisabled = "DISABLED"
+
+	// InputDeviceConfigurableAudioChannelPairProfileVbrAacHhe16000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileVbrAacHhe16000 = "VBR-AAC_HHE-16000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileVbrAacHe64000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileVbrAacHe64000 = "VBR-AAC_HE-64000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileVbrAacLc128000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileVbrAacLc128000 = "VBR-AAC_LC-128000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileCbrAacHq192000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileCbrAacHq192000 = "CBR-AAC_HQ-192000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileCbrAacHq256000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileCbrAacHq256000 = "CBR-AAC_HQ-256000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileCbrAacHq384000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileCbrAacHq384000 = "CBR-AAC_HQ-384000"
+
+	// InputDeviceConfigurableAudioChannelPairProfileCbrAacHq512000 is a InputDeviceConfigurableAudioChannelPairProfile enum value
+	InputDeviceConfigurableAudioChannelPairProfileCbrAacHq512000 = "CBR-AAC_HQ-512000"
+)
+
+// InputDeviceConfigurableAudioChannelPairProfile_Values returns all elements of the InputDeviceConfigurableAudioChannelPairProfile enum
+func InputDeviceConfigurableAudioChannelPairProfile_Values() []string {
+	return []string{
+		InputDeviceConfigurableAudioChannelPairProfileDisabled,
+		InputDeviceConfigurableAudioChannelPairProfileVbrAacHhe16000,
+		InputDeviceConfigurableAudioChannelPairProfileVbrAacHe64000,
+		InputDeviceConfigurableAudioChannelPairProfileVbrAacLc128000,
+		InputDeviceConfigurableAudioChannelPairProfileCbrAacHq192000,
+		InputDeviceConfigurableAudioChannelPairProfileCbrAacHq256000,
+		InputDeviceConfigurableAudioChannelPairProfileCbrAacHq384000,
+		InputDeviceConfigurableAudioChannelPairProfileCbrAacHq512000,
+	}
+}
+
 // The source to activate (use) from the input device.
 const (
 	// InputDeviceConfiguredInputAuto is a InputDeviceConfiguredInput enum value
@@ -37211,6 +37370,48 @@ func InputDeviceType_Values() []string {
 	return []string{
 		InputDeviceTypeHd,
 		InputDeviceTypeUhd,
+	}
+}
+
+// Property of InputDeviceUhdAudioChannelPairConfig, which describes one audio
+// channel that the device is configured to produce.
+const (
+	// InputDeviceUhdAudioChannelPairProfileDisabled is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileDisabled = "DISABLED"
+
+	// InputDeviceUhdAudioChannelPairProfileVbrAacHhe16000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileVbrAacHhe16000 = "VBR-AAC_HHE-16000"
+
+	// InputDeviceUhdAudioChannelPairProfileVbrAacHe64000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileVbrAacHe64000 = "VBR-AAC_HE-64000"
+
+	// InputDeviceUhdAudioChannelPairProfileVbrAacLc128000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileVbrAacLc128000 = "VBR-AAC_LC-128000"
+
+	// InputDeviceUhdAudioChannelPairProfileCbrAacHq192000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileCbrAacHq192000 = "CBR-AAC_HQ-192000"
+
+	// InputDeviceUhdAudioChannelPairProfileCbrAacHq256000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileCbrAacHq256000 = "CBR-AAC_HQ-256000"
+
+	// InputDeviceUhdAudioChannelPairProfileCbrAacHq384000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileCbrAacHq384000 = "CBR-AAC_HQ-384000"
+
+	// InputDeviceUhdAudioChannelPairProfileCbrAacHq512000 is a InputDeviceUhdAudioChannelPairProfile enum value
+	InputDeviceUhdAudioChannelPairProfileCbrAacHq512000 = "CBR-AAC_HQ-512000"
+)
+
+// InputDeviceUhdAudioChannelPairProfile_Values returns all elements of the InputDeviceUhdAudioChannelPairProfile enum
+func InputDeviceUhdAudioChannelPairProfile_Values() []string {
+	return []string{
+		InputDeviceUhdAudioChannelPairProfileDisabled,
+		InputDeviceUhdAudioChannelPairProfileVbrAacHhe16000,
+		InputDeviceUhdAudioChannelPairProfileVbrAacHe64000,
+		InputDeviceUhdAudioChannelPairProfileVbrAacLc128000,
+		InputDeviceUhdAudioChannelPairProfileCbrAacHq192000,
+		InputDeviceUhdAudioChannelPairProfileCbrAacHq256000,
+		InputDeviceUhdAudioChannelPairProfileCbrAacHq384000,
+		InputDeviceUhdAudioChannelPairProfileCbrAacHq512000,
 	}
 }
 

@@ -7371,6 +7371,7 @@
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
         "Environment":{"shape":"TrainingEnvironmentMap"},
         "RetryStrategy":{"shape":"RetryStrategy"},
+        "RemoteDebugConfig":{"shape":"RemoteDebugConfig"},
         "InfraCheckConfig":{"shape":"InfraCheckConfig"}
       }
     },
@@ -10114,6 +10115,7 @@
         "ProfilingStatus":{"shape":"ProfilingStatus"},
         "Environment":{"shape":"TrainingEnvironmentMap"},
         "RetryStrategy":{"shape":"RetryStrategy"},
+        "RemoteDebugConfig":{"shape":"RemoteDebugConfig"},
         "InfraCheckConfig":{"shape":"InfraCheckConfig"}
       }
     },
@@ -10905,6 +10907,7 @@
     "EnableCapture":{"type":"boolean"},
     "EnableInfraCheck":{"type":"boolean"},
     "EnableIotRoleAlias":{"type":"boolean"},
+    "EnableRemoteDebug":{"type":"boolean"},
     "EnableSagemakerServicecatalogPortfolioInput":{
       "type":"structure",
       "members":{
@@ -19306,6 +19309,18 @@
       "min":1,
       "pattern":".*"
     },
+    "RemoteDebugConfig":{
+      "type":"structure",
+      "members":{
+        "EnableRemoteDebug":{"shape":"EnableRemoteDebug"}
+      }
+    },
+    "RemoteDebugConfigForUpdate":{
+      "type":"structure",
+      "members":{
+        "EnableRemoteDebug":{"shape":"EnableRemoteDebug"}
+      }
+    },
     "RenderUiTemplateRequest":{
       "type":"structure",
       "required":[
@@ -19839,7 +19854,8 @@
           "shape":"MaxResults",
           "box":true
         },
-        "CrossAccountFilterOption":{"shape":"CrossAccountFilterOption"}
+        "CrossAccountFilterOption":{"shape":"CrossAccountFilterOption"},
+        "VisibilityConditions":{"shape":"VisibilityConditionsList"}
       }
     },
     "SearchResponse":{
@@ -22493,7 +22509,8 @@
         "TrainingJobName":{"shape":"TrainingJobName"},
         "ProfilerConfig":{"shape":"ProfilerConfigForUpdate"},
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
-        "ResourceConfig":{"shape":"ResourceConfigForUpdate"}
+        "ResourceConfig":{"shape":"ResourceConfigForUpdate"},
+        "RemoteDebugConfig":{"shape":"RemoteDebugConfigForUpdate"}
       }
     },
     "UpdateTrainingJobResponse":{
@@ -22772,6 +22789,31 @@
     "Vertices":{
       "type":"list",
       "member":{"shape":"Vertex"}
+    },
+    "VisibilityConditions":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"VisibilityConditionsKey"},
+        "Value":{"shape":"VisibilityConditionsValue"}
+      }
+    },
+    "VisibilityConditionsKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "VisibilityConditionsList":{
+      "type":"list",
+      "member":{"shape":"VisibilityConditions"},
+      "max":5,
+      "min":1
+    },
+    "VisibilityConditionsValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "VolumeSizeInGB":{
       "type":"integer",

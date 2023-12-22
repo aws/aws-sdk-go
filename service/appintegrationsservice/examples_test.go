@@ -56,6 +56,44 @@ func ExampleAppIntegrationsService_CreateApplication_shared00() {
 				fmt.Println(appintegrationsservice.ErrCodeInvalidRequestException, aerr.Error())
 			case appintegrationsservice.ErrCodeAccessDeniedException:
 				fmt.Println(appintegrationsservice.ErrCodeAccessDeniedException, aerr.Error())
+			case appintegrationsservice.ErrCodeUnsupportedOperationException:
+				fmt.Println(appintegrationsservice.ErrCodeUnsupportedOperationException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To delete an application
+// The following deletes an application.
+func ExampleAppIntegrationsService_DeleteApplication_shared00() {
+	svc := appintegrationsservice.New(session.New())
+	input := &appintegrationsservice.DeleteApplicationInput{
+		Arn: aws.String("arn:aws:app-integrations:us-west-2:0123456789012:application/98542c53-e8ac-4570-9c85-c6552c8d9c5e"),
+	}
+
+	result, err := svc.DeleteApplication(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case appintegrationsservice.ErrCodeInternalServiceError:
+				fmt.Println(appintegrationsservice.ErrCodeInternalServiceError, aerr.Error())
+			case appintegrationsservice.ErrCodeThrottlingException:
+				fmt.Println(appintegrationsservice.ErrCodeThrottlingException, aerr.Error())
+			case appintegrationsservice.ErrCodeResourceNotFoundException:
+				fmt.Println(appintegrationsservice.ErrCodeResourceNotFoundException, aerr.Error())
+			case appintegrationsservice.ErrCodeInvalidRequestException:
+				fmt.Println(appintegrationsservice.ErrCodeInvalidRequestException, aerr.Error())
+			case appintegrationsservice.ErrCodeAccessDeniedException:
+				fmt.Println(appintegrationsservice.ErrCodeAccessDeniedException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -79,6 +117,42 @@ func ExampleAppIntegrationsService_GetApplication_shared00() {
 	}
 
 	result, err := svc.GetApplication(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case appintegrationsservice.ErrCodeInternalServiceError:
+				fmt.Println(appintegrationsservice.ErrCodeInternalServiceError, aerr.Error())
+			case appintegrationsservice.ErrCodeThrottlingException:
+				fmt.Println(appintegrationsservice.ErrCodeThrottlingException, aerr.Error())
+			case appintegrationsservice.ErrCodeResourceNotFoundException:
+				fmt.Println(appintegrationsservice.ErrCodeResourceNotFoundException, aerr.Error())
+			case appintegrationsservice.ErrCodeInvalidRequestException:
+				fmt.Println(appintegrationsservice.ErrCodeInvalidRequestException, aerr.Error())
+			case appintegrationsservice.ErrCodeAccessDeniedException:
+				fmt.Println(appintegrationsservice.ErrCodeAccessDeniedException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To list application associations of an application
+// The following retrives application associations of an application
+func ExampleAppIntegrationsService_ListApplicationAssociations_shared00() {
+	svc := appintegrationsservice.New(session.New())
+	input := &appintegrationsservice.ListApplicationAssociationsInput{
+		ApplicationId: aws.String("98542c53-e8ac-4570-9c85-c6552c8d9c5e"),
+	}
+
+	result, err := svc.ListApplicationAssociations(input)
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {
@@ -163,6 +237,8 @@ func ExampleAppIntegrationsService_UpdateApplication_shared00() {
 				fmt.Println(appintegrationsservice.ErrCodeInvalidRequestException, aerr.Error())
 			case appintegrationsservice.ErrCodeAccessDeniedException:
 				fmt.Println(appintegrationsservice.ErrCodeAccessDeniedException, aerr.Error())
+			case appintegrationsservice.ErrCodeUnsupportedOperationException:
+				fmt.Println(appintegrationsservice.ErrCodeUnsupportedOperationException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -3311,6 +3311,9 @@ type Transaction struct {
 	// The block number in which the transaction is recorded.
 	BlockNumber *string `locationName:"blockNumber" type:"string"`
 
+	// Specifies whether the transaction has reached Finality.
+	ConfirmationStatus *string `locationName:"confirmationStatus" type:"string" enum:"ConfirmationStatus"`
+
 	// The blockchain address for the contract.
 	ContractAddress *string `locationName:"contractAddress" type:"string"`
 
@@ -3319,6 +3322,9 @@ type Transaction struct {
 
 	// The effective gas price.
 	EffectiveGasPrice *string `locationName:"effectiveGasPrice" type:"string"`
+
+	// Identifies whether the transaction has succeeded or failed.
+	ExecutionStatus *string `locationName:"executionStatus" type:"string" enum:"ExecutionStatus"`
 
 	// The initiator of the transaction. It is either in the form a public key or
 	// a contract address.
@@ -3348,8 +3354,18 @@ type Transaction struct {
 
 	// The status of the transaction.
 	//
-	// Status is a required field
-	Status *string `locationName:"status" type:"string" required:"true" enum:"QueryTransactionStatus"`
+	// This property is deprecated. You must use the confirmationStatus and the
+	// executionStatus properties to determine if the status of the transaction
+	// is FINAL or FAILED.
+	//
+	//    * Transactions with a status of FINAL will now have the confirmationStatus
+	//    set to FINAL and the executionStatus set to SUCCEEDED.
+	//
+	//    * Transactions with a status of FAILED will now have the confirmationStatus
+	//    set to FINAL and the executionStatus set to FAILED.
+	//
+	// Deprecated: The status field in the GetTransaction response is deprecated and is replaced with the confirmationStatus and executionStatus fields.
+	Status *string `locationName:"status" deprecated:"true" type:"string" enum:"QueryTransactionStatus"`
 
 	// The identifier of the transaction. It is generated whenever a transaction
 	// is verified and added to the blockchain.
@@ -3411,6 +3427,12 @@ func (s *Transaction) SetBlockNumber(v string) *Transaction {
 	return s
 }
 
+// SetConfirmationStatus sets the ConfirmationStatus field's value.
+func (s *Transaction) SetConfirmationStatus(v string) *Transaction {
+	s.ConfirmationStatus = &v
+	return s
+}
+
 // SetContractAddress sets the ContractAddress field's value.
 func (s *Transaction) SetContractAddress(v string) *Transaction {
 	s.ContractAddress = &v
@@ -3426,6 +3448,12 @@ func (s *Transaction) SetCumulativeGasUsed(v string) *Transaction {
 // SetEffectiveGasPrice sets the EffectiveGasPrice field's value.
 func (s *Transaction) SetEffectiveGasPrice(v string) *Transaction {
 	s.EffectiveGasPrice = &v
+	return s
+}
+
+// SetExecutionStatus sets the ExecutionStatus field's value.
+func (s *Transaction) SetExecutionStatus(v string) *Transaction {
+	s.ExecutionStatus = &v
 	return s
 }
 
@@ -3812,6 +3840,18 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 }
 
 const (
+	// ConfirmationStatusFinal is a ConfirmationStatus enum value
+	ConfirmationStatusFinal = "FINAL"
+)
+
+// ConfirmationStatus_Values returns all elements of the ConfirmationStatus enum
+func ConfirmationStatus_Values() []string {
+	return []string{
+		ConfirmationStatusFinal,
+	}
+}
+
+const (
 	// ErrorTypeValidationException is a ErrorType enum value
 	ErrorTypeValidationException = "VALIDATION_EXCEPTION"
 
@@ -3824,6 +3864,22 @@ func ErrorType_Values() []string {
 	return []string{
 		ErrorTypeValidationException,
 		ErrorTypeResourceNotFoundException,
+	}
+}
+
+const (
+	// ExecutionStatusFailed is a ExecutionStatus enum value
+	ExecutionStatusFailed = "FAILED"
+
+	// ExecutionStatusSucceeded is a ExecutionStatus enum value
+	ExecutionStatusSucceeded = "SUCCEEDED"
+)
+
+// ExecutionStatus_Values returns all elements of the ExecutionStatus enum
+func ExecutionStatus_Values() []string {
+	return []string{
+		ExecutionStatusFailed,
+		ExecutionStatusSucceeded,
 	}
 }
 
@@ -3843,23 +3899,23 @@ const (
 	// QueryNetworkEthereumMainnet is a QueryNetwork enum value
 	QueryNetworkEthereumMainnet = "ETHEREUM_MAINNET"
 
+	// QueryNetworkEthereumSepoliaTestnet is a QueryNetwork enum value
+	QueryNetworkEthereumSepoliaTestnet = "ETHEREUM_SEPOLIA_TESTNET"
+
 	// QueryNetworkBitcoinMainnet is a QueryNetwork enum value
 	QueryNetworkBitcoinMainnet = "BITCOIN_MAINNET"
 
 	// QueryNetworkBitcoinTestnet is a QueryNetwork enum value
 	QueryNetworkBitcoinTestnet = "BITCOIN_TESTNET"
-
-	// QueryNetworkEthereumSepoliaTestnet is a QueryNetwork enum value
-	QueryNetworkEthereumSepoliaTestnet = "ETHEREUM_SEPOLIA_TESTNET"
 )
 
 // QueryNetwork_Values returns all elements of the QueryNetwork enum
 func QueryNetwork_Values() []string {
 	return []string{
 		QueryNetworkEthereumMainnet,
+		QueryNetworkEthereumSepoliaTestnet,
 		QueryNetworkBitcoinMainnet,
 		QueryNetworkBitcoinTestnet,
-		QueryNetworkEthereumSepoliaTestnet,
 	}
 }
 

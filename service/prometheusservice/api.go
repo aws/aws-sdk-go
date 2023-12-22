@@ -3478,6 +3478,9 @@ type CreateWorkspaceInput struct {
 	// idempotency of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// Optional, customer managed KMS key used to encrypt data for this workspace
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
 	// Optional, user-provided tags for this workspace.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
@@ -3509,6 +3512,9 @@ func (s *CreateWorkspaceInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3528,6 +3534,12 @@ func (s *CreateWorkspaceInput) SetClientToken(v string) *CreateWorkspaceInput {
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateWorkspaceInput) SetKmsKeyArn(v string) *CreateWorkspaceInput {
+	s.KmsKeyArn = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateWorkspaceInput) SetTags(v map[string]*string) *CreateWorkspaceInput {
 	s.Tags = v
@@ -3542,6 +3554,9 @@ type CreateWorkspaceOutput struct {
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// Customer managed KMS key ARN for this workspace
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
 
 	// The status of the workspace that was just created (usually CREATING).
 	//
@@ -3578,6 +3593,12 @@ func (s CreateWorkspaceOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateWorkspaceOutput) SetArn(v string) *CreateWorkspaceOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateWorkspaceOutput) SetKmsKeyArn(v string) *CreateWorkspaceOutput {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -6956,6 +6977,9 @@ type WorkspaceDescription struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// The customer managed KMS key of this workspace.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
 	// Prometheus endpoint URI.
 	PrometheusEndpoint *string `locationName:"prometheusEndpoint" min:"1" type:"string"`
 
@@ -7006,6 +7030,12 @@ func (s *WorkspaceDescription) SetArn(v string) *WorkspaceDescription {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *WorkspaceDescription) SetCreatedAt(v time.Time) *WorkspaceDescription {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *WorkspaceDescription) SetKmsKeyArn(v string) *WorkspaceDescription {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -7084,6 +7114,9 @@ type WorkspaceSummary struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
 
+	// Customer managed KMS key ARN for this workspace
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
+
 	// The status of this workspace.
 	//
 	// Status is a required field
@@ -7131,6 +7164,12 @@ func (s *WorkspaceSummary) SetArn(v string) *WorkspaceSummary {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *WorkspaceSummary) SetCreatedAt(v time.Time) *WorkspaceSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *WorkspaceSummary) SetKmsKeyArn(v string) *WorkspaceSummary {
+	s.KmsKeyArn = &v
 	return s
 }
 
