@@ -1214,6 +1214,19 @@
         "requestChecksumRequired":true
       }
     },
+    "PatchObject":{
+      "name":"PatchObject",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/{Bucket}/{Key+}"
+      },
+      "input":{"shape":"PatchObjectRequest"},
+      "output":{"shape":"PatchObjectOutput"},
+      "httpChecksum":{
+        "requestAlgorithmMember":"ChecksumAlgorithm",
+        "requestChecksumRequired":false
+      }
+    },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
       "http":{
@@ -9194,19 +9207,6 @@
     "UseArnRegion":{
       "documentation":"Enables this client to use an ARN's region when constructing an endpoint instead of the client's configured region.",
       "type":"boolean"
-    }
-  },
-  "PatchObject":{
-    "name":"PatchObject",
-    "http":{
-      "method":"PATCH",
-      "requestUri":"/{Bucket}/{Key+}"
-    },
-    "input":{"shape":"PatchObjectRequest"},
-    "output":{"shape":"PatchObjectOutput"},
-    "httpChecksum":{
-      "requestAlgorithmMember":"ChecksumAlgorithm",
-      "requestChecksumRequired":false
     }
   },
   "PatchAppendPartSize":{"type": "integer"},
