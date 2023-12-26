@@ -1,3 +1,14 @@
+Release v1.49.10 (2023-12-26)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+
+### SDK Enhancements
+* `aws`: Add `WithUseFIPSEndpoint` to `aws.Config`. ([#5078](https://github.com/aws/aws-sdk-go/pull/5078))
+  * `WithUseFIPSEndpoint` can be used to explicitly enable or disable FIPS endpoint variants.
+
 Release v1.49.9 (2023-12-22)
 ===
 
