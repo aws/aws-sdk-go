@@ -7747,6 +7747,75 @@
       },
       "payload":"Tagging"
     },
+    "PatchAppendPartSize":{"type": "integer"},
+    "PatchedObjectInfo":{
+      "type":"structure",
+      "members":{
+        "ETag":{"shape":"ETag"},
+        "LastModified":{"shape":"LastModified"}
+      }
+    },
+    "PatchObjectOutput":{
+      "type":"structure",
+      "members":{
+        "Object":{"shape":"PatchedObjectInfo"}
+      }
+    },
+    "PatchObjectRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "Key",
+        "ContentRange"
+      ],
+      "members":{
+        "Body":{
+          "shape":"Body",
+          "streaming":true
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ContentLength":{
+          "shape":"ContentLength",
+          "location":"header",
+          "locationName":"Content-Length"
+        },
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
+        "ContentRange":{
+          "shape":"ContentRange",
+          "location":"header",
+          "locationName":"Content-Range"
+        },
+        "IfMatch":{
+          "shape":"IfMatch",
+          "location":"header",
+          "locationName":"If-Match"
+        },
+        "IfUnmodifiedSince":{
+          "shape":"IfUnmodifiedSince",
+          "location":"header",
+          "locationName":"If-Unmodified-Since"
+        },
+        "Key":{
+          "shape":"ObjectKey",
+          "location":"uri",
+          "locationName":"Key"
+        },
+        "PatchAppendPartSize":{
+          "shape":"PatchAppendPartSize",
+          "location":"header",
+          "locationName":"X-Yc-S3-Patch-Append-Part-Size"
+        }
+      },
+      "payload":"Body"
+    },
     "PutPublicAccessBlockRequest":{
       "type":"structure",
       "required":[
@@ -9208,74 +9277,5 @@
       "documentation":"Enables this client to use an ARN's region when constructing an endpoint instead of the client's configured region.",
       "type":"boolean"
     }
-  },
-  "PatchAppendPartSize":{"type": "integer"},
-  "PatchedObjectInfo":{
-    "type":"structure",
-    "members":{
-      "ETag":{"shape":"ETag"},
-      "LastModified":{"shape":"LastModified"}
-    }
-  },
-  "PatchObjectOutput":{
-    "type":"structure",
-    "members":{
-      "Object":{"shape":"PatchedObjectInfo"}
-    }
-  },
-  "PatchObjectRequest":{
-    "type":"structure",
-    "required":[
-      "Bucket",
-      "Key",
-      "ContentRange"
-    ],
-    "members":{
-      "Body":{
-        "shape":"Body",
-        "streaming":true
-      },
-      "Bucket":{
-        "shape":"BucketName",
-        "location":"uri",
-        "locationName":"Bucket"
-      },
-      "ContentLength":{
-        "shape":"ContentLength",
-        "location":"header",
-        "locationName":"Content-Length"
-      },
-      "ContentMD5":{
-        "shape":"ContentMD5",
-        "location":"header",
-        "locationName":"Content-MD5"
-      },
-      "ContentRange":{
-        "shape":"ContentRange",
-        "location":"header",
-        "locationName":"Content-Range"
-      },
-      "IfMatch":{
-        "shape":"IfMatch",
-        "location":"header",
-        "locationName":"If-Match"
-      },
-      "IfUnmodifiedSince":{
-        "shape":"IfUnmodifiedSince",
-        "location":"header",
-        "locationName":"If-Unmodified-Since"
-      },
-      "Key":{
-        "shape":"ObjectKey",
-        "location":"uri",
-        "locationName":"Key"
-      },
-      "PatchAppendPartSize":{
-        "shape":"PatchAppendPartSize",
-        "location":"header",
-        "locationName":"X-Yc-S3-Patch-Append-Part-Size"
-      }
-    },
-    "payload":"Body"
   }
 }
