@@ -17,11 +17,11 @@ import (
 
 func main() {
 	if len(os.Args) < 3 {
-		log.Println("USAGE ERROR: AWS_REGION=us-west-2 go run -tags example putObjWithProcess.go <bucket> <key for object>")
+		log.Println("USAGE ERROR: go run -tags example putObjWithProcess.go <bucket> <key for object>")
 		return
 	}
 
-	const filename = "./lorem_ipsum.txt"
+	const filename = "./base_object.txt"
 
 	bucket := os.Args[1]
 	key := os.Args[2]
