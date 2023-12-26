@@ -7830,6 +7830,77 @@ func (c *S3) ListPartsPagesWithContext(ctx aws.Context, input *ListPartsInput, f
 	return p.Err()
 }
 
+const opPatchObject = "PatchObject"
+
+// PatchObjectRequest generates a "aws/request.Request" representing the
+// client's request for the PatchObject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PatchObject for more information on using the PatchObject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PatchObjectRequest method.
+//	req, resp := client.PatchObjectRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PatchObject
+func (c *S3) PatchObjectRequest(input *PatchObjectInput) (req *request.Request, output *PatchObjectOutput) {
+	op := &request.Operation{
+		Name:       opPatchObject,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/{Bucket}/{Key+}",
+	}
+
+	if input == nil {
+		input = &PatchObjectInput{}
+	}
+
+	output = &PatchObjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PatchObject API operation for Amazon Simple Storage Service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PatchObject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PatchObject
+func (c *S3) PatchObject(input *PatchObjectInput) (*PatchObjectOutput, error) {
+	req, out := c.PatchObjectRequest(input)
+	return out, req.Send()
+}
+
+// PatchObjectWithContext is the same as PatchObject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PatchObject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3) PatchObjectWithContext(ctx aws.Context, input *PatchObjectInput, opts ...request.Option) (*PatchObjectOutput, error) {
+	req, out := c.PatchObjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBucketAccelerateConfiguration = "PutBucketAccelerateConfiguration"
 
 // PutBucketAccelerateConfigurationRequest generates a "aws/request.Request" representing the
@@ -33500,6 +33571,234 @@ func (s PartitionedPrefix) GoString() string {
 // SetPartitionDateSource sets the PartitionDateSource field's value.
 func (s *PartitionedPrefix) SetPartitionDateSource(v string) *PartitionedPrefix {
 	s.PartitionDateSource = &v
+	return s
+}
+
+type PatchObjectInput struct {
+	_ struct{} `locationName:"PatchObjectRequest" type:"structure" payload:"Body"`
+
+	Body io.ReadSeeker `type:"blob"`
+
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// The AWS SDK for Go v1 does not support automatic computing request payload
+	// checksum. This feature is available in the AWS SDK for Go v2. If a value
+	// is specified for this parameter, the matching algorithm's checksum member
+	// must be populated with the algorithm's checksum of the request payload.
+	ChecksumAlgorithm *string `location:"header" locationName:"x-amz-sdk-checksum-algorithm" type:"string" enum:"ChecksumAlgorithm"`
+
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
+
+	// ContentRange is a required field
+	ContentRange *string `location:"header" locationName:"Content-Range" type:"string" required:"true"`
+
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp"`
+
+	// Key is a required field
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
+
+	PatchAppendPartSize *int64 `location:"header" locationName:"X-Yc-S3-Patch-Append-Part-Size" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchObjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchObjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PatchObjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PatchObjectInput"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.ContentRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentRange"))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBody sets the Body field's value.
+func (s *PatchObjectInput) SetBody(v io.ReadSeeker) *PatchObjectInput {
+	s.Body = v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PatchObjectInput) SetBucket(v string) *PatchObjectInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *PatchObjectInput) getBucket() (v string) {
+	if s.Bucket == nil {
+		return v
+	}
+	return *s.Bucket
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *PatchObjectInput) SetChecksumAlgorithm(v string) *PatchObjectInput {
+	s.ChecksumAlgorithm = &v
+	return s
+}
+
+// SetContentLength sets the ContentLength field's value.
+func (s *PatchObjectInput) SetContentLength(v int64) *PatchObjectInput {
+	s.ContentLength = &v
+	return s
+}
+
+// SetContentRange sets the ContentRange field's value.
+func (s *PatchObjectInput) SetContentRange(v string) *PatchObjectInput {
+	s.ContentRange = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *PatchObjectInput) SetIfMatch(v string) *PatchObjectInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetIfUnmodifiedSince sets the IfUnmodifiedSince field's value.
+func (s *PatchObjectInput) SetIfUnmodifiedSince(v time.Time) *PatchObjectInput {
+	s.IfUnmodifiedSince = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *PatchObjectInput) SetKey(v string) *PatchObjectInput {
+	s.Key = &v
+	return s
+}
+
+// SetPatchAppendPartSize sets the PatchAppendPartSize field's value.
+func (s *PatchObjectInput) SetPatchAppendPartSize(v int64) *PatchObjectInput {
+	s.PatchAppendPartSize = &v
+	return s
+}
+
+func (s *PatchObjectInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PatchObjectInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PatchObjectInput) updateArnableField(v string) (interface{}, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return &s, nil
+}
+
+type PatchObjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	Object *PatchedObjectInfo `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchObjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchObjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetObject sets the Object field's value.
+func (s *PatchObjectOutput) SetObject(v *PatchedObjectInfo) *PatchObjectOutput {
+	s.Object = v
+	return s
+}
+
+type PatchedObjectInfo struct {
+	_ struct{} `type:"structure"`
+
+	ETag *string `type:"string"`
+
+	LastModified *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchedObjectInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PatchedObjectInfo) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *PatchedObjectInfo) SetETag(v string) *PatchedObjectInfo {
+	s.ETag = &v
+	return s
+}
+
+// SetLastModified sets the LastModified field's value.
+func (s *PatchedObjectInfo) SetLastModified(v time.Time) *PatchedObjectInfo {
+	s.LastModified = &v
 	return s
 }
 

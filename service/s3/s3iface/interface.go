@@ -346,6 +346,10 @@ type S3API interface {
 	ListPartsPages(*s3.ListPartsInput, func(*s3.ListPartsOutput, bool) bool) error
 	ListPartsPagesWithContext(aws.Context, *s3.ListPartsInput, func(*s3.ListPartsOutput, bool) bool, ...request.Option) error
 
+	PatchObject(*s3.PatchObjectInput) (*s3.PatchObjectOutput, error)
+	PatchObjectWithContext(aws.Context, *s3.PatchObjectInput, ...request.Option) (*s3.PatchObjectOutput, error)
+	PatchObjectRequest(*s3.PatchObjectInput) (*request.Request, *s3.PatchObjectOutput)
+
 	PutBucketAccelerateConfiguration(*s3.PutBucketAccelerateConfigurationInput) (*s3.PutBucketAccelerateConfigurationOutput, error)
 	PutBucketAccelerateConfigurationWithContext(aws.Context, *s3.PutBucketAccelerateConfigurationInput, ...request.Option) (*s3.PutBucketAccelerateConfigurationOutput, error)
 	PutBucketAccelerateConfigurationRequest(*s3.PutBucketAccelerateConfigurationInput) (*request.Request, *s3.PutBucketAccelerateConfigurationOutput)
