@@ -7788,6 +7788,11 @@
           "location":"header",
           "locationName":"Content-MD5"
         },
+        "ChecksumAlgorithm":{
+          "shape":"ChecksumAlgorithm",
+          "location":"header",
+          "locationName":"x-amz-sdk-checksum-algorithm"
+        },
         "ContentRange":{
           "shape":"ContentRange",
           "location":"header",
