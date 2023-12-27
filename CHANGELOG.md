@@ -1,3 +1,10 @@
+Release v1.49.11 (2023-12-27)
+===
+
+### Service Client Updates
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Add support for customers to modify cluster attribute auto-terminate post cluster launch
+
 Release v1.49.10 (2023-12-26)
 ===
 

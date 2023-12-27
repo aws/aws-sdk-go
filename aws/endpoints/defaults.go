@@ -9693,6 +9693,12 @@ var awsPartition = partition{
 					Region: "ca-west-1",
 				}: endpoint{},
 				endpointKey{
+					Region:  "ca-west-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "ds-fips.ca-west-1.amazonaws.com",
+				},
+				endpointKey{
 					Region: "eu-central-1",
 				}: endpoint{},
 				endpointKey{
@@ -9722,6 +9728,15 @@ var awsPartition = partition{
 					Hostname: "ds-fips.ca-central-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "ca-central-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "fips-ca-west-1",
+				}: endpoint{
+					Hostname: "ds-fips.ca-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ca-west-1",
 					},
 					Deprecated: boxedTrue,
 				},
@@ -23770,6 +23785,24 @@ var awsPartition = partition{
 					Deprecated: boxedTrue,
 				},
 				endpointKey{
+					Region: "ca-west-1",
+				}: endpoint{},
+				endpointKey{
+					Region:  "ca-west-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "rds-fips.ca-west-1.amazonaws.com",
+				},
+				endpointKey{
+					Region: "ca-west-1-fips",
+				}: endpoint{
+					Hostname: "rds-fips.ca-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ca-west-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
 					Region: "eu-central-1",
 				}: endpoint{},
 				endpointKey{
@@ -23808,6 +23841,15 @@ var awsPartition = partition{
 					Hostname: "rds-fips.ca-central-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "ca-central-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "rds-fips.ca-west-1",
+				}: endpoint{
+					Hostname: "rds-fips.ca-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ca-west-1",
 					},
 					Deprecated: boxedTrue,
 				},
@@ -23862,6 +23904,24 @@ var awsPartition = partition{
 					Hostname: "rds-fips.ca-central-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "ca-central-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region: "rds.ca-west-1",
+				}: endpoint{
+					CredentialScope: credentialScope{
+						Region: "ca-west-1",
+					},
+					Deprecated: boxedTrue,
+				},
+				endpointKey{
+					Region:  "rds.ca-west-1",
+					Variant: fipsVariant,
+				}: endpoint{
+					Hostname: "rds-fips.ca-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ca-west-1",
 					},
 					Deprecated: boxedTrue,
 				},

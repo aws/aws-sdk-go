@@ -284,6 +284,10 @@ type EMRAPI interface {
 	RunJobFlowWithContext(aws.Context, *emr.RunJobFlowInput, ...request.Option) (*emr.RunJobFlowOutput, error)
 	RunJobFlowRequest(*emr.RunJobFlowInput) (*request.Request, *emr.RunJobFlowOutput)
 
+	SetKeepJobFlowAliveWhenNoSteps(*emr.SetKeepJobFlowAliveWhenNoStepsInput) (*emr.SetKeepJobFlowAliveWhenNoStepsOutput, error)
+	SetKeepJobFlowAliveWhenNoStepsWithContext(aws.Context, *emr.SetKeepJobFlowAliveWhenNoStepsInput, ...request.Option) (*emr.SetKeepJobFlowAliveWhenNoStepsOutput, error)
+	SetKeepJobFlowAliveWhenNoStepsRequest(*emr.SetKeepJobFlowAliveWhenNoStepsInput) (*request.Request, *emr.SetKeepJobFlowAliveWhenNoStepsOutput)
+
 	SetTerminationProtection(*emr.SetTerminationProtectionInput) (*emr.SetTerminationProtectionOutput, error)
 	SetTerminationProtectionWithContext(aws.Context, *emr.SetTerminationProtectionInput, ...request.Option) (*emr.SetTerminationProtectionOutput, error)
 	SetTerminationProtectionRequest(*emr.SetTerminationProtectionInput) (*request.Request, *emr.SetTerminationProtectionOutput)

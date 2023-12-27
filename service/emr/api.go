@@ -4675,6 +4675,94 @@ func (c *EMR) RunJobFlowWithContext(ctx aws.Context, input *RunJobFlowInput, opt
 	return out, req.Send()
 }
 
+const opSetKeepJobFlowAliveWhenNoSteps = "SetKeepJobFlowAliveWhenNoSteps"
+
+// SetKeepJobFlowAliveWhenNoStepsRequest generates a "aws/request.Request" representing the
+// client's request for the SetKeepJobFlowAliveWhenNoSteps operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SetKeepJobFlowAliveWhenNoSteps for more information on using the SetKeepJobFlowAliveWhenNoSteps
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SetKeepJobFlowAliveWhenNoStepsRequest method.
+//	req, resp := client.SetKeepJobFlowAliveWhenNoStepsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetKeepJobFlowAliveWhenNoSteps
+func (c *EMR) SetKeepJobFlowAliveWhenNoStepsRequest(input *SetKeepJobFlowAliveWhenNoStepsInput) (req *request.Request, output *SetKeepJobFlowAliveWhenNoStepsOutput) {
+	op := &request.Operation{
+		Name:       opSetKeepJobFlowAliveWhenNoSteps,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetKeepJobFlowAliveWhenNoStepsInput{}
+	}
+
+	output = &SetKeepJobFlowAliveWhenNoStepsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SetKeepJobFlowAliveWhenNoSteps API operation for Amazon EMR.
+//
+// You can use the SetKeepJobFlowAliveWhenNoSteps to configure a cluster (job
+// flow) to terminate after the step execution, i.e., all your steps are executed.
+// If you want a transient cluster that shuts down after the last of the current
+// executing steps are completed, you can configure SetKeepJobFlowAliveWhenNoSteps
+// to false. If you want a long running cluster, configure SetKeepJobFlowAliveWhenNoSteps
+// to true.
+//
+// For more information, see Managing Cluster Termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html)
+// in the Amazon EMR Management Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation SetKeepJobFlowAliveWhenNoSteps for usage and error information.
+//
+// Returned Error Types:
+//   - InternalServerError
+//     Indicates that an error occurred while processing the request and that the
+//     request was not completed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetKeepJobFlowAliveWhenNoSteps
+func (c *EMR) SetKeepJobFlowAliveWhenNoSteps(input *SetKeepJobFlowAliveWhenNoStepsInput) (*SetKeepJobFlowAliveWhenNoStepsOutput, error) {
+	req, out := c.SetKeepJobFlowAliveWhenNoStepsRequest(input)
+	return out, req.Send()
+}
+
+// SetKeepJobFlowAliveWhenNoStepsWithContext is the same as SetKeepJobFlowAliveWhenNoSteps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SetKeepJobFlowAliveWhenNoSteps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) SetKeepJobFlowAliveWhenNoStepsWithContext(ctx aws.Context, input *SetKeepJobFlowAliveWhenNoStepsInput, opts ...request.Option) (*SetKeepJobFlowAliveWhenNoStepsOutput, error) {
+	req, out := c.SetKeepJobFlowAliveWhenNoStepsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSetTerminationProtection = "SetTerminationProtection"
 
 // SetTerminationProtectionRequest generates a "aws/request.Request" representing the
@@ -17442,6 +17530,91 @@ func (s *SessionMappingSummary) SetSessionPolicyArn(v string) *SessionMappingSum
 func (s *SessionMappingSummary) SetStudioId(v string) *SessionMappingSummary {
 	s.StudioId = &v
 	return s
+}
+
+type SetKeepJobFlowAliveWhenNoStepsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of strings that uniquely identify the clusters to protect. This identifier
+	// is returned by RunJobFlow (https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html)
+	// and can also be obtained from DescribeJobFlows (https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeJobFlows.html).
+	//
+	// JobFlowIds is a required field
+	JobFlowIds []*string `type:"list" required:"true"`
+
+	// A Boolean that indicates whether to terminate the cluster after all steps
+	// are executed.
+	//
+	// KeepJobFlowAliveWhenNoSteps is a required field
+	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetKeepJobFlowAliveWhenNoStepsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetKeepJobFlowAliveWhenNoStepsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetKeepJobFlowAliveWhenNoStepsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetKeepJobFlowAliveWhenNoStepsInput"}
+	if s.JobFlowIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobFlowIds"))
+	}
+	if s.KeepJobFlowAliveWhenNoSteps == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeepJobFlowAliveWhenNoSteps"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobFlowIds sets the JobFlowIds field's value.
+func (s *SetKeepJobFlowAliveWhenNoStepsInput) SetJobFlowIds(v []*string) *SetKeepJobFlowAliveWhenNoStepsInput {
+	s.JobFlowIds = v
+	return s
+}
+
+// SetKeepJobFlowAliveWhenNoSteps sets the KeepJobFlowAliveWhenNoSteps field's value.
+func (s *SetKeepJobFlowAliveWhenNoStepsInput) SetKeepJobFlowAliveWhenNoSteps(v bool) *SetKeepJobFlowAliveWhenNoStepsInput {
+	s.KeepJobFlowAliveWhenNoSteps = &v
+	return s
+}
+
+type SetKeepJobFlowAliveWhenNoStepsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetKeepJobFlowAliveWhenNoStepsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetKeepJobFlowAliveWhenNoStepsOutput) GoString() string {
+	return s.String()
 }
 
 // The input argument to the TerminationProtection operation.

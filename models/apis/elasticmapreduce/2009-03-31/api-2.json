@@ -583,6 +583,17 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "SetKeepJobFlowAliveWhenNoSteps":{
+      "name":"SetKeepJobFlowAliveWhenNoSteps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetKeepJobFlowAliveWhenNoStepsInput"},
+      "errors":[
+        {"shape":"InternalServerError"}
+      ]
+    },
     "SetTerminationProtection":{
       "name":"SetTerminationProtection",
       "http":{
@@ -2850,6 +2861,17 @@
     "SessionMappingSummaryList":{
       "type":"list",
       "member":{"shape":"SessionMappingSummary"}
+    },
+    "SetKeepJobFlowAliveWhenNoStepsInput":{
+      "type":"structure",
+      "required":[
+        "JobFlowIds",
+        "KeepJobFlowAliveWhenNoSteps"
+      ],
+      "members":{
+        "JobFlowIds":{"shape":"XmlStringList"},
+        "KeepJobFlowAliveWhenNoSteps":{"shape":"Boolean"}
+      }
     },
     "SetTerminationProtectionInput":{
       "type":"structure",
