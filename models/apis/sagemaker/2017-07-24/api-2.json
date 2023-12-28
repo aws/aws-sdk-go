@@ -10525,6 +10525,13 @@
         "TrialArn":{"shape":"TrialArn"}
       }
     },
+    "DockerSettings":{
+      "type":"structure",
+      "members":{
+        "EnableDockerAccess":{"shape":"FeatureStatus"},
+        "VpcOnlyTrustedAccounts":{"shape":"VpcOnlyTrustedAccounts"}
+      }
+    },
     "DocumentSchemaVersion":{
       "type":"string",
       "max":14,
@@ -10577,7 +10584,8 @@
       "members":{
         "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
         "RStudioServerProDomainSettings":{"shape":"RStudioServerProDomainSettings"},
-        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"}
+        "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"},
+        "DockerSettings":{"shape":"DockerSettings"}
       }
     },
     "DomainSettingsForUpdate":{
@@ -10585,7 +10593,8 @@
       "members":{
         "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"},
         "ExecutionRoleIdentityConfig":{"shape":"ExecutionRoleIdentityConfig"},
-        "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"}
+        "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
+        "DockerSettings":{"shape":"DockerSettings"}
       }
     },
     "DomainStatus":{
@@ -22834,6 +22843,10 @@
       "type":"string",
       "max":32,
       "pattern":"[-0-9a-zA-Z]+"
+    },
+    "VpcOnlyTrustedAccounts":{
+      "type":"list",
+      "member":{"shape":"AccountId"}
     },
     "VpcSecurityGroupIds":{
       "type":"list",

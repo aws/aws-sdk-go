@@ -142,8 +142,8 @@ func (c *KinesisVideoArchivedMedia) GetClipRequest(input *GetClipInput) (req *re
 //     specified codec.
 //
 //   - NoDataRetentionException
-//     A streaming session was requested for a stream that does not retain data
-//     (that is, has a DataRetentionInHours of 0).
+//     GetImages was requested for a stream that does not retain data (that is,
+//     has a DataRetentionInHours of 0).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetClip
 func (c *KinesisVideoArchivedMedia) GetClip(input *GetClipInput) (*GetClipOutput, error) {
@@ -362,8 +362,8 @@ func (c *KinesisVideoArchivedMedia) GetDASHStreamingSessionURLRequest(input *Get
 //     and, optionally, the codec ID for track 2 should be A_AAC.
 //
 //   - NoDataRetentionException
-//     A streaming session was requested for a stream that does not retain data
-//     (that is, has a DataRetentionInHours of 0).
+//     GetImages was requested for a stream that does not retain data (that is,
+//     has a DataRetentionInHours of 0).
 //
 //   - MissingCodecPrivateDataException
 //     No codec private data was found in at least one of tracks of the video stream.
@@ -617,8 +617,8 @@ func (c *KinesisVideoArchivedMedia) GetHLSStreamingSessionURLRequest(input *GetH
 //     and, optionally, the codec ID for track 2 should be A_AAC.
 //
 //   - NoDataRetentionException
-//     A streaming session was requested for a stream that does not retain data
-//     (that is, has a DataRetentionInHours of 0).
+//     GetImages was requested for a stream that does not retain data (that is,
+//     has a DataRetentionInHours of 0).
 //
 //   - MissingCodecPrivateDataException
 //     No codec private data was found in at least one of tracks of the video stream.
@@ -698,7 +698,7 @@ func (c *KinesisVideoArchivedMedia) GetImagesRequest(input *GetImagesInput) (req
 
 // GetImages API operation for Amazon Kinesis Video Streams Archived Media.
 //
-// Retrieves a list of Images corresponding to each timestamp for a given time
+// Retrieves a list of images corresponding to each timestamp for a given time
 // range, sampling interval, and image format configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -732,6 +732,10 @@ func (c *KinesisVideoArchivedMedia) GetImagesRequest(input *GetImagesInput) (req
 //   - NotAuthorizedException
 //     Status Code: 403, The caller is not authorized to perform an operation on
 //     the given stream, or the token has expired.
+//
+//   - NoDataRetentionException
+//     GetImages was requested for a stream that does not retain data (that is,
+//     has a DataRetentionInHours of 0).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetImages
 func (c *KinesisVideoArchivedMedia) GetImages(input *GetImagesInput) (*GetImagesOutput, error) {
@@ -2323,11 +2327,9 @@ type GetImagesInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The time interval in milliseconds (ms) at which the images need to be generated
-	// from the stream, with a default of 3000 ms. The minimum value that can be
-	// provided is 200 ms. If the timestamp range is less than the sampling interval,
-	// the Image from the startTimestamp will be returned if available.
-	//
-	// The minimum value of 200 ms is a hard limit.
+	// from the stream. The minimum value that can be provided is 200 ms (5 images
+	// per second). If the timestamp range is less than the sampling interval, the
+	// image from the startTimestamp will be returned if available.
 	SamplingInterval *int64 `type:"integer"`
 
 	// The starting point from which the images should be generated. This StartTimestamp
@@ -3057,6 +3059,8 @@ type ListFragmentsInput struct {
 
 	// Describes the timestamp range and timestamp origin for the range of fragments
 	// to return.
+	//
+	// This is only required when the NextToken isn't passed in the API.
 	FragmentSelector *FragmentSelector `type:"structure"`
 
 	// The total number of fragments to return. If the total number of fragments
@@ -3259,8 +3263,8 @@ func (s *MissingCodecPrivateDataException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A streaming session was requested for a stream that does not retain data
-// (that is, has a DataRetentionInHours of 0).
+// GetImages was requested for a stream that does not retain data (that is,
+// has a DataRetentionInHours of 0).
 type NoDataRetentionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

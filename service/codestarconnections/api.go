@@ -7941,6 +7941,9 @@ const (
 
 	// ProviderTypeGitLab is a ProviderType enum value
 	ProviderTypeGitLab = "GitLab"
+
+	// ProviderTypeGitLabSelfManaged is a ProviderType enum value
+	ProviderTypeGitLabSelfManaged = "GitLabSelfManaged"
 )
 
 // ProviderType_Values returns all elements of the ProviderType enum
@@ -7950,6 +7953,7 @@ func ProviderType_Values() []string {
 		ProviderTypeGitHub,
 		ProviderTypeGitHubEnterpriseServer,
 		ProviderTypeGitLab,
+		ProviderTypeGitLabSelfManaged,
 	}
 }
 
