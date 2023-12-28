@@ -1,3 +1,12 @@
+Release v1.49.12 (2023-12-28)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Studio now supports Docker access from within app container
+
 Release v1.49.11 (2023-12-27)
 ===
 

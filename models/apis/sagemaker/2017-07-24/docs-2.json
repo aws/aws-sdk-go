@@ -337,7 +337,8 @@
     "AccountId": {
       "base": null,
       "refs": {
-        "LabelingJobForWorkteamSummary$WorkRequesterAccountId": "<p>The Amazon Web Services account ID of the account used to start the labeling job.</p>"
+        "LabelingJobForWorkteamSummary$WorkRequesterAccountId": "<p>The Amazon Web Services account ID of the account used to start the labeling job.</p>",
+        "VpcOnlyTrustedAccounts$member": null
       }
     },
     "ActionArn": {
@@ -4701,6 +4702,13 @@
       "refs": {
       }
     },
+    "DockerSettings": {
+      "base": "<p>A collection of settings that configure the domain's Docker interaction.</p>",
+      "refs": {
+        "DomainSettings$DockerSettings": "<p>A collection of settings that configure the domain's Docker interaction.</p>",
+        "DomainSettingsForUpdate$DockerSettings": "<p>A collection of settings that configure the domain's Docker interaction.</p>"
+      }
+    },
     "DocumentSchemaVersion": {
       "base": null,
       "refs": {
@@ -5929,6 +5937,7 @@
       "base": null,
       "refs": {
         "DirectDeploySettings$Status": "<p>Describes whether model deployment permissions are enabled or disabled in the Canvas application.</p>",
+        "DockerSettings$EnableDockerAccess": "<p>Indicates whether the domain can access Docker.</p>",
         "IdentityProviderOAuthSetting$Status": "<p>Describes whether OAuth for a data source is enabled or disabled in the Canvas application.</p>",
         "KendraSettings$Status": "<p>Describes whether the document querying feature is enabled or disabled in the Canvas application.</p>",
         "ModelRegisterSettings$Status": "<p>Describes whether the integration to the model registry is enabled or disabled in the Canvas application.</p>",
@@ -16310,6 +16319,12 @@
       "refs": {
         "CreateDomainRequest$VpcId": "<p>The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication.</p>",
         "DescribeDomainResponse$VpcId": "<p>The ID of the Amazon Virtual Private Cloud (VPC) that the domain uses for communication.</p>"
+      }
+    },
+    "VpcOnlyTrustedAccounts": {
+      "base": null,
+      "refs": {
+        "DockerSettings$VpcOnlyTrustedAccounts": "<p>The list of Amazon Web Services accounts that are trusted when the domain is created in VPC-only mode.</p>"
       }
     },
     "VpcSecurityGroupIds": {

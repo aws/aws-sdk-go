@@ -81,7 +81,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidArgumentException"},
         {"shape":"ClientLimitExceededException"},
-        {"shape":"NotAuthorizedException"}
+        {"shape":"NotAuthorizedException"},
+        {"shape":"NoDataRetentionException"}
       ]
     },
     "GetMediaForFragmentList":{
