@@ -6495,7 +6495,7 @@ type ApiKeyRestrictions struct {
 	//    as the key that is being created.
 	//
 	//    * Other than wildcards, you must include the full ARN, including the arn,
-	//    partition, service, region, account-id and resource-id, delimited by colons
+	//    partition, service, region, account-id and resource-id delimited by colons
 	//    (:).
 	//
 	//    * No spaces allowed, even with wildcards. For example, arn:aws:geo:region:account-id:map/ExampleMap*.
@@ -10273,6 +10273,18 @@ func (s DeleteGeofenceCollectionOutput) GoString() string {
 type DeleteKeyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// ForceDelete bypasses an API key's expiry conditions and deletes the key.
+	// Set the parameter true to delete the key or to false to not preemptively
+	// delete the API key.
+	//
+	// Valid values: true, or false.
+	//
+	// Required: No
+	//
+	// This action is irreversible. Only use ForceDelete if you are certain the
+	// key is no longer in use.
+	ForceDelete *bool `location:"querystring" locationName:"forceDelete" type:"boolean"`
+
 	// The name of the API key to delete.
 	//
 	// KeyName is a required field
@@ -10311,6 +10323,12 @@ func (s *DeleteKeyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetForceDelete sets the ForceDelete field's value.
+func (s *DeleteKeyInput) SetForceDelete(v bool) *DeleteKeyInput {
+	s.ForceDelete = &v
+	return s
 }
 
 // SetKeyName sets the KeyName field's value.

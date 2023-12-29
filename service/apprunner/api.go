@@ -9010,11 +9010,11 @@ type NetworkConfiguration struct {
 	IngressConfiguration *IngressConfiguration `type:"structure"`
 
 	// App Runner provides you with the option to choose between Internet Protocol
-	// version 4 (IPv4) and dual-stack (IPv4 and IPv6) for your incoming public
+	// version 4 (IPv4) and dual stack (IPv4 and IPv6) for your incoming public
 	// network configuration. This is an optional parameter. If you do not specify
 	// an IpAddressType, it defaults to select IPv4.
 	//
-	// Currently, App Runner supports dual-stack for only Public endpoint. Only
+	// Currently, App Runner supports dual stack for only Public endpoint. Only
 	// IPv4 is supported for Private endpoint. If you update a service that's using
 	// dual-stack Public endpoint to a Private endpoint, your App Runner service
 	// will default to support only IPv4 for Private endpoint and fail to receive
@@ -11594,6 +11594,12 @@ const (
 
 	// RuntimeRuby31 is a Runtime enum value
 	RuntimeRuby31 = "RUBY_31"
+
+	// RuntimePython311 is a Runtime enum value
+	RuntimePython311 = "PYTHON_311"
+
+	// RuntimeNodejs18 is a Runtime enum value
+	RuntimeNodejs18 = "NODEJS_18"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -11609,6 +11615,8 @@ func Runtime_Values() []string {
 		RuntimeDotnet6,
 		RuntimePhp81,
 		RuntimeRuby31,
+		RuntimePython311,
+		RuntimeNodejs18,
 	}
 }
 

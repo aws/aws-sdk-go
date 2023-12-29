@@ -1958,6 +1958,11 @@
       "type":"structure",
       "required":["KeyName"],
       "members":{
+        "ForceDelete":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"forceDelete"
+        },
         "KeyName":{
           "shape":"ResourceName",
           "location":"uri",
