@@ -12143,6 +12143,12 @@
         "TopicRelativeDateFilter$TimeGranularity": "<p>The level of time precision that is used to aggregate <code>DateTime</code> values.</p>"
       }
     },
+    "TopicUserExperienceVersion": {
+      "base": null,
+      "refs": {
+        "TopicDetails$UserExperienceVersion": "<p>The user experience version of a topic.</p>"
+      }
+    },
     "TotalAggregationComputation": {
       "base": "<p>The total aggregation computation configuration.</p>",
       "refs": {

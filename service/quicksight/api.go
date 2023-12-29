@@ -16947,6 +16947,12 @@ func (c *QuickSight) UpdateDashboardLinksRequest(input *UpdateDashboardLinksInpu
 //     your policies have the correct permissions, and that you are using the correct
 //     credentials.
 //
+//   - UnsupportedUserEditionException
+//     This error indicates that you are calling an operation on an Amazon QuickSight
+//     subscription where the edition doesn't include support for that operation.
+//     Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//     Not every operation and capability is available in every edition.
+//
 //   - InternalFailureException
 //     An internal failure occurred.
 //
@@ -94610,6 +94616,9 @@ type TopicDetails struct {
 
 	// The name of the topic.
 	Name *string `min:"1" type:"string"`
+
+	// The user experience version of a topic.
+	UserExperienceVersion *string `type:"string" enum:"TopicUserExperienceVersion"`
 }
 
 // String returns the string representation.
@@ -94668,6 +94677,12 @@ func (s *TopicDetails) SetDescription(v string) *TopicDetails {
 // SetName sets the Name field's value.
 func (s *TopicDetails) SetName(v string) *TopicDetails {
 	s.Name = &v
+	return s
+}
+
+// SetUserExperienceVersion sets the UserExperienceVersion field's value.
+func (s *TopicDetails) SetUserExperienceVersion(v string) *TopicDetails {
+	s.UserExperienceVersion = &v
 	return s
 }
 
@@ -110275,6 +110290,22 @@ func TopicTimeGranularity_Values() []string {
 		TopicTimeGranularityMonth,
 		TopicTimeGranularityQuarter,
 		TopicTimeGranularityYear,
+	}
+}
+
+const (
+	// TopicUserExperienceVersionLegacy is a TopicUserExperienceVersion enum value
+	TopicUserExperienceVersionLegacy = "LEGACY"
+
+	// TopicUserExperienceVersionNewReaderExperience is a TopicUserExperienceVersion enum value
+	TopicUserExperienceVersionNewReaderExperience = "NEW_READER_EXPERIENCE"
+)
+
+// TopicUserExperienceVersion_Values returns all elements of the TopicUserExperienceVersion enum
+func TopicUserExperienceVersion_Values() []string {
+	return []string{
+		TopicUserExperienceVersionLegacy,
+		TopicUserExperienceVersionNewReaderExperience,
 	}
 }
 

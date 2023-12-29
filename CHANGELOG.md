@@ -1,3 +1,12 @@
+Release v1.49.13 (2023-12-29)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API and documentation
+* `service/location`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Add LinkEntityArn support for different partitions; Add UnsupportedUserEditionException in UpdateDashboardLinks API; Add support for New Reader Experience Topics
+
 Release v1.49.12 (2023-12-28)
 ===
 
