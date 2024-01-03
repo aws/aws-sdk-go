@@ -268,7 +268,7 @@
         "ContactFlowModule$Arn": "<p>The Amazon Resource Name (ARN).</p>",
         "ContactFlowModuleSummary$Arn": "<p>The Amazon Resource Name (ARN) of the flow module.</p>",
         "ContactFlowSummary$Arn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
-        "ContactSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact</p>",
+        "ContactSearchSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact.</p>",
         "CreateAgentStatusResponse$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
         "CreateContactFlowModuleResponse$Arn": "<p>The Amazon Resource Name (ARN) of the flow module.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the flow.</p>",
@@ -466,9 +466,9 @@
       }
     },
     "AgentHierarchyGroups": {
-      "base": "<p>A structure that defines agent hierarchy group levels which can be used to filter search results. Important: Agent hierarchy group level information in search result is a snapshot, it does not represent current agent hierarchy who handled the contact.</p>",
+      "base": "<p>A structure that defines search criteria for contacts using agent hierarchy group levels. For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
       "refs": {
-        "SearchCriteria$AgentHierarchyGroups": "<p>The agent hierarchy groups</p>"
+        "SearchCriteria$AgentHierarchyGroups": "<p>The agent hierarchy groups of the agent at the time of handling the contact.</p>"
       }
     },
     "AgentInfo": {
@@ -504,7 +504,7 @@
     "AgentResourceIdList": {
       "base": null,
       "refs": {
-        "SearchCriteria$AgentIds": "<p>The array of agent ids</p>"
+        "SearchCriteria$AgentIds": "<p>The identifiers of agents who handled the contacts.</p>"
       }
     },
     "AgentStatus": {
@@ -1026,7 +1026,7 @@
     "ChannelList": {
       "base": null,
       "refs": {
-        "SearchCriteria$Channels": "<p>The array of channels</p>"
+        "SearchCriteria$Channels": "<p>The list of channels associated with contacts.</p>"
       }
     },
     "ChannelToCountMap": {
@@ -1190,9 +1190,9 @@
       }
     },
     "ContactAnalysis": {
-      "base": "<p>A structure that defines filters can be used to search within outputs analyzed by Amazon Connect Contact Lens in a contact.</p>",
+      "base": "<p>A structure that defines search criteria for contacts using analysis outputs from Amazon Connect Contact Lens.</p>",
       "refs": {
-        "SearchCriteria$ContactAnalysis": "<p>The ContactAnalysis object used in search criteria</p>"
+        "SearchCriteria$ContactAnalysis": "<p>Search criteria based on analysis outputs from Amazon Connect Contact Lens.</p>"
       }
     },
     "ContactDataRequest": {
@@ -3531,7 +3531,7 @@
     "InitiationMethodList": {
       "base": null,
       "refs": {
-        "SearchCriteria$InitiationMethods": "<p>The array of initiaton methods</p>"
+        "SearchCriteria$InitiationMethods": "<p>The list of initiation methods associated with contacts.</p>"
       }
     },
     "Instance": {
@@ -3723,7 +3723,7 @@
         "ResumeContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the <code>instanceId</code> in the ARN of the instance.</p>",
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchAvailablePhoneNumbersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance that phone numbers are claimed to. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance. You must enter <code>InstanceId</code> or <code>TargetArn</code>. </p>",
-        "SearchContactsRequest$InstanceId": "<p>The identifier of Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance</p>",
+        "SearchContactsRequest$InstanceId": "<p>The identifier of Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchPredefinedAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.</p>",
         "SearchPromptsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html\">find the instance ID</a> in the Amazon Resource Name (ARN) of the instance.</p>",
@@ -5557,7 +5557,7 @@
     "QueueIdList": {
       "base": null,
       "refs": {
-        "SearchCriteria$QueueIds": "<p>The array of queue ids.</p>"
+        "SearchCriteria$QueueIds": "<p>The list of queue IDs associated with contacts.</p>"
       }
     },
     "QueueInfo": {
@@ -6518,9 +6518,9 @@
     "SearchContactsMatchType": {
       "base": null,
       "refs": {
-        "SearchableContactAttributes$MatchType": "<p>The match type of multiple searchable contact attributes criteria.</p>",
-        "Transcript$MatchType": "<p>The match type of multiple transcript criteira</p>",
-        "TranscriptCriteria$MatchType": "<p>The match type of search texts in a transcript criteria.</p>"
+        "SearchableContactAttributes$MatchType": "<p>The match type combining search criteria using multiple searchable contact attributes.</p>",
+        "Transcript$MatchType": "<p>The match type combining search criteria using multiple transcript criteria.</p>",
+        "TranscriptCriteria$MatchType": "<p>The match type combining search criteria using multiple search texts in a transcript criteria.</p>"
       }
     },
     "SearchContactsRequest": {
@@ -6534,19 +6534,19 @@
       }
     },
     "SearchContactsTimeRange": {
-      "base": "<p>A structure of time range that you want to search results</p>",
+      "base": "<p>A structure of time range that you want to search results.</p>",
       "refs": {
-        "SearchContactsRequest$TimeRange": "<p>Time range that you want to search results</p>"
+        "SearchContactsRequest$TimeRange": "<p>Time range that you want to search results.</p>"
       }
     },
     "SearchContactsTimeRangeType": {
       "base": null,
       "refs": {
-        "SearchContactsTimeRange$Type": "<p>The type of timestamp to search</p>"
+        "SearchContactsTimeRange$Type": "<p>The type of timestamp to search.</p>"
       }
     },
     "SearchCriteria": {
-      "base": "<p>A structure of search criteria to be used to return contacts</p>",
+      "base": "<p>A structure of search criteria to be used to return contacts.</p>",
       "refs": {
         "SearchContactsRequest$SearchCriteria": "<p>The search criteria to be used to return contacts.</p>"
       }
@@ -6666,7 +6666,7 @@
     "SearchableContactAttributeKey": {
       "base": null,
       "refs": {
-        "SearchableContactAttributesCriteria$Key": "<p>The searchable contact attribute key</p>"
+        "SearchableContactAttributesCriteria$Key": "<p>The key containing a searchable user-defined contact attribute.</p>"
       }
     },
     "SearchableContactAttributeValue": {
@@ -6678,17 +6678,17 @@
     "SearchableContactAttributeValueList": {
       "base": null,
       "refs": {
-        "SearchableContactAttributesCriteria$Values": "<p>The array of contact attribute values used to filter search results.</p>"
+        "SearchableContactAttributesCriteria$Values": "<p>The list of values to search for within a user-defined contact attribute.</p>"
       }
     },
     "SearchableContactAttributes": {
-      "base": "<p>A structure that defines searchable contact attributes which can be used to filter search results. </p>",
+      "base": "<p>A structure that defines search criteria based on user-defined contact attributes that are configured for contact search.</p>",
       "refs": {
-        "SearchCriteria$SearchableContactAttributes": "<p>The SearchableContactAttributes object used in search criteria</p>"
+        "SearchCriteria$SearchableContactAttributes": "<p>The search criteria based on user-defined contact attributes that have been configured for contact search. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/search-custom-attributes.html\">Search by customer contact attributes</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <important> <p>To use <code>SearchableContactAttributes</code> in a search request, the <code>GetContactAttributes</code> action is required to perform an API request. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-actions-as-permissions\">https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-actions-as-permissions</a>Actions defined by Amazon Connect.</p> </important>"
       }
     },
     "SearchableContactAttributesCriteria": {
-      "base": "<p>The criteria of searchable contact attributes.</p>",
+      "base": "<p>The search criteria based on user-defned contact attribute key and values to search on.</p>",
       "refs": {
         "SearchableContactAttributesCriteriaList$member": null
       }
@@ -6696,7 +6696,7 @@
     "SearchableContactAttributesCriteriaList": {
       "base": null,
       "refs": {
-        "SearchableContactAttributes$Criteria": "<p>The array of searhale contact attribute criteria</p>"
+        "SearchableContactAttributes$Criteria": "<p>The list of criteria based on user-defined contact attributes that are configured for contact search.</p>"
       }
     },
     "SearchableQueueType": {
@@ -6928,9 +6928,9 @@
       }
     },
     "Sort": {
-      "base": "<p>A structure that defines the sort by and a sort order</p>",
+      "base": "<p>A structure that defineds the field name to sort by and a sort order.</p>",
       "refs": {
-        "SearchContactsRequest$Sort": "<p>Specifies a field to sort by and a sort order</p>"
+        "SearchContactsRequest$Sort": "<p>Specifies a field to sort by and a sort order.</p>"
       }
     },
     "SortOrder": {
@@ -7126,7 +7126,7 @@
         "QuickConnectSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "RoutingProfileSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>",
         "SecurityProfileSearchCriteria$StringCondition": null,
-        "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <note> <p>The currently supported values for <code>FieldName</code> are <code>name</code>, <code>description</code>, and <code>resourceID</code>.</p> </note>"
+        "UserSearchCriteria$StringCondition": "<p>A leaf node condition which can be used to specify a string condition.</p> <p>The currently supported values for <code>FieldName</code> are <code>username</code>, <code>firstname</code>, <code>lastname</code>, <code>resourceId</code>, <code>routingProfileId</code>, <code>securityProfileId</code>, <code>agentGroupId</code>, and <code>agentGroupPathIds</code>.</p>"
       }
     },
     "StringReference": {
@@ -7725,13 +7725,13 @@
       }
     },
     "Transcript": {
-      "base": "<p>The transcript object used to search results.</p>",
+      "base": "<p>A structure that defines search criteria and matching logic to search for contacts by matching text with transcripts analyzed by Amazon Connect Contact Lens.</p>",
       "refs": {
-        "ContactAnalysis$Transcript": "<p>A structure that defines filters can be used to search with text within an Amazon Connect Contact Lens analyzed transcript.</p>"
+        "ContactAnalysis$Transcript": "<p>Search criteria based on transcript analyzed by Amazon Connect Contact Lens.</p>"
       }
     },
     "TranscriptCriteria": {
-      "base": "<p>The transcript criteria used to search</p>",
+      "base": "<p>A structure that defines search criteria base on words or phrases, participants in the Contact Lens conversational analytics transcript.</p>",
       "refs": {
         "TranscriptCriteriaList$member": null
       }
@@ -7739,7 +7739,7 @@
     "TranscriptCriteriaList": {
       "base": null,
       "refs": {
-        "Transcript$Criteria": "<p>The array of transcript search criteria</p>"
+        "Transcript$Criteria": "<p>The list of search criteria based on Contact Lens conversational analytics transcript.</p>"
       }
     },
     "TransferContactRequest": {
@@ -8689,7 +8689,7 @@
         "Contact$LastPausedTimestamp": "<p>The timestamp when the contact was last paused.</p>",
         "Contact$LastResumedTimestamp": "<p>The timestamp when the contact was last resumed.</p>",
         "Contact$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow. </p>",
-        "ContactSearchSummary$InitiationTimestamp": "<p>The date and time this contact was initiated, in UTC time. For INBOUND, this is when the contact arrived. For OUTBOUND, this is when the agent began dialing. For CALLBACK, this is when the callback contact was created. For TRANSFER and QUEUE_TRANSFER, this is when the transfer was initiated. For API, this is when the request arrived. For EXTERNAL_OUTBOUND, this is when the agent started dialing the external participant. For MONITOR, this is when the supervisor started listening to a contact.</p>",
+        "ContactSearchSummary$InitiationTimestamp": "<p>The date and time this contact was initiated, in UTC time. For <code>INBOUND</code>, this is when the contact arrived. For <code>OUTBOUND</code>, this is when the agent began dialing. For <code>CALLBACK</code>, this is when the callback contact was created. For <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the transfer was initiated. For API, this is when the request arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent started dialing the external participant. For <code>MONITOR</code>, this is when the supervisor started listening to a contact.</p>",
         "ContactSearchSummary$DisconnectTimestamp": "<p>The timestamp when the customer endpoint disconnected from Amazon Connect.</p>",
         "ContactSearchSummary$ScheduledTimestamp": "<p>The timestamp, in Unix epoch time format, at which to start running the inbound flow.</p>",
         "ContactSearchSummaryAgentInfo$ConnectedToAgentTimestamp": "<p>The timestamp when the contact was connected to the agent.</p>",

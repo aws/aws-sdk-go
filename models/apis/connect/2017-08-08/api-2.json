@@ -8026,7 +8026,7 @@
     },
     "EvaluationNoteString":{
       "type":"string",
-      "max":1024,
+      "max":3072,
       "min":0
     },
     "EvaluationNotesMap":{
