@@ -27064,10 +27064,10 @@ func (s *AgentContactReference) SetStateStartTimestamp(v time.Time) *AgentContac
 	return s
 }
 
-// A structure that defines agent hierarchy group levels which can be used to
-// filter search results. Important: Agent hierarchy group level information
-// in search result is a snapshot, it does not represent current agent hierarchy
-// who handled the contact.
+// A structure that defines search criteria for contacts using agent hierarchy
+// group levels. For more information about agent hierarchies, see Set Up Agent
+// Hierarchies (https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html)
+// in the Amazon Connect Administrator Guide.
 type AgentHierarchyGroups struct {
 	_ struct{} `type:"structure"`
 
@@ -30830,13 +30830,12 @@ func (s *Contact) SetWisdomInfo(v *WisdomInfo) *Contact {
 	return s
 }
 
-// A structure that defines filters can be used to search within outputs analyzed
-// by Amazon Connect Contact Lens in a contact.
+// A structure that defines search criteria for contacts using analysis outputs
+// from Amazon Connect Contact Lens.
 type ContactAnalysis struct {
 	_ struct{} `type:"structure"`
 
-	// A structure that defines filters can be used to search with text within an
-	// Amazon Connect Contact Lens analyzed transcript.
+	// Search criteria based on transcript analyzed by Amazon Connect Contact Lens.
 	Transcript *Transcript `type:"structure"`
 }
 
@@ -31471,7 +31470,7 @@ type ContactSearchSummary struct {
 	// Information about the agent who accepted the contact.
 	AgentInfo *ContactSearchSummaryAgentInfo `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact
+	// The Amazon Resource Name (ARN) of the contact.
 	Arn *string `type:"string"`
 
 	// How the contact reached your contact center.
@@ -62450,7 +62449,7 @@ type SearchContactsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of Amazon Connect instance. You can find the instance ID in
-	// the Amazon Resource Name (ARN) of the instance
+	// the Amazon Resource Name (ARN) of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -62465,10 +62464,10 @@ type SearchContactsInput struct {
 	// The search criteria to be used to return contacts.
 	SearchCriteria *SearchCriteria `type:"structure"`
 
-	// Specifies a field to sort by and a sort order
+	// Specifies a field to sort by and a sort order.
 	Sort *Sort `type:"structure"`
 
-	// Time range that you want to search results
+	// Time range that you want to search results.
 	//
 	// TimeRange is a required field
 	TimeRange *SearchContactsTimeRange `type:"structure" required:"true"`
@@ -62619,7 +62618,7 @@ func (s *SearchContactsOutput) SetTotalCount(v int64) *SearchContactsOutput {
 	return s
 }
 
-// A structure of time range that you want to search results
+// A structure of time range that you want to search results.
 type SearchContactsTimeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -62633,7 +62632,7 @@ type SearchContactsTimeRange struct {
 	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" required:"true"`
 
-	// The type of timestamp to search
+	// The type of timestamp to search.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"SearchContactsTimeRangeType"`
@@ -62694,29 +62693,37 @@ func (s *SearchContactsTimeRange) SetType(v string) *SearchContactsTimeRange {
 	return s
 }
 
-// A structure of search criteria to be used to return contacts
+// A structure of search criteria to be used to return contacts.
 type SearchCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// The agent hierarchy groups
+	// The agent hierarchy groups of the agent at the time of handling the contact.
 	AgentHierarchyGroups *AgentHierarchyGroups `type:"structure"`
 
-	// The array of agent ids
+	// The identifiers of agents who handled the contacts.
 	AgentIds []*string `type:"list"`
 
-	// The array of channels
+	// The list of channels associated with contacts.
 	Channels []*string `type:"list" enum:"Channel"`
 
-	// The ContactAnalysis object used in search criteria
+	// Search criteria based on analysis outputs from Amazon Connect Contact Lens.
 	ContactAnalysis *ContactAnalysis `type:"structure"`
 
-	// The array of initiaton methods
+	// The list of initiation methods associated with contacts.
 	InitiationMethods []*string `type:"list" enum:"ContactInitiationMethod"`
 
-	// The array of queue ids.
+	// The list of queue IDs associated with contacts.
 	QueueIds []*string `type:"list"`
 
-	// The SearchableContactAttributes object used in search criteria
+	// The search criteria based on user-defined contact attributes that have been
+	// configured for contact search. For more information, see Search by customer
+	// contact attributes (https://docs.aws.amazon.com/connect/latest/adminguide/search-custom-attributes.html)
+	// in the Amazon Connect Administrator Guide.
+	//
+	// To use SearchableContactAttributes in a search request, the GetContactAttributes
+	// action is required to perform an API request. For more information, see https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-actions-as-permissions
+	// (https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-actions-as-permissions)Actions
+	// defined by Amazon Connect.
 	SearchableContactAttributes *SearchableContactAttributes `type:"structure"`
 }
 
@@ -64238,17 +64245,19 @@ func (s *SearchVocabulariesOutput) SetVocabularySummaryList(v []*VocabularySumma
 	return s
 }
 
-// A structure that defines searchable contact attributes which can be used
-// to filter search results.
+// A structure that defines search criteria based on user-defined contact attributes
+// that are configured for contact search.
 type SearchableContactAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The array of searhale contact attribute criteria
+	// The list of criteria based on user-defined contact attributes that are configured
+	// for contact search.
 	//
 	// Criteria is a required field
 	Criteria []*SearchableContactAttributesCriteria `type:"list" required:"true"`
 
-	// The match type of multiple searchable contact attributes criteria.
+	// The match type combining search criteria using multiple searchable contact
+	// attributes.
 	MatchType *string `type:"string" enum:"SearchContactsMatchType"`
 }
 
@@ -64305,11 +64314,12 @@ func (s *SearchableContactAttributes) SetMatchType(v string) *SearchableContactA
 	return s
 }
 
-// The criteria of searchable contact attributes.
+// The search criteria based on user-defned contact attribute key and values
+// to search on.
 type SearchableContactAttributesCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// The searchable contact attribute key
+	// The key containing a searchable user-defined contact attribute.
 	//
 	// Key is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchableContactAttributesCriteria's
@@ -64318,7 +64328,7 @@ type SearchableContactAttributesCriteria struct {
 	// Key is a required field
 	Key *string `type:"string" required:"true" sensitive:"true"`
 
-	// The array of contact attribute values used to filter search results.
+	// The list of values to search for within a user-defined contact attribute.
 	//
 	// Values is a required field
 	Values []*string `type:"list" required:"true"`
@@ -65364,7 +65374,7 @@ func (s *SingleSelectQuestionRuleCategoryAutomation) SetOptionRefId(v string) *S
 	return s
 }
 
-// A structure that defines the sort by and a sort order
+// A structure that defineds the field name to sort by and a sort order.
 type Sort struct {
 	_ struct{} `type:"structure"`
 
@@ -68927,16 +68937,19 @@ func (s *TrafficDistributionGroupUserSummary) SetUserId(v string) *TrafficDistri
 	return s
 }
 
-// The transcript object used to search results.
+// A structure that defines search criteria and matching logic to search for
+// contacts by matching text with transcripts analyzed by Amazon Connect Contact
+// Lens.
 type Transcript struct {
 	_ struct{} `type:"structure"`
 
-	// The array of transcript search criteria
+	// The list of search criteria based on Contact Lens conversational analytics
+	// transcript.
 	//
 	// Criteria is a required field
 	Criteria []*TranscriptCriteria `type:"list" required:"true"`
 
-	// The match type of multiple transcript criteira
+	// The match type combining search criteria using multiple transcript criteria.
 	MatchType *string `type:"string" enum:"SearchContactsMatchType"`
 }
 
@@ -68993,11 +69006,13 @@ func (s *Transcript) SetMatchType(v string) *Transcript {
 	return s
 }
 
-// The transcript criteria used to search
+// A structure that defines search criteria base on words or phrases, participants
+// in the Contact Lens conversational analytics transcript.
 type TranscriptCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// The match type of search texts in a transcript criteria.
+	// The match type combining search criteria using multiple search texts in a
+	// transcript criteria.
 	//
 	// MatchType is a required field
 	MatchType *string `type:"string" required:"true" enum:"SearchContactsMatchType"`
@@ -76088,7 +76103,8 @@ type UserSearchCriteria struct {
 
 	// A leaf node condition which can be used to specify a string condition.
 	//
-	// The currently supported values for FieldName are name, description, and resourceID.
+	// The currently supported values for FieldName are username, firstname, lastname,
+	// resourceId, routingProfileId, securityProfileId, agentGroupId, and agentGroupPathIds.
 	StringCondition *StringCondition `type:"structure"`
 }
 

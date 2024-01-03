@@ -2820,7 +2820,12 @@ type AacSettings struct {
 	// values depend on Bitrate control mode and Profile.
 	Bitrate *int64 `locationName:"bitrate" min:"6000" type:"integer"`
 
-	// AAC Profile.
+	// Specify the AAC profile. For the widest player compatibility and where higher
+	// bitrates are acceptable: Keep the default profile, LC (AAC-LC) For improved
+	// audio performance at lower bitrates: Choose HEV1 or HEV2. HEV1 (AAC-HE v1)
+	// adds spectral band replication to improve speech audio at low bitrates. HEV2
+	// (AAC-HE v2) adds parametric stereo, which optimizes for encoding stereo audio
+	// at very low bitrates.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"AacCodecProfile"`
 
 	// The Coding mode that you specify determines the number of audio channels
@@ -2833,28 +2838,27 @@ type AacSettings struct {
 	// L, R. * 5.1 Surround: Six channels, C, L, R, Ls, Rs, LFE.
 	CodingMode *string `locationName:"codingMode" type:"string" enum:"AacCodingMode"`
 
-	// Rate Control Mode.
+	// Specify the AAC rate control mode. For a constant bitrate: Choose CBR. Your
+	// AAC output bitrate will be equal to the value that you choose for Bitrate.
+	// For a variable bitrate: Choose VBR. Your AAC output bitrate will vary according
+	// to your audio content and the value that you choose for Bitrate quality.
 	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"AacRateControlMode"`
 
 	// Enables LATM/LOAS AAC output. Note that if you use LATM/LOAS AAC in an output,
 	// you must choose "No container" for the output container.
 	RawFormat *string `locationName:"rawFormat" type:"string" enum:"AacRawFormat"`
 
-	// Specify the Sample rate in Hz. Valid sample rates depend on the Profile and
-	// Coding mode that you select. The following list shows valid sample rates
-	// for each Profile and Coding mode. * LC Profile, Coding mode 1.0, 2.0, and
-	// Receiver Mix: 8000, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 88200,
-	// 96000. * LC Profile, Coding mode 5.1: 32000, 44100, 48000, 96000. * HEV1
-	// Profile, Coding mode 1.0 and Receiver Mix: 22050, 24000, 32000, 44100, 48000.
-	// * HEV1 Profile, Coding mode 2.0 and 5.1: 32000, 44100, 48000, 96000. * HEV2
-	// Profile, Coding mode 2.0: 22050, 24000, 32000, 44100, 48000.
+	// Specify the AAC sample rate in samples per second (Hz). Valid sample rates
+	// depend on the AAC profile and Coding mode that you select. For a list of
+	// supported sample rates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html
 	SampleRate *int64 `locationName:"sampleRate" min:"8000" type:"integer"`
 
 	// Use MPEG-2 AAC instead of MPEG-4 AAC audio for raw or MPEG-2 Transport Stream
 	// containers.
 	Specification *string `locationName:"specification" type:"string" enum:"AacSpecification"`
 
-	// VBR Quality Level - Only used if rate_control_mode is VBR.
+	// Specify the quality of your variable bitrate (VBR) AAC audio. For a list
+	// of approximate VBR bitrates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html#aac_vbr
 	VbrQuality *string `locationName:"vbrQuality" type:"string" enum:"AacVbrQuality"`
 }
 
@@ -7415,6 +7419,96 @@ func (s *CmfcSettings) SetTimedMetadataValue(v string) *CmfcSettings {
 	return s
 }
 
+// Custom 3D lut settings
+type ColorConversion3DLUTSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the input file S3, HTTP, or HTTPS URL for your 3D LUT .cube file.
+	// Note that MediaConvert accepts 3D LUT files up to 8MB in size.
+	FileInput *string `locationName:"fileInput" min:"14" type:"string"`
+
+	// Specify which inputs use this 3D LUT, according to their color space.
+	InputColorSpace *string `locationName:"inputColorSpace" type:"string" enum:"ColorSpace"`
+
+	// Specify which inputs use this 3D LUT, according to their luminance. To apply
+	// this 3D LUT to HDR10 or P3D65 (HDR) inputs with a specific mastering luminance:
+	// Enter an integer from 0 to 2147483647, corresponding to the input's Maximum
+	// luminance value. To apply this 3D LUT to any input regardless of its luminance:
+	// Leave blank, or enter 0.
+	InputMasteringLuminance *int64 `locationName:"inputMasteringLuminance" type:"integer"`
+
+	// Specify which outputs use this 3D LUT, according to their color space.
+	OutputColorSpace *string `locationName:"outputColorSpace" type:"string" enum:"ColorSpace"`
+
+	// Specify which outputs use this 3D LUT, according to their luminance. To apply
+	// this 3D LUT to HDR10 or P3D65 (HDR) outputs with a specific luminance: Enter
+	// an integer from 0 to 2147483647, corresponding to the output's luminance.
+	// To apply this 3D LUT to any output regardless of its luminance: Leave blank,
+	// or enter 0.
+	OutputMasteringLuminance *int64 `locationName:"outputMasteringLuminance" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorConversion3DLUTSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColorConversion3DLUTSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColorConversion3DLUTSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColorConversion3DLUTSetting"}
+	if s.FileInput != nil && len(*s.FileInput) < 14 {
+		invalidParams.Add(request.NewErrParamMinLen("FileInput", 14))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileInput sets the FileInput field's value.
+func (s *ColorConversion3DLUTSetting) SetFileInput(v string) *ColorConversion3DLUTSetting {
+	s.FileInput = &v
+	return s
+}
+
+// SetInputColorSpace sets the InputColorSpace field's value.
+func (s *ColorConversion3DLUTSetting) SetInputColorSpace(v string) *ColorConversion3DLUTSetting {
+	s.InputColorSpace = &v
+	return s
+}
+
+// SetInputMasteringLuminance sets the InputMasteringLuminance field's value.
+func (s *ColorConversion3DLUTSetting) SetInputMasteringLuminance(v int64) *ColorConversion3DLUTSetting {
+	s.InputMasteringLuminance = &v
+	return s
+}
+
+// SetOutputColorSpace sets the OutputColorSpace field's value.
+func (s *ColorConversion3DLUTSetting) SetOutputColorSpace(v string) *ColorConversion3DLUTSetting {
+	s.OutputColorSpace = &v
+	return s
+}
+
+// SetOutputMasteringLuminance sets the OutputMasteringLuminance field's value.
+func (s *ColorConversion3DLUTSetting) SetOutputMasteringLuminance(v int64) *ColorConversion3DLUTSetting {
+	s.OutputMasteringLuminance = &v
+	return s
+}
+
 // Settings for color correction.
 type ColorCorrector struct {
 	_ struct{} `type:"structure"`
@@ -7470,6 +7564,11 @@ type ColorCorrector struct {
 
 	// Hue in degrees.
 	Hue *int64 `locationName:"hue" type:"integer"`
+
+	// Specify the maximum mastering display luminance. Enter an integer from 0
+	// to 2147483647, in units of 0.0001 nits. For example, enter 10000000 for 1000
+	// nits.
+	MaxLuminance *int64 `locationName:"maxLuminance" type:"integer"`
 
 	// Specify how MediaConvert limits the color sample range for this output. To
 	// create a limited range output from a full range input: Choose Limited range
@@ -7589,6 +7688,12 @@ func (s *ColorCorrector) SetHdrToSdrToneMapper(v string) *ColorCorrector {
 // SetHue sets the Hue field's value.
 func (s *ColorCorrector) SetHue(v int64) *ColorCorrector {
 	s.Hue = &v
+	return s
+}
+
+// SetMaxLuminance sets the MaxLuminance field's value.
+func (s *ColorCorrector) SetMaxLuminance(v int64) *ColorCorrector {
+	s.MaxLuminance = &v
 	return s
 }
 
@@ -16705,6 +16810,10 @@ type JobSettings struct {
 	// image, and audio muted during SCTE-35 triggered ad avails.
 	AvailBlanking *AvailBlanking `locationName:"availBlanking" type:"structure"`
 
+	// Use 3D LUTs to specify custom color mapping behavior when you convert from
+	// one color space into another. You can include up to 8 different 3D LUTs.
+	ColorConversion3DLUTSettings []*ColorConversion3DLUTSetting `locationName:"colorConversion3DLUTSettings" type:"list"`
+
 	// Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion,
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
@@ -16809,6 +16918,16 @@ func (s *JobSettings) Validate() error {
 			invalidParams.AddNested("AvailBlanking", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ColorConversion3DLUTSettings != nil {
+		for i, v := range s.ColorConversion3DLUTSettings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColorConversion3DLUTSettings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Inputs != nil {
 		for i, v := range s.Inputs {
 			if v == nil {
@@ -16860,6 +16979,12 @@ func (s *JobSettings) SetAdAvailOffset(v int64) *JobSettings {
 // SetAvailBlanking sets the AvailBlanking field's value.
 func (s *JobSettings) SetAvailBlanking(v *AvailBlanking) *JobSettings {
 	s.AvailBlanking = v
+	return s
+}
+
+// SetColorConversion3DLUTSettings sets the ColorConversion3DLUTSettings field's value.
+func (s *JobSettings) SetColorConversion3DLUTSettings(v []*ColorConversion3DLUTSetting) *JobSettings {
+	s.ColorConversion3DLUTSettings = v
 	return s
 }
 
@@ -17095,6 +17220,10 @@ type JobTemplateSettings struct {
 	// image, and audio muted during SCTE-35 triggered ad avails.
 	AvailBlanking *AvailBlanking `locationName:"availBlanking" type:"structure"`
 
+	// Use 3D LUTs to specify custom color mapping behavior when you convert from
+	// one color space into another. You can include up to 8 different 3D LUTs.
+	ColorConversion3DLUTSettings []*ColorConversion3DLUTSetting `locationName:"colorConversion3DLUTSettings" type:"list"`
+
 	// Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion,
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
@@ -17199,6 +17328,16 @@ func (s *JobTemplateSettings) Validate() error {
 			invalidParams.AddNested("AvailBlanking", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ColorConversion3DLUTSettings != nil {
+		for i, v := range s.ColorConversion3DLUTSettings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColorConversion3DLUTSettings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Inputs != nil {
 		for i, v := range s.Inputs {
 			if v == nil {
@@ -17250,6 +17389,12 @@ func (s *JobTemplateSettings) SetAdAvailOffset(v int64) *JobTemplateSettings {
 // SetAvailBlanking sets the AvailBlanking field's value.
 func (s *JobTemplateSettings) SetAvailBlanking(v *AvailBlanking) *JobTemplateSettings {
 	s.AvailBlanking = v
+	return s
+}
+
+// SetColorConversion3DLUTSettings sets the ColorConversion3DLUTSettings field's value.
+func (s *JobTemplateSettings) SetColorConversion3DLUTSettings(v []*ColorConversion3DLUTSetting) *JobTemplateSettings {
+	s.ColorConversion3DLUTSettings = v
 	return s
 }
 
@@ -24201,6 +24346,172 @@ func (s *TtmlDestinationSettings) SetStylePassthrough(v string) *TtmlDestination
 	return s
 }
 
+// Required when you set Codec, under VideoDescription>CodecSettings to the
+// value UNCOMPRESSED.
+type UncompressedSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The four character code for the uncompressed video.
+	Fourcc *string `locationName:"fourcc" type:"string" enum:"UncompressedFourcc"`
+
+	// Use the Framerate setting to specify the frame rate for this output. If you
+	// want to keep the same frame rate as the input video, choose Follow source.
+	// If you want to do frame rate conversion, choose a frame rate from the dropdown
+	// list or choose Custom. The framerates shown in the dropdown list are decimal
+	// approximations of fractions. If you choose Custom, specify your frame rate
+	// as a fraction.
+	FramerateControl *string `locationName:"framerateControl" type:"string" enum:"UncompressedFramerateControl"`
+
+	// Choose the method that you want MediaConvert to use when increasing or decreasing
+	// the frame rate. For numerically simple conversions, such as 60 fps to 30
+	// fps: We recommend that you keep the default value, Drop duplicate. For numerically
+	// complex conversions, to avoid stutter: Choose Interpolate. This results in
+	// a smooth picture, but might introduce undesirable video artifacts. For complex
+	// frame rate conversions, especially if your source video has already been
+	// converted from its original cadence: Choose FrameFormer to do motion-compensated
+	// interpolation. FrameFormer uses the best conversion method frame by frame.
+	// Note that using FrameFormer increases the transcoding time and incurs a significant
+	// add-on cost. When you choose FrameFormer, your input video resolution must
+	// be at least 128x96.
+	FramerateConversionAlgorithm *string `locationName:"framerateConversionAlgorithm" type:"string" enum:"UncompressedFramerateConversionAlgorithm"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateDenominator to specify the denominator of this fraction. In this
+	// example, use 1001 for the value of FramerateDenominator. When you use the
+	// console for transcode jobs that use frame rate conversion, provide the value
+	// as a decimal number for Framerate. In this example, specify 23.976.
+	FramerateDenominator *int64 `locationName:"framerateDenominator" min:"1" type:"integer"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateNumerator to specify the numerator of this fraction. In this example,
+	// use 24000 for the value of FramerateNumerator. When you use the console for
+	// transcode jobs that use frame rate conversion, provide the value as a decimal
+	// number for Framerate. In this example, specify 23.976.
+	FramerateNumerator *int64 `locationName:"framerateNumerator" min:"1" type:"integer"`
+
+	// Optional. Choose the scan line type for this output. If you don't specify
+	// a value, MediaConvert will create a progressive output.
+	InterlaceMode *string `locationName:"interlaceMode" type:"string" enum:"UncompressedInterlaceMode"`
+
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// to create a better quality interlaced output. In this case, each progressive
+	// frame from the input corresponds to an interlaced field in the output. Keep
+	// the default value, Basic interlacing, for all other output frame rates. With
+	// basic interlacing, MediaConvert performs any frame rate conversion first
+	// and then interlaces the frames. When you choose Optimized interlacing and
+	// you set your output frame rate to a value that isn't suitable for optimized
+	// interlacing, MediaConvert automatically falls back to basic interlacing.
+	// Required settings: To use optimized interlacing, you must set Telecine to
+	// None or Soft. You can't use optimized interlacing for hard telecine outputs.
+	// You must also set Interlace mode to a value other than Progressive.
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"UncompressedScanTypeConversionMode"`
+
+	// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
+	// second (fps). Enable slow PAL to create a 25 fps output by relabeling the
+	// video frames and resampling your audio. Note that enabling this setting will
+	// slightly reduce the duration of your video. Related settings: You must also
+	// set Framerate to 25.
+	SlowPal *string `locationName:"slowPal" type:"string" enum:"UncompressedSlowPal"`
+
+	// When you do frame rate conversion from 23.976 frames per second (fps) to
+	// 29.97 fps, and your output scan type is interlaced, you can optionally enable
+	// hard telecine to create a smoother picture. When you keep the default value,
+	// None, MediaConvert does a standard frame rate conversion to 29.97 without
+	// doing anything with the field polarity to create a smoother picture.
+	Telecine *string `locationName:"telecine" type:"string" enum:"UncompressedTelecine"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UncompressedSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UncompressedSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UncompressedSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UncompressedSettings"}
+	if s.FramerateDenominator != nil && *s.FramerateDenominator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateDenominator", 1))
+	}
+	if s.FramerateNumerator != nil && *s.FramerateNumerator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFourcc sets the Fourcc field's value.
+func (s *UncompressedSettings) SetFourcc(v string) *UncompressedSettings {
+	s.Fourcc = &v
+	return s
+}
+
+// SetFramerateControl sets the FramerateControl field's value.
+func (s *UncompressedSettings) SetFramerateControl(v string) *UncompressedSettings {
+	s.FramerateControl = &v
+	return s
+}
+
+// SetFramerateConversionAlgorithm sets the FramerateConversionAlgorithm field's value.
+func (s *UncompressedSettings) SetFramerateConversionAlgorithm(v string) *UncompressedSettings {
+	s.FramerateConversionAlgorithm = &v
+	return s
+}
+
+// SetFramerateDenominator sets the FramerateDenominator field's value.
+func (s *UncompressedSettings) SetFramerateDenominator(v int64) *UncompressedSettings {
+	s.FramerateDenominator = &v
+	return s
+}
+
+// SetFramerateNumerator sets the FramerateNumerator field's value.
+func (s *UncompressedSettings) SetFramerateNumerator(v int64) *UncompressedSettings {
+	s.FramerateNumerator = &v
+	return s
+}
+
+// SetInterlaceMode sets the InterlaceMode field's value.
+func (s *UncompressedSettings) SetInterlaceMode(v string) *UncompressedSettings {
+	s.InterlaceMode = &v
+	return s
+}
+
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *UncompressedSettings) SetScanTypeConversionMode(v string) *UncompressedSettings {
+	s.ScanTypeConversionMode = &v
+	return s
+}
+
+// SetSlowPal sets the SlowPal field's value.
+func (s *UncompressedSettings) SetSlowPal(v string) *UncompressedSettings {
+	s.SlowPal = &v
+	return s
+}
+
+// SetTelecine sets the Telecine field's value.
+func (s *UncompressedSettings) SetTelecine(v string) *UncompressedSettings {
+	s.Telecine = &v
+	return s
+}
+
 // To remove tags from a resource, send a request with the Amazon Resource Name
 // (ARN) of the resource and the keys of the tags that you want to remove.
 type UntagResourceInput struct {
@@ -24897,8 +25208,8 @@ func (s *Vc3Settings) SetVc3Class(v string) *Vc3Settings {
 // settings object. The following lists the codec enum, settings object pairs.
 // * AV1, Av1Settings * AVC_INTRA, AvcIntraSettings * FRAME_CAPTURE, FrameCaptureSettings
 // * H_264, H264Settings * H_265, H265Settings * MPEG2, Mpeg2Settings * PRORES,
-// ProresSettings * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings *
-// XAVC, XavcSettings
+// ProresSettings * UNCOMPRESSED, UncompressedSettings * VC3, Vc3Settings *
+// VP8, Vp8Settings * VP9, Vp9Settings * XAVC, XavcSettings
 type VideoCodecSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -24934,6 +25245,10 @@ type VideoCodecSettings struct {
 
 	// Required when you set Codec to the value PRORES.
 	ProresSettings *ProresSettings `locationName:"proresSettings" type:"structure"`
+
+	// Required when you set Codec, under VideoDescription>CodecSettings to the
+	// value UNCOMPRESSED.
+	UncompressedSettings *UncompressedSettings `locationName:"uncompressedSettings" type:"structure"`
 
 	// Required when you set Codec to the value VC3
 	Vc3Settings *Vc3Settings `locationName:"vc3Settings" type:"structure"`
@@ -25002,6 +25317,11 @@ func (s *VideoCodecSettings) Validate() error {
 	if s.ProresSettings != nil {
 		if err := s.ProresSettings.Validate(); err != nil {
 			invalidParams.AddNested("ProresSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UncompressedSettings != nil {
+		if err := s.UncompressedSettings.Validate(); err != nil {
+			invalidParams.AddNested("UncompressedSettings", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Vc3Settings != nil {
@@ -25079,6 +25399,12 @@ func (s *VideoCodecSettings) SetProresSettings(v *ProresSettings) *VideoCodecSet
 	return s
 }
 
+// SetUncompressedSettings sets the UncompressedSettings field's value.
+func (s *VideoCodecSettings) SetUncompressedSettings(v *UncompressedSettings) *VideoCodecSettings {
+	s.UncompressedSettings = v
+	return s
+}
+
 // SetVc3Settings sets the Vc3Settings field's value.
 func (s *VideoCodecSettings) SetVc3Settings(v *Vc3Settings) *VideoCodecSettings {
 	s.Vc3Settings = v
@@ -25127,8 +25453,8 @@ type VideoDescription struct {
 	// settings object. The following lists the codec enum, settings object pairs.
 	// * AV1, Av1Settings * AVC_INTRA, AvcIntraSettings * FRAME_CAPTURE, FrameCaptureSettings
 	// * H_264, H264Settings * H_265, H265Settings * MPEG2, Mpeg2Settings * PRORES,
-	// ProresSettings * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings *
-	// XAVC, XavcSettings
+	// ProresSettings * UNCOMPRESSED, UncompressedSettings * VC3, Vc3Settings *
+	// VP8, Vp8Settings * VP9, Vp9Settings * XAVC, XavcSettings
 	CodecSettings *VideoCodecSettings `locationName:"codecSettings" type:"structure"`
 
 	// Choose Insert for this setting to include color metadata in this output.
@@ -25802,6 +26128,11 @@ type VideoSelector struct {
 	// see https://docs.aws.amazon.com/console/mediaconvert/hdr.
 	Hdr10Metadata *Hdr10Metadata `locationName:"hdr10Metadata" type:"structure"`
 
+	// Specify the maximum mastering display luminance. Enter an integer from 0
+	// to 2147483647, in units of 0.0001 nits. For example, enter 10000000 for 1000
+	// nits.
+	MaxLuminance *int64 `locationName:"maxLuminance" type:"integer"`
+
 	// Use this setting if your input has video and audio durations that don't align,
 	// and your output or player has strict alignment requirements. Examples: Input
 	// audio track has a delayed start. Input video track ends before audio ends.
@@ -25904,6 +26235,12 @@ func (s *VideoSelector) SetEmbeddedTimecodeOverride(v string) *VideoSelector {
 // SetHdr10Metadata sets the Hdr10Metadata field's value.
 func (s *VideoSelector) SetHdr10Metadata(v *Hdr10Metadata) *VideoSelector {
 	s.Hdr10Metadata = v
+	return s
+}
+
+// SetMaxLuminance sets the MaxLuminance field's value.
+func (s *VideoSelector) SetMaxLuminance(v int64) *VideoSelector {
+	s.MaxLuminance = &v
 	return s
 }
 
@@ -27380,7 +27717,12 @@ func AacAudioDescriptionBroadcasterMix_Values() []string {
 	}
 }
 
-// AAC Profile.
+// Specify the AAC profile. For the widest player compatibility and where higher
+// bitrates are acceptable: Keep the default profile, LC (AAC-LC) For improved
+// audio performance at lower bitrates: Choose HEV1 or HEV2. HEV1 (AAC-HE v1)
+// adds spectral band replication to improve speech audio at low bitrates. HEV2
+// (AAC-HE v2) adds parametric stereo, which optimizes for encoding stereo audio
+// at very low bitrates.
 const (
 	// AacCodecProfileLc is a AacCodecProfile enum value
 	AacCodecProfileLc = "LC"
@@ -27437,7 +27779,10 @@ func AacCodingMode_Values() []string {
 	}
 }
 
-// Rate Control Mode.
+// Specify the AAC rate control mode. For a constant bitrate: Choose CBR. Your
+// AAC output bitrate will be equal to the value that you choose for Bitrate.
+// For a variable bitrate: Choose VBR. Your AAC output bitrate will vary according
+// to your audio content and the value that you choose for Bitrate quality.
 const (
 	// AacRateControlModeCbr is a AacRateControlMode enum value
 	AacRateControlModeCbr = "CBR"
@@ -27490,7 +27835,8 @@ func AacSpecification_Values() []string {
 	}
 }
 
-// VBR Quality Level - Only used if rate_control_mode is VBR.
+// Specify the quality of your variable bitrate (VBR) AAC audio. For a list
+// of approximate VBR bitrates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html#aac_vbr
 const (
 	// AacVbrQualityLow is a AacVbrQuality enum value
 	AacVbrQualityLow = "LOW"
@@ -30104,6 +30450,9 @@ const (
 
 	// ContainerTypeRaw is a ContainerType enum value
 	ContainerTypeRaw = "RAW"
+
+	// ContainerTypeY4m is a ContainerType enum value
+	ContainerTypeY4m = "Y4M"
 )
 
 // ContainerType_Values returns all elements of the ContainerType enum
@@ -30120,6 +30469,7 @@ func ContainerType_Values() []string {
 		ContainerTypeMxf,
 		ContainerTypeWebm,
 		ContainerTypeRaw,
+		ContainerTypeY4m,
 	}
 }
 
@@ -37472,6 +37822,168 @@ func Type_Values() []string {
 	}
 }
 
+// The four character code for the uncompressed video.
+const (
+	// UncompressedFourccI420 is a UncompressedFourcc enum value
+	UncompressedFourccI420 = "I420"
+
+	// UncompressedFourccI422 is a UncompressedFourcc enum value
+	UncompressedFourccI422 = "I422"
+
+	// UncompressedFourccI444 is a UncompressedFourcc enum value
+	UncompressedFourccI444 = "I444"
+)
+
+// UncompressedFourcc_Values returns all elements of the UncompressedFourcc enum
+func UncompressedFourcc_Values() []string {
+	return []string{
+		UncompressedFourccI420,
+		UncompressedFourccI422,
+		UncompressedFourccI444,
+	}
+}
+
+// Use the Framerate setting to specify the frame rate for this output. If you
+// want to keep the same frame rate as the input video, choose Follow source.
+// If you want to do frame rate conversion, choose a frame rate from the dropdown
+// list or choose Custom. The framerates shown in the dropdown list are decimal
+// approximations of fractions. If you choose Custom, specify your frame rate
+// as a fraction.
+const (
+	// UncompressedFramerateControlInitializeFromSource is a UncompressedFramerateControl enum value
+	UncompressedFramerateControlInitializeFromSource = "INITIALIZE_FROM_SOURCE"
+
+	// UncompressedFramerateControlSpecified is a UncompressedFramerateControl enum value
+	UncompressedFramerateControlSpecified = "SPECIFIED"
+)
+
+// UncompressedFramerateControl_Values returns all elements of the UncompressedFramerateControl enum
+func UncompressedFramerateControl_Values() []string {
+	return []string{
+		UncompressedFramerateControlInitializeFromSource,
+		UncompressedFramerateControlSpecified,
+	}
+}
+
+// Choose the method that you want MediaConvert to use when increasing or decreasing
+// the frame rate. For numerically simple conversions, such as 60 fps to 30
+// fps: We recommend that you keep the default value, Drop duplicate. For numerically
+// complex conversions, to avoid stutter: Choose Interpolate. This results in
+// a smooth picture, but might introduce undesirable video artifacts. For complex
+// frame rate conversions, especially if your source video has already been
+// converted from its original cadence: Choose FrameFormer to do motion-compensated
+// interpolation. FrameFormer uses the best conversion method frame by frame.
+// Note that using FrameFormer increases the transcoding time and incurs a significant
+// add-on cost. When you choose FrameFormer, your input video resolution must
+// be at least 128x96.
+const (
+	// UncompressedFramerateConversionAlgorithmDuplicateDrop is a UncompressedFramerateConversionAlgorithm enum value
+	UncompressedFramerateConversionAlgorithmDuplicateDrop = "DUPLICATE_DROP"
+
+	// UncompressedFramerateConversionAlgorithmInterpolate is a UncompressedFramerateConversionAlgorithm enum value
+	UncompressedFramerateConversionAlgorithmInterpolate = "INTERPOLATE"
+
+	// UncompressedFramerateConversionAlgorithmFrameformer is a UncompressedFramerateConversionAlgorithm enum value
+	UncompressedFramerateConversionAlgorithmFrameformer = "FRAMEFORMER"
+)
+
+// UncompressedFramerateConversionAlgorithm_Values returns all elements of the UncompressedFramerateConversionAlgorithm enum
+func UncompressedFramerateConversionAlgorithm_Values() []string {
+	return []string{
+		UncompressedFramerateConversionAlgorithmDuplicateDrop,
+		UncompressedFramerateConversionAlgorithmInterpolate,
+		UncompressedFramerateConversionAlgorithmFrameformer,
+	}
+}
+
+// Optional. Choose the scan line type for this output. If you don't specify
+// a value, MediaConvert will create a progressive output.
+const (
+	// UncompressedInterlaceModeInterlaced is a UncompressedInterlaceMode enum value
+	UncompressedInterlaceModeInterlaced = "INTERLACED"
+
+	// UncompressedInterlaceModeProgressive is a UncompressedInterlaceMode enum value
+	UncompressedInterlaceModeProgressive = "PROGRESSIVE"
+)
+
+// UncompressedInterlaceMode_Values returns all elements of the UncompressedInterlaceMode enum
+func UncompressedInterlaceMode_Values() []string {
+	return []string{
+		UncompressedInterlaceModeInterlaced,
+		UncompressedInterlaceModeProgressive,
+	}
+}
+
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// to create a better quality interlaced output. In this case, each progressive
+// frame from the input corresponds to an interlaced field in the output. Keep
+// the default value, Basic interlacing, for all other output frame rates. With
+// basic interlacing, MediaConvert performs any frame rate conversion first
+// and then interlaces the frames. When you choose Optimized interlacing and
+// you set your output frame rate to a value that isn't suitable for optimized
+// interlacing, MediaConvert automatically falls back to basic interlacing.
+// Required settings: To use optimized interlacing, you must set Telecine to
+// None or Soft. You can't use optimized interlacing for hard telecine outputs.
+// You must also set Interlace mode to a value other than Progressive.
+const (
+	// UncompressedScanTypeConversionModeInterlaced is a UncompressedScanTypeConversionMode enum value
+	UncompressedScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// UncompressedScanTypeConversionModeInterlacedOptimize is a UncompressedScanTypeConversionMode enum value
+	UncompressedScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// UncompressedScanTypeConversionMode_Values returns all elements of the UncompressedScanTypeConversionMode enum
+func UncompressedScanTypeConversionMode_Values() []string {
+	return []string{
+		UncompressedScanTypeConversionModeInterlaced,
+		UncompressedScanTypeConversionModeInterlacedOptimize,
+	}
+}
+
+// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
+// second (fps). Enable slow PAL to create a 25 fps output by relabeling the
+// video frames and resampling your audio. Note that enabling this setting will
+// slightly reduce the duration of your video. Related settings: You must also
+// set Framerate to 25.
+const (
+	// UncompressedSlowPalDisabled is a UncompressedSlowPal enum value
+	UncompressedSlowPalDisabled = "DISABLED"
+
+	// UncompressedSlowPalEnabled is a UncompressedSlowPal enum value
+	UncompressedSlowPalEnabled = "ENABLED"
+)
+
+// UncompressedSlowPal_Values returns all elements of the UncompressedSlowPal enum
+func UncompressedSlowPal_Values() []string {
+	return []string{
+		UncompressedSlowPalDisabled,
+		UncompressedSlowPalEnabled,
+	}
+}
+
+// When you do frame rate conversion from 23.976 frames per second (fps) to
+// 29.97 fps, and your output scan type is interlaced, you can optionally enable
+// hard telecine to create a smoother picture. When you keep the default value,
+// None, MediaConvert does a standard frame rate conversion to 29.97 without
+// doing anything with the field polarity to create a smoother picture.
+const (
+	// UncompressedTelecineNone is a UncompressedTelecine enum value
+	UncompressedTelecineNone = "NONE"
+
+	// UncompressedTelecineHard is a UncompressedTelecine enum value
+	UncompressedTelecineHard = "HARD"
+)
+
+// UncompressedTelecine_Values returns all elements of the UncompressedTelecine enum
+func UncompressedTelecine_Values() []string {
+	return []string{
+		UncompressedTelecineNone,
+		UncompressedTelecineHard,
+	}
+}
+
 // Specify the VC3 class to choose the quality characteristics for this output.
 // VC3 class, together with the settings Framerate (framerateNumerator and framerateDenominator)
 // and Resolution (height and width), determine your output bitrate. For example,
@@ -37685,6 +38197,9 @@ const (
 	// VideoCodecProres is a VideoCodec enum value
 	VideoCodecProres = "PRORES"
 
+	// VideoCodecUncompressed is a VideoCodec enum value
+	VideoCodecUncompressed = "UNCOMPRESSED"
+
 	// VideoCodecVc3 is a VideoCodec enum value
 	VideoCodecVc3 = "VC3"
 
@@ -37709,6 +38224,7 @@ func VideoCodec_Values() []string {
 		VideoCodecMpeg2,
 		VideoCodecPassthrough,
 		VideoCodecProres,
+		VideoCodecUncompressed,
 		VideoCodecVc3,
 		VideoCodecVp8,
 		VideoCodecVp9,

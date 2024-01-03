@@ -1,3 +1,11 @@
+Release v1.49.14 (2024-01-03)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes video engine updates including HEVC improvements, support for ingesting VP9 encoded video in MP4 containers, and support for user-specified 3D LUTs.
+
 Release v1.49.13 (2023-12-29)
 ===
 

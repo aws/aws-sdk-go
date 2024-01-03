@@ -2910,6 +2910,37 @@
         "VERSION_1"
       ]
     },
+    "ColorConversion3DLUTSetting": {
+      "type": "structure",
+      "members": {
+        "FileInput": {
+          "shape": "__stringMin14PatternS3CubeCUBEHttpsCubeCUBE",
+          "locationName": "fileInput"
+        },
+        "InputColorSpace": {
+          "shape": "ColorSpace",
+          "locationName": "inputColorSpace"
+        },
+        "InputMasteringLuminance": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "inputMasteringLuminance"
+        },
+        "OutputColorSpace": {
+          "shape": "ColorSpace",
+          "locationName": "outputColorSpace"
+        },
+        "OutputMasteringLuminance": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "outputMasteringLuminance"
+        }
+      }
+    },
+    "ColorConversion3DLUTSettings": {
+      "type": "list",
+      "member": {
+        "shape": "ColorConversion3DLUTSetting"
+      }
+    },
     "ColorCorrector": {
       "type": "structure",
       "members": {
@@ -2940,6 +2971,10 @@
         "Hue": {
           "shape": "__integerMinNegative180Max180",
           "locationName": "hue"
+        },
+        "MaxLuminance": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "maxLuminance"
         },
         "SampleRangeConversion": {
           "shape": "SampleRangeConversion",
@@ -3068,7 +3103,8 @@
         "MPD",
         "MXF",
         "WEBM",
-        "RAW"
+        "RAW",
+        "Y4M"
       ]
     },
     "CopyProtectionAction": {
@@ -6706,6 +6742,10 @@
           "shape": "AvailBlanking",
           "locationName": "availBlanking"
         },
+        "ColorConversion3DLUTSettings": {
+          "shape": "ColorConversion3DLUTSettings",
+          "locationName": "colorConversion3DLUTSettings"
+        },
         "Esam": {
           "shape": "EsamSettings",
           "locationName": "esam"
@@ -6841,6 +6881,10 @@
         "AvailBlanking": {
           "shape": "AvailBlanking",
           "locationName": "availBlanking"
+        },
+        "ColorConversion3DLUTSettings": {
+          "shape": "ColorConversion3DLUTSettings",
+          "locationName": "colorConversion3DLUTSettings"
         },
         "Esam": {
           "shape": "EsamSettings",
@@ -9821,6 +9865,98 @@
         "CUSTOM"
       ]
     },
+    "UncompressedFourcc": {
+      "type": "string",
+      "enum": [
+        "I420",
+        "I422",
+        "I444"
+      ]
+    },
+    "UncompressedFramerateControl": {
+      "type": "string",
+      "enum": [
+        "INITIALIZE_FROM_SOURCE",
+        "SPECIFIED"
+      ]
+    },
+    "UncompressedFramerateConversionAlgorithm": {
+      "type": "string",
+      "enum": [
+        "DUPLICATE_DROP",
+        "INTERPOLATE",
+        "FRAMEFORMER"
+      ]
+    },
+    "UncompressedInterlaceMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "PROGRESSIVE"
+      ]
+    },
+    "UncompressedScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
+    "UncompressedSettings": {
+      "type": "structure",
+      "members": {
+        "Fourcc": {
+          "shape": "UncompressedFourcc",
+          "locationName": "fourcc"
+        },
+        "FramerateControl": {
+          "shape": "UncompressedFramerateControl",
+          "locationName": "framerateControl"
+        },
+        "FramerateConversionAlgorithm": {
+          "shape": "UncompressedFramerateConversionAlgorithm",
+          "locationName": "framerateConversionAlgorithm"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "framerateNumerator"
+        },
+        "InterlaceMode": {
+          "shape": "UncompressedInterlaceMode",
+          "locationName": "interlaceMode"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "UncompressedScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
+        },
+        "SlowPal": {
+          "shape": "UncompressedSlowPal",
+          "locationName": "slowPal"
+        },
+        "Telecine": {
+          "shape": "UncompressedTelecine",
+          "locationName": "telecine"
+        }
+      }
+    },
+    "UncompressedSlowPal": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "UncompressedTelecine": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "HARD"
+      ]
+    },
     "UntagResourceRequest": {
       "type": "structure",
       "members": {
@@ -10075,6 +10211,7 @@
         "MPEG2",
         "PASSTHROUGH",
         "PRORES",
+        "UNCOMPRESSED",
         "VC3",
         "VP8",
         "VP9",
@@ -10115,6 +10252,10 @@
         "ProresSettings": {
           "shape": "ProresSettings",
           "locationName": "proresSettings"
+        },
+        "UncompressedSettings": {
+          "shape": "UncompressedSettings",
+          "locationName": "uncompressedSettings"
         },
         "Vc3Settings": {
           "shape": "Vc3Settings",
@@ -10322,6 +10463,10 @@
         "Hdr10Metadata": {
           "shape": "Hdr10Metadata",
           "locationName": "hdr10Metadata"
+        },
+        "MaxLuminance": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "maxLuminance"
         },
         "PadVideo": {
           "shape": "PadVideo",
@@ -11847,6 +11992,11 @@
       "type": "string",
       "min": 14,
       "pattern": "^((s3://(.*?)\\.(bmp|BMP|png|PNG|tga|TGA))|(https?://(.*?)\\.(bmp|BMP|png|PNG|tga|TGA)(\\?([^&=]+=[^&]+&)*[^&=]+=[^&]+)?))$"
+    },
+    "__stringMin14PatternS3CubeCUBEHttpsCubeCUBE": {
+      "type": "string",
+      "min": 14,
+      "pattern": "^((s3://(.*?)\\.(cube|CUBE))|(https?://(.*?)\\.(cube|CUBE)(\\?([^&=]+=[^&]+&)*[^&=]+=[^&]+)?))$"
     },
     "__stringMin14PatternS3Mov09PngHttpsMov09Png": {
       "type": "string",
