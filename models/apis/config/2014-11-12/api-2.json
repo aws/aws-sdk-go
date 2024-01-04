@@ -5105,7 +5105,25 @@
         "AWS::KafkaConnect::Connector",
         "AWS::Lambda::CodeSigningConfig",
         "AWS::NetworkManager::ConnectPeer",
-        "AWS::ResourceExplorer2::Index"
+        "AWS::ResourceExplorer2::Index",
+        "AWS::AppStream::Fleet",
+        "AWS::Cognito::UserPool",
+        "AWS::Cognito::UserPoolClient",
+        "AWS::Cognito::UserPoolGroup",
+        "AWS::EC2::NetworkInsightsAccessScope",
+        "AWS::EC2::NetworkInsightsAnalysis",
+        "AWS::Grafana::Workspace",
+        "AWS::GroundStation::DataflowEndpointGroup",
+        "AWS::ImageBuilder::ImageRecipe",
+        "AWS::KMS::Alias",
+        "AWS::M2::Environment",
+        "AWS::QuickSight::DataSource",
+        "AWS::QuickSight::Template",
+        "AWS::QuickSight::Theme",
+        "AWS::RDS::OptionGroup",
+        "AWS::Redshift::EndpointAccess",
+        "AWS::Route53Resolver::FirewallRuleGroup",
+        "AWS::SSM::Document"
       ]
     },
     "ResourceTypeList":{

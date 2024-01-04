@@ -990,14 +990,16 @@
       "members":{
         "autoScalingGroupArn":{"shape":"String"},
         "managedScaling":{"shape":"ManagedScaling"},
-        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"}
+        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"},
+        "managedDraining":{"shape":"ManagedDraining"}
       }
     },
     "AutoScalingGroupProviderUpdate":{
       "type":"structure",
       "members":{
         "managedScaling":{"shape":"ManagedScaling"},
-        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"}
+        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"},
+        "managedDraining":{"shape":"ManagedDraining"}
       }
     },
     "AwsVpcConfiguration":{
@@ -2484,6 +2486,13 @@
     "ManagedAgents":{
       "type":"list",
       "member":{"shape":"ManagedAgent"}
+    },
+    "ManagedDraining":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "ManagedScaling":{
       "type":"structure",

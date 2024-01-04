@@ -5111,6 +5111,11 @@
       "type":"integer",
       "min":1
     },
+    "CapacityUnit":{
+      "type":"integer",
+      "max":10000000,
+      "min":0
+    },
     "CaptureContentTypeHeader":{
       "type":"structure",
       "members":{
@@ -6648,6 +6653,7 @@
         "FeatureDefinitions":{"shape":"FeatureDefinitions"},
         "OnlineStoreConfig":{"shape":"OnlineStoreConfig"},
         "OfflineStoreConfig":{"shape":"OfflineStoreConfig"},
+        "ThroughputConfig":{"shape":"ThroughputConfig"},
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"Description"},
         "Tags":{"shape":"TagList"}
@@ -9086,6 +9092,7 @@
         "LastModifiedTime":{"shape":"LastModifiedTime"},
         "OnlineStoreConfig":{"shape":"OnlineStoreConfig"},
         "OfflineStoreConfig":{"shape":"OfflineStoreConfig"},
+        "ThroughputConfig":{"shape":"ThroughputConfigDescription"},
         "RoleArn":{"shape":"RoleArn"},
         "FeatureGroupStatus":{"shape":"FeatureGroupStatus"},
         "OfflineStoreStatus":{"shape":"OfflineStoreStatus"},
@@ -21070,6 +21077,39 @@
       "max":128,
       "pattern":"[a-zA-Z0-9:_-]+"
     },
+    "ThroughputConfig":{
+      "type":"structure",
+      "required":["ThroughputMode"],
+      "members":{
+        "ThroughputMode":{"shape":"ThroughputMode"},
+        "ProvisionedReadCapacityUnits":{"shape":"CapacityUnit"},
+        "ProvisionedWriteCapacityUnits":{"shape":"CapacityUnit"}
+      }
+    },
+    "ThroughputConfigDescription":{
+      "type":"structure",
+      "required":["ThroughputMode"],
+      "members":{
+        "ThroughputMode":{"shape":"ThroughputMode"},
+        "ProvisionedReadCapacityUnits":{"shape":"CapacityUnit"},
+        "ProvisionedWriteCapacityUnits":{"shape":"CapacityUnit"}
+      }
+    },
+    "ThroughputConfigUpdate":{
+      "type":"structure",
+      "members":{
+        "ThroughputMode":{"shape":"ThroughputMode"},
+        "ProvisionedReadCapacityUnits":{"shape":"CapacityUnit"},
+        "ProvisionedWriteCapacityUnits":{"shape":"CapacityUnit"}
+      }
+    },
+    "ThroughputMode":{
+      "type":"string",
+      "enum":[
+        "OnDemand",
+        "Provisioned"
+      ]
+    },
     "TimeSeriesConfig":{
       "type":"structure",
       "required":[
@@ -22190,7 +22230,8 @@
       "members":{
         "FeatureGroupName":{"shape":"FeatureGroupNameOrArn"},
         "FeatureAdditions":{"shape":"FeatureAdditions"},
-        "OnlineStoreConfig":{"shape":"OnlineStoreConfigUpdate"}
+        "OnlineStoreConfig":{"shape":"OnlineStoreConfigUpdate"},
+        "ThroughputConfig":{"shape":"ThroughputConfigUpdate"}
       }
     },
     "UpdateFeatureGroupResponse":{

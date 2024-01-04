@@ -9128,7 +9128,10 @@ type CreateDomainInput struct {
 	// OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html#createdomains).
 	EngineVersion *string `min:"14" type:"string"`
 
-	// The type of IP addresses supported by the endpoint for the domain.
+	// Specify either dual stack or IPv4 as your IP address type. Dual stack allows
+	// you to share domain resources across IPv4 and IPv6 address types, and is
+	// the recommended option. If you set your IP address type to dual stack, you
+	// can't change your address type later.
 	IPAddressType *string `type:"string" enum:"IPAddressType"`
 
 	// Key-value pairs to configure log publishing.
@@ -12456,7 +12459,10 @@ type DomainConfig struct {
 	// The OpenSearch or Elasticsearch version that the domain is running.
 	EngineVersion *VersionStatus `type:"structure"`
 
-	// The type of IP addresses supported by the endpoint for the domain.
+	// Choose either dual stack or IPv4 as your IP address type. Dual stack allows
+	// you to share domain resources across IPv4 and IPv6 address types, and is
+	// the recommended option. If you set your IP address type to dual stack, you
+	// can't change your address type later.
 	IPAddressType *IPAddressTypeStatus `type:"structure"`
 
 	// Key-value pairs to configure log publishing.
@@ -12631,6 +12637,9 @@ type DomainEndpointOptions struct {
 	//
 	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy that supports only TLS
 	//    version 1.2
+	//
+	//    * Policy-Min-TLS-1-2-PFS-2023-10: TLS security policy that supports TLS
+	//    version 1.2 to TLS version 1.3 with perfect forward secrecy cipher suites
 	TLSSecurityPolicy *string `type:"string" enum:"TLSSecurityPolicy"`
 }
 
@@ -13199,12 +13208,14 @@ type DomainStatus struct {
 	// to the domain.
 	Endpoint *string `type:"string"`
 
-	// The domain endpoint to which index and search requests are submitted. For
-	// example, search-imdb-movies-oopcnjfn6ugo.eu-west-1.es.amazonaws.com or doc-imdb-movies-oopcnjfn6u.eu-west-1.es.amazonaws.com.
+	// If IPAddressType to set to dualstack, a version 2 domain endpoint is provisioned.
+	// This endpoint functions like a normal endpoint, except that it works with
+	// both IPv4 and IPv6 IP addresses. Normal endpoints work only with IPv4 IP
+	// addresses.
 	EndpointV2 *string `type:"string"`
 
 	// The key-value pair that exists if the OpenSearch Service domain uses VPC
-	// endpoints.. Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
+	// endpoints. Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
 	Endpoints map[string]*string `type:"map"`
 
 	// Version of OpenSearch or Elasticsearch that the domain is running, in the
@@ -19690,7 +19701,10 @@ type UpdateDomainConfigInput struct {
 	// Encryption at rest options for the domain.
 	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
 
-	// The type of IP addresses supported by the endpoint for the domain.
+	// Specify either dual stack or IPv4 as your IP address type. Dual stack allows
+	// you to share domain resources across IPv4 and IPv6 address types, and is
+	// the recommended option. If your IP address type is currently set to dual
+	// stack, you can't change it.
 	IPAddressType *string `type:"string" enum:"IPAddressType"`
 
 	// Options to publish OpenSearch logs to Amazon CloudWatch Logs.
@@ -22471,6 +22485,9 @@ const (
 
 	// TLSSecurityPolicyPolicyMinTls12201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls12201907 = "Policy-Min-TLS-1-2-2019-07"
+
+	// TLSSecurityPolicyPolicyMinTls12Pfs202310 is a TLSSecurityPolicy enum value
+	TLSSecurityPolicyPolicyMinTls12Pfs202310 = "Policy-Min-TLS-1-2-PFS-2023-10"
 )
 
 // TLSSecurityPolicy_Values returns all elements of the TLSSecurityPolicy enum
@@ -22478,6 +22495,7 @@ func TLSSecurityPolicy_Values() []string {
 	return []string{
 		TLSSecurityPolicyPolicyMinTls10201907,
 		TLSSecurityPolicyPolicyMinTls12201907,
+		TLSSecurityPolicyPolicyMinTls12Pfs202310,
 	}
 }
 

@@ -8808,6 +8808,15 @@ type DBInstance struct {
 	// only when changes are pending. Specific changes are identified by subelements.
 	PendingModifiedValues *PendingModifiedValues `type:"structure"`
 
+	// Set to true if Amazon RDS Performance Insights is enabled for the DB instance,
+	// and otherwise false.
+	PerformanceInsightsEnabled *bool `type:"boolean"`
+
+	// The KMS key identifier for encryption of Performance Insights data. The KMS
+	// key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS
+	// key alias for the KMS encryption key.
+	PerformanceInsightsKMSKeyId *string `type:"string"`
+
 	// Specifies the daily time range during which automated backups are created
 	// if automated backups are enabled, as determined by the BackupRetentionPeriod.
 	PreferredBackupWindow *string `type:"string"`
@@ -8978,6 +8987,18 @@ func (s *DBInstance) SetLatestRestorableTime(v time.Time) *DBInstance {
 // SetPendingModifiedValues sets the PendingModifiedValues field's value.
 func (s *DBInstance) SetPendingModifiedValues(v *PendingModifiedValues) *DBInstance {
 	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPerformanceInsightsEnabled sets the PerformanceInsightsEnabled field's value.
+func (s *DBInstance) SetPerformanceInsightsEnabled(v bool) *DBInstance {
+	s.PerformanceInsightsEnabled = &v
+	return s
+}
+
+// SetPerformanceInsightsKMSKeyId sets the PerformanceInsightsKMSKeyId field's value.
+func (s *DBInstance) SetPerformanceInsightsKMSKeyId(v string) *DBInstance {
+	s.PerformanceInsightsKMSKeyId = &v
 	return s
 }
 

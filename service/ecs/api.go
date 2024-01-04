@@ -474,6 +474,8 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 // see Amazon ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
+// You can create a maximum of 5 tasks sets for a deployment.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6901,6 +6903,13 @@ type AutoScalingGroupProvider struct {
 	// AutoScalingGroupArn is a required field
 	AutoScalingGroupArn *string `locationName:"autoScalingGroupArn" type:"string" required:"true"`
 
+	// The managed draining option for the Auto Scaling group capacity provider.
+	// When you enable this, Amazon ECS manages and gracefully drains the EC2 container
+	// instances that are in the Auto Scaling group capacity provider.
+	//
+	// The default is ENABLED.
+	ManagedDraining *string `locationName:"managedDraining" type:"string" enum:"ManagedDraining"`
+
 	// The managed scaling settings for the Auto Scaling group capacity provider.
 	ManagedScaling *ManagedScaling `locationName:"managedScaling" type:"structure"`
 
@@ -6965,6 +6974,12 @@ func (s *AutoScalingGroupProvider) SetAutoScalingGroupArn(v string) *AutoScaling
 	return s
 }
 
+// SetManagedDraining sets the ManagedDraining field's value.
+func (s *AutoScalingGroupProvider) SetManagedDraining(v string) *AutoScalingGroupProvider {
+	s.ManagedDraining = &v
+	return s
+}
+
 // SetManagedScaling sets the ManagedScaling field's value.
 func (s *AutoScalingGroupProvider) SetManagedScaling(v *ManagedScaling) *AutoScalingGroupProvider {
 	s.ManagedScaling = v
@@ -6980,6 +6995,13 @@ func (s *AutoScalingGroupProvider) SetManagedTerminationProtection(v string) *Au
 // The details of the Auto Scaling group capacity provider to update.
 type AutoScalingGroupProviderUpdate struct {
 	_ struct{} `type:"structure"`
+
+	// The managed draining option for the Auto Scaling group capacity provider.
+	// When you enable this, Amazon ECS manages and gracefully drains the EC2 container
+	// instances that are in the Auto Scaling group capacity provider.
+	//
+	// The default is ENABLED.
+	ManagedDraining *string `locationName:"managedDraining" type:"string" enum:"ManagedDraining"`
 
 	// The managed scaling settings for the Auto Scaling group capacity provider.
 	ManagedScaling *ManagedScaling `locationName:"managedScaling" type:"structure"`
@@ -7034,6 +7056,12 @@ func (s *AutoScalingGroupProviderUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetManagedDraining sets the ManagedDraining field's value.
+func (s *AutoScalingGroupProviderUpdate) SetManagedDraining(v string) *AutoScalingGroupProviderUpdate {
+	s.ManagedDraining = &v
+	return s
 }
 
 // SetManagedScaling sets the ManagedScaling field's value.
@@ -7425,6 +7453,7 @@ type ClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Message that describes the cause of the exception.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -20784,6 +20813,7 @@ type ServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Message that describes the cause of the exception.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -27123,6 +27153,22 @@ const (
 func ManagedAgentName_Values() []string {
 	return []string{
 		ManagedAgentNameExecuteCommandAgent,
+	}
+}
+
+const (
+	// ManagedDrainingEnabled is a ManagedDraining enum value
+	ManagedDrainingEnabled = "ENABLED"
+
+	// ManagedDrainingDisabled is a ManagedDraining enum value
+	ManagedDrainingDisabled = "DISABLED"
+)
+
+// ManagedDraining_Values returns all elements of the ManagedDraining enum
+func ManagedDraining_Values() []string {
+	return []string{
+		ManagedDrainingEnabled,
+		ManagedDrainingDisabled,
 	}
 }
 

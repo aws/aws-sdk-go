@@ -14525,8 +14525,9 @@ type ConfigurationRecorder struct {
 	//    * Continuous recording allows you to record configuration changes continuously
 	//    whenever a change occurs.
 	//
-	//    * Daily recording allows you record configuration data once every 24 hours,
-	//    only if a change has occurred.
+	//    * Daily recording allows you to receive a configuration item (CI) representing
+	//    the most recent state of your resources over the last 24-hour period,
+	//    only if it’s different from the previous CI recorded.
 	//
 	// Firewall Manager depends on continuous recording to monitor your resources.
 	// If you are using Firewall Manager, it is recommended that you set the recording
@@ -29842,8 +29843,9 @@ func (s *RecordingGroup) SetResourceTypes(v []*string) *RecordingGroup {
 //   - Continuous recording allows you to record configuration changes continuously
 //     whenever a change occurs.
 //
-//   - Daily recording allows you record configuration data once every 24 hours,
-//     only if a change has occurred.
+//   - Daily recording allows you to receive a configuration item (CI) representing
+//     the most recent state of your resources over the last 24-hour period,
+//     only if it’s different from the previous CI recorded.
 //
 // Firewall Manager depends on continuous recording to monitor your resources.
 // If you are using Firewall Manager, it is recommended that you set the recording
@@ -29943,8 +29945,9 @@ type RecordingModeOverride struct {
 	//    * Continuous recording allows you to record configuration changes continuously
 	//    whenever a change occurs.
 	//
-	//    * Daily recording allows you record configuration data once every 24 hours,
-	//    only if a change has occurred.
+	//    * Daily recording allows you to receive a configuration item (CI) representing
+	//    the most recent state of your resources over the last 24-hour period,
+	//    only if it’s different from the previous CI recorded.
 	//
 	// Firewall Manager depends on continuous recording to monitor your resources.
 	// If you are using Firewall Manager, it is recommended that you set the recording
@@ -30221,12 +30224,15 @@ type RemediationConfiguration struct {
 	// The type of a resource.
 	ResourceType *string `type:"string"`
 
-	// Maximum time in seconds that Config runs auto-remediation. If you do not
-	// select a number, the default is 60 seconds.
+	// Time window to determine whether or not to add a remediation exception to
+	// prevent infinite remediation attempts. If MaximumAutomaticAttempts remediation
+	// attempts have been made under RetryAttemptSeconds, a remediation exception
+	// will be added to the resource. If you do not select a number, the default
+	// is 60 seconds.
 	//
 	// For example, if you specify RetryAttemptSeconds as 50 seconds and MaximumAutomaticAttempts
 	// as 5, Config will run auto-remediations 5 times within 50 seconds before
-	// throwing an exception.
+	// adding a remediation exception to the resource.
 	RetryAttemptSeconds *int64 `min:"1" type:"long"`
 
 	// Target ID is the name of the SSM document.
@@ -35421,6 +35427,60 @@ const (
 
 	// ResourceTypeAwsResourceExplorer2Index is a ResourceType enum value
 	ResourceTypeAwsResourceExplorer2Index = "AWS::ResourceExplorer2::Index"
+
+	// ResourceTypeAwsAppStreamFleet is a ResourceType enum value
+	ResourceTypeAwsAppStreamFleet = "AWS::AppStream::Fleet"
+
+	// ResourceTypeAwsCognitoUserPool is a ResourceType enum value
+	ResourceTypeAwsCognitoUserPool = "AWS::Cognito::UserPool"
+
+	// ResourceTypeAwsCognitoUserPoolClient is a ResourceType enum value
+	ResourceTypeAwsCognitoUserPoolClient = "AWS::Cognito::UserPoolClient"
+
+	// ResourceTypeAwsCognitoUserPoolGroup is a ResourceType enum value
+	ResourceTypeAwsCognitoUserPoolGroup = "AWS::Cognito::UserPoolGroup"
+
+	// ResourceTypeAwsEc2NetworkInsightsAccessScope is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkInsightsAccessScope = "AWS::EC2::NetworkInsightsAccessScope"
+
+	// ResourceTypeAwsEc2NetworkInsightsAnalysis is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkInsightsAnalysis = "AWS::EC2::NetworkInsightsAnalysis"
+
+	// ResourceTypeAwsGrafanaWorkspace is a ResourceType enum value
+	ResourceTypeAwsGrafanaWorkspace = "AWS::Grafana::Workspace"
+
+	// ResourceTypeAwsGroundStationDataflowEndpointGroup is a ResourceType enum value
+	ResourceTypeAwsGroundStationDataflowEndpointGroup = "AWS::GroundStation::DataflowEndpointGroup"
+
+	// ResourceTypeAwsImageBuilderImageRecipe is a ResourceType enum value
+	ResourceTypeAwsImageBuilderImageRecipe = "AWS::ImageBuilder::ImageRecipe"
+
+	// ResourceTypeAwsKmsAlias is a ResourceType enum value
+	ResourceTypeAwsKmsAlias = "AWS::KMS::Alias"
+
+	// ResourceTypeAwsM2Environment is a ResourceType enum value
+	ResourceTypeAwsM2Environment = "AWS::M2::Environment"
+
+	// ResourceTypeAwsQuickSightDataSource is a ResourceType enum value
+	ResourceTypeAwsQuickSightDataSource = "AWS::QuickSight::DataSource"
+
+	// ResourceTypeAwsQuickSightTemplate is a ResourceType enum value
+	ResourceTypeAwsQuickSightTemplate = "AWS::QuickSight::Template"
+
+	// ResourceTypeAwsQuickSightTheme is a ResourceType enum value
+	ResourceTypeAwsQuickSightTheme = "AWS::QuickSight::Theme"
+
+	// ResourceTypeAwsRdsOptionGroup is a ResourceType enum value
+	ResourceTypeAwsRdsOptionGroup = "AWS::RDS::OptionGroup"
+
+	// ResourceTypeAwsRedshiftEndpointAccess is a ResourceType enum value
+	ResourceTypeAwsRedshiftEndpointAccess = "AWS::Redshift::EndpointAccess"
+
+	// ResourceTypeAwsRoute53resolverFirewallRuleGroup is a ResourceType enum value
+	ResourceTypeAwsRoute53resolverFirewallRuleGroup = "AWS::Route53Resolver::FirewallRuleGroup"
+
+	// ResourceTypeAwsSsmDocument is a ResourceType enum value
+	ResourceTypeAwsSsmDocument = "AWS::SSM::Document"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -35815,6 +35875,24 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsLambdaCodeSigningConfig,
 		ResourceTypeAwsNetworkManagerConnectPeer,
 		ResourceTypeAwsResourceExplorer2Index,
+		ResourceTypeAwsAppStreamFleet,
+		ResourceTypeAwsCognitoUserPool,
+		ResourceTypeAwsCognitoUserPoolClient,
+		ResourceTypeAwsCognitoUserPoolGroup,
+		ResourceTypeAwsEc2NetworkInsightsAccessScope,
+		ResourceTypeAwsEc2NetworkInsightsAnalysis,
+		ResourceTypeAwsGrafanaWorkspace,
+		ResourceTypeAwsGroundStationDataflowEndpointGroup,
+		ResourceTypeAwsImageBuilderImageRecipe,
+		ResourceTypeAwsKmsAlias,
+		ResourceTypeAwsM2Environment,
+		ResourceTypeAwsQuickSightDataSource,
+		ResourceTypeAwsQuickSightTemplate,
+		ResourceTypeAwsQuickSightTheme,
+		ResourceTypeAwsRdsOptionGroup,
+		ResourceTypeAwsRedshiftEndpointAccess,
+		ResourceTypeAwsRoute53resolverFirewallRuleGroup,
+		ResourceTypeAwsSsmDocument,
 	}
 }
 
