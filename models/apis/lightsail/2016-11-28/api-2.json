@@ -2153,6 +2153,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "GetSetupHistory":{
+      "name":"GetSetupHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSetupHistoryRequest"},
+      "output":{"shape":"GetSetupHistoryResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "GetStaticIp":{
       "name":"GetStaticIp",
       "http":{
@@ -2426,6 +2442,22 @@
       },
       "input":{"shape":"SetResourceAccessForBucketRequest"},
       "output":{"shape":"SetResourceAccessForBucketResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "SetupInstanceHttps":{
+      "name":"SetupInstanceHttps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetupInstanceHttpsRequest"},
+      "output":{"shape":"SetupInstanceHttpsResult"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidInputException"},
@@ -3324,6 +3356,10 @@
       ]
     },
     "CertificateName":{"type":"string"},
+    "CertificateProvider":{
+      "type":"string",
+      "enum":["LetsEncrypt"]
+    },
     "CertificateStatus":{
       "type":"string",
       "enum":[
@@ -4833,6 +4869,13 @@
       }
     },
     "EligibleToRenew":{"type":"string"},
+    "EmailAddress":{
+      "type":"string",
+      "max":254,
+      "min":6,
+      "pattern":"^[\\w!#$%&.'*+\\/=?^_\\x60{|}~\\-]{1,64}@[a-zA-Z0-9\\-]{1,63}(\\.[a-zA-Z0-9\\-]{1,63}){0,8}(\\.[a-zA-Z]{2,63})$",
+      "sensitive":true
+    },
     "EnableAddOnRequest":{
       "type":"structure",
       "required":[
@@ -5874,6 +5917,21 @@
         "nextPageToken":{"shape":"string"}
       }
     },
+    "GetSetupHistoryRequest":{
+      "type":"structure",
+      "required":["resourceName"],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "pageToken":{"shape":"SetupHistoryPageToken"}
+      }
+    },
+    "GetSetupHistoryResult":{
+      "type":"structure",
+      "members":{
+        "setupHistory":{"shape":"setupHistoryList"},
+        "nextPageToken":{"shape":"SetupHistoryPageToken"}
+      }
+    },
     "GetStaticIpRequest":{
       "type":"structure",
       "required":["staticIpName"],
@@ -6885,7 +6943,8 @@
         "SetResourceAccessForBucket",
         "UpdateInstanceMetadataOptions",
         "StartGUISession",
-        "StopGUISession"
+        "StopGUISession",
+        "SetupInstanceHttps"
       ]
     },
     "Origin":{
@@ -7558,6 +7617,97 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "SetupDomainName":{
+      "type":"string",
+      "max":253,
+      "min":4,
+      "pattern":"^[a-zA-Z0-9\\-]{1,63}(\\.[a-zA-Z0-9\\-]{1,63}){0,8}(\\.[a-zA-Z]{2,63})$"
+    },
+    "SetupDomainNameList":{
+      "type":"list",
+      "member":{"shape":"SetupDomainName"},
+      "max":10,
+      "min":1
+    },
+    "SetupExecutionDetails":{
+      "type":"structure",
+      "members":{
+        "command":{"shape":"string"},
+        "dateTime":{"shape":"IsoDate"},
+        "name":{"shape":"NonEmptyString"},
+        "status":{"shape":"SetupStatus"},
+        "standardError":{"shape":"string"},
+        "standardOutput":{"shape":"string"},
+        "version":{"shape":"string"}
+      }
+    },
+    "SetupExecutionDetailsList":{
+      "type":"list",
+      "member":{"shape":"SetupExecutionDetails"}
+    },
+    "SetupHistory":{
+      "type":"structure",
+      "members":{
+        "operationId":{"shape":"NonEmptyString"},
+        "request":{"shape":"SetupRequest"},
+        "resource":{"shape":"SetupHistoryResource"},
+        "executionDetails":{"shape":"SetupExecutionDetailsList"},
+        "status":{"shape":"SetupStatus"}
+      }
+    },
+    "SetupHistoryPageToken":{
+      "type":"string",
+      "max":40,
+      "min":24,
+      "pattern":"^[A-Za-z0-9+/=]+$"
+    },
+    "SetupHistoryResource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "location":{"shape":"ResourceLocation"},
+        "resourceType":{"shape":"ResourceType"}
+      }
+    },
+    "SetupInstanceHttpsRequest":{
+      "type":"structure",
+      "required":[
+        "instanceName",
+        "emailAddress",
+        "domainNames",
+        "certificateProvider"
+      ],
+      "members":{
+        "instanceName":{"shape":"ResourceName"},
+        "emailAddress":{"shape":"EmailAddress"},
+        "domainNames":{"shape":"SetupDomainNameList"},
+        "certificateProvider":{"shape":"CertificateProvider"}
+      }
+    },
+    "SetupInstanceHttpsResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "SetupRequest":{
+      "type":"structure",
+      "members":{
+        "instanceName":{"shape":"ResourceName"},
+        "domainNames":{"shape":"SetupDomainNameList"},
+        "certificateProvider":{"shape":"CertificateProvider"}
+      }
+    },
+    "SetupStatus":{
+      "type":"string",
+      "enum":[
+        "succeeded",
+        "failed",
+        "inProgress"
+      ]
+    },
     "StartGUISessionRequest":{
       "type":"structure",
       "required":["resourceName"],
@@ -7990,6 +8140,10 @@
     "float":{"type":"float"},
     "integer":{"type":"integer"},
     "long":{"type":"long"},
+    "setupHistoryList":{
+      "type":"list",
+      "member":{"shape":"SetupHistory"}
+    },
     "string":{"type":"string"},
     "timestamp":{"type":"timestamp"}
   }

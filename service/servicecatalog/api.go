@@ -9501,6 +9501,11 @@ type AssociateServiceActionWithProvisioningArtifactInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
+	// A unique identifier that you provide to ensure idempotency. If multiple requests
+	// from the same Amazon Web Services account use the same idempotency token,
+	// the same response is returned for each repeated request.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// The product identifier. For example, prod-abcdzk7xy33qa.
 	//
 	// ProductId is a required field
@@ -9538,6 +9543,9 @@ func (s AssociateServiceActionWithProvisioningArtifactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociateServiceActionWithProvisioningArtifactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociateServiceActionWithProvisioningArtifactInput"}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
 	if s.ProductId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductId"))
 	}
@@ -9566,6 +9574,12 @@ func (s *AssociateServiceActionWithProvisioningArtifactInput) Validate() error {
 // SetAcceptLanguage sets the AcceptLanguage field's value.
 func (s *AssociateServiceActionWithProvisioningArtifactInput) SetAcceptLanguage(v string) *AssociateServiceActionWithProvisioningArtifactInput {
 	s.AcceptLanguage = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *AssociateServiceActionWithProvisioningArtifactInput) SetIdempotencyToken(v string) *AssociateServiceActionWithProvisioningArtifactInput {
+	s.IdempotencyToken = &v
 	return s
 }
 
@@ -10793,8 +10807,11 @@ type CreatePortfolioShareInput struct {
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
 
+	// This parameter is only supported for portfolios with an OrganizationalNode
+	// Type of ORGANIZATION or ORGANIZATIONAL_UNIT.
+	//
 	// Enables or disables Principal sharing when creating the portfolio share.
-	// If this flag is not provided, principal sharing is disabled.
+	// If you do not provide this flag, principal sharing is disabled.
 	//
 	// When you enable Principal Name Sharing for a portfolio share, the share recipient
 	// account end users with a principal that matches any of the associated IAM
@@ -12437,6 +12454,11 @@ type DeleteServiceActionInput struct {
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier that you provide to ensure idempotency. If multiple requests
+	// from the same Amazon Web Services account use the same idempotency token,
+	// the same response is returned for each repeated request.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
 // String returns the string representation.
@@ -12466,6 +12488,9 @@ func (s *DeleteServiceActionInput) Validate() error {
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12482,6 +12507,12 @@ func (s *DeleteServiceActionInput) SetAcceptLanguage(v string) *DeleteServiceAct
 // SetId sets the Id field's value.
 func (s *DeleteServiceActionInput) SetId(v string) *DeleteServiceActionInput {
 	s.Id = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *DeleteServiceActionInput) SetIdempotencyToken(v string) *DeleteServiceActionInput {
+	s.IdempotencyToken = &v
 	return s
 }
 
@@ -14948,6 +14979,11 @@ type DisassociateServiceActionFromProvisioningArtifactInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
+	// A unique identifier that you provide to ensure idempotency. If multiple requests
+	// from the same Amazon Web Services account use the same idempotency token,
+	// the same response is returned for each repeated request.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// The product identifier. For example, prod-abcdzk7xy33qa.
 	//
 	// ProductId is a required field
@@ -14985,6 +15021,9 @@ func (s DisassociateServiceActionFromProvisioningArtifactInput) GoString() strin
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DisassociateServiceActionFromProvisioningArtifactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DisassociateServiceActionFromProvisioningArtifactInput"}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
 	if s.ProductId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductId"))
 	}
@@ -15013,6 +15052,12 @@ func (s *DisassociateServiceActionFromProvisioningArtifactInput) Validate() erro
 // SetAcceptLanguage sets the AcceptLanguage field's value.
 func (s *DisassociateServiceActionFromProvisioningArtifactInput) SetAcceptLanguage(v string) *DisassociateServiceActionFromProvisioningArtifactInput {
 	s.AcceptLanguage = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *DisassociateServiceActionFromProvisioningArtifactInput) SetIdempotencyToken(v string) *DisassociateServiceActionFromProvisioningArtifactInput {
+	s.IdempotencyToken = &v
 	return s
 }
 

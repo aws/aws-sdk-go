@@ -1339,7 +1339,11 @@
         "ProductId":{"shape":"Id"},
         "ProvisioningArtifactId":{"shape":"Id"},
         "ServiceActionId":{"shape":"Id"},
-        "AcceptLanguage":{"shape":"AcceptLanguage"}
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
       }
     },
     "AssociateServiceActionWithProvisioningArtifactOutput":{
@@ -1834,7 +1838,11 @@
       "required":["Id"],
       "members":{
         "Id":{"shape":"Id"},
-        "AcceptLanguage":{"shape":"AcceptLanguage"}
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
       }
     },
     "DeleteServiceActionOutput":{
@@ -2219,7 +2227,11 @@
         "ProductId":{"shape":"Id"},
         "ProvisioningArtifactId":{"shape":"Id"},
         "ServiceActionId":{"shape":"Id"},
-        "AcceptLanguage":{"shape":"AcceptLanguage"}
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
       }
     },
     "DisassociateServiceActionFromProvisioningArtifactOutput":{

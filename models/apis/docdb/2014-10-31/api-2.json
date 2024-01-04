@@ -1594,7 +1594,9 @@
         "PromotionTier":{"shape":"IntegerOptional"},
         "DBInstanceArn":{"shape":"String"},
         "EnabledCloudwatchLogsExports":{"shape":"LogTypeList"},
-        "CertificateDetails":{"shape":"CertificateDetails"}
+        "CertificateDetails":{"shape":"CertificateDetails"},
+        "PerformanceInsightsEnabled":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"}
       },
       "wrapper":true
     },

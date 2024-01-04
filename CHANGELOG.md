@@ -1,3 +1,22 @@
+Release v1.49.15 (2024-01-04)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/docdb`: Updates service API and documentation
+  * Adding PerformanceInsightsEnabled and PerformanceInsightsKMSKeyId fields to DescribeDBInstances Response.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for managed instance draining which facilitates graceful termination of Amazon ECS instances.
+* `service/es`: Updates service API and documentation
+  * This release adds support for new or existing Amazon OpenSearch domains to enable TLS 1.3 or TLS 1.2 with perfect forward secrecy cipher suites for domain endpoints.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to set up an HTTPS endpoint on an instance.
+* `service/opensearch`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Adding support for provisioned throughput mode for SageMaker Feature Groups
+* `service/servicecatalog`: Updates service API and documentation
+  * Added Idempotency token support to Service Catalog  AssociateServiceActionWithProvisioningArtifact, DisassociateServiceActionFromProvisioningArtifact, DeleteServiceAction API
+
 Release v1.49.14 (2024-01-03)
 ===
 

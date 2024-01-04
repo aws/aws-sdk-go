@@ -552,6 +552,10 @@ type LightsailAPI interface {
 	GetRelationalDatabasesWithContext(aws.Context, *lightsail.GetRelationalDatabasesInput, ...request.Option) (*lightsail.GetRelationalDatabasesOutput, error)
 	GetRelationalDatabasesRequest(*lightsail.GetRelationalDatabasesInput) (*request.Request, *lightsail.GetRelationalDatabasesOutput)
 
+	GetSetupHistory(*lightsail.GetSetupHistoryInput) (*lightsail.GetSetupHistoryOutput, error)
+	GetSetupHistoryWithContext(aws.Context, *lightsail.GetSetupHistoryInput, ...request.Option) (*lightsail.GetSetupHistoryOutput, error)
+	GetSetupHistoryRequest(*lightsail.GetSetupHistoryInput) (*request.Request, *lightsail.GetSetupHistoryOutput)
+
 	GetStaticIp(*lightsail.GetStaticIpInput) (*lightsail.GetStaticIpOutput, error)
 	GetStaticIpWithContext(aws.Context, *lightsail.GetStaticIpInput, ...request.Option) (*lightsail.GetStaticIpOutput, error)
 	GetStaticIpRequest(*lightsail.GetStaticIpInput) (*request.Request, *lightsail.GetStaticIpOutput)
@@ -615,6 +619,10 @@ type LightsailAPI interface {
 	SetResourceAccessForBucket(*lightsail.SetResourceAccessForBucketInput) (*lightsail.SetResourceAccessForBucketOutput, error)
 	SetResourceAccessForBucketWithContext(aws.Context, *lightsail.SetResourceAccessForBucketInput, ...request.Option) (*lightsail.SetResourceAccessForBucketOutput, error)
 	SetResourceAccessForBucketRequest(*lightsail.SetResourceAccessForBucketInput) (*request.Request, *lightsail.SetResourceAccessForBucketOutput)
+
+	SetupInstanceHttps(*lightsail.SetupInstanceHttpsInput) (*lightsail.SetupInstanceHttpsOutput, error)
+	SetupInstanceHttpsWithContext(aws.Context, *lightsail.SetupInstanceHttpsInput, ...request.Option) (*lightsail.SetupInstanceHttpsOutput, error)
+	SetupInstanceHttpsRequest(*lightsail.SetupInstanceHttpsInput) (*request.Request, *lightsail.SetupInstanceHttpsOutput)
 
 	StartGUISession(*lightsail.StartGUISessionInput) (*lightsail.StartGUISessionOutput, error)
 	StartGUISessionWithContext(aws.Context, *lightsail.StartGUISessionInput, ...request.Option) (*lightsail.StartGUISessionOutput, error)

@@ -9747,11 +9747,14 @@ type DomainEndpointOptions struct {
 
 	// Specify the TLS security policy that needs to be applied to the HTTPS endpoint
 	// of Elasticsearch domain. It can be one of the following values:
-	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy which supports TLSv1.0
-	//    and higher.
+	//    * Policy-Min-TLS-1-0-2019-07: TLS security policy that supports TLS version
+	//    1.0 to TLS version 1.2
 	//
-	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy which supports only
-	//    TLSv1.2
+	//    * Policy-Min-TLS-1-2-2019-07: TLS security policy that supports only TLS
+	//    version 1.2
+	//
+	//    * Policy-Min-TLS-1-2-PFS-2023-10: TLS security policy that supports TLS
+	//    version 1.2 to TLS version 1.3 with perfect forward secrecy cipher suites
 	TLSSecurityPolicy *string `type:"string" enum:"TLSSecurityPolicy"`
 }
 
@@ -17128,6 +17131,9 @@ const (
 
 	// TLSSecurityPolicyPolicyMinTls12201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls12201907 = "Policy-Min-TLS-1-2-2019-07"
+
+	// TLSSecurityPolicyPolicyMinTls12Pfs202310 is a TLSSecurityPolicy enum value
+	TLSSecurityPolicyPolicyMinTls12Pfs202310 = "Policy-Min-TLS-1-2-PFS-2023-10"
 )
 
 // TLSSecurityPolicy_Values returns all elements of the TLSSecurityPolicy enum
@@ -17135,6 +17141,7 @@ func TLSSecurityPolicy_Values() []string {
 	return []string{
 		TLSSecurityPolicyPolicyMinTls10201907,
 		TLSSecurityPolicyPolicyMinTls12201907,
+		TLSSecurityPolicyPolicyMinTls12Pfs202310,
 	}
 }
 
