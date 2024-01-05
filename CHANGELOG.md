@@ -1,3 +1,16 @@
+Release v1.49.16 (2024-01-05)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/kms`: Updates service documentation
+  * Documentation updates for AWS Key Management Service (KMS).
+* `service/redshift-serverless`: Updates service documentation
+
+### SDK Bugs
+* The logging behavior in `aws/ec2metadata/token_provider.go` was updated: warnings about falling back to IMDSv1 are now logged only when LogLevel is set to `LogDebugWithDeprecated`.
+  * This change prevents unnecessary warnings when LogLevel is set to suppress messages.
+
 Release v1.49.15 (2024-01-04)
 ===
 
