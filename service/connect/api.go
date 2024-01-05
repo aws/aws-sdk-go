@@ -30597,7 +30597,11 @@ type Contact struct {
 	Channel *string `type:"string" enum:"Channel"`
 
 	// The description of the contact.
-	Description *string `type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Contact's
+	// String and GoString methods.
+	Description *string `type:"string" sensitive:"true"`
 
 	// The timestamp when the customer endpoint disconnected from Amazon Connect.
 	DisconnectTimestamp *time.Time `type:"timestamp"`
@@ -30631,7 +30635,11 @@ type Contact struct {
 	LastUpdateTimestamp *time.Time `type:"timestamp"`
 
 	// The name of the contact.
-	Name *string `type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Contact's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
 
 	// If this contact is not the first contact, this is the ID of the previous
 	// contact.
@@ -35138,7 +35146,11 @@ type CreateUserInput struct {
 	// The password for the user account. A password is required if you are using
 	// Amazon Connect for identity management. Otherwise, it is an error to include
 	// a password.
-	Password *string `type:"string"`
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
 
 	// The phone settings for the user.
 	//
@@ -35814,7 +35826,7 @@ func (s *CreateVocabularyOutput) SetVocabularyId(v string) *CreateVocabularyOutp
 
 // Contains credentials to use for federation.
 type Credentials struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// An access token generated for a federated user to access Amazon Connect.
 	//
@@ -45698,7 +45710,11 @@ type GetFederationTokenOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The credentials to use for federation.
-	Credentials *Credentials `type:"structure"`
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetFederationTokenOutput's
+	// String and GoString methods.
+	Credentials *Credentials `type:"structure" sensitive:"true"`
 
 	// The URL to sign into the user's instance.
 	SignInUrl *string `type:"string"`
@@ -66156,7 +66172,11 @@ type StartOutboundVoiceContactInput struct {
 
 	// A description of the voice contact that is shown to an agent in the Contact
 	// Control Panel (CCP).
-	Description *string `type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartOutboundVoiceContactInput's
+	// String and GoString methods.
+	Description *string `type:"string" sensitive:"true"`
 
 	// The phone number of the customer, in E.164 format.
 	//
@@ -66172,7 +66192,11 @@ type StartOutboundVoiceContactInput struct {
 
 	// The name of a voice contact that is shown to an agent in the Contact Control
 	// Panel (CCP).
-	Name *string `type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartOutboundVoiceContactInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
 
 	// The queue for the call. If you specify a queue, the phone displayed for caller
 	// ID is the phone number specified in the queue. If you do not specify a queue,
@@ -66403,7 +66427,11 @@ type StartTaskContactInput struct {
 
 	// A description of the task that is shown to an agent in the Contact Control
 	// Panel (CCP).
-	Description *string `type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartTaskContactInput's
+	// String and GoString methods.
+	Description *string `type:"string" sensitive:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
@@ -66415,8 +66443,12 @@ type StartTaskContactInput struct {
 	// The name of a task that is shown to an agent in the Contact Control Panel
 	// (CCP).
 	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartTaskContactInput's
+	// String and GoString methods.
+	//
 	// Name is a required field
-	Name *string `type:"string" required:"true"`
+	Name *string `type:"string" required:"true" sensitive:"true"`
 
 	// The identifier of the previous chat, voice, or task contact. Any updates
 	// to user-defined attributes to task contacts linked using the same PreviousContactID
@@ -66651,7 +66683,11 @@ type StartWebRTCContactInput struct {
 
 	// A description of the task that is shown to an agent in the Contact Control
 	// Panel (CCP).
-	Description *string `type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartWebRTCContactInput's
+	// String and GoString methods.
+	Description *string `type:"string" sensitive:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
@@ -70443,7 +70479,11 @@ type UpdateContactInput struct {
 	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
 
 	// The description of the contact.
-	Description *string `type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateContactInput's
+	// String and GoString methods.
+	Description *string `type:"string" sensitive:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
@@ -70453,7 +70493,11 @@ type UpdateContactInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
 	// The name of the contact.
-	Name *string `type:"string"`
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateContactInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
 
 	// Well-formed data on contact, shown to agents on Contact Control Panel (CCP).
 	References map[string]*Reference `type:"map"`
@@ -75561,15 +75605,27 @@ type UserIdentityInfo struct {
 
 	// The email address. If you are using SAML for identity management and include
 	// this parameter, an error is returned.
-	Email *string `type:"string"`
+	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfo's
+	// String and GoString methods.
+	Email *string `type:"string" sensitive:"true"`
 
 	// The first name. This is required if you are using Amazon Connect or SAML
 	// for identity management.
-	FirstName *string `min:"1" type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfo's
+	// String and GoString methods.
+	FirstName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The last name. This is required if you are using Amazon Connect or SAML for
 	// identity management.
-	LastName *string `min:"1" type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfo's
+	// String and GoString methods.
+	LastName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The user's mobile number.
 	Mobile *string `type:"string"`
@@ -75579,7 +75635,11 @@ type UserIdentityInfo struct {
 	// - to this email address instead of to their primary email address.
 	//
 	// Pattern: (?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}
-	SecondaryEmail *string `type:"string"`
+	//
+	// SecondaryEmail is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfo's
+	// String and GoString methods.
+	SecondaryEmail *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -75651,10 +75711,18 @@ type UserIdentityInfoLite struct {
 	_ struct{} `type:"structure"`
 
 	// The user's first name.
-	FirstName *string `min:"1" type:"string"`
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfoLite's
+	// String and GoString methods.
+	FirstName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The user's last name.
-	LastName *string `min:"1" type:"string"`
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UserIdentityInfoLite's
+	// String and GoString methods.
+	LastName *string `min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
