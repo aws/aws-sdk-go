@@ -1381,7 +1381,11 @@
           "shape":"BlockOverrideTtl",
           "box":true
         },
-        "Name":{"shape":"Name"}
+        "Name":{"shape":"Name"},
+        "Qtype":{
+          "shape":"Qtype",
+          "box":true
+        }
       }
     },
     "CreateFirewallRuleResponse":{
@@ -1563,7 +1567,8 @@
       ],
       "members":{
         "FirewallRuleGroupId":{"shape":"ResourceId"},
-        "FirewallDomainListId":{"shape":"ResourceId"}
+        "FirewallDomainListId":{"shape":"ResourceId"},
+        "Qtype":{"shape":"Qtype"}
       }
     },
     "DeleteFirewallRuleResponse":{
@@ -1824,7 +1829,8 @@
         "BlockOverrideTtl":{"shape":"Unsigned"},
         "CreatorRequestId":{"shape":"CreatorRequestId"},
         "CreationTime":{"shape":"Rfc3339TimeString"},
-        "ModificationTime":{"shape":"Rfc3339TimeString"}
+        "ModificationTime":{"shape":"Rfc3339TimeString"},
+        "Qtype":{"shape":"Qtype"}
       }
     },
     "FirewallRuleGroup":{
@@ -2800,6 +2806,11 @@
         "ReturnValue":{"shape":"Boolean"}
       }
     },
+    "Qtype":{
+      "type":"string",
+      "max":16,
+      "min":1
+    },
     "ResolverAutodefinedReverseStatus":{
       "type":"string",
       "enum":[
@@ -3342,7 +3353,8 @@
         "Name":{
           "shape":"Name",
           "box":true
-        }
+        },
+        "Qtype":{"shape":"Qtype"}
       }
     },
     "UpdateFirewallRuleResponse":{

@@ -11707,6 +11707,9 @@ type ProjectEnvironment struct {
 	//    * BUILD_GENERAL1_LARGE: Use up to 16 GB memory and 8 vCPUs for builds,
 	//    depending on your environment type.
 	//
+	//    * BUILD_GENERAL1_XLARGE: Use up to 70 GB memory and 36 vCPUs for builds,
+	//    depending on your environment type.
+	//
 	//    * BUILD_GENERAL1_2XLARGE: Use up to 145 GB memory, 72 vCPUs, and 824 GB
 	//    of SSD storage for builds. This compute type supports Docker images up
 	//    to 100 GB uncompressed.
@@ -16530,6 +16533,9 @@ const (
 	// ComputeTypeBuildGeneral1Large is a ComputeType enum value
 	ComputeTypeBuildGeneral1Large = "BUILD_GENERAL1_LARGE"
 
+	// ComputeTypeBuildGeneral1Xlarge is a ComputeType enum value
+	ComputeTypeBuildGeneral1Xlarge = "BUILD_GENERAL1_XLARGE"
+
 	// ComputeTypeBuildGeneral12xlarge is a ComputeType enum value
 	ComputeTypeBuildGeneral12xlarge = "BUILD_GENERAL1_2XLARGE"
 
@@ -16555,6 +16561,7 @@ func ComputeType_Values() []string {
 		ComputeTypeBuildGeneral1Small,
 		ComputeTypeBuildGeneral1Medium,
 		ComputeTypeBuildGeneral1Large,
+		ComputeTypeBuildGeneral1Xlarge,
 		ComputeTypeBuildGeneral12xlarge,
 		ComputeTypeBuildLambda1gb,
 		ComputeTypeBuildLambda2gb,

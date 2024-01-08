@@ -1,3 +1,13 @@
+Release v1.49.17 (2024-01-08)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Aws CodeBuild now supports new compute type BUILD_GENERAL1_XLARGE
+* `service/ec2`: Updates service API
+  * Amazon EC2 R7iz bare metal instances are powered by custom 4th generation Intel Xeon Scalable processors.
+* `service/route53resolver`: Updates service API and documentation
+
 Release v1.49.16 (2024-01-05)
 ===
 

@@ -8451,6 +8451,35 @@ type CreateFirewallRuleInput struct {
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
+
+	// The DNS query type you want the rule to evaluate. Allowed values are;
+	//
+	//    * A: Returns an IPv4 address.
+	//
+	//    * AAAA: Returns an Ipv6 address.
+	//
+	//    * CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+	//
+	//    * CNAME: Returns another domain name.
+	//
+	//    * DS: Record that identifies the DNSSEC signing key of a delegated zone.
+	//
+	//    * MX: Specifies mail servers.
+	//
+	//    * NAPTR: Regular-expression-based rewriting of domain names.
+	//
+	//    * NS: Authoritative name servers.
+	//
+	//    * PTR: Maps an IP address to a domain name.
+	//
+	//    * SOA: Start of authority record for the zone.
+	//
+	//    * SPF: Lists the servers authorized to send emails from a domain.
+	//
+	//    * SRV: Application specific values that identify servers.
+	//
+	//    * TXT: Verifies email senders and application-specific values.
+	Qtype *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8500,6 +8529,9 @@ func (s *CreateFirewallRuleInput) Validate() error {
 	}
 	if s.Priority == nil {
 		invalidParams.Add(request.NewErrParamRequired("Priority"))
+	}
+	if s.Qtype != nil && len(*s.Qtype) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qtype", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8565,6 +8597,12 @@ func (s *CreateFirewallRuleInput) SetName(v string) *CreateFirewallRuleInput {
 // SetPriority sets the Priority field's value.
 func (s *CreateFirewallRuleInput) SetPriority(v int64) *CreateFirewallRuleInput {
 	s.Priority = &v
+	return s
+}
+
+// SetQtype sets the Qtype field's value.
+func (s *CreateFirewallRuleInput) SetQtype(v string) *CreateFirewallRuleInput {
+	s.Qtype = &v
 	return s
 }
 
@@ -9530,6 +9568,36 @@ type DeleteFirewallRuleInput struct {
 	//
 	// FirewallRuleGroupId is a required field
 	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+
+	// The DNS query type that the rule you are deleting evaluates. Allowed values
+	// are;
+	//
+	//    * A: Returns an IPv4 address.
+	//
+	//    * AAAA: Returns an Ipv6 address.
+	//
+	//    * CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+	//
+	//    * CNAME: Returns another domain name.
+	//
+	//    * DS: Record that identifies the DNSSEC signing key of a delegated zone.
+	//
+	//    * MX: Specifies mail servers.
+	//
+	//    * NAPTR: Regular-expression-based rewriting of domain names.
+	//
+	//    * NS: Authoritative name servers.
+	//
+	//    * PTR: Maps an IP address to a domain name.
+	//
+	//    * SOA: Start of authority record for the zone.
+	//
+	//    * SPF: Lists the servers authorized to send emails from a domain.
+	//
+	//    * SRV: Application specific values that identify servers.
+	//
+	//    * TXT: Verifies email senders and application-specific values.
+	Qtype *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -9565,6 +9633,9 @@ func (s *DeleteFirewallRuleInput) Validate() error {
 	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
 	}
+	if s.Qtype != nil && len(*s.Qtype) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qtype", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9581,6 +9652,12 @@ func (s *DeleteFirewallRuleInput) SetFirewallDomainListId(v string) *DeleteFirew
 // SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
 func (s *DeleteFirewallRuleInput) SetFirewallRuleGroupId(v string) *DeleteFirewallRuleInput {
 	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetQtype sets the Qtype field's value.
+func (s *DeleteFirewallRuleInput) SetQtype(v string) *DeleteFirewallRuleInput {
+	s.Qtype = &v
 	return s
 }
 
@@ -10869,6 +10946,35 @@ type FirewallRule struct {
 	// the rule group. DNS Firewall processes the rules in a rule group by order
 	// of priority, starting from the lowest setting.
 	Priority *int64 `type:"integer"`
+
+	// The DNS query type you want the rule to evaluate. Allowed values are;
+	//
+	//    * A: Returns an IPv4 address.
+	//
+	//    * AAAA: Returns an Ipv6 address.
+	//
+	//    * CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+	//
+	//    * CNAME: Returns another domain name.
+	//
+	//    * DS: Record that identifies the DNSSEC signing key of a delegated zone.
+	//
+	//    * MX: Specifies mail servers.
+	//
+	//    * NAPTR: Regular-expression-based rewriting of domain names.
+	//
+	//    * NS: Authoritative name servers.
+	//
+	//    * PTR: Maps an IP address to a domain name.
+	//
+	//    * SOA: Start of authority record for the zone.
+	//
+	//    * SPF: Lists the servers authorized to send emails from a domain.
+	//
+	//    * SRV: Application specific values that identify servers.
+	//
+	//    * TXT: Verifies email senders and application-specific values.
+	Qtype *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -10958,6 +11064,12 @@ func (s *FirewallRule) SetName(v string) *FirewallRule {
 // SetPriority sets the Priority field's value.
 func (s *FirewallRule) SetPriority(v int64) *FirewallRule {
 	s.Priority = &v
+	return s
+}
+
+// SetQtype sets the Qtype field's value.
+func (s *FirewallRule) SetQtype(v string) *FirewallRule {
+	s.Qtype = &v
 	return s
 }
 
@@ -18319,6 +18431,35 @@ type UpdateFirewallRuleInput struct {
 	// use 100, 200, and so on. You can change the priority setting for the rules
 	// in a rule group at any time.
 	Priority *int64 `type:"integer"`
+
+	// The DNS query type you want the rule to evaluate. Allowed values are;
+	//
+	//    * A: Returns an IPv4 address.
+	//
+	//    * AAAA: Returns an Ipv6 address.
+	//
+	//    * CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+	//
+	//    * CNAME: Returns another domain name.
+	//
+	//    * DS: Record that identifies the DNSSEC signing key of a delegated zone.
+	//
+	//    * MX: Specifies mail servers.
+	//
+	//    * NAPTR: Regular-expression-based rewriting of domain names.
+	//
+	//    * NS: Authoritative name servers.
+	//
+	//    * PTR: Maps an IP address to a domain name.
+	//
+	//    * SOA: Start of authority record for the zone.
+	//
+	//    * SPF: Lists the servers authorized to send emails from a domain.
+	//
+	//    * SRV: Application specific values that identify servers.
+	//
+	//    * TXT: Verifies email senders and application-specific values.
+	Qtype *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -18356,6 +18497,9 @@ func (s *UpdateFirewallRuleInput) Validate() error {
 	}
 	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+	if s.Qtype != nil && len(*s.Qtype) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qtype", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -18415,6 +18559,12 @@ func (s *UpdateFirewallRuleInput) SetName(v string) *UpdateFirewallRuleInput {
 // SetPriority sets the Priority field's value.
 func (s *UpdateFirewallRuleInput) SetPriority(v int64) *UpdateFirewallRuleInput {
 	s.Priority = &v
+	return s
+}
+
+// SetQtype sets the Qtype field's value.
+func (s *UpdateFirewallRuleInput) SetQtype(v string) *UpdateFirewallRuleInput {
+	s.Qtype = &v
 	return s
 }
 
