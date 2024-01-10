@@ -15484,6 +15484,14 @@ func (s *ListTrackersResponseEntry) SetUpdateTime(v time.Time) *ListTrackersResp
 type MapConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the custom layers for the style. Leave unset to not enable any
+	// custom layer, or, for styles that support custom layers, you can enable layer(s),
+	// such as POI layer for the VectorEsriNavigation style. Default is unset.
+	//
+	// Not all map resources or styles support custom layers. See Custom Layers
+	// for more information.
+	CustomLayers []*string `type:"list"`
+
 	// Specifies the political view for the style. Leave unset to not use a political
 	// view, or, for styles that support specific political views, you can choose
 	// a view, such as IND for the Indian view.
@@ -15629,6 +15637,12 @@ func (s *MapConfiguration) Validate() error {
 	return nil
 }
 
+// SetCustomLayers sets the CustomLayers field's value.
+func (s *MapConfiguration) SetCustomLayers(v []*string) *MapConfiguration {
+	s.CustomLayers = v
+	return s
+}
+
 // SetPoliticalView sets the PoliticalView field's value.
 func (s *MapConfiguration) SetPoliticalView(v string) *MapConfiguration {
 	s.PoliticalView = &v
@@ -15644,6 +15658,14 @@ func (s *MapConfiguration) SetStyle(v string) *MapConfiguration {
 // Specifies the political view for the style.
 type MapConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies the custom layers for the style. Leave unset to not enable any
+	// custom layer, or, for styles that support custom layers, you can enable layer(s),
+	// such as POI layer for the VectorEsriNavigation style. Default is unset.
+	//
+	// Not all map resources or styles support custom layers. See Custom Layers
+	// for more information.
+	CustomLayers []*string `type:"list"`
 
 	// Specifies the political view for the style. Set to an empty string to not
 	// use a political view, or, for styles that support specific political views,
@@ -15671,6 +15693,12 @@ func (s MapConfigurationUpdate) String() string {
 // value will be replaced with "sensitive".
 func (s MapConfigurationUpdate) GoString() string {
 	return s.String()
+}
+
+// SetCustomLayers sets the CustomLayers field's value.
+func (s *MapConfigurationUpdate) SetCustomLayers(v []*string) *MapConfigurationUpdate {
+	s.CustomLayers = v
+	return s
 }
 
 // SetPoliticalView sets the PoliticalView field's value.

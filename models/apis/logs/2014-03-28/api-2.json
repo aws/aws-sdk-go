@@ -1128,6 +1128,7 @@
         "lastUpdatedTime":{"shape":"Timestamp"},
         "policyType":{"shape":"PolicyType"},
         "scope":{"shape":"Scope"},
+        "selectionCriteria":{"shape":"SelectionCriteria"},
         "accountId":{"shape":"AccountId"}
       }
     },
@@ -2612,7 +2613,10 @@
     "PolicyName":{"type":"string"},
     "PolicyType":{
       "type":"string",
-      "enum":["DATA_PROTECTION_POLICY"]
+      "enum":[
+        "DATA_PROTECTION_POLICY",
+        "SUBSCRIPTION_FILTER_POLICY"
+      ]
     },
     "Priority":{
       "type":"string",
@@ -2629,7 +2633,8 @@
         "policyName":{"shape":"PolicyName"},
         "policyDocument":{"shape":"AccountPolicyDocument"},
         "policyType":{"shape":"PolicyType"},
-        "scope":{"shape":"Scope"}
+        "scope":{"shape":"Scope"},
+        "selectionCriteria":{"shape":"SelectionCriteria"}
       }
     },
     "PutAccountPolicyResponse":{
@@ -3014,6 +3019,7 @@
       "type":"list",
       "member":{"shape":"SearchedLogStream"}
     },
+    "SelectionCriteria":{"type":"string"},
     "SequenceToken":{
       "type":"string",
       "min":1

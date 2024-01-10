@@ -609,6 +609,19 @@
       "refs": {
       }
     },
+    "CustomLayer": {
+      "base": null,
+      "refs": {
+        "CustomLayerList$member": null
+      }
+    },
+    "CustomLayerList": {
+      "base": null,
+      "refs": {
+        "MapConfiguration$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as POI layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Not all map resources or styles support custom layers. See Custom Layers for more information.</p> </note>",
+        "MapConfigurationUpdate$CustomLayers": "<p>Specifies the custom layers for the style. Leave unset to not enable any custom layer, or, for styles that support custom layers, you can enable layer(s), such as POI layer for the VectorEsriNavigation style. Default is <code>unset</code>.</p> <note> <p>Not all map resources or styles support custom layers. See Custom Layers for more information.</p> </note>"
+      }
+    },
     "DataSourceConfiguration": {
       "base": "<p>Specifies the data storage option chosen for requesting Places.</p> <important> <p>When using Amazon Location Places:</p> <ul> <li> <p>If using HERE Technologies as a data provider, you can't store results for locations in Japan by setting <code>IntendedUse</code> to <code>Storage</code>. parameter.</p> </li> <li> <p>Under the <code>MobileAssetTracking</code> or <code>MobilAssetManagement</code> pricing plan, you can't store results from your place index resources by setting <code>IntendedUse</code> to <code>Storage</code>. This returns a validation exception error.</p> </li> </ul> <p>For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </important>",
       "refs": {

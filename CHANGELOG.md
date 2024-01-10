@@ -1,3 +1,17 @@
+Release v1.49.18 (2024-01-10)
+===
+
+### Service Client Updates
+* `service/connectcampaigns`: Updates service API
+* `service/location`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * Add support for account level subscription filter policies to PutAccountPolicy, DescribeAccountPolicies, and DeleteAccountPolicy APIs. Additionally, PutAccountPolicy has been modified with new optional "selectionCriteria" parameter for resource selection.
+* `service/qconnect`: Updates service API
+* `service/redshift-serverless`: Updates service documentation
+* `service/route53`: Updates service API and documentation
+  * Route53 now supports geoproximity routing in AWS regions
+* `service/wisdom`: Updates service API
+
 Release v1.49.17 (2024-01-08)
 ===
 

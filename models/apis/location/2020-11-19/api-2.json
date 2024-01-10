@@ -1932,6 +1932,18 @@
         "TrackerName":{"shape":"ResourceName"}
       }
     },
+    "CustomLayer":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[-._\\w]+$"
+    },
+    "CustomLayerList":{
+      "type":"list",
+      "member":{"shape":"CustomLayer"},
+      "max":10,
+      "min":0
+    },
     "DataSourceConfiguration":{
       "type":"structure",
       "members":{
@@ -3232,6 +3244,7 @@
       "type":"structure",
       "required":["Style"],
       "members":{
+        "CustomLayers":{"shape":"CustomLayerList"},
         "PoliticalView":{"shape":"CountryCode3"},
         "Style":{"shape":"MapStyle"}
       }
@@ -3239,6 +3252,7 @@
     "MapConfigurationUpdate":{
       "type":"structure",
       "members":{
+        "CustomLayers":{"shape":"CustomLayerList"},
         "PoliticalView":{"shape":"CountryCode3OrEmpty"}
       }
     },
