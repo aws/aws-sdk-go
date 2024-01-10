@@ -1126,6 +1126,11 @@
       "pattern":".*\\S.*"
     },
     "AWSAccountID":{"type":"string"},
+    "AWSRegion":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "AccountLimit":{
       "type":"structure",
       "required":[
@@ -1226,6 +1231,11 @@
       "members":{
         "ChangeInfo":{"shape":"ChangeInfo"}
       }
+    },
+    "Bias":{
+      "type":"integer",
+      "max":99,
+      "min":-99
     },
     "Change":{
       "type":"structure",
@@ -1612,6 +1622,17 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Coordinates":{
+      "type":"structure",
+      "required":[
+        "Latitude",
+        "Longitude"
+      ],
+      "members":{
+        "Latitude":{"shape":"Latitude"},
+        "Longitude":{"shape":"Longitude"}
+      }
     },
     "CreateCidrCollectionRequest":{
       "type":"structure",
@@ -2329,6 +2350,15 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "GeoProximityLocation":{
+      "type":"structure",
+      "members":{
+        "AWSRegion":{"shape":"AWSRegion"},
+        "LocalZoneGroup":{"shape":"LocalZoneGroup"},
+        "Coordinates":{"shape":"Coordinates"},
+        "Bias":{"shape":"Bias"}
+      }
     },
     "GetAccountLimitRequest":{
       "type":"structure",
@@ -3127,6 +3157,12 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Latitude":{
+      "type":"string",
+      "max":6,
+      "min":1,
+      "pattern":"[-+]?[0-9]{1,2}(\\.[0-9]{0,2})?"
+    },
     "LimitValue":{
       "type":"long",
       "min":1
@@ -3809,6 +3845,11 @@
         "VPCs":{"shape":"VPCs"}
       }
     },
+    "LocalZoneGroup":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "LocationSummaries":{
       "type":"list",
       "member":{"shape":"LocationSummary"}
@@ -3818,6 +3859,12 @@
       "members":{
         "LocationName":{"shape":"CidrLocationNameDefaultAllowed"}
       }
+    },
+    "Longitude":{
+      "type":"string",
+      "max":7,
+      "min":1,
+      "pattern":"[-+]?[0-9]{1,3}(\\.[0-9]{0,2})?"
     },
     "MaxResults":{"type":"string"},
     "MeasureLatency":{"type":"boolean"},
@@ -4113,7 +4160,8 @@
         "AliasTarget":{"shape":"AliasTarget"},
         "HealthCheckId":{"shape":"HealthCheckId"},
         "TrafficPolicyInstanceId":{"shape":"TrafficPolicyInstanceId"},
-        "CidrRoutingConfig":{"shape":"CidrRoutingConfig"}
+        "CidrRoutingConfig":{"shape":"CidrRoutingConfig"},
+        "GeoProximityLocation":{"shape":"GeoProximityLocation"}
       }
     },
     "ResourceRecordSetFailover":{

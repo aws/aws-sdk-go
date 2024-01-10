@@ -1754,7 +1754,12 @@ const opGetRecommendations = "GetRecommendations"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/GetRecommendations
+//
+// Deprecated: GetRecommendations API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) GetRecommendationsRequest(input *GetRecommendationsInput) (req *request.Request, output *GetRecommendationsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetRecommendations, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetRecommendations,
 		HTTPMethod: "GET",
@@ -1799,6 +1804,8 @@ func (c *QConnect) GetRecommendationsRequest(input *GetRecommendationsInput) (re
 //     The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/GetRecommendations
+//
+// Deprecated: GetRecommendations API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) GetRecommendations(input *GetRecommendationsInput) (*GetRecommendationsOutput, error) {
 	req, out := c.GetRecommendationsRequest(input)
 	return out, req.Send()
@@ -1813,6 +1820,8 @@ func (c *QConnect) GetRecommendations(input *GetRecommendationsInput) (*GetRecom
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: GetRecommendations API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) GetRecommendationsWithContext(ctx aws.Context, input *GetRecommendationsInput, opts ...request.Option) (*GetRecommendationsOutput, error) {
 	req, out := c.GetRecommendationsRequest(input)
 	req.SetContext(ctx)
@@ -3026,7 +3035,12 @@ const opQueryAssistant = "QueryAssistant"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/QueryAssistant
+//
+// Deprecated: QueryAssistant API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) QueryAssistantRequest(input *QueryAssistantInput) (req *request.Request, output *QueryAssistantOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, QueryAssistant, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opQueryAssistant,
 		HTTPMethod: "POST",
@@ -3078,6 +3092,8 @@ func (c *QConnect) QueryAssistantRequest(input *QueryAssistantInput) (req *reque
 //     The specified resource does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qconnect-2020-10-19/QueryAssistant
+//
+// Deprecated: QueryAssistant API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) QueryAssistant(input *QueryAssistantInput) (*QueryAssistantOutput, error) {
 	req, out := c.QueryAssistantRequest(input)
 	return out, req.Send()
@@ -3092,6 +3108,8 @@ func (c *QConnect) QueryAssistant(input *QueryAssistantInput) (*QueryAssistantOu
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: QueryAssistant API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) QueryAssistantWithContext(ctx aws.Context, input *QueryAssistantInput, opts ...request.Option) (*QueryAssistantOutput, error) {
 	req, out := c.QueryAssistantRequest(input)
 	req.SetContext(ctx)
@@ -3115,6 +3133,8 @@ func (c *QConnect) QueryAssistantWithContext(ctx aws.Context, input *QueryAssist
 //	        fmt.Println(page)
 //	        return pageNum <= 3
 //	    })
+//
+// Deprecated: QueryAssistant API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) QueryAssistantPages(input *QueryAssistantInput, fn func(*QueryAssistantOutput, bool) bool) error {
 	return c.QueryAssistantPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -3126,6 +3146,8 @@ func (c *QConnect) QueryAssistantPages(input *QueryAssistantInput, fn func(*Quer
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: QueryAssistant API will be discontinued starting June 1, 2024. To receive generative responses after March 1, 2024 you will need to create a new Assistant in the Connect console and integrate the Amazon Q in Connect JavaScript library (amazon-q-connectjs) into your applications.
 func (c *QConnect) QueryAssistantPagesWithContext(ctx aws.Context, input *QueryAssistantInput, fn func(*QueryAssistantOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
