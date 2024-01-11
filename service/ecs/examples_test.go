@@ -1278,6 +1278,8 @@ func ExampleECS_UpdateService_shared00() {
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
 			case ecs.ErrCodeNamespaceNotFoundException:
 				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1325,6 +1327,8 @@ func ExampleECS_UpdateService_shared01() {
 				fmt.Println(ecs.ErrCodeAccessDeniedException, aerr.Error())
 			case ecs.ErrCodeNamespaceNotFoundException:
 				fmt.Println(ecs.ErrCodeNamespaceNotFoundException, aerr.Error())
+			case ecs.ErrCodeUnsupportedFeatureException:
+				fmt.Println(ecs.ErrCodeUnsupportedFeatureException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

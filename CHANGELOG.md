@@ -1,3 +1,20 @@
+Release v1.49.19 (2024-01-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for adding an ElasticBlockStorage volume configurations in ECS RunTask/StartTask/CreateService/UpdateService APIs. The configuration allows for attaching EBS volumes to ECS Tasks.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for adding an ElasticBlockStorage volume configurations in ECS RunTask/StartTask/CreateService/UpdateService APIs. The configuration allows for attaching EBS volumes to ECS Tasks.
+* `service/eventbridge`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * Add ConflictException to Update APIs of AWS IoT Software Package Catalog
+* `service/iotfleetwise`: Updates service API
+* `service/secretsmanager`: Updates service documentation and examples
+  * Doc only update for Secrets Manager
+* `service/workspaces`: Updates service documentation
+  * Added AWS Workspaces RebootWorkspaces API - Extended Reboot documentation update
+
 Release v1.49.18 (2024-01-10)
 ===
 

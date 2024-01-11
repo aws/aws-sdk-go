@@ -25,6 +25,48 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
+// To retrieve the secret values for a group of secrets listed by name
+// The following example gets the values for three secrets.
+func ExampleSecretsManager_BatchGetSecretValue_shared00() {
+	svc := secretsmanager.New(session.New())
+	input := &secretsmanager.BatchGetSecretValueInput{
+		SecretIdList: []*string{
+			aws.String("MySecret1"),
+			aws.String("MySecret2"),
+			aws.String("MySecret3"),
+		},
+	}
+
+	result, err := svc.BatchGetSecretValue(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case secretsmanager.ErrCodeResourceNotFoundException:
+				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidRequestException:
+				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
+			case secretsmanager.ErrCodeDecryptionFailure:
+				fmt.Println(secretsmanager.ErrCodeDecryptionFailure, aerr.Error())
+			case secretsmanager.ErrCodeInternalServiceError:
+				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodeInvalidNextTokenException:
+				fmt.Println(secretsmanager.ErrCodeInvalidNextTokenException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To cancel scheduled rotation for a secret
 // The following example shows how to cancel rotation for a secret. The operation sets
 // the RotationEnabled field to false and cancels all scheduled rotations. To resume
