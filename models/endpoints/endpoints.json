@@ -26547,6 +26547,15 @@
           "us-iso-east-1" : { }
         }
       },
+      "guardduty" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        },
+        "isRegionalized" : true
+      },
       "health" : {
         "endpoints" : {
           "us-iso-east-1" : { }

@@ -147,6 +147,12 @@
         "UpdateApiDestinationResponse$ApiDestinationState": "<p>The state of the API destination that was updated.</p>"
       }
     },
+    "AppSyncParameters": {
+      "base": "<p>Contains the GraphQL operation to be parsed and executed, if the event target is an AppSync API.</p>",
+      "refs": {
+        "Target$AppSyncParameters": "<p>Contains the GraphQL operation to be parsed and executed, if the event target is an AppSync API.</p>"
+      }
+    },
     "Archive": {
       "base": "<p>An <code>Archive</code> object that contains details about an archive.</p>",
       "refs": {
@@ -1033,6 +1039,12 @@
         "RoutingConfig$FailoverConfig": "<p>The failover configuration for an endpoint. This includes what triggers failover and what happens when it's triggered.</p>"
       }
     },
+    "GraphQLOperation": {
+      "base": null,
+      "refs": {
+        "AppSyncParameters$GraphQLOperation": "<p>The GraphQL operation; that is, the query, mutation, or subscription to be parsed and executed by the GraphQL service.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appsync/latest/devguide/graphql-architecture.html#graphql-operations\">Operations</a> in the <i>AppSync User Guide</i>.</p>"
+      }
+    },
     "HeaderKey": {
       "base": null,
       "refs": {
@@ -1898,8 +1910,8 @@
       "base": null,
       "refs": {
         "DescribeRuleResponse$State": "<p>Specifies whether the rule is enabled or disabled.</p>",
-        "PutRuleRequest$State": "<p>The state of the rule.</p> <p>Valid values include:</p> <ul> <li> <p> <code>DISABLED</code>: The rule is disabled. EventBridge does not match any events against the rule.</p> </li> <li> <p> <code>ENABLED</code>: The rule is enabled. EventBridge matches events against the rule, <i>except</i> for Amazon Web Services management events delivered through CloudTrail.</p> </li> <li> <p> <code>ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS</code>: The rule is enabled for all events, including Amazon Web Services management events delivered through CloudTrail.</p> <p>Management events provide visibility into management operations that are performed on resources in your Amazon Web Services account. These are also known as control plane operations. For more information, see <a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html#logging-management-events\">Logging management events</a> in the <i>CloudTrail User Guide</i>, and <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event.html#eb-service-event-cloudtrail\">Filtering management events from Amazon Web Services services</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>This value is only valid for rules on the <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html#eb-bus-concepts-buses\">default</a> event bus or <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-event-bus.html\">custom event buses</a>. It does not apply to <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-saas.html\">partner event buses</a>.</p> </li> </ul>",
-        "Rule$State": "<p>The state of the rule.</p> <p>Valid values include:</p> <ul> <li> <p> <code>DISABLED</code>: The rule is disabled. EventBridge does not match any events against the rule.</p> </li> <li> <p> <code>ENABLED</code>: The rule is enabled. EventBridge matches events against the rule, <i>except</i> for Amazon Web Services management events delivered through CloudTrail.</p> </li> <li> <p> <code>ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS</code>: The rule is enabled for all events, including Amazon Web Services management events delivered through CloudTrail.</p> <p>Management events provide visibility into management operations that are performed on resources in your Amazon Web Services account. These are also known as control plane operations. For more information, see <a href=\"https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html#logging-management-events\">Logging management events</a> in the <i>CloudTrail User Guide</i>, and <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event.html#eb-service-event-cloudtrail\">Filtering management events from Amazon Web Services services</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>This value is only valid for rules on the <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is-how-it-works-concepts.html#eb-bus-concepts-buses\">default</a> event bus or <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-event-bus.html\">custom event buses</a>. It does not apply to <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-saas.html\">partner event buses</a>.</p> </li> </ul>"
+        "PutRuleRequest$State": "<p>Indicates whether the rule is enabled or disabled.</p>",
+        "Rule$State": "<p>The state of the rule.</p>"
       }
     },
     "RunCommandParameters": {

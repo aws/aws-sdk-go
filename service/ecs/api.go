@@ -283,6 +283,12 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // service. For more information, see Service load balancing (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
+// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the
+// volume when creating or updating a service. volumeConfigurations is only
+// supported for REPLICA service and not DAEMON service. For more infomation,
+// see Amazon EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide.
+//
 // Tasks for services that don't use a load balancer are considered healthy
 // if they're in the RUNNING state. Tasks for services that use a load balancer
 // are considered healthy if they're in the RUNNING state and are reported as
@@ -4648,6 +4654,11 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 // customers who have used Amazon EI at least once during the past 30-day period
 // are considered current customers and will be able to continue using the service.
 //
+// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the
+// volume when creating or updating a service. For more infomation, see Amazon
+// EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide.
+//
 // The Amazon ECS API follows an eventual consistency model. This is because
 // of the distributed nature of the system supporting the API. This means that
 // the result of an API command you run that affects your Amazon ECS resources
@@ -4803,6 +4814,11 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 // see Scheduling Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduling_tasks.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
+// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the
+// volume when creating or updating a service. For more infomation, see Amazon
+// EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4828,6 +4844,9 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 //   - ClusterNotFoundException
 //     The specified cluster wasn't found. You can view your available clusters
 //     with ListClusters. Amazon ECS clusters are Region specific.
+//
+//   - UnsupportedFeatureException
+//     The specified task isn't supported in this Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StartTask
 func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
@@ -6034,6 +6053,16 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // constraints and strategies, and task definition. When you update any of these
 // parameters, Amazon ECS starts new tasks with the new configuration.
 //
+// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the
+// volume when starting or running a task, or when creating or updating a service.
+// For more infomation, see Amazon EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide. You can update your
+// volume configurations and trigger a new deployment. volumeConfigurations
+// is only supported for REPLICA service and not DAEMON service. If you leave
+// volumeConfigurations null, it doesn't trigger a new deployment. For more
+// infomation on volumes, see Amazon EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide.
+//
 // For services using the blue/green (CODE_DEPLOY) deployment controller, only
 // the desired count, deployment configuration, health check grace period, task
 // placement constraints and strategies, enable ECS managed tags option, and
@@ -6053,7 +6082,12 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // in a service by specifying the cluster that the service is running in and
 // a new desiredCount parameter.
 //
-// If you have updated the Docker image of your application, you can create
+// You can attach Amazon EBS volumes to Amazon ECS tasks by configuring the
+// volume when starting or running a task, or when creating or updating a service.
+// For more infomation, see Amazon EBS volumes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types)
+// in the Amazon Elastic Container Service Developer Guide.
+//
+// If you have updated the container image of your application, you can create
 // a new task definition with that image and deploy it to your service. The
 // service scheduler uses the minimum healthy percent and maximum percent parameters
 // (in the service's deployment configuration) to determine the deployment strategy.
@@ -6176,6 +6210,9 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //
 //   - NamespaceNotFoundException
 //     The specified namespace wasn't found.
+//
+//   - UnsupportedFeatureException
+//     The specified task isn't supported in this Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateService
 func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {
@@ -6624,9 +6661,17 @@ func (s *AccessDeniedException) RequestID() string {
 type Attachment struct {
 	_ struct{} `type:"structure"`
 
-	// Details of the attachment. For elastic network interfaces, this includes
-	// the network interface ID, the MAC address, the subnet ID, and the private
-	// IPv4 address.
+	// Details of the attachment.
+	//
+	// For elastic network interfaces, this includes the network interface ID, the
+	// MAC address, the subnet ID, and the private IPv4 address.
+	//
+	// For Service Connect services, this includes portName, clientAliases, discoveryName,
+	// and ingressPortOverride.
+	//
+	// For elastic block storage, this includes roleArn, encrypted, filesystemType,
+	// iops, kmsKeyId, sizeInGiB, snapshotId, tagSpecifications, throughput, and
+	// volumeType.
 	Details []*KeyValuePair `locationName:"details" type:"list"`
 
 	// The unique identifier for the attachment.
@@ -6636,7 +6681,8 @@ type Attachment struct {
 	// ATTACHED, DETACHING, DETACHED, DELETED, and FAILED.
 	Status *string `locationName:"status" type:"string"`
 
-	// The type of the attachment, such as ElasticNetworkInterface.
+	// The type of the attachment, such as ElasticNetworkInterface, Service Connect,
+	// and AmazonElasticBlockStorage.
 	Type *string `locationName:"type" type:"string"`
 }
 
@@ -6906,8 +6952,6 @@ type AutoScalingGroupProvider struct {
 	// The managed draining option for the Auto Scaling group capacity provider.
 	// When you enable this, Amazon ECS manages and gracefully drains the EC2 container
 	// instances that are in the Auto Scaling group capacity provider.
-	//
-	// The default is ENABLED.
 	ManagedDraining *string `locationName:"managedDraining" type:"string" enum:"ManagedDraining"`
 
 	// The managed scaling settings for the Auto Scaling group capacity provider.
@@ -6999,8 +7043,6 @@ type AutoScalingGroupProviderUpdate struct {
 	// The managed draining option for the Auto Scaling group capacity provider.
 	// When you enable this, Amazon ECS manages and gracefully drains the EC2 container
 	// instances that are in the Auto Scaling group capacity provider.
-	//
-	// The default is ENABLED.
 	ManagedDraining *string `locationName:"managedDraining" type:"string" enum:"ManagedDraining"`
 
 	// The managed scaling settings for the Auto Scaling group capacity provider.
@@ -10803,6 +10845,11 @@ type CreateServiceInput struct {
 	// For more information about deployment types, see Amazon ECS deployment types
 	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html).
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	// The configuration for a volume specified in the task definition as a volume
+	// that is configured at launch time. Currently, the only supported volume type
+	// is an Amazon EBS volume.
+	VolumeConfigurations []*ServiceVolumeConfiguration `locationName:"volumeConfigurations" type:"list"`
 }
 
 // String returns the string representation.
@@ -10866,6 +10913,16 @@ func (s *CreateServiceInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VolumeConfigurations != nil {
+		for i, v := range s.VolumeConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VolumeConfigurations", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -11011,6 +11068,12 @@ func (s *CreateServiceInput) SetTags(v []*Tag) *CreateServiceInput {
 // SetTaskDefinition sets the TaskDefinition field's value.
 func (s *CreateServiceInput) SetTaskDefinition(v string) *CreateServiceInput {
 	s.TaskDefinition = &v
+	return s
+}
+
+// SetVolumeConfigurations sets the VolumeConfigurations field's value.
+func (s *CreateServiceInput) SetVolumeConfigurations(v []*ServiceVolumeConfiguration) *CreateServiceInput {
+	s.VolumeConfigurations = v
 	return s
 }
 
@@ -12113,6 +12176,12 @@ type Deployment struct {
 
 	// The Unix timestamp for the time when the service deployment was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
+
+	// The details of the volume that was configuredAtLaunch. You can configure
+	// different settings like the size, throughput, volumeType, and ecryption in
+	// ServiceManagedEBSVolumeConfiguration (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html).
+	// The name of the volume must match the name from the task definition.
+	VolumeConfigurations []*ServiceVolumeConfiguration `locationName:"volumeConfigurations" type:"list"`
 }
 
 // String returns the string representation.
@@ -12238,6 +12307,12 @@ func (s *Deployment) SetTaskDefinition(v string) *Deployment {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *Deployment) SetUpdatedAt(v time.Time) *Deployment {
 	s.UpdatedAt = &v
+	return s
+}
+
+// SetVolumeConfigurations sets the VolumeConfigurations field's value.
+func (s *Deployment) SetVolumeConfigurations(v []*ServiceVolumeConfiguration) *Deployment {
+	s.VolumeConfigurations = v
 	return s
 }
 
@@ -13861,6 +13936,84 @@ func (s *DockerVolumeConfiguration) SetLabels(v map[string]*string) *DockerVolum
 // SetScope sets the Scope field's value.
 func (s *DockerVolumeConfiguration) SetScope(v string) *DockerVolumeConfiguration {
 	s.Scope = &v
+	return s
+}
+
+// The tag specifications of an Amazon EBS volume.
+type EBSTagSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether to propagate the tags from the task definition to the
+	// Amazon EBS volume. Tags can only propagate to a SERVICE specified in ServiceVolumeConfiguration.
+	// If no value is specified, the tags aren't propagated.
+	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
+
+	// The type of volume resource.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"EBSResourceType"`
+
+	// The tags applied to this Amazon EBS volume. AmazonECSCreated and AmazonECSManaged
+	// are reserved tags that can't be used.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSTagSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EBSTagSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EBSTagSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EBSTagSpecification"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPropagateTags sets the PropagateTags field's value.
+func (s *EBSTagSpecification) SetPropagateTags(v string) *EBSTagSpecification {
+	s.PropagateTags = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *EBSTagSpecification) SetResourceType(v string) *EBSTagSpecification {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EBSTagSpecification) SetTags(v []*Tag) *EBSTagSpecification {
+	s.Tags = v
 	return s
 }
 
@@ -20420,6 +20573,12 @@ type RunTaskInput struct {
 	//
 	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
+
+	// The details of the volume that was configuredAtLaunch. You can configure
+	// the size, volumeType, IOPS, throughput, snapshot and encryption in in TaskManagedEBSVolumeConfiguration
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskManagedEBSVolumeConfiguration.html).
+	// The name of the volume must match the name from the task definition.
+	VolumeConfigurations []*TaskVolumeConfiguration `locationName:"volumeConfigurations" type:"list"`
 }
 
 // String returns the string representation.
@@ -20473,6 +20632,16 @@ func (s *RunTaskInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VolumeConfigurations != nil {
+		for i, v := range s.VolumeConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VolumeConfigurations", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -20588,6 +20757,12 @@ func (s *RunTaskInput) SetTags(v []*Tag) *RunTaskInput {
 // SetTaskDefinition sets the TaskDefinition field's value.
 func (s *RunTaskInput) SetTaskDefinition(v string) *RunTaskInput {
 	s.TaskDefinition = &v
+	return s
+}
+
+// SetVolumeConfigurations sets the VolumeConfigurations field's value.
+func (s *RunTaskInput) SetVolumeConfigurations(v []*TaskVolumeConfiguration) *RunTaskInput {
+	s.VolumeConfigurations = v
 	return s
 }
 
@@ -21715,6 +21890,233 @@ func (s *ServiceEvent) SetMessage(v string) *ServiceEvent {
 	return s
 }
 
+// The configuration for the Amazon EBS volume that Amazon ECS creates and manages
+// on your behalf. These settings are used to create each Amazon EBS volume,
+// with one volume created for each task in the service.
+//
+// Many of these parameters map 1:1 with the Amazon EBS CreateVolume API request
+// parameters.
+type ServiceManagedEBSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the volume should be encrypted. If no value is specified,
+	// encryption is turned on by default. This parameter maps 1:1 with the Encrypted
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The Linux filesystem type for the volume. For volumes created from a snapshot,
+	// you must specify the same filesystem type that the volume was using when
+	// the snapshot was created. If there is a filesystem type mismatch, the task
+	// will fail to start.
+	//
+	// The available filesystem types are ext3, ext4, and xfs. If no value is specified,
+	// the xfs filesystem type is used by default.
+	FilesystemType *string `locationName:"filesystemType" type:"string" enum:"TaskFilesystemType"`
+
+	// The number of I/O operations per second (IOPS). For gp3, io1, and io2 volumes,
+	// this represents the number of IOPS that are provisioned for the volume. For
+	// gp2 volumes, this represents the baseline performance of the volume and the
+	// rate at which the volume accumulates I/O credits for bursting.
+	//
+	// The following are the supported values for each volume type.
+	//
+	//    * gp3: 3,000 - 16,000 IOPS
+	//
+	//    * io1: 100 - 64,000 IOPS
+	//
+	//    * io2: 100 - 256,000 IOPS
+	//
+	// This parameter is required for io1 and io2 volume types. The default for
+	// gp3 volumes is 3,000 IOPS. This parameter is not supported for st1, sc1,
+	// or standard volume types.
+	//
+	// This parameter maps 1:1 with the Iops parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	Iops *int64 `locationName:"iops" type:"integer"`
+
+	// The Amazon Resource Name (ARN) identifier of the Amazon Web Services Key
+	// Management Service key to use for Amazon EBS encryption. When encryption
+	// is turned on and no Amazon Web Services Key Management Service key is specified,
+	// the default Amazon Web Services managed key for Amazon EBS volumes is used.
+	// This parameter maps 1:1 with the KmsKeyId parameter of the CreateVolume API
+	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// Amazon Web Services authenticates the Amazon Web Services Key Management
+	// Service key asynchronously. Therefore, if you specify an ID, alias, or ARN
+	// that is invalid, the action can appear to complete, but eventually fails.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The ARN of the IAM role to associate with this volume. This is the Amazon
+	// ECS infrastructure IAM role that is used to manage your Amazon Web Services
+	// infrastructure. We recommend using the Amazon ECS-managed AmazonECSInfrastructureRolePolicyForVolumes
+	// IAM policy with this role. For more information, see Amazon ECS infrastructure
+	// IAM role (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/infrastructure_IAM_role.html)
+	// in the Amazon ECS Developer Guide.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The size of the volume in GiB. You must specify either a volume size or a
+	// snapshot ID. If you specify a snapshot ID, the snapshot size is used for
+	// the volume size by default. You can optionally specify a volume size greater
+	// than or equal to the snapshot size. This parameter maps 1:1 with the Size
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// The following are the supported volume size values for each volume type.
+	//
+	//    * gp2 and gp3: 1-16,384
+	//
+	//    * io1 and io2: 4-16,384
+	//
+	//    * st1 and sc1: 125-16,384
+	//
+	//    * standard: 1-1,024
+	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer"`
+
+	// The snapshot that Amazon ECS uses to create the volume. You must specify
+	// either a snapshot ID or a volume size. This parameter maps 1:1 with the SnapshotId
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	SnapshotId *string `locationName:"snapshotId" type:"string"`
+
+	// The tags to apply to the volume. Amazon ECS applies service-managed tags
+	// by default. This parameter maps 1:1 with the TagSpecifications.N parameter
+	// of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	TagSpecifications []*EBSTagSpecification `locationName:"tagSpecifications" type:"list"`
+
+	// The throughput to provision for a volume, in MiB/s, with a maximum of 1,000
+	// MiB/s. This parameter maps 1:1 with the Throughput parameter of the CreateVolume
+	// API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// This parameter is only supported for the gp3 volume type.
+	Throughput *int64 `locationName:"throughput" type:"integer"`
+
+	// The volume type. This parameter maps 1:1 with the VolumeType parameter of
+	// the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference. For more information, see Amazon EBS volume
+	// types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
+	// in the Amazon EC2 User Guide.
+	//
+	// The following are the supported volume types.
+	//
+	//    * General Purpose SSD: gp2|gp3
+	//
+	//    * Provisioned IOPS SSD: io1|io2
+	//
+	//    * Throughput Optimized HDD: st1
+	//
+	//    * Cold HDD: sc1
+	//
+	//    * Magnetic: standard The magnetic volume type is not supported on Fargate.
+	VolumeType *string `locationName:"volumeType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceManagedEBSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceManagedEBSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceManagedEBSVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceManagedEBSVolumeConfiguration"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TagSpecifications != nil {
+		for i, v := range s.TagSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagSpecifications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetEncrypted(v bool) *ServiceManagedEBSVolumeConfiguration {
+	s.Encrypted = &v
+	return s
+}
+
+// SetFilesystemType sets the FilesystemType field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetFilesystemType(v string) *ServiceManagedEBSVolumeConfiguration {
+	s.FilesystemType = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetIops(v int64) *ServiceManagedEBSVolumeConfiguration {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetKmsKeyId(v string) *ServiceManagedEBSVolumeConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetRoleArn(v string) *ServiceManagedEBSVolumeConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSizeInGiB sets the SizeInGiB field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetSizeInGiB(v int64) *ServiceManagedEBSVolumeConfiguration {
+	s.SizeInGiB = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetSnapshotId(v string) *ServiceManagedEBSVolumeConfiguration {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetTagSpecifications(v []*EBSTagSpecification) *ServiceManagedEBSVolumeConfiguration {
+	s.TagSpecifications = v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetThroughput(v int64) *ServiceManagedEBSVolumeConfiguration {
+	s.Throughput = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *ServiceManagedEBSVolumeConfiguration) SetVolumeType(v string) *ServiceManagedEBSVolumeConfiguration {
+	s.VolumeType = &v
+	return s
+}
+
 // The specified service isn't active. You can't update a service that's inactive.
 // If you have previously deleted a service, you can re-create it with CreateService.
 type ServiceNotActiveException struct {
@@ -21924,6 +22326,73 @@ func (s *ServiceRegistry) SetPort(v int64) *ServiceRegistry {
 // SetRegistryArn sets the RegistryArn field's value.
 func (s *ServiceRegistry) SetRegistryArn(v string) *ServiceRegistry {
 	s.RegistryArn = &v
+	return s
+}
+
+// The configuration for a volume specified in the task definition as a volume
+// that is configured at launch time. Currently, the only supported volume type
+// is an Amazon EBS volume.
+type ServiceVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the Amazon EBS volume that Amazon ECS creates and manages
+	// on your behalf. These settings are used to create each Amazon EBS volume,
+	// with one volume created for each task in the service. The Amazon EBS volumes
+	// are visible in your account in the Amazon EC2 console once they are created.
+	ManagedEBSVolume *ServiceManagedEBSVolumeConfiguration `locationName:"managedEBSVolume" type:"structure"`
+
+	// The name of the volume. This value must match the volume name from the Volume
+	// object in the task definition.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceVolumeConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.ManagedEBSVolume != nil {
+		if err := s.ManagedEBSVolume.Validate(); err != nil {
+			invalidParams.AddNested("ManagedEBSVolume", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetManagedEBSVolume sets the ManagedEBSVolume field's value.
+func (s *ServiceVolumeConfiguration) SetManagedEBSVolume(v *ServiceManagedEBSVolumeConfiguration) *ServiceVolumeConfiguration {
+	s.ManagedEBSVolume = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ServiceVolumeConfiguration) SetName(v string) *ServiceVolumeConfiguration {
+	s.Name = &v
 	return s
 }
 
@@ -22144,6 +22613,12 @@ type StartTaskInput struct {
 	//
 	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
+
+	// The details of the volume that was configuredAtLaunch. You can configure
+	// the size, volumeType, IOPS, throughput, snapshot and encryption in TaskManagedEBSVolumeConfiguration
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskManagedEBSVolumeConfiguration.html).
+	// The name of the volume must match the name from the task definition.
+	VolumeConfigurations []*TaskVolumeConfiguration `locationName:"volumeConfigurations" type:"list"`
 }
 
 // String returns the string representation.
@@ -22190,6 +22665,16 @@ func (s *StartTaskInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VolumeConfigurations != nil {
+		for i, v := range s.VolumeConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VolumeConfigurations", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -22269,6 +22754,12 @@ func (s *StartTaskInput) SetTags(v []*Tag) *StartTaskInput {
 // SetTaskDefinition sets the TaskDefinition field's value.
 func (s *StartTaskInput) SetTaskDefinition(v string) *StartTaskInput {
 	s.TaskDefinition = &v
+	return s
+}
+
+// SetVolumeConfigurations sets the VolumeConfigurations field's value.
+func (s *StartTaskInput) SetVolumeConfigurations(v []*TaskVolumeConfiguration) *StartTaskInput {
+	s.VolumeConfigurations = v
 	return s
 }
 
@@ -24200,6 +24691,298 @@ func (s *TaskDefinitionPlacementConstraint) SetType(v string) *TaskDefinitionPla
 	return s
 }
 
+// The configuration for the Amazon EBS volume that Amazon ECS creates and manages
+// on your behalf. These settings are used to create each Amazon EBS volume,
+// with one volume created for each task.
+type TaskManagedEBSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the volume should be encrypted. If no value is specified,
+	// encryption is turned on by default. This parameter maps 1:1 with the Encrypted
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The Linux filesystem type for the volume. For volumes created from a snapshot,
+	// you must specify the same filesystem type that the volume was using when
+	// the snapshot was created. If there is a filesystem type mismatch, the task
+	// will fail to start.
+	//
+	// The available filesystem types are ext3, ext4, and xfs. If no value is specified,
+	// the xfs filesystem type is used by default.
+	FilesystemType *string `locationName:"filesystemType" type:"string" enum:"TaskFilesystemType"`
+
+	// The number of I/O operations per second (IOPS). For gp3, io1, and io2 volumes,
+	// this represents the number of IOPS that are provisioned for the volume. For
+	// gp2 volumes, this represents the baseline performance of the volume and the
+	// rate at which the volume accumulates I/O credits for bursting.
+	//
+	// The following are the supported values for each volume type.
+	//
+	//    * gp3: 3,000 - 16,000 IOPS
+	//
+	//    * io1: 100 - 64,000 IOPS
+	//
+	//    * io2: 100 - 256,000 IOPS
+	//
+	// This parameter is required for io1 and io2 volume types. The default for
+	// gp3 volumes is 3,000 IOPS. This parameter is not supported for st1, sc1,
+	// or standard volume types.
+	//
+	// This parameter maps 1:1 with the Iops parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	Iops *int64 `locationName:"iops" type:"integer"`
+
+	// The Amazon Resource Name (ARN) identifier of the Amazon Web Services Key
+	// Management Service key to use for Amazon EBS encryption. When encryption
+	// is turned on and no Amazon Web Services Key Management Service key is specified,
+	// the default Amazon Web Services managed key for Amazon EBS volumes is used.
+	// This parameter maps 1:1 with the KmsKeyId parameter of the CreateVolume API
+	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// Amazon Web Services authenticates the Amazon Web Services Key Management
+	// Service key asynchronously. Therefore, if you specify an ID, alias, or ARN
+	// that is invalid, the action can appear to complete, but eventually fails.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The ARN of the IAM role to associate with this volume. This is the Amazon
+	// ECS infrastructure IAM role that is used to manage your Amazon Web Services
+	// infrastructure. We recommend using the Amazon ECS-managed AmazonECSInfrastructureRolePolicyForVolumes
+	// IAM policy with this role. For more information, see Amazon ECS infrastructure
+	// IAM role (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/infrastructure_IAM_role.html)
+	// in the Amazon ECS Developer Guide.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The size of the volume in GiB. You must specify either a volume size or a
+	// snapshot ID. If you specify a snapshot ID, the snapshot size is used for
+	// the volume size by default. You can optionally specify a volume size greater
+	// than or equal to the snapshot size. This parameter maps 1:1 with the Size
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// The following are the supported volume size values for each volume type.
+	//
+	//    * gp2 and gp3: 1-16,384
+	//
+	//    * io1 and io2: 4-16,384
+	//
+	//    * st1 and sc1: 125-16,384
+	//
+	//    * standard: 1-1,024
+	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer"`
+
+	// The snapshot that Amazon ECS uses to create the volume. You must specify
+	// either a snapshot ID or a volume size. This parameter maps 1:1 with the SnapshotId
+	// parameter of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	SnapshotId *string `locationName:"snapshotId" type:"string"`
+
+	// The tags to apply to the volume. Amazon ECS applies service-managed tags
+	// by default. This parameter maps 1:1 with the TagSpecifications.N parameter
+	// of the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	TagSpecifications []*EBSTagSpecification `locationName:"tagSpecifications" type:"list"`
+
+	// The termination policy for the volume when the task exits. This provides
+	// a way to control whether Amazon ECS terminates the Amazon EBS volume when
+	// the task stops.
+	TerminationPolicy *TaskManagedEBSVolumeTerminationPolicy `locationName:"terminationPolicy" type:"structure"`
+
+	// The throughput to provision for a volume, in MiB/s, with a maximum of 1,000
+	// MiB/s. This parameter maps 1:1 with the Throughput parameter of the CreateVolume
+	// API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference.
+	//
+	// This parameter is only supported for the gp3 volume type.
+	Throughput *int64 `locationName:"throughput" type:"integer"`
+
+	// The volume type. This parameter maps 1:1 with the VolumeType parameter of
+	// the CreateVolume API (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html)
+	// in the Amazon EC2 API Reference. For more information, see Amazon EBS volume
+	// types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
+	// in the Amazon EC2 User Guide.
+	//
+	// The following are the supported volume types.
+	//
+	//    * General Purpose SSD: gp2|gp3
+	//
+	//    * Provisioned IOPS SSD: io1|io2
+	//
+	//    * Throughput Optimized HDD: st1
+	//
+	//    * Cold HDD: sc1
+	//
+	//    * Magnetic: standard The magnetic volume type is not supported on Fargate.
+	VolumeType *string `locationName:"volumeType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskManagedEBSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskManagedEBSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskManagedEBSVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskManagedEBSVolumeConfiguration"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TagSpecifications != nil {
+		for i, v := range s.TagSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagSpecifications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TerminationPolicy != nil {
+		if err := s.TerminationPolicy.Validate(); err != nil {
+			invalidParams.AddNested("TerminationPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetEncrypted(v bool) *TaskManagedEBSVolumeConfiguration {
+	s.Encrypted = &v
+	return s
+}
+
+// SetFilesystemType sets the FilesystemType field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetFilesystemType(v string) *TaskManagedEBSVolumeConfiguration {
+	s.FilesystemType = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetIops(v int64) *TaskManagedEBSVolumeConfiguration {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetKmsKeyId(v string) *TaskManagedEBSVolumeConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetRoleArn(v string) *TaskManagedEBSVolumeConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSizeInGiB sets the SizeInGiB field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetSizeInGiB(v int64) *TaskManagedEBSVolumeConfiguration {
+	s.SizeInGiB = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetSnapshotId(v string) *TaskManagedEBSVolumeConfiguration {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetTagSpecifications(v []*EBSTagSpecification) *TaskManagedEBSVolumeConfiguration {
+	s.TagSpecifications = v
+	return s
+}
+
+// SetTerminationPolicy sets the TerminationPolicy field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetTerminationPolicy(v *TaskManagedEBSVolumeTerminationPolicy) *TaskManagedEBSVolumeConfiguration {
+	s.TerminationPolicy = v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetThroughput(v int64) *TaskManagedEBSVolumeConfiguration {
+	s.Throughput = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *TaskManagedEBSVolumeConfiguration) SetVolumeType(v string) *TaskManagedEBSVolumeConfiguration {
+	s.VolumeType = &v
+	return s
+}
+
+// The termination policy for the Amazon EBS volume when the task exits. For
+// more information, see Amazon ECS volume termination policy (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ebs-volumes.html#ebs-volume-types).
+type TaskManagedEBSVolumeTerminationPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the volume should be deleted on when the task stops. If
+	// a value of true is specified, Amazon ECS deletes the Amazon EBS volume on
+	// your behalf when the task goes into the STOPPED state. If no value is specified,
+	// the default value is true is used. When set to false, Amazon ECS leaves the
+	// volume in your account.
+	//
+	// DeleteOnTermination is a required field
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskManagedEBSVolumeTerminationPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskManagedEBSVolumeTerminationPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskManagedEBSVolumeTerminationPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskManagedEBSVolumeTerminationPolicy"}
+	if s.DeleteOnTermination == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeleteOnTermination"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *TaskManagedEBSVolumeTerminationPolicy) SetDeleteOnTermination(v bool) *TaskManagedEBSVolumeTerminationPolicy {
+	s.DeleteOnTermination = &v
+	return s
+}
+
 // The overrides that are associated with a task.
 type TaskOverride struct {
 	_ struct{} `type:"structure"`
@@ -24706,6 +25489,72 @@ func (s *TaskSetNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *TaskSetNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration settings for the task volume that was configuredAtLaunch that
+// weren't set during RegisterTaskDef.
+type TaskVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the Amazon EBS volume that Amazon ECS creates and manages
+	// on your behalf. These settings are used to create each Amazon EBS volume,
+	// with one volume created for each task. The Amazon EBS volumes are visible
+	// in your account in the Amazon EC2 console once they are created.
+	ManagedEBSVolume *TaskManagedEBSVolumeConfiguration `locationName:"managedEBSVolume" type:"structure"`
+
+	// The name of the volume. This value must match the volume name from the Volume
+	// object in the task definition.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TaskVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TaskVolumeConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.ManagedEBSVolume != nil {
+		if err := s.ManagedEBSVolume.Validate(); err != nil {
+			invalidParams.AddNested("ManagedEBSVolume", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetManagedEBSVolume sets the ManagedEBSVolume field's value.
+func (s *TaskVolumeConfiguration) SetManagedEBSVolume(v *TaskManagedEBSVolumeConfiguration) *TaskVolumeConfiguration {
+	s.ManagedEBSVolume = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TaskVolumeConfiguration) SetName(v string) *TaskVolumeConfiguration {
+	s.Name = &v
+	return s
 }
 
 // The container path, mount options, and size of the tmpfs mount.
@@ -25783,6 +26632,14 @@ type UpdateServiceInput struct {
 	// ECS spawns a task with the new version of the task definition and then stops
 	// an old task after the new version is running.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	// The details of the volume that was configuredAtLaunch. You can configure
+	// the size, volumeType, IOPS, throughput, snapshot and encryption in ServiceManagedEBSVolumeConfiguration
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceManagedEBSVolumeConfiguration.html).
+	// The name of the volume must match the name from the task definition. If set
+	// to null, no new deployment is triggered. Otherwise, if this configuration
+	// differs from the existing one, it triggers a new deployment.
+	VolumeConfigurations []*ServiceVolumeConfiguration `locationName:"volumeConfigurations" type:"list"`
 }
 
 // String returns the string representation.
@@ -25832,6 +26689,16 @@ func (s *UpdateServiceInput) Validate() error {
 	if s.ServiceConnectConfiguration != nil {
 		if err := s.ServiceConnectConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ServiceConnectConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VolumeConfigurations != nil {
+		for i, v := range s.VolumeConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VolumeConfigurations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -25946,6 +26813,12 @@ func (s *UpdateServiceInput) SetServiceRegistries(v []*ServiceRegistry) *UpdateS
 // SetTaskDefinition sets the TaskDefinition field's value.
 func (s *UpdateServiceInput) SetTaskDefinition(v string) *UpdateServiceInput {
 	s.TaskDefinition = &v
+	return s
+}
+
+// SetVolumeConfigurations sets the VolumeConfigurations field's value.
+func (s *UpdateServiceInput) SetVolumeConfigurations(v []*ServiceVolumeConfiguration) *UpdateServiceInput {
+	s.VolumeConfigurations = v
 	return s
 }
 
@@ -26401,15 +27274,26 @@ func (s *VersionInfo) SetDockerVersion(v string) *VersionInfo {
 	return s
 }
 
-// A data volume that's used in a task definition. For tasks that use the Amazon
-// Elastic File System (Amazon EFS), specify an efsVolumeConfiguration. For
-// Windows tasks that use Amazon FSx for Windows File Server file system, specify
-// a fsxWindowsFileServerVolumeConfiguration. For tasks that use a Docker volume,
-// specify a DockerVolumeConfiguration. For tasks that use a bind mount host
-// volume, specify a host and optional sourcePath. For more information, see
-// Using Data Volumes in Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html).
+// The data volume configuration for tasks launched using this task definition.
+// Specifying a volume configuration in a task definition is optional. The volume
+// configuration may contain multiple volumes but only one volume configured
+// at launch is supported. Each volume defined in the volume configuration may
+// only specify a name and one of either configuredAtLaunch, dockerVolumeConfiguration,
+// efsVolumeConfiguration, fsxWindowsFileServerVolumeConfiguration, or host.
+// If an empty volume configuration is specified, by default Amazon ECS uses
+// a host volume. For more information, see Using data volumes in tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html).
 type Volume struct {
 	_ struct{} `type:"structure"`
+
+	// Indicates whether the volume should be configured at launch time. This is
+	// used to create Amazon EBS volumes for standalone tasks or tasks created as
+	// part of a service. Each task definition revision may only have one volume
+	// configured at launch in the volume configuration.
+	//
+	// To configure a volume at launch time, use this task definition revision and
+	// specify a volumeConfigurations object when calling the CreateService, UpdateService,
+	// RunTask or StartTask APIs.
+	ConfiguredAtLaunch *bool `locationName:"configuredAtLaunch" type:"boolean"`
 
 	// This parameter is specified when you use Docker volumes.
 	//
@@ -26441,10 +27325,16 @@ type Volume struct {
 	Host *HostVolumeProperties `locationName:"host" type:"structure"`
 
 	// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
-	// underscores, and hyphens are allowed. This name is referenced in the sourceVolume
-	// parameter of container definition mountPoints.
+	// underscores, and hyphens are allowed.
 	//
-	// This is required wwhen you use an Amazon EFS volume.
+	// When using a volume configured at launch, the name is required and must also
+	// be specified as the volume name in the ServiceVolumeConfiguration or TaskVolumeConfiguration
+	// parameter when creating your service or standalone task.
+	//
+	// For all other types of volumes, this name is referenced in the sourceVolume
+	// parameter of the mountPoints object in the container definition.
+	//
+	// When a volume is using the efsVolumeConfiguration, the name is required.
 	Name *string `locationName:"name" type:"string"`
 }
 
@@ -26484,6 +27374,12 @@ func (s *Volume) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfiguredAtLaunch sets the ConfiguredAtLaunch field's value.
+func (s *Volume) SetConfiguredAtLaunch(v bool) *Volume {
+	s.ConfiguredAtLaunch = &v
+	return s
 }
 
 // SetDockerVolumeConfiguration sets the DockerVolumeConfiguration field's value.
@@ -26925,6 +27821,18 @@ func DeviceCgroupPermission_Values() []string {
 		DeviceCgroupPermissionRead,
 		DeviceCgroupPermissionWrite,
 		DeviceCgroupPermissionMknod,
+	}
+}
+
+const (
+	// EBSResourceTypeVolume is a EBSResourceType enum value
+	EBSResourceTypeVolume = "volume"
+)
+
+// EBSResourceType_Values returns all elements of the EBSResourceType enum
+func EBSResourceType_Values() []string {
+	return []string{
+		EBSResourceTypeVolume,
 	}
 }
 
@@ -27613,6 +28521,26 @@ const (
 func TaskField_Values() []string {
 	return []string{
 		TaskFieldTags,
+	}
+}
+
+const (
+	// TaskFilesystemTypeExt3 is a TaskFilesystemType enum value
+	TaskFilesystemTypeExt3 = "ext3"
+
+	// TaskFilesystemTypeExt4 is a TaskFilesystemType enum value
+	TaskFilesystemTypeExt4 = "ext4"
+
+	// TaskFilesystemTypeXfs is a TaskFilesystemType enum value
+	TaskFilesystemTypeXfs = "xfs"
+)
+
+// TaskFilesystemType_Values returns all elements of the TaskFilesystemType enum
+func TaskFilesystemType_Values() []string {
+	return []string{
+		TaskFilesystemTypeExt3,
+		TaskFilesystemTypeExt4,
+		TaskFilesystemTypeXfs,
 	}
 }
 

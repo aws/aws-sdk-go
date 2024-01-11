@@ -25785,6 +25785,9 @@ func (c *IoT) UpdatePackageRequest(input *UpdatePackageInput) (req *request.Requ
 //   - ThrottlingException
 //     The rate exceeds the limit.
 //
+//   - ConflictException
+//     A resource with the same name already exists.
+//
 //   - InternalServerException
 //     Internal error from the service that indicates an unexpected error or that
 //     the service is unavailable.
@@ -25875,6 +25878,9 @@ func (c *IoT) UpdatePackageConfigurationRequest(input *UpdatePackageConfiguratio
 //   - ThrottlingException
 //     The rate exceeds the limit.
 //
+//   - ConflictException
+//     A resource with the same name already exists.
+//
 //   - InternalServerException
 //     Internal error from the service that indicates an unexpected error or that
 //     the service is unavailable.
@@ -25961,6 +25967,9 @@ func (c *IoT) UpdatePackageVersionRequest(input *UpdatePackageVersionInput) (req
 //
 //   - ThrottlingException
 //     The rate exceeds the limit.
+//
+//   - ConflictException
+//     A resource with the same name already exists.
 //
 //   - InternalServerException
 //     Internal error from the service that indicates an unexpected error or that
@@ -34296,7 +34305,9 @@ type CreateJobInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The package version Amazon Resource Names (ARNs) that are installed on the
-	// device when the job successfully completes.
+	// device when the job successfully completes. The package version must be in
+	// either the Published or Deprecated state when the job deploys. For more information,
+	// see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
 	//
 	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
 	// version ARNs are allowed.
@@ -34626,7 +34637,9 @@ type CreateJobTemplateInput struct {
 	Description *string `locationName:"description" type:"string" required:"true"`
 
 	// The package version Amazon Resource Names (ARNs) that are installed on the
-	// device when the job successfully completes.
+	// device when the job successfully completes. The package version must be in
+	// either the Published or Deprecated state when the job deploys. For more information,
+	// see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
 	//
 	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
 	// version ARNs are allowed.
@@ -43044,7 +43057,9 @@ type DescribeJobTemplateOutput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The package version Amazon Resource Names (ARNs) that are installed on the
-	// device when the job successfully completes.
+	// device when the job successfully completes. The package version must be in
+	// either the Published or Deprecated state when the job deploys. For more information,
+	// see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
 	//
 	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
 	// version ARNs are allowed.
@@ -50123,7 +50138,11 @@ type Job struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The package version Amazon Resource Names (ARNs) that are installed on the
-	// device when the job successfully completes.
+	// device when the job successfully completes. The package version must be in
+	// either the Published or Deprecated state when the job deploys. For more information,
+	// see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).The
+	// package version must be in either the Published or Deprecated state when
+	// the job deploys. For more information, see Package version lifecycle (https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle).
 	//
 	// Note:The following Length Constraints relates to a single ARN. Up to 25 package
 	// version ARNs are allowed.

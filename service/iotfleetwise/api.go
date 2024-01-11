@@ -17753,9 +17753,6 @@ const (
 
 	// NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull is a NetworkInterfaceFailureReason enum value
 	NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull = "VEHICLE_MIDDLEWARE_NETWORK_INTERFACE_INFO_IS_NULL"
-
-	// NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull is a NetworkInterfaceFailureReason enum value
-	NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull = "CUSTOMER_DECODED_SIGNAL_NETWORK_INTERFACE_INFO_IS_NULL"
 )
 
 // NetworkInterfaceFailureReason_Values returns all elements of the NetworkInterfaceFailureReason enum
@@ -17768,7 +17765,6 @@ func NetworkInterfaceFailureReason_Values() []string {
 		NetworkInterfaceFailureReasonObdNetworkInterfaceInfoIsNull,
 		NetworkInterfaceFailureReasonNetworkInterfaceToRemoveAssociatedWithSignals,
 		NetworkInterfaceFailureReasonVehicleMiddlewareNetworkInterfaceInfoIsNull,
-		NetworkInterfaceFailureReasonCustomerDecodedSignalNetworkInterfaceInfoIsNull,
 	}
 }
 
@@ -17781,9 +17777,6 @@ const (
 
 	// NetworkInterfaceTypeVehicleMiddleware is a NetworkInterfaceType enum value
 	NetworkInterfaceTypeVehicleMiddleware = "VEHICLE_MIDDLEWARE"
-
-	// NetworkInterfaceTypeCustomerDecodedInterface is a NetworkInterfaceType enum value
-	NetworkInterfaceTypeCustomerDecodedInterface = "CUSTOMER_DECODED_INTERFACE"
 )
 
 // NetworkInterfaceType_Values returns all elements of the NetworkInterfaceType enum
@@ -17792,7 +17785,6 @@ func NetworkInterfaceType_Values() []string {
 		NetworkInterfaceTypeCanInterface,
 		NetworkInterfaceTypeObdInterface,
 		NetworkInterfaceTypeVehicleMiddleware,
-		NetworkInterfaceTypeCustomerDecodedInterface,
 	}
 }
 
@@ -18069,9 +18061,6 @@ const (
 
 	// SignalDecoderFailureReasonEmptyMessageSignal is a SignalDecoderFailureReason enum value
 	SignalDecoderFailureReasonEmptyMessageSignal = "EMPTY_MESSAGE_SIGNAL"
-
-	// SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull is a SignalDecoderFailureReason enum value
-	SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull = "CUSTOMER_DECODED_SIGNAL_INFO_IS_NULL"
 )
 
 // SignalDecoderFailureReason_Values returns all elements of the SignalDecoderFailureReason enum
@@ -18092,7 +18081,6 @@ func SignalDecoderFailureReason_Values() []string {
 		SignalDecoderFailureReasonNoSignalInCatalogForDecoderSignal,
 		SignalDecoderFailureReasonSignalDecoderIncompatibleWithSignalCatalog,
 		SignalDecoderFailureReasonEmptyMessageSignal,
-		SignalDecoderFailureReasonCustomerDecodedSignalInfoIsNull,
 	}
 }
 
@@ -18105,9 +18093,6 @@ const (
 
 	// SignalDecoderTypeMessageSignal is a SignalDecoderType enum value
 	SignalDecoderTypeMessageSignal = "MESSAGE_SIGNAL"
-
-	// SignalDecoderTypeCustomerDecodedSignal is a SignalDecoderType enum value
-	SignalDecoderTypeCustomerDecodedSignal = "CUSTOMER_DECODED_SIGNAL"
 )
 
 // SignalDecoderType_Values returns all elements of the SignalDecoderType enum
@@ -18116,7 +18101,6 @@ func SignalDecoderType_Values() []string {
 		SignalDecoderTypeCanSignal,
 		SignalDecoderTypeObdSignal,
 		SignalDecoderTypeMessageSignal,
-		SignalDecoderTypeCustomerDecodedSignal,
 	}
 }
 

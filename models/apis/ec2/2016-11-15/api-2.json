@@ -20723,6 +20723,14 @@
         "VolumeId":{
           "shape":"String",
           "locationName":"volumeId"
+        },
+        "AssociatedResource":{
+          "shape":"String",
+          "locationName":"associatedResource"
+        },
+        "VolumeOwnerId":{
+          "shape":"String",
+          "locationName":"volumeOwnerId"
         }
       }
     },
@@ -45615,6 +45623,14 @@
         "DeleteOnTermination":{
           "shape":"Boolean",
           "locationName":"deleteOnTermination"
+        },
+        "AssociatedResource":{
+          "shape":"String",
+          "locationName":"associatedResource"
+        },
+        "InstanceOwningService":{
+          "shape":"String",
+          "locationName":"instanceOwningService"
         }
       }
     },

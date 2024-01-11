@@ -873,6 +873,12 @@
         "INACTIVE"
       ]
     },
+    "AppSyncParameters":{
+      "type":"structure",
+      "members":{
+        "GraphQLOperation":{"shape":"GraphQLOperation"}
+      }
+    },
     "Archive":{
       "type":"structure",
       "members":{
@@ -1905,6 +1911,12 @@
         "Primary":{"shape":"Primary"},
         "Secondary":{"shape":"Secondary"}
       }
+    },
+    "GraphQLOperation":{
+      "type":"string",
+      "max":1048576,
+      "min":1,
+      "sensitive":true
     },
     "HeaderKey":{
       "type":"string",
@@ -3032,7 +3044,8 @@
         "RedshiftDataParameters":{"shape":"RedshiftDataParameters"},
         "SageMakerPipelineParameters":{"shape":"SageMakerPipelineParameters"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
-        "RetryPolicy":{"shape":"RetryPolicy"}
+        "RetryPolicy":{"shape":"RetryPolicy"},
+        "AppSyncParameters":{"shape":"AppSyncParameters"}
       }
     },
     "TargetArn":{
