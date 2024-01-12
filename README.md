@@ -4,10 +4,7 @@
 
 aws-sdk-go is the v1 AWS SDK for the Go programming language.
 
-Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for
-information about the latest bug fixes, updates, and features added to the SDK.
-
-We [announced](https://aws.amazon.com/blogs/developer/aws-sdk-for-go-version-2-general-availability/) the General Availability for the [AWS SDK for Go V2 (v2)](https://github.com/aws/aws-sdk-go-v2). The v2 SDK source is available at https://github.com/aws/aws-sdk-go-v2. Review the v2 SDK's [Developer Guide](https://aws.github.io/aws-sdk-go-v2/docs/) to get started with AWS SDK for Go V2 or review the [migration guide](https://aws.github.io/aws-sdk-go-v2/docs/migrating/) if you already use version 1.
+We [announced](https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-aws-sdk-for-go-v1-on-july-31-2025) the upcoming **end-of-support for AWS SDK for Go (v1)**. We recommend that you migrate to [AWS SDK for Go v2](https://aws.github.io/aws-sdk-go-v2/docs/). For dates, additional details, and information on how to migrate, please refer to the linked announcement.
 
 Jump To:
 * [Getting Started](#Getting-Started)
