@@ -8033,7 +8033,7 @@
     },
     "EvaluationNoteString":{
       "type":"string",
-      "max":1024,
+      "max":3072,
       "min":0
     },
     "EvaluationNotesMap":{
@@ -8929,7 +8929,8 @@
         "EARLY_MEDIA",
         "MULTI_PARTY_CONFERENCE",
         "HIGH_VOLUME_OUTBOUND",
-        "ENHANCED_CONTACT_MONITORING"
+        "ENHANCED_CONTACT_MONITORING",
+        "ENHANCED_CHAT_MONITORING"
       ]
     },
     "InstanceAttributeValue":{
@@ -11017,7 +11018,8 @@
         "AGENT",
         "CUSTOMER",
         "SYSTEM",
-        "CUSTOM_BOT"
+        "CUSTOM_BOT",
+        "SUPERVISOR"
       ]
     },
     "ParticipantTimerAction":{

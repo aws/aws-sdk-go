@@ -1,3 +1,17 @@
+Release v1.49.20 (2024-01-12)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/connectparticipant`: Updates service API
+* `service/location`: Updates service documentation
+* `service/mwaa`: Updates service API and documentation
+* `service/s3control`: Adds new service
+  * S3 On Outposts team adds dualstack endpoints support for S3Control and S3Outposts API calls.
+* `service/supplychain`: Adds new service
+* `service/transfer`: Updates service API and documentation
+  * AWS Transfer Family now supports static IP addresses for SFTP & AS2 connectors and for async MDNs on AS2 servers.
+
 Release v1.49.19 (2024-01-11)
 ===
 

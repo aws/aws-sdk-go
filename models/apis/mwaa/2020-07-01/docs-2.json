@@ -28,6 +28,12 @@
         "UpdateEnvironmentInput$AirflowConfigurationOptions": "<p>A list of key-value pairs containing the Apache Airflow configuration options you want to attach to your environment. For more information, see <a href=\"https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-env-variables.html\">Apache Airflow configuration options</a>.</p>"
       }
     },
+    "AirflowIdentity": {
+      "base": null,
+      "refs": {
+        "CreateWebLoginTokenResponse$AirflowIdentity": "<p>The user name of the Apache Airflow identity creating the web login token.</p>"
+      }
+    },
     "AirflowVersion": {
       "base": null,
       "refs": {
@@ -212,6 +218,12 @@
       "refs": {
         "CreateCliTokenResponse$WebServerHostname": "<p>The Airflow web server hostname for the environment.</p>",
         "CreateWebLoginTokenResponse$WebServerHostname": "<p>The Airflow web server hostname for the environment.</p>"
+      }
+    },
+    "IamIdentity": {
+      "base": null,
+      "refs": {
+        "CreateWebLoginTokenResponse$IamIdentity": "<p>The name of the IAM identity creating the web login token. This might be an IAM user, or an assumed or federated identity. For example, <code>assumed-role/Admin/your-name</code>.</p>"
       }
     },
     "IamRoleArn": {

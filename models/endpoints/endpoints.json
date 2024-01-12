@@ -20717,6 +20717,23 @@
           "cn-north-1" : { }
         }
       },
+      "iottwinmaker" : {
+        "endpoints" : {
+          "api-cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "api.iottwinmaker.cn-north-1.amazonaws.com.cn"
+          },
+          "cn-north-1" : { },
+          "data-cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "data.iottwinmaker.cn-north-1.amazonaws.com.cn"
+          }
+        }
+      },
       "kafka" : {
         "endpoints" : {
           "cn-north-1" : { },

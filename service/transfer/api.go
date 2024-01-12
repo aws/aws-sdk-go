@@ -11044,6 +11044,10 @@ type DescribedConnector struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// The list of egress IP addresses of this connector. These IP addresses are
+	// assigned automatically when you create the connector.
+	ServiceManagedEgressIpAddresses []*string `type:"list"`
+
 	// A structure that contains the parameters for an SFTP connector object.
 	SftpConfig *SftpConnectorConfig `type:"structure"`
 
@@ -11099,6 +11103,12 @@ func (s *DescribedConnector) SetConnectorId(v string) *DescribedConnector {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *DescribedConnector) SetLoggingRole(v string) *DescribedConnector {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetServiceManagedEgressIpAddresses sets the ServiceManagedEgressIpAddresses field's value.
+func (s *DescribedConnector) SetServiceManagedEgressIpAddresses(v []*string) *DescribedConnector {
+	s.ServiceManagedEgressIpAddresses = v
 	return s
 }
 
@@ -11504,6 +11514,15 @@ type DescribedServer struct {
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
+	// The list of egress IP addresses of this server. These IP addresses are only
+	// relevant for servers that use the AS2 protocol. They are used for sending
+	// asynchronous MDNs.
+	//
+	// These IP addresses are assigned automatically when you create an AS2 server.
+	// Additionally, if you update an existing server and add the AS2 protocol,
+	// static IP addresses are assigned as well.
+	As2ServiceManagedEgressIpAddresses []*string `type:"list"`
+
 	// Specifies the ARN of the Amazon Web ServicesCertificate Manager (ACM) certificate.
 	// Required when Protocols is set to FTPS.
 	Certificate *string `type:"string"`
@@ -11709,6 +11728,12 @@ func (s DescribedServer) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribedServer) SetArn(v string) *DescribedServer {
 	s.Arn = &v
+	return s
+}
+
+// SetAs2ServiceManagedEgressIpAddresses sets the As2ServiceManagedEgressIpAddresses field's value.
+func (s *DescribedServer) SetAs2ServiceManagedEgressIpAddresses(v []*string) *DescribedServer {
+	s.As2ServiceManagedEgressIpAddresses = v
 	return s
 }
 
@@ -12547,7 +12572,8 @@ func (s *HomeDirectoryMapEntry) SetType(v string) *HomeDirectoryMapEntry {
 type IdentityProviderDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Directory Service directory that you want to stop sharing.
+	// The identifier of the Directory Service directory that you want to use as
+	// your identity provider.
 	DirectoryId *string `min:"12" type:"string"`
 
 	// The ARN for a Lambda function to use for the Identity provider.

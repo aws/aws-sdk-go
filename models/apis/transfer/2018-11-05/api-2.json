@@ -1656,7 +1656,8 @@
         "AccessRole":{"shape":"Role"},
         "LoggingRole":{"shape":"Role"},
         "Tags":{"shape":"Tags"},
-        "SftpConfig":{"shape":"SftpConnectorConfig"}
+        "SftpConfig":{"shape":"SftpConnectorConfig"},
+        "ServiceManagedEgressIpAddresses":{"shape":"ServiceManagedEgressIpAddresses"}
       }
     },
     "DescribedExecution":{
@@ -1733,7 +1734,8 @@
         "UserCount":{"shape":"UserCount"},
         "WorkflowDetails":{"shape":"WorkflowDetails"},
         "StructuredLogDestinations":{"shape":"StructuredLogDestinations"},
-        "S3StorageOptions":{"shape":"S3StorageOptions"}
+        "S3StorageOptions":{"shape":"S3StorageOptions"},
+        "As2ServiceManagedEgressIpAddresses":{"shape":"ServiceManagedEgressIpAddresses"}
       }
     },
     "DescribedUser":{
@@ -2824,6 +2826,14 @@
       "pattern":"s-([0-9a-f]{17})"
     },
     "ServiceErrorMessage":{"type":"string"},
+    "ServiceManagedEgressIpAddress":{
+      "type":"string",
+      "pattern":"\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
+    },
+    "ServiceManagedEgressIpAddresses":{
+      "type":"list",
+      "member":{"shape":"ServiceManagedEgressIpAddress"}
+    },
     "ServiceMetadata":{
       "type":"structure",
       "required":["UserDetails"],

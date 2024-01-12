@@ -743,6 +743,9 @@ func (c *ConnectParticipant) SendEventRequest(input *SendEventInput) (req *reque
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Amazon Connect.
 //
+//   - ConflictException
+//     An attachment with that identifier is already being uploaded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/SendEvent
 func (c *ConnectParticipant) SendEvent(input *SendEventInput) (*SendEventOutput, error) {
 	req, out := c.SendEventRequest(input)
@@ -3277,6 +3280,9 @@ const (
 
 	// ParticipantRoleCustomBot is a ParticipantRole enum value
 	ParticipantRoleCustomBot = "CUSTOM_BOT"
+
+	// ParticipantRoleSupervisor is a ParticipantRole enum value
+	ParticipantRoleSupervisor = "SUPERVISOR"
 )
 
 // ParticipantRole_Values returns all elements of the ParticipantRole enum
@@ -3286,6 +3292,7 @@ func ParticipantRole_Values() []string {
 		ParticipantRoleCustomer,
 		ParticipantRoleSystem,
 		ParticipantRoleCustomBot,
+		ParticipantRoleSupervisor,
 	}
 }
 
@@ -3310,6 +3317,9 @@ const (
 
 	// ResourceTypeUser is a ResourceType enum value
 	ResourceTypeUser = "USER"
+
+	// ResourceTypePhoneNumber is a ResourceType enum value
+	ResourceTypePhoneNumber = "PHONE_NUMBER"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -3322,6 +3332,7 @@ func ResourceType_Values() []string {
 		ResourceTypeHierarchyLevel,
 		ResourceTypeHierarchyGroup,
 		ResourceTypeUser,
+		ResourceTypePhoneNumber,
 	}
 }
 
