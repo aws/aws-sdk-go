@@ -209,6 +209,11 @@
       "value":{"shape":"ConfigValue"},
       "sensitive":true
     },
+    "AirflowIdentity":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "AirflowVersion":{
       "type":"string",
       "max":32,
@@ -317,6 +322,8 @@
     "CreateWebLoginTokenResponse":{
       "type":"structure",
       "members":{
+        "AirflowIdentity":{"shape":"AirflowIdentity"},
+        "IamIdentity":{"shape":"IamIdentity"},
         "WebServerHostname":{"shape":"Hostname"},
         "WebToken":{"shape":"Token"}
       }
@@ -472,6 +479,7 @@
       "min":1,
       "pattern":"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
     },
+    "IamIdentity":{"type":"string"},
     "IamRoleArn":{
       "type":"string",
       "max":1224,

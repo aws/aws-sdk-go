@@ -1676,6 +1676,13 @@ func (s *CreateWebLoginTokenInput) SetName(v string) *CreateWebLoginTokenInput {
 type CreateWebLoginTokenOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The user name of the Apache Airflow identity creating the web login token.
+	AirflowIdentity *string `min:"1" type:"string"`
+
+	// The name of the IAM identity creating the web login token. This might be
+	// an IAM user, or an assumed or federated identity. For example, assumed-role/Admin/your-name.
+	IamIdentity *string `type:"string"`
+
 	// The Airflow web server hostname for the environment.
 	WebServerHostname *string `min:"1" type:"string"`
 
@@ -1703,6 +1710,18 @@ func (s CreateWebLoginTokenOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateWebLoginTokenOutput) GoString() string {
 	return s.String()
+}
+
+// SetAirflowIdentity sets the AirflowIdentity field's value.
+func (s *CreateWebLoginTokenOutput) SetAirflowIdentity(v string) *CreateWebLoginTokenOutput {
+	s.AirflowIdentity = &v
+	return s
+}
+
+// SetIamIdentity sets the IamIdentity field's value.
+func (s *CreateWebLoginTokenOutput) SetIamIdentity(v string) *CreateWebLoginTokenOutput {
+	s.IamIdentity = &v
+	return s
 }
 
 // SetWebServerHostname sets the WebServerHostname field's value.

@@ -44473,6 +44473,11 @@ type EvaluationNote struct {
 	_ struct{} `type:"structure"`
 
 	// The note for an item (section or question) in a contact evaluation.
+	//
+	// Even though a note in an evaluation can have up to 3072 chars, there is also
+	// a limit on the total number of chars for all the notes in the evaluation
+	// combined. Assuming there are N questions in the evaluation being submitted,
+	// then the max char limit for all notes combined is N x 1024.
 	Value *string `type:"string"`
 }
 
@@ -45265,6 +45270,11 @@ type GetCurrentMetricDataInput struct {
 	//
 	// The actual OLDEST_CONTACT_AGE is 24 seconds.
 	//
+	// When the filter RoutingStepExpression is used, this metric is still calculated
+	// from enqueue time. For example, if a contact that has been queued under <Expression
+	// 1> for 10 seconds has expired and <Expression 2> becomes active, then OLDEST_CONTACT_AGE
+	// for this queue will be counted starting from 10, not 0.
+	//
 	// Name in real-time metrics report: Oldest (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time)
 	//
 	// SLOTS_ACTIVE
@@ -45291,10 +45301,14 @@ type GetCurrentMetricDataInput struct {
 	//
 	//    * Channels: 3 (VOICE, CHAT, and TASK channels are supported.)
 	//
+	//    * RoutingStepExpressions: 50
+	//
 	// Metric data is retrieved only for the resources associated with the queues
 	// or routing profiles, and by any channels included in the filter. (You cannot
 	// filter by both queue AND routing profile.) You can include both resource
 	// IDs and resource ARNs in the same request.
+	//
+	// When using RoutingStepExpression, you need to pass exactly one QueueId.
 	//
 	// Currently tagging is only supported on the resources that are passed in the
 	// filter.
@@ -45314,6 +45328,9 @@ type GetCurrentMetricDataInput struct {
 	//    for metrics CONTACTS_SCHEDULED, CONTACTS_IN_QUEUE, and OLDEST_CONTACT_AGE.
 	//
 	//    * If no Grouping is included in the request, a summary of metrics is returned.
+	//
+	//    * When using the RoutingStepExpression filter, group by ROUTING_STEP_EXPRESSION
+	//    is required.
 	Groupings []*string `type:"list" enum:"Grouping"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
@@ -45920,6 +45937,9 @@ type GetMetricDataInput struct {
 	// or channels included in the filter. You can include both queue IDs and queue
 	// ARNs in the same request. VOICE, CHAT, and TASK channels are supported.
 	//
+	// RoutingStepExpression is not a valid filter for GetMetricData and we recommend
+	// switching to GetMetricDataV2 for more up-to-date features.
+	//
 	// To filter by Queues, enter the queue ID/ARN, not the name of the queue.
 	//
 	// Filters is a required field
@@ -45930,6 +45950,9 @@ type GetMetricDataInput struct {
 	// apply to the metrics for each queue rather than aggregated for all queues.
 	//
 	// If no grouping is specified, a summary of metrics for all queues is returned.
+	//
+	// RoutingStepExpression is not a valid filter for GetMetricData and we recommend
+	// switching to GetMetricDataV2 for more up-to-date features.
 	Groupings []*string `type:"list" enum:"Grouping"`
 
 	// The metrics to retrieve. Specify the name, unit, and statistic for each metric.
@@ -46296,6 +46319,8 @@ type GetMetricDataV2Input struct {
 	//
 	//    * Feature
 	//
+	//    * Routing step expression
+	//
 	// At least one filter must be passed from queues, routing profiles, agents,
 	// or user hierarchy groups.
 	//
@@ -46308,6 +46333,7 @@ type GetMetricDataV2Input struct {
 	//    Valid filter keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
 	//    | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
 	//    | AGENT_HIERARCHY_LEVEL_FIVE | FEATURE | contact/segmentAttributes/connect:Subtype
+	//    | ROUTING_STEP_EXPRESSION
 	//
 	//    * Filter values: A maximum of 100 filter values are supported in a single
 	//    request. VOICE, CHAT, and TASK are valid filterValue for the CHANNEL filter
@@ -46318,7 +46344,8 @@ type GetMetricDataV2Input struct {
 	//    filter key. It is available only to contacts analyzed by Contact Lens
 	//    conversational analytics. connect:Chat, connect:SMS, connect:Telephony,
 	//    and connect:WebRTC are valid filterValue examples (not exhaustive) for
-	//    the contact/segmentAttributes/connect:Subtype filter key.
+	//    the contact/segmentAttributes/connect:Subtype filter key. ROUTING_STEP_EXPRESSION
+	//    is a valid filter key with a filter value up to 3000 length.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -46332,7 +46359,8 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid grouping keys: QUEUE | ROUTING_PROFILE | AGENT | CHANNEL | AGENT_HIERARCHY_LEVEL_ONE
 	// | AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR
-	// | AGENT_HIERARCHY_LEVEL_FIVE, contact/segmentAttributes/connect:Subtype
+	// | AGENT_HIERARCHY_LEVEL_FIVE, contact/segmentAttributes/connect:Subtype |
+	// ROUTING_STEP_EXPRESSION
 	Groupings []*string `type:"list"`
 
 	// The interval period and timezone to apply to returned metrics.
@@ -46514,7 +46542,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Seconds
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression
 	//
 	// Feature is a valid filter but not a valid grouping.
 	//
@@ -46639,7 +46667,7 @@ type GetMetricDataV2Input struct {
 	// Unit: Count
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, contact/segmentAttributes/connect:Subtype, RoutingStepExpression
 	//
 	// CONTACTS_CREATED
 	//
@@ -46658,7 +46686,7 @@ type GetMetricDataV2Input struct {
 	// Valid metric filter key: INITIATION_METHOD, DISCONNECT_REASON
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
-	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype
+	// Hierarchy, Feature, contact/segmentAttributes/connect:Subtype, RoutingStepExpression
 	//
 	// Feature is a valid filter but not a valid grouping.
 	//
@@ -46750,6 +46778,18 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
+	// PERCENT_CONTACTS_STEP_EXPIRED
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Queue, RoutingStepExpression
+	//
+	// PERCENT_CONTACTS_STEP_JOINED
+	//
+	// Unit: Percent
+	//
+	// Valid groupings and filters: Queue, RoutingStepExpression
+	//
 	// PERCENT_NON_TALK_TIME
 	//
 	// This metric is available only for contacts analyzed by Contact Lens conversational
@@ -46800,6 +46840,12 @@ type GetMetricDataV2Input struct {
 	//
 	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
 	// in seconds. For Comparison, you must enter LT (for "Less than").
+	//
+	// STEP_CONTACTS_QUEUED
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, RoutingStepExpression
 	//
 	// SUM_AFTER_CONTACT_WORK_TIME
 	//
@@ -56615,6 +56661,7 @@ type MonitorContactInput struct {
 
 	// Specify which monitoring actions the user is allowed to take. For example,
 	// whether the user is allowed to escalate from silent monitoring to barge.
+	// AllowedMonitorCapabilities is required if barge is enabled.
 	AllowedMonitorCapabilities []*string `type:"list" enum:"MonitorCapability"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
@@ -78037,6 +78084,9 @@ const (
 
 	// InstanceAttributeTypeEnhancedContactMonitoring is a InstanceAttributeType enum value
 	InstanceAttributeTypeEnhancedContactMonitoring = "ENHANCED_CONTACT_MONITORING"
+
+	// InstanceAttributeTypeEnhancedChatMonitoring is a InstanceAttributeType enum value
+	InstanceAttributeTypeEnhancedChatMonitoring = "ENHANCED_CHAT_MONITORING"
 )
 
 // InstanceAttributeType_Values returns all elements of the InstanceAttributeType enum
@@ -78052,6 +78102,7 @@ func InstanceAttributeType_Values() []string {
 		InstanceAttributeTypeMultiPartyConference,
 		InstanceAttributeTypeHighVolumeOutbound,
 		InstanceAttributeTypeEnhancedContactMonitoring,
+		InstanceAttributeTypeEnhancedChatMonitoring,
 	}
 }
 
@@ -78335,6 +78386,9 @@ const (
 
 	// ParticipantRoleCustomBot is a ParticipantRole enum value
 	ParticipantRoleCustomBot = "CUSTOM_BOT"
+
+	// ParticipantRoleSupervisor is a ParticipantRole enum value
+	ParticipantRoleSupervisor = "SUPERVISOR"
 )
 
 // ParticipantRole_Values returns all elements of the ParticipantRole enum
@@ -78344,6 +78398,7 @@ func ParticipantRole_Values() []string {
 		ParticipantRoleCustomer,
 		ParticipantRoleSystem,
 		ParticipantRoleCustomBot,
+		ParticipantRoleSupervisor,
 	}
 }
 

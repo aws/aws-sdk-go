@@ -12653,7 +12653,8 @@ type GetMapGlyphsInput struct {
 	//
 	//    * VectorEsriStreets – Arial Regular | Arial Italic | Arial Bold
 	//
-	//    * VectorEsriNavigation – Arial Regular | Arial Italic | Arial Bold
+	//    * VectorEsriNavigation – Arial Regular | Arial Italic | Arial Bold |
+	//    Arial Unicode MS Bold | Arial Unicode MS Regular
 	//
 	// Valid font stacks for HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
 	// styles:
@@ -13283,6 +13284,32 @@ type GetPlaceInput struct {
 	Language *string `location:"querystring" locationName:"language" min:"2" type:"string"`
 
 	// The identifier of the place to find.
+	//
+	// While you can use PlaceID in subsequent requests, PlaceID is not intended
+	// to be a permanent identifier and the ID can change between consecutive API
+	// calls. Please see the following PlaceID behaviour for each data provider:
+	//
+	//    * Esri: Place IDs will change every quarter at a minimum. The typical
+	//    time period for these changes would be March, June, September, and December.
+	//    Place IDs might also change between the typical quarterly change but that
+	//    will be much less frequent.
+	//
+	//    * HERE: We recommend that you cache data for no longer than a week to
+	//    keep your data data fresh. You can assume that less than 1% ID shifts
+	//    will release over release which is approximately 1 - 2 times per week.
+	//
+	//    * Grab: Place IDs can expire or become invalid in the following situations.
+	//    Data operations: The POI may be removed from Grab POI database by Grab
+	//    Map Ops based on the ground-truth, such as being closed in the real world,
+	//    being detected as a duplicate POI, or having incorrect information. Grab
+	//    will synchronize data to the Waypoint environment on weekly basis. Interpolated
+	//    POI: Interpolated POI is a temporary POI generated in real time when serving
+	//    a request, and it will be marked as derived in the place.result_type field
+	//    in the response. The information of interpolated POIs will be retained
+	//    for at least 30 days, which means that within 30 days, you are able to
+	//    obtain POI details by Place ID from Place Details API. After 30 days,
+	//    the interpolated POIs(both Place ID and details) may expire and inaccessible
+	//    from the Places Details API.
 	//
 	// PlaceId is a required field
 	PlaceId *string `location:"uri" locationName:"PlaceId" type:"string" required:"true"`
@@ -15488,8 +15515,8 @@ type MapConfiguration struct {
 	// custom layer, or, for styles that support custom layers, you can enable layer(s),
 	// such as POI layer for the VectorEsriNavigation style. Default is unset.
 	//
-	// Not all map resources or styles support custom layers. See Custom Layers
-	// for more information.
+	// Currenlty only VectorEsriNavigation supports CustomLayers. For more information,
+	// see Custom Layers (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers).
 	CustomLayers []*string `type:"list"`
 
 	// Specifies the political view for the style. Leave unset to not use a political
@@ -15507,10 +15534,12 @@ type MapConfiguration struct {
 	//
 	// Valid Esri map styles (https://docs.aws.amazon.com/location/latest/developerguide/esri.html):
 	//
-	//    * VectorEsriDarkGrayCanvas – The Esri Dark Gray Canvas map style. A
-	//    vector basemap with a dark gray, neutral background with minimal colors,
-	//    labels, and features that's designed to draw attention to your thematic
-	//    content.
+	//    * VectorEsriNavigation – The Esri Navigation map style, which provides
+	//    a detailed basemap for the world symbolized with a custom navigation map
+	//    style that's designed for use during the day in mobile devices. It also
+	//    includes a richer set of places, such as shops, services, restaurants,
+	//    attractions, and other points of interest. Enable the POI layer by setting
+	//    it in CustomLayers to leverage the additional places data.
 	//
 	//    * RasterEsriImagery – The Esri Imagery map style. A raster basemap that
 	//    provides one meter or better satellite and aerial imagery in many parts
@@ -15529,26 +15558,16 @@ type MapConfiguration struct {
 	//    style. The vector tile layer is similar in content and style to the World
 	//    Street Map raster map.
 	//
-	//    * VectorEsriNavigation – The Esri Navigation map style, which provides
-	//    a detailed basemap for the world symbolized with a custom navigation map
-	//    style that's designed for use during the day in mobile devices.
+	//    * VectorEsriDarkGrayCanvas – The Esri Dark Gray Canvas map style. A
+	//    vector basemap with a dark gray, neutral background with minimal colors,
+	//    labels, and features that's designed to draw attention to your thematic
+	//    content.
 	//
 	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
-	//
-	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
-	//    contrast detailed base map of the world that blends 3D and 2D rendering.
-	//    The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
-	//    has been deprecated, but will continue to work in applications that use
-	//    it.
 	//
 	//    * VectorHereExplore – A default HERE map style containing a neutral,
 	//    global map and its features including roads, buildings, landmarks, and
 	//    water features. It also now includes a fully designed map of Japan.
-	//
-	//    * VectorHereExploreTruck – A global map containing truck restrictions
-	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
-	//    segments and icons on top of HERE Explore to support use cases within
-	//    transport and logistics.
 	//
 	//    * RasterHereExploreSatellite – A global map containing high resolution
 	//    satellite imagery.
@@ -15560,6 +15579,17 @@ type MapConfiguration struct {
 	//    and raster tiles when rendering the map that you see. This means that
 	//    more tiles are retrieved than when using either vector or raster tiles
 	//    alone. Your charges will include all tiles retrieved.
+	//
+	//    * VectorHereContrast – The HERE Contrast (Berlin) map style is a high
+	//    contrast detailed base map of the world that blends 3D and 2D rendering.
+	//    The VectorHereContrast style has been renamed from VectorHereBerlin. VectorHereBerlin
+	//    has been deprecated, but will continue to work in applications that use
+	//    it.
+	//
+	//    * VectorHereExploreTruck – A global map containing truck restrictions
+	//    and attributes (e.g. width / height / HAZMAT) symbolized with highlighted
+	//    segments and icons on top of HERE Explore to support use cases within
+	//    transport and logistics.
 	//
 	// Valid GrabMaps map styles (https://docs.aws.amazon.com/location/latest/developerguide/grab.html):
 	//
@@ -15663,8 +15693,8 @@ type MapConfigurationUpdate struct {
 	// custom layer, or, for styles that support custom layers, you can enable layer(s),
 	// such as POI layer for the VectorEsriNavigation style. Default is unset.
 	//
-	// Not all map resources or styles support custom layers. See Custom Layers
-	// for more information.
+	// Currenlty only VectorEsriNavigation supports CustomLayers. For more information,
+	// see Custom Layers (https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#map-custom-layers).
 	CustomLayers []*string `type:"list"`
 
 	// Specifies the political view for the style. Set to an empty string to not
@@ -15770,8 +15800,11 @@ type Place struct {
 	// An area that's part of a larger municipality. For example, Blissville is
 	// a submunicipality in the Queen County in New York.
 	//
-	// This property supported by Esri and OpenData. The Esri property is district,
-	// and the OpenData property is borough.
+	// This property is only returned for a place index that uses Esri as a data
+	// provider. The property is represented as a district.
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	SubMunicipality *string `type:"string"`
 
 	// A county, or an area that's part of a larger region. For example, Metro Vancouver.
@@ -15788,13 +15821,14 @@ type Place struct {
 	// For addresses with multiple units, the unit identifier. Can include numbers
 	// and letters, for example 3B or Unit 123.
 	//
-	// Returned only for a place index that uses Esri or Grab as a data provider.
-	// Is not returned for SearchPlaceIndexForPosition.
+	// This property is returned only for a place index that uses Esri or Grab as
+	// a data provider. It is not returned for SearchPlaceIndexForPosition.
 	UnitNumber *string `type:"string"`
 
 	// For addresses with a UnitNumber, the type of unit. For example, Apartment.
 	//
-	// Returned only for a place index that uses Esri as a data provider.
+	// This property is returned only for a place index that uses Esri as a data
+	// provider.
 	UnitType *string `type:"string"`
 }
 
@@ -16432,6 +16466,32 @@ type SearchForSuggestionsResult struct {
 	//
 	// For SearchPlaceIndexForSuggestions operations, the PlaceId is returned by
 	// place indexes that use Esri, Grab, or HERE as data providers.
+	//
+	// While you can use PlaceID in subsequent requests, PlaceID is not intended
+	// to be a permanent identifier and the ID can change between consecutive API
+	// calls. Please see the following PlaceID behaviour for each data provider:
+	//
+	//    * Esri: Place IDs will change every quarter at a minimum. The typical
+	//    time period for these changes would be March, June, September, and December.
+	//    Place IDs might also change between the typical quarterly change but that
+	//    will be much less frequent.
+	//
+	//    * HERE: We recommend that you cache data for no longer than a week to
+	//    keep your data data fresh. You can assume that less than 1% ID shifts
+	//    will release over release which is approximately 1 - 2 times per week.
+	//
+	//    * Grab: Place IDs can expire or become invalid in the following situations.
+	//    Data operations: The POI may be removed from Grab POI database by Grab
+	//    Map Ops based on the ground-truth, such as being closed in the real world,
+	//    being detected as a duplicate POI, or having incorrect information. Grab
+	//    will synchronize data to the Waypoint environment on weekly basis. Interpolated
+	//    POI: Interpolated POI is a temporary POI generated in real time when serving
+	//    a request, and it will be marked as derived in the place.result_type field
+	//    in the response. The information of interpolated POIs will be retained
+	//    for at least 30 days, which means that within 30 days, you are able to
+	//    obtain POI details by Place ID from Place Details API. After 30 days,
+	//    the interpolated POIs(both Place ID and details) may expire and inaccessible
+	//    from the Places Details API.
 	PlaceId *string `type:"string"`
 
 	// Categories from the data provider that describe the Place that are not mapped

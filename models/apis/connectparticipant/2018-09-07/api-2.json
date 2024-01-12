@@ -118,7 +118,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "SendMessage":{
@@ -497,7 +498,8 @@
         "AGENT",
         "CUSTOMER",
         "SYSTEM",
-        "CUSTOM_BOT"
+        "CUSTOM_BOT",
+        "SUPERVISOR"
       ]
     },
     "ParticipantToken":{
@@ -552,7 +554,8 @@
         "PARTICIPANT",
         "HIERARCHY_LEVEL",
         "HIERARCHY_GROUP",
-        "USER"
+        "USER",
+        "PHONE_NUMBER"
       ]
     },
     "ScanDirection":{
