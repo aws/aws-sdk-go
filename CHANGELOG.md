@@ -1,3 +1,10 @@
+Release v1.49.21 (2024-01-14)
+===
+
+### Service Client Updates
+* `service/sagemaker`: Updates service API
+  * This release will have ValidationException thrown if certain invalid app types are provided. The release will also throw ValidationException if more than 10 account ids are provided in VpcOnlyTrustedAccounts.
+
 Release v1.49.20 (2024-01-12)
 ===
 
