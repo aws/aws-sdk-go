@@ -74603,12 +74603,6 @@ const (
 
 	// LogTargetTypePrincipalId is a LogTargetType enum value
 	LogTargetTypePrincipalId = "PRINCIPAL_ID"
-
-	// LogTargetTypeEventType is a LogTargetType enum value
-	LogTargetTypeEventType = "EVENT_TYPE"
-
-	// LogTargetTypeDeviceDefender is a LogTargetType enum value
-	LogTargetTypeDeviceDefender = "DEVICE_DEFENDER"
 )
 
 // LogTargetType_Values returns all elements of the LogTargetType enum
@@ -74619,8 +74613,6 @@ func LogTargetType_Values() []string {
 		LogTargetTypeClientId,
 		LogTargetTypeSourceIp,
 		LogTargetTypePrincipalId,
-		LogTargetTypeEventType,
-		LogTargetTypeDeviceDefender,
 	}
 }
 

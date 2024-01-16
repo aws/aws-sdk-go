@@ -573,15 +573,19 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // For symmetric key exchange, Amazon Web Services Payment Cryptography uses
 // the ANSI X9 TR-31 norm in accordance with PCI PIN guidelines. And for asymmetric
 // key exchange, Amazon Web Services Payment Cryptography supports ANSI X9 TR-34
-// norm . Asymmetric key exchange methods are typically used to establish bi-directional
-// trust between the two parties exhanging keys and are used for initial key
-// exchange such as Key Encryption Key (KEK). After which you can export working
-// keys using symmetric method to perform various cryptographic operations within
-// Amazon Web Services Payment Cryptography.
+// norm and RSA wrap and unwrap key exchange mechanism. Asymmetric key exchange
+// methods are typically used to establish bi-directional trust between the
+// two parties exhanging keys and are used for initial key exchange such as
+// Key Encryption Key (KEK). After which you can export working keys using symmetric
+// method to perform various cryptographic operations within Amazon Web Services
+// Payment Cryptography.
 //
 // The TR-34 norm is intended for exchanging 3DES keys only and keys are imported
 // in a WrappedKeyBlock format. Key attributes (such as KeyUsage, KeyAlgorithm,
-// KeyModesOfUse, Exportability) are contained within the key block.
+// KeyModesOfUse, Exportability) are contained within the key block. With RSA
+// wrap and unwrap, you can exchange both 3DES and AES-128 keys. The keys are
+// imported in a WrappedKeyCryptogram format and you will need to specify the
+// key attributes during import.
 //
 // You can also use ExportKey functionality to generate and export an IPEK (Initial
 // Pin Encryption Key) from Amazon Web Services Payment Cryptography using either
@@ -590,7 +594,7 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // IPEK does not persist within Amazon Web Services Payment Cryptography and
 // has to be re-generated each time during export.
 //
-// # To export KEK or IPEK using TR-34
+// # To export initial keys (KEK) or IPEK using TR-34
 //
 // Using this operation, you can export initial key using TR-34 asymmetric key
 // exchange. You can only export KEK generated within Amazon Web Services Payment
@@ -644,7 +648,32 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // When this operation is successful, Amazon Web Services Payment Cryptography
 // returns the KEK or IPEK as a TR-34 WrappedKeyBlock.
 //
-// # To export WK (Working Key) or IPEK using TR-31
+// # To export initial keys (KEK) or IPEK using RSA Wrap and Unwrap
+//
+// Using this operation, you can export initial key using asymmetric RSA wrap
+// and unwrap key exchange method. To initiate export, generate an asymmetric
+// key pair on the receiving HSM and obtain the public key certificate in PEM
+// format (base64 encoded) for the purpose of wrapping and the root certifiate
+// chain. Import the root certificate into Amazon Web Services Payment Cryptography
+// by calling ImportKey for RootCertificatePublicKey.
+//
+// Next call ExportKey and set the following parameters:
+//
+//   - CertificateAuthorityPublicKeyIdentifier: The KeyARN of the certificate
+//     chain that signed wrapping key certificate.
+//
+//   - KeyMaterial: Set to KeyCryptogram.
+//
+//   - WrappingKeyCertificate: The public key certificate in PEM format (base64
+//     encoded) obtained by the receiving HSM and signed by the root certificate
+//     (CertificateAuthorityPublicKeyIdentifier) imported into Amazon Web Services
+//     Payment Cryptography. The receiving HSM uses its private key component
+//     to unwrap the WrappedKeyCryptogram.
+//
+// When this operation is successful, Amazon Web Services Payment Cryptography
+// returns the WrappedKeyCryptogram.
+//
+// # To export working keys or IPEK using TR-31
 //
 // Using this operation, you can export working keys or IPEK using TR-31 symmetric
 // key exchange. In TR-31, you must use an initial key such as KEK to encrypt
@@ -662,7 +691,7 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 //   - KeyMaterial: Use Tr31KeyBlock parameters.
 //
 // When this operation is successful, Amazon Web Services Payment Cryptography
-// returns the WK or IPEK as a TR-31 WrappedKeyBlock.
+// returns the working key or IPEK as a TR-31 WrappedKeyBlock.
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
@@ -1103,7 +1132,8 @@ func (c *PaymentCryptography) GetParametersForImportRequest(input *GetParameters
 // GetParametersForImport API operation for Payment Cryptography Control Plane.
 //
 // Gets the import token and the wrapping key certificate in PEM format (base64
-// encoded) to initiate a TR-34 WrappedKeyBlock.
+// encoded) to initiate a TR-34 WrappedKeyBlock or a RSA WrappedKeyCryptogram
+// import into Amazon Web Services Payment Cryptography.
 //
 // The wrapping key certificate wraps the key under import. The import token
 // and wrapping key certificate must be in place and operational before calling
@@ -1334,15 +1364,19 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 // For symmetric key exchange, Amazon Web Services Payment Cryptography uses
 // the ANSI X9 TR-31 norm in accordance with PCI PIN guidelines. And for asymmetric
 // key exchange, Amazon Web Services Payment Cryptography supports ANSI X9 TR-34
-// norm . Asymmetric key exchange methods are typically used to establish bi-directional
-// trust between the two parties exhanging keys and are used for initial key
-// exchange such as Key Encryption Key (KEK) or Zone Master Key (ZMK). After
-// which you can import working keys using symmetric method to perform various
-// cryptographic operations within Amazon Web Services Payment Cryptography.
+// norm and RSA wrap and unwrap key exchange mechanisms. Asymmetric key exchange
+// methods are typically used to establish bi-directional trust between the
+// two parties exhanging keys and are used for initial key exchange such as
+// Key Encryption Key (KEK) or Zone Master Key (ZMK). After which you can import
+// working keys using symmetric method to perform various cryptographic operations
+// within Amazon Web Services Payment Cryptography.
 //
 // The TR-34 norm is intended for exchanging 3DES keys only and keys are imported
 // in a WrappedKeyBlock format. Key attributes (such as KeyUsage, KeyAlgorithm,
-// KeyModesOfUse, Exportability) are contained within the key block.
+// KeyModesOfUse, Exportability) are contained within the key block. With RSA
+// wrap and unwrap, you can exchange both 3DES and AES-128 keys. The keys are
+// imported in a WrappedKeyCryptogram format and you will need to specify the
+// key attributes during import.
 //
 // You can also import a root public key certificate, used to sign other public
 // key certificates, or a trusted public key certificate under an already established
@@ -1390,7 +1424,7 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //   - PublicKeyCertificate: The trusted public key certificate in PEM format
 //     (base64 encoded) under import.
 //
-// # To import KEK or ZMK using TR-34
+// # To import initial keys (KEK or ZMK or similar) using TR-34
 //
 // Using this operation, you can import initial key using TR-34 asymmetric key
 // exchange. In TR-34 terminology, the sending party of the key is called Key
@@ -1435,7 +1469,22 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //     encoded) of the KDH signing key generated under the root certificate (CertificateAuthorityPublicKeyIdentifier)
 //     imported in Amazon Web Services Payment Cryptography.
 //
-// # To import WK (Working Key) using TR-31
+// # To import initial keys (KEK or ZMK or similar) using RSA Wrap and Unwrap
+//
+// Using this operation, you can import initial key using asymmetric RSA wrap
+// and unwrap key exchange method. To initiate import, call GetParametersForImport
+// with KeyMaterial set to KEY_CRYPTOGRAM to generate an import token. This
+// operation also generates an encryption keypair for the purpose of key import,
+// signs the key and returns back the wrapping key certificate in PEM format
+// (base64 encoded) and its root certificate chain. The import token and associated
+// KRD wrapping certificate expires after 7 days.
+//
+// You must trust and install the wrapping certificate and its certificate chain
+// on the sending HSM and use it to wrap the key under export for WrappedKeyCryptogram
+// generation. Next call ImportKey with KeyMaterial set to KEY_CRYPTOGRAM and
+// provide the ImportToken and KeyAttributes for the key under import.
+//
+// # To import working keys using TR-31
 //
 // Amazon Web Services Payment Cryptography uses TR-31 symmetric key exchange
 // norm to import working keys. A KEK must be established within Amazon Web
@@ -3431,6 +3480,89 @@ func (s *ExportDukptInitialKey) SetKeySerialNumber(v string) *ExportDukptInitial
 	return s
 }
 
+// Parameter information for key material export using asymmetric RSA wrap and
+// unwrap key exchange method.
+type ExportKeyCryptogram struct {
+	_ struct{} `type:"structure"`
+
+	// The KeyARN of the certificate chain that signs the wrapping key certificate
+	// during RSA wrap and unwrap key export.
+	//
+	// CertificateAuthorityPublicKeyIdentifier is a required field
+	CertificateAuthorityPublicKeyIdentifier *string `min:"7" type:"string" required:"true"`
+
+	// The wrapping key certificate in PEM format (base64 encoded). Amazon Web Services
+	// Payment Cryptography uses this certificate to wrap the key under export.
+	//
+	// WrappingKeyCertificate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ExportKeyCryptogram's
+	// String and GoString methods.
+	//
+	// WrappingKeyCertificate is a required field
+	WrappingKeyCertificate *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The wrapping spec for the key under export.
+	WrappingSpec *string `type:"string" enum:"WrappingKeySpec"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportKeyCryptogram) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExportKeyCryptogram) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportKeyCryptogram) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportKeyCryptogram"}
+	if s.CertificateAuthorityPublicKeyIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateAuthorityPublicKeyIdentifier"))
+	}
+	if s.CertificateAuthorityPublicKeyIdentifier != nil && len(*s.CertificateAuthorityPublicKeyIdentifier) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateAuthorityPublicKeyIdentifier", 7))
+	}
+	if s.WrappingKeyCertificate == nil {
+		invalidParams.Add(request.NewErrParamRequired("WrappingKeyCertificate"))
+	}
+	if s.WrappingKeyCertificate != nil && len(*s.WrappingKeyCertificate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WrappingKeyCertificate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateAuthorityPublicKeyIdentifier sets the CertificateAuthorityPublicKeyIdentifier field's value.
+func (s *ExportKeyCryptogram) SetCertificateAuthorityPublicKeyIdentifier(v string) *ExportKeyCryptogram {
+	s.CertificateAuthorityPublicKeyIdentifier = &v
+	return s
+}
+
+// SetWrappingKeyCertificate sets the WrappingKeyCertificate field's value.
+func (s *ExportKeyCryptogram) SetWrappingKeyCertificate(v string) *ExportKeyCryptogram {
+	s.WrappingKeyCertificate = &v
+	return s
+}
+
+// SetWrappingSpec sets the WrappingSpec field's value.
+func (s *ExportKeyCryptogram) SetWrappingSpec(v string) *ExportKeyCryptogram {
+	s.WrappingSpec = &v
+	return s
+}
+
 type ExportKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3515,9 +3647,13 @@ func (s *ExportKeyInput) SetKeyMaterial(v *ExportKeyMaterial) *ExportKeyInput {
 }
 
 // Parameter information for key material export from Amazon Web Services Payment
-// Cryptography using TR-31 or TR-34 key exchange method.
+// Cryptography using TR-31 or TR-34 or RSA wrap and unwrap key exchange method.
 type ExportKeyMaterial struct {
 	_ struct{} `type:"structure"`
+
+	// Parameter information for key material export using asymmetric RSA wrap and
+	// unwrap key exchange method
+	KeyCryptogram *ExportKeyCryptogram `type:"structure"`
 
 	// Parameter information for key material export using symmetric TR-31 key exchange
 	// method.
@@ -3549,6 +3685,11 @@ func (s ExportKeyMaterial) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ExportKeyMaterial) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExportKeyMaterial"}
+	if s.KeyCryptogram != nil {
+		if err := s.KeyCryptogram.Validate(); err != nil {
+			invalidParams.AddNested("KeyCryptogram", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tr31KeyBlock != nil {
 		if err := s.Tr31KeyBlock.Validate(); err != nil {
 			invalidParams.AddNested("Tr31KeyBlock", err.(request.ErrInvalidParams))
@@ -3564,6 +3705,12 @@ func (s *ExportKeyMaterial) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKeyCryptogram sets the KeyCryptogram field's value.
+func (s *ExportKeyMaterial) SetKeyCryptogram(v *ExportKeyCryptogram) *ExportKeyMaterial {
+	s.KeyCryptogram = v
+	return s
 }
 
 // SetTr31KeyBlock sets the Tr31KeyBlock field's value.
@@ -3582,6 +3729,7 @@ type ExportKeyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The key material under export as a TR-34 WrappedKeyBlock or a TR-31 WrappedKeyBlock.
+	// or a RSA WrappedKeyCryptogram.
 	WrappedKey *WrappedKey `type:"structure"`
 }
 
@@ -4105,7 +4253,7 @@ type GetParametersForImportInput struct {
 	_ struct{} `type:"structure"`
 
 	// The method to use for key material import. Import token is only required
-	// for TR-34 WrappedKeyBlock (TR34_KEY_BLOCK).
+	// for TR-34 WrappedKeyBlock (TR34_KEY_BLOCK) and RSA WrappedKeyCryptogram (KEY_CRYPTOGRAM).
 	//
 	// Import token is not required for TR-31, root public key cerificate or trusted
 	// public key certificate.
@@ -4116,8 +4264,9 @@ type GetParametersForImportInput struct {
 	// The wrapping key algorithm to generate a wrapping key certificate. This certificate
 	// wraps the key under import.
 	//
-	// At this time, RSA_2048, RSA_3072, RSA_4096 are the only allowed algorithms
-	// for TR-34 WrappedKeyBlock import.
+	// At this time, RSA_2048 is the allowed algorithm for TR-34 WrappedKeyBlock
+	// import. Additionally, RSA_2048, RSA_3072, RSA_4096 are the allowed algorithms
+	// for RSA WrappedKeyCryptogram import.
 	//
 	// WrappingKeyAlgorithm is a required field
 	WrappingKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
@@ -4184,7 +4333,8 @@ type GetParametersForImportOutput struct {
 	// ParametersValidUntilTimestamp is a required field
 	ParametersValidUntilTimestamp *time.Time `type:"timestamp" required:"true"`
 
-	// The algorithm of the wrapping key for use within TR-34 WrappedKeyBlock.
+	// The algorithm of the wrapping key for use within TR-34 WrappedKeyBlock or
+	// RSA WrappedKeyCryptogram.
 	//
 	// WrappingKeyAlgorithm is a required field
 	WrappingKeyAlgorithm *string `type:"string" required:"true" enum:"KeyAlgorithm"`
@@ -4362,6 +4512,117 @@ func (s *GetPublicKeyCertificateOutput) SetKeyCertificateChain(v string) *GetPub
 	return s
 }
 
+// Parameter information for key material import using asymmetric RSA wrap and
+// unwrap key exchange method.
+type ImportKeyCryptogram struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the key is exportable from the service.
+	//
+	// Exportable is a required field
+	Exportable *bool `type:"boolean" required:"true"`
+
+	// The import token that initiates key import using the asymmetric RSA wrap
+	// and unwrap key exchange method into AWS Payment Cryptography. It expires
+	// after 7 days. You can use the same import token to import multiple keys to
+	// the same service account.
+	//
+	// ImportToken is a required field
+	ImportToken *string `type:"string" required:"true"`
+
+	// The role of the key, the algorithm it supports, and the cryptographic operations
+	// allowed with the key. This data is immutable after the key is created.
+	//
+	// KeyAttributes is a required field
+	KeyAttributes *KeyAttributes `type:"structure" required:"true"`
+
+	// The RSA wrapped key cryptogram under import.
+	//
+	// WrappedKeyCryptogram is a required field
+	WrappedKeyCryptogram *string `min:"16" type:"string" required:"true"`
+
+	// The wrapping spec for the wrapped key cryptogram.
+	WrappingSpec *string `type:"string" enum:"WrappingKeySpec"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportKeyCryptogram) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportKeyCryptogram) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportKeyCryptogram) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportKeyCryptogram"}
+	if s.Exportable == nil {
+		invalidParams.Add(request.NewErrParamRequired("Exportable"))
+	}
+	if s.ImportToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportToken"))
+	}
+	if s.KeyAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyAttributes"))
+	}
+	if s.WrappedKeyCryptogram == nil {
+		invalidParams.Add(request.NewErrParamRequired("WrappedKeyCryptogram"))
+	}
+	if s.WrappedKeyCryptogram != nil && len(*s.WrappedKeyCryptogram) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("WrappedKeyCryptogram", 16))
+	}
+	if s.KeyAttributes != nil {
+		if err := s.KeyAttributes.Validate(); err != nil {
+			invalidParams.AddNested("KeyAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportable sets the Exportable field's value.
+func (s *ImportKeyCryptogram) SetExportable(v bool) *ImportKeyCryptogram {
+	s.Exportable = &v
+	return s
+}
+
+// SetImportToken sets the ImportToken field's value.
+func (s *ImportKeyCryptogram) SetImportToken(v string) *ImportKeyCryptogram {
+	s.ImportToken = &v
+	return s
+}
+
+// SetKeyAttributes sets the KeyAttributes field's value.
+func (s *ImportKeyCryptogram) SetKeyAttributes(v *KeyAttributes) *ImportKeyCryptogram {
+	s.KeyAttributes = v
+	return s
+}
+
+// SetWrappedKeyCryptogram sets the WrappedKeyCryptogram field's value.
+func (s *ImportKeyCryptogram) SetWrappedKeyCryptogram(v string) *ImportKeyCryptogram {
+	s.WrappedKeyCryptogram = &v
+	return s
+}
+
+// SetWrappingSpec sets the WrappingSpec field's value.
+func (s *ImportKeyCryptogram) SetWrappingSpec(v string) *ImportKeyCryptogram {
+	s.WrappingSpec = &v
+	return s
+}
+
 type ImportKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4474,9 +4735,13 @@ func (s *ImportKeyInput) SetTags(v []*Tag) *ImportKeyInput {
 }
 
 // Parameter information for key material import into Amazon Web Services Payment
-// Cryptography using TR-31 or TR-34 key exchange method.
+// Cryptography using TR-31 or TR-34 or RSA wrap and unwrap key exchange method.
 type ImportKeyMaterial struct {
 	_ struct{} `type:"structure"`
+
+	// Parameter information for key material import using asymmetric RSA wrap and
+	// unwrap key exchange method.
+	KeyCryptogram *ImportKeyCryptogram `type:"structure"`
 
 	// Parameter information for root public key certificate import.
 	RootCertificatePublicKey *RootCertificatePublicKey `type:"structure"`
@@ -4514,6 +4779,11 @@ func (s ImportKeyMaterial) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ImportKeyMaterial) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ImportKeyMaterial"}
+	if s.KeyCryptogram != nil {
+		if err := s.KeyCryptogram.Validate(); err != nil {
+			invalidParams.AddNested("KeyCryptogram", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RootCertificatePublicKey != nil {
 		if err := s.RootCertificatePublicKey.Validate(); err != nil {
 			invalidParams.AddNested("RootCertificatePublicKey", err.(request.ErrInvalidParams))
@@ -4539,6 +4809,12 @@ func (s *ImportKeyMaterial) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKeyCryptogram sets the KeyCryptogram field's value.
+func (s *ImportKeyMaterial) SetKeyCryptogram(v *ImportKeyCryptogram) *ImportKeyMaterial {
+	s.KeyCryptogram = v
+	return s
 }
 
 // SetRootCertificatePublicKey sets the RootCertificatePublicKey field's value.
@@ -6966,6 +7242,9 @@ const (
 
 	// KeyMaterialTypeTrustedPublicKeyCertificate is a KeyMaterialType enum value
 	KeyMaterialTypeTrustedPublicKeyCertificate = "TRUSTED_PUBLIC_KEY_CERTIFICATE"
+
+	// KeyMaterialTypeKeyCryptogram is a KeyMaterialType enum value
+	KeyMaterialTypeKeyCryptogram = "KEY_CRYPTOGRAM"
 )
 
 // KeyMaterialType_Values returns all elements of the KeyMaterialType enum
@@ -6975,6 +7254,7 @@ func KeyMaterialType_Values() []string {
 		KeyMaterialTypeTr31KeyBlock,
 		KeyMaterialTypeRootPublicKeyCertificate,
 		KeyMaterialTypeTrustedPublicKeyCertificate,
+		KeyMaterialTypeKeyCryptogram,
 	}
 }
 
@@ -7063,6 +7343,9 @@ const (
 	// KeyUsageTr31M3Iso97973MacKey is a KeyUsage enum value
 	KeyUsageTr31M3Iso97973MacKey = "TR31_M3_ISO_9797_3_MAC_KEY"
 
+	// KeyUsageTr31M1Iso97971MacKey is a KeyUsage enum value
+	KeyUsageTr31M1Iso97971MacKey = "TR31_M1_ISO_9797_1_MAC_KEY"
+
 	// KeyUsageTr31M6Iso97975CmacKey is a KeyUsage enum value
 	KeyUsageTr31M6Iso97975CmacKey = "TR31_M6_ISO_9797_5_CMAC_KEY"
 
@@ -7105,6 +7388,7 @@ func KeyUsage_Values() []string {
 		KeyUsageTr31K1KeyBlockProtectionKey,
 		KeyUsageTr31K3AsymmetricKeyForKeyAgreement,
 		KeyUsageTr31M3Iso97973MacKey,
+		KeyUsageTr31M1Iso97971MacKey,
 		KeyUsageTr31M6Iso97975CmacKey,
 		KeyUsageTr31M7HmacKey,
 		KeyUsageTr31P0PinEncryptionKey,
@@ -7145,5 +7429,21 @@ func WrappedKeyMaterialFormat_Values() []string {
 		WrappedKeyMaterialFormatKeyCryptogram,
 		WrappedKeyMaterialFormatTr31KeyBlock,
 		WrappedKeyMaterialFormatTr34KeyBlock,
+	}
+}
+
+const (
+	// WrappingKeySpecRsaOaepSha256 is a WrappingKeySpec enum value
+	WrappingKeySpecRsaOaepSha256 = "RSA_OAEP_SHA_256"
+
+	// WrappingKeySpecRsaOaepSha512 is a WrappingKeySpec enum value
+	WrappingKeySpecRsaOaepSha512 = "RSA_OAEP_SHA_512"
+)
+
+// WrappingKeySpec_Values returns all elements of the WrappingKeySpec enum
+func WrappingKeySpec_Values() []string {
+	return []string{
+		WrappingKeySpecRsaOaepSha256,
+		WrappingKeySpecRsaOaepSha512,
 	}
 }

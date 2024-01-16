@@ -42,9 +42,13 @@
 //
 //   - GetCelebrityInfo (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetCelebrityInfo.html)
 //
+//   - GetMediaAnalysisJob (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetMediaAnalysisJob.html)
+//
 //   - IndexFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html)
 //
 //   - ListCollections (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListCollections.html)
+//
+//   - ListMediaAnalysisJob (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListMediaAnalysisJob.html)
 //
 //   - ListFaces (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html)
 //
@@ -59,6 +63,8 @@
 //   - SearchUsers (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsers.html)
 //
 //   - SearchUsersByImage (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsersByImage.html)
+//
+//   - StartMediaAnalysisJob (https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartMediaAnalysisJob.html)
 //
 // Amazon Rekognition Custom Labels
 //

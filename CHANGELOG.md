@@ -1,3 +1,18 @@
+Release v1.49.22 (2024-01-16)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API
+  * Revert release of LogTargetTypes
+* `service/iotfleetwise`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/payment-cryptography`: Updates service API and documentation
+* `service/personalize`: Updates service documentation
+* `service/personalize-runtime`: Updates service documentation
+* `service/rekognition`: Updates service API and documentation
+  * This release adds ContentType and TaxonomyLevel attributes to DetectModerationLabels and GetMediaAnalysisJob API responses.
+* `service/securityhub`: Updates service documentation
+
 Release v1.49.21 (2024-01-14)
 ===
 

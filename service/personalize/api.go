@@ -274,26 +274,31 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 //
 // # Minimum Provisioned TPS and Auto-Scaling
 //
-// A high minProvisionedTPS will increase your bill. We recommend starting with
+// A high minProvisionedTPS will increase your cost. We recommend starting with
 // 1 for minProvisionedTPS (the default). Track your usage using Amazon CloudWatch
 // metrics, and increase the minProvisionedTPS as necessary.
 //
-// A transaction is a single GetRecommendations or GetPersonalizedRanking call.
-// Transactions per second (TPS) is the throughput and unit of billing for Amazon
-// Personalize. The minimum provisioned TPS (minProvisionedTPS) specifies the
-// baseline throughput provisioned by Amazon Personalize, and thus, the minimum
-// billing charge.
+// When you create an Amazon Personalize campaign, you can specify the minimum
+// provisioned transactions per second (minProvisionedTPS) for the campaign.
+// This is the baseline transaction throughput for the campaign provisioned
+// by Amazon Personalize. It sets the minimum billing charge for the campaign
+// while it is active. A transaction is a single GetRecommendations or GetPersonalizedRanking
+// request. The default minProvisionedTPS is 1.
 //
-// If your TPS increases beyond minProvisionedTPS, Amazon Personalize auto-scales
+// If your TPS increases beyond the minProvisionedTPS, Amazon Personalize auto-scales
 // the provisioned capacity up and down, but never below minProvisionedTPS.
 // There's a short time delay while the capacity is increased that might cause
-// loss of transactions.
+// loss of transactions. When your traffic reduces, capacity returns to the
+// minProvisionedTPS.
 //
-// The actual TPS used is calculated as the average requests/second within a
-// 5-minute window. You pay for maximum of either the minimum provisioned TPS
-// or the actual TPS. We recommend starting with a low minProvisionedTPS, track
-// your usage using Amazon CloudWatch metrics, and then increase the minProvisionedTPS
-// as necessary.
+// You are charged for the the minimum provisioned TPS or, if your requests
+// exceed the minProvisionedTPS, the actual TPS. The actual TPS is the total
+// number of recommendation requests you make. We recommend starting with a
+// low minProvisionedTPS, track your usage using Amazon CloudWatch metrics,
+// and then increase the minProvisionedTPS as necessary.
+//
+// For more information about campaign costs, see Amazon Personalize pricing
+// (https://aws.amazon.com/personalize/pricing/).
 //
 // # Status
 //
@@ -8335,7 +8340,8 @@ type CampaignConfig struct {
 	// Whether metadata with recommendations is enabled for the campaign. If enabled,
 	// you can specify the columns from your Items dataset in your request for recommendations.
 	// Amazon Personalize returns this data for each item in the recommendation
-	// response.
+	// response. For information about enabling metadata for a campaign, see Enabling
+	// metadata in recommendations for a campaign (https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-return-metadata).
 	//
 	// If you enable metadata in recommendations, you will incur additional costs.
 	// For more information, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).
@@ -10531,7 +10537,7 @@ type CreateSolutionInput struct {
 	//
 	// We don't recommend enabling automated machine learning. Instead, match your
 	// use case to the available Amazon Personalize recipes. For more information,
-	// see Determining your use case. (https://docs.aws.amazon.com/personalize/latest/dg/determining-use-case.html)
+	// see Choosing a recipe (https://docs.aws.amazon.com/personalize/latest/dg/working-with-predefined-recipes.html).
 	//
 	// Whether to perform automated machine learning (AutoML). The default is false.
 	// For this case, you must specify recipeArn.
@@ -10550,8 +10556,9 @@ type CreateSolutionInput struct {
 	// set it to false.
 	PerformHPO *bool `locationName:"performHPO" type:"boolean"`
 
-	// The ARN of the recipe to use for model training. This is required when performAutoML
-	// is false.
+	// The Amazon Resource Name (ARN) of the recipe to use for model training. This
+	// is required when performAutoML is false. For information about different
+	// Amazon Personalize recipes and their ARNs, see Choosing a recipe (https://docs.aws.amazon.com/personalize/latest/dg/working-with-predefined-recipes.html).
 	RecipeArn *string `locationName:"recipeArn" type:"string"`
 
 	// The configuration to use with the solution. When performAutoML is set to
@@ -17716,7 +17723,9 @@ type RecommenderConfig struct {
 	// Whether metadata with recommendations is enabled for the recommender. If
 	// enabled, you can specify the columns from your Items dataset in your request
 	// for recommendations. Amazon Personalize returns this data for each item in
-	// the recommendation response.
+	// the recommendation response. For information about enabling metadata for
+	// a recommender, see Enabling metadata in recommendations for a recommender
+	// (https://docs.aws.amazon.com/personalize/latest/dg/creating-recommenders.html#create-recommender-return-metadata).
 	//
 	// If you enable metadata in recommendations, you will incur additional costs.
 	// For more information, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).

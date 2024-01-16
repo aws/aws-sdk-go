@@ -4452,7 +4452,8 @@
         "NONE",
         "AES256",
         "aws:kms",
-        "UNKNOWN"
+        "UNKNOWN",
+	"aws:kms:dsse"
       ]
     },
     "ErrorCode": {
@@ -7703,7 +7704,8 @@
       "enum": [
         "NONE",
         "AES256",
-        "aws:kms"
+        "aws:kms",
+	"aws:kms:dsse"
       ]
     },
     "UnavailabilityReasonCode": {

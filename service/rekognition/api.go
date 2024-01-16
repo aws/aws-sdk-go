@@ -2782,7 +2782,8 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 // a (CustomLabel) object in an array (CustomLabels). Each CustomLabel object
 // provides the label name (Name), the level of confidence that the image contains
 // the object (Confidence), and object location information, if it exists, for
-// the label on the image (Geometry).
+// the label on the image (Geometry). Note that for the DetectCustomLabelsLabels
+// operation, Polygons are not returned in the Geometry section of the response.
 //
 // To filter labels that are returned, specify a value for MinConfidence. DetectCustomLabelsLabels
 // only returns labels with a confidence that's higher than the specified value.
@@ -10221,9 +10222,8 @@ func (s *AssociateFacesInput) SetUserMatchThreshold(v float64) *AssociateFacesIn
 type AssociateFacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of AssociatedFace objects containing FaceIDs that are successfully
-	// associated with the UserID is returned. Returned if the AssociateFaces action
-	// is successful.
+	// An array of AssociatedFace objects containing FaceIDs that have been successfully
+	// associated with the UserID. Returned if the AssociateFaces action is successful.
 	AssociatedFaces []*AssociatedFace `type:"list"`
 
 	// An array of UnsuccessfulAssociation objects containing FaceIDs that are not
@@ -11493,6 +11493,48 @@ func (s *ContentModerationDetection) SetStartTimestampMillis(v int64) *ContentMo
 // SetTimestamp sets the Timestamp field's value.
 func (s *ContentModerationDetection) SetTimestamp(v int64) *ContentModerationDetection {
 	s.Timestamp = &v
+	return s
+}
+
+// Contains information regarding the confidence and name of a detected content
+// type.
+type ContentType struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence level of the label given
+	Confidence *float64 `type:"float"`
+
+	// The name of the label
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentType) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ContentType) SetConfidence(v float64) *ContentType {
+	s.Confidence = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContentType) SetName(v string) *ContentType {
+	s.Name = &v
 	return s
 }
 
@@ -15562,6 +15604,10 @@ func (s *DetectModerationLabelsInput) SetProjectVersion(v string) *DetectModerat
 type DetectModerationLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of predicted results for the type of content an image contains. For
+	// example, the image content might be from animation, sports, or a video game.
+	ContentTypes []*ContentType `type:"list"`
+
 	// Shows the results of the human in the loop evaluation.
 	HumanLoopActivationOutput *HumanLoopActivationOutput `type:"structure"`
 
@@ -15595,6 +15641,12 @@ func (s DetectModerationLabelsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DetectModerationLabelsOutput) GoString() string {
 	return s.String()
+}
+
+// SetContentTypes sets the ContentTypes field's value.
+func (s *DetectModerationLabelsOutput) SetContentTypes(v []*ContentType) *DetectModerationLabelsOutput {
+	s.ContentTypes = v
+	return s
 }
 
 // SetHumanLoopActivationOutput sets the HumanLoopActivationOutput field's value.
@@ -22805,6 +22857,39 @@ func (s *MediaAnalysisManifestSummary) SetS3Object(v *S3Object) *MediaAnalysisMa
 	return s
 }
 
+// Object containing information about the model versions of selected features
+// in a given job.
+type MediaAnalysisModelVersions struct {
+	_ struct{} `type:"structure"`
+
+	// The Moderation base model version.
+	Moderation *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisModelVersions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaAnalysisModelVersions) GoString() string {
+	return s.String()
+}
+
+// SetModeration sets the Moderation field's value.
+func (s *MediaAnalysisModelVersions) SetModeration(v string) *MediaAnalysisModelVersions {
+	s.Moderation = &v
+	return s
+}
+
 // Configuration options for a media analysis job. Configuration is operation-specific.
 type MediaAnalysisOperationsConfig struct {
 	_ struct{} `type:"structure"`
@@ -22917,6 +23002,10 @@ func (s *MediaAnalysisOutputConfig) SetS3KeyPrefix(v string) *MediaAnalysisOutpu
 type MediaAnalysisResults struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the model versions for the features selected in a given
+	// job.
+	ModelVersions *MediaAnalysisModelVersions `type:"structure"`
+
 	// Provides the S3 bucket name and object name.
 	//
 	// The region for the S3 bucket containing the S3 object must match the region
@@ -22946,6 +23035,12 @@ func (s MediaAnalysisResults) GoString() string {
 	return s.String()
 }
 
+// SetModelVersions sets the ModelVersions field's value.
+func (s *MediaAnalysisResults) SetModelVersions(v *MediaAnalysisModelVersions) *MediaAnalysisResults {
+	s.ModelVersions = v
+	return s
+}
+
 // SetS3Object sets the S3Object field's value.
 func (s *MediaAnalysisResults) SetS3Object(v *S3Object) *MediaAnalysisResults {
 	s.S3Object = v
@@ -22973,6 +23068,10 @@ type ModerationLabel struct {
 	// The name for the parent label. Labels at the top level of the hierarchy have
 	// the parent label "".
 	ParentName *string `type:"string"`
+
+	// The level of the moderation label with regard to its taxonomy, from 1 to
+	// 3.
+	TaxonomyLevel *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -23008,6 +23107,12 @@ func (s *ModerationLabel) SetName(v string) *ModerationLabel {
 // SetParentName sets the ParentName field's value.
 func (s *ModerationLabel) SetParentName(v string) *ModerationLabel {
 	s.ParentName = &v
+	return s
+}
+
+// SetTaxonomyLevel sets the TaxonomyLevel field's value.
+func (s *ModerationLabel) SetTaxonomyLevel(v int64) *ModerationLabel {
+	s.TaxonomyLevel = &v
 	return s
 }
 

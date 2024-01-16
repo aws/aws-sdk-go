@@ -507,6 +507,18 @@
         "KeySerialNumber":{"shape":"HexLength20Or24"}
       }
     },
+    "ExportKeyCryptogram":{
+      "type":"structure",
+      "required":[
+        "CertificateAuthorityPublicKeyIdentifier",
+        "WrappingKeyCertificate"
+      ],
+      "members":{
+        "CertificateAuthorityPublicKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "WrappingKeyCertificate":{"shape":"CertificateType"},
+        "WrappingSpec":{"shape":"WrappingKeySpec"}
+      }
+    },
     "ExportKeyInput":{
       "type":"structure",
       "required":[
@@ -522,6 +534,7 @@
     "ExportKeyMaterial":{
       "type":"structure",
       "members":{
+        "KeyCryptogram":{"shape":"ExportKeyCryptogram"},
         "Tr31KeyBlock":{"shape":"ExportTr31KeyBlock"},
         "Tr34KeyBlock":{"shape":"ExportTr34KeyBlock"}
       },
@@ -674,6 +687,22 @@
       "min":20,
       "pattern":"^[0-9A-F]{20}$|^[0-9A-F]{24}$"
     },
+    "ImportKeyCryptogram":{
+      "type":"structure",
+      "required":[
+        "Exportable",
+        "ImportToken",
+        "KeyAttributes",
+        "WrappedKeyCryptogram"
+      ],
+      "members":{
+        "Exportable":{"shape":"Boolean"},
+        "ImportToken":{"shape":"ImportTokenId"},
+        "KeyAttributes":{"shape":"KeyAttributes"},
+        "WrappedKeyCryptogram":{"shape":"WrappedKeyCryptogram"},
+        "WrappingSpec":{"shape":"WrappingKeySpec"}
+      }
+    },
     "ImportKeyInput":{
       "type":"structure",
       "required":["KeyMaterial"],
@@ -687,6 +716,7 @@
     "ImportKeyMaterial":{
       "type":"structure",
       "members":{
+        "KeyCryptogram":{"shape":"ImportKeyCryptogram"},
         "RootCertificatePublicKey":{"shape":"RootCertificatePublicKey"},
         "Tr31KeyBlock":{"shape":"ImportTr31KeyBlock"},
         "Tr34KeyBlock":{"shape":"ImportTr34KeyBlock"},
@@ -845,7 +875,8 @@
         "TR34_KEY_BLOCK",
         "TR31_KEY_BLOCK",
         "ROOT_PUBLIC_KEY_CERTIFICATE",
-        "TRUSTED_PUBLIC_KEY_CERTIFICATE"
+        "TRUSTED_PUBLIC_KEY_CERTIFICATE",
+        "KEY_CRYPTOGRAM"
       ]
     },
     "KeyModesOfUse":{
@@ -918,6 +949,7 @@
         "TR31_K1_KEY_BLOCK_PROTECTION_KEY",
         "TR31_K3_ASYMMETRIC_KEY_FOR_KEY_AGREEMENT",
         "TR31_M3_ISO_9797_3_MAC_KEY",
+        "TR31_M1_ISO_9797_1_MAC_KEY",
         "TR31_M6_ISO_9797_5_CMAC_KEY",
         "TR31_M7_HMAC_KEY",
         "TR31_P0_PIN_ENCRYPTION_KEY",
@@ -1206,12 +1238,25 @@
         "WrappingKeyArn":{"shape":"KeyArn"}
       }
     },
+    "WrappedKeyCryptogram":{
+      "type":"string",
+      "max":4096,
+      "min":16,
+      "pattern":"^[0-9A-F]+$"
+    },
     "WrappedKeyMaterialFormat":{
       "type":"string",
       "enum":[
         "KEY_CRYPTOGRAM",
         "TR31_KEY_BLOCK",
         "TR34_KEY_BLOCK"
+      ]
+    },
+    "WrappingKeySpec":{
+      "type":"string",
+      "enum":[
+        "RSA_OAEP_SHA_256",
+        "RSA_OAEP_SHA_512"
       ]
     }
   }
