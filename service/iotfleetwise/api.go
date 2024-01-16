@@ -7129,7 +7129,7 @@ type ConditionBasedCollectionScheme struct {
 	ConditionLanguageVersion *int64 `locationName:"conditionLanguageVersion" min:"1" type:"integer"`
 
 	// The logical expression used to recognize what data to collect. For example,
-	// $variable.Vehicle.OutsideAirTemperature >= 105.0.
+	// $variable.`Vehicle.OutsideAirTemperature` >= 105.0.
 	//
 	// Expression is a required field
 	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
@@ -12916,6 +12916,9 @@ type ListSignalCatalogNodesInput struct {
 	// token. When all results have been returned, the response does not contain
 	// a pagination token value.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The type of node in the signal catalog.
+	SignalNodeType *string `locationName:"signalNodeType" type:"string" enum:"SignalNodeType"`
 }
 
 // String returns the string representation.
@@ -12973,6 +12976,12 @@ func (s *ListSignalCatalogNodesInput) SetName(v string) *ListSignalCatalogNodesI
 // SetNextToken sets the NextToken field's value.
 func (s *ListSignalCatalogNodesInput) SetNextToken(v string) *ListSignalCatalogNodesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSignalNodeType sets the SignalNodeType field's value.
+func (s *ListSignalCatalogNodesInput) SetSignalNodeType(v string) *ListSignalCatalogNodesInput {
+	s.SignalNodeType = &v
 	return s
 }
 
@@ -17502,6 +17511,11 @@ type VehicleSummary struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
+	// Static information about a vehicle in a key-value pair. For example:
+	//
+	// "engineType" : "1.3 L R2"
+	Attributes map[string]*string `locationName:"attributes" type:"map"`
+
 	// The time the vehicle was created in seconds since epoch (January 1, 1970
 	// at midnight UTC time).
 	//
@@ -17551,6 +17565,12 @@ func (s VehicleSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *VehicleSummary) SetArn(v string) *VehicleSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *VehicleSummary) SetAttributes(v map[string]*string) *VehicleSummary {
+	s.Attributes = v
 	return s
 }
 
@@ -18101,6 +18121,38 @@ func SignalDecoderType_Values() []string {
 		SignalDecoderTypeCanSignal,
 		SignalDecoderTypeObdSignal,
 		SignalDecoderTypeMessageSignal,
+	}
+}
+
+const (
+	// SignalNodeTypeSensor is a SignalNodeType enum value
+	SignalNodeTypeSensor = "SENSOR"
+
+	// SignalNodeTypeActuator is a SignalNodeType enum value
+	SignalNodeTypeActuator = "ACTUATOR"
+
+	// SignalNodeTypeAttribute is a SignalNodeType enum value
+	SignalNodeTypeAttribute = "ATTRIBUTE"
+
+	// SignalNodeTypeBranch is a SignalNodeType enum value
+	SignalNodeTypeBranch = "BRANCH"
+
+	// SignalNodeTypeCustomStruct is a SignalNodeType enum value
+	SignalNodeTypeCustomStruct = "CUSTOM_STRUCT"
+
+	// SignalNodeTypeCustomProperty is a SignalNodeType enum value
+	SignalNodeTypeCustomProperty = "CUSTOM_PROPERTY"
+)
+
+// SignalNodeType_Values returns all elements of the SignalNodeType enum
+func SignalNodeType_Values() []string {
+	return []string{
+		SignalNodeTypeSensor,
+		SignalNodeTypeActuator,
+		SignalNodeTypeAttribute,
+		SignalNodeTypeBranch,
+		SignalNodeTypeCustomStruct,
+		SignalNodeTypeCustomProperty,
 	}
 }
 

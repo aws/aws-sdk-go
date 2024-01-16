@@ -23901,11 +23901,11 @@ func (s UpdateResourceProfileOutput) GoString() string {
 
 // Specifies the access method and settings to use when retrieving occurrences
 // of sensitive data reported by findings. If your request specifies an Identity
-// and Access Management (IAM) role to assume when retrieving the sensitive
-// data, Amazon Macie verifies that the role exists and the attached policies
-// are configured correctly. If there's an issue, Macie returns an error. For
-// information about addressing the issue, see Retrieving sensitive data samples
-// with findings (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd.html)
+// and Access Management (IAM) role to assume, Amazon Macie verifies that the
+// role exists and the attached policies are configured correctly. If there's
+// an issue, Macie returns an error. For information about addressing the issue,
+// see Configuration options and requirements for retrieving sensitive data
+// samples (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd-options.html)
 // in the Amazon Macie User Guide.
 type UpdateRetrievalConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -23967,12 +23967,12 @@ func (s *UpdateRetrievalConfiguration) SetRoleName(v string) *UpdateRetrievalCon
 
 // Specifies configuration settings for retrieving occurrences of sensitive
 // data reported by findings, and the status of the configuration for an Amazon
-// Macie account. If you don't specify retrievalConfiguration values for an
+// Macie account. If you don't specify retrievalConfiguration settings for an
 // existing configuration, Macie sets the access method to CALLER_CREDENTIALS.
 // If your current access method is ASSUME_ROLE, Macie also deletes the external
 // ID and role name currently specified for the configuration. To keep these
-// settings for an existing configuration, specify the current retrievalConfiguration
-// values in your request.
+// settings for an existing configuration, specify your current retrievalConfiguration
+// settings in your request.
 type UpdateRevealConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23987,11 +23987,11 @@ type UpdateRevealConfigurationInput struct {
 
 	// Specifies the access method and settings to use when retrieving occurrences
 	// of sensitive data reported by findings. If your request specifies an Identity
-	// and Access Management (IAM) role to assume when retrieving the sensitive
-	// data, Amazon Macie verifies that the role exists and the attached policies
-	// are configured correctly. If there's an issue, Macie returns an error. For
-	// information about addressing the issue, see Retrieving sensitive data samples
-	// with findings (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd.html)
+	// and Access Management (IAM) role to assume, Amazon Macie verifies that the
+	// role exists and the attached policies are configured correctly. If there's
+	// an issue, Macie returns an error. For information about addressing the issue,
+	// see Configuration options and requirements for retrieving sensitive data
+	// samples (https://docs.aws.amazon.com/macie/latest/user/findings-retrieve-sd-options.html)
 	// in the Amazon Macie User Guide.
 	RetrievalConfiguration *UpdateRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
@@ -25044,6 +25044,9 @@ const (
 
 	// EncryptionTypeUnknown is a EncryptionType enum value
 	EncryptionTypeUnknown = "UNKNOWN"
+
+	// EncryptionTypeAwsKmsDsse is a EncryptionType enum value
+	EncryptionTypeAwsKmsDsse = "aws:kms:dsse"
 )
 
 // EncryptionType_Values returns all elements of the EncryptionType enum
@@ -25053,6 +25056,7 @@ func EncryptionType_Values() []string {
 		EncryptionTypeAes256,
 		EncryptionTypeAwsKms,
 		EncryptionTypeUnknown,
+		EncryptionTypeAwsKmsDsse,
 	}
 }
 
@@ -25913,6 +25917,9 @@ const (
 
 	// TypeAwsKms is a Type enum value
 	TypeAwsKms = "aws:kms"
+
+	// TypeAwsKmsDsse is a Type enum value
+	TypeAwsKmsDsse = "aws:kms:dsse"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -25921,6 +25928,7 @@ func Type_Values() []string {
 		TypeNone,
 		TypeAes256,
 		TypeAwsKms,
+		TypeAwsKmsDsse,
 	}
 }
 

@@ -1138,6 +1138,12 @@
         "GetCampaignResponse$signalsToCollect": "<p> Information about a list of signals to collect data on. </p>"
       }
     },
+    "SignalNodeType": {
+      "base": null,
+      "refs": {
+        "ListSignalCatalogNodesRequest$signalNodeType": "<p>The type of node in the signal catalog.</p>"
+      }
+    },
     "SpoolingMode": {
       "base": null,
       "refs": {
@@ -1578,7 +1584,8 @@
         "CreateVehicleRequestItem$attributes": "<p>Static information about a vehicle in a key-value pair. For example: <code>\"engine Type\"</code> : <code>\"v6\"</code> </p>",
         "GetVehicleResponse$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
         "UpdateVehicleRequest$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
-        "UpdateVehicleRequestItem$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>"
+        "UpdateVehicleRequestItem$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>",
+        "VehicleSummary$attributes": "<p>Static information about a vehicle in a key-value pair. For example:</p> <p> <code>\"engineType\"</code> : <code>\"1.3 L R2\"</code> </p>"
       }
     },
     "campaignName": {
@@ -1696,7 +1703,7 @@
     "eventExpression": {
       "base": null,
       "refs": {
-        "ConditionBasedCollectionScheme$expression": "<p>The logical expression used to recognize what data to collect. For example, <code>$variable.Vehicle.OutsideAirTemperature &gt;= 105.0</code>.</p>"
+        "ConditionBasedCollectionScheme$expression": "<p>The logical expression used to recognize what data to collect. For example, <code>$variable.`Vehicle.OutsideAirTemperature` &gt;= 105.0</code>.</p>"
       }
     },
     "fleetId": {

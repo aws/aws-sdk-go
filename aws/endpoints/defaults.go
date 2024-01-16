@@ -21759,6 +21759,14 @@ var awsPartition = partition{
 					},
 				},
 				endpointKey{
+					Region: "me-central-1",
+				}: endpoint{
+					Hostname: "oidc.me-central-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "me-central-1",
+					},
+				},
+				endpointKey{
 					Region: "me-south-1",
 				}: endpoint{
 					Hostname: "oidc.me-south-1.amazonaws.com",

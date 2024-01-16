@@ -1775,6 +1775,19 @@
         "TIMESTAMP"
       ]
     },
+    "ContentType":{
+      "type":"structure",
+      "members":{
+        "Confidence":{"shape":"Percent"},
+        "Name":{"shape":"String"}
+      }
+    },
+    "ContentTypes":{
+      "type":"list",
+      "member":{"shape":"ContentType"},
+      "max":50,
+      "min":0
+    },
     "CopyProjectVersionRequest":{
       "type":"structure",
       "required":[
@@ -2455,7 +2468,8 @@
         "ModerationLabels":{"shape":"ModerationLabels"},
         "ModerationModelVersion":{"shape":"String"},
         "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"},
-        "ProjectVersion":{"shape":"ProjectVersionId"}
+        "ProjectVersion":{"shape":"ProjectVersionId"},
+        "ContentTypes":{"shape":"ContentTypes"}
       }
     },
     "DetectProtectiveEquipmentRequest":{
@@ -3818,6 +3832,12 @@
         "S3Object":{"shape":"S3Object"}
       }
     },
+    "MediaAnalysisModelVersions":{
+      "type":"structure",
+      "members":{
+        "Moderation":{"shape":"String"}
+      }
+    },
     "MediaAnalysisOperationsConfig":{
       "type":"structure",
       "members":{
@@ -3835,7 +3855,8 @@
     "MediaAnalysisResults":{
       "type":"structure",
       "members":{
-        "S3Object":{"shape":"S3Object"}
+        "S3Object":{"shape":"S3Object"},
+        "ModelVersions":{"shape":"MediaAnalysisModelVersions"}
       }
     },
     "MediaAnalysisS3KeyPrefix":{
@@ -3853,7 +3874,8 @@
       "members":{
         "Confidence":{"shape":"Percent"},
         "Name":{"shape":"String"},
-        "ParentName":{"shape":"String"}
+        "ParentName":{"shape":"String"},
+        "TaxonomyLevel":{"shape":"UInteger"}
       }
     },
     "ModerationLabels":{
