@@ -87,12 +87,12 @@ func (c *Keyspaces) CreateKeyspaceRequest(input *CreateKeyspaceInput) (req *requ
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/keyspaces-2022-02-10/CreateKeyspace
 func (c *Keyspaces) CreateKeyspace(input *CreateKeyspaceInput) (*CreateKeyspaceOutput, error) {
@@ -192,12 +192,12 @@ func (c *Keyspaces) CreateTableRequest(input *CreateTableInput) (req *request.Re
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -293,12 +293,12 @@ func (c *Keyspaces) DeleteKeyspaceRequest(input *DeleteKeyspaceInput) (req *requ
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -400,12 +400,12 @@ func (c *Keyspaces) DeleteTableRequest(input *DeleteTableInput) (req *request.Re
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -500,7 +500,7 @@ func (c *Keyspaces) GetKeyspaceRequest(input *GetKeyspaceInput) (req *request.Re
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -599,7 +599,7 @@ func (c *Keyspaces) GetTableRequest(input *GetTableInput) (req *request.Request,
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -622,6 +622,110 @@ func (c *Keyspaces) GetTable(input *GetTableInput) (*GetTableOutput, error) {
 // for more information on using Contexts.
 func (c *Keyspaces) GetTableWithContext(ctx aws.Context, input *GetTableInput, opts ...request.Option) (*GetTableOutput, error) {
 	req, out := c.GetTableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTableAutoScalingSettings = "GetTableAutoScalingSettings"
+
+// GetTableAutoScalingSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetTableAutoScalingSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTableAutoScalingSettings for more information on using the GetTableAutoScalingSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTableAutoScalingSettingsRequest method.
+//	req, resp := client.GetTableAutoScalingSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/keyspaces-2022-02-10/GetTableAutoScalingSettings
+func (c *Keyspaces) GetTableAutoScalingSettingsRequest(input *GetTableAutoScalingSettingsInput) (req *request.Request, output *GetTableAutoScalingSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetTableAutoScalingSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTableAutoScalingSettingsInput{}
+	}
+
+	output = &GetTableAutoScalingSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTableAutoScalingSettings API operation for Amazon Keyspaces.
+//
+// Returns auto scaling related settings of the specified table in JSON format.
+// If the table is a multi-Region table, the Amazon Web Services Region specific
+// auto scaling settings of the table are included.
+//
+// Amazon Keyspaces auto scaling helps you provision throughput capacity for
+// variable workloads efficiently by increasing and decreasing your table's
+// read and write capacity automatically in response to application traffic.
+// For more information, see Managing throughput capacity automatically with
+// Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
+// in the Amazon Keyspaces Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Keyspaces's
+// API operation GetTableAutoScalingSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The operation failed due to an invalid or malformed request.
+//
+//   - ServiceQuotaExceededException
+//     The operation exceeded the service quota for this resource. For more information
+//     on service quotas, see Quotas (https://docs.aws.amazon.com/keyspaces/latest/devguide/quotas.html)
+//     in the Amazon Keyspaces Developer Guide.
+//
+//   - InternalServerException
+//     Amazon Keyspaces was unable to fully process this request because of an internal
+//     server error.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access permissions to perform this action.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access a keyspace or table that doesn't exist. The
+//     resource might not be specified correctly, or its status might not be ACTIVE.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/keyspaces-2022-02-10/GetTableAutoScalingSettings
+func (c *Keyspaces) GetTableAutoScalingSettings(input *GetTableAutoScalingSettingsInput) (*GetTableAutoScalingSettingsOutput, error) {
+	req, out := c.GetTableAutoScalingSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetTableAutoScalingSettingsWithContext is the same as GetTableAutoScalingSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTableAutoScalingSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Keyspaces) GetTableAutoScalingSettingsWithContext(ctx aws.Context, input *GetTableAutoScalingSettingsInput, opts ...request.Option) (*GetTableAutoScalingSettingsOutput, error) {
+	req, out := c.GetTableAutoScalingSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -700,7 +804,7 @@ func (c *Keyspaces) ListKeyspacesRequest(input *ListKeyspacesInput) (req *reques
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -852,7 +956,7 @@ func (c *Keyspaces) ListTablesRequest(input *ListTablesInput) (req *request.Requ
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1005,7 +1109,7 @@ func (c *Keyspaces) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1127,7 +1231,7 @@ func (c *Keyspaces) RestoreTableRequest(input *RestoreTableInput) (req *request.
 
 // RestoreTable API operation for Amazon Keyspaces.
 //
-// Restores the specified table to the specified point in time within the earliest_restorable_timestamp
+// Restores the table to the specified point in time within the earliest_restorable_timestamp
 // and the current time. For more information about restore points, see Time
 // window for PITR continuous backups (https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery_HowItWorks.html#howitworks_backup_window)
 // in the Amazon Keyspaces Developer Guide.
@@ -1141,17 +1245,19 @@ func (c *Keyspaces) RestoreTableRequest(input *RestoreTableInput) (req *request.
 // are also restored to the state based on the selected timestamp.
 //
 // In addition to the table's schema, data, and TTL settings, RestoreTable restores
-// the capacity mode, encryption, and point-in-time recovery settings from the
-// source table. Unlike the table's schema data and TTL settings, which are
-// restored based on the selected timestamp, these settings are always restored
-// based on the table's settings as of the current time or when the table was
-// deleted.
+// the capacity mode, auto scaling settings, encryption settings, and point-in-time
+// recovery settings from the source table. Unlike the table's schema data and
+// TTL settings, which are restored based on the selected timestamp, these settings
+// are always restored based on the table's settings as of the current time
+// or when the table was deleted.
 //
 // You can also overwrite these settings during restore:
 //
 //   - Read/write capacity mode
 //
-//   - Provisioned throughput capacity settings
+//   - Provisioned throughput capacity units
+//
+//   - Auto scaling settings
 //
 //   - Point-in-time (PITR) settings
 //
@@ -1162,9 +1268,6 @@ func (c *Keyspaces) RestoreTableRequest(input *RestoreTableInput) (req *request.
 //
 // Note that the following settings are not restored, and you must configure
 // them manually for the new table:
-//
-//   - Automatic scaling policies (for tables that use provisioned capacity
-//     mode)
 //
 //   - Identity and Access Management (IAM) policies
 //
@@ -1192,12 +1295,12 @@ func (c *Keyspaces) RestoreTableRequest(input *RestoreTableInput) (req *request.
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1302,7 +1405,7 @@ func (c *Keyspaces) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //     server error.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1398,12 +1501,12 @@ func (c *Keyspaces) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1475,8 +1578,9 @@ func (c *Keyspaces) UpdateTableRequest(input *UpdateTableInput) (req *request.Re
 // UpdateTable API operation for Amazon Keyspaces.
 //
 // Adds new columns to the table or updates one of the table's settings, for
-// example capacity mode, encryption, point-in-time recovery, or ttl settings.
-// Note that you can only update one specific table setting per update operation.
+// example capacity mode, auto scaling, encryption, point-in-time recovery,
+// or ttl settings. Note that you can only update one specific table setting
+// per update operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1500,12 +1604,12 @@ func (c *Keyspaces) UpdateTableRequest(input *UpdateTableInput) (req *request.Re
 //     server error.
 //
 //   - ConflictException
-//     Amazon Keyspaces could not complete the requested action. This error may
-//     occur if you try to perform an action and the same or a different action
-//     is already in progress, or if you try to create a resource that already exists.
+//     Amazon Keyspaces couldn't complete the requested action. This error may occur
+//     if you try to perform an action and the same or a different action is already
+//     in progress, or if you try to create a resource that already exists.
 //
 //   - AccessDeniedException
-//     You do not have sufficient access to perform this action.
+//     You don't have sufficient access permissions to perform this action.
 //
 //   - ResourceNotFoundException
 //     The operation tried to access a keyspace or table that doesn't exist. The
@@ -1533,11 +1637,12 @@ func (c *Keyspaces) UpdateTableWithContext(ctx aws.Context, input *UpdateTableIn
 	return out, req.Send()
 }
 
-// You do not have sufficient access to perform this action.
+// You don't have sufficient access permissions to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -1595,6 +1700,245 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Amazon Keyspaces supports the target tracking auto scaling policy. With this
+// policy, Amazon Keyspaces auto scaling ensures that the table's ratio of consumed
+// to provisioned capacity stays at or near the target value that you specify.
+// You define the target value as a percentage between 20 and 90.
+type AutoScalingPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Auto scaling scales up capacity automatically when traffic exceeds this target
+	// utilization rate, and then back down when it falls below the target. A double
+	// between 20 and 90.
+	TargetTrackingScalingPolicyConfiguration *TargetTrackingScalingPolicyConfiguration `locationName:"targetTrackingScalingPolicyConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoScalingPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoScalingPolicy"}
+	if s.TargetTrackingScalingPolicyConfiguration != nil {
+		if err := s.TargetTrackingScalingPolicyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TargetTrackingScalingPolicyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTargetTrackingScalingPolicyConfiguration sets the TargetTrackingScalingPolicyConfiguration field's value.
+func (s *AutoScalingPolicy) SetTargetTrackingScalingPolicyConfiguration(v *TargetTrackingScalingPolicyConfiguration) *AutoScalingPolicy {
+	s.TargetTrackingScalingPolicyConfiguration = v
+	return s
+}
+
+// The optional auto scaling settings for a table with provisioned throughput
+// capacity.
+//
+// To turn on auto scaling for a table in throughputMode:PROVISIONED, you must
+// specify the following parameters.
+//
+// Configure the minimum and maximum units for write and read capacity. The
+// auto scaling policy ensures that capacity never goes below the minimum or
+// above the maximum range.
+//
+//   - minimumUnits: The minimum level of throughput the table should always
+//     be ready to support. The value must be between 1 and the max throughput
+//     per second quota for your account (40,000 by default).
+//
+//   - maximumUnits: The maximum level of throughput the table should always
+//     be ready to support. The value must be between 1 and the max throughput
+//     per second quota for your account (40,000 by default).
+//
+//   - scalingPolicy: Amazon Keyspaces supports the target tracking scaling
+//     policy. The auto scaling target is the provisioned read and write capacity
+//     of the table. targetTrackingScalingPolicyConfiguration: To define the
+//     target tracking policy, you must define the target value. targetValue:
+//     The target utilization rate of the table. Amazon Keyspaces auto scaling
+//     ensures that the ratio of consumed capacity to provisioned capacity stays
+//     at or near this value. You define targetValue as a percentage. A double
+//     between 20 and 90. (Required) disableScaleIn: A boolean that specifies
+//     if scale-in is disabled or enabled for the table. This parameter is disabled
+//     by default. To turn on scale-in, set the boolean value to FALSE. This
+//     means that capacity for a table can be automatically scaled down on your
+//     behalf. (Optional) scaleInCooldown: A cooldown period in seconds between
+//     scaling activities that lets the table stabilize before another scale
+//     in activity starts. If no value is provided, the default is 0. (Optional)
+//     scaleOutCooldown: A cooldown period in seconds between scaling activities
+//     that lets the table stabilize before another scale out activity starts.
+//     If no value is provided, the default is 0. (Optional)
+//
+// For more information, see Managing throughput capacity automatically with
+// Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
+// in the Amazon Keyspaces Developer Guide.
+type AutoScalingSettings struct {
+	_ struct{} `type:"structure"`
+
+	// This optional parameter enables auto scaling for the table if set to false.
+	AutoScalingDisabled *bool `locationName:"autoScalingDisabled" type:"boolean"`
+
+	// Manage costs by specifying the maximum amount of throughput to provision.
+	// The value must be between 1 and the max throughput per second quota for your
+	// account (40,000 by default).
+	MaximumUnits *int64 `locationName:"maximumUnits" min:"1" type:"long"`
+
+	// The minimum level of throughput the table should always be ready to support.
+	// The value must be between 1 and the max throughput per second quota for your
+	// account (40,000 by default).
+	MinimumUnits *int64 `locationName:"minimumUnits" min:"1" type:"long"`
+
+	// Amazon Keyspaces supports the target tracking auto scaling policy. With this
+	// policy, Amazon Keyspaces auto scaling ensures that the table's ratio of consumed
+	// to provisioned capacity stays at or near the target value that you specify.
+	// You define the target value as a percentage between 20 and 90.
+	ScalingPolicy *AutoScalingPolicy `locationName:"scalingPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoScalingSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoScalingSettings"}
+	if s.MaximumUnits != nil && *s.MaximumUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumUnits", 1))
+	}
+	if s.MinimumUnits != nil && *s.MinimumUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumUnits", 1))
+	}
+	if s.ScalingPolicy != nil {
+		if err := s.ScalingPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ScalingPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoScalingDisabled sets the AutoScalingDisabled field's value.
+func (s *AutoScalingSettings) SetAutoScalingDisabled(v bool) *AutoScalingSettings {
+	s.AutoScalingDisabled = &v
+	return s
+}
+
+// SetMaximumUnits sets the MaximumUnits field's value.
+func (s *AutoScalingSettings) SetMaximumUnits(v int64) *AutoScalingSettings {
+	s.MaximumUnits = &v
+	return s
+}
+
+// SetMinimumUnits sets the MinimumUnits field's value.
+func (s *AutoScalingSettings) SetMinimumUnits(v int64) *AutoScalingSettings {
+	s.MinimumUnits = &v
+	return s
+}
+
+// SetScalingPolicy sets the ScalingPolicy field's value.
+func (s *AutoScalingSettings) SetScalingPolicy(v *AutoScalingPolicy) *AutoScalingSettings {
+	s.ScalingPolicy = v
+	return s
+}
+
+// The optional auto scaling settings for read and write capacity of a table
+// in provisioned capacity mode.
+type AutoScalingSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The auto scaling settings for the table's read capacity.
+	ReadCapacityAutoScaling *AutoScalingSettings `locationName:"readCapacityAutoScaling" type:"structure"`
+
+	// The auto scaling settings for the table's write capacity.
+	WriteCapacityAutoScaling *AutoScalingSettings `locationName:"writeCapacityAutoScaling" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoScalingSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoScalingSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoScalingSpecification"}
+	if s.ReadCapacityAutoScaling != nil {
+		if err := s.ReadCapacityAutoScaling.Validate(); err != nil {
+			invalidParams.AddNested("ReadCapacityAutoScaling", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WriteCapacityAutoScaling != nil {
+		if err := s.WriteCapacityAutoScaling.Validate(); err != nil {
+			invalidParams.AddNested("WriteCapacityAutoScaling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReadCapacityAutoScaling sets the ReadCapacityAutoScaling field's value.
+func (s *AutoScalingSpecification) SetReadCapacityAutoScaling(v *AutoScalingSettings) *AutoScalingSpecification {
+	s.ReadCapacityAutoScaling = v
+	return s
+}
+
+// SetWriteCapacityAutoScaling sets the WriteCapacityAutoScaling field's value.
+func (s *AutoScalingSpecification) SetWriteCapacityAutoScaling(v *AutoScalingSettings) *AutoScalingSpecification {
+	s.WriteCapacityAutoScaling = v
+	return s
 }
 
 // Amazon Keyspaces has two read/write capacity modes for processing reads and
@@ -1995,13 +2339,14 @@ func (s *Comment) SetMessage(v string) *Comment {
 	return s
 }
 
-// Amazon Keyspaces could not complete the requested action. This error may
-// occur if you try to perform an action and the same or a different action
-// is already in progress, or if you try to create a resource that already exists.
+// Amazon Keyspaces couldn't complete the requested action. This error may occur
+// if you try to perform an action and the same or a different action is already
+// in progress, or if you try to create a resource that already exists.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -2194,6 +2539,20 @@ func (s *CreateKeyspaceOutput) SetResourceArn(v string) *CreateKeyspaceOutput {
 type CreateTableInput struct {
 	_ struct{} `type:"structure"`
 
+	// The optional auto scaling settings for a table in provisioned capacity mode.
+	// Specifies if the service can manage throughput capacity automatically on
+	// your behalf.
+	//
+	// Auto scaling helps you provision throughput capacity for variable workloads
+	// efficiently by increasing and decreasing your table's read and write capacity
+	// automatically in response to application traffic. For more information, see
+	// Managing throughput capacity automatically with Amazon Keyspaces auto scaling
+	// (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
+	// in the Amazon Keyspaces Developer Guide.
+	//
+	// By default, auto scaling is disabled for a table.
+	AutoScalingSpecification *AutoScalingSpecification `locationName:"autoScalingSpecification" type:"structure"`
+
 	// Specifies the read/write throughput capacity mode for the table. The options
 	// are:
 	//
@@ -2224,7 +2583,7 @@ type CreateTableInput struct {
 	//
 	// For more information, see Setting the default TTL value for a table (https://docs.aws.amazon.com/keyspaces/latest/devguide/TTL-how-it-works.html#ttl-howitworks_default_ttl)
 	// in the Amazon Keyspaces Developer Guide.
-	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" min:"1" type:"integer"`
+	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" type:"integer"`
 
 	// Specifies how the encryption key for encryption at rest is managed for the
 	// table. You can choose one of the following KMS key (KMS key):
@@ -2258,6 +2617,25 @@ type CreateTableInput struct {
 	// For more information, see Point-in-time recovery (https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery.html)
 	// in the Amazon Keyspaces Developer Guide.
 	PointInTimeRecovery *PointInTimeRecovery `locationName:"pointInTimeRecovery" type:"structure"`
+
+	// The optional Amazon Web Services Region specific settings of a multi-Region
+	// table. These settings overwrite the general settings of the table for the
+	// specified Region.
+	//
+	// For a multi-Region table in provisioned capacity mode, you can configure
+	// the table's read capacity differently for each Region's replica. The write
+	// capacity, however, remains synchronized between all replicas to ensure that
+	// there's enough capacity to replicate writes across all Regions. To define
+	// the read capacity for a table replica in a specific Region, you can do so
+	// by configuring the following parameters.
+	//
+	//    * region: The Region where these settings are applied. (Required)
+	//
+	//    * readCapacityUnits: The provisioned read capacity units. (Optional)
+	//
+	//    * readCapacityAutoScaling: The read capacity auto scaling settings for
+	//    the table. (Optional)
+	ReplicaSpecifications []*ReplicaSpecification `locationName:"replicaSpecifications" min:"1" type:"list"`
 
 	// The schemaDefinition consists of the following parameters.
 	//
@@ -2342,14 +2720,14 @@ func (s CreateTableInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateTableInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateTableInput"}
-	if s.DefaultTimeToLive != nil && *s.DefaultTimeToLive < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DefaultTimeToLive", 1))
-	}
 	if s.KeyspaceName == nil {
 		invalidParams.Add(request.NewErrParamRequired("KeyspaceName"))
 	}
 	if s.KeyspaceName != nil && len(*s.KeyspaceName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KeyspaceName", 1))
+	}
+	if s.ReplicaSpecifications != nil && len(s.ReplicaSpecifications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicaSpecifications", 1))
 	}
 	if s.SchemaDefinition == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaDefinition"))
@@ -2362,6 +2740,11 @@ func (s *CreateTableInput) Validate() error {
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.AutoScalingSpecification != nil {
+		if err := s.AutoScalingSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AutoScalingSpecification", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.CapacitySpecification != nil {
 		if err := s.CapacitySpecification.Validate(); err != nil {
@@ -2386,6 +2769,16 @@ func (s *CreateTableInput) Validate() error {
 	if s.PointInTimeRecovery != nil {
 		if err := s.PointInTimeRecovery.Validate(); err != nil {
 			invalidParams.AddNested("PointInTimeRecovery", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReplicaSpecifications != nil {
+		for i, v := range s.ReplicaSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReplicaSpecifications", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.SchemaDefinition != nil {
@@ -2413,6 +2806,12 @@ func (s *CreateTableInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingSpecification sets the AutoScalingSpecification field's value.
+func (s *CreateTableInput) SetAutoScalingSpecification(v *AutoScalingSpecification) *CreateTableInput {
+	s.AutoScalingSpecification = v
+	return s
 }
 
 // SetCapacitySpecification sets the CapacitySpecification field's value.
@@ -2454,6 +2853,12 @@ func (s *CreateTableInput) SetKeyspaceName(v string) *CreateTableInput {
 // SetPointInTimeRecovery sets the PointInTimeRecovery field's value.
 func (s *CreateTableInput) SetPointInTimeRecovery(v *PointInTimeRecovery) *CreateTableInput {
 	s.PointInTimeRecovery = v
+	return s
+}
+
+// SetReplicaSpecifications sets the ReplicaSpecifications field's value.
+func (s *CreateTableInput) SetReplicaSpecifications(v []*ReplicaSpecification) *CreateTableInput {
+	s.ReplicaSpecifications = v
 	return s
 }
 
@@ -2877,6 +3282,146 @@ func (s *GetKeyspaceOutput) SetResourceArn(v string) *GetKeyspaceOutput {
 	return s
 }
 
+type GetTableAutoScalingSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the keyspace.
+	//
+	// KeyspaceName is a required field
+	KeyspaceName *string `locationName:"keyspaceName" min:"1" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableAutoScalingSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableAutoScalingSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTableAutoScalingSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTableAutoScalingSettingsInput"}
+	if s.KeyspaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyspaceName"))
+	}
+	if s.KeyspaceName != nil && len(*s.KeyspaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyspaceName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyspaceName sets the KeyspaceName field's value.
+func (s *GetTableAutoScalingSettingsInput) SetKeyspaceName(v string) *GetTableAutoScalingSettingsInput {
+	s.KeyspaceName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetTableAutoScalingSettingsInput) SetTableName(v string) *GetTableAutoScalingSettingsInput {
+	s.TableName = &v
+	return s
+}
+
+type GetTableAutoScalingSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The auto scaling settings of the table.
+	AutoScalingSpecification *AutoScalingSpecification `locationName:"autoScalingSpecification" type:"structure"`
+
+	// The name of the keyspace.
+	//
+	// KeyspaceName is a required field
+	KeyspaceName *string `locationName:"keyspaceName" min:"1" type:"string" required:"true"`
+
+	// The Amazon Web Services Region specific settings of a multi-Region table.
+	// Returns the settings for all Regions the table is replicated in.
+	ReplicaSpecifications []*ReplicaAutoScalingSpecification `locationName:"replicaSpecifications" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the table.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" min:"20" type:"string" required:"true"`
+
+	// The name of the table.
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableAutoScalingSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableAutoScalingSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoScalingSpecification sets the AutoScalingSpecification field's value.
+func (s *GetTableAutoScalingSettingsOutput) SetAutoScalingSpecification(v *AutoScalingSpecification) *GetTableAutoScalingSettingsOutput {
+	s.AutoScalingSpecification = v
+	return s
+}
+
+// SetKeyspaceName sets the KeyspaceName field's value.
+func (s *GetTableAutoScalingSettingsOutput) SetKeyspaceName(v string) *GetTableAutoScalingSettingsOutput {
+	s.KeyspaceName = &v
+	return s
+}
+
+// SetReplicaSpecifications sets the ReplicaSpecifications field's value.
+func (s *GetTableAutoScalingSettingsOutput) SetReplicaSpecifications(v []*ReplicaAutoScalingSpecification) *GetTableAutoScalingSettingsOutput {
+	s.ReplicaSpecifications = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetTableAutoScalingSettingsOutput) SetResourceArn(v string) *GetTableAutoScalingSettingsOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetTableAutoScalingSettingsOutput) SetTableName(v string) *GetTableAutoScalingSettingsOutput {
+	s.TableName = &v
+	return s
+}
+
 type GetTableInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2963,7 +3508,7 @@ type GetTableOutput struct {
 	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp"`
 
 	// The default Time to Live settings in seconds of the specified table.
-	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" min:"1" type:"integer"`
+	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" type:"integer"`
 
 	// The encryption settings of the specified table.
 	EncryptionSpecification *EncryptionSpecification `locationName:"encryptionSpecification" type:"structure"`
@@ -2975,6 +3520,10 @@ type GetTableOutput struct {
 
 	// The point-in-time recovery status of the specified table.
 	PointInTimeRecovery *PointInTimeRecoverySummary `locationName:"pointInTimeRecovery" type:"structure"`
+
+	// Returns the Amazon Web Services Region specific settings of all Regions a
+	// multi-Region table is replicated in.
+	ReplicaSpecifications []*ReplicaSpecificationSummary `locationName:"replicaSpecifications" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the specified table.
 	//
@@ -3062,6 +3611,12 @@ func (s *GetTableOutput) SetPointInTimeRecovery(v *PointInTimeRecoverySummary) *
 	return s
 }
 
+// SetReplicaSpecifications sets the ReplicaSpecifications field's value.
+func (s *GetTableOutput) SetReplicaSpecifications(v []*ReplicaSpecificationSummary) *GetTableOutput {
+	s.ReplicaSpecifications = v
+	return s
+}
+
 // SetResourceArn sets the ResourceArn field's value.
 func (s *GetTableOutput) SetResourceArn(v string) *GetTableOutput {
 	s.ResourceArn = &v
@@ -3098,6 +3653,7 @@ type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -3713,6 +4269,205 @@ func (s *PointInTimeRecoverySummary) SetStatus(v string) *PointInTimeRecoverySum
 	return s
 }
 
+// The auto scaling settings of a multi-Region table in the specified Amazon
+// Web Services Region.
+type ReplicaAutoScalingSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The auto scaling settings for a multi-Region table in the specified Amazon
+	// Web Services Region.
+	AutoScalingSpecification *AutoScalingSpecification `locationName:"autoScalingSpecification" type:"structure"`
+
+	// The Amazon Web Services Region.
+	Region *string `locationName:"region" min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaAutoScalingSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaAutoScalingSpecification) GoString() string {
+	return s.String()
+}
+
+// SetAutoScalingSpecification sets the AutoScalingSpecification field's value.
+func (s *ReplicaAutoScalingSpecification) SetAutoScalingSpecification(v *AutoScalingSpecification) *ReplicaAutoScalingSpecification {
+	s.AutoScalingSpecification = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ReplicaAutoScalingSpecification) SetRegion(v string) *ReplicaAutoScalingSpecification {
+	s.Region = &v
+	return s
+}
+
+// The Amazon Web Services Region specific settings of a multi-Region table.
+//
+// For a multi-Region table, you can configure the table's read capacity differently
+// per Amazon Web Services Region. You can do this by configuring the following
+// parameters.
+//
+//   - region: The Region where these settings are applied. (Required)
+//
+//   - readCapacityUnits: The provisioned read capacity units. (Optional)
+//
+//   - readCapacityAutoScaling: The read capacity auto scaling settings for
+//     the table. (Optional)
+type ReplicaSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The read capacity auto scaling settings for the multi-Region table in the
+	// specified Amazon Web Services Region.
+	ReadCapacityAutoScaling *AutoScalingSettings `locationName:"readCapacityAutoScaling" type:"structure"`
+
+	// The provisioned read capacity units for the multi-Region table in the specified
+	// Amazon Web Services Region.
+	ReadCapacityUnits *int64 `locationName:"readCapacityUnits" min:"1" type:"long"`
+
+	// The Amazon Web Services Region.
+	//
+	// Region is a required field
+	Region *string `locationName:"region" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplicaSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplicaSpecification"}
+	if s.ReadCapacityUnits != nil && *s.ReadCapacityUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReadCapacityUnits", 1))
+	}
+	if s.Region == nil {
+		invalidParams.Add(request.NewErrParamRequired("Region"))
+	}
+	if s.Region != nil && len(*s.Region) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Region", 2))
+	}
+	if s.ReadCapacityAutoScaling != nil {
+		if err := s.ReadCapacityAutoScaling.Validate(); err != nil {
+			invalidParams.AddNested("ReadCapacityAutoScaling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReadCapacityAutoScaling sets the ReadCapacityAutoScaling field's value.
+func (s *ReplicaSpecification) SetReadCapacityAutoScaling(v *AutoScalingSettings) *ReplicaSpecification {
+	s.ReadCapacityAutoScaling = v
+	return s
+}
+
+// SetReadCapacityUnits sets the ReadCapacityUnits field's value.
+func (s *ReplicaSpecification) SetReadCapacityUnits(v int64) *ReplicaSpecification {
+	s.ReadCapacityUnits = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ReplicaSpecification) SetRegion(v string) *ReplicaSpecification {
+	s.Region = &v
+	return s
+}
+
+// The Region-specific settings of a multi-Region table in the specified Amazon
+// Web Services Region.
+//
+// If the multi-Region table is using provisioned capacity and has optional
+// auto scaling policies configured, note that the Region specific summary returns
+// both read and write capacity settings. But only Region specific read capacity
+// settings can be configured for a multi-Region table. In a multi-Region table,
+// your write capacity units will be synced across all Amazon Web Services Regions
+// to ensure that there is enough capacity to replicate write events across
+// Regions.
+type ReplicaSpecificationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The read/write throughput capacity mode for a table. The options are:
+	//
+	//    * throughputMode:PAY_PER_REQUEST and
+	//
+	//    * throughputMode:PROVISIONED.
+	//
+	// For more information, see Read/write capacity modes (https://docs.aws.amazon.com/keyspaces/latest/devguide/ReadWriteCapacityMode.html)
+	// in the Amazon Keyspaces Developer Guide.
+	CapacitySpecification *CapacitySpecificationSummary `locationName:"capacitySpecification" type:"structure"`
+
+	// The Amazon Web Services Region.
+	Region *string `locationName:"region" min:"2" type:"string"`
+
+	// The status of the multi-Region table in the specified Amazon Web Services
+	// Region.
+	Status *string `locationName:"status" type:"string" enum:"TableStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaSpecificationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaSpecificationSummary) GoString() string {
+	return s.String()
+}
+
+// SetCapacitySpecification sets the CapacitySpecification field's value.
+func (s *ReplicaSpecificationSummary) SetCapacitySpecification(v *CapacitySpecificationSummary) *ReplicaSpecificationSummary {
+	s.CapacitySpecification = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ReplicaSpecificationSummary) SetRegion(v string) *ReplicaSpecificationSummary {
+	s.Region = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicaSpecificationSummary) SetStatus(v string) *ReplicaSpecificationSummary {
+	s.Status = &v
+	return s
+}
+
 // The replication specification of the keyspace includes:
 //
 //   - regionList - up to six Amazon Web Services Regions where the keyspace
@@ -3788,6 +4543,7 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The unique identifier in the format of Amazon Resource Name (ARN), for the
@@ -3854,6 +4610,18 @@ func (s *ResourceNotFoundException) RequestID() string {
 type RestoreTableInput struct {
 	_ struct{} `type:"structure"`
 
+	// The optional auto scaling settings for the restored table in provisioned
+	// capacity mode. Specifies if the service can manage throughput capacity of
+	// a provisioned table automatically on your behalf. Amazon Keyspaces auto scaling
+	// helps you provision throughput capacity for variable workloads efficiently
+	// by increasing and decreasing your table's read and write capacity automatically
+	// in response to application traffic.
+	//
+	// For more information, see Managing throughput capacity automatically with
+	// Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
+	// in the Amazon Keyspaces Developer Guide.
+	AutoScalingSpecification *AutoScalingSpecification `locationName:"autoScalingSpecification" type:"structure"`
+
 	// Specifies the read/write throughput capacity mode for the target table. The
 	// options are:
 	//
@@ -3895,6 +4663,9 @@ type RestoreTableInput struct {
 	// For more information, see Point-in-time recovery (https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery.html)
 	// in the Amazon Keyspaces Developer Guide.
 	PointInTimeRecoveryOverride *PointInTimeRecovery `locationName:"pointInTimeRecoveryOverride" type:"structure"`
+
+	// The optional Region specific settings of a multi-Regional table.
+	ReplicaSpecifications []*ReplicaSpecification `locationName:"replicaSpecifications" min:"1" type:"list"`
 
 	// The restore timestamp in ISO 8601 format.
 	RestoreTimestamp *time.Time `locationName:"restoreTimestamp" type:"timestamp"`
@@ -3948,6 +4719,9 @@ func (s RestoreTableInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RestoreTableInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RestoreTableInput"}
+	if s.ReplicaSpecifications != nil && len(s.ReplicaSpecifications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicaSpecifications", 1))
+	}
 	if s.SourceKeyspaceName == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceKeyspaceName"))
 	}
@@ -3975,6 +4749,11 @@ func (s *RestoreTableInput) Validate() error {
 	if s.TargetTableName != nil && len(*s.TargetTableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetTableName", 1))
 	}
+	if s.AutoScalingSpecification != nil {
+		if err := s.AutoScalingSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AutoScalingSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CapacitySpecificationOverride != nil {
 		if err := s.CapacitySpecificationOverride.Validate(); err != nil {
 			invalidParams.AddNested("CapacitySpecificationOverride", err.(request.ErrInvalidParams))
@@ -3988,6 +4767,16 @@ func (s *RestoreTableInput) Validate() error {
 	if s.PointInTimeRecoveryOverride != nil {
 		if err := s.PointInTimeRecoveryOverride.Validate(); err != nil {
 			invalidParams.AddNested("PointInTimeRecoveryOverride", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReplicaSpecifications != nil {
+		for i, v := range s.ReplicaSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReplicaSpecifications", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.TagsOverride != nil {
@@ -4007,6 +4796,12 @@ func (s *RestoreTableInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingSpecification sets the AutoScalingSpecification field's value.
+func (s *RestoreTableInput) SetAutoScalingSpecification(v *AutoScalingSpecification) *RestoreTableInput {
+	s.AutoScalingSpecification = v
+	return s
+}
+
 // SetCapacitySpecificationOverride sets the CapacitySpecificationOverride field's value.
 func (s *RestoreTableInput) SetCapacitySpecificationOverride(v *CapacitySpecification) *RestoreTableInput {
 	s.CapacitySpecificationOverride = v
@@ -4022,6 +4817,12 @@ func (s *RestoreTableInput) SetEncryptionSpecificationOverride(v *EncryptionSpec
 // SetPointInTimeRecoveryOverride sets the PointInTimeRecoveryOverride field's value.
 func (s *RestoreTableInput) SetPointInTimeRecoveryOverride(v *PointInTimeRecovery) *RestoreTableInput {
 	s.PointInTimeRecoveryOverride = v
+	return s
+}
+
+// SetReplicaSpecifications sets the ReplicaSpecifications field's value.
+func (s *RestoreTableInput) SetReplicaSpecifications(v []*ReplicaSpecification) *RestoreTableInput {
+	s.ReplicaSpecifications = v
 	return s
 }
 
@@ -4227,6 +5028,7 @@ type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -4571,6 +5373,97 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The auto scaling policy that scales a table based on the ratio of consumed
+// to provisioned capacity.
+type TargetTrackingScalingPolicyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if scale-in is enabled.
+	//
+	// When auto scaling automatically decreases capacity for a table, the table
+	// scales in. When scaling policies are set, they can't scale in the table lower
+	// than its minimum capacity.
+	DisableScaleIn *bool `locationName:"disableScaleIn" type:"boolean"`
+
+	// Specifies a scale-in cool down period.
+	//
+	// A cooldown period in seconds between scaling activities that lets the table
+	// stabilize before another scaling activity starts.
+	ScaleInCooldown *int64 `locationName:"scaleInCooldown" type:"integer"`
+
+	// Specifies a scale out cool down period.
+	//
+	// A cooldown period in seconds between scaling activities that lets the table
+	// stabilize before another scaling activity starts.
+	ScaleOutCooldown *int64 `locationName:"scaleOutCooldown" type:"integer"`
+
+	// Specifies the target value for the target tracking auto scaling policy.
+	//
+	// Amazon Keyspaces auto scaling scales up capacity automatically when traffic
+	// exceeds this target utilization rate, and then back down when it falls below
+	// the target. This ensures that the ratio of consumed capacity to provisioned
+	// capacity stays at or near this value. You define targetValue as a percentage.
+	// A double between 20 and 90.
+	//
+	// TargetValue is a required field
+	TargetValue *float64 `locationName:"targetValue" type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingScalingPolicyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TargetTrackingScalingPolicyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetTrackingScalingPolicyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetTrackingScalingPolicyConfiguration"}
+	if s.TargetValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetValue"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisableScaleIn sets the DisableScaleIn field's value.
+func (s *TargetTrackingScalingPolicyConfiguration) SetDisableScaleIn(v bool) *TargetTrackingScalingPolicyConfiguration {
+	s.DisableScaleIn = &v
+	return s
+}
+
+// SetScaleInCooldown sets the ScaleInCooldown field's value.
+func (s *TargetTrackingScalingPolicyConfiguration) SetScaleInCooldown(v int64) *TargetTrackingScalingPolicyConfiguration {
+	s.ScaleInCooldown = &v
+	return s
+}
+
+// SetScaleOutCooldown sets the ScaleOutCooldown field's value.
+func (s *TargetTrackingScalingPolicyConfiguration) SetScaleOutCooldown(v int64) *TargetTrackingScalingPolicyConfiguration {
+	s.ScaleOutCooldown = &v
+	return s
+}
+
+// SetTargetValue sets the TargetValue field's value.
+func (s *TargetTrackingScalingPolicyConfiguration) SetTargetValue(v float64) *TargetTrackingScalingPolicyConfiguration {
+	s.TargetValue = &v
+	return s
+}
+
 // Enable custom Time to Live (TTL) settings for rows and columns without setting
 // a TTL default for the specified table.
 //
@@ -4734,6 +5627,22 @@ type UpdateTableInput struct {
 	//    in the Amazon Keyspaces Developer Guide.
 	AddColumns []*ColumnDefinition `locationName:"addColumns" min:"1" type:"list"`
 
+	// The optional auto scaling settings to update for a table in provisioned capacity
+	// mode. Specifies if the service can manage throughput capacity of a provisioned
+	// table automatically on your behalf. Amazon Keyspaces auto scaling helps you
+	// provision throughput capacity for variable workloads efficiently by increasing
+	// and decreasing your table's read and write capacity automatically in response
+	// to application traffic.
+	//
+	// If auto scaling is already enabled for the table, you can use UpdateTable
+	// to update the minimum and maximum values or the auto scaling policy settings
+	// independently.
+	//
+	// For more information, see Managing throughput capacity automatically with
+	// Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
+	// in the Amazon Keyspaces Developer Guide.
+	AutoScalingSpecification *AutoScalingSpecification `locationName:"autoScalingSpecification" type:"structure"`
+
 	// Modifies the read/write throughput capacity mode for the table. The options
 	// are:
 	//
@@ -4761,7 +5670,7 @@ type UpdateTableInput struct {
 	//
 	// For more information, see Setting the default TTL value for a table (https://docs.aws.amazon.com/keyspaces/latest/devguide/TTL-how-it-works.html#ttl-howitworks_default_ttl)
 	// in the Amazon Keyspaces Developer Guide.
-	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" min:"1" type:"integer"`
+	DefaultTimeToLive *int64 `locationName:"defaultTimeToLive" type:"integer"`
 
 	// Modifies the encryption settings of the table. You can choose one of the
 	// following KMS key (KMS key):
@@ -4794,6 +5703,9 @@ type UpdateTableInput struct {
 	// For more information, see Point-in-time recovery (https://docs.aws.amazon.com/keyspaces/latest/devguide/PointInTimeRecovery.html)
 	// in the Amazon Keyspaces Developer Guide.
 	PointInTimeRecovery *PointInTimeRecovery `locationName:"pointInTimeRecovery" type:"structure"`
+
+	// The Region specific settings of a multi-Regional table.
+	ReplicaSpecifications []*ReplicaSpecification `locationName:"replicaSpecifications" min:"1" type:"list"`
 
 	// The name of the table.
 	//
@@ -4839,14 +5751,14 @@ func (s *UpdateTableInput) Validate() error {
 	if s.AddColumns != nil && len(s.AddColumns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AddColumns", 1))
 	}
-	if s.DefaultTimeToLive != nil && *s.DefaultTimeToLive < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DefaultTimeToLive", 1))
-	}
 	if s.KeyspaceName == nil {
 		invalidParams.Add(request.NewErrParamRequired("KeyspaceName"))
 	}
 	if s.KeyspaceName != nil && len(*s.KeyspaceName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KeyspaceName", 1))
+	}
+	if s.ReplicaSpecifications != nil && len(s.ReplicaSpecifications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplicaSpecifications", 1))
 	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
@@ -4862,6 +5774,11 @@ func (s *UpdateTableInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddColumns", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.AutoScalingSpecification != nil {
+		if err := s.AutoScalingSpecification.Validate(); err != nil {
+			invalidParams.AddNested("AutoScalingSpecification", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.CapacitySpecification != nil {
@@ -4884,6 +5801,16 @@ func (s *UpdateTableInput) Validate() error {
 			invalidParams.AddNested("PointInTimeRecovery", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ReplicaSpecifications != nil {
+		for i, v := range s.ReplicaSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ReplicaSpecifications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Ttl != nil {
 		if err := s.Ttl.Validate(); err != nil {
 			invalidParams.AddNested("Ttl", err.(request.ErrInvalidParams))
@@ -4899,6 +5826,12 @@ func (s *UpdateTableInput) Validate() error {
 // SetAddColumns sets the AddColumns field's value.
 func (s *UpdateTableInput) SetAddColumns(v []*ColumnDefinition) *UpdateTableInput {
 	s.AddColumns = v
+	return s
+}
+
+// SetAutoScalingSpecification sets the AutoScalingSpecification field's value.
+func (s *UpdateTableInput) SetAutoScalingSpecification(v *AutoScalingSpecification) *UpdateTableInput {
+	s.AutoScalingSpecification = v
 	return s
 }
 
@@ -4935,6 +5868,12 @@ func (s *UpdateTableInput) SetKeyspaceName(v string) *UpdateTableInput {
 // SetPointInTimeRecovery sets the PointInTimeRecovery field's value.
 func (s *UpdateTableInput) SetPointInTimeRecovery(v *PointInTimeRecovery) *UpdateTableInput {
 	s.PointInTimeRecovery = v
+	return s
+}
+
+// SetReplicaSpecifications sets the ReplicaSpecifications field's value.
+func (s *UpdateTableInput) SetReplicaSpecifications(v []*ReplicaSpecification) *UpdateTableInput {
+	s.ReplicaSpecifications = v
 	return s
 }
 
@@ -4988,6 +5927,7 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 

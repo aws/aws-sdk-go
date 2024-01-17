@@ -11,15 +11,15 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action.
+	// You don't have sufficient access permissions to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// Amazon Keyspaces could not complete the requested action. This error may
-	// occur if you try to perform an action and the same or a different action
-	// is already in progress, or if you try to create a resource that already exists.
+	// Amazon Keyspaces couldn't complete the requested action. This error may occur
+	// if you try to perform an action and the same or a different action is already
+	// in progress, or if you try to create a resource that already exists.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
