@@ -112,6 +112,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetTableAutoScalingSettings":{
+      "name":"GetTableAutoScalingSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTableAutoScalingSettingsRequest"},
+      "output":{"shape":"GetTableAutoScalingSettingsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListKeyspaces":{
       "name":"ListKeyspaces",
       "http":{
@@ -242,6 +258,29 @@
       },
       "exception":true
     },
+    "AutoScalingPolicy":{
+      "type":"structure",
+      "members":{
+        "targetTrackingScalingPolicyConfiguration":{"shape":"TargetTrackingScalingPolicyConfiguration"}
+      }
+    },
+    "AutoScalingSettings":{
+      "type":"structure",
+      "members":{
+        "autoScalingDisabled":{"shape":"BooleanObject"},
+        "minimumUnits":{"shape":"CapacityUnits"},
+        "maximumUnits":{"shape":"CapacityUnits"},
+        "scalingPolicy":{"shape":"AutoScalingPolicy"}
+      }
+    },
+    "AutoScalingSpecification":{
+      "type":"structure",
+      "members":{
+        "writeCapacityAutoScaling":{"shape":"AutoScalingSettings"},
+        "readCapacityAutoScaling":{"shape":"AutoScalingSettings"}
+      }
+    },
+    "BooleanObject":{"type":"boolean"},
     "CapacitySpecification":{
       "type":"structure",
       "required":["throughputMode"],
@@ -356,7 +395,9 @@
         "ttl":{"shape":"TimeToLive"},
         "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
         "tags":{"shape":"TagList"},
-        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"},
+        "autoScalingSpecification":{"shape":"AutoScalingSpecification"},
+        "replicaSpecifications":{"shape":"ReplicaSpecificationList"}
       }
     },
     "CreateTableResponse":{
@@ -370,7 +411,7 @@
       "type":"integer",
       "box":true,
       "max":630720000,
-      "min":1
+      "min":0
     },
     "DeleteKeyspaceRequest":{
       "type":"structure",
@@ -400,6 +441,7 @@
       "members":{
       }
     },
+    "DoubleObject":{"type":"double"},
     "EncryptionSpecification":{
       "type":"structure",
       "required":["type"],
@@ -437,6 +479,32 @@
         "replicationRegions":{"shape":"RegionList"}
       }
     },
+    "GetTableAutoScalingSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "keyspaceName",
+        "tableName"
+      ],
+      "members":{
+        "keyspaceName":{"shape":"KeyspaceName"},
+        "tableName":{"shape":"TableName"}
+      }
+    },
+    "GetTableAutoScalingSettingsResponse":{
+      "type":"structure",
+      "required":[
+        "keyspaceName",
+        "tableName",
+        "resourceArn"
+      ],
+      "members":{
+        "keyspaceName":{"shape":"KeyspaceName"},
+        "tableName":{"shape":"TableName"},
+        "resourceArn":{"shape":"ARN"},
+        "autoScalingSpecification":{"shape":"AutoScalingSpecification"},
+        "replicaSpecifications":{"shape":"ReplicaAutoScalingSpecificationList"}
+      }
+    },
     "GetTableRequest":{
       "type":"structure",
       "required":[
@@ -468,9 +536,11 @@
         "ttl":{"shape":"TimeToLive"},
         "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
         "comment":{"shape":"Comment"},
-        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"},
+        "replicaSpecifications":{"shape":"ReplicaSpecificationSummaryList"}
       }
     },
+    "IntegerObject":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -601,6 +671,45 @@
       "max":6,
       "min":2
     },
+    "ReplicaAutoScalingSpecification":{
+      "type":"structure",
+      "members":{
+        "region":{"shape":"region"},
+        "autoScalingSpecification":{"shape":"AutoScalingSpecification"}
+      }
+    },
+    "ReplicaAutoScalingSpecificationList":{
+      "type":"list",
+      "member":{"shape":"ReplicaAutoScalingSpecification"},
+      "min":0
+    },
+    "ReplicaSpecification":{
+      "type":"structure",
+      "required":["region"],
+      "members":{
+        "region":{"shape":"region"},
+        "readCapacityUnits":{"shape":"CapacityUnits"},
+        "readCapacityAutoScaling":{"shape":"AutoScalingSettings"}
+      }
+    },
+    "ReplicaSpecificationList":{
+      "type":"list",
+      "member":{"shape":"ReplicaSpecification"},
+      "min":1
+    },
+    "ReplicaSpecificationSummary":{
+      "type":"structure",
+      "members":{
+        "region":{"shape":"region"},
+        "status":{"shape":"TableStatus"},
+        "capacitySpecification":{"shape":"CapacitySpecificationSummary"}
+      }
+    },
+    "ReplicaSpecificationSummaryList":{
+      "type":"list",
+      "member":{"shape":"ReplicaSpecificationSummary"},
+      "min":0
+    },
     "ReplicationSpecification":{
       "type":"structure",
       "required":["replicationStrategy"],
@@ -634,7 +743,9 @@
         "capacitySpecificationOverride":{"shape":"CapacitySpecification"},
         "encryptionSpecificationOverride":{"shape":"EncryptionSpecification"},
         "pointInTimeRecoveryOverride":{"shape":"PointInTimeRecovery"},
-        "tagsOverride":{"shape":"TagList"}
+        "tagsOverride":{"shape":"TagList"},
+        "autoScalingSpecification":{"shape":"AutoScalingSpecification"},
+        "replicaSpecifications":{"shape":"ReplicaSpecificationList"}
       }
     },
     "RestoreTableResponse":{
@@ -761,6 +872,16 @@
       "max":256,
       "min":1
     },
+    "TargetTrackingScalingPolicyConfiguration":{
+      "type":"structure",
+      "required":["targetValue"],
+      "members":{
+        "disableScaleIn":{"shape":"BooleanObject"},
+        "scaleInCooldown":{"shape":"IntegerObject"},
+        "scaleOutCooldown":{"shape":"IntegerObject"},
+        "targetValue":{"shape":"DoubleObject"}
+      }
+    },
     "ThroughputMode":{
       "type":"string",
       "enum":[
@@ -811,7 +932,9 @@
         "pointInTimeRecovery":{"shape":"PointInTimeRecovery"},
         "ttl":{"shape":"TimeToLive"},
         "defaultTimeToLive":{"shape":"DefaultTimeToLive"},
-        "clientSideTimestamps":{"shape":"ClientSideTimestamps"}
+        "clientSideTimestamps":{"shape":"ClientSideTimestamps"},
+        "autoScalingSpecification":{"shape":"AutoScalingSpecification"},
+        "replicaSpecifications":{"shape":"ReplicaSpecificationList"}
       }
     },
     "UpdateTableResponse":{

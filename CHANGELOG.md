@@ -1,3 +1,11 @@
+Release v1.49.23 (2024-01-17)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Updating note for enabling streams for UpdateTable.
+* `service/keyspaces`: Updates service API and documentation
+
 Release v1.49.22 (2024-01-16)
 ===
 

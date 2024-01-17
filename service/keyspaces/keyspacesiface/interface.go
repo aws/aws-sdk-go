@@ -84,6 +84,10 @@ type KeyspacesAPI interface {
 	GetTableWithContext(aws.Context, *keyspaces.GetTableInput, ...request.Option) (*keyspaces.GetTableOutput, error)
 	GetTableRequest(*keyspaces.GetTableInput) (*request.Request, *keyspaces.GetTableOutput)
 
+	GetTableAutoScalingSettings(*keyspaces.GetTableAutoScalingSettingsInput) (*keyspaces.GetTableAutoScalingSettingsOutput, error)
+	GetTableAutoScalingSettingsWithContext(aws.Context, *keyspaces.GetTableAutoScalingSettingsInput, ...request.Option) (*keyspaces.GetTableAutoScalingSettingsOutput, error)
+	GetTableAutoScalingSettingsRequest(*keyspaces.GetTableAutoScalingSettingsInput) (*request.Request, *keyspaces.GetTableAutoScalingSettingsOutput)
+
 	ListKeyspaces(*keyspaces.ListKeyspacesInput) (*keyspaces.ListKeyspacesOutput, error)
 	ListKeyspacesWithContext(aws.Context, *keyspaces.ListKeyspacesInput, ...request.Option) (*keyspaces.ListKeyspacesOutput, error)
 	ListKeyspacesRequest(*keyspaces.ListKeyspacesInput) (*request.Request, *keyspaces.ListKeyspacesOutput)
