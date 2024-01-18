@@ -183,6 +183,13 @@ type CloudTrailAPI interface {
 	ListImportsPages(*cloudtrail.ListImportsInput, func(*cloudtrail.ListImportsOutput, bool) bool) error
 	ListImportsPagesWithContext(aws.Context, *cloudtrail.ListImportsInput, func(*cloudtrail.ListImportsOutput, bool) bool, ...request.Option) error
 
+	ListInsightsMetricData(*cloudtrail.ListInsightsMetricDataInput) (*cloudtrail.ListInsightsMetricDataOutput, error)
+	ListInsightsMetricDataWithContext(aws.Context, *cloudtrail.ListInsightsMetricDataInput, ...request.Option) (*cloudtrail.ListInsightsMetricDataOutput, error)
+	ListInsightsMetricDataRequest(*cloudtrail.ListInsightsMetricDataInput) (*request.Request, *cloudtrail.ListInsightsMetricDataOutput)
+
+	ListInsightsMetricDataPages(*cloudtrail.ListInsightsMetricDataInput, func(*cloudtrail.ListInsightsMetricDataOutput, bool) bool) error
+	ListInsightsMetricDataPagesWithContext(aws.Context, *cloudtrail.ListInsightsMetricDataInput, func(*cloudtrail.ListInsightsMetricDataOutput, bool) bool, ...request.Option) error
+
 	ListPublicKeys(*cloudtrail.ListPublicKeysInput) (*cloudtrail.ListPublicKeysOutput, error)
 	ListPublicKeysWithContext(aws.Context, *cloudtrail.ListPublicKeysInput, ...request.Option) (*cloudtrail.ListPublicKeysOutput, error)
 	ListPublicKeysRequest(*cloudtrail.ListPublicKeysInput) (*request.Request, *cloudtrail.ListPublicKeysOutput)

@@ -117,7 +117,7 @@
     "BatchGetRecordIdentifiers":{
       "type":"list",
       "member":{"shape":"BatchGetRecordIdentifier"},
-      "max":10,
+      "max":100,
       "min":1
     },
     "BatchGetRecordRequest":{
