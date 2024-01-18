@@ -1823,6 +1823,10 @@ func (c *B2bi) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req 
 //     some cases, the resource exists in a region other than the region specified
 //     in the API call.
 //
+//   - InternalServerException
+//     This exception is thrown when an error occurs in the Amazon Web Services
+//     B2B Data Interchange service.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/b2bi-2022-06-23/ListTagsForResource
 func (c *B2bi) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
@@ -2151,6 +2155,10 @@ func (c *B2bi) TagResourceRequest(input *TagResourceInput) (req *request.Request
 //     some cases, the resource exists in a region other than the region specified
 //     in the API call.
 //
+//   - InternalServerException
+//     This exception is thrown when an error occurs in the Amazon Web Services
+//     B2B Data Interchange service.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/b2bi-2022-06-23/TagResource
 func (c *B2bi) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
@@ -2314,7 +2322,8 @@ func (c *B2bi) TestParsingRequest(input *TestParsingInput) (req *request.Request
 
 // TestParsing API operation for AWS B2B Data Interchange.
 //
-// Parses the input EDI (electronic data interchange) file.
+// Parses the input EDI (electronic data interchange) file. The input file has
+// a file size limit of 250 KB.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2432,6 +2441,10 @@ func (c *B2bi) UntagResourceRequest(input *UntagResourceInput) (req *request.Req
 //     Occurs when the requested resource does not exist, or cannot be found. In
 //     some cases, the resource exists in a region other than the region specified
 //     in the API call.
+//
+//   - InternalServerException
+//     This exception is thrown when an error occurs in the Amazon Web Services
+//     B2B Data Interchange service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/b2bi-2022-06-23/UntagResource
 func (c *B2bi) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {

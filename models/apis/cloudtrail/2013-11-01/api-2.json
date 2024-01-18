@@ -577,6 +577,21 @@
       ],
       "idempotent":true
     },
+    "ListInsightsMetricData":{
+      "name":"ListInsightsMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListInsightsMetricDataRequest"},
+      "output":{"shape":"ListInsightsMetricDataResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
     "ListPublicKeys":{
       "name":"ListPublicKeys",
       "http":{
@@ -1558,6 +1573,7 @@
         "FederationStatus":{"shape":"FederationStatus"}
       }
     },
+    "Double":{"type":"double"},
     "EnableFederationRequest":{
       "type":"structure",
       "required":[
@@ -1576,6 +1592,11 @@
         "FederationStatus":{"shape":"FederationStatus"},
         "FederationRoleArn":{"shape":"FederationRoleArn"}
       }
+    },
+    "ErrorCode":{
+      "type":"string",
+      "max":128,
+      "pattern":"^[\\w\\d\\s_.,\\-:\\[\\]]+$"
     },
     "ErrorMessage":{
       "type":"string",
@@ -1723,6 +1744,11 @@
       "type":"list",
       "member":{"shape":"EventDataStore"}
     },
+    "EventName":{
+      "type":"string",
+      "max":128,
+      "pattern":"^[A-Za-z0-9_]+$"
+    },
     "EventSelector":{
       "type":"structure",
       "members":{
@@ -1735,6 +1761,11 @@
     "EventSelectors":{
       "type":"list",
       "member":{"shape":"EventSelector"}
+    },
+    "EventSource":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-z0-9_-]+\\.amazonaws\\.com$"
     },
     "EventsList":{
       "type":"list",
@@ -2055,6 +2086,32 @@
         "ApiErrorRateInsight"
       ]
     },
+    "InsightsMetricDataType":{
+      "type":"string",
+      "enum":[
+        "FillWithZeros",
+        "NonZeroData"
+      ]
+    },
+    "InsightsMetricMaxResults":{
+      "type":"integer",
+      "max":21600,
+      "min":1
+    },
+    "InsightsMetricNextToken":{
+      "type":"string",
+      "max":5000,
+      "min":1
+    },
+    "InsightsMetricPeriod":{
+      "type":"integer",
+      "max":3600,
+      "min":60
+    },
+    "InsightsMetricValues":{
+      "type":"list",
+      "member":{"shape":"Double"}
+    },
     "InsufficientDependencyServiceAccessPermissionException":{
       "type":"structure",
       "members":{
@@ -2333,6 +2390,38 @@
       "members":{
         "Imports":{"shape":"ImportsList"},
         "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListInsightsMetricDataRequest":{
+      "type":"structure",
+      "required":[
+        "EventSource",
+        "EventName",
+        "InsightType"
+      ],
+      "members":{
+        "EventSource":{"shape":"EventSource"},
+        "EventName":{"shape":"EventName"},
+        "InsightType":{"shape":"InsightType"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"},
+        "Period":{"shape":"InsightsMetricPeriod"},
+        "DataType":{"shape":"InsightsMetricDataType"},
+        "MaxResults":{"shape":"InsightsMetricMaxResults"},
+        "NextToken":{"shape":"InsightsMetricNextToken"}
+      }
+    },
+    "ListInsightsMetricDataResponse":{
+      "type":"structure",
+      "members":{
+        "EventSource":{"shape":"EventSource"},
+        "EventName":{"shape":"EventName"},
+        "InsightType":{"shape":"InsightType"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Timestamps":{"shape":"Timestamps"},
+        "Values":{"shape":"InsightsMetricValues"},
+        "NextToken":{"shape":"InsightsMetricNextToken"}
       }
     },
     "ListPublicKeysRequest":{
@@ -3008,6 +3097,10 @@
       "members":{
       },
       "exception":true
+    },
+    "Timestamps":{
+      "type":"list",
+      "member":{"shape":"Date"}
     },
     "Trail":{
       "type":"structure",

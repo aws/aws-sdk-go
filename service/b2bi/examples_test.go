@@ -716,6 +716,8 @@ func ExampleB2bi_ListTagsForResource_shared00() {
 				fmt.Println(b2bi.ErrCodeValidationException, aerr.Error())
 			case b2bi.ErrCodeResourceNotFoundException:
 				fmt.Println(b2bi.ErrCodeResourceNotFoundException, aerr.Error())
+			case b2bi.ErrCodeInternalServerException:
+				fmt.Println(b2bi.ErrCodeInternalServerException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -829,6 +831,8 @@ func ExampleB2bi_TagResource_shared00() {
 				fmt.Println(b2bi.ErrCodeThrottlingException, aerr.Error())
 			case b2bi.ErrCodeResourceNotFoundException:
 				fmt.Println(b2bi.ErrCodeResourceNotFoundException, aerr.Error())
+			case b2bi.ErrCodeInternalServerException:
+				fmt.Println(b2bi.ErrCodeInternalServerException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -949,6 +953,8 @@ func ExampleB2bi_UntagResource_shared00() {
 				fmt.Println(b2bi.ErrCodeValidationException, aerr.Error())
 			case b2bi.ErrCodeResourceNotFoundException:
 				fmt.Println(b2bi.ErrCodeResourceNotFoundException, aerr.Error())
+			case b2bi.ErrCodeInternalServerException:
+				fmt.Println(b2bi.ErrCodeInternalServerException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

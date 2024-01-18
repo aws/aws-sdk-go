@@ -282,7 +282,8 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "ListTransformers":{
@@ -321,7 +322,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "TestMapping":{
@@ -367,7 +369,8 @@
       "input":{"shape":"UntagResourceRequest"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ],
       "idempotent":true
     },
@@ -1226,7 +1229,7 @@
     },
     "TestMappingInputFileContent":{
       "type":"string",
-      "max":200000,
+      "max":5000000,
       "min":0
     },
     "TestMappingRequest":{

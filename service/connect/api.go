@@ -45308,7 +45308,9 @@ type GetCurrentMetricDataInput struct {
 	// filter by both queue AND routing profile.) You can include both resource
 	// IDs and resource ARNs in the same request.
 	//
-	// When using RoutingStepExpression, you need to pass exactly one QueueId.
+	// When using the RoutingStepExpression filter, you need to pass exactly one
+	// QueueId. The filter is also case sensitive so when using the RoutingStepExpression
+	// filter, grouping by ROUTING_STEP_EXPRESSION is required.
 	//
 	// Currently tagging is only supported on the resources that are passed in the
 	// filter.
@@ -46345,7 +46347,9 @@ type GetMetricDataV2Input struct {
 	//    conversational analytics. connect:Chat, connect:SMS, connect:Telephony,
 	//    and connect:WebRTC are valid filterValue examples (not exhaustive) for
 	//    the contact/segmentAttributes/connect:Subtype filter key. ROUTING_STEP_EXPRESSION
-	//    is a valid filter key with a filter value up to 3000 length.
+	//    is a valid filter key with a filter value up to 3000 length. This filter
+	//    is case and order sensitive. JSON string fields must be sorted in ascending
+	//    order and JSON array order should be kept as is.
 	//
 	// Filters is a required field
 	Filters []*FilterV2 `min:"1" type:"list" required:"true"`
@@ -46690,6 +46694,14 @@ type GetMetricDataV2Input struct {
 	//
 	// Feature is a valid filter but not a valid grouping.
 	//
+	// CONTACTS_HANDLED_BY_CONNECTED_TO_AGENT
+	//
+	// Unit: Count
+	//
+	// Valid metric filter key: INITIATION_METHOD
+	//
+	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
+	//
 	// CONTACTS_HOLD_ABANDONS
 	//
 	// Unit: Count
@@ -46738,6 +46750,12 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
+	//
+	// CONTACTS_QUEUED_BY_ENQUEUE
+	//
+	// Unit: Count
+	//
+	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
 	// CONTACTS_RESOLVED_IN_X
 	//
@@ -47508,7 +47526,10 @@ func (s *GetTaskTemplateOutput) SetTags(v map[string]*string) *GetTaskTemplateOu
 type GetTrafficDistributionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the traffic distribution group.
+	// The identifier of the traffic distribution group. This can be the ID or the
+	// ARN if the API is being called in the Region where the traffic distribution
+	// group was created. The ARN must be provided if the call is from the replicated
+	// Region.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`

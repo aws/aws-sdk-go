@@ -1,3 +1,16 @@
+Release v1.49.24 (2024-01-18)
+===
+
+### Service Client Updates
+* `service/b2bi`: Updates service API, documentation, and examples
+* `service/cloudtrail`: Updates service API, documentation, and paginators
+  * This release adds a new API ListInsightsMetricData to retrieve metric data from CloudTrail Insights.
+* `service/connect`: Updates service API and documentation
+* `service/drs`: Updates service API
+* `service/firehose`: Updates service API and documentation
+  * Allow support for Snowflake as a Kinesis Data Firehose delivery destination.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+
 Release v1.49.23 (2024-01-17)
 ===
 

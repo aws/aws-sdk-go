@@ -8555,7 +8555,7 @@
     "GroupingsV2":{
       "type":"list",
       "member":{"shape":"GroupingV2"},
-      "max":2
+      "max":3
     },
     "HierarchyGroup":{
       "type":"structure",

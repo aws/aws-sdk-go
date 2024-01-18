@@ -2994,6 +2994,9 @@ type CreateDeliveryStreamInput struct {
 	// Deprecated: S3DestinationConfiguration has been deprecated
 	S3DestinationConfiguration *S3DestinationConfiguration `deprecated:"true" type:"structure"`
 
+	// Configure Snowflake destination
+	SnowflakeDestinationConfiguration *SnowflakeDestinationConfiguration `type:"structure"`
+
 	// The destination in Splunk. You can specify only one destination.
 	SplunkDestinationConfiguration *SplunkDestinationConfiguration `type:"structure"`
 
@@ -3088,6 +3091,11 @@ func (s *CreateDeliveryStreamInput) Validate() error {
 			invalidParams.AddNested("S3DestinationConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SnowflakeDestinationConfiguration != nil {
+		if err := s.SnowflakeDestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeDestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SplunkDestinationConfiguration != nil {
 		if err := s.SplunkDestinationConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SplunkDestinationConfiguration", err.(request.ErrInvalidParams))
@@ -3179,6 +3187,12 @@ func (s *CreateDeliveryStreamInput) SetRedshiftDestinationConfiguration(v *Redsh
 // SetS3DestinationConfiguration sets the S3DestinationConfiguration field's value.
 func (s *CreateDeliveryStreamInput) SetS3DestinationConfiguration(v *S3DestinationConfiguration) *CreateDeliveryStreamInput {
 	s.S3DestinationConfiguration = v
+	return s
+}
+
+// SetSnowflakeDestinationConfiguration sets the SnowflakeDestinationConfiguration field's value.
+func (s *CreateDeliveryStreamInput) SetSnowflakeDestinationConfiguration(v *SnowflakeDestinationConfiguration) *CreateDeliveryStreamInput {
+	s.SnowflakeDestinationConfiguration = v
 	return s
 }
 
@@ -3911,6 +3925,9 @@ type DestinationDescription struct {
 	// [Deprecated] The destination in Amazon S3.
 	S3DestinationDescription *S3DestinationDescription `type:"structure"`
 
+	// Optional description for the destination
+	SnowflakeDestinationDescription *SnowflakeDestinationDescription `type:"structure"`
+
 	// The destination in Splunk.
 	SplunkDestinationDescription *SplunkDestinationDescription `type:"structure"`
 }
@@ -3978,6 +3995,12 @@ func (s *DestinationDescription) SetRedshiftDestinationDescription(v *RedshiftDe
 // SetS3DestinationDescription sets the S3DestinationDescription field's value.
 func (s *DestinationDescription) SetS3DestinationDescription(v *S3DestinationDescription) *DestinationDescription {
 	s.S3DestinationDescription = v
+	return s
+}
+
+// SetSnowflakeDestinationDescription sets the SnowflakeDestinationDescription field's value.
+func (s *DestinationDescription) SetSnowflakeDestinationDescription(v *SnowflakeDestinationDescription) *DestinationDescription {
+	s.SnowflakeDestinationDescription = v
 	return s
 }
 
@@ -9465,6 +9488,1000 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configure Snowflake destination
+type SnowflakeDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// URL for accessing your Snowflake account. This URL must include your account
+	// identifier (https://docs.snowflake.com/en/user-guide/admin-account-identifier).
+	// Note that the protocol (https://) and port number are optional.
+	//
+	// AccountUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// AccountUrl is a required field
+	AccountUrl *string `min:"24" type:"string" required:"true" sensitive:"true"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	// The name of the record content column
+	//
+	// ContentColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	ContentColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// Choose to load JSON keys mapped to table column names or choose to split
+	// the JSON payload where content is mapped to a record content column and source
+	// metadata is mapped to a record metadata column.
+	DataLoadingOption *string `type:"string" enum:"SnowflakeDataLoadingOption"`
+
+	// All data in Snowflake is maintained in databases.
+	//
+	// Database is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// Database is a required field
+	Database *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Passphrase to decrypt the private key when the key is encrypted. For information,
+	// see Using Key Pair Authentication & Key Rotation (https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-configuration#using-key-pair-authentication-key-rotation).
+	//
+	// KeyPassphrase is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	KeyPassphrase *string `min:"7" type:"string" sensitive:"true"`
+
+	// The name of the record metadata column
+	//
+	// MetaDataColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	MetaDataColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The private key used to encrypt your Snowflake client. For information, see
+	// Using Key Pair Authentication & Key Rotation (https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-configuration#using-key-pair-authentication-key-rotation).
+	//
+	// PrivateKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// PrivateKey is a required field
+	PrivateKey *string `min:"256" type:"string" required:"true" sensitive:"true"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	// The time period where Kinesis Data Firehose will retry sending data to the
+	// chosen HTTP endpoint.
+	RetryOptions *SnowflakeRetryOptions `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Snowflake role
+	//
+	// RoleARN is a required field
+	RoleARN *string `min:"1" type:"string" required:"true"`
+
+	// Choose an S3 backup mode
+	S3BackupMode *string `type:"string" enum:"SnowflakeS3BackupMode"`
+
+	// Describes the configuration of a destination in Amazon S3.
+	//
+	// S3Configuration is a required field
+	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
+
+	// Each database consists of one or more schemas, which are logical groupings
+	// of database objects, such as tables and views
+	//
+	// Schema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// Schema is a required field
+	Schema *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Optionally configure a Snowflake role. Otherwise the default user role will
+	// be used.
+	SnowflakeRoleConfiguration *SnowflakeRoleConfiguration `type:"structure"`
+
+	// The VPCE ID for Firehose to privately connect with Snowflake. The ID format
+	// is com.amazonaws.vpce.[region].vpce-svc-<[id]>. For more information, see
+	// Amazon PrivateLink & Snowflake (https://docs.snowflake.com/en/user-guide/admin-security-privatelink)
+	SnowflakeVpcConfiguration *SnowflakeVpcConfiguration `type:"structure"`
+
+	// All data in Snowflake is stored in database tables, logically structured
+	// as collections of columns and rows.
+	//
+	// Table is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// Table is a required field
+	Table *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// User login name for the Snowflake account.
+	//
+	// User is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationConfiguration's
+	// String and GoString methods.
+	//
+	// User is a required field
+	User *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeDestinationConfiguration"}
+	if s.AccountUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountUrl"))
+	}
+	if s.AccountUrl != nil && len(*s.AccountUrl) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountUrl", 24))
+	}
+	if s.ContentColumnName != nil && len(*s.ContentColumnName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentColumnName", 1))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Database != nil && len(*s.Database) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Database", 1))
+	}
+	if s.KeyPassphrase != nil && len(*s.KeyPassphrase) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyPassphrase", 7))
+	}
+	if s.MetaDataColumnName != nil && len(*s.MetaDataColumnName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetaDataColumnName", 1))
+	}
+	if s.PrivateKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivateKey"))
+	}
+	if s.PrivateKey != nil && len(*s.PrivateKey) < 256 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivateKey", 256))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.S3Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
+	}
+	if s.Schema == nil {
+		invalidParams.Add(request.NewErrParamRequired("Schema"))
+	}
+	if s.Schema != nil && len(*s.Schema) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Schema", 1))
+	}
+	if s.Table == nil {
+		invalidParams.Add(request.NewErrParamRequired("Table"))
+	}
+	if s.Table != nil && len(*s.Table) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Table", 1))
+	}
+	if s.User == nil {
+		invalidParams.Add(request.NewErrParamRequired("User"))
+	}
+	if s.User != nil && len(*s.User) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("User", 1))
+	}
+	if s.ProcessingConfiguration != nil {
+		if err := s.ProcessingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnowflakeRoleConfiguration != nil {
+		if err := s.SnowflakeRoleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeRoleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnowflakeVpcConfiguration != nil {
+		if err := s.SnowflakeVpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeVpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountUrl sets the AccountUrl field's value.
+func (s *SnowflakeDestinationConfiguration) SetAccountUrl(v string) *SnowflakeDestinationConfiguration {
+	s.AccountUrl = &v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *SnowflakeDestinationConfiguration) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *SnowflakeDestinationConfiguration {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetContentColumnName sets the ContentColumnName field's value.
+func (s *SnowflakeDestinationConfiguration) SetContentColumnName(v string) *SnowflakeDestinationConfiguration {
+	s.ContentColumnName = &v
+	return s
+}
+
+// SetDataLoadingOption sets the DataLoadingOption field's value.
+func (s *SnowflakeDestinationConfiguration) SetDataLoadingOption(v string) *SnowflakeDestinationConfiguration {
+	s.DataLoadingOption = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *SnowflakeDestinationConfiguration) SetDatabase(v string) *SnowflakeDestinationConfiguration {
+	s.Database = &v
+	return s
+}
+
+// SetKeyPassphrase sets the KeyPassphrase field's value.
+func (s *SnowflakeDestinationConfiguration) SetKeyPassphrase(v string) *SnowflakeDestinationConfiguration {
+	s.KeyPassphrase = &v
+	return s
+}
+
+// SetMetaDataColumnName sets the MetaDataColumnName field's value.
+func (s *SnowflakeDestinationConfiguration) SetMetaDataColumnName(v string) *SnowflakeDestinationConfiguration {
+	s.MetaDataColumnName = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *SnowflakeDestinationConfiguration) SetPrivateKey(v string) *SnowflakeDestinationConfiguration {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *SnowflakeDestinationConfiguration) SetProcessingConfiguration(v *ProcessingConfiguration) *SnowflakeDestinationConfiguration {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *SnowflakeDestinationConfiguration) SetRetryOptions(v *SnowflakeRetryOptions) *SnowflakeDestinationConfiguration {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *SnowflakeDestinationConfiguration) SetRoleARN(v string) *SnowflakeDestinationConfiguration {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3BackupMode sets the S3BackupMode field's value.
+func (s *SnowflakeDestinationConfiguration) SetS3BackupMode(v string) *SnowflakeDestinationConfiguration {
+	s.S3BackupMode = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *SnowflakeDestinationConfiguration) SetS3Configuration(v *S3DestinationConfiguration) *SnowflakeDestinationConfiguration {
+	s.S3Configuration = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *SnowflakeDestinationConfiguration) SetSchema(v string) *SnowflakeDestinationConfiguration {
+	s.Schema = &v
+	return s
+}
+
+// SetSnowflakeRoleConfiguration sets the SnowflakeRoleConfiguration field's value.
+func (s *SnowflakeDestinationConfiguration) SetSnowflakeRoleConfiguration(v *SnowflakeRoleConfiguration) *SnowflakeDestinationConfiguration {
+	s.SnowflakeRoleConfiguration = v
+	return s
+}
+
+// SetSnowflakeVpcConfiguration sets the SnowflakeVpcConfiguration field's value.
+func (s *SnowflakeDestinationConfiguration) SetSnowflakeVpcConfiguration(v *SnowflakeVpcConfiguration) *SnowflakeDestinationConfiguration {
+	s.SnowflakeVpcConfiguration = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *SnowflakeDestinationConfiguration) SetTable(v string) *SnowflakeDestinationConfiguration {
+	s.Table = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *SnowflakeDestinationConfiguration) SetUser(v string) *SnowflakeDestinationConfiguration {
+	s.User = &v
+	return s
+}
+
+// Optional Snowflake destination description
+type SnowflakeDestinationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// URL for accessing your Snowflake account. This URL must include your account
+	// identifier (https://docs.snowflake.com/en/user-guide/admin-account-identifier).
+	// Note that the protocol (https://) and port number are optional.
+	//
+	// AccountUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	AccountUrl *string `min:"24" type:"string" sensitive:"true"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	// The name of the record content column
+	//
+	// ContentColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	ContentColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// Choose to load JSON keys mapped to table column names or choose to split
+	// the JSON payload where content is mapped to a record content column and source
+	// metadata is mapped to a record metadata column.
+	DataLoadingOption *string `type:"string" enum:"SnowflakeDataLoadingOption"`
+
+	// All data in Snowflake is maintained in databases.
+	//
+	// Database is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	Database *string `min:"1" type:"string" sensitive:"true"`
+
+	// The name of the record metadata column
+	//
+	// MetaDataColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	MetaDataColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	// The time period where Kinesis Data Firehose will retry sending data to the
+	// chosen HTTP endpoint.
+	RetryOptions *SnowflakeRetryOptions `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Snowflake role
+	RoleARN *string `min:"1" type:"string"`
+
+	// Choose an S3 backup mode
+	S3BackupMode *string `type:"string" enum:"SnowflakeS3BackupMode"`
+
+	// Describes a destination in Amazon S3.
+	S3DestinationDescription *S3DestinationDescription `type:"structure"`
+
+	// Each database consists of one or more schemas, which are logical groupings
+	// of database objects, such as tables and views
+	//
+	// Schema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	Schema *string `min:"1" type:"string" sensitive:"true"`
+
+	// Optionally configure a Snowflake role. Otherwise the default user role will
+	// be used.
+	SnowflakeRoleConfiguration *SnowflakeRoleConfiguration `type:"structure"`
+
+	// The VPCE ID for Firehose to privately connect with Snowflake. The ID format
+	// is com.amazonaws.vpce.[region].vpce-svc-<[id]>. For more information, see
+	// Amazon PrivateLink & Snowflake (https://docs.snowflake.com/en/user-guide/admin-security-privatelink)
+	SnowflakeVpcConfiguration *SnowflakeVpcConfiguration `type:"structure"`
+
+	// All data in Snowflake is stored in database tables, logically structured
+	// as collections of columns and rows.
+	//
+	// Table is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	Table *string `min:"1" type:"string" sensitive:"true"`
+
+	// User login name for the Snowflake account.
+	//
+	// User is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationDescription's
+	// String and GoString methods.
+	User *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationDescription) GoString() string {
+	return s.String()
+}
+
+// SetAccountUrl sets the AccountUrl field's value.
+func (s *SnowflakeDestinationDescription) SetAccountUrl(v string) *SnowflakeDestinationDescription {
+	s.AccountUrl = &v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *SnowflakeDestinationDescription) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *SnowflakeDestinationDescription {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetContentColumnName sets the ContentColumnName field's value.
+func (s *SnowflakeDestinationDescription) SetContentColumnName(v string) *SnowflakeDestinationDescription {
+	s.ContentColumnName = &v
+	return s
+}
+
+// SetDataLoadingOption sets the DataLoadingOption field's value.
+func (s *SnowflakeDestinationDescription) SetDataLoadingOption(v string) *SnowflakeDestinationDescription {
+	s.DataLoadingOption = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *SnowflakeDestinationDescription) SetDatabase(v string) *SnowflakeDestinationDescription {
+	s.Database = &v
+	return s
+}
+
+// SetMetaDataColumnName sets the MetaDataColumnName field's value.
+func (s *SnowflakeDestinationDescription) SetMetaDataColumnName(v string) *SnowflakeDestinationDescription {
+	s.MetaDataColumnName = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *SnowflakeDestinationDescription) SetProcessingConfiguration(v *ProcessingConfiguration) *SnowflakeDestinationDescription {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *SnowflakeDestinationDescription) SetRetryOptions(v *SnowflakeRetryOptions) *SnowflakeDestinationDescription {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *SnowflakeDestinationDescription) SetRoleARN(v string) *SnowflakeDestinationDescription {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3BackupMode sets the S3BackupMode field's value.
+func (s *SnowflakeDestinationDescription) SetS3BackupMode(v string) *SnowflakeDestinationDescription {
+	s.S3BackupMode = &v
+	return s
+}
+
+// SetS3DestinationDescription sets the S3DestinationDescription field's value.
+func (s *SnowflakeDestinationDescription) SetS3DestinationDescription(v *S3DestinationDescription) *SnowflakeDestinationDescription {
+	s.S3DestinationDescription = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *SnowflakeDestinationDescription) SetSchema(v string) *SnowflakeDestinationDescription {
+	s.Schema = &v
+	return s
+}
+
+// SetSnowflakeRoleConfiguration sets the SnowflakeRoleConfiguration field's value.
+func (s *SnowflakeDestinationDescription) SetSnowflakeRoleConfiguration(v *SnowflakeRoleConfiguration) *SnowflakeDestinationDescription {
+	s.SnowflakeRoleConfiguration = v
+	return s
+}
+
+// SetSnowflakeVpcConfiguration sets the SnowflakeVpcConfiguration field's value.
+func (s *SnowflakeDestinationDescription) SetSnowflakeVpcConfiguration(v *SnowflakeVpcConfiguration) *SnowflakeDestinationDescription {
+	s.SnowflakeVpcConfiguration = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *SnowflakeDestinationDescription) SetTable(v string) *SnowflakeDestinationDescription {
+	s.Table = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *SnowflakeDestinationDescription) SetUser(v string) *SnowflakeDestinationDescription {
+	s.User = &v
+	return s
+}
+
+// Update to configuration settings
+type SnowflakeDestinationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// URL for accessing your Snowflake account. This URL must include your account
+	// identifier (https://docs.snowflake.com/en/user-guide/admin-account-identifier).
+	// Note that the protocol (https://) and port number are optional.
+	//
+	// AccountUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	AccountUrl *string `min:"24" type:"string" sensitive:"true"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	// The name of the content metadata column
+	//
+	// ContentColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	ContentColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// JSON keys mapped to table column names or choose to split the JSON payload
+	// where content is mapped to a record content column and source metadata is
+	// mapped to a record metadata column.
+	DataLoadingOption *string `type:"string" enum:"SnowflakeDataLoadingOption"`
+
+	// All data in Snowflake is maintained in databases.
+	//
+	// Database is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	Database *string `min:"1" type:"string" sensitive:"true"`
+
+	// Passphrase to decrypt the private key when the key is encrypted. For information,
+	// see Using Key Pair Authentication & Key Rotation (https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-configuration#using-key-pair-authentication-key-rotation).
+	//
+	// KeyPassphrase is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	KeyPassphrase *string `min:"7" type:"string" sensitive:"true"`
+
+	// The name of the record metadata column
+	//
+	// MetaDataColumnName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	MetaDataColumnName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The private key used to encrypt your Snowflake client. For information, see
+	// Using Key Pair Authentication & Key Rotation (https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-configuration#using-key-pair-authentication-key-rotation).
+	//
+	// PrivateKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	PrivateKey *string `min:"256" type:"string" sensitive:"true"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	// Specify how long Kinesis Data Firehose retries sending data to the New Relic
+	// HTTP endpoint. After sending data, Kinesis Data Firehose first waits for
+	// an acknowledgment from the HTTP endpoint. If an error occurs or the acknowledgment
+	// doesn’t arrive within the acknowledgment timeout period, Kinesis Data Firehose
+	// starts the retry duration counter. It keeps retrying until the retry duration
+	// expires. After that, Kinesis Data Firehose considers it a data delivery failure
+	// and backs up the data to your Amazon S3 bucket. Every time that Kinesis Data
+	// Firehose sends data to the HTTP endpoint (either the initial attempt or a
+	// retry), it restarts the acknowledgement timeout counter and waits for an
+	// acknowledgement from the HTTP endpoint. Even if the retry duration expires,
+	// Kinesis Data Firehose still waits for the acknowledgment until it receives
+	// it or the acknowledgement timeout period is reached. If the acknowledgment
+	// times out, Kinesis Data Firehose determines whether there's time left in
+	// the retry counter. If there is time left, it retries again and repeats the
+	// logic until it receives an acknowledgment or determines that the retry time
+	// has expired. If you don't want Kinesis Data Firehose to retry sending data,
+	// set this value to 0.
+	RetryOptions *SnowflakeRetryOptions `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Snowflake role
+	RoleARN *string `min:"1" type:"string"`
+
+	// Choose an S3 backup mode
+	S3BackupMode *string `type:"string" enum:"SnowflakeS3BackupMode"`
+
+	// Describes an update for a destination in Amazon S3.
+	S3Update *S3DestinationUpdate `type:"structure"`
+
+	// Each database consists of one or more schemas, which are logical groupings
+	// of database objects, such as tables and views
+	//
+	// Schema is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	Schema *string `min:"1" type:"string" sensitive:"true"`
+
+	// Optionally configure a Snowflake role. Otherwise the default user role will
+	// be used.
+	SnowflakeRoleConfiguration *SnowflakeRoleConfiguration `type:"structure"`
+
+	// All data in Snowflake is stored in database tables, logically structured
+	// as collections of columns and rows.
+	//
+	// Table is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	Table *string `min:"1" type:"string" sensitive:"true"`
+
+	// User login name for the Snowflake account.
+	//
+	// User is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeDestinationUpdate's
+	// String and GoString methods.
+	User *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeDestinationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeDestinationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeDestinationUpdate"}
+	if s.AccountUrl != nil && len(*s.AccountUrl) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountUrl", 24))
+	}
+	if s.ContentColumnName != nil && len(*s.ContentColumnName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentColumnName", 1))
+	}
+	if s.Database != nil && len(*s.Database) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Database", 1))
+	}
+	if s.KeyPassphrase != nil && len(*s.KeyPassphrase) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyPassphrase", 7))
+	}
+	if s.MetaDataColumnName != nil && len(*s.MetaDataColumnName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetaDataColumnName", 1))
+	}
+	if s.PrivateKey != nil && len(*s.PrivateKey) < 256 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivateKey", 256))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.Schema != nil && len(*s.Schema) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Schema", 1))
+	}
+	if s.Table != nil && len(*s.Table) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Table", 1))
+	}
+	if s.User != nil && len(*s.User) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("User", 1))
+	}
+	if s.ProcessingConfiguration != nil {
+		if err := s.ProcessingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Update != nil {
+		if err := s.S3Update.Validate(); err != nil {
+			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SnowflakeRoleConfiguration != nil {
+		if err := s.SnowflakeRoleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeRoleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountUrl sets the AccountUrl field's value.
+func (s *SnowflakeDestinationUpdate) SetAccountUrl(v string) *SnowflakeDestinationUpdate {
+	s.AccountUrl = &v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *SnowflakeDestinationUpdate) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *SnowflakeDestinationUpdate {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetContentColumnName sets the ContentColumnName field's value.
+func (s *SnowflakeDestinationUpdate) SetContentColumnName(v string) *SnowflakeDestinationUpdate {
+	s.ContentColumnName = &v
+	return s
+}
+
+// SetDataLoadingOption sets the DataLoadingOption field's value.
+func (s *SnowflakeDestinationUpdate) SetDataLoadingOption(v string) *SnowflakeDestinationUpdate {
+	s.DataLoadingOption = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *SnowflakeDestinationUpdate) SetDatabase(v string) *SnowflakeDestinationUpdate {
+	s.Database = &v
+	return s
+}
+
+// SetKeyPassphrase sets the KeyPassphrase field's value.
+func (s *SnowflakeDestinationUpdate) SetKeyPassphrase(v string) *SnowflakeDestinationUpdate {
+	s.KeyPassphrase = &v
+	return s
+}
+
+// SetMetaDataColumnName sets the MetaDataColumnName field's value.
+func (s *SnowflakeDestinationUpdate) SetMetaDataColumnName(v string) *SnowflakeDestinationUpdate {
+	s.MetaDataColumnName = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *SnowflakeDestinationUpdate) SetPrivateKey(v string) *SnowflakeDestinationUpdate {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *SnowflakeDestinationUpdate) SetProcessingConfiguration(v *ProcessingConfiguration) *SnowflakeDestinationUpdate {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *SnowflakeDestinationUpdate) SetRetryOptions(v *SnowflakeRetryOptions) *SnowflakeDestinationUpdate {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *SnowflakeDestinationUpdate) SetRoleARN(v string) *SnowflakeDestinationUpdate {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3BackupMode sets the S3BackupMode field's value.
+func (s *SnowflakeDestinationUpdate) SetS3BackupMode(v string) *SnowflakeDestinationUpdate {
+	s.S3BackupMode = &v
+	return s
+}
+
+// SetS3Update sets the S3Update field's value.
+func (s *SnowflakeDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *SnowflakeDestinationUpdate {
+	s.S3Update = v
+	return s
+}
+
+// SetSchema sets the Schema field's value.
+func (s *SnowflakeDestinationUpdate) SetSchema(v string) *SnowflakeDestinationUpdate {
+	s.Schema = &v
+	return s
+}
+
+// SetSnowflakeRoleConfiguration sets the SnowflakeRoleConfiguration field's value.
+func (s *SnowflakeDestinationUpdate) SetSnowflakeRoleConfiguration(v *SnowflakeRoleConfiguration) *SnowflakeDestinationUpdate {
+	s.SnowflakeRoleConfiguration = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *SnowflakeDestinationUpdate) SetTable(v string) *SnowflakeDestinationUpdate {
+	s.Table = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *SnowflakeDestinationUpdate) SetUser(v string) *SnowflakeDestinationUpdate {
+	s.User = &v
+	return s
+}
+
+// Specify how long Kinesis Data Firehose retries sending data to the New Relic
+// HTTP endpoint. After sending data, Kinesis Data Firehose first waits for
+// an acknowledgment from the HTTP endpoint. If an error occurs or the acknowledgment
+// doesn’t arrive within the acknowledgment timeout period, Kinesis Data Firehose
+// starts the retry duration counter. It keeps retrying until the retry duration
+// expires. After that, Kinesis Data Firehose considers it a data delivery failure
+// and backs up the data to your Amazon S3 bucket. Every time that Kinesis Data
+// Firehose sends data to the HTTP endpoint (either the initial attempt or a
+// retry), it restarts the acknowledgement timeout counter and waits for an
+// acknowledgement from the HTTP endpoint. Even if the retry duration expires,
+// Kinesis Data Firehose still waits for the acknowledgment until it receives
+// it or the acknowledgement timeout period is reached. If the acknowledgment
+// times out, Kinesis Data Firehose determines whether there's time left in
+// the retry counter. If there is time left, it retries again and repeats the
+// logic until it receives an acknowledgment or determines that the retry time
+// has expired. If you don't want Kinesis Data Firehose to retry sending data,
+// set this value to 0.
+type SnowflakeRetryOptions struct {
+	_ struct{} `type:"structure"`
+
+	// the time period where Kinesis Data Firehose will retry sending data to the
+	// chosen HTTP endpoint.
+	DurationInSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeRetryOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeRetryOptions) GoString() string {
+	return s.String()
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *SnowflakeRetryOptions) SetDurationInSeconds(v int64) *SnowflakeRetryOptions {
+	s.DurationInSeconds = &v
+	return s
+}
+
+// Optionally configure a Snowflake role. Otherwise the default user role will
+// be used.
+type SnowflakeRoleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enable Snowflake role
+	Enabled *bool `type:"boolean"`
+
+	// The Snowflake role you wish to configure
+	//
+	// SnowflakeRole is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeRoleConfiguration's
+	// String and GoString methods.
+	SnowflakeRole *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeRoleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeRoleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeRoleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeRoleConfiguration"}
+	if s.SnowflakeRole != nil && len(*s.SnowflakeRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnowflakeRole", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SnowflakeRoleConfiguration) SetEnabled(v bool) *SnowflakeRoleConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetSnowflakeRole sets the SnowflakeRole field's value.
+func (s *SnowflakeRoleConfiguration) SetSnowflakeRole(v string) *SnowflakeRoleConfiguration {
+	s.SnowflakeRole = &v
+	return s
+}
+
+// Configure a Snowflake VPC
+type SnowflakeVpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The VPCE ID for Firehose to privately connect with Snowflake. The ID format
+	// is com.amazonaws.vpce.[region].vpce-svc-<[id]>. For more information, see
+	// Amazon PrivateLink & Snowflake (https://docs.snowflake.com/en/user-guide/admin-security-privatelink)
+	//
+	// PrivateLinkVpceId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SnowflakeVpcConfiguration's
+	// String and GoString methods.
+	//
+	// PrivateLinkVpceId is a required field
+	PrivateLinkVpceId *string `min:"47" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeVpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnowflakeVpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SnowflakeVpcConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SnowflakeVpcConfiguration"}
+	if s.PrivateLinkVpceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrivateLinkVpceId"))
+	}
+	if s.PrivateLinkVpceId != nil && len(*s.PrivateLinkVpceId) < 47 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivateLinkVpceId", 47))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrivateLinkVpceId sets the PrivateLinkVpceId field's value.
+func (s *SnowflakeVpcConfiguration) SetPrivateLinkVpceId(v string) *SnowflakeVpcConfiguration {
+	s.PrivateLinkVpceId = &v
+	return s
+}
+
 // Details about a Kinesis data stream used as the source for a Kinesis Data
 // Firehose delivery stream.
 type SourceDescription struct {
@@ -10509,6 +11526,9 @@ type UpdateDestinationInput struct {
 	// Deprecated: S3DestinationUpdate has been deprecated
 	S3DestinationUpdate *S3DestinationUpdate `deprecated:"true" type:"structure"`
 
+	// Update to the Snowflake destination condiguration settings
+	SnowflakeDestinationUpdate *SnowflakeDestinationUpdate `type:"structure"`
+
 	// Describes an update for a destination in Splunk.
 	SplunkDestinationUpdate *SplunkDestinationUpdate `type:"structure"`
 }
@@ -10587,6 +11607,11 @@ func (s *UpdateDestinationInput) Validate() error {
 			invalidParams.AddNested("S3DestinationUpdate", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SnowflakeDestinationUpdate != nil {
+		if err := s.SnowflakeDestinationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("SnowflakeDestinationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SplunkDestinationUpdate != nil {
 		if err := s.SplunkDestinationUpdate.Validate(); err != nil {
 			invalidParams.AddNested("SplunkDestinationUpdate", err.(request.ErrInvalidParams))
@@ -10656,6 +11681,12 @@ func (s *UpdateDestinationInput) SetRedshiftDestinationUpdate(v *RedshiftDestina
 // SetS3DestinationUpdate sets the S3DestinationUpdate field's value.
 func (s *UpdateDestinationInput) SetS3DestinationUpdate(v *S3DestinationUpdate) *UpdateDestinationInput {
 	s.S3DestinationUpdate = v
+	return s
+}
+
+// SetSnowflakeDestinationUpdate sets the SnowflakeDestinationUpdate field's value.
+func (s *UpdateDestinationInput) SetSnowflakeDestinationUpdate(v *SnowflakeDestinationUpdate) *UpdateDestinationInput {
+	s.SnowflakeDestinationUpdate = v
 	return s
 }
 
@@ -11500,6 +12531,42 @@ func S3BackupMode_Values() []string {
 	return []string{
 		S3BackupModeDisabled,
 		S3BackupModeEnabled,
+	}
+}
+
+const (
+	// SnowflakeDataLoadingOptionJsonMapping is a SnowflakeDataLoadingOption enum value
+	SnowflakeDataLoadingOptionJsonMapping = "JSON_MAPPING"
+
+	// SnowflakeDataLoadingOptionVariantContentMapping is a SnowflakeDataLoadingOption enum value
+	SnowflakeDataLoadingOptionVariantContentMapping = "VARIANT_CONTENT_MAPPING"
+
+	// SnowflakeDataLoadingOptionVariantContentAndMetadataMapping is a SnowflakeDataLoadingOption enum value
+	SnowflakeDataLoadingOptionVariantContentAndMetadataMapping = "VARIANT_CONTENT_AND_METADATA_MAPPING"
+)
+
+// SnowflakeDataLoadingOption_Values returns all elements of the SnowflakeDataLoadingOption enum
+func SnowflakeDataLoadingOption_Values() []string {
+	return []string{
+		SnowflakeDataLoadingOptionJsonMapping,
+		SnowflakeDataLoadingOptionVariantContentMapping,
+		SnowflakeDataLoadingOptionVariantContentAndMetadataMapping,
+	}
+}
+
+const (
+	// SnowflakeS3BackupModeFailedDataOnly is a SnowflakeS3BackupMode enum value
+	SnowflakeS3BackupModeFailedDataOnly = "FailedDataOnly"
+
+	// SnowflakeS3BackupModeAllData is a SnowflakeS3BackupMode enum value
+	SnowflakeS3BackupModeAllData = "AllData"
+)
+
+// SnowflakeS3BackupMode_Values returns all elements of the SnowflakeS3BackupMode enum
+func SnowflakeS3BackupMode_Values() []string {
+	return []string{
+		SnowflakeS3BackupModeFailedDataOnly,
+		SnowflakeS3BackupModeAllData,
 	}
 }
 
