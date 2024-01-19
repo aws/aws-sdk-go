@@ -3178,9 +3178,12 @@ func (c *Athena) ImportNotebookRequest(input *ImportNotebookInput) (req *request
 
 // ImportNotebook API operation for Amazon Athena.
 //
-// Imports a single ipynb file to a Spark enabled workgroup. The maximum file
-// size that can be imported is 10 megabytes. If an ipynb file with the same
-// name already exists in the workgroup, throws an error.
+// Imports a single ipynb file to a Spark enabled workgroup. To import the notebook,
+// the request must specify a value for either Payload or NoteBookS3LocationUri.
+// If neither is specified or both are specified, an InvalidRequestException
+// occurs. The maximum file size that can be imported is 10 megabytes. If an
+// ipynb file with the same name already exists in the workgroup, throws an
+// error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11781,10 +11784,11 @@ type ImportNotebookInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The notebook content to be imported.
-	//
-	// Payload is a required field
-	Payload *string `min:"1" type:"string" required:"true"`
+	// A URI that specifies the Amazon S3 location of a notebook file in ipynb format.
+	NotebookS3LocationUri *string `type:"string"`
+
+	// The notebook content to be imported. The payload must be in ipynb format.
+	Payload *string `min:"1" type:"string"`
 
 	// The notebook content type. Currently, the only valid type is IPYNB.
 	//
@@ -11827,9 +11831,6 @@ func (s *ImportNotebookInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.Payload == nil {
-		invalidParams.Add(request.NewErrParamRequired("Payload"))
-	}
 	if s.Payload != nil && len(*s.Payload) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Payload", 1))
 	}
@@ -11855,6 +11856,12 @@ func (s *ImportNotebookInput) SetClientRequestToken(v string) *ImportNotebookInp
 // SetName sets the Name field's value.
 func (s *ImportNotebookInput) SetName(v string) *ImportNotebookInput {
 	s.Name = &v
+	return s
+}
+
+// SetNotebookS3LocationUri sets the NotebookS3LocationUri field's value.
+func (s *ImportNotebookInput) SetNotebookS3LocationUri(v string) *ImportNotebookInput {
+	s.NotebookS3LocationUri = &v
 	return s
 }
 
@@ -18451,8 +18458,9 @@ type WorkGroupConfiguration struct {
 	EngineVersion *EngineVersion `type:"structure"`
 
 	// The ARN of the execution role used to access user resources for Spark sessions
-	// and Identity Center enabled workgroups. This property applies only to Spark
-	// enabled workgroups and Identity Center enabled workgroups.
+	// and IAM Identity Center enabled workgroups. This property applies only to
+	// Spark enabled workgroups and IAM Identity Center enabled workgroups. The
+	// property is required for IAM Identity Center enabled workgroups.
 	ExecutionRole *string `min:"20" type:"string"`
 
 	// Specifies whether the workgroup is IAM Identity Center supported.

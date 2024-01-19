@@ -7299,6 +7299,142 @@ func (c *DynamoDB) UpdateItemWithContext(ctx aws.Context, input *UpdateItemInput
 	return out, req.Send()
 }
 
+const opUpdateKinesisStreamingDestination = "UpdateKinesisStreamingDestination"
+
+// UpdateKinesisStreamingDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateKinesisStreamingDestination operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateKinesisStreamingDestination for more information on using the UpdateKinesisStreamingDestination
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateKinesisStreamingDestinationRequest method.
+//	req, resp := client.UpdateKinesisStreamingDestinationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/UpdateKinesisStreamingDestination
+func (c *DynamoDB) UpdateKinesisStreamingDestinationRequest(input *UpdateKinesisStreamingDestinationInput) (req *request.Request, output *UpdateKinesisStreamingDestinationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateKinesisStreamingDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateKinesisStreamingDestinationInput{}
+	}
+
+	output = &UpdateKinesisStreamingDestinationOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+			de := discovererDescribeEndpoints{
+				Required:      false,
+				EndpointCache: c.endpointCache,
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+				},
+				Client: c,
+			}
+
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
+			}
+
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn:   de.Handler,
+			})
+		}
+	}
+	return
+}
+
+// UpdateKinesisStreamingDestination API operation for Amazon DynamoDB.
+//
+// The command to update the Kinesis stream destination.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation UpdateKinesisStreamingDestination for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerError
+//     An error occurred on the server side.
+//
+//   - LimitExceededException
+//     There is no limit to the number of daily on-demand backups that can be taken.
+//
+//     For most purposes, up to 500 simultaneous table operations are allowed per
+//     account. These operations include CreateTable, UpdateTable, DeleteTable,UpdateTimeToLive,
+//     RestoreTableFromBackup, and RestoreTableToPointInTime.
+//
+//     When you are creating a table with one or more secondary indexes, you can
+//     have up to 250 such requests running at a time. However, if the table or
+//     index specifications are complex, then DynamoDB might temporarily reduce
+//     the number of concurrent operations.
+//
+//     When importing into DynamoDB, up to 50 simultaneous import table operations
+//     are allowed per account.
+//
+//     There is a soft account quota of 2,500 tables.
+//
+//     GetRecords was called with a value of more than 1000 for the limit request
+//     parameter.
+//
+//     More than 2 processes are reading from the same streams shard at the same
+//     time. Exceeding this limit may result in request throttling.
+//
+//   - ResourceInUseException
+//     The operation conflicts with the resource's availability. For example, you
+//     attempted to recreate an existing table, or tried to delete a table currently
+//     in the CREATING state.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access a nonexistent table or index. The resource
+//     might not be specified correctly, or its status might not be ACTIVE.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/UpdateKinesisStreamingDestination
+func (c *DynamoDB) UpdateKinesisStreamingDestination(input *UpdateKinesisStreamingDestinationInput) (*UpdateKinesisStreamingDestinationOutput, error) {
+	req, out := c.UpdateKinesisStreamingDestinationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateKinesisStreamingDestinationWithContext is the same as UpdateKinesisStreamingDestination with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateKinesisStreamingDestination for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DynamoDB) UpdateKinesisStreamingDestinationWithContext(ctx aws.Context, input *UpdateKinesisStreamingDestinationInput, opts ...request.Option) (*UpdateKinesisStreamingDestinationOutput, error) {
+	req, out := c.UpdateKinesisStreamingDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTable = "UpdateTable"
 
 // UpdateTableRequest generates a "aws/request.Request" representing the
@@ -13233,6 +13369,9 @@ func (s *DescribeTimeToLiveOutput) SetTimeToLiveDescription(v *TimeToLiveDescrip
 type DisableKinesisStreamingDestinationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The source for the Kinesis streaming information that is being enabled.
+	EnableKinesisStreamingConfiguration *EnableKinesisStreamingConfiguration `type:"structure"`
+
 	// The ARN for a Kinesis data stream.
 	//
 	// StreamArn is a required field
@@ -13284,6 +13423,12 @@ func (s *DisableKinesisStreamingDestinationInput) Validate() error {
 	return nil
 }
 
+// SetEnableKinesisStreamingConfiguration sets the EnableKinesisStreamingConfiguration field's value.
+func (s *DisableKinesisStreamingDestinationInput) SetEnableKinesisStreamingConfiguration(v *EnableKinesisStreamingConfiguration) *DisableKinesisStreamingDestinationInput {
+	s.EnableKinesisStreamingConfiguration = v
+	return s
+}
+
 // SetStreamArn sets the StreamArn field's value.
 func (s *DisableKinesisStreamingDestinationInput) SetStreamArn(v string) *DisableKinesisStreamingDestinationInput {
 	s.StreamArn = &v
@@ -13301,6 +13446,9 @@ type DisableKinesisStreamingDestinationOutput struct {
 
 	// The current status of the replication.
 	DestinationStatus *string `type:"string" enum:"DestinationStatus"`
+
+	// The destination for the Kinesis streaming information that is being enabled.
+	EnableKinesisStreamingConfiguration *EnableKinesisStreamingConfiguration `type:"structure"`
 
 	// The ARN for the specific Kinesis data stream.
 	StreamArn *string `min:"37" type:"string"`
@@ -13330,6 +13478,12 @@ func (s DisableKinesisStreamingDestinationOutput) GoString() string {
 // SetDestinationStatus sets the DestinationStatus field's value.
 func (s *DisableKinesisStreamingDestinationOutput) SetDestinationStatus(v string) *DisableKinesisStreamingDestinationOutput {
 	s.DestinationStatus = &v
+	return s
+}
+
+// SetEnableKinesisStreamingConfiguration sets the EnableKinesisStreamingConfiguration field's value.
+func (s *DisableKinesisStreamingDestinationOutput) SetEnableKinesisStreamingConfiguration(v *EnableKinesisStreamingConfiguration) *DisableKinesisStreamingDestinationOutput {
+	s.EnableKinesisStreamingConfiguration = v
 	return s
 }
 
@@ -13410,8 +13564,44 @@ func (s *DuplicateItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Enables setting the configuration for Kinesis Streaming.
+type EnableKinesisStreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Toggle for the precision of Kinesis data stream timestamp. The values are
+	// either MILLISECOND or MICROSECOND.
+	ApproximateCreationDateTimePrecision *string `type:"string" enum:"ApproximateCreationDateTimePrecision"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableKinesisStreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnableKinesisStreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetApproximateCreationDateTimePrecision sets the ApproximateCreationDateTimePrecision field's value.
+func (s *EnableKinesisStreamingConfiguration) SetApproximateCreationDateTimePrecision(v string) *EnableKinesisStreamingConfiguration {
+	s.ApproximateCreationDateTimePrecision = &v
+	return s
+}
+
 type EnableKinesisStreamingDestinationInput struct {
 	_ struct{} `type:"structure"`
+
+	// The source for the Kinesis streaming information that is being enabled.
+	EnableKinesisStreamingConfiguration *EnableKinesisStreamingConfiguration `type:"structure"`
 
 	// The ARN for a Kinesis data stream.
 	//
@@ -13464,6 +13654,12 @@ func (s *EnableKinesisStreamingDestinationInput) Validate() error {
 	return nil
 }
 
+// SetEnableKinesisStreamingConfiguration sets the EnableKinesisStreamingConfiguration field's value.
+func (s *EnableKinesisStreamingDestinationInput) SetEnableKinesisStreamingConfiguration(v *EnableKinesisStreamingConfiguration) *EnableKinesisStreamingDestinationInput {
+	s.EnableKinesisStreamingConfiguration = v
+	return s
+}
+
 // SetStreamArn sets the StreamArn field's value.
 func (s *EnableKinesisStreamingDestinationInput) SetStreamArn(v string) *EnableKinesisStreamingDestinationInput {
 	s.StreamArn = &v
@@ -13481,6 +13677,9 @@ type EnableKinesisStreamingDestinationOutput struct {
 
 	// The current status of the replication.
 	DestinationStatus *string `type:"string" enum:"DestinationStatus"`
+
+	// The destination for the Kinesis streaming information that is being enabled.
+	EnableKinesisStreamingConfiguration *EnableKinesisStreamingConfiguration `type:"structure"`
 
 	// The ARN for the specific Kinesis data stream.
 	StreamArn *string `min:"37" type:"string"`
@@ -13510,6 +13709,12 @@ func (s EnableKinesisStreamingDestinationOutput) GoString() string {
 // SetDestinationStatus sets the DestinationStatus field's value.
 func (s *EnableKinesisStreamingDestinationOutput) SetDestinationStatus(v string) *EnableKinesisStreamingDestinationOutput {
 	s.DestinationStatus = &v
+	return s
+}
+
+// SetEnableKinesisStreamingConfiguration sets the EnableKinesisStreamingConfiguration field's value.
+func (s *EnableKinesisStreamingDestinationOutput) SetEnableKinesisStreamingConfiguration(v *EnableKinesisStreamingConfiguration) *EnableKinesisStreamingDestinationOutput {
+	s.EnableKinesisStreamingConfiguration = v
 	return s
 }
 
@@ -17334,6 +17539,10 @@ func (s *KeysAndAttributes) SetProjectionExpression(v string) *KeysAndAttributes
 type KinesisDataStreamDestination struct {
 	_ struct{} `type:"structure"`
 
+	// The precision of the Kinesis data stream timestamp. The values are either
+	// MILLISECOND or MICROSECOND.
+	ApproximateCreationDateTimePrecision *string `type:"string" enum:"ApproximateCreationDateTimePrecision"`
+
 	// The current status of replication.
 	DestinationStatus *string `type:"string" enum:"DestinationStatus"`
 
@@ -17360,6 +17569,12 @@ func (s KinesisDataStreamDestination) String() string {
 // value will be replaced with "sensitive".
 func (s KinesisDataStreamDestination) GoString() string {
 	return s.String()
+}
+
+// SetApproximateCreationDateTimePrecision sets the ApproximateCreationDateTimePrecision field's value.
+func (s *KinesisDataStreamDestination) SetApproximateCreationDateTimePrecision(v string) *KinesisDataStreamDestination {
+	s.ApproximateCreationDateTimePrecision = &v
+	return s
 }
 
 // SetDestinationStatus sets the DestinationStatus field's value.
@@ -18540,7 +18755,7 @@ func (s *LocalSecondaryIndexInfo) SetProjection(v *Projection) *LocalSecondaryIn
 	return s
 }
 
-// Represents a PartiQL statment that uses parameters.
+// Represents a PartiQL statement that uses parameters.
 type ParameterizedStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -18555,7 +18770,7 @@ type ParameterizedStatement struct {
 	// No read capacity units are consumed.
 	ReturnValuesOnConditionCheckFailure *string `type:"string" enum:"ReturnValuesOnConditionCheckFailure"`
 
-	// A PartiQL statment that uses parameters.
+	// A PartiQL statement that uses parameters.
 	//
 	// Statement is a required field
 	Statement *string `min:"1" type:"string" required:"true"`
@@ -26065,6 +26280,171 @@ func (s *UpdateItemOutput) SetItemCollectionMetrics(v *ItemCollectionMetrics) *U
 	return s
 }
 
+// Enables updating the configuration for Kinesis Streaming.
+type UpdateKinesisStreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables updating the precision of Kinesis data stream timestamp.
+	ApproximateCreationDateTimePrecision *string `type:"string" enum:"ApproximateCreationDateTimePrecision"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetApproximateCreationDateTimePrecision sets the ApproximateCreationDateTimePrecision field's value.
+func (s *UpdateKinesisStreamingConfiguration) SetApproximateCreationDateTimePrecision(v string) *UpdateKinesisStreamingConfiguration {
+	s.ApproximateCreationDateTimePrecision = &v
+	return s
+}
+
+type UpdateKinesisStreamingDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN for the Kinesis stream input.
+	//
+	// StreamArn is a required field
+	StreamArn *string `min:"37" type:"string" required:"true"`
+
+	// The table name for the Kinesis streaming destination input.
+	//
+	// TableName is a required field
+	TableName *string `min:"3" type:"string" required:"true"`
+
+	// The command to update the Kinesis stream configuration.
+	UpdateKinesisStreamingConfiguration *UpdateKinesisStreamingConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateKinesisStreamingDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateKinesisStreamingDestinationInput"}
+	if s.StreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamArn"))
+	}
+	if s.StreamArn != nil && len(*s.StreamArn) < 37 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamArn", 37))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamArn sets the StreamArn field's value.
+func (s *UpdateKinesisStreamingDestinationInput) SetStreamArn(v string) *UpdateKinesisStreamingDestinationInput {
+	s.StreamArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateKinesisStreamingDestinationInput) SetTableName(v string) *UpdateKinesisStreamingDestinationInput {
+	s.TableName = &v
+	return s
+}
+
+// SetUpdateKinesisStreamingConfiguration sets the UpdateKinesisStreamingConfiguration field's value.
+func (s *UpdateKinesisStreamingDestinationInput) SetUpdateKinesisStreamingConfiguration(v *UpdateKinesisStreamingConfiguration) *UpdateKinesisStreamingDestinationInput {
+	s.UpdateKinesisStreamingConfiguration = v
+	return s
+}
+
+type UpdateKinesisStreamingDestinationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the attempt to update the Kinesis streaming destination output.
+	DestinationStatus *string `type:"string" enum:"DestinationStatus"`
+
+	// The ARN for the Kinesis stream input.
+	StreamArn *string `min:"37" type:"string"`
+
+	// The table name for the Kinesis streaming destination output.
+	TableName *string `min:"3" type:"string"`
+
+	// The command to update the Kinesis streaming destination configuration.
+	UpdateKinesisStreamingConfiguration *UpdateKinesisStreamingConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateKinesisStreamingDestinationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationStatus sets the DestinationStatus field's value.
+func (s *UpdateKinesisStreamingDestinationOutput) SetDestinationStatus(v string) *UpdateKinesisStreamingDestinationOutput {
+	s.DestinationStatus = &v
+	return s
+}
+
+// SetStreamArn sets the StreamArn field's value.
+func (s *UpdateKinesisStreamingDestinationOutput) SetStreamArn(v string) *UpdateKinesisStreamingDestinationOutput {
+	s.StreamArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateKinesisStreamingDestinationOutput) SetTableName(v string) *UpdateKinesisStreamingDestinationOutput {
+	s.TableName = &v
+	return s
+}
+
+// SetUpdateKinesisStreamingConfiguration sets the UpdateKinesisStreamingConfiguration field's value.
+func (s *UpdateKinesisStreamingDestinationOutput) SetUpdateKinesisStreamingConfiguration(v *UpdateKinesisStreamingConfiguration) *UpdateKinesisStreamingDestinationOutput {
+	s.UpdateKinesisStreamingConfiguration = v
+	return s
+}
+
 // Represents a replica to be modified.
 type UpdateReplicationGroupMemberAction struct {
 	_ struct{} `type:"structure"`
@@ -26228,7 +26608,7 @@ type UpdateTableInput struct {
 
 	// Represents the DynamoDB Streams configuration for the table.
 	//
-	// You receive a ValidationException if you try to enable a stream on a table
+	// You receive a ResourceInUseException if you try to enable a stream on a table
 	// that already has a stream, or if you try to disable a stream on a table that
 	// doesn't have a stream.
 	StreamSpecification *StreamSpecification `type:"structure"`
@@ -26699,6 +27079,22 @@ func (s *WriteRequest) SetPutRequest(v *PutRequest) *WriteRequest {
 }
 
 const (
+	// ApproximateCreationDateTimePrecisionMillisecond is a ApproximateCreationDateTimePrecision enum value
+	ApproximateCreationDateTimePrecisionMillisecond = "MILLISECOND"
+
+	// ApproximateCreationDateTimePrecisionMicrosecond is a ApproximateCreationDateTimePrecision enum value
+	ApproximateCreationDateTimePrecisionMicrosecond = "MICROSECOND"
+)
+
+// ApproximateCreationDateTimePrecision_Values returns all elements of the ApproximateCreationDateTimePrecision enum
+func ApproximateCreationDateTimePrecision_Values() []string {
+	return []string{
+		ApproximateCreationDateTimePrecisionMillisecond,
+		ApproximateCreationDateTimePrecisionMicrosecond,
+	}
+}
+
+const (
 	// AttributeActionAdd is a AttributeAction enum value
 	AttributeActionAdd = "ADD"
 
@@ -27001,6 +27397,9 @@ const (
 
 	// DestinationStatusEnableFailed is a DestinationStatus enum value
 	DestinationStatusEnableFailed = "ENABLE_FAILED"
+
+	// DestinationStatusUpdating is a DestinationStatus enum value
+	DestinationStatusUpdating = "UPDATING"
 )
 
 // DestinationStatus_Values returns all elements of the DestinationStatus enum
@@ -27011,6 +27410,7 @@ func DestinationStatus_Values() []string {
 		DestinationStatusDisabling,
 		DestinationStatusDisabled,
 		DestinationStatusEnableFailed,
+		DestinationStatusUpdating,
 	}
 }
 

@@ -37,7 +37,7 @@
     "GetSessionStatus": "<p>Gets the current status of a session.</p>",
     "GetTableMetadata": "<p>Returns table metadata for the specified catalog, database, and table.</p>",
     "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
-    "ImportNotebook": "<p>Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with the same name already exists in the workgroup, throws an error.</p>",
+    "ImportNotebook": "<p>Imports a single <code>ipynb</code> file to a Spark enabled workgroup. To import the notebook, the request must specify a value for either <code>Payload</code> or <code>NoteBookS3LocationUri</code>. If neither is specified or both are specified, an <code>InvalidRequestException</code> occurs. The maximum file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with the same name already exists in the workgroup, throws an error.</p>",
     "ListApplicationDPUSizes": "<p>Returns the supported DPU sizes for the supported application runtimes (for example, <code>Athena notebook version 1</code>). </p>",
     "ListCalculationExecutions": "<p>Lists the calculations that have been submitted to a session in descending order. Newer calculations are listed first; older calculations are listed later.</p>",
     "ListCapacityReservations": "<p>Lists the capacity reservations for the current account.</p>",
@@ -1485,7 +1485,7 @@
       "base": null,
       "refs": {
         "ExportNotebookOutput$Payload": "<p>The content of the exported notebook.</p>",
-        "ImportNotebookInput$Payload": "<p>The notebook content to be imported.</p>",
+        "ImportNotebookInput$Payload": "<p>The notebook content to be imported. The payload must be in <code>ipynb</code> format.</p>",
         "UpdateNotebookInput$Payload": "<p>The updated content for the notebook.</p>"
       }
     },
@@ -1715,7 +1715,7 @@
       "base": null,
       "refs": {
         "SessionConfiguration$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>",
-        "WorkGroupConfiguration$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>",
+        "WorkGroupConfiguration$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and IAM Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and IAM Identity Center enabled workgroups. The property is required for IAM Identity Center enabled workgroups.</p>",
         "WorkGroupConfigurationUpdates$ExecutionRole": "<p>The ARN of the execution role used to access user resources for Spark sessions and Identity Center enabled workgroups. This property applies only to Spark enabled workgroups and Identity Center enabled workgroups.</p>"
       }
     },
@@ -1743,7 +1743,8 @@
         "CalculationResult$StdOutS3Uri": "<p>The Amazon S3 location of the <code>stdout</code> file for the calculation.</p>",
         "CalculationResult$StdErrorS3Uri": "<p>The Amazon S3 location of the <code>stderr</code> error messages file for the calculation.</p>",
         "CalculationResult$ResultS3Uri": "<p>The Amazon S3 location of the folder for the calculation results.</p>",
-        "GetCalculationExecutionResponse$WorkingDirectory": "<p>The Amazon S3 location in which calculation results are stored.</p>"
+        "GetCalculationExecutionResponse$WorkingDirectory": "<p>The Amazon S3 location in which calculation results are stored.</p>",
+        "ImportNotebookInput$NotebookS3LocationUri": "<p>A URI that specifies the Amazon S3 location of a notebook file in <code>ipynb</code> format.</p>"
       }
     },
     "SessionAlreadyExistsException": {

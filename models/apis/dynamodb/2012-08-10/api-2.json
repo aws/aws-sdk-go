@@ -811,6 +811,23 @@
       "endpointdiscovery":{
       }
     },
+    "UpdateKinesisStreamingDestination":{
+      "name":"UpdateKinesisStreamingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateKinesisStreamingDestinationInput"},
+      "output":{"shape":"UpdateKinesisStreamingDestinationOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "endpointdiscovery":{
+      }
+    },
     "UpdateTable":{
       "name":"UpdateTable",
       "http":{
@@ -862,6 +879,13 @@
     }
   },
   "shapes":{
+    "ApproximateCreationDateTimePrecision":{
+      "type":"string",
+      "enum":[
+        "MILLISECOND",
+        "MICROSECOND"
+      ]
+    },
     "ArchivalReason":{"type":"string"},
     "ArchivalSummary":{
       "type":"structure",
@@ -1826,7 +1850,8 @@
         "ACTIVE",
         "DISABLING",
         "DISABLED",
-        "ENABLE_FAILED"
+        "ENABLE_FAILED",
+        "UPDATING"
       ]
     },
     "DoubleObject":{"type":"double"},
@@ -1836,6 +1861,12 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "EnableKinesisStreamingConfiguration":{
+      "type":"structure",
+      "members":{
+        "ApproximateCreationDateTimePrecision":{"shape":"ApproximateCreationDateTimePrecision"}
+      }
     },
     "Endpoint":{
       "type":"structure",
@@ -2539,7 +2570,8 @@
       "members":{
         "StreamArn":{"shape":"StreamArn"},
         "DestinationStatus":{"shape":"DestinationStatus"},
-        "DestinationStatusDescription":{"shape":"String"}
+        "DestinationStatusDescription":{"shape":"String"},
+        "ApproximateCreationDateTimePrecision":{"shape":"ApproximateCreationDateTimePrecision"}
       }
     },
     "KinesisDataStreamDestinations":{
@@ -2554,7 +2586,8 @@
       ],
       "members":{
         "TableName":{"shape":"TableName"},
-        "StreamArn":{"shape":"StreamArn"}
+        "StreamArn":{"shape":"StreamArn"},
+        "EnableKinesisStreamingConfiguration":{"shape":"EnableKinesisStreamingConfiguration"}
       }
     },
     "KinesisStreamingDestinationOutput":{
@@ -2562,7 +2595,8 @@
       "members":{
         "TableName":{"shape":"TableName"},
         "StreamArn":{"shape":"StreamArn"},
-        "DestinationStatus":{"shape":"DestinationStatus"}
+        "DestinationStatus":{"shape":"DestinationStatus"},
+        "EnableKinesisStreamingConfiguration":{"shape":"EnableKinesisStreamingConfiguration"}
       }
     },
     "LastUpdateDateTime":{"type":"timestamp"},
@@ -3945,6 +3979,33 @@
         "Attributes":{"shape":"AttributeMap"},
         "ConsumedCapacity":{"shape":"ConsumedCapacity"},
         "ItemCollectionMetrics":{"shape":"ItemCollectionMetrics"}
+      }
+    },
+    "UpdateKinesisStreamingConfiguration":{
+      "type":"structure",
+      "members":{
+        "ApproximateCreationDateTimePrecision":{"shape":"ApproximateCreationDateTimePrecision"}
+      }
+    },
+    "UpdateKinesisStreamingDestinationInput":{
+      "type":"structure",
+      "required":[
+        "TableName",
+        "StreamArn"
+      ],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "StreamArn":{"shape":"StreamArn"},
+        "UpdateKinesisStreamingConfiguration":{"shape":"UpdateKinesisStreamingConfiguration"}
+      }
+    },
+    "UpdateKinesisStreamingDestinationOutput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "StreamArn":{"shape":"StreamArn"},
+        "DestinationStatus":{"shape":"DestinationStatus"},
+        "UpdateKinesisStreamingConfiguration":{"shape":"UpdateKinesisStreamingConfiguration"}
       }
     },
     "UpdateReplicationGroupMemberAction":{
