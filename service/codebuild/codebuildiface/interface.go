@@ -72,6 +72,10 @@ type CodeBuildAPI interface {
 	BatchGetBuildsWithContext(aws.Context, *codebuild.BatchGetBuildsInput, ...request.Option) (*codebuild.BatchGetBuildsOutput, error)
 	BatchGetBuildsRequest(*codebuild.BatchGetBuildsInput) (*request.Request, *codebuild.BatchGetBuildsOutput)
 
+	BatchGetFleets(*codebuild.BatchGetFleetsInput) (*codebuild.BatchGetFleetsOutput, error)
+	BatchGetFleetsWithContext(aws.Context, *codebuild.BatchGetFleetsInput, ...request.Option) (*codebuild.BatchGetFleetsOutput, error)
+	BatchGetFleetsRequest(*codebuild.BatchGetFleetsInput) (*request.Request, *codebuild.BatchGetFleetsOutput)
+
 	BatchGetProjects(*codebuild.BatchGetProjectsInput) (*codebuild.BatchGetProjectsOutput, error)
 	BatchGetProjectsWithContext(aws.Context, *codebuild.BatchGetProjectsInput, ...request.Option) (*codebuild.BatchGetProjectsOutput, error)
 	BatchGetProjectsRequest(*codebuild.BatchGetProjectsInput) (*request.Request, *codebuild.BatchGetProjectsOutput)
@@ -83,6 +87,10 @@ type CodeBuildAPI interface {
 	BatchGetReports(*codebuild.BatchGetReportsInput) (*codebuild.BatchGetReportsOutput, error)
 	BatchGetReportsWithContext(aws.Context, *codebuild.BatchGetReportsInput, ...request.Option) (*codebuild.BatchGetReportsOutput, error)
 	BatchGetReportsRequest(*codebuild.BatchGetReportsInput) (*request.Request, *codebuild.BatchGetReportsOutput)
+
+	CreateFleet(*codebuild.CreateFleetInput) (*codebuild.CreateFleetOutput, error)
+	CreateFleetWithContext(aws.Context, *codebuild.CreateFleetInput, ...request.Option) (*codebuild.CreateFleetOutput, error)
+	CreateFleetRequest(*codebuild.CreateFleetInput) (*request.Request, *codebuild.CreateFleetOutput)
 
 	CreateProject(*codebuild.CreateProjectInput) (*codebuild.CreateProjectOutput, error)
 	CreateProjectWithContext(aws.Context, *codebuild.CreateProjectInput, ...request.Option) (*codebuild.CreateProjectOutput, error)
@@ -99,6 +107,10 @@ type CodeBuildAPI interface {
 	DeleteBuildBatch(*codebuild.DeleteBuildBatchInput) (*codebuild.DeleteBuildBatchOutput, error)
 	DeleteBuildBatchWithContext(aws.Context, *codebuild.DeleteBuildBatchInput, ...request.Option) (*codebuild.DeleteBuildBatchOutput, error)
 	DeleteBuildBatchRequest(*codebuild.DeleteBuildBatchInput) (*request.Request, *codebuild.DeleteBuildBatchOutput)
+
+	DeleteFleet(*codebuild.DeleteFleetInput) (*codebuild.DeleteFleetOutput, error)
+	DeleteFleetWithContext(aws.Context, *codebuild.DeleteFleetInput, ...request.Option) (*codebuild.DeleteFleetOutput, error)
+	DeleteFleetRequest(*codebuild.DeleteFleetInput) (*request.Request, *codebuild.DeleteFleetOutput)
 
 	DeleteProject(*codebuild.DeleteProjectInput) (*codebuild.DeleteProjectOutput, error)
 	DeleteProjectWithContext(aws.Context, *codebuild.DeleteProjectInput, ...request.Option) (*codebuild.DeleteProjectOutput, error)
@@ -186,6 +198,13 @@ type CodeBuildAPI interface {
 	ListCuratedEnvironmentImagesWithContext(aws.Context, *codebuild.ListCuratedEnvironmentImagesInput, ...request.Option) (*codebuild.ListCuratedEnvironmentImagesOutput, error)
 	ListCuratedEnvironmentImagesRequest(*codebuild.ListCuratedEnvironmentImagesInput) (*request.Request, *codebuild.ListCuratedEnvironmentImagesOutput)
 
+	ListFleets(*codebuild.ListFleetsInput) (*codebuild.ListFleetsOutput, error)
+	ListFleetsWithContext(aws.Context, *codebuild.ListFleetsInput, ...request.Option) (*codebuild.ListFleetsOutput, error)
+	ListFleetsRequest(*codebuild.ListFleetsInput) (*request.Request, *codebuild.ListFleetsOutput)
+
+	ListFleetsPages(*codebuild.ListFleetsInput, func(*codebuild.ListFleetsOutput, bool) bool) error
+	ListFleetsPagesWithContext(aws.Context, *codebuild.ListFleetsInput, func(*codebuild.ListFleetsOutput, bool) bool, ...request.Option) error
+
 	ListProjects(*codebuild.ListProjectsInput) (*codebuild.ListProjectsOutput, error)
 	ListProjectsWithContext(aws.Context, *codebuild.ListProjectsInput, ...request.Option) (*codebuild.ListProjectsOutput, error)
 	ListProjectsRequest(*codebuild.ListProjectsInput) (*request.Request, *codebuild.ListProjectsOutput)
@@ -259,6 +278,10 @@ type CodeBuildAPI interface {
 	StopBuildBatch(*codebuild.StopBuildBatchInput) (*codebuild.StopBuildBatchOutput, error)
 	StopBuildBatchWithContext(aws.Context, *codebuild.StopBuildBatchInput, ...request.Option) (*codebuild.StopBuildBatchOutput, error)
 	StopBuildBatchRequest(*codebuild.StopBuildBatchInput) (*request.Request, *codebuild.StopBuildBatchOutput)
+
+	UpdateFleet(*codebuild.UpdateFleetInput) (*codebuild.UpdateFleetOutput, error)
+	UpdateFleetWithContext(aws.Context, *codebuild.UpdateFleetInput, ...request.Option) (*codebuild.UpdateFleetOutput, error)
+	UpdateFleetRequest(*codebuild.UpdateFleetInput) (*request.Request, *codebuild.UpdateFleetOutput)
 
 	UpdateProject(*codebuild.UpdateProjectInput) (*codebuild.UpdateProjectOutput, error)
 	UpdateProjectWithContext(aws.Context, *codebuild.UpdateProjectInput, ...request.Option) (*codebuild.UpdateProjectOutput, error)

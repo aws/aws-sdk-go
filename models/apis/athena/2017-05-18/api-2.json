@@ -1994,7 +1994,6 @@
       "required":[
         "WorkGroup",
         "Name",
-        "Payload",
         "Type"
       ],
       "members":{
@@ -2002,6 +2001,7 @@
         "Name":{"shape":"NotebookName"},
         "Payload":{"shape":"Payload"},
         "Type":{"shape":"NotebookType"},
+        "NotebookS3LocationUri":{"shape":"S3Uri"},
         "ClientRequestToken":{"shape":"ClientRequestToken"}
       }
     },

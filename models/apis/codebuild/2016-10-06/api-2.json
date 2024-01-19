@@ -48,6 +48,18 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "BatchGetFleets":{
+      "name":"BatchGetFleets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetFleetsInput"},
+      "output":{"shape":"BatchGetFleetsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "BatchGetProjects":{
       "name":"BatchGetProjects",
       "http":{
@@ -82,6 +94,20 @@
       "output":{"shape":"BatchGetReportsOutput"},
       "errors":[
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "CreateFleet":{
+      "name":"CreateFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateFleetInput"},
+      "output":{"shape":"CreateFleetOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccountLimitExceededException"}
       ]
     },
     "CreateProject":{
@@ -135,6 +161,18 @@
       },
       "input":{"shape":"DeleteBuildBatchInput"},
       "output":{"shape":"DeleteBuildBatchOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "DeleteFleet":{
+      "name":"DeleteFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteFleetInput"},
+      "output":{"shape":"DeleteFleetOutput"},
       "errors":[
         {"shape":"InvalidInputException"}
       ]
@@ -351,6 +389,18 @@
       "input":{"shape":"ListCuratedEnvironmentImagesInput"},
       "output":{"shape":"ListCuratedEnvironmentImagesOutput"}
     },
+    "ListFleets":{
+      "name":"ListFleets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFleetsInput"},
+      "output":{"shape":"ListFleetsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ListProjects":{
       "name":"ListProjects",
       "http":{
@@ -529,6 +579,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateFleet":{
+      "name":"UpdateFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateFleetInput"},
+      "output":{"shape":"UpdateFleetOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccountLimitExceededException"}
+      ]
+    },
     "UpdateProject":{
       "name":"UpdateProject",
       "http":{
@@ -660,6 +724,20 @@
       "members":{
         "builds":{"shape":"Builds"},
         "buildsNotFound":{"shape":"BuildIds"}
+      }
+    },
+    "BatchGetFleetsInput":{
+      "type":"structure",
+      "required":["names"],
+      "members":{
+        "names":{"shape":"FleetNames"}
+      }
+    },
+    "BatchGetFleetsOutput":{
+      "type":"structure",
+      "members":{
+        "fleets":{"shape":"Fleets"},
+        "fleetsNotFound":{"shape":"FleetNames"}
       }
     },
     "BatchGetProjectsInput":{
@@ -1027,6 +1105,29 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "CreateFleetInput":{
+      "type":"structure",
+      "required":[
+        "name",
+        "baseCapacity",
+        "environmentType",
+        "computeType"
+      ],
+      "members":{
+        "name":{"shape":"FleetName"},
+        "baseCapacity":{"shape":"FleetCapacity"},
+        "environmentType":{"shape":"EnvironmentType"},
+        "computeType":{"shape":"ComputeType"},
+        "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateFleetOutput":{
+      "type":"structure",
+      "members":{
+        "fleet":{"shape":"Fleet"}
+      }
+    },
     "CreateProjectInput":{
       "type":"structure",
       "required":[
@@ -1126,6 +1227,18 @@
         "statusCode":{"shape":"String"},
         "buildsDeleted":{"shape":"BuildIds"},
         "buildsNotDeleted":{"shape":"BuildsNotDeleted"}
+      }
+    },
+    "DeleteFleetInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteFleetOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteProjectInput":{
@@ -1332,6 +1445,93 @@
       "type":"list",
       "member":{"shape":"FilterGroup"}
     },
+    "Fleet":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "name":{"shape":"FleetName"},
+        "id":{"shape":"NonEmptyString"},
+        "created":{"shape":"Timestamp"},
+        "lastModified":{"shape":"Timestamp"},
+        "status":{"shape":"FleetStatus"},
+        "baseCapacity":{"shape":"FleetCapacity"},
+        "environmentType":{"shape":"EnvironmentType"},
+        "computeType":{"shape":"ComputeType"},
+        "scalingConfiguration":{"shape":"ScalingConfigurationOutput"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "FleetArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "FleetCapacity":{
+      "type":"integer",
+      "min":1
+    },
+    "FleetContextCode":{
+      "type":"string",
+      "enum":[
+        "CREATE_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "FleetName":{
+      "type":"string",
+      "max":128,
+      "min":2,
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-_]{1,127}"
+    },
+    "FleetNames":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "FleetScalingMetricType":{
+      "type":"string",
+      "enum":["FLEET_UTILIZATION_RATE"]
+    },
+    "FleetScalingType":{
+      "type":"string",
+      "enum":["TARGET_TRACKING_SCALING"]
+    },
+    "FleetSortByType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "CREATED_TIME",
+        "LAST_MODIFIED_TIME"
+      ]
+    },
+    "FleetStatus":{
+      "type":"structure",
+      "members":{
+        "statusCode":{"shape":"FleetStatusCode"},
+        "context":{"shape":"FleetContextCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "FleetStatusCode":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "ROTATING",
+        "DELETING",
+        "CREATE_FAILED",
+        "UPDATE_ROLLBACK_FAILED",
+        "ACTIVE"
+      ]
+    },
+    "Fleets":{
+      "type":"list",
+      "member":{"shape":"Fleet"},
+      "max":100,
+      "min":1
+    },
     "GetReportGroupTrendInput":{
       "type":"structure",
       "required":[
@@ -1522,6 +1722,22 @@
       "type":"structure",
       "members":{
         "platforms":{"shape":"EnvironmentPlatforms"}
+      }
+    },
+    "ListFleetsInput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"SensitiveString"},
+        "maxResults":{"shape":"PageSize"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"FleetSortByType"}
+      }
+    },
+    "ListFleetsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "fleets":{"shape":"FleetArns"}
       }
     },
     "ListProjectsInput":{
@@ -1817,6 +2033,7 @@
         "type":{"shape":"EnvironmentType"},
         "image":{"shape":"NonEmptyString"},
         "computeType":{"shape":"ComputeType"},
+        "fleet":{"shape":"ProjectFleet"},
         "environmentVariables":{"shape":"EnvironmentVariables"},
         "privilegedMode":{"shape":"WrapperBoolean"},
         "certificate":{"shape":"String"},
@@ -1837,6 +2054,12 @@
     "ProjectFileSystemLocations":{
       "type":"list",
       "member":{"shape":"ProjectFileSystemLocation"}
+    },
+    "ProjectFleet":{
+      "type":"structure",
+      "members":{
+        "fleetArn":{"shape":"String"}
+      }
     },
     "ProjectName":{
       "type":"string",
@@ -2178,6 +2401,23 @@
         "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
+    "ScalingConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "scalingType":{"shape":"FleetScalingType"},
+        "targetTrackingScalingConfigs":{"shape":"TargetTrackingScalingConfigurations"},
+        "maxCapacity":{"shape":"FleetCapacity"}
+      }
+    },
+    "ScalingConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "scalingType":{"shape":"FleetScalingType"},
+        "targetTrackingScalingConfigs":{"shape":"TargetTrackingScalingConfigurations"},
+        "maxCapacity":{"shape":"FleetCapacity"},
+        "desiredCapacity":{"shape":"FleetCapacity"}
+      }
+    },
     "SecurityGroupIds":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
@@ -2186,6 +2426,10 @@
     "SensitiveNonEmptyString":{
       "type":"string",
       "min":1,
+      "sensitive":true
+    },
+    "SensitiveString":{
+      "type":"string",
       "sensitive":true
     },
     "ServerType":{
@@ -2323,7 +2567,8 @@
         "logsConfigOverride":{"shape":"LogsConfig"},
         "registryCredentialOverride":{"shape":"RegistryCredential"},
         "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"},
-        "debugSessionEnabled":{"shape":"WrapperBoolean"}
+        "debugSessionEnabled":{"shape":"WrapperBoolean"},
+        "fleetOverride":{"shape":"ProjectFleet"}
       }
     },
     "StartBuildOutput":{
@@ -2388,6 +2633,17 @@
       "max":50,
       "min":0
     },
+    "TargetTrackingScalingConfiguration":{
+      "type":"structure",
+      "members":{
+        "metricType":{"shape":"FleetScalingMetricType"},
+        "targetValue":{"shape":"WrapperDouble"}
+      }
+    },
+    "TargetTrackingScalingConfigurations":{
+      "type":"list",
+      "member":{"shape":"TargetTrackingScalingConfiguration"}
+    },
     "TestCase":{
       "type":"structure",
       "members":{
@@ -2431,6 +2687,24 @@
       "min":5
     },
     "Timestamp":{"type":"timestamp"},
+    "UpdateFleetInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "baseCapacity":{"shape":"FleetCapacity"},
+        "environmentType":{"shape":"EnvironmentType"},
+        "computeType":{"shape":"ComputeType"},
+        "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "UpdateFleetOutput":{
+      "type":"structure",
+      "members":{
+        "fleet":{"shape":"Fleet"}
+      }
+    },
     "UpdateProjectInput":{
       "type":"structure",
       "required":["name"],
@@ -2573,6 +2847,7 @@
       ]
     },
     "WrapperBoolean":{"type":"boolean"},
+    "WrapperDouble":{"type":"double"},
     "WrapperInt":{"type":"integer"},
     "WrapperLong":{"type":"long"}
   }

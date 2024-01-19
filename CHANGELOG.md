@@ -1,3 +1,19 @@
+Release v1.50.0 (2024-01-19)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service API and documentation
+  * Introducing new NotebookS3LocationUri parameter to Athena ImportNotebook API. Payload is no longer required and either Payload or NotebookS3LocationUri needs to be provided (not both) for a successful ImportNotebook API call. If both are provided, an InvalidRequestException will be thrown.
+* `service/codebuild`: Updates service API, documentation, and paginators
+  * Release CodeBuild Reserved Capacity feature
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for including ApproximateCreationDateTimePrecision configurations in EnableKinesisStreamingDestination API, adds the same as an optional field in the response of DescribeKinesisStreamingDestination, and adds support for a new UpdateKinesisStreamingDestination API.
+* `service/qconnect`: Updates service API
+
+### SDK Features
+* `service/cloudfrontkeyvaluestore`: Deprecate cloudfrontkeyvaluestore
+  * This change removes the cloudfrontkeyvaluestore service, since it does not support sigv4a.
+
 Release v1.49.24 (2024-01-18)
 ===
 
