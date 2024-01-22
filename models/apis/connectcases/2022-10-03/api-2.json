@@ -201,6 +201,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetCaseAuditEvents":{
+      "name":"GetCaseAuditEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{domainId}/cases/{caseId}/audit-history",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCaseAuditEventsRequest"},
+      "output":{"shape":"GetCaseAuditEventsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetCaseEventConfiguration":{
       "name":"GetCaseEventConfiguration",
       "http":{
@@ -571,6 +588,85 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "AuditEvent":{
+      "type":"structure",
+      "required":[
+        "eventId",
+        "fields",
+        "performedTime",
+        "type"
+      ],
+      "members":{
+        "eventId":{"shape":"AuditEventId"},
+        "fields":{"shape":"AuditEventFieldList"},
+        "performedBy":{"shape":"AuditEventPerformedBy"},
+        "performedTime":{"shape":"AuditEventDateTime"},
+        "relatedItemType":{"shape":"RelatedItemType"},
+        "type":{"shape":"AuditEventType"}
+      }
+    },
+    "AuditEventDateTime":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
+    "AuditEventField":{
+      "type":"structure",
+      "required":[
+        "eventFieldId",
+        "newValue"
+      ],
+      "members":{
+        "eventFieldId":{"shape":"AuditEventFieldId"},
+        "newValue":{"shape":"AuditEventFieldValueUnion"},
+        "oldValue":{"shape":"AuditEventFieldValueUnion"}
+      }
+    },
+    "AuditEventFieldId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "AuditEventFieldList":{
+      "type":"list",
+      "member":{"shape":"AuditEventField"}
+    },
+    "AuditEventFieldValueUnion":{
+      "type":"structure",
+      "members":{
+        "booleanValue":{"shape":"Boolean"},
+        "doubleValue":{"shape":"Double"},
+        "emptyValue":{"shape":"EmptyFieldValue"},
+        "stringValue":{"shape":"AuditEventFieldValueUnionStringValueString"},
+        "userArnValue":{"shape":"String"}
+      },
+      "union":true
+    },
+    "AuditEventFieldValueUnionStringValueString":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
+    "AuditEventId":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "AuditEventPerformedBy":{
+      "type":"structure",
+      "required":["iamPrincipalArn"],
+      "members":{
+        "iamPrincipalArn":{"shape":"IamPrincipalArn"},
+        "user":{"shape":"UserUnion"}
+      }
+    },
+    "AuditEventType":{
+      "type":"string",
+      "enum":[
+        "Case.Created",
+        "Case.Updated",
+        "RelatedItem.Created"
+      ]
+    },
     "BasicLayout":{
       "type":"structure",
       "members":{
@@ -823,6 +919,7 @@
           "locationName":"domainId"
         },
         "fields":{"shape":"CreateCaseRequestFieldsList"},
+        "performedBy":{"shape":"UserUnion"},
         "templateId":{"shape":"TemplateId"}
       }
     },
@@ -1227,7 +1324,8 @@
         "Boolean",
         "DateTime",
         "SingleSelect",
-        "Url"
+        "Url",
+        "User"
       ]
     },
     "FieldValue":{
@@ -1247,13 +1345,55 @@
         "booleanValue":{"shape":"Boolean"},
         "doubleValue":{"shape":"Double"},
         "emptyValue":{"shape":"EmptyFieldValue"},
-        "stringValue":{"shape":"FieldValueUnionStringValueString"}
+        "stringValue":{"shape":"FieldValueUnionStringValueString"},
+        "userArnValue":{"shape":"String"}
       },
       "union":true
     },
     "FieldValueUnionStringValueString":{
       "type":"string",
       "max":1500,
+      "min":0
+    },
+    "GetCaseAuditEventsRequest":{
+      "type":"structure",
+      "required":[
+        "caseId",
+        "domainId"
+      ],
+      "members":{
+        "caseId":{
+          "shape":"CaseId",
+          "location":"uri",
+          "locationName":"caseId"
+        },
+        "domainId":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainId"
+        },
+        "maxResults":{"shape":"GetCaseAuditEventsRequestMaxResultsInteger"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetCaseAuditEventsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":25,
+      "min":1
+    },
+    "GetCaseAuditEventsResponse":{
+      "type":"structure",
+      "required":["auditEvents"],
+      "members":{
+        "auditEvents":{"shape":"GetCaseAuditEventsResponseAuditEventsList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetCaseAuditEventsResponseAuditEventsList":{
+      "type":"list",
+      "member":{"shape":"AuditEvent"},
+      "max":25,
       "min":0
     },
     "GetCaseEventConfigurationRequest":{
@@ -1441,6 +1581,11 @@
         "templateArn":{"shape":"TemplateArn"},
         "templateId":{"shape":"TemplateId"}
       }
+    },
+    "IamPrincipalArn":{
+      "type":"string",
+      "max":500,
+      "min":1
     },
     "Integer":{
       "type":"integer",
@@ -2167,7 +2312,8 @@
           "location":"uri",
           "locationName":"domainId"
         },
-        "fields":{"shape":"UpdateCaseRequestFieldsList"}
+        "fields":{"shape":"UpdateCaseRequestFieldsList"},
+        "performedBy":{"shape":"UserUnion"}
       }
     },
     "UpdateCaseRequestFieldsList":{

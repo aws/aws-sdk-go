@@ -1561,6 +1561,10 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //   - ErrCodeDBClusterAlreadyExistsFault "DBClusterAlreadyExistsFault"
 //     The user already has a DB cluster with the given identifier.
 //
+//   - ErrCodeInsufficientDBInstanceCapacityFault "InsufficientDBInstanceCapacity"
+//     The specified DB instance class isn't available in the specified Availability
+//     Zone.
+//
 //   - ErrCodeInsufficientStorageClusterCapacityFault "InsufficientStorageClusterCapacity"
 //     There is insufficient storage available for the current action. You might
 //     be able to resolve this error by updating your subnet group to use different

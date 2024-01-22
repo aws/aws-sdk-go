@@ -459,8 +459,8 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -925,12 +925,13 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //     (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration)
 //     in the Organizations User Guide.
 //
-//   - You can close only 10% of member accounts, between 10 and 200, within
+//   - You can close only 10% of member accounts, between 10 and 1000, within
 //     a rolling 30 day period. This quota is not bound by a calendar month,
 //     but starts when you close an account. After you reach this limit, you
 //     can close additional accounts. For more information, see Closing a member
 //     account in your organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html)
-//     in the Organizations User Guide.
+//     and Quotas for Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)in
+//     the Organizations User Guide.
 //
 //   - To reinstate a closed account, contact Amazon Web Services Support within
 //     the 90-day grace period while the account is in SUSPENDED status.
@@ -1072,8 +1073,8 @@ func (c *Organizations) CloseAccountRequest(input *CloseAccountInput) (req *requ
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -1488,8 +1489,8 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -1953,8 +1954,8 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -2322,8 +2323,8 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -2685,8 +2686,8 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -3048,8 +3049,8 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -4202,8 +4203,8 @@ func (c *Organizations) DeleteResourcePolicyRequest(input *DeleteResourcePolicyI
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -4489,8 +4490,8 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -5220,8 +5221,8 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6265,8 +6266,8 @@ func (c *Organizations) DescribeResourcePolicyRequest(input *DescribeResourcePol
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6540,8 +6541,8 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6958,8 +6959,8 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -7324,8 +7325,8 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -7707,8 +7708,8 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -8326,8 +8327,8 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -8772,8 +8773,8 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -9178,8 +9179,8 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -9543,8 +9544,8 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -10940,8 +10941,8 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -11356,8 +11357,8 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -14291,8 +14292,8 @@ func (c *Organizations) PutResourcePolicyRequest(input *PutResourcePolicyInput) 
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -14572,8 +14573,8 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -14954,8 +14955,8 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -15323,8 +15324,8 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -15687,8 +15688,8 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -16230,8 +16231,8 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -17805,8 +17806,8 @@ func (s *ConflictException) RequestID() string {
 //     with the same marketplace.
 //
 //   - MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-//     Web Services /> Regions in China. To create an organization, the master
-//     must have a valid business license. For more information, contact customer
+//     Web Services Regions in China. To create an organization, the master must
+//     have a valid business license. For more information, contact customer
 //     support.
 //
 //   - MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -18813,6 +18814,10 @@ type CreatePolicyInput struct {
 
 	// The policy text content to add to the new policy. The text that you supply
 	// must adhere to the rules of the policy type you specify in the Type parameter.
+	//
+	// The maximum size of a policy document depends on the policy's type. For more
+	// information, see Maximum and minimum values (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#min-max-values)
+	// in the Organizations User Guide.
 	//
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
@@ -27001,6 +27006,10 @@ type UpdatePolicyInput struct {
 	// If provided, the new content for the policy. The text must be correctly formatted
 	// JSON that complies with the syntax for the policy's type. For more information,
 	// see SCP syntax (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_syntax.html)
+	// in the Organizations User Guide.
+	//
+	// The maximum size of a policy document depends on the policy's type. For more
+	// information, see Maximum and minimum values (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#min-max-values)
 	// in the Organizations User Guide.
 	Content *string `min:"1" type:"string"`
 

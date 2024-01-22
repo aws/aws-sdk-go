@@ -1911,6 +1911,11 @@
       }
     },
     "Double":{"type":"double"},
+    "Duration":{
+      "type":"integer",
+      "max":2147483647,
+      "min":0
+    },
     "EBSKMSKeyId":{"type":"string"},
     "EBSResourceType":{
       "type":"string",
@@ -3121,7 +3126,9 @@
         "portName":{"shape":"String"},
         "discoveryName":{"shape":"String"},
         "clientAliases":{"shape":"ServiceConnectClientAliasList"},
-        "ingressPortOverride":{"shape":"PortNumber"}
+        "ingressPortOverride":{"shape":"PortNumber"},
+        "timeout":{"shape":"TimeoutConfiguration"},
+        "tls":{"shape":"ServiceConnectTlsConfiguration"}
       }
     },
     "ServiceConnectServiceList":{
@@ -3138,6 +3145,21 @@
     "ServiceConnectServiceResourceList":{
       "type":"list",
       "member":{"shape":"ServiceConnectServiceResource"}
+    },
+    "ServiceConnectTlsCertificateAuthority":{
+      "type":"structure",
+      "members":{
+        "awsPcaAuthorityArn":{"shape":"String"}
+      }
+    },
+    "ServiceConnectTlsConfiguration":{
+      "type":"structure",
+      "required":["issuerCertificateAuthority"],
+      "members":{
+        "issuerCertificateAuthority":{"shape":"ServiceConnectTlsCertificateAuthority"},
+        "kmsKey":{"shape":"String"},
+        "roleArn":{"shape":"String"}
+      }
     },
     "ServiceEvent":{
       "type":"structure",
@@ -3694,6 +3716,13 @@
     "Tasks":{
       "type":"list",
       "member":{"shape":"Task"}
+    },
+    "TimeoutConfiguration":{
+      "type":"structure",
+      "members":{
+        "idleTimeoutSeconds":{"shape":"Duration"},
+        "perRequestTimeoutSeconds":{"shape":"Duration"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "Tmpfs":{
