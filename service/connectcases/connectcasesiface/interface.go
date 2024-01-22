@@ -103,6 +103,13 @@ type ConnectCasesAPI interface {
 	GetCasePages(*connectcases.GetCaseInput, func(*connectcases.GetCaseOutput, bool) bool) error
 	GetCasePagesWithContext(aws.Context, *connectcases.GetCaseInput, func(*connectcases.GetCaseOutput, bool) bool, ...request.Option) error
 
+	GetCaseAuditEvents(*connectcases.GetCaseAuditEventsInput) (*connectcases.GetCaseAuditEventsOutput, error)
+	GetCaseAuditEventsWithContext(aws.Context, *connectcases.GetCaseAuditEventsInput, ...request.Option) (*connectcases.GetCaseAuditEventsOutput, error)
+	GetCaseAuditEventsRequest(*connectcases.GetCaseAuditEventsInput) (*request.Request, *connectcases.GetCaseAuditEventsOutput)
+
+	GetCaseAuditEventsPages(*connectcases.GetCaseAuditEventsInput, func(*connectcases.GetCaseAuditEventsOutput, bool) bool) error
+	GetCaseAuditEventsPagesWithContext(aws.Context, *connectcases.GetCaseAuditEventsInput, func(*connectcases.GetCaseAuditEventsOutput, bool) bool, ...request.Option) error
+
 	GetCaseEventConfiguration(*connectcases.GetCaseEventConfigurationInput) (*connectcases.GetCaseEventConfigurationOutput, error)
 	GetCaseEventConfigurationWithContext(aws.Context, *connectcases.GetCaseEventConfigurationInput, ...request.Option) (*connectcases.GetCaseEventConfigurationOutput, error)
 	GetCaseEventConfigurationRequest(*connectcases.GetCaseEventConfigurationInput) (*request.Request, *connectcases.GetCaseEventConfigurationOutput)

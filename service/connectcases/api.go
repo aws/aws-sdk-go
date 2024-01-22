@@ -250,13 +250,15 @@ func (c *ConnectCases) CreateCaseRequest(input *CreateCaseInput) (req *request.R
 
 // CreateCase API operation for Amazon Connect Cases.
 //
-// Creates a case in the specified Cases domain. Case system and custom fields
-// are taken as an array id/value pairs with a declared data types.
+// If you provide a value for PerformedBy.UserArn you must also have connect:DescribeUser
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html)
+// permission on the User ARN resource that you provide
 //
-// The following fields are required when creating a case:
-//
-//	<ul> <li> <p> <code>customer_id</code> - You must provide the full customer
-//	profile ARN in this format: <code>arn:aws:profile:your_AWS_Region:your_AWS_account
+//	<p>Creates a case in the specified Cases domain. Case system and custom
+//	fields are taken as an array id/value pairs with a declared data types.</p>
+//	<p>The following fields are required when creating a case:</p> <ul> <li>
+//	<p> <code>customer_id</code> - You must provide the full customer profile
+//	ARN in this format: <code>arn:aws:profile:your_AWS_Region:your_AWS_account
 //	ID:domains/your_profiles_domain_name/profiles/profile_ID</code> </p> </li>
 //	<li> <p> <code>title</code> </p> </li> </ul>
 //
@@ -1111,6 +1113,157 @@ func (c *ConnectCases) GetCasePagesWithContext(ctx aws.Context, input *GetCaseIn
 
 	for p.Next() {
 		if !fn(p.Page().(*GetCaseOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetCaseAuditEvents = "GetCaseAuditEvents"
+
+// GetCaseAuditEventsRequest generates a "aws/request.Request" representing the
+// client's request for the GetCaseAuditEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCaseAuditEvents for more information on using the GetCaseAuditEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCaseAuditEventsRequest method.
+//	req, resp := client.GetCaseAuditEventsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/GetCaseAuditEvents
+func (c *ConnectCases) GetCaseAuditEventsRequest(input *GetCaseAuditEventsInput) (req *request.Request, output *GetCaseAuditEventsOutput) {
+	op := &request.Operation{
+		Name:       opGetCaseAuditEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{domainId}/cases/{caseId}/audit-history",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetCaseAuditEventsInput{}
+	}
+
+	output = &GetCaseAuditEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCaseAuditEvents API operation for Amazon Connect Cases.
+//
+// Returns the audit history about a specific case if it exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Cases's
+// API operation GetCaseAuditEvents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same Amazon Web Services Region as your request,
+//     and try your request again.
+//
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
+//
+//   - ThrottlingException
+//     The rate has been exceeded for this API. Please try again after a few minutes.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/GetCaseAuditEvents
+func (c *ConnectCases) GetCaseAuditEvents(input *GetCaseAuditEventsInput) (*GetCaseAuditEventsOutput, error) {
+	req, out := c.GetCaseAuditEventsRequest(input)
+	return out, req.Send()
+}
+
+// GetCaseAuditEventsWithContext is the same as GetCaseAuditEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCaseAuditEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) GetCaseAuditEventsWithContext(ctx aws.Context, input *GetCaseAuditEventsInput, opts ...request.Option) (*GetCaseAuditEventsOutput, error) {
+	req, out := c.GetCaseAuditEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetCaseAuditEventsPages iterates over the pages of a GetCaseAuditEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetCaseAuditEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetCaseAuditEvents operation.
+//	pageNum := 0
+//	err := client.GetCaseAuditEventsPages(params,
+//	    func(page *connectcases.GetCaseAuditEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ConnectCases) GetCaseAuditEventsPages(input *GetCaseAuditEventsInput, fn func(*GetCaseAuditEventsOutput, bool) bool) error {
+	return c.GetCaseAuditEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetCaseAuditEventsPagesWithContext same as GetCaseAuditEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) GetCaseAuditEventsPagesWithContext(ctx aws.Context, input *GetCaseAuditEventsInput, fn func(*GetCaseAuditEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetCaseAuditEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetCaseAuditEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetCaseAuditEventsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3133,11 +3286,14 @@ func (c *ConnectCases) UpdateCaseRequest(input *UpdateCaseInput) (req *request.R
 
 // UpdateCase API operation for Amazon Connect Cases.
 //
-// Updates the values of fields on a case. Fields to be updated are received
-// as an array of id/value pairs identical to the CreateCase input .
+// If you provide a value for PerformedBy.UserArn you must also have connect:DescribeUser
+// (https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html)
+// permission on the User ARN resource that you provide
 //
-// If the action is successful, the service sends back an HTTP 200 response
-// with an empty HTTP body.
+//	<p>Updates the values of fields on a case. Fields to be updated are received
+//	as an array of id/value pairs identical to the <code>CreateCase</code>
+//	input .</p> <p>If the action is successful, the service sends back an
+//	HTTP 200 response with an empty HTTP body.</p>
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3567,6 +3723,264 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Represents the content of a particular audit event.
+type AuditEvent struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier of a case audit history event.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" min:"1" type:"string" required:"true"`
+
+	// A list of Case Audit History event fields.
+	//
+	// Fields is a required field
+	Fields []*AuditEventField `locationName:"fields" type:"list" required:"true"`
+
+	// Information of the user which performed the audit.
+	PerformedBy *AuditEventPerformedBy `locationName:"performedBy" type:"structure"`
+
+	// Time at which an Audit History event took place.
+	//
+	// PerformedTime is a required field
+	PerformedTime *time.Time `locationName:"performedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Type of the related item.
+	RelatedItemType *string `locationName:"relatedItemType" type:"string" enum:"RelatedItemType"`
+
+	// The Type of an audit history event.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"AuditEventType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEvent) GoString() string {
+	return s.String()
+}
+
+// SetEventId sets the EventId field's value.
+func (s *AuditEvent) SetEventId(v string) *AuditEvent {
+	s.EventId = &v
+	return s
+}
+
+// SetFields sets the Fields field's value.
+func (s *AuditEvent) SetFields(v []*AuditEventField) *AuditEvent {
+	s.Fields = v
+	return s
+}
+
+// SetPerformedBy sets the PerformedBy field's value.
+func (s *AuditEvent) SetPerformedBy(v *AuditEventPerformedBy) *AuditEvent {
+	s.PerformedBy = v
+	return s
+}
+
+// SetPerformedTime sets the PerformedTime field's value.
+func (s *AuditEvent) SetPerformedTime(v time.Time) *AuditEvent {
+	s.PerformedTime = &v
+	return s
+}
+
+// SetRelatedItemType sets the RelatedItemType field's value.
+func (s *AuditEvent) SetRelatedItemType(v string) *AuditEvent {
+	s.RelatedItemType = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AuditEvent) SetType(v string) *AuditEvent {
+	s.Type = &v
+	return s
+}
+
+// Fields for audit event.
+type AuditEventField struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier of field in an Audit History entry.
+	//
+	// EventFieldId is a required field
+	EventFieldId *string `locationName:"eventFieldId" min:"1" type:"string" required:"true"`
+
+	// Union of potential field value types.
+	//
+	// NewValue is a required field
+	NewValue *AuditEventFieldValueUnion `locationName:"newValue" type:"structure" required:"true"`
+
+	// Union of potential field value types.
+	OldValue *AuditEventFieldValueUnion `locationName:"oldValue" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventField) GoString() string {
+	return s.String()
+}
+
+// SetEventFieldId sets the EventFieldId field's value.
+func (s *AuditEventField) SetEventFieldId(v string) *AuditEventField {
+	s.EventFieldId = &v
+	return s
+}
+
+// SetNewValue sets the NewValue field's value.
+func (s *AuditEventField) SetNewValue(v *AuditEventFieldValueUnion) *AuditEventField {
+	s.NewValue = v
+	return s
+}
+
+// SetOldValue sets the OldValue field's value.
+func (s *AuditEventField) SetOldValue(v *AuditEventFieldValueUnion) *AuditEventField {
+	s.OldValue = v
+	return s
+}
+
+// Object to store union of Field values.
+//
+// This data type is a UNION, so only one of the following members can be specified
+// when used or returned.
+type AuditEventFieldValueUnion struct {
+	_ struct{} `type:"structure"`
+
+	// Can be either null, or have a Boolean value type. Only one value can be provided.
+	BooleanValue *bool `locationName:"booleanValue" type:"boolean"`
+
+	// Can be either null, or have a Double value type. Only one value can be provided.
+	DoubleValue *float64 `locationName:"doubleValue" type:"double"`
+
+	// An empty value. You cannot set EmptyFieldValue on a field that is required
+	// on a case template.
+	//
+	// This structure will never have any data members. It signifies an empty value
+	// on a case field.
+	EmptyValue *EmptyFieldValue `locationName:"emptyValue" type:"structure"`
+
+	// Can be either null, or have a String value type. Only one value can be provided.
+	StringValue *string `locationName:"stringValue" type:"string"`
+
+	// Can be either null, or have a String value type formatted as an ARN. Only
+	// one value can be provided.
+	UserArnValue *string `locationName:"userArnValue" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventFieldValueUnion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventFieldValueUnion) GoString() string {
+	return s.String()
+}
+
+// SetBooleanValue sets the BooleanValue field's value.
+func (s *AuditEventFieldValueUnion) SetBooleanValue(v bool) *AuditEventFieldValueUnion {
+	s.BooleanValue = &v
+	return s
+}
+
+// SetDoubleValue sets the DoubleValue field's value.
+func (s *AuditEventFieldValueUnion) SetDoubleValue(v float64) *AuditEventFieldValueUnion {
+	s.DoubleValue = &v
+	return s
+}
+
+// SetEmptyValue sets the EmptyValue field's value.
+func (s *AuditEventFieldValueUnion) SetEmptyValue(v *EmptyFieldValue) *AuditEventFieldValueUnion {
+	s.EmptyValue = v
+	return s
+}
+
+// SetStringValue sets the StringValue field's value.
+func (s *AuditEventFieldValueUnion) SetStringValue(v string) *AuditEventFieldValueUnion {
+	s.StringValue = &v
+	return s
+}
+
+// SetUserArnValue sets the UserArnValue field's value.
+func (s *AuditEventFieldValueUnion) SetUserArnValue(v string) *AuditEventFieldValueUnion {
+	s.UserArnValue = &v
+	return s
+}
+
+// Information of the user which performed the audit.
+type AuditEventPerformedBy struct {
+	_ struct{} `type:"structure"`
+
+	// Unique identifier of an IAM role.
+	//
+	// IamPrincipalArn is a required field
+	IamPrincipalArn *string `locationName:"iamPrincipalArn" min:"1" type:"string" required:"true"`
+
+	// Represents the identity of the person who performed the action.
+	User *UserUnion `locationName:"user" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventPerformedBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuditEventPerformedBy) GoString() string {
+	return s.String()
+}
+
+// SetIamPrincipalArn sets the IamPrincipalArn field's value.
+func (s *AuditEventPerformedBy) SetIamPrincipalArn(v string) *AuditEventPerformedBy {
+	s.IamPrincipalArn = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *AuditEventPerformedBy) SetUser(v *UserUnion) *AuditEventPerformedBy {
+	s.User = v
+	return s
 }
 
 // Content specific to BasicLayout type. It configures fields in the top panel
@@ -4397,6 +4811,9 @@ type CreateCaseInput struct {
 	// Fields is a required field
 	Fields []*FieldValue `locationName:"fields" type:"list" required:"true"`
 
+	// Represents the identity of the person who performed the action.
+	PerformedBy *UserUnion `locationName:"performedBy" type:"structure"`
+
 	// A unique identifier of a template.
 	//
 	// TemplateId is a required field
@@ -4449,6 +4866,11 @@ func (s *CreateCaseInput) Validate() error {
 			}
 		}
 	}
+	if s.PerformedBy != nil {
+		if err := s.PerformedBy.Validate(); err != nil {
+			invalidParams.AddNested("PerformedBy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4471,6 +4893,12 @@ func (s *CreateCaseInput) SetDomainId(v string) *CreateCaseInput {
 // SetFields sets the Fields field's value.
 func (s *CreateCaseInput) SetFields(v []*FieldValue) *CreateCaseInput {
 	s.Fields = v
+	return s
+}
+
+// SetPerformedBy sets the PerformedBy field's value.
+func (s *CreateCaseInput) SetPerformedBy(v *UserUnion) *CreateCaseInput {
+	s.PerformedBy = v
 	return s
 }
 
@@ -6109,6 +6537,9 @@ func (s *FieldValue) SetValue(v *FieldValueUnion) *FieldValue {
 }
 
 // Object to store union of Field values.
+//
+// The Summary system field accepts 1500 characters while all other fields accept
+// 500 characters.
 type FieldValueUnion struct {
 	_ struct{} `type:"structure"`
 
@@ -6124,6 +6555,9 @@ type FieldValueUnion struct {
 
 	// String value type.
 	StringValue *string `locationName:"stringValue" type:"string"`
+
+	// Represents the user that performed the audit.
+	UserArnValue *string `locationName:"userArnValue" type:"string"`
 }
 
 // String returns the string representation.
@@ -6165,6 +6599,144 @@ func (s *FieldValueUnion) SetEmptyValue(v *EmptyFieldValue) *FieldValueUnion {
 // SetStringValue sets the StringValue field's value.
 func (s *FieldValueUnion) SetStringValue(v string) *FieldValueUnion {
 	s.StringValue = &v
+	return s
+}
+
+// SetUserArnValue sets the UserArnValue field's value.
+func (s *FieldValueUnion) SetUserArnValue(v string) *FieldValueUnion {
+	s.UserArnValue = &v
+	return s
+}
+
+type GetCaseAuditEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier of the case.
+	//
+	// CaseId is a required field
+	CaseId *string `location:"uri" locationName:"caseId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the Cases domain.
+	//
+	// DomainId is a required field
+	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of audit events to return. The current maximum supported
+	// value is 25. This is also the default when no other value is provided.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCaseAuditEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCaseAuditEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCaseAuditEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCaseAuditEventsInput"}
+	if s.CaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CaseId"))
+	}
+	if s.CaseId != nil && len(*s.CaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CaseId", 1))
+	}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCaseId sets the CaseId field's value.
+func (s *GetCaseAuditEventsInput) SetCaseId(v string) *GetCaseAuditEventsInput {
+	s.CaseId = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *GetCaseAuditEventsInput) SetDomainId(v string) *GetCaseAuditEventsInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetCaseAuditEventsInput) SetMaxResults(v int64) *GetCaseAuditEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCaseAuditEventsInput) SetNextToken(v string) *GetCaseAuditEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetCaseAuditEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of case audits where each represents a particular edit of the case.
+	//
+	// AuditEvents is a required field
+	AuditEvents []*AuditEvent `locationName:"auditEvents" type:"list" required:"true"`
+
+	// The token for the next set of results. This is null if there are no more
+	// results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCaseAuditEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCaseAuditEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuditEvents sets the AuditEvents field's value.
+func (s *GetCaseAuditEventsOutput) SetAuditEvents(v []*AuditEvent) *GetCaseAuditEventsOutput {
+	s.AuditEvents = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCaseAuditEventsOutput) SetNextToken(v string) *GetCaseAuditEventsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -9436,6 +10008,9 @@ type UpdateCaseInput struct {
 	//
 	// Fields is a required field
 	Fields []*FieldValue `locationName:"fields" type:"list" required:"true"`
+
+	// Represents the identity of the person who performed the action.
+	PerformedBy *UserUnion `locationName:"performedBy" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9484,6 +10059,11 @@ func (s *UpdateCaseInput) Validate() error {
 			}
 		}
 	}
+	if s.PerformedBy != nil {
+		if err := s.PerformedBy.Validate(); err != nil {
+			invalidParams.AddNested("PerformedBy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9506,6 +10086,12 @@ func (s *UpdateCaseInput) SetDomainId(v string) *UpdateCaseInput {
 // SetFields sets the Fields field's value.
 func (s *UpdateCaseInput) SetFields(v []*FieldValue) *UpdateCaseInput {
 	s.Fields = v
+	return s
+}
+
+// SetPerformedBy sets the PerformedBy field's value.
+func (s *UpdateCaseInput) SetPerformedBy(v *UserUnion) *UpdateCaseInput {
+	s.PerformedBy = v
 	return s
 }
 
@@ -10017,6 +10603,26 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AuditEventTypeCaseCreated is a AuditEventType enum value
+	AuditEventTypeCaseCreated = "Case.Created"
+
+	// AuditEventTypeCaseUpdated is a AuditEventType enum value
+	AuditEventTypeCaseUpdated = "Case.Updated"
+
+	// AuditEventTypeRelatedItemCreated is a AuditEventType enum value
+	AuditEventTypeRelatedItemCreated = "RelatedItem.Created"
+)
+
+// AuditEventType_Values returns all elements of the AuditEventType enum
+func AuditEventType_Values() []string {
+	return []string{
+		AuditEventTypeCaseCreated,
+		AuditEventTypeCaseUpdated,
+		AuditEventTypeRelatedItemCreated,
+	}
+}
+
+const (
 	// CommentBodyTextTypeTextPlain is a CommentBodyTextType enum value
 	CommentBodyTextTypeTextPlain = "Text/Plain"
 )
@@ -10082,6 +10688,9 @@ const (
 
 	// FieldTypeUrl is a FieldType enum value
 	FieldTypeUrl = "Url"
+
+	// FieldTypeUser is a FieldType enum value
+	FieldTypeUser = "User"
 )
 
 // FieldType_Values returns all elements of the FieldType enum
@@ -10093,6 +10702,7 @@ func FieldType_Values() []string {
 		FieldTypeDateTime,
 		FieldTypeSingleSelect,
 		FieldTypeUrl,
+		FieldTypeUser,
 	}
 }
 

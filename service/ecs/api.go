@@ -21712,6 +21712,13 @@ type ServiceConnectService struct {
 	//
 	// PortName is a required field
 	PortName *string `locationName:"portName" type:"string" required:"true"`
+
+	// A reference to an object that represents the configured timeouts for Service
+	// Connect.
+	Timeout *TimeoutConfiguration `locationName:"timeout" type:"structure"`
+
+	// An object that represents the configuration for Service Connect TLS.
+	Tls *ServiceConnectTlsConfiguration `locationName:"tls" type:"structure"`
 }
 
 // String returns the string representation.
@@ -21748,6 +21755,11 @@ func (s *ServiceConnectService) Validate() error {
 			}
 		}
 	}
+	if s.Tls != nil {
+		if err := s.Tls.Validate(); err != nil {
+			invalidParams.AddNested("Tls", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -21776,6 +21788,18 @@ func (s *ServiceConnectService) SetIngressPortOverride(v int64) *ServiceConnectS
 // SetPortName sets the PortName field's value.
 func (s *ServiceConnectService) SetPortName(v string) *ServiceConnectService {
 	s.PortName = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *ServiceConnectService) SetTimeout(v *TimeoutConfiguration) *ServiceConnectService {
+	s.Timeout = v
+	return s
+}
+
+// SetTls sets the Tls field's value.
+func (s *ServiceConnectService) SetTls(v *ServiceConnectTlsConfiguration) *ServiceConnectService {
+	s.Tls = v
 	return s
 }
 
@@ -21837,6 +21861,105 @@ func (s *ServiceConnectServiceResource) SetDiscoveryArn(v string) *ServiceConnec
 // SetDiscoveryName sets the DiscoveryName field's value.
 func (s *ServiceConnectServiceResource) SetDiscoveryName(v string) *ServiceConnectServiceResource {
 	s.DiscoveryName = &v
+	return s
+}
+
+// An object that represents the Amazon Web Services Private Certificate Authority
+// certificate.
+type ServiceConnectTlsCertificateAuthority struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Amazon Web Services Private Certificate Authority certificate.
+	AwsPcaAuthorityArn *string `locationName:"awsPcaAuthorityArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectTlsCertificateAuthority) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectTlsCertificateAuthority) GoString() string {
+	return s.String()
+}
+
+// SetAwsPcaAuthorityArn sets the AwsPcaAuthorityArn field's value.
+func (s *ServiceConnectTlsCertificateAuthority) SetAwsPcaAuthorityArn(v string) *ServiceConnectTlsCertificateAuthority {
+	s.AwsPcaAuthorityArn = &v
+	return s
+}
+
+// An object that represents the configuration for Service Connect TLS.
+type ServiceConnectTlsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The signer certificate authority.
+	//
+	// IssuerCertificateAuthority is a required field
+	IssuerCertificateAuthority *ServiceConnectTlsCertificateAuthority `locationName:"issuerCertificateAuthority" type:"structure" required:"true"`
+
+	// The Amazon Web Services Key Management Service key.
+	KmsKey *string `locationName:"kmsKey" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that's associated with the
+	// Service Connect TLS.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectTlsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceConnectTlsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceConnectTlsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceConnectTlsConfiguration"}
+	if s.IssuerCertificateAuthority == nil {
+		invalidParams.Add(request.NewErrParamRequired("IssuerCertificateAuthority"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIssuerCertificateAuthority sets the IssuerCertificateAuthority field's value.
+func (s *ServiceConnectTlsConfiguration) SetIssuerCertificateAuthority(v *ServiceConnectTlsCertificateAuthority) *ServiceConnectTlsConfiguration {
+	s.IssuerCertificateAuthority = v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *ServiceConnectTlsConfiguration) SetKmsKey(v string) *ServiceConnectTlsConfiguration {
+	s.KmsKey = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ServiceConnectTlsConfiguration) SetRoleArn(v string) *ServiceConnectTlsConfiguration {
+	s.RoleArn = &v
 	return s
 }
 
@@ -25554,6 +25677,58 @@ func (s *TaskVolumeConfiguration) SetManagedEBSVolume(v *TaskManagedEBSVolumeCon
 // SetName sets the Name field's value.
 func (s *TaskVolumeConfiguration) SetName(v string) *TaskVolumeConfiguration {
 	s.Name = &v
+	return s
+}
+
+// An object that represents the timeout configurations for Service Connect.
+//
+// If idleTimeout is set to a time that is less than perRequestTimeout, the
+// connection will close when the idleTimeout is reached and not the perRequestTimeout.
+type TimeoutConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time in seconds a connection will stay active while idle. A
+	// value of 0 can be set to disable idleTimeout.
+	//
+	// The idleTimeout default for HTTP/HTTP2/GRPC is 5 minutes.
+	//
+	// The idleTimeout default for TCP is 1 hour.
+	IdleTimeoutSeconds *int64 `locationName:"idleTimeoutSeconds" type:"integer"`
+
+	// The amount of time waiting for the upstream to respond with a complete response
+	// per request. A value of 0 can be set to disable perRequestTimeout. perRequestTimeout
+	// can only be set if Service Connect appProtocol isn't TCP. Only idleTimeout
+	// is allowed for TCP appProtocol.
+	PerRequestTimeoutSeconds *int64 `locationName:"perRequestTimeoutSeconds" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeoutConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeoutConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetIdleTimeoutSeconds sets the IdleTimeoutSeconds field's value.
+func (s *TimeoutConfiguration) SetIdleTimeoutSeconds(v int64) *TimeoutConfiguration {
+	s.IdleTimeoutSeconds = &v
+	return s
+}
+
+// SetPerRequestTimeoutSeconds sets the PerRequestTimeoutSeconds field's value.
+func (s *TimeoutConfiguration) SetPerRequestTimeoutSeconds(v int64) *TimeoutConfiguration {
+	s.PerRequestTimeoutSeconds = &v
 	return s
 }
 

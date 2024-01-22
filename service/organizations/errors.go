@@ -195,8 +195,8 @@ const (
 	//    with the same marketplace.
 	//
 	//    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the Amazon
-	//    Web Services /> Regions in China. To create an organization, the master
-	//    must have a valid business license. For more information, contact customer
+	//    Web Services Regions in China. To create an organization, the master must
+	//    have a valid business license. For more information, contact customer
 	//    support.
 	//
 	//    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you

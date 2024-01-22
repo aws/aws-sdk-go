@@ -584,6 +584,8 @@ func ExampleRDS_CreateDBCluster_shared00() {
 			switch aerr.Code() {
 			case rds.ErrCodeDBClusterAlreadyExistsFault:
 				fmt.Println(rds.ErrCodeDBClusterAlreadyExistsFault, aerr.Error())
+			case rds.ErrCodeInsufficientDBInstanceCapacityFault:
+				fmt.Println(rds.ErrCodeInsufficientDBInstanceCapacityFault, aerr.Error())
 			case rds.ErrCodeInsufficientStorageClusterCapacityFault:
 				fmt.Println(rds.ErrCodeInsufficientStorageClusterCapacityFault, aerr.Error())
 			case rds.ErrCodeDBClusterQuotaExceededFault:
@@ -657,6 +659,8 @@ func ExampleRDS_CreateDBCluster_shared01() {
 			switch aerr.Code() {
 			case rds.ErrCodeDBClusterAlreadyExistsFault:
 				fmt.Println(rds.ErrCodeDBClusterAlreadyExistsFault, aerr.Error())
+			case rds.ErrCodeInsufficientDBInstanceCapacityFault:
+				fmt.Println(rds.ErrCodeInsufficientDBInstanceCapacityFault, aerr.Error())
 			case rds.ErrCodeInsufficientStorageClusterCapacityFault:
 				fmt.Println(rds.ErrCodeInsufficientStorageClusterCapacityFault, aerr.Error())
 			case rds.ErrCodeDBClusterQuotaExceededFault:

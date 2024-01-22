@@ -1,3 +1,21 @@
+Release v1.50.1 (2024-01-22)
+===
+
+### Service Client Updates
+* `service/appconfigdata`: Adds new service
+* `service/cloud9`: Updates service documentation
+  * Doc-only update around removing AL1 from list of available AMIs for Cloud9
+* `service/connectcases`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for Transport Layer Security (TLS) and Configurable Timeout to ECS Service Connect. TLS facilitates privacy and data security for inter-service communications, while Configurable Timeout allows customized per-request timeout and idle timeout for Service Connect services.
+* `service/finspace`: Updates service API
+* `service/organizations`: Updates service documentation
+  * Doc only update for quota increase change
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Introduced support for the InsufficientDBInstanceCapacityFault error in the RDS CreateDBCluster API method. This provides enhanced error handling, ensuring a more robust experience when creating database clusters with insufficient instance capacity.
+
 Release v1.50.0 (2024-01-19)
 ===
 

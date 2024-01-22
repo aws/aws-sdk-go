@@ -888,6 +888,13 @@
         "Scale$value": "<p>The value, specified as a percent total of a service's <code>desiredCount</code>, to scale the task set. Accepted values are numbers between 0 and 100.</p>"
       }
     },
+    "Duration": {
+      "base": null,
+      "refs": {
+        "TimeoutConfiguration$idleTimeoutSeconds": "<p>The amount of time in seconds a connection will stay active while idle. A value of <code>0</code> can be set to disable <code>idleTimeout</code>.</p> <p>The <code>idleTimeout</code> default for <code>HTTP</code>/<code>HTTP2</code>/<code>GRPC</code> is 5 minutes.</p> <p>The <code>idleTimeout</code> default for <code>TCP</code> is 1 hour.</p>",
+        "TimeoutConfiguration$perRequestTimeoutSeconds": "<p>The amount of time waiting for the upstream to respond with a complete response per request. A value of <code>0</code> can be set to disable <code>perRequestTimeout</code>. <code>perRequestTimeout</code> can only be set if Service Connect <code>appProtocol</code> isn't <code>TCP</code>. Only <code>idleTimeout</code> is allowed for <code>TCP</code> <code>appProtocol</code>.</p>"
+      }
+    },
     "EBSKMSKeyId": {
       "base": null,
       "refs": {
@@ -1942,6 +1949,18 @@
         "Deployment$serviceConnectResources": "<p>The list of Service Connect resources that are associated with this deployment. Each list entry maps a discovery name to a Cloud Map service name.</p>"
       }
     },
+    "ServiceConnectTlsCertificateAuthority": {
+      "base": "<p>An object that represents the Amazon Web Services Private Certificate Authority certificate.</p>",
+      "refs": {
+        "ServiceConnectTlsConfiguration$issuerCertificateAuthority": "<p>The signer certificate authority.</p>"
+      }
+    },
+    "ServiceConnectTlsConfiguration": {
+      "base": "<p>An object that represents the configuration for Service Connect TLS.</p>",
+      "refs": {
+        "ServiceConnectService$tls": null
+      }
+    },
     "ServiceEvent": {
       "base": "<p>The details for an event that's associated with a service.</p>",
       "refs": {
@@ -2335,6 +2354,9 @@
         "ServiceConnectService$discoveryName": "<p>The <code>discoveryName</code> is the name of the new Cloud Map service that Amazon ECS creates for this Amazon ECS service. This must be unique within the Cloud Map namespace. The name can contain up to 64 characters. The name can include lowercase letters, numbers, underscores (_), and hyphens (-). The name can't start with a hyphen.</p> <p>If the <code>discoveryName</code> isn't specified, the port mapping name from the task definition is used in <code>portName.namespace</code>.</p>",
         "ServiceConnectServiceResource$discoveryName": "<p>The discovery name of this Service Connect resource.</p> <p>The <code>discoveryName</code> is the name of the new Cloud Map service that Amazon ECS creates for this Amazon ECS service. This must be unique within the Cloud Map namespace. The name can contain up to 64 characters. The name can include lowercase letters, numbers, underscores (_), and hyphens (-). The name can't start with a hyphen.</p> <p>If the <code>discoveryName</code> isn't specified, the port mapping name from the task definition is used in <code>portName.namespace</code>.</p>",
         "ServiceConnectServiceResource$discoveryArn": "<p>The Amazon Resource Name (ARN) for the namespace in Cloud Map that matches the discovery name for this Service Connect resource. You can use this ARN in other integrations with Cloud Map. However, Service Connect can't ensure connectivity outside of Amazon ECS.</p>",
+        "ServiceConnectTlsCertificateAuthority$awsPcaAuthorityArn": "<p>The ARN of the Amazon Web Services Private Certificate Authority certificate.</p>",
+        "ServiceConnectTlsConfiguration$kmsKey": "<p>The Amazon Web Services Key Management Service key.</p>",
+        "ServiceConnectTlsConfiguration$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that's associated with the Service Connect TLS.</p>",
         "ServiceEvent$id": "<p>The ID string for the event.</p>",
         "ServiceEvent$message": "<p>The event message.</p>",
         "ServiceRegistry$registryArn": "<p>The Amazon Resource Name (ARN) of the service registry. The currently supported service registry is Cloud Map. For more information, see <a href=\"https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateService.html\">CreateService</a>.</p>",
@@ -2765,6 +2787,12 @@
         "DescribeTasksResponse$tasks": "<p>The list of tasks.</p>",
         "RunTaskResponse$tasks": "<p>A full description of the tasks that were run. The tasks that were successfully placed on your cluster are described here.</p> <p/>",
         "StartTaskResponse$tasks": "<p>A full description of the tasks that were started. Each task that was successfully placed on your container instances is described.</p>"
+      }
+    },
+    "TimeoutConfiguration": {
+      "base": "<p>An object that represents the timeout configurations for Service Connect.</p> <note> <p>If <code>idleTimeout</code> is set to a time that is less than <code>perRequestTimeout</code>, the connection will close when the <code>idleTimeout</code> is reached and not the <code>perRequestTimeout</code>.</p> </note>",
+      "refs": {
+        "ServiceConnectService$timeout": "<p>A reference to an object that represents the configured timeouts for Service Connect.</p>"
       }
     },
     "Timestamp": {
