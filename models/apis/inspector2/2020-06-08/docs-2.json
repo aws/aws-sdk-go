@@ -11,9 +11,11 @@
     "BatchUpdateMemberEc2DeepInspectionStatus": "<p>Activates or deactivates Amazon Inspector deep inspection for the provided member accounts in your organization. You must be the delegated administrator of an organization in Amazon Inspector to use this API.</p>",
     "CancelFindingsReport": "<p>Cancels the given findings report.</p>",
     "CancelSbomExport": "<p>Cancels a software bill of materials (SBOM) report.</p>",
+    "CreateCisScanConfiguration": "<p>Creates a CIS scan configuration.</p>",
     "CreateFilter": "<p>Creates a filter resource using specified filter criteria. When the filter action is set to <code>SUPPRESS</code> this action creates a suppression rule.</p>",
     "CreateFindingsReport": "<p>Creates a finding report. By default only <code>ACTIVE</code> findings are returned in the report. To see <code>SUPRESSED</code> or <code>CLOSED</code> findings you must specify a value for the <code>findingStatus</code> filter criteria. </p>",
     "CreateSbomExport": "<p>Creates a software bill of materials (SBOM) report.</p>",
+    "DeleteCisScanConfiguration": "<p>Deletes a CIS scan configuration.</p>",
     "DeleteFilter": "<p>Deletes a filter resource.</p>",
     "DescribeOrganizationConfiguration": "<p>Describe Amazon Inspector configuration settings for an Amazon Web Services organization.</p>",
     "Disable": "<p>Disables Amazon Inspector scans for one or more Amazon Web Services accounts. Disabling all scan types in an account disables the Amazon Inspector service.</p>",
@@ -21,6 +23,8 @@
     "DisassociateMember": "<p>Disassociates a member account from an Amazon Inspector delegated administrator.</p>",
     "Enable": "<p>Enables Amazon Inspector scans for one or more Amazon Web Services accounts.</p>",
     "EnableDelegatedAdminAccount": "<p>Enables the Amazon Inspector delegated administrator for your Organizations organization.</p>",
+    "GetCisScanReport": "<p>Retrieves a CIS scan report.</p>",
+    "GetCisScanResultDetails": "<p>Retrieves CIS scan result details.</p>",
     "GetConfiguration": "<p>Retrieves setting configurations for Inspector scans.</p>",
     "GetDelegatedAdminAccount": "<p>Retrieves information about the Amazon Inspector delegated administrator for your organization.</p>",
     "GetEc2DeepInspectionConfiguration": "<p>Retrieves the activation status of Amazon Inspector deep inspection and custom paths associated with your account. </p>",
@@ -29,6 +33,10 @@
     "GetMember": "<p>Gets member information for your organization.</p>",
     "GetSbomExport": "<p>Gets details of a software bill of materials (SBOM) report.</p>",
     "ListAccountPermissions": "<p>Lists the permissions an account has to configure Amazon Inspector.</p>",
+    "ListCisScanConfigurations": "<p>Lists CIS scan configurations.</p>",
+    "ListCisScanResultsAggregatedByChecks": "<p>Lists scan results aggregated by checks.</p>",
+    "ListCisScanResultsAggregatedByTargetResource": "<p>Lists scan results aggregated by a target resource.</p>",
+    "ListCisScans": "<p>Returns a CIS scan list.</p>",
     "ListCoverage": "<p>Lists coverage details for you environment.</p>",
     "ListCoverageStatistics": "<p>Lists Amazon Inspector coverage statistics for your environment.</p>",
     "ListDelegatedAdminAccounts": "<p>Lists information about the Amazon Inspector delegated administrator of your organization.</p>",
@@ -40,8 +48,13 @@
     "ListUsageTotals": "<p>Lists the Amazon Inspector usage totals over the last 30 days.</p>",
     "ResetEncryptionKey": "<p>Resets an encryption key. After the key is reset your resources will be encrypted by an Amazon Web Services owned key.</p>",
     "SearchVulnerabilities": "<p>Lists Amazon Inspector coverage details for a specific vulnerability.</p>",
+    "SendCisSessionHealth": "<p> Sends a CIS session health. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to start a CIS scan session for the scan ID supplied by the service. </p>",
+    "SendCisSessionTelemetry": "<p> Sends a CIS session telemetry. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to start a CIS scan session for the scan ID supplied by the service. </p>",
+    "StartCisSession": "<p> Starts a CIS session. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to start a CIS scan session for the scan ID supplied by the service. </p>",
+    "StopCisSession": "<p> Stops a CIS session. This API is used by the Amazon Inspector SSM plugin to communicate with the Amazon Inspector service. The Amazon Inspector SSM plugin calls this API to start a CIS scan session for the scan ID supplied by the service. </p>",
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
+    "UpdateCisScanConfiguration": "<p>Updates a CIS scan configuration.</p>",
     "UpdateConfiguration": "<p>Updates setting configurations for your Amazon Inspector account. When you use this API as an Amazon Inspector delegated administrator this updates the setting for all accounts you manage. Member accounts in an organization cannot update this setting.</p>",
     "UpdateEc2DeepInspectionConfiguration": "<p>Activates, deactivates Amazon Inspector deep inspection, or updates custom paths for your account. </p>",
     "UpdateEncryptionKey": "<p>Updates an encryption key. A <code>ResourceNotFoundException</code> means that an AWS owned key is being used for encryption.</p>",
@@ -84,6 +97,10 @@
         "AssociateMemberRequest$accountId": "<p>The Amazon Web Services account ID of the member account to be associated.</p>",
         "AssociateMemberResponse$accountId": "<p>The Amazon Web Services account ID of the successfully associated member account.</p>",
         "AwsEcrContainerAggregationResponse$accountId": "<p>The Amazon Web Services account ID of the account that owns the container.</p>",
+        "CisAccountIdList$member": null,
+        "CisCheckAggregation$accountId": "<p>The account ID for the CIS check.</p>",
+        "CisScanResultDetails$accountId": "<p>The CIS scan result details' account ID.</p>",
+        "CisTargetResourceAggregation$accountId": "<p>The account ID for the CIS target resource.</p>",
         "CoveredResource$accountId": "<p>The Amazon Web Services account ID of the covered resource.</p>",
         "DelegatedAdmin$accountId": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for your organization.</p>",
         "DelegatedAdminAccount$accountId": "<p>The Amazon Web Services account ID of the Amazon Inspector delegated administrator for your organization.</p>",
@@ -97,6 +114,7 @@
         "FailedMemberAccountEc2DeepInspectionStatusState$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member that failed to activate Amazon Inspector deep inspection.</p>",
         "Finding$awsAccountId": "<p>The Amazon Web Services account ID associated with the finding.</p>",
         "FindingTypeAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+        "GetCisScanResultDetailsRequest$accountId": "<p>The account ID.</p>",
         "GetMemberRequest$accountId": "<p>The Amazon Web Services account ID of the member account to retrieve information on.</p>",
         "ImageLayerAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account that owns the container image hosting the layer image.</p>",
         "LambdaFunctionAggregationResponse$accountId": "<p>The ID of the AWS account that owns the AWS Lambda function. </p>",
@@ -106,8 +124,16 @@
         "MemberAccountEc2DeepInspectionStatus$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member.</p>",
         "MemberAccountEc2DeepInspectionStatusState$accountId": "<p>The unique identifier for the Amazon Web Services account of the organization member</p>",
         "PackageAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
+        "ReportTargetAccounts$member": null,
         "RepositoryAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>",
         "TitleAggregationResponse$accountId": "<p>The ID of the Amazon Web Services account associated with the findings.</p>"
+      }
+    },
+    "AccountIdFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$accountIdFilters": "<p>The criteria's account ID filters.</p>",
+        "ListCisScansFilterCriteria$targetAccountIdFilters": "<p>The list of target account ID filters.</p>"
       }
     },
     "AccountIdSet": {
@@ -374,6 +400,18 @@
       "refs": {
       }
     },
+    "BenchmarkProfile": {
+      "base": null,
+      "refs": {
+        "StopCisSessionMessage$benchmarkProfile": "<p>The message benchmark profile.</p>"
+      }
+    },
+    "BenchmarkVersion": {
+      "base": null,
+      "refs": {
+        "StopCisSessionMessage$benchmarkVersion": "<p>The message benchmark version.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -405,6 +443,460 @@
     "CancelSbomExportResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CheckCount": {
+      "base": null,
+      "refs": {
+        "StopCisMessageProgress$errorChecks": "<p>The progress' error checks.</p>",
+        "StopCisMessageProgress$failedChecks": "<p>The progress' failed checks.</p>",
+        "StopCisMessageProgress$informationalChecks": "<p>The progress' informational checks.</p>",
+        "StopCisMessageProgress$notApplicableChecks": "<p>The progress' not applicable checks.</p>",
+        "StopCisMessageProgress$notEvaluatedChecks": "<p>The progress' not evaluated checks.</p>",
+        "StopCisMessageProgress$successfulChecks": "<p>The progress' successful checks.</p>",
+        "StopCisMessageProgress$totalChecks": "<p>The progress' total checks.</p>",
+        "StopCisMessageProgress$unknownChecks": "<p>The progress' unknown checks.</p>"
+      }
+    },
+    "CheckIdFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetailsFilterCriteria$checkIdFilters": "<p>The criteria's check ID filters.</p>",
+        "CisScanResultsAggregatedByChecksFilterCriteria$checkIdFilters": "<p>The criteria's check ID filters.</p>",
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$checkIdFilters": "<p>The criteria's check ID filters.</p>"
+      }
+    },
+    "CisAccountIdList": {
+      "base": null,
+      "refs": {
+        "CisTargets$accountIds": "<p>The CIS target account ids.</p>"
+      }
+    },
+    "CisCheckAggregation": {
+      "base": "<p>A CIS check.</p>",
+      "refs": {
+        "CisCheckAggregationList$member": null
+      }
+    },
+    "CisCheckAggregationList": {
+      "base": null,
+      "refs": {
+        "ListCisScanResultsAggregatedByChecksResponse$checkAggregations": "<p>The check aggregations.</p>"
+      }
+    },
+    "CisDateFilter": {
+      "base": "<p>The CIS date filter.</p>",
+      "refs": {
+        "CisScanDateFilterList$member": null
+      }
+    },
+    "CisFindingArn": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetails$findingArn": "<p>The CIS scan result details' finding ARN.</p>"
+      }
+    },
+    "CisFindingArnFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetailsFilterCriteria$findingArnFilters": "<p>The criteria's finding ARN filters.</p>"
+      }
+    },
+    "CisFindingStatus": {
+      "base": null,
+      "refs": {
+        "CisFindingStatusFilter$value": "<p>The value of the CIS finding status filter.</p>",
+        "CisScanResultDetails$status": "<p>The CIS scan result details' status.</p>"
+      }
+    },
+    "CisFindingStatusComparison": {
+      "base": null,
+      "refs": {
+        "CisFindingStatusFilter$comparison": "<p>The comparison value of the CIS finding status filter.</p>"
+      }
+    },
+    "CisFindingStatusFilter": {
+      "base": "<p>The CIS finding status filter.</p>",
+      "refs": {
+        "CisFindingStatusFilterList$member": null
+      }
+    },
+    "CisFindingStatusFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetailsFilterCriteria$findingStatusFilters": "<p>The criteria's finding status filters.</p>"
+      }
+    },
+    "CisNumberFilter": {
+      "base": "<p>The CIS number filter.</p>",
+      "refs": {
+        "CisNumberFilterList$member": null
+      }
+    },
+    "CisNumberFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByChecksFilterCriteria$failedResourcesFilters": "<p>The criteria's failed resources filters.</p>",
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$failedChecksFilters": "<p>The criteria's failed checks filters.</p>",
+        "ListCisScansFilterCriteria$failedChecksFilters": "<p>The list of failed checks filters.</p>"
+      }
+    },
+    "CisOwnerId": {
+      "base": null,
+      "refs": {
+        "CisScanConfiguration$ownerId": "<p>The CIS scan configuration's owner ID.</p>"
+      }
+    },
+    "CisReportStatus": {
+      "base": null,
+      "refs": {
+        "GetCisScanReportResponse$status": "<p>The status.</p>"
+      }
+    },
+    "CisResultStatus": {
+      "base": null,
+      "refs": {
+        "CisResultStatusFilter$value": "<p>The value of the CIS result status filter.</p>"
+      }
+    },
+    "CisResultStatusComparison": {
+      "base": null,
+      "refs": {
+        "CisResultStatusFilter$comparison": "<p>The comparison value of the CIS result status filter.</p>"
+      }
+    },
+    "CisResultStatusFilter": {
+      "base": "<p>The CIS result status filter.</p>",
+      "refs": {
+        "CisResultStatusFilterList$member": null
+      }
+    },
+    "CisResultStatusFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$statusFilters": "<p>The criteria's status filter.</p>"
+      }
+    },
+    "CisRuleDetails": {
+      "base": null,
+      "refs": {
+        "CisSessionMessage$cisRuleDetails": "<p>The CIS rule details for the CIS session message.</p>"
+      }
+    },
+    "CisRuleStatus": {
+      "base": null,
+      "refs": {
+        "CisSessionMessage$status": "<p>The status of the CIS session message.</p>"
+      }
+    },
+    "CisScan": {
+      "base": "<p>The CIS scan.</p>",
+      "refs": {
+        "CisScanList$member": null
+      }
+    },
+    "CisScanArn": {
+      "base": null,
+      "refs": {
+        "CisCheckAggregation$scanArn": "<p>The scan ARN for the CIS check scan ARN.</p>",
+        "CisScan$scanArn": "<p>The CIS scan's ARN.</p>",
+        "CisScanResultDetails$scanArn": "<p>The CIS scan result details' scan ARN.</p>",
+        "CisTargetResourceAggregation$scanArn": "<p>The scan ARN for the CIS target resource.</p>",
+        "GetCisScanReportRequest$scanArn": "<p>The scan ARN.</p>",
+        "GetCisScanResultDetailsRequest$scanArn": "<p>The scan ARN.</p>",
+        "ListCisScanResultsAggregatedByChecksRequest$scanArn": "<p>The scan ARN.</p>",
+        "ListCisScanResultsAggregatedByTargetResourceRequest$scanArn": "<p>The scan ARN.</p>"
+      }
+    },
+    "CisScanArnFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScansFilterCriteria$scanArnFilters": "<p>The list of scan ARN filters.</p>"
+      }
+    },
+    "CisScanConfiguration": {
+      "base": "<p>The CIS scan configuration.</p>",
+      "refs": {
+        "CisScanConfigurationList$member": null
+      }
+    },
+    "CisScanConfigurationArn": {
+      "base": null,
+      "refs": {
+        "CisScan$scanConfigurationArn": "<p>The CIS scan's configuration ARN.</p>",
+        "CisScanConfiguration$scanConfigurationArn": "<p>The CIS scan configuration's scan configuration ARN.</p>",
+        "CreateCisScanConfigurationResponse$scanConfigurationArn": "<p>The scan configuration ARN for the CIS scan configuration.</p>",
+        "DeleteCisScanConfigurationRequest$scanConfigurationArn": "<p>The ARN of the CIS scan configuration.</p>",
+        "DeleteCisScanConfigurationResponse$scanConfigurationArn": "<p>The ARN of the CIS scan configuration.</p>",
+        "UpdateCisScanConfigurationRequest$scanConfigurationArn": "<p>The CIS scan configuration ARN.</p>",
+        "UpdateCisScanConfigurationResponse$scanConfigurationArn": "<p>The CIS scan configuration ARN.</p>"
+      }
+    },
+    "CisScanConfigurationArnFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScanConfigurationsFilterCriteria$scanConfigurationArnFilters": "<p>The list of scan configuration ARN filters.</p>",
+        "ListCisScansFilterCriteria$scanConfigurationArnFilters": "<p>The list of scan configuration ARN filters.</p>"
+      }
+    },
+    "CisScanConfigurationList": {
+      "base": null,
+      "refs": {
+        "ListCisScanConfigurationsResponse$scanConfigurations": "<p>The CIS scan configuration scan configurations.</p>"
+      }
+    },
+    "CisScanConfigurationsSortBy": {
+      "base": null,
+      "refs": {
+        "ListCisScanConfigurationsRequest$sortBy": "<p>The CIS scan configuration sort by order.</p>"
+      }
+    },
+    "CisScanDateFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScansFilterCriteria$scanAtFilters": "<p>The list of scan at filters.</p>"
+      }
+    },
+    "CisScanList": {
+      "base": null,
+      "refs": {
+        "ListCisScansResponse$scans": "<p>The CIS scans.</p>"
+      }
+    },
+    "CisScanName": {
+      "base": null,
+      "refs": {
+        "CisScan$scanName": "<p>The the name of the scan configuration that's associated with this scan.</p>",
+        "CisScanConfiguration$scanName": "<p>The name of the CIS scan configuration.</p>",
+        "CreateCisScanConfigurationRequest$scanName": "<p>The scan name for the CIS scan configuration.</p>",
+        "UpdateCisScanConfigurationRequest$scanName": "<p>The scan name for the CIS scan configuration.</p>"
+      }
+    },
+    "CisScanNameFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScanConfigurationsFilterCriteria$scanNameFilters": "<p>The list of scan name filters.</p>",
+        "ListCisScansFilterCriteria$scanNameFilters": "<p>The list of scan name filters.</p>"
+      }
+    },
+    "CisScanResultDetails": {
+      "base": "<p>The CIS scan result details.</p>",
+      "refs": {
+        "CisScanResultDetailsList$member": null
+      }
+    },
+    "CisScanResultDetailsFilterCriteria": {
+      "base": "<p>The CIS scan result details filter criteria.</p>",
+      "refs": {
+        "GetCisScanResultDetailsRequest$filterCriteria": "<p>The filter criteria.</p>"
+      }
+    },
+    "CisScanResultDetailsList": {
+      "base": null,
+      "refs": {
+        "GetCisScanResultDetailsResponse$scanResultDetails": "<p>The scan result details.</p>"
+      }
+    },
+    "CisScanResultDetailsSortBy": {
+      "base": null,
+      "refs": {
+        "GetCisScanResultDetailsRequest$sortBy": "<p>The sort by order.</p>"
+      }
+    },
+    "CisScanResultsAggregatedByChecksFilterCriteria": {
+      "base": "<p>The scan results aggregated by checks filter criteria.</p>",
+      "refs": {
+        "ListCisScanResultsAggregatedByChecksRequest$filterCriteria": "<p>The filter criteria.</p>"
+      }
+    },
+    "CisScanResultsAggregatedByChecksSortBy": {
+      "base": null,
+      "refs": {
+        "ListCisScanResultsAggregatedByChecksRequest$sortBy": "<p>The sort by order.</p>"
+      }
+    },
+    "CisScanResultsAggregatedByTargetResourceFilterCriteria": {
+      "base": "<p>The scan results aggregated by target resource filter criteria.</p>",
+      "refs": {
+        "ListCisScanResultsAggregatedByTargetResourceRequest$filterCriteria": "<p>The filter criteria.</p>"
+      }
+    },
+    "CisScanResultsAggregatedByTargetResourceSortBy": {
+      "base": null,
+      "refs": {
+        "ListCisScanResultsAggregatedByTargetResourceRequest$sortBy": "<p>The sort by order.</p>"
+      }
+    },
+    "CisScanResultsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListCisScanResultsAggregatedByChecksRequest$maxResults": "<p>The maximum number of scan results aggregated by checks to be returned in a single page of results.</p>",
+        "ListCisScanResultsAggregatedByTargetResourceRequest$maxResults": "<p>The maximum number of scan results aggregated by a target resource to be returned in a single page of results.</p>"
+      }
+    },
+    "CisScanStatus": {
+      "base": null,
+      "refs": {
+        "CisScan$status": "<p>The CIS scan's status.</p>",
+        "CisScanStatusFilter$value": "<p>The filter value.</p>"
+      }
+    },
+    "CisScanStatusComparison": {
+      "base": null,
+      "refs": {
+        "CisScanStatusFilter$comparison": "<p>The filter comparison value.</p>"
+      }
+    },
+    "CisScanStatusFilter": {
+      "base": "<p>The CIS scan status filter.</p>",
+      "refs": {
+        "CisScanStatusFilterList$member": null
+      }
+    },
+    "CisScanStatusFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScansFilterCriteria$scanStatusFilters": "<p>The list of scan status filters.</p>"
+      }
+    },
+    "CisScheduledByFilterList": {
+      "base": null,
+      "refs": {
+        "ListCisScansFilterCriteria$scheduledByFilters": "<p>The list of scheduled by filters.</p>"
+      }
+    },
+    "CisSecurityLevel": {
+      "base": null,
+      "refs": {
+        "CisCheckAggregation$level": "<p>The CIS check level.</p>",
+        "CisScan$securityLevel": "<p> The security level for the CIS scan. Security level refers to the Benchmark levels that CIS assigns to a profile. </p>",
+        "CisScanConfiguration$securityLevel": "<p>The CIS scan configuration's security level.</p>",
+        "CisScanResultDetails$level": "<p>The CIS scan result details' level.</p>",
+        "CisSecurityLevelFilter$value": "<p>The CIS security filter value.</p>",
+        "CreateCisScanConfigurationRequest$securityLevel": "<p> The security level for the CIS scan configuration. Security level refers to the Benchmark levels that CIS assigns to a profile. </p>",
+        "UpdateCisScanConfigurationRequest$securityLevel": "<p> The security level for the CIS scan configuration. Security level refers to the Benchmark levels that CIS assigns to a profile. </p>"
+      }
+    },
+    "CisSecurityLevelComparison": {
+      "base": null,
+      "refs": {
+        "CisSecurityLevelFilter$comparison": "<p>The CIS security filter comparison value.</p>"
+      }
+    },
+    "CisSecurityLevelFilter": {
+      "base": "<p> The CIS security level filter. Security level refers to the Benchmark levels that CIS assigns to a profile. </p>",
+      "refs": {
+        "CisSecurityLevelFilterList$member": null
+      }
+    },
+    "CisSecurityLevelFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetailsFilterCriteria$securityLevelFilters": "<p> The criteria's security level filters. . Security level refers to the Benchmark levels that CIS assigns to a profile. </p>",
+        "CisScanResultsAggregatedByChecksFilterCriteria$securityLevelFilters": "<p>The criteria's security level filters.</p>"
+      }
+    },
+    "CisSessionMessage": {
+      "base": "<p>The CIS session message.</p>",
+      "refs": {
+        "CisSessionMessages$member": null
+      }
+    },
+    "CisSessionMessages": {
+      "base": null,
+      "refs": {
+        "SendCisSessionTelemetryRequest$messages": "<p>The CIS session telemetry messages.</p>"
+      }
+    },
+    "CisSortOrder": {
+      "base": null,
+      "refs": {
+        "GetCisScanResultDetailsRequest$sortOrder": "<p>The sort order.</p>",
+        "ListCisScanConfigurationsRequest$sortOrder": "<p>The CIS scan configuration sort order order.</p>",
+        "ListCisScanResultsAggregatedByChecksRequest$sortOrder": "<p>The sort order.</p>",
+        "ListCisScanResultsAggregatedByTargetResourceRequest$sortOrder": "<p>The sort order.</p>",
+        "ListCisScansRequest$sortOrder": "<p>The CIS scans sort order.</p>"
+      }
+    },
+    "CisStringComparison": {
+      "base": null,
+      "refs": {
+        "CisStringFilter$comparison": "<p>The comparison value of the CIS string filter.</p>"
+      }
+    },
+    "CisStringFilter": {
+      "base": "<p>The CIS string filter.</p>",
+      "refs": {
+        "AccountIdFilterList$member": null,
+        "CheckIdFilterList$member": null,
+        "CisFindingArnFilterList$member": null,
+        "CisScanArnFilterList$member": null,
+        "CisScanConfigurationArnFilterList$member": null,
+        "CisScanNameFilterList$member": null,
+        "CisScheduledByFilterList$member": null,
+        "OneAccountIdFilterList$member": null,
+        "PlatformFilterList$member": null,
+        "ResourceIdFilterList$member": null,
+        "TitleFilterList$member": null
+      }
+    },
+    "CisTagMap": {
+      "base": null,
+      "refs": {
+        "CisScanConfiguration$tags": "<p>The CIS scan configuration's tags.</p>",
+        "CreateCisScanConfigurationRequest$tags": "<p>The tags for the CIS scan configuration.</p>"
+      }
+    },
+    "CisTargetResourceAggregation": {
+      "base": "<p>The CIS target resource aggregation.</p>",
+      "refs": {
+        "CisTargetResourceAggregationList$member": null
+      }
+    },
+    "CisTargetResourceAggregationList": {
+      "base": null,
+      "refs": {
+        "ListCisScanResultsAggregatedByTargetResourceResponse$targetResourceAggregations": "<p>The resource aggregations.</p>"
+      }
+    },
+    "CisTargetStatus": {
+      "base": null,
+      "refs": {
+        "CisTargetResourceAggregation$targetStatus": "<p>The status of the target resource.</p>",
+        "CisTargetStatusFilter$value": "<p>The value of the CIS target status filter.</p>"
+      }
+    },
+    "CisTargetStatusComparison": {
+      "base": null,
+      "refs": {
+        "CisTargetStatusFilter$comparison": "<p>The comparison value of the CIS target status filter.</p>",
+        "CisTargetStatusReasonFilter$comparison": "<p>The comparison value of the CIS target status reason filter.</p>"
+      }
+    },
+    "CisTargetStatusFilter": {
+      "base": "<p>The CIS target status filter.</p>",
+      "refs": {
+        "TargetStatusFilterList$member": null
+      }
+    },
+    "CisTargetStatusReason": {
+      "base": null,
+      "refs": {
+        "CisTargetResourceAggregation$targetStatusReason": "<p>The reason for the target resource.</p>",
+        "CisTargetStatusReasonFilter$value": "<p>The value of the CIS target status reason filter.</p>"
+      }
+    },
+    "CisTargetStatusReasonFilter": {
+      "base": "<p>The CIS target status reason filter.</p>",
+      "refs": {
+        "TargetStatusReasonFilterList$member": null
+      }
+    },
+    "CisTargets": {
+      "base": "<p>The CIS targets.</p>",
+      "refs": {
+        "CisScan$targets": "<p>The CIS scan's targets.</p>",
+        "CisScanConfiguration$targets": "<p>The CIS scan configuration's targets.</p>"
       }
     },
     "CisaAction": {
@@ -511,6 +1003,12 @@
         "Step$componentType": "<p>The component type.</p>"
       }
     },
+    "ComputePlatform": {
+      "base": "<p>A compute platform.</p>",
+      "refs": {
+        "StopCisSessionMessage$computePlatform": "<p>The message compute platform.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>A conflict occurred.</p>",
       "refs": {
@@ -593,7 +1091,7 @@
         "CoverageFilterCriteria$lambdaFunctionName": "<p>Returns coverage statistics for AWS Lambda functions filtered by function names.</p>",
         "CoverageFilterCriteria$lambdaFunctionRuntime": "<p>Returns coverage statistics for AWS Lambda functions filtered by runtime.</p>",
         "CoverageFilterCriteria$resourceId": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
-        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code>, <code>AWS_LAMBDA_FUNCTION</code> or <code>AWS_ECR_REPOSITORY</code>.</p>",
+        "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code>, <code>AWS_LAMBDA_FUNCTION</code>, <code>AWS_ECR_CONTAINER_IMAGE</code>, <code>AWS_ECR_REPOSITORY</code> or <code>AWS_ACCOUNT</code>.</p>",
         "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on. Valid values are: <code>ValidationException</code>, <code>InternalServerException</code>, <code>ResourceNotFoundException</code>, <code>BadRequestException</code>, and <code>ThrottlingException</code>.</p>",
         "CoverageFilterCriteria$scanStatusReason": "<p>The scan status reason to filter on.</p>",
         "CoverageFilterCriteria$scanType": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>"
@@ -615,6 +1113,22 @@
       "base": null,
       "refs": {
         "ListCoverageResponse$coveredResources": "<p>An object that contains details on the covered resources in your environment.</p>"
+      }
+    },
+    "CreateCisScanConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCisScanConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCisTargets": {
+      "base": "<p>Creates CIS targets.</p>",
+      "refs": {
+        "CreateCisScanConfigurationRequest$targets": "<p>The targets for the CIS scan configuration.</p>"
       }
     },
     "CreateFilterRequest": {
@@ -738,6 +1252,12 @@
         "Vulnerability$cwes": "<p>The Common Weakness Enumeration (CWE) associated with the vulnerability.</p>"
       }
     },
+    "DailySchedule": {
+      "base": "<p>A daily schedule.</p>",
+      "refs": {
+        "Schedule$daily": "<p>The schedule's daily.</p>"
+      }
+    },
     "DateFilter": {
       "base": "<p>Contains details on the time range used to filter findings.</p>",
       "refs": {
@@ -775,6 +1295,19 @@
         "PackageVulnerabilityDetails$vendorUpdatedAt": "<p>The date and time the vendor last updated this vulnerability in their database.</p>"
       }
     },
+    "Day": {
+      "base": null,
+      "refs": {
+        "DaysList$member": null,
+        "MonthlySchedule$day": "<p>The monthly schedule's day.</p>"
+      }
+    },
+    "DaysList": {
+      "base": null,
+      "refs": {
+        "WeeklySchedule$days": "<p>The weekly schedule's days.</p>"
+      }
+    },
     "DelegatedAdmin": {
       "base": "<p>Details of the Amazon Inspector delegated administrator for your organization.</p>",
       "refs": {
@@ -797,6 +1330,16 @@
       "base": null,
       "refs": {
         "DelegatedAdminAccount$status": "<p>The status of the Amazon Inspector delegated administrator.</p>"
+      }
+    },
+    "DeleteCisScanConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteCisScanConfigurationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteFilterRequest": {
@@ -1381,6 +1924,32 @@
         "AwsLambdaFunctionDetails$functionName": "<p>The name of the AWS Lambda function.</p>"
       }
     },
+    "GetCisScanReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCisScanReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCisScanResultDetailsMaxResults": {
+      "base": null,
+      "refs": {
+        "GetCisScanResultDetailsRequest$maxResults": "<p>The maximum number of CIS scan result details to be returned in a single page of results.</p>"
+      }
+    },
+    "GetCisScanResultDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCisScanResultDetailsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetConfigurationRequest": {
       "base": null,
       "refs": {
@@ -1497,12 +2066,19 @@
     "Integer": {
       "base": null,
       "refs": {
+        "CisNumberFilter$lowerInclusive": "<p>The CIS number filter's lower inclusive.</p>",
+        "CisNumberFilter$upperInclusive": "<p>The CIS number filter's upper inclusive.</p>",
+        "CisScan$failedChecks": "<p>The CIS scan's failed checks.</p>",
+        "CisScan$totalChecks": "<p>The CIS scan's total checks.</p>",
         "CodeFilePath$endLine": "<p>The line number of the last line of code that a vulnerability was found in.</p>",
         "CodeFilePath$startLine": "<p>The line number of the first line of code that a vulnerability was found in.</p>",
         "CodeLine$lineNumber": "<p>The line number that a section of code is located at.</p>",
         "CodeSnippetResult$endLine": "<p>The line number of the last line of a code snippet.</p>",
         "CodeSnippetResult$startLine": "<p>The line number of the first line of a code snippet.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the request.</p>",
+        "StatusCounts$failed": "<p>The number of checks that failed.</p>",
+        "StatusCounts$passed": "<p>The number of checks that passed.</p>",
+        "StatusCounts$skipped": "<p>The number of checks that were skipped.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the request.</p>"
       }
     },
@@ -1631,6 +2207,82 @@
     "ListAccountPermissionsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListCisScanConfigurationsFilterCriteria": {
+      "base": "<p>A list of CIS scan configurations filter criteria.</p>",
+      "refs": {
+        "ListCisScanConfigurationsRequest$filterCriteria": "<p>The CIS scan configuration filter criteria.</p>"
+      }
+    },
+    "ListCisScanConfigurationsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListCisScanConfigurationsRequest$maxResults": "<p>The maximum number of CIS scan configurations to be returned in a single page of results.</p>"
+      }
+    },
+    "ListCisScanConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScanConfigurationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScanResultsAggregatedByChecksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScanResultsAggregatedByChecksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScanResultsAggregatedByTargetResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScanResultsAggregatedByTargetResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScansDetailLevel": {
+      "base": null,
+      "refs": {
+        "ListCisScansRequest$detailLevel": "<p>The detail applied to the CIS scan.</p>"
+      }
+    },
+    "ListCisScansFilterCriteria": {
+      "base": "<p>A list of CIS scans filter criteria.</p>",
+      "refs": {
+        "ListCisScansRequest$filterCriteria": "<p>The CIS scan filter criteria.</p>"
+      }
+    },
+    "ListCisScansMaxResults": {
+      "base": null,
+      "refs": {
+        "ListCisScansRequest$maxResults": "<p>The maximum number of results to be returned.</p>"
+      }
+    },
+    "ListCisScansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCisScansSortBy": {
+      "base": null,
+      "refs": {
+        "ListCisScansRequest$sortBy": "<p>The CIS scans sort by order.</p>"
       }
     },
     "ListCoverageMaxResults": {
@@ -1808,6 +2460,7 @@
     "MapKey": {
       "base": null,
       "refs": {
+        "CisTagMap$key": null,
         "MapFilter$key": "<p>The tag key used in the filter.</p>",
         "TagMap$key": null
       }
@@ -1815,6 +2468,7 @@
     "MapValue": {
       "base": null,
       "refs": {
+        "CisTagMap$value": null,
         "MapFilter$value": "<p>The tag value used in the filter.</p>",
         "TagMap$value": null
       }
@@ -1872,6 +2526,12 @@
         "Usage$estimatedMonthlyCost": "<p>The estimated monthly cost of Amazon Inspector.</p>"
       }
     },
+    "MonthlySchedule": {
+      "base": "<p>A monthly schedule.</p>",
+      "refs": {
+        "Schedule$monthly": "<p>The schedule's monthly.</p>"
+      }
+    },
     "NetworkPath": {
       "base": "<p>Information on the network path associated with a finding.</p>",
       "refs": {
@@ -1893,8 +2553,18 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "GetCisScanResultDetailsRequest$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "GetCisScanResultDetailsResponse$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
         "ListAccountPermissionsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.</p>",
         "ListAccountPermissionsResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
+        "ListCisScanConfigurationsRequest$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScanConfigurationsResponse$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScanResultsAggregatedByChecksRequest$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScanResultsAggregatedByChecksResponse$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScanResultsAggregatedByTargetResourceRequest$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScanResultsAggregatedByTargetResourceResponse$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScansRequest$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
+        "ListCisScansResponse$nextToken": "<p>The pagination token from a previous request that's used to retrieve the next page of results.</p>",
         "ListCoverageRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. If your response returns more than the <code>maxResults</code> maximum value it will also return a <code>nextToken</code> value. For subsequent calls, use the <code>nextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListCoverageResponse$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListCoverageStatisticsRequest$nextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
@@ -1978,6 +2648,9 @@
         "ResourceMapFilter$value": "<p>The filter's value.</p>",
         "State$errorMessage": "<p>The error message received when the account failed to enable Amazon Inspector.</p>",
         "StringList$member": null,
+        "TagFilter$key": "<p>The tag filter key.</p>",
+        "TagFilter$value": "<p>The tag filter value.</p>",
+        "TargetResourceTags$key": null,
         "TitleAggregationResponse$title": "<p>The title that the findings were aggregated on.</p>",
         "UpdateEc2DeepInspectionConfigurationResponse$errorMessage": "<p>An error message explaining why new Amazon Inspector deep inspection custom paths could not be added.</p>",
         "Vulnerability$id": "<p>The ID for the specific vulnerability.</p>"
@@ -2001,6 +2674,18 @@
       "refs": {
         "FilterCriteria$epssScore": "<p>The EPSS score used to filter findings.</p>",
         "FilterCriteria$inspectorScore": "<p>The Amazon Inspector score to filter on.</p>"
+      }
+    },
+    "OneAccountIdFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByChecksFilterCriteria$accountIdFilters": "<p>The criteria's account ID filters.</p>"
+      }
+    },
+    "OneTimeSchedule": {
+      "base": "<p>A one time schedule.</p>",
+      "refs": {
+        "Schedule$oneTime": "<p>The schedule's one time.</p>"
       }
     },
     "Operation": {
@@ -2130,6 +2815,19 @@
         "AwsEcrContainerImageDetails$platform": "<p>The platform of the Amazon ECR container image.</p>"
       }
     },
+    "PlatformFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByChecksFilterCriteria$platformFilters": "<p>The criteria's platform filters.</p>",
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$platformFilters": "<p>The criteria's platform filters.</p>"
+      }
+    },
+    "PlatformVersion": {
+      "base": null,
+      "refs": {
+        "ComputePlatform$version": "<p>The compute platform version.</p>"
+      }
+    },
     "Port": {
       "base": null,
       "refs": {
@@ -2155,6 +2853,18 @@
       "base": null,
       "refs": {
         "FilterCriteria$portRange": "<p>Details on the port ranges used to filter findings.</p>"
+      }
+    },
+    "Product": {
+      "base": null,
+      "refs": {
+        "ComputePlatform$product": "<p>The compute platform product.</p>"
+      }
+    },
+    "Reason": {
+      "base": null,
+      "refs": {
+        "StopCisSessionMessage$reason": "<p>The reason for the message.</p>"
       }
     },
     "Recommendation": {
@@ -2215,6 +2925,12 @@
         "GetSbomExportResponse$reportId": "<p>The report ID of the software bill of materials (SBOM) report.</p>"
       }
     },
+    "ReportTargetAccounts": {
+      "base": null,
+      "refs": {
+        "GetCisScanReportRequest$targetAccounts": "<p>The target accounts.</p>"
+      }
+    },
     "ReportingErrorCode": {
       "base": null,
       "refs": {
@@ -2272,7 +2988,17 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "CoveredResource$resourceId": "<p>The ID of the covered resource.</p>"
+        "CisScanResultDetails$targetResourceId": "<p>The CIS scan result details' target resource ID.</p>",
+        "CisTargetResourceAggregation$targetResourceId": "<p>The ID of the target resource.</p>",
+        "CoveredResource$resourceId": "<p>The ID of the covered resource.</p>",
+        "GetCisScanResultDetailsRequest$targetResourceId": "<p>The target resource ID.</p>"
+      }
+    },
+    "ResourceIdFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$targetResourceIdFilters": "<p>The criteria's target resource ID filters.</p>",
+        "ListCisScansFilterCriteria$targetResourceIdFilters": "<p>The list of target resource ID filters.</p>"
       }
     },
     "ResourceList": {
@@ -2360,6 +3086,14 @@
         "ResourceStringFilter$value": "<p>The filter's value.</p>"
       }
     },
+    "ResourceTagFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$targetResourceTagFilters": "<p>The criteria's target resource tag filters.</p>",
+        "ListCisScanConfigurationsFilterCriteria$targetResourceTagFilters": "<p>The list of target resource tag filters.</p>",
+        "ListCisScansFilterCriteria$targetResourceTagFilters": "<p>The list of target resource tag filters.</p>"
+      }
+    },
     "ResourceType": {
       "base": null,
       "refs": {
@@ -2373,6 +3107,12 @@
       "base": null,
       "refs": {
         "FindingDetail$riskScore": "<p>The risk score of the vulnerability.</p>"
+      }
+    },
+    "RuleId": {
+      "base": null,
+      "refs": {
+        "CisSessionMessage$ruleId": "<p>The rule ID for the CIS session message.</p>"
       }
     },
     "Runtime": {
@@ -2416,6 +3156,14 @@
         "UpdateEncryptionKeyRequest$scanType": "<p>The scan type for the encryption key.</p>"
       }
     },
+    "Schedule": {
+      "base": "<p>A schedule.</p>",
+      "refs": {
+        "CisScanConfiguration$schedule": "<p>The CIS scan configuration's schedule.</p>",
+        "CreateCisScanConfigurationRequest$schedule": "<p>The schedule for the CIS scan configuration.</p>",
+        "UpdateCisScanConfigurationRequest$schedule": "<p>The schedule for the CIS scan configuration.</p>"
+      }
+    },
     "SearchVulnerabilitiesFilterCriteria": {
       "base": "<p>Details on the criteria used to define the filter for a vulnerability search. </p>",
       "refs": {
@@ -2442,6 +3190,26 @@
       "base": null,
       "refs": {
         "LambdaVpcConfig$securityGroupIds": "<p>The VPC security groups and subnets that are attached to an AWS Lambda function. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html\">VPC Settings</a>.</p>"
+      }
+    },
+    "SendCisSessionHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendCisSessionHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendCisSessionTelemetryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendCisSessionTelemetryResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Service": {
@@ -2513,6 +3281,22 @@
         "VulnerablePackage$sourceLayerHash": "<p>The source layer hash of the vulnerable package.</p>"
       }
     },
+    "StartCisSessionMessage": {
+      "base": "<p>The start CIS session message.</p>",
+      "refs": {
+        "StartCisSessionRequest$message": "<p>The start CIS session message.</p>"
+      }
+    },
+    "StartCisSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartCisSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "State": {
       "base": "<p>An object that described the state of Amazon Inspector scans for an account.</p>",
       "refs": {
@@ -2536,6 +3320,13 @@
         "State$status": "<p>The status of Amazon Inspector for the account.</p>"
       }
     },
+    "StatusCounts": {
+      "base": "<p>The status counts.</p>",
+      "refs": {
+        "CisCheckAggregation$statusCounts": "<p>The CIS check status counts.</p>",
+        "CisTargetResourceAggregation$statusCounts": "<p>The target resource status counts.</p>"
+      }
+    },
     "Step": {
       "base": "<p>Details about the step associated with a finding.</p>",
       "refs": {
@@ -2548,6 +3339,34 @@
         "NetworkPath$steps": "<p>The details on the steps in the network path.</p>"
       }
     },
+    "StopCisMessageProgress": {
+      "base": "<p>The stop CIS message progress.</p>",
+      "refs": {
+        "StopCisSessionMessage$progress": "<p>The progress of the message.</p>"
+      }
+    },
+    "StopCisSessionMessage": {
+      "base": "<p>The stop CIS session message.</p>",
+      "refs": {
+        "StopCisSessionRequest$message": "<p>The stop CIS session message.</p>"
+      }
+    },
+    "StopCisSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopCisSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopCisSessionStatus": {
+      "base": null,
+      "refs": {
+        "StopCisSessionMessage$status": "<p>The status of the message.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -2557,6 +3376,19 @@
         "AwsEcrContainerAggregationResponse$repository": "<p>The container repository.</p>",
         "AwsEcrContainerImageDetails$author": "<p>The image author of the Amazon ECR container image.</p>",
         "BadRequestException$message": null,
+        "CisCheckAggregation$checkDescription": "<p>The description for the CIS check.</p>",
+        "CisCheckAggregation$checkId": "<p>The check ID for the CIS check.</p>",
+        "CisCheckAggregation$platform": "<p>The CIS check platform.</p>",
+        "CisCheckAggregation$title": "<p>The CIS check title.</p>",
+        "CisScan$scheduledBy": "<p>The account or organization that schedules the CIS scan.</p>",
+        "CisScanResultDetails$checkDescription": "<p>The account ID that's associated with the CIS scan result details.</p>",
+        "CisScanResultDetails$checkId": "<p>The CIS scan result details' check ID.</p>",
+        "CisScanResultDetails$platform": "<p>The CIS scan result details' platform.</p>",
+        "CisScanResultDetails$remediation": "<p>The CIS scan result details' remediation.</p>",
+        "CisScanResultDetails$statusReason": "<p>The CIS scan result details' status reason.</p>",
+        "CisScanResultDetails$title": "<p>The CIS scan result details' title.</p>",
+        "CisStringFilter$value": "<p>The value of the CIS string filter.</p>",
+        "CisTargetResourceAggregation$platform": "<p>The platform for the CIS target resource.</p>",
         "ConflictException$message": null,
         "ConflictException$resourceId": "<p>The ID of the conflicting resource.</p>",
         "ConflictException$resourceType": "<p>The type of the conflicting resource.</p>",
@@ -2567,6 +3399,7 @@
         "Ec2InstanceAggregationResponse$operatingSystem": "<p>The operating system of the Amazon EC2 instance.</p>",
         "EcrRepositoryMetadata$name": "<p>The name of the Amazon ECR repository.</p>",
         "FreeTrialInfoError$message": "<p>The error message returned.</p>",
+        "GetCisScanReportResponse$url": "<p> The URL where the CIS scan report PDF can be downloaded. </p>",
         "InternalServerException$message": null,
         "LambdaFunctionAggregationResponse$functionName": "<p>The AWS Lambda function names included in the aggregation results.</p>",
         "LambdaFunctionAggregationResponse$runtime": "<p>The runtimes included in the aggregation results.</p>",
@@ -2576,6 +3409,7 @@
         "ServiceQuotaExceededException$message": null,
         "ServiceQuotaExceededException$resourceId": "<p>The ID of the resource that exceeds a service quota.</p>",
         "TagList$member": null,
+        "TagValueList$member": null,
         "ThrottlingException$message": null,
         "TitleAggregationResponse$vulnerabilityId": "<p>The vulnerability ID of the finding.</p>",
         "ValidationException$message": null,
@@ -2709,6 +3543,18 @@
         "CodeSnippetResult$suggestedFixes": "<p>Details of a suggested code fix.</p>"
       }
     },
+    "TagComparison": {
+      "base": null,
+      "refs": {
+        "TagFilter$comparison": "<p>The tag filter comparison value.</p>"
+      }
+    },
+    "TagFilter": {
+      "base": "<p>The tag filter.</p>",
+      "refs": {
+        "ResourceTagFilterList$member": null
+      }
+    },
     "TagKey": {
       "base": null,
       "refs": {
@@ -2751,10 +3597,50 @@
       "refs": {
       }
     },
+    "TagValueList": {
+      "base": null,
+      "refs": {
+        "TargetResourceTags$value": null
+      }
+    },
     "Target": {
       "base": null,
       "refs": {
         "Targets$member": null
+      }
+    },
+    "TargetAccount": {
+      "base": null,
+      "refs": {
+        "TargetAccountList$member": null
+      }
+    },
+    "TargetAccountList": {
+      "base": null,
+      "refs": {
+        "CreateCisTargets$accountIds": "<p>The CIS target account ids.</p>",
+        "UpdateCisTargets$accountIds": "<p>The target account ids.</p>"
+      }
+    },
+    "TargetResourceTags": {
+      "base": null,
+      "refs": {
+        "CisTargetResourceAggregation$targetResourceTags": "<p>The tag for the target resource.</p>",
+        "CisTargets$targetResourceTags": "<p>The CIS target resource tags.</p>",
+        "CreateCisTargets$targetResourceTags": "<p>The CIS target resource tags.</p>",
+        "UpdateCisTargets$targetResourceTags": "<p>The target resource tags.</p>"
+      }
+    },
+    "TargetStatusFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$targetStatusFilters": "<p>The criteria's target status filters.</p>"
+      }
+    },
+    "TargetStatusReasonFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultsAggregatedByTargetResourceFilterCriteria$targetStatusReasonFilters": "<p>The criteria's target status reason filters.</p>"
       }
     },
     "Targets": {
@@ -2768,14 +3654,37 @@
       "refs": {
       }
     },
+    "Time": {
+      "base": "<p>The time.</p>",
+      "refs": {
+        "DailySchedule$startTime": "<p>The schedule start time.</p>",
+        "MonthlySchedule$startTime": "<p>The monthly schedule's start time.</p>",
+        "WeeklySchedule$startTime": "<p>The weekly schedule's start time.</p>"
+      }
+    },
+    "TimeOfDay": {
+      "base": null,
+      "refs": {
+        "Time$timeOfDay": "<p>The time of day in 24-hour format (00:00).</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
         "AwsLambdaFunctionDetails$lastModifiedAt": "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a> </p>",
+        "CisDateFilter$earliestScanStartTime": "<p>The CIS date filter's earliest scan start time.</p>",
+        "CisDateFilter$latestScanStartTime": "<p>The CIS date filter's latest scan start time.</p>",
+        "CisScan$scanDate": "<p>The CIS scan's date.</p>",
         "DateFilter$endInclusive": "<p>A timestamp representing the end of the time period filtered on.</p>",
         "DateFilter$startInclusive": "<p>A timestamp representing the start of the time period filtered on.</p>",
         "FreeTrialInfo$end": "<p>The date and time that the Amazon Inspector free trail ends for a given account.</p>",
         "FreeTrialInfo$start": "<p>The date and time that the Amazon Inspector free trail started for a given account.</p>"
+      }
+    },
+    "Timezone": {
+      "base": null,
+      "refs": {
+        "Time$timezone": "<p>The timezone.</p>"
       }
     },
     "TitleAggregation": {
@@ -2788,6 +3697,13 @@
       "base": "<p>A response that contains details on the results of a finding aggregation by title.</p>",
       "refs": {
         "AggregationResponse$titleAggregation": "<p>An object that contains details about an aggregation response based on finding title.</p>"
+      }
+    },
+    "TitleFilterList": {
+      "base": null,
+      "refs": {
+        "CisScanResultDetailsFilterCriteria$titleFilters": "<p>The criteria's title filters.</p>",
+        "CisScanResultsAggregatedByChecksFilterCriteria$titleFilters": "<p>The criteria's title filters.</p>"
       }
     },
     "TitleSortBy": {
@@ -2821,6 +3737,19 @@
         "FindingDetail$ttps": "<p>The MITRE adversary tactics, techniques, or procedures (TTPs) associated with the vulnerability.</p>"
       }
     },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "SendCisSessionHealthRequest$scanJobId": "<p>A unique identifier for the scan job.</p>",
+        "SendCisSessionHealthRequest$sessionToken": "<p>The unique token that identifies the CIS session.</p>",
+        "SendCisSessionTelemetryRequest$scanJobId": "<p>A unique identifier for the scan job.</p>",
+        "SendCisSessionTelemetryRequest$sessionToken": "<p>The unique token that identifies the CIS session.</p>",
+        "StartCisSessionMessage$sessionToken": "<p>The unique token that identifies the CIS session.</p>",
+        "StartCisSessionRequest$scanJobId": "<p>A unique identifier for the scan job.</p>",
+        "StopCisSessionRequest$scanJobId": "<p>A unique identifier for the scan job.</p>",
+        "StopCisSessionRequest$sessionToken": "<p>The unique token that identifies the CIS session.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -2829,6 +3758,22 @@
     "UntagResourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateCisScanConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCisScanConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCisTargets": {
+      "base": "<p>Updates CIS targets.</p>",
+      "refs": {
+        "UpdateCisScanConfigurationRequest$targets": "<p>The targets for the CIS scan configuration.</p>"
       }
     },
     "UpdateConfigurationRequest": {
@@ -2962,6 +3907,12 @@
         "ValidationException$reason": "<p>The reason for the validation failure.</p>"
       }
     },
+    "Vendor": {
+      "base": null,
+      "refs": {
+        "ComputePlatform$vendor": "<p>The compute platform vendor.</p>"
+      }
+    },
     "VendorCreatedAt": {
       "base": null,
       "refs": {
@@ -3076,6 +4027,12 @@
       "base": null,
       "refs": {
         "VulnerablePackage$remediation": "<p>The code to run in your environment to update packages with a fix available.</p>"
+      }
+    },
+    "WeeklySchedule": {
+      "base": "<p>A weekly schedule.</p>",
+      "refs": {
+        "Schedule$weekly": "<p>The schedule's weekly.</p>"
       }
     }
   }
