@@ -846,6 +846,96 @@ func (c *Inspector2) CancelSbomExportWithContext(ctx aws.Context, input *CancelS
 	return out, req.Send()
 }
 
+const opCreateCisScanConfiguration = "CreateCisScanConfiguration"
+
+// CreateCisScanConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCisScanConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCisScanConfiguration for more information on using the CreateCisScanConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCisScanConfigurationRequest method.
+//	req, resp := client.CreateCisScanConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/CreateCisScanConfiguration
+func (c *Inspector2) CreateCisScanConfigurationRequest(input *CreateCisScanConfigurationInput) (req *request.Request, output *CreateCisScanConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateCisScanConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-configuration/create",
+	}
+
+	if input == nil {
+		input = &CreateCisScanConfigurationInput{}
+	}
+
+	output = &CreateCisScanConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCisScanConfiguration API operation for Inspector2.
+//
+// Creates a CIS scan configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation CreateCisScanConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/CreateCisScanConfiguration
+func (c *Inspector2) CreateCisScanConfiguration(input *CreateCisScanConfigurationInput) (*CreateCisScanConfigurationOutput, error) {
+	req, out := c.CreateCisScanConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateCisScanConfigurationWithContext is the same as CreateCisScanConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCisScanConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) CreateCisScanConfigurationWithContext(ctx aws.Context, input *CreateCisScanConfigurationInput, opts ...request.Option) (*CreateCisScanConfigurationOutput, error) {
+	req, out := c.CreateCisScanConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFilter = "CreateFilter"
 
 // CreateFilterRequest generates a "aws/request.Request" representing the
@@ -1130,6 +1220,100 @@ func (c *Inspector2) CreateSbomExport(input *CreateSbomExportInput) (*CreateSbom
 // for more information on using Contexts.
 func (c *Inspector2) CreateSbomExportWithContext(ctx aws.Context, input *CreateSbomExportInput, opts ...request.Option) (*CreateSbomExportOutput, error) {
 	req, out := c.CreateSbomExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCisScanConfiguration = "DeleteCisScanConfiguration"
+
+// DeleteCisScanConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCisScanConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCisScanConfiguration for more information on using the DeleteCisScanConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCisScanConfigurationRequest method.
+//	req, resp := client.DeleteCisScanConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/DeleteCisScanConfiguration
+func (c *Inspector2) DeleteCisScanConfigurationRequest(input *DeleteCisScanConfigurationInput) (req *request.Request, output *DeleteCisScanConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCisScanConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-configuration/delete",
+	}
+
+	if input == nil {
+		input = &DeleteCisScanConfigurationInput{}
+	}
+
+	output = &DeleteCisScanConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteCisScanConfiguration API operation for Inspector2.
+//
+// Deletes a CIS scan configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation DeleteCisScanConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access an invalid resource. Make sure the resource
+//     is specified correctly.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/DeleteCisScanConfiguration
+func (c *Inspector2) DeleteCisScanConfiguration(input *DeleteCisScanConfigurationInput) (*DeleteCisScanConfigurationOutput, error) {
+	req, out := c.DeleteCisScanConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCisScanConfigurationWithContext is the same as DeleteCisScanConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCisScanConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) DeleteCisScanConfigurationWithContext(ctx aws.Context, input *DeleteCisScanConfigurationInput, opts ...request.Option) (*DeleteCisScanConfigurationOutput, error) {
+	req, out := c.DeleteCisScanConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1792,6 +1976,243 @@ func (c *Inspector2) EnableDelegatedAdminAccountWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetCisScanReport = "GetCisScanReport"
+
+// GetCisScanReportRequest generates a "aws/request.Request" representing the
+// client's request for the GetCisScanReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCisScanReport for more information on using the GetCisScanReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCisScanReportRequest method.
+//	req, resp := client.GetCisScanReportRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetCisScanReport
+func (c *Inspector2) GetCisScanReportRequest(input *GetCisScanReportInput) (req *request.Request, output *GetCisScanReportOutput) {
+	op := &request.Operation{
+		Name:       opGetCisScanReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan/report/get",
+	}
+
+	if input == nil {
+		input = &GetCisScanReportInput{}
+	}
+
+	output = &GetCisScanReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCisScanReport API operation for Inspector2.
+//
+// Retrieves a CIS scan report.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation GetCisScanReport for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetCisScanReport
+func (c *Inspector2) GetCisScanReport(input *GetCisScanReportInput) (*GetCisScanReportOutput, error) {
+	req, out := c.GetCisScanReportRequest(input)
+	return out, req.Send()
+}
+
+// GetCisScanReportWithContext is the same as GetCisScanReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCisScanReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) GetCisScanReportWithContext(ctx aws.Context, input *GetCisScanReportInput, opts ...request.Option) (*GetCisScanReportOutput, error) {
+	req, out := c.GetCisScanReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCisScanResultDetails = "GetCisScanResultDetails"
+
+// GetCisScanResultDetailsRequest generates a "aws/request.Request" representing the
+// client's request for the GetCisScanResultDetails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCisScanResultDetails for more information on using the GetCisScanResultDetails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCisScanResultDetailsRequest method.
+//	req, resp := client.GetCisScanResultDetailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetCisScanResultDetails
+func (c *Inspector2) GetCisScanResultDetailsRequest(input *GetCisScanResultDetailsInput) (req *request.Request, output *GetCisScanResultDetailsOutput) {
+	op := &request.Operation{
+		Name:       opGetCisScanResultDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-result/details/get",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetCisScanResultDetailsInput{}
+	}
+
+	output = &GetCisScanResultDetailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCisScanResultDetails API operation for Inspector2.
+//
+// Retrieves CIS scan result details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation GetCisScanResultDetails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/GetCisScanResultDetails
+func (c *Inspector2) GetCisScanResultDetails(input *GetCisScanResultDetailsInput) (*GetCisScanResultDetailsOutput, error) {
+	req, out := c.GetCisScanResultDetailsRequest(input)
+	return out, req.Send()
+}
+
+// GetCisScanResultDetailsWithContext is the same as GetCisScanResultDetails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCisScanResultDetails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) GetCisScanResultDetailsWithContext(ctx aws.Context, input *GetCisScanResultDetailsInput, opts ...request.Option) (*GetCisScanResultDetailsOutput, error) {
+	req, out := c.GetCisScanResultDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetCisScanResultDetailsPages iterates over the pages of a GetCisScanResultDetails operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetCisScanResultDetails method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetCisScanResultDetails operation.
+//	pageNum := 0
+//	err := client.GetCisScanResultDetailsPages(params,
+//	    func(page *inspector2.GetCisScanResultDetailsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) GetCisScanResultDetailsPages(input *GetCisScanResultDetailsInput, fn func(*GetCisScanResultDetailsOutput, bool) bool) error {
+	return c.GetCisScanResultDetailsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetCisScanResultDetailsPagesWithContext same as GetCisScanResultDetailsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) GetCisScanResultDetailsPagesWithContext(ctx aws.Context, input *GetCisScanResultDetailsInput, fn func(*GetCisScanResultDetailsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetCisScanResultDetailsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetCisScanResultDetailsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetCisScanResultDetailsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetConfiguration = "GetConfiguration"
@@ -2583,6 +3004,594 @@ func (c *Inspector2) ListAccountPermissionsPagesWithContext(ctx aws.Context, inp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAccountPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCisScanConfigurations = "ListCisScanConfigurations"
+
+// ListCisScanConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCisScanConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCisScanConfigurations for more information on using the ListCisScanConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCisScanConfigurationsRequest method.
+//	req, resp := client.ListCisScanConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanConfigurations
+func (c *Inspector2) ListCisScanConfigurationsRequest(input *ListCisScanConfigurationsInput) (req *request.Request, output *ListCisScanConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListCisScanConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-configuration/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCisScanConfigurationsInput{}
+	}
+
+	output = &ListCisScanConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCisScanConfigurations API operation for Inspector2.
+//
+// Lists CIS scan configurations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation ListCisScanConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanConfigurations
+func (c *Inspector2) ListCisScanConfigurations(input *ListCisScanConfigurationsInput) (*ListCisScanConfigurationsOutput, error) {
+	req, out := c.ListCisScanConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListCisScanConfigurationsWithContext is the same as ListCisScanConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCisScanConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanConfigurationsWithContext(ctx aws.Context, input *ListCisScanConfigurationsInput, opts ...request.Option) (*ListCisScanConfigurationsOutput, error) {
+	req, out := c.ListCisScanConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCisScanConfigurationsPages iterates over the pages of a ListCisScanConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCisScanConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCisScanConfigurations operation.
+//	pageNum := 0
+//	err := client.ListCisScanConfigurationsPages(params,
+//	    func(page *inspector2.ListCisScanConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) ListCisScanConfigurationsPages(input *ListCisScanConfigurationsInput, fn func(*ListCisScanConfigurationsOutput, bool) bool) error {
+	return c.ListCisScanConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCisScanConfigurationsPagesWithContext same as ListCisScanConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanConfigurationsPagesWithContext(ctx aws.Context, input *ListCisScanConfigurationsInput, fn func(*ListCisScanConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCisScanConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCisScanConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCisScanConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCisScanResultsAggregatedByChecks = "ListCisScanResultsAggregatedByChecks"
+
+// ListCisScanResultsAggregatedByChecksRequest generates a "aws/request.Request" representing the
+// client's request for the ListCisScanResultsAggregatedByChecks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCisScanResultsAggregatedByChecks for more information on using the ListCisScanResultsAggregatedByChecks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCisScanResultsAggregatedByChecksRequest method.
+//	req, resp := client.ListCisScanResultsAggregatedByChecksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanResultsAggregatedByChecks
+func (c *Inspector2) ListCisScanResultsAggregatedByChecksRequest(input *ListCisScanResultsAggregatedByChecksInput) (req *request.Request, output *ListCisScanResultsAggregatedByChecksOutput) {
+	op := &request.Operation{
+		Name:       opListCisScanResultsAggregatedByChecks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-result/check/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCisScanResultsAggregatedByChecksInput{}
+	}
+
+	output = &ListCisScanResultsAggregatedByChecksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCisScanResultsAggregatedByChecks API operation for Inspector2.
+//
+// Lists scan results aggregated by checks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation ListCisScanResultsAggregatedByChecks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanResultsAggregatedByChecks
+func (c *Inspector2) ListCisScanResultsAggregatedByChecks(input *ListCisScanResultsAggregatedByChecksInput) (*ListCisScanResultsAggregatedByChecksOutput, error) {
+	req, out := c.ListCisScanResultsAggregatedByChecksRequest(input)
+	return out, req.Send()
+}
+
+// ListCisScanResultsAggregatedByChecksWithContext is the same as ListCisScanResultsAggregatedByChecks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCisScanResultsAggregatedByChecks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanResultsAggregatedByChecksWithContext(ctx aws.Context, input *ListCisScanResultsAggregatedByChecksInput, opts ...request.Option) (*ListCisScanResultsAggregatedByChecksOutput, error) {
+	req, out := c.ListCisScanResultsAggregatedByChecksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCisScanResultsAggregatedByChecksPages iterates over the pages of a ListCisScanResultsAggregatedByChecks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCisScanResultsAggregatedByChecks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCisScanResultsAggregatedByChecks operation.
+//	pageNum := 0
+//	err := client.ListCisScanResultsAggregatedByChecksPages(params,
+//	    func(page *inspector2.ListCisScanResultsAggregatedByChecksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) ListCisScanResultsAggregatedByChecksPages(input *ListCisScanResultsAggregatedByChecksInput, fn func(*ListCisScanResultsAggregatedByChecksOutput, bool) bool) error {
+	return c.ListCisScanResultsAggregatedByChecksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCisScanResultsAggregatedByChecksPagesWithContext same as ListCisScanResultsAggregatedByChecksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanResultsAggregatedByChecksPagesWithContext(ctx aws.Context, input *ListCisScanResultsAggregatedByChecksInput, fn func(*ListCisScanResultsAggregatedByChecksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCisScanResultsAggregatedByChecksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCisScanResultsAggregatedByChecksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCisScanResultsAggregatedByChecksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCisScanResultsAggregatedByTargetResource = "ListCisScanResultsAggregatedByTargetResource"
+
+// ListCisScanResultsAggregatedByTargetResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListCisScanResultsAggregatedByTargetResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCisScanResultsAggregatedByTargetResource for more information on using the ListCisScanResultsAggregatedByTargetResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCisScanResultsAggregatedByTargetResourceRequest method.
+//	req, resp := client.ListCisScanResultsAggregatedByTargetResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanResultsAggregatedByTargetResource
+func (c *Inspector2) ListCisScanResultsAggregatedByTargetResourceRequest(input *ListCisScanResultsAggregatedByTargetResourceInput) (req *request.Request, output *ListCisScanResultsAggregatedByTargetResourceOutput) {
+	op := &request.Operation{
+		Name:       opListCisScanResultsAggregatedByTargetResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-result/resource/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCisScanResultsAggregatedByTargetResourceInput{}
+	}
+
+	output = &ListCisScanResultsAggregatedByTargetResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCisScanResultsAggregatedByTargetResource API operation for Inspector2.
+//
+// Lists scan results aggregated by a target resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation ListCisScanResultsAggregatedByTargetResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScanResultsAggregatedByTargetResource
+func (c *Inspector2) ListCisScanResultsAggregatedByTargetResource(input *ListCisScanResultsAggregatedByTargetResourceInput) (*ListCisScanResultsAggregatedByTargetResourceOutput, error) {
+	req, out := c.ListCisScanResultsAggregatedByTargetResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListCisScanResultsAggregatedByTargetResourceWithContext is the same as ListCisScanResultsAggregatedByTargetResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCisScanResultsAggregatedByTargetResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanResultsAggregatedByTargetResourceWithContext(ctx aws.Context, input *ListCisScanResultsAggregatedByTargetResourceInput, opts ...request.Option) (*ListCisScanResultsAggregatedByTargetResourceOutput, error) {
+	req, out := c.ListCisScanResultsAggregatedByTargetResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCisScanResultsAggregatedByTargetResourcePages iterates over the pages of a ListCisScanResultsAggregatedByTargetResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCisScanResultsAggregatedByTargetResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCisScanResultsAggregatedByTargetResource operation.
+//	pageNum := 0
+//	err := client.ListCisScanResultsAggregatedByTargetResourcePages(params,
+//	    func(page *inspector2.ListCisScanResultsAggregatedByTargetResourceOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) ListCisScanResultsAggregatedByTargetResourcePages(input *ListCisScanResultsAggregatedByTargetResourceInput, fn func(*ListCisScanResultsAggregatedByTargetResourceOutput, bool) bool) error {
+	return c.ListCisScanResultsAggregatedByTargetResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCisScanResultsAggregatedByTargetResourcePagesWithContext same as ListCisScanResultsAggregatedByTargetResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScanResultsAggregatedByTargetResourcePagesWithContext(ctx aws.Context, input *ListCisScanResultsAggregatedByTargetResourceInput, fn func(*ListCisScanResultsAggregatedByTargetResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCisScanResultsAggregatedByTargetResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCisScanResultsAggregatedByTargetResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCisScanResultsAggregatedByTargetResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCisScans = "ListCisScans"
+
+// ListCisScansRequest generates a "aws/request.Request" representing the
+// client's request for the ListCisScans operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCisScans for more information on using the ListCisScans
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCisScansRequest method.
+//	req, resp := client.ListCisScansRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScans
+func (c *Inspector2) ListCisScansRequest(input *ListCisScansInput) (req *request.Request, output *ListCisScansOutput) {
+	op := &request.Operation{
+		Name:       opListCisScans,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCisScansInput{}
+	}
+
+	output = &ListCisScansOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCisScans API operation for Inspector2.
+//
+// Returns a CIS scan list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation ListCisScans for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/ListCisScans
+func (c *Inspector2) ListCisScans(input *ListCisScansInput) (*ListCisScansOutput, error) {
+	req, out := c.ListCisScansRequest(input)
+	return out, req.Send()
+}
+
+// ListCisScansWithContext is the same as ListCisScans with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCisScans for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScansWithContext(ctx aws.Context, input *ListCisScansInput, opts ...request.Option) (*ListCisScansOutput, error) {
+	req, out := c.ListCisScansRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCisScansPages iterates over the pages of a ListCisScans operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCisScans method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCisScans operation.
+//	pageNum := 0
+//	err := client.ListCisScansPages(params,
+//	    func(page *inspector2.ListCisScansOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Inspector2) ListCisScansPages(input *ListCisScansInput, fn func(*ListCisScansOutput, bool) bool) error {
+	return c.ListCisScansPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCisScansPagesWithContext same as ListCisScansPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) ListCisScansPagesWithContext(ctx aws.Context, input *ListCisScansInput, fn func(*ListCisScansOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCisScansInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCisScansRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCisScansOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4090,6 +5099,394 @@ func (c *Inspector2) SearchVulnerabilitiesPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opSendCisSessionHealth = "SendCisSessionHealth"
+
+// SendCisSessionHealthRequest generates a "aws/request.Request" representing the
+// client's request for the SendCisSessionHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendCisSessionHealth for more information on using the SendCisSessionHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendCisSessionHealthRequest method.
+//	req, resp := client.SendCisSessionHealthRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SendCisSessionHealth
+func (c *Inspector2) SendCisSessionHealthRequest(input *SendCisSessionHealthInput) (req *request.Request, output *SendCisSessionHealthOutput) {
+	op := &request.Operation{
+		Name:       opSendCisSessionHealth,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cissession/health/send",
+	}
+
+	if input == nil {
+		input = &SendCisSessionHealthInput{}
+	}
+
+	output = &SendCisSessionHealthOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendCisSessionHealth API operation for Inspector2.
+//
+// Sends a CIS session health. This API is used by the Amazon Inspector SSM
+// plugin to communicate with the Amazon Inspector service. The Amazon Inspector
+// SSM plugin calls this API to start a CIS scan session for the scan ID supplied
+// by the service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation SendCisSessionHealth for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     A conflict occurred.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SendCisSessionHealth
+func (c *Inspector2) SendCisSessionHealth(input *SendCisSessionHealthInput) (*SendCisSessionHealthOutput, error) {
+	req, out := c.SendCisSessionHealthRequest(input)
+	return out, req.Send()
+}
+
+// SendCisSessionHealthWithContext is the same as SendCisSessionHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendCisSessionHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) SendCisSessionHealthWithContext(ctx aws.Context, input *SendCisSessionHealthInput, opts ...request.Option) (*SendCisSessionHealthOutput, error) {
+	req, out := c.SendCisSessionHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendCisSessionTelemetry = "SendCisSessionTelemetry"
+
+// SendCisSessionTelemetryRequest generates a "aws/request.Request" representing the
+// client's request for the SendCisSessionTelemetry operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendCisSessionTelemetry for more information on using the SendCisSessionTelemetry
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendCisSessionTelemetryRequest method.
+//	req, resp := client.SendCisSessionTelemetryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SendCisSessionTelemetry
+func (c *Inspector2) SendCisSessionTelemetryRequest(input *SendCisSessionTelemetryInput) (req *request.Request, output *SendCisSessionTelemetryOutput) {
+	op := &request.Operation{
+		Name:       opSendCisSessionTelemetry,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cissession/telemetry/send",
+	}
+
+	if input == nil {
+		input = &SendCisSessionTelemetryInput{}
+	}
+
+	output = &SendCisSessionTelemetryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendCisSessionTelemetry API operation for Inspector2.
+//
+// Sends a CIS session telemetry. This API is used by the Amazon Inspector SSM
+// plugin to communicate with the Amazon Inspector service. The Amazon Inspector
+// SSM plugin calls this API to start a CIS scan session for the scan ID supplied
+// by the service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation SendCisSessionTelemetry for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     A conflict occurred.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/SendCisSessionTelemetry
+func (c *Inspector2) SendCisSessionTelemetry(input *SendCisSessionTelemetryInput) (*SendCisSessionTelemetryOutput, error) {
+	req, out := c.SendCisSessionTelemetryRequest(input)
+	return out, req.Send()
+}
+
+// SendCisSessionTelemetryWithContext is the same as SendCisSessionTelemetry with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendCisSessionTelemetry for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) SendCisSessionTelemetryWithContext(ctx aws.Context, input *SendCisSessionTelemetryInput, opts ...request.Option) (*SendCisSessionTelemetryOutput, error) {
+	req, out := c.SendCisSessionTelemetryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartCisSession = "StartCisSession"
+
+// StartCisSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StartCisSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCisSession for more information on using the StartCisSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCisSessionRequest method.
+//	req, resp := client.StartCisSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/StartCisSession
+func (c *Inspector2) StartCisSessionRequest(input *StartCisSessionInput) (req *request.Request, output *StartCisSessionOutput) {
+	op := &request.Operation{
+		Name:       opStartCisSession,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cissession/start",
+	}
+
+	if input == nil {
+		input = &StartCisSessionInput{}
+	}
+
+	output = &StartCisSessionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartCisSession API operation for Inspector2.
+//
+// Starts a CIS session. This API is used by the Amazon Inspector SSM plugin
+// to communicate with the Amazon Inspector service. The Amazon Inspector SSM
+// plugin calls this API to start a CIS scan session for the scan ID supplied
+// by the service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation StartCisSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     A conflict occurred.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/StartCisSession
+func (c *Inspector2) StartCisSession(input *StartCisSessionInput) (*StartCisSessionOutput, error) {
+	req, out := c.StartCisSessionRequest(input)
+	return out, req.Send()
+}
+
+// StartCisSessionWithContext is the same as StartCisSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCisSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) StartCisSessionWithContext(ctx aws.Context, input *StartCisSessionInput, opts ...request.Option) (*StartCisSessionOutput, error) {
+	req, out := c.StartCisSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopCisSession = "StopCisSession"
+
+// StopCisSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StopCisSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopCisSession for more information on using the StopCisSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopCisSessionRequest method.
+//	req, resp := client.StopCisSessionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/StopCisSession
+func (c *Inspector2) StopCisSessionRequest(input *StopCisSessionInput) (req *request.Request, output *StopCisSessionOutput) {
+	op := &request.Operation{
+		Name:       opStopCisSession,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cissession/stop",
+	}
+
+	if input == nil {
+		input = &StopCisSessionInput{}
+	}
+
+	output = &StopCisSessionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopCisSession API operation for Inspector2.
+//
+// Stops a CIS session. This API is used by the Amazon Inspector SSM plugin
+// to communicate with the Amazon Inspector service. The Amazon Inspector SSM
+// plugin calls this API to start a CIS scan session for the scan ID supplied
+// by the service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation StopCisSession for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ConflictException
+//     A conflict occurred.
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/StopCisSession
+func (c *Inspector2) StopCisSession(input *StopCisSessionInput) (*StopCisSessionOutput, error) {
+	req, out := c.StopCisSessionRequest(input)
+	return out, req.Send()
+}
+
+// StopCisSessionWithContext is the same as StopCisSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopCisSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) StopCisSessionWithContext(ctx aws.Context, input *StopCisSessionInput, opts ...request.Option) (*StopCisSessionOutput, error) {
+	req, out := c.StopCisSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4272,6 +5669,100 @@ func (c *Inspector2) UntagResource(input *UntagResourceInput) (*UntagResourceOut
 // for more information on using Contexts.
 func (c *Inspector2) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCisScanConfiguration = "UpdateCisScanConfiguration"
+
+// UpdateCisScanConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCisScanConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCisScanConfiguration for more information on using the UpdateCisScanConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCisScanConfigurationRequest method.
+//	req, resp := client.UpdateCisScanConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateCisScanConfiguration
+func (c *Inspector2) UpdateCisScanConfigurationRequest(input *UpdateCisScanConfigurationInput) (req *request.Request, output *UpdateCisScanConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCisScanConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cis/scan-configuration/update",
+	}
+
+	if input == nil {
+		input = &UpdateCisScanConfigurationInput{}
+	}
+
+	output = &UpdateCisScanConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCisScanConfiguration API operation for Inspector2.
+//
+// Updates a CIS scan configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Inspector2's
+// API operation UpdateCisScanConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request has failed validation due to missing required fields or having
+//     invalid inputs.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The operation tried to access an invalid resource. Make sure the resource
+//     is specified correctly.
+//
+//   - ThrottlingException
+//     The limit on the number of requests per second was exceeded.
+//
+//   - InternalServerException
+//     The request has failed due to an internal failure of the Amazon Inspector
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/inspector2-2020-06-08/UpdateCisScanConfiguration
+func (c *Inspector2) UpdateCisScanConfiguration(input *UpdateCisScanConfigurationInput) (*UpdateCisScanConfigurationOutput, error) {
+	req, out := c.UpdateCisScanConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCisScanConfigurationWithContext is the same as UpdateCisScanConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCisScanConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Inspector2) UpdateCisScanConfigurationWithContext(ctx aws.Context, input *UpdateCisScanConfigurationInput, opts ...request.Option) (*UpdateCisScanConfigurationOutput, error) {
+	req, out := c.UpdateCisScanConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7121,6 +8612,1689 @@ func (s *CancelSbomExportOutput) SetReportId(v string) *CancelSbomExportOutput {
 	return s
 }
 
+// A CIS check.
+type CisCheckAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID for the CIS check.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The description for the CIS check.
+	CheckDescription *string `locationName:"checkDescription" type:"string"`
+
+	// The check ID for the CIS check.
+	CheckId *string `locationName:"checkId" type:"string"`
+
+	// The CIS check level.
+	Level *string `locationName:"level" type:"string" enum:"CisSecurityLevel"`
+
+	// The CIS check platform.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The scan ARN for the CIS check scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The CIS check status counts.
+	StatusCounts *StatusCounts `locationName:"statusCounts" type:"structure"`
+
+	// The CIS check title.
+	Title *string `locationName:"title" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisCheckAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisCheckAggregation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CisCheckAggregation) SetAccountId(v string) *CisCheckAggregation {
+	s.AccountId = &v
+	return s
+}
+
+// SetCheckDescription sets the CheckDescription field's value.
+func (s *CisCheckAggregation) SetCheckDescription(v string) *CisCheckAggregation {
+	s.CheckDescription = &v
+	return s
+}
+
+// SetCheckId sets the CheckId field's value.
+func (s *CisCheckAggregation) SetCheckId(v string) *CisCheckAggregation {
+	s.CheckId = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *CisCheckAggregation) SetLevel(v string) *CisCheckAggregation {
+	s.Level = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *CisCheckAggregation) SetPlatform(v string) *CisCheckAggregation {
+	s.Platform = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *CisCheckAggregation) SetScanArn(v string) *CisCheckAggregation {
+	s.ScanArn = &v
+	return s
+}
+
+// SetStatusCounts sets the StatusCounts field's value.
+func (s *CisCheckAggregation) SetStatusCounts(v *StatusCounts) *CisCheckAggregation {
+	s.StatusCounts = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *CisCheckAggregation) SetTitle(v string) *CisCheckAggregation {
+	s.Title = &v
+	return s
+}
+
+// The CIS date filter.
+type CisDateFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS date filter's earliest scan start time.
+	EarliestScanStartTime *time.Time `locationName:"earliestScanStartTime" type:"timestamp"`
+
+	// The CIS date filter's latest scan start time.
+	LatestScanStartTime *time.Time `locationName:"latestScanStartTime" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisDateFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisDateFilter) GoString() string {
+	return s.String()
+}
+
+// SetEarliestScanStartTime sets the EarliestScanStartTime field's value.
+func (s *CisDateFilter) SetEarliestScanStartTime(v time.Time) *CisDateFilter {
+	s.EarliestScanStartTime = &v
+	return s
+}
+
+// SetLatestScanStartTime sets the LatestScanStartTime field's value.
+func (s *CisDateFilter) SetLatestScanStartTime(v time.Time) *CisDateFilter {
+	s.LatestScanStartTime = &v
+	return s
+}
+
+// The CIS finding status filter.
+type CisFindingStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison value of the CIS finding status filter.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisFindingStatusComparison"`
+
+	// The value of the CIS finding status filter.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisFindingStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisFindingStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisFindingStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisFindingStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisFindingStatusFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisFindingStatusFilter) SetComparison(v string) *CisFindingStatusFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisFindingStatusFilter) SetValue(v string) *CisFindingStatusFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS number filter.
+type CisNumberFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS number filter's lower inclusive.
+	LowerInclusive *int64 `locationName:"lowerInclusive" type:"integer"`
+
+	// The CIS number filter's upper inclusive.
+	UpperInclusive *int64 `locationName:"upperInclusive" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisNumberFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisNumberFilter) GoString() string {
+	return s.String()
+}
+
+// SetLowerInclusive sets the LowerInclusive field's value.
+func (s *CisNumberFilter) SetLowerInclusive(v int64) *CisNumberFilter {
+	s.LowerInclusive = &v
+	return s
+}
+
+// SetUpperInclusive sets the UpperInclusive field's value.
+func (s *CisNumberFilter) SetUpperInclusive(v int64) *CisNumberFilter {
+	s.UpperInclusive = &v
+	return s
+}
+
+// The CIS result status filter.
+type CisResultStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison value of the CIS result status filter.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisResultStatusComparison"`
+
+	// The value of the CIS result status filter.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisResultStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisResultStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisResultStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisResultStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisResultStatusFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisResultStatusFilter) SetComparison(v string) *CisResultStatusFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisResultStatusFilter) SetValue(v string) *CisResultStatusFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS scan.
+type CisScan struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan's failed checks.
+	FailedChecks *int64 `locationName:"failedChecks" type:"integer"`
+
+	// The CIS scan's ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The CIS scan's configuration ARN.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+
+	// The CIS scan's date.
+	ScanDate *time.Time `locationName:"scanDate" type:"timestamp"`
+
+	// The the name of the scan configuration that's associated with this scan.
+	ScanName *string `locationName:"scanName" min:"1" type:"string"`
+
+	// The account or organization that schedules the CIS scan.
+	ScheduledBy *string `locationName:"scheduledBy" type:"string"`
+
+	// The security level for the CIS scan. Security level refers to the Benchmark
+	// levels that CIS assigns to a profile.
+	SecurityLevel *string `locationName:"securityLevel" type:"string" enum:"CisSecurityLevel"`
+
+	// The CIS scan's status.
+	Status *string `locationName:"status" type:"string" enum:"CisScanStatus"`
+
+	// The CIS scan's targets.
+	Targets *CisTargets `locationName:"targets" type:"structure"`
+
+	// The CIS scan's total checks.
+	TotalChecks *int64 `locationName:"totalChecks" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScan) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScan) GoString() string {
+	return s.String()
+}
+
+// SetFailedChecks sets the FailedChecks field's value.
+func (s *CisScan) SetFailedChecks(v int64) *CisScan {
+	s.FailedChecks = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *CisScan) SetScanArn(v string) *CisScan {
+	s.ScanArn = &v
+	return s
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *CisScan) SetScanConfigurationArn(v string) *CisScan {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+// SetScanDate sets the ScanDate field's value.
+func (s *CisScan) SetScanDate(v time.Time) *CisScan {
+	s.ScanDate = &v
+	return s
+}
+
+// SetScanName sets the ScanName field's value.
+func (s *CisScan) SetScanName(v string) *CisScan {
+	s.ScanName = &v
+	return s
+}
+
+// SetScheduledBy sets the ScheduledBy field's value.
+func (s *CisScan) SetScheduledBy(v string) *CisScan {
+	s.ScheduledBy = &v
+	return s
+}
+
+// SetSecurityLevel sets the SecurityLevel field's value.
+func (s *CisScan) SetSecurityLevel(v string) *CisScan {
+	s.SecurityLevel = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CisScan) SetStatus(v string) *CisScan {
+	s.Status = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *CisScan) SetTargets(v *CisTargets) *CisScan {
+	s.Targets = v
+	return s
+}
+
+// SetTotalChecks sets the TotalChecks field's value.
+func (s *CisScan) SetTotalChecks(v int64) *CisScan {
+	s.TotalChecks = &v
+	return s
+}
+
+// The CIS scan configuration.
+type CisScanConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan configuration's owner ID.
+	OwnerId *string `locationName:"ownerId" type:"string"`
+
+	// The CIS scan configuration's scan configuration ARN.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+
+	// The name of the CIS scan configuration.
+	ScanName *string `locationName:"scanName" min:"1" type:"string"`
+
+	// The CIS scan configuration's schedule.
+	Schedule *Schedule `locationName:"schedule" type:"structure"`
+
+	// The CIS scan configuration's security level.
+	SecurityLevel *string `locationName:"securityLevel" type:"string" enum:"CisSecurityLevel"`
+
+	// The CIS scan configuration's tags.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The CIS scan configuration's targets.
+	Targets *CisTargets `locationName:"targets" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *CisScanConfiguration) SetOwnerId(v string) *CisScanConfiguration {
+	s.OwnerId = &v
+	return s
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *CisScanConfiguration) SetScanConfigurationArn(v string) *CisScanConfiguration {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+// SetScanName sets the ScanName field's value.
+func (s *CisScanConfiguration) SetScanName(v string) *CisScanConfiguration {
+	s.ScanName = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *CisScanConfiguration) SetSchedule(v *Schedule) *CisScanConfiguration {
+	s.Schedule = v
+	return s
+}
+
+// SetSecurityLevel sets the SecurityLevel field's value.
+func (s *CisScanConfiguration) SetSecurityLevel(v string) *CisScanConfiguration {
+	s.SecurityLevel = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CisScanConfiguration) SetTags(v map[string]*string) *CisScanConfiguration {
+	s.Tags = v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *CisScanConfiguration) SetTargets(v *CisTargets) *CisScanConfiguration {
+	s.Targets = v
+	return s
+}
+
+// The CIS scan result details.
+type CisScanResultDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan result details' account ID.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The account ID that's associated with the CIS scan result details.
+	CheckDescription *string `locationName:"checkDescription" type:"string"`
+
+	// The CIS scan result details' check ID.
+	CheckId *string `locationName:"checkId" type:"string"`
+
+	// The CIS scan result details' finding ARN.
+	FindingArn *string `locationName:"findingArn" type:"string"`
+
+	// The CIS scan result details' level.
+	Level *string `locationName:"level" type:"string" enum:"CisSecurityLevel"`
+
+	// The CIS scan result details' platform.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The CIS scan result details' remediation.
+	Remediation *string `locationName:"remediation" type:"string"`
+
+	// The CIS scan result details' scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The CIS scan result details' status.
+	Status *string `locationName:"status" type:"string" enum:"CisFindingStatus"`
+
+	// The CIS scan result details' status reason.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+
+	// The CIS scan result details' target resource ID.
+	TargetResourceId *string `locationName:"targetResourceId" min:"10" type:"string"`
+
+	// The CIS scan result details' title.
+	Title *string `locationName:"title" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CisScanResultDetails) SetAccountId(v string) *CisScanResultDetails {
+	s.AccountId = &v
+	return s
+}
+
+// SetCheckDescription sets the CheckDescription field's value.
+func (s *CisScanResultDetails) SetCheckDescription(v string) *CisScanResultDetails {
+	s.CheckDescription = &v
+	return s
+}
+
+// SetCheckId sets the CheckId field's value.
+func (s *CisScanResultDetails) SetCheckId(v string) *CisScanResultDetails {
+	s.CheckId = &v
+	return s
+}
+
+// SetFindingArn sets the FindingArn field's value.
+func (s *CisScanResultDetails) SetFindingArn(v string) *CisScanResultDetails {
+	s.FindingArn = &v
+	return s
+}
+
+// SetLevel sets the Level field's value.
+func (s *CisScanResultDetails) SetLevel(v string) *CisScanResultDetails {
+	s.Level = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *CisScanResultDetails) SetPlatform(v string) *CisScanResultDetails {
+	s.Platform = &v
+	return s
+}
+
+// SetRemediation sets the Remediation field's value.
+func (s *CisScanResultDetails) SetRemediation(v string) *CisScanResultDetails {
+	s.Remediation = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *CisScanResultDetails) SetScanArn(v string) *CisScanResultDetails {
+	s.ScanArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CisScanResultDetails) SetStatus(v string) *CisScanResultDetails {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *CisScanResultDetails) SetStatusReason(v string) *CisScanResultDetails {
+	s.StatusReason = &v
+	return s
+}
+
+// SetTargetResourceId sets the TargetResourceId field's value.
+func (s *CisScanResultDetails) SetTargetResourceId(v string) *CisScanResultDetails {
+	s.TargetResourceId = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *CisScanResultDetails) SetTitle(v string) *CisScanResultDetails {
+	s.Title = &v
+	return s
+}
+
+// The CIS scan result details filter criteria.
+type CisScanResultDetailsFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria's check ID filters.
+	CheckIdFilters []*CisStringFilter `locationName:"checkIdFilters" min:"1" type:"list"`
+
+	// The criteria's finding ARN filters.
+	FindingArnFilters []*CisStringFilter `locationName:"findingArnFilters" min:"1" type:"list"`
+
+	// The criteria's finding status filters.
+	FindingStatusFilters []*CisFindingStatusFilter `locationName:"findingStatusFilters" min:"1" type:"list"`
+
+	// The criteria's security level filters. . Security level refers to the Benchmark
+	// levels that CIS assigns to a profile.
+	SecurityLevelFilters []*CisSecurityLevelFilter `locationName:"securityLevelFilters" min:"1" type:"list"`
+
+	// The criteria's title filters.
+	TitleFilters []*CisStringFilter `locationName:"titleFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultDetailsFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultDetailsFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisScanResultDetailsFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisScanResultDetailsFilterCriteria"}
+	if s.CheckIdFilters != nil && len(s.CheckIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckIdFilters", 1))
+	}
+	if s.FindingArnFilters != nil && len(s.FindingArnFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingArnFilters", 1))
+	}
+	if s.FindingStatusFilters != nil && len(s.FindingStatusFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingStatusFilters", 1))
+	}
+	if s.SecurityLevelFilters != nil && len(s.SecurityLevelFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityLevelFilters", 1))
+	}
+	if s.TitleFilters != nil && len(s.TitleFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TitleFilters", 1))
+	}
+	if s.CheckIdFilters != nil {
+		for i, v := range s.CheckIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CheckIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.FindingArnFilters != nil {
+		for i, v := range s.FindingArnFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FindingArnFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.FindingStatusFilters != nil {
+		for i, v := range s.FindingStatusFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FindingStatusFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SecurityLevelFilters != nil {
+		for i, v := range s.SecurityLevelFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SecurityLevelFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TitleFilters != nil {
+		for i, v := range s.TitleFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TitleFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCheckIdFilters sets the CheckIdFilters field's value.
+func (s *CisScanResultDetailsFilterCriteria) SetCheckIdFilters(v []*CisStringFilter) *CisScanResultDetailsFilterCriteria {
+	s.CheckIdFilters = v
+	return s
+}
+
+// SetFindingArnFilters sets the FindingArnFilters field's value.
+func (s *CisScanResultDetailsFilterCriteria) SetFindingArnFilters(v []*CisStringFilter) *CisScanResultDetailsFilterCriteria {
+	s.FindingArnFilters = v
+	return s
+}
+
+// SetFindingStatusFilters sets the FindingStatusFilters field's value.
+func (s *CisScanResultDetailsFilterCriteria) SetFindingStatusFilters(v []*CisFindingStatusFilter) *CisScanResultDetailsFilterCriteria {
+	s.FindingStatusFilters = v
+	return s
+}
+
+// SetSecurityLevelFilters sets the SecurityLevelFilters field's value.
+func (s *CisScanResultDetailsFilterCriteria) SetSecurityLevelFilters(v []*CisSecurityLevelFilter) *CisScanResultDetailsFilterCriteria {
+	s.SecurityLevelFilters = v
+	return s
+}
+
+// SetTitleFilters sets the TitleFilters field's value.
+func (s *CisScanResultDetailsFilterCriteria) SetTitleFilters(v []*CisStringFilter) *CisScanResultDetailsFilterCriteria {
+	s.TitleFilters = v
+	return s
+}
+
+// The scan results aggregated by checks filter criteria.
+type CisScanResultsAggregatedByChecksFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria's account ID filters.
+	AccountIdFilters []*CisStringFilter `locationName:"accountIdFilters" min:"1" type:"list"`
+
+	// The criteria's check ID filters.
+	CheckIdFilters []*CisStringFilter `locationName:"checkIdFilters" min:"1" type:"list"`
+
+	// The criteria's failed resources filters.
+	FailedResourcesFilters []*CisNumberFilter `locationName:"failedResourcesFilters" min:"1" type:"list"`
+
+	// The criteria's platform filters.
+	PlatformFilters []*CisStringFilter `locationName:"platformFilters" min:"1" type:"list"`
+
+	// The criteria's security level filters.
+	SecurityLevelFilters []*CisSecurityLevelFilter `locationName:"securityLevelFilters" min:"1" type:"list"`
+
+	// The criteria's title filters.
+	TitleFilters []*CisStringFilter `locationName:"titleFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultsAggregatedByChecksFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultsAggregatedByChecksFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisScanResultsAggregatedByChecksFilterCriteria"}
+	if s.AccountIdFilters != nil && len(s.AccountIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIdFilters", 1))
+	}
+	if s.CheckIdFilters != nil && len(s.CheckIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckIdFilters", 1))
+	}
+	if s.FailedResourcesFilters != nil && len(s.FailedResourcesFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailedResourcesFilters", 1))
+	}
+	if s.PlatformFilters != nil && len(s.PlatformFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlatformFilters", 1))
+	}
+	if s.SecurityLevelFilters != nil && len(s.SecurityLevelFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityLevelFilters", 1))
+	}
+	if s.TitleFilters != nil && len(s.TitleFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TitleFilters", 1))
+	}
+	if s.AccountIdFilters != nil {
+		for i, v := range s.AccountIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AccountIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.CheckIdFilters != nil {
+		for i, v := range s.CheckIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CheckIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PlatformFilters != nil {
+		for i, v := range s.PlatformFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PlatformFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SecurityLevelFilters != nil {
+		for i, v := range s.SecurityLevelFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SecurityLevelFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TitleFilters != nil {
+		for i, v := range s.TitleFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TitleFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIdFilters sets the AccountIdFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetAccountIdFilters(v []*CisStringFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.AccountIdFilters = v
+	return s
+}
+
+// SetCheckIdFilters sets the CheckIdFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetCheckIdFilters(v []*CisStringFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.CheckIdFilters = v
+	return s
+}
+
+// SetFailedResourcesFilters sets the FailedResourcesFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetFailedResourcesFilters(v []*CisNumberFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.FailedResourcesFilters = v
+	return s
+}
+
+// SetPlatformFilters sets the PlatformFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetPlatformFilters(v []*CisStringFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.PlatformFilters = v
+	return s
+}
+
+// SetSecurityLevelFilters sets the SecurityLevelFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetSecurityLevelFilters(v []*CisSecurityLevelFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.SecurityLevelFilters = v
+	return s
+}
+
+// SetTitleFilters sets the TitleFilters field's value.
+func (s *CisScanResultsAggregatedByChecksFilterCriteria) SetTitleFilters(v []*CisStringFilter) *CisScanResultsAggregatedByChecksFilterCriteria {
+	s.TitleFilters = v
+	return s
+}
+
+// The scan results aggregated by target resource filter criteria.
+type CisScanResultsAggregatedByTargetResourceFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria's account ID filters.
+	AccountIdFilters []*CisStringFilter `locationName:"accountIdFilters" min:"1" type:"list"`
+
+	// The criteria's check ID filters.
+	CheckIdFilters []*CisStringFilter `locationName:"checkIdFilters" min:"1" type:"list"`
+
+	// The criteria's failed checks filters.
+	FailedChecksFilters []*CisNumberFilter `locationName:"failedChecksFilters" min:"1" type:"list"`
+
+	// The criteria's platform filters.
+	PlatformFilters []*CisStringFilter `locationName:"platformFilters" min:"1" type:"list"`
+
+	// The criteria's status filter.
+	StatusFilters []*CisResultStatusFilter `locationName:"statusFilters" min:"1" type:"list"`
+
+	// The criteria's target resource ID filters.
+	TargetResourceIdFilters []*CisStringFilter `locationName:"targetResourceIdFilters" min:"1" type:"list"`
+
+	// The criteria's target resource tag filters.
+	TargetResourceTagFilters []*TagFilter `locationName:"targetResourceTagFilters" min:"1" type:"list"`
+
+	// The criteria's target status filters.
+	TargetStatusFilters []*CisTargetStatusFilter `locationName:"targetStatusFilters" min:"1" type:"list"`
+
+	// The criteria's target status reason filters.
+	TargetStatusReasonFilters []*CisTargetStatusReasonFilter `locationName:"targetStatusReasonFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultsAggregatedByTargetResourceFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanResultsAggregatedByTargetResourceFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisScanResultsAggregatedByTargetResourceFilterCriteria"}
+	if s.AccountIdFilters != nil && len(s.AccountIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIdFilters", 1))
+	}
+	if s.CheckIdFilters != nil && len(s.CheckIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckIdFilters", 1))
+	}
+	if s.FailedChecksFilters != nil && len(s.FailedChecksFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailedChecksFilters", 1))
+	}
+	if s.PlatformFilters != nil && len(s.PlatformFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlatformFilters", 1))
+	}
+	if s.StatusFilters != nil && len(s.StatusFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatusFilters", 1))
+	}
+	if s.TargetResourceIdFilters != nil && len(s.TargetResourceIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceIdFilters", 1))
+	}
+	if s.TargetResourceTagFilters != nil && len(s.TargetResourceTagFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceTagFilters", 1))
+	}
+	if s.TargetStatusFilters != nil && len(s.TargetStatusFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetStatusFilters", 1))
+	}
+	if s.TargetStatusReasonFilters != nil && len(s.TargetStatusReasonFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetStatusReasonFilters", 1))
+	}
+	if s.AccountIdFilters != nil {
+		for i, v := range s.AccountIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AccountIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.CheckIdFilters != nil {
+		for i, v := range s.CheckIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CheckIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PlatformFilters != nil {
+		for i, v := range s.PlatformFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PlatformFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.StatusFilters != nil {
+		for i, v := range s.StatusFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "StatusFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetResourceIdFilters != nil {
+		for i, v := range s.TargetResourceIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetResourceIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetResourceTagFilters != nil {
+		for i, v := range s.TargetResourceTagFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetResourceTagFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetStatusFilters != nil {
+		for i, v := range s.TargetStatusFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetStatusFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetStatusReasonFilters != nil {
+		for i, v := range s.TargetStatusReasonFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetStatusReasonFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIdFilters sets the AccountIdFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetAccountIdFilters(v []*CisStringFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.AccountIdFilters = v
+	return s
+}
+
+// SetCheckIdFilters sets the CheckIdFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetCheckIdFilters(v []*CisStringFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.CheckIdFilters = v
+	return s
+}
+
+// SetFailedChecksFilters sets the FailedChecksFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetFailedChecksFilters(v []*CisNumberFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.FailedChecksFilters = v
+	return s
+}
+
+// SetPlatformFilters sets the PlatformFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetPlatformFilters(v []*CisStringFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.PlatformFilters = v
+	return s
+}
+
+// SetStatusFilters sets the StatusFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetStatusFilters(v []*CisResultStatusFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.StatusFilters = v
+	return s
+}
+
+// SetTargetResourceIdFilters sets the TargetResourceIdFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetTargetResourceIdFilters(v []*CisStringFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.TargetResourceIdFilters = v
+	return s
+}
+
+// SetTargetResourceTagFilters sets the TargetResourceTagFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetTargetResourceTagFilters(v []*TagFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.TargetResourceTagFilters = v
+	return s
+}
+
+// SetTargetStatusFilters sets the TargetStatusFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetTargetStatusFilters(v []*CisTargetStatusFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.TargetStatusFilters = v
+	return s
+}
+
+// SetTargetStatusReasonFilters sets the TargetStatusReasonFilters field's value.
+func (s *CisScanResultsAggregatedByTargetResourceFilterCriteria) SetTargetStatusReasonFilters(v []*CisTargetStatusReasonFilter) *CisScanResultsAggregatedByTargetResourceFilterCriteria {
+	s.TargetStatusReasonFilters = v
+	return s
+}
+
+// The CIS scan status filter.
+type CisScanStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The filter comparison value.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisScanStatusComparison"`
+
+	// The filter value.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisScanStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisScanStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisScanStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisScanStatusFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisScanStatusFilter) SetComparison(v string) *CisScanStatusFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisScanStatusFilter) SetValue(v string) *CisScanStatusFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS security level filter. Security level refers to the Benchmark levels
+// that CIS assigns to a profile.
+type CisSecurityLevelFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS security filter comparison value.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisSecurityLevelComparison"`
+
+	// The CIS security filter value.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisSecurityLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisSecurityLevelFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisSecurityLevelFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisSecurityLevelFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisSecurityLevelFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisSecurityLevelFilter) SetComparison(v string) *CisSecurityLevelFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisSecurityLevelFilter) SetValue(v string) *CisSecurityLevelFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS session message.
+type CisSessionMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS rule details for the CIS session message.
+	// CisRuleDetails is automatically base64 encoded/decoded by the SDK.
+	//
+	// CisRuleDetails is a required field
+	CisRuleDetails []byte `locationName:"cisRuleDetails" type:"blob" required:"true"`
+
+	// The rule ID for the CIS session message.
+	//
+	// RuleId is a required field
+	RuleId *string `locationName:"ruleId" min:"1" type:"string" required:"true"`
+
+	// The status of the CIS session message.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"CisRuleStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisSessionMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisSessionMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisSessionMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisSessionMessage"}
+	if s.CisRuleDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("CisRuleDetails"))
+	}
+	if s.RuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleId"))
+	}
+	if s.RuleId != nil && len(*s.RuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCisRuleDetails sets the CisRuleDetails field's value.
+func (s *CisSessionMessage) SetCisRuleDetails(v []byte) *CisSessionMessage {
+	s.CisRuleDetails = v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *CisSessionMessage) SetRuleId(v string) *CisSessionMessage {
+	s.RuleId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CisSessionMessage) SetStatus(v string) *CisSessionMessage {
+	s.Status = &v
+	return s
+}
+
+// The CIS string filter.
+type CisStringFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison value of the CIS string filter.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisStringComparison"`
+
+	// The value of the CIS string filter.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisStringFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisStringFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisStringFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisStringFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisStringFilter) SetComparison(v string) *CisStringFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisStringFilter) SetValue(v string) *CisStringFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS target resource aggregation.
+type CisTargetResourceAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID for the CIS target resource.
+	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// The platform for the CIS target resource.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The scan ARN for the CIS target resource.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The target resource status counts.
+	StatusCounts *StatusCounts `locationName:"statusCounts" type:"structure"`
+
+	// The ID of the target resource.
+	TargetResourceId *string `locationName:"targetResourceId" min:"10" type:"string"`
+
+	// The tag for the target resource.
+	TargetResourceTags map[string][]*string `locationName:"targetResourceTags" min:"1" type:"map"`
+
+	// The status of the target resource.
+	TargetStatus *string `locationName:"targetStatus" type:"string" enum:"CisTargetStatus"`
+
+	// The reason for the target resource.
+	TargetStatusReason *string `locationName:"targetStatusReason" type:"string" enum:"CisTargetStatusReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetResourceAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetResourceAggregation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CisTargetResourceAggregation) SetAccountId(v string) *CisTargetResourceAggregation {
+	s.AccountId = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *CisTargetResourceAggregation) SetPlatform(v string) *CisTargetResourceAggregation {
+	s.Platform = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *CisTargetResourceAggregation) SetScanArn(v string) *CisTargetResourceAggregation {
+	s.ScanArn = &v
+	return s
+}
+
+// SetStatusCounts sets the StatusCounts field's value.
+func (s *CisTargetResourceAggregation) SetStatusCounts(v *StatusCounts) *CisTargetResourceAggregation {
+	s.StatusCounts = v
+	return s
+}
+
+// SetTargetResourceId sets the TargetResourceId field's value.
+func (s *CisTargetResourceAggregation) SetTargetResourceId(v string) *CisTargetResourceAggregation {
+	s.TargetResourceId = &v
+	return s
+}
+
+// SetTargetResourceTags sets the TargetResourceTags field's value.
+func (s *CisTargetResourceAggregation) SetTargetResourceTags(v map[string][]*string) *CisTargetResourceAggregation {
+	s.TargetResourceTags = v
+	return s
+}
+
+// SetTargetStatus sets the TargetStatus field's value.
+func (s *CisTargetResourceAggregation) SetTargetStatus(v string) *CisTargetResourceAggregation {
+	s.TargetStatus = &v
+	return s
+}
+
+// SetTargetStatusReason sets the TargetStatusReason field's value.
+func (s *CisTargetResourceAggregation) SetTargetStatusReason(v string) *CisTargetResourceAggregation {
+	s.TargetStatusReason = &v
+	return s
+}
+
+// The CIS target status filter.
+type CisTargetStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison value of the CIS target status filter.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisTargetStatusComparison"`
+
+	// The value of the CIS target status filter.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisTargetStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisTargetStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisTargetStatusFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisTargetStatusFilter) SetComparison(v string) *CisTargetStatusFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisTargetStatusFilter) SetValue(v string) *CisTargetStatusFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS target status reason filter.
+type CisTargetStatusReasonFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison value of the CIS target status reason filter.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"CisTargetStatusComparison"`
+
+	// The value of the CIS target status reason filter.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true" enum:"CisTargetStatusReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetStatusReasonFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargetStatusReasonFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CisTargetStatusReasonFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CisTargetStatusReasonFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *CisTargetStatusReasonFilter) SetComparison(v string) *CisTargetStatusReasonFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CisTargetStatusReasonFilter) SetValue(v string) *CisTargetStatusReasonFilter {
+	s.Value = &v
+	return s
+}
+
+// The CIS targets.
+type CisTargets struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS target account ids.
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list"`
+
+	// The CIS target resource tags.
+	TargetResourceTags map[string][]*string `locationName:"targetResourceTags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargets) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CisTargets) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *CisTargets) SetAccountIds(v []*string) *CisTargets {
+	s.AccountIds = v
+	return s
+}
+
+// SetTargetResourceTags sets the TargetResourceTags field's value.
+func (s *CisTargets) SetTargetResourceTags(v map[string][]*string) *CisTargets {
+	s.TargetResourceTags = v
+	return s
+}
+
 // The Cybersecurity and Infrastructure Security Agency (CISA) details for a
 // specific vulnerability.
 type CisaData struct {
@@ -7523,6 +10697,56 @@ func (s *CodeVulnerabilityDetails) SetSourceLambdaLayerArn(v string) *CodeVulner
 	return s
 }
 
+// A compute platform.
+type ComputePlatform struct {
+	_ struct{} `type:"structure"`
+
+	// The compute platform product.
+	Product *string `locationName:"product" type:"string"`
+
+	// The compute platform vendor.
+	Vendor *string `locationName:"vendor" type:"string"`
+
+	// The compute platform version.
+	Version *string `locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputePlatform) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComputePlatform) GoString() string {
+	return s.String()
+}
+
+// SetProduct sets the Product field's value.
+func (s *ComputePlatform) SetProduct(v string) *ComputePlatform {
+	s.Product = &v
+	return s
+}
+
+// SetVendor sets the Vendor field's value.
+func (s *ComputePlatform) SetVendor(v string) *ComputePlatform {
+	s.Vendor = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ComputePlatform) SetVersion(v string) *ComputePlatform {
+	s.Version = &v
+	return s
+}
+
 // A conflict occurred.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -7716,7 +10940,8 @@ type CoverageFilterCriteria struct {
 	ResourceId []*CoverageStringFilter `locationName:"resourceId" min:"1" type:"list"`
 
 	// An array of Amazon Web Services resource types to return coverage statistics
-	// for. The values can be AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION or AWS_ECR_REPOSITORY.
+	// for. The values can be AWS_EC2_INSTANCE, AWS_LAMBDA_FUNCTION, AWS_ECR_CONTAINER_IMAGE,
+	// AWS_ECR_REPOSITORY or AWS_ACCOUNT.
 	ResourceType []*CoverageStringFilter `locationName:"resourceType" min:"1" type:"list"`
 
 	// The scan status code to filter on. Valid values are: ValidationException,
@@ -8227,6 +11452,215 @@ func (s *CoveredResource) SetScanStatus(v *ScanStatus) *CoveredResource {
 // SetScanType sets the ScanType field's value.
 func (s *CoveredResource) SetScanType(v string) *CoveredResource {
 	s.ScanType = &v
+	return s
+}
+
+type CreateCisScanConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The scan name for the CIS scan configuration.
+	//
+	// ScanName is a required field
+	ScanName *string `locationName:"scanName" min:"1" type:"string" required:"true"`
+
+	// The schedule for the CIS scan configuration.
+	//
+	// Schedule is a required field
+	Schedule *Schedule `locationName:"schedule" type:"structure" required:"true"`
+
+	// The security level for the CIS scan configuration. Security level refers
+	// to the Benchmark levels that CIS assigns to a profile.
+	//
+	// SecurityLevel is a required field
+	SecurityLevel *string `locationName:"securityLevel" type:"string" required:"true" enum:"CisSecurityLevel"`
+
+	// The tags for the CIS scan configuration.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The targets for the CIS scan configuration.
+	//
+	// Targets is a required field
+	Targets *CreateCisTargets `locationName:"targets" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisScanConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisScanConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCisScanConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCisScanConfigurationInput"}
+	if s.ScanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanName"))
+	}
+	if s.ScanName != nil && len(*s.ScanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanName", 1))
+	}
+	if s.Schedule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Schedule"))
+	}
+	if s.SecurityLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityLevel"))
+	}
+	if s.Targets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Targets"))
+	}
+	if s.Schedule != nil {
+		if err := s.Schedule.Validate(); err != nil {
+			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Targets != nil {
+		if err := s.Targets.Validate(); err != nil {
+			invalidParams.AddNested("Targets", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanName sets the ScanName field's value.
+func (s *CreateCisScanConfigurationInput) SetScanName(v string) *CreateCisScanConfigurationInput {
+	s.ScanName = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *CreateCisScanConfigurationInput) SetSchedule(v *Schedule) *CreateCisScanConfigurationInput {
+	s.Schedule = v
+	return s
+}
+
+// SetSecurityLevel sets the SecurityLevel field's value.
+func (s *CreateCisScanConfigurationInput) SetSecurityLevel(v string) *CreateCisScanConfigurationInput {
+	s.SecurityLevel = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCisScanConfigurationInput) SetTags(v map[string]*string) *CreateCisScanConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *CreateCisScanConfigurationInput) SetTargets(v *CreateCisTargets) *CreateCisScanConfigurationInput {
+	s.Targets = v
+	return s
+}
+
+type CreateCisScanConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The scan configuration ARN for the CIS scan configuration.
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisScanConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisScanConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *CreateCisScanConfigurationOutput) SetScanConfigurationArn(v string) *CreateCisScanConfigurationOutput {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+// Creates CIS targets.
+type CreateCisTargets struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS target account ids.
+	//
+	// AccountIds is a required field
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
+
+	// The CIS target resource tags.
+	//
+	// TargetResourceTags is a required field
+	TargetResourceTags map[string][]*string `locationName:"targetResourceTags" min:"1" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisTargets) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCisTargets) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCisTargets) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCisTargets"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.TargetResourceTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetResourceTags"))
+	}
+	if s.TargetResourceTags != nil && len(s.TargetResourceTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceTags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *CreateCisTargets) SetAccountIds(v []*string) *CreateCisTargets {
+	s.AccountIds = v
+	return s
+}
+
+// SetTargetResourceTags sets the TargetResourceTags field's value.
+func (s *CreateCisTargets) SetTargetResourceTags(v map[string][]*string) *CreateCisTargets {
+	s.TargetResourceTags = v
 	return s
 }
 
@@ -8882,6 +12316,58 @@ func (s *CvssScoreDetails) SetVersion(v string) *CvssScoreDetails {
 	return s
 }
 
+// A daily schedule.
+type DailySchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The schedule start time.
+	//
+	// StartTime is a required field
+	StartTime *Time `locationName:"startTime" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DailySchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DailySchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DailySchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DailySchedule"}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.StartTime != nil {
+		if err := s.StartTime.Validate(); err != nil {
+			invalidParams.AddNested("StartTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DailySchedule) SetStartTime(v *Time) *DailySchedule {
+	s.StartTime = v
+	return s
+}
+
 // Contains details on the time range used to filter findings.
 type DateFilter struct {
 	_ struct{} `type:"structure"`
@@ -9004,6 +12490,85 @@ func (s *DelegatedAdminAccount) SetAccountId(v string) *DelegatedAdminAccount {
 // SetStatus sets the Status field's value.
 func (s *DelegatedAdminAccount) SetStatus(v string) *DelegatedAdminAccount {
 	s.Status = &v
+	return s
+}
+
+type DeleteCisScanConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CIS scan configuration.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCisScanConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCisScanConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCisScanConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCisScanConfigurationInput"}
+	if s.ScanConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanConfigurationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *DeleteCisScanConfigurationInput) SetScanConfigurationArn(v string) *DeleteCisScanConfigurationInput {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+type DeleteCisScanConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CIS scan configuration.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCisScanConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCisScanConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *DeleteCisScanConfigurationOutput) SetScanConfigurationArn(v string) *DeleteCisScanConfigurationOutput {
+	s.ScanConfigurationArn = &v
 	return s
 }
 
@@ -12196,6 +15761,277 @@ func (s *FreeTrialInfoError) SetMessage(v string) *FreeTrialInfoError {
 	return s
 }
 
+type GetCisScanReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The target accounts.
+	TargetAccounts []*string `locationName:"targetAccounts" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCisScanReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCisScanReportInput"}
+	if s.ScanArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *GetCisScanReportInput) SetScanArn(v string) *GetCisScanReportInput {
+	s.ScanArn = &v
+	return s
+}
+
+// SetTargetAccounts sets the TargetAccounts field's value.
+func (s *GetCisScanReportInput) SetTargetAccounts(v []*string) *GetCisScanReportInput {
+	s.TargetAccounts = v
+	return s
+}
+
+type GetCisScanReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status.
+	Status *string `locationName:"status" type:"string" enum:"CisReportStatus"`
+
+	// The URL where the CIS scan report PDF can be downloaded.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetCisScanReportOutput) SetStatus(v string) *GetCisScanReportOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *GetCisScanReportOutput) SetUrl(v string) *GetCisScanReportOutput {
+	s.Url = &v
+	return s
+}
+
+type GetCisScanResultDetailsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
+
+	// The filter criteria.
+	FilterCriteria *CisScanResultDetailsFilterCriteria `locationName:"filterCriteria" type:"structure"`
+
+	// The maximum number of CIS scan result details to be returned in a single
+	// page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The sort by order.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"CisScanResultDetailsSortBy"`
+
+	// The sort order.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"CisSortOrder"`
+
+	// The target resource ID.
+	//
+	// TargetResourceId is a required field
+	TargetResourceId *string `locationName:"targetResourceId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanResultDetailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanResultDetailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCisScanResultDetailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCisScanResultDetailsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ScanArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanArn"))
+	}
+	if s.TargetResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetResourceId"))
+	}
+	if s.TargetResourceId != nil && len(*s.TargetResourceId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceId", 10))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetCisScanResultDetailsInput) SetAccountId(v string) *GetCisScanResultDetailsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *GetCisScanResultDetailsInput) SetFilterCriteria(v *CisScanResultDetailsFilterCriteria) *GetCisScanResultDetailsInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetCisScanResultDetailsInput) SetMaxResults(v int64) *GetCisScanResultDetailsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCisScanResultDetailsInput) SetNextToken(v string) *GetCisScanResultDetailsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *GetCisScanResultDetailsInput) SetScanArn(v string) *GetCisScanResultDetailsInput {
+	s.ScanArn = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetCisScanResultDetailsInput) SetSortBy(v string) *GetCisScanResultDetailsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *GetCisScanResultDetailsInput) SetSortOrder(v string) *GetCisScanResultDetailsInput {
+	s.SortOrder = &v
+	return s
+}
+
+// SetTargetResourceId sets the TargetResourceId field's value.
+func (s *GetCisScanResultDetailsInput) SetTargetResourceId(v string) *GetCisScanResultDetailsInput {
+	s.TargetResourceId = &v
+	return s
+}
+
+type GetCisScanResultDetailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The scan result details.
+	ScanResultDetails []*CisScanResultDetails `locationName:"scanResultDetails" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanResultDetailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCisScanResultDetailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCisScanResultDetailsOutput) SetNextToken(v string) *GetCisScanResultDetailsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScanResultDetails sets the ScanResultDetails field's value.
+func (s *GetCisScanResultDetailsOutput) SetScanResultDetails(v []*CisScanResultDetails) *GetCisScanResultDetailsOutput {
+	s.ScanResultDetails = v
+	return s
+}
+
 type GetConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -13739,6 +17575,886 @@ func (s *ListAccountPermissionsOutput) SetPermissions(v []*Permission) *ListAcco
 	return s
 }
 
+// A list of CIS scan configurations filter criteria.
+type ListCisScanConfigurationsFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of scan configuration ARN filters.
+	ScanConfigurationArnFilters []*CisStringFilter `locationName:"scanConfigurationArnFilters" min:"1" type:"list"`
+
+	// The list of scan name filters.
+	ScanNameFilters []*CisStringFilter `locationName:"scanNameFilters" min:"1" type:"list"`
+
+	// The list of target resource tag filters.
+	TargetResourceTagFilters []*TagFilter `locationName:"targetResourceTagFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScanConfigurationsFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScanConfigurationsFilterCriteria"}
+	if s.ScanConfigurationArnFilters != nil && len(s.ScanConfigurationArnFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanConfigurationArnFilters", 1))
+	}
+	if s.ScanNameFilters != nil && len(s.ScanNameFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanNameFilters", 1))
+	}
+	if s.TargetResourceTagFilters != nil && len(s.TargetResourceTagFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceTagFilters", 1))
+	}
+	if s.ScanConfigurationArnFilters != nil {
+		for i, v := range s.ScanConfigurationArnFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanConfigurationArnFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScanNameFilters != nil {
+		for i, v := range s.ScanNameFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanNameFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetResourceTagFilters != nil {
+		for i, v := range s.TargetResourceTagFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetResourceTagFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanConfigurationArnFilters sets the ScanConfigurationArnFilters field's value.
+func (s *ListCisScanConfigurationsFilterCriteria) SetScanConfigurationArnFilters(v []*CisStringFilter) *ListCisScanConfigurationsFilterCriteria {
+	s.ScanConfigurationArnFilters = v
+	return s
+}
+
+// SetScanNameFilters sets the ScanNameFilters field's value.
+func (s *ListCisScanConfigurationsFilterCriteria) SetScanNameFilters(v []*CisStringFilter) *ListCisScanConfigurationsFilterCriteria {
+	s.ScanNameFilters = v
+	return s
+}
+
+// SetTargetResourceTagFilters sets the TargetResourceTagFilters field's value.
+func (s *ListCisScanConfigurationsFilterCriteria) SetTargetResourceTagFilters(v []*TagFilter) *ListCisScanConfigurationsFilterCriteria {
+	s.TargetResourceTagFilters = v
+	return s
+}
+
+type ListCisScanConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan configuration filter criteria.
+	FilterCriteria *ListCisScanConfigurationsFilterCriteria `locationName:"filterCriteria" type:"structure"`
+
+	// The maximum number of CIS scan configurations to be returned in a single
+	// page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The CIS scan configuration sort by order.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"CisScanConfigurationsSortBy"`
+
+	// The CIS scan configuration sort order order.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"CisSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScanConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScanConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *ListCisScanConfigurationsInput) SetFilterCriteria(v *ListCisScanConfigurationsFilterCriteria) *ListCisScanConfigurationsInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCisScanConfigurationsInput) SetMaxResults(v int64) *ListCisScanConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanConfigurationsInput) SetNextToken(v string) *ListCisScanConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListCisScanConfigurationsInput) SetSortBy(v string) *ListCisScanConfigurationsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListCisScanConfigurationsInput) SetSortOrder(v string) *ListCisScanConfigurationsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListCisScanConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The CIS scan configuration scan configurations.
+	ScanConfigurations []*CisScanConfiguration `locationName:"scanConfigurations" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanConfigurationsOutput) SetNextToken(v string) *ListCisScanConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScanConfigurations sets the ScanConfigurations field's value.
+func (s *ListCisScanConfigurationsOutput) SetScanConfigurations(v []*CisScanConfiguration) *ListCisScanConfigurationsOutput {
+	s.ScanConfigurations = v
+	return s
+}
+
+type ListCisScanResultsAggregatedByChecksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	FilterCriteria *CisScanResultsAggregatedByChecksFilterCriteria `locationName:"filterCriteria" type:"structure"`
+
+	// The maximum number of scan results aggregated by checks to be returned in
+	// a single page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The sort by order.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"CisScanResultsAggregatedByChecksSortBy"`
+
+	// The sort order.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"CisSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByChecksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByChecksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScanResultsAggregatedByChecksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScanResultsAggregatedByChecksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ScanArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanArn"))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetFilterCriteria(v *CisScanResultsAggregatedByChecksFilterCriteria) *ListCisScanResultsAggregatedByChecksInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetMaxResults(v int64) *ListCisScanResultsAggregatedByChecksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetNextToken(v string) *ListCisScanResultsAggregatedByChecksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetScanArn(v string) *ListCisScanResultsAggregatedByChecksInput {
+	s.ScanArn = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetSortBy(v string) *ListCisScanResultsAggregatedByChecksInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListCisScanResultsAggregatedByChecksInput) SetSortOrder(v string) *ListCisScanResultsAggregatedByChecksInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListCisScanResultsAggregatedByChecksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The check aggregations.
+	CheckAggregations []*CisCheckAggregation `locationName:"checkAggregations" min:"1" type:"list"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByChecksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByChecksOutput) GoString() string {
+	return s.String()
+}
+
+// SetCheckAggregations sets the CheckAggregations field's value.
+func (s *ListCisScanResultsAggregatedByChecksOutput) SetCheckAggregations(v []*CisCheckAggregation) *ListCisScanResultsAggregatedByChecksOutput {
+	s.CheckAggregations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanResultsAggregatedByChecksOutput) SetNextToken(v string) *ListCisScanResultsAggregatedByChecksOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCisScanResultsAggregatedByTargetResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter criteria.
+	FilterCriteria *CisScanResultsAggregatedByTargetResourceFilterCriteria `locationName:"filterCriteria" type:"structure"`
+
+	// The maximum number of scan results aggregated by a target resource to be
+	// returned in a single page of results.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The scan ARN.
+	//
+	// ScanArn is a required field
+	ScanArn *string `locationName:"scanArn" type:"string" required:"true"`
+
+	// The sort by order.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"CisScanResultsAggregatedByTargetResourceSortBy"`
+
+	// The sort order.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"CisSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByTargetResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByTargetResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScanResultsAggregatedByTargetResourceInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ScanArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanArn"))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetFilterCriteria(v *CisScanResultsAggregatedByTargetResourceFilterCriteria) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetMaxResults(v int64) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetNextToken(v string) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScanArn sets the ScanArn field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetScanArn(v string) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.ScanArn = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetSortBy(v string) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceInput) SetSortOrder(v string) *ListCisScanResultsAggregatedByTargetResourceInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListCisScanResultsAggregatedByTargetResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The resource aggregations.
+	TargetResourceAggregations []*CisTargetResourceAggregation `locationName:"targetResourceAggregations" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByTargetResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScanResultsAggregatedByTargetResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceOutput) SetNextToken(v string) *ListCisScanResultsAggregatedByTargetResourceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetResourceAggregations sets the TargetResourceAggregations field's value.
+func (s *ListCisScanResultsAggregatedByTargetResourceOutput) SetTargetResourceAggregations(v []*CisTargetResourceAggregation) *ListCisScanResultsAggregatedByTargetResourceOutput {
+	s.TargetResourceAggregations = v
+	return s
+}
+
+// A list of CIS scans filter criteria.
+type ListCisScansFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of failed checks filters.
+	FailedChecksFilters []*CisNumberFilter `locationName:"failedChecksFilters" min:"1" type:"list"`
+
+	// The list of scan ARN filters.
+	ScanArnFilters []*CisStringFilter `locationName:"scanArnFilters" min:"1" type:"list"`
+
+	// The list of scan at filters.
+	ScanAtFilters []*CisDateFilter `locationName:"scanAtFilters" min:"1" type:"list"`
+
+	// The list of scan configuration ARN filters.
+	ScanConfigurationArnFilters []*CisStringFilter `locationName:"scanConfigurationArnFilters" min:"1" type:"list"`
+
+	// The list of scan name filters.
+	ScanNameFilters []*CisStringFilter `locationName:"scanNameFilters" min:"1" type:"list"`
+
+	// The list of scan status filters.
+	ScanStatusFilters []*CisScanStatusFilter `locationName:"scanStatusFilters" min:"1" type:"list"`
+
+	// The list of scheduled by filters.
+	ScheduledByFilters []*CisStringFilter `locationName:"scheduledByFilters" min:"1" type:"list"`
+
+	// The list of target account ID filters.
+	TargetAccountIdFilters []*CisStringFilter `locationName:"targetAccountIdFilters" min:"1" type:"list"`
+
+	// The list of target resource ID filters.
+	TargetResourceIdFilters []*CisStringFilter `locationName:"targetResourceIdFilters" min:"1" type:"list"`
+
+	// The list of target resource tag filters.
+	TargetResourceTagFilters []*TagFilter `locationName:"targetResourceTagFilters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScansFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScansFilterCriteria"}
+	if s.FailedChecksFilters != nil && len(s.FailedChecksFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FailedChecksFilters", 1))
+	}
+	if s.ScanArnFilters != nil && len(s.ScanArnFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanArnFilters", 1))
+	}
+	if s.ScanAtFilters != nil && len(s.ScanAtFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanAtFilters", 1))
+	}
+	if s.ScanConfigurationArnFilters != nil && len(s.ScanConfigurationArnFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanConfigurationArnFilters", 1))
+	}
+	if s.ScanNameFilters != nil && len(s.ScanNameFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanNameFilters", 1))
+	}
+	if s.ScanStatusFilters != nil && len(s.ScanStatusFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanStatusFilters", 1))
+	}
+	if s.ScheduledByFilters != nil && len(s.ScheduledByFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduledByFilters", 1))
+	}
+	if s.TargetAccountIdFilters != nil && len(s.TargetAccountIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetAccountIdFilters", 1))
+	}
+	if s.TargetResourceIdFilters != nil && len(s.TargetResourceIdFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceIdFilters", 1))
+	}
+	if s.TargetResourceTagFilters != nil && len(s.TargetResourceTagFilters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceTagFilters", 1))
+	}
+	if s.ScanArnFilters != nil {
+		for i, v := range s.ScanArnFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanArnFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScanConfigurationArnFilters != nil {
+		for i, v := range s.ScanConfigurationArnFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanConfigurationArnFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScanNameFilters != nil {
+		for i, v := range s.ScanNameFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanNameFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScanStatusFilters != nil {
+		for i, v := range s.ScanStatusFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScanStatusFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ScheduledByFilters != nil {
+		for i, v := range s.ScheduledByFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ScheduledByFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetAccountIdFilters != nil {
+		for i, v := range s.TargetAccountIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetAccountIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetResourceIdFilters != nil {
+		for i, v := range s.TargetResourceIdFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetResourceIdFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetResourceTagFilters != nil {
+		for i, v := range s.TargetResourceTagFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetResourceTagFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailedChecksFilters sets the FailedChecksFilters field's value.
+func (s *ListCisScansFilterCriteria) SetFailedChecksFilters(v []*CisNumberFilter) *ListCisScansFilterCriteria {
+	s.FailedChecksFilters = v
+	return s
+}
+
+// SetScanArnFilters sets the ScanArnFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScanArnFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.ScanArnFilters = v
+	return s
+}
+
+// SetScanAtFilters sets the ScanAtFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScanAtFilters(v []*CisDateFilter) *ListCisScansFilterCriteria {
+	s.ScanAtFilters = v
+	return s
+}
+
+// SetScanConfigurationArnFilters sets the ScanConfigurationArnFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScanConfigurationArnFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.ScanConfigurationArnFilters = v
+	return s
+}
+
+// SetScanNameFilters sets the ScanNameFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScanNameFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.ScanNameFilters = v
+	return s
+}
+
+// SetScanStatusFilters sets the ScanStatusFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScanStatusFilters(v []*CisScanStatusFilter) *ListCisScansFilterCriteria {
+	s.ScanStatusFilters = v
+	return s
+}
+
+// SetScheduledByFilters sets the ScheduledByFilters field's value.
+func (s *ListCisScansFilterCriteria) SetScheduledByFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.ScheduledByFilters = v
+	return s
+}
+
+// SetTargetAccountIdFilters sets the TargetAccountIdFilters field's value.
+func (s *ListCisScansFilterCriteria) SetTargetAccountIdFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.TargetAccountIdFilters = v
+	return s
+}
+
+// SetTargetResourceIdFilters sets the TargetResourceIdFilters field's value.
+func (s *ListCisScansFilterCriteria) SetTargetResourceIdFilters(v []*CisStringFilter) *ListCisScansFilterCriteria {
+	s.TargetResourceIdFilters = v
+	return s
+}
+
+// SetTargetResourceTagFilters sets the TargetResourceTagFilters field's value.
+func (s *ListCisScansFilterCriteria) SetTargetResourceTagFilters(v []*TagFilter) *ListCisScansFilterCriteria {
+	s.TargetResourceTagFilters = v
+	return s
+}
+
+type ListCisScansInput struct {
+	_ struct{} `type:"structure"`
+
+	// The detail applied to the CIS scan.
+	DetailLevel *string `locationName:"detailLevel" type:"string" enum:"ListCisScansDetailLevel"`
+
+	// The CIS scan filter criteria.
+	FilterCriteria *ListCisScansFilterCriteria `locationName:"filterCriteria" type:"structure"`
+
+	// The maximum number of results to be returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The CIS scans sort by order.
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ListCisScansSortBy"`
+
+	// The CIS scans sort order.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"CisSortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCisScansInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCisScansInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.FilterCriteria != nil {
+		if err := s.FilterCriteria.Validate(); err != nil {
+			invalidParams.AddNested("FilterCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetailLevel sets the DetailLevel field's value.
+func (s *ListCisScansInput) SetDetailLevel(v string) *ListCisScansInput {
+	s.DetailLevel = &v
+	return s
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *ListCisScansInput) SetFilterCriteria(v *ListCisScansFilterCriteria) *ListCisScansInput {
+	s.FilterCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCisScansInput) SetMaxResults(v int64) *ListCisScansInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScansInput) SetNextToken(v string) *ListCisScansInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListCisScansInput) SetSortBy(v string) *ListCisScansInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListCisScansInput) SetSortOrder(v string) *ListCisScansInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListCisScansOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token from a previous request that's used to retrieve the
+	// next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The CIS scans.
+	Scans []*CisScan `locationName:"scans" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCisScansOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCisScansOutput) SetNextToken(v string) *ListCisScansOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScans sets the Scans field's value.
+func (s *ListCisScansOutput) SetScans(v []*CisScan) *ListCisScansOutput {
+	s.Scans = v
+	return s
+}
+
 type ListCoverageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15057,6 +19773,72 @@ func (s *MemberAccountEc2DeepInspectionStatusState) SetStatus(v string) *MemberA
 	return s
 }
 
+// A monthly schedule.
+type MonthlySchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The monthly schedule's day.
+	//
+	// Day is a required field
+	Day *string `locationName:"day" type:"string" required:"true" enum:"Day"`
+
+	// The monthly schedule's start time.
+	//
+	// StartTime is a required field
+	StartTime *Time `locationName:"startTime" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonthlySchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonthlySchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MonthlySchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MonthlySchedule"}
+	if s.Day == nil {
+		invalidParams.Add(request.NewErrParamRequired("Day"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.StartTime != nil {
+		if err := s.StartTime.Validate(); err != nil {
+			invalidParams.AddNested("StartTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDay sets the Day field's value.
+func (s *MonthlySchedule) SetDay(v string) *MonthlySchedule {
+	s.Day = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MonthlySchedule) SetStartTime(v *Time) *MonthlySchedule {
+	s.StartTime = v
+	return s
+}
+
 // Information on the network path associated with a finding.
 type NetworkPath struct {
 	_ struct{} `type:"structure"`
@@ -15185,6 +19967,29 @@ func (s *NumberFilter) SetLowerInclusive(v float64) *NumberFilter {
 func (s *NumberFilter) SetUpperInclusive(v float64) *NumberFilter {
 	s.UpperInclusive = &v
 	return s
+}
+
+// A one time schedule.
+type OneTimeSchedule struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OneTimeSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OneTimeSchedule) GoString() string {
+	return s.String()
 }
 
 // The details that define an aggregation based on operating system package
@@ -16857,6 +21662,90 @@ func (s *ScanStatus) SetStatusCode(v string) *ScanStatus {
 	return s
 }
 
+// A schedule.
+type Schedule struct {
+	_ struct{} `type:"structure"`
+
+	// The schedule's daily.
+	Daily *DailySchedule `locationName:"daily" type:"structure"`
+
+	// The schedule's monthly.
+	Monthly *MonthlySchedule `locationName:"monthly" type:"structure"`
+
+	// The schedule's one time.
+	OneTime *OneTimeSchedule `locationName:"oneTime" type:"structure"`
+
+	// The schedule's weekly.
+	Weekly *WeeklySchedule `locationName:"weekly" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Schedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Schedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Schedule"}
+	if s.Daily != nil {
+		if err := s.Daily.Validate(); err != nil {
+			invalidParams.AddNested("Daily", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Monthly != nil {
+		if err := s.Monthly.Validate(); err != nil {
+			invalidParams.AddNested("Monthly", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Weekly != nil {
+		if err := s.Weekly.Validate(); err != nil {
+			invalidParams.AddNested("Weekly", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDaily sets the Daily field's value.
+func (s *Schedule) SetDaily(v *DailySchedule) *Schedule {
+	s.Daily = v
+	return s
+}
+
+// SetMonthly sets the Monthly field's value.
+func (s *Schedule) SetMonthly(v *MonthlySchedule) *Schedule {
+	s.Monthly = v
+	return s
+}
+
+// SetOneTime sets the OneTime field's value.
+func (s *Schedule) SetOneTime(v *OneTimeSchedule) *Schedule {
+	s.OneTime = v
+	return s
+}
+
+// SetWeekly sets the Weekly field's value.
+func (s *Schedule) SetWeekly(v *WeeklySchedule) *Schedule {
+	s.Weekly = v
+	return s
+}
+
 // Details on the criteria used to define the filter for a vulnerability search.
 type SearchVulnerabilitiesFilterCriteria struct {
 	_ struct{} `type:"structure"`
@@ -17011,6 +21900,197 @@ func (s *SearchVulnerabilitiesOutput) SetNextToken(v string) *SearchVulnerabilit
 func (s *SearchVulnerabilitiesOutput) SetVulnerabilities(v []*Vulnerability) *SearchVulnerabilitiesOutput {
 	s.Vulnerabilities = v
 	return s
+}
+
+type SendCisSessionHealthInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the scan job.
+	//
+	// ScanJobId is a required field
+	ScanJobId *string `locationName:"scanJobId" type:"string" required:"true"`
+
+	// The unique token that identifies the CIS session.
+	//
+	// SessionToken is a required field
+	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionHealthInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendCisSessionHealthInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendCisSessionHealthInput"}
+	if s.ScanJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanJobId"))
+	}
+	if s.SessionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionToken"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanJobId sets the ScanJobId field's value.
+func (s *SendCisSessionHealthInput) SetScanJobId(v string) *SendCisSessionHealthInput {
+	s.ScanJobId = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *SendCisSessionHealthInput) SetSessionToken(v string) *SendCisSessionHealthInput {
+	s.SessionToken = &v
+	return s
+}
+
+type SendCisSessionHealthOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionHealthOutput) GoString() string {
+	return s.String()
+}
+
+type SendCisSessionTelemetryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS session telemetry messages.
+	//
+	// Messages is a required field
+	Messages []*CisSessionMessage `locationName:"messages" min:"1" type:"list" required:"true"`
+
+	// A unique identifier for the scan job.
+	//
+	// ScanJobId is a required field
+	ScanJobId *string `locationName:"scanJobId" type:"string" required:"true"`
+
+	// The unique token that identifies the CIS session.
+	//
+	// SessionToken is a required field
+	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionTelemetryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionTelemetryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendCisSessionTelemetryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendCisSessionTelemetryInput"}
+	if s.Messages == nil {
+		invalidParams.Add(request.NewErrParamRequired("Messages"))
+	}
+	if s.Messages != nil && len(s.Messages) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Messages", 1))
+	}
+	if s.ScanJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanJobId"))
+	}
+	if s.SessionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionToken"))
+	}
+	if s.Messages != nil {
+		for i, v := range s.Messages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Messages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMessages sets the Messages field's value.
+func (s *SendCisSessionTelemetryInput) SetMessages(v []*CisSessionMessage) *SendCisSessionTelemetryInput {
+	s.Messages = v
+	return s
+}
+
+// SetScanJobId sets the ScanJobId field's value.
+func (s *SendCisSessionTelemetryInput) SetScanJobId(v string) *SendCisSessionTelemetryInput {
+	s.ScanJobId = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *SendCisSessionTelemetryInput) SetSessionToken(v string) *SendCisSessionTelemetryInput {
+	s.SessionToken = &v
+	return s
+}
+
+type SendCisSessionTelemetryOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionTelemetryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendCisSessionTelemetryOutput) GoString() string {
+	return s.String()
 }
 
 // You have exceeded your service quota. To perform the requested action, remove
@@ -17204,6 +22284,140 @@ func (s *SortCriteria) SetSortOrder(v string) *SortCriteria {
 	return s
 }
 
+type StartCisSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The start CIS session message.
+	//
+	// Message is a required field
+	Message *StartCisSessionMessage `locationName:"message" type:"structure" required:"true"`
+
+	// A unique identifier for the scan job.
+	//
+	// ScanJobId is a required field
+	ScanJobId *string `locationName:"scanJobId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCisSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCisSessionInput"}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.ScanJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanJobId"))
+	}
+	if s.Message != nil {
+		if err := s.Message.Validate(); err != nil {
+			invalidParams.AddNested("Message", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMessage sets the Message field's value.
+func (s *StartCisSessionInput) SetMessage(v *StartCisSessionMessage) *StartCisSessionInput {
+	s.Message = v
+	return s
+}
+
+// SetScanJobId sets the ScanJobId field's value.
+func (s *StartCisSessionInput) SetScanJobId(v string) *StartCisSessionInput {
+	s.ScanJobId = &v
+	return s
+}
+
+// The start CIS session message.
+type StartCisSessionMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The unique token that identifies the CIS session.
+	//
+	// SessionToken is a required field
+	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCisSessionMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCisSessionMessage"}
+	if s.SessionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionToken"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *StartCisSessionMessage) SetSessionToken(v string) *StartCisSessionMessage {
+	s.SessionToken = &v
+	return s
+}
+
+type StartCisSessionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCisSessionOutput) GoString() string {
+	return s.String()
+}
+
 // An object that described the state of Amazon Inspector scans for an account.
 type State struct {
 	_ struct{} `type:"structure"`
@@ -17260,6 +22474,56 @@ func (s *State) SetStatus(v string) *State {
 	return s
 }
 
+// The status counts.
+type StatusCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The number of checks that failed.
+	Failed *int64 `locationName:"failed" type:"integer"`
+
+	// The number of checks that passed.
+	Passed *int64 `locationName:"passed" type:"integer"`
+
+	// The number of checks that were skipped.
+	Skipped *int64 `locationName:"skipped" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatusCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatusCounts) GoString() string {
+	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *StatusCounts) SetFailed(v int64) *StatusCounts {
+	s.Failed = &v
+	return s
+}
+
+// SetPassed sets the Passed field's value.
+func (s *StatusCounts) SetPassed(v int64) *StatusCounts {
+	s.Passed = &v
+	return s
+}
+
+// SetSkipped sets the Skipped field's value.
+func (s *StatusCounts) SetSkipped(v int64) *StatusCounts {
+	s.Skipped = &v
+	return s
+}
+
 // Details about the step associated with a finding.
 type Step struct {
 	_ struct{} `type:"structure"`
@@ -17303,6 +22567,299 @@ func (s *Step) SetComponentId(v string) *Step {
 func (s *Step) SetComponentType(v string) *Step {
 	s.ComponentType = &v
 	return s
+}
+
+// The stop CIS message progress.
+type StopCisMessageProgress struct {
+	_ struct{} `type:"structure"`
+
+	// The progress' error checks.
+	ErrorChecks *int64 `locationName:"errorChecks" type:"integer"`
+
+	// The progress' failed checks.
+	FailedChecks *int64 `locationName:"failedChecks" type:"integer"`
+
+	// The progress' informational checks.
+	InformationalChecks *int64 `locationName:"informationalChecks" type:"integer"`
+
+	// The progress' not applicable checks.
+	NotApplicableChecks *int64 `locationName:"notApplicableChecks" type:"integer"`
+
+	// The progress' not evaluated checks.
+	NotEvaluatedChecks *int64 `locationName:"notEvaluatedChecks" type:"integer"`
+
+	// The progress' successful checks.
+	SuccessfulChecks *int64 `locationName:"successfulChecks" type:"integer"`
+
+	// The progress' total checks.
+	TotalChecks *int64 `locationName:"totalChecks" type:"integer"`
+
+	// The progress' unknown checks.
+	UnknownChecks *int64 `locationName:"unknownChecks" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisMessageProgress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisMessageProgress) GoString() string {
+	return s.String()
+}
+
+// SetErrorChecks sets the ErrorChecks field's value.
+func (s *StopCisMessageProgress) SetErrorChecks(v int64) *StopCisMessageProgress {
+	s.ErrorChecks = &v
+	return s
+}
+
+// SetFailedChecks sets the FailedChecks field's value.
+func (s *StopCisMessageProgress) SetFailedChecks(v int64) *StopCisMessageProgress {
+	s.FailedChecks = &v
+	return s
+}
+
+// SetInformationalChecks sets the InformationalChecks field's value.
+func (s *StopCisMessageProgress) SetInformationalChecks(v int64) *StopCisMessageProgress {
+	s.InformationalChecks = &v
+	return s
+}
+
+// SetNotApplicableChecks sets the NotApplicableChecks field's value.
+func (s *StopCisMessageProgress) SetNotApplicableChecks(v int64) *StopCisMessageProgress {
+	s.NotApplicableChecks = &v
+	return s
+}
+
+// SetNotEvaluatedChecks sets the NotEvaluatedChecks field's value.
+func (s *StopCisMessageProgress) SetNotEvaluatedChecks(v int64) *StopCisMessageProgress {
+	s.NotEvaluatedChecks = &v
+	return s
+}
+
+// SetSuccessfulChecks sets the SuccessfulChecks field's value.
+func (s *StopCisMessageProgress) SetSuccessfulChecks(v int64) *StopCisMessageProgress {
+	s.SuccessfulChecks = &v
+	return s
+}
+
+// SetTotalChecks sets the TotalChecks field's value.
+func (s *StopCisMessageProgress) SetTotalChecks(v int64) *StopCisMessageProgress {
+	s.TotalChecks = &v
+	return s
+}
+
+// SetUnknownChecks sets the UnknownChecks field's value.
+func (s *StopCisMessageProgress) SetUnknownChecks(v int64) *StopCisMessageProgress {
+	s.UnknownChecks = &v
+	return s
+}
+
+type StopCisSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The stop CIS session message.
+	//
+	// Message is a required field
+	Message *StopCisSessionMessage `locationName:"message" type:"structure" required:"true"`
+
+	// A unique identifier for the scan job.
+	//
+	// ScanJobId is a required field
+	ScanJobId *string `locationName:"scanJobId" type:"string" required:"true"`
+
+	// The unique token that identifies the CIS session.
+	//
+	// SessionToken is a required field
+	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopCisSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopCisSessionInput"}
+	if s.Message == nil {
+		invalidParams.Add(request.NewErrParamRequired("Message"))
+	}
+	if s.ScanJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanJobId"))
+	}
+	if s.SessionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionToken"))
+	}
+	if s.Message != nil {
+		if err := s.Message.Validate(); err != nil {
+			invalidParams.AddNested("Message", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMessage sets the Message field's value.
+func (s *StopCisSessionInput) SetMessage(v *StopCisSessionMessage) *StopCisSessionInput {
+	s.Message = v
+	return s
+}
+
+// SetScanJobId sets the ScanJobId field's value.
+func (s *StopCisSessionInput) SetScanJobId(v string) *StopCisSessionInput {
+	s.ScanJobId = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *StopCisSessionInput) SetSessionToken(v string) *StopCisSessionInput {
+	s.SessionToken = &v
+	return s
+}
+
+// The stop CIS session message.
+type StopCisSessionMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The message benchmark profile.
+	BenchmarkProfile *string `locationName:"benchmarkProfile" type:"string"`
+
+	// The message benchmark version.
+	BenchmarkVersion *string `locationName:"benchmarkVersion" type:"string"`
+
+	// The message compute platform.
+	ComputePlatform *ComputePlatform `locationName:"computePlatform" type:"structure"`
+
+	// The progress of the message.
+	//
+	// Progress is a required field
+	Progress *StopCisMessageProgress `locationName:"progress" type:"structure" required:"true"`
+
+	// The reason for the message.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The status of the message.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"StopCisSessionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopCisSessionMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopCisSessionMessage"}
+	if s.Progress == nil {
+		invalidParams.Add(request.NewErrParamRequired("Progress"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBenchmarkProfile sets the BenchmarkProfile field's value.
+func (s *StopCisSessionMessage) SetBenchmarkProfile(v string) *StopCisSessionMessage {
+	s.BenchmarkProfile = &v
+	return s
+}
+
+// SetBenchmarkVersion sets the BenchmarkVersion field's value.
+func (s *StopCisSessionMessage) SetBenchmarkVersion(v string) *StopCisSessionMessage {
+	s.BenchmarkVersion = &v
+	return s
+}
+
+// SetComputePlatform sets the ComputePlatform field's value.
+func (s *StopCisSessionMessage) SetComputePlatform(v *ComputePlatform) *StopCisSessionMessage {
+	s.ComputePlatform = v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *StopCisSessionMessage) SetProgress(v *StopCisMessageProgress) *StopCisSessionMessage {
+	s.Progress = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *StopCisSessionMessage) SetReason(v string) *StopCisSessionMessage {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StopCisSessionMessage) SetStatus(v string) *StopCisSessionMessage {
+	s.Status = &v
+	return s
+}
+
+type StopCisSessionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopCisSessionOutput) GoString() string {
+	return s.String()
 }
 
 // An object that describes the details of a string filter.
@@ -17407,6 +22964,87 @@ func (s *SuggestedFix) SetCode(v string) *SuggestedFix {
 // SetDescription sets the Description field's value.
 func (s *SuggestedFix) SetDescription(v string) *SuggestedFix {
 	s.Description = &v
+	return s
+}
+
+// The tag filter.
+type TagFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The tag filter comparison value.
+	//
+	// Comparison is a required field
+	Comparison *string `locationName:"comparison" type:"string" required:"true" enum:"TagComparison"`
+
+	// The tag filter key.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
+
+	// The tag filter value.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagFilter"}
+	if s.Comparison == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comparison"))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparison sets the Comparison field's value.
+func (s *TagFilter) SetComparison(v string) *TagFilter {
+	s.Comparison = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *TagFilter) SetKey(v string) *TagFilter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TagFilter) SetValue(v string) *TagFilter {
+	s.Value = &v
 	return s
 }
 
@@ -17560,6 +23198,70 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The time.
+type Time struct {
+	_ struct{} `type:"structure"`
+
+	// The time of day in 24-hour format (00:00).
+	//
+	// TimeOfDay is a required field
+	TimeOfDay *string `locationName:"timeOfDay" type:"string" required:"true"`
+
+	// The timezone.
+	//
+	// Timezone is a required field
+	Timezone *string `locationName:"timezone" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Time) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Time) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Time) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Time"}
+	if s.TimeOfDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeOfDay"))
+	}
+	if s.Timezone == nil {
+		invalidParams.Add(request.NewErrParamRequired("Timezone"))
+	}
+	if s.Timezone != nil && len(*s.Timezone) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Timezone", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeOfDay sets the TimeOfDay field's value.
+func (s *Time) SetTimeOfDay(v string) *Time {
+	s.TimeOfDay = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *Time) SetTimezone(v string) *Time {
+	s.Timezone = &v
+	return s
 }
 
 // The details that define an aggregation based on finding title.
@@ -17820,6 +23522,192 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateCisScanConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan configuration ARN.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+
+	// The scan name for the CIS scan configuration.
+	ScanName *string `locationName:"scanName" min:"1" type:"string"`
+
+	// The schedule for the CIS scan configuration.
+	Schedule *Schedule `locationName:"schedule" type:"structure"`
+
+	// The security level for the CIS scan configuration. Security level refers
+	// to the Benchmark levels that CIS assigns to a profile.
+	SecurityLevel *string `locationName:"securityLevel" type:"string" enum:"CisSecurityLevel"`
+
+	// The targets for the CIS scan configuration.
+	Targets *UpdateCisTargets `locationName:"targets" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisScanConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisScanConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCisScanConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCisScanConfigurationInput"}
+	if s.ScanConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScanConfigurationArn"))
+	}
+	if s.ScanName != nil && len(*s.ScanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScanName", 1))
+	}
+	if s.Schedule != nil {
+		if err := s.Schedule.Validate(); err != nil {
+			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Targets != nil {
+		if err := s.Targets.Validate(); err != nil {
+			invalidParams.AddNested("Targets", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *UpdateCisScanConfigurationInput) SetScanConfigurationArn(v string) *UpdateCisScanConfigurationInput {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+// SetScanName sets the ScanName field's value.
+func (s *UpdateCisScanConfigurationInput) SetScanName(v string) *UpdateCisScanConfigurationInput {
+	s.ScanName = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *UpdateCisScanConfigurationInput) SetSchedule(v *Schedule) *UpdateCisScanConfigurationInput {
+	s.Schedule = v
+	return s
+}
+
+// SetSecurityLevel sets the SecurityLevel field's value.
+func (s *UpdateCisScanConfigurationInput) SetSecurityLevel(v string) *UpdateCisScanConfigurationInput {
+	s.SecurityLevel = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *UpdateCisScanConfigurationInput) SetTargets(v *UpdateCisTargets) *UpdateCisScanConfigurationInput {
+	s.Targets = v
+	return s
+}
+
+type UpdateCisScanConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The CIS scan configuration ARN.
+	//
+	// ScanConfigurationArn is a required field
+	ScanConfigurationArn *string `locationName:"scanConfigurationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisScanConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisScanConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetScanConfigurationArn sets the ScanConfigurationArn field's value.
+func (s *UpdateCisScanConfigurationOutput) SetScanConfigurationArn(v string) *UpdateCisScanConfigurationOutput {
+	s.ScanConfigurationArn = &v
+	return s
+}
+
+// Updates CIS targets.
+type UpdateCisTargets struct {
+	_ struct{} `type:"structure"`
+
+	// The target account ids.
+	AccountIds []*string `locationName:"accountIds" min:"1" type:"list"`
+
+	// The target resource tags.
+	TargetResourceTags map[string][]*string `locationName:"targetResourceTags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisTargets) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCisTargets) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCisTargets) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCisTargets"}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.TargetResourceTags != nil && len(s.TargetResourceTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetResourceTags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *UpdateCisTargets) SetAccountIds(v []*string) *UpdateCisTargets {
+	s.AccountIds = v
+	return s
+}
+
+// SetTargetResourceTags sets the TargetResourceTags field's value.
+func (s *UpdateCisTargets) SetTargetResourceTags(v map[string][]*string) *UpdateCisTargets {
+	s.TargetResourceTags = v
+	return s
 }
 
 type UpdateConfigurationInput struct {
@@ -18921,6 +24809,75 @@ func (s *VulnerablePackage) SetVersion(v string) *VulnerablePackage {
 	return s
 }
 
+// A weekly schedule.
+type WeeklySchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The weekly schedule's days.
+	//
+	// Days is a required field
+	Days []*string `locationName:"days" min:"1" type:"list" required:"true" enum:"Day"`
+
+	// The weekly schedule's start time.
+	//
+	// StartTime is a required field
+	StartTime *Time `locationName:"startTime" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WeeklySchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WeeklySchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WeeklySchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WeeklySchedule"}
+	if s.Days == nil {
+		invalidParams.Add(request.NewErrParamRequired("Days"))
+	}
+	if s.Days != nil && len(s.Days) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Days", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.StartTime != nil {
+		if err := s.StartTime.Validate(); err != nil {
+			invalidParams.AddNested("StartTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDays sets the Days field's value.
+func (s *WeeklySchedule) SetDays(v []*string) *WeeklySchedule {
+	s.Days = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *WeeklySchedule) SetStartTime(v *Time) *WeeklySchedule {
+	s.StartTime = v
+	return s
+}
+
 const (
 	// AccountSortByCritical is a AccountSortBy enum value
 	AccountSortByCritical = "CRITICAL"
@@ -19094,6 +25051,370 @@ func AwsEcrContainerSortBy_Values() []string {
 }
 
 const (
+	// CisFindingStatusPassed is a CisFindingStatus enum value
+	CisFindingStatusPassed = "PASSED"
+
+	// CisFindingStatusFailed is a CisFindingStatus enum value
+	CisFindingStatusFailed = "FAILED"
+
+	// CisFindingStatusSkipped is a CisFindingStatus enum value
+	CisFindingStatusSkipped = "SKIPPED"
+)
+
+// CisFindingStatus_Values returns all elements of the CisFindingStatus enum
+func CisFindingStatus_Values() []string {
+	return []string{
+		CisFindingStatusPassed,
+		CisFindingStatusFailed,
+		CisFindingStatusSkipped,
+	}
+}
+
+const (
+	// CisFindingStatusComparisonEquals is a CisFindingStatusComparison enum value
+	CisFindingStatusComparisonEquals = "EQUALS"
+)
+
+// CisFindingStatusComparison_Values returns all elements of the CisFindingStatusComparison enum
+func CisFindingStatusComparison_Values() []string {
+	return []string{
+		CisFindingStatusComparisonEquals,
+	}
+}
+
+const (
+	// CisReportStatusSucceeded is a CisReportStatus enum value
+	CisReportStatusSucceeded = "SUCCEEDED"
+
+	// CisReportStatusFailed is a CisReportStatus enum value
+	CisReportStatusFailed = "FAILED"
+
+	// CisReportStatusInProgress is a CisReportStatus enum value
+	CisReportStatusInProgress = "IN_PROGRESS"
+)
+
+// CisReportStatus_Values returns all elements of the CisReportStatus enum
+func CisReportStatus_Values() []string {
+	return []string{
+		CisReportStatusSucceeded,
+		CisReportStatusFailed,
+		CisReportStatusInProgress,
+	}
+}
+
+const (
+	// CisResultStatusPassed is a CisResultStatus enum value
+	CisResultStatusPassed = "PASSED"
+
+	// CisResultStatusFailed is a CisResultStatus enum value
+	CisResultStatusFailed = "FAILED"
+
+	// CisResultStatusSkipped is a CisResultStatus enum value
+	CisResultStatusSkipped = "SKIPPED"
+)
+
+// CisResultStatus_Values returns all elements of the CisResultStatus enum
+func CisResultStatus_Values() []string {
+	return []string{
+		CisResultStatusPassed,
+		CisResultStatusFailed,
+		CisResultStatusSkipped,
+	}
+}
+
+const (
+	// CisResultStatusComparisonEquals is a CisResultStatusComparison enum value
+	CisResultStatusComparisonEquals = "EQUALS"
+)
+
+// CisResultStatusComparison_Values returns all elements of the CisResultStatusComparison enum
+func CisResultStatusComparison_Values() []string {
+	return []string{
+		CisResultStatusComparisonEquals,
+	}
+}
+
+const (
+	// CisRuleStatusFailed is a CisRuleStatus enum value
+	CisRuleStatusFailed = "FAILED"
+
+	// CisRuleStatusPassed is a CisRuleStatus enum value
+	CisRuleStatusPassed = "PASSED"
+
+	// CisRuleStatusNotEvaluated is a CisRuleStatus enum value
+	CisRuleStatusNotEvaluated = "NOT_EVALUATED"
+
+	// CisRuleStatusInformational is a CisRuleStatus enum value
+	CisRuleStatusInformational = "INFORMATIONAL"
+
+	// CisRuleStatusUnknown is a CisRuleStatus enum value
+	CisRuleStatusUnknown = "UNKNOWN"
+
+	// CisRuleStatusNotApplicable is a CisRuleStatus enum value
+	CisRuleStatusNotApplicable = "NOT_APPLICABLE"
+
+	// CisRuleStatusError is a CisRuleStatus enum value
+	CisRuleStatusError = "ERROR"
+)
+
+// CisRuleStatus_Values returns all elements of the CisRuleStatus enum
+func CisRuleStatus_Values() []string {
+	return []string{
+		CisRuleStatusFailed,
+		CisRuleStatusPassed,
+		CisRuleStatusNotEvaluated,
+		CisRuleStatusInformational,
+		CisRuleStatusUnknown,
+		CisRuleStatusNotApplicable,
+		CisRuleStatusError,
+	}
+}
+
+const (
+	// CisScanConfigurationsSortByScanName is a CisScanConfigurationsSortBy enum value
+	CisScanConfigurationsSortByScanName = "SCAN_NAME"
+
+	// CisScanConfigurationsSortByScanConfigurationArn is a CisScanConfigurationsSortBy enum value
+	CisScanConfigurationsSortByScanConfigurationArn = "SCAN_CONFIGURATION_ARN"
+)
+
+// CisScanConfigurationsSortBy_Values returns all elements of the CisScanConfigurationsSortBy enum
+func CisScanConfigurationsSortBy_Values() []string {
+	return []string{
+		CisScanConfigurationsSortByScanName,
+		CisScanConfigurationsSortByScanConfigurationArn,
+	}
+}
+
+const (
+	// CisScanResultDetailsSortByCheckId is a CisScanResultDetailsSortBy enum value
+	CisScanResultDetailsSortByCheckId = "CHECK_ID"
+
+	// CisScanResultDetailsSortByStatus is a CisScanResultDetailsSortBy enum value
+	CisScanResultDetailsSortByStatus = "STATUS"
+)
+
+// CisScanResultDetailsSortBy_Values returns all elements of the CisScanResultDetailsSortBy enum
+func CisScanResultDetailsSortBy_Values() []string {
+	return []string{
+		CisScanResultDetailsSortByCheckId,
+		CisScanResultDetailsSortByStatus,
+	}
+}
+
+const (
+	// CisScanResultsAggregatedByChecksSortByCheckId is a CisScanResultsAggregatedByChecksSortBy enum value
+	CisScanResultsAggregatedByChecksSortByCheckId = "CHECK_ID"
+
+	// CisScanResultsAggregatedByChecksSortByTitle is a CisScanResultsAggregatedByChecksSortBy enum value
+	CisScanResultsAggregatedByChecksSortByTitle = "TITLE"
+
+	// CisScanResultsAggregatedByChecksSortByPlatform is a CisScanResultsAggregatedByChecksSortBy enum value
+	CisScanResultsAggregatedByChecksSortByPlatform = "PLATFORM"
+
+	// CisScanResultsAggregatedByChecksSortByFailedCounts is a CisScanResultsAggregatedByChecksSortBy enum value
+	CisScanResultsAggregatedByChecksSortByFailedCounts = "FAILED_COUNTS"
+
+	// CisScanResultsAggregatedByChecksSortBySecurityLevel is a CisScanResultsAggregatedByChecksSortBy enum value
+	CisScanResultsAggregatedByChecksSortBySecurityLevel = "SECURITY_LEVEL"
+)
+
+// CisScanResultsAggregatedByChecksSortBy_Values returns all elements of the CisScanResultsAggregatedByChecksSortBy enum
+func CisScanResultsAggregatedByChecksSortBy_Values() []string {
+	return []string{
+		CisScanResultsAggregatedByChecksSortByCheckId,
+		CisScanResultsAggregatedByChecksSortByTitle,
+		CisScanResultsAggregatedByChecksSortByPlatform,
+		CisScanResultsAggregatedByChecksSortByFailedCounts,
+		CisScanResultsAggregatedByChecksSortBySecurityLevel,
+	}
+}
+
+const (
+	// CisScanResultsAggregatedByTargetResourceSortByResourceId is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByResourceId = "RESOURCE_ID"
+
+	// CisScanResultsAggregatedByTargetResourceSortByFailedCounts is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByFailedCounts = "FAILED_COUNTS"
+
+	// CisScanResultsAggregatedByTargetResourceSortByAccountId is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByAccountId = "ACCOUNT_ID"
+
+	// CisScanResultsAggregatedByTargetResourceSortByPlatform is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByPlatform = "PLATFORM"
+
+	// CisScanResultsAggregatedByTargetResourceSortByTargetStatus is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByTargetStatus = "TARGET_STATUS"
+
+	// CisScanResultsAggregatedByTargetResourceSortByTargetStatusReason is a CisScanResultsAggregatedByTargetResourceSortBy enum value
+	CisScanResultsAggregatedByTargetResourceSortByTargetStatusReason = "TARGET_STATUS_REASON"
+)
+
+// CisScanResultsAggregatedByTargetResourceSortBy_Values returns all elements of the CisScanResultsAggregatedByTargetResourceSortBy enum
+func CisScanResultsAggregatedByTargetResourceSortBy_Values() []string {
+	return []string{
+		CisScanResultsAggregatedByTargetResourceSortByResourceId,
+		CisScanResultsAggregatedByTargetResourceSortByFailedCounts,
+		CisScanResultsAggregatedByTargetResourceSortByAccountId,
+		CisScanResultsAggregatedByTargetResourceSortByPlatform,
+		CisScanResultsAggregatedByTargetResourceSortByTargetStatus,
+		CisScanResultsAggregatedByTargetResourceSortByTargetStatusReason,
+	}
+}
+
+const (
+	// CisScanStatusFailed is a CisScanStatus enum value
+	CisScanStatusFailed = "FAILED"
+
+	// CisScanStatusCompleted is a CisScanStatus enum value
+	CisScanStatusCompleted = "COMPLETED"
+
+	// CisScanStatusCancelled is a CisScanStatus enum value
+	CisScanStatusCancelled = "CANCELLED"
+
+	// CisScanStatusInProgress is a CisScanStatus enum value
+	CisScanStatusInProgress = "IN_PROGRESS"
+)
+
+// CisScanStatus_Values returns all elements of the CisScanStatus enum
+func CisScanStatus_Values() []string {
+	return []string{
+		CisScanStatusFailed,
+		CisScanStatusCompleted,
+		CisScanStatusCancelled,
+		CisScanStatusInProgress,
+	}
+}
+
+const (
+	// CisScanStatusComparisonEquals is a CisScanStatusComparison enum value
+	CisScanStatusComparisonEquals = "EQUALS"
+)
+
+// CisScanStatusComparison_Values returns all elements of the CisScanStatusComparison enum
+func CisScanStatusComparison_Values() []string {
+	return []string{
+		CisScanStatusComparisonEquals,
+	}
+}
+
+const (
+	// CisSecurityLevelLevel1 is a CisSecurityLevel enum value
+	CisSecurityLevelLevel1 = "LEVEL_1"
+
+	// CisSecurityLevelLevel2 is a CisSecurityLevel enum value
+	CisSecurityLevelLevel2 = "LEVEL_2"
+)
+
+// CisSecurityLevel_Values returns all elements of the CisSecurityLevel enum
+func CisSecurityLevel_Values() []string {
+	return []string{
+		CisSecurityLevelLevel1,
+		CisSecurityLevelLevel2,
+	}
+}
+
+const (
+	// CisSecurityLevelComparisonEquals is a CisSecurityLevelComparison enum value
+	CisSecurityLevelComparisonEquals = "EQUALS"
+)
+
+// CisSecurityLevelComparison_Values returns all elements of the CisSecurityLevelComparison enum
+func CisSecurityLevelComparison_Values() []string {
+	return []string{
+		CisSecurityLevelComparisonEquals,
+	}
+}
+
+const (
+	// CisSortOrderAsc is a CisSortOrder enum value
+	CisSortOrderAsc = "ASC"
+
+	// CisSortOrderDesc is a CisSortOrder enum value
+	CisSortOrderDesc = "DESC"
+)
+
+// CisSortOrder_Values returns all elements of the CisSortOrder enum
+func CisSortOrder_Values() []string {
+	return []string{
+		CisSortOrderAsc,
+		CisSortOrderDesc,
+	}
+}
+
+const (
+	// CisStringComparisonEquals is a CisStringComparison enum value
+	CisStringComparisonEquals = "EQUALS"
+
+	// CisStringComparisonPrefix is a CisStringComparison enum value
+	CisStringComparisonPrefix = "PREFIX"
+
+	// CisStringComparisonNotEquals is a CisStringComparison enum value
+	CisStringComparisonNotEquals = "NOT_EQUALS"
+)
+
+// CisStringComparison_Values returns all elements of the CisStringComparison enum
+func CisStringComparison_Values() []string {
+	return []string{
+		CisStringComparisonEquals,
+		CisStringComparisonPrefix,
+		CisStringComparisonNotEquals,
+	}
+}
+
+const (
+	// CisTargetStatusTimedOut is a CisTargetStatus enum value
+	CisTargetStatusTimedOut = "TIMED_OUT"
+
+	// CisTargetStatusCancelled is a CisTargetStatus enum value
+	CisTargetStatusCancelled = "CANCELLED"
+
+	// CisTargetStatusCompleted is a CisTargetStatus enum value
+	CisTargetStatusCompleted = "COMPLETED"
+)
+
+// CisTargetStatus_Values returns all elements of the CisTargetStatus enum
+func CisTargetStatus_Values() []string {
+	return []string{
+		CisTargetStatusTimedOut,
+		CisTargetStatusCancelled,
+		CisTargetStatusCompleted,
+	}
+}
+
+const (
+	// CisTargetStatusComparisonEquals is a CisTargetStatusComparison enum value
+	CisTargetStatusComparisonEquals = "EQUALS"
+)
+
+// CisTargetStatusComparison_Values returns all elements of the CisTargetStatusComparison enum
+func CisTargetStatusComparison_Values() []string {
+	return []string{
+		CisTargetStatusComparisonEquals,
+	}
+}
+
+const (
+	// CisTargetStatusReasonScanInProgress is a CisTargetStatusReason enum value
+	CisTargetStatusReasonScanInProgress = "SCAN_IN_PROGRESS"
+
+	// CisTargetStatusReasonUnsupportedOs is a CisTargetStatusReason enum value
+	CisTargetStatusReasonUnsupportedOs = "UNSUPPORTED_OS"
+
+	// CisTargetStatusReasonSsmUnmanaged is a CisTargetStatusReason enum value
+	CisTargetStatusReasonSsmUnmanaged = "SSM_UNMANAGED"
+)
+
+// CisTargetStatusReason_Values returns all elements of the CisTargetStatusReason enum
+func CisTargetStatusReason_Values() []string {
+	return []string{
+		CisTargetStatusReasonScanInProgress,
+		CisTargetStatusReasonUnsupportedOs,
+		CisTargetStatusReasonSsmUnmanaged,
+	}
+}
+
+const (
 	// CodeSnippetErrorCodeInternalError is a CodeSnippetErrorCode enum value
 	CodeSnippetErrorCodeInternalError = "INTERNAL_ERROR"
 
@@ -19178,6 +25499,42 @@ const (
 func Currency_Values() []string {
 	return []string{
 		CurrencyUsd,
+	}
+}
+
+const (
+	// DaySun is a Day enum value
+	DaySun = "SUN"
+
+	// DayMon is a Day enum value
+	DayMon = "MON"
+
+	// DayTue is a Day enum value
+	DayTue = "TUE"
+
+	// DayWed is a Day enum value
+	DayWed = "WED"
+
+	// DayThu is a Day enum value
+	DayThu = "THU"
+
+	// DayFri is a Day enum value
+	DayFri = "FRI"
+
+	// DaySat is a Day enum value
+	DaySat = "SAT"
+)
+
+// Day_Values returns all elements of the Day enum
+func Day_Values() []string {
+	return []string{
+		DaySun,
+		DayMon,
+		DayTue,
+		DayWed,
+		DayThu,
+		DayFri,
+		DaySat,
 	}
 }
 
@@ -19694,6 +26051,46 @@ func LambdaLayerSortBy_Values() []string {
 		LambdaLayerSortByCritical,
 		LambdaLayerSortByHigh,
 		LambdaLayerSortByAll,
+	}
+}
+
+const (
+	// ListCisScansDetailLevelOrganization is a ListCisScansDetailLevel enum value
+	ListCisScansDetailLevelOrganization = "ORGANIZATION"
+
+	// ListCisScansDetailLevelMember is a ListCisScansDetailLevel enum value
+	ListCisScansDetailLevelMember = "MEMBER"
+)
+
+// ListCisScansDetailLevel_Values returns all elements of the ListCisScansDetailLevel enum
+func ListCisScansDetailLevel_Values() []string {
+	return []string{
+		ListCisScansDetailLevelOrganization,
+		ListCisScansDetailLevelMember,
+	}
+}
+
+const (
+	// ListCisScansSortByStatus is a ListCisScansSortBy enum value
+	ListCisScansSortByStatus = "STATUS"
+
+	// ListCisScansSortByScheduledBy is a ListCisScansSortBy enum value
+	ListCisScansSortByScheduledBy = "SCHEDULED_BY"
+
+	// ListCisScansSortByScanStartDate is a ListCisScansSortBy enum value
+	ListCisScansSortByScanStartDate = "SCAN_START_DATE"
+
+	// ListCisScansSortByFailedChecks is a ListCisScansSortBy enum value
+	ListCisScansSortByFailedChecks = "FAILED_CHECKS"
+)
+
+// ListCisScansSortBy_Values returns all elements of the ListCisScansSortBy enum
+func ListCisScansSortBy_Values() []string {
+	return []string{
+		ListCisScansSortByStatus,
+		ListCisScansSortByScheduledBy,
+		ListCisScansSortByScanStartDate,
+		ListCisScansSortByFailedChecks,
 	}
 }
 
@@ -20466,6 +26863,30 @@ func Status_Values() []string {
 }
 
 const (
+	// StopCisSessionStatusSuccess is a StopCisSessionStatus enum value
+	StopCisSessionStatusSuccess = "SUCCESS"
+
+	// StopCisSessionStatusFailed is a StopCisSessionStatus enum value
+	StopCisSessionStatusFailed = "FAILED"
+
+	// StopCisSessionStatusInterrupted is a StopCisSessionStatus enum value
+	StopCisSessionStatusInterrupted = "INTERRUPTED"
+
+	// StopCisSessionStatusUnsupportedOs is a StopCisSessionStatus enum value
+	StopCisSessionStatusUnsupportedOs = "UNSUPPORTED_OS"
+)
+
+// StopCisSessionStatus_Values returns all elements of the StopCisSessionStatus enum
+func StopCisSessionStatus_Values() []string {
+	return []string{
+		StopCisSessionStatusSuccess,
+		StopCisSessionStatusFailed,
+		StopCisSessionStatusInterrupted,
+		StopCisSessionStatusUnsupportedOs,
+	}
+}
+
+const (
 	// StringComparisonEquals is a StringComparison enum value
 	StringComparisonEquals = "EQUALS"
 
@@ -20482,6 +26903,18 @@ func StringComparison_Values() []string {
 		StringComparisonEquals,
 		StringComparisonPrefix,
 		StringComparisonNotEquals,
+	}
+}
+
+const (
+	// TagComparisonEquals is a TagComparison enum value
+	TagComparisonEquals = "EQUALS"
+)
+
+// TagComparison_Values returns all elements of the TagComparison enum
+func TagComparison_Values() []string {
+	return []string{
+		TagComparisonEquals,
 	}
 }
 

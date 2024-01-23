@@ -1,3 +1,9 @@
+Release v1.50.2 (2024-01-23)
+===
+
+### Service Client Updates
+* `service/inspector2`: Updates service API, documentation, and paginators
+
 Release v1.50.1 (2024-01-22)
 ===
 
