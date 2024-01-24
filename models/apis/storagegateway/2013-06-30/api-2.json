@@ -2666,7 +2666,9 @@
         "Ec2InstanceId":{"shape":"Ec2InstanceId"},
         "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"},
         "HostEnvironment":{"shape":"HostEnvironment"},
-        "HostEnvironmentId":{"shape":"HostEnvironmentId"}
+        "HostEnvironmentId":{"shape":"HostEnvironmentId"},
+        "DeprecationDate":{"shape":"DeprecationDate"},
+        "SoftwareVersion":{"shape":"SoftwareVersion"}
       }
     },
     "GatewayName":{

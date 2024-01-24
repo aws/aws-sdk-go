@@ -1097,6 +1097,35 @@
         "title": "To create a global DB cluster"
       }
     ],
+    "CreateIntegration": [
+      {
+        "input": {
+          "IntegrationName": "my-integration",
+          "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
+          "TargetArn": "arn:aws:redshift-serverless:us-east-1:123456789012:namespace/62c70612-0302-4db7-8414-b5e3e049f0d8"
+        },
+        "output": {
+          "CreateTime": "2023-12-28T17:20:20.629Z",
+          "IntegrationName": "my-integration",
+          "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
+          "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
+          "Status": "creating",
+          "Tags": [
+
+          ],
+          "TargetArn": "arn:aws:redshift-serverless:us-east-1:123456789012:namespace/62c70612-0302-4db7-8414-b5e3e049f0d8"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates a zero-ETL integration with Amazon Redshift.",
+        "id": "to-create-a-zero-etl-integration-1679688377231",
+        "title": "To create a zero-ETL integration"
+      }
+    ],
     "CreateOptionGroup": [
       {
         "input": {
@@ -1625,6 +1654,33 @@
         "description": "The following example deletes an Aurora MySQL-compatible global DB cluster.",
         "id": "to-delete-a-global-db-cluster-1680128523630",
         "title": "To delete a global DB cluster"
+      }
+    ],
+    "DeleteIntegration": [
+      {
+        "input": {
+          "IntegrationIdentifier": "5b9f3d79-7392-4a3e-896c-58eaa1b53231"
+        },
+        "output": {
+          "CreateTime": "2023-12-28T17:20:20.629Z",
+          "IntegrationName": "my-integration",
+          "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
+          "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
+          "Status": "deleting",
+          "Tags": [
+
+          ],
+          "TargetArn": "arn:aws:redshift-serverless:us-east-1:123456789012:namespace/62c70612-0302-4db7-8414-b5e3e049f0d8"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes a zero-ETL integration with Amazon Redshift.",
+        "id": "to-delete-a-zero-etl-integration-1679688377231",
+        "title": "To delete a zero-ETL integration"
       }
     ],
     "DeleteOptionGroup": [
@@ -3117,6 +3173,37 @@
         "description": "The following example lists Aurora global DB clusters in the current AWS Region.",
         "id": "to-describe-global-db-clusters-1680282459184",
         "title": "To describe global DB clusters"
+      }
+    ],
+    "DescribeIntegrations": [
+      {
+        "input": {
+          "IntegrationIdentifier": "5b9f3d79-7392-4a3e-896c-58eaa1b53231"
+        },
+        "output": {
+          "Integrations": [
+            {
+              "CreateTime": "2023-12-28T17:20:20.629Z",
+              "IntegrationName": "my-integration",
+              "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
+              "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
+              "Status": "active",
+              "Tags": [
+
+              ],
+              "TargetArn": "arn:aws:redshift-serverless:us-east-1:123456789012:namespace/62c70612-0302-4db7-8414-b5e3e049f0d8"
+            }
+          ]
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example retrieves information about a zero-ETL integration with Amazon Redshift.",
+        "id": "to-describe-a-zero-etl-integration-1679688377231",
+        "title": "To describe a zero-ETL integration"
       }
     ],
     "DescribeOptionGroupOptions": [

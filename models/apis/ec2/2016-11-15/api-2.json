@@ -7918,7 +7918,8 @@
         "available",
         "information",
         "impaired",
-        "unavailable"
+        "unavailable",
+        "constrained"
       ]
     },
     "AvailabilityZoneStringList":{
@@ -11317,6 +11318,10 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
         }
       }
     },
@@ -11326,6 +11331,10 @@
         "NetworkAcl":{
           "shape":"NetworkAcl",
           "locationName":"networkAcl"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },
@@ -11717,6 +11726,10 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
         }
       }
     },
@@ -11726,6 +11739,10 @@
         "RouteTable":{
           "shape":"RouteTable",
           "locationName":"routeTable"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },
@@ -42047,7 +42064,8 @@
       "type":"string",
       "enum":[
         "pending",
-        "available"
+        "available",
+        "unavailable"
       ]
     },
     "Subscription":{

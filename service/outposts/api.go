@@ -6465,9 +6465,7 @@ type StartConnectionInput struct {
 	ClientPublicKey *string `min:"44" type:"string" required:"true"`
 
 	// The serial number of the dongle.
-	//
-	// DeviceSerialNumber is a required field
-	DeviceSerialNumber *string `min:"1" type:"string" required:"true"`
+	DeviceSerialNumber *string `min:"1" type:"string"`
 
 	// The device index of the network interface on the Outpost server.
 	//
@@ -6507,9 +6505,6 @@ func (s *StartConnectionInput) Validate() error {
 	}
 	if s.ClientPublicKey != nil && len(*s.ClientPublicKey) < 44 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientPublicKey", 44))
-	}
-	if s.DeviceSerialNumber == nil {
-		invalidParams.Add(request.NewErrParamRequired("DeviceSerialNumber"))
 	}
 	if s.DeviceSerialNumber != nil && len(*s.DeviceSerialNumber) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeviceSerialNumber", 1))
