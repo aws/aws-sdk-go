@@ -338,6 +338,19 @@ const (
 	// groups.
 	ErrCodeDBSecurityGroupQuotaExceededFault = "QuotaExceeded.DBSecurityGroup"
 
+	// ErrCodeDBShardGroupAlreadyExistsFault for service response error code
+	// "DBShardGroupAlreadyExists".
+	//
+	// The specified DB shard group name must be unique in your Amazon Web Services
+	// account in the specified Amazon Web Services Region.
+	ErrCodeDBShardGroupAlreadyExistsFault = "DBShardGroupAlreadyExists"
+
+	// ErrCodeDBShardGroupNotFoundFault for service response error code
+	// "DBShardGroupNotFound".
+	//
+	// The specified DB shard group name wasn't found.
+	ErrCodeDBShardGroupNotFoundFault = "DBShardGroupNotFound"
+
 	// ErrCodeDBSnapshotAlreadyExistsFault for service response error code
 	// "DBSnapshotAlreadyExists".
 	//
@@ -614,6 +627,12 @@ const (
 	// The state of the DB security group doesn't allow deletion.
 	ErrCodeInvalidDBSecurityGroupStateFault = "InvalidDBSecurityGroupState"
 
+	// ErrCodeInvalidDBShardGroupStateFault for service response error code
+	// "InvalidDBShardGroupState".
+	//
+	// The DB shard group must be in the available state.
+	ErrCodeInvalidDBShardGroupStateFault = "InvalidDBShardGroupState"
+
 	// ErrCodeInvalidDBSnapshotStateFault for service response error code
 	// "InvalidDBSnapshotState".
 	//
@@ -678,6 +697,13 @@ const (
 	// The integration is in an invalid state and can't perform the requested operation.
 	ErrCodeInvalidIntegrationStateFault = "InvalidIntegrationStateFault"
 
+	// ErrCodeInvalidMaxAcuFault for service response error code
+	// "InvalidMaxAcu".
+	//
+	// The maximum capacity of the DB shard group must be 48-7168 Aurora capacity
+	// units (ACUs).
+	ErrCodeInvalidMaxAcuFault = "InvalidMaxAcu"
+
 	// ErrCodeInvalidOptionGroupStateFault for service response error code
 	// "InvalidOptionGroupStateFault".
 	//
@@ -723,6 +749,13 @@ const (
 	//
 	// An error occurred accessing an Amazon Web Services KMS key.
 	ErrCodeKMSKeyNotAccessibleFault = "KMSKeyNotAccessibleFault"
+
+	// ErrCodeMaxDBShardGroupLimitReached for service response error code
+	// "MaxDBShardGroupLimitReached".
+	//
+	// The maximum number of DB shard groups for your Amazon Web Services account
+	// in the specified Amazon Web Services Region has been reached.
+	ErrCodeMaxDBShardGroupLimitReached = "MaxDBShardGroupLimitReached"
 
 	// ErrCodeNetworkTypeNotSupported for service response error code
 	// "NetworkTypeNotSupported".
@@ -904,4 +937,10 @@ const (
 	// You attempted to create more tenant databases than are permitted in your
 	// Amazon Web Services account.
 	ErrCodeTenantDatabaseQuotaExceededFault = "TenantDatabaseQuotaExceeded"
+
+	// ErrCodeUnsupportedDBEngineVersionFault for service response error code
+	// "UnsupportedDBEngineVersion".
+	//
+	// The specified DB engine version isn't supported for Aurora Limitless Database.
+	ErrCodeUnsupportedDBEngineVersionFault = "UnsupportedDBEngineVersion"
 )

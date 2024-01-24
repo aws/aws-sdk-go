@@ -1,3 +1,17 @@
+Release v1.50.3 (2024-01-24)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Introduced a new clientToken request parameter on CreateNetworkAcl and CreateRouteTable APIs. The clientToken parameter allows idempotent operations on the APIs.
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS.
+* `service/outposts`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for Aurora Limitless Database.
+* `service/storagegateway`: Updates service API and documentation
+  * Add DeprecationDate and SoftwareVersion to response of ListGateways.
+
 Release v1.50.2 (2024-01-23)
 ===
 

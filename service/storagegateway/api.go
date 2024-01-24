@@ -4252,10 +4252,17 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *r
 
 // DescribeTapes API operation for AWS Storage Gateway.
 //
-// Returns a description of the specified Amazon Resource Name (ARN) of virtual
-// tapes. If a TapeARN is not specified, returns a description of all virtual
-// tapes associated with the specified gateway. This operation is only supported
-// in the tape gateway type.
+// Returns a description of virtual tapes that correspond to the specified Amazon
+// Resource Names (ARNs). If TapeARN is not specified, returns a description
+// of the virtual tapes associated with the specified gateway. This operation
+// is only supported for the tape gateway type.
+//
+// The operation supports pagination. By default, the operation returns a maximum
+// of up to 100 tapes. You can optionally specify the Limit field in the body
+// to limit the number of tapes in the response. If the number of tapes returned
+// in the response is truncated, the response includes a Marker field. You can
+// use this Marker value in your subsequent request to retrieve the next set
+// of tapes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6466,7 +6473,7 @@ func (c *StorageGateway) NotifyWhenUploadedRequest(input *NotifyWhenUploadedInpu
 // NotifyWhenUploaded API operation for AWS Storage Gateway.
 //
 // Sends you notification through CloudWatch Events when all files written to
-// your file share have been uploaded to S3. Amazon S3.
+// your file share have been uploaded to Amazon S3.
 //
 // Storage Gateway can send a notification through Amazon CloudWatch Events
 // when all files written to your file share up to that point in time have been
@@ -6572,9 +6579,9 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 //
 // You can subscribe to be notified through an Amazon CloudWatch event when
 // your RefreshCache operation completes. For more information, see Getting
-// notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
-// in the Storage Gateway User Guide. This operation is Only supported for S3
-// File Gateways.
+// notified about file operations (https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification)
+// in the Amazon S3 File Gateway User Guide. This operation is Only supported
+// for S3 File Gateways.
 //
 // When this API is called, it only initiates the refresh operation. When the
 // API call completes and returns a success code, it doesn't necessarily mean
@@ -6586,8 +6593,8 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 // Throttle limit: This API is asynchronous, so the gateway will accept no more
 // than two refreshes at any time. We recommend using the refresh-complete CloudWatch
 // event notification before issuing additional requests. For more information,
-// see Getting notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
-// in the Storage Gateway User Guide.
+// see Getting notified about file operations (https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification)
+// in the Amazon S3 File Gateway User Guide.
 //
 //   - Wait at least 60 seconds between consecutive RefreshCache API requests.
 //
@@ -6598,8 +6605,8 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 // The S3 bucket name does not need to be included when entering the list of
 // folders in the FolderList parameter.
 //
-// For more information, see Getting notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
-// in the Storage Gateway User Guide.
+// For more information, see Getting notified about file operations (https://docs.aws.amazon.com/filegateway/latest/files3/monitoring-file-gateway.html#get-notification)
+// in the Amazon S3 File Gateway User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7222,8 +7229,11 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 
 // ShutdownGateway API operation for AWS Storage Gateway.
 //
-// Shuts down a gateway. To specify which gateway to shut down, use the Amazon
-// Resource Name (ARN) of the gateway in the body of your request.
+// Shuts down a Tape Gateway or Volume Gateway. To specify which gateway to
+// shut down, use the Amazon Resource Name (ARN) of the gateway in the body
+// of your request.
+//
+// This API action cannot be used to shut down S3 File Gateway or FSx File Gateway.
 //
 // The operation shuts down the gateway service component running in the gateway's
 // virtual machine (VM) and not the host VM.
@@ -17274,6 +17284,10 @@ func (s *FileSystemAssociationSummary) SetGatewayARN(v string) *FileSystemAssoci
 type GatewayInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Date after which this gateway will not receive software updates for new features
+	// and bug fixes.
+	DeprecationDate *string `min:"1" type:"string"`
+
 	// The ID of the Amazon EC2 instance that was used to launch the gateway.
 	Ec2InstanceId *string `type:"string"`
 
@@ -17307,6 +17321,9 @@ type GatewayInfo struct {
 	// the gateway. This value is only available for certain host environments,
 	// and its format depends on the host environment type.
 	HostEnvironmentId *string `min:"1" type:"string"`
+
+	// The version number of the software running on the gateway appliance.
+	SoftwareVersion *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -17325,6 +17342,12 @@ func (s GatewayInfo) String() string {
 // value will be replaced with "sensitive".
 func (s GatewayInfo) GoString() string {
 	return s.String()
+}
+
+// SetDeprecationDate sets the DeprecationDate field's value.
+func (s *GatewayInfo) SetDeprecationDate(v string) *GatewayInfo {
+	s.DeprecationDate = &v
+	return s
 }
 
 // SetEc2InstanceId sets the Ec2InstanceId field's value.
@@ -17378,6 +17401,12 @@ func (s *GatewayInfo) SetHostEnvironment(v string) *GatewayInfo {
 // SetHostEnvironmentId sets the HostEnvironmentId field's value.
 func (s *GatewayInfo) SetHostEnvironmentId(v string) *GatewayInfo {
 	s.HostEnvironmentId = &v
+	return s
+}
+
+// SetSoftwareVersion sets the SoftwareVersion field's value.
+func (s *GatewayInfo) SetSoftwareVersion(v string) *GatewayInfo {
+	s.SoftwareVersion = &v
 	return s
 }
 

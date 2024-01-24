@@ -160,6 +160,10 @@ type RDSAPI interface {
 	CreateDBSecurityGroupWithContext(aws.Context, *rds.CreateDBSecurityGroupInput, ...request.Option) (*rds.CreateDBSecurityGroupOutput, error)
 	CreateDBSecurityGroupRequest(*rds.CreateDBSecurityGroupInput) (*request.Request, *rds.CreateDBSecurityGroupOutput)
 
+	CreateDBShardGroup(*rds.CreateDBShardGroupInput) (*rds.CreateDBShardGroupOutput, error)
+	CreateDBShardGroupWithContext(aws.Context, *rds.CreateDBShardGroupInput, ...request.Option) (*rds.CreateDBShardGroupOutput, error)
+	CreateDBShardGroupRequest(*rds.CreateDBShardGroupInput) (*request.Request, *rds.CreateDBShardGroupOutput)
+
 	CreateDBSnapshot(*rds.CreateDBSnapshotInput) (*rds.CreateDBSnapshotOutput, error)
 	CreateDBSnapshotWithContext(aws.Context, *rds.CreateDBSnapshotInput, ...request.Option) (*rds.CreateDBSnapshotOutput, error)
 	CreateDBSnapshotRequest(*rds.CreateDBSnapshotInput) (*request.Request, *rds.CreateDBSnapshotOutput)
@@ -239,6 +243,10 @@ type RDSAPI interface {
 	DeleteDBSecurityGroup(*rds.DeleteDBSecurityGroupInput) (*rds.DeleteDBSecurityGroupOutput, error)
 	DeleteDBSecurityGroupWithContext(aws.Context, *rds.DeleteDBSecurityGroupInput, ...request.Option) (*rds.DeleteDBSecurityGroupOutput, error)
 	DeleteDBSecurityGroupRequest(*rds.DeleteDBSecurityGroupInput) (*request.Request, *rds.DeleteDBSecurityGroupOutput)
+
+	DeleteDBShardGroup(*rds.DeleteDBShardGroupInput) (*rds.DeleteDBShardGroupOutput, error)
+	DeleteDBShardGroupWithContext(aws.Context, *rds.DeleteDBShardGroupInput, ...request.Option) (*rds.DeleteDBShardGroupOutput, error)
+	DeleteDBShardGroupRequest(*rds.DeleteDBShardGroupInput) (*request.Request, *rds.DeleteDBShardGroupOutput)
 
 	DeleteDBSnapshot(*rds.DeleteDBSnapshotInput) (*rds.DeleteDBSnapshotOutput, error)
 	DeleteDBSnapshotWithContext(aws.Context, *rds.DeleteDBSnapshotInput, ...request.Option) (*rds.DeleteDBSnapshotOutput, error)
@@ -426,6 +434,10 @@ type RDSAPI interface {
 
 	DescribeDBSecurityGroupsPages(*rds.DescribeDBSecurityGroupsInput, func(*rds.DescribeDBSecurityGroupsOutput, bool) bool) error
 	DescribeDBSecurityGroupsPagesWithContext(aws.Context, *rds.DescribeDBSecurityGroupsInput, func(*rds.DescribeDBSecurityGroupsOutput, bool) bool, ...request.Option) error
+
+	DescribeDBShardGroups(*rds.DescribeDBShardGroupsInput) (*rds.DescribeDBShardGroupsOutput, error)
+	DescribeDBShardGroupsWithContext(aws.Context, *rds.DescribeDBShardGroupsInput, ...request.Option) (*rds.DescribeDBShardGroupsOutput, error)
+	DescribeDBShardGroupsRequest(*rds.DescribeDBShardGroupsInput) (*request.Request, *rds.DescribeDBShardGroupsOutput)
 
 	DescribeDBSnapshotAttributes(*rds.DescribeDBSnapshotAttributesInput) (*rds.DescribeDBSnapshotAttributesOutput, error)
 	DescribeDBSnapshotAttributesWithContext(aws.Context, *rds.DescribeDBSnapshotAttributesInput, ...request.Option) (*rds.DescribeDBSnapshotAttributesOutput, error)
@@ -645,6 +657,10 @@ type RDSAPI interface {
 	ModifyDBRecommendationWithContext(aws.Context, *rds.ModifyDBRecommendationInput, ...request.Option) (*rds.ModifyDBRecommendationOutput, error)
 	ModifyDBRecommendationRequest(*rds.ModifyDBRecommendationInput) (*request.Request, *rds.ModifyDBRecommendationOutput)
 
+	ModifyDBShardGroup(*rds.ModifyDBShardGroupInput) (*rds.ModifyDBShardGroupOutput, error)
+	ModifyDBShardGroupWithContext(aws.Context, *rds.ModifyDBShardGroupInput, ...request.Option) (*rds.ModifyDBShardGroupOutput, error)
+	ModifyDBShardGroupRequest(*rds.ModifyDBShardGroupInput) (*request.Request, *rds.ModifyDBShardGroupOutput)
+
 	ModifyDBSnapshot(*rds.ModifyDBSnapshotInput) (*rds.ModifyDBSnapshotOutput, error)
 	ModifyDBSnapshotWithContext(aws.Context, *rds.ModifyDBSnapshotInput, ...request.Option) (*rds.ModifyDBSnapshotOutput, error)
 	ModifyDBSnapshotRequest(*rds.ModifyDBSnapshotInput) (*request.Request, *rds.ModifyDBSnapshotOutput)
@@ -692,6 +708,10 @@ type RDSAPI interface {
 	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceWithContext(aws.Context, *rds.RebootDBInstanceInput, ...request.Option) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceRequest(*rds.RebootDBInstanceInput) (*request.Request, *rds.RebootDBInstanceOutput)
+
+	RebootDBShardGroup(*rds.RebootDBShardGroupInput) (*rds.RebootDBShardGroupOutput, error)
+	RebootDBShardGroupWithContext(aws.Context, *rds.RebootDBShardGroupInput, ...request.Option) (*rds.RebootDBShardGroupOutput, error)
+	RebootDBShardGroupRequest(*rds.RebootDBShardGroupInput) (*request.Request, *rds.RebootDBShardGroupOutput)
 
 	RegisterDBProxyTargets(*rds.RegisterDBProxyTargetsInput) (*rds.RegisterDBProxyTargetsOutput, error)
 	RegisterDBProxyTargetsWithContext(aws.Context, *rds.RegisterDBProxyTargetsInput, ...request.Option) (*rds.RegisterDBProxyTargetsOutput, error)
