@@ -3284,7 +3284,8 @@
         "ramSizeInGb":{"shape":"float"},
         "transferPerMonthInGb":{"shape":"integer"},
         "supportedPlatforms":{"shape":"InstancePlatformList"},
-        "supportedAppCategories":{"shape":"AppCategoryList"}
+        "supportedAppCategories":{"shape":"AppCategoryList"},
+        "publicIpv4AddressCount":{"shape":"integer"}
       }
     },
     "BundleList":{
@@ -6093,6 +6094,7 @@
         "certKey":{"shape":"string"},
         "expiresAt":{"shape":"IsoDate"},
         "ipAddress":{"shape":"IpAddress"},
+        "ipv6Addresses":{"shape":"Ipv6AddressList"},
         "password":{"shape":"string"},
         "passwordData":{"shape":"PasswordData"},
         "privateKey":{"shape":"string"},

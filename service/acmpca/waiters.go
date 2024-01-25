@@ -131,7 +131,7 @@ func (c *ACMPCA) WaitUntilCertificateIssuedWithContext(ctx aws.Context, input *G
 	w := request.Waiter{
 		Name:        "WaitUntilCertificateIssued",
 		MaxAttempts: 60,
-		Delay:       request.ConstantWaiterDelay(3 * time.Second),
+		Delay:       request.ConstantWaiterDelay(1 * time.Second),
 		Acceptors: []request.WaiterAcceptor{
 			{
 				State:    request.SuccessWaiterState,

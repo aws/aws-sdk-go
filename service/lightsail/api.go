@@ -19480,6 +19480,10 @@ type Bundle struct {
 	// The price in US dollars (5.0) of the bundle.
 	Price *float64 `locationName:"price" type:"float"`
 
+	// An integer that indicates the public ipv4 address count included in the bundle,
+	// the value is either 0 or 1.
+	PublicIpv4AddressCount *int64 `locationName:"publicIpv4AddressCount" type:"integer"`
+
 	// The amount of RAM in GB (2.0).
 	RamSizeInGb *float64 `locationName:"ramSizeInGb" type:"float"`
 
@@ -19562,6 +19566,12 @@ func (s *Bundle) SetPower(v int64) *Bundle {
 // SetPrice sets the Price field's value.
 func (s *Bundle) SetPrice(v float64) *Bundle {
 	s.Price = &v
+	return s
+}
+
+// SetPublicIpv4AddressCount sets the PublicIpv4AddressCount field's value.
+func (s *Bundle) SetPublicIpv4AddressCount(v int64) *Bundle {
+	s.PublicIpv4AddressCount = &v
 	return s
 }
 
@@ -36409,6 +36419,9 @@ type InstanceAccessDetails struct {
 	// The public IP address of the Amazon Lightsail instance.
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 
+	// The IPv6 address of the Amazon Lightsail instance.
+	Ipv6Addresses []*string `locationName:"ipv6Addresses" type:"list"`
+
 	// For RDP access, the password for your Amazon Lightsail instance. Password
 	// will be an empty string if the password for your new instance is not ready
 	// yet. When you create an instance, it can take up to 15 minutes for the instance
@@ -36485,6 +36498,12 @@ func (s *InstanceAccessDetails) SetInstanceName(v string) *InstanceAccessDetails
 // SetIpAddress sets the IpAddress field's value.
 func (s *InstanceAccessDetails) SetIpAddress(v string) *InstanceAccessDetails {
 	s.IpAddress = &v
+	return s
+}
+
+// SetIpv6Addresses sets the Ipv6Addresses field's value.
+func (s *InstanceAccessDetails) SetIpv6Addresses(v []*string) *InstanceAccessDetails {
+	s.Ipv6Addresses = v
 	return s
 }
 
