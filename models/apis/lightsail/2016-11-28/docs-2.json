@@ -2719,7 +2719,8 @@
     "Ipv6AddressList": {
       "base": null,
       "refs": {
-        "Instance$ipv6Addresses": "<p>The IPv6 addresses of the instance.</p>"
+        "Instance$ipv6Addresses": "<p>The IPv6 addresses of the instance.</p>",
+        "InstanceAccessDetails$ipv6Addresses": "<p>The IPv6 address of the Amazon Lightsail instance.</p>"
       }
     },
     "IsVpcPeeredRequest": {
@@ -4620,6 +4621,7 @@
         "Bundle$diskSizeInGb": "<p>The size of the SSD (<code>30</code>).</p>",
         "Bundle$power": "<p>A numeric value that represents the power of the bundle (<code>500</code>). You can use the bundle's power value in conjunction with a blueprint's minimum power value to determine whether the blueprint will run on the bundle. For example, you need a bundle with a power value of 500 or more to create an instance that uses a blueprint with a minimum power value of 500.</p>",
         "Bundle$transferPerMonthInGb": "<p>The data transfer rate per month in GB (<code>2000</code>).</p>",
+        "Bundle$publicIpv4AddressCount": "<p>An integer that indicates the public ipv4 address count included in the bundle, the value is either 0 or 1.</p>",
         "ContainerServiceDeployment$version": "<p>The version number of the deployment.</p>",
         "ContainerServiceEndpoint$containerPort": "<p>The port of the specified container to which traffic is forwarded to.</p>",
         "ContainerServiceHealthCheckConfig$healthyThreshold": "<p>The number of consecutive health checks successes required before moving the container to the <code>Healthy</code> state. The default value is <code>2</code>.</p>",

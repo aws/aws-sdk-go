@@ -1,3 +1,11 @@
+Release v1.50.4 (2024-01-25)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API, documentation, and waiters
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for IPv6-only instance plans.
+
 Release v1.50.3 (2024-01-24)
 ===
 

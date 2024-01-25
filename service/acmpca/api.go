@@ -4030,9 +4030,11 @@ func (s CreatePermissionOutput) GoString() string {
 // by setting the Enabled parameter to true. Your private CA writes CRLs to
 // an S3 bucket that you specify in the S3BucketName parameter. You can hide
 // the name of your bucket by specifying a value for the CustomCname parameter.
-// Your private CA copies the CNAME or the S3 bucket name to the CRL Distribution
-// Points extension of each certificate it issues. Your S3 bucket policy must
-// give write permission to Amazon Web Services Private CA.
+// Your private CA by default copies the CNAME or the S3 bucket name to the
+// CRL Distribution Points extension of each certificate it issues. If you want
+// to configure this default behavior to be something different, you can set
+// the CrlDistributionPointExtensionConfiguration parameter. Your S3 bucket
+// policy must give write permission to Amazon Web Services Private CA.
 //
 // Amazon Web Services Private CA assets that are stored in Amazon S3 can be
 // protected with encryption. For more information, see Encrypting Your CRLs
@@ -4086,6 +4088,12 @@ func (s CreatePermissionOutput) GoString() string {
 // in the Amazon Web Services Private Certificate Authority User Guide
 type CrlConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Configures the behavior of the CRL Distribution Point extension for certificates
+	// issued by your certificate authority. If this field is not provided, then
+	// the CRl Distribution Point Extension will be present and contain the default
+	// CRL URL.
+	CrlDistributionPointExtensionConfiguration *CrlDistributionPointExtensionConfiguration `type:"structure"`
 
 	// Name inserted into the certificate CRL Distribution Points extension that
 	// enables the use of an alias for the CRL distribution point. Use this value
@@ -4168,11 +4176,22 @@ func (s *CrlConfiguration) Validate() error {
 	if s.S3BucketName != nil && len(*s.S3BucketName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("S3BucketName", 3))
 	}
+	if s.CrlDistributionPointExtensionConfiguration != nil {
+		if err := s.CrlDistributionPointExtensionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CrlDistributionPointExtensionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCrlDistributionPointExtensionConfiguration sets the CrlDistributionPointExtensionConfiguration field's value.
+func (s *CrlConfiguration) SetCrlDistributionPointExtensionConfiguration(v *CrlDistributionPointExtensionConfiguration) *CrlConfiguration {
+	s.CrlDistributionPointExtensionConfiguration = v
+	return s
 }
 
 // SetCustomCname sets the CustomCname field's value.
@@ -4202,6 +4221,66 @@ func (s *CrlConfiguration) SetS3BucketName(v string) *CrlConfiguration {
 // SetS3ObjectAcl sets the S3ObjectAcl field's value.
 func (s *CrlConfiguration) SetS3ObjectAcl(v string) *CrlConfiguration {
 	s.S3ObjectAcl = &v
+	return s
+}
+
+// Contains configuration information for the default behavior of the CRL Distribution
+// Point (CDP) extension in certificates issued by your CA. This extension contains
+// a link to download the CRL, so you can check whether a certificate has been
+// revoked. To choose whether you want this extension omitted or not in certificates
+// issued by your CA, you can set the OmitExtension parameter.
+type CrlDistributionPointExtensionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configures whether the CRL Distribution Point extension should be populated
+	// with the default URL to the CRL. If set to true, then the CDP extension will
+	// not be present in any certificates issued by that CA unless otherwise specified
+	// through CSR or API passthrough.
+	//
+	// Only set this if you have another way to distribute the CRL Distribution
+	// Points ffor certificates issued by your CA, such as the Matter Distributed
+	// Compliance Ledger
+	//
+	// This configuration cannot be enabled with a custom CNAME set.
+	//
+	// OmitExtension is a required field
+	OmitExtension *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrlDistributionPointExtensionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrlDistributionPointExtensionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CrlDistributionPointExtensionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CrlDistributionPointExtensionConfiguration"}
+	if s.OmitExtension == nil {
+		invalidParams.Add(request.NewErrParamRequired("OmitExtension"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOmitExtension sets the OmitExtension field's value.
+func (s *CrlDistributionPointExtensionConfiguration) SetOmitExtension(v bool) *CrlDistributionPointExtensionConfiguration {
+	s.OmitExtension = &v
 	return s
 }
 
@@ -6628,6 +6707,9 @@ type ListCertificateAuthoritiesInput struct {
 	// of items to return in the response on each page. If additional items exist
 	// beyond the number you specify, the NextToken element is sent in the response.
 	// Use this NextToken value in a subsequent request to retrieve additional items.
+	//
+	// Although the maximum value is 1000, the action only returns a maximum of
+	// 100 items.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Use this parameter when paginating results in a subsequent request after

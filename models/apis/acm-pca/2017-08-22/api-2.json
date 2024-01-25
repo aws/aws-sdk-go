@@ -464,7 +464,7 @@
       "type":"string",
       "max":200,
       "min":5,
-      "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
+      "pattern":"arn:[\\w+=/,.@-]+:acm-pca:[\\w+=/,.@-]*:[0-9]*:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
     },
     "AuditReportId":{
       "type":"string",
@@ -672,7 +672,18 @@
         },
         "CustomCname":{"shape":"CnameString"},
         "S3BucketName":{"shape":"S3BucketName3To255"},
-        "S3ObjectAcl":{"shape":"S3ObjectAcl"}
+        "S3ObjectAcl":{"shape":"S3ObjectAcl"},
+        "CrlDistributionPointExtensionConfiguration":{"shape":"CrlDistributionPointExtensionConfiguration"}
+      }
+    },
+    "CrlDistributionPointExtensionConfiguration":{
+      "type":"structure",
+      "required":["OmitExtension"],
+      "members":{
+        "OmitExtension":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "CsrBlob":{
@@ -702,7 +713,7 @@
     "CustomAttributeList":{
       "type":"list",
       "member":{"shape":"CustomAttribute"},
-      "max":30,
+      "max":150,
       "min":1
     },
     "CustomExtension":{
@@ -723,7 +734,7 @@
     "CustomExtensionList":{
       "type":"list",
       "member":{"shape":"CustomExtension"},
-      "max":20,
+      "max":150,
       "min":1
     },
     "CustomObjectIdentifier":{
@@ -861,7 +872,7 @@
     "GeneralNameList":{
       "type":"list",
       "member":{"shape":"GeneralName"},
-      "max":20,
+      "max":150,
       "min":1
     },
     "GetCertificateAuthorityCertificateRequest":{
@@ -1131,7 +1142,7 @@
     },
     "NextToken":{
       "type":"string",
-      "max":500,
+      "max":43739,
       "min":1
     },
     "OcspConfiguration":{
