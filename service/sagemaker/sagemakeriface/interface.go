@@ -392,6 +392,10 @@ type SageMakerAPI interface {
 	DeleteHumanTaskUiWithContext(aws.Context, *sagemaker.DeleteHumanTaskUiInput, ...request.Option) (*sagemaker.DeleteHumanTaskUiOutput, error)
 	DeleteHumanTaskUiRequest(*sagemaker.DeleteHumanTaskUiInput) (*request.Request, *sagemaker.DeleteHumanTaskUiOutput)
 
+	DeleteHyperParameterTuningJob(*sagemaker.DeleteHyperParameterTuningJobInput) (*sagemaker.DeleteHyperParameterTuningJobOutput, error)
+	DeleteHyperParameterTuningJobWithContext(aws.Context, *sagemaker.DeleteHyperParameterTuningJobInput, ...request.Option) (*sagemaker.DeleteHyperParameterTuningJobOutput, error)
+	DeleteHyperParameterTuningJobRequest(*sagemaker.DeleteHyperParameterTuningJobInput) (*request.Request, *sagemaker.DeleteHyperParameterTuningJobOutput)
+
 	DeleteImage(*sagemaker.DeleteImageInput) (*sagemaker.DeleteImageOutput, error)
 	DeleteImageWithContext(aws.Context, *sagemaker.DeleteImageInput, ...request.Option) (*sagemaker.DeleteImageOutput, error)
 	DeleteImageRequest(*sagemaker.DeleteImageInput) (*request.Request, *sagemaker.DeleteImageOutput)
