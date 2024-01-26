@@ -1,3 +1,12 @@
+Release v1.50.5 (2024-01-26)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API
+* `service/inspector2`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Automatic Model Tuning now provides an API to programmatically delete tuning jobs.
+
 Release v1.50.4 (2024-01-25)
 ===
 

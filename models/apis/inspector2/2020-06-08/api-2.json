@@ -1894,7 +1894,7 @@
     "CisSessionMessages":{
       "type":"list",
       "member":{"shape":"CisSessionMessage"},
-      "max":50,
+      "max":150,
       "min":1
     },
     "CisSortOrder":{
@@ -2173,6 +2173,7 @@
         "ec2InstanceTags":{"shape":"CoverageMapFilterList"},
         "ecrImageTags":{"shape":"CoverageStringFilterList"},
         "ecrRepositoryName":{"shape":"CoverageStringFilterList"},
+        "imagePulledAt":{"shape":"CoverageDateFilterList"},
         "lambdaFunctionName":{"shape":"CoverageStringFilterList"},
         "lambdaFunctionRuntime":{"shape":"CoverageStringFilterList"},
         "lambdaFunctionTags":{"shape":"CoverageMapFilterList"},
@@ -2698,6 +2699,7 @@
       "type":"structure",
       "required":["rescanDuration"],
       "members":{
+        "pullDateRescanDuration":{"shape":"EcrPullDateRescanDuration"},
         "rescanDuration":{"shape":"EcrRescanDuration"}
       }
     },
@@ -2710,8 +2712,19 @@
     "EcrContainerImageMetadata":{
       "type":"structure",
       "members":{
+        "imagePulledAt":{"shape":"DateTimeTimestamp"},
         "tags":{"shape":"TagList"}
       }
+    },
+    "EcrPullDateRescanDuration":{
+      "type":"string",
+      "enum":[
+        "DAYS_14",
+        "DAYS_30",
+        "DAYS_60",
+        "DAYS_90",
+        "DAYS_180"
+      ]
     },
     "EcrRepositoryMetadata":{
       "type":"structure",
@@ -2725,12 +2738,16 @@
       "enum":[
         "LIFETIME",
         "DAYS_30",
-        "DAYS_180"
+        "DAYS_180",
+        "DAYS_14",
+        "DAYS_60",
+        "DAYS_90"
       ]
     },
     "EcrRescanDurationState":{
       "type":"structure",
       "members":{
+        "pullDateRescanDuration":{"shape":"EcrPullDateRescanDuration"},
         "rescanDuration":{"shape":"EcrRescanDuration"},
         "status":{"shape":"EcrRescanDurationStatus"},
         "updatedAt":{"shape":"DateTimeTimestamp"}

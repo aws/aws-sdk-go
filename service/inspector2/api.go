@@ -5997,8 +5997,8 @@ func (c *Inspector2) UpdateEncryptionKeyRequest(input *UpdateEncryptionKeyInput)
 
 // UpdateEncryptionKey API operation for Inspector2.
 //
-// Updates an encryption key. A ResourceNotFoundException means that an AWS
-// owned key is being used for encryption.
+// Updates an encryption key. A ResourceNotFoundException means that an Amazon
+// Web Services owned key is being used for encryption.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6634,10 +6634,12 @@ type AggregationRequest struct {
 	// image layers.
 	ImageLayerAggregation *ImageLayerAggregation `locationName:"imageLayerAggregation" type:"structure"`
 
-	// Returns an object with findings aggregated by AWS Lambda function.
+	// Returns an object with findings aggregated by Amazon Web Services Lambda
+	// function.
 	LambdaFunctionAggregation *LambdaFunctionAggregation `locationName:"lambdaFunctionAggregation" type:"structure"`
 
-	// Returns an object with findings aggregated by AWS Lambda layer.
+	// Returns an object with findings aggregated by Amazon Web Services Lambda
+	// layer.
 	LambdaLayerAggregation *LambdaLayerAggregation `locationName:"lambdaLayerAggregation" type:"structure"`
 
 	// An object that contains details about an aggregation request based on operating
@@ -6820,10 +6822,10 @@ type AggregationResponse struct {
 	// image layers.
 	ImageLayerAggregation *ImageLayerAggregationResponse `locationName:"imageLayerAggregation" type:"structure"`
 
-	// An aggregation of findings by AWS Lambda function.
+	// An aggregation of findings by Amazon Web Services Lambda function.
 	LambdaFunctionAggregation *LambdaFunctionAggregationResponse `locationName:"lambdaFunctionAggregation" type:"structure"`
 
-	// An aggregation of findings by AWS Lambda layer.
+	// An aggregation of findings by Amazon Web Services Lambda layer.
 	LambdaLayerAggregation *LambdaLayerAggregationResponse `locationName:"lambdaLayerAggregation" type:"structure"`
 
 	// An object that contains details about an aggregation response based on operating
@@ -7218,8 +7220,8 @@ type AutoEnable struct {
 	// Ecr is a required field
 	Ecr *bool `locationName:"ecr" type:"boolean" required:"true"`
 
-	// Represents whether AWS Lambda standard scans are automatically enabled for
-	// new members of your Amazon Inspector organization.
+	// Represents whether Amazon Web Services Lambda standard scans are automatically
+	// enabled for new members of your Amazon Inspector organization.
 	Lambda *bool `locationName:"lambda" type:"boolean"`
 
 	LambdaCode *bool `locationName:"lambdaCode" type:"boolean"`
@@ -7746,26 +7748,26 @@ func (s *AwsEcrContainerImageDetails) SetRepositoryName(v string) *AwsEcrContain
 	return s
 }
 
-// A summary of information about the AWS Lambda function.
+// A summary of information about the Amazon Web Services Lambda function.
 type AwsLambdaFunctionDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The instruction set architecture that the AWS Lambda function supports. Architecture
-	// is a string array with one of the valid values. The default architecture
-	// value is x86_64.
+	// The instruction set architecture that the Amazon Web Services Lambda function
+	// supports. Architecture is a string array with one of the valid values. The
+	// default architecture value is x86_64.
 	Architectures []*string `locationName:"architectures" min:"1" type:"list" enum:"Architecture"`
 
-	// The SHA256 hash of the AWS Lambda function's deployment package.
+	// The SHA256 hash of the Amazon Web Services Lambda function's deployment package.
 	//
 	// CodeSha256 is a required field
 	CodeSha256 *string `locationName:"codeSha256" min:"1" type:"string" required:"true"`
 
-	// The AWS Lambda function's execution role.
+	// The Amazon Web Services Lambda function's execution role.
 	//
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string" required:"true"`
 
-	// The name of the AWS Lambda function.
+	// The name of the Amazon Web Services Lambda function.
 	//
 	// FunctionName is a required field
 	FunctionName *string `locationName:"functionName" type:"string" required:"true"`
@@ -7774,7 +7776,7 @@ type AwsLambdaFunctionDetails struct {
 	// format (https://www.iso.org/iso-8601-date-and-time-format.html)
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp"`
 
-	// The AWS Lambda function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+	// The Amazon Web Services Lambda function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 	// A Lambda function can have up to five layers.
 	Layers []*string `locationName:"layers" min:"1" type:"list"`
 
@@ -7782,17 +7784,17 @@ type AwsLambdaFunctionDetails struct {
 	// Zip for .zip file archive.
 	PackageType *string `locationName:"packageType" type:"string" enum:"PackageType"`
 
-	// The runtime environment for the AWS Lambda function.
+	// The runtime environment for the Amazon Web Services Lambda function.
 	//
 	// Runtime is a required field
 	Runtime *string `locationName:"runtime" type:"string" required:"true" enum:"Runtime"`
 
-	// The version of the AWS Lambda function.
+	// The version of the Amazon Web Services Lambda function.
 	//
 	// Version is a required field
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	// The AWS Lambda function's networking configuration.
+	// The Amazon Web Services Lambda function's networking configuration.
 	VpcConfig *LambdaVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
@@ -10921,14 +10923,19 @@ type CoverageFilterCriteria struct {
 	// The Amazon ECR repository name to filter on.
 	EcrRepositoryName []*CoverageStringFilter `locationName:"ecrRepositoryName" min:"1" type:"list"`
 
-	// Returns coverage statistics for AWS Lambda functions filtered by function
-	// names.
+	// The date an image was last pulled at.
+	ImagePulledAt []*CoverageDateFilter `locationName:"imagePulledAt" min:"1" type:"list"`
+
+	// Returns coverage statistics for Amazon Web Services Lambda functions filtered
+	// by function names.
 	LambdaFunctionName []*CoverageStringFilter `locationName:"lambdaFunctionName" min:"1" type:"list"`
 
-	// Returns coverage statistics for AWS Lambda functions filtered by runtime.
+	// Returns coverage statistics for Amazon Web Services Lambda functions filtered
+	// by runtime.
 	LambdaFunctionRuntime []*CoverageStringFilter `locationName:"lambdaFunctionRuntime" min:"1" type:"list"`
 
-	// Returns coverage statistics for AWS Lambda functions filtered by tag.
+	// Returns coverage statistics for Amazon Web Services Lambda functions filtered
+	// by tag.
 	LambdaFunctionTags []*CoverageMapFilter `locationName:"lambdaFunctionTags" min:"1" type:"list"`
 
 	// Filters Amazon Web Services resources based on whether Amazon Inspector has
@@ -10988,6 +10995,9 @@ func (s *CoverageFilterCriteria) Validate() error {
 	}
 	if s.EcrRepositoryName != nil && len(s.EcrRepositoryName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EcrRepositoryName", 1))
+	}
+	if s.ImagePulledAt != nil && len(s.ImagePulledAt) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImagePulledAt", 1))
 	}
 	if s.LambdaFunctionName != nil && len(s.LambdaFunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LambdaFunctionName", 1))
@@ -11164,6 +11174,12 @@ func (s *CoverageFilterCriteria) SetEcrImageTags(v []*CoverageStringFilter) *Cov
 // SetEcrRepositoryName sets the EcrRepositoryName field's value.
 func (s *CoverageFilterCriteria) SetEcrRepositoryName(v []*CoverageStringFilter) *CoverageFilterCriteria {
 	s.EcrRepositoryName = v
+	return s
+}
+
+// SetImagePulledAt sets the ImagePulledAt field's value.
+func (s *CoverageFilterCriteria) SetImagePulledAt(v []*CoverageDateFilter) *CoverageFilterCriteria {
+	s.ImagePulledAt = v
 	return s
 }
 
@@ -13321,11 +13337,10 @@ func (s *Ec2Metadata) SetTags(v map[string]*string) *Ec2Metadata {
 type EcrConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ECR automated re-scan duration defines how long an ECR image will be
-	// actively scanned by Amazon Inspector. When the number of days since an image
-	// was last pushed exceeds the automated re-scan duration the monitoring state
-	// of that image becomes inactive and all associated findings are scheduled
-	// for closure.
+	// The rescan duration configured for image pull date.
+	PullDateRescanDuration *string `locationName:"pullDateRescanDuration" type:"string" enum:"EcrPullDateRescanDuration"`
+
+	// The rescan duration configured for image push date.
 	//
 	// RescanDuration is a required field
 	RescanDuration *string `locationName:"rescanDuration" type:"string" required:"true" enum:"EcrRescanDuration"`
@@ -13362,6 +13377,12 @@ func (s *EcrConfiguration) Validate() error {
 	return nil
 }
 
+// SetPullDateRescanDuration sets the PullDateRescanDuration field's value.
+func (s *EcrConfiguration) SetPullDateRescanDuration(v string) *EcrConfiguration {
+	s.PullDateRescanDuration = &v
+	return s
+}
+
 // SetRescanDuration sets the RescanDuration field's value.
 func (s *EcrConfiguration) SetRescanDuration(v string) *EcrConfiguration {
 	s.RescanDuration = &v
@@ -13372,8 +13393,7 @@ func (s *EcrConfiguration) SetRescanDuration(v string) *EcrConfiguration {
 type EcrConfigurationState struct {
 	_ struct{} `type:"structure"`
 
-	// An object that contains details about the state of the ECR automated re-scan
-	// setting.
+	// An object that contains details about the state of the ECR re-scan settings.
 	RescanDurationState *EcrRescanDurationState `locationName:"rescanDurationState" type:"structure"`
 }
 
@@ -13405,6 +13425,9 @@ func (s *EcrConfigurationState) SetRescanDurationState(v *EcrRescanDurationState
 type EcrContainerImageMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// The date an image was last pulled at.
+	ImagePulledAt *time.Time `locationName:"imagePulledAt" type:"timestamp"`
+
 	// Tags associated with the Amazon ECR image metadata.
 	Tags []*string `locationName:"tags" type:"list"`
 }
@@ -13425,6 +13448,12 @@ func (s EcrContainerImageMetadata) String() string {
 // value will be replaced with "sensitive".
 func (s EcrContainerImageMetadata) GoString() string {
 	return s.String()
+}
+
+// SetImagePulledAt sets the ImagePulledAt field's value.
+func (s *EcrContainerImageMetadata) SetImagePulledAt(v time.Time) *EcrContainerImageMetadata {
+	s.ImagePulledAt = &v
+	return s
 }
 
 // SetTags sets the Tags field's value.
@@ -13474,16 +13503,18 @@ func (s *EcrRepositoryMetadata) SetScanFrequency(v string) *EcrRepositoryMetadat
 	return s
 }
 
-// Details about the state of any changes to the ECR automated re-scan duration
-// setting.
+// Details about the state of your ECR re-scan duration settings. The ECR re-scan
+// duration defines how long an ECR image will be actively scanned by Amazon
+// Inspector. When the number of days since an image was last pushed exceeds
+// the duration configured for image pull date, and the duration configured
+// for image pull date, the monitoring state of that image becomes inactive
+// and all associated findings are scheduled for closure.
 type EcrRescanDurationState struct {
 	_ struct{} `type:"structure"`
 
-	// The ECR automated re-scan duration defines how long an ECR image will be
-	// actively scanned by Amazon Inspector. When the number of days since an image
-	// was last pushed exceeds the automated re-scan duration the monitoring state
-	// of that image becomes inactive and all associated findings are scheduled
-	// for closure.
+	// The rescan duration configured for image pull date.
+	PullDateRescanDuration *string `locationName:"pullDateRescanDuration" type:"string" enum:"EcrPullDateRescanDuration"`
+
 	RescanDuration *string `locationName:"rescanDuration" type:"string" enum:"EcrRescanDuration"`
 
 	// The status of changes to the ECR automated re-scan duration.
@@ -13510,6 +13541,12 @@ func (s EcrRescanDurationState) String() string {
 // value will be replaced with "sensitive".
 func (s EcrRescanDurationState) GoString() string {
 	return s.String()
+}
+
+// SetPullDateRescanDuration sets the PullDateRescanDuration field's value.
+func (s *EcrRescanDurationState) SetPullDateRescanDuration(v string) *EcrRescanDurationState {
+	s.PullDateRescanDuration = &v
+	return s
 }
 
 // SetRescanDuration sets the RescanDuration field's value.
@@ -14242,7 +14279,8 @@ type FilterCriteria struct {
 	// The EPSS score used to filter findings.
 	EpssScore []*NumberFilter `locationName:"epssScore" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda findings by the availability of exploits.
+	// Filters the list of Amazon Web Services Lambda findings by the availability
+	// of exploits.
 	ExploitAvailable []*StringFilter `locationName:"exploitAvailable" min:"1" type:"list"`
 
 	// Details on the finding ARNs used to filter findings.
@@ -14266,22 +14304,24 @@ type FilterCriteria struct {
 	// The Amazon Inspector score to filter on.
 	InspectorScore []*NumberFilter `locationName:"inspectorScore" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda functions by execution role.
+	// Filters the list of Amazon Web Services Lambda functions by execution role.
 	LambdaFunctionExecutionRoleArn []*StringFilter `locationName:"lambdaFunctionExecutionRoleArn" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda functions by the date and time that a user
-	// last updated the configuration, in ISO 8601 format (https://www.iso.org/iso-8601-date-and-time-format.html)
+	// Filters the list of Amazon Web Services Lambda functions by the date and
+	// time that a user last updated the configuration, in ISO 8601 format (https://www.iso.org/iso-8601-date-and-time-format.html)
 	LambdaFunctionLastModifiedAt []*DateFilter `locationName:"lambdaFunctionLastModifiedAt" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda functions by the function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+	// Filters the list of Amazon Web Services Lambda functions by the function's
+	// layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 	// A Lambda function can have up to five layers.
 	LambdaFunctionLayers []*StringFilter `locationName:"lambdaFunctionLayers" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda functions by the name of the function.
+	// Filters the list of Amazon Web Services Lambda functions by the name of the
+	// function.
 	LambdaFunctionName []*StringFilter `locationName:"lambdaFunctionName" min:"1" type:"list"`
 
-	// Filters the list of AWS Lambda functions by the runtime environment for the
-	// Lambda function.
+	// Filters the list of Amazon Web Services Lambda functions by the runtime environment
+	// for the Lambda function.
 	LambdaFunctionRuntime []*StringFilter `locationName:"lambdaFunctionRuntime" min:"1" type:"list"`
 
 	// Details on the date and time a finding was last seen used to filter findings.
@@ -16927,11 +16967,13 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The details that define a findings aggregation based on AWS Lambda functions.
+// The details that define a findings aggregation based on Amazon Web Services
+// Lambda functions.
 type LambdaFunctionAggregation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Lambda function names to include in the aggregation results.
+	// The Amazon Web Services Lambda function names to include in the aggregation
+	// results.
 	FunctionNames []*StringFilter `locationName:"functionNames" min:"1" type:"list"`
 
 	// The tags to include in the aggregation results.
@@ -16940,7 +16982,8 @@ type LambdaFunctionAggregation struct {
 	// The resource IDs to include in the aggregation results.
 	ResourceIds []*StringFilter `locationName:"resourceIds" min:"1" type:"list"`
 
-	// Returns findings aggregated by AWS Lambda function runtime environments.
+	// Returns findings aggregated by Amazon Web Services Lambda function runtime
+	// environments.
 	Runtimes []*StringFilter `locationName:"runtimes" min:"1" type:"list"`
 
 	// The finding severity to use for sorting the results.
@@ -17066,21 +17109,24 @@ func (s *LambdaFunctionAggregation) SetSortOrder(v string) *LambdaFunctionAggreg
 	return s
 }
 
-// A response that contains the results of an AWS Lambda function finding aggregation.
+// A response that contains the results of an Amazon Web Services Lambda function
+// finding aggregation.
 type LambdaFunctionAggregationResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the AWS Lambda function.
+	// The ID of the Amazon Web Services account that owns the Amazon Web Services
+	// Lambda function.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
-	// The AWS Lambda function names included in the aggregation results.
+	// The Amazon Web Services Lambda function names included in the aggregation
+	// results.
 	FunctionName *string `locationName:"functionName" type:"string"`
 
 	// The tags included in the aggregation results.
 	LambdaTags map[string]*string `locationName:"lambdaTags" type:"map"`
 
-	// The date that the AWS Lambda function included in the aggregation results
-	// was last changed.
+	// The date that the Amazon Web Services Lambda function included in the aggregation
+	// results was last changed.
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp"`
 
 	// The resource IDs included in the aggregation results.
@@ -17155,21 +17201,21 @@ func (s *LambdaFunctionAggregationResponse) SetSeverityCounts(v *SeverityCounts)
 	return s
 }
 
-// The AWS Lambda function metadata.
+// The Amazon Web Services Lambda function metadata.
 type LambdaFunctionMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a function.
 	FunctionName *string `locationName:"functionName" type:"string"`
 
-	// The resource tags on an AWS Lambda function.
+	// The resource tags on an Amazon Web Services Lambda function.
 	FunctionTags map[string]*string `locationName:"functionTags" type:"map"`
 
-	// The layers for an AWS Lambda function. A Lambda function can have up to five
-	// layers.
+	// The layers for an Amazon Web Services Lambda function. A Lambda function
+	// can have up to five layers.
 	Layers []*string `locationName:"layers" type:"list"`
 
-	// An AWS Lambda function's runtime.
+	// An Amazon Web Services Lambda function's runtime.
 	Runtime *string `locationName:"runtime" type:"string" enum:"Runtime"`
 }
 
@@ -17215,18 +17261,20 @@ func (s *LambdaFunctionMetadata) SetRuntime(v string) *LambdaFunctionMetadata {
 	return s
 }
 
-// The details that define a findings aggregation based on an AWS Lambda function's
-// layers.
+// The details that define a findings aggregation based on an Amazon Web Services
+// Lambda function's layers.
 type LambdaLayerAggregation struct {
 	_ struct{} `type:"structure"`
 
-	// The names of the AWS Lambda functions associated with the layers.
+	// The names of the Amazon Web Services Lambda functions associated with the
+	// layers.
 	FunctionNames []*StringFilter `locationName:"functionNames" min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the AWS Lambda function layer.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Lambda function
+	// layer.
 	LayerArns []*StringFilter `locationName:"layerArns" min:"1" type:"list"`
 
-	// The resource IDs for the AWS Lambda function layers.
+	// The resource IDs for the Amazon Web Services Lambda function layers.
 	ResourceIds []*StringFilter `locationName:"resourceIds" min:"1" type:"list"`
 
 	// The finding severity to use for sorting the results.
@@ -17333,27 +17381,29 @@ func (s *LambdaLayerAggregation) SetSortOrder(v string) *LambdaLayerAggregation 
 	return s
 }
 
-// A response that contains the results of an AWS Lambda function layer finding
-// aggregation.
+// A response that contains the results of an Amazon Web Services Lambda function
+// layer finding aggregation.
 type LambdaLayerAggregationResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The account ID of the AWS Lambda function layer.
+	// The account ID of the Amazon Web Services Lambda function layer.
 	//
 	// AccountId is a required field
 	AccountId *string `locationName:"accountId" min:"12" type:"string" required:"true"`
 
-	// The names of the AWS Lambda functions associated with the layers.
+	// The names of the Amazon Web Services Lambda functions associated with the
+	// layers.
 	//
 	// FunctionName is a required field
 	FunctionName *string `locationName:"functionName" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Lambda function layer.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Lambda function
+	// layer.
 	//
 	// LayerArn is a required field
 	LayerArn *string `locationName:"layerArn" min:"1" type:"string" required:"true"`
 
-	// The Resource ID of the AWS Lambda function layer.
+	// The Resource ID of the Amazon Web Services Lambda function layer.
 	//
 	// ResourceId is a required field
 	ResourceId *string `locationName:"resourceId" min:"1" type:"string" required:"true"`
@@ -17410,13 +17460,13 @@ func (s *LambdaLayerAggregationResponse) SetSeverityCounts(v *SeverityCounts) *L
 	return s
 }
 
-// The VPC security groups and subnets that are attached to an AWS Lambda function.
-// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+// The VPC security groups and subnets that are attached to an Amazon Web Services
+// Lambda function. For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 type LambdaVpcConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The VPC security groups and subnets that are attached to an AWS Lambda function.
-	// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+	// The VPC security groups and subnets that are attached to an Amazon Web Services
+	// Lambda function. For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
 	// A list of VPC subnet IDs.
@@ -20879,7 +20929,8 @@ type ResourceDetails struct {
 	// in the finding.
 	AwsEcrContainerImage *AwsEcrContainerImageDetails `locationName:"awsEcrContainerImage" type:"structure"`
 
-	// A summary of the information about an AWS Lambda function affected by a finding.
+	// A summary of the information about an Amazon Web Services Lambda function
+	// affected by a finding.
 	AwsLambdaFunction *AwsLambdaFunctionDetails `locationName:"awsLambdaFunction" type:"structure"`
 }
 
@@ -20935,10 +20986,10 @@ type ResourceFilterCriteria struct {
 	// The ECR repository names used as resource filter criteria.
 	EcrRepositoryName []*ResourceStringFilter `locationName:"ecrRepositoryName" min:"1" type:"list"`
 
-	// The AWS Lambda function name used as resource filter criteria.
+	// The Amazon Web Services Lambda function name used as resource filter criteria.
 	LambdaFunctionName []*ResourceStringFilter `locationName:"lambdaFunctionName" min:"1" type:"list"`
 
-	// The AWS Lambda function tags used as resource filter criteria.
+	// The Amazon Web Services Lambda function tags used as resource filter criteria.
 	LambdaFunctionTags []*ResourceMapFilter `locationName:"lambdaFunctionTags" min:"1" type:"list"`
 
 	// The resource IDs used as resource filter criteria.
@@ -21284,7 +21335,8 @@ type ResourceScanMetadata struct {
 	// resides in.
 	EcrRepository *EcrRepositoryMetadata `locationName:"ecrRepository" type:"structure"`
 
-	// An object that contains metadata details for an AWS Lambda function.
+	// An object that contains metadata details for an Amazon Web Services Lambda
+	// function.
 	LambdaFunction *LambdaFunctionMetadata `locationName:"lambdaFunction" type:"structure"`
 }
 
@@ -21411,7 +21463,7 @@ type ResourceStatus struct {
 	// Ecr is a required field
 	Ecr *string `locationName:"ecr" type:"string" required:"true" enum:"Status"`
 
-	// The status of Amazon Inspector scanning for AWS Lambda function.
+	// The status of Amazon Inspector scanning for Amazon Web Services Lambda function.
 	Lambda *string `locationName:"lambda" type:"string" enum:"Status"`
 
 	// The status of Amazon Inspector scanning for custom application code for Amazon
@@ -24712,8 +24764,8 @@ type VulnerablePackage struct {
 	// The code to run in your environment to update packages with a fix available.
 	Remediation *string `locationName:"remediation" min:"1" type:"string"`
 
-	// The Amazon Resource Number (ARN) of the AWS Lambda function affected by a
-	// finding.
+	// The Amazon Resource Number (ARN) of the Amazon Web Services Lambda function
+	// affected by a finding.
 	SourceLambdaLayerArn *string `locationName:"sourceLambdaLayerArn" type:"string"`
 
 	// The source layer hash of the vulnerable package.
@@ -25627,6 +25679,34 @@ func Ec2Platform_Values() []string {
 }
 
 const (
+	// EcrPullDateRescanDurationDays14 is a EcrPullDateRescanDuration enum value
+	EcrPullDateRescanDurationDays14 = "DAYS_14"
+
+	// EcrPullDateRescanDurationDays30 is a EcrPullDateRescanDuration enum value
+	EcrPullDateRescanDurationDays30 = "DAYS_30"
+
+	// EcrPullDateRescanDurationDays60 is a EcrPullDateRescanDuration enum value
+	EcrPullDateRescanDurationDays60 = "DAYS_60"
+
+	// EcrPullDateRescanDurationDays90 is a EcrPullDateRescanDuration enum value
+	EcrPullDateRescanDurationDays90 = "DAYS_90"
+
+	// EcrPullDateRescanDurationDays180 is a EcrPullDateRescanDuration enum value
+	EcrPullDateRescanDurationDays180 = "DAYS_180"
+)
+
+// EcrPullDateRescanDuration_Values returns all elements of the EcrPullDateRescanDuration enum
+func EcrPullDateRescanDuration_Values() []string {
+	return []string{
+		EcrPullDateRescanDurationDays14,
+		EcrPullDateRescanDurationDays30,
+		EcrPullDateRescanDurationDays60,
+		EcrPullDateRescanDurationDays90,
+		EcrPullDateRescanDurationDays180,
+	}
+}
+
+const (
 	// EcrRescanDurationLifetime is a EcrRescanDuration enum value
 	EcrRescanDurationLifetime = "LIFETIME"
 
@@ -25635,6 +25715,15 @@ const (
 
 	// EcrRescanDurationDays180 is a EcrRescanDuration enum value
 	EcrRescanDurationDays180 = "DAYS_180"
+
+	// EcrRescanDurationDays14 is a EcrRescanDuration enum value
+	EcrRescanDurationDays14 = "DAYS_14"
+
+	// EcrRescanDurationDays60 is a EcrRescanDuration enum value
+	EcrRescanDurationDays60 = "DAYS_60"
+
+	// EcrRescanDurationDays90 is a EcrRescanDuration enum value
+	EcrRescanDurationDays90 = "DAYS_90"
 )
 
 // EcrRescanDuration_Values returns all elements of the EcrRescanDuration enum
@@ -25643,6 +25732,9 @@ func EcrRescanDuration_Values() []string {
 		EcrRescanDurationLifetime,
 		EcrRescanDurationDays30,
 		EcrRescanDurationDays180,
+		EcrRescanDurationDays14,
+		EcrRescanDurationDays60,
+		EcrRescanDurationDays90,
 	}
 }
 

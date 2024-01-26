@@ -1012,6 +1012,14 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DeleteHyperParameterTuningJob":{
+      "name":"DeleteHyperParameterTuningJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteHyperParameterTuningJobRequest"}
+    },
     "DeleteImage":{
       "name":"DeleteImage",
       "http":{
@@ -8088,6 +8096,13 @@
     "DeleteHumanTaskUiResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteHyperParameterTuningJobRequest":{
+      "type":"structure",
+      "required":["HyperParameterTuningJobName"],
+      "members":{
+        "HyperParameterTuningJobName":{"shape":"HyperParameterTuningJobName"}
       }
     },
     "DeleteImageRequest":{
