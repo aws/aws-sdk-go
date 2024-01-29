@@ -2239,6 +2239,7 @@
         "ExcludedInstanceTypes":{"shape":"ExcludedInstanceTypes"},
         "InstanceGenerations":{"shape":"InstanceGenerations"},
         "SpotMaxPricePercentageOverLowestPrice":{"shape":"NullablePositiveInteger"},
+        "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice":{"shape":"NullablePositiveInteger"},
         "OnDemandMaxPricePercentageOverLowestPrice":{"shape":"NullablePositiveInteger"},
         "BareMetal":{"shape":"BareMetal"},
         "BurstablePerformance":{"shape":"BurstablePerformance"},

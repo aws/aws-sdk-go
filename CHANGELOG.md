@@ -1,3 +1,18 @@
+Release v1.50.6 (2024-01-29)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.
+* `service/comprehend`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * EC2 Fleet customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.
+* `service/mwaa`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Introduced support for the InsufficientDBInstanceCapacityFault error in the RDS RestoreDBClusterFromSnapshot and RestoreDBClusterToPointInTime API methods. This provides enhanced error handling, ensuring a more robust experience.
+* `service/snowball`: Updates service documentation
+  * Modified description of createaddress to include direction to add path when providing a JSON file.
+
 Release v1.50.5 (2024-01-26)
 ===
 

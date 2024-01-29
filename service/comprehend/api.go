@@ -10967,8 +10967,7 @@ func (s *ConcurrentModificationException) RequestID() string {
 type ContainsPiiEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. Currently, English is the only valid
-	// language.
+	// The language of the input documents.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -14980,8 +14979,8 @@ func (s *DetectKeyPhrasesOutput) SetKeyPhrases(v []*KeyPhrase) *DetectKeyPhrases
 type DetectPiiEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. Currently, English is the only valid
-	// language.
+	// The language of the input text. Enter the language code for English (en)
+	// or Spanish (es).
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -22735,7 +22734,7 @@ type PiiEntitiesDetectionJobProperties struct {
 	// the Message field shows the reason for the failure.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
-	// The language code of the input documents
+	// The language code of the input documents.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// A description of the status of a job.
@@ -25183,8 +25182,8 @@ type StartPiiEntitiesDetectionJobInput struct {
 	// The identifier of the job.
 	JobName *string `min:"1" type:"string"`
 
-	// The language of the input documents. Currently, English is the only valid
-	// language.
+	// The language of the input documents. Enter the language code for English
+	// (en) or Spanish (es).
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
