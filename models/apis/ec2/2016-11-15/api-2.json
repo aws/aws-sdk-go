@@ -27313,6 +27313,10 @@
         "AllowedInstanceTypes":{
           "shape":"AllowedInstanceTypeSet",
           "locationName":"allowedInstanceTypeSet"
+        },
+        "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice":{
+          "shape":"Integer",
+          "locationName":"maxSpotPriceAsPercentageOfOptimalOnDemandPrice"
         }
       }
     },
@@ -27369,7 +27373,8 @@
         "AllowedInstanceTypes":{
           "shape":"AllowedInstanceTypeSet",
           "locationName":"AllowedInstanceType"
-        }
+        },
+        "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice":{"shape":"Integer"}
       }
     },
     "InstanceRequirementsWithMetadataRequest":{

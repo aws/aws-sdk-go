@@ -1926,8 +1926,7 @@ type Environment struct {
 	// Amazon MWAA Execution role (https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html).
 	ExecutionRoleArn *string `min:"1" type:"string"`
 
-	// The Amazon Web Services Key Management Service (KMS) encryption key used
-	// to encrypt the data in your environment.
+	// The KMS encryption key used to encrypt the data in your environment.
 	KmsKey *string `min:"1" type:"string"`
 
 	// The status of the last update on the environment.
@@ -2052,11 +2051,18 @@ type Environment struct {
 	//    * DELETED - Indicates the request to delete the environment is complete,
 	//    and the environment has been deleted.
 	//
-	//    * UNAVAILABLE - Indicates the request failed, but the environment was
-	//    unable to rollback and is not in a stable state.
+	//    * UNAVAILABLE - Indicates the request failed, but the environment did
+	//    not return to its previous state and is not stable.
 	//
 	//    * UPDATE_FAILED - Indicates the request to update the environment failed,
-	//    and the environment has rolled back successfully and is ready to use.
+	//    and the environment was restored to its previous state successfully and
+	//    is ready to use.
+	//
+	//    * MAINTENANCE - Indicates that the environment is undergoing maintenance.
+	//    Depending on the type of work Amazon MWAA is performing, your environment
+	//    might become unavailable during this process. After all operations are
+	//    done, your environment will return to its status prior to mainteneace
+	//    operations.
 	//
 	// We recommend reviewing our troubleshooting guide for a list of common errors
 	// and their solutions. For more information, see Amazon MWAA troubleshooting
@@ -2072,7 +2078,7 @@ type Environment struct {
 	// Airflow access modes (https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html).
 	WebserverAccessMode *string `type:"string" enum:"WebserverAccessMode"`
 
-	// The Apache Airflow Web server host name for the Amazon MWAA environment.
+	// The Apache Airflow web server host name for the Amazon MWAA environment.
 	// For more information, see Accessing the Apache Airflow UI (https://docs.aws.amazon.com/mwaa/latest/userguide/access-airflow-ui.html).
 	WebserverUrl *string `min:"1" type:"string"`
 
@@ -4110,6 +4116,9 @@ const (
 
 	// EnvironmentStatusPending is a EnvironmentStatus enum value
 	EnvironmentStatusPending = "PENDING"
+
+	// EnvironmentStatusMaintenance is a EnvironmentStatus enum value
+	EnvironmentStatusMaintenance = "MAINTENANCE"
 )
 
 // EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
@@ -4126,6 +4135,7 @@ func EnvironmentStatus_Values() []string {
 		EnvironmentStatusRollingBack,
 		EnvironmentStatusCreatingSnapshot,
 		EnvironmentStatusPending,
+		EnvironmentStatusMaintenance,
 	}
 }
 

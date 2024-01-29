@@ -4039,6 +4039,8 @@ func ExampleRDS_RestoreDBClusterFromSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeInvalidDBInstanceStateFault:
 				fmt.Println(rds.ErrCodeInvalidDBInstanceStateFault, aerr.Error())
+			case rds.ErrCodeInsufficientDBInstanceCapacityFault:
+				fmt.Println(rds.ErrCodeInsufficientDBInstanceCapacityFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -4108,6 +4110,8 @@ func ExampleRDS_RestoreDBClusterToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeDBClusterParameterGroupNotFoundFault, aerr.Error())
 			case rds.ErrCodeDBClusterAutomatedBackupNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterAutomatedBackupNotFoundFault, aerr.Error())
+			case rds.ErrCodeInsufficientDBInstanceCapacityFault:
+				fmt.Println(rds.ErrCodeInsufficientDBInstanceCapacityFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
