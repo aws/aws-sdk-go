@@ -1,3 +1,11 @@
+Release v1.50.7 (2024-01-30)
+===
+
+### Service Client Updates
+* `service/datazone`: Updates service API and documentation
+* `service/route53`: Updates service documentation
+  * Update the SDKs for text changes in the APIs.
+
 Release v1.50.6 (2024-01-29)
 ===
 

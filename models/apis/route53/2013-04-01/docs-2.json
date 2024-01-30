@@ -958,7 +958,7 @@
       }
     },
     "GeoProximityLocation": {
-      "base": "<p> (Resource record sets only): A complex type that lets you control how Amazon Route 53 responds to DNS queries based on the geographic origin of the query and your resources. Only one of , <code>LocalZoneGroup</code>, <code>Coordinates</code>, or <code>Amazon Web ServicesRegion</code> is allowed per request at a time.</p> <p>For more information about geoproximity routing, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html\">Geoproximity routing</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>",
+      "base": "<p> (Resource record sets only): A complex type that lets you specify where your resources are located. Only one of <code>LocalZoneGroup</code>, <code>Coordinates</code>, or <code>Amazon Web ServicesRegion</code> is allowed per request at a time.</p> <p>For more information about geoproximity routing, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html\">Geoproximity routing</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>",
       "refs": {
         "ResourceRecordSet$GeoProximityLocation": "<p> <i> GeoproximityLocation resource record sets only:</i> A complex type that lets you control how Route 53 responds to DNS queries based on the geographic origin of the query and your resources. </p>"
       }
