@@ -2955,10 +2955,12 @@
         "createdBy":{"shape":"CreatedBy"},
         "description":{"shape":"Description"},
         "domainId":{"shape":"DomainId"},
+        "failureReasons":{"shape":"FailureReasons"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"ProjectId"},
         "lastUpdatedAt":{"shape":"SyntheticTimestamp_date_time"},
-        "name":{"shape":"ProjectName"}
+        "name":{"shape":"ProjectName"},
+        "projectStatus":{"shape":"ProjectStatus"}
       }
     },
     "CreateSubscriptionGrantInput":{
@@ -3565,6 +3567,11 @@
           "shape":"DomainId",
           "location":"uri",
           "locationName":"identifier"
+        },
+        "skipDeletionCheck":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"skipDeletionCheck"
         }
       }
     },
@@ -3749,6 +3756,11 @@
           "shape":"ProjectId",
           "location":"uri",
           "locationName":"identifier"
+        },
+        "skipDeletionCheck":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"skipDeletionCheck"
         }
       }
     },
@@ -4192,6 +4204,10 @@
       "members":{
         "message":{"shape":"String"}
       }
+    },
+    "FailureReasons":{
+      "type":"list",
+      "member":{"shape":"ProjectDeletionError"}
     },
     "Filter":{
       "type":"structure",
@@ -5048,10 +5064,12 @@
         "createdBy":{"shape":"CreatedBy"},
         "description":{"shape":"Description"},
         "domainId":{"shape":"DomainId"},
+        "failureReasons":{"shape":"FailureReasons"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"ProjectId"},
         "lastUpdatedAt":{"shape":"SyntheticTimestamp_date_time"},
-        "name":{"shape":"ProjectName"}
+        "name":{"shape":"ProjectName"},
+        "projectStatus":{"shape":"ProjectStatus"}
       }
     },
     "GetSubscriptionGrantInput":{
@@ -6530,6 +6548,13 @@
         "businessNameGeneration":{"shape":"BusinessNameGenerationConfiguration"}
       }
     },
+    "ProjectDeletionError":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
+    },
     "ProjectId":{
       "type":"string",
       "pattern":"^[a-zA-Z0-9_-]{1,36}$"
@@ -6556,6 +6581,14 @@
       "pattern":"^[\\w -]+$",
       "sensitive":true
     },
+    "ProjectStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DELETING",
+        "DELETE_FAILED"
+      ]
+    },
     "ProjectSummaries":{
       "type":"list",
       "member":{"shape":"ProjectSummary"}
@@ -6573,8 +6606,10 @@
         "createdBy":{"shape":"CreatedBy"},
         "description":{"shape":"Description"},
         "domainId":{"shape":"DomainId"},
+        "failureReasons":{"shape":"FailureReasons"},
         "id":{"shape":"ProjectId"},
         "name":{"shape":"ProjectName"},
+        "projectStatus":{"shape":"ProjectStatus"},
         "updatedAt":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
@@ -8220,10 +8255,12 @@
         "createdBy":{"shape":"CreatedBy"},
         "description":{"shape":"Description"},
         "domainId":{"shape":"DomainId"},
+        "failureReasons":{"shape":"FailureReasons"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"ProjectId"},
         "lastUpdatedAt":{"shape":"SyntheticTimestamp_date_time"},
-        "name":{"shape":"ProjectName"}
+        "name":{"shape":"ProjectName"},
+        "projectStatus":{"shape":"ProjectStatus"}
       }
     },
     "UpdateSubscriptionGrantStatusInput":{

@@ -377,6 +377,8 @@
         "CustomParameter$isEditable": "<p>Specifies whether the parameter is editable.</p>",
         "CustomParameter$isOptional": "<p>Specifies whether the custom parameter is optional.</p>",
         "DeleteDataSourceOutput$publishOnImport": "<p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>",
+        "DeleteDomainInput$skipDeletionCheck": "<p>Optional flag to delete all child entities within the domain</p>",
+        "DeleteProjectInput$skipDeletionCheck": "<p>Optional flag to asynchronously delete child entities within the project</p>",
         "Deployment$isDeploymentComplete": "<p>Specifies whether the last deployment of the environment is complete.</p>",
         "FormEntryInput$required": "<p>Specifies whether a form entry is required.</p>",
         "FormEntryOutput$required": "<p>Specifies whether a form entry is required.</p>",
@@ -1740,6 +1742,15 @@
         "UpdateSubscriptionGrantStatusInput$failureCause": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>"
       }
     },
+    "FailureReasons": {
+      "base": null,
+      "refs": {
+        "CreateProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>",
+        "GetProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>",
+        "ProjectSummary$failureReasons": "<p>Reasons for failed project deletion</p>",
+        "UpdateProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>"
+      }
+    },
     "Filter": {
       "base": "<p>A search filter in Amazon DataZone.</p>",
       "refs": {
@@ -2869,6 +2880,12 @@
         "CreateAssetRevisionOutput$predictionConfiguration": "<p>The configuration of the automatically generated business-friendly metadata for the asset.</p>"
       }
     },
+    "ProjectDeletionError": {
+      "base": "<p>Error that occurred during project deletion</p>",
+      "refs": {
+        "FailureReasons$member": null
+      }
+    },
     "ProjectId": {
       "base": null,
       "refs": {
@@ -2966,6 +2983,15 @@
         "SubscribedProject$name": "<p>The name of the project that has the subscription grant.</p>",
         "UpdateProjectInput$name": "<p>The name to be updated as part of the <code>UpdateProject</code> action.</p>",
         "UpdateProjectOutput$name": "<p>The name of the project that is to be updated.</p>"
+      }
+    },
+    "ProjectStatus": {
+      "base": null,
+      "refs": {
+        "CreateProjectOutput$projectStatus": "<p>Status of the project</p>",
+        "GetProjectOutput$projectStatus": "<p>Status of the project</p>",
+        "ProjectSummary$projectStatus": "<p>Status of the project</p>",
+        "UpdateProjectOutput$projectStatus": "<p>Status of the project</p>"
       }
     },
     "ProjectSummaries": {
@@ -3612,6 +3638,8 @@
         "NotificationResource$id": "<p>The ID of the resource mentioned in a notification.</p>",
         "NotificationResource$name": "<p>The name of the resource mentioned in a notification.</p>",
         "NotificationSubjects$member": null,
+        "ProjectDeletionError$code": "<p>Project Deletion Error Code</p>",
+        "ProjectDeletionError$message": "<p>Project Deletion Error Message</p>",
         "RegionalParameter$key": null,
         "RegionalParameter$value": null,
         "RejectChoice$predictionTarget": "<p>Specifies the target (for example, a column name) where a prediction can be rejected.</p>",

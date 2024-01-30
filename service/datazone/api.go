@@ -16227,6 +16227,9 @@ type CreateProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// Reasons for failed project deletion
+	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
+
 	// The glossary terms that can be used in the project.
 	GlossaryTerms []*string `locationName:"glossaryTerms" min:"1" type:"list"`
 
@@ -16246,6 +16249,9 @@ type CreateProjectOutput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Status of the project
+	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
 // String returns the string representation.
@@ -16290,6 +16296,12 @@ func (s *CreateProjectOutput) SetDomainId(v string) *CreateProjectOutput {
 	return s
 }
 
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *CreateProjectOutput) SetFailureReasons(v []*ProjectDeletionError) *CreateProjectOutput {
+	s.FailureReasons = v
+	return s
+}
+
 // SetGlossaryTerms sets the GlossaryTerms field's value.
 func (s *CreateProjectOutput) SetGlossaryTerms(v []*string) *CreateProjectOutput {
 	s.GlossaryTerms = v
@@ -16311,6 +16323,12 @@ func (s *CreateProjectOutput) SetLastUpdatedAt(v time.Time) *CreateProjectOutput
 // SetName sets the Name field's value.
 func (s *CreateProjectOutput) SetName(v string) *CreateProjectOutput {
 	s.Name = &v
+	return s
+}
+
+// SetProjectStatus sets the ProjectStatus field's value.
+func (s *CreateProjectOutput) SetProjectStatus(v string) *CreateProjectOutput {
+	s.ProjectStatus = &v
 	return s
 }
 
@@ -18701,6 +18719,9 @@ type DeleteDomainInput struct {
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// Optional flag to delete all child entities within the domain
+	SkipDeletionCheck *bool `location:"querystring" locationName:"skipDeletionCheck" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -18746,6 +18767,12 @@ func (s *DeleteDomainInput) SetClientToken(v string) *DeleteDomainInput {
 // SetIdentifier sets the Identifier field's value.
 func (s *DeleteDomainInput) SetIdentifier(v string) *DeleteDomainInput {
 	s.Identifier = &v
+	return s
+}
+
+// SetSkipDeletionCheck sets the SkipDeletionCheck field's value.
+func (s *DeleteDomainInput) SetSkipDeletionCheck(v bool) *DeleteDomainInput {
+	s.SkipDeletionCheck = &v
 	return s
 }
 
@@ -19409,6 +19436,9 @@ type DeleteProjectInput struct {
 	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	// Optional flag to asynchronously delete child entities within the project
+	SkipDeletionCheck *bool `location:"querystring" locationName:"skipDeletionCheck" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19460,6 +19490,12 @@ func (s *DeleteProjectInput) SetDomainIdentifier(v string) *DeleteProjectInput {
 // SetIdentifier sets the Identifier field's value.
 func (s *DeleteProjectInput) SetIdentifier(v string) *DeleteProjectInput {
 	s.Identifier = &v
+	return s
+}
+
+// SetSkipDeletionCheck sets the SkipDeletionCheck field's value.
+func (s *DeleteProjectInput) SetSkipDeletionCheck(v bool) *DeleteProjectInput {
+	s.SkipDeletionCheck = &v
 	return s
 }
 
@@ -24780,6 +24816,9 @@ type GetProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// Reasons for failed project deletion
+	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
+
 	// The business glossary terms that can be used in the project.
 	GlossaryTerms []*string `locationName:"glossaryTerms" min:"1" type:"list"`
 
@@ -24799,6 +24838,9 @@ type GetProjectOutput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Status of the project
+	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
 // String returns the string representation.
@@ -24843,6 +24885,12 @@ func (s *GetProjectOutput) SetDomainId(v string) *GetProjectOutput {
 	return s
 }
 
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *GetProjectOutput) SetFailureReasons(v []*ProjectDeletionError) *GetProjectOutput {
+	s.FailureReasons = v
+	return s
+}
+
 // SetGlossaryTerms sets the GlossaryTerms field's value.
 func (s *GetProjectOutput) SetGlossaryTerms(v []*string) *GetProjectOutput {
 	s.GlossaryTerms = v
@@ -24864,6 +24912,12 @@ func (s *GetProjectOutput) SetLastUpdatedAt(v time.Time) *GetProjectOutput {
 // SetName sets the Name field's value.
 func (s *GetProjectOutput) SetName(v string) *GetProjectOutput {
 	s.Name = &v
+	return s
+}
+
+// SetProjectStatus sets the ProjectStatus field's value.
+func (s *GetProjectOutput) SetProjectStatus(v string) *GetProjectOutput {
+	s.ProjectStatus = &v
 	return s
 }
 
@@ -29860,6 +29914,47 @@ func (s *PredictionConfiguration) SetBusinessNameGeneration(v *BusinessNameGener
 	return s
 }
 
+// Error that occurred during project deletion
+type ProjectDeletionError struct {
+	_ struct{} `type:"structure"`
+
+	// Project Deletion Error Code
+	Code *string `locationName:"code" type:"string"`
+
+	// Project Deletion Error Message
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectDeletionError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProjectDeletionError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ProjectDeletionError) SetCode(v string) *ProjectDeletionError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ProjectDeletionError) SetMessage(v string) *ProjectDeletionError {
+	s.Message = &v
+	return s
+}
+
 // The details of a project member.
 type ProjectMember struct {
 	_ struct{} `type:"structure"`
@@ -29929,6 +30024,9 @@ type ProjectSummary struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// Reasons for failed project deletion
+	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
+
 	// The identifier of a project.
 	//
 	// Id is a required field
@@ -29942,6 +30040,9 @@ type ProjectSummary struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Status of the project
+	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 
 	// The timestamp of when the project was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -29989,6 +30090,12 @@ func (s *ProjectSummary) SetDomainId(v string) *ProjectSummary {
 	return s
 }
 
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *ProjectSummary) SetFailureReasons(v []*ProjectDeletionError) *ProjectSummary {
+	s.FailureReasons = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ProjectSummary) SetId(v string) *ProjectSummary {
 	s.Id = &v
@@ -29998,6 +30105,12 @@ func (s *ProjectSummary) SetId(v string) *ProjectSummary {
 // SetName sets the Name field's value.
 func (s *ProjectSummary) SetName(v string) *ProjectSummary {
 	s.Name = &v
+	return s
+}
+
+// SetProjectStatus sets the ProjectStatus field's value.
+func (s *ProjectSummary) SetProjectStatus(v string) *ProjectSummary {
+	s.ProjectStatus = &v
 	return s
 }
 
@@ -36818,6 +36931,9 @@ type UpdateProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// Reasons for failed project deletion
+	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
+
 	// The glossary terms of the project that are to be updated.
 	GlossaryTerms []*string `locationName:"glossaryTerms" min:"1" type:"list"`
 
@@ -36837,6 +36953,9 @@ type UpdateProjectOutput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Status of the project
+	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
 // String returns the string representation.
@@ -36881,6 +37000,12 @@ func (s *UpdateProjectOutput) SetDomainId(v string) *UpdateProjectOutput {
 	return s
 }
 
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *UpdateProjectOutput) SetFailureReasons(v []*ProjectDeletionError) *UpdateProjectOutput {
+	s.FailureReasons = v
+	return s
+}
+
 // SetGlossaryTerms sets the GlossaryTerms field's value.
 func (s *UpdateProjectOutput) SetGlossaryTerms(v []*string) *UpdateProjectOutput {
 	s.GlossaryTerms = v
@@ -36902,6 +37027,12 @@ func (s *UpdateProjectOutput) SetLastUpdatedAt(v time.Time) *UpdateProjectOutput
 // SetName sets the Name field's value.
 func (s *UpdateProjectOutput) SetName(v string) *UpdateProjectOutput {
 	s.Name = &v
+	return s
+}
+
+// SetProjectStatus sets the ProjectStatus field's value.
+func (s *UpdateProjectOutput) SetProjectStatus(v string) *UpdateProjectOutput {
+	s.ProjectStatus = &v
 	return s
 }
 
@@ -38703,6 +38834,26 @@ func NotificationType_Values() []string {
 	return []string{
 		NotificationTypeTask,
 		NotificationTypeEvent,
+	}
+}
+
+const (
+	// ProjectStatusActive is a ProjectStatus enum value
+	ProjectStatusActive = "ACTIVE"
+
+	// ProjectStatusDeleting is a ProjectStatus enum value
+	ProjectStatusDeleting = "DELETING"
+
+	// ProjectStatusDeleteFailed is a ProjectStatus enum value
+	ProjectStatusDeleteFailed = "DELETE_FAILED"
+)
+
+// ProjectStatus_Values returns all elements of the ProjectStatus enum
+func ProjectStatus_Values() []string {
+	return []string{
+		ProjectStatusActive,
+		ProjectStatusDeleting,
+		ProjectStatusDeleteFailed,
 	}
 }
 
