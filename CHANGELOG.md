@@ -1,3 +1,15 @@
+Release v1.50.8 (2024-01-31)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API, documentation, paginators, and examples
+  * CloudFormation IaC generator allows you to scan existing resources in your account and select resources to generate a template for a new or existing CloudFormation stack.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Update page size limits for GetJobRuns and GetTriggers APIs.
+* `service/ssm`: Updates service API and documentation
+  * This release adds an optional Duration parameter to StateManager Associations. This allows customers to specify how long an apply-only-on-cron association execution should run. Once the specified Duration is out all the ongoing cancellable commands or automations are cancelled.
+
 Release v1.50.7 (2024-01-30)
 ===
 
