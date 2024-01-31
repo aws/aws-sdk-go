@@ -54392,8 +54392,8 @@ type JobCommand struct {
 
 	// In Ray jobs, Runtime is used to specify the versions of Ray, Python and additional
 	// libraries available in your environment. This field is not used in other
-	// job types. For supported runtime environment values, see Working with Ray
-	// jobs (https://docs.aws.amazon.com/glue/latest/dg/author-job-ray-runtimes.html)
+	// job types. For supported runtime environment values, see Supported Ray runtime
+	// environments (https://docs.aws.amazon.com/glue/latest/dg/ray-jobs-section.html)
 	// in the Glue Developer Guide.
 	Runtime *string `type:"string"`
 

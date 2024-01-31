@@ -2251,6 +2251,10 @@
           "shape":"ScheduleOffset",
           "box":true
         },
+        "Duration":{
+          "shape":"Duration",
+          "box":true
+        },
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
@@ -2302,6 +2306,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "Duration":{
+          "shape":"Duration",
           "box":true
         },
         "TargetMaps":{
@@ -2572,6 +2580,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "Duration":{
+          "shape":"Duration",
           "box":true
         },
         "TargetMaps":{
@@ -3456,6 +3468,10 @@
           "shape":"ScheduleOffset",
           "box":true
         },
+        "Duration":{
+          "shape":"Duration",
+          "box":true
+        },
         "TargetMaps":{
           "shape":"TargetMaps",
           "box":true
@@ -3492,6 +3508,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "Duration":{
+          "shape":"Duration",
           "box":true
         },
         "TargetMaps":{
@@ -5003,6 +5023,12 @@
       "members":{
       },
       "exception":true
+    },
+    "Duration":{
+      "type":"integer",
+      "box":true,
+      "max":24,
+      "min":1
     },
     "EffectiveInstanceAssociationMaxResults":{
       "type":"integer",
@@ -10517,6 +10543,10 @@
         "TargetLocations":{"shape":"TargetLocations"},
         "ScheduleOffset":{
           "shape":"ScheduleOffset",
+          "box":true
+        },
+        "Duration":{
+          "shape":"Duration",
           "box":true
         },
         "TargetMaps":{

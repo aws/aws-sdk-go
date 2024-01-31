@@ -7786,7 +7786,7 @@
       "members":{
         "JobName":{"shape":"NameString"},
         "NextToken":{"shape":"GenericString"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"OrchestrationPageSize200"}
       }
     },
     "GetJobRunsResponse":{
@@ -8342,7 +8342,7 @@
       "members":{
         "NextToken":{"shape":"GenericString"},
         "DependentJobName":{"shape":"NameString"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"OrchestrationPageSize200"}
       }
     },
     "GetTriggersResponse":{
@@ -9343,7 +9343,7 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"GenericString"},
-        "MaxResults":{"shape":"PageSize"},
+        "MaxResults":{"shape":"OrchestrationPageSize25"},
         "Tags":{"shape":"TagsMap"}
       }
     },
@@ -9636,7 +9636,7 @@
       "members":{
         "NextToken":{"shape":"GenericString"},
         "DependentJobName":{"shape":"NameString"},
-        "MaxResults":{"shape":"PageSize"},
+        "MaxResults":{"shape":"OrchestrationPageSize200"},
         "Tags":{"shape":"TagsMap"}
       }
     },
@@ -9651,7 +9651,7 @@
       "type":"structure",
       "members":{
         "NextToken":{"shape":"GenericString"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"OrchestrationPageSize25"}
       }
     },
     "ListWorkflowsResponse":{
@@ -10176,6 +10176,18 @@
       "max":128,
       "min":1,
       "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "OrchestrationPageSize200":{
+      "type":"integer",
+      "box":true,
+      "max":200,
+      "min":1
+    },
+    "OrchestrationPageSize25":{
+      "type":"integer",
+      "box":true,
+      "max":25,
+      "min":1
     },
     "OrchestrationRoleArn":{
       "type":"string",

@@ -84,6 +84,10 @@ type CloudFormationAPI interface {
 	CreateChangeSetWithContext(aws.Context, *cloudformation.CreateChangeSetInput, ...request.Option) (*cloudformation.CreateChangeSetOutput, error)
 	CreateChangeSetRequest(*cloudformation.CreateChangeSetInput) (*request.Request, *cloudformation.CreateChangeSetOutput)
 
+	CreateGeneratedTemplate(*cloudformation.CreateGeneratedTemplateInput) (*cloudformation.CreateGeneratedTemplateOutput, error)
+	CreateGeneratedTemplateWithContext(aws.Context, *cloudformation.CreateGeneratedTemplateInput, ...request.Option) (*cloudformation.CreateGeneratedTemplateOutput, error)
+	CreateGeneratedTemplateRequest(*cloudformation.CreateGeneratedTemplateInput) (*request.Request, *cloudformation.CreateGeneratedTemplateOutput)
+
 	CreateStack(*cloudformation.CreateStackInput) (*cloudformation.CreateStackOutput, error)
 	CreateStackWithContext(aws.Context, *cloudformation.CreateStackInput, ...request.Option) (*cloudformation.CreateStackOutput, error)
 	CreateStackRequest(*cloudformation.CreateStackInput) (*request.Request, *cloudformation.CreateStackOutput)
@@ -107,6 +111,10 @@ type CloudFormationAPI interface {
 	DeleteChangeSet(*cloudformation.DeleteChangeSetInput) (*cloudformation.DeleteChangeSetOutput, error)
 	DeleteChangeSetWithContext(aws.Context, *cloudformation.DeleteChangeSetInput, ...request.Option) (*cloudformation.DeleteChangeSetOutput, error)
 	DeleteChangeSetRequest(*cloudformation.DeleteChangeSetInput) (*request.Request, *cloudformation.DeleteChangeSetOutput)
+
+	DeleteGeneratedTemplate(*cloudformation.DeleteGeneratedTemplateInput) (*cloudformation.DeleteGeneratedTemplateOutput, error)
+	DeleteGeneratedTemplateWithContext(aws.Context, *cloudformation.DeleteGeneratedTemplateInput, ...request.Option) (*cloudformation.DeleteGeneratedTemplateOutput, error)
+	DeleteGeneratedTemplateRequest(*cloudformation.DeleteGeneratedTemplateInput) (*request.Request, *cloudformation.DeleteGeneratedTemplateOutput)
 
 	DeleteStack(*cloudformation.DeleteStackInput) (*cloudformation.DeleteStackOutput, error)
 	DeleteStackWithContext(aws.Context, *cloudformation.DeleteStackInput, ...request.Option) (*cloudformation.DeleteStackOutput, error)
@@ -139,6 +147,10 @@ type CloudFormationAPI interface {
 	DescribeChangeSetHooksWithContext(aws.Context, *cloudformation.DescribeChangeSetHooksInput, ...request.Option) (*cloudformation.DescribeChangeSetHooksOutput, error)
 	DescribeChangeSetHooksRequest(*cloudformation.DescribeChangeSetHooksInput) (*request.Request, *cloudformation.DescribeChangeSetHooksOutput)
 
+	DescribeGeneratedTemplate(*cloudformation.DescribeGeneratedTemplateInput) (*cloudformation.DescribeGeneratedTemplateOutput, error)
+	DescribeGeneratedTemplateWithContext(aws.Context, *cloudformation.DescribeGeneratedTemplateInput, ...request.Option) (*cloudformation.DescribeGeneratedTemplateOutput, error)
+	DescribeGeneratedTemplateRequest(*cloudformation.DescribeGeneratedTemplateInput) (*request.Request, *cloudformation.DescribeGeneratedTemplateOutput)
+
 	DescribeOrganizationsAccess(*cloudformation.DescribeOrganizationsAccessInput) (*cloudformation.DescribeOrganizationsAccessOutput, error)
 	DescribeOrganizationsAccessWithContext(aws.Context, *cloudformation.DescribeOrganizationsAccessInput, ...request.Option) (*cloudformation.DescribeOrganizationsAccessOutput, error)
 	DescribeOrganizationsAccessRequest(*cloudformation.DescribeOrganizationsAccessInput) (*request.Request, *cloudformation.DescribeOrganizationsAccessOutput)
@@ -146,6 +158,10 @@ type CloudFormationAPI interface {
 	DescribePublisher(*cloudformation.DescribePublisherInput) (*cloudformation.DescribePublisherOutput, error)
 	DescribePublisherWithContext(aws.Context, *cloudformation.DescribePublisherInput, ...request.Option) (*cloudformation.DescribePublisherOutput, error)
 	DescribePublisherRequest(*cloudformation.DescribePublisherInput) (*request.Request, *cloudformation.DescribePublisherOutput)
+
+	DescribeResourceScan(*cloudformation.DescribeResourceScanInput) (*cloudformation.DescribeResourceScanOutput, error)
+	DescribeResourceScanWithContext(aws.Context, *cloudformation.DescribeResourceScanInput, ...request.Option) (*cloudformation.DescribeResourceScanOutput, error)
+	DescribeResourceScanRequest(*cloudformation.DescribeResourceScanInput) (*request.Request, *cloudformation.DescribeResourceScanOutput)
 
 	DescribeStackDriftDetectionStatus(*cloudformation.DescribeStackDriftDetectionStatusInput) (*cloudformation.DescribeStackDriftDetectionStatusOutput, error)
 	DescribeStackDriftDetectionStatusWithContext(aws.Context, *cloudformation.DescribeStackDriftDetectionStatusInput, ...request.Option) (*cloudformation.DescribeStackDriftDetectionStatusOutput, error)
@@ -220,6 +236,10 @@ type CloudFormationAPI interface {
 	ExecuteChangeSetWithContext(aws.Context, *cloudformation.ExecuteChangeSetInput, ...request.Option) (*cloudformation.ExecuteChangeSetOutput, error)
 	ExecuteChangeSetRequest(*cloudformation.ExecuteChangeSetInput) (*request.Request, *cloudformation.ExecuteChangeSetOutput)
 
+	GetGeneratedTemplate(*cloudformation.GetGeneratedTemplateInput) (*cloudformation.GetGeneratedTemplateOutput, error)
+	GetGeneratedTemplateWithContext(aws.Context, *cloudformation.GetGeneratedTemplateInput, ...request.Option) (*cloudformation.GetGeneratedTemplateOutput, error)
+	GetGeneratedTemplateRequest(*cloudformation.GetGeneratedTemplateInput) (*request.Request, *cloudformation.GetGeneratedTemplateOutput)
+
 	GetStackPolicy(*cloudformation.GetStackPolicyInput) (*cloudformation.GetStackPolicyOutput, error)
 	GetStackPolicyWithContext(aws.Context, *cloudformation.GetStackPolicyInput, ...request.Option) (*cloudformation.GetStackPolicyOutput, error)
 	GetStackPolicyRequest(*cloudformation.GetStackPolicyInput) (*request.Request, *cloudformation.GetStackPolicyOutput)
@@ -250,12 +270,40 @@ type CloudFormationAPI interface {
 	ListExportsPages(*cloudformation.ListExportsInput, func(*cloudformation.ListExportsOutput, bool) bool) error
 	ListExportsPagesWithContext(aws.Context, *cloudformation.ListExportsInput, func(*cloudformation.ListExportsOutput, bool) bool, ...request.Option) error
 
+	ListGeneratedTemplates(*cloudformation.ListGeneratedTemplatesInput) (*cloudformation.ListGeneratedTemplatesOutput, error)
+	ListGeneratedTemplatesWithContext(aws.Context, *cloudformation.ListGeneratedTemplatesInput, ...request.Option) (*cloudformation.ListGeneratedTemplatesOutput, error)
+	ListGeneratedTemplatesRequest(*cloudformation.ListGeneratedTemplatesInput) (*request.Request, *cloudformation.ListGeneratedTemplatesOutput)
+
+	ListGeneratedTemplatesPages(*cloudformation.ListGeneratedTemplatesInput, func(*cloudformation.ListGeneratedTemplatesOutput, bool) bool) error
+	ListGeneratedTemplatesPagesWithContext(aws.Context, *cloudformation.ListGeneratedTemplatesInput, func(*cloudformation.ListGeneratedTemplatesOutput, bool) bool, ...request.Option) error
+
 	ListImports(*cloudformation.ListImportsInput) (*cloudformation.ListImportsOutput, error)
 	ListImportsWithContext(aws.Context, *cloudformation.ListImportsInput, ...request.Option) (*cloudformation.ListImportsOutput, error)
 	ListImportsRequest(*cloudformation.ListImportsInput) (*request.Request, *cloudformation.ListImportsOutput)
 
 	ListImportsPages(*cloudformation.ListImportsInput, func(*cloudformation.ListImportsOutput, bool) bool) error
 	ListImportsPagesWithContext(aws.Context, *cloudformation.ListImportsInput, func(*cloudformation.ListImportsOutput, bool) bool, ...request.Option) error
+
+	ListResourceScanRelatedResources(*cloudformation.ListResourceScanRelatedResourcesInput) (*cloudformation.ListResourceScanRelatedResourcesOutput, error)
+	ListResourceScanRelatedResourcesWithContext(aws.Context, *cloudformation.ListResourceScanRelatedResourcesInput, ...request.Option) (*cloudformation.ListResourceScanRelatedResourcesOutput, error)
+	ListResourceScanRelatedResourcesRequest(*cloudformation.ListResourceScanRelatedResourcesInput) (*request.Request, *cloudformation.ListResourceScanRelatedResourcesOutput)
+
+	ListResourceScanRelatedResourcesPages(*cloudformation.ListResourceScanRelatedResourcesInput, func(*cloudformation.ListResourceScanRelatedResourcesOutput, bool) bool) error
+	ListResourceScanRelatedResourcesPagesWithContext(aws.Context, *cloudformation.ListResourceScanRelatedResourcesInput, func(*cloudformation.ListResourceScanRelatedResourcesOutput, bool) bool, ...request.Option) error
+
+	ListResourceScanResources(*cloudformation.ListResourceScanResourcesInput) (*cloudformation.ListResourceScanResourcesOutput, error)
+	ListResourceScanResourcesWithContext(aws.Context, *cloudformation.ListResourceScanResourcesInput, ...request.Option) (*cloudformation.ListResourceScanResourcesOutput, error)
+	ListResourceScanResourcesRequest(*cloudformation.ListResourceScanResourcesInput) (*request.Request, *cloudformation.ListResourceScanResourcesOutput)
+
+	ListResourceScanResourcesPages(*cloudformation.ListResourceScanResourcesInput, func(*cloudformation.ListResourceScanResourcesOutput, bool) bool) error
+	ListResourceScanResourcesPagesWithContext(aws.Context, *cloudformation.ListResourceScanResourcesInput, func(*cloudformation.ListResourceScanResourcesOutput, bool) bool, ...request.Option) error
+
+	ListResourceScans(*cloudformation.ListResourceScansInput) (*cloudformation.ListResourceScansOutput, error)
+	ListResourceScansWithContext(aws.Context, *cloudformation.ListResourceScansInput, ...request.Option) (*cloudformation.ListResourceScansOutput, error)
+	ListResourceScansRequest(*cloudformation.ListResourceScansInput) (*request.Request, *cloudformation.ListResourceScansOutput)
+
+	ListResourceScansPages(*cloudformation.ListResourceScansInput, func(*cloudformation.ListResourceScansOutput, bool) bool) error
+	ListResourceScansPagesWithContext(aws.Context, *cloudformation.ListResourceScansInput, func(*cloudformation.ListResourceScansOutput, bool) bool, ...request.Option) error
 
 	ListStackInstanceResourceDrifts(*cloudformation.ListStackInstanceResourceDriftsInput) (*cloudformation.ListStackInstanceResourceDriftsOutput, error)
 	ListStackInstanceResourceDriftsWithContext(aws.Context, *cloudformation.ListStackInstanceResourceDriftsInput, ...request.Option) (*cloudformation.ListStackInstanceResourceDriftsOutput, error)
@@ -360,6 +408,10 @@ type CloudFormationAPI interface {
 	SignalResourceWithContext(aws.Context, *cloudformation.SignalResourceInput, ...request.Option) (*cloudformation.SignalResourceOutput, error)
 	SignalResourceRequest(*cloudformation.SignalResourceInput) (*request.Request, *cloudformation.SignalResourceOutput)
 
+	StartResourceScan(*cloudformation.StartResourceScanInput) (*cloudformation.StartResourceScanOutput, error)
+	StartResourceScanWithContext(aws.Context, *cloudformation.StartResourceScanInput, ...request.Option) (*cloudformation.StartResourceScanOutput, error)
+	StartResourceScanRequest(*cloudformation.StartResourceScanInput) (*request.Request, *cloudformation.StartResourceScanOutput)
+
 	StopStackSetOperation(*cloudformation.StopStackSetOperationInput) (*cloudformation.StopStackSetOperationOutput, error)
 	StopStackSetOperationWithContext(aws.Context, *cloudformation.StopStackSetOperationInput, ...request.Option) (*cloudformation.StopStackSetOperationOutput, error)
 	StopStackSetOperationRequest(*cloudformation.StopStackSetOperationInput) (*request.Request, *cloudformation.StopStackSetOperationOutput)
@@ -367,6 +419,10 @@ type CloudFormationAPI interface {
 	TestType(*cloudformation.TestTypeInput) (*cloudformation.TestTypeOutput, error)
 	TestTypeWithContext(aws.Context, *cloudformation.TestTypeInput, ...request.Option) (*cloudformation.TestTypeOutput, error)
 	TestTypeRequest(*cloudformation.TestTypeInput) (*request.Request, *cloudformation.TestTypeOutput)
+
+	UpdateGeneratedTemplate(*cloudformation.UpdateGeneratedTemplateInput) (*cloudformation.UpdateGeneratedTemplateOutput, error)
+	UpdateGeneratedTemplateWithContext(aws.Context, *cloudformation.UpdateGeneratedTemplateInput, ...request.Option) (*cloudformation.UpdateGeneratedTemplateOutput, error)
+	UpdateGeneratedTemplateRequest(*cloudformation.UpdateGeneratedTemplateInput) (*request.Request, *cloudformation.UpdateGeneratedTemplateOutput)
 
 	UpdateStack(*cloudformation.UpdateStackInput) (*cloudformation.UpdateStackOutput, error)
 	UpdateStackWithContext(aws.Context, *cloudformation.UpdateStackInput, ...request.Option) (*cloudformation.UpdateStackOutput, error)

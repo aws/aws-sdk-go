@@ -2762,6 +2762,7 @@
         "initial",
         "healthy",
         "unhealthy",
+        "unhealthy.draining",
         "unused",
         "draining",
         "unavailable"

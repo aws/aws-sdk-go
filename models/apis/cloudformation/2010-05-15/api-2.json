@@ -103,6 +103,23 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateGeneratedTemplate":{
+      "name":"CreateGeneratedTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateGeneratedTemplateInput"},
+      "output":{
+        "shape":"CreateGeneratedTemplateOutput",
+        "resultWrapper":"CreateGeneratedTemplateResult"
+      },
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConcurrentResourcesLimitExceededException"}
+      ]
+    },
     "CreateStack":{
       "name":"CreateStack",
       "http":{
@@ -204,6 +221,18 @@
       },
       "errors":[
         {"shape":"InvalidChangeSetStatusException"}
+      ]
+    },
+    "DeleteGeneratedTemplate":{
+      "name":"DeleteGeneratedTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteGeneratedTemplateInput"},
+      "errors":[
+        {"shape":"GeneratedTemplateNotFoundException"},
+        {"shape":"ConcurrentResourcesLimitExceededException"}
       ]
     },
     "DeleteStack":{
@@ -311,6 +340,21 @@
         {"shape":"ChangeSetNotFoundException"}
       ]
     },
+    "DescribeGeneratedTemplate":{
+      "name":"DescribeGeneratedTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeGeneratedTemplateInput"},
+      "output":{
+        "shape":"DescribeGeneratedTemplateOutput",
+        "resultWrapper":"DescribeGeneratedTemplateResult"
+      },
+      "errors":[
+        {"shape":"GeneratedTemplateNotFoundException"}
+      ]
+    },
     "DescribeOrganizationsAccess":{
       "name":"DescribeOrganizationsAccess",
       "http":{
@@ -342,6 +386,21 @@
         {"shape":"CFNRegistryException"}
       ],
       "idempotent":true
+    },
+    "DescribeResourceScan":{
+      "name":"DescribeResourceScan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeResourceScanInput"},
+      "output":{
+        "shape":"DescribeResourceScanOutput",
+        "resultWrapper":"DescribeResourceScanResult"
+      },
+      "errors":[
+        {"shape":"ResourceScanNotFoundException"}
+      ]
     },
     "DescribeStackDriftDetectionStatus":{
       "name":"DescribeStackDriftDetectionStatus",
@@ -566,6 +625,21 @@
         {"shape":"TokenAlreadyExistsException"}
       ]
     },
+    "GetGeneratedTemplate":{
+      "name":"GetGeneratedTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetGeneratedTemplateInput"},
+      "output":{
+        "shape":"GetGeneratedTemplateOutput",
+        "resultWrapper":"GetGeneratedTemplateResult"
+      },
+      "errors":[
+        {"shape":"GeneratedTemplateNotFoundException"}
+      ]
+    },
     "GetStackPolicy":{
       "name":"GetStackPolicy",
       "http":{
@@ -653,6 +727,18 @@
         "resultWrapper":"ListExportsResult"
       }
     },
+    "ListGeneratedTemplates":{
+      "name":"ListGeneratedTemplates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListGeneratedTemplatesInput"},
+      "output":{
+        "shape":"ListGeneratedTemplatesOutput",
+        "resultWrapper":"ListGeneratedTemplatesResult"
+      }
+    },
     "ListImports":{
       "name":"ListImports",
       "http":{
@@ -663,6 +749,50 @@
       "output":{
         "shape":"ListImportsOutput",
         "resultWrapper":"ListImportsResult"
+      }
+    },
+    "ListResourceScanRelatedResources":{
+      "name":"ListResourceScanRelatedResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceScanRelatedResourcesInput"},
+      "output":{
+        "shape":"ListResourceScanRelatedResourcesOutput",
+        "resultWrapper":"ListResourceScanRelatedResourcesResult"
+      },
+      "errors":[
+        {"shape":"ResourceScanNotFoundException"},
+        {"shape":"ResourceScanInProgressException"}
+      ]
+    },
+    "ListResourceScanResources":{
+      "name":"ListResourceScanResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceScanResourcesInput"},
+      "output":{
+        "shape":"ListResourceScanResourcesOutput",
+        "resultWrapper":"ListResourceScanResourcesResult"
+      },
+      "errors":[
+        {"shape":"ResourceScanNotFoundException"},
+        {"shape":"ResourceScanInProgressException"}
+      ]
+    },
+    "ListResourceScans":{
+      "name":"ListResourceScans",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResourceScansInput"},
+      "output":{
+        "shape":"ListResourceScansOutput",
+        "resultWrapper":"ListResourceScansResult"
       }
     },
     "ListStackInstanceResourceDrifts":{
@@ -942,6 +1072,22 @@
       },
       "input":{"shape":"SignalResourceInput"}
     },
+    "StartResourceScan":{
+      "name":"StartResourceScan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartResourceScanInput"},
+      "output":{
+        "shape":"StartResourceScanOutput",
+        "resultWrapper":"StartResourceScanResult"
+      },
+      "errors":[
+        {"shape":"ResourceScanInProgressException"},
+        {"shape":"ResourceScanLimitExceededException"}
+      ]
+    },
     "StopStackSetOperation":{
       "name":"StopStackSetOperation",
       "http":{
@@ -975,6 +1121,23 @@
         {"shape":"TypeNotFoundException"}
       ],
       "idempotent":true
+    },
+    "UpdateGeneratedTemplate":{
+      "name":"UpdateGeneratedTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateGeneratedTemplateInput"},
+      "output":{
+        "shape":"UpdateGeneratedTemplateOutput",
+        "resultWrapper":"UpdateGeneratedTemplateResult"
+      },
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"GeneratedTemplateNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ]
     },
     "UpdateStack":{
       "name":"UpdateStack",
@@ -1417,6 +1580,17 @@
         "SOFT_FAILURE_TOLERANCE"
       ]
     },
+    "ConcurrentResourcesLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ConcurrentResourcesLimitExceeded",
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ConfigurationSchema":{
       "type":"string",
       "max":60000,
@@ -1477,6 +1651,22 @@
       "members":{
         "Id":{"shape":"ChangeSetId"},
         "StackId":{"shape":"StackId"}
+      }
+    },
+    "CreateGeneratedTemplateInput":{
+      "type":"structure",
+      "required":["GeneratedTemplateName"],
+      "members":{
+        "Resources":{"shape":"ResourceDefinitions"},
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"},
+        "StackName":{"shape":"StackName"},
+        "TemplateConfiguration":{"shape":"TemplateConfiguration"}
+      }
+    },
+    "CreateGeneratedTemplateOutput":{
+      "type":"structure",
+      "members":{
+        "GeneratedTemplateId":{"shape":"GeneratedTemplateId"}
       }
     },
     "CreateStackInput":{
@@ -1611,6 +1801,13 @@
     "DeleteChangeSetOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteGeneratedTemplateInput":{
+      "type":"structure",
+      "required":["GeneratedTemplateName"],
+      "members":{
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"}
       }
     },
     "DeleteStackInput":{
@@ -1764,6 +1961,29 @@
         "ImportExistingResources":{"shape":"ImportExistingResources"}
       }
     },
+    "DescribeGeneratedTemplateInput":{
+      "type":"structure",
+      "required":["GeneratedTemplateName"],
+      "members":{
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"}
+      }
+    },
+    "DescribeGeneratedTemplateOutput":{
+      "type":"structure",
+      "members":{
+        "GeneratedTemplateId":{"shape":"GeneratedTemplateId"},
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"},
+        "Resources":{"shape":"ResourceDetails"},
+        "Status":{"shape":"GeneratedTemplateStatus"},
+        "StatusReason":{"shape":"TemplateStatusReason"},
+        "CreationTime":{"shape":"CreationTime"},
+        "LastUpdatedTime":{"shape":"LastUpdatedTime"},
+        "Progress":{"shape":"TemplateProgress"},
+        "StackId":{"shape":"StackId"},
+        "TemplateConfiguration":{"shape":"TemplateConfiguration"},
+        "TotalWarnings":{"shape":"TotalWarnings"}
+      }
+    },
     "DescribeOrganizationsAccessInput":{
       "type":"structure",
       "members":{
@@ -1789,6 +2009,27 @@
         "PublisherStatus":{"shape":"PublisherStatus"},
         "IdentityProvider":{"shape":"IdentityProvider"},
         "PublisherProfile":{"shape":"PublisherProfile"}
+      }
+    },
+    "DescribeResourceScanInput":{
+      "type":"structure",
+      "required":["ResourceScanId"],
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"}
+      }
+    },
+    "DescribeResourceScanOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"},
+        "Status":{"shape":"ResourceScanStatus"},
+        "StatusReason":{"shape":"ResourceScanStatusReason"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "PercentageCompleted":{"shape":"PercentageCompleted"},
+        "ResourceTypes":{"shape":"ResourceTypes"},
+        "ResourcesScanned":{"shape":"ResourcesScanned"},
+        "ResourcesRead":{"shape":"ResourcesRead"}
       }
     },
     "DescribeStackDriftDetectionStatusInput":{
@@ -2167,6 +2408,78 @@
       "max":100,
       "min":0
     },
+    "GeneratedTemplateDeletionPolicy":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "RETAIN"
+      ]
+    },
+    "GeneratedTemplateId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "GeneratedTemplateName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "GeneratedTemplateNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"GeneratedTemplateNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "GeneratedTemplateResourceStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETE"
+      ]
+    },
+    "GeneratedTemplateStatus":{
+      "type":"string",
+      "enum":[
+        "CREATE_PENDING",
+        "UPDATE_PENDING",
+        "DELETE_PENDING",
+        "CREATE_IN_PROGRESS",
+        "UPDATE_IN_PROGRESS",
+        "DELETE_IN_PROGRESS",
+        "FAILED",
+        "COMPLETE"
+      ]
+    },
+    "GeneratedTemplateUpdateReplacePolicy":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "RETAIN"
+      ]
+    },
+    "GetGeneratedTemplateInput":{
+      "type":"structure",
+      "required":["GeneratedTemplateName"],
+      "members":{
+        "Format":{"shape":"TemplateFormat"},
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"}
+      }
+    },
+    "GetGeneratedTemplateOutput":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"GeneratedTemplateStatus"},
+        "TemplateBody":{"shape":"TemplateBody"}
+      }
+    },
     "GetStackPolicyInput":{
       "type":"structure",
       "required":["StackName"],
@@ -2398,6 +2711,19 @@
     "IsActivated":{"type":"boolean"},
     "IsDefaultConfiguration":{"type":"boolean"},
     "IsDefaultVersion":{"type":"boolean"},
+    "JazzLogicalResourceIds":{
+      "type":"list",
+      "member":{"shape":"LogicalResourceId"},
+      "max":500,
+      "min":1
+    },
+    "JazzResourceIdentifierProperties":{
+      "type":"map",
+      "key":{"shape":"JazzResourceIdentifierPropertyKey"},
+      "value":{"shape":"JazzResourceIdentifierPropertyValue"}
+    },
+    "JazzResourceIdentifierPropertyKey":{"type":"string"},
+    "JazzResourceIdentifierPropertyValue":{"type":"string"},
     "Key":{"type":"string"},
     "LastUpdatedTime":{"type":"timestamp"},
     "LimitExceededException":{
@@ -2441,6 +2767,20 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListGeneratedTemplatesInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListGeneratedTemplatesOutput":{
+      "type":"structure",
+      "members":{
+        "Summaries":{"shape":"TemplateSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListImportsInput":{
       "type":"structure",
       "required":["ExportName"],
@@ -2453,6 +2793,60 @@
       "type":"structure",
       "members":{
         "Imports":{"shape":"Imports"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceScanRelatedResourcesInput":{
+      "type":"structure",
+      "required":[
+        "ResourceScanId",
+        "Resources"
+      ],
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"},
+        "Resources":{"shape":"ScannedResourceIdentifiers"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"BoxedMaxResults"}
+      }
+    },
+    "ListResourceScanRelatedResourcesOutput":{
+      "type":"structure",
+      "members":{
+        "RelatedResources":{"shape":"RelatedResources"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceScanResourcesInput":{
+      "type":"structure",
+      "required":["ResourceScanId"],
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"},
+        "ResourceIdentifier":{"shape":"ResourceIdentifier"},
+        "ResourceTypePrefix":{"shape":"ResourceTypePrefix"},
+        "TagKey":{"shape":"TagKey"},
+        "TagValue":{"shape":"TagValue"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"ResourceScannerMaxResults"}
+      }
+    },
+    "ListResourceScanResourcesOutput":{
+      "type":"structure",
+      "members":{
+        "Resources":{"shape":"ScannedResources"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListResourceScansInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"ResourceScannerMaxResults"}
+      }
+    },
+    "ListResourceScansOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceScanSummaries":{"shape":"ResourceScanSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2672,6 +3066,7 @@
       "max":100000,
       "min":1
     },
+    "ManagedByStack":{"type":"boolean"},
     "ManagedExecution":{
       "type":"structure",
       "members":{
@@ -2728,6 +3123,10 @@
       "type":"list",
       "member":{"shape":"NotificationARN"},
       "max":5
+    },
+    "NumberOfResources":{
+      "type":"integer",
+      "min":0
     },
     "OnFailure":{
       "type":"string",
@@ -2892,6 +3291,7 @@
       "type":"list",
       "member":{"shape":"Parameter"}
     },
+    "PercentageCompleted":{"type":"double"},
     "PermissionModels":{
       "type":"string",
       "enum":[
@@ -2922,6 +3322,7 @@
       "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:[0-9]{12}:type/.+"
     },
     "Properties":{"type":"string"},
+    "PropertyDescription":{"type":"string"},
     "PropertyDifference":{
       "type":"structure",
       "required":[
@@ -3018,6 +3419,7 @@
       "members":{
       }
     },
+    "RefreshAllResources":{"type":"boolean"},
     "Region":{
       "type":"string",
       "pattern":"^[a-zA-Z0-9-]{1,128}$"
@@ -3093,6 +3495,10 @@
         "HOOK"
       ]
     },
+    "RelatedResources":{
+      "type":"list",
+      "member":{"shape":"ScannedResource"}
+    },
     "Replacement":{
       "type":"string",
       "enum":[
@@ -3120,6 +3526,7 @@
       "type":"list",
       "member":{"shape":"RequiredActivatedType"}
     },
+    "RequiredProperty":{"type":"boolean"},
     "RequiresRecreation":{
       "type":"string",
       "enum":[
@@ -3167,6 +3574,42 @@
       "type":"list",
       "member":{"shape":"ResourceChangeDetail"}
     },
+    "ResourceDefinition":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceIdentifier"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "LogicalResourceId":{"shape":"LogicalResourceId"},
+        "ResourceIdentifier":{"shape":"ResourceIdentifierProperties"}
+      }
+    },
+    "ResourceDefinitions":{
+      "type":"list",
+      "member":{"shape":"ResourceDefinition"},
+      "max":500,
+      "min":1
+    },
+    "ResourceDetail":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "LogicalResourceId":{"shape":"LogicalResourceId"},
+        "ResourceIdentifier":{"shape":"ResourceIdentifierProperties"},
+        "ResourceStatus":{"shape":"GeneratedTemplateResourceStatus"},
+        "ResourceStatusReason":{"shape":"ResourceStatusReason"},
+        "Warnings":{"shape":"WarningDetails"}
+      }
+    },
+    "ResourceDetails":{
+      "type":"list",
+      "member":{"shape":"ResourceDetail"},
+      "max":500,
+      "min":1
+    },
+    "ResourceIdentifier":{"type":"string"},
     "ResourceIdentifierProperties":{
       "type":"map",
       "key":{"shape":"ResourceIdentifierPropertyKey"},
@@ -3206,6 +3649,69 @@
       "min":1
     },
     "ResourceProperties":{"type":"string"},
+    "ResourceScanId":{"type":"string"},
+    "ResourceScanInProgressException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceScanInProgress",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceScanLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceScanLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceScanNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceScanNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceScanStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETE",
+        "EXPIRED"
+      ]
+    },
+    "ResourceScanStatusReason":{"type":"string"},
+    "ResourceScanSummaries":{
+      "type":"list",
+      "member":{"shape":"ResourceScanSummary"}
+    },
+    "ResourceScanSummary":{
+      "type":"structure",
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"},
+        "Status":{"shape":"ResourceScanStatus"},
+        "StatusReason":{"shape":"ResourceScanStatusReason"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "PercentageCompleted":{"shape":"PercentageCompleted"}
+      }
+    },
+    "ResourceScannerMaxResults":{
+      "type":"integer",
+      "box":true
+    },
     "ResourceSignalStatus":{
       "type":"string",
       "enum":[
@@ -3276,9 +3782,28 @@
       "max":256,
       "min":1
     },
+    "ResourceTypePrefix":{"type":"string"},
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"ResourceType"}
+    },
+    "ResourcesFailed":{
+      "type":"integer",
+      "min":0
+    },
+    "ResourcesPending":{
+      "type":"integer",
+      "min":0
+    },
+    "ResourcesProcessing":{
+      "type":"integer",
+      "min":0
+    },
+    "ResourcesRead":{"type":"integer"},
+    "ResourcesScanned":{"type":"integer"},
+    "ResourcesSucceeded":{
+      "type":"integer",
+      "min":0
     },
     "ResourcesToImport":{
       "type":"list",
@@ -3357,6 +3882,33 @@
       "type":"string",
       "max":4096,
       "min":1
+    },
+    "ScannedResource":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "ResourceIdentifier":{"shape":"JazzResourceIdentifierProperties"},
+        "ManagedByStack":{"shape":"ManagedByStack"}
+      }
+    },
+    "ScannedResourceIdentifier":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceIdentifier"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "ResourceIdentifier":{"shape":"JazzResourceIdentifierProperties"}
+      }
+    },
+    "ScannedResourceIdentifiers":{
+      "type":"list",
+      "member":{"shape":"ScannedResourceIdentifier"}
+    },
+    "ScannedResources":{
+      "type":"list",
+      "member":{"shape":"ScannedResource"}
     },
     "Scope":{
       "type":"list",
@@ -4106,6 +4658,18 @@
       },
       "exception":true
     },
+    "StartResourceScanInput":{
+      "type":"structure",
+      "members":{
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "StartResourceScanOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceScanId":{"shape":"ResourceScanId"}
+      }
+    },
     "StatusMessage":{
       "type":"string",
       "max":1024
@@ -4166,7 +4730,21 @@
       "type":"string",
       "min":1
     },
+    "TemplateConfiguration":{
+      "type":"structure",
+      "members":{
+        "DeletionPolicy":{"shape":"GeneratedTemplateDeletionPolicy"},
+        "UpdateReplacePolicy":{"shape":"GeneratedTemplateUpdateReplacePolicy"}
+      }
+    },
     "TemplateDescription":{"type":"string"},
+    "TemplateFormat":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "YAML"
+      ]
+    },
     "TemplateParameter":{
       "type":"structure",
       "members":{
@@ -4180,12 +4758,42 @@
       "type":"list",
       "member":{"shape":"TemplateParameter"}
     },
+    "TemplateProgress":{
+      "type":"structure",
+      "members":{
+        "ResourcesSucceeded":{"shape":"ResourcesSucceeded"},
+        "ResourcesFailed":{"shape":"ResourcesFailed"},
+        "ResourcesProcessing":{"shape":"ResourcesProcessing"},
+        "ResourcesPending":{"shape":"ResourcesPending"}
+      }
+    },
     "TemplateStage":{
       "type":"string",
       "enum":[
         "Original",
         "Processed"
       ]
+    },
+    "TemplateStatusReason":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "TemplateSummaries":{
+      "type":"list",
+      "member":{"shape":"TemplateSummary"}
+    },
+    "TemplateSummary":{
+      "type":"structure",
+      "members":{
+        "GeneratedTemplateId":{"shape":"GeneratedTemplateId"},
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"},
+        "Status":{"shape":"GeneratedTemplateStatus"},
+        "StatusReason":{"shape":"TemplateStatusReason"},
+        "CreationTime":{"shape":"CreationTime"},
+        "LastUpdatedTime":{"shape":"LastUpdatedTime"},
+        "NumberOfResources":{"shape":"NumberOfResources"}
+      }
     },
     "TemplateSummaryConfig":{
       "type":"structure",
@@ -4244,6 +4852,10 @@
       "exception":true
     },
     "TotalStackInstancesCount":{
+      "type":"integer",
+      "min":0
+    },
+    "TotalWarnings":{
       "type":"integer",
       "min":0
     },
@@ -4419,6 +5031,24 @@
       "type":"list",
       "member":{"shape":"TypeConfigurationIdentifier"}
     },
+    "UpdateGeneratedTemplateInput":{
+      "type":"structure",
+      "required":["GeneratedTemplateName"],
+      "members":{
+        "GeneratedTemplateName":{"shape":"GeneratedTemplateName"},
+        "NewGeneratedTemplateName":{"shape":"GeneratedTemplateName"},
+        "AddResources":{"shape":"ResourceDefinitions"},
+        "RemoveResources":{"shape":"JazzLogicalResourceIds"},
+        "RefreshAllResources":{"shape":"RefreshAllResources"},
+        "TemplateConfiguration":{"shape":"TemplateConfiguration"}
+      }
+    },
+    "UpdateGeneratedTemplateOutput":{
+      "type":"structure",
+      "members":{
+        "GeneratedTemplateId":{"shape":"GeneratedTemplateId"}
+      }
+    },
     "UpdateStackInput":{
       "type":"structure",
       "required":["StackName"],
@@ -4560,6 +5190,37 @@
       "enum":[
         "PUBLIC",
         "PRIVATE"
+      ]
+    },
+    "WarningDetail":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"WarningType"},
+        "Properties":{"shape":"WarningProperties"}
+      }
+    },
+    "WarningDetails":{
+      "type":"list",
+      "member":{"shape":"WarningDetail"}
+    },
+    "WarningProperties":{
+      "type":"list",
+      "member":{"shape":"WarningProperty"}
+    },
+    "WarningProperty":{
+      "type":"structure",
+      "members":{
+        "PropertyPath":{"shape":"PropertyPath"},
+        "Required":{"shape":"RequiredProperty"},
+        "Description":{"shape":"PropertyDescription"}
+      }
+    },
+    "WarningType":{
+      "type":"string",
+      "enum":[
+        "MUTUALLY_EXCLUSIVE_PROPERTIES",
+        "UNSUPPORTED_PROPERTIES",
+        "MUTUALLY_EXCLUSIVE_TYPES"
       ]
     },
     "Warnings":{

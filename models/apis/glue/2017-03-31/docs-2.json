@@ -6454,6 +6454,21 @@
         "UpdateBlueprintRequest$Name": "<p>The name of the blueprint.</p>"
       }
     },
+    "OrchestrationPageSize200": {
+      "base": null,
+      "refs": {
+        "GetJobRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
+        "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
+        "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>"
+      }
+    },
+    "OrchestrationPageSize25": {
+      "base": null,
+      "refs": {
+        "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
+        "ListWorkflowsRequest$MaxResults": "<p>The maximum size of a list to return.</p>"
+      }
+    },
     "OrchestrationRoleArn": {
       "base": null,
       "refs": {
@@ -6530,17 +6545,14 @@
         "GetCrawlerMetricsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetCrawlersRequest$MaxResults": "<p>The number of crawlers to return on each call.</p>",
         "GetDevEndpointsRequest$MaxResults": "<p>The maximum size of information to return.</p>",
-        "GetJobRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetJobsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetMLTaskRunsRequest$MaxResults": "<p>The maximum number of results to return. </p>",
         "GetMLTransformsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetPartitionsRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
         "GetResourcePoliciesRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetUnfilteredPartitionsMetadataRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
-        "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListColumnStatisticsTaskRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlsRequest$MaxResults": "<p>The maximum number of results to return. The default is 20, and maximum is 100.</p>",
@@ -6553,8 +6565,6 @@
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListMLTransformsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListSessionsRequest$MaxResults": "<p>The maximum number of results. </p>",
-        "ListTriggersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
-        "ListWorkflowsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "SearchTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>"
       }
     },
@@ -7210,7 +7220,7 @@
     "RuntimeNameString": {
       "base": null,
       "refs": {
-        "JobCommand$Runtime": "<p>In Ray jobs, Runtime is used to specify the versions of Ray, Python and additional libraries available in your environment. This field is not used in other job types. For supported runtime environment values, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/author-job-ray-runtimes.html\">Working with Ray jobs</a> in the Glue Developer Guide.</p>"
+        "JobCommand$Runtime": "<p>In Ray jobs, Runtime is used to specify the versions of Ray, Python and additional libraries available in your environment. This field is not used in other job types. For supported runtime environment values, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/ray-jobs-section.html\">Supported Ray runtime environments</a> in the Glue Developer Guide.</p>"
       }
     },
     "S3CatalogDeltaSource": {

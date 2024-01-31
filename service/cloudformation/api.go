@@ -561,6 +561,99 @@ func (c *CloudFormation) CreateChangeSetWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateGeneratedTemplate = "CreateGeneratedTemplate"
+
+// CreateGeneratedTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGeneratedTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateGeneratedTemplate for more information on using the CreateGeneratedTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateGeneratedTemplateRequest method.
+//	req, resp := client.CreateGeneratedTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateGeneratedTemplate
+func (c *CloudFormation) CreateGeneratedTemplateRequest(input *CreateGeneratedTemplateInput) (req *request.Request, output *CreateGeneratedTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateGeneratedTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateGeneratedTemplateInput{}
+	}
+
+	output = &CreateGeneratedTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateGeneratedTemplate API operation for AWS CloudFormation.
+//
+// Creates a template from existing resources that are not already managed with
+// CloudFormation. You can check the status of the template generation using
+// the DescribeGeneratedTemplate API action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation CreateGeneratedTemplate for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAlreadyExistsException "AlreadyExistsException"
+//     The resource with the name requested already exists.
+//
+//   - ErrCodeLimitExceededException "LimitExceededException"
+//     The quota for the resource has already been reached.
+//
+//     For information about resource and stack limitations, see CloudFormation
+//     quotas (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html)
+//     in the CloudFormation User Guide.
+//
+//   - ErrCodeConcurrentResourcesLimitExceededException "ConcurrentResourcesLimitExceeded"
+//     No more than 5 generated templates can be in an InProgress or Pending status
+//     at one time. This error is also returned if a generated template that is
+//     in an InProgress or Pending status is attempted to be updated or deleted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/CreateGeneratedTemplate
+func (c *CloudFormation) CreateGeneratedTemplate(input *CreateGeneratedTemplateInput) (*CreateGeneratedTemplateOutput, error) {
+	req, out := c.CreateGeneratedTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateGeneratedTemplateWithContext is the same as CreateGeneratedTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGeneratedTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) CreateGeneratedTemplateWithContext(ctx aws.Context, input *CreateGeneratedTemplateInput, opts ...request.Option) (*CreateGeneratedTemplateOutput, error) {
+	req, out := c.CreateGeneratedTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateStack = "CreateStack"
 
 // CreateStackRequest generates a "aws/request.Request" representing the
@@ -1108,6 +1201,91 @@ func (c *CloudFormation) DeleteChangeSet(input *DeleteChangeSetInput) (*DeleteCh
 // for more information on using Contexts.
 func (c *CloudFormation) DeleteChangeSetWithContext(ctx aws.Context, input *DeleteChangeSetInput, opts ...request.Option) (*DeleteChangeSetOutput, error) {
 	req, out := c.DeleteChangeSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteGeneratedTemplate = "DeleteGeneratedTemplate"
+
+// DeleteGeneratedTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGeneratedTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteGeneratedTemplate for more information on using the DeleteGeneratedTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteGeneratedTemplateRequest method.
+//	req, resp := client.DeleteGeneratedTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DeleteGeneratedTemplate
+func (c *CloudFormation) DeleteGeneratedTemplateRequest(input *DeleteGeneratedTemplateInput) (req *request.Request, output *DeleteGeneratedTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteGeneratedTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteGeneratedTemplateInput{}
+	}
+
+	output = &DeleteGeneratedTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteGeneratedTemplate API operation for AWS CloudFormation.
+//
+// Deleted a generated template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DeleteGeneratedTemplate for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeGeneratedTemplateNotFoundException "GeneratedTemplateNotFound"
+//     The generated template was not found.
+//
+//   - ErrCodeConcurrentResourcesLimitExceededException "ConcurrentResourcesLimitExceeded"
+//     No more than 5 generated templates can be in an InProgress or Pending status
+//     at one time. This error is also returned if a generated template that is
+//     in an InProgress or Pending status is attempted to be updated or deleted.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DeleteGeneratedTemplate
+func (c *CloudFormation) DeleteGeneratedTemplate(input *DeleteGeneratedTemplateInput) (*DeleteGeneratedTemplateOutput, error) {
+	req, out := c.DeleteGeneratedTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteGeneratedTemplateWithContext is the same as DeleteGeneratedTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGeneratedTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) DeleteGeneratedTemplateWithContext(ctx aws.Context, input *DeleteGeneratedTemplateInput, opts ...request.Option) (*DeleteGeneratedTemplateOutput, error) {
+	req, out := c.DeleteGeneratedTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1769,6 +1947,87 @@ func (c *CloudFormation) DescribeChangeSetHooksWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDescribeGeneratedTemplate = "DescribeGeneratedTemplate"
+
+// DescribeGeneratedTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGeneratedTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeGeneratedTemplate for more information on using the DescribeGeneratedTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeGeneratedTemplateRequest method.
+//	req, resp := client.DescribeGeneratedTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DescribeGeneratedTemplate
+func (c *CloudFormation) DescribeGeneratedTemplateRequest(input *DescribeGeneratedTemplateInput) (req *request.Request, output *DescribeGeneratedTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGeneratedTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeGeneratedTemplateInput{}
+	}
+
+	output = &DescribeGeneratedTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeGeneratedTemplate API operation for AWS CloudFormation.
+//
+// Describes a generated template. The output includes details about the progress
+// of the creation of a generated template started by a CreateGeneratedTemplate
+// API action or the update of a generated template started with an UpdateGeneratedTemplate
+// API action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeGeneratedTemplate for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeGeneratedTemplateNotFoundException "GeneratedTemplateNotFound"
+//     The generated template was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DescribeGeneratedTemplate
+func (c *CloudFormation) DescribeGeneratedTemplate(input *DescribeGeneratedTemplateInput) (*DescribeGeneratedTemplateOutput, error) {
+	req, out := c.DescribeGeneratedTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DescribeGeneratedTemplateWithContext is the same as DescribeGeneratedTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGeneratedTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) DescribeGeneratedTemplateWithContext(ctx aws.Context, input *DescribeGeneratedTemplateInput, opts ...request.Option) (*DescribeGeneratedTemplateOutput, error) {
+	req, out := c.DescribeGeneratedTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeOrganizationsAccess = "DescribeOrganizationsAccess"
 
 // DescribeOrganizationsAccessRequest generates a "aws/request.Request" representing the
@@ -1938,6 +2197,84 @@ func (c *CloudFormation) DescribePublisher(input *DescribePublisherInput) (*Desc
 // for more information on using Contexts.
 func (c *CloudFormation) DescribePublisherWithContext(ctx aws.Context, input *DescribePublisherInput, opts ...request.Option) (*DescribePublisherOutput, error) {
 	req, out := c.DescribePublisherRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeResourceScan = "DescribeResourceScan"
+
+// DescribeResourceScanRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourceScan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeResourceScan for more information on using the DescribeResourceScan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeResourceScanRequest method.
+//	req, resp := client.DescribeResourceScanRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DescribeResourceScan
+func (c *CloudFormation) DescribeResourceScanRequest(input *DescribeResourceScanInput) (req *request.Request, output *DescribeResourceScanOutput) {
+	op := &request.Operation{
+		Name:       opDescribeResourceScan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeResourceScanInput{}
+	}
+
+	output = &DescribeResourceScanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeResourceScan API operation for AWS CloudFormation.
+//
+// Describes details of a resource scan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeResourceScan for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeResourceScanNotFoundException "ResourceScanNotFound"
+//     The resource scan was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/DescribeResourceScan
+func (c *CloudFormation) DescribeResourceScan(input *DescribeResourceScanInput) (*DescribeResourceScanOutput, error) {
+	req, out := c.DescribeResourceScanRequest(input)
+	return out, req.Send()
+}
+
+// DescribeResourceScanWithContext is the same as DescribeResourceScan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeResourceScan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) DescribeResourceScanWithContext(ctx aws.Context, input *DescribeResourceScanInput, opts ...request.Option) (*DescribeResourceScanOutput, error) {
+	req, out := c.DescribeResourceScanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3504,6 +3841,87 @@ func (c *CloudFormation) ExecuteChangeSetWithContext(ctx aws.Context, input *Exe
 	return out, req.Send()
 }
 
+const opGetGeneratedTemplate = "GetGeneratedTemplate"
+
+// GetGeneratedTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetGeneratedTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGeneratedTemplate for more information on using the GetGeneratedTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetGeneratedTemplateRequest method.
+//	req, resp := client.GetGeneratedTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/GetGeneratedTemplate
+func (c *CloudFormation) GetGeneratedTemplateRequest(input *GetGeneratedTemplateInput) (req *request.Request, output *GetGeneratedTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetGeneratedTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetGeneratedTemplateInput{}
+	}
+
+	output = &GetGeneratedTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGeneratedTemplate API operation for AWS CloudFormation.
+//
+// Retrieves a generated template. If the template is in an InProgress or Pending
+// status then the template returned will be the template when the template
+// was last in a Complete status. If the template has not yet been in a Complete
+// status then an empty template will be returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation GetGeneratedTemplate for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeGeneratedTemplateNotFoundException "GeneratedTemplateNotFound"
+//     The generated template was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/GetGeneratedTemplate
+func (c *CloudFormation) GetGeneratedTemplate(input *GetGeneratedTemplateInput) (*GetGeneratedTemplateOutput, error) {
+	req, out := c.GetGeneratedTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetGeneratedTemplateWithContext is the same as GetGeneratedTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGeneratedTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) GetGeneratedTemplateWithContext(ctx aws.Context, input *GetGeneratedTemplateInput, opts ...request.Option) (*GetGeneratedTemplateOutput, error) {
+	req, out := c.GetGeneratedTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetStackPolicy = "GetStackPolicy"
 
 // GetStackPolicyRequest generates a "aws/request.Request" representing the
@@ -4126,6 +4544,136 @@ func (c *CloudFormation) ListExportsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListGeneratedTemplates = "ListGeneratedTemplates"
+
+// ListGeneratedTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListGeneratedTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListGeneratedTemplates for more information on using the ListGeneratedTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListGeneratedTemplatesRequest method.
+//	req, resp := client.ListGeneratedTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListGeneratedTemplates
+func (c *CloudFormation) ListGeneratedTemplatesRequest(input *ListGeneratedTemplatesInput) (req *request.Request, output *ListGeneratedTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListGeneratedTemplates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListGeneratedTemplatesInput{}
+	}
+
+	output = &ListGeneratedTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListGeneratedTemplates API operation for AWS CloudFormation.
+//
+// Lists your generated templates in this Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListGeneratedTemplates for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListGeneratedTemplates
+func (c *CloudFormation) ListGeneratedTemplates(input *ListGeneratedTemplatesInput) (*ListGeneratedTemplatesOutput, error) {
+	req, out := c.ListGeneratedTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListGeneratedTemplatesWithContext is the same as ListGeneratedTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListGeneratedTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListGeneratedTemplatesWithContext(ctx aws.Context, input *ListGeneratedTemplatesInput, opts ...request.Option) (*ListGeneratedTemplatesOutput, error) {
+	req, out := c.ListGeneratedTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListGeneratedTemplatesPages iterates over the pages of a ListGeneratedTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGeneratedTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGeneratedTemplates operation.
+//	pageNum := 0
+//	err := client.ListGeneratedTemplatesPages(params,
+//	    func(page *cloudformation.ListGeneratedTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudFormation) ListGeneratedTemplatesPages(input *ListGeneratedTemplatesInput, fn func(*ListGeneratedTemplatesOutput, bool) bool) error {
+	return c.ListGeneratedTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGeneratedTemplatesPagesWithContext same as ListGeneratedTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListGeneratedTemplatesPagesWithContext(ctx aws.Context, input *ListGeneratedTemplatesInput, fn func(*ListGeneratedTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGeneratedTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGeneratedTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGeneratedTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListImports = "ListImports"
 
 // ListImportsRequest generates a "aws/request.Request" representing the
@@ -4255,6 +4803,422 @@ func (c *CloudFormation) ListImportsPagesWithContext(ctx aws.Context, input *Lis
 
 	for p.Next() {
 		if !fn(p.Page().(*ListImportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResourceScanRelatedResources = "ListResourceScanRelatedResources"
+
+// ListResourceScanRelatedResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceScanRelatedResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceScanRelatedResources for more information on using the ListResourceScanRelatedResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceScanRelatedResourcesRequest method.
+//	req, resp := client.ListResourceScanRelatedResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScanRelatedResources
+func (c *CloudFormation) ListResourceScanRelatedResourcesRequest(input *ListResourceScanRelatedResourcesInput) (req *request.Request, output *ListResourceScanRelatedResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListResourceScanRelatedResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResourceScanRelatedResourcesInput{}
+	}
+
+	output = &ListResourceScanRelatedResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceScanRelatedResources API operation for AWS CloudFormation.
+//
+// Lists the related resources for a list of resources from a resource scan.
+// The response indicates whether each returned resource is already managed
+// by CloudFormation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListResourceScanRelatedResources for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceScanNotFoundException "ResourceScanNotFound"
+//     The resource scan was not found.
+//
+//   - ErrCodeResourceScanInProgressException "ResourceScanInProgress"
+//     A resource scan is currently in progress. Only one can be run at a time for
+//     an account in a Region.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScanRelatedResources
+func (c *CloudFormation) ListResourceScanRelatedResources(input *ListResourceScanRelatedResourcesInput) (*ListResourceScanRelatedResourcesOutput, error) {
+	req, out := c.ListResourceScanRelatedResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceScanRelatedResourcesWithContext is the same as ListResourceScanRelatedResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceScanRelatedResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScanRelatedResourcesWithContext(ctx aws.Context, input *ListResourceScanRelatedResourcesInput, opts ...request.Option) (*ListResourceScanRelatedResourcesOutput, error) {
+	req, out := c.ListResourceScanRelatedResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResourceScanRelatedResourcesPages iterates over the pages of a ListResourceScanRelatedResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceScanRelatedResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResourceScanRelatedResources operation.
+//	pageNum := 0
+//	err := client.ListResourceScanRelatedResourcesPages(params,
+//	    func(page *cloudformation.ListResourceScanRelatedResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudFormation) ListResourceScanRelatedResourcesPages(input *ListResourceScanRelatedResourcesInput, fn func(*ListResourceScanRelatedResourcesOutput, bool) bool) error {
+	return c.ListResourceScanRelatedResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceScanRelatedResourcesPagesWithContext same as ListResourceScanRelatedResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScanRelatedResourcesPagesWithContext(ctx aws.Context, input *ListResourceScanRelatedResourcesInput, fn func(*ListResourceScanRelatedResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceScanRelatedResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceScanRelatedResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceScanRelatedResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResourceScanResources = "ListResourceScanResources"
+
+// ListResourceScanResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceScanResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceScanResources for more information on using the ListResourceScanResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceScanResourcesRequest method.
+//	req, resp := client.ListResourceScanResourcesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScanResources
+func (c *CloudFormation) ListResourceScanResourcesRequest(input *ListResourceScanResourcesInput) (req *request.Request, output *ListResourceScanResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListResourceScanResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResourceScanResourcesInput{}
+	}
+
+	output = &ListResourceScanResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceScanResources API operation for AWS CloudFormation.
+//
+// Lists the resources from a resource scan. The results can be filtered by
+// resource identifier, resource type prefix, tag key, and tag value. Only resources
+// that match all specified filters are returned. The response indicates whether
+// each returned resource is already managed by CloudFormation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListResourceScanResources for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceScanNotFoundException "ResourceScanNotFound"
+//     The resource scan was not found.
+//
+//   - ErrCodeResourceScanInProgressException "ResourceScanInProgress"
+//     A resource scan is currently in progress. Only one can be run at a time for
+//     an account in a Region.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScanResources
+func (c *CloudFormation) ListResourceScanResources(input *ListResourceScanResourcesInput) (*ListResourceScanResourcesOutput, error) {
+	req, out := c.ListResourceScanResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceScanResourcesWithContext is the same as ListResourceScanResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceScanResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScanResourcesWithContext(ctx aws.Context, input *ListResourceScanResourcesInput, opts ...request.Option) (*ListResourceScanResourcesOutput, error) {
+	req, out := c.ListResourceScanResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResourceScanResourcesPages iterates over the pages of a ListResourceScanResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceScanResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResourceScanResources operation.
+//	pageNum := 0
+//	err := client.ListResourceScanResourcesPages(params,
+//	    func(page *cloudformation.ListResourceScanResourcesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudFormation) ListResourceScanResourcesPages(input *ListResourceScanResourcesInput, fn func(*ListResourceScanResourcesOutput, bool) bool) error {
+	return c.ListResourceScanResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceScanResourcesPagesWithContext same as ListResourceScanResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScanResourcesPagesWithContext(ctx aws.Context, input *ListResourceScanResourcesInput, fn func(*ListResourceScanResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceScanResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceScanResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceScanResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResourceScans = "ListResourceScans"
+
+// ListResourceScansRequest generates a "aws/request.Request" representing the
+// client's request for the ListResourceScans operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResourceScans for more information on using the ListResourceScans
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListResourceScansRequest method.
+//	req, resp := client.ListResourceScansRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScans
+func (c *CloudFormation) ListResourceScansRequest(input *ListResourceScansInput) (req *request.Request, output *ListResourceScansOutput) {
+	op := &request.Operation{
+		Name:       opListResourceScans,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResourceScansInput{}
+	}
+
+	output = &ListResourceScansOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResourceScans API operation for AWS CloudFormation.
+//
+// List the resource scans from newest to oldest. By default it will return
+// up to 10 resource scans.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListResourceScans for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListResourceScans
+func (c *CloudFormation) ListResourceScans(input *ListResourceScansInput) (*ListResourceScansOutput, error) {
+	req, out := c.ListResourceScansRequest(input)
+	return out, req.Send()
+}
+
+// ListResourceScansWithContext is the same as ListResourceScans with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResourceScans for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScansWithContext(ctx aws.Context, input *ListResourceScansInput, opts ...request.Option) (*ListResourceScansOutput, error) {
+	req, out := c.ListResourceScansRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResourceScansPages iterates over the pages of a ListResourceScans operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceScans method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListResourceScans operation.
+//	pageNum := 0
+//	err := client.ListResourceScansPages(params,
+//	    func(page *cloudformation.ListResourceScansOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CloudFormation) ListResourceScansPages(input *ListResourceScansInput, fn func(*ListResourceScansOutput, bool) bool) error {
+	return c.ListResourceScansPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceScansPagesWithContext same as ListResourceScansPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListResourceScansPagesWithContext(ctx aws.Context, input *ListResourceScansInput, fn func(*ListResourceScansOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceScansInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceScansRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceScansOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6372,6 +7336,98 @@ func (c *CloudFormation) SignalResourceWithContext(ctx aws.Context, input *Signa
 	return out, req.Send()
 }
 
+const opStartResourceScan = "StartResourceScan"
+
+// StartResourceScanRequest generates a "aws/request.Request" representing the
+// client's request for the StartResourceScan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartResourceScan for more information on using the StartResourceScan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartResourceScanRequest method.
+//	req, resp := client.StartResourceScanRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/StartResourceScan
+func (c *CloudFormation) StartResourceScanRequest(input *StartResourceScanInput) (req *request.Request, output *StartResourceScanOutput) {
+	op := &request.Operation{
+		Name:       opStartResourceScan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartResourceScanInput{}
+	}
+
+	output = &StartResourceScanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartResourceScan API operation for AWS CloudFormation.
+//
+// Starts a scan of the resources in this account in this Region. You can the
+// status of a scan using the ListResourceScans API action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation StartResourceScan for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeResourceScanInProgressException "ResourceScanInProgress"
+//     A resource scan is currently in progress. Only one can be run at a time for
+//     an account in a Region.
+//
+//   - ErrCodeResourceScanLimitExceededException "ResourceScanLimitExceeded"
+//     The limit on resource scans has been exceeded. Reasons include:
+//
+//   - Exceeded the daily quota for resource scans.
+//
+//   - A resource scan recently failed. You must wait 10 minutes before starting
+//     a new resource scan.
+//
+//   - The last resource scan failed after exceeding 100,000 resources. When
+//     this happens, you must wait 24 hours before starting a new resource scan.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/StartResourceScan
+func (c *CloudFormation) StartResourceScan(input *StartResourceScanInput) (*StartResourceScanOutput, error) {
+	req, out := c.StartResourceScanRequest(input)
+	return out, req.Send()
+}
+
+// StartResourceScanWithContext is the same as StartResourceScan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartResourceScan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) StartResourceScanWithContext(ctx aws.Context, input *StartResourceScanInput, opts ...request.Option) (*StartResourceScanOutput, error) {
+	req, out := c.StartResourceScanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopStackSetOperation = "StopStackSetOperation"
 
 // StopStackSetOperationRequest generates a "aws/request.Request" representing the
@@ -6563,6 +7619,98 @@ func (c *CloudFormation) TestType(input *TestTypeInput) (*TestTypeOutput, error)
 // for more information on using Contexts.
 func (c *CloudFormation) TestTypeWithContext(ctx aws.Context, input *TestTypeInput, opts ...request.Option) (*TestTypeOutput, error) {
 	req, out := c.TestTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateGeneratedTemplate = "UpdateGeneratedTemplate"
+
+// UpdateGeneratedTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGeneratedTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGeneratedTemplate for more information on using the UpdateGeneratedTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateGeneratedTemplateRequest method.
+//	req, resp := client.UpdateGeneratedTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/UpdateGeneratedTemplate
+func (c *CloudFormation) UpdateGeneratedTemplateRequest(input *UpdateGeneratedTemplateInput) (req *request.Request, output *UpdateGeneratedTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGeneratedTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateGeneratedTemplateInput{}
+	}
+
+	output = &UpdateGeneratedTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateGeneratedTemplate API operation for AWS CloudFormation.
+//
+// Updates a generated template. This can be used to change the name, add and
+// remove resources, refresh resources, and change the DeletionPolicy and UpdateReplacePolicy
+// settings. You can check the status of the update to the generated template
+// using the DescribeGeneratedTemplate API action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation UpdateGeneratedTemplate for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeAlreadyExistsException "AlreadyExistsException"
+//     The resource with the name requested already exists.
+//
+//   - ErrCodeGeneratedTemplateNotFoundException "GeneratedTemplateNotFound"
+//     The generated template was not found.
+//
+//   - ErrCodeLimitExceededException "LimitExceededException"
+//     The quota for the resource has already been reached.
+//
+//     For information about resource and stack limitations, see CloudFormation
+//     quotas (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html)
+//     in the CloudFormation User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/UpdateGeneratedTemplate
+func (c *CloudFormation) UpdateGeneratedTemplate(input *UpdateGeneratedTemplateInput) (*UpdateGeneratedTemplateOutput, error) {
+	req, out := c.UpdateGeneratedTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGeneratedTemplateWithContext is the same as UpdateGeneratedTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGeneratedTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) UpdateGeneratedTemplateWithContext(ctx aws.Context, input *UpdateGeneratedTemplateInput, opts ...request.Option) (*UpdateGeneratedTemplateOutput, error) {
+	req, out := c.UpdateGeneratedTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8697,6 +9845,132 @@ func (s *CreateChangeSetOutput) SetStackId(v string) *CreateChangeSetOutput {
 	return s
 }
 
+type CreateGeneratedTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name assigned to the generated template.
+	//
+	// GeneratedTemplateName is a required field
+	GeneratedTemplateName *string `min:"1" type:"string" required:"true"`
+
+	// An optional list of resources to be included in the generated template.
+	//
+	// If no resources are specified,the template will be created without any resources.
+	// Resources can be added to the template using the UpdateGeneratedTemplate
+	// API action.
+	Resources []*ResourceDefinition `min:"1" type:"list"`
+
+	// An optional name or ARN of a stack to use as the base stack for the generated
+	// template.
+	StackName *string `type:"string"`
+
+	// The configuration details of the generated template, including the DeletionPolicy
+	// and UpdateReplacePolicy.
+	TemplateConfiguration *TemplateConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGeneratedTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGeneratedTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGeneratedTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGeneratedTemplateInput"}
+	if s.GeneratedTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeneratedTemplateName"))
+	}
+	if s.GeneratedTemplateName != nil && len(*s.GeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedTemplateName", 1))
+	}
+	if s.Resources != nil && len(s.Resources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resources", 1))
+	}
+	if s.Resources != nil {
+		for i, v := range s.Resources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *CreateGeneratedTemplateInput) SetGeneratedTemplateName(v string) *CreateGeneratedTemplateInput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *CreateGeneratedTemplateInput) SetResources(v []*ResourceDefinition) *CreateGeneratedTemplateInput {
+	s.Resources = v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CreateGeneratedTemplateInput) SetStackName(v string) *CreateGeneratedTemplateInput {
+	s.StackName = &v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *CreateGeneratedTemplateInput) SetTemplateConfiguration(v *TemplateConfiguration) *CreateGeneratedTemplateInput {
+	s.TemplateConfiguration = v
+	return s
+}
+
+type CreateGeneratedTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the generated template.
+	GeneratedTemplateId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGeneratedTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGeneratedTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetGeneratedTemplateId sets the GeneratedTemplateId field's value.
+func (s *CreateGeneratedTemplateOutput) SetGeneratedTemplateId(v string) *CreateGeneratedTemplateOutput {
+	s.GeneratedTemplateId = &v
+	return s
+}
+
 // The input for CreateStack action.
 type CreateStackInput struct {
 	_ struct{} `type:"structure"`
@@ -9874,6 +11148,77 @@ func (s DeleteChangeSetOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteChangeSetOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteGeneratedTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or Amazon Resource Name (ARN) of a generated template.
+	//
+	// GeneratedTemplateName is a required field
+	GeneratedTemplateName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGeneratedTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGeneratedTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGeneratedTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGeneratedTemplateInput"}
+	if s.GeneratedTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeneratedTemplateName"))
+	}
+	if s.GeneratedTemplateName != nil && len(*s.GeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedTemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *DeleteGeneratedTemplateInput) SetGeneratedTemplateName(v string) *DeleteGeneratedTemplateInput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+type DeleteGeneratedTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGeneratedTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGeneratedTemplateOutput) GoString() string {
 	return s.String()
 }
 
@@ -11079,6 +12424,198 @@ func (s *DescribeChangeSetOutput) SetTags(v []*Tag) *DescribeChangeSetOutput {
 	return s
 }
 
+type DescribeGeneratedTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or Amazon Resource Name (ARN) of a generated template.
+	//
+	// GeneratedTemplateName is a required field
+	GeneratedTemplateName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGeneratedTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGeneratedTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGeneratedTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGeneratedTemplateInput"}
+	if s.GeneratedTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeneratedTemplateName"))
+	}
+	if s.GeneratedTemplateName != nil && len(*s.GeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedTemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *DescribeGeneratedTemplateInput) SetGeneratedTemplateName(v string) *DescribeGeneratedTemplateInput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+type DescribeGeneratedTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time the generated template was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the generated template. The format is arn:${Partition}:cloudformation:${Region}:${Account}:generatedtemplate/${Id}.
+	// For example, arn:aws:cloudformation:us-east-1:123456789012:generatedtemplate/2e8465c1-9a80-43ea-a3a3-4f2d692fe6dc .
+	GeneratedTemplateId *string `min:"1" type:"string"`
+
+	// The name of the generated template.
+	GeneratedTemplateName *string `min:"1" type:"string"`
+
+	// The time the generated template was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// An object describing the progress of the template generation.
+	Progress *TemplateProgress `type:"structure"`
+
+	// A list of objects describing the details of the resources in the template
+	// generation.
+	Resources []*ResourceDetail `min:"1" type:"list"`
+
+	// The stack ARN of the base stack if a base stack was provided when generating
+	// the template.
+	StackId *string `type:"string"`
+
+	// The status of the template generation. Supported values are:
+	//
+	//    * CreatePending - the creation of the template is pending.
+	//
+	//    * CreateInProgress - the creation of the template is in progress.
+	//
+	//    * DeletePending - the deletion of the template is pending.
+	//
+	//    * DeleteInProgress - the deletion of the template is in progress.
+	//
+	//    * UpdatePending - the update of the template is pending.
+	//
+	//    * UpdateInProgress - the update of the template is in progress.
+	//
+	//    * Failed - the template operation failed.
+	//
+	//    * Complete - the template operation is complete.
+	Status *string `type:"string" enum:"GeneratedTemplateStatus"`
+
+	// The reason for the current template generation status. This will provide
+	// more details if a failure happened.
+	StatusReason *string `min:"1" type:"string"`
+
+	// The configuration details of the generated template, including the DeletionPolicy
+	// and UpdateReplacePolicy.
+	TemplateConfiguration *TemplateConfiguration `type:"structure"`
+
+	// The number of warnings generated for this template. The warnings are found
+	// in the details of each of the resources in the template.
+	TotalWarnings *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGeneratedTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeGeneratedTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeGeneratedTemplateOutput) SetCreationTime(v time.Time) *DescribeGeneratedTemplateOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetGeneratedTemplateId sets the GeneratedTemplateId field's value.
+func (s *DescribeGeneratedTemplateOutput) SetGeneratedTemplateId(v string) *DescribeGeneratedTemplateOutput {
+	s.GeneratedTemplateId = &v
+	return s
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *DescribeGeneratedTemplateOutput) SetGeneratedTemplateName(v string) *DescribeGeneratedTemplateOutput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *DescribeGeneratedTemplateOutput) SetLastUpdatedTime(v time.Time) *DescribeGeneratedTemplateOutput {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *DescribeGeneratedTemplateOutput) SetProgress(v *TemplateProgress) *DescribeGeneratedTemplateOutput {
+	s.Progress = v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *DescribeGeneratedTemplateOutput) SetResources(v []*ResourceDetail) *DescribeGeneratedTemplateOutput {
+	s.Resources = v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *DescribeGeneratedTemplateOutput) SetStackId(v string) *DescribeGeneratedTemplateOutput {
+	s.StackId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeGeneratedTemplateOutput) SetStatus(v string) *DescribeGeneratedTemplateOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *DescribeGeneratedTemplateOutput) SetStatusReason(v string) *DescribeGeneratedTemplateOutput {
+	s.StatusReason = &v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *DescribeGeneratedTemplateOutput) SetTemplateConfiguration(v *TemplateConfiguration) *DescribeGeneratedTemplateOutput {
+	s.TemplateConfiguration = v
+	return s
+}
+
+// SetTotalWarnings sets the TotalWarnings field's value.
+func (s *DescribeGeneratedTemplateOutput) SetTotalWarnings(v int64) *DescribeGeneratedTemplateOutput {
+	s.TotalWarnings = &v
+	return s
+}
+
 type DescribeOrganizationsAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11258,6 +12795,178 @@ func (s *DescribePublisherOutput) SetPublisherProfile(v string) *DescribePublish
 // SetPublisherStatus sets the PublisherStatus field's value.
 func (s *DescribePublisherOutput) SetPublisherStatus(v string) *DescribePublisherOutput {
 	s.PublisherStatus = &v
+	return s
+}
+
+type DescribeResourceScanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource scan.
+	//
+	// ResourceScanId is a required field
+	ResourceScanId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourceScanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourceScanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeResourceScanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeResourceScanInput"}
+	if s.ResourceScanId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceScanId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *DescribeResourceScanInput) SetResourceScanId(v string) *DescribeResourceScanInput {
+	s.ResourceScanId = &v
+	return s
+}
+
+type DescribeResourceScanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the resource scan was finished.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The percentage of the resource scan that has been completed.
+	PercentageCompleted *float64 `type:"double"`
+
+	// The Amazon Resource Name (ARN) of the resource scan. The format is arn:${Partition}:cloudformation:${Region}:${Account}:resourceScan/${Id}.
+	// An example is arn:aws:cloudformation:us-east-1:123456789012:resourceScan/f5b490f7-7ed4-428a-aa06-31ff25db0772 .
+	ResourceScanId *string `type:"string"`
+
+	// The list of resource types for the specified scan. Resource types are only
+	// available for scans with a Status set to COMPLETE or FAILED .
+	ResourceTypes []*string `type:"list"`
+
+	// The number of resources that were read. This is only available for scans
+	// with a Status set to COMPLETE, EXPIRED, or FAILED .
+	//
+	// This field may be 0 if the resource scan failed with a ResourceScanLimitExceededException.
+	ResourcesRead *int64 `type:"integer"`
+
+	// The number of resources that were listed. This is only available for scans
+	// with a Status set to COMPLETE, EXPIRED, or FAILED .
+	ResourcesScanned *int64 `type:"integer"`
+
+	// The time that the resource scan was started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// Status of the resource scan.
+	//
+	// INPROGRESS
+	//
+	// The resource scan is still in progress.
+	//
+	// COMPLETE
+	//
+	// The resource scan is complete.
+	//
+	// EXPIRED
+	//
+	// The resource scan has expired.
+	//
+	// FAILED
+	//
+	// The resource scan has failed.
+	Status *string `type:"string" enum:"ResourceScanStatus"`
+
+	// The reason for the resource scan status, providing more information if a
+	// failure happened.
+	StatusReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourceScanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeResourceScanOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeResourceScanOutput) SetEndTime(v time.Time) *DescribeResourceScanOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetPercentageCompleted sets the PercentageCompleted field's value.
+func (s *DescribeResourceScanOutput) SetPercentageCompleted(v float64) *DescribeResourceScanOutput {
+	s.PercentageCompleted = &v
+	return s
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *DescribeResourceScanOutput) SetResourceScanId(v string) *DescribeResourceScanOutput {
+	s.ResourceScanId = &v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *DescribeResourceScanOutput) SetResourceTypes(v []*string) *DescribeResourceScanOutput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetResourcesRead sets the ResourcesRead field's value.
+func (s *DescribeResourceScanOutput) SetResourcesRead(v int64) *DescribeResourceScanOutput {
+	s.ResourcesRead = &v
+	return s
+}
+
+// SetResourcesScanned sets the ResourcesScanned field's value.
+func (s *DescribeResourceScanOutput) SetResourcesScanned(v int64) *DescribeResourceScanOutput {
+	s.ResourcesScanned = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeResourceScanOutput) SetStartTime(v time.Time) *DescribeResourceScanOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeResourceScanOutput) SetStatus(v string) *DescribeResourceScanOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *DescribeResourceScanOutput) SetStatusReason(v string) *DescribeResourceScanOutput {
+	s.StatusReason = &v
 	return s
 }
 
@@ -13622,6 +15331,128 @@ func (s *Export) SetValue(v string) *Export {
 	return s
 }
 
+type GetGeneratedTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language to use to retrieve for the generated template. Supported values
+	// are:
+	//
+	//    * JSON
+	//
+	//    * YAML
+	Format *string `type:"string" enum:"TemplateFormat"`
+
+	// The name or Amazon Resource Name (ARN) of the generated template. The format
+	// is arn:${Partition}:cloudformation:${Region}:${Account}:generatedtemplate/${Id}.
+	// For example, arn:aws:cloudformation:us-east-1:123456789012:generatedtemplate/2e8465c1-9a80-43ea-a3a3-4f2d692fe6dc .
+	//
+	// GeneratedTemplateName is a required field
+	GeneratedTemplateName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGeneratedTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGeneratedTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGeneratedTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGeneratedTemplateInput"}
+	if s.GeneratedTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeneratedTemplateName"))
+	}
+	if s.GeneratedTemplateName != nil && len(*s.GeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedTemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *GetGeneratedTemplateInput) SetFormat(v string) *GetGeneratedTemplateInput {
+	s.Format = &v
+	return s
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *GetGeneratedTemplateInput) SetGeneratedTemplateName(v string) *GetGeneratedTemplateInput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+type GetGeneratedTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the template generation. Supported values are:
+	//
+	//    * CreatePending - the creation of the template is pending.
+	//
+	//    * CreateInProgress - the creation of the template is in progress.
+	//
+	//    * DeletePending - the deletion of the template is pending.
+	//
+	//    * DeleteInProgress - the deletion of the template is in progress.
+	//
+	//    * UpdatePending - the update of the template is pending.
+	//
+	//    * UpdateInProgress - the update of the template is in progress.
+	//
+	//    * Failed - the template operation failed.
+	//
+	//    * Complete - the template operation is complete.
+	Status *string `type:"string" enum:"GeneratedTemplateStatus"`
+
+	// The template body of the generated template, in the language specified by
+	// the Language parameter.
+	TemplateBody *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGeneratedTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGeneratedTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetGeneratedTemplateOutput) SetStatus(v string) *GetGeneratedTemplateOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *GetGeneratedTemplateOutput) SetTemplateBody(v string) *GetGeneratedTemplateOutput {
+	s.TemplateBody = &v
+	return s
+}
+
 // The input for the GetStackPolicy action.
 type GetStackPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -14440,6 +16271,108 @@ func (s *ListExportsOutput) SetNextToken(v string) *ListExportsOutput {
 	return s
 }
 
+type ListGeneratedTemplatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// If the number of available results exceeds this maximum, the response includes
+	// a NextToken value that you can use for the NextToken parameter to get the
+	// next set of results. By default the ListGeneratedTemplates API action will
+	// return at most 50 results in each response. The maximum value is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string that identifies the next page of resource scan results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGeneratedTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGeneratedTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGeneratedTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGeneratedTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListGeneratedTemplatesInput) SetMaxResults(v int64) *ListGeneratedTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGeneratedTemplatesInput) SetNextToken(v string) *ListGeneratedTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListGeneratedTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request doesn't return all the remaining results, NextToken is set
+	// to a token. To retrieve the next set of results, call ListGeneratedTemplates
+	// again and use that value for the NextToken parameter. If the request returns
+	// all results, NextToken is set to an empty string.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of summaries of the generated templates.
+	Summaries []*TemplateSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGeneratedTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGeneratedTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGeneratedTemplatesOutput) SetNextToken(v string) *ListGeneratedTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaries sets the Summaries field's value.
+func (s *ListGeneratedTemplatesOutput) SetSummaries(v []*TemplateSummary) *ListGeneratedTemplatesOutput {
+	s.Summaries = v
+	return s
+}
+
 type ListImportsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14538,6 +16471,405 @@ func (s *ListImportsOutput) SetImports(v []*string) *ListImportsOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListImportsOutput) SetNextToken(v string) *ListImportsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListResourceScanRelatedResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// If the number of available results exceeds this maximum, the response includes
+	// a NextToken value that you can use for the NextToken parameter to get the
+	// next set of results. By default the ListResourceScanRelatedResources API
+	// action will return up to 100 results in each response. The maximum value
+	// is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string that identifies the next page of resource scan results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource scan.
+	//
+	// ResourceScanId is a required field
+	ResourceScanId *string `type:"string" required:"true"`
+
+	// The list of resources for which you want to get the related resources. Up
+	// to 100 resources can be provided.
+	//
+	// Resources is a required field
+	Resources []*ScannedResourceIdentifier `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanRelatedResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanRelatedResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceScanRelatedResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceScanRelatedResourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceScanId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceScanId"))
+	}
+	if s.Resources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resources"))
+	}
+	if s.Resources != nil {
+		for i, v := range s.Resources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceScanRelatedResourcesInput) SetMaxResults(v int64) *ListResourceScanRelatedResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScanRelatedResourcesInput) SetNextToken(v string) *ListResourceScanRelatedResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *ListResourceScanRelatedResourcesInput) SetResourceScanId(v string) *ListResourceScanRelatedResourcesInput {
+	s.ResourceScanId = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *ListResourceScanRelatedResourcesInput) SetResources(v []*ScannedResourceIdentifier) *ListResourceScanRelatedResourcesInput {
+	s.Resources = v
+	return s
+}
+
+type ListResourceScanRelatedResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request doesn't return all the remaining results, NextToken is set
+	// to a token. To retrieve the next set of results, call ListResourceScanRelatedResources
+	// again and use that value for the NextToken parameter. If the request returns
+	// all results, NextToken is set to an empty string.
+	NextToken *string `min:"1" type:"string"`
+
+	// List of up to MaxResults resources in the specified resource scan related
+	// to the specified resources.
+	RelatedResources []*ScannedResource `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanRelatedResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanRelatedResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScanRelatedResourcesOutput) SetNextToken(v string) *ListResourceScanRelatedResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRelatedResources sets the RelatedResources field's value.
+func (s *ListResourceScanRelatedResourcesOutput) SetRelatedResources(v []*ScannedResource) *ListResourceScanRelatedResourcesOutput {
+	s.RelatedResources = v
+	return s
+}
+
+type ListResourceScanResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// If the number of available results exceeds this maximum, the response includes
+	// a NextToken value that you can use for the NextToken parameter to get the
+	// next set of results. By default the ListResourceScanResources API action
+	// will return at most 100 results in each response. The maximum value is 100.
+	MaxResults *int64 `type:"integer"`
+
+	// A string that identifies the next page of resource scan results.
+	NextToken *string `min:"1" type:"string"`
+
+	// If specified, the returned resources will have the specified resource identifier
+	// (or one of them in the case where the resource has multiple identifiers).
+	ResourceIdentifier *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource scan.
+	//
+	// ResourceScanId is a required field
+	ResourceScanId *string `type:"string" required:"true"`
+
+	// If specified, the returned resources will be of any of the resource types
+	// with the specified prefix.
+	ResourceTypePrefix *string `type:"string"`
+
+	// If specified, the returned resources will have a matching tag key.
+	TagKey *string `min:"1" type:"string"`
+
+	// If specified, the returned resources will have a matching tag value.
+	TagValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceScanResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceScanResourcesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ResourceScanId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceScanId"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValue != nil && len(*s.TagValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceScanResourcesInput) SetMaxResults(v int64) *ListResourceScanResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScanResourcesInput) SetNextToken(v string) *ListResourceScanResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ListResourceScanResourcesInput) SetResourceIdentifier(v string) *ListResourceScanResourcesInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *ListResourceScanResourcesInput) SetResourceScanId(v string) *ListResourceScanResourcesInput {
+	s.ResourceScanId = &v
+	return s
+}
+
+// SetResourceTypePrefix sets the ResourceTypePrefix field's value.
+func (s *ListResourceScanResourcesInput) SetResourceTypePrefix(v string) *ListResourceScanResourcesInput {
+	s.ResourceTypePrefix = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *ListResourceScanResourcesInput) SetTagKey(v string) *ListResourceScanResourcesInput {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *ListResourceScanResourcesInput) SetTagValue(v string) *ListResourceScanResourcesInput {
+	s.TagValue = &v
+	return s
+}
+
+type ListResourceScanResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request doesn't return all the remaining results, NextToken is set
+	// to a token. To retrieve the next set of results, call ListResourceScanResources
+	// again and use that value for the NextToken parameter. If the request returns
+	// all results, NextToken is set to an empty string.
+	NextToken *string `min:"1" type:"string"`
+
+	// List of up to MaxResults resources in the specified resource scan that match
+	// all of the specified filters.
+	Resources []*ScannedResource `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScanResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScanResourcesOutput) SetNextToken(v string) *ListResourceScanResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *ListResourceScanResourcesOutput) SetResources(v []*ScannedResource) *ListResourceScanResourcesOutput {
+	s.Resources = v
+	return s
+}
+
+type ListResourceScansInput struct {
+	_ struct{} `type:"structure"`
+
+	// If the number of available results exceeds this maximum, the response includes
+	// a NextToken value that you can use for the NextToken parameter to get the
+	// next set of results. The default value is 10. The maximum value is 100.
+	MaxResults *int64 `type:"integer"`
+
+	// A string that identifies the next page of resource scan results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScansInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScansInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResourceScansInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResourceScansInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResourceScansInput) SetMaxResults(v int64) *ListResourceScansInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScansInput) SetNextToken(v string) *ListResourceScansInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResourceScansOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request doesn't return all the remaining results, NextToken is set
+	// to a token. To retrieve the next set of results, call ListResourceScans again
+	// and use that value for the NextToken parameter. If the request returns all
+	// results, NextToken is set to an empty string.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of scans returned.
+	ResourceScanSummaries []*ResourceScanSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScansOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResourceScansOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResourceScansOutput) SetNextToken(v string) *ListResourceScansOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceScanSummaries sets the ResourceScanSummaries field's value.
+func (s *ListResourceScansOutput) SetResourceScanSummaries(v []*ResourceScanSummary) *ListResourceScansOutput {
+	s.ResourceScanSummaries = v
 	return s
 }
 
@@ -17589,6 +19921,195 @@ func (s *ResourceChangeDetail) SetTarget(v *ResourceTargetDefinition) *ResourceC
 	return s
 }
 
+// A resource included in a generated template. This data type is used with
+// the CreateGeneratedTemplate and UpdateGeneratedTemplate API actions.
+type ResourceDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The logical resource id for this resource in the generated template.
+	LogicalResourceId *string `type:"string"`
+
+	// A list of up to 256 key-value pairs that identifies the scanned resource.
+	// The key is the name of one of the primary identifiers for the resource. (Primary
+	// identifiers are specified in the primaryIdentifier list in the resource schema.)
+	// The value is the value of that primary identifier. For example, for a AWS::DynamoDB::Table
+	// resource, the primary identifiers is TableName so the key-value pair could
+	// be "TableName": "MyDDBTable". For more information, see primaryIdentifier
+	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-primaryidentifier)
+	// in the CloudFormation Command Line Interface User guide for extension development.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier map[string]*string `min:"1" type:"map" required:"true"`
+
+	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// in the CloudFormation User Guide
+	//
+	// ResourceType is a required field
+	ResourceType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceDefinition"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *ResourceDefinition) SetLogicalResourceId(v string) *ResourceDefinition {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ResourceDefinition) SetResourceIdentifier(v map[string]*string) *ResourceDefinition {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceDefinition) SetResourceType(v string) *ResourceDefinition {
+	s.ResourceType = &v
+	return s
+}
+
+// Details about a resource in a generated template
+type ResourceDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The logical id for this resource in the final generated template.
+	LogicalResourceId *string `type:"string"`
+
+	// A list of up to 256 key-value pairs that identifies the resource in the generated
+	// template. The key is the name of one of the primary identifiers for the resource.
+	// (Primary identifiers are specified in the primaryIdentifier list in the resource
+	// schema.) The value is the value of that primary identifier. For example,
+	// for a AWS::DynamoDB::Table resource, the primary identifiers is TableName
+	// so the key-value pair could be "TableName": "MyDDBTable". For more information,
+	// see primaryIdentifier (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-primaryidentifier)
+	// in the CloudFormation Command Line Interface User guide for extension development.
+	ResourceIdentifier map[string]*string `min:"1" type:"map"`
+
+	// Status of the processing of a resource in a generated template.
+	//
+	// InProgress
+	//
+	// The resource processing is still in progress.
+	//
+	// Complete
+	//
+	// The resource processing is complete.
+	//
+	// Pending
+	//
+	// The resource processing is pending.
+	//
+	// Failed
+	//
+	// The resource processing has failed.
+	ResourceStatus *string `type:"string" enum:"GeneratedTemplateResourceStatus"`
+
+	// The reason for the resource detail, providing more information if a failure
+	// happened.
+	ResourceStatusReason *string `type:"string"`
+
+	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// In the CloudFormation User Guide
+	ResourceType *string `min:"1" type:"string"`
+
+	// The warnings generated for this resource.
+	Warnings []*WarningDetail `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDetail) GoString() string {
+	return s.String()
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *ResourceDetail) SetLogicalResourceId(v string) *ResourceDetail {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ResourceDetail) SetResourceIdentifier(v map[string]*string) *ResourceDetail {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetResourceStatus sets the ResourceStatus field's value.
+func (s *ResourceDetail) SetResourceStatus(v string) *ResourceDetail {
+	s.ResourceStatus = &v
+	return s
+}
+
+// SetResourceStatusReason sets the ResourceStatusReason field's value.
+func (s *ResourceDetail) SetResourceStatusReason(v string) *ResourceDetail {
+	s.ResourceStatusReason = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceDetail) SetResourceType(v string) *ResourceDetail {
+	s.ResourceType = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *ResourceDetail) SetWarnings(v []*WarningDetail) *ResourceDetail {
+	s.Warnings = v
+	return s
+}
+
 // Describes the target resources of a specific type in your import template
 // (for example, all AWS::S3::Bucket resources) and the properties you can provide
 // during the import to identify resources of that type.
@@ -17641,6 +20162,101 @@ func (s *ResourceIdentifierSummary) SetResourceIdentifiers(v []*string) *Resourc
 // SetResourceType sets the ResourceType field's value.
 func (s *ResourceIdentifierSummary) SetResourceType(v string) *ResourceIdentifierSummary {
 	s.ResourceType = &v
+	return s
+}
+
+// A summary of the resource scan. This is returned by the ListResourceScan
+// API action.
+type ResourceScanSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the resource scan was finished.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The percentage of the resource scan that has been completed.
+	PercentageCompleted *float64 `type:"double"`
+
+	// The Amazon Resource Name (ARN) of the resource scan.
+	ResourceScanId *string `type:"string"`
+
+	// The time that the resource scan was started.
+	StartTime *time.Time `type:"timestamp"`
+
+	// Status of the resource scan.
+	//
+	// INPROGRESS
+	//
+	// The resource scan is still in progress.
+	//
+	// COMPLETE
+	//
+	// The resource scan is complete.
+	//
+	// EXPIRED
+	//
+	// The resource scan has expired.
+	//
+	// FAILED
+	//
+	// The resource scan has failed.
+	Status *string `type:"string" enum:"ResourceScanStatus"`
+
+	// The reason for the resource scan status, providing more information if a
+	// failure happened.
+	StatusReason *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceScanSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceScanSummary) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ResourceScanSummary) SetEndTime(v time.Time) *ResourceScanSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetPercentageCompleted sets the PercentageCompleted field's value.
+func (s *ResourceScanSummary) SetPercentageCompleted(v float64) *ResourceScanSummary {
+	s.PercentageCompleted = &v
+	return s
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *ResourceScanSummary) SetResourceScanId(v string) *ResourceScanSummary {
+	s.ResourceScanId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ResourceScanSummary) SetStartTime(v time.Time) *ResourceScanSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ResourceScanSummary) SetStatus(v string) *ResourceScanSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *ResourceScanSummary) SetStatusReason(v string) *ResourceScanSummary {
+	s.StatusReason = &v
 	return s
 }
 
@@ -18078,6 +20694,139 @@ func (s *RollbackTrigger) SetArn(v string) *RollbackTrigger {
 // SetType sets the Type field's value.
 func (s *RollbackTrigger) SetType(v string) *RollbackTrigger {
 	s.Type = &v
+	return s
+}
+
+// A scanned resource returned by ListResourceScanResources or ListResourceScanRelatedResources.
+type ScannedResource struct {
+	_ struct{} `type:"structure"`
+
+	// If true, the resource is managed by a CloudFormation stack.
+	ManagedByStack *bool `type:"boolean"`
+
+	// A list of up to 256 key-value pairs that identifies for the scanned resource.
+	// The key is the name of one of the primary identifiers for the resource. (Primary
+	// identifiers are specified in the primaryIdentifier list in the resource schema.)
+	// The value is the value of that primary identifier. For example, for a AWS::DynamoDB::Table
+	// resource, the primary identifiers is TableName so the key-value pair could
+	// be "TableName": "MyDDBTable". For more information, see primaryIdentifier
+	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-primaryidentifier)
+	// in the CloudFormation Command Line Interface User guide for extension development.
+	ResourceIdentifier map[string]*string `type:"map"`
+
+	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// In the CloudFormation User Guide
+	ResourceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScannedResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScannedResource) GoString() string {
+	return s.String()
+}
+
+// SetManagedByStack sets the ManagedByStack field's value.
+func (s *ScannedResource) SetManagedByStack(v bool) *ScannedResource {
+	s.ManagedByStack = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ScannedResource) SetResourceIdentifier(v map[string]*string) *ScannedResource {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ScannedResource) SetResourceType(v string) *ScannedResource {
+	s.ResourceType = &v
+	return s
+}
+
+// Identifies a scanned resource. This is used with the ListResourceScanRelatedResources
+// API action.
+type ScannedResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// A list of up to 256 key-value pairs that identifies the scanned resource.
+	// The key is the name of one of the primary identifiers for the resource. (Primary
+	// identifiers are specified in the primaryIdentifier list in the resource schema.)
+	// The value is the value of that primary identifier. For example, for a AWS::DynamoDB::Table
+	// resource, the primary identifiers is TableName so the key-value pair could
+	// be "TableName": "MyDDBTable". For more information, see primaryIdentifier
+	// (https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html#schema-properties-primaryidentifier)
+	// in the CloudFormation Command Line Interface User guide for extension development.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier map[string]*string `type:"map" required:"true"`
+
+	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// In the CloudFormation User Guide
+	//
+	// ResourceType is a required field
+	ResourceType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScannedResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScannedResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScannedResourceIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScannedResourceIdentifier"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ScannedResourceIdentifier) SetResourceIdentifier(v map[string]*string) *ScannedResourceIdentifier {
+	s.ResourceIdentifier = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ScannedResourceIdentifier) SetResourceType(v string) *ScannedResourceIdentifier {
+	s.ResourceType = &v
 	return s
 }
 
@@ -21037,6 +23786,8 @@ type StackSetOperationPreferences struct {
 	RegionConcurrencyType *string `type:"string" enum:"RegionConcurrencyType"`
 
 	// The order of the Regions where you want to perform the stack operation.
+	//
+	// RegionOrder isn't followed if AutoDeployment is enabled.
 	RegionOrder []*string `type:"list"`
 }
 
@@ -21652,6 +24403,84 @@ func (s *StackSummary) SetTemplateDescription(v string) *StackSummary {
 	return s
 }
 
+type StartResourceScanInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for this StartResourceScan request. Specify this token
+	// if you plan to retry requests so that CloudFormation knows that you're not
+	// attempting to start a new resource scan.
+	ClientRequestToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartResourceScanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartResourceScanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartResourceScanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartResourceScanInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartResourceScanInput) SetClientRequestToken(v string) *StartResourceScanInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+type StartResourceScanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource scan. The format is arn:${Partition}:cloudformation:${Region}:${Account}:resourceScan/${Id}.
+	// An example is arn:aws:cloudformation:us-east-1:123456789012:resourceScan/f5b490f7-7ed4-428a-aa06-31ff25db0772 .
+	ResourceScanId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartResourceScanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartResourceScanOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceScanId sets the ResourceScanId field's value.
+func (s *StartResourceScanOutput) SetResourceScanId(v string) *StartResourceScanOutput {
+	s.ResourceScanId = &v
+	return s
+}
+
 type StopStackSetOperationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21831,6 +24660,65 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
+// The configuration details of a generated template.
+type TemplateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The DeletionPolicy assigned to resources in the generated template. Supported
+	// values are:
+	//
+	//    * DELETE - delete all resources when the stack is deleted.
+	//
+	//    * RETAIN - retain all resources when the stack is deleted.
+	//
+	// For more information, see DeletionPolicy attribute (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html)
+	// in the CloudFormation User Guide.
+	DeletionPolicy *string `type:"string" enum:"GeneratedTemplateDeletionPolicy"`
+
+	// The UpdateReplacePolicy assigned to resources in the generated template.
+	// Supported values are:
+	//
+	//    * DELETE - delete all resources when the resource is replaced during an
+	//    update operation.
+	//
+	//    * RETAIN - retain all resources when the resource is replaced during an
+	//    update operation.
+	//
+	// For more information, see UpdateReplacePolicy attribute (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatereplacepolicy.html)
+	// in the CloudFormation User Guide.
+	UpdateReplacePolicy *string `type:"string" enum:"GeneratedTemplateUpdateReplacePolicy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDeletionPolicy sets the DeletionPolicy field's value.
+func (s *TemplateConfiguration) SetDeletionPolicy(v string) *TemplateConfiguration {
+	s.DeletionPolicy = &v
+	return s
+}
+
+// SetUpdateReplacePolicy sets the UpdateReplacePolicy field's value.
+func (s *TemplateConfiguration) SetUpdateReplacePolicy(v string) *TemplateConfiguration {
+	s.UpdateReplacePolicy = &v
+	return s
+}
+
 // The TemplateParameter data type.
 type TemplateParameter struct {
 	_ struct{} `type:"structure"`
@@ -21888,6 +24776,170 @@ func (s *TemplateParameter) SetNoEcho(v bool) *TemplateParameter {
 // SetParameterKey sets the ParameterKey field's value.
 func (s *TemplateParameter) SetParameterKey(v string) *TemplateParameter {
 	s.ParameterKey = &v
+	return s
+}
+
+// A summary of the progress of the template generation.
+type TemplateProgress struct {
+	_ struct{} `type:"structure"`
+
+	// The number of resources that failed the template generation.
+	ResourcesFailed *int64 `type:"integer"`
+
+	// The number of resources that are still pending the template generation.
+	ResourcesPending *int64 `type:"integer"`
+
+	// The number of resources that are in-process for the template generation.
+	ResourcesProcessing *int64 `type:"integer"`
+
+	// The number of resources that succeeded the template generation.
+	ResourcesSucceeded *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateProgress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateProgress) GoString() string {
+	return s.String()
+}
+
+// SetResourcesFailed sets the ResourcesFailed field's value.
+func (s *TemplateProgress) SetResourcesFailed(v int64) *TemplateProgress {
+	s.ResourcesFailed = &v
+	return s
+}
+
+// SetResourcesPending sets the ResourcesPending field's value.
+func (s *TemplateProgress) SetResourcesPending(v int64) *TemplateProgress {
+	s.ResourcesPending = &v
+	return s
+}
+
+// SetResourcesProcessing sets the ResourcesProcessing field's value.
+func (s *TemplateProgress) SetResourcesProcessing(v int64) *TemplateProgress {
+	s.ResourcesProcessing = &v
+	return s
+}
+
+// SetResourcesSucceeded sets the ResourcesSucceeded field's value.
+func (s *TemplateProgress) SetResourcesSucceeded(v int64) *TemplateProgress {
+	s.ResourcesSucceeded = &v
+	return s
+}
+
+// The summary of a generated template.
+type TemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time the generated template was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the generated template. The format is arn:${Partition}:cloudformation:${Region}:${Account}:generatedtemplate/${Id}.
+	// For example, arn:aws:cloudformation:us-east-1:123456789012:generatedtemplate/2e8465c1-9a80-43ea-a3a3-4f2d692fe6dc .
+	GeneratedTemplateId *string `min:"1" type:"string"`
+
+	// The name of the generated template.
+	GeneratedTemplateName *string `min:"1" type:"string"`
+
+	// The time the generated template was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The number of resources in the generated template. This is a total of resources
+	// in pending, in-progress, completed, and failed states.
+	NumberOfResources *int64 `type:"integer"`
+
+	// The status of the template generation. Supported values are:
+	//
+	//    * CreatePending - the creation of the template is pending.
+	//
+	//    * CreateInProgress - the creation of the template is in progress.
+	//
+	//    * DeletePending - the deletion of the template is pending.
+	//
+	//    * DeleteInProgress - the deletion of the template is in progress.
+	//
+	//    * UpdatePending - the update of the template is pending.
+	//
+	//    * UpdateInProgress - the update of the template is in progress.
+	//
+	//    * Failed - the template operation failed.
+	//
+	//    * Complete - the template operation is complete.
+	Status *string `type:"string" enum:"GeneratedTemplateStatus"`
+
+	// The reason for the current template generation status. This will provide
+	// more details if a failure happened.
+	StatusReason *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *TemplateSummary) SetCreationTime(v time.Time) *TemplateSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetGeneratedTemplateId sets the GeneratedTemplateId field's value.
+func (s *TemplateSummary) SetGeneratedTemplateId(v string) *TemplateSummary {
+	s.GeneratedTemplateId = &v
+	return s
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *TemplateSummary) SetGeneratedTemplateName(v string) *TemplateSummary {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *TemplateSummary) SetLastUpdatedTime(v time.Time) *TemplateSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetNumberOfResources sets the NumberOfResources field's value.
+func (s *TemplateSummary) SetNumberOfResources(v int64) *TemplateSummary {
+	s.NumberOfResources = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TemplateSummary) SetStatus(v string) *TemplateSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *TemplateSummary) SetStatusReason(v string) *TemplateSummary {
+	s.StatusReason = &v
 	return s
 }
 
@@ -22646,6 +25698,156 @@ func (s *TypeVersionSummary) SetTypeName(v string) *TypeVersionSummary {
 // SetVersionId sets the VersionId field's value.
 func (s *TypeVersionSummary) SetVersionId(v string) *TypeVersionSummary {
 	s.VersionId = &v
+	return s
+}
+
+type UpdateGeneratedTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional list of resources to be added to the generated template.
+	AddResources []*ResourceDefinition `min:"1" type:"list"`
+
+	// The name or Amazon Resource Name (ARN) of a generated template.
+	//
+	// GeneratedTemplateName is a required field
+	GeneratedTemplateName *string `min:"1" type:"string" required:"true"`
+
+	// An optional new name to assign to the generated template.
+	NewGeneratedTemplateName *string `min:"1" type:"string"`
+
+	// If true, update the resource properties in the generated template with their
+	// current live state. This feature is useful when the resource properties in
+	// your generated a template does not reflect the live state of the resource
+	// properties. This happens when a user update the resource properties after
+	// generating a template.
+	RefreshAllResources *bool `type:"boolean"`
+
+	// A list of logical ids for resources to remove from the generated template.
+	RemoveResources []*string `min:"1" type:"list"`
+
+	// The configuration details of the generated template, including the DeletionPolicy
+	// and UpdateReplacePolicy.
+	TemplateConfiguration *TemplateConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGeneratedTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGeneratedTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGeneratedTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGeneratedTemplateInput"}
+	if s.AddResources != nil && len(s.AddResources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddResources", 1))
+	}
+	if s.GeneratedTemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GeneratedTemplateName"))
+	}
+	if s.GeneratedTemplateName != nil && len(*s.GeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GeneratedTemplateName", 1))
+	}
+	if s.NewGeneratedTemplateName != nil && len(*s.NewGeneratedTemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewGeneratedTemplateName", 1))
+	}
+	if s.RemoveResources != nil && len(s.RemoveResources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RemoveResources", 1))
+	}
+	if s.AddResources != nil {
+		for i, v := range s.AddResources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddResources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddResources sets the AddResources field's value.
+func (s *UpdateGeneratedTemplateInput) SetAddResources(v []*ResourceDefinition) *UpdateGeneratedTemplateInput {
+	s.AddResources = v
+	return s
+}
+
+// SetGeneratedTemplateName sets the GeneratedTemplateName field's value.
+func (s *UpdateGeneratedTemplateInput) SetGeneratedTemplateName(v string) *UpdateGeneratedTemplateInput {
+	s.GeneratedTemplateName = &v
+	return s
+}
+
+// SetNewGeneratedTemplateName sets the NewGeneratedTemplateName field's value.
+func (s *UpdateGeneratedTemplateInput) SetNewGeneratedTemplateName(v string) *UpdateGeneratedTemplateInput {
+	s.NewGeneratedTemplateName = &v
+	return s
+}
+
+// SetRefreshAllResources sets the RefreshAllResources field's value.
+func (s *UpdateGeneratedTemplateInput) SetRefreshAllResources(v bool) *UpdateGeneratedTemplateInput {
+	s.RefreshAllResources = &v
+	return s
+}
+
+// SetRemoveResources sets the RemoveResources field's value.
+func (s *UpdateGeneratedTemplateInput) SetRemoveResources(v []*string) *UpdateGeneratedTemplateInput {
+	s.RemoveResources = v
+	return s
+}
+
+// SetTemplateConfiguration sets the TemplateConfiguration field's value.
+func (s *UpdateGeneratedTemplateInput) SetTemplateConfiguration(v *TemplateConfiguration) *UpdateGeneratedTemplateInput {
+	s.TemplateConfiguration = v
+	return s
+}
+
+type UpdateGeneratedTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the generated template. The format is arn:${Partition}:cloudformation:${Region}:${Account}:generatedtemplate/${Id}.
+	// For example, arn:aws:cloudformation:us-east-1:123456789012:generatedtemplate/2e8465c1-9a80-43ea-a3a3-4f2d692fe6dc .
+	GeneratedTemplateId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGeneratedTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGeneratedTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetGeneratedTemplateId sets the GeneratedTemplateId field's value.
+func (s *UpdateGeneratedTemplateOutput) SetGeneratedTemplateId(v string) *UpdateGeneratedTemplateOutput {
+	s.GeneratedTemplateId = &v
 	return s
 }
 
@@ -23974,6 +27176,119 @@ func (s *ValidateTemplateOutput) SetParameters(v []*TemplateParameter) *Validate
 	return s
 }
 
+// The warnings generated for a specific resource for this generated template.
+type WarningDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the resource that are impacted by this warning.
+	Properties []*WarningProperty `type:"list"`
+
+	// The type of this warning. For more information, see IaC generator and write-only
+	// properties (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-write-only-properties.html)
+	// in the CloudFormation User Guide.
+	//
+	//    * MUTUALLY_EXCLUSIVE_PROPERTIES - The resource requires mutually-exclusive
+	//    write-only properties. The IaC generator selects one set of mutually exclusive
+	//    properties and converts the included properties into parameters. The parameter
+	//    names have a suffix OneOf and the parameter descriptions indicate that
+	//    the corresponding property can be replaced with other exclusive properties.
+	//
+	//    * UNSUPPORTED_PROPERTIES - Unsupported properties are present in the resource.
+	//    One example of unsupported properties would be a required write-only property
+	//    that is an array, because a parameter cannot be an array. Another example
+	//    is an optional write-only property.
+	//
+	//    * MUTUALLY_EXCLUSIVE_TYPES - One or more required write-only properties
+	//    are found in the resource, and the type of that property can be any of
+	//    several types.
+	//
+	// Currently the resource and property reference documentation does not indicate
+	// if a property uses a type of oneOf or anyOf. You need to look at the resource
+	// provider schema.
+	Type *string `type:"string" enum:"WarningType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningDetail) GoString() string {
+	return s.String()
+}
+
+// SetProperties sets the Properties field's value.
+func (s *WarningDetail) SetProperties(v []*WarningProperty) *WarningDetail {
+	s.Properties = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WarningDetail) SetType(v string) *WarningDetail {
+	s.Type = &v
+	return s
+}
+
+// A specific property that is impacted by a warning.
+type WarningProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the property from the resource provider schema.
+	Description *string `type:"string"`
+
+	// The path of the property. For example, if this is for the S3Bucket member
+	// of the Code property, the property path would be Code/S3Bucket.
+	PropertyPath *string `type:"string"`
+
+	// If true, the specified property is required.
+	Required *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WarningProperty) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *WarningProperty) SetDescription(v string) *WarningProperty {
+	s.Description = &v
+	return s
+}
+
+// SetPropertyPath sets the PropertyPath field's value.
+func (s *WarningProperty) SetPropertyPath(v string) *WarningProperty {
+	s.PropertyPath = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *WarningProperty) SetRequired(v bool) *WarningProperty {
+	s.Required = &v
+	return s
+}
+
 // Contains any warnings returned by the GetTemplateSummary API action.
 type Warnings struct {
 	_ struct{} `type:"structure"`
@@ -24357,6 +27672,102 @@ func ExecutionStatus_Values() []string {
 		ExecutionStatusExecuteComplete,
 		ExecutionStatusExecuteFailed,
 		ExecutionStatusObsolete,
+	}
+}
+
+const (
+	// GeneratedTemplateDeletionPolicyDelete is a GeneratedTemplateDeletionPolicy enum value
+	GeneratedTemplateDeletionPolicyDelete = "DELETE"
+
+	// GeneratedTemplateDeletionPolicyRetain is a GeneratedTemplateDeletionPolicy enum value
+	GeneratedTemplateDeletionPolicyRetain = "RETAIN"
+)
+
+// GeneratedTemplateDeletionPolicy_Values returns all elements of the GeneratedTemplateDeletionPolicy enum
+func GeneratedTemplateDeletionPolicy_Values() []string {
+	return []string{
+		GeneratedTemplateDeletionPolicyDelete,
+		GeneratedTemplateDeletionPolicyRetain,
+	}
+}
+
+const (
+	// GeneratedTemplateResourceStatusPending is a GeneratedTemplateResourceStatus enum value
+	GeneratedTemplateResourceStatusPending = "PENDING"
+
+	// GeneratedTemplateResourceStatusInProgress is a GeneratedTemplateResourceStatus enum value
+	GeneratedTemplateResourceStatusInProgress = "IN_PROGRESS"
+
+	// GeneratedTemplateResourceStatusFailed is a GeneratedTemplateResourceStatus enum value
+	GeneratedTemplateResourceStatusFailed = "FAILED"
+
+	// GeneratedTemplateResourceStatusComplete is a GeneratedTemplateResourceStatus enum value
+	GeneratedTemplateResourceStatusComplete = "COMPLETE"
+)
+
+// GeneratedTemplateResourceStatus_Values returns all elements of the GeneratedTemplateResourceStatus enum
+func GeneratedTemplateResourceStatus_Values() []string {
+	return []string{
+		GeneratedTemplateResourceStatusPending,
+		GeneratedTemplateResourceStatusInProgress,
+		GeneratedTemplateResourceStatusFailed,
+		GeneratedTemplateResourceStatusComplete,
+	}
+}
+
+const (
+	// GeneratedTemplateStatusCreatePending is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusCreatePending = "CREATE_PENDING"
+
+	// GeneratedTemplateStatusUpdatePending is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusUpdatePending = "UPDATE_PENDING"
+
+	// GeneratedTemplateStatusDeletePending is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusDeletePending = "DELETE_PENDING"
+
+	// GeneratedTemplateStatusCreateInProgress is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusCreateInProgress = "CREATE_IN_PROGRESS"
+
+	// GeneratedTemplateStatusUpdateInProgress is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// GeneratedTemplateStatusDeleteInProgress is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+
+	// GeneratedTemplateStatusFailed is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusFailed = "FAILED"
+
+	// GeneratedTemplateStatusComplete is a GeneratedTemplateStatus enum value
+	GeneratedTemplateStatusComplete = "COMPLETE"
+)
+
+// GeneratedTemplateStatus_Values returns all elements of the GeneratedTemplateStatus enum
+func GeneratedTemplateStatus_Values() []string {
+	return []string{
+		GeneratedTemplateStatusCreatePending,
+		GeneratedTemplateStatusUpdatePending,
+		GeneratedTemplateStatusDeletePending,
+		GeneratedTemplateStatusCreateInProgress,
+		GeneratedTemplateStatusUpdateInProgress,
+		GeneratedTemplateStatusDeleteInProgress,
+		GeneratedTemplateStatusFailed,
+		GeneratedTemplateStatusComplete,
+	}
+}
+
+const (
+	// GeneratedTemplateUpdateReplacePolicyDelete is a GeneratedTemplateUpdateReplacePolicy enum value
+	GeneratedTemplateUpdateReplacePolicyDelete = "DELETE"
+
+	// GeneratedTemplateUpdateReplacePolicyRetain is a GeneratedTemplateUpdateReplacePolicy enum value
+	GeneratedTemplateUpdateReplacePolicyRetain = "RETAIN"
+)
+
+// GeneratedTemplateUpdateReplacePolicy_Values returns all elements of the GeneratedTemplateUpdateReplacePolicy enum
+func GeneratedTemplateUpdateReplacePolicy_Values() []string {
+	return []string{
+		GeneratedTemplateUpdateReplacePolicyDelete,
+		GeneratedTemplateUpdateReplacePolicyRetain,
 	}
 }
 
@@ -24805,6 +28216,30 @@ func ResourceAttribute_Values() []string {
 		ResourceAttributeDeletionPolicy,
 		ResourceAttributeUpdateReplacePolicy,
 		ResourceAttributeTags,
+	}
+}
+
+const (
+	// ResourceScanStatusInProgress is a ResourceScanStatus enum value
+	ResourceScanStatusInProgress = "IN_PROGRESS"
+
+	// ResourceScanStatusFailed is a ResourceScanStatus enum value
+	ResourceScanStatusFailed = "FAILED"
+
+	// ResourceScanStatusComplete is a ResourceScanStatus enum value
+	ResourceScanStatusComplete = "COMPLETE"
+
+	// ResourceScanStatusExpired is a ResourceScanStatus enum value
+	ResourceScanStatusExpired = "EXPIRED"
+)
+
+// ResourceScanStatus_Values returns all elements of the ResourceScanStatus enum
+func ResourceScanStatus_Values() []string {
+	return []string{
+		ResourceScanStatusInProgress,
+		ResourceScanStatusFailed,
+		ResourceScanStatusComplete,
+		ResourceScanStatusExpired,
 	}
 }
 
@@ -25313,6 +28748,22 @@ func StackStatus_Values() []string {
 }
 
 const (
+	// TemplateFormatJson is a TemplateFormat enum value
+	TemplateFormatJson = "JSON"
+
+	// TemplateFormatYaml is a TemplateFormat enum value
+	TemplateFormatYaml = "YAML"
+)
+
+// TemplateFormat_Values returns all elements of the TemplateFormat enum
+func TemplateFormat_Values() []string {
+	return []string{
+		TemplateFormatJson,
+		TemplateFormatYaml,
+	}
+}
+
+const (
 	// TemplateStageOriginal is a TemplateStage enum value
 	TemplateStageOriginal = "Original"
 
@@ -25401,5 +28852,25 @@ func Visibility_Values() []string {
 	return []string{
 		VisibilityPublic,
 		VisibilityPrivate,
+	}
+}
+
+const (
+	// WarningTypeMutuallyExclusiveProperties is a WarningType enum value
+	WarningTypeMutuallyExclusiveProperties = "MUTUALLY_EXCLUSIVE_PROPERTIES"
+
+	// WarningTypeUnsupportedProperties is a WarningType enum value
+	WarningTypeUnsupportedProperties = "UNSUPPORTED_PROPERTIES"
+
+	// WarningTypeMutuallyExclusiveTypes is a WarningType enum value
+	WarningTypeMutuallyExclusiveTypes = "MUTUALLY_EXCLUSIVE_TYPES"
+)
+
+// WarningType_Values returns all elements of the WarningType enum
+func WarningType_Values() []string {
+	return []string{
+		WarningTypeMutuallyExclusiveProperties,
+		WarningTypeUnsupportedProperties,
+		WarningTypeMutuallyExclusiveTypes,
 	}
 }
