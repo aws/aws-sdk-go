@@ -58,8 +58,8 @@ func (c *ManagedBlockchainQuery) BatchGetTokenBalanceRequest(input *BatchGetToke
 // Gets the token balance for a batch of tokens by using the BatchGetTokenBalance
 // action for every token in the request.
 //
-// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-// standards are supported.
+// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+// token standards are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -261,8 +261,8 @@ func (c *ManagedBlockchainQuery) GetTokenBalanceRequest(input *GetTokenBalanceIn
 // Gets the balance of a specific token, including native tokens, for a given
 // address (wallet or contract) on the blockchain.
 //
-// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-// standards are supported.
+// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+// token standards are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -359,7 +359,10 @@ func (c *ManagedBlockchainQuery) GetTransactionRequest(input *GetTransactionInpu
 
 // GetTransaction API operation for Amazon Managed Blockchain Query.
 //
-// Get the details of a transaction.
+// Gets the details of a transaction.
+//
+// This action will return transaction details for all transactions that are
+// confirmed on the blockchain, even if they have not reached finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -780,6 +783,9 @@ func (c *ManagedBlockchainQuery) ListTransactionEventsRequest(input *ListTransac
 // An array of TransactionEvent objects. Each object contains details about
 // the transaction event.
 //
+// This action will return transaction details for all transactions that are
+// confirmed on the blockchain, even if they have not reached finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1182,8 +1188,8 @@ type BatchGetTokenBalanceErrorItem struct {
 	// The container for the identifier for the token including the unique token
 	// ID and its blockchain network.
 	//
-	// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-	// standards are supported.
+	// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+	// token standards are supported.
 	TokenIdentifier *TokenIdentifier `locationName:"tokenIdentifier" type:"structure"`
 }
 
@@ -1311,8 +1317,8 @@ type BatchGetTokenBalanceInputItem struct {
 	// The container for the identifier for the token including the unique token
 	// ID and its blockchain network.
 	//
-	// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-	// standards are supported.
+	// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+	// token standards are supported.
 	//
 	// TokenIdentifier is a required field
 	TokenIdentifier *TokenIdentifier `locationName:"tokenIdentifier" type:"structure" required:"true"`
@@ -1447,8 +1453,8 @@ type BatchGetTokenBalanceOutputItem struct {
 	// The container for the identifier for the token including the unique token
 	// ID and its blockchain network.
 	//
-	// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-	// standards are supported.
+	// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+	// token standards are supported.
 	TokenIdentifier *TokenIdentifier `locationName:"tokenIdentifier" type:"structure"`
 }
 
@@ -1531,6 +1537,60 @@ func (s BlockchainInstant) GoString() string {
 // SetTime sets the Time field's value.
 func (s *BlockchainInstant) SetTime(v time.Time) *BlockchainInstant {
 	s.Time = &v
+	return s
+}
+
+// The container for the ConfirmationStatusFilter that filters for the finality
+// (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality)
+// of the results.
+type ConfirmationStatusFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The container to determine whether to list results that have only reached
+	// finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
+	// Transactions that have reached finality are always part of the response.
+	//
+	// Include is a required field
+	Include []*string `locationName:"include" min:"1" type:"list" required:"true" enum:"ConfirmationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmationStatusFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmationStatusFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfirmationStatusFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfirmationStatusFilter"}
+	if s.Include == nil {
+		invalidParams.Add(request.NewErrParamRequired("Include"))
+	}
+	if s.Include != nil && len(s.Include) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Include", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInclude sets the Include field's value.
+func (s *ConfirmationStatusFilter) SetInclude(v []*string) *ConfirmationStatusFilter {
+	s.Include = v
 	return s
 }
 
@@ -1940,8 +2000,8 @@ type GetTokenBalanceOutput struct {
 	// The container for the identifier for the token including the unique token
 	// ID and its blockchain network.
 	//
-	// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-	// standards are supported.
+	// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+	// token standards are supported.
 	TokenIdentifier *TokenIdentifier `locationName:"tokenIdentifier" type:"structure"`
 }
 
@@ -2164,6 +2224,15 @@ type ListAssetContractsInput struct {
 	ContractFilter *ContractFilter `locationName:"contractFilter" type:"structure" required:"true"`
 
 	// The maximum number of contracts to list.
+	//
+	// Default:100
+	//
+	// Even if additional results can be retrieved, the request can return less
+	// results than maxResults or an empty array of results.
+	//
+	// To retrieve the next set of results, make another request with the returned
+	// nextToken value. The value of nextToken is null when there are no more results
+	// to return
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The pagination token that indicates the next set of results to retrieve.
@@ -2273,6 +2342,15 @@ type ListTokenBalancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of token balances to return.
+	//
+	// Default:100
+	//
+	// Even if additional results can be retrieved, the request can return less
+	// results than maxResults or an empty array of results.
+	//
+	// To retrieve the next set of results, make another request with the returned
+	// nextToken value. The value of nextToken is null when there are no more results
+	// to return
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The pagination token that indicates the next set of results to retrieve.
@@ -2410,6 +2488,8 @@ type ListTransactionEventsInput struct {
 
 	// The maximum number of transaction events to list.
 	//
+	// Default:100
+	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
 	//
@@ -2545,10 +2625,17 @@ type ListTransactionsInput struct {
 	// Address is a required field
 	Address *string `locationName:"address" type:"string" required:"true"`
 
+	// This filter is used to include transactions in the response that haven't
+	// reached finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
+	// Transactions that have reached finiality are always part of the response.
+	ConfirmationStatusFilter *ConfirmationStatusFilter `locationName:"confirmationStatusFilter" type:"structure"`
+
 	// The container for time.
 	FromBlockchainInstant *BlockchainInstant `locationName:"fromBlockchainInstant" type:"structure"`
 
 	// The maximum number of transactions to list.
+	//
+	// Default:100
 	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
@@ -2566,8 +2653,8 @@ type ListTransactionsInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Sorts items in an ascending order if the first page starts at fromTime. Sorts
-	// items in a descending order if the first page starts at toTime.
+	// The order by which the results will be sorted. If ASCENNDING is selected,
+	// the results will be ordered by fromTime.
 	Sort *ListTransactionsSort `locationName:"sort" type:"structure"`
 
 	// The container for time.
@@ -2604,6 +2691,11 @@ func (s *ListTransactionsInput) Validate() error {
 	if s.Network == nil {
 		invalidParams.Add(request.NewErrParamRequired("Network"))
 	}
+	if s.ConfirmationStatusFilter != nil {
+		if err := s.ConfirmationStatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("ConfirmationStatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2614,6 +2706,12 @@ func (s *ListTransactionsInput) Validate() error {
 // SetAddress sets the Address field's value.
 func (s *ListTransactionsInput) SetAddress(v string) *ListTransactionsInput {
 	s.Address = &v
+	return s
+}
+
+// SetConfirmationStatusFilter sets the ConfirmationStatusFilter field's value.
+func (s *ListTransactionsInput) SetConfirmationStatusFilter(v *ConfirmationStatusFilter) *ListTransactionsInput {
+	s.ConfirmationStatusFilter = v
 	return s
 }
 
@@ -3222,8 +3320,8 @@ func (s *TokenFilter) SetTokenId(v string) *TokenFilter {
 // The container for the identifier for the token including the unique token
 // ID and its blockchain network.
 //
-// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token
-// standards are supported.
+// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155
+// token standards are supported.
 type TokenIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -3237,9 +3335,10 @@ type TokenIdentifier struct {
 
 	// The unique identifier of the token.
 	//
-	// You must specify this container with btc for the native BTC token, and eth
-	// for the native ETH token. For all other token types you must specify the
-	// tokenId in the 64 character hexadecimal tokenid format.
+	// For native tokens, use the 3 character abbreviation that best matches your
+	// token. For example, btc for Bitcoin, eth for Ether, etc. For all other token
+	// types you must specify the tokenId in the 64 character hexadecimal tokenid
+	// format.
 	TokenId *string `locationName:"tokenId" type:"string"`
 }
 
@@ -3351,21 +3450,6 @@ type Transaction struct {
 
 	// The signature of the transaction. The Z coordinate of a point V.
 	SignatureV *int64 `locationName:"signatureV" type:"integer"`
-
-	// The status of the transaction.
-	//
-	// This property is deprecated. You must use the confirmationStatus and the
-	// executionStatus properties to determine if the status of the transaction
-	// is FINAL or FAILED.
-	//
-	//    * Transactions with a status of FINAL will now have the confirmationStatus
-	//    set to FINAL and the executionStatus set to SUCCEEDED.
-	//
-	//    * Transactions with a status of FAILED will now have the confirmationStatus
-	//    set to FINAL and the executionStatus set to FAILED.
-	//
-	// Deprecated: The status field in the GetTransaction response is deprecated and is replaced with the confirmationStatus and executionStatus fields.
-	Status *string `locationName:"status" deprecated:"true" type:"string" enum:"QueryTransactionStatus"`
 
 	// The identifier of the transaction. It is generated whenever a transaction
 	// is verified and added to the blockchain.
@@ -3496,12 +3580,6 @@ func (s *Transaction) SetSignatureS(v string) *Transaction {
 // SetSignatureV sets the SignatureV field's value.
 func (s *Transaction) SetSignatureV(v int64) *Transaction {
 	s.SignatureV = &v
-	return s
-}
-
-// SetStatus sets the Status field's value.
-func (s *Transaction) SetStatus(v string) *Transaction {
-	s.Status = &v
 	return s
 }
 
@@ -3668,6 +3746,9 @@ func (s *TransactionEvent) SetVoutIndex(v int64) *TransactionEvent {
 type TransactionOutputItem struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to list transactions that have not reached Finality.
+	ConfirmationStatus *string `locationName:"confirmationStatus" type:"string" enum:"ConfirmationStatus"`
+
 	// The blockchain network where the transaction occurred.
 	//
 	// Network is a required field
@@ -3701,6 +3782,12 @@ func (s TransactionOutputItem) String() string {
 // value will be replaced with "sensitive".
 func (s TransactionOutputItem) GoString() string {
 	return s.String()
+}
+
+// SetConfirmationStatus sets the ConfirmationStatus field's value.
+func (s *TransactionOutputItem) SetConfirmationStatus(v string) *TransactionOutputItem {
+	s.ConfirmationStatus = &v
+	return s
 }
 
 // SetNetwork sets the Network field's value.
@@ -3842,12 +3929,16 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 const (
 	// ConfirmationStatusFinal is a ConfirmationStatus enum value
 	ConfirmationStatusFinal = "FINAL"
+
+	// ConfirmationStatusNonfinal is a ConfirmationStatus enum value
+	ConfirmationStatusNonfinal = "NONFINAL"
 )
 
 // ConfirmationStatus_Values returns all elements of the ConfirmationStatus enum
 func ConfirmationStatus_Values() []string {
 	return []string{
 		ConfirmationStatusFinal,
+		ConfirmationStatusNonfinal,
 	}
 }
 
@@ -3988,22 +4079,6 @@ func QueryTransactionEventType_Values() []string {
 		QueryTransactionEventTypeBitcoinVout,
 		QueryTransactionEventTypeInternalEthTransfer,
 		QueryTransactionEventTypeEthTransfer,
-	}
-}
-
-const (
-	// QueryTransactionStatusFinal is a QueryTransactionStatus enum value
-	QueryTransactionStatusFinal = "FINAL"
-
-	// QueryTransactionStatusFailed is a QueryTransactionStatus enum value
-	QueryTransactionStatusFailed = "FAILED"
-)
-
-// QueryTransactionStatus_Values returns all elements of the QueryTransactionStatus enum
-func QueryTransactionStatus_Values() []string {
-	return []string{
-		QueryTransactionStatusFinal,
-		QueryTransactionStatusFailed,
 	}
 }
 

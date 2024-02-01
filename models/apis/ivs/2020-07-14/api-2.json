@@ -66,6 +66,23 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "CreatePlaybackRestrictionPolicy":{
+      "name":"CreatePlaybackRestrictionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreatePlaybackRestrictionPolicy",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePlaybackRestrictionPolicyRequest"},
+      "output":{"shape":"CreatePlaybackRestrictionPolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "CreateRecordingConfiguration":{
       "name":"CreateRecordingConfiguration",
       "http":{
@@ -133,6 +150,22 @@
         {"shape":"PendingVerification"}
       ]
     },
+    "DeletePlaybackRestrictionPolicy":{
+      "name":"DeletePlaybackRestrictionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeletePlaybackRestrictionPolicy",
+        "responseCode":204
+      },
+      "input":{"shape":"DeletePlaybackRestrictionPolicyRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DeleteRecordingConfiguration":{
       "name":"DeleteRecordingConfiguration",
       "http":{
@@ -192,6 +225,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "GetPlaybackRestrictionPolicy":{
+      "name":"GetPlaybackRestrictionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetPlaybackRestrictionPolicy",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPlaybackRestrictionPolicyRequest"},
+      "output":{"shape":"GetPlaybackRestrictionPolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"}
       ]
     },
     "GetRecordingConfiguration":{
@@ -300,6 +349,22 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListPlaybackRestrictionPolicies":{
+      "name":"ListPlaybackRestrictionPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListPlaybackRestrictionPolicies",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPlaybackRestrictionPoliciesRequest"},
+      "output":{"shape":"ListPlaybackRestrictionPoliciesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"}
       ]
     },
     "ListRecordingConfigurations":{
@@ -474,6 +539,23 @@
         {"shape":"PendingVerification"},
         {"shape":"ConflictException"}
       ]
+    },
+    "UpdatePlaybackRestrictionPolicy":{
+      "name":"UpdatePlaybackRestrictionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdatePlaybackRestrictionPolicy",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePlaybackRestrictionPolicyRequest"},
+      "output":{"shape":"UpdatePlaybackRestrictionPolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"}
+      ]
     }
   },
   "shapes":{
@@ -595,6 +677,7 @@
         "insecureIngest":{"shape":"InsecureIngest"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "playbackRestrictionPolicyArn":{"shape":"ChannelPlaybackRestrictionPolicyArn"},
         "playbackUrl":{"shape":"PlaybackURL"},
         "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
@@ -642,6 +725,12 @@
       },
       "exception":true
     },
+    "ChannelPlaybackRestrictionPolicyArn":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^$|^arn:aws:ivs:[a-z0-9-]+:[0-9]+:playback-restriction-policy/[a-zA-Z0-9-]+$"
+    },
     "ChannelRecordingConfigurationArn":{
       "type":"string",
       "max":128,
@@ -656,6 +745,7 @@
         "insecureIngest":{"shape":"InsecureIngest"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "playbackRestrictionPolicyArn":{"shape":"ChannelPlaybackRestrictionPolicyArn"},
         "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"},
@@ -693,6 +783,7 @@
         "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "playbackRestrictionPolicyArn":{"shape":"ChannelPlaybackRestrictionPolicyArn"},
         "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"},
@@ -704,6 +795,22 @@
       "members":{
         "channel":{"shape":"Channel"},
         "streamKey":{"shape":"StreamKey"}
+      }
+    },
+    "CreatePlaybackRestrictionPolicyRequest":{
+      "type":"structure",
+      "members":{
+        "allowedCountries":{"shape":"PlaybackRestrictionPolicyAllowedCountryList"},
+        "allowedOrigins":{"shape":"PlaybackRestrictionPolicyAllowedOriginList"},
+        "enableStrictOriginEnforcement":{"shape":"PlaybackRestrictionPolicyEnableStrictOriginEnforcement"},
+        "name":{"shape":"PlaybackRestrictionPolicyName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreatePlaybackRestrictionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "playbackRestrictionPolicy":{"shape":"PlaybackRestrictionPolicy"}
       }
     },
     "CreateRecordingConfigurationRequest":{
@@ -757,6 +864,13 @@
       "members":{
       }
     },
+    "DeletePlaybackRestrictionPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PlaybackRestrictionPolicyArn"}
+      }
+    },
     "DeleteRecordingConfigurationRequest":{
       "type":"structure",
       "required":["arn"],
@@ -801,6 +915,19 @@
       "type":"structure",
       "members":{
         "keyPair":{"shape":"PlaybackKeyPair"}
+      }
+    },
+    "GetPlaybackRestrictionPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"PlaybackRestrictionPolicyArn"}
+      }
+    },
+    "GetPlaybackRestrictionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "playbackRestrictionPolicy":{"shape":"PlaybackRestrictionPolicy"}
       }
     },
     "GetRecordingConfigurationRequest":{
@@ -895,6 +1022,7 @@
       "type":"structure",
       "members":{
         "filterByName":{"shape":"ChannelName"},
+        "filterByPlaybackRestrictionPolicyArn":{"shape":"ChannelPlaybackRestrictionPolicyArn"},
         "filterByRecordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "maxResults":{"shape":"MaxChannelResults"},
         "nextToken":{"shape":"PaginationToken"}
@@ -921,6 +1049,21 @@
       "members":{
         "keyPairs":{"shape":"PlaybackKeyPairList"},
         "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListPlaybackRestrictionPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"MaxPlaybackRestrictionPolicyResults"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListPlaybackRestrictionPoliciesResponse":{
+      "type":"structure",
+      "required":["playbackRestrictionPolicies"],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "playbackRestrictionPolicies":{"shape":"PlaybackRestrictionPolicyList"}
       }
     },
     "ListRecordingConfigurationsRequest":{
@@ -1018,6 +1161,12 @@
       "max":100,
       "min":1
     },
+    "MaxPlaybackRestrictionPolicyResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "MaxRecordingConfigurationResults":{
       "type":"integer",
       "box":true,
@@ -1088,6 +1237,76 @@
       }
     },
     "PlaybackPublicKeyMaterial":{"type":"string"},
+    "PlaybackRestrictionPolicy":{
+      "type":"structure",
+      "required":[
+        "allowedCountries",
+        "allowedOrigins",
+        "arn"
+      ],
+      "members":{
+        "allowedCountries":{"shape":"PlaybackRestrictionPolicyAllowedCountryList"},
+        "allowedOrigins":{"shape":"PlaybackRestrictionPolicyAllowedOriginList"},
+        "arn":{"shape":"PlaybackRestrictionPolicyArn"},
+        "enableStrictOriginEnforcement":{"shape":"PlaybackRestrictionPolicyEnableStrictOriginEnforcement"},
+        "name":{"shape":"PlaybackRestrictionPolicyName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "PlaybackRestrictionPolicyAllowedCountry":{
+      "type":"string",
+      "max":2,
+      "min":2
+    },
+    "PlaybackRestrictionPolicyAllowedCountryList":{
+      "type":"list",
+      "member":{"shape":"PlaybackRestrictionPolicyAllowedCountry"}
+    },
+    "PlaybackRestrictionPolicyAllowedOrigin":{
+      "type":"string",
+      "max":128,
+      "min":0
+    },
+    "PlaybackRestrictionPolicyAllowedOriginList":{
+      "type":"list",
+      "member":{"shape":"PlaybackRestrictionPolicyAllowedOrigin"}
+    },
+    "PlaybackRestrictionPolicyArn":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:playback-restriction-policy/[a-zA-Z0-9-]+$"
+    },
+    "PlaybackRestrictionPolicyEnableStrictOriginEnforcement":{
+      "type":"boolean",
+      "box":true
+    },
+    "PlaybackRestrictionPolicyList":{
+      "type":"list",
+      "member":{"shape":"PlaybackRestrictionPolicySummary"}
+    },
+    "PlaybackRestrictionPolicyName":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-_]*$"
+    },
+    "PlaybackRestrictionPolicySummary":{
+      "type":"structure",
+      "required":[
+        "allowedCountries",
+        "allowedOrigins",
+        "arn"
+      ],
+      "members":{
+        "allowedCountries":{"shape":"PlaybackRestrictionPolicyAllowedCountryList"},
+        "allowedOrigins":{"shape":"PlaybackRestrictionPolicyAllowedOriginList"},
+        "arn":{"shape":"PlaybackRestrictionPolicyArn"},
+        "enableStrictOriginEnforcement":{"shape":"PlaybackRestrictionPolicyEnableStrictOriginEnforcement"},
+        "name":{"shape":"PlaybackRestrictionPolicyName"},
+        "tags":{"shape":"Tags"}
+      }
+    },
     "PlaybackURL":{"type":"string"},
     "PutMetadataRequest":{
       "type":"structure",
@@ -1554,6 +1773,7 @@
         "insecureIngest":{"shape":"Boolean"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "name":{"shape":"ChannelName"},
+        "playbackRestrictionPolicyArn":{"shape":"ChannelPlaybackRestrictionPolicyArn"},
         "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "type":{"shape":"ChannelType"}
@@ -1563,6 +1783,23 @@
       "type":"structure",
       "members":{
         "channel":{"shape":"Channel"}
+      }
+    },
+    "UpdatePlaybackRestrictionPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "allowedCountries":{"shape":"PlaybackRestrictionPolicyAllowedCountryList"},
+        "allowedOrigins":{"shape":"PlaybackRestrictionPolicyAllowedOriginList"},
+        "arn":{"shape":"PlaybackRestrictionPolicyArn"},
+        "enableStrictOriginEnforcement":{"shape":"PlaybackRestrictionPolicyEnableStrictOriginEnforcement"},
+        "name":{"shape":"PlaybackRestrictionPolicyName"}
+      }
+    },
+    "UpdatePlaybackRestrictionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "playbackRestrictionPolicy":{"shape":"PlaybackRestrictionPolicy"}
       }
     },
     "ValidationException":{

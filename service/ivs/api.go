@@ -330,6 +330,93 @@ func (c *IVS) CreateChannelWithContext(ctx aws.Context, input *CreateChannelInpu
 	return out, req.Send()
 }
 
+const opCreatePlaybackRestrictionPolicy = "CreatePlaybackRestrictionPolicy"
+
+// CreatePlaybackRestrictionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePlaybackRestrictionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePlaybackRestrictionPolicy for more information on using the CreatePlaybackRestrictionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreatePlaybackRestrictionPolicyRequest method.
+//	req, resp := client.CreatePlaybackRestrictionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreatePlaybackRestrictionPolicy
+func (c *IVS) CreatePlaybackRestrictionPolicyRequest(input *CreatePlaybackRestrictionPolicyInput) (req *request.Request, output *CreatePlaybackRestrictionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreatePlaybackRestrictionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreatePlaybackRestrictionPolicy",
+	}
+
+	if input == nil {
+		input = &CreatePlaybackRestrictionPolicyInput{}
+	}
+
+	output = &CreatePlaybackRestrictionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePlaybackRestrictionPolicy API operation for Amazon Interactive Video Service.
+//
+// Creates a new playback restriction policy, for constraining playback by countries
+// and/or origins.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation CreatePlaybackRestrictionPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - PendingVerification
+//
+//   - ThrottlingException
+//
+//   - ServiceQuotaExceededException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreatePlaybackRestrictionPolicy
+func (c *IVS) CreatePlaybackRestrictionPolicy(input *CreatePlaybackRestrictionPolicyInput) (*CreatePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.CreatePlaybackRestrictionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreatePlaybackRestrictionPolicyWithContext is the same as CreatePlaybackRestrictionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePlaybackRestrictionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) CreatePlaybackRestrictionPolicyWithContext(ctx aws.Context, input *CreatePlaybackRestrictionPolicyInput, opts ...request.Option) (*CreatePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.CreatePlaybackRestrictionPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateRecordingConfiguration = "CreateRecordingConfiguration"
 
 // CreateRecordingConfigurationRequest generates a "aws/request.Request" representing the
@@ -702,6 +789,93 @@ func (c *IVS) DeletePlaybackKeyPairWithContext(ctx aws.Context, input *DeletePla
 	return out, req.Send()
 }
 
+const opDeletePlaybackRestrictionPolicy = "DeletePlaybackRestrictionPolicy"
+
+// DeletePlaybackRestrictionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePlaybackRestrictionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePlaybackRestrictionPolicy for more information on using the DeletePlaybackRestrictionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePlaybackRestrictionPolicyRequest method.
+//	req, resp := client.DeletePlaybackRestrictionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackRestrictionPolicy
+func (c *IVS) DeletePlaybackRestrictionPolicyRequest(input *DeletePlaybackRestrictionPolicyInput) (req *request.Request, output *DeletePlaybackRestrictionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeletePlaybackRestrictionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeletePlaybackRestrictionPolicy",
+	}
+
+	if input == nil {
+		input = &DeletePlaybackRestrictionPolicyInput{}
+	}
+
+	output = &DeletePlaybackRestrictionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePlaybackRestrictionPolicy API operation for Amazon Interactive Video Service.
+//
+// Deletes the specified playback restriction policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation DeletePlaybackRestrictionPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - PendingVerification
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeletePlaybackRestrictionPolicy
+func (c *IVS) DeletePlaybackRestrictionPolicy(input *DeletePlaybackRestrictionPolicyInput) (*DeletePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.DeletePlaybackRestrictionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeletePlaybackRestrictionPolicyWithContext is the same as DeletePlaybackRestrictionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePlaybackRestrictionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) DeletePlaybackRestrictionPolicyWithContext(ctx aws.Context, input *DeletePlaybackRestrictionPolicyInput, opts ...request.Option) (*DeletePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.DeletePlaybackRestrictionPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteRecordingConfiguration = "DeleteRecordingConfiguration"
 
 // DeleteRecordingConfigurationRequest generates a "aws/request.Request" representing the
@@ -1043,6 +1217,90 @@ func (c *IVS) GetPlaybackKeyPair(input *GetPlaybackKeyPairInput) (*GetPlaybackKe
 // for more information on using Contexts.
 func (c *IVS) GetPlaybackKeyPairWithContext(ctx aws.Context, input *GetPlaybackKeyPairInput, opts ...request.Option) (*GetPlaybackKeyPairOutput, error) {
 	req, out := c.GetPlaybackKeyPairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPlaybackRestrictionPolicy = "GetPlaybackRestrictionPolicy"
+
+// GetPlaybackRestrictionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetPlaybackRestrictionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPlaybackRestrictionPolicy for more information on using the GetPlaybackRestrictionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPlaybackRestrictionPolicyRequest method.
+//	req, resp := client.GetPlaybackRestrictionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackRestrictionPolicy
+func (c *IVS) GetPlaybackRestrictionPolicyRequest(input *GetPlaybackRestrictionPolicyInput) (req *request.Request, output *GetPlaybackRestrictionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetPlaybackRestrictionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetPlaybackRestrictionPolicy",
+	}
+
+	if input == nil {
+		input = &GetPlaybackRestrictionPolicyInput{}
+	}
+
+	output = &GetPlaybackRestrictionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPlaybackRestrictionPolicy API operation for Amazon Interactive Video Service.
+//
+// Gets the specified playback restriction policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation GetPlaybackRestrictionPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - PendingVerification
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetPlaybackRestrictionPolicy
+func (c *IVS) GetPlaybackRestrictionPolicy(input *GetPlaybackRestrictionPolicyInput) (*GetPlaybackRestrictionPolicyOutput, error) {
+	req, out := c.GetPlaybackRestrictionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetPlaybackRestrictionPolicyWithContext is the same as GetPlaybackRestrictionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPlaybackRestrictionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) GetPlaybackRestrictionPolicyWithContext(ctx aws.Context, input *GetPlaybackRestrictionPolicyInput, opts ...request.Option) (*GetPlaybackRestrictionPolicyOutput, error) {
+	req, out := c.GetPlaybackRestrictionPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1745,6 +2003,147 @@ func (c *IVS) ListPlaybackKeyPairsPagesWithContext(ctx aws.Context, input *ListP
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPlaybackKeyPairsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPlaybackRestrictionPolicies = "ListPlaybackRestrictionPolicies"
+
+// ListPlaybackRestrictionPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPlaybackRestrictionPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPlaybackRestrictionPolicies for more information on using the ListPlaybackRestrictionPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListPlaybackRestrictionPoliciesRequest method.
+//	req, resp := client.ListPlaybackRestrictionPoliciesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackRestrictionPolicies
+func (c *IVS) ListPlaybackRestrictionPoliciesRequest(input *ListPlaybackRestrictionPoliciesInput) (req *request.Request, output *ListPlaybackRestrictionPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListPlaybackRestrictionPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListPlaybackRestrictionPolicies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPlaybackRestrictionPoliciesInput{}
+	}
+
+	output = &ListPlaybackRestrictionPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPlaybackRestrictionPolicies API operation for Amazon Interactive Video Service.
+//
+// Gets summary information about playback restriction policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation ListPlaybackRestrictionPolicies for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - PendingVerification
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListPlaybackRestrictionPolicies
+func (c *IVS) ListPlaybackRestrictionPolicies(input *ListPlaybackRestrictionPoliciesInput) (*ListPlaybackRestrictionPoliciesOutput, error) {
+	req, out := c.ListPlaybackRestrictionPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListPlaybackRestrictionPoliciesWithContext is the same as ListPlaybackRestrictionPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPlaybackRestrictionPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListPlaybackRestrictionPoliciesWithContext(ctx aws.Context, input *ListPlaybackRestrictionPoliciesInput, opts ...request.Option) (*ListPlaybackRestrictionPoliciesOutput, error) {
+	req, out := c.ListPlaybackRestrictionPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPlaybackRestrictionPoliciesPages iterates over the pages of a ListPlaybackRestrictionPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlaybackRestrictionPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListPlaybackRestrictionPolicies operation.
+//	pageNum := 0
+//	err := client.ListPlaybackRestrictionPoliciesPages(params,
+//	    func(page *ivs.ListPlaybackRestrictionPoliciesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *IVS) ListPlaybackRestrictionPoliciesPages(input *ListPlaybackRestrictionPoliciesInput, fn func(*ListPlaybackRestrictionPoliciesOutput, bool) bool) error {
+	return c.ListPlaybackRestrictionPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPlaybackRestrictionPoliciesPagesWithContext same as ListPlaybackRestrictionPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListPlaybackRestrictionPoliciesPagesWithContext(ctx aws.Context, input *ListPlaybackRestrictionPoliciesInput, fn func(*ListPlaybackRestrictionPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPlaybackRestrictionPoliciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPlaybackRestrictionPoliciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPlaybackRestrictionPoliciesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2923,6 +3322,92 @@ func (c *IVS) UpdateChannelWithContext(ctx aws.Context, input *UpdateChannelInpu
 	return out, req.Send()
 }
 
+const opUpdatePlaybackRestrictionPolicy = "UpdatePlaybackRestrictionPolicy"
+
+// UpdatePlaybackRestrictionPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePlaybackRestrictionPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePlaybackRestrictionPolicy for more information on using the UpdatePlaybackRestrictionPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdatePlaybackRestrictionPolicyRequest method.
+//	req, resp := client.UpdatePlaybackRestrictionPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdatePlaybackRestrictionPolicy
+func (c *IVS) UpdatePlaybackRestrictionPolicyRequest(input *UpdatePlaybackRestrictionPolicyInput) (req *request.Request, output *UpdatePlaybackRestrictionPolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePlaybackRestrictionPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdatePlaybackRestrictionPolicy",
+	}
+
+	if input == nil {
+		input = &UpdatePlaybackRestrictionPolicyInput{}
+	}
+
+	output = &UpdatePlaybackRestrictionPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePlaybackRestrictionPolicy API operation for Amazon Interactive Video Service.
+//
+// Updates a specified playback restriction policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation UpdatePlaybackRestrictionPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//
+//   - AccessDeniedException
+//
+//   - ValidationException
+//
+//   - PendingVerification
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/UpdatePlaybackRestrictionPolicy
+func (c *IVS) UpdatePlaybackRestrictionPolicy(input *UpdatePlaybackRestrictionPolicyInput) (*UpdatePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.UpdatePlaybackRestrictionPolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePlaybackRestrictionPolicyWithContext is the same as UpdatePlaybackRestrictionPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePlaybackRestrictionPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) UpdatePlaybackRestrictionPolicyWithContext(ctx aws.Context, input *UpdatePlaybackRestrictionPolicyInput, opts ...request.Option) (*UpdatePlaybackRestrictionPolicyOutput, error) {
+	req, out := c.UpdatePlaybackRestrictionPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3537,6 +4022,11 @@ type Channel struct {
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
+	// Playback-restriction-policy ARN. A valid ARN value here both specifies the
+	// ARN and enables playback restriction. Default: "" (empty string, no playback
+	// restriction policy is applied).
+	PlaybackRestrictionPolicyArn *string `locationName:"playbackRestrictionPolicyArn" type:"string"`
+
 	// Channel playback URL.
 	PlaybackUrl *string `locationName:"playbackUrl" type:"string"`
 
@@ -3546,8 +4036,8 @@ type Channel struct {
 	// preset is the empty string ("").
 	Preset *string `locationName:"preset" type:"string" enum:"TranscodePreset"`
 
-	// Recording-configuration ARN. A value other than an empty string indicates
-	// that recording is enabled. Default: "" (empty string, recording is disabled).
+	// Recording-configuration ARN. A valid ARN value here both specifies the ARN
+	// and enables recording. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
@@ -3615,6 +4105,12 @@ func (s *Channel) SetLatencyMode(v string) *Channel {
 // SetName sets the Name field's value.
 func (s *Channel) SetName(v string) *Channel {
 	s.Name = &v
+	return s
+}
+
+// SetPlaybackRestrictionPolicyArn sets the PlaybackRestrictionPolicyArn field's value.
+func (s *Channel) SetPlaybackRestrictionPolicyArn(v string) *Channel {
+	s.PlaybackRestrictionPolicyArn = &v
 	return s
 }
 
@@ -3737,14 +4233,19 @@ type ChannelSummary struct {
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
+	// Playback-restriction-policy ARN. A valid ARN value here both specifies the
+	// ARN and enables playback restriction. Default: "" (empty string, no playback
+	// restriction policy is applied).
+	PlaybackRestrictionPolicyArn *string `locationName:"playbackRestrictionPolicyArn" type:"string"`
+
 	// Optional transcode preset for the channel. This is selectable only for ADVANCED_HD
 	// and ADVANCED_SD channel types. For those channel types, the default preset
 	// is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD),
 	// preset is the empty string ("").
 	Preset *string `locationName:"preset" type:"string" enum:"TranscodePreset"`
 
-	// Recording-configuration ARN. A value other than an empty string indicates
-	// that recording is enabled. Default: "" (empty string, recording is disabled).
+	// Recording-configuration ARN. A valid ARN value here both specifies the ARN
+	// and enables recording. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
@@ -3806,6 +4307,12 @@ func (s *ChannelSummary) SetLatencyMode(v string) *ChannelSummary {
 // SetName sets the Name field's value.
 func (s *ChannelSummary) SetName(v string) *ChannelSummary {
 	s.Name = &v
+	return s
+}
+
+// SetPlaybackRestrictionPolicyArn sets the PlaybackRestrictionPolicyArn field's value.
+func (s *ChannelSummary) SetPlaybackRestrictionPolicyArn(v string) *ChannelSummary {
+	s.PlaybackRestrictionPolicyArn = &v
 	return s
 }
 
@@ -3918,13 +4425,19 @@ type CreateChannelInput struct {
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
+	// Playback-restriction-policy ARN. A valid ARN value here both specifies the
+	// ARN and enables playback restriction. Default: "" (empty string, no playback
+	// restriction policy is applied).
+	PlaybackRestrictionPolicyArn *string `locationName:"playbackRestrictionPolicyArn" type:"string"`
+
 	// Optional transcode preset for the channel. This is selectable only for ADVANCED_HD
 	// and ADVANCED_SD channel types. For those channel types, the default preset
 	// is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD),
 	// preset is the empty string ("").
 	Preset *string `locationName:"preset" type:"string" enum:"TranscodePreset"`
 
-	// Recording-configuration ARN. Default: "" (empty string, recording is disabled).
+	// Recording-configuration ARN. A valid ARN value here both specifies the ARN
+	// and enables recording. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
@@ -3980,6 +4493,12 @@ func (s *CreateChannelInput) SetLatencyMode(v string) *CreateChannelInput {
 // SetName sets the Name field's value.
 func (s *CreateChannelInput) SetName(v string) *CreateChannelInput {
 	s.Name = &v
+	return s
+}
+
+// SetPlaybackRestrictionPolicyArn sets the PlaybackRestrictionPolicyArn field's value.
+func (s *CreateChannelInput) SetPlaybackRestrictionPolicyArn(v string) *CreateChannelInput {
+	s.PlaybackRestrictionPolicyArn = &v
 	return s
 }
 
@@ -4044,6 +4563,114 @@ func (s *CreateChannelOutput) SetChannel(v *Channel) *CreateChannelOutput {
 // SetStreamKey sets the StreamKey field's value.
 func (s *CreateChannelOutput) SetStreamKey(v *StreamKey) *CreateChannelOutput {
 	s.StreamKey = v
+	return s
+}
+
+type CreatePlaybackRestrictionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of country codes that control geoblocking restriction. Allowed values
+	// are the officially assigned ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	// codes. Default: All countries (an empty array).
+	AllowedCountries []*string `locationName:"allowedCountries" type:"list"`
+
+	// A list of origin sites that control CORS restriction. Allowed values are
+	// the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin
+	// (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin). Default:
+	// All origins (an empty array).
+	AllowedOrigins []*string `locationName:"allowedOrigins" type:"list"`
+
+	// Whether channel playback is constrained by origin site. Default: false.
+	EnableStrictOriginEnforcement *bool `locationName:"enableStrictOriginEnforcement" type:"boolean"`
+
+	// Playback-restriction-policy name. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value). See Tagging
+	// Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePlaybackRestrictionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePlaybackRestrictionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// SetAllowedCountries sets the AllowedCountries field's value.
+func (s *CreatePlaybackRestrictionPolicyInput) SetAllowedCountries(v []*string) *CreatePlaybackRestrictionPolicyInput {
+	s.AllowedCountries = v
+	return s
+}
+
+// SetAllowedOrigins sets the AllowedOrigins field's value.
+func (s *CreatePlaybackRestrictionPolicyInput) SetAllowedOrigins(v []*string) *CreatePlaybackRestrictionPolicyInput {
+	s.AllowedOrigins = v
+	return s
+}
+
+// SetEnableStrictOriginEnforcement sets the EnableStrictOriginEnforcement field's value.
+func (s *CreatePlaybackRestrictionPolicyInput) SetEnableStrictOriginEnforcement(v bool) *CreatePlaybackRestrictionPolicyInput {
+	s.EnableStrictOriginEnforcement = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePlaybackRestrictionPolicyInput) SetName(v string) *CreatePlaybackRestrictionPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePlaybackRestrictionPolicyInput) SetTags(v map[string]*string) *CreatePlaybackRestrictionPolicyInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePlaybackRestrictionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing a policy to constrain playback by country and/or origin
+	// sites.
+	PlaybackRestrictionPolicy *PlaybackRestrictionPolicy `locationName:"playbackRestrictionPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePlaybackRestrictionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePlaybackRestrictionPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPlaybackRestrictionPolicy sets the PlaybackRestrictionPolicy field's value.
+func (s *CreatePlaybackRestrictionPolicyOutput) SetPlaybackRestrictionPolicy(v *PlaybackRestrictionPolicy) *CreatePlaybackRestrictionPolicyOutput {
+	s.PlaybackRestrictionPolicy = v
 	return s
 }
 
@@ -4423,6 +5050,77 @@ func (s DeletePlaybackKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePlaybackRestrictionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the playback restriction policy to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePlaybackRestrictionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePlaybackRestrictionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePlaybackRestrictionPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePlaybackRestrictionPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeletePlaybackRestrictionPolicyInput) SetArn(v string) *DeletePlaybackRestrictionPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+type DeletePlaybackRestrictionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePlaybackRestrictionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePlaybackRestrictionPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteRecordingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4768,6 +5466,87 @@ func (s GetPlaybackKeyPairOutput) GoString() string {
 // SetKeyPair sets the KeyPair field's value.
 func (s *GetPlaybackKeyPairOutput) SetKeyPair(v *PlaybackKeyPair) *GetPlaybackKeyPairOutput {
 	s.KeyPair = v
+	return s
+}
+
+type GetPlaybackRestrictionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the playback restriction policy to be returned.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaybackRestrictionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaybackRestrictionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPlaybackRestrictionPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPlaybackRestrictionPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPlaybackRestrictionPolicyInput) SetArn(v string) *GetPlaybackRestrictionPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+type GetPlaybackRestrictionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing a policy to constrain playback by country and/or origin
+	// sites.
+	PlaybackRestrictionPolicy *PlaybackRestrictionPolicy `locationName:"playbackRestrictionPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaybackRestrictionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPlaybackRestrictionPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPlaybackRestrictionPolicy sets the PlaybackRestrictionPolicy field's value.
+func (s *GetPlaybackRestrictionPolicyOutput) SetPlaybackRestrictionPolicy(v *PlaybackRestrictionPolicy) *GetPlaybackRestrictionPolicyOutput {
+	s.PlaybackRestrictionPolicy = v
 	return s
 }
 
@@ -5315,6 +6094,9 @@ type ListChannelsInput struct {
 	// Filters the channel list to match the specified name.
 	FilterByName *string `locationName:"filterByName" type:"string"`
 
+	// Filters the channel list to match the specified policy.
+	FilterByPlaybackRestrictionPolicyArn *string `locationName:"filterByPlaybackRestrictionPolicyArn" type:"string"`
+
 	// Filters the channel list to match the specified recording-configuration ARN.
 	FilterByRecordingConfigurationArn *string `locationName:"filterByRecordingConfigurationArn" type:"string"`
 
@@ -5360,6 +6142,12 @@ func (s *ListChannelsInput) Validate() error {
 // SetFilterByName sets the FilterByName field's value.
 func (s *ListChannelsInput) SetFilterByName(v string) *ListChannelsInput {
 	s.FilterByName = &v
+	return s
+}
+
+// SetFilterByPlaybackRestrictionPolicyArn sets the FilterByPlaybackRestrictionPolicyArn field's value.
+func (s *ListChannelsInput) SetFilterByPlaybackRestrictionPolicyArn(v string) *ListChannelsInput {
+	s.FilterByPlaybackRestrictionPolicyArn = &v
 	return s
 }
 
@@ -5519,6 +6307,103 @@ func (s *ListPlaybackKeyPairsOutput) SetKeyPairs(v []*PlaybackKeyPairSummary) *L
 // SetNextToken sets the NextToken field's value.
 func (s *ListPlaybackKeyPairsOutput) SetNextToken(v string) *ListPlaybackKeyPairsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListPlaybackRestrictionPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of policies to return. Default: 1.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first policy to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPlaybackRestrictionPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPlaybackRestrictionPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPlaybackRestrictionPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPlaybackRestrictionPoliciesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPlaybackRestrictionPoliciesInput) SetMaxResults(v int64) *ListPlaybackRestrictionPoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPlaybackRestrictionPoliciesInput) SetNextToken(v string) *ListPlaybackRestrictionPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPlaybackRestrictionPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more channels than maxResults, use nextToken in the request
+	// to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of the matching policies.
+	//
+	// PlaybackRestrictionPolicies is a required field
+	PlaybackRestrictionPolicies []*PlaybackRestrictionPolicySummary `locationName:"playbackRestrictionPolicies" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPlaybackRestrictionPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPlaybackRestrictionPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPlaybackRestrictionPoliciesOutput) SetNextToken(v string) *ListPlaybackRestrictionPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPlaybackRestrictionPolicies sets the PlaybackRestrictionPolicies field's value.
+func (s *ListPlaybackRestrictionPoliciesOutput) SetPlaybackRestrictionPolicies(v []*PlaybackRestrictionPolicySummary) *ListPlaybackRestrictionPoliciesOutput {
+	s.PlaybackRestrictionPolicies = v
 	return s
 }
 
@@ -6216,6 +7101,191 @@ func (s *PlaybackKeyPairSummary) SetName(v string) *PlaybackKeyPairSummary {
 
 // SetTags sets the Tags field's value.
 func (s *PlaybackKeyPairSummary) SetTags(v map[string]*string) *PlaybackKeyPairSummary {
+	s.Tags = v
+	return s
+}
+
+// An object representing a policy to constrain playback by country and/or origin
+// sites.
+type PlaybackRestrictionPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of country codes that control geoblocking restriction. Allowed values
+	// are the officially assigned ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	// codes. Default: All countries (an empty array).
+	//
+	// AllowedCountries is a required field
+	AllowedCountries []*string `locationName:"allowedCountries" type:"list" required:"true"`
+
+	// A list of origin sites that control CORS restriction. Allowed values are
+	// the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin
+	// (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin). Default:
+	// All origins (an empty array).
+	//
+	// AllowedOrigins is a required field
+	AllowedOrigins []*string `locationName:"allowedOrigins" type:"list" required:"true"`
+
+	// Playback-restriction-policy ARN
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Whether channel playback is constrained by origin site. Default: false.
+	EnableStrictOriginEnforcement *bool `locationName:"enableStrictOriginEnforcement" type:"boolean"`
+
+	// Playback-restriction-policy name. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlaybackRestrictionPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlaybackRestrictionPolicy) GoString() string {
+	return s.String()
+}
+
+// SetAllowedCountries sets the AllowedCountries field's value.
+func (s *PlaybackRestrictionPolicy) SetAllowedCountries(v []*string) *PlaybackRestrictionPolicy {
+	s.AllowedCountries = v
+	return s
+}
+
+// SetAllowedOrigins sets the AllowedOrigins field's value.
+func (s *PlaybackRestrictionPolicy) SetAllowedOrigins(v []*string) *PlaybackRestrictionPolicy {
+	s.AllowedOrigins = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *PlaybackRestrictionPolicy) SetArn(v string) *PlaybackRestrictionPolicy {
+	s.Arn = &v
+	return s
+}
+
+// SetEnableStrictOriginEnforcement sets the EnableStrictOriginEnforcement field's value.
+func (s *PlaybackRestrictionPolicy) SetEnableStrictOriginEnforcement(v bool) *PlaybackRestrictionPolicy {
+	s.EnableStrictOriginEnforcement = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PlaybackRestrictionPolicy) SetName(v string) *PlaybackRestrictionPolicy {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PlaybackRestrictionPolicy) SetTags(v map[string]*string) *PlaybackRestrictionPolicy {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a PlaybackRestrictionPolicy.
+type PlaybackRestrictionPolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// A list of country codes that control geoblocking restriction. Allowed values
+	// are the officially assigned ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	// codes. Default: All countries (an empty array).
+	//
+	// AllowedCountries is a required field
+	AllowedCountries []*string `locationName:"allowedCountries" type:"list" required:"true"`
+
+	// A list of origin sites that control CORS restriction. Allowed values are
+	// the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin
+	// (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin). Default:
+	// All origins (an empty array).
+	//
+	// AllowedOrigins is a required field
+	AllowedOrigins []*string `locationName:"allowedOrigins" type:"list" required:"true"`
+
+	// Playback-restriction-policy ARN
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Whether channel playback is constrained by origin site. Default: false.
+	EnableStrictOriginEnforcement *bool `locationName:"enableStrictOriginEnforcement" type:"boolean"`
+
+	// Playback-restriction-policy name. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
+	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// for more information, including restrictions that apply to tags and "Tag
+	// naming limits and requirements"; Amazon IVS has no service-specific constraints
+	// beyond what is documented there.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlaybackRestrictionPolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlaybackRestrictionPolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetAllowedCountries sets the AllowedCountries field's value.
+func (s *PlaybackRestrictionPolicySummary) SetAllowedCountries(v []*string) *PlaybackRestrictionPolicySummary {
+	s.AllowedCountries = v
+	return s
+}
+
+// SetAllowedOrigins sets the AllowedOrigins field's value.
+func (s *PlaybackRestrictionPolicySummary) SetAllowedOrigins(v []*string) *PlaybackRestrictionPolicySummary {
+	s.AllowedOrigins = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *PlaybackRestrictionPolicySummary) SetArn(v string) *PlaybackRestrictionPolicySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetEnableStrictOriginEnforcement sets the EnableStrictOriginEnforcement field's value.
+func (s *PlaybackRestrictionPolicySummary) SetEnableStrictOriginEnforcement(v bool) *PlaybackRestrictionPolicySummary {
+	s.EnableStrictOriginEnforcement = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PlaybackRestrictionPolicySummary) SetName(v string) *PlaybackRestrictionPolicySummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PlaybackRestrictionPolicySummary) SetTags(v map[string]*string) *PlaybackRestrictionPolicySummary {
 	s.Tags = v
 	return s
 }
@@ -7864,15 +8934,19 @@ type UpdateChannelInput struct {
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
+	// Playback-restriction-policy ARN. A valid ARN value here both specifies the
+	// ARN and enables playback restriction. If this is set to an empty string,
+	// playback restriction policy is disabled.
+	PlaybackRestrictionPolicyArn *string `locationName:"playbackRestrictionPolicyArn" type:"string"`
+
 	// Optional transcode preset for the channel. This is selectable only for ADVANCED_HD
 	// and ADVANCED_SD channel types. For those channel types, the default preset
 	// is HIGHER_BANDWIDTH_DELIVERY. For other channel types (BASIC and STANDARD),
 	// preset is the empty string ("").
 	Preset *string `locationName:"preset" type:"string" enum:"TranscodePreset"`
 
-	// Recording-configuration ARN. If this is set to an empty string, recording
-	// is disabled. A value other than an empty string indicates that recording
-	// is enabled
+	// Recording-configuration ARN. A valid ARN value here both specifies the ARN
+	// and enables recording. If this is set to an empty string, recording is disabled.
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
@@ -7946,6 +9020,12 @@ func (s *UpdateChannelInput) SetName(v string) *UpdateChannelInput {
 	return s
 }
 
+// SetPlaybackRestrictionPolicyArn sets the PlaybackRestrictionPolicyArn field's value.
+func (s *UpdateChannelInput) SetPlaybackRestrictionPolicyArn(v string) *UpdateChannelInput {
+	s.PlaybackRestrictionPolicyArn = &v
+	return s
+}
+
 // SetPreset sets the Preset field's value.
 func (s *UpdateChannelInput) SetPreset(v string) *UpdateChannelInput {
 	s.Preset = &v
@@ -7967,7 +9047,7 @@ func (s *UpdateChannelInput) SetType(v string) *UpdateChannelInput {
 type UpdateChannelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Object specifying a channel.
+	// Object specifying the updated channel.
 	Channel *Channel `locationName:"channel" type:"structure"`
 }
 
@@ -7992,6 +9072,127 @@ func (s UpdateChannelOutput) GoString() string {
 // SetChannel sets the Channel field's value.
 func (s *UpdateChannelOutput) SetChannel(v *Channel) *UpdateChannelOutput {
 	s.Channel = v
+	return s
+}
+
+type UpdatePlaybackRestrictionPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of country codes that control geoblocking restriction. Allowed values
+	// are the officially assigned ISO 3166-1 alpha-2 (https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+	// codes. Default: All countries (an empty array).
+	AllowedCountries []*string `locationName:"allowedCountries" type:"list"`
+
+	// A list of origin sites that control CORS restriction. Allowed values are
+	// the same as valid values of the Origin header defined at https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin
+	// (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin). Default:
+	// All origins (an empty array).
+	AllowedOrigins []*string `locationName:"allowedOrigins" type:"list"`
+
+	// ARN of the playback-restriction-policy to be updated.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// Whether channel playback is constrained by origin site. Default: false.
+	EnableStrictOriginEnforcement *bool `locationName:"enableStrictOriginEnforcement" type:"boolean"`
+
+	// Playback-restriction-policy name. The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePlaybackRestrictionPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePlaybackRestrictionPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePlaybackRestrictionPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePlaybackRestrictionPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedCountries sets the AllowedCountries field's value.
+func (s *UpdatePlaybackRestrictionPolicyInput) SetAllowedCountries(v []*string) *UpdatePlaybackRestrictionPolicyInput {
+	s.AllowedCountries = v
+	return s
+}
+
+// SetAllowedOrigins sets the AllowedOrigins field's value.
+func (s *UpdatePlaybackRestrictionPolicyInput) SetAllowedOrigins(v []*string) *UpdatePlaybackRestrictionPolicyInput {
+	s.AllowedOrigins = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdatePlaybackRestrictionPolicyInput) SetArn(v string) *UpdatePlaybackRestrictionPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+// SetEnableStrictOriginEnforcement sets the EnableStrictOriginEnforcement field's value.
+func (s *UpdatePlaybackRestrictionPolicyInput) SetEnableStrictOriginEnforcement(v bool) *UpdatePlaybackRestrictionPolicyInput {
+	s.EnableStrictOriginEnforcement = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePlaybackRestrictionPolicyInput) SetName(v string) *UpdatePlaybackRestrictionPolicyInput {
+	s.Name = &v
+	return s
+}
+
+type UpdatePlaybackRestrictionPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Object specifying the updated policy.
+	PlaybackRestrictionPolicy *PlaybackRestrictionPolicy `locationName:"playbackRestrictionPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePlaybackRestrictionPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdatePlaybackRestrictionPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPlaybackRestrictionPolicy sets the PlaybackRestrictionPolicy field's value.
+func (s *UpdatePlaybackRestrictionPolicyOutput) SetPlaybackRestrictionPolicy(v *PlaybackRestrictionPolicy) *UpdatePlaybackRestrictionPolicyOutput {
+	s.PlaybackRestrictionPolicy = v
 	return s
 }
 

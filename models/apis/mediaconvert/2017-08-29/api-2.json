@@ -384,7 +384,9 @@
         {
           "shape": "ConflictException"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecatedMessage": "DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead."
     },
     "DisassociateCertificate": {
       "name": "DisassociateCertificate",
@@ -1491,7 +1493,7 @@
           "locationName": "codecSettings"
         },
         "CustomLanguageCode": {
-          "shape": "__stringPatternAZaZ23AZaZ",
+          "shape": "__stringPatternAZaZ23AZaZ09",
           "locationName": "customLanguageCode"
         },
         "LanguageCode": {
@@ -2935,12 +2937,6 @@
         }
       }
     },
-    "ColorConversion3DLUTSettings": {
-      "type": "list",
-      "member": {
-        "shape": "ColorConversion3DLUTSetting"
-      }
-    },
     "ColorCorrector": {
       "type": "structure",
       "members": {
@@ -3679,7 +3675,9 @@
       "enum": [
         "DEFAULT",
         "GET_ONLY"
-      ]
+      ],
+      "deprecated": true,
+      "deprecatedMessage": "DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead."
     },
     "DescribeEndpointsRequest": {
       "type": "structure",
@@ -3696,7 +3694,9 @@
           "shape": "__string",
           "locationName": "nextToken"
         }
-      }
+      },
+      "deprecated": true,
+      "deprecatedMessage": "DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead."
     },
     "DescribeEndpointsResponse": {
       "type": "structure",
@@ -3709,7 +3709,9 @@
           "shape": "__string",
           "locationName": "nextToken"
         }
-      }
+      },
+      "deprecated": true,
+      "deprecatedMessage": "DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead."
     },
     "DestinationSettings": {
       "type": "structure",
@@ -6743,7 +6745,7 @@
           "locationName": "availBlanking"
         },
         "ColorConversion3DLUTSettings": {
-          "shape": "ColorConversion3DLUTSettings",
+          "shape": "__listOfColorConversion3DLUTSetting",
           "locationName": "colorConversion3DLUTSettings"
         },
         "Esam": {
@@ -6883,7 +6885,7 @@
           "locationName": "availBlanking"
         },
         "ColorConversion3DLUTSettings": {
-          "shape": "ColorConversion3DLUTSettings",
+          "shape": "__listOfColorConversion3DLUTSetting",
           "locationName": "colorConversion3DLUTSettings"
         },
         "Esam": {
@@ -9332,6 +9334,14 @@
     "RemixSettings": {
       "type": "structure",
       "members": {
+        "AudioDescriptionAudioChannel": {
+          "shape": "__integerMin1Max64",
+          "locationName": "audioDescriptionAudioChannel"
+        },
+        "AudioDescriptionDataChannel": {
+          "shape": "__integerMin1Max64",
+          "locationName": "audioDescriptionDataChannel"
+        },
         "ChannelMapping": {
           "shape": "ChannelMapping",
           "locationName": "channelMapping"
@@ -11710,6 +11720,12 @@
         "shape": "CmafAdditionalManifest"
       }
     },
+    "__listOfColorConversion3DLUTSetting": {
+      "type": "list",
+      "member": {
+        "shape": "ColorConversion3DLUTSetting"
+      }
+    },
     "__listOfDashAdditionalManifest": {
       "type": "list",
       "member": {
@@ -12128,6 +12144,10 @@
     "__stringPatternAZaZ23AZaZ": {
       "type": "string",
       "pattern": "^[A-Za-z]{2,3}(-[A-Za-z-]+)?$"
+    },
+    "__stringPatternAZaZ23AZaZ09": {
+      "type": "string",
+      "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9-]+)?$"
     },
     "__stringPatternArnAwsUsGovAcm": {
       "type": "string",

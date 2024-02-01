@@ -76,6 +76,10 @@ type IVSAPI interface {
 	CreateChannelWithContext(aws.Context, *ivs.CreateChannelInput, ...request.Option) (*ivs.CreateChannelOutput, error)
 	CreateChannelRequest(*ivs.CreateChannelInput) (*request.Request, *ivs.CreateChannelOutput)
 
+	CreatePlaybackRestrictionPolicy(*ivs.CreatePlaybackRestrictionPolicyInput) (*ivs.CreatePlaybackRestrictionPolicyOutput, error)
+	CreatePlaybackRestrictionPolicyWithContext(aws.Context, *ivs.CreatePlaybackRestrictionPolicyInput, ...request.Option) (*ivs.CreatePlaybackRestrictionPolicyOutput, error)
+	CreatePlaybackRestrictionPolicyRequest(*ivs.CreatePlaybackRestrictionPolicyInput) (*request.Request, *ivs.CreatePlaybackRestrictionPolicyOutput)
+
 	CreateRecordingConfiguration(*ivs.CreateRecordingConfigurationInput) (*ivs.CreateRecordingConfigurationOutput, error)
 	CreateRecordingConfigurationWithContext(aws.Context, *ivs.CreateRecordingConfigurationInput, ...request.Option) (*ivs.CreateRecordingConfigurationOutput, error)
 	CreateRecordingConfigurationRequest(*ivs.CreateRecordingConfigurationInput) (*request.Request, *ivs.CreateRecordingConfigurationOutput)
@@ -92,6 +96,10 @@ type IVSAPI interface {
 	DeletePlaybackKeyPairWithContext(aws.Context, *ivs.DeletePlaybackKeyPairInput, ...request.Option) (*ivs.DeletePlaybackKeyPairOutput, error)
 	DeletePlaybackKeyPairRequest(*ivs.DeletePlaybackKeyPairInput) (*request.Request, *ivs.DeletePlaybackKeyPairOutput)
 
+	DeletePlaybackRestrictionPolicy(*ivs.DeletePlaybackRestrictionPolicyInput) (*ivs.DeletePlaybackRestrictionPolicyOutput, error)
+	DeletePlaybackRestrictionPolicyWithContext(aws.Context, *ivs.DeletePlaybackRestrictionPolicyInput, ...request.Option) (*ivs.DeletePlaybackRestrictionPolicyOutput, error)
+	DeletePlaybackRestrictionPolicyRequest(*ivs.DeletePlaybackRestrictionPolicyInput) (*request.Request, *ivs.DeletePlaybackRestrictionPolicyOutput)
+
 	DeleteRecordingConfiguration(*ivs.DeleteRecordingConfigurationInput) (*ivs.DeleteRecordingConfigurationOutput, error)
 	DeleteRecordingConfigurationWithContext(aws.Context, *ivs.DeleteRecordingConfigurationInput, ...request.Option) (*ivs.DeleteRecordingConfigurationOutput, error)
 	DeleteRecordingConfigurationRequest(*ivs.DeleteRecordingConfigurationInput) (*request.Request, *ivs.DeleteRecordingConfigurationOutput)
@@ -107,6 +115,10 @@ type IVSAPI interface {
 	GetPlaybackKeyPair(*ivs.GetPlaybackKeyPairInput) (*ivs.GetPlaybackKeyPairOutput, error)
 	GetPlaybackKeyPairWithContext(aws.Context, *ivs.GetPlaybackKeyPairInput, ...request.Option) (*ivs.GetPlaybackKeyPairOutput, error)
 	GetPlaybackKeyPairRequest(*ivs.GetPlaybackKeyPairInput) (*request.Request, *ivs.GetPlaybackKeyPairOutput)
+
+	GetPlaybackRestrictionPolicy(*ivs.GetPlaybackRestrictionPolicyInput) (*ivs.GetPlaybackRestrictionPolicyOutput, error)
+	GetPlaybackRestrictionPolicyWithContext(aws.Context, *ivs.GetPlaybackRestrictionPolicyInput, ...request.Option) (*ivs.GetPlaybackRestrictionPolicyOutput, error)
+	GetPlaybackRestrictionPolicyRequest(*ivs.GetPlaybackRestrictionPolicyInput) (*request.Request, *ivs.GetPlaybackRestrictionPolicyOutput)
 
 	GetRecordingConfiguration(*ivs.GetRecordingConfigurationInput) (*ivs.GetRecordingConfigurationOutput, error)
 	GetRecordingConfigurationWithContext(aws.Context, *ivs.GetRecordingConfigurationInput, ...request.Option) (*ivs.GetRecordingConfigurationOutput, error)
@@ -141,6 +153,13 @@ type IVSAPI interface {
 
 	ListPlaybackKeyPairsPages(*ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool) error
 	ListPlaybackKeyPairsPagesWithContext(aws.Context, *ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool, ...request.Option) error
+
+	ListPlaybackRestrictionPolicies(*ivs.ListPlaybackRestrictionPoliciesInput) (*ivs.ListPlaybackRestrictionPoliciesOutput, error)
+	ListPlaybackRestrictionPoliciesWithContext(aws.Context, *ivs.ListPlaybackRestrictionPoliciesInput, ...request.Option) (*ivs.ListPlaybackRestrictionPoliciesOutput, error)
+	ListPlaybackRestrictionPoliciesRequest(*ivs.ListPlaybackRestrictionPoliciesInput) (*request.Request, *ivs.ListPlaybackRestrictionPoliciesOutput)
+
+	ListPlaybackRestrictionPoliciesPages(*ivs.ListPlaybackRestrictionPoliciesInput, func(*ivs.ListPlaybackRestrictionPoliciesOutput, bool) bool) error
+	ListPlaybackRestrictionPoliciesPagesWithContext(aws.Context, *ivs.ListPlaybackRestrictionPoliciesInput, func(*ivs.ListPlaybackRestrictionPoliciesOutput, bool) bool, ...request.Option) error
 
 	ListRecordingConfigurations(*ivs.ListRecordingConfigurationsInput) (*ivs.ListRecordingConfigurationsOutput, error)
 	ListRecordingConfigurationsWithContext(aws.Context, *ivs.ListRecordingConfigurationsInput, ...request.Option) (*ivs.ListRecordingConfigurationsOutput, error)
@@ -197,6 +216,10 @@ type IVSAPI interface {
 	UpdateChannel(*ivs.UpdateChannelInput) (*ivs.UpdateChannelOutput, error)
 	UpdateChannelWithContext(aws.Context, *ivs.UpdateChannelInput, ...request.Option) (*ivs.UpdateChannelOutput, error)
 	UpdateChannelRequest(*ivs.UpdateChannelInput) (*request.Request, *ivs.UpdateChannelOutput)
+
+	UpdatePlaybackRestrictionPolicy(*ivs.UpdatePlaybackRestrictionPolicyInput) (*ivs.UpdatePlaybackRestrictionPolicyOutput, error)
+	UpdatePlaybackRestrictionPolicyWithContext(aws.Context, *ivs.UpdatePlaybackRestrictionPolicyInput, ...request.Option) (*ivs.UpdatePlaybackRestrictionPolicyOutput, error)
+	UpdatePlaybackRestrictionPolicyRequest(*ivs.UpdatePlaybackRestrictionPolicyInput) (*request.Request, *ivs.UpdatePlaybackRestrictionPolicyOutput)
 }
 
 var _ IVSAPI = (*ivs.IVS)(nil)

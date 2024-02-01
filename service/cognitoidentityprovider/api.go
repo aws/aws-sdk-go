@@ -3614,7 +3614,7 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3719,11 +3719,14 @@ func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInp
 //
 // Changes the password for a specified user in a user pool.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3839,13 +3842,17 @@ func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput
 // ConfirmDevice API operation for Amazon Cognito Identity Provider.
 //
 // Confirms tracking of the device. This API call is the call that begins device
-// tracking.
+// tracking. For more information about device authentication, see Working with
+// user devices in your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
+//
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3974,7 +3981,7 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4129,7 +4136,7 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4377,7 +4384,8 @@ func (c *CognitoIdentityProvider) CreateIdentityProviderRequest(input *CreateIde
 
 // CreateIdentityProvider API operation for Amazon Cognito Identity Provider.
 //
-// Creates an IdP for a user pool.
+// Adds a configuration and trust relationship between a third-party identity
+// provider (IdP) and a user pool.
 //
 // Amazon Cognito evaluates Identity and Access Management (IAM) policies in
 // requests for this API operation. For this operation, you must use IAM credentials
@@ -5378,11 +5386,14 @@ func (c *CognitoIdentityProvider) DeleteUserRequest(input *DeleteUserInput) (req
 //
 // Allows a user to delete their own user profile.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5493,11 +5504,14 @@ func (c *CognitoIdentityProvider) DeleteUserAttributesRequest(input *DeleteUserA
 //
 // Deletes the attributes for a user.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6578,13 +6592,17 @@ func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) 
 
 // ForgetDevice API operation for Amazon Cognito Identity Provider.
 //
-// Forgets the specified device.
+// Forgets the specified device. For more information about device authentication,
+// see Working with user devices in your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
+//
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6711,7 +6729,7 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -6959,13 +6977,17 @@ func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *
 
 // GetDevice API operation for Amazon Cognito Identity Provider.
 //
-// Gets the device.
+// Gets the device. For more information about device authentication, see Working
+// with user devices in your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
+//
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7552,11 +7574,14 @@ func (c *CognitoIdentityProvider) GetUserRequest(input *GetUserInput) (req *requ
 //
 // Gets the user attributes and metadata for a user.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7668,11 +7693,14 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 // name. Sends a message to a user with a code that they must return in a VerifyUserAttribute
 // request.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -7947,11 +7975,14 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 //
 // Other requests might be valid until your user's token expires.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8064,7 +8095,7 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -8216,13 +8247,17 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 // ListDevices API operation for Amazon Cognito Identity Provider.
 //
 // Lists the sign-in devices that Amazon Cognito has registered to the current
-// user.
+// user. For more information about device authentication, see Working with
+// user devices in your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
+//
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9675,7 +9710,7 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -9842,7 +9877,7 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -10028,7 +10063,7 @@ func (c *CognitoIdentityProvider) RevokeTokenRequest(input *RevokeTokenInput) (r
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10451,11 +10486,14 @@ func (c *CognitoIdentityProvider) SetUserMFAPreferenceRequest(input *SetUserMFAP
 // based on the assessed risk level of sign-in attempts, deactivate MFA for
 // users and turn on Adaptive Authentication for the user pool.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10687,11 +10725,14 @@ func (c *CognitoIdentityProvider) SetUserSettingsRequest(input *SetUserSettingsI
 // token MFA. To configure either type of MFA, use SetUserMFAPreference (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html)
 // instead.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10802,7 +10843,7 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -11366,7 +11407,7 @@ func (c *CognitoIdentityProvider) UpdateAuthEventFeedbackRequest(input *UpdateAu
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11468,13 +11509,17 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceS
 
 // UpdateDeviceStatus API operation for Amazon Cognito Identity Provider.
 //
-// Updates the device status.
+// Updates the device status. For more information about device authentication,
+// see Working with user devices in your user pool (https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html).
+//
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
 //
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11914,11 +11959,14 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 // in your API request with a blank value. Custom attribute values in this request
 // must include the custom: prefix.
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
@@ -12502,7 +12550,7 @@ func (c *CognitoIdentityProvider) VerifySoftwareTokenRequest(input *VerifySoftwa
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12636,11 +12684,14 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 // pending value. For more information, see UserAttributeUpdateSettingsType
 // (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html).
 //
+// Authorize this action with a signed-in user's access token. It must include
+// the scope aws.cognito.signin.user.admin.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
 // policies. For more information about authorization models in Amazon Cognito,
-// see Using the Amazon Cognito native and OIDC APIs (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
+// see Using the Amazon Cognito user pools API and user pool endpoints (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18971,22 +19022,100 @@ type CreateIdentityProviderInput struct {
 	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The IdP details. The following list describes the provider detail keys for
-	// each IdP type.
+	// The scopes, URLs, and identifiers for your external identity provider. The
+	// following examples describe the provider detail keys for each IdP type. These
+	// values and their schema are subject to change. Social IdP authorize_scopes
+	// values must match the values listed here.
 	//
-	//    * For Google and Login with Amazon: client_id client_secret authorize_scopes
+	// OpenID Connect (OIDC)
 	//
-	//    * For Facebook: client_id client_secret authorize_scopes api_version
+	// Amazon Cognito accepts the following elements when it can't discover endpoint
+	// URLs from oidc_issuer: attributes_url, authorize_url, jwks_uri, token_url.
 	//
-	//    * For Sign in with Apple: client_id team_id key_id private_key authorize_scopes
+	// Create or update request: "ProviderDetails": { "attributes_request_method":
+	// "GET", "attributes_url": "https://auth.example.com/userInfo", "authorize_scopes":
+	// "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
 	//
-	//    * For OpenID Connect (OIDC) providers: client_id client_secret attributes_request_method
-	//    oidc_issuer authorize_scopes The following keys are only present if Amazon
-	//    Cognito didn't discover them at the oidc_issuer URL. authorize_url token_url
-	//    attributes_url jwks_uri Amazon Cognito sets the value of the following
-	//    keys automatically. They are read-only. attributes_url_add_attributes
+	// Describe response: "ProviderDetails": { "attributes_request_method": "GET",
+	// "attributes_url": "https://auth.example.com/userInfo", "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
 	//
-	//    * For SAML providers: MetadataFile or MetadataURL IDPSignout optional
+	// SAML
+	//
+	// Create or update request with Metadata URL: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataURL":
+	// "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256" }
+	//
+	// Create or update request with Metadata file: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataFile":
+	// "[metadata XML]", "RequestSigningAlgorithm": "rsa-sha256" }
+	//
+	// The value of MetadataFile must be the plaintext metadata document with all
+	// quote (") characters escaped by backslashes.
+	//
+	// Describe response: "ProviderDetails": { "IDPInit": "true", "IDPSignout":
+	// "true", "EncryptedResponses" : "true", "ActiveEncryptionCertificate": "[certificate]",
+	// "MetadataURL": "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256", "SLORedirectBindingURI": "https://auth.example.com/slo/saml",
+	// "SSORedirectBindingURI": "https://auth.example.com/sso/saml" }
+	//
+	// LoginWithAmazon
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "profile
+	// postal_code", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret"
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://api.amazon.com/user/profile",
+	// "attributes_url_add_attributes": "false", "authorize_scopes": "profile postal_code",
+	// "authorize_url": "https://www.amazon.com/ap/oa", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret", "token_request_method": "POST",
+	// "token_url": "https://api.amazon.com/auth/o2/token" }
+	//
+	// Google
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// profile openid", "client_id": "1example23456789.apps.googleusercontent.com",
+	// "client_secret": "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://people.googleapis.com/v1/people/me?personFields=",
+	// "attributes_url_add_attributes": "true", "authorize_scopes": "email profile
+	// openid", "authorize_url": "https://accounts.google.com/o/oauth2/v2/auth",
+	// "client_id": "1example23456789.apps.googleusercontent.com", "client_secret":
+	// "provider-app-client-secret", "oidc_issuer": "https://accounts.google.com",
+	// "token_request_method": "POST", "token_url": "https://www.googleapis.com/oauth2/v4/token"
+	// }
+	//
+	// SignInWithApple
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// name", "client_id": "com.example.cognito", "private_key": "1EXAMPLE", "key_id":
+	// "2EXAMPLE", "team_id": "3EXAMPLE" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "email name", "authorize_url": "https://appleid.apple.com/auth/authorize",
+	// "client_id": "com.example.cognito", "key_id": "1EXAMPLE", "oidc_issuer":
+	// "https://appleid.apple.com", "team_id": "2EXAMPLE", "token_request_method":
+	// "POST", "token_url": "https://appleid.apple.com/auth/token" }
+	//
+	// Facebook
+	//
+	// Create or update request: "ProviderDetails": { "api_version": "v17.0", "authorize_scopes":
+	// "public_profile, email", "client_id": "1example23456789", "client_secret":
+	// "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "api_version": "v17.0", "attributes_url":
+	// "https://graph.facebook.com/v17.0/me?fields=", "attributes_url_add_attributes":
+	// "true", "authorize_scopes": "public_profile, email", "authorize_url": "https://www.facebook.com/v17.0/dialog/oauth",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "token_request_method": "GET", "token_url": "https://graph.facebook.com/v17.0/oauth/access_token"
+	// }
 	//
 	// ProviderDetails is a required field
 	ProviderDetails map[string]*string `type:"map" required:"true"`
@@ -19394,7 +19523,9 @@ type CreateUserPoolClientInput struct {
 	// access tokens are valid for one hour.
 	AccessTokenValidity *int64 `min:"1" type:"integer"`
 
-	// The allowed OAuth flows.
+	// The OAuth grant types that you want your app client to generate. To create
+	// an app client that generates client credentials grants, you must add client_credentials
+	// as the only allowed OAuth flow.
 	//
 	// code
 	//
@@ -19970,7 +20101,9 @@ type CreateUserPoolDomainOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon CloudFront endpoint that you use as the target of the alias that
-	// you set up with your Domain Name Service (DNS) provider.
+	// you set up with your Domain Name Service (DNS) provider. Amazon Cognito returns
+	// this value if you set a custom domain with CustomDomainConfig. If you set
+	// an Amazon Cognito prefix domain, this operation returns a blank response.
 	CloudFrontDomain *string `min:"1" type:"string"`
 }
 
@@ -24440,24 +24573,100 @@ type IdentityProviderType struct {
 	// format, when the item was modified.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
-	// The IdP details. The following list describes the provider detail keys for
-	// each IdP type.
+	// The scopes, URLs, and identifiers for your external identity provider. The
+	// following examples describe the provider detail keys for each IdP type. These
+	// values and their schema are subject to change. Social IdP authorize_scopes
+	// values must match the values listed here.
 	//
-	//    * For Google and Login with Amazon: client_id client_secret authorize_scopes
+	// OpenID Connect (OIDC)
 	//
-	//    * For Facebook: client_id client_secret authorize_scopes api_version
+	// Amazon Cognito accepts the following elements when it can't discover endpoint
+	// URLs from oidc_issuer: attributes_url, authorize_url, jwks_uri, token_url.
 	//
-	//    * For Sign in with Apple: client_id team_id key_id private_key You can
-	//    submit a private_key when you add or update an IdP. Describe operations
-	//    don't return the private key. authorize_scopes
+	// Create or update request: "ProviderDetails": { "attributes_request_method":
+	// "GET", "attributes_url": "https://auth.example.com/userInfo", "authorize_scopes":
+	// "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
 	//
-	//    * For OIDC providers: client_id client_secret attributes_request_method
-	//    oidc_issuer authorize_scopes The following keys are only present if Amazon
-	//    Cognito didn't discover them at the oidc_issuer URL. authorize_url token_url
-	//    attributes_url jwks_uri Amazon Cognito sets the value of the following
-	//    keys automatically. They are read-only. attributes_url_add_attributes
+	// Describe response: "ProviderDetails": { "attributes_request_method": "GET",
+	// "attributes_url": "https://auth.example.com/userInfo", "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
 	//
-	//    * For SAML providers: MetadataFile or MetadataURL IDPSignout optional
+	// SAML
+	//
+	// Create or update request with Metadata URL: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataURL":
+	// "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256" }
+	//
+	// Create or update request with Metadata file: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataFile":
+	// "[metadata XML]", "RequestSigningAlgorithm": "rsa-sha256" }
+	//
+	// The value of MetadataFile must be the plaintext metadata document with all
+	// quote (") characters escaped by backslashes.
+	//
+	// Describe response: "ProviderDetails": { "IDPInit": "true", "IDPSignout":
+	// "true", "EncryptedResponses" : "true", "ActiveEncryptionCertificate": "[certificate]",
+	// "MetadataURL": "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256", "SLORedirectBindingURI": "https://auth.example.com/slo/saml",
+	// "SSORedirectBindingURI": "https://auth.example.com/sso/saml" }
+	//
+	// LoginWithAmazon
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "profile
+	// postal_code", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret"
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://api.amazon.com/user/profile",
+	// "attributes_url_add_attributes": "false", "authorize_scopes": "profile postal_code",
+	// "authorize_url": "https://www.amazon.com/ap/oa", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret", "token_request_method": "POST",
+	// "token_url": "https://api.amazon.com/auth/o2/token" }
+	//
+	// Google
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// profile openid", "client_id": "1example23456789.apps.googleusercontent.com",
+	// "client_secret": "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://people.googleapis.com/v1/people/me?personFields=",
+	// "attributes_url_add_attributes": "true", "authorize_scopes": "email profile
+	// openid", "authorize_url": "https://accounts.google.com/o/oauth2/v2/auth",
+	// "client_id": "1example23456789.apps.googleusercontent.com", "client_secret":
+	// "provider-app-client-secret", "oidc_issuer": "https://accounts.google.com",
+	// "token_request_method": "POST", "token_url": "https://www.googleapis.com/oauth2/v4/token"
+	// }
+	//
+	// SignInWithApple
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// name", "client_id": "com.example.cognito", "private_key": "1EXAMPLE", "key_id":
+	// "2EXAMPLE", "team_id": "3EXAMPLE" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "email name", "authorize_url": "https://appleid.apple.com/auth/authorize",
+	// "client_id": "com.example.cognito", "key_id": "1EXAMPLE", "oidc_issuer":
+	// "https://appleid.apple.com", "team_id": "2EXAMPLE", "token_request_method":
+	// "POST", "token_url": "https://appleid.apple.com/auth/token" }
+	//
+	// Facebook
+	//
+	// Create or update request: "ProviderDetails": { "api_version": "v17.0", "authorize_scopes":
+	// "public_profile, email", "client_id": "1example23456789", "client_secret":
+	// "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "api_version": "v17.0", "attributes_url":
+	// "https://graph.facebook.com/v17.0/me?fields=", "attributes_url_add_attributes":
+	// "true", "authorize_scopes": "public_profile, email", "authorize_url": "https://www.facebook.com/v17.0/dialog/oauth",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "token_request_method": "GET", "token_url": "https://graph.facebook.com/v17.0/oauth/access_token"
+	// }
 	ProviderDetails map[string]*string `type:"map"`
 
 	// The IdP name.
@@ -32064,7 +32273,100 @@ type UpdateIdentityProviderInput struct {
 	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The IdP details to be updated, such as MetadataURL and MetadataFile.
+	// The scopes, URLs, and identifiers for your external identity provider. The
+	// following examples describe the provider detail keys for each IdP type. These
+	// values and their schema are subject to change. Social IdP authorize_scopes
+	// values must match the values listed here.
+	//
+	// OpenID Connect (OIDC)
+	//
+	// Amazon Cognito accepts the following elements when it can't discover endpoint
+	// URLs from oidc_issuer: attributes_url, authorize_url, jwks_uri, token_url.
+	//
+	// Create or update request: "ProviderDetails": { "attributes_request_method":
+	// "GET", "attributes_url": "https://auth.example.com/userInfo", "authorize_scopes":
+	// "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_request_method": "GET",
+	// "attributes_url": "https://auth.example.com/userInfo", "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "openid profile email", "authorize_url": "https://auth.example.com/authorize",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "jwks_uri": "https://auth.example.com/.well-known/jwks.json", "oidc_issuer":
+	// "https://auth.example.com", "token_url": "https://example.com/token" }
+	//
+	// SAML
+	//
+	// Create or update request with Metadata URL: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataURL":
+	// "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256" }
+	//
+	// Create or update request with Metadata file: "ProviderDetails": { "IDPInit":
+	// "true", "IDPSignout": "true", "EncryptedResponses" : "true", "MetadataFile":
+	// "[metadata XML]", "RequestSigningAlgorithm": "rsa-sha256" }
+	//
+	// The value of MetadataFile must be the plaintext metadata document with all
+	// quote (") characters escaped by backslashes.
+	//
+	// Describe response: "ProviderDetails": { "IDPInit": "true", "IDPSignout":
+	// "true", "EncryptedResponses" : "true", "ActiveEncryptionCertificate": "[certificate]",
+	// "MetadataURL": "https://auth.example.com/sso/saml/metadata", "RequestSigningAlgorithm":
+	// "rsa-sha256", "SLORedirectBindingURI": "https://auth.example.com/slo/saml",
+	// "SSORedirectBindingURI": "https://auth.example.com/sso/saml" }
+	//
+	// LoginWithAmazon
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "profile
+	// postal_code", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret"
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://api.amazon.com/user/profile",
+	// "attributes_url_add_attributes": "false", "authorize_scopes": "profile postal_code",
+	// "authorize_url": "https://www.amazon.com/ap/oa", "client_id": "amzn1.application-oa2-client.1example23456789",
+	// "client_secret": "provider-app-client-secret", "token_request_method": "POST",
+	// "token_url": "https://api.amazon.com/auth/o2/token" }
+	//
+	// Google
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// profile openid", "client_id": "1example23456789.apps.googleusercontent.com",
+	// "client_secret": "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url": "https://people.googleapis.com/v1/people/me?personFields=",
+	// "attributes_url_add_attributes": "true", "authorize_scopes": "email profile
+	// openid", "authorize_url": "https://accounts.google.com/o/oauth2/v2/auth",
+	// "client_id": "1example23456789.apps.googleusercontent.com", "client_secret":
+	// "provider-app-client-secret", "oidc_issuer": "https://accounts.google.com",
+	// "token_request_method": "POST", "token_url": "https://www.googleapis.com/oauth2/v4/token"
+	// }
+	//
+	// SignInWithApple
+	//
+	// Create or update request: "ProviderDetails": { "authorize_scopes": "email
+	// name", "client_id": "com.example.cognito", "private_key": "1EXAMPLE", "key_id":
+	// "2EXAMPLE", "team_id": "3EXAMPLE" }
+	//
+	// Describe response: "ProviderDetails": { "attributes_url_add_attributes":
+	// "false", "authorize_scopes": "email name", "authorize_url": "https://appleid.apple.com/auth/authorize",
+	// "client_id": "com.example.cognito", "key_id": "1EXAMPLE", "oidc_issuer":
+	// "https://appleid.apple.com", "team_id": "2EXAMPLE", "token_request_method":
+	// "POST", "token_url": "https://appleid.apple.com/auth/token" }
+	//
+	// Facebook
+	//
+	// Create or update request: "ProviderDetails": { "api_version": "v17.0", "authorize_scopes":
+	// "public_profile, email", "client_id": "1example23456789", "client_secret":
+	// "provider-app-client-secret" }
+	//
+	// Describe response: "ProviderDetails": { "api_version": "v17.0", "attributes_url":
+	// "https://graph.facebook.com/v17.0/me?fields=", "attributes_url_add_attributes":
+	// "true", "authorize_scopes": "public_profile, email", "authorize_url": "https://www.facebook.com/v17.0/dialog/oauth",
+	// "client_id": "1example23456789", "client_secret": "provider-app-client-secret",
+	// "token_request_method": "GET", "token_url": "https://graph.facebook.com/v17.0/oauth/access_token"
+	// }
 	ProviderDetails map[string]*string `type:"map"`
 
 	// The IdP name.
