@@ -1,3 +1,13 @@
+Release v1.50.9 (2024-02-01)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/managedblockchain-query`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes support for broadcast-mixed audio description tracks.
+
 Release v1.50.8 (2024-01-31)
 ===
 

@@ -4087,8 +4087,8 @@
         "CreateAuthChallenge":{"shape":"ArnType"},
         "VerifyAuthChallengeResponse":{"shape":"ArnType"},
         "PreTokenGeneration":{"shape":"ArnType"},
-        "PreTokenGenerationConfig":{"shape":"PreTokenGenerationVersionConfigType"},
         "UserMigration":{"shape":"ArnType"},
+        "PreTokenGenerationConfig":{"shape":"PreTokenGenerationVersionConfigType"},
         "CustomSMSSender":{"shape":"CustomSMSLambdaVersionConfigType"},
         "CustomEmailSender":{"shape":"CustomEmailLambdaVersionConfigType"},
         "KMSKeyID":{"shape":"ArnType"}

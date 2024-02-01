@@ -930,7 +930,12 @@ const opDescribeEndpoints = "DescribeEndpoints"
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/DescribeEndpoints
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 func (c *MediaConvert) DescribeEndpointsRequest(input *DescribeEndpointsInput) (req *request.Request, output *DescribeEndpointsOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DescribeEndpoints, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDescribeEndpoints,
 		HTTPMethod: "POST",
@@ -979,6 +984,8 @@ func (c *MediaConvert) DescribeEndpointsRequest(input *DescribeEndpointsInput) (
 //   - ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/DescribeEndpoints
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 func (c *MediaConvert) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
 	req, out := c.DescribeEndpointsRequest(input)
 	return out, req.Send()
@@ -993,6 +1000,8 @@ func (c *MediaConvert) DescribeEndpoints(input *DescribeEndpointsInput) (*Descri
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 func (c *MediaConvert) DescribeEndpointsWithContext(ctx aws.Context, input *DescribeEndpointsInput, opts ...request.Option) (*DescribeEndpointsOutput, error) {
 	req, out := c.DescribeEndpointsRequest(input)
 	req.SetContext(ctx)
@@ -1016,6 +1025,8 @@ func (c *MediaConvert) DescribeEndpointsWithContext(ctx aws.Context, input *Desc
 //	        fmt.Println(page)
 //	        return pageNum <= 3
 //	    })
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 func (c *MediaConvert) DescribeEndpointsPages(input *DescribeEndpointsInput, fn func(*DescribeEndpointsOutput, bool) bool) error {
 	return c.DescribeEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
 }
@@ -1027,6 +1038,8 @@ func (c *MediaConvert) DescribeEndpointsPages(input *DescribeEndpointsInput, fn 
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 func (c *MediaConvert) DescribeEndpointsPagesWithContext(ctx aws.Context, input *DescribeEndpointsInput, fn func(*DescribeEndpointsOutput, bool) bool, opts ...request.Option) error {
 	p := request.Pagination{
 		NewRequest: func() (*request.Request, error) {
@@ -2820,12 +2833,7 @@ type AacSettings struct {
 	// values depend on Bitrate control mode and Profile.
 	Bitrate *int64 `locationName:"bitrate" min:"6000" type:"integer"`
 
-	// Specify the AAC profile. For the widest player compatibility and where higher
-	// bitrates are acceptable: Keep the default profile, LC (AAC-LC) For improved
-	// audio performance at lower bitrates: Choose HEV1 or HEV2. HEV1 (AAC-HE v1)
-	// adds spectral band replication to improve speech audio at low bitrates. HEV2
-	// (AAC-HE v2) adds parametric stereo, which optimizes for encoding stereo audio
-	// at very low bitrates.
+	// AAC Profile.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"AacCodecProfile"`
 
 	// The Coding mode that you specify determines the number of audio channels
@@ -2838,27 +2846,28 @@ type AacSettings struct {
 	// L, R. * 5.1 Surround: Six channels, C, L, R, Ls, Rs, LFE.
 	CodingMode *string `locationName:"codingMode" type:"string" enum:"AacCodingMode"`
 
-	// Specify the AAC rate control mode. For a constant bitrate: Choose CBR. Your
-	// AAC output bitrate will be equal to the value that you choose for Bitrate.
-	// For a variable bitrate: Choose VBR. Your AAC output bitrate will vary according
-	// to your audio content and the value that you choose for Bitrate quality.
+	// Rate Control Mode.
 	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"AacRateControlMode"`
 
 	// Enables LATM/LOAS AAC output. Note that if you use LATM/LOAS AAC in an output,
 	// you must choose "No container" for the output container.
 	RawFormat *string `locationName:"rawFormat" type:"string" enum:"AacRawFormat"`
 
-	// Specify the AAC sample rate in samples per second (Hz). Valid sample rates
-	// depend on the AAC profile and Coding mode that you select. For a list of
-	// supported sample rates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html
+	// Specify the Sample rate in Hz. Valid sample rates depend on the Profile and
+	// Coding mode that you select. The following list shows valid sample rates
+	// for each Profile and Coding mode. * LC Profile, Coding mode 1.0, 2.0, and
+	// Receiver Mix: 8000, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 88200,
+	// 96000. * LC Profile, Coding mode 5.1: 32000, 44100, 48000, 96000. * HEV1
+	// Profile, Coding mode 1.0 and Receiver Mix: 22050, 24000, 32000, 44100, 48000.
+	// * HEV1 Profile, Coding mode 2.0 and 5.1: 32000, 44100, 48000, 96000. * HEV2
+	// Profile, Coding mode 2.0: 22050, 24000, 32000, 44100, 48000.
 	SampleRate *int64 `locationName:"sampleRate" min:"8000" type:"integer"`
 
 	// Use MPEG-2 AAC instead of MPEG-4 AAC audio for raw or MPEG-2 Transport Stream
 	// containers.
 	Specification *string `locationName:"specification" type:"string" enum:"AacSpecification"`
 
-	// Specify the quality of your variable bitrate (VBR) AAC audio. For a list
-	// of approximate VBR bitrates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html#aac_vbr
+	// VBR Quality Level - Only used if rate_control_mode is VBR.
 	VbrQuality *string `locationName:"vbrQuality" type:"string" enum:"AacVbrQuality"`
 }
 
@@ -9534,8 +9543,10 @@ func (s DeleteQueueOutput) GoString() string {
 
 // Send an request with an empty body to the regional API endpoint to get your
 // account API endpoint.
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 type DescribeEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// Optional. Max number of endpoints, up to twenty, that will be returned at
 	// one time.
@@ -9545,7 +9556,7 @@ type DescribeEndpointsInput struct {
 	// return your endpoints if any exist, or to create an endpoint for you and
 	// return it if one doesn't already exist. Specify GET_ONLY to return your endpoints
 	// if any exist, or an empty list if none exist.
-	Mode *string `locationName:"mode" type:"string" enum:"DescribeEndpointsMode"`
+	Mode *string `locationName:"mode" deprecated:"true" type:"string" enum:"DescribeEndpointsMode"`
 
 	// Use this string, provided with the response to a previous request, to request
 	// the next batch of endpoints.
@@ -9589,8 +9600,10 @@ func (s *DescribeEndpointsInput) SetNextToken(v string) *DescribeEndpointsInput 
 }
 
 // Successful describe endpoints requests will return your account API endpoint.
+//
+// Deprecated: DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.
 type DescribeEndpointsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// List of endpoints
 	Endpoints []*Endpoint `locationName:"endpoints" type:"list"`
@@ -23019,6 +23032,22 @@ func (s *Rectangle) SetY(v int64) *Rectangle {
 type RemixSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Optionally specify the channel in your input that contains your audio description
+	// audio signal. MediaConvert mixes your audio signal across all output channels,
+	// while reducing their volume according to your data stream. When you specify
+	// an audio description audio channel, you must also specify an audio description
+	// data channel. For more information about audio description signals, see the
+	// BBC WHP 198 and 051 white papers.
+	AudioDescriptionAudioChannel *int64 `locationName:"audioDescriptionAudioChannel" min:"1" type:"integer"`
+
+	// Optionally specify the channel in your input that contains your audio description
+	// data stream. MediaConvert mixes your audio signal across all output channels,
+	// while reducing their volume according to your data stream. When you specify
+	// an audio description data channel, you must also specify an audio description
+	// audio channel. For more information about audio description signals, see
+	// the BBC WHP 198 and 051 white papers.
+	AudioDescriptionDataChannel *int64 `locationName:"audioDescriptionDataChannel" min:"1" type:"integer"`
+
 	// Channel mapping contains the group of fields that hold the remixing value
 	// for each channel, in dB. Specify remix values to indicate how much of the
 	// content from your input audio channel you want in your output audio channels.
@@ -23069,6 +23098,12 @@ func (s RemixSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RemixSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RemixSettings"}
+	if s.AudioDescriptionAudioChannel != nil && *s.AudioDescriptionAudioChannel < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("AudioDescriptionAudioChannel", 1))
+	}
+	if s.AudioDescriptionDataChannel != nil && *s.AudioDescriptionDataChannel < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("AudioDescriptionDataChannel", 1))
+	}
 	if s.ChannelsIn != nil && *s.ChannelsIn < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ChannelsIn", 1))
 	}
@@ -23080,6 +23115,18 @@ func (s *RemixSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAudioDescriptionAudioChannel sets the AudioDescriptionAudioChannel field's value.
+func (s *RemixSettings) SetAudioDescriptionAudioChannel(v int64) *RemixSettings {
+	s.AudioDescriptionAudioChannel = &v
+	return s
+}
+
+// SetAudioDescriptionDataChannel sets the AudioDescriptionDataChannel field's value.
+func (s *RemixSettings) SetAudioDescriptionDataChannel(v int64) *RemixSettings {
+	s.AudioDescriptionDataChannel = &v
+	return s
 }
 
 // SetChannelMapping sets the ChannelMapping field's value.
@@ -27717,12 +27764,7 @@ func AacAudioDescriptionBroadcasterMix_Values() []string {
 	}
 }
 
-// Specify the AAC profile. For the widest player compatibility and where higher
-// bitrates are acceptable: Keep the default profile, LC (AAC-LC) For improved
-// audio performance at lower bitrates: Choose HEV1 or HEV2. HEV1 (AAC-HE v1)
-// adds spectral band replication to improve speech audio at low bitrates. HEV2
-// (AAC-HE v2) adds parametric stereo, which optimizes for encoding stereo audio
-// at very low bitrates.
+// AAC Profile.
 const (
 	// AacCodecProfileLc is a AacCodecProfile enum value
 	AacCodecProfileLc = "LC"
@@ -27779,10 +27821,7 @@ func AacCodingMode_Values() []string {
 	}
 }
 
-// Specify the AAC rate control mode. For a constant bitrate: Choose CBR. Your
-// AAC output bitrate will be equal to the value that you choose for Bitrate.
-// For a variable bitrate: Choose VBR. Your AAC output bitrate will vary according
-// to your audio content and the value that you choose for Bitrate quality.
+// Rate Control Mode.
 const (
 	// AacRateControlModeCbr is a AacRateControlMode enum value
 	AacRateControlModeCbr = "CBR"
@@ -27835,8 +27874,7 @@ func AacSpecification_Values() []string {
 	}
 }
 
-// Specify the quality of your variable bitrate (VBR) AAC audio. For a list
-// of approximate VBR bitrates, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/aac-support.html#aac_vbr
+// VBR Quality Level - Only used if rate_control_mode is VBR.
 const (
 	// AacVbrQualityLow is a AacVbrQuality enum value
 	AacVbrQualityLow = "LOW"

@@ -273,7 +273,22 @@
     },
     "ConfirmationStatus":{
       "type":"string",
-      "enum":["FINAL"]
+      "enum":[
+        "FINAL",
+        "NONFINAL"
+      ]
+    },
+    "ConfirmationStatusFilter":{
+      "type":"structure",
+      "required":["include"],
+      "members":{
+        "include":{"shape":"ConfirmationStatusIncludeList"}
+      }
+    },
+    "ConfirmationStatusIncludeList":{
+      "type":"list",
+      "member":{"shape":"ConfirmationStatus"},
+      "min":1
     },
     "ContractFilter":{
       "type":"structure",
@@ -503,7 +518,8 @@
         "toBlockchainInstant":{"shape":"BlockchainInstant"},
         "sort":{"shape":"ListTransactionsSort"},
         "nextToken":{"shape":"NextToken"},
-        "maxResults":{"shape":"ListTransactionsInputMaxResultsInteger"}
+        "maxResults":{"shape":"ListTransactionsInputMaxResultsInteger"},
+        "confirmationStatusFilter":{"shape":"ConfirmationStatusFilter"}
       }
     },
     "ListTransactionsInputMaxResultsInteger":{
@@ -594,13 +610,6 @@
     "QueryTransactionHash":{
       "type":"string",
       "pattern":"(0x[A-Fa-f0-9]{64}|[A-Fa-f0-9]{64})"
-    },
-    "QueryTransactionStatus":{
-      "type":"string",
-      "enum":[
-        "FINAL",
-        "FAILED"
-      ]
     },
     "QuotaCode":{"type":"string"},
     "ResourceId":{"type":"string"},
@@ -738,11 +747,6 @@
         "transactionTimestamp":{"shape":"Timestamp"},
         "transactionIndex":{"shape":"Long"},
         "numberOfTransactions":{"shape":"Long"},
-        "status":{
-          "shape":"QueryTransactionStatus",
-          "deprecated":true,
-          "deprecatedMessage":"The status field in the GetTransaction response is deprecated and is replaced with the confirmationStatus and executionStatus fields."
-        },
         "to":{"shape":"ChainAddress"},
         "from":{"shape":"ChainAddress"},
         "contractAddress":{"shape":"ChainAddress"},
@@ -794,7 +798,8 @@
       "members":{
         "transactionHash":{"shape":"QueryTransactionHash"},
         "network":{"shape":"QueryNetwork"},
-        "transactionTimestamp":{"shape":"Timestamp"}
+        "transactionTimestamp":{"shape":"Timestamp"},
+        "confirmationStatus":{"shape":"ConfirmationStatus"}
       }
     },
     "TransactionOutputList":{
