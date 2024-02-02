@@ -5091,7 +5091,8 @@
         "WorkspaceSettings":{"shape":"WorkspaceSettings"},
         "IdentityProviderOAuthSettings":{"shape":"IdentityProviderOAuthSettings"},
         "DirectDeploySettings":{"shape":"DirectDeploySettings"},
-        "KendraSettings":{"shape":"KendraSettings"}
+        "KendraSettings":{"shape":"KendraSettings"},
+        "GenerativeAiSettings":{"shape":"GenerativeAiSettings"}
       }
     },
     "CapacitySize":{
@@ -11826,6 +11827,12 @@
       "pattern":"[0-9]\\.[A-Za-z0-9.]+"
     },
     "GenerateCandidateDefinitionsOnly":{"type":"boolean"},
+    "GenerativeAiSettings":{
+      "type":"structure",
+      "members":{
+        "AmazonBedrockRoleArn":{"shape":"RoleArn"}
+      }
+    },
     "GetDeviceFleetReportRequest":{
       "type":"structure",
       "required":["DeviceFleetName"],
