@@ -1,3 +1,12 @@
+Release v1.50.10 (2024-02-02)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Any number of users can execute up to 50 concurrent restores (any type of restore) in a given account.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Canvas adds GenerativeAiSettings support for CanvasAppSettings.
+
 Release v1.50.9 (2024-02-01)
 ===
 
