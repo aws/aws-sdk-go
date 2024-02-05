@@ -29838,8 +29838,18 @@ type Connection struct {
 	//    client key password (if the user has the Glue encrypt passwords setting
 	//    selected).
 	//
-	//    * KAFKA_SASL_MECHANISM - "SCRAM-SHA-512", "GSSAPI", or "AWS_MSK_IAM".
-	//    These are the supported SASL Mechanisms (https://www.iana.org/assignments/sasl-mechanisms/sasl-mechanisms.xhtml).
+	//    * KAFKA_SASL_MECHANISM - "SCRAM-SHA-512", "GSSAPI", "AWS_MSK_IAM", or
+	//    "PLAIN". These are the supported SASL Mechanisms (https://www.iana.org/assignments/sasl-mechanisms/sasl-mechanisms.xhtml).
+	//
+	//    * KAFKA_SASL_PLAIN_USERNAME - A plaintext username used to authenticate
+	//    with the "PLAIN" mechanism.
+	//
+	//    * KAFKA_SASL_PLAIN_PASSWORD - A plaintext password used to authenticate
+	//    with the "PLAIN" mechanism.
+	//
+	//    * ENCRYPTED_KAFKA_SASL_PLAIN_PASSWORD - The encrypted version of the Kafka
+	//    SASL PLAIN password (if the user has the Glue encrypt passwords setting
+	//    selected).
 	//
 	//    * KAFKA_SASL_SCRAM_USERNAME - A plaintext username used to authenticate
 	//    with the "SCRAM-SHA-512" mechanism.
@@ -41891,6 +41901,10 @@ type EncryptionAtRest struct {
 	// CatalogEncryptionMode is a required field
 	CatalogEncryptionMode *string `type:"string" required:"true" enum:"CatalogEncryptionMode"`
 
+	// The role that Glue assumes to encrypt and decrypt the Data Catalog objects
+	// on the caller's behalf.
+	CatalogEncryptionServiceRole *string `type:"string"`
+
 	// The ID of the KMS key to use for encryption at rest.
 	SseAwsKmsKeyId *string `min:"1" type:"string"`
 }
@@ -41932,6 +41946,12 @@ func (s *EncryptionAtRest) Validate() error {
 // SetCatalogEncryptionMode sets the CatalogEncryptionMode field's value.
 func (s *EncryptionAtRest) SetCatalogEncryptionMode(v string) *EncryptionAtRest {
 	s.CatalogEncryptionMode = &v
+	return s
+}
+
+// SetCatalogEncryptionServiceRole sets the CatalogEncryptionServiceRole field's value.
+func (s *EncryptionAtRest) SetCatalogEncryptionServiceRole(v string) *EncryptionAtRest {
+	s.CatalogEncryptionServiceRole = &v
 	return s
 }
 
@@ -78126,6 +78146,9 @@ const (
 
 	// CatalogEncryptionModeSseKms is a CatalogEncryptionMode enum value
 	CatalogEncryptionModeSseKms = "SSE-KMS"
+
+	// CatalogEncryptionModeSseKmsWithServiceRole is a CatalogEncryptionMode enum value
+	CatalogEncryptionModeSseKmsWithServiceRole = "SSE-KMS-WITH-SERVICE-ROLE"
 )
 
 // CatalogEncryptionMode_Values returns all elements of the CatalogEncryptionMode enum
@@ -78133,6 +78156,7 @@ func CatalogEncryptionMode_Values() []string {
 	return []string{
 		CatalogEncryptionModeDisabled,
 		CatalogEncryptionModeSseKms,
+		CatalogEncryptionModeSseKmsWithServiceRole,
 	}
 }
 
@@ -78394,6 +78418,15 @@ const (
 	// ConnectionPropertyKeyKafkaSaslMechanism is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaSaslMechanism = "KAFKA_SASL_MECHANISM"
 
+	// ConnectionPropertyKeyKafkaSaslPlainUsername is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslPlainUsername = "KAFKA_SASL_PLAIN_USERNAME"
+
+	// ConnectionPropertyKeyKafkaSaslPlainPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaSaslPlainPassword = "KAFKA_SASL_PLAIN_PASSWORD"
+
+	// ConnectionPropertyKeyEncryptedKafkaSaslPlainPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyEncryptedKafkaSaslPlainPassword = "ENCRYPTED_KAFKA_SASL_PLAIN_PASSWORD"
+
 	// ConnectionPropertyKeyKafkaSaslScramUsername is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaSaslScramUsername = "KAFKA_SASL_SCRAM_USERNAME"
 
@@ -78453,6 +78486,9 @@ func ConnectionPropertyKey_Values() []string {
 		ConnectionPropertyKeyConnectorType,
 		ConnectionPropertyKeyConnectorClassName,
 		ConnectionPropertyKeyKafkaSaslMechanism,
+		ConnectionPropertyKeyKafkaSaslPlainUsername,
+		ConnectionPropertyKeyKafkaSaslPlainPassword,
+		ConnectionPropertyKeyEncryptedKafkaSaslPlainPassword,
 		ConnectionPropertyKeyKafkaSaslScramUsername,
 		ConnectionPropertyKeyKafkaSaslScramPassword,
 		ConnectionPropertyKeyKafkaSaslScramSecretsArn,

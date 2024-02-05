@@ -1,3 +1,12 @@
+Release v1.50.11 (2024-02-05)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Introduce Catalog Encryption Role within Glue Data Catalog Settings. Introduce SASL/PLAIN as an authentication method for Glue Kafka connections
+* `service/workspaces`: Updates service documentation
+  * Added definitions of various WorkSpace states
+
 Release v1.50.10 (2024-02-02)
 ===
 
