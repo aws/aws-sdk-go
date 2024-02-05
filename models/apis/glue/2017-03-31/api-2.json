@@ -4234,7 +4234,8 @@
       "type":"string",
       "enum":[
         "DISABLED",
-        "SSE-KMS"
+        "SSE-KMS",
+        "SSE-KMS-WITH-SERVICE-ROLE"
       ]
     },
     "CatalogEntries":{
@@ -4925,6 +4926,9 @@
         "CONNECTOR_TYPE",
         "CONNECTOR_CLASS_NAME",
         "KAFKA_SASL_MECHANISM",
+        "KAFKA_SASL_PLAIN_USERNAME",
+        "KAFKA_SASL_PLAIN_PASSWORD",
+        "ENCRYPTED_KAFKA_SASL_PLAIN_PASSWORD",
         "KAFKA_SASL_SCRAM_USERNAME",
         "KAFKA_SASL_SCRAM_PASSWORD",
         "KAFKA_SASL_SCRAM_SECRETS_ARN",
@@ -6939,7 +6943,8 @@
       "required":["CatalogEncryptionMode"],
       "members":{
         "CatalogEncryptionMode":{"shape":"CatalogEncryptionMode"},
-        "SseAwsKmsKeyId":{"shape":"NameString"}
+        "SseAwsKmsKeyId":{"shape":"NameString"},
+        "CatalogEncryptionServiceRole":{"shape":"IAMRoleArn"}
       }
     },
     "EncryptionConfiguration":{
@@ -8727,6 +8732,10 @@
     "HudiTargetList":{
       "type":"list",
       "member":{"shape":"HudiTarget"}
+    },
+    "IAMRoleArn":{
+      "type":"string",
+      "pattern":"^arn:aws(-(cn|us-gov|iso(-[bef])?))?:iam::[0-9]{12}:role/.+"
     },
     "IcebergInput":{
       "type":"structure",
