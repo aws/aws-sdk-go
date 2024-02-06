@@ -76,6 +76,10 @@ type ElasticsearchServiceAPI interface {
 	AuthorizeVpcEndpointAccessWithContext(aws.Context, *elasticsearchservice.AuthorizeVpcEndpointAccessInput, ...request.Option) (*elasticsearchservice.AuthorizeVpcEndpointAccessOutput, error)
 	AuthorizeVpcEndpointAccessRequest(*elasticsearchservice.AuthorizeVpcEndpointAccessInput) (*request.Request, *elasticsearchservice.AuthorizeVpcEndpointAccessOutput)
 
+	CancelDomainConfigChange(*elasticsearchservice.CancelDomainConfigChangeInput) (*elasticsearchservice.CancelDomainConfigChangeOutput, error)
+	CancelDomainConfigChangeWithContext(aws.Context, *elasticsearchservice.CancelDomainConfigChangeInput, ...request.Option) (*elasticsearchservice.CancelDomainConfigChangeOutput, error)
+	CancelDomainConfigChangeRequest(*elasticsearchservice.CancelDomainConfigChangeInput) (*request.Request, *elasticsearchservice.CancelDomainConfigChangeOutput)
+
 	CancelElasticsearchServiceSoftwareUpdate(*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput) (*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput, error)
 	CancelElasticsearchServiceSoftwareUpdateWithContext(aws.Context, *elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput, ...request.Option) (*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput, error)
 	CancelElasticsearchServiceSoftwareUpdateRequest(*elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateInput) (*request.Request, *elasticsearchservice.CancelElasticsearchServiceSoftwareUpdateOutput)

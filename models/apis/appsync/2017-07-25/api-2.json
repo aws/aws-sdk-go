@@ -516,6 +516,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetGraphqlApiEnvironmentVariables":{
+      "name":"GetGraphqlApiEnvironmentVariables",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/apis/{apiId}/environmentVariables"
+      },
+      "input":{"shape":"GetGraphqlApiEnvironmentVariablesRequest"},
+      "output":{"shape":"GetGraphqlApiEnvironmentVariablesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetIntrospectionSchema":{
       "name":"GetIntrospectionSchema",
       "http":{
@@ -756,6 +772,23 @@
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "PutGraphqlApiEnvironmentVariables":{
+      "name":"PutGraphqlApiEnvironmentVariables",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v1/apis/{apiId}/environmentVariables"
+      },
+      "input":{"shape":"PutGraphqlApiEnvironmentVariablesRequest"},
+      "output":{"shape":"PutGraphqlApiEnvironmentVariablesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "StartDataSourceIntrospection":{
@@ -1955,6 +1988,24 @@
         "awsRegion":{"shape":"String"}
       }
     },
+    "EnvironmentVariableKey":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"^[A-Za-z]+\\w*$"
+    },
+    "EnvironmentVariableMap":{
+      "type":"map",
+      "key":{"shape":"EnvironmentVariableKey"},
+      "value":{"shape":"EnvironmentVariableValue"},
+      "max":50,
+      "min":0
+    },
+    "EnvironmentVariableValue":{
+      "type":"string",
+      "max":512,
+      "min":0
+    },
     "ErrorDetail":{
       "type":"structure",
       "members":{
@@ -2206,6 +2257,23 @@
       "type":"structure",
       "members":{
         "functionConfiguration":{"shape":"FunctionConfiguration"}
+      }
+    },
+    "GetGraphqlApiEnvironmentVariablesRequest":{
+      "type":"structure",
+      "required":["apiId"],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        }
+      }
+    },
+    "GetGraphqlApiEnvironmentVariablesResponse":{
+      "type":"structure",
+      "members":{
+        "environmentVariables":{"shape":"EnvironmentVariableMap"}
       }
     },
     "GetGraphqlApiRequest":{
@@ -2898,6 +2966,27 @@
       "type":"structure",
       "members":{
         "functions":{"shape":"FunctionsIds"}
+      }
+    },
+    "PutGraphqlApiEnvironmentVariablesRequest":{
+      "type":"structure",
+      "required":[
+        "apiId",
+        "environmentVariables"
+      ],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        },
+        "environmentVariables":{"shape":"EnvironmentVariableMap"}
+      }
+    },
+    "PutGraphqlApiEnvironmentVariablesResponse":{
+      "type":"structure",
+      "members":{
+        "environmentVariables":{"shape":"EnvironmentVariableMap"}
       }
     },
     "QueryDepthLimit":{

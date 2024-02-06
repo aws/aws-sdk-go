@@ -2354,7 +2354,8 @@
         "kmsKeyId":{"shape":"KmsKeyId"},
         "dataProtectionStatus":{"shape":"DataProtectionStatus"},
         "inheritedProperties":{"shape":"InheritedProperties"},
-        "logGroupClass":{"shape":"LogGroupClass"}
+        "logGroupClass":{"shape":"LogGroupClass"},
+        "logGroupArn":{"shape":"Arn"}
       }
     },
     "LogGroupArn":{

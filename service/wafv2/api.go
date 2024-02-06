@@ -976,6 +976,119 @@ func (c *WAFV2) CreateWebACLWithContext(ctx aws.Context, input *CreateWebACLInpu
 	return out, req.Send()
 }
 
+const opDeleteAPIKey = "DeleteAPIKey"
+
+// DeleteAPIKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAPIKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAPIKey for more information on using the DeleteAPIKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAPIKeyRequest method.
+//	req, resp := client.DeleteAPIKeyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteAPIKey
+func (c *WAFV2) DeleteAPIKeyRequest(input *DeleteAPIKeyInput) (req *request.Request, output *DeleteAPIKeyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAPIKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAPIKeyInput{}
+	}
+
+	output = &DeleteAPIKeyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAPIKey API operation for AWS WAFV2.
+//
+// Deletes the specified API key.
+//
+// After you delete a key, it can take up to 24 hours for WAF to disallow use
+// of the key in all regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation DeleteAPIKey for usage and error information.
+//
+// Returned Error Types:
+//
+//   - WAFInternalErrorException
+//     Your request is valid, but WAF couldn’t perform the operation because of
+//     a system problem. Retry your request.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
+//
+//   - WAFOptimisticLockException
+//     WAF couldn’t save your changes because you tried to update or delete a
+//     resource that has changed since you last retrieved it. Get the resource again,
+//     make any changes you need to make to the new copy, and retry your operation.
+//
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
+//   - WAFInvalidOperationException
+//     The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteAPIKey
+func (c *WAFV2) DeleteAPIKey(input *DeleteAPIKeyInput) (*DeleteAPIKeyOutput, error) {
+	req, out := c.DeleteAPIKeyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAPIKeyWithContext is the same as DeleteAPIKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAPIKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) DeleteAPIKeyWithContext(ctx aws.Context, input *DeleteAPIKeyInput, opts ...request.Option) (*DeleteAPIKeyOutput, error) {
+	req, out := c.DeleteAPIKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFirewallManagerRuleGroups = "DeleteFirewallManagerRuleGroups"
 
 // DeleteFirewallManagerRuleGroupsRequest generates a "aws/request.Request" representing the
@@ -8339,7 +8452,7 @@ type CreateAPIKeyInput struct {
 	//
 	// Example JSON: "TokenDomains": ["abc.com", "store.abc.com"]
 	//
-	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// Public suffixes aren't allowed. For example, you can't use gov.au or co.uk
 	// as token domains.
 	//
 	// TokenDomains is a required field
@@ -9133,7 +9246,7 @@ type CreateWebACLInput struct {
 	//
 	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
 	//
-	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// Public suffixes aren't allowed. For example, you can't use gov.au or co.uk
 	// as token domains.
 	TokenDomains []*string `type:"list"`
 
@@ -9736,6 +9849,103 @@ func (s *DefaultAction) SetAllow(v *AllowAction) *DefaultAction {
 func (s *DefaultAction) SetBlock(v *BlockAction) *DefaultAction {
 	s.Block = v
 	return s
+}
+
+type DeleteAPIKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The encrypted API key that you want to delete.
+	//
+	// APIKey is a required field
+	APIKey *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, an Amazon
+	// Cognito user pool, an App Runner service, or an Amazon Web Services Verified
+	// Access instance.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAPIKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAPIKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAPIKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAPIKeyInput"}
+	if s.APIKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("APIKey"))
+	}
+	if s.APIKey != nil && len(*s.APIKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("APIKey", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAPIKey sets the APIKey field's value.
+func (s *DeleteAPIKeyInput) SetAPIKey(v string) *DeleteAPIKeyInput {
+	s.APIKey = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *DeleteAPIKeyInput) SetScope(v string) *DeleteAPIKeyInput {
+	s.Scope = &v
+	return s
+}
+
+type DeleteAPIKeyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAPIKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAPIKeyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFirewallManagerRuleGroupsInput struct {
@@ -24117,7 +24327,7 @@ type UpdateWebACLInput struct {
 	//
 	// Example JSON: "TokenDomains": { "mywebsite.com", "myotherwebsite.com" }
 	//
-	// Public suffixes aren't allowed. For example, you can't use usa.gov or co.uk
+	// Public suffixes aren't allowed. For example, you can't use gov.au or co.uk
 	// as token domains.
 	TokenDomains []*string `type:"list"`
 

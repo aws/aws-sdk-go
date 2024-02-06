@@ -80,6 +80,10 @@ type OpenSearchServiceAPI interface {
 	AuthorizeVpcEndpointAccessWithContext(aws.Context, *opensearchservice.AuthorizeVpcEndpointAccessInput, ...request.Option) (*opensearchservice.AuthorizeVpcEndpointAccessOutput, error)
 	AuthorizeVpcEndpointAccessRequest(*opensearchservice.AuthorizeVpcEndpointAccessInput) (*request.Request, *opensearchservice.AuthorizeVpcEndpointAccessOutput)
 
+	CancelDomainConfigChange(*opensearchservice.CancelDomainConfigChangeInput) (*opensearchservice.CancelDomainConfigChangeOutput, error)
+	CancelDomainConfigChangeWithContext(aws.Context, *opensearchservice.CancelDomainConfigChangeInput, ...request.Option) (*opensearchservice.CancelDomainConfigChangeOutput, error)
+	CancelDomainConfigChangeRequest(*opensearchservice.CancelDomainConfigChangeInput) (*request.Request, *opensearchservice.CancelDomainConfigChangeOutput)
+
 	CancelServiceSoftwareUpdate(*opensearchservice.CancelServiceSoftwareUpdateInput) (*opensearchservice.CancelServiceSoftwareUpdateOutput, error)
 	CancelServiceSoftwareUpdateWithContext(aws.Context, *opensearchservice.CancelServiceSoftwareUpdateInput, ...request.Option) (*opensearchservice.CancelServiceSoftwareUpdateOutput, error)
 	CancelServiceSoftwareUpdateRequest(*opensearchservice.CancelServiceSoftwareUpdateInput) (*request.Request, *opensearchservice.CancelServiceSoftwareUpdateOutput)

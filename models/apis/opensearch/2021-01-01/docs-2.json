@@ -7,6 +7,7 @@
     "AddTags": "<p>Attaches tags to an existing Amazon OpenSearch Service domain. Tags are a set of case-sensitive key-value pairs. A domain can have up to 10 tags. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-awsresourcetagging.html\">Tagging Amazon OpenSearch Service domains</a>.</p>",
     "AssociatePackage": "<p>Associates a package with an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/custom-packages.html\">Custom packages for Amazon OpenSearch Service</a>.</p>",
     "AuthorizeVpcEndpointAccess": "<p>Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
+    "CancelDomainConfigChange": "<p>Cancels a pending configuration change on an Amazon OpenSearch Service domain.</p>",
     "CancelServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon OpenSearch Service domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the domain's <code>UpdateStatus</code> is <code>PENDING_UPDATE</code>. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/service-software.html\">Service software updates in Amazon OpenSearch Service</a>.</p>",
     "CreateDomain": "<p>Creates an Amazon OpenSearch Service domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html\">Creating and managing Amazon OpenSearch Service domains</a>.</p>",
     "CreateOutboundConnection": "<p>Creates a new cross-cluster search connection from a source Amazon OpenSearch Service domain to a destination domain. For more information, see <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cross-cluster-search.html\">Cross-cluster search for Amazon OpenSearch Service</a>.</p>",
@@ -404,6 +405,16 @@
         "UpgradeDomainResponse$PerformCheckOnly": "<p>When true, indicates that an upgrade eligibility check was performed.</p>"
       }
     },
+    "CancelDomainConfigChangeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelDomainConfigChangeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CancelServiceSoftwareUpdateRequest": {
       "base": "<p>Container for the request parameters to cancel a service software update.</p>",
       "refs": {
@@ -412,6 +423,18 @@
     "CancelServiceSoftwareUpdateResponse": {
       "base": "<p>Container for the response to a <code>CancelServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>",
       "refs": {
+      }
+    },
+    "CancelledChangeProperty": {
+      "base": "<p>A property change that was cancelled for an Amazon OpenSearch Service domain.</p>",
+      "refs": {
+        "CancelledChangePropertyList$member": null
+      }
+    },
+    "CancelledChangePropertyList": {
+      "base": null,
+      "refs": {
+        "CancelDomainConfigChangeResponse$CancelledChangeProperties": "<p>The domain change properties that were cancelled.</p>"
       }
     },
     "ChangeProgressDetails": {
@@ -517,6 +540,13 @@
       "base": "<p>A map of OpenSearch or Elasticsearch versions and the versions you can upgrade them to.</p>",
       "refs": {
         "CompatibleVersionsList$member": null
+      }
+    },
+    "ConfigChangeStatus": {
+      "base": null,
+      "refs": {
+        "ChangeProgressDetails$ConfigChangeStatus": "<p>The current status of the configuration change.</p>",
+        "ChangeProgressStatusDetails$ConfigChangeStatus": "<p>The current status of the configuration change.</p>"
       }
     },
     "ConflictException": {
@@ -1038,6 +1068,7 @@
         "AddDataSourceRequest$DomainName": "<p>The name of the domain to add the data source to.</p>",
         "AssociatePackageRequest$DomainName": "<p>Name of the domain to associate the package with.</p>",
         "AuthorizeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to provide access to.</p>",
+        "CancelDomainConfigChangeRequest$DomainName": null,
         "CancelServiceSoftwareUpdateRequest$DomainName": "<p>Name of the OpenSearch Service domain that you want to cancel the service software update on.</p>",
         "CreateDomainRequest$DomainName": "<p>Name of the OpenSearch Service domain to create. Domain names are unique across the domains owned by an account within an Amazon Web Services Region.</p>",
         "DeleteDataSourceRequest$DomainName": "<p>The name of the domain.</p>",
@@ -1123,6 +1154,12 @@
         "DomainPackageDetails$DomainPackageStatus": "<p>State of the association.</p>"
       }
     },
+    "DomainProcessingStatusType": {
+      "base": null,
+      "refs": {
+        "DomainStatus$DomainProcessingStatus": "<p>The status of any changes that are currently in progress for the domain.</p>"
+      }
+    },
     "DomainState": {
       "base": null,
       "refs": {
@@ -1159,6 +1196,8 @@
     "DryRun": {
       "base": null,
       "refs": {
+        "CancelDomainConfigChangeRequest$DryRun": "<p>When set to <code>True</code>, returns the list of change IDs and properties that will be cancelled without actually cancelling the change.</p>",
+        "CancelDomainConfigChangeResponse$DryRun": "<p>Whether or not the request was a dry run. If <code>True</code>, the changes were not actually cancelled. </p>",
         "UpdateDomainConfigRequest$DryRun": "<p>This flag, when set to True, specifies whether the <code>UpdateDomain</code> request should return the results of a dry run analysis without actually applying the change. A dry run determines what type of deployment the update will cause.</p>"
       }
     },
@@ -1210,7 +1249,7 @@
       }
     },
     "EncryptionAtRestOptions": {
-      "base": "<p>Specifies whether the domain should encrypt data at rest, and if so, the Key Management Service (KMS) key to use. Can be used only to create a new domain, not update an existing one.</p>",
+      "base": "<p>Specifies whether the domain should encrypt data at rest, and if so, the Key Management Service (KMS) key to use. Can only be used when creating a new domain or enabling encryption at rest for the first time on an existing domain. You can't modify this parameter after it's already been specified.</p>",
       "refs": {
         "CreateDomainRequest$EncryptionAtRestOptions": "<p>Key-value pairs to enable encryption at rest.</p>",
         "DomainStatus$EncryptionAtRestOptions": "<p>Encryption at rest settings for the domain.</p>",
@@ -1305,10 +1344,17 @@
         "DescribeReservedInstanceOfferingsRequest$ReservedInstanceOfferingId": "<p>The Reserved Instance identifier filter value. Use this parameter to show only the available instance types that match the specified reservation identifier.</p>",
         "DescribeReservedInstancesRequest$ReservedInstanceId": "<p>The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved OpenSearch instance ID.</p>",
         "DryRunProgressStatus$DryRunId": "<p>The unique identifier of the dry run.</p>",
+        "GUIDList$member": null,
         "PurchaseReservedInstanceOfferingRequest$ReservedInstanceOfferingId": "<p>The ID of the Reserved Instance offering to purchase.</p>",
         "PurchaseReservedInstanceOfferingResponse$ReservedInstanceId": "<p>The ID of the Reserved Instance offering that was purchased.</p>",
         "ReservedInstance$ReservedInstanceId": "<p>The unique identifier for the reservation.</p>",
         "ReservedInstanceOffering$ReservedInstanceOfferingId": "<p>The unique identifier of the Reserved Instance offering.</p>"
+      }
+    },
+    "GUIDList": {
+      "base": null,
+      "refs": {
+        "CancelDomainConfigChangeResponse$CancelledChangeIds": "<p>The unique identifiers of the changes that were cancelled.</p>"
       }
     },
     "GetCompatibleVersionsRequest": {
@@ -1417,6 +1463,13 @@
       "base": null,
       "refs": {
         "DescribeInboundConnectionsResponse$Connections": "<p>List of inbound connections.</p>"
+      }
+    },
+    "InitiatedBy": {
+      "base": null,
+      "refs": {
+        "ChangeProgressDetails$InitiatedBy": "<p>The IAM principal who initiated the configuration change.</p>",
+        "ChangeProgressStatusDetails$InitiatedBy": "<p>The IAM principal who initiated the configuration change.</p>"
       }
     },
     "InstanceCount": {
@@ -1800,6 +1853,19 @@
         "InstanceCountLimits$MinimumInstanceCount": "<p>The maximum allowed number of instances.</p>"
       }
     },
+    "ModifyingProperties": {
+      "base": "<p>Information about the domain properties that are currently being modified.</p>",
+      "refs": {
+        "ModifyingPropertiesList$member": null
+      }
+    },
+    "ModifyingPropertiesList": {
+      "base": null,
+      "refs": {
+        "DomainConfig$ModifyingProperties": "<p>Information about the domain properties that are currently being modified.</p>",
+        "DomainStatus$ModifyingProperties": "<p>Information about the domain properties that are currently being modified.</p>"
+      }
+    },
     "NextToken": {
       "base": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
       "refs": {
@@ -2143,6 +2209,12 @@
       "base": null,
       "refs": {
         "AuthorizedPrincipal$PrincipalType": "<p>The type of principal.</p>"
+      }
+    },
+    "PropertyValueType": {
+      "base": null,
+      "refs": {
+        "ModifyingProperties$ValueType": "<p>The type of value that is currently being modified. Properties can have two types:</p> <ul> <li> <p> <code>PLAIN_TEXT</code>: Contain direct values such as \"1\", \"True\", or \"c5.large.search\".</p> </li> <li> <p> <code>STRINGIFIED_JSON</code>: Contain content in JSON format, such as {\"Enabled\":\"True\"}\".</p> </li> </ul>"
       }
     },
     "PurchaseReservedInstanceOfferingRequest": {
@@ -2528,6 +2600,9 @@
         "AutoTuneMaintenanceSchedule$CronExpressionForRecurrence": "<p>A cron expression for a recurring maintenance schedule during which Auto-Tune can deploy changes.</p>",
         "AutoTuneOptionsOutput$ErrorMessage": "<p>Any errors that occurred while enabling or disabling Auto-Tune.</p>",
         "AutoTuneStatus$ErrorMessage": "<p>Any errors that occurred while enabling or disabling Auto-Tune.</p>",
+        "CancelledChangeProperty$PropertyName": "<p>The name of the property whose change was cancelled.</p>",
+        "CancelledChangeProperty$CancelledValue": "<p>The pending value of the property that was cancelled. This would have been the eventual value of the property if the chance had not been cancelled.</p>",
+        "CancelledChangeProperty$ActiveValue": "<p>The current value of the property, after the change was cancelled.</p>",
         "DeleteDataSourceResponse$Message": "<p>A message associated with deletion of the data source.</p>",
         "DescribePackagesResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "DescribeReservedInstancesResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
@@ -2539,6 +2614,9 @@
         "GetUpgradeHistoryResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListDomainsForPackageResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
         "ListPackagesForDomainResponse$NextToken": "<p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>",
+        "ModifyingProperties$Name": "<p>The name of the property that is currently being modified.</p>",
+        "ModifyingProperties$ActiveValue": "<p>The current value of the domain property that is being modified.</p>",
+        "ModifyingProperties$PendingValue": "<p>The value that the property that is currently being modified will eventually have.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
         "ReservedInstance$ReservedInstanceOfferingId": "<p>The unique identifier of the Reserved Instance offering.</p>",
         "ReservedInstance$CurrencyCode": "<p>The currency code for the offering.</p>",
@@ -2679,7 +2757,10 @@
       "refs": {
         "AutoTuneStatus$CreationDate": "<p>Date and time when Auto-Tune was enabled for the domain.</p>",
         "AutoTuneStatus$UpdateDate": "<p>Date and time when the Auto-Tune options were last updated for the domain.</p>",
+        "ChangeProgressDetails$StartTime": "<p>The time that the configuration change was initiated, in Universal Coordinated Time (UTC).</p>",
+        "ChangeProgressDetails$LastUpdatedTime": "<p>The last time that the configuration change was updated.</p>",
         "ChangeProgressStatusDetails$StartTime": "<p>The time at which the configuration change is made on the domain.</p>",
+        "ChangeProgressStatusDetails$LastUpdatedTime": "<p>The last time that the status of the configuration change was updated.</p>",
         "DomainMaintenanceDetails$CreatedAt": "<p>The time at which the action was created.</p>",
         "DomainMaintenanceDetails$UpdatedAt": "<p>The time at which the action was updated.</p>",
         "GetDomainMaintenanceStatusResponse$CreatedAt": "<p>The time at which the action was created.</p>",
