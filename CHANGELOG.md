@@ -1,3 +1,17 @@
+Release v1.50.12 (2024-02-06)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * This release is a documentation only update to address customer issues.
+* `service/es`: Updates service API and documentation
+  * This release adds clear visibility to the customers on the changes that they make on the domain.
+* `service/logs`: Updates service API and documentation
+  * This release adds a new field, logGroupArn, to the response of the logs:DescribeLogGroups action.
+* `service/opensearch`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.50.11 (2024-02-05)
 ===
 

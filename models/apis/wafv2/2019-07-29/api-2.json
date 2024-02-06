@@ -149,6 +149,22 @@
         {"shape":"WAFExpiredManagedRuleGroupVersionException"}
       ]
     },
+    "DeleteAPIKey":{
+      "name":"DeleteAPIKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAPIKeyRequest"},
+      "output":{"shape":"DeleteAPIKeyResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
     "DeleteFirewallManagerRuleGroups":{
       "name":"DeleteFirewallManagerRuleGroups",
       "http":{
@@ -1627,6 +1643,22 @@
       "members":{
         "Block":{"shape":"BlockAction"},
         "Allow":{"shape":"AllowAction"}
+      }
+    },
+    "DeleteAPIKeyRequest":{
+      "type":"structure",
+      "required":[
+        "Scope",
+        "APIKey"
+      ],
+      "members":{
+        "Scope":{"shape":"Scope"},
+        "APIKey":{"shape":"APIKey"}
+      }
+    },
+    "DeleteAPIKeyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteFirewallManagerRuleGroupsRequest":{

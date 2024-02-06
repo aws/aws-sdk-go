@@ -3014,6 +3014,100 @@ func (c *AppSync) GetGraphqlApiWithContext(ctx aws.Context, input *GetGraphqlApi
 	return out, req.Send()
 }
 
+const opGetGraphqlApiEnvironmentVariables = "GetGraphqlApiEnvironmentVariables"
+
+// GetGraphqlApiEnvironmentVariablesRequest generates a "aws/request.Request" representing the
+// client's request for the GetGraphqlApiEnvironmentVariables operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGraphqlApiEnvironmentVariables for more information on using the GetGraphqlApiEnvironmentVariables
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetGraphqlApiEnvironmentVariablesRequest method.
+//	req, resp := client.GetGraphqlApiEnvironmentVariablesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetGraphqlApiEnvironmentVariables
+func (c *AppSync) GetGraphqlApiEnvironmentVariablesRequest(input *GetGraphqlApiEnvironmentVariablesInput) (req *request.Request, output *GetGraphqlApiEnvironmentVariablesOutput) {
+	op := &request.Operation{
+		Name:       opGetGraphqlApiEnvironmentVariables,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apis/{apiId}/environmentVariables",
+	}
+
+	if input == nil {
+		input = &GetGraphqlApiEnvironmentVariablesInput{}
+	}
+
+	output = &GetGraphqlApiEnvironmentVariablesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGraphqlApiEnvironmentVariables API operation for AWS AppSync.
+//
+// Retrieves the list of environmental variable key-value pairs associated with
+// an API by its ID value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation GetGraphqlApiEnvironmentVariables for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - AccessDeniedException
+//     You don't have access to perform this operation on this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetGraphqlApiEnvironmentVariables
+func (c *AppSync) GetGraphqlApiEnvironmentVariables(input *GetGraphqlApiEnvironmentVariablesInput) (*GetGraphqlApiEnvironmentVariablesOutput, error) {
+	req, out := c.GetGraphqlApiEnvironmentVariablesRequest(input)
+	return out, req.Send()
+}
+
+// GetGraphqlApiEnvironmentVariablesWithContext is the same as GetGraphqlApiEnvironmentVariables with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGraphqlApiEnvironmentVariables for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) GetGraphqlApiEnvironmentVariablesWithContext(ctx aws.Context, input *GetGraphqlApiEnvironmentVariablesInput, opts ...request.Option) (*GetGraphqlApiEnvironmentVariablesOutput, error) {
+	req, out := c.GetGraphqlApiEnvironmentVariablesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIntrospectionSchema = "GetIntrospectionSchema"
 
 // GetIntrospectionSchemaRequest generates a "aws/request.Request" representing the
@@ -4460,6 +4554,138 @@ func (c *AppSync) ListTypesByAssociation(input *ListTypesByAssociationInput) (*L
 // for more information on using Contexts.
 func (c *AppSync) ListTypesByAssociationWithContext(ctx aws.Context, input *ListTypesByAssociationInput, opts ...request.Option) (*ListTypesByAssociationOutput, error) {
 	req, out := c.ListTypesByAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutGraphqlApiEnvironmentVariables = "PutGraphqlApiEnvironmentVariables"
+
+// PutGraphqlApiEnvironmentVariablesRequest generates a "aws/request.Request" representing the
+// client's request for the PutGraphqlApiEnvironmentVariables operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutGraphqlApiEnvironmentVariables for more information on using the PutGraphqlApiEnvironmentVariables
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutGraphqlApiEnvironmentVariablesRequest method.
+//	req, resp := client.PutGraphqlApiEnvironmentVariablesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/PutGraphqlApiEnvironmentVariables
+func (c *AppSync) PutGraphqlApiEnvironmentVariablesRequest(input *PutGraphqlApiEnvironmentVariablesInput) (req *request.Request, output *PutGraphqlApiEnvironmentVariablesOutput) {
+	op := &request.Operation{
+		Name:       opPutGraphqlApiEnvironmentVariables,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/apis/{apiId}/environmentVariables",
+	}
+
+	if input == nil {
+		input = &PutGraphqlApiEnvironmentVariablesInput{}
+	}
+
+	output = &PutGraphqlApiEnvironmentVariablesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutGraphqlApiEnvironmentVariables API operation for AWS AppSync.
+//
+// Creates a list of environmental variables in an API by its ID value.
+//
+// When creating an environmental variable, it must follow the constraints below:
+//
+//   - Both JavaScript and VTL templates support environmental variables.
+//
+//   - Environmental variables are not evaluated before function invocation.
+//
+//   - Environmental variables only support string values.
+//
+//   - Any defined value in an environmental variable is considered a string
+//     literal and not expanded.
+//
+//   - Variable evaluations should ideally be performed in the function code.
+//
+// When creating an environmental variable key-value pair, it must follow the
+// additional constraints below:
+//
+//   - Keys must begin with a letter.
+//
+//   - Keys must be at least two characters long.
+//
+//   - Keys can only contain letters, numbers, and the underscore character
+//     (_).
+//
+//   - Values can be up to 512 characters long.
+//
+//   - You can configure up to 50 key-value pairs in a GraphQL API.
+//
+// You can create a list of environmental variables by adding it to the environmentVariables
+// payload as a list in the format {"key1":"value1","key2":"value2", …}. Note
+// that each call of the PutGraphqlApiEnvironmentVariables action will result
+// in the overwriting of the existing environmental variable list of that API.
+// This means the existing environmental variables will be lost. To avoid this,
+// you must include all existing and new environmental variables in the list
+// each time you call this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS AppSync's
+// API operation PutGraphqlApiEnvironmentVariables for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
+//   - ConcurrentModificationException
+//     Another modification is in progress at this time and it must complete before
+//     you can make your change.
+//
+//   - NotFoundException
+//     The resource specified in the request was not found. Check the resource,
+//     and then try again.
+//
+//   - UnauthorizedException
+//     You aren't authorized to perform this operation.
+//
+//   - InternalFailureException
+//     An internal AppSync error occurred. Try your request again.
+//
+//   - AccessDeniedException
+//     You don't have access to perform this operation on this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/PutGraphqlApiEnvironmentVariables
+func (c *AppSync) PutGraphqlApiEnvironmentVariables(input *PutGraphqlApiEnvironmentVariablesInput) (*PutGraphqlApiEnvironmentVariablesOutput, error) {
+	req, out := c.PutGraphqlApiEnvironmentVariablesRequest(input)
+	return out, req.Send()
+}
+
+// PutGraphqlApiEnvironmentVariablesWithContext is the same as PutGraphqlApiEnvironmentVariables with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutGraphqlApiEnvironmentVariables for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppSync) PutGraphqlApiEnvironmentVariablesWithContext(ctx aws.Context, input *PutGraphqlApiEnvironmentVariablesInput, opts ...request.Option) (*PutGraphqlApiEnvironmentVariablesOutput, error) {
+	req, out := c.PutGraphqlApiEnvironmentVariablesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11646,6 +11872,87 @@ func (s *GetFunctionOutput) SetFunctionConfiguration(v *FunctionConfiguration) *
 	return s
 }
 
+type GetGraphqlApiEnvironmentVariablesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the API from which the environmental variable list will be retrieved.
+	//
+	// ApiId is a required field
+	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGraphqlApiEnvironmentVariablesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGraphqlApiEnvironmentVariablesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGraphqlApiEnvironmentVariablesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGraphqlApiEnvironmentVariablesInput"}
+	if s.ApiId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiId"))
+	}
+	if s.ApiId != nil && len(*s.ApiId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *GetGraphqlApiEnvironmentVariablesInput) SetApiId(v string) *GetGraphqlApiEnvironmentVariablesInput {
+	s.ApiId = &v
+	return s
+}
+
+type GetGraphqlApiEnvironmentVariablesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The payload containing each environmental variable in the "key" : "value"
+	// format.
+	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGraphqlApiEnvironmentVariablesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGraphqlApiEnvironmentVariablesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnvironmentVariables sets the EnvironmentVariables field's value.
+func (s *GetGraphqlApiEnvironmentVariablesOutput) SetEnvironmentVariables(v map[string]*string) *GetGraphqlApiEnvironmentVariablesOutput {
+	s.EnvironmentVariables = v
+	return s
+}
+
 type GetGraphqlApiInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -14487,6 +14794,123 @@ func (s PipelineConfig) GoString() string {
 // SetFunctions sets the Functions field's value.
 func (s *PipelineConfig) SetFunctions(v []*string) *PipelineConfig {
 	s.Functions = v
+	return s
+}
+
+type PutGraphqlApiEnvironmentVariablesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the API to which the environmental variable list will be written.
+	//
+	// ApiId is a required field
+	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
+
+	// The list of environmental variables to add to the API.
+	//
+	// When creating an environmental variable key-value pair, it must follow the
+	// additional constraints below:
+	//
+	//    * Keys must begin with a letter.
+	//
+	//    * Keys must be at least two characters long.
+	//
+	//    * Keys can only contain letters, numbers, and the underscore character
+	//    (_).
+	//
+	//    * Values can be up to 512 characters long.
+	//
+	//    * You can configure up to 50 key-value pairs in a GraphQL API.
+	//
+	// You can create a list of environmental variables by adding it to the environmentVariables
+	// payload as a list in the format {"key1":"value1","key2":"value2", …}. Note
+	// that each call of the PutGraphqlApiEnvironmentVariables action will result
+	// in the overwriting of the existing environmental variable list of that API.
+	// This means the existing environmental variables will be lost. To avoid this,
+	// you must include all existing and new environmental variables in the list
+	// each time you call this action.
+	//
+	// EnvironmentVariables is a required field
+	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGraphqlApiEnvironmentVariablesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGraphqlApiEnvironmentVariablesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutGraphqlApiEnvironmentVariablesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutGraphqlApiEnvironmentVariablesInput"}
+	if s.ApiId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiId"))
+	}
+	if s.ApiId != nil && len(*s.ApiId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
+	}
+	if s.EnvironmentVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentVariables"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *PutGraphqlApiEnvironmentVariablesInput) SetApiId(v string) *PutGraphqlApiEnvironmentVariablesInput {
+	s.ApiId = &v
+	return s
+}
+
+// SetEnvironmentVariables sets the EnvironmentVariables field's value.
+func (s *PutGraphqlApiEnvironmentVariablesInput) SetEnvironmentVariables(v map[string]*string) *PutGraphqlApiEnvironmentVariablesInput {
+	s.EnvironmentVariables = v
+	return s
+}
+
+type PutGraphqlApiEnvironmentVariablesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The payload containing each environmental variable in the "key" : "value"
+	// format.
+	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGraphqlApiEnvironmentVariablesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutGraphqlApiEnvironmentVariablesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnvironmentVariables sets the EnvironmentVariables field's value.
+func (s *PutGraphqlApiEnvironmentVariablesOutput) SetEnvironmentVariables(v map[string]*string) *PutGraphqlApiEnvironmentVariablesOutput {
+	s.EnvironmentVariables = v
 	return s
 }
 

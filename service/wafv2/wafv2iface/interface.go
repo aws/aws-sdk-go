@@ -88,6 +88,10 @@ type WAFV2API interface {
 	CreateWebACLWithContext(aws.Context, *wafv2.CreateWebACLInput, ...request.Option) (*wafv2.CreateWebACLOutput, error)
 	CreateWebACLRequest(*wafv2.CreateWebACLInput) (*request.Request, *wafv2.CreateWebACLOutput)
 
+	DeleteAPIKey(*wafv2.DeleteAPIKeyInput) (*wafv2.DeleteAPIKeyOutput, error)
+	DeleteAPIKeyWithContext(aws.Context, *wafv2.DeleteAPIKeyInput, ...request.Option) (*wafv2.DeleteAPIKeyOutput, error)
+	DeleteAPIKeyRequest(*wafv2.DeleteAPIKeyInput) (*request.Request, *wafv2.DeleteAPIKeyOutput)
+
 	DeleteFirewallManagerRuleGroups(*wafv2.DeleteFirewallManagerRuleGroupsInput) (*wafv2.DeleteFirewallManagerRuleGroupsOutput, error)
 	DeleteFirewallManagerRuleGroupsWithContext(aws.Context, *wafv2.DeleteFirewallManagerRuleGroupsInput, ...request.Option) (*wafv2.DeleteFirewallManagerRuleGroupsOutput, error)
 	DeleteFirewallManagerRuleGroupsRequest(*wafv2.DeleteFirewallManagerRuleGroupsInput) (*request.Request, *wafv2.DeleteFirewallManagerRuleGroupsOutput)

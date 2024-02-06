@@ -14,7 +14,12 @@
       "operationName": "CreateRegexPatternSet",
       "input": {
         "Name": "fake_name",
-        "Scope": "fake_scope"
+        "Scope": "fake_scope",
+        "RegularExpressionList": [
+          {
+            "RegexString": "fake_regex"
+          }
+        ]
       },
       "errorExpectedFromService": true
     }

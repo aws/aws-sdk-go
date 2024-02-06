@@ -90,6 +90,22 @@
         {"shape":"BaseException"}
       ]
     },
+    "CancelDomainConfigChange":{
+      "name":"CancelDomainConfigChange",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/config/cancel"
+      },
+      "input":{"shape":"CancelDomainConfigChangeRequest"},
+      "output":{"shape":"CancelDomainConfigChangeResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "CancelServiceSoftwareUpdate":{
       "name":"CancelServiceSoftwareUpdate",
       "http":{
@@ -1355,6 +1371,26 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "CancelDomainConfigChangeRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "DryRun":{"shape":"DryRun"}
+      }
+    },
+    "CancelDomainConfigChangeResponse":{
+      "type":"structure",
+      "members":{
+        "CancelledChangeIds":{"shape":"GUIDList"},
+        "CancelledChangeProperties":{"shape":"CancelledChangePropertyList"},
+        "DryRun":{"shape":"DryRun"}
+      }
+    },
     "CancelServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1368,11 +1404,27 @@
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"}
       }
     },
+    "CancelledChangeProperty":{
+      "type":"structure",
+      "members":{
+        "PropertyName":{"shape":"String"},
+        "CancelledValue":{"shape":"String"},
+        "ActiveValue":{"shape":"String"}
+      }
+    },
+    "CancelledChangePropertyList":{
+      "type":"list",
+      "member":{"shape":"CancelledChangeProperty"}
+    },
     "ChangeProgressDetails":{
       "type":"structure",
       "members":{
         "ChangeId":{"shape":"GUID"},
-        "Message":{"shape":"Message"}
+        "Message":{"shape":"Message"},
+        "ConfigChangeStatus":{"shape":"ConfigChangeStatus"},
+        "InitiatedBy":{"shape":"InitiatedBy"},
+        "StartTime":{"shape":"UpdateTimestamp"},
+        "LastUpdatedTime":{"shape":"UpdateTimestamp"}
       }
     },
     "ChangeProgressStage":{
@@ -1407,7 +1459,10 @@
         "PendingProperties":{"shape":"StringList"},
         "CompletedProperties":{"shape":"StringList"},
         "TotalNumberOfStages":{"shape":"TotalNumberOfStages"},
-        "ChangeProgressStages":{"shape":"ChangeProgressStageList"}
+        "ChangeProgressStages":{"shape":"ChangeProgressStageList"},
+        "LastUpdatedTime":{"shape":"UpdateTimestamp"},
+        "ConfigChangeStatus":{"shape":"ConfigChangeStatus"},
+        "InitiatedBy":{"shape":"InitiatedBy"}
       }
     },
     "ClientToken":{
@@ -1490,6 +1545,19 @@
         "SourceVersion":{"shape":"VersionString"},
         "TargetVersions":{"shape":"VersionList"}
       }
+    },
+    "ConfigChangeStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "Initializing",
+        "Validating",
+        "ValidationFailed",
+        "ApplyingChanges",
+        "Completed",
+        "PendingUserInput",
+        "Cancelled"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -2197,7 +2265,8 @@
         "AutoTuneOptions":{"shape":"AutoTuneOptionsStatus"},
         "ChangeProgressDetails":{"shape":"ChangeProgressDetails"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptionsStatus"},
-        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptionsStatus"}
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptionsStatus"},
+        "ModifyingProperties":{"shape":"ModifyingPropertiesList"}
       }
     },
     "DomainEndpointOptions":{
@@ -2330,6 +2399,18 @@
         "DISSOCIATION_FAILED"
       ]
     },
+    "DomainProcessingStatusType":{
+      "type":"string",
+      "enum":[
+        "Creating",
+        "Active",
+        "Modifying",
+        "UpgradingEngineVersion",
+        "UpdatingServiceSoftware",
+        "Isolated",
+        "Deleting"
+      ]
+    },
     "DomainState":{
       "type":"string",
       "enum":[
@@ -2375,7 +2456,9 @@
         "AutoTuneOptions":{"shape":"AutoTuneOptionsOutput"},
         "ChangeProgressDetails":{"shape":"ChangeProgressDetails"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
-        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"}
+        "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
+        "DomainProcessingStatus":{"shape":"DomainProcessingStatusType"},
+        "ModifyingProperties":{"shape":"ModifyingPropertiesList"}
       }
     },
     "DomainStatusList":{
@@ -2520,6 +2603,10 @@
       "max":36,
       "min":36,
       "pattern":"\\p{XDigit}{8}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{4}-\\p{XDigit}{12}"
+    },
+    "GUIDList":{
+      "type":"list",
+      "member":{"shape":"GUID"}
     },
     "GetCompatibleVersionsRequest":{
       "type":"structure",
@@ -2727,6 +2814,13 @@
     "InboundConnections":{
       "type":"list",
       "member":{"shape":"InboundConnection"}
+    },
+    "InitiatedBy":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER",
+        "SERVICE"
+      ]
     },
     "InstanceCount":{
       "type":"integer",
@@ -3225,6 +3319,19 @@
       "min":0
     },
     "MinimumInstanceCount":{"type":"integer"},
+    "ModifyingProperties":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "ActiveValue":{"shape":"String"},
+        "PendingValue":{"shape":"String"},
+        "ValueType":{"shape":"PropertyValueType"}
+      }
+    },
+    "ModifyingPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ModifyingProperties"}
+    },
     "NextToken":{"type":"string"},
     "NodeId":{
       "type":"string",
@@ -3605,6 +3712,13 @@
       "enum":[
         "AWS_ACCOUNT",
         "AWS_SERVICE"
+      ]
+    },
+    "PropertyValueType":{
+      "type":"string",
+      "enum":[
+        "PLAIN_TEXT",
+        "STRINGIFIED_JSON"
       ]
     },
     "PurchaseReservedInstanceOfferingRequest":{

@@ -45,7 +45,12 @@ func TestInteg_01_CreateRegexPatternSet(t *testing.T) {
 	sess := integration.SessionWithDefaultRegion("us-east-1")
 	svc := wafv2.New(sess)
 	params := &wafv2.CreateRegexPatternSetInput{
-		Name:  aws.String("fake_name"),
+		Name: aws.String("fake_name"),
+		RegularExpressionList: []*wafv2.Regex{
+			{
+				RegexString: aws.String("fake_regex"),
+			},
+		},
 		Scope: aws.String("fake_scope"),
 	}
 	_, err := svc.CreateRegexPatternSetWithContext(ctx, params, func(r *request.Request) {

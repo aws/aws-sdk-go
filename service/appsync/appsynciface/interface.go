@@ -188,6 +188,10 @@ type AppSyncAPI interface {
 	GetGraphqlApiWithContext(aws.Context, *appsync.GetGraphqlApiInput, ...request.Option) (*appsync.GetGraphqlApiOutput, error)
 	GetGraphqlApiRequest(*appsync.GetGraphqlApiInput) (*request.Request, *appsync.GetGraphqlApiOutput)
 
+	GetGraphqlApiEnvironmentVariables(*appsync.GetGraphqlApiEnvironmentVariablesInput) (*appsync.GetGraphqlApiEnvironmentVariablesOutput, error)
+	GetGraphqlApiEnvironmentVariablesWithContext(aws.Context, *appsync.GetGraphqlApiEnvironmentVariablesInput, ...request.Option) (*appsync.GetGraphqlApiEnvironmentVariablesOutput, error)
+	GetGraphqlApiEnvironmentVariablesRequest(*appsync.GetGraphqlApiEnvironmentVariablesInput) (*request.Request, *appsync.GetGraphqlApiEnvironmentVariablesOutput)
+
 	GetIntrospectionSchema(*appsync.GetIntrospectionSchemaInput) (*appsync.GetIntrospectionSchemaOutput, error)
 	GetIntrospectionSchemaWithContext(aws.Context, *appsync.GetIntrospectionSchemaInput, ...request.Option) (*appsync.GetIntrospectionSchemaOutput, error)
 	GetIntrospectionSchemaRequest(*appsync.GetIntrospectionSchemaInput) (*request.Request, *appsync.GetIntrospectionSchemaOutput)
@@ -251,6 +255,10 @@ type AppSyncAPI interface {
 	ListTypesByAssociation(*appsync.ListTypesByAssociationInput) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationWithContext(aws.Context, *appsync.ListTypesByAssociationInput, ...request.Option) (*appsync.ListTypesByAssociationOutput, error)
 	ListTypesByAssociationRequest(*appsync.ListTypesByAssociationInput) (*request.Request, *appsync.ListTypesByAssociationOutput)
+
+	PutGraphqlApiEnvironmentVariables(*appsync.PutGraphqlApiEnvironmentVariablesInput) (*appsync.PutGraphqlApiEnvironmentVariablesOutput, error)
+	PutGraphqlApiEnvironmentVariablesWithContext(aws.Context, *appsync.PutGraphqlApiEnvironmentVariablesInput, ...request.Option) (*appsync.PutGraphqlApiEnvironmentVariablesOutput, error)
+	PutGraphqlApiEnvironmentVariablesRequest(*appsync.PutGraphqlApiEnvironmentVariablesInput) (*request.Request, *appsync.PutGraphqlApiEnvironmentVariablesOutput)
 
 	StartDataSourceIntrospection(*appsync.StartDataSourceIntrospectionInput) (*appsync.StartDataSourceIntrospectionOutput, error)
 	StartDataSourceIntrospectionWithContext(aws.Context, *appsync.StartDataSourceIntrospectionInput, ...request.Option) (*appsync.StartDataSourceIntrospectionOutput, error)

@@ -669,6 +669,8 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //     '_' (underscore), '-' (hyphen), '/' (forward slash), '.' (period), and
 //     '#' (number sign)
 //
+//   - Log group names can't start with the string aws/
+//
 // When you create a log group, by default the log events in the log group do
 // not expire. To set a retention policy so that events expire and are deleted
 // after a specified time, use PutRetentionPolicy (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html).
@@ -2363,6 +2365,15 @@ func (c *CloudWatchLogs) DescribeDeliveriesRequest(input *DescribeDeliveriesInpu
 // DescribeDeliveries API operation for Amazon CloudWatch Logs.
 //
 // Retrieves a list of the deliveries that have been created in the account.
+//
+// A delivery is a connection between a delivery source (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html)
+// and a delivery destination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html).
+//
+// A delivery source represents an Amazon Web Services resource that sends logs
+// to an logs delivery destination. The destination can be CloudWatch Logs,
+// Amazon S3, or Kinesis Data Firehose. Only some Amazon Web Services services
+// support being configured as a delivery source. These services are listed
+// in Enable logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4239,8 +4250,15 @@ func (c *CloudWatchLogs) GetDeliveryRequest(input *GetDeliveryInput) (req *reque
 
 // GetDelivery API operation for Amazon CloudWatch Logs.
 //
-// Returns complete information about one delivery. A delivery is a connection
-// between a logical delivery source and a logical delivery destination
+// Returns complete information about one logical delivery. A delivery is a
+// connection between a delivery source (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliverySource.html)
+// and a delivery destination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDeliveryDestination.html).
+//
+// A delivery source represents an Amazon Web Services resource that sends logs
+// to an logs delivery destination. The destination can be CloudWatch Logs,
+// Amazon S3, or Kinesis Data Firehose. Only some Amazon Web Services services
+// support being configured as a delivery source. These services are listed
+// in Enable logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // You need to specify the delivery id in this operation. You can find the IDs
 // of the deliveries in your account with the DescribeDeliveries (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html)
@@ -15679,7 +15697,16 @@ func (s *LiveTailSessionUpdate) MarshalEvent(pm protocol.PayloadMarshaler) (msg 
 type LogGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the log group.
+	// The Amazon Resource Name (ARN) of the log group. This version of the ARN
+	// includes a trailing :* after the log group name.
+	//
+	// Use this version to refer to the ARN in IAM policies when specifying permissions
+	// for most API actions. The exception is when specifying permissions for TagResource
+	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html),
+	// UntagResource (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html),
+	// and ListTagsForResource (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html).
+	// The permissions for those three actions require the ARN version that doesn't
+	// include a trailing :*.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The creation time of the log group, expressed as the number of milliseconds
@@ -15697,6 +15724,20 @@ type LogGroup struct {
 	// The Amazon Resource Name (ARN) of the KMS key to use when encrypting log
 	// data.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the log group. This version of the ARN
+	// doesn't include a trailing :* after the log group name.
+	//
+	// Use this version to refer to the ARN in the following situations:
+	//
+	//    * In the logGroupIdentifier input field in many CloudWatch Logs APIs.
+	//
+	//    * In the resourceArn field in tagging APIs
+	//
+	//    * In IAM policies, when specifying permissions for TagResource (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagResource.html),
+	//    UntagResource (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_UntagResource.html),
+	//    and ListTagsForResource (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsForResource.html).
+	LogGroupArn *string `locationName:"logGroupArn" type:"string"`
 
 	// This specifies the log group class for this log group. There are two classes:
 	//
@@ -15771,6 +15812,12 @@ func (s *LogGroup) SetInheritedProperties(v []*string) *LogGroup {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *LogGroup) SetKmsKeyId(v string) *LogGroup {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogGroupArn sets the LogGroupArn field's value.
+func (s *LogGroup) SetLogGroupArn(v string) *LogGroup {
+	s.LogGroupArn = &v
 	return s
 }
 
@@ -17055,8 +17102,8 @@ func (s *PutDeliveryDestinationPolicyOutput) SetPolicy(v *Policy) *PutDeliveryDe
 type PutDeliverySourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines the type of log that the source is sending. For valid values for
-	// this parameter, see the documentation for the source service.
+	// Defines the type of log that the source is sending. For Amazon CodeWhisperer,
+	// the valid value is EVENT_LOGS.
 	//
 	// LogType is a required field
 	LogType *string `locationName:"logType" min:"1" type:"string" required:"true"`

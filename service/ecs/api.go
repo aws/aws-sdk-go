@@ -9136,19 +9136,6 @@ type ContainerDefinition struct {
 	// and the --sysctl option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	// For example, you can configure net.ipv4.tcp_keepalive_time setting to maintain
 	// longer lived connections.
-	//
-	// We don't recommended that you specify network-related systemControls parameters
-	// for multiple containers in a single task that also uses either the awsvpc
-	// or host network modes. For tasks that use the awsvpc network mode, the container
-	// that's started last determines which systemControls parameters take effect.
-	// For tasks that use the host network mode, it changes the container instance's
-	// namespaced kernel parameters as well as the containers.
-	//
-	// This parameter is not supported for Windows containers.
-	//
-	// This parameter is only supported for tasks that are hosted on Fargate if
-	// the tasks are using platform version 1.4.0 or later (Linux). This isn't supported
-	// for Windows containers on Fargate.
 	SystemControls []*SystemControl `locationName:"systemControls" type:"list"`
 
 	// A list of ulimits to set in the container. If a ulimit value is specified
@@ -10645,7 +10632,7 @@ type CreateServiceInput struct {
 	//
 	// Fargate Spot infrastructure is available for use but a capacity provider
 	// strategy must be used. For more information, see Fargate capacity providers
-	// (https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html)
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-capacity-providers.html)
 	// in the Amazon ECS User Guide for Fargate.
 	//
 	// The EC2 launch type runs your tasks on Amazon EC2 instances registered to
@@ -14268,8 +14255,8 @@ func (s *EnvironmentFile) SetValue(v string) *EnvironmentFile {
 // The amount of ephemeral storage to allocate for the task. This parameter
 // is used to expand the total amount of ephemeral storage available, beyond
 // the default amount, for tasks hosted on Fargate. For more information, see
-// Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
-// in the Amazon ECS User Guide for Fargate.
+// Using data volumes in tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html)
+// in the Amazon ECS Developer Guide;.
 //
 // For tasks using the Fargate launch type, the task requires the following
 // platforms:
@@ -17210,6 +17197,9 @@ type LoadBalancer struct {
 
 	// The name of the container (as it appears in a container definition) to associate
 	// with the load balancer.
+	//
+	// You need to specify the container name when configuring the target group
+	// for an Amazon ECS load balancer.
 	ContainerName *string `locationName:"containerName" type:"string"`
 
 	// The port on the container to associate with the load balancer. This port
@@ -19610,8 +19600,8 @@ type RegisterTaskDefinitionInput struct {
 	// The amount of ephemeral storage to allocate for the task. This parameter
 	// is used to expand the total amount of ephemeral storage available, beyond
 	// the default amount, for tasks hosted on Fargate. For more information, see
-	// Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
-	// in the Amazon ECS User Guide for Fargate.
+	// Using data volumes in tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html)
+	// in the Amazon ECS Developer Guide.
 	//
 	// For tasks using the Fargate launch type, the task requires the following
 	// platforms:
@@ -20455,8 +20445,8 @@ type RunTaskInput struct {
 	//
 	// Fargate Spot infrastructure is available for use but a capacity provider
 	// strategy must be used. For more information, see Fargate capacity providers
-	// (https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html)
-	// in the Amazon ECS User Guide for Fargate.
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-capacity-providers.html)
+	// in the Amazon ECS Developer Guide.
 	//
 	// The EC2 launch type runs your tasks on Amazon EC2 instances registered to
 	// your cluster.
@@ -23436,19 +23426,37 @@ func (s *SubmitTaskStateChangeOutput) SetAcknowledgment(v string) *SubmitTaskSta
 // maps to Sysctls in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
 // section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 // and the --sysctl option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
+// For example, you can configure net.ipv4.tcp_keepalive_time setting to maintain
+// longer lived connections.
 //
 // We don't recommend that you specify network-related systemControls parameters
-// for multiple containers in a single task. This task also uses either the
-// awsvpc or host network mode. It does it for the following reasons.
+// for multiple containers in a single task that also uses either the awsvpc
+// or host network mode. Doing this has the following disadvantages:
 //
-//   - For tasks that use the awsvpc network mode, if you set systemControls
-//     for any container, it applies to all containers in the task. If you set
-//     different systemControls for multiple containers in a single task, the
-//     container that's started last determines which systemControls take effect.
+//   - For tasks that use the awsvpc network mode including Fargate, if you
+//     set systemControls for any container, it applies to all containers in
+//     the task. If you set different systemControls for multiple containers
+//     in a single task, the container that's started last determines which systemControls
+//     take effect.
 //
-//   - For tasks that use the host network mode, the systemControls parameter
-//     applies to the container instance's kernel parameter and that of all containers
-//     of any tasks running on that container instance.
+//   - For tasks that use the host network mode, the network namespace systemControls
+//     aren't supported.
+//
+// If you're setting an IPC resource namespace to use for the containers in
+// the task, the following conditions apply to your system controls. For more
+// information, see IPC mode (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ipcmode).
+//
+//   - For tasks that use the host IPC mode, IPC namespace systemControls aren't
+//     supported.
+//
+//   - For tasks that use the task IPC mode, IPC namespace systemControls values
+//     apply to all containers within a task.
+//
+// This parameter is not supported for Windows containers.
+//
+// This parameter is only supported for tasks that are hosted on Fargate if
+// the tasks are using platform version 1.4.0 or later (Linux). This isn't supported
+// for Windows containers on Fargate.
 type SystemControl struct {
 	_ struct{} `type:"structure"`
 
@@ -24022,8 +24030,8 @@ type Task struct {
 	// The stop code indicating why a task was stopped. The stoppedReason might
 	// contain additional details.
 	//
-	// For more information about stop code, see Stopped tasks error codes (https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html)
-	// in the Amazon ECS User Guide.
+	// For more information about stop code, see Stopped tasks error codes (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/stopped-task-error-codes.html)
+	// in the Amazon ECS Developer Guide.
 	StopCode *string `locationName:"stopCode" type:"string" enum:"TaskStopCode"`
 
 	// The Unix timestamp for the time when the task was stopped. More specifically,

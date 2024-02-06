@@ -490,6 +490,98 @@ func (c *OpenSearchService) AuthorizeVpcEndpointAccessWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opCancelDomainConfigChange = "CancelDomainConfigChange"
+
+// CancelDomainConfigChangeRequest generates a "aws/request.Request" representing the
+// client's request for the CancelDomainConfigChange operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelDomainConfigChange for more information on using the CancelDomainConfigChange
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelDomainConfigChangeRequest method.
+//	req, resp := client.CancelDomainConfigChangeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelDomainConfigChange
+func (c *OpenSearchService) CancelDomainConfigChangeRequest(input *CancelDomainConfigChangeInput) (req *request.Request, output *CancelDomainConfigChangeOutput) {
+	op := &request.Operation{
+		Name:       opCancelDomainConfigChange,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-01-01/opensearch/domain/{DomainName}/config/cancel",
+	}
+
+	if input == nil {
+		input = &CancelDomainConfigChangeInput{}
+	}
+
+	output = &CancelDomainConfigChangeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelDomainConfigChange API operation for Amazon OpenSearch Service.
+//
+// Cancels a pending configuration change on an Amazon OpenSearch Service domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon OpenSearch Service's
+// API operation CancelDomainConfigChange for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BaseException
+//     An error occurred while processing the request.
+//
+//   - InternalException
+//     Request processing failed because of an unknown error, exception, or internal
+//     failure.
+//
+//   - ResourceNotFoundException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - ValidationException
+//     An exception for accessing or deleting a resource that doesn't exist.
+//
+//   - DisabledOperationException
+//     An error occured because the client wanted to access an unsupported operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opensearch-2021-01-01/CancelDomainConfigChange
+func (c *OpenSearchService) CancelDomainConfigChange(input *CancelDomainConfigChangeInput) (*CancelDomainConfigChangeOutput, error) {
+	req, out := c.CancelDomainConfigChangeRequest(input)
+	return out, req.Send()
+}
+
+// CancelDomainConfigChangeWithContext is the same as CancelDomainConfigChange with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelDomainConfigChange for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpenSearchService) CancelDomainConfigChangeWithContext(ctx aws.Context, input *CancelDomainConfigChangeInput, opts ...request.Option) (*CancelDomainConfigChangeOutput, error) {
+	req, out := c.CancelDomainConfigChangeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelServiceSoftwareUpdate = "CancelServiceSoftwareUpdate"
 
 // CancelServiceSoftwareUpdateRequest generates a "aws/request.Request" representing the
@@ -8254,6 +8346,116 @@ func (s *BaseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CancelDomainConfigChangeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an OpenSearch Service domain. Domain names are unique across
+	// the domains owned by an account within an Amazon Web Services Region.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// When set to True, returns the list of change IDs and properties that will
+	// be cancelled without actually cancelling the change.
+	DryRun *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDomainConfigChangeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDomainConfigChangeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelDomainConfigChangeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelDomainConfigChangeInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CancelDomainConfigChangeInput) SetDomainName(v string) *CancelDomainConfigChangeInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CancelDomainConfigChangeInput) SetDryRun(v bool) *CancelDomainConfigChangeInput {
+	s.DryRun = &v
+	return s
+}
+
+type CancelDomainConfigChangeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers of the changes that were cancelled.
+	CancelledChangeIds []*string `type:"list"`
+
+	// The domain change properties that were cancelled.
+	CancelledChangeProperties []*CancelledChangeProperty `type:"list"`
+
+	// Whether or not the request was a dry run. If True, the changes were not actually
+	// cancelled.
+	DryRun *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDomainConfigChangeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelDomainConfigChangeOutput) GoString() string {
+	return s.String()
+}
+
+// SetCancelledChangeIds sets the CancelledChangeIds field's value.
+func (s *CancelDomainConfigChangeOutput) SetCancelledChangeIds(v []*string) *CancelDomainConfigChangeOutput {
+	s.CancelledChangeIds = v
+	return s
+}
+
+// SetCancelledChangeProperties sets the CancelledChangeProperties field's value.
+func (s *CancelDomainConfigChangeOutput) SetCancelledChangeProperties(v []*CancelledChangeProperty) *CancelDomainConfigChangeOutput {
+	s.CancelledChangeProperties = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CancelDomainConfigChangeOutput) SetDryRun(v bool) *CancelDomainConfigChangeOutput {
+	s.DryRun = &v
+	return s
+}
+
 // Container for the request parameters to cancel a service software update.
 type CancelServiceSoftwareUpdateInput struct {
 	_ struct{} `type:"structure"`
@@ -8338,6 +8540,57 @@ func (s *CancelServiceSoftwareUpdateOutput) SetServiceSoftwareOptions(v *Service
 	return s
 }
 
+// A property change that was cancelled for an Amazon OpenSearch Service domain.
+type CancelledChangeProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The current value of the property, after the change was cancelled.
+	ActiveValue *string `type:"string"`
+
+	// The pending value of the property that was cancelled. This would have been
+	// the eventual value of the property if the chance had not been cancelled.
+	CancelledValue *string `type:"string"`
+
+	// The name of the property whose change was cancelled.
+	PropertyName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelledChangeProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelledChangeProperty) GoString() string {
+	return s.String()
+}
+
+// SetActiveValue sets the ActiveValue field's value.
+func (s *CancelledChangeProperty) SetActiveValue(v string) *CancelledChangeProperty {
+	s.ActiveValue = &v
+	return s
+}
+
+// SetCancelledValue sets the CancelledValue field's value.
+func (s *CancelledChangeProperty) SetCancelledValue(v string) *CancelledChangeProperty {
+	s.CancelledValue = &v
+	return s
+}
+
+// SetPropertyName sets the PropertyName field's value.
+func (s *CancelledChangeProperty) SetPropertyName(v string) *CancelledChangeProperty {
+	s.PropertyName = &v
+	return s
+}
+
 // Container for information about a configuration change happening on a domain.
 type ChangeProgressDetails struct {
 	_ struct{} `type:"structure"`
@@ -8345,8 +8598,21 @@ type ChangeProgressDetails struct {
 	// The ID of the configuration change.
 	ChangeId *string `min:"36" type:"string"`
 
+	// The current status of the configuration change.
+	ConfigChangeStatus *string `type:"string" enum:"ConfigChangeStatus"`
+
+	// The IAM principal who initiated the configuration change.
+	InitiatedBy *string `type:"string" enum:"InitiatedBy"`
+
+	// The last time that the configuration change was updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
 	// A message corresponding to the status of the configuration change.
 	Message *string `type:"string"`
+
+	// The time that the configuration change was initiated, in Universal Coordinated
+	// Time (UTC).
+	StartTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -8373,9 +8639,33 @@ func (s *ChangeProgressDetails) SetChangeId(v string) *ChangeProgressDetails {
 	return s
 }
 
+// SetConfigChangeStatus sets the ConfigChangeStatus field's value.
+func (s *ChangeProgressDetails) SetConfigChangeStatus(v string) *ChangeProgressDetails {
+	s.ConfigChangeStatus = &v
+	return s
+}
+
+// SetInitiatedBy sets the InitiatedBy field's value.
+func (s *ChangeProgressDetails) SetInitiatedBy(v string) *ChangeProgressDetails {
+	s.InitiatedBy = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ChangeProgressDetails) SetLastUpdatedTime(v time.Time) *ChangeProgressDetails {
+	s.LastUpdatedTime = &v
+	return s
+}
+
 // SetMessage sets the Message field's value.
 func (s *ChangeProgressDetails) SetMessage(v string) *ChangeProgressDetails {
 	s.Message = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ChangeProgressDetails) SetStartTime(v time.Time) *ChangeProgressDetails {
+	s.StartTime = &v
 	return s
 }
 
@@ -8453,6 +8743,15 @@ type ChangeProgressStatusDetails struct {
 	// The list of properties in the domain configuration change that have completed.
 	CompletedProperties []*string `type:"list"`
 
+	// The current status of the configuration change.
+	ConfigChangeStatus *string `type:"string" enum:"ConfigChangeStatus"`
+
+	// The IAM principal who initiated the configuration change.
+	InitiatedBy *string `type:"string" enum:"InitiatedBy"`
+
+	// The last time that the status of the configuration change was updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
 	// The list of properties in the domain configuration change that are still
 	// pending.
 	PendingProperties []*string `type:"list"`
@@ -8500,6 +8799,24 @@ func (s *ChangeProgressStatusDetails) SetChangeProgressStages(v []*ChangeProgres
 // SetCompletedProperties sets the CompletedProperties field's value.
 func (s *ChangeProgressStatusDetails) SetCompletedProperties(v []*string) *ChangeProgressStatusDetails {
 	s.CompletedProperties = v
+	return s
+}
+
+// SetConfigChangeStatus sets the ConfigChangeStatus field's value.
+func (s *ChangeProgressStatusDetails) SetConfigChangeStatus(v string) *ChangeProgressStatusDetails {
+	s.ConfigChangeStatus = &v
+	return s
+}
+
+// SetInitiatedBy sets the InitiatedBy field's value.
+func (s *ChangeProgressStatusDetails) SetInitiatedBy(v string) *ChangeProgressStatusDetails {
+	s.InitiatedBy = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ChangeProgressStatusDetails) SetLastUpdatedTime(v time.Time) *ChangeProgressStatusDetails {
+	s.LastUpdatedTime = &v
 	return s
 }
 
@@ -12468,6 +12785,9 @@ type DomainConfig struct {
 	// Key-value pairs to configure log publishing.
 	LogPublishingOptions *LogPublishingOptionsStatus `type:"structure"`
 
+	// Information about the domain properties that are currently being modified.
+	ModifyingProperties []*ModifyingProperties `type:"list"`
+
 	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptionsStatus `type:"structure"`
 
@@ -12579,6 +12899,12 @@ func (s *DomainConfig) SetIPAddressType(v *IPAddressTypeStatus) *DomainConfig {
 // SetLogPublishingOptions sets the LogPublishingOptions field's value.
 func (s *DomainConfig) SetLogPublishingOptions(v *LogPublishingOptionsStatus) *DomainConfig {
 	s.LogPublishingOptions = v
+	return s
+}
+
+// SetModifyingProperties sets the ModifyingProperties field's value.
+func (s *DomainConfig) SetModifyingProperties(v []*ModifyingProperties) *DomainConfig {
+	s.ModifyingProperties = v
 	return s
 }
 
@@ -13198,6 +13524,9 @@ type DomainStatus struct {
 	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
+	// The status of any changes that are currently in progress for the domain.
+	DomainProcessingStatus *string `type:"string" enum:"DomainProcessingStatusType"`
+
 	// Container for EBS-based storage settings for the domain.
 	EBSOptions *EBSOptions `type:"structure"`
 
@@ -13227,6 +13556,9 @@ type DomainStatus struct {
 
 	// Log publishing options for the domain.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
+
+	// Information about the domain properties that are currently being modified.
+	ModifyingProperties []*ModifyingProperties `type:"list"`
 
 	// Whether node-to-node encryption is enabled or disabled.
 	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
@@ -13354,6 +13686,12 @@ func (s *DomainStatus) SetDomainName(v string) *DomainStatus {
 	return s
 }
 
+// SetDomainProcessingStatus sets the DomainProcessingStatus field's value.
+func (s *DomainStatus) SetDomainProcessingStatus(v string) *DomainStatus {
+	s.DomainProcessingStatus = &v
+	return s
+}
+
 // SetEBSOptions sets the EBSOptions field's value.
 func (s *DomainStatus) SetEBSOptions(v *EBSOptions) *DomainStatus {
 	s.EBSOptions = v
@@ -13399,6 +13737,12 @@ func (s *DomainStatus) SetIPAddressType(v string) *DomainStatus {
 // SetLogPublishingOptions sets the LogPublishingOptions field's value.
 func (s *DomainStatus) SetLogPublishingOptions(v map[string]*LogPublishingOption) *DomainStatus {
 	s.LogPublishingOptions = v
+	return s
+}
+
+// SetModifyingProperties sets the ModifyingProperties field's value.
+func (s *DomainStatus) SetModifyingProperties(v []*ModifyingProperties) *DomainStatus {
+	s.ModifyingProperties = v
 	return s
 }
 
@@ -13751,8 +14095,9 @@ func (s *EBSOptionsStatus) SetStatus(v *OptionStatus) *EBSOptionsStatus {
 }
 
 // Specifies whether the domain should encrypt data at rest, and if so, the
-// Key Management Service (KMS) key to use. Can be used only to create a new
-// domain, not update an existing one.
+// Key Management Service (KMS) key to use. Can only be used when creating a
+// new domain or enabling encryption at rest for the first time on an existing
+// domain. You can't modify this parameter after it's already been specified.
 type EncryptionAtRestOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -16731,6 +17076,71 @@ func (s *MasterUserOptions) SetMasterUserName(v string) *MasterUserOptions {
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *MasterUserOptions) SetMasterUserPassword(v string) *MasterUserOptions {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// Information about the domain properties that are currently being modified.
+type ModifyingProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The current value of the domain property that is being modified.
+	ActiveValue *string `type:"string"`
+
+	// The name of the property that is currently being modified.
+	Name *string `type:"string"`
+
+	// The value that the property that is currently being modified will eventually
+	// have.
+	PendingValue *string `type:"string"`
+
+	// The type of value that is currently being modified. Properties can have two
+	// types:
+	//
+	//    * PLAIN_TEXT: Contain direct values such as "1", "True", or "c5.large.search".
+	//
+	//    * STRINGIFIED_JSON: Contain content in JSON format, such as {"Enabled":"True"}".
+	ValueType *string `type:"string" enum:"PropertyValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyingProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyingProperties) GoString() string {
+	return s.String()
+}
+
+// SetActiveValue sets the ActiveValue field's value.
+func (s *ModifyingProperties) SetActiveValue(v string) *ModifyingProperties {
+	s.ActiveValue = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ModifyingProperties) SetName(v string) *ModifyingProperties {
+	s.Name = &v
+	return s
+}
+
+// SetPendingValue sets the PendingValue field's value.
+func (s *ModifyingProperties) SetPendingValue(v string) *ModifyingProperties {
+	s.PendingValue = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *ModifyingProperties) SetValueType(v string) *ModifyingProperties {
+	s.ValueType = &v
 	return s
 }
 
@@ -21389,6 +21799,46 @@ func AutoTuneType_Values() []string {
 	}
 }
 
+const (
+	// ConfigChangeStatusPending is a ConfigChangeStatus enum value
+	ConfigChangeStatusPending = "Pending"
+
+	// ConfigChangeStatusInitializing is a ConfigChangeStatus enum value
+	ConfigChangeStatusInitializing = "Initializing"
+
+	// ConfigChangeStatusValidating is a ConfigChangeStatus enum value
+	ConfigChangeStatusValidating = "Validating"
+
+	// ConfigChangeStatusValidationFailed is a ConfigChangeStatus enum value
+	ConfigChangeStatusValidationFailed = "ValidationFailed"
+
+	// ConfigChangeStatusApplyingChanges is a ConfigChangeStatus enum value
+	ConfigChangeStatusApplyingChanges = "ApplyingChanges"
+
+	// ConfigChangeStatusCompleted is a ConfigChangeStatus enum value
+	ConfigChangeStatusCompleted = "Completed"
+
+	// ConfigChangeStatusPendingUserInput is a ConfigChangeStatus enum value
+	ConfigChangeStatusPendingUserInput = "PendingUserInput"
+
+	// ConfigChangeStatusCancelled is a ConfigChangeStatus enum value
+	ConfigChangeStatusCancelled = "Cancelled"
+)
+
+// ConfigChangeStatus_Values returns all elements of the ConfigChangeStatus enum
+func ConfigChangeStatus_Values() []string {
+	return []string{
+		ConfigChangeStatusPending,
+		ConfigChangeStatusInitializing,
+		ConfigChangeStatusValidating,
+		ConfigChangeStatusValidationFailed,
+		ConfigChangeStatusApplyingChanges,
+		ConfigChangeStatusCompleted,
+		ConfigChangeStatusPendingUserInput,
+		ConfigChangeStatusCancelled,
+	}
+}
+
 // The connection mode for the cross-cluster connection.
 //
 //   - DIRECT - Used for cross-cluster search or cross-cluster replication.
@@ -21520,6 +21970,42 @@ func DomainPackageStatus_Values() []string {
 }
 
 const (
+	// DomainProcessingStatusTypeCreating is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeCreating = "Creating"
+
+	// DomainProcessingStatusTypeActive is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeActive = "Active"
+
+	// DomainProcessingStatusTypeModifying is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeModifying = "Modifying"
+
+	// DomainProcessingStatusTypeUpgradingEngineVersion is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeUpgradingEngineVersion = "UpgradingEngineVersion"
+
+	// DomainProcessingStatusTypeUpdatingServiceSoftware is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeUpdatingServiceSoftware = "UpdatingServiceSoftware"
+
+	// DomainProcessingStatusTypeIsolated is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeIsolated = "Isolated"
+
+	// DomainProcessingStatusTypeDeleting is a DomainProcessingStatusType enum value
+	DomainProcessingStatusTypeDeleting = "Deleting"
+)
+
+// DomainProcessingStatusType_Values returns all elements of the DomainProcessingStatusType enum
+func DomainProcessingStatusType_Values() []string {
+	return []string{
+		DomainProcessingStatusTypeCreating,
+		DomainProcessingStatusTypeActive,
+		DomainProcessingStatusTypeModifying,
+		DomainProcessingStatusTypeUpgradingEngineVersion,
+		DomainProcessingStatusTypeUpdatingServiceSoftware,
+		DomainProcessingStatusTypeIsolated,
+		DomainProcessingStatusTypeDeleting,
+	}
+}
+
+const (
 	// DomainStateActive is a DomainState enum value
 	DomainStateActive = "Active"
 
@@ -21624,6 +22110,22 @@ func InboundConnectionStatusCode_Values() []string {
 		InboundConnectionStatusCodeRejected,
 		InboundConnectionStatusCodeDeleting,
 		InboundConnectionStatusCodeDeleted,
+	}
+}
+
+const (
+	// InitiatedByCustomer is a InitiatedBy enum value
+	InitiatedByCustomer = "CUSTOMER"
+
+	// InitiatedByService is a InitiatedBy enum value
+	InitiatedByService = "SERVICE"
+)
+
+// InitiatedBy_Values returns all elements of the InitiatedBy enum
+func InitiatedBy_Values() []string {
+	return []string{
+		InitiatedByCustomer,
+		InitiatedByService,
 	}
 }
 
@@ -22344,6 +22846,22 @@ func PrincipalType_Values() []string {
 	return []string{
 		PrincipalTypeAwsAccount,
 		PrincipalTypeAwsService,
+	}
+}
+
+const (
+	// PropertyValueTypePlainText is a PropertyValueType enum value
+	PropertyValueTypePlainText = "PLAIN_TEXT"
+
+	// PropertyValueTypeStringifiedJson is a PropertyValueType enum value
+	PropertyValueTypeStringifiedJson = "STRINGIFIED_JSON"
+)
+
+// PropertyValueType_Values returns all elements of the PropertyValueType enum
+func PropertyValueType_Values() []string {
+	return []string{
+		PropertyValueTypePlainText,
+		PropertyValueTypeStringifiedJson,
 	}
 }
 

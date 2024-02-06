@@ -6,6 +6,7 @@
     "AddTags": "<p>Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging\" target=\"_blank\"> Tagging Amazon Elasticsearch Service Domains for more information.</a></p>",
     "AssociatePackage": "<p>Associates a package with an Amazon ES domain.</p>",
     "AuthorizeVpcEndpointAccess": "<p>Provides access to an Amazon OpenSearch Service domain through the use of an interface VPC endpoint.</p>",
+    "CancelDomainConfigChange": "<p>Cancels a pending configuration change on an Amazon OpenSearch Service domain.</p>",
     "CancelElasticsearchServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code> is in the <code>PENDING_UPDATE</code> state.</p>",
     "CreateElasticsearchDomain": "<p>Creates a new Elasticsearch domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains\" target=\"_blank\">Creating Elasticsearch Domains</a> in the <i>Amazon Elasticsearch Service Developer Guide</i>.</p>",
     "CreateOutboundCrossClusterSearchConnection": "<p>Creates a new cross-cluster search connection from a source domain to a destination domain.</p>",
@@ -313,6 +314,16 @@
         "UpgradeElasticsearchDomainResponse$PerformCheckOnly": "<p> This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade. </p>"
       }
     },
+    "CancelDomainConfigChangeRequest": {
+      "base": "<p>Container for parameters of the <code>CancelDomainConfigChange</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "CancelDomainConfigChangeResponse": {
+      "base": "<p>Contains the details of the cancelled domain config change.</p>",
+      "refs": {
+      }
+    },
     "CancelElasticsearchServiceSoftwareUpdateRequest": {
       "base": "<p>Container for the parameters to the <code><a>CancelElasticsearchServiceSoftwareUpdate</a></code> operation. Specifies the name of the Elasticsearch domain that you wish to cancel a service software update on.</p>",
       "refs": {
@@ -321,6 +332,18 @@
     "CancelElasticsearchServiceSoftwareUpdateResponse": {
       "base": "<p>The result of a <code>CancelElasticsearchServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>",
       "refs": {
+      }
+    },
+    "CancelledChangeProperty": {
+      "base": "<p>A property change that was cancelled for an Amazon OpenSearch Service domain.</p>",
+      "refs": {
+        "CancelledChangePropertyList$member": null
+      }
+    },
+    "CancelledChangePropertyList": {
+      "base": null,
+      "refs": {
+        "CancelDomainConfigChangeResponse$CancelledChangeProperties": "<p>The domain change properties that were cancelled.</p>"
       }
     },
     "ChangeProgressDetails": {
@@ -411,6 +434,13 @@
       "base": "<p> A map from an <code> <a>ElasticsearchVersion</a> </code> to a list of compatible <code> <a>ElasticsearchVersion</a> </code> s to which the domain can be upgraded. </p>",
       "refs": {
         "CompatibleElasticsearchVersionsList$member": null
+      }
+    },
+    "ConfigChangeStatus": {
+      "base": null,
+      "refs": {
+        "ChangeProgressDetails$ConfigChangeStatus": "<p>The current status of the configuration change.</p>",
+        "ChangeProgressStatusDetails$ConfigChangeStatus": "<p>The current status of the configuration change.</p>"
       }
     },
     "ConflictException": {
@@ -796,6 +826,7 @@
       "refs": {
         "AssociatePackageRequest$DomainName": "<p>Name of the domain that you want to associate the package with.</p>",
         "AuthorizeVpcEndpointAccessRequest$DomainName": "<p>The name of the OpenSearch Service domain to provide access to.</p>",
+        "CancelDomainConfigChangeRequest$DomainName": "<p>Name of the OpenSearch Service domain configuration request to cancel.</p>",
         "CancelElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to stop the latest service software update on.</p>",
         "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "DeleteElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you want to permanently delete.</p>",
@@ -857,6 +888,12 @@
         "DomainPackageDetails$DomainPackageStatus": "<p>State of the association. Values are ASSOCIATING/ASSOCIATION_FAILED/ACTIVE/DISSOCIATING/DISSOCIATION_FAILED.</p>"
       }
     },
+    "DomainProcessingStatusType": {
+      "base": null,
+      "refs": {
+        "ElasticsearchDomainStatus$DomainProcessingStatus": "<p>The status of any changes that are currently in progress for the domain.</p>"
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
@@ -871,6 +908,8 @@
     "DryRun": {
       "base": null,
       "refs": {
+        "CancelDomainConfigChangeRequest$DryRun": "<p>When set to <b>True</b>, returns the list of change IDs and properties that will be cancelled without actually cancelling the change.</p>",
+        "CancelDomainConfigChangeResponse$DryRun": "<p>Whether or not the request was a dry run. If <b>True</b>, the changes were not actually cancelled.</p>",
         "UpdateElasticsearchDomainConfigRequest$DryRun": "<p> This flag, when set to True, specifies whether the <code>UpdateElasticsearchDomain</code> request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update. </p>"
       }
     },
@@ -1069,10 +1108,17 @@
         "DescribeDomainChangeProgressRequest$ChangeId": "<p>The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change. </p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$ReservedElasticsearchInstanceOfferingId": "<p>The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.</p>",
         "DescribeReservedElasticsearchInstancesRequest$ReservedElasticsearchInstanceId": "<p>The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved Elasticsearch instance ID.</p>",
+        "GUIDList$member": null,
         "PurchaseReservedElasticsearchInstanceOfferingRequest$ReservedElasticsearchInstanceOfferingId": "<p>The ID of the reserved Elasticsearch instance offering to purchase.</p>",
         "PurchaseReservedElasticsearchInstanceOfferingResponse$ReservedElasticsearchInstanceId": "<p>Details of the reserved Elasticsearch instance which was purchased.</p>",
         "ReservedElasticsearchInstance$ReservedElasticsearchInstanceId": "<p>The unique identifier for the reservation.</p>",
         "ReservedElasticsearchInstanceOffering$ReservedElasticsearchInstanceOfferingId": "<p>The Elasticsearch reserved instance offering identifier.</p>"
+      }
+    },
+    "GUIDList": {
+      "base": null,
+      "refs": {
+        "CancelDomainConfigChangeResponse$CancelledChangeIds": "<p>The unique identifiers of the changes that were cancelled.</p>"
       }
     },
     "GetCompatibleElasticsearchVersionsRequest": {
@@ -1146,6 +1192,13 @@
       "base": null,
       "refs": {
         "DescribeInboundCrossClusterSearchConnectionsResponse$CrossClusterSearchConnections": "<p>Consists of list of <code><a>InboundCrossClusterSearchConnection</a></code> matching the specified filter criteria.</p>"
+      }
+    },
+    "InitiatedBy": {
+      "base": null,
+      "refs": {
+        "ChangeProgressDetails$InitiatedBy": "<p>The IAM principal who initiated the configuration change.</p>",
+        "ChangeProgressStatusDetails$InitiatedBy": "<p>The IAM principal who initiated the configuration change.</p>"
       }
     },
     "InstanceCount": {
@@ -1432,6 +1485,19 @@
         "InstanceCountLimits$MinimumInstanceCount": null
       }
     },
+    "ModifyingProperties": {
+      "base": "<p>Information about the domain properties that are currently being modified.</p>",
+      "refs": {
+        "ModifyingPropertiesList$member": null
+      }
+    },
+    "ModifyingPropertiesList": {
+      "base": null,
+      "refs": {
+        "ElasticsearchDomainConfig$ModifyingProperties": "<p>Information about the domain properties that are currently being modified.</p>",
+        "ElasticsearchDomainStatus$ModifyingProperties": "<p>Information about the domain properties that are currently being modified.</p>"
+      }
+    },
     "NextToken": {
       "base": "<p> Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results. </p>",
       "refs": {
@@ -1650,6 +1716,12 @@
       "base": "<p>Specifies the type of AWS account permitted to manage VPC endpoints.: <ul> <li>AWS_ACCOUNT: Indicates that the account is owned by an AWS user.</li> <li>AWS_SERVICE: Indicates the the account is owned by an AWS service.</li> </ul> </p>",
       "refs": {
         "AuthorizedPrincipal$PrincipalType": "<p>The type of principal.</p>"
+      }
+    },
+    "PropertyValueType": {
+      "base": null,
+      "refs": {
+        "ModifyingProperties$ValueType": "<p>The type of value that is currently being modified. Properties can have two types:</p> <ul> <li><b>PLAIN_TEXT</b>: Contain direct values such as \"1\", \"True\", or \"c5.large.search\".</li> <li><b>STRINGIFIED_JSON</b>: Contain content in JSON format, such as {\"Enabled\":\"True\"}\".</li> </ul>"
       }
     },
     "PurchaseReservedElasticsearchInstanceOfferingRequest": {
@@ -1937,6 +2009,9 @@
         "AutoTuneMaintenanceSchedule$CronExpressionForRecurrence": "<p>Specifies cron expression for a recurring maintenance schedule. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
         "AutoTuneOptionsOutput$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune.</p>",
         "AutoTuneStatus$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune options.</p>",
+        "CancelledChangeProperty$PropertyName": "<p>The name of the property whose change was cancelled.</p>",
+        "CancelledChangeProperty$CancelledValue": "<p>The pending value of the property that was cancelled. This would have been the eventual value of the property if the chance had not been cancelled.</p>",
+        "CancelledChangeProperty$ActiveValue": "<p>The current value of the property, after the change was cancelled.</p>",
         "DescribePackagesResponse$NextToken": null,
         "DescribeReservedElasticsearchInstancesResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "EndpointsMap$key": null,
@@ -1944,6 +2019,9 @@
         "GetUpgradeHistoryResponse$NextToken": "<p>Pagination token that needs to be supplied to the next call to get the next page of results</p>",
         "ListDomainsForPackageResponse$NextToken": null,
         "ListPackagesForDomainResponse$NextToken": "<p>Pagination token that needs to be supplied to the next call to get the next page of results.</p>",
+        "ModifyingProperties$Name": "<p>The name of the property that is currently being modified.</p>",
+        "ModifyingProperties$ActiveValue": "<p>The current value of the domain property that is being modified.</p>",
+        "ModifyingProperties$PendingValue": "<p>The value that the property that is currently being modified will eventually have.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
         "ReservedElasticsearchInstance$ReservedElasticsearchInstanceOfferingId": "<p>The offering identifier.</p>",
         "ReservedElasticsearchInstance$CurrencyCode": "<p>The currency code for the reserved Elasticsearch instance offering.</p>",
@@ -2051,7 +2129,10 @@
       "refs": {
         "AutoTuneStatus$CreationDate": "<p>Timestamp which tells Auto-Tune options creation date .</p>",
         "AutoTuneStatus$UpdateDate": "<p>Timestamp which tells Auto-Tune options last updated time.</p>",
+        "ChangeProgressDetails$StartTime": "<p>The time that the configuration change was initiated, in Universal Coordinated Time (UTC).</p>",
+        "ChangeProgressDetails$LastUpdatedTime": "<p>The last time that the configuration change was updated.</p>",
         "ChangeProgressStatusDetails$StartTime": "<p>The time at which the configuration change is made on the domain.</p>",
+        "ChangeProgressStatusDetails$LastUpdatedTime": "<p>The last time that the status of the configuration change was updated.</p>",
         "OptionStatus$CreationDate": "<p>Timestamp which tells the creation date for the entity.</p>",
         "OptionStatus$UpdateDate": "<p>Timestamp which tells the last updated time for the entity.</p>",
         "ReservedElasticsearchInstance$StartTime": "<p>The time the reservation started.</p>"
