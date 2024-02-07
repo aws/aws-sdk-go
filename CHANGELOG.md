@@ -1,3 +1,12 @@
+Release v1.50.13 (2024-02-07)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/redshift`: Updates service API, documentation, and paginators
+  * LisRecommendations API to fetch Amazon Redshift Advisor recommendations.
+
 Release v1.50.12 (2024-02-06)
 ===
 

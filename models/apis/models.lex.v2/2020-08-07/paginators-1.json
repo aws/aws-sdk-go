@@ -5,6 +5,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListBotAliasReplicas": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListBotAliases": {
       "input_token": "nextToken",
       "output_token": "nextToken",
@@ -21,6 +26,11 @@
       "limit_key": "maxResults"
     },
     "ListBotResourceGenerations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
+    "ListBotVersionReplicas": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

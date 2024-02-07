@@ -11081,6 +11081,146 @@ func (c *Redshift) GetResourcePolicyWithContext(ctx aws.Context, input *GetResou
 	return out, req.Send()
 }
 
+const opListRecommendations = "ListRecommendations"
+
+// ListRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommendations for more information on using the ListRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListRecommendationsRequest method.
+//	req, resp := client.ListRecommendationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ListRecommendations
+func (c *Redshift) ListRecommendationsRequest(input *ListRecommendationsInput) (req *request.Request, output *ListRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opListRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendationsInput{}
+	}
+
+	output = &ListRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommendations API operation for Amazon Redshift.
+//
+// List the Amazon Redshift Advisor recommendations for one or multiple Amazon
+// Redshift clusters in an Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation ListRecommendations for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeClusterNotFoundFault "ClusterNotFound"
+//     The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   - ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//     The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ListRecommendations
+func (c *Redshift) ListRecommendations(input *ListRecommendationsInput) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendationsWithContext is the same as ListRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) ListRecommendationsWithContext(ctx aws.Context, input *ListRecommendationsInput, opts ...request.Option) (*ListRecommendationsOutput, error) {
+	req, out := c.ListRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendationsPages iterates over the pages of a ListRecommendations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommendations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListRecommendations operation.
+//	pageNum := 0
+//	err := client.ListRecommendationsPages(params,
+//	    func(page *redshift.ListRecommendationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Redshift) ListRecommendationsPages(input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool) error {
+	return c.ListRecommendationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendationsPagesWithContext same as ListRecommendationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) ListRecommendationsPagesWithContext(ctx aws.Context, input *ListRecommendationsInput, fn func(*ListRecommendationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opModifyAquaConfiguration = "ModifyAquaConfiguration"
 
 // ModifyAquaConfigurationRequest generates a "aws/request.Request" representing the
@@ -30209,6 +30349,121 @@ func (s *LakeFormationScopeUnion) SetLakeFormationQuery(v *LakeFormationQuery) *
 	return s
 }
 
+type ListRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the Amazon Redshift cluster for which the list of
+	// Advisor recommendations is returned. If the neither the cluster identifier
+	// and the cluster namespace ARN parameters are specified, then recommendations
+	// for all clusters in the account are returned.
+	ClusterIdentifier *string `type:"string"`
+
+	// A value that indicates the starting point for the next set of response records
+	// in a subsequent request. If a value is returned in a response, you can retrieve
+	// the next set of records by providing this returned marker value in the Marker
+	// parameter and retrying the command. If the Marker field is empty, all response
+	// records have been retrieved for the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+
+	// The Amazon Redshift cluster namespace Amazon Resource Name (ARN) for which
+	// the list of Advisor recommendations is returned. If the neither the cluster
+	// identifier and the cluster namespace ARN parameters are specified, then recommendations
+	// for all clusters in the account are returned.
+	NamespaceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *ListRecommendationsInput) SetClusterIdentifier(v string) *ListRecommendationsInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListRecommendationsInput) SetMarker(v string) *ListRecommendationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *ListRecommendationsInput) SetMaxRecords(v int64) *ListRecommendationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNamespaceArn sets the NamespaceArn field's value.
+func (s *ListRecommendationsInput) SetNamespaceArn(v string) *ListRecommendationsInput {
+	s.NamespaceArn = &v
+	return s
+}
+
+type ListRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates the starting point for the next set of response records
+	// in a subsequent request. If a value is returned in a response, you can retrieve
+	// the next set of records by providing this returned marker value in the Marker
+	// parameter and retrying the command. If the Marker field is empty, all response
+	// records have been retrieved for the request.
+	Marker *string `type:"string"`
+
+	// The Advisor recommendations for action on the Amazon Redshift cluster.
+	Recommendations []*Recommendation `locationNameList:"Recommendation" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListRecommendationsOutput) SetMarker(v string) *ListRecommendationsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetRecommendations sets the Recommendations field's value.
+func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *ListRecommendationsOutput {
+	s.Recommendations = v
+	return s
+}
+
 // Describes the status of logging for a cluster.
 type LoggingStatus struct {
 	_ struct{} `type:"structure"`
@@ -33981,6 +34236,199 @@ func (s *RebootClusterOutput) SetCluster(v *Cluster) *RebootClusterOutput {
 	return s
 }
 
+// An Amazon Redshift Advisor recommended action on the Amazon Redshift cluster.
+type Recommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the cluster for which the recommendation is returned.
+	ClusterIdentifier *string `type:"string"`
+
+	// The date and time (UTC) that the recommendation was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the recommendation.
+	Description *string `type:"string"`
+
+	// A unique identifier of the Advisor recommendation.
+	Id *string `type:"string"`
+
+	// The scale of the impact that the Advisor recommendation has to the performance
+	// and cost of the cluster.
+	ImpactRanking *string `type:"string" enum:"ImpactRankingType"`
+
+	// The Amazon Redshift cluster namespace ARN for which the recommendations is
+	// returned.
+	NamespaceArn *string `type:"string"`
+
+	// The description of what was observed about your cluster.
+	Observation *string `type:"string"`
+
+	// The description of the recommendation.
+	RecommendationText *string `type:"string"`
+
+	// The type of Advisor recommendation.
+	RecommendationType *string `type:"string"`
+
+	// List of Amazon Redshift recommended actions.
+	RecommendedActions []*RecommendedAction `locationNameList:"RecommendedAction" type:"list"`
+
+	// List of helpful links for more information about the Advisor recommendation.
+	ReferenceLinks []*ReferenceLink `locationNameList:"ReferenceLink" type:"list"`
+
+	// The title of the recommendation.
+	Title *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommendation) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *Recommendation) SetClusterIdentifier(v string) *Recommendation {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Recommendation) SetCreatedAt(v time.Time) *Recommendation {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Recommendation) SetDescription(v string) *Recommendation {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Recommendation) SetId(v string) *Recommendation {
+	s.Id = &v
+	return s
+}
+
+// SetImpactRanking sets the ImpactRanking field's value.
+func (s *Recommendation) SetImpactRanking(v string) *Recommendation {
+	s.ImpactRanking = &v
+	return s
+}
+
+// SetNamespaceArn sets the NamespaceArn field's value.
+func (s *Recommendation) SetNamespaceArn(v string) *Recommendation {
+	s.NamespaceArn = &v
+	return s
+}
+
+// SetObservation sets the Observation field's value.
+func (s *Recommendation) SetObservation(v string) *Recommendation {
+	s.Observation = &v
+	return s
+}
+
+// SetRecommendationText sets the RecommendationText field's value.
+func (s *Recommendation) SetRecommendationText(v string) *Recommendation {
+	s.RecommendationText = &v
+	return s
+}
+
+// SetRecommendationType sets the RecommendationType field's value.
+func (s *Recommendation) SetRecommendationType(v string) *Recommendation {
+	s.RecommendationType = &v
+	return s
+}
+
+// SetRecommendedActions sets the RecommendedActions field's value.
+func (s *Recommendation) SetRecommendedActions(v []*RecommendedAction) *Recommendation {
+	s.RecommendedActions = v
+	return s
+}
+
+// SetReferenceLinks sets the ReferenceLinks field's value.
+func (s *Recommendation) SetReferenceLinks(v []*ReferenceLink) *Recommendation {
+	s.ReferenceLinks = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *Recommendation) SetTitle(v string) *Recommendation {
+	s.Title = &v
+	return s
+}
+
+// The recommended action from the Amazon Redshift Advisor recommendation.
+type RecommendedAction struct {
+	_ struct{} `type:"structure"`
+
+	// The command to run.
+	Command *string `type:"string"`
+
+	// The database name to perform the action on. Only applicable if the type of
+	// command is SQL.
+	Database *string `type:"string"`
+
+	// The specific instruction about the command.
+	Text *string `type:"string"`
+
+	// The type of command.
+	Type *string `type:"string" enum:"RecommendedActionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendedAction) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *RecommendedAction) SetCommand(v string) *RecommendedAction {
+	s.Command = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *RecommendedAction) SetDatabase(v string) *RecommendedAction {
+	s.Database = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *RecommendedAction) SetText(v string) *RecommendedAction {
+	s.Text = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RecommendedAction) SetType(v string) *RecommendedAction {
+	s.Type = &v
+	return s
+}
+
 // Describes a recurring charge.
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
@@ -34137,6 +34585,48 @@ func (s *RedshiftIdcApplication) SetRedshiftIdcApplicationName(v string) *Redshi
 // SetServiceIntegrations sets the ServiceIntegrations field's value.
 func (s *RedshiftIdcApplication) SetServiceIntegrations(v []*ServiceIntegrationsUnion) *RedshiftIdcApplication {
 	s.ServiceIntegrations = v
+	return s
+}
+
+// A link to an Amazon Redshift Advisor reference for more information about
+// a recommendation.
+type ReferenceLink struct {
+	_ struct{} `type:"structure"`
+
+	// The URL address to find more information.
+	Link *string `type:"string"`
+
+	// The hyperlink text that describes the link to more information.
+	Text *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceLink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceLink) GoString() string {
+	return s.String()
+}
+
+// SetLink sets the Link field's value.
+func (s *ReferenceLink) SetLink(v string) *ReferenceLink {
+	s.Link = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ReferenceLink) SetText(v string) *ReferenceLink {
+	s.Text = &v
 	return s
 }
 
@@ -38455,6 +38945,26 @@ func DataShareStatusForProducer_Values() []string {
 }
 
 const (
+	// ImpactRankingTypeHigh is a ImpactRankingType enum value
+	ImpactRankingTypeHigh = "HIGH"
+
+	// ImpactRankingTypeMedium is a ImpactRankingType enum value
+	ImpactRankingTypeMedium = "MEDIUM"
+
+	// ImpactRankingTypeLow is a ImpactRankingType enum value
+	ImpactRankingTypeLow = "LOW"
+)
+
+// ImpactRankingType_Values returns all elements of the ImpactRankingType enum
+func ImpactRankingType_Values() []string {
+	return []string{
+		ImpactRankingTypeHigh,
+		ImpactRankingTypeMedium,
+		ImpactRankingTypeLow,
+	}
+}
+
+const (
 	// LogDestinationTypeS3 is a LogDestinationType enum value
 	LogDestinationTypeS3 = "s3"
 
@@ -38583,6 +39093,22 @@ func PartnerIntegrationStatus_Values() []string {
 		PartnerIntegrationStatusInactive,
 		PartnerIntegrationStatusRuntimeFailure,
 		PartnerIntegrationStatusConnectionFailure,
+	}
+}
+
+const (
+	// RecommendedActionTypeSql is a RecommendedActionType enum value
+	RecommendedActionTypeSql = "SQL"
+
+	// RecommendedActionTypeCli is a RecommendedActionType enum value
+	RecommendedActionTypeCli = "CLI"
+)
+
+// RecommendedActionType_Values returns all elements of the RecommendedActionType enum
+func RecommendedActionType_Values() []string {
+	return []string{
+		RecommendedActionTypeSql,
+		RecommendedActionTypeCli,
 	}
 }
 
