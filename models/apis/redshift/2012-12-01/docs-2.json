@@ -101,6 +101,7 @@
     "GetReservedNodeExchangeConfigurationOptions": "<p>Gets the configuration options for the reserved-node exchange. These options include information about the source reserved node and target reserved node offering. Details include the node type, the price, the node count, and the offering type.</p>",
     "GetReservedNodeExchangeOfferings": "<p>Returns an array of DC2 ReservedNodeOfferings that matches the payment type, term, and usage price of the given DC1 reserved node.</p>",
     "GetResourcePolicy": "<p>Get the resource policy for a specified resource.</p>",
+    "ListRecommendations": "<p>List the Amazon Redshift Advisor recommendations for one or multiple Amazon Redshift clusters in an Amazon Web Services account.</p>",
     "ModifyAquaConfiguration": "<p>This operation is retired. Calling this operation does not change AQUA configuration. Amazon Redshift automatically determines whether to use AQUA (Advanced Query Accelerator). </p>",
     "ModifyAuthenticationProfile": "<p>Modifies an authentication profile.</p>",
     "ModifyCluster": "<p>Modifies the settings for a cluster.</p> <p>You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change.</p> <p>You can add another security or parameter group, or change the admin user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -1868,6 +1869,12 @@
         "RedshiftIdcApplication$IdentityNamespace": "<p>The identity namespace for the Amazon Redshift IAM Identity Center application. It determines which managed application verifies the connection token.</p>"
       }
     },
+    "ImpactRankingType": {
+      "base": null,
+      "refs": {
+        "Recommendation$ImpactRanking": "<p>The scale of the impact that the Advisor recommendation has to the performance and cost of the cluster.</p>"
+      }
+    },
     "ImportTablesCompleted": {
       "base": null,
       "refs": {
@@ -1997,6 +2004,7 @@
         "GetClusterCredentialsWithIAMMessage$DurationSeconds": "<p>The number of seconds until the returned temporary password expires.</p> <p>Range: 900-3600. Default: 900.</p>",
         "GetReservedNodeExchangeConfigurationOptionsInputMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>Marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "GetReservedNodeExchangeOfferingsInputMessage$MaxRecords": "<p>An integer setting the maximum number of ReservedNodeOfferings to retrieve.</p>",
+        "ListRecommendationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceDuration": "<p>An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.</p>",
         "ModifyClusterMessage$NumberOfNodes": "<p>The new number of nodes of the cluster. If you specify a new number of nodes, you must also specify the node type parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: Integer greater than <code>0</code>.</p>",
         "ModifyClusterMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>If you decrease the automated snapshot retention period from its current value, existing automated snapshots that fall outside of the new retention period will be immediately deleted.</p> <p>You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.</p> <p>Default: Uses existing setting.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
@@ -2214,6 +2222,16 @@
     },
     "LimitExceededFault": {
       "base": "<p>The encryption key has exceeded its grant limit in Amazon Web Services KMS.</p>",
+      "refs": {
+      }
+    },
+    "ListRecommendationsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecommendationsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -2666,6 +2684,36 @@
       "refs": {
       }
     },
+    "Recommendation": {
+      "base": "<p>An Amazon Redshift Advisor recommended action on the Amazon Redshift cluster.</p>",
+      "refs": {
+        "RecommendationList$member": null
+      }
+    },
+    "RecommendationList": {
+      "base": null,
+      "refs": {
+        "ListRecommendationsResult$Recommendations": "<p>The Advisor recommendations for action on the Amazon Redshift cluster.</p>"
+      }
+    },
+    "RecommendedAction": {
+      "base": "<p>The recommended action from the Amazon Redshift Advisor recommendation.</p>",
+      "refs": {
+        "RecommendedActionList$member": null
+      }
+    },
+    "RecommendedActionList": {
+      "base": null,
+      "refs": {
+        "Recommendation$RecommendedActions": "<p>List of Amazon Redshift recommended actions.</p>"
+      }
+    },
+    "RecommendedActionType": {
+      "base": null,
+      "refs": {
+        "RecommendedAction$Type": "<p>The type of command.</p>"
+      }
+    },
     "RecurringCharge": {
       "base": "<p>Describes a recurring charge.</p>",
       "refs": {
@@ -2713,6 +2761,18 @@
     "RedshiftIdcApplicationQuotaExceededFault": {
       "base": "<p>The maximum number of Redshift IAM Identity Center applications was exceeded.</p>",
       "refs": {
+      }
+    },
+    "ReferenceLink": {
+      "base": "<p>A link to an Amazon Redshift Advisor reference for more information about a recommendation.</p>",
+      "refs": {
+        "ReferenceLinkList$member": null
+      }
+    },
+    "ReferenceLinkList": {
+      "base": null,
+      "refs": {
+        "Recommendation$ReferenceLinks": "<p>List of helpful links for more information about the Advisor recommendation.</p>"
       }
     },
     "RejectDataShareMessage": {
@@ -3666,6 +3726,10 @@
         "InboundIntegrationsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "IntegrationError$ErrorCode": "<p>The error code of an inbound integration error.</p>",
         "IntegrationError$ErrorMessage": "<p>The error message of an inbound integration error.</p>",
+        "ListRecommendationsMessage$ClusterIdentifier": "<p>The unique identifier of the Amazon Redshift cluster for which the list of Advisor recommendations is returned. If the neither the cluster identifier and the cluster namespace ARN parameters are specified, then recommendations for all clusters in the account are returned.</p>",
+        "ListRecommendationsMessage$NamespaceArn": "<p>The Amazon Redshift cluster namespace Amazon Resource Name (ARN) for which the list of Advisor recommendations is returned. If the neither the cluster identifier and the cluster namespace ARN parameters are specified, then recommendations for all clusters in the account are returned.</p>",
+        "ListRecommendationsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request. </p>",
+        "ListRecommendationsResult$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the Marker parameter and retrying the command. If the Marker field is empty, all response records have been retrieved for the request. </p>",
         "LogTypeList$member": null,
         "LoggingStatus$BucketName": "<p>The name of the S3 bucket where the log files are stored.</p>",
         "LoggingStatus$S3KeyPrefix": "<p>The prefix applied to the log file names.</p>",
@@ -3749,12 +3813,25 @@
         "PutResourcePolicyMessage$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource of which its resource policy is updated.</p>",
         "PutResourcePolicyMessage$Policy": "<p>The content of the resource policy being updated.</p>",
         "RebootClusterMessage$ClusterIdentifier": "<p>The cluster identifier.</p>",
+        "Recommendation$Id": "<p>A unique identifier of the Advisor recommendation.</p>",
+        "Recommendation$ClusterIdentifier": "<p>The unique identifier of the cluster for which the recommendation is returned.</p>",
+        "Recommendation$NamespaceArn": "<p>The Amazon Redshift cluster namespace ARN for which the recommendations is returned.</p>",
+        "Recommendation$RecommendationType": "<p>The type of Advisor recommendation.</p>",
+        "Recommendation$Title": "<p>The title of the recommendation.</p>",
+        "Recommendation$Description": "<p>The description of the recommendation.</p>",
+        "Recommendation$Observation": "<p>The description of what was observed about your cluster.</p>",
+        "Recommendation$RecommendationText": "<p>The description of the recommendation.</p>",
+        "RecommendedAction$Text": "<p>The specific instruction about the command.</p>",
+        "RecommendedAction$Database": "<p>The database name to perform the action on. Only applicable if the type of command is SQL.</p>",
+        "RecommendedAction$Command": "<p>The command to run.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency at which the recurring charge amount is applied.</p>",
         "RedshiftIdcApplication$IdcInstanceArn": "<p>The ARN for the IAM Identity Center instance that Redshift integrates with.</p>",
         "RedshiftIdcApplication$RedshiftIdcApplicationArn": "<p>The ARN for the Redshift application that integrates with IAM Identity Center.</p>",
         "RedshiftIdcApplication$IamRoleArn": "<p>The ARN for the Amazon Redshift IAM Identity Center application. It has the required permissions to be assumed and invoke the IDC Identity Center API.</p>",
         "RedshiftIdcApplication$IdcManagedApplicationArn": "<p>The ARN for the Amazon Redshift IAM Identity Center application.</p>",
         "RedshiftIdcApplication$IdcOnboardStatus": "<p>The onboarding status for the Amazon Redshift IAM Identity Center application.</p>",
+        "ReferenceLink$Text": "<p>The hyperlink text that describes the link to more information.</p>",
+        "ReferenceLink$Link": "<p>The URL address to find more information.</p>",
         "RejectDataShareMessage$DataShareArn": "<p>The Amazon Resource Name (ARN) of the datashare to reject.</p>",
         "ReservedNode$ReservedNodeId": "<p>The unique identifier for the reservation.</p>",
         "ReservedNode$ReservedNodeOfferingId": "<p>The identifier for the reserved node offering.</p>",
@@ -4018,6 +4095,7 @@
         "ModifyScheduledActionMessage$EndTime": "<p>A modified end time of the scheduled action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
         "PartnerIntegrationInfo$CreatedAt": "<p>The date (UTC) that the partner integration was created.</p>",
         "PartnerIntegrationInfo$UpdatedAt": "<p>The date (UTC) that the partner integration status was last updated by the partner.</p>",
+        "Recommendation$CreatedAt": "<p>The date and time (UTC) that the recommendation was created.</p>",
         "ReservedNode$StartTime": "<p>The time the reservation started. You purchase a reserved node offering for a duration. This is the start time of that duration.</p>",
         "ReservedNodeExchangeStatus$RequestTime": "<p>A date and time that indicate when the reserved-node exchange was requested.</p>",
         "RevisionTarget$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",

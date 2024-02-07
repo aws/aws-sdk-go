@@ -1246,6 +1246,7 @@
         "Schedule":{"shape":"TaskSchedule"},
         "Tags":{"shape":"InputTagList"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
@@ -1629,14 +1630,15 @@
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "StartTime":{"shape":"Time"},
         "EstimatedFilesToTransfer":{"shape":"long"},
         "EstimatedBytesToTransfer":{"shape":"long"},
         "FilesTransferred":{"shape":"long"},
         "BytesWritten":{"shape":"long"},
         "BytesTransferred":{"shape":"long"},
-        "Result":{"shape":"TaskExecutionResultDetail"},
         "BytesCompressed":{"shape":"long"},
+        "Result":{"shape":"TaskExecutionResultDetail"},
         "TaskReportConfig":{"shape":"TaskReportConfig"},
         "FilesDeleted":{"shape":"long"},
         "FilesSkipped":{"shape":"long"},
@@ -1671,6 +1673,7 @@
         "ErrorDetail":{"shape":"string"},
         "CreationTime":{"shape":"Time"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },
@@ -2255,6 +2258,22 @@
         "TRANSFER"
       ]
     },
+    "ManifestAction":{
+      "type":"string",
+      "enum":["TRANSFER"]
+    },
+    "ManifestConfig":{
+      "type":"structure",
+      "members":{
+        "Action":{"shape":"ManifestAction"},
+        "Format":{"shape":"ManifestFormat"},
+        "Source":{"shape":"SourceManifestConfig"}
+      }
+    },
+    "ManifestFormat":{
+      "type":"string",
+      "enum":["CSV"]
+    },
     "MaxP95Performance":{
       "type":"structure",
       "members":{
@@ -2737,6 +2756,26 @@
         "BucketAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
+    "S3ManifestConfig":{
+      "type":"structure",
+      "required":[
+        "ManifestObjectPath",
+        "BucketAccessRoleArn",
+        "S3BucketArn"
+      ],
+      "members":{
+        "ManifestObjectPath":{"shape":"S3Subdirectory"},
+        "BucketAccessRoleArn":{"shape":"IamRoleArn"},
+        "S3BucketArn":{"shape":"S3BucketArn"},
+        "ManifestObjectVersionId":{"shape":"S3ObjectVersionId"}
+      }
+    },
+    "S3ObjectVersionId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^.+$"
+    },
     "S3StorageClass":{
       "type":"string",
       "enum":[
@@ -2815,6 +2854,13 @@
         "SMB2_0"
       ]
     },
+    "SourceManifestConfig":{
+      "type":"structure",
+      "required":["S3"],
+      "members":{
+        "S3":{"shape":"S3ManifestConfig"}
+      }
+    },
     "SourceNetworkInterfaceArns":{
       "type":"list",
       "member":{"shape":"NetworkInterfaceArn"}
@@ -2850,8 +2896,9 @@
         "OverrideOptions":{"shape":"Options"},
         "Includes":{"shape":"FilterList"},
         "Excludes":{"shape":"FilterList"},
-        "Tags":{"shape":"InputTagList"},
-        "TaskReportConfig":{"shape":"TaskReportConfig"}
+        "ManifestConfig":{"shape":"ManifestConfig"},
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "Tags":{"shape":"InputTagList"}
       }
     },
     "StartTaskExecutionResponse":{
@@ -3275,6 +3322,7 @@
         "Name":{"shape":"TagValue"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
         "Includes":{"shape":"FilterList"},
+        "ManifestConfig":{"shape":"ManifestConfig"},
         "TaskReportConfig":{"shape":"TaskReportConfig"}
       }
     },

@@ -9,6 +9,7 @@
     "CreateBot": "<p>Creates an Amazon Lex conversational bot. </p>",
     "CreateBotAlias": "<p>Creates an alias for the specified version of a bot. Use an alias to enable you to change the version of a bot without updating applications that use the bot.</p> <p>For example, you can create an alias called \"PROD\" that your applications use to call the Amazon Lex bot. </p>",
     "CreateBotLocale": "<p>Creates a locale in the bot. The locale contains the intents and slot types that the bot uses in conversations with users in the specified language and locale. You must add a locale to a bot before you can add intents and slot types to the bot.</p>",
+    "CreateBotReplica": "<p>Action to create a replication of the source bot in the secondary region.</p>",
     "CreateBotVersion": "<p>Creates an immutable version of the bot. When you create the first version of a bot, Amazon Lex sets the version number to 1. Subsequent bot versions increase in an increment of 1. The version number will always represent the total number of versions created of the bot, not the current number of versions. If a bot version is deleted, that bot version number will not be reused.</p>",
     "CreateExport": "<p>Creates a zip archive containing the contents of a bot or a bot locale. The archive contains a directory structure that contains JSON files that define the bot.</p> <p>You can create an archive that contains the complete definition of a bot, or you can specify that the archive contain only the definition of a single bot locale.</p> <p>For more information about exporting bots, and about the structure of the export archive, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html\"> Importing and exporting bots </a> </p>",
     "CreateIntent": "<p>Creates an intent.</p> <p>To define the interaction between the user and your bot, you define one or more intents. For example, for a pizza ordering bot you would create an <code>OrderPizza</code> intent.</p> <p>When you create an intent, you must provide a name. You can optionally provide the following:</p> <ul> <li> <p>Sample utterances. For example, \"I want to order a pizza\" and \"Can I order a pizza.\" You can't provide utterances for built-in intents.</p> </li> <li> <p>Information to be gathered. You specify slots for the information that you bot requests from the user. You can specify standard slot types, such as date and time, or custom slot types for your application.</p> </li> <li> <p>How the intent is fulfilled. You can provide a Lambda function or configure the intent to return the intent information to your client application. If you use a Lambda function, Amazon Lex invokes the function when all of the intent information is available.</p> </li> <li> <p>A confirmation prompt to send to the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent is fulfilled. For example, \"I ordered your pizza.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, \"Do you want a drink with your pizza?\"</p> </li> </ul>",
@@ -21,6 +22,7 @@
     "DeleteBot": "<p>Deletes all versions of a bot, including the <code>Draft</code> version. To delete a specific version, use the <code>DeleteBotVersion</code> operation.</p> <p>When you delete a bot, all of the resources contained in the bot are also deleted. Deleting a bot removes all locales, intents, slot, and slot types defined for the bot.</p> <p>If a bot has an alias, the <code>DeleteBot</code> operation returns a <code>ResourceInUseException</code> exception. If you want to delete the bot and the alias, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DeleteBotAlias": "<p>Deletes the specified bot alias.</p>",
     "DeleteBotLocale": "<p>Removes a locale from a bot.</p> <p>When you delete a locale, all intents, slots, and slot types defined for the locale are also deleted.</p>",
+    "DeleteBotReplica": "<p>The action to delete the replicated bot in the secondary region.</p>",
     "DeleteBotVersion": "<p>Deletes a specific version of a bot. To delete all versions of a bot, use the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DeleteBot.html\">DeleteBot</a> operation.</p>",
     "DeleteCustomVocabulary": "<p>Removes a custom vocabulary from the specified locale in the specified bot.</p>",
     "DeleteExport": "<p>Removes a previous export and the associated files stored in an S3 bucket.</p>",
@@ -36,6 +38,7 @@
     "DescribeBotAlias": "<p>Get information about a specific bot alias.</p>",
     "DescribeBotLocale": "<p>Describes the settings that a bot has for a specific locale. </p>",
     "DescribeBotRecommendation": "<p>Provides metadata information about a bot recommendation. This information will enable you to get a description on the request inputs, to download associated transcripts after processing is complete, and to download intents and slot-types generated by the bot recommendation.</p>",
+    "DescribeBotReplica": "<p>Monitors the bot replication status through the UI console.</p>",
     "DescribeBotResourceGeneration": "<p>Returns information about a request to generate a bot through natural language description, made through the <code>StartBotResource</code> API. Use the <code>generatedBotLocaleUrl</code> to retrieve the Amazon S3 object containing the bot locale configuration. You can then modify and import this configuration.</p>",
     "DescribeBotVersion": "<p>Provides metadata about a version of a bot.</p>",
     "DescribeCustomVocabularyMetadata": "<p>Provides metadata information about a custom vocabulary.</p>",
@@ -52,10 +55,13 @@
     "GenerateBotElement": "<p>Generates sample utterances for an intent.</p>",
     "GetTestExecutionArtifactsUrl": "<p>The pre-signed Amazon S3 URL to download the test execution result artifacts.</p>",
     "ListAggregatedUtterances": "<p>Provides a list of utterances that users have sent to the bot.</p> <p>Utterances are aggregated by the text of the utterance. For example, all instances where customers used the phrase \"I want to order pizza\" are aggregated into the same line in the response.</p> <p>You can see both detected utterances and missed utterances. A detected utterance is where the bot properly recognized the utterance and activated the associated intent. A missed utterance was not recognized by the bot and didn't activate an intent.</p> <p>Utterances can be aggregated for a bot alias or for a bot version, but not both at the same time.</p> <p>Utterances statistics are not generated under the following conditions:</p> <ul> <li> <p>The <code>childDirected</code> field was set to true when the bot was created.</p> </li> <li> <p>You are using slot obfuscation with one or more slots.</p> </li> <li> <p>You opted out of participating in improving Amazon Lex.</p> </li> </ul>",
+    "ListBotAliasReplicas": "<p>The action to list the replicated bots created from the source bot alias.</p>",
     "ListBotAliases": "<p>Gets a list of aliases for the specified bot.</p>",
     "ListBotLocales": "<p>Gets a list of locales for the specified bot.</p>",
     "ListBotRecommendations": "<p>Get a list of bot recommendations that meet the specified criteria.</p>",
+    "ListBotReplicas": "<p>The action to list the replicated bots.</p>",
     "ListBotResourceGenerations": "<p>Lists the generation requests made for a bot locale.</p>",
+    "ListBotVersionReplicas": "<p>Contains information about all the versions replication statuses applicable for Global Resiliency.</p>",
     "ListBotVersions": "<p>Gets information about all of the versions of a bot.</p> <p>The <code>ListBotVersions</code> operation returns a summary of each version of a bot. For example, if a bot has three numbered versions, the <code>ListBotVersions</code> operation returns for summaries, one for each numbered version and one for the <code>DRAFT</code> version.</p> <p>The <code>ListBotVersions</code> operation always returns at least one version, the <code>DRAFT</code> version.</p>",
     "ListBots": "<p>Gets a list of available bots.</p>",
     "ListBuiltInIntents": "<p>Gets a list of built-in intents provided by Amazon Lex that you can use in your bot. </p> <p>To use a built-in intent as a the base for your own intent, include the built-in intent signature in the <code>parentIntentSignature</code> parameter when you call the <code>CreateIntent</code> operation. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_CreateIntent.html\">CreateIntent</a>.</p>",
@@ -994,6 +1000,7 @@
     "BotAliasId": {
       "base": null,
       "refs": {
+        "BotAliasReplicaSummary$botAliasId": "<p>The bot alias ID for all the alias bot replications.</p>",
         "BotAliasSummary$botAliasId": "<p>The unique identifier assigned to the bot alias. You can use this ID to get detailed information about the alias using the <a href=\"https://docs.aws.amazon.com/lexv2/latest/APIReference/API_DescribeBotAlias.html\">DescribeBotAlias</a> operation.</p>",
         "BotAliasTestExecutionTarget$botAliasId": "<p>The bot alias Id of the bot alias used in the test set execution.</p>",
         "BotMember$botMemberAliasId": "<p>The alias ID of a bot that is a member of this network of bots.</p>",
@@ -1032,6 +1039,24 @@
       "base": null,
       "refs": {
         "BotMember$botMemberAliasName": "<p>The alias name of a bot that is a member of this network of bots.</p>"
+      }
+    },
+    "BotAliasReplicaSummary": {
+      "base": "<p>Contains information about all the aliases replication statuses applicable for global resiliency.</p>",
+      "refs": {
+        "BotAliasReplicaSummaryList$member": null
+      }
+    },
+    "BotAliasReplicaSummaryList": {
+      "base": null,
+      "refs": {
+        "ListBotAliasReplicasResponse$botAliasReplicaSummaries": "<p>The summary information of the replicated bot created from the source bot alias.</p>"
+      }
+    },
+    "BotAliasReplicationStatus": {
+      "base": "<p>The status of the operation to replicate the bot alias. Values: Creating, Updating, Available, Deleting, Failed.</p>",
+      "refs": {
+        "BotAliasReplicaSummary$botAliasReplicationStatus": "<p>The replication statuses for all the alias bot replications.</p>"
       }
     },
     "BotAliasStatus": {
@@ -1238,6 +1263,27 @@
         "ListBotRecommendationsResponse$botRecommendationSummaries": "<p>Summary information for the bot recommendations that meet the filter specified in this request. The length of the list is specified in the maxResults parameter of the request. If there are more bot recommendations available, the nextToken field contains a token to get the next page of results.</p>"
       }
     },
+    "BotReplicaStatus": {
+      "base": "<p>The status of the operation to replicate the bot. Values: Enabling, Enabled, Deleting, Failed.</p>",
+      "refs": {
+        "BotReplicaSummary$botReplicaStatus": "<p>The operation status for the replicated bot applicable.</p>",
+        "CreateBotReplicaResponse$botReplicaStatus": "<p>The operational status of the replicated bot generated.</p>",
+        "DeleteBotReplicaResponse$botReplicaStatus": "<p>The operational status of the replicated bot generated.</p>",
+        "DescribeBotReplicaResponse$botReplicaStatus": "<p>The operational status of the replicated bot being monitored.</p>"
+      }
+    },
+    "BotReplicaSummary": {
+      "base": "<p>Contains summary information about all the replication statuses applicable for global resiliency.</p>",
+      "refs": {
+        "BotReplicaSummaryList$member": null
+      }
+    },
+    "BotReplicaSummaryList": {
+      "base": null,
+      "refs": {
+        "ListBotReplicasResponse$botReplicaSummaries": "<p>The summary details for the replicated bots.</p>"
+      }
+    },
     "BotSortAttribute": {
       "base": null,
       "refs": {
@@ -1298,11 +1344,13 @@
         "BatchUpdateCustomVocabularyItemRequest$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
         "BatchUpdateCustomVocabularyItemResponse$botVersion": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
         "BotAliasHistoryEvent$botVersion": "<p>The version of the bot that was used in the event. </p>",
+        "BotAliasReplicaSummary$botVersion": "<p>The bot version for all the alias bot replications.</p>",
         "BotAliasSummary$botVersion": "<p>The version of the bot that the bot alias references.</p>",
         "BotExportSpecification$botVersion": "<p>The version of the bot that was exported. This will be either <code>DRAFT</code> or the version number.</p>",
         "BotLocaleExportSpecification$botVersion": "<p>The version of the bot to export.</p>",
         "BotMember$botMemberVersion": "<p>The version of a bot that is a member of this network of bots.</p>",
         "BotVersionLocaleDetails$sourceBotVersion": "<p>The version of a bot used for a bot locale.</p>",
+        "BotVersionReplicaSummary$botVersion": "<p>The bot version for the summary information for all the version replication statuses.</p>",
         "BotVersionSummary$botVersion": "<p>The numeric version of the bot, or <code>DRAFT</code> to indicate that this is the version of the bot that can be updated..</p>",
         "CustomVocabularyExportSpecification$botVersion": "<p>The version of the bot that contains the custom vocabulary to export.</p>",
         "DescribeBotAliasResponse$botVersion": "<p>The version of the bot associated with the bot alias.</p>",
@@ -1354,6 +1402,36 @@
       "refs": {
         "CreateBotVersionRequest$botVersionLocaleSpecification": "<p>Specifies the locales that Amazon Lex adds to this version. You can choose the <code>Draft</code> version or any other previously published version for each locale. When you specify a source version, the locale data is copied from the source version to the new version.</p>",
         "CreateBotVersionResponse$botVersionLocaleSpecification": "<p>The source versions used for each locale in the new version.</p>"
+      }
+    },
+    "BotVersionReplicaSortAttribute": {
+      "base": null,
+      "refs": {
+        "BotVersionReplicaSortBy$attribute": "<p>The attribute of the sort category for the version replicated bots.</p>"
+      }
+    },
+    "BotVersionReplicaSortBy": {
+      "base": "<p>The sort category for the version replicated bots.</p>",
+      "refs": {
+        "ListBotVersionReplicasRequest$sortBy": "<p>The requested sort category for the list of replicated bots.</p>"
+      }
+    },
+    "BotVersionReplicaSummary": {
+      "base": "<p>Contains summary information for all the version replication statuses applicable for Global resiliency.</p>",
+      "refs": {
+        "BotVersionReplicaSummaryList$member": null
+      }
+    },
+    "BotVersionReplicaSummaryList": {
+      "base": null,
+      "refs": {
+        "ListBotVersionReplicasResponse$botVersionReplicaSummaries": "<p>The information summary used for the replicated bots in the list of replicated bots.</p>"
+      }
+    },
+    "BotVersionReplicationStatus": {
+      "base": "<p>The status of the operation to replicate the bot version. Values: Creating, Available, Deleting, Failed.</p>",
+      "refs": {
+        "BotVersionReplicaSummary$botVersionReplicationStatus": "<p>The version replication status for all the replicated bots.</p>"
       }
     },
     "BotVersionSortAttribute": {
@@ -1776,6 +1854,16 @@
       "refs": {
       }
     },
+    "CreateBotReplicaRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBotReplicaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateBotRequest": {
       "base": null,
       "refs": {
@@ -1992,6 +2080,16 @@
       "refs": {
       }
     },
+    "DeleteBotReplicaRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBotReplicaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteBotRequest": {
       "base": null,
       "refs": {
@@ -2124,6 +2222,16 @@
       }
     },
     "DescribeBotRecommendationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBotReplicaRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBotReplicaResponse": {
       "base": null,
       "refs": {
       }
@@ -2588,8 +2696,12 @@
     "FailureReasons": {
       "base": null,
       "refs": {
+        "BotAliasReplicaSummary$failureReasons": "<p>The reasons for failure for the aliases bot replications.</p>",
+        "BotReplicaSummary$failureReasons": "<p>The reasons for the failure for the replicated bot.</p>",
+        "BotVersionReplicaSummary$failureReasons": "<p>The reasons for replication failure for all the replicated bots.</p>",
         "DescribeBotLocaleResponse$failureReasons": "<p>if <code>botLocaleStatus</code> is <code>Failed</code>, Amazon Lex explains why it failed to build the bot.</p>",
         "DescribeBotRecommendationResponse$failureReasons": "<p>If botRecommendationStatus is Failed, Amazon Lex explains why.</p>",
+        "DescribeBotReplicaResponse$failureReasons": "<p>The failure reasons the bot being monitored failed to replicate.</p>",
         "DescribeBotResourceGenerationResponse$failureReasons": "<p>A list of reasons why the generation of bot resources through natural language description failed.</p>",
         "DescribeBotResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the bot couldn't be built.</p>",
         "DescribeBotVersionResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the version couldn't be built.</p>",
@@ -2785,6 +2897,8 @@
         "CreateBotAliasResponse$botId": "<p>The unique identifier of the bot that this alias applies to.</p>",
         "CreateBotLocaleRequest$botId": "<p>The identifier of the bot to create the locale for.</p>",
         "CreateBotLocaleResponse$botId": "<p>The specified bot identifier.</p>",
+        "CreateBotReplicaRequest$botId": "<p>The request for the unique bot ID of the source bot to be replicated in the secondary region.</p>",
+        "CreateBotReplicaResponse$botId": "<p>The unique bot ID of the replicated bot generated.</p>",
         "CreateBotResponse$botId": "<p>A unique identifier for a particular bot. You use this to identify the bot when you call other Amazon Lex API operations.</p>",
         "CreateBotVersionRequest$botId": "<p>The identifier of the bot to create the version for.</p>",
         "CreateBotVersionResponse$botId": "<p>The bot identifier specified in the request.</p>",
@@ -2810,6 +2924,8 @@
         "DeleteBotAliasResponse$botId": "<p>The unique identifier of the bot that contains the alias to delete.</p>",
         "DeleteBotLocaleRequest$botId": "<p>The unique identifier of the bot that contains the locale.</p>",
         "DeleteBotLocaleResponse$botId": "<p>The identifier of the bot that contained the deleted locale.</p>",
+        "DeleteBotReplicaRequest$botId": "<p>The unique ID of the replicated bot to be deleted from the secondary region</p>",
+        "DeleteBotReplicaResponse$botId": "<p>The unique bot ID of the replicated bot generated.</p>",
         "DeleteBotRequest$botId": "<p>The identifier of the bot to delete. </p>",
         "DeleteBotResponse$botId": "<p>The unique identifier of the bot that Amazon Lex is deleting.</p>",
         "DeleteBotVersionRequest$botId": "<p>The identifier of the bot that contains the version.</p>",
@@ -2837,6 +2953,8 @@
         "DescribeBotRecommendationRequest$botRecommendationId": "<p>The identifier of the bot recommendation to describe.</p>",
         "DescribeBotRecommendationResponse$botId": "<p>The identifier of the bot associated with the bot recommendation.</p>",
         "DescribeBotRecommendationResponse$botRecommendationId": "<p>The identifier of the bot recommendation being described.</p>",
+        "DescribeBotReplicaRequest$botId": "<p>The request for the unique bot ID of the replicated bot being monitored.</p>",
+        "DescribeBotReplicaResponse$botId": "<p>The unique bot ID of the replicated bot being monitored.</p>",
         "DescribeBotRequest$botId": "<p>The unique identifier of the bot to describe.</p>",
         "DescribeBotResourceGenerationRequest$botId": "<p>The unique identifier of the bot for which to return the generation details.</p>",
         "DescribeBotResourceGenerationRequest$generationId": "<p>The unique identifier of the generation request for which to return the generation details.</p>",
@@ -2888,14 +3006,20 @@
         "IntentSummary$intentId": "<p>The unique identifier assigned to the intent. Use this ID to get detailed information about the intent with the <code>DescribeIntent</code> operation.</p>",
         "ListAggregatedUtterancesRequest$botId": "<p>The unique identifier of the bot associated with this request.</p>",
         "ListAggregatedUtterancesResponse$botId": "<p>The identifier of the bot that contains the utterances.</p>",
+        "ListBotAliasReplicasRequest$botId": "<p>The request for the unique bot ID of the replicated bot created from the source bot alias.</p>",
+        "ListBotAliasReplicasResponse$botId": "<p>The unique bot ID of the replicated bot created from the source bot alias.</p>",
         "ListBotAliasesRequest$botId": "<p>The identifier of the bot to list aliases for.</p>",
         "ListBotAliasesResponse$botId": "<p>The identifier of the bot associated with the aliases.</p>",
         "ListBotLocalesRequest$botId": "<p>The identifier of the bot to list locales for.</p>",
         "ListBotLocalesResponse$botId": "<p>The identifier of the bot to list locales for.</p>",
         "ListBotRecommendationsRequest$botId": "<p>The unique identifier of the bot that contains the bot recommendation list.</p>",
         "ListBotRecommendationsResponse$botId": "<p>The unique identifier of the bot that contains the bot recommendation list.</p>",
+        "ListBotReplicasRequest$botId": "<p>The request for the unique bot IDs in the list of replicated bots.</p>",
+        "ListBotReplicasResponse$botId": "<p>the unique bot IDs in the list of replicated bots.</p>",
         "ListBotResourceGenerationsRequest$botId": "<p>The unique identifier of the bot whose generation requests you want to view.</p>",
         "ListBotResourceGenerationsResponse$botId": "<p>The unique identifier of the bot for which the generation requests were made.</p>",
+        "ListBotVersionReplicasRequest$botId": "<p>The request for the unique ID in the list of replicated bots.</p>",
+        "ListBotVersionReplicasResponse$botId": "<p>The unique ID of the bots in the list of replicated bots.</p>",
         "ListBotVersionsRequest$botId": "<p>The identifier of the bot to list versions for.</p>",
         "ListBotVersionsResponse$botId": "<p>The identifier of the bot to list versions for.</p>",
         "ListCustomVocabularyItemsRequest$botId": "<p>The identifier of the version of the bot associated with this custom vocabulary.</p>",
@@ -3347,6 +3471,16 @@
       "refs": {
       }
     },
+    "ListBotAliasReplicasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotAliasReplicasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListBotAliasesRequest": {
       "base": null,
       "refs": {
@@ -3377,12 +3511,32 @@
       "refs": {
       }
     },
+    "ListBotReplicasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotReplicasResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListBotResourceGenerationsRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListBotResourceGenerationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotVersionReplicasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBotVersionReplicasResponse": {
       "base": null,
       "refs": {
       }
@@ -3736,10 +3890,12 @@
       "base": null,
       "refs": {
         "ListAggregatedUtterancesRequest$maxResults": "<p>The maximum number of utterances to return in each page of results. If there are fewer results than the maximum page size, only the actual number of results are returned. If you don't specify the <code>maxResults</code> parameter, 1,000 results are returned.</p>",
+        "ListBotAliasReplicasRequest$maxResults": "<p>The request for maximum results to list the replicated bots created from the source bot alias.</p>",
         "ListBotAliasesRequest$maxResults": "<p>The maximum number of aliases to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotLocalesRequest$maxResults": "<p>The maximum number of aliases to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotRecommendationsRequest$maxResults": "<p>The maximum number of bot recommendations to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotResourceGenerationsRequest$maxResults": "<p>The maximum number of results to return in the response.</p>",
+        "ListBotVersionReplicasRequest$maxResults": "<p>The maximum results given in the list of replicated bots.</p>",
         "ListBotVersionsRequest$maxResults": "<p>The maximum number of versions to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotsRequest$maxResults": "<p>The maximum number of bots to return in each page of results. If there are fewer results than the maximum page size, only the actual number of results are returned.</p>",
         "ListCustomVocabularyItemsRequest$maxResults": "<p>The maximum number of items returned by the list operation.</p>",
@@ -3928,6 +4084,8 @@
       "refs": {
         "ListAggregatedUtterancesRequest$nextToken": "<p>If the response from the <code>ListAggregatedUtterances</code> operation contains more results that specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListAggregatedUtterancesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListAggregatedUtterances</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListAggregatedUtterances</code> operation request to get the next page of results.</p>",
+        "ListBotAliasReplicasRequest$nextToken": "<p>The request for the next token for the replicated bot created from the source bot alias.</p>",
+        "ListBotAliasReplicasResponse$nextToken": "<p>The next token for the replicated bots created from the source bot alias.</p>",
         "ListBotAliasesRequest$nextToken": "<p>If the response from the <code>ListBotAliases</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListBotAliasesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBotAliases</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code> operation request to get the next page of results.</p>",
         "ListBotLocalesRequest$nextToken": "<p>If the response from the <code>ListBotLocales</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token as the <code>nextToken</code> parameter to return the next page of results. </p>",
@@ -3936,6 +4094,8 @@
         "ListBotRecommendationsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the ListBotRecommendations operation. If the nextToken field is present, you send the contents as the nextToken parameter of a ListBotRecommendations operation request to get the next page of results. </p>",
         "ListBotResourceGenerationsRequest$nextToken": "<p>If the total number of results is greater than the number specified in the <code>maxResults</code>, the response returns a token in the <code>nextToken</code> field. Use this token when making a request to return the next batch of results.</p>",
         "ListBotResourceGenerationsResponse$nextToken": "<p>If the total number of results is greater than the number specified in the <code>maxResults</code>, the response returns a token in the <code>nextToken</code> field. Use this token when making a request to return the next batch of results.</p>",
+        "ListBotVersionReplicasRequest$nextToken": "<p>The next token given in the list of replicated bots.</p>",
+        "ListBotVersionReplicasResponse$nextToken": "<p>The next token used for the replicated bots in the list of replicated bots.</p>",
         "ListBotVersionsRequest$nextToken": "<p>If the response to the <code>ListBotVersion</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListBotVersionsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBotVersions</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code> operation request to get the next page of results.</p>",
         "ListBotsRequest$nextToken": "<p>If the response from the <code>ListBots</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. </p> <p>Use the returned token in the <code>nextToken</code> parameter of a <code>ListBots</code> request to return the next page of results. For a complete set of results, call the <code>ListBots</code> operation until the <code>nextToken</code> returned in the response is null.</p>",
@@ -4262,6 +4422,27 @@
       "base": "<p>Specifies the time window that utterance statistics are returned for. The time window is always relative to the last time that the that utterances were aggregated. For example, if the <code>ListAggregatedUtterances</code> operation is called at 1600, the time window is set to 1 hour, and the last refresh time was 1530, only utterances made between 1430 and 1530 are returned.</p> <p>You can choose the time window that statistics should be returned for.</p> <ul> <li> <p> <b>Hours</b> - You can request utterance statistics for 1, 3, 6, 12, or 24 hour time windows. Statistics are refreshed every half hour for 1 hour time windows, and hourly for the other time windows.</p> </li> <li> <p> <b>Days</b> - You can request utterance statistics for 3 days. Statistics are refreshed every 6 hours.</p> </li> <li> <p> <b>Weeks</b> - You can see statistics for one or two weeks. Statistics are refreshed every 12 hours for one week time windows, and once per day for two week time windows.</p> </li> </ul>",
       "refs": {
         "UtteranceAggregationDuration$relativeAggregationDuration": "<p>The desired time window for aggregating utterances. </p>"
+      }
+    },
+    "ReplicaRegion": {
+      "base": "<p>The region that contains the replicated bots. Minimum value = 2, maximum value = 25.</p>",
+      "refs": {
+        "BotReplicaSummary$replicaRegion": "<p>The replica region used in the replication statuses summary.</p>",
+        "CreateBotReplicaRequest$replicaRegion": "<p>The request for the secondary region that will be used in the replication of the source bot.</p>",
+        "CreateBotReplicaResponse$replicaRegion": "<p>The region of the replicated bot generated.</p>",
+        "CreateBotReplicaResponse$sourceRegion": "<p>The source region for the source bot used for the replicated bot generated.</p>",
+        "DeleteBotReplicaRequest$replicaRegion": "<p>The secondary region of the replicated bot that will be deleted.</p>",
+        "DeleteBotReplicaResponse$replicaRegion": "<p>The region of the replicated bot generated.</p>",
+        "DescribeBotReplicaRequest$replicaRegion": "<p>The request for the region of the replicated bot being monitored.</p>",
+        "DescribeBotReplicaResponse$replicaRegion": "<p>The region of the replicated bot being monitored.</p>",
+        "DescribeBotReplicaResponse$sourceRegion": "<p>The source region of the replicated bot being monitored.</p>",
+        "ListBotAliasReplicasRequest$replicaRegion": "<p>The request for the secondary region of the replicated bot created from the source bot alias.</p>",
+        "ListBotAliasReplicasResponse$sourceRegion": "<p>The source region of the replicated bot created from the source bot alias.</p>",
+        "ListBotAliasReplicasResponse$replicaRegion": "<p>The secondary region of the replicated bot created from the source bot alias.</p>",
+        "ListBotReplicasResponse$sourceRegion": "<p>The source region of the source bots in the list of replicated bots.</p>",
+        "ListBotVersionReplicasRequest$replicaRegion": "<p>The request for the region used in the list of replicated bots.</p>",
+        "ListBotVersionReplicasResponse$sourceRegion": "<p>The source region used for the bots in the list of replicated bots.</p>",
+        "ListBotVersionReplicasResponse$replicaRegion": "<p>The region used for the replicated bots in the list of replicated bots.</p>"
       }
     },
     "ResourceCount": {
@@ -4847,6 +5028,7 @@
         "AggregatedUtterancesSortBy$order": "<p>Specifies whether to sort the aggregated utterances in ascending or descending order.</p>",
         "BotLocaleSortBy$order": "<p>Specifies whether to sort the bot locales in ascending or descending order.</p>",
         "BotSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
+        "BotVersionReplicaSortBy$order": "<p>The order of the sort category for the version replicated bots.</p>",
         "BotVersionSortBy$order": "<p>The order to sort the list. You can specify ascending or descending order.</p>",
         "BuiltInIntentSortBy$order": "<p>The order to sort the list. You can specify ascending or descending order.</p>",
         "BuiltInSlotTypeSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
@@ -5407,6 +5589,8 @@
         "AggregatedUtterancesSummary$utteranceLastRecordedInAggregationDuration": "<p>The last date and time that an utterance was recorded in the time window for aggregation. An utterance may be sent to Amazon Lex after that time, but only utterances within the time window are counted.</p>",
         "BotAliasHistoryEvent$startDate": "<p>The date and time that the event started.</p>",
         "BotAliasHistoryEvent$endDate": "<p>The date and time that the event ended.</p>",
+        "BotAliasReplicaSummary$creationDateTime": "<p>The creation time and date for all the alias bot replications.</p>",
+        "BotAliasReplicaSummary$lastUpdatedDateTime": "<p>The last time and date updated for all the alias bot replications.</p>",
         "BotAliasSummary$creationDateTime": "<p>A timestamp of the date and time that the bot alias was created.</p>",
         "BotAliasSummary$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot alias was last updated.</p>",
         "BotLocaleHistoryEvent$eventDate": "<p>A timestamp of the date and time that the event occurred.</p>",
@@ -5414,13 +5598,16 @@
         "BotLocaleSummary$lastBuildSubmittedDateTime": "<p>A timestamp of the date and time that the bot locale was last built.</p>",
         "BotRecommendationSummary$creationDateTime": "<p>A timestamp of the date and time that the bot recommendation was created.</p>",
         "BotRecommendationSummary$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot recommendation was last updated.</p>",
+        "BotReplicaSummary$creationDateTime": "<p>The creation time and date for the replicated bots.</p>",
         "BotSummary$lastUpdatedDateTime": "<p>The date and time that the bot was last updated.</p>",
+        "BotVersionReplicaSummary$creationDateTime": "<p>The creation date and time of the replication status for all the replicated bots.</p>",
         "BotVersionSummary$creationDateTime": "<p>A timestamp of the date and time that the version was created.</p>",
         "BuildBotLocaleResponse$lastBuildSubmittedDateTime": "<p>A timestamp indicating the date and time that the bot was last built for this locale.</p>",
         "ConversationLogsDataSourceFilterBy$startTime": "<p>The start time for the conversation log.</p>",
         "ConversationLogsDataSourceFilterBy$endTime": "<p>The end time for the conversation log.</p>",
         "CreateBotAliasResponse$creationDateTime": "<p>A Unix timestamp indicating the date and time that the bot alias was created.</p>",
         "CreateBotLocaleResponse$creationDateTime": "<p>A timestamp specifying the date and time that the bot locale was created.</p>",
+        "CreateBotReplicaResponse$creationDateTime": "<p>The creation date and time of the replicated bot generated.</p>",
         "CreateBotResponse$creationDateTime": "<p>A timestamp indicating the date and time that the bot was created.</p>",
         "CreateBotVersionResponse$creationDateTime": "<p>A timestamp of the date and time that the version was created.</p>",
         "CreateExportResponse$creationDateTime": "<p>The date and time that the request to export a bot was created.</p>",
@@ -5437,6 +5624,7 @@
         "DescribeBotLocaleResponse$lastBuildSubmittedDateTime": "<p>The date and time that the locale was last submitted for building.</p>",
         "DescribeBotRecommendationResponse$creationDateTime": "<p>The date and time that the bot recommendation was created.</p>",
         "DescribeBotRecommendationResponse$lastUpdatedDateTime": "<p>The date and time that the bot recommendation was last updated.</p>",
+        "DescribeBotReplicaResponse$creationDateTime": "<p>The creation date and time of the replicated bot being monitored.</p>",
         "DescribeBotResourceGenerationResponse$creationDateTime": "<p>The date and time at which the item was generated.</p>",
         "DescribeBotResourceGenerationResponse$lastUpdatedDateTime": "<p>The date and time at which the generated item was updated.</p>",
         "DescribeBotResponse$creationDateTime": "<p>A timestamp of the date and time that the bot was created.</p>",

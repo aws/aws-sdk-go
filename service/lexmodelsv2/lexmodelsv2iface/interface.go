@@ -88,6 +88,10 @@ type LexModelsV2API interface {
 	CreateBotLocaleWithContext(aws.Context, *lexmodelsv2.CreateBotLocaleInput, ...request.Option) (*lexmodelsv2.CreateBotLocaleOutput, error)
 	CreateBotLocaleRequest(*lexmodelsv2.CreateBotLocaleInput) (*request.Request, *lexmodelsv2.CreateBotLocaleOutput)
 
+	CreateBotReplica(*lexmodelsv2.CreateBotReplicaInput) (*lexmodelsv2.CreateBotReplicaOutput, error)
+	CreateBotReplicaWithContext(aws.Context, *lexmodelsv2.CreateBotReplicaInput, ...request.Option) (*lexmodelsv2.CreateBotReplicaOutput, error)
+	CreateBotReplicaRequest(*lexmodelsv2.CreateBotReplicaInput) (*request.Request, *lexmodelsv2.CreateBotReplicaOutput)
+
 	CreateBotVersion(*lexmodelsv2.CreateBotVersionInput) (*lexmodelsv2.CreateBotVersionOutput, error)
 	CreateBotVersionWithContext(aws.Context, *lexmodelsv2.CreateBotVersionInput, ...request.Option) (*lexmodelsv2.CreateBotVersionOutput, error)
 	CreateBotVersionRequest(*lexmodelsv2.CreateBotVersionInput) (*request.Request, *lexmodelsv2.CreateBotVersionOutput)
@@ -135,6 +139,10 @@ type LexModelsV2API interface {
 	DeleteBotLocale(*lexmodelsv2.DeleteBotLocaleInput) (*lexmodelsv2.DeleteBotLocaleOutput, error)
 	DeleteBotLocaleWithContext(aws.Context, *lexmodelsv2.DeleteBotLocaleInput, ...request.Option) (*lexmodelsv2.DeleteBotLocaleOutput, error)
 	DeleteBotLocaleRequest(*lexmodelsv2.DeleteBotLocaleInput) (*request.Request, *lexmodelsv2.DeleteBotLocaleOutput)
+
+	DeleteBotReplica(*lexmodelsv2.DeleteBotReplicaInput) (*lexmodelsv2.DeleteBotReplicaOutput, error)
+	DeleteBotReplicaWithContext(aws.Context, *lexmodelsv2.DeleteBotReplicaInput, ...request.Option) (*lexmodelsv2.DeleteBotReplicaOutput, error)
+	DeleteBotReplicaRequest(*lexmodelsv2.DeleteBotReplicaInput) (*request.Request, *lexmodelsv2.DeleteBotReplicaOutput)
 
 	DeleteBotVersion(*lexmodelsv2.DeleteBotVersionInput) (*lexmodelsv2.DeleteBotVersionOutput, error)
 	DeleteBotVersionWithContext(aws.Context, *lexmodelsv2.DeleteBotVersionInput, ...request.Option) (*lexmodelsv2.DeleteBotVersionOutput, error)
@@ -195,6 +203,10 @@ type LexModelsV2API interface {
 	DescribeBotRecommendation(*lexmodelsv2.DescribeBotRecommendationInput) (*lexmodelsv2.DescribeBotRecommendationOutput, error)
 	DescribeBotRecommendationWithContext(aws.Context, *lexmodelsv2.DescribeBotRecommendationInput, ...request.Option) (*lexmodelsv2.DescribeBotRecommendationOutput, error)
 	DescribeBotRecommendationRequest(*lexmodelsv2.DescribeBotRecommendationInput) (*request.Request, *lexmodelsv2.DescribeBotRecommendationOutput)
+
+	DescribeBotReplica(*lexmodelsv2.DescribeBotReplicaInput) (*lexmodelsv2.DescribeBotReplicaOutput, error)
+	DescribeBotReplicaWithContext(aws.Context, *lexmodelsv2.DescribeBotReplicaInput, ...request.Option) (*lexmodelsv2.DescribeBotReplicaOutput, error)
+	DescribeBotReplicaRequest(*lexmodelsv2.DescribeBotReplicaInput) (*request.Request, *lexmodelsv2.DescribeBotReplicaOutput)
 
 	DescribeBotResourceGeneration(*lexmodelsv2.DescribeBotResourceGenerationInput) (*lexmodelsv2.DescribeBotResourceGenerationOutput, error)
 	DescribeBotResourceGenerationWithContext(aws.Context, *lexmodelsv2.DescribeBotResourceGenerationInput, ...request.Option) (*lexmodelsv2.DescribeBotResourceGenerationOutput, error)
@@ -263,6 +275,13 @@ type LexModelsV2API interface {
 	ListAggregatedUtterancesPages(*lexmodelsv2.ListAggregatedUtterancesInput, func(*lexmodelsv2.ListAggregatedUtterancesOutput, bool) bool) error
 	ListAggregatedUtterancesPagesWithContext(aws.Context, *lexmodelsv2.ListAggregatedUtterancesInput, func(*lexmodelsv2.ListAggregatedUtterancesOutput, bool) bool, ...request.Option) error
 
+	ListBotAliasReplicas(*lexmodelsv2.ListBotAliasReplicasInput) (*lexmodelsv2.ListBotAliasReplicasOutput, error)
+	ListBotAliasReplicasWithContext(aws.Context, *lexmodelsv2.ListBotAliasReplicasInput, ...request.Option) (*lexmodelsv2.ListBotAliasReplicasOutput, error)
+	ListBotAliasReplicasRequest(*lexmodelsv2.ListBotAliasReplicasInput) (*request.Request, *lexmodelsv2.ListBotAliasReplicasOutput)
+
+	ListBotAliasReplicasPages(*lexmodelsv2.ListBotAliasReplicasInput, func(*lexmodelsv2.ListBotAliasReplicasOutput, bool) bool) error
+	ListBotAliasReplicasPagesWithContext(aws.Context, *lexmodelsv2.ListBotAliasReplicasInput, func(*lexmodelsv2.ListBotAliasReplicasOutput, bool) bool, ...request.Option) error
+
 	ListBotAliases(*lexmodelsv2.ListBotAliasesInput) (*lexmodelsv2.ListBotAliasesOutput, error)
 	ListBotAliasesWithContext(aws.Context, *lexmodelsv2.ListBotAliasesInput, ...request.Option) (*lexmodelsv2.ListBotAliasesOutput, error)
 	ListBotAliasesRequest(*lexmodelsv2.ListBotAliasesInput) (*request.Request, *lexmodelsv2.ListBotAliasesOutput)
@@ -284,12 +303,23 @@ type LexModelsV2API interface {
 	ListBotRecommendationsPages(*lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool) error
 	ListBotRecommendationsPagesWithContext(aws.Context, *lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool, ...request.Option) error
 
+	ListBotReplicas(*lexmodelsv2.ListBotReplicasInput) (*lexmodelsv2.ListBotReplicasOutput, error)
+	ListBotReplicasWithContext(aws.Context, *lexmodelsv2.ListBotReplicasInput, ...request.Option) (*lexmodelsv2.ListBotReplicasOutput, error)
+	ListBotReplicasRequest(*lexmodelsv2.ListBotReplicasInput) (*request.Request, *lexmodelsv2.ListBotReplicasOutput)
+
 	ListBotResourceGenerations(*lexmodelsv2.ListBotResourceGenerationsInput) (*lexmodelsv2.ListBotResourceGenerationsOutput, error)
 	ListBotResourceGenerationsWithContext(aws.Context, *lexmodelsv2.ListBotResourceGenerationsInput, ...request.Option) (*lexmodelsv2.ListBotResourceGenerationsOutput, error)
 	ListBotResourceGenerationsRequest(*lexmodelsv2.ListBotResourceGenerationsInput) (*request.Request, *lexmodelsv2.ListBotResourceGenerationsOutput)
 
 	ListBotResourceGenerationsPages(*lexmodelsv2.ListBotResourceGenerationsInput, func(*lexmodelsv2.ListBotResourceGenerationsOutput, bool) bool) error
 	ListBotResourceGenerationsPagesWithContext(aws.Context, *lexmodelsv2.ListBotResourceGenerationsInput, func(*lexmodelsv2.ListBotResourceGenerationsOutput, bool) bool, ...request.Option) error
+
+	ListBotVersionReplicas(*lexmodelsv2.ListBotVersionReplicasInput) (*lexmodelsv2.ListBotVersionReplicasOutput, error)
+	ListBotVersionReplicasWithContext(aws.Context, *lexmodelsv2.ListBotVersionReplicasInput, ...request.Option) (*lexmodelsv2.ListBotVersionReplicasOutput, error)
+	ListBotVersionReplicasRequest(*lexmodelsv2.ListBotVersionReplicasInput) (*request.Request, *lexmodelsv2.ListBotVersionReplicasOutput)
+
+	ListBotVersionReplicasPages(*lexmodelsv2.ListBotVersionReplicasInput, func(*lexmodelsv2.ListBotVersionReplicasOutput, bool) bool) error
+	ListBotVersionReplicasPagesWithContext(aws.Context, *lexmodelsv2.ListBotVersionReplicasInput, func(*lexmodelsv2.ListBotVersionReplicasOutput, bool) bool, ...request.Option) error
 
 	ListBotVersions(*lexmodelsv2.ListBotVersionsInput) (*lexmodelsv2.ListBotVersionsOutput, error)
 	ListBotVersionsWithContext(aws.Context, *lexmodelsv2.ListBotVersionsInput, ...request.Option) (*lexmodelsv2.ListBotVersionsOutput, error)

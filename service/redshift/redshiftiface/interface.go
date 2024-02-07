@@ -561,6 +561,13 @@ type RedshiftAPI interface {
 	GetResourcePolicyWithContext(aws.Context, *redshift.GetResourcePolicyInput, ...request.Option) (*redshift.GetResourcePolicyOutput, error)
 	GetResourcePolicyRequest(*redshift.GetResourcePolicyInput) (*request.Request, *redshift.GetResourcePolicyOutput)
 
+	ListRecommendations(*redshift.ListRecommendationsInput) (*redshift.ListRecommendationsOutput, error)
+	ListRecommendationsWithContext(aws.Context, *redshift.ListRecommendationsInput, ...request.Option) (*redshift.ListRecommendationsOutput, error)
+	ListRecommendationsRequest(*redshift.ListRecommendationsInput) (*request.Request, *redshift.ListRecommendationsOutput)
+
+	ListRecommendationsPages(*redshift.ListRecommendationsInput, func(*redshift.ListRecommendationsOutput, bool) bool) error
+	ListRecommendationsPagesWithContext(aws.Context, *redshift.ListRecommendationsInput, func(*redshift.ListRecommendationsOutput, bool) bool, ...request.Option) error
+
 	ModifyAquaConfiguration(*redshift.ModifyAquaConfigurationInput) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationWithContext(aws.Context, *redshift.ModifyAquaConfigurationInput, ...request.Option) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationRequest(*redshift.ModifyAquaConfigurationInput) (*request.Request, *redshift.ModifyAquaConfigurationOutput)
