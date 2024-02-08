@@ -25947,6 +25947,9 @@ type BarChartConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *BarChartFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -26121,6 +26124,12 @@ func (s *BarChartConfiguration) SetDataLabels(v *DataLabelOptions) *BarChartConf
 // SetFieldWells sets the FieldWells field's value.
 func (s *BarChartConfiguration) SetFieldWells(v *BarChartFieldWells) *BarChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *BarChartConfiguration) SetInteractions(v *VisualInteractionOptions) *BarChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -26934,6 +26943,9 @@ type BoxPlotChartConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *BoxPlotFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The options for the legend setup of a visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -27047,6 +27059,12 @@ func (s *BoxPlotChartConfiguration) SetCategoryLabelOptions(v *ChartAxisLabelOpt
 // SetFieldWells sets the FieldWells field's value.
 func (s *BoxPlotChartConfiguration) SetFieldWells(v *BoxPlotFieldWells) *BoxPlotChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *BoxPlotChartConfiguration) SetInteractions(v *VisualInteractionOptions) *BoxPlotChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -29612,6 +29630,9 @@ type ComboChartConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *ComboChartFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -29778,6 +29799,12 @@ func (s *ComboChartConfiguration) SetColorLabelOptions(v *ChartAxisLabelOptions)
 // SetFieldWells sets the FieldWells field's value.
 func (s *ComboChartConfiguration) SetFieldWells(v *ComboChartFieldWells) *ComboChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *ComboChartConfiguration) SetInteractions(v *VisualInteractionOptions) *ComboChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -31093,6 +31120,40 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The context menu options for a visual's interactions.
+type ContextMenuOption struct {
+	_ struct{} `type:"structure"`
+
+	// The availability status of the context menu options. If the value of this
+	// property is set to ENABLED, dashboard readers can interact with the context
+	// menu.
+	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContextMenuOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContextMenuOption) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityStatus sets the AvailabilityStatus field's value.
+func (s *ContextMenuOption) SetAvailabilityStatus(v string) *ContextMenuOption {
+	s.AvailabilityStatus = &v
+	return s
 }
 
 // The contribution analysis visual display for a line, pie, or bar chart.
@@ -36577,6 +36638,9 @@ type CustomContentConfiguration struct {
 	// The sizing options for the size of the custom content visual. This structure
 	// is required when the ContentType of the visual is 'IMAGE'.
 	ImageScaling *string `type:"string" enum:"CustomContentImageScalingConfiguration"`
+
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36625,6 +36689,12 @@ func (s *CustomContentConfiguration) SetContentUrl(v string) *CustomContentConfi
 // SetImageScaling sets the ImageScaling field's value.
 func (s *CustomContentConfiguration) SetImageScaling(v string) *CustomContentConfiguration {
 	s.ImageScaling = &v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *CustomContentConfiguration) SetInteractions(v *VisualInteractionOptions) *CustomContentConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -54291,6 +54361,9 @@ type FilledMapConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *FilledMapFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -54358,6 +54431,12 @@ func (s *FilledMapConfiguration) Validate() error {
 // SetFieldWells sets the FieldWells field's value.
 func (s *FilledMapConfiguration) SetFieldWells(v *FilledMapFieldWells) *FilledMapConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *FilledMapConfiguration) SetInteractions(v *VisualInteractionOptions) *FilledMapConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -57736,6 +57815,9 @@ type FunnelChartConfiguration struct {
 	// The field well configuration of a FunnelChartVisual.
 	FieldWells *FunnelChartFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The sort configuration of a FunnelChartVisual.
 	SortConfiguration *FunnelChartSortConfiguration `type:"structure"`
 
@@ -57822,6 +57904,12 @@ func (s *FunnelChartConfiguration) SetDataLabelOptions(v *FunnelChartDataLabelOp
 // SetFieldWells sets the FieldWells field's value.
 func (s *FunnelChartConfiguration) SetFieldWells(v *FunnelChartFieldWells) *FunnelChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *FunnelChartConfiguration) SetInteractions(v *VisualInteractionOptions) *FunnelChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -58357,6 +58445,9 @@ type GaugeChartConfiguration struct {
 	// The options that determine the presentation of the GaugeChartVisual.
 	GaugeChartOptions *GaugeChartOptions `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The tooltip configuration of a GaugeChartVisual.
 	TooltipOptions *TooltipOptions `type:"structure"`
 
@@ -58432,6 +58523,12 @@ func (s *GaugeChartConfiguration) SetFieldWells(v *GaugeChartFieldWells) *GaugeC
 // SetGaugeChartOptions sets the GaugeChartOptions field's value.
 func (s *GaugeChartConfiguration) SetGaugeChartOptions(v *GaugeChartOptions) *GaugeChartConfiguration {
 	s.GaugeChartOptions = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *GaugeChartConfiguration) SetInteractions(v *VisualInteractionOptions) *GaugeChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -59623,6 +59720,9 @@ type GeospatialMapConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *GeospatialMapFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -59698,6 +59798,12 @@ func (s *GeospatialMapConfiguration) Validate() error {
 // SetFieldWells sets the FieldWells field's value.
 func (s *GeospatialMapConfiguration) SetFieldWells(v *GeospatialMapFieldWells) *GeospatialMapConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *GeospatialMapConfiguration) SetInteractions(v *VisualInteractionOptions) *GeospatialMapConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -61452,6 +61558,9 @@ type HeatMapConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *HeatMapFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -61549,6 +61658,12 @@ func (s *HeatMapConfiguration) SetDataLabels(v *DataLabelOptions) *HeatMapConfig
 // SetFieldWells sets the FieldWells field's value.
 func (s *HeatMapConfiguration) SetFieldWells(v *HeatMapFieldWells) *HeatMapConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *HeatMapConfiguration) SetInteractions(v *VisualInteractionOptions) *HeatMapConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -61975,6 +62090,9 @@ type HistogramConfiguration struct {
 	// The field well configuration of a histogram.
 	FieldWells *HistogramFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The tooltip configuration of a histogram.
 	Tooltip *TooltipOptions `type:"structure"`
 
@@ -62059,6 +62177,12 @@ func (s *HistogramConfiguration) SetDataLabels(v *DataLabelOptions) *HistogramCo
 // SetFieldWells sets the FieldWells field's value.
 func (s *HistogramConfiguration) SetFieldWells(v *HistogramFieldWells) *HistogramConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *HistogramConfiguration) SetInteractions(v *VisualInteractionOptions) *HistogramConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -62737,6 +62861,9 @@ type InsightConfiguration struct {
 
 	// The custom narrative of the insight visual.
 	CustomNarrative *CustomNarrativeOptions `type:"structure"`
+
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -62791,6 +62918,12 @@ func (s *InsightConfiguration) SetComputations(v []*Computation) *InsightConfigu
 // SetCustomNarrative sets the CustomNarrative field's value.
 func (s *InsightConfiguration) SetCustomNarrative(v *CustomNarrativeOptions) *InsightConfiguration {
 	s.CustomNarrative = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *InsightConfiguration) SetInteractions(v *VisualInteractionOptions) *InsightConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -64132,6 +64265,9 @@ type KPIConfiguration struct {
 	// The field well configuration of a KPI visual.
 	FieldWells *KPIFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The options that determine the presentation of a KPI visual.
 	KPIOptions *KPIOptions `type:"structure"`
 
@@ -64185,6 +64321,12 @@ func (s *KPIConfiguration) Validate() error {
 // SetFieldWells sets the FieldWells field's value.
 func (s *KPIConfiguration) SetFieldWells(v *KPIFieldWells) *KPIConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *KPIConfiguration) SetInteractions(v *VisualInteractionOptions) *KPIConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -65371,6 +65513,9 @@ type LineChartConfiguration struct {
 	// The forecast configuration of a line chart.
 	ForecastConfigurations []*ForecastConfiguration `type:"list"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend configuration of a line chart.
 	Legend *LegendOptions `type:"structure"`
 
@@ -65565,6 +65710,12 @@ func (s *LineChartConfiguration) SetFieldWells(v *LineChartFieldWells) *LineChar
 // SetForecastConfigurations sets the ForecastConfigurations field's value.
 func (s *LineChartConfiguration) SetForecastConfigurations(v []*ForecastConfiguration) *LineChartConfiguration {
 	s.ForecastConfigurations = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *LineChartConfiguration) SetInteractions(v *VisualInteractionOptions) *LineChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -75380,6 +75531,9 @@ type PieChartConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *PieChartFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -75507,6 +75661,12 @@ func (s *PieChartConfiguration) SetDonutOptions(v *DonutOptions) *PieChartConfig
 // SetFieldWells sets the FieldWells field's value.
 func (s *PieChartConfiguration) SetFieldWells(v *PieChartFieldWells) *PieChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *PieChartConfiguration) SetInteractions(v *VisualInteractionOptions) *PieChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -76215,6 +76375,9 @@ type PivotTableConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *PivotTableFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The paginated report options for a pivot table visual.
 	PaginatedReportOptions *PivotTablePaginatedReportOptions `type:"structure"`
 
@@ -76290,6 +76453,12 @@ func (s *PivotTableConfiguration) SetFieldOptions(v *PivotTableFieldOptions) *Pi
 // SetFieldWells sets the FieldWells field's value.
 func (s *PivotTableConfiguration) SetFieldWells(v *PivotTableFieldWells) *PivotTableConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *PivotTableConfiguration) SetInteractions(v *VisualInteractionOptions) *PivotTableConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -78264,6 +78433,9 @@ type RadarChartConfiguration struct {
 	// The field well configuration of a RadarChartVisual.
 	FieldWells *RadarChartFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -78393,6 +78565,12 @@ func (s *RadarChartConfiguration) SetColorLabelOptions(v *ChartAxisLabelOptions)
 // SetFieldWells sets the FieldWells field's value.
 func (s *RadarChartConfiguration) SetFieldWells(v *RadarChartFieldWells) *RadarChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *RadarChartConfiguration) SetInteractions(v *VisualInteractionOptions) *RadarChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -82419,6 +82597,9 @@ type SankeyDiagramChartConfiguration struct {
 	// The field well configuration of a sankey diagram.
 	FieldWells *SankeyDiagramFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The sort configuration of a sankey diagram.
 	SortConfiguration *SankeyDiagramSortConfiguration `type:"structure"`
 }
@@ -82475,6 +82656,12 @@ func (s *SankeyDiagramChartConfiguration) SetDataLabels(v *DataLabelOptions) *Sa
 // SetFieldWells sets the FieldWells field's value.
 func (s *SankeyDiagramChartConfiguration) SetFieldWells(v *SankeyDiagramFieldWells) *SankeyDiagramChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *SankeyDiagramChartConfiguration) SetInteractions(v *VisualInteractionOptions) *SankeyDiagramChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -82860,6 +83047,9 @@ type ScatterPlotConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *ScatterPlotFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -82956,6 +83146,12 @@ func (s *ScatterPlotConfiguration) SetDataLabels(v *DataLabelOptions) *ScatterPl
 // SetFieldWells sets the FieldWells field's value.
 func (s *ScatterPlotConfiguration) SetFieldWells(v *ScatterPlotFieldWells) *ScatterPlotConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *ScatterPlotConfiguration) SetInteractions(v *VisualInteractionOptions) *ScatterPlotConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -89588,6 +89784,9 @@ type TableConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *TableFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The paginated report options for a table visual.
 	PaginatedReportOptions *TablePaginatedReportOptions `type:"structure"`
 
@@ -89676,6 +89875,12 @@ func (s *TableConfiguration) SetFieldOptions(v *TableFieldOptions) *TableConfigu
 // SetFieldWells sets the FieldWells field's value.
 func (s *TableConfiguration) SetFieldWells(v *TableFieldWells) *TableConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *TableConfiguration) SetInteractions(v *VisualInteractionOptions) *TableConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -95964,6 +96169,9 @@ type TreeMapConfiguration struct {
 	// in a tree map.
 	GroupLabelOptions *ChartAxisLabelOptions `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The legend display setup of the visual.
 	Legend *LegendOptions `type:"structure"`
 
@@ -96073,6 +96281,12 @@ func (s *TreeMapConfiguration) SetFieldWells(v *TreeMapFieldWells) *TreeMapConfi
 // SetGroupLabelOptions sets the GroupLabelOptions field's value.
 func (s *TreeMapConfiguration) SetGroupLabelOptions(v *ChartAxisLabelOptions) *TreeMapConfiguration {
 	s.GroupLabelOptions = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *TreeMapConfiguration) SetInteractions(v *VisualInteractionOptions) *TreeMapConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -99719,10 +99933,12 @@ type UpdateFolderPermissionsInput struct {
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 
-	// The permissions that you want to grant on a resource.
+	// The permissions that you want to grant on a resource. Namespace ARNs are
+	// not supported Principal values for folder permissions.
 	GrantPermissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The permissions that you want to revoke from a resource.
+	// The permissions that you want to revoke from a resource. Namespace ARNs are
+	// not supported Principal values for folder permissions.
 	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
 }
 
@@ -104244,6 +104460,47 @@ func (s *VisualCustomActionOperation) SetURLOperation(v *CustomActionURLOperatio
 	return s
 }
 
+// The general visual interactions setup for visual publish options
+type VisualInteractionOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The context menu options for a visual.
+	ContextMenuOption *ContextMenuOption `type:"structure"`
+
+	// The on-visual menu options for a visual.
+	VisualMenuOption *VisualMenuOption `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualInteractionOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VisualInteractionOptions) GoString() string {
+	return s.String()
+}
+
+// SetContextMenuOption sets the ContextMenuOption field's value.
+func (s *VisualInteractionOptions) SetContextMenuOption(v *ContextMenuOption) *VisualInteractionOptions {
+	s.ContextMenuOption = v
+	return s
+}
+
+// SetVisualMenuOption sets the VisualMenuOption field's value.
+func (s *VisualInteractionOptions) SetVisualMenuOption(v *VisualMenuOption) *VisualInteractionOptions {
+	s.VisualMenuOption = v
+	return s
+}
+
 // The menu options for a visual.
 type VisualMenuOption struct {
 	_ struct{} `type:"structure"`
@@ -104586,6 +104843,38 @@ func (s *WaterfallChartAggregatedFieldWells) SetValues(v []*MeasureField) *Water
 	return s
 }
 
+// The color configuration of a waterfall visual.
+type WaterfallChartColorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The color configuration for individual groups within a waterfall visual.
+	GroupColorConfiguration *WaterfallChartGroupColorConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WaterfallChartColorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WaterfallChartColorConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetGroupColorConfiguration sets the GroupColorConfiguration field's value.
+func (s *WaterfallChartColorConfiguration) SetGroupColorConfiguration(v *WaterfallChartGroupColorConfiguration) *WaterfallChartColorConfiguration {
+	s.GroupColorConfiguration = v
+	return s
+}
+
 // The configuration for a waterfall visual.
 type WaterfallChartConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -104596,11 +104885,17 @@ type WaterfallChartConfiguration struct {
 	// The options that determine the presentation of the category axis label.
 	CategoryAxisLabelOptions *ChartAxisLabelOptions `type:"structure"`
 
+	// The color configuration of a waterfall visual.
+	ColorConfiguration *WaterfallChartColorConfiguration `type:"structure"`
+
 	// The data label configuration of a waterfall visual.
 	DataLabels *DataLabelOptions `type:"structure"`
 
 	// The field well configuration of a waterfall visual.
 	FieldWells *WaterfallChartFieldWells `type:"structure"`
+
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
 
 	// The legend configuration of a waterfall visual.
 	Legend *LegendOptions `type:"structure"`
@@ -104691,6 +104986,12 @@ func (s *WaterfallChartConfiguration) SetCategoryAxisLabelOptions(v *ChartAxisLa
 	return s
 }
 
+// SetColorConfiguration sets the ColorConfiguration field's value.
+func (s *WaterfallChartConfiguration) SetColorConfiguration(v *WaterfallChartColorConfiguration) *WaterfallChartConfiguration {
+	s.ColorConfiguration = v
+	return s
+}
+
 // SetDataLabels sets the DataLabels field's value.
 func (s *WaterfallChartConfiguration) SetDataLabels(v *DataLabelOptions) *WaterfallChartConfiguration {
 	s.DataLabels = v
@@ -104700,6 +105001,12 @@ func (s *WaterfallChartConfiguration) SetDataLabels(v *DataLabelOptions) *Waterf
 // SetFieldWells sets the FieldWells field's value.
 func (s *WaterfallChartConfiguration) SetFieldWells(v *WaterfallChartFieldWells) *WaterfallChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *WaterfallChartConfiguration) SetInteractions(v *VisualInteractionOptions) *WaterfallChartConfiguration {
+	s.Interactions = v
 	return s
 }
 
@@ -104783,6 +105090,56 @@ func (s *WaterfallChartFieldWells) Validate() error {
 // SetWaterfallChartAggregatedFieldWells sets the WaterfallChartAggregatedFieldWells field's value.
 func (s *WaterfallChartFieldWells) SetWaterfallChartAggregatedFieldWells(v *WaterfallChartAggregatedFieldWells) *WaterfallChartFieldWells {
 	s.WaterfallChartAggregatedFieldWells = v
+	return s
+}
+
+// The color configuration for individual groups within a waterfall visual.
+type WaterfallChartGroupColorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the color for the negative bars of a waterfall chart.
+	NegativeBarColor *string `type:"string"`
+
+	// Defines the color for the positive bars of a waterfall chart.
+	PositiveBarColor *string `type:"string"`
+
+	// Defines the color for the total bars of a waterfall chart.
+	TotalBarColor *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WaterfallChartGroupColorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WaterfallChartGroupColorConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetNegativeBarColor sets the NegativeBarColor field's value.
+func (s *WaterfallChartGroupColorConfiguration) SetNegativeBarColor(v string) *WaterfallChartGroupColorConfiguration {
+	s.NegativeBarColor = &v
+	return s
+}
+
+// SetPositiveBarColor sets the PositiveBarColor field's value.
+func (s *WaterfallChartGroupColorConfiguration) SetPositiveBarColor(v string) *WaterfallChartGroupColorConfiguration {
+	s.PositiveBarColor = &v
+	return s
+}
+
+// SetTotalBarColor sets the TotalBarColor field's value.
+func (s *WaterfallChartGroupColorConfiguration) SetTotalBarColor(v string) *WaterfallChartGroupColorConfiguration {
+	s.TotalBarColor = &v
 	return s
 }
 
@@ -105233,6 +105590,9 @@ type WordCloudChartConfiguration struct {
 	// The field wells of the visual.
 	FieldWells *WordCloudFieldWells `type:"structure"`
 
+	// The general visual interactions setup for a visual.
+	Interactions *VisualInteractionOptions `type:"structure"`
+
 	// The sort configuration of a word cloud visual.
 	SortConfiguration *WordCloudSortConfiguration `type:"structure"`
 
@@ -105297,6 +105657,12 @@ func (s *WordCloudChartConfiguration) SetCategoryLabelOptions(v *ChartAxisLabelO
 // SetFieldWells sets the FieldWells field's value.
 func (s *WordCloudChartConfiguration) SetFieldWells(v *WordCloudFieldWells) *WordCloudChartConfiguration {
 	s.FieldWells = v
+	return s
+}
+
+// SetInteractions sets the Interactions field's value.
+func (s *WordCloudChartConfiguration) SetInteractions(v *VisualInteractionOptions) *WordCloudChartConfiguration {
+	s.Interactions = v
 	return s
 }
 

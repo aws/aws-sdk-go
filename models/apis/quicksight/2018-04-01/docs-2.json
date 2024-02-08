@@ -2597,6 +2597,12 @@
         "TopicSingularFilterConstant$ConstantType": "<p>The type of the singular filter constant. Valid values for this structure are <code>SINGULAR</code>.</p>"
       }
     },
+    "ContextMenuOption": {
+      "base": "<p>The context menu options for a visual's interactions.</p>",
+      "refs": {
+        "VisualInteractionOptions$ContextMenuOption": "<p>The context menu options for a visual.</p>"
+      }
+    },
     "ContributionAnalysisDefault": {
       "base": "<p>The contribution analysis visual display for a line, pie, or bar chart.</p>",
       "refs": {
@@ -2998,6 +3004,7 @@
       "base": null,
       "refs": {
         "AdHocFilteringOption$AvailabilityStatus": "<p>Availability status.</p>",
+        "ContextMenuOption$AvailabilityStatus": "<p>The availability status of the context menu options. If the value of this property is set to <code>ENABLED</code>, dashboard readers can interact with the context menu.</p>",
         "DataPointDrillUpDownOption$AvailabilityStatus": "<p>The status of the drill down options of data points.</p>",
         "DataPointMenuLabelOption$AvailabilityStatus": "<p>The status of the data point menu options.</p>",
         "DataPointTooltipOption$AvailabilityStatus": "<p>The status of the data point tool tip options.</p>",
@@ -5984,7 +5991,10 @@
         "UIColorPalette$DimensionForeground": "<p>The foreground color that applies to any text or other elements that appear over the dimension color.</p>",
         "UIColorPalette$Measure": "<p>The color that applies to the names of fields that are identified as measures.</p>",
         "UIColorPalette$MeasureForeground": "<p>The foreground color that applies to any text or other elements that appear over the measure color.</p>",
-        "VisualPalette$ChartColor": "<p>The chart color options for the visual palette.</p>"
+        "VisualPalette$ChartColor": "<p>The chart color options for the visual palette.</p>",
+        "WaterfallChartGroupColorConfiguration$PositiveBarColor": "<p>Defines the color for the positive bars of a waterfall chart.</p>",
+        "WaterfallChartGroupColorConfiguration$NegativeBarColor": "<p>Defines the color for the negative bars of a waterfall chart.</p>",
+        "WaterfallChartGroupColorConfiguration$TotalBarColor": "<p>Defines the color for the total bars of a waterfall chart.</p>"
       }
     },
     "HexColorWithTransparency": {
@@ -8942,8 +8952,8 @@
         "UpdateDataSetPermissionsRequest$RevokePermissions": "<p>The resource permissions that you want to revoke from the dataset.</p>",
         "UpdateDataSourcePermissionsRequest$GrantPermissions": "<p>A list of resource permissions that you want to grant on the data source.</p>",
         "UpdateDataSourcePermissionsRequest$RevokePermissions": "<p>A list of resource permissions that you want to revoke on the data source.</p>",
-        "UpdateFolderPermissionsRequest$GrantPermissions": "<p>The permissions that you want to grant on a resource.</p>",
-        "UpdateFolderPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from a resource.</p>",
+        "UpdateFolderPermissionsRequest$GrantPermissions": "<p>The permissions that you want to grant on a resource. Namespace ARNs are not supported <code>Principal</code> values for folder permissions.</p>",
+        "UpdateFolderPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from a resource. Namespace ARNs are not supported <code>Principal</code> values for folder permissions.</p>",
         "UpdateFolderPermissionsResponse$Permissions": "<p>Information about the permissions for the folder.</p>",
         "UpdateTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template.</p>",
         "UpdateThemePermissionsResponse$Permissions": "<p>The resulting list of resource permissions for the theme.</p>",
@@ -13033,6 +13043,33 @@
         "VisualCustomAction$Trigger": "<p>The trigger of the <code>VisualCustomAction</code>.</p> <p>Valid values are defined as follows:</p> <ul> <li> <p> <code>DATA_POINT_CLICK</code>: Initiates a custom action by a left pointer click on a data point.</p> </li> <li> <p> <code>DATA_POINT_MENU</code>: Initiates a custom action by right pointer click from the menu.</p> </li> </ul>"
       }
     },
+    "VisualInteractionOptions": {
+      "base": "<p>The general visual interactions setup for visual publish options</p>",
+      "refs": {
+        "BarChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "BoxPlotChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "ComboChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "CustomContentConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "FilledMapConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "FunnelChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "GaugeChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "GeospatialMapConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "HeatMapConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "HistogramConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "InsightConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "KPIConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "LineChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "PieChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "PivotTableConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "RadarChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "SankeyDiagramChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "ScatterPlotConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "TableConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "TreeMapConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "WaterfallChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>",
+        "WordCloudChartConfiguration$Interactions": "<p>The general visual interactions setup for a visual.</p>"
+      }
+    },
     "VisualList": {
       "base": null,
       "refs": {
@@ -13042,7 +13079,8 @@
     "VisualMenuOption": {
       "base": "<p>The menu options for a visual.</p>",
       "refs": {
-        "DashboardPublishOptions$VisualMenuOption": "<p>The menu options of a visual in a dashboard.</p>"
+        "DashboardPublishOptions$VisualMenuOption": "<p>The menu options of a visual in a dashboard.</p>",
+        "VisualInteractionOptions$VisualMenuOption": "<p>The on-visual menu options for a visual.</p>"
       }
     },
     "VisualPalette": {
@@ -13137,6 +13175,12 @@
         "WaterfallChartFieldWells$WaterfallChartAggregatedFieldWells": "<p>The field well configuration of a waterfall visual.</p>"
       }
     },
+    "WaterfallChartColorConfiguration": {
+      "base": "<p>The color configuration of a waterfall visual.</p>",
+      "refs": {
+        "WaterfallChartConfiguration$ColorConfiguration": "<p>The color configuration of a waterfall visual.</p>"
+      }
+    },
     "WaterfallChartConfiguration": {
       "base": "<p>The configuration for a waterfall visual.</p>",
       "refs": {
@@ -13147,6 +13191,12 @@
       "base": "<p>The field well configuration of a waterfall visual.</p>",
       "refs": {
         "WaterfallChartConfiguration$FieldWells": "<p>The field well configuration of a waterfall visual.</p>"
+      }
+    },
+    "WaterfallChartGroupColorConfiguration": {
+      "base": "<p>The color configuration for individual groups within a waterfall visual.</p>",
+      "refs": {
+        "WaterfallChartColorConfiguration$GroupColorConfiguration": "<p>The color configuration for individual groups within a waterfall visual.</p>"
       }
     },
     "WaterfallChartOptions": {

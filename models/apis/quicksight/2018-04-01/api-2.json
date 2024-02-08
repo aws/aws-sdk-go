@@ -4427,7 +4427,8 @@
         "DataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "ReferenceLines":{"shape":"ReferenceLineList"},
-        "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"}
+        "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "BarChartFieldWells":{
@@ -4579,7 +4580,8 @@
         "Legend":{"shape":"LegendOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "ReferenceLines":{"shape":"ReferenceLineList"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "BoxPlotDimensionFieldList":{
@@ -5198,7 +5200,8 @@
         "LineDataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "ReferenceLines":{"shape":"ReferenceLineList"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "ComboChartFieldWells":{
@@ -5390,6 +5393,12 @@
         "RANGE",
         "COLLECTIVE"
       ]
+    },
+    "ContextMenuOption":{
+      "type":"structure",
+      "members":{
+        "AvailabilityStatus":{"shape":"DashboardBehavior"}
+      }
     },
     "ContributionAnalysisDefault":{
       "type":"structure",
@@ -6373,7 +6382,8 @@
       "members":{
         "ContentUrl":{"shape":"URLOperationTemplate"},
         "ContentType":{"shape":"CustomContentType"},
-        "ImageScaling":{"shape":"CustomContentImageScalingConfiguration"}
+        "ImageScaling":{"shape":"CustomContentImageScalingConfiguration"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "CustomContentImageScalingConfiguration":{
@@ -10382,7 +10392,8 @@
         "Legend":{"shape":"LegendOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "WindowOptions":{"shape":"GeospatialWindowOptions"},
-        "MapStyleOptions":{"shape":"GeospatialMapStyleOptions"}
+        "MapStyleOptions":{"shape":"GeospatialMapStyleOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "FilledMapDimensionFieldList":{
@@ -10974,7 +10985,8 @@
         "ValueLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "DataLabelOptions":{"shape":"FunnelChartDataLabelOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "FunnelChartDataLabelOptions":{
@@ -11065,7 +11077,8 @@
         "GaugeChartOptions":{"shape":"GaugeChartOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
         "TooltipOptions":{"shape":"TooltipOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "GaugeChartFieldWells":{
@@ -11264,7 +11277,8 @@
         "WindowOptions":{"shape":"GeospatialWindowOptions"},
         "MapStyleOptions":{"shape":"GeospatialMapStyleOptions"},
         "PointStyleOptions":{"shape":"GeospatialPointStyleOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "GeospatialMapFieldWells":{
@@ -11650,7 +11664,8 @@
         "ColorScale":{"shape":"ColorScale"},
         "Legend":{"shape":"LegendOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
-        "Tooltip":{"shape":"TooltipOptions"}
+        "Tooltip":{"shape":"TooltipOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "HeatMapDimensionFieldList":{
@@ -11738,7 +11753,8 @@
         "BinOptions":{"shape":"HistogramBinOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "HistogramFieldWells":{
@@ -12051,7 +12067,8 @@
       "type":"structure",
       "members":{
         "Computations":{"shape":"ComputationList"},
-        "CustomNarrative":{"shape":"CustomNarrativeOptions"}
+        "CustomNarrative":{"shape":"CustomNarrativeOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "InsightVisual":{
@@ -12292,7 +12309,8 @@
       "members":{
         "FieldWells":{"shape":"KPIFieldWells"},
         "SortConfiguration":{"shape":"KPISortConfiguration"},
-        "KPIOptions":{"shape":"KPIOptions"}
+        "KPIOptions":{"shape":"KPIOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "KPIFieldWells":{
@@ -12494,7 +12512,8 @@
         "ReferenceLines":{"shape":"ReferenceLineList"},
         "Tooltip":{"shape":"TooltipOptions"},
         "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "LineChartDefaultSeriesSettings":{
@@ -14835,7 +14854,8 @@
         "DataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "VisualPalette":{"shape":"VisualPalette"},
-        "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"}
+        "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "PieChartFieldWells":{
@@ -14948,7 +14968,8 @@
         "TableOptions":{"shape":"PivotTableOptions"},
         "TotalOptions":{"shape":"PivotTableTotalOptions"},
         "FieldOptions":{"shape":"PivotTableFieldOptions"},
-        "PaginatedReportOptions":{"shape":"PivotTablePaginatedReportOptions"}
+        "PaginatedReportOptions":{"shape":"PivotTablePaginatedReportOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "PivotTableDataPathOption":{
@@ -15391,7 +15412,8 @@
         "ColorAxis":{"shape":"AxisDisplayOptions"},
         "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "Legend":{"shape":"LegendOptions"},
-        "AxesRangeScale":{"shape":"RadarChartAxesRangeScale"}
+        "AxesRangeScale":{"shape":"RadarChartAxesRangeScale"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "RadarChartFieldWells":{
@@ -16161,7 +16183,8 @@
       "members":{
         "FieldWells":{"shape":"SankeyDiagramFieldWells"},
         "SortConfiguration":{"shape":"SankeyDiagramSortConfiguration"},
-        "DataLabels":{"shape":"DataLabelOptions"}
+        "DataLabels":{"shape":"DataLabelOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "SankeyDiagramFieldWells":{
@@ -16211,7 +16234,8 @@
         "Legend":{"shape":"LegendOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "ScatterPlotFieldWells":{
@@ -17704,7 +17728,8 @@
         "TotalOptions":{"shape":"TotalOptions"},
         "FieldOptions":{"shape":"TableFieldOptions"},
         "PaginatedReportOptions":{"shape":"TablePaginatedReportOptions"},
-        "TableInlineVisualizations":{"shape":"TableInlineVisualizationList"}
+        "TableInlineVisualizations":{"shape":"TableInlineVisualizationList"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "TableFieldCustomIconContent":{
@@ -18886,7 +18911,8 @@
         "ColorScale":{"shape":"ColorScale"},
         "Legend":{"shape":"LegendOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
-        "Tooltip":{"shape":"TooltipOptions"}
+        "Tooltip":{"shape":"TooltipOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "TreeMapDimensionFieldList":{
@@ -20508,6 +20534,13 @@
         "DATA_POINT_MENU"
       ]
     },
+    "VisualInteractionOptions":{
+      "type":"structure",
+      "members":{
+        "VisualMenuOption":{"shape":"VisualMenuOption"},
+        "ContextMenuOption":{"shape":"ContextMenuOption"}
+      }
+    },
     "VisualList":{
       "type":"list",
       "member":{"shape":"Visual"},
@@ -20559,6 +20592,12 @@
         "Breakdowns":{"shape":"DimensionFieldList"}
       }
     },
+    "WaterfallChartColorConfiguration":{
+      "type":"structure",
+      "members":{
+        "GroupColorConfiguration":{"shape":"WaterfallChartGroupColorConfiguration"}
+      }
+    },
     "WaterfallChartConfiguration":{
       "type":"structure",
       "members":{
@@ -20571,13 +20610,23 @@
         "PrimaryYAxisDisplayOptions":{"shape":"AxisDisplayOptions"},
         "Legend":{"shape":"LegendOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
-        "VisualPalette":{"shape":"VisualPalette"}
+        "VisualPalette":{"shape":"VisualPalette"},
+        "ColorConfiguration":{"shape":"WaterfallChartColorConfiguration"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "WaterfallChartFieldWells":{
       "type":"structure",
       "members":{
         "WaterfallChartAggregatedFieldWells":{"shape":"WaterfallChartAggregatedFieldWells"}
+      }
+    },
+    "WaterfallChartGroupColorConfiguration":{
+      "type":"structure",
+      "members":{
+        "PositiveBarColor":{"shape":"HexColor"},
+        "NegativeBarColor":{"shape":"HexColor"},
+        "TotalBarColor":{"shape":"HexColor"}
       }
     },
     "WaterfallChartOptions":{
@@ -20649,7 +20698,8 @@
         "FieldWells":{"shape":"WordCloudFieldWells"},
         "SortConfiguration":{"shape":"WordCloudSortConfiguration"},
         "CategoryLabelOptions":{"shape":"ChartAxisLabelOptions"},
-        "WordCloudOptions":{"shape":"WordCloudOptions"}
+        "WordCloudOptions":{"shape":"WordCloudOptions"},
+        "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
     "WordCloudCloudLayout":{

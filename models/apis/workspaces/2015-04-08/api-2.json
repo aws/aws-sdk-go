@@ -2289,7 +2289,8 @@
         "UserName":{"shape":"UserName"},
         "BundleId":{"shape":"BundleId"},
         "Limit":{"shape":"Limit"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "WorkspaceName":{"shape":"WorkspaceName"}
       }
     },
     "DescribeWorkspacesResult":{
@@ -3538,6 +3539,7 @@
         "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
         "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"},
+        "WorkspaceName":{"shape":"WorkspaceName"},
         "WorkspaceProperties":{"shape":"WorkspaceProperties"},
         "ModificationStates":{"shape":"ModificationStateList"},
         "RelatedWorkspaces":{"shape":"RelatedWorkspaces"},
@@ -3776,6 +3778,10 @@
       "type":"list",
       "member":{"shape":"Workspace"}
     },
+    "WorkspaceName":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_()][a-zA-Z0-9_.()-]{1,63}$"
+    },
     "WorkspaceProperties":{
       "type":"structure",
       "members":{
@@ -3803,7 +3809,8 @@
         "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"},
         "WorkspaceProperties":{"shape":"WorkspaceProperties"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "WorkspaceName":{"shape":"WorkspaceName"}
       }
     },
     "WorkspaceRequestList":{
