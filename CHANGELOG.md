@@ -1,3 +1,14 @@
+Release v1.50.14 (2024-02-08)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Add ability to execute pipelines with new parallel & queued execution modes and add support for triggers with filtering on branches and file paths.
+* `service/quicksight`: Updates service API and documentation
+  * General Interactions for Visuals; Waterfall Chart Color Configuration; Documentation Update
+* `service/workspaces`: Updates service API and documentation
+  * This release introduces User-Decoupling feature. This feature allows Workspaces Core customers to provision workspaces without providing users. CreateWorkspaces and DescribeWorkspaces APIs will now take a new optional parameter "WorkspaceName".
+
 Release v1.50.13 (2024-02-07)
 ===
 

@@ -3372,6 +3372,9 @@ func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecuti
 //   - PipelineNotFoundException
 //     The pipeline was specified in an invalid format or cannot be found.
 //
+//   - ConcurrentPipelineExecutionsLimitExceededException
+//     The pipeline has reached the limit for concurrent pipeline executions.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/StartPipelineExecution
 func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput) (*StartPipelineExecutionOutput, error) {
 	req, out := c.StartPipelineExecutionRequest(input)
@@ -4705,6 +4708,9 @@ type ActionExecutionDetail struct {
 	// The status of the action execution. Status categories are InProgress, Succeeded,
 	// and Failed.
 	Status *string `locationName:"status" type:"string" enum:"ActionExecutionStatus"`
+
+	// The ARN of the user who changed the pipeline execution details.
+	UpdatedBy *string `locationName:"updatedBy" type:"string"`
 }
 
 // String returns the string representation.
@@ -4785,9 +4791,21 @@ func (s *ActionExecutionDetail) SetStatus(v string) *ActionExecutionDetail {
 	return s
 }
 
+// SetUpdatedBy sets the UpdatedBy field's value.
+func (s *ActionExecutionDetail) SetUpdatedBy(v string) *ActionExecutionDetail {
+	s.UpdatedBy = &v
+	return s
+}
+
 // Filter values for the action execution.
 type ActionExecutionFilter struct {
 	_ struct{} `type:"structure"`
+
+	// The latest execution in the pipeline.
+	//
+	// Filtering on the latest execution is available for executions run on or after
+	// February 08, 2024.
+	LatestInPipelineExecution *LatestInPipelineExecutionFilter `locationName:"latestInPipelineExecution" type:"structure"`
 
 	// The pipeline execution ID used to filter action execution history.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
@@ -4809,6 +4827,27 @@ func (s ActionExecutionFilter) String() string {
 // value will be replaced with "sensitive".
 func (s ActionExecutionFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionExecutionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionExecutionFilter"}
+	if s.LatestInPipelineExecution != nil {
+		if err := s.LatestInPipelineExecution.Validate(); err != nil {
+			invalidParams.AddNested("LatestInPipelineExecution", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLatestInPipelineExecution sets the LatestInPipelineExecution field's value.
+func (s *ActionExecutionFilter) SetLatestInPipelineExecution(v *LatestInPipelineExecutionFilter) *ActionExecutionFilter {
+	s.LatestInPipelineExecution = v
+	return s
 }
 
 // SetPipelineExecutionId sets the PipelineExecutionId field's value.
@@ -4962,6 +5001,9 @@ func (s *ActionExecutionOutput) SetOutputVariables(v map[string]*string) *Action
 type ActionExecutionResult struct {
 	_ struct{} `type:"structure"`
 
+	// Represents information about an error in CodePipeline.
+	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
+
 	// The action provider's external ID for the action execution.
 	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
 
@@ -4989,6 +5031,12 @@ func (s ActionExecutionResult) String() string {
 // value will be replaced with "sensitive".
 func (s ActionExecutionResult) GoString() string {
 	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *ActionExecutionResult) SetErrorDetails(v *ErrorDetails) *ActionExecutionResult {
+	s.ErrorDetails = v
+	return s
 }
 
 // SetExternalExecutionId sets the ExternalExecutionId field's value.
@@ -6901,6 +6949,70 @@ func (s *ConcurrentModificationException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ConcurrentModificationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The pipeline has reached the limit for concurrent pipeline executions.
+type ConcurrentPipelineExecutionsLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcurrentPipelineExecutionsLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConcurrentPipelineExecutionsLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentPipelineExecutionsLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ConcurrentPipelineExecutionsLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConcurrentPipelineExecutionsLimitExceededException) Code() string {
+	return "ConcurrentPipelineExecutionsLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ConcurrentPipelineExecutionsLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConcurrentPipelineExecutionsLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ConcurrentPipelineExecutionsLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConcurrentPipelineExecutionsLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConcurrentPipelineExecutionsLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -9018,23 +9130,79 @@ func (s *GetThirdPartyJobDetailsOutput) SetJobDetails(v *ThirdPartyJobDetails) *
 	return s
 }
 
+// The Git repository branches specified as filter criteria to start the pipeline.
+type GitBranchFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of patterns of Git branches that, when a commit is pushed, are to
+	// be excluded from starting the pipeline.
+	Excludes []*string `locationName:"excludes" min:"1" type:"list"`
+
+	// The list of patterns of Git branches that, when a commit is pushed, are to
+	// be included as criteria that starts the pipeline.
+	Includes []*string `locationName:"includes" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitBranchFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitBranchFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitBranchFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitBranchFilterCriteria"}
+	if s.Excludes != nil && len(s.Excludes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Excludes", 1))
+	}
+	if s.Includes != nil && len(s.Includes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Includes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *GitBranchFilterCriteria) SetExcludes(v []*string) *GitBranchFilterCriteria {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *GitBranchFilterCriteria) SetIncludes(v []*string) *GitBranchFilterCriteria {
+	s.Includes = v
+	return s
+}
+
 // A type of trigger configuration for Git-based source actions.
 //
 // You can specify the Git configuration trigger type for all third-party Git-based
 // source actions that are supported by the CodeStarSourceConnection action
 // type.
-//
-// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-// in the CodePipeline User Guide.
 type GitConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The field where the repository event that will start the pipeline is specified
+	// as pull requests.
+	PullRequest []*GitPullRequestFilter `locationName:"pullRequest" min:"1" type:"list"`
+
 	// The field where the repository event that will start the pipeline, such as
 	// pushing Git tags, is specified with details.
-	//
-	// Git tags is the only supported event type.
 	Push []*GitPushFilter `locationName:"push" min:"1" type:"list"`
 
 	// The name of the pipeline source action where the trigger configuration, such
@@ -9068,6 +9236,9 @@ func (s GitConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GitConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GitConfiguration"}
+	if s.PullRequest != nil && len(s.PullRequest) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PullRequest", 1))
+	}
 	if s.Push != nil && len(s.Push) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Push", 1))
 	}
@@ -9076,6 +9247,16 @@ func (s *GitConfiguration) Validate() error {
 	}
 	if s.SourceActionName != nil && len(*s.SourceActionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceActionName", 1))
+	}
+	if s.PullRequest != nil {
+		for i, v := range s.PullRequest {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PullRequest", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Push != nil {
 		for i, v := range s.Push {
@@ -9094,6 +9275,12 @@ func (s *GitConfiguration) Validate() error {
 	return nil
 }
 
+// SetPullRequest sets the PullRequest field's value.
+func (s *GitConfiguration) SetPullRequest(v []*GitPullRequestFilter) *GitConfiguration {
+	s.PullRequest = v
+	return s
+}
+
 // SetPush sets the Push field's value.
 func (s *GitConfiguration) SetPush(v []*GitPushFilter) *GitConfiguration {
 	s.Push = v
@@ -9106,11 +9293,153 @@ func (s *GitConfiguration) SetSourceActionName(v string) *GitConfiguration {
 	return s
 }
 
+// The Git repository file paths specified as filter criteria to start the pipeline.
+type GitFilePathFilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The list of patterns of Git repository file paths that, when a commit is
+	// pushed, are to be excluded from starting the pipeline.
+	Excludes []*string `locationName:"excludes" min:"1" type:"list"`
+
+	// The list of patterns of Git repository file paths that, when a commit is
+	// pushed, are to be included as criteria that starts the pipeline.
+	Includes []*string `locationName:"includes" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitFilePathFilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitFilePathFilterCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitFilePathFilterCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitFilePathFilterCriteria"}
+	if s.Excludes != nil && len(s.Excludes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Excludes", 1))
+	}
+	if s.Includes != nil && len(s.Includes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Includes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *GitFilePathFilterCriteria) SetExcludes(v []*string) *GitFilePathFilterCriteria {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *GitFilePathFilterCriteria) SetIncludes(v []*string) *GitFilePathFilterCriteria {
+	s.Includes = v
+	return s
+}
+
+// The event criteria for the pull request trigger configuration, such as the
+// lists of branches or file paths to include and exclude.
+type GitPullRequestFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The field that specifies to filter on branches for the pull request trigger
+	// configuration.
+	Branches *GitBranchFilterCriteria `locationName:"branches" type:"structure"`
+
+	// The field that specifies which pull request events to filter on (opened,
+	// updated, closed) for the trigger configuration.
+	Events []*string `locationName:"events" min:"1" type:"list" enum:"GitPullRequestEventType"`
+
+	// The field that specifies to filter on file paths for the pull request trigger
+	// configuration.
+	FilePaths *GitFilePathFilterCriteria `locationName:"filePaths" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPullRequestFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GitPullRequestFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GitPullRequestFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GitPullRequestFilter"}
+	if s.Events != nil && len(s.Events) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Events", 1))
+	}
+	if s.Branches != nil {
+		if err := s.Branches.Validate(); err != nil {
+			invalidParams.AddNested("Branches", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FilePaths != nil {
+		if err := s.FilePaths.Validate(); err != nil {
+			invalidParams.AddNested("FilePaths", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranches sets the Branches field's value.
+func (s *GitPullRequestFilter) SetBranches(v *GitBranchFilterCriteria) *GitPullRequestFilter {
+	s.Branches = v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *GitPullRequestFilter) SetEvents(v []*string) *GitPullRequestFilter {
+	s.Events = v
+	return s
+}
+
+// SetFilePaths sets the FilePaths field's value.
+func (s *GitPullRequestFilter) SetFilePaths(v *GitFilePathFilterCriteria) *GitPullRequestFilter {
+	s.FilePaths = v
+	return s
+}
+
 // The event criteria that specify when a specified repository event will start
 // the pipeline for the specified trigger configuration, such as the lists of
 // Git tags to include and exclude.
 type GitPushFilter struct {
 	_ struct{} `type:"structure"`
+
+	// The field that specifies to filter on branches for the push trigger configuration.
+	Branches *GitBranchFilterCriteria `locationName:"branches" type:"structure"`
+
+	// The field that specifies to filter on file paths for the push trigger configuration.
+	FilePaths *GitFilePathFilterCriteria `locationName:"filePaths" type:"structure"`
 
 	// The field that contains the details for the Git tags trigger configuration.
 	Tags *GitTagFilterCriteria `locationName:"tags" type:"structure"`
@@ -9137,6 +9466,16 @@ func (s GitPushFilter) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GitPushFilter) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GitPushFilter"}
+	if s.Branches != nil {
+		if err := s.Branches.Validate(); err != nil {
+			invalidParams.AddNested("Branches", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FilePaths != nil {
+		if err := s.FilePaths.Validate(); err != nil {
+			invalidParams.AddNested("FilePaths", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		if err := s.Tags.Validate(); err != nil {
 			invalidParams.AddNested("Tags", err.(request.ErrInvalidParams))
@@ -9147,6 +9486,18 @@ func (s *GitPushFilter) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBranches sets the Branches field's value.
+func (s *GitPushFilter) SetBranches(v *GitBranchFilterCriteria) *GitPushFilter {
+	s.Branches = v
+	return s
+}
+
+// SetFilePaths sets the FilePaths field's value.
+func (s *GitPushFilter) SetFilePaths(v *GitFilePathFilterCriteria) *GitPushFilter {
+	s.FilePaths = v
+	return s
 }
 
 // SetTags sets the Tags field's value.
@@ -10568,6 +10919,75 @@ func (s *LambdaExecutorConfiguration) SetLambdaFunctionArn(v string) *LambdaExec
 	return s
 }
 
+// The field that specifies to filter on the latest execution in the pipeline.
+//
+// Filtering on the latest execution is available for executions run on or after
+// February 08, 2024.
+type LatestInPipelineExecutionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The execution ID for the latest execution in the pipeline.
+	//
+	// PipelineExecutionId is a required field
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+
+	// The start time to filter on for the latest execution in the pipeline. Valid
+	// options:
+	//
+	//    * All
+	//
+	//    * Latest
+	//
+	// StartTimeRange is a required field
+	StartTimeRange *string `locationName:"startTimeRange" type:"string" required:"true" enum:"StartTimeRange"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LatestInPipelineExecutionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LatestInPipelineExecutionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LatestInPipelineExecutionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LatestInPipelineExecutionFilter"}
+	if s.PipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionId"))
+	}
+	if s.StartTimeRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeRange"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPipelineExecutionId sets the PipelineExecutionId field's value.
+func (s *LatestInPipelineExecutionFilter) SetPipelineExecutionId(v string) *LatestInPipelineExecutionFilter {
+	s.PipelineExecutionId = &v
+	return s
+}
+
+// SetStartTimeRange sets the StartTimeRange field's value.
+func (s *LatestInPipelineExecutionFilter) SetStartTimeRange(v string) *LatestInPipelineExecutionFilter {
+	s.StartTimeRange = &v
+	return s
+}
+
 // The number of pipelines associated with the Amazon Web Services account has
 // exceeded the limit allowed for the account.
 type LimitExceededException struct {
@@ -10690,6 +11110,11 @@ func (s *ListActionExecutionsInput) Validate() error {
 	}
 	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11693,6 +12118,10 @@ type PipelineDeclaration struct {
 	// you must use artifactStores.
 	ArtifactStores map[string]*ArtifactStore `locationName:"artifactStores" type:"map"`
 
+	// The method that the pipeline will use to handle multiple executions. The
+	// default mode is SUPERSEDED.
+	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
+
 	// The name of the pipeline.
 	//
 	// Name is a required field
@@ -11712,15 +12141,10 @@ type PipelineDeclaration struct {
 	// when creating or updating a pipeline will result in the pipeline having the
 	// V2 type of pipeline and the associated costs.
 	//
-	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	// For information about pricing for CodePipeline, see Pricing (http://aws.amazon.com/codepipeline/pricing/).
 	//
 	// For information about which type of pipeline to choose, see What type of
 	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
-	//
-	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-	// in the CodePipeline User Guide.
 	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
 
 	// The Amazon Resource Name (ARN) for CodePipeline to use to either perform
@@ -11852,6 +12276,12 @@ func (s *PipelineDeclaration) SetArtifactStores(v map[string]*ArtifactStore) *Pi
 	return s
 }
 
+// SetExecutionMode sets the ExecutionMode field's value.
+func (s *PipelineDeclaration) SetExecutionMode(v string) *PipelineDeclaration {
+	s.ExecutionMode = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *PipelineDeclaration) SetName(v string) *PipelineDeclaration {
 	s.Name = &v
@@ -11900,6 +12330,10 @@ type PipelineExecution struct {
 
 	// A list of ArtifactRevision objects included in a pipeline execution.
 	ArtifactRevisions []*ArtifactRevision `locationName:"artifactRevisions" type:"list"`
+
+	// The method that the pipeline will use to handle multiple executions. The
+	// default mode is SUPERSEDED.
+	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
 
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
@@ -11966,6 +12400,12 @@ func (s PipelineExecution) GoString() string {
 // SetArtifactRevisions sets the ArtifactRevisions field's value.
 func (s *PipelineExecution) SetArtifactRevisions(v []*ArtifactRevision) *PipelineExecution {
 	s.ArtifactRevisions = v
+	return s
+}
+
+// SetExecutionMode sets the ExecutionMode field's value.
+func (s *PipelineExecution) SetExecutionMode(v string) *PipelineExecution {
+	s.ExecutionMode = &v
 	return s
 }
 
@@ -12145,6 +12585,10 @@ func (s *PipelineExecutionNotStoppableException) RequestID() string {
 type PipelineExecutionSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The method that the pipeline will use to handle multiple executions. The
+	// default mode is SUPERSEDED.
+	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
+
 	// The date and time of the last change to the pipeline execution, in timestamp
 	// format.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
@@ -12204,6 +12648,12 @@ func (s PipelineExecutionSummary) String() string {
 // value will be replaced with "sensitive".
 func (s PipelineExecutionSummary) GoString() string {
 	return s.String()
+}
+
+// SetExecutionMode sets the ExecutionMode field's value.
+func (s *PipelineExecutionSummary) SetExecutionMode(v string) *PipelineExecutionSummary {
+	s.ExecutionMode = &v
+	return s
 }
 
 // SetLastUpdateTime sets the LastUpdateTime field's value.
@@ -12448,6 +12898,10 @@ type PipelineSummary struct {
 	// The date and time the pipeline was created, in timestamp format.
 	Created *time.Time `locationName:"created" type:"timestamp"`
 
+	// The method that the pipeline will use to handle multiple executions. The
+	// default mode is SUPERSEDED.
+	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
+
 	// The name of the pipeline.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -12465,15 +12919,10 @@ type PipelineSummary struct {
 	// when creating or updating a pipeline will result in the pipeline having the
 	// V2 type of pipeline and the associated costs.
 	//
-	// For information about pricing for CodePipeline, see Pricing (https://aws.amazon.com/codepipeline/pricing/).
+	// For information about pricing for CodePipeline, see Pricing (http://aws.amazon.com/codepipeline/pricing/).
 	//
 	// For information about which type of pipeline to choose, see What type of
 	// pipeline is right for me? (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html).
-	//
-	// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-	// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-	// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-	// in the CodePipeline User Guide.
 	PipelineType *string `locationName:"pipelineType" type:"string" enum:"PipelineType"`
 
 	// The date and time of the last update to the pipeline, in timestamp format.
@@ -12504,6 +12953,12 @@ func (s PipelineSummary) GoString() string {
 // SetCreated sets the Created field's value.
 func (s *PipelineSummary) SetCreated(v time.Time) *PipelineSummary {
 	s.Created = &v
+	return s
+}
+
+// SetExecutionMode sets the ExecutionMode field's value.
+func (s *PipelineSummary) SetExecutionMode(v string) *PipelineSummary {
+	s.ExecutionMode = &v
 	return s
 }
 
@@ -12539,11 +12994,6 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 //
 // When a trigger configuration is specified, default change detection for repository
 // and branch commits is disabled.
-//
-// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-// in the CodePipeline User Guide.
 type PipelineTriggerDeclaration struct {
 	_ struct{} `type:"structure"`
 
@@ -12612,11 +13062,6 @@ func (s *PipelineTriggerDeclaration) SetProviderType(v string) *PipelineTriggerD
 }
 
 // A pipeline-level variable used for a pipeline execution.
-//
-// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-// in the CodePipeline User Guide.
 type PipelineVariable struct {
 	_ struct{} `type:"structure"`
 
@@ -12684,11 +13129,6 @@ func (s *PipelineVariable) SetValue(v string) *PipelineVariable {
 }
 
 // A variable declared at the pipeline level.
-//
-// V2 type pipelines, along with triggers on Git tags and pipeline-level variables,
-// are not currently supported for CloudFormation and CDK resources in CodePipeline.
-// For more information about V2 type pipelines, see Pipeline types (https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html)
-// in the CodePipeline User Guide.
 type PipelineVariableDeclaration struct {
 	_ struct{} `type:"structure"`
 
@@ -14810,6 +15250,9 @@ type StageState struct {
 	// Represents information about the run of a stage.
 	InboundExecution *StageExecution `locationName:"inboundExecution" type:"structure"`
 
+	// The inbound executions for a stage.
+	InboundExecutions []*StageExecution `locationName:"inboundExecutions" type:"list"`
+
 	// The state of the inbound transition, which is either enabled or disabled.
 	InboundTransitionState *TransitionState `locationName:"inboundTransitionState" type:"structure"`
 
@@ -14848,6 +15291,12 @@ func (s *StageState) SetActionStates(v []*ActionState) *StageState {
 // SetInboundExecution sets the InboundExecution field's value.
 func (s *StageState) SetInboundExecution(v *StageExecution) *StageState {
 	s.InboundExecution = v
+	return s
+}
+
+// SetInboundExecutions sets the InboundExecutions field's value.
+func (s *StageState) SetInboundExecutions(v []*StageExecution) *StageState {
+	s.InboundExecutions = v
 	return s
 }
 
@@ -16466,6 +16915,26 @@ func EncryptionKeyType_Values() []string {
 }
 
 const (
+	// ExecutionModeQueued is a ExecutionMode enum value
+	ExecutionModeQueued = "QUEUED"
+
+	// ExecutionModeSuperseded is a ExecutionMode enum value
+	ExecutionModeSuperseded = "SUPERSEDED"
+
+	// ExecutionModeParallel is a ExecutionMode enum value
+	ExecutionModeParallel = "PARALLEL"
+)
+
+// ExecutionMode_Values returns all elements of the ExecutionMode enum
+func ExecutionMode_Values() []string {
+	return []string{
+		ExecutionModeQueued,
+		ExecutionModeSuperseded,
+		ExecutionModeParallel,
+	}
+}
+
+const (
 	// ExecutorTypeJobWorker is a ExecutorType enum value
 	ExecutorTypeJobWorker = "JobWorker"
 
@@ -16510,6 +16979,26 @@ func FailureType_Values() []string {
 		FailureTypeRevisionOutOfSync,
 		FailureTypeRevisionUnavailable,
 		FailureTypeSystemUnavailable,
+	}
+}
+
+const (
+	// GitPullRequestEventTypeOpen is a GitPullRequestEventType enum value
+	GitPullRequestEventTypeOpen = "OPEN"
+
+	// GitPullRequestEventTypeUpdated is a GitPullRequestEventType enum value
+	GitPullRequestEventTypeUpdated = "UPDATED"
+
+	// GitPullRequestEventTypeClosed is a GitPullRequestEventType enum value
+	GitPullRequestEventTypeClosed = "CLOSED"
+)
+
+// GitPullRequestEventType_Values returns all elements of the GitPullRequestEventType enum
+func GitPullRequestEventType_Values() []string {
+	return []string{
+		GitPullRequestEventTypeOpen,
+		GitPullRequestEventTypeUpdated,
+		GitPullRequestEventTypeClosed,
 	}
 }
 
@@ -16694,6 +17183,22 @@ func StageTransitionType_Values() []string {
 	return []string{
 		StageTransitionTypeInbound,
 		StageTransitionTypeOutbound,
+	}
+}
+
+const (
+	// StartTimeRangeLatest is a StartTimeRange enum value
+	StartTimeRangeLatest = "Latest"
+
+	// StartTimeRangeAll is a StartTimeRange enum value
+	StartTimeRangeAll = "All"
+)
+
+// StartTimeRange_Values returns all elements of the StartTimeRange enum
+func StartTimeRange_Values() []string {
+	return []string{
+		StartTimeRangeLatest,
+		StartTimeRangeAll,
 	}
 }
 

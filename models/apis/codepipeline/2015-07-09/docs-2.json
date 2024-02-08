@@ -609,6 +609,11 @@
       "refs": {
       }
     },
+    "ConcurrentPipelineExecutionsLimitExceededException": {
+      "base": "<p>The pipeline has reached the limit for concurrent pipeline executions.</p>",
+      "refs": {
+      }
+    },
     "ConflictException": {
       "base": "<p>Your request cannot be handled because the pipeline is busy handling ongoing activities. Try again later.</p>",
       "refs": {
@@ -737,7 +742,8 @@
     "ErrorDetails": {
       "base": "<p>Represents information about an error in CodePipeline.</p>",
       "refs": {
-        "ActionExecution$errorDetails": "<p>The details of an error returned by a URL external to Amazon Web Services.</p>"
+        "ActionExecution$errorDetails": "<p>The details of an error returned by a URL external to Amazon Web Services.</p>",
+        "ActionExecutionResult$errorDetails": null
       }
     },
     "ExecutionDetails": {
@@ -753,6 +759,15 @@
         "ActionExecution$externalExecutionId": "<p>The external ID of the run of the action.</p>",
         "ExecutionDetails$externalExecutionId": "<p>The system-generated unique ID of this action used to identify this job worker in any external systems, such as CodeDeploy.</p>",
         "FailureDetails$externalExecutionId": "<p>The external ID of the run of the action that failed.</p>"
+      }
+    },
+    "ExecutionMode": {
+      "base": null,
+      "refs": {
+        "PipelineDeclaration$executionMode": "<p>The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.</p>",
+        "PipelineExecution$executionMode": "<p>The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.</p>",
+        "PipelineExecutionSummary$executionMode": "<p>The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.</p>",
+        "PipelineSummary$executionMode": "<p>The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.</p>"
       }
     },
     "ExecutionSummary": {
@@ -866,10 +881,74 @@
       "refs": {
       }
     },
+    "GitBranchFilterCriteria": {
+      "base": "<p>The Git repository branches specified as filter criteria to start the pipeline.</p>",
+      "refs": {
+        "GitPullRequestFilter$branches": "<p>The field that specifies to filter on branches for the pull request trigger configuration.</p>",
+        "GitPushFilter$branches": "<p>The field that specifies to filter on branches for the push trigger configuration.</p>"
+      }
+    },
+    "GitBranchNamePattern": {
+      "base": null,
+      "refs": {
+        "GitBranchPatternList$member": null
+      }
+    },
+    "GitBranchPatternList": {
+      "base": null,
+      "refs": {
+        "GitBranchFilterCriteria$includes": "<p>The list of patterns of Git branches that, when a commit is pushed, are to be included as criteria that starts the pipeline.</p>",
+        "GitBranchFilterCriteria$excludes": "<p>The list of patterns of Git branches that, when a commit is pushed, are to be excluded from starting the pipeline.</p>"
+      }
+    },
     "GitConfiguration": {
-      "base": "<p>A type of trigger configuration for Git-based source actions.</p> <note> <p>You can specify the Git configuration trigger type for all third-party Git-based source actions that are supported by the <code>CodeStarSourceConnection</code> action type.</p> </note> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>",
+      "base": "<p>A type of trigger configuration for Git-based source actions.</p> <note> <p>You can specify the Git configuration trigger type for all third-party Git-based source actions that are supported by the <code>CodeStarSourceConnection</code> action type.</p> </note>",
       "refs": {
         "PipelineTriggerDeclaration$gitConfiguration": "<p>Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags.</p>"
+      }
+    },
+    "GitFilePathFilterCriteria": {
+      "base": "<p>The Git repository file paths specified as filter criteria to start the pipeline.</p>",
+      "refs": {
+        "GitPullRequestFilter$filePaths": "<p>The field that specifies to filter on file paths for the pull request trigger configuration.</p>",
+        "GitPushFilter$filePaths": "<p>The field that specifies to filter on file paths for the push trigger configuration.</p>"
+      }
+    },
+    "GitFilePathPattern": {
+      "base": null,
+      "refs": {
+        "GitFilePathPatternList$member": null
+      }
+    },
+    "GitFilePathPatternList": {
+      "base": null,
+      "refs": {
+        "GitFilePathFilterCriteria$includes": "<p>The list of patterns of Git repository file paths that, when a commit is pushed, are to be included as criteria that starts the pipeline.</p>",
+        "GitFilePathFilterCriteria$excludes": "<p>The list of patterns of Git repository file paths that, when a commit is pushed, are to be excluded from starting the pipeline.</p>"
+      }
+    },
+    "GitPullRequestEventType": {
+      "base": null,
+      "refs": {
+        "GitPullRequestEventTypeList$member": null
+      }
+    },
+    "GitPullRequestEventTypeList": {
+      "base": null,
+      "refs": {
+        "GitPullRequestFilter$events": "<p>The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration.</p>"
+      }
+    },
+    "GitPullRequestFilter": {
+      "base": "<p>The event criteria for the pull request trigger configuration, such as the lists of branches or file paths to include and exclude.</p>",
+      "refs": {
+        "GitPullRequestFilterList$member": null
+      }
+    },
+    "GitPullRequestFilterList": {
+      "base": null,
+      "refs": {
+        "GitConfiguration$pullRequest": "<p>The field where the repository event that will start the pipeline is specified as pull requests.</p>"
       }
     },
     "GitPushFilter": {
@@ -881,7 +960,7 @@
     "GitPushFilterList": {
       "base": null,
       "refs": {
-        "GitConfiguration$push": "<p>The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details.</p> <note> <p>Git tags is the only supported event type.</p> </note>"
+        "GitConfiguration$push": "<p>The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details.</p>"
       }
     },
     "GitTagFilterCriteria": {
@@ -1079,7 +1158,14 @@
     "LastUpdatedBy": {
       "base": null,
       "refs": {
-        "ActionExecution$lastUpdatedBy": "<p>The ARN of the user who last changed the pipeline.</p>"
+        "ActionExecution$lastUpdatedBy": "<p>The ARN of the user who last changed the pipeline.</p>",
+        "ActionExecutionDetail$updatedBy": "<p>The ARN of the user who changed the pipeline execution details.</p>"
+      }
+    },
+    "LatestInPipelineExecutionFilter": {
+      "base": "<p>The field that specifies to filter on the latest execution in the pipeline.</p> <note> <p>Filtering on the latest execution is available for executions run on or after February 08, 2024.</p> </note>",
+      "refs": {
+        "ActionExecutionFilter$latestInPipelineExecution": "<p>The latest execution in the pipeline.</p> <note> <p>Filtering on the latest execution is available for executions run on or after February 08, 2024.</p> </note>"
       }
     },
     "LimitExceededException": {
@@ -1198,6 +1284,7 @@
       "base": null,
       "refs": {
         "ConcurrentModificationException$message": null,
+        "ConcurrentPipelineExecutionsLimitExceededException$message": null,
         "ConflictException$message": null,
         "DuplicatedStopRequestException$message": null,
         "ErrorDetails$message": "<p>The text of the error message.</p>",
@@ -1332,6 +1419,7 @@
         "ActionExecutionDetail$pipelineExecutionId": "<p>The pipeline execution ID for the action execution.</p>",
         "ActionExecutionFilter$pipelineExecutionId": "<p>The pipeline execution ID used to filter action execution history.</p>",
         "GetPipelineExecutionInput$pipelineExecutionId": "<p>The ID of the pipeline execution about which you want to get execution details.</p>",
+        "LatestInPipelineExecutionFilter$pipelineExecutionId": "<p>The execution ID for the latest execution in the pipeline.</p>",
         "PipelineContext$pipelineExecutionId": "<p>The execution ID of the pipeline.</p>",
         "PipelineExecution$pipelineExecutionId": "<p>The ID of the pipeline execution.</p>",
         "PipelineExecutionSummary$pipelineExecutionId": "<p>The ID of the pipeline execution.</p>",
@@ -1438,7 +1526,7 @@
       }
     },
     "PipelineTriggerDeclaration": {
-      "base": "<p>Represents information about the specified trigger configuration, such as the filter criteria and the source stage for the action that contains the trigger.</p> <note> <p>This is only supported for the <code>CodeStarSourceConnection</code> action type.</p> </note> <note> <p>When a trigger configuration is specified, default change detection for repository and branch commits is disabled.</p> </note> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>",
+      "base": "<p>Represents information about the specified trigger configuration, such as the filter criteria and the source stage for the action that contains the trigger.</p> <note> <p>This is only supported for the <code>CodeStarSourceConnection</code> action type.</p> </note> <note> <p>When a trigger configuration is specified, default change detection for repository and branch commits is disabled.</p> </note>",
       "refs": {
         "PipelineTriggerDeclarationList$member": null
       }
@@ -1458,18 +1546,18 @@
     "PipelineType": {
       "base": null,
       "refs": {
-        "PipelineDeclaration$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"https://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>",
-        "PipelineSummary$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"https://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>"
+        "PipelineDeclaration$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"http://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p>",
+        "PipelineSummary$pipelineType": "<p>CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications.</p> <ul> <li> <p>V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters.</p> </li> <li> <p>V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration.</p> </li> </ul> <important> <p>Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs.</p> </important> <p>For information about pricing for CodePipeline, see <a href=\"http://aws.amazon.com/codepipeline/pricing/\">Pricing</a>.</p> <p> For information about which type of pipeline to choose, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html\">What type of pipeline is right for me?</a>.</p>"
       }
     },
     "PipelineVariable": {
-      "base": "<p>A pipeline-level variable used for a pipeline execution.</p> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>",
+      "base": "<p>A pipeline-level variable used for a pipeline execution.</p>",
       "refs": {
         "PipelineVariableList$member": null
       }
     },
     "PipelineVariableDeclaration": {
-      "base": "<p>A variable declared at the pipeline level.</p> <note> <p>V2 type pipelines, along with triggers on Git tags and pipeline-level variables, are not currently supported for CloudFormation and CDK resources in CodePipeline. For more information about V2 type pipelines, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types.html\">Pipeline types</a> in the <i>CodePipeline User Guide</i>.</p> </note>",
+      "base": "<p>A variable declared at the pipeline level.</p>",
       "refs": {
         "PipelineVariableDeclarationList$member": null
       }
@@ -1824,8 +1912,15 @@
     "StageExecution": {
       "base": "<p>Represents information about the run of a stage.</p>",
       "refs": {
+        "StageExecutionList$member": null,
         "StageState$inboundExecution": null,
         "StageState$latestExecution": "<p>Information about the latest execution in the stage, including its ID and status.</p>"
+      }
+    },
+    "StageExecutionList": {
+      "base": null,
+      "refs": {
+        "StageState$inboundExecutions": "<p>The inbound executions for a stage.</p>"
       }
     },
     "StageExecutionStatus": {
@@ -1891,6 +1986,12 @@
     "StartPipelineExecutionOutput": {
       "base": "<p>Represents the output of a <code>StartPipelineExecution</code> action.</p>",
       "refs": {
+      }
+    },
+    "StartTimeRange": {
+      "base": null,
+      "refs": {
+        "LatestInPipelineExecutionFilter$startTimeRange": "<p>The start time to filter on for the latest execution in the pipeline. Valid options:</p> <ul> <li> <p>All</p> </li> <li> <p>Latest</p> </li> </ul>"
       }
     },
     "StopExecutionTrigger": {

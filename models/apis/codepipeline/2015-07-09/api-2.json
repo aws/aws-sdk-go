@@ -493,7 +493,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
-        {"shape":"PipelineNotFoundException"}
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"ConcurrentPipelineExecutionsLimitExceededException"}
       ]
     },
     "StopPipelineExecution":{
@@ -759,6 +760,7 @@
         "actionName":{"shape":"ActionName"},
         "startTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
+        "updatedBy":{"shape":"LastUpdatedBy"},
         "status":{"shape":"ActionExecutionStatus"},
         "input":{"shape":"ActionExecutionInput"},
         "output":{"shape":"ActionExecutionOutput"}
@@ -771,7 +773,8 @@
     "ActionExecutionFilter":{
       "type":"structure",
       "members":{
-        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "latestInPipelineExecution":{"shape":"LatestInPipelineExecutionFilter"}
       }
     },
     "ActionExecutionId":{"type":"string"},
@@ -800,7 +803,8 @@
       "members":{
         "externalExecutionId":{"shape":"ExternalExecutionId"},
         "externalExecutionSummary":{"shape":"ExternalExecutionSummary"},
-        "externalExecutionUrl":{"shape":"Url"}
+        "externalExecutionUrl":{"shape":"Url"},
+        "errorDetails":{"shape":"ErrorDetails"}
       }
     },
     "ActionExecutionStatus":{
@@ -1217,6 +1221,13 @@
       },
       "exception":true
     },
+    "ConcurrentPipelineExecutionsLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -1415,6 +1426,14 @@
       "max":1500,
       "min":1
     },
+    "ExecutionMode":{
+      "type":"string",
+      "enum":[
+        "QUEUED",
+        "SUPERSEDED",
+        "PARALLEL"
+      ]
+    },
     "ExecutionSummary":{
       "type":"string",
       "max":2048,
@@ -1566,24 +1585,93 @@
         "jobDetails":{"shape":"ThirdPartyJobDetails"}
       }
     },
+    "GitBranchFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "includes":{"shape":"GitBranchPatternList"},
+        "excludes":{"shape":"GitBranchPatternList"}
+      }
+    },
+    "GitBranchNamePattern":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
+    },
+    "GitBranchPatternList":{
+      "type":"list",
+      "member":{"shape":"GitBranchNamePattern"},
+      "max":8,
+      "min":1
+    },
     "GitConfiguration":{
       "type":"structure",
       "required":["sourceActionName"],
       "members":{
         "sourceActionName":{"shape":"ActionName"},
-        "push":{"shape":"GitPushFilterList"}
+        "push":{"shape":"GitPushFilterList"},
+        "pullRequest":{"shape":"GitPullRequestFilterList"}
       }
+    },
+    "GitFilePathFilterCriteria":{
+      "type":"structure",
+      "members":{
+        "includes":{"shape":"GitFilePathPatternList"},
+        "excludes":{"shape":"GitFilePathPatternList"}
+      }
+    },
+    "GitFilePathPattern":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
+    },
+    "GitFilePathPatternList":{
+      "type":"list",
+      "member":{"shape":"GitFilePathPattern"},
+      "max":8,
+      "min":1
+    },
+    "GitPullRequestEventType":{
+      "type":"string",
+      "enum":[
+        "OPEN",
+        "UPDATED",
+        "CLOSED"
+      ]
+    },
+    "GitPullRequestEventTypeList":{
+      "type":"list",
+      "member":{"shape":"GitPullRequestEventType"},
+      "max":3,
+      "min":1
+    },
+    "GitPullRequestFilter":{
+      "type":"structure",
+      "members":{
+        "events":{"shape":"GitPullRequestEventTypeList"},
+        "branches":{"shape":"GitBranchFilterCriteria"},
+        "filePaths":{"shape":"GitFilePathFilterCriteria"}
+      }
+    },
+    "GitPullRequestFilterList":{
+      "type":"list",
+      "member":{"shape":"GitPullRequestFilter"},
+      "max":3,
+      "min":1
     },
     "GitPushFilter":{
       "type":"structure",
       "members":{
-        "tags":{"shape":"GitTagFilterCriteria"}
+        "tags":{"shape":"GitTagFilterCriteria"},
+        "branches":{"shape":"GitBranchFilterCriteria"},
+        "filePaths":{"shape":"GitFilePathFilterCriteria"}
       }
     },
     "GitPushFilterList":{
       "type":"list",
       "member":{"shape":"GitPushFilter"},
-      "max":1,
+      "max":3,
       "min":1
     },
     "GitTagFilterCriteria":{
@@ -1790,6 +1878,17 @@
     "LastChangedAt":{"type":"timestamp"},
     "LastChangedBy":{"type":"string"},
     "LastUpdatedBy":{"type":"string"},
+    "LatestInPipelineExecutionFilter":{
+      "type":"structure",
+      "required":[
+        "pipelineExecutionId",
+        "startTimeRange"
+      ],
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "startTimeRange":{"shape":"StartTimeRange"}
+      }
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -2026,9 +2125,10 @@
         "artifactStores":{"shape":"ArtifactStoreMap"},
         "stages":{"shape":"PipelineStageDeclarationList"},
         "version":{"shape":"PipelineVersion"},
+        "executionMode":{"shape":"ExecutionMode"},
         "pipelineType":{"shape":"PipelineType"},
-        "triggers":{"shape":"PipelineTriggerDeclarationList"},
-        "variables":{"shape":"PipelineVariableDeclarationList"}
+        "variables":{"shape":"PipelineVariableDeclarationList"},
+        "triggers":{"shape":"PipelineTriggerDeclarationList"}
       }
     },
     "PipelineExecution":{
@@ -2040,8 +2140,9 @@
         "status":{"shape":"PipelineExecutionStatus"},
         "statusSummary":{"shape":"PipelineExecutionStatusSummary"},
         "artifactRevisions":{"shape":"ArtifactRevisionList"},
+        "variables":{"shape":"ResolvedPipelineVariableList"},
         "trigger":{"shape":"ExecutionTrigger"},
-        "variables":{"shape":"ResolvedPipelineVariableList"}
+        "executionMode":{"shape":"ExecutionMode"}
       }
     },
     "PipelineExecutionId":{
@@ -2083,7 +2184,8 @@
         "lastUpdateTime":{"shape":"Timestamp"},
         "sourceRevisions":{"shape":"SourceRevisionList"},
         "trigger":{"shape":"ExecutionTrigger"},
-        "stopTrigger":{"shape":"StopExecutionTrigger"}
+        "stopTrigger":{"shape":"StopExecutionTrigger"},
+        "executionMode":{"shape":"ExecutionMode"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -2131,6 +2233,7 @@
         "name":{"shape":"PipelineName"},
         "version":{"shape":"PipelineVersion"},
         "pipelineType":{"shape":"PipelineType"},
+        "executionMode":{"shape":"ExecutionMode"},
         "created":{"shape":"Timestamp"},
         "updated":{"shape":"Timestamp"}
       }
@@ -2149,7 +2252,7 @@
     "PipelineTriggerDeclarationList":{
       "type":"list",
       "member":{"shape":"PipelineTriggerDeclaration"},
-      "max":20
+      "max":50
     },
     "PipelineTriggerProviderType":{
       "type":"string",
@@ -2593,6 +2696,10 @@
         "status":{"shape":"StageExecutionStatus"}
       }
     },
+    "StageExecutionList":{
+      "type":"list",
+      "member":{"shape":"StageExecution"}
+    },
     "StageExecutionStatus":{
       "type":"string",
       "enum":[
@@ -2634,6 +2741,7 @@
       "members":{
         "stageName":{"shape":"StageName"},
         "inboundExecution":{"shape":"StageExecution"},
+        "inboundExecutions":{"shape":"StageExecutionList"},
         "inboundTransitionState":{"shape":"TransitionState"},
         "actionStates":{"shape":"ActionStateList"},
         "latestExecution":{"shape":"StageExecution"}
@@ -2668,6 +2776,13 @@
       "members":{
         "pipelineExecutionId":{"shape":"PipelineExecutionId"}
       }
+    },
+    "StartTimeRange":{
+      "type":"string",
+      "enum":[
+        "Latest",
+        "All"
+      ]
     },
     "StopExecutionTrigger":{
       "type":"structure",

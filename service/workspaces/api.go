@@ -5824,9 +5824,7 @@ func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req 
 //
 // Reboots the specified WorkSpaces.
 //
-// You cannot reboot a WorkSpace unless its state is AVAILABLE, UNHEALTHY, or
-// REBOOTING. Reboot a WorkSpace in the REBOOTING state only if your WorkSpace
-// has been stuck in the REBOOTING state for over 20 minutes.
+// You cannot reboot a WorkSpace unless its state is AVAILABLE or UNHEALTHY.
 //
 // This operation is asynchronous and returns before the WorkSpaces have rebooted.
 //
@@ -12739,6 +12737,9 @@ type DescribeWorkspacesInput struct {
 	// returns is not immediately available. If you immediately call DescribeWorkspaces
 	// with this identifier, no information is returned.
 	WorkspaceIds []*string `min:"1" type:"list"`
+
+	// The name of the user-decoupled WorkSpace.
+	WorkspaceName *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -12817,6 +12818,12 @@ func (s *DescribeWorkspacesInput) SetUserName(v string) *DescribeWorkspacesInput
 // SetWorkspaceIds sets the WorkspaceIds field's value.
 func (s *DescribeWorkspacesInput) SetWorkspaceIds(v []*string) *DescribeWorkspacesInput {
 	s.WorkspaceIds = v
+	return s
+}
+
+// SetWorkspaceName sets the WorkspaceName field's value.
+func (s *DescribeWorkspacesInput) SetWorkspaceName(v string) *DescribeWorkspacesInput {
+	s.WorkspaceName = &v
 	return s
 }
 
@@ -18462,45 +18469,6 @@ type Workspace struct {
 
 	// The operational state of the WorkSpace.
 	//
-	//    * PENDING – The WorkSpace is in a waiting state (for example, the WorkSpace
-	//    is being created).
-	//
-	//    * AVAILABLE – The WorkSpace is running and has passed the health checks.
-	//
-	//    * IMPAIRED – Refer to UNHEALTHY state.
-	//
-	//    * UNHEALTHY – The WorkSpace is not responding to health checks.
-	//
-	//    * REBOOTING – The WorkSpace is being rebooted (restarted).
-	//
-	//    * STARTING – The WorkSpace is starting up and health checks are being
-	//    run.
-	//
-	//    * REBUILDING – The WorkSpace is being rebuilt.
-	//
-	//    * RESTORING – The WorkSpace is being restored.
-	//
-	//    * MAINTENANCE – The WorkSpace is undergoing scheduled maintenance by
-	//    Amazon Web Services.
-	//
-	//    * ADMIN_MAINTENANCE – The WorkSpace is undergoing maintenance by the
-	//    WorkSpaces administrator.
-	//
-	//    * TERMINATING – The WorkSpace is being deleted.
-	//
-	//    * TERMINATED – The WorkSpace has been deleted.
-	//
-	//    * SUSPENDED – The WorkSpace has been suspended for image creation.
-	//
-	//    * UPDATING – The WorkSpace is undergoing an update.
-	//
-	//    * STOPPING – The WorkSpace is being stopped.
-	//
-	//    * STOPPED – The WorkSpace has been stopped.
-	//
-	//    * ERROR – The WorkSpace is an error state (for example, an error occurred
-	//    during startup).
-	//
 	// After a WorkSpace is terminated, the TERMINATED state is returned only briefly
 	// before the WorkSpace directory metadata is cleaned up, so this state is rarely
 	// returned. To confirm that a WorkSpace is terminated, check for the WorkSpace
@@ -18524,6 +18492,9 @@ type Workspace struct {
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
+
+	// The name of the user-decoupled WorkSpace.
+	WorkspaceName *string `type:"string"`
 
 	// The properties of the WorkSpace.
 	WorkspaceProperties *WorkspaceProperties `type:"structure"`
@@ -18646,6 +18617,12 @@ func (s *Workspace) SetVolumeEncryptionKey(v string) *Workspace {
 // SetWorkspaceId sets the WorkspaceId field's value.
 func (s *Workspace) SetWorkspaceId(v string) *Workspace {
 	s.WorkspaceId = &v
+	return s
+}
+
+// SetWorkspaceName sets the WorkspaceName field's value.
+func (s *Workspace) SetWorkspaceName(v string) *Workspace {
+	s.WorkspaceName = &v
 	return s
 }
 
@@ -19520,6 +19497,8 @@ type WorkspaceRequest struct {
 	// The user name of the user for the WorkSpace. This user name must exist in
 	// the Directory Service directory for the WorkSpace.
 	//
+	// The reserved keyword, [UNDEFINED], is used when creating user-decoupled WorkSpaces.
+	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 
@@ -19529,6 +19508,9 @@ type WorkspaceRequest struct {
 	// The ARN of the symmetric KMS key used to encrypt data stored on your WorkSpace.
 	// Amazon WorkSpaces does not support asymmetric KMS keys.
 	VolumeEncryptionKey *string `type:"string"`
+
+	// The name of the user-decoupled WorkSpace.
+	WorkspaceName *string `type:"string"`
 
 	// The WorkSpace properties.
 	WorkspaceProperties *WorkspaceProperties `type:"structure"`
@@ -19626,6 +19608,12 @@ func (s *WorkspaceRequest) SetUserVolumeEncryptionEnabled(v bool) *WorkspaceRequ
 // SetVolumeEncryptionKey sets the VolumeEncryptionKey field's value.
 func (s *WorkspaceRequest) SetVolumeEncryptionKey(v string) *WorkspaceRequest {
 	s.VolumeEncryptionKey = &v
+	return s
+}
+
+// SetWorkspaceName sets the WorkspaceName field's value.
+func (s *WorkspaceRequest) SetWorkspaceName(v string) *WorkspaceRequest {
+	s.WorkspaceName = &v
 	return s
 }
 
