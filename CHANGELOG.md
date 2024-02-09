@@ -1,3 +1,18 @@
+Release v1.50.15 (2024-02-09)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/batch`: Updates service API and documentation
+  * This feature allows Batch to support configuration of repository credentials for jobs running on ECS
+* `service/braket`: Updates service API
+* `service/cost-optimization-hub`: Updates service API and documentation
+* `service/ecs`: Updates service documentation
+  * Documentation only update for Amazon ECS.
+* `service/iot`: Updates service API and documentation
+  * This release allows AWS IoT Core users to enable Online Certificate Status Protocol (OCSP) Stapling for TLS X.509 Server Certificates when creating and updating AWS IoT Domain Configurations with Custom Domain.
+* `service/pricing`: Updates service API and documentation
+
 Release v1.50.14 (2024-02-08)
 ===
 
