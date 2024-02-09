@@ -248,6 +248,11 @@
         "PriceListJsonItems$member": null
       }
     },
+    "ThrottlingException": {
+      "base": "<p>You've made too many requests exceeding service quotas. </p>",
+      "refs": {
+      }
+    },
     "errorMessage": {
       "base": null,
       "refs": {
@@ -256,7 +261,8 @@
         "InternalErrorException$Message": null,
         "InvalidNextTokenException$Message": null,
         "InvalidParameterException$Message": null,
-        "NotFoundException$Message": null
+        "NotFoundException$Message": null,
+        "ThrottlingException$Message": null
       }
     }
   }

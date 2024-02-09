@@ -473,6 +473,7 @@
     "ListEnrollmentStatusesResponse":{
       "type":"structure",
       "members":{
+        "includeMemberAccounts":{"shape":"Boolean"},
         "items":{"shape":"AccountEnrollmentStatuses"},
         "nextToken":{"shape":"String"}
       }

@@ -25,7 +25,7 @@
     "AccountEnrollmentStatuses": {
       "base": null,
       "refs": {
-        "ListEnrollmentStatusesResponse$items": "<p>The account enrollment statuses.</p>"
+        "ListEnrollmentStatusesResponse$items": "<p>The enrollment status of a specific account ID, including creation and last updated timestamps.</p>"
       }
     },
     "AccountId": {
@@ -33,7 +33,7 @@
       "refs": {
         "AccountEnrollmentStatus$accountId": "<p>The Amazon Web Services account ID.</p>",
         "AccountIdList$member": null,
-        "ListEnrollmentStatusesRequest$accountId": "<p>The enrollment status of a specific account ID in the organization.</p>"
+        "ListEnrollmentStatusesRequest$accountId": "<p>The account ID of a member account in the organization.</p>"
       }
     },
     "AccountIdList": {
@@ -70,6 +70,7 @@
         "Filter$rollbackPossible": "<p>Whether or not implementing the recommendation can be rolled back.</p>",
         "GetRecommendationResponse$restartNeeded": "<p>Whether or not implementing the recommendation requires a restart.</p>",
         "GetRecommendationResponse$rollbackPossible": "<p>Whether or not implementing the recommendation can be rolled back.</p>",
+        "ListEnrollmentStatusesResponse$includeMemberAccounts": "<p>The enrollment status of all member accounts in the organization if the account is the management account.</p>",
         "OpenSearchReservedInstancesConfiguration$sizeFlexEligible": "<p>Determines whether the recommendation is size flexible.</p>",
         "RdsReservedInstancesConfiguration$sizeFlexEligible": "<p>Determines whether the recommendation is size flexible.</p>",
         "Recommendation$restartNeeded": "<p>Whether or not implementing the recommendation requires a restart.</p>",

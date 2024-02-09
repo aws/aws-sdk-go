@@ -3258,10 +3258,10 @@ type ComputeResource struct {
 	// is only available for Spot Instance compute resources.
 	//
 	// With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
-	// strategies using On-Demand or Spot Instances, and the BEST_FIT strategy using
-	// Spot Instances, Batch might need to exceed maxvCpus to meet your capacity
-	// requirements. In this event, Batch never exceeds maxvCpus by more than a
-	// single instance.
+	// (recommended) strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
+	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
+	// more than a single instance.
 	AllocationStrategy *string `locationName:"allocationStrategy" type:"string" enum:"CRAllocationStrategy"`
 
 	// The maximum percentage that a Spot Instance price can be when compared with
@@ -3319,8 +3319,9 @@ type ComputeResource struct {
 	ImageId *string `locationName:"imageId" deprecated:"true" type:"string"`
 
 	// The Amazon ECS instance profile applied to Amazon EC2 instances in a compute
-	// environment. You can specify the short name or full Amazon Resource Name
-	// (ARN) of an instance profile. For example, ecsInstanceRole or arn:aws:iam::<aws_account_id>:instance-profile/ecsInstanceRole
+	// environment. This parameter is required for Amazon EC2 instances types. You
+	// can specify the short name or full Amazon Resource Name (ARN) of an instance
+	// profile. For example, ecsInstanceRole or arn:aws:iam::<aws_account_id>:instance-profile/ecsInstanceRole
 	// . For more information, see Amazon ECS instance role (https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html)
 	// in the Batch User Guide.
 	//
@@ -3359,12 +3360,11 @@ type ComputeResource struct {
 
 	// The maximum number of vCPUs that a compute environment can support.
 	//
-	// With BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
-	// allocation strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// (recommended) strategies using On-Demand or Spot Instances, and the BEST_FIT
 	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
 	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
-	// more than a single instance. For example, no more than a single instance
-	// from among those specified in your compute environment is allocated.
+	// more than a single instance.
 	//
 	// MaxvCpus is a required field
 	MaxvCpus *int64 `locationName:"maxvCpus" type:"integer" required:"true"`
@@ -3651,11 +3651,11 @@ type ComputeResourceUpdate struct {
 	// to be interrupted and have the lowest possible price. This allocation strategy
 	// is only available for Spot Instance compute resources.
 	//
-	// With both BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED, and SPOT_PRICE_CAPACITY_OPTIMIZED
-	// strategies using On-Demand or Spot Instances, and the BEST_FIT strategy using
-	// Spot Instances, Batch might need to exceed maxvCpus to meet your capacity
-	// requirements. In this event, Batch never exceeds maxvCpus by more than a
-	// single instance.
+	// With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// (recommended) strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
+	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
+	// more than a single instance.
 	AllocationStrategy *string `locationName:"allocationStrategy" type:"string" enum:"CRUpdateAllocationStrategy"`
 
 	// The maximum percentage that a Spot Instance price can be when compared with
@@ -3745,8 +3745,9 @@ type ComputeResourceUpdate struct {
 	ImageId *string `locationName:"imageId" type:"string"`
 
 	// The Amazon ECS instance profile applied to Amazon EC2 instances in a compute
-	// environment. You can specify the short name or full Amazon Resource Name
-	// (ARN) of an instance profile. For example, ecsInstanceRole or arn:aws:iam::<aws_account_id>:instance-profile/ecsInstanceRole
+	// environment. Required for Amazon EC2 instances. You can specify the short
+	// name or full Amazon Resource Name (ARN) of an instance profile. For example,
+	// ecsInstanceRole or arn:aws:iam::<aws_account_id>:instance-profile/ecsInstanceRole
 	// . For more information, see Amazon ECS instance role (https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html)
 	// in the Batch User Guide.
 	//
@@ -3803,12 +3804,11 @@ type ComputeResourceUpdate struct {
 
 	// The maximum number of Amazon EC2 vCPUs that an environment can reach.
 	//
-	// With BEST_FIT_PROGRESSIVE, SPOT_CAPACITY_OPTIMIZED, and SPOT_PRICE_CAPACITY_OPTIMIZED
-	// allocation strategies using On-Demand or Spot Instances, and the BEST_FIT
+	// With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and SPOT_PRICE_CAPACITY_OPTIMIZED
+	// (recommended) strategies using On-Demand or Spot Instances, and the BEST_FIT
 	// strategy using Spot Instances, Batch might need to exceed maxvCpus to meet
 	// your capacity requirements. In this event, Batch never exceeds maxvCpus by
-	// more than a single instance. That is, no more than a single instance from
-	// among those specified in your compute environment.
+	// more than a single instance.
 	MaxvCpus *int64 `locationName:"maxvCpus" type:"integer"`
 
 	// The minimum number of vCPUs that an environment should maintain (even if
@@ -4182,6 +4182,9 @@ type ContainerDetail struct {
 	// details for a running or stopped container.
 	Reason *string `locationName:"reason" type:"string"`
 
+	// The private repository authentication credentials to use.
+	RepositoryCredentials *RepositoryCredentials `locationName:"repositoryCredentials" type:"structure"`
+
 	// The type and amount of resources to assign to a container. The supported
 	// resources include GPU, MEMORY, and VCPU.
 	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
@@ -4368,6 +4371,12 @@ func (s *ContainerDetail) SetReadonlyRootFilesystem(v bool) *ContainerDetail {
 // SetReason sets the Reason field's value.
 func (s *ContainerDetail) SetReason(v string) *ContainerDetail {
 	s.Reason = &v
+	return s
+}
+
+// SetRepositoryCredentials sets the RepositoryCredentials field's value.
+func (s *ContainerDetail) SetRepositoryCredentials(v *RepositoryCredentials) *ContainerDetail {
+	s.RepositoryCredentials = v
 	return s
 }
 
@@ -4596,12 +4605,12 @@ type ContainerProperties struct {
 	// Jobs that are running on EC2 resources must not specify this parameter.
 	FargatePlatformConfiguration *FargatePlatformConfiguration `locationName:"fargatePlatformConfiguration" type:"structure"`
 
-	// The image used to start a container. This string is passed directly to the
-	// Docker daemon. Images in the Docker Hub registry are available by default.
-	// Other repositories are specified with repository-url/image:tag . It can be
-	// 255 characters long. It can contain uppercase and lowercase letters, numbers,
-	// hyphens (-), underscores (_), colons (:), periods (.), forward slashes (/),
-	// and number signs (#). This parameter maps to Image in the Create a container
+	// Required. The image used to start a container. This string is passed directly
+	// to the Docker daemon. Images in the Docker Hub registry are available by
+	// default. Other repositories are specified with repository-url/image:tag .
+	// It can be 255 characters long. It can contain uppercase and lowercase letters,
+	// numbers, hyphens (-), underscores (_), colons (:), periods (.), forward slashes
+	// (/), and number signs (#). This parameter maps to Image in the Create a container
 	// (https://docs.docker.com/engine/api/v1.23/#create-a-container) section of
 	// the Docker Remote API (https://docs.docker.com/engine/api/v1.23/) and the
 	// IMAGE parameter of docker run (https://docs.docker.com/engine/reference/run/).
@@ -4713,6 +4722,9 @@ type ContainerProperties struct {
 	// --read-only option to docker run.
 	ReadonlyRootFilesystem *bool `locationName:"readonlyRootFilesystem" type:"boolean"`
 
+	// The private repository authentication credentials to use.
+	RepositoryCredentials *RepositoryCredentials `locationName:"repositoryCredentials" type:"structure"`
+
 	// The type and amount of resources to assign to a container. The supported
 	// resources include GPU, MEMORY, and VCPU.
 	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
@@ -4794,6 +4806,11 @@ func (s *ContainerProperties) Validate() error {
 	if s.LogConfiguration != nil {
 		if err := s.LogConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("LogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RepositoryCredentials != nil {
+		if err := s.RepositoryCredentials.Validate(); err != nil {
+			invalidParams.AddNested("RepositoryCredentials", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ResourceRequirements != nil {
@@ -4930,6 +4947,12 @@ func (s *ContainerProperties) SetPrivileged(v bool) *ContainerProperties {
 // SetReadonlyRootFilesystem sets the ReadonlyRootFilesystem field's value.
 func (s *ContainerProperties) SetReadonlyRootFilesystem(v bool) *ContainerProperties {
 	s.ReadonlyRootFilesystem = &v
+	return s
+}
+
+// SetRepositoryCredentials sets the RepositoryCredentials field's value.
+func (s *ContainerProperties) SetRepositoryCredentials(v *RepositoryCredentials) *ContainerProperties {
+	s.RepositoryCredentials = v
 	return s
 }
 
@@ -5954,7 +5977,8 @@ type DescribeJobDefinitionsInput struct {
 
 	// A list of up to 100 job definitions. Each entry in the list can either be
 	// an ARN in the format arn:aws:batch:${Region}:${Account}:job-definition/${JobDefinitionName}:${Revision}
-	// or a short version using the form ${JobDefinitionName}:${Revision}.
+	// or a short version using the form ${JobDefinitionName}:${Revision}. This
+	// parameter can't be used with other parameters.
 	JobDefinitions []*string `locationName:"jobDefinitions" type:"list"`
 
 	// The maximum number of results returned by DescribeJobDefinitions in paginated
@@ -6605,6 +6629,13 @@ type Ec2Configuration struct {
 	// Amazon Linux 2 (GPU) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#gpuami):
 	// Default for all GPU instance families (for example P4 and G4) and can be
 	// used for all non Amazon Web Services Graviton-based instance types.
+	//
+	// ECS_AL2023
+	//
+	// Amazon Linux 2023 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html):
+	// Batch supports Amazon Linux 2023.
+	//
+	// Amazon Linux 2023 does not support A1 instances.
 	//
 	// ECS_AL1
 	//
@@ -8510,7 +8541,7 @@ type FairsharePolicy struct {
 	// The reserved ratio is (computeReservation/100)^ActiveFairShares where ActiveFairShares
 	// is the number of active fair share identifiers.
 	//
-	// For example, a computeReservation value of 50 indicates that Batchreserves
+	// For example, a computeReservation value of 50 indicates that Batch reserves
 	// 50% of the maximum available vCPU if there's only one fair share identifier.
 	// It reserves 25% if there are two fair share identifiers. It reserves 12.5%
 	// if there are three fair share identifiers. A computeReservation value of
@@ -9018,8 +9049,6 @@ type JobDetail struct {
 
 	// The Unix timestamp (in milliseconds) for when the job was started. More specifically,
 	// it's when the job transitioned from the STARTING state to the RUNNING state.
-	// This parameter isn't provided for child jobs of array jobs or multi-node
-	// parallel jobs.
 	//
 	// StartedAt is a required field
 	StartedAt *int64 `locationName:"startedAt" type:"long" required:"true"`
@@ -10390,7 +10419,7 @@ func (s *LogConfiguration) SetSecretOptions(v []*Secret) *LogConfiguration {
 }
 
 // Details for a Docker volume mount point that's used in a job's container
-// properties. This parameter maps to Volumes in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container)
+// properties. This parameter maps to Volumes in the Create a container (https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerCreate)
 // section of the Docker Remote API and the --volume option to docker run.
 type MountPoint struct {
 	_ struct{} `type:"structure"`
@@ -11210,6 +11239,54 @@ func (s *RegisterJobDefinitionOutput) SetRevision(v int64) *RegisterJobDefinitio
 	return s
 }
 
+// The repository credentials for private registry authentication.
+type RepositoryCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the secret containing the private repository
+	// credentials.
+	//
+	// CredentialsParameter is a required field
+	CredentialsParameter *string `locationName:"credentialsParameter" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepositoryCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepositoryCredentials"}
+	if s.CredentialsParameter == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsParameter"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentialsParameter sets the CredentialsParameter field's value.
+func (s *RepositoryCredentials) SetCredentialsParameter(v string) *RepositoryCredentials {
+	s.CredentialsParameter = &v
+	return s
+}
+
 // The type and amount of a resource to assign to a container. The supported
 // resources include GPU, MEMORY, and VCPU.
 type ResourceRequirement struct {
@@ -11493,6 +11570,12 @@ type RuntimePlatform struct {
 	// and ARM64.
 	//
 	// This parameter must be set to X86_64 for Windows containers.
+	//
+	// Fargate Spot is not supported for ARM64 and Windows-based containers on Fargate.
+	// A job queue will be blocked if a Fargate ARM64 or Windows job is submitted
+	// to a job queue with only Fargate Spot compute environments. However, you
+	// can attach both FARGATE and FARGATE_SPOT compute environments to the same
+	// job queue.
 	CpuArchitecture *string `locationName:"cpuArchitecture" type:"string"`
 
 	// The operating system for the compute environment. Valid values are: LINUX
@@ -11502,15 +11585,18 @@ type RuntimePlatform struct {
 	// The following parameters can’t be set for Windows containers: linuxParameters,
 	// privileged, user, ulimits, readonlyRootFilesystem, and efsVolumeConfiguration.
 	//
-	// The Batch Scheduler checks before registering a task definition with Fargate.
-	// If the job requires a Windows container and the first compute environment
-	// is LINUX, the compute environment is skipped and the next is checked until
+	// The Batch Scheduler checks the compute environments that are attached to
+	// the job queue before registering a task definition with Fargate. In this
+	// scenario, the job queue is where the job is submitted. If the job requires
+	// a Windows container and the first compute environment is LINUX, the compute
+	// environment is skipped and the next compute environment is checked until
 	// a Windows-based compute environment is found.
 	//
-	// Fargate Spot is not supported for Windows-based containers on Fargate. A
-	// job queue will be blocked if a Fargate Windows job is submitted to a job
-	// queue with only Fargate Spot compute environments. However, you can attach
-	// both FARGATE and FARGATE_SPOT compute environments to the same job queue.
+	// Fargate Spot is not supported for ARM64 and Windows-based containers on Fargate.
+	// A job queue will be blocked if a Fargate ARM64 or Windows job is submitted
+	// to a job queue with only Fargate Spot compute environments. However, you
+	// can attach both FARGATE and FARGATE_SPOT compute environments to the same
+	// job queue.
 	OperatingSystemFamily *string `locationName:"operatingSystemFamily" type:"string"`
 }
 
@@ -11948,7 +12034,7 @@ type SubmitJobInput struct {
 	// The scheduling priority for the job. This only affects jobs in job queues
 	// with a fair share policy. Jobs with a higher scheduling priority are scheduled
 	// before jobs with a lower scheduling priority. This overrides any scheduling
-	// priority in the job definition.
+	// priority in the job definition and works only within a single share identifier.
 	//
 	// The minimum supported value is 0 and the maximum supported value is 9999.
 	SchedulingPriorityOverride *int64 `locationName:"schedulingPriorityOverride" type:"integer"`
@@ -12440,7 +12526,8 @@ func (s *Tmpfs) SetSize(v int64) *Tmpfs {
 	return s
 }
 
-// The ulimit settings to pass to the container.
+// The ulimit settings to pass to the container. For more information, see Ulimit
+// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Ulimit.html).
 //
 // This object isn't applicable to jobs that are running on Fargate resources.
 type Ulimit struct {
@@ -12451,7 +12538,9 @@ type Ulimit struct {
 	// HardLimit is a required field
 	HardLimit *int64 `locationName:"hardLimit" type:"integer" required:"true"`
 
-	// The type of the ulimit.
+	// The type of the ulimit. Valid values are: core | cpu | data | fsize | locks
+	// | memlock | msgqueue | nice | nofile | nproc | rss | rtprio | rttime | sigpending
+	// | stack.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`

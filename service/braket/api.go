@@ -266,6 +266,9 @@ func (c *Braket) CreateJobRequest(input *CreateJobInput) (req *request.Request, 
 //   - ThrottlingException
 //     The throttling rate limit is met.
 //
+//   - DeviceOfflineException
+//     The specified device is currently offline.
+//
 //   - DeviceRetiredException
 //     The specified device has been retired.
 //

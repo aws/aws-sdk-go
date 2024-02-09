@@ -9189,8 +9189,11 @@ func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *reques
 
 // DescribeEndpoint API operation for AWS IoT.
 //
-// Returns a unique endpoint specific to the Amazon Web Services account making
-// the call.
+// Returns or creates a unique endpoint specific to the Amazon Web Services
+// account making the call.
+//
+// The first time DescribeEndpoint is called, an endpoint is created. All subsequent
+// calls to DescribeEndpoint return the same endpoint.
 //
 // Requires permission to access the DescribeEndpoint (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -12810,6 +12813,10 @@ func (c *IoT) GetRegistrationCodeRequest(input *GetRegistrationCodeInput) (req *
 // GetRegistrationCode API operation for AWS IoT.
 //
 // Gets a registration code used to register a CA certificate with IoT.
+//
+// IoT will create a registration code as part of this API call if the registration
+// code doesn't exist or has been deleted. If you already have a registration
+// code, this API call will return the same registration code.
 //
 // Requires permission to access the GetRegistrationCode (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -33710,6 +33717,9 @@ type CreateDomainConfigurationInput struct {
 	// is not required for Amazon Web Services-managed domains.
 	ServerCertificateArns []*string `locationName:"serverCertificateArns" type:"list"`
 
+	// The server certificate configuration.
+	ServerCertificateConfig *ServerCertificateConfig `locationName:"serverCertificateConfig" type:"structure"`
+
 	// The type of service delivered by the endpoint.
 	//
 	// Amazon Web Services IoT Core currently supports only the DATA service type.
@@ -33809,6 +33819,12 @@ func (s *CreateDomainConfigurationInput) SetDomainName(v string) *CreateDomainCo
 // SetServerCertificateArns sets the ServerCertificateArns field's value.
 func (s *CreateDomainConfigurationInput) SetServerCertificateArns(v []*string) *CreateDomainConfigurationInput {
 	s.ServerCertificateArns = v
+	return s
+}
+
+// SetServerCertificateConfig sets the ServerCertificateConfig field's value.
+func (s *CreateDomainConfigurationInput) SetServerCertificateConfig(v *ServerCertificateConfig) *CreateDomainConfigurationInput {
+	s.ServerCertificateConfig = v
 	return s
 }
 
@@ -42259,6 +42275,9 @@ type DescribeDomainConfigurationOutput struct {
 	// The date and time the domain configuration's status was last changed.
 	LastStatusChangeDate *time.Time `locationName:"lastStatusChangeDate" type:"timestamp"`
 
+	// The server certificate configuration.
+	ServerCertificateConfig *ServerCertificateConfig `locationName:"serverCertificateConfig" type:"structure"`
+
 	// A list containing summary information about the server certificate included
 	// in the domain configuration.
 	ServerCertificates []*ServerCertificateSummary `locationName:"serverCertificates" type:"list"`
@@ -42327,6 +42346,12 @@ func (s *DescribeDomainConfigurationOutput) SetDomainType(v string) *DescribeDom
 // SetLastStatusChangeDate sets the LastStatusChangeDate field's value.
 func (s *DescribeDomainConfigurationOutput) SetLastStatusChangeDate(v time.Time) *DescribeDomainConfigurationOutput {
 	s.LastStatusChangeDate = &v
+	return s
+}
+
+// SetServerCertificateConfig sets the ServerCertificateConfig field's value.
+func (s *DescribeDomainConfigurationOutput) SetServerCertificateConfig(v *ServerCertificateConfig) *DescribeDomainConfigurationOutput {
+	s.ServerCertificateConfig = v
 	return s
 }
 
@@ -63888,6 +63913,43 @@ func (s *SecurityProfileTargetMapping) SetTarget(v *SecurityProfileTarget) *Secu
 	return s
 }
 
+// The server certificate configuration.
+type ServerCertificateConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value that indicates whether Online Certificate Status Protocol
+	// (OCSP) server certificate check is enabled or not.
+	//
+	// For more information, see Configuring OCSP server-certificate stapling in
+	// domain configuration (https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-domain-ocsp-config.html)
+	// from Amazon Web Services IoT Core Developer Guide.
+	EnableOCSPCheck *bool `locationName:"enableOCSPCheck" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerCertificateConfig) GoString() string {
+	return s.String()
+}
+
+// SetEnableOCSPCheck sets the EnableOCSPCheck field's value.
+func (s *ServerCertificateConfig) SetEnableOCSPCheck(v bool) *ServerCertificateConfig {
+	s.EnableOCSPCheck = &v
+	return s
+}
+
 // An object that contains information about a server certificate.
 type ServerCertificateSummary struct {
 	_ struct{} `type:"structure"`
@@ -70094,6 +70156,9 @@ type UpdateDomainConfigurationInput struct {
 	// Removes the authorization configuration from a domain.
 	RemoveAuthorizerConfig *bool `locationName:"removeAuthorizerConfig" type:"boolean"`
 
+	// The server certificate configuration.
+	ServerCertificateConfig *ServerCertificateConfig `locationName:"serverCertificateConfig" type:"structure"`
+
 	// An object that specifies the TLS configuration for a domain.
 	TlsConfig *TlsConfig `locationName:"tlsConfig" type:"structure"`
 }
@@ -70158,6 +70223,12 @@ func (s *UpdateDomainConfigurationInput) SetDomainConfigurationStatus(v string) 
 // SetRemoveAuthorizerConfig sets the RemoveAuthorizerConfig field's value.
 func (s *UpdateDomainConfigurationInput) SetRemoveAuthorizerConfig(v bool) *UpdateDomainConfigurationInput {
 	s.RemoveAuthorizerConfig = &v
+	return s
+}
+
+// SetServerCertificateConfig sets the ServerCertificateConfig field's value.
+func (s *UpdateDomainConfigurationInput) SetServerCertificateConfig(v *ServerCertificateConfig) *UpdateDomainConfigurationInput {
+	s.ServerCertificateConfig = v
 	return s
 }
 

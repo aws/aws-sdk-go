@@ -99,7 +99,7 @@
     "DescribeDetectMitigationActionsTask": "<p> Gets information about a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDetectMitigationActionsTask</a> action.</p>",
     "DescribeDimension": "<p>Provides details about a dimension that is defined in your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDimension</a> action.</p>",
     "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDomainConfiguration</a> action.</p>",
-    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the Amazon Web Services account making the call.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeEndpoint</a> action.</p>",
+    "DescribeEndpoint": "<p>Returns or creates a unique endpoint specific to the Amazon Web Services account making the call.</p> <note> <p>The first time <code>DescribeEndpoint</code> is called, an endpoint is created. All subsequent calls to <code>DescribeEndpoint</code> return the same endpoint.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeEndpoint</a> action.</p>",
     "DescribeEventConfigurations": "<p>Describes event configurations.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeEventConfigurations</a> action.</p>",
     "DescribeFleetMetric": "<p>Gets information about the specified fleet metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeFleetMetric</a> action.</p>",
     "DescribeIndex": "<p>Describes a search index.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeIndex</a> action.</p>",
@@ -138,7 +138,7 @@
     "GetPercentiles": "<p>Groups the aggregated values that match the query into percentile groupings. The default percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when you call <code>GetPercentiles</code>. This function returns a value for each percentile group specified (or the default percentile groupings). The percentile group \"1\" contains the aggregated field value that occurs in approximately one percent of the values that match the query. The percentile group \"5\" contains the aggregated field value that occurs in approximately five percent of the values that match the query, and so on. The result is an approximation, the more values that match the query, the more accurate the percentile values.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPercentiles</a> action.</p>",
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPolicy</a> action.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPolicyVersion</a> action.</p>",
-    "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with IoT.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetRegistrationCode</a> action.</p>",
+    "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with IoT.</p> <p>IoT will create a registration code as part of this API call if the registration code doesn't exist or has been deleted. If you already have a registration code, this API call will return the same registration code.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetRegistrationCode</a> action.</p>",
     "GetStatistics": "<p>Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard deviation for the specified aggregated field. If the aggregation field is of type <code>String</code>, only the count statistic is returned.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetStatistics</a> action.</p>",
     "GetTopicRule": "<p>Gets information about the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetTopicRule</a> action.</p>",
     "GetTopicRuleDestination": "<p>Gets information about a topic rule destination.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetTopicRuleDestination</a> action.</p>",
@@ -3456,6 +3456,12 @@
       "base": "<p>Parameters used when defining a mitigation action that enable Amazon Web Services IoT Core logging.</p>",
       "refs": {
         "MitigationActionParams$enableIoTLoggingParams": "<p>Parameters to define a mitigation action that enables Amazon Web Services IoT Core logging at a specified level of detail.</p>"
+      }
+    },
+    "EnableOCSPCheck": {
+      "base": null,
+      "refs": {
+        "ServerCertificateConfig$enableOCSPCheck": "<p>A Boolean value that indicates whether Online Certificate Status Protocol (OCSP) server certificate check is enabled or not.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-domain-ocsp-config.html\">Configuring OCSP server-certificate stapling in domain configuration</a> from Amazon Web Services IoT Core Developer Guide.</p>"
       }
     },
     "EnableTopicRuleRequest": {
@@ -7381,6 +7387,14 @@
       "base": null,
       "refs": {
         "CreateDomainConfigurationRequest$serverCertificateArns": "<p>The ARNs of the certificates that IoT passes to the device during the TLS handshake. Currently you can specify only one certificate ARN. This value is not required for Amazon Web Services-managed domains.</p>"
+      }
+    },
+    "ServerCertificateConfig": {
+      "base": "<p>The server certificate configuration.</p>",
+      "refs": {
+        "CreateDomainConfigurationRequest$serverCertificateConfig": "<p>The server certificate configuration.</p>",
+        "DescribeDomainConfigurationResponse$serverCertificateConfig": "<p>The server certificate configuration.</p>",
+        "UpdateDomainConfigurationRequest$serverCertificateConfig": "<p>The server certificate configuration.</p>"
       }
     },
     "ServerCertificateStatus": {

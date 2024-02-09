@@ -2718,7 +2718,7 @@ func (s *LambdaFunctionConfiguration) SetCompute(v *ComputeConfiguration) *Lambd
 type ListEnrollmentStatusesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The enrollment status of a specific account ID in the organization.
+	// The account ID of a member account in the organization.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Indicates whether to return the enrollment status for the organization.
@@ -2776,7 +2776,12 @@ func (s *ListEnrollmentStatusesInput) SetNextToken(v string) *ListEnrollmentStat
 type ListEnrollmentStatusesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The account enrollment statuses.
+	// The enrollment status of all member accounts in the organization if the account
+	// is the management account.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// The enrollment status of a specific account ID, including creation and last
+	// updated timestamps.
 	Items []*AccountEnrollmentStatus `locationName:"items" type:"list"`
 
 	// The token to retrieve the next set of results.
@@ -2799,6 +2804,12 @@ func (s ListEnrollmentStatusesOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ListEnrollmentStatusesOutput) GoString() string {
 	return s.String()
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ListEnrollmentStatusesOutput) SetIncludeMemberAccounts(v bool) *ListEnrollmentStatusesOutput {
+	s.IncludeMemberAccounts = &v
+	return s
 }
 
 // SetItems sets the Items field's value.

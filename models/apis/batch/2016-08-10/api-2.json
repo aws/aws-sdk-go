@@ -592,7 +592,8 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
         "ephemeralStorage":{"shape":"EphemeralStorage"},
-        "runtimePlatform":{"shape":"RuntimePlatform"}
+        "runtimePlatform":{"shape":"RuntimePlatform"},
+        "repositoryCredentials":{"shape":"RepositoryCredentials"}
       }
     },
     "ContainerOverrides":{
@@ -646,7 +647,8 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"},
         "ephemeralStorage":{"shape":"EphemeralStorage"},
-        "runtimePlatform":{"shape":"RuntimePlatform"}
+        "runtimePlatform":{"shape":"RuntimePlatform"},
+        "repositoryCredentials":{"shape":"RepositoryCredentials"}
       }
     },
     "ContainerSummary":{
@@ -1665,6 +1667,13 @@
         "jobDefinitionName":{"shape":"String"},
         "jobDefinitionArn":{"shape":"String"},
         "revision":{"shape":"Integer"}
+      }
+    },
+    "RepositoryCredentials":{
+      "type":"structure",
+      "required":["credentialsParameter"],
+      "members":{
+        "credentialsParameter":{"shape":"String"}
       }
     },
     "ResourceRequirement":{
