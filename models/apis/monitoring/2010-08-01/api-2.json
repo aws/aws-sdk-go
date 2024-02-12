@@ -500,7 +500,8 @@
         {"shape":"MissingRequiredParameterException"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"InternalServiceFault"}
-      ]
+      ],
+      "requestcompression":{"encodings":["gzip"]}
     },
     "PutMetricStream":{
       "name":"PutMetricStream",

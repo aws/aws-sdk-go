@@ -139,7 +139,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "CreateGraphqlApi":{
@@ -266,7 +267,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "DeleteGraphqlApi":{
@@ -949,7 +951,8 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
       ]
     },
     "UpdateGraphqlApi":{
@@ -1057,7 +1060,8 @@
         "transitEncryptionEnabled":{"shape":"Boolean"},
         "atRestEncryptionEnabled":{"shape":"Boolean"},
         "type":{"shape":"ApiCacheType"},
-        "status":{"shape":"ApiCacheStatus"}
+        "status":{"shape":"ApiCacheStatus"},
+        "healthMetricsConfig":{"shape":"CacheHealthMetricsConfig"}
       }
     },
     "ApiCacheStatus":{
@@ -1272,6 +1276,13 @@
     "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
     "BooleanValue":{"type":"boolean"},
+    "CacheHealthMetricsConfig":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "CachingConfig":{
       "type":"structure",
       "required":["ttl"],
@@ -1378,7 +1389,8 @@
         "transitEncryptionEnabled":{"shape":"Boolean"},
         "atRestEncryptionEnabled":{"shape":"Boolean"},
         "apiCachingBehavior":{"shape":"ApiCachingBehavior"},
-        "type":{"shape":"ApiCacheType"}
+        "type":{"shape":"ApiCacheType"},
+        "healthMetricsConfig":{"shape":"CacheHealthMetricsConfig"}
       }
     },
     "CreateApiCacheResponse":{
@@ -1429,7 +1441,8 @@
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
         "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
-        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"},
+        "metricsConfig":{"shape":"DataSourceLevelMetricsConfig"}
       }
     },
     "CreateDataSourceResponse":{
@@ -1509,7 +1522,8 @@
         "ownerContact":{"shape":"String"},
         "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
         "queryDepthLimit":{"shape":"QueryDepthLimit"},
-        "resolverCountLimit":{"shape":"ResolverCountLimit"}
+        "resolverCountLimit":{"shape":"ResolverCountLimit"},
+        "enhancedMetricsConfig":{"shape":"EnhancedMetricsConfig"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -1546,7 +1560,8 @@
         "cachingConfig":{"shape":"CachingConfig"},
         "maxBatchSize":{"shape":"MaxBatchSize"},
         "runtime":{"shape":"AppSyncRuntime"},
-        "code":{"shape":"Code"}
+        "code":{"shape":"Code"},
+        "metricsConfig":{"shape":"ResolverLevelMetricsConfig"}
       }
     },
     "CreateResolverResponse":{
@@ -1592,7 +1607,8 @@
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
         "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
-        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"},
+        "metricsConfig":{"shape":"DataSourceLevelMetricsConfig"}
       }
     },
     "DataSourceIntrospectionModel":{
@@ -1662,6 +1678,20 @@
         "PROCESSING",
         "FAILED",
         "SUCCESS"
+      ]
+    },
+    "DataSourceLevelMetricsBehavior":{
+      "type":"string",
+      "enum":[
+        "FULL_REQUEST_DATA_SOURCE_METRICS",
+        "PER_DATA_SOURCE_METRICS"
+      ]
+    },
+    "DataSourceLevelMetricsConfig":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "DataSourceType":{
@@ -1986,6 +2016,19 @@
       "members":{
         "endpoint":{"shape":"String"},
         "awsRegion":{"shape":"String"}
+      }
+    },
+    "EnhancedMetricsConfig":{
+      "type":"structure",
+      "required":[
+        "resolverLevelMetricsBehavior",
+        "dataSourceLevelMetricsBehavior",
+        "operationLevelMetricsConfig"
+      ],
+      "members":{
+        "resolverLevelMetricsBehavior":{"shape":"ResolverLevelMetricsBehavior"},
+        "dataSourceLevelMetricsBehavior":{"shape":"DataSourceLevelMetricsBehavior"},
+        "operationLevelMetricsConfig":{"shape":"OperationLevelMetricsConfig"}
       }
     },
     "EnvironmentVariableKey":{
@@ -2482,7 +2525,8 @@
         "ownerContact":{"shape":"String"},
         "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
         "queryDepthLimit":{"shape":"QueryDepthLimit"},
-        "resolverCountLimit":{"shape":"ResolverCountLimit"}
+        "resolverCountLimit":{"shape":"ResolverCountLimit"},
+        "enhancedMetricsConfig":{"shape":"EnhancedMetricsConfig"}
       }
     },
     "GraphqlApis":{
@@ -2942,6 +2986,13 @@
         "awsRegion":{"shape":"String"}
       }
     },
+    "OperationLevelMetricsConfig":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "OutputType":{
       "type":"string",
       "enum":[
@@ -3060,7 +3111,8 @@
         "cachingConfig":{"shape":"CachingConfig"},
         "maxBatchSize":{"shape":"MaxBatchSize"},
         "runtime":{"shape":"AppSyncRuntime"},
-        "code":{"shape":"Code"}
+        "code":{"shape":"Code"},
+        "metricsConfig":{"shape":"ResolverLevelMetricsConfig"}
       }
     },
     "ResolverCountLimit":{
@@ -3073,6 +3125,20 @@
       "enum":[
         "UNIT",
         "PIPELINE"
+      ]
+    },
+    "ResolverLevelMetricsBehavior":{
+      "type":"string",
+      "enum":[
+        "FULL_REQUEST_RESOLVER_METRICS",
+        "PER_RESOLVER_METRICS"
+      ]
+    },
+    "ResolverLevelMetricsConfig":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "Resolvers":{
@@ -3350,7 +3416,8 @@
         },
         "ttl":{"shape":"Long"},
         "apiCachingBehavior":{"shape":"ApiCachingBehavior"},
-        "type":{"shape":"ApiCacheType"}
+        "type":{"shape":"ApiCacheType"},
+        "healthMetricsConfig":{"shape":"CacheHealthMetricsConfig"}
       }
     },
     "UpdateApiCacheResponse":{
@@ -3413,7 +3480,8 @@
         "openSearchServiceConfig":{"shape":"OpenSearchServiceDataSourceConfig"},
         "httpConfig":{"shape":"HttpDataSourceConfig"},
         "relationalDatabaseConfig":{"shape":"RelationalDatabaseDataSourceConfig"},
-        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"}
+        "eventBridgeConfig":{"shape":"EventBridgeDataSourceConfig"},
+        "metricsConfig":{"shape":"DataSourceLevelMetricsConfig"}
       }
     },
     "UpdateDataSourceResponse":{
@@ -3501,7 +3569,8 @@
         "ownerContact":{"shape":"String"},
         "introspectionConfig":{"shape":"GraphQLApiIntrospectionConfig"},
         "queryDepthLimit":{"shape":"QueryDepthLimit"},
-        "resolverCountLimit":{"shape":"ResolverCountLimit"}
+        "resolverCountLimit":{"shape":"ResolverCountLimit"},
+        "enhancedMetricsConfig":{"shape":"EnhancedMetricsConfig"}
       }
     },
     "UpdateGraphqlApiResponse":{
@@ -3542,7 +3611,8 @@
         "cachingConfig":{"shape":"CachingConfig"},
         "maxBatchSize":{"shape":"MaxBatchSize"},
         "runtime":{"shape":"AppSyncRuntime"},
-        "code":{"shape":"Code"}
+        "code":{"shape":"Code"},
+        "metricsConfig":{"shape":"ResolverLevelMetricsConfig"}
       }
     },
     "UpdateResolverResponse":{

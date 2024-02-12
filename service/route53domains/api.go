@@ -2788,6 +2788,12 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 //     see Transferring a Domain from Amazon Route 53 to Another Registrar (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-from-route-53.html)
 //     in the Amazon Route 53 Developer Guide.
 //
+// During the transfer of any country code top-level domains (ccTLDs) to Route
+// 53, except for .cc and .tv, updates to the owner contact are ignored and
+// the owner contact data from the registry is used. You can update the owner
+// contact after the transfer is complete. For more information, see UpdateDomainContact
+// (https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_UpdateDomainContact.html).
+//
 // If the registrar for your domain is also the DNS service provider for the
 // domain, we highly recommend that you transfer your DNS service to Route 53
 // or to another DNS service provider before you transfer your registration.
@@ -3987,6 +3993,10 @@ type CheckDomainAvailabilityOutput struct {
 	// domain name is available. Route 53 can return this response for a variety
 	// of reasons, for example, the registry is performing maintenance. Try again
 	// later.
+	//
+	// INVALID_NAME_FOR_TLD
+	//
+	// The TLD isn't valid. For example, it can contain characters that aren't allowed.
 	//
 	// PENDING
 	//
@@ -5411,7 +5421,7 @@ type DomainTransferability struct {
 	//
 	// DOMAIN_IN_ANOTHER_ACCOUNT
 	//
-	// the domain exists in another Amazon Web Services account.
+	// The domain exists in another Amazon Web Services account.
 	//
 	// PREMIUM_DOMAIN
 	//
@@ -6099,13 +6109,27 @@ type GetDomainDetailOutput struct {
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
-	// return the information that you entered for the admin contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If the value
+	// is false, WHOIS queries return the information that you entered for the admin
+	// contact.
 	AdminPrivacy *bool `type:"boolean"`
 
 	// Specifies whether the domain registration is set to renew automatically.
 	AutoRenew *bool `type:"boolean"`
+
+	// Provides details about the domain billing contact.
+	//
+	// BillingContact is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDomainDetailOutput's
+	// String and GoString methods.
+	BillingContact *ContactDetail `type:"structure" sensitive:"true"`
+
+	// Specifies whether contact information is concealed from WHOIS queries. If
+	// the value is true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar or for our registrar associate, Gandi. If the value
+	// is false, WHOIS queries return the information that you entered for the billing
+	// contact.
+	BillingPrivacy *bool `type:"boolean"`
 
 	// The date when the domain was created as found in the response to a WHOIS
 	// query. The date and time is in Unix time format and Coordinated Universal
@@ -6137,16 +6161,12 @@ type GetDomainDetailOutput struct {
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
-	// return the information that you entered for the registrant contact (domain
-	// owner).
+	// for Amazon Registrar or for our registrar associate, Gandi. If the value
+	// is false, WHOIS queries return the information that you entered for the registrant
+	// contact (domain owner).
 	RegistrantPrivacy *bool `type:"boolean"`
 
-	// Name of the registrar of the domain as identified in the registry. Domains
-	// with a .com, .net, or .org TLD are registered by Amazon Registrar. All other
-	// domains are registered by our registrar associate, Gandi. The value for domains
-	// that are registered by Gandi is "GANDI SAS".
+	// Name of the registrar of the domain as identified in the registry.
 	RegistrarName *string `type:"string"`
 
 	// Web address of the registrar.
@@ -6184,9 +6204,9 @@ type GetDomainDetailOutput struct {
 
 	// Specifies whether contact information is concealed from WHOIS queries. If
 	// the value is true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If the value is false, WHOIS queries
-	// return the information that you entered for the technical contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If the value
+	// is false, WHOIS queries return the information that you entered for the technical
+	// contact.
 	TechPrivacy *bool `type:"boolean"`
 
 	// The last updated date of the domain as found in the response to a WHOIS query.
@@ -6243,6 +6263,18 @@ func (s *GetDomainDetailOutput) SetAdminPrivacy(v bool) *GetDomainDetailOutput {
 // SetAutoRenew sets the AutoRenew field's value.
 func (s *GetDomainDetailOutput) SetAutoRenew(v bool) *GetDomainDetailOutput {
 	s.AutoRenew = &v
+	return s
+}
+
+// SetBillingContact sets the BillingContact field's value.
+func (s *GetDomainDetailOutput) SetBillingContact(v *ContactDetail) *GetDomainDetailOutput {
+	s.BillingContact = v
+	return s
+}
+
+// SetBillingPrivacy sets the BillingPrivacy field's value.
+func (s *GetDomainDetailOutput) SetBillingPrivacy(v bool) *GetDomainDetailOutput {
+	s.BillingPrivacy = &v
 	return s
 }
 
@@ -7576,6 +7608,14 @@ type RegisterDomainInput struct {
 	// Default: true
 	AutoRenew *bool `type:"boolean"`
 
+	// Provides detailed contact information. For information about the values that
+	// you specify for each element, see ContactDetail (https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_ContactDetail.html).
+	//
+	// BillingContact is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterDomainInput's
+	// String and GoString methods.
+	BillingContact *ContactDetail `type:"structure" sensitive:"true"`
+
 	// The domain name that you want to register. The top-level domain (TLD), such
 	// as .com, must be a TLD that Route 53 supports. For a list of supported TLDs,
 	// see Domains that You Can Register with Amazon Route 53 (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar-tld-list.html)
@@ -7616,37 +7656,46 @@ type RegisterDomainInput struct {
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the admin contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the admin
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	//
 	// Default: true
 	PrivacyProtectAdminContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the registrant contact (the domain
-	// owner).
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the billing
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
+	PrivacyProtectBillingContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the registrant
+	// contact (the domain owner).
+	//
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	//
 	// Default: true
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the technical contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the technical
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	//
 	// Default: true
 	PrivacyProtectTechContact *bool `type:"boolean"`
@@ -7716,6 +7765,11 @@ func (s *RegisterDomainInput) Validate() error {
 			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.BillingContact != nil {
+		if err := s.BillingContact.Validate(); err != nil {
+			invalidParams.AddNested("BillingContact", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RegistrantContact != nil {
 		if err := s.RegistrantContact.Validate(); err != nil {
 			invalidParams.AddNested("RegistrantContact", err.(request.ErrInvalidParams))
@@ -7745,6 +7799,12 @@ func (s *RegisterDomainInput) SetAutoRenew(v bool) *RegisterDomainInput {
 	return s
 }
 
+// SetBillingContact sets the BillingContact field's value.
+func (s *RegisterDomainInput) SetBillingContact(v *ContactDetail) *RegisterDomainInput {
+	s.BillingContact = v
+	return s
+}
+
 // SetDomainName sets the DomainName field's value.
 func (s *RegisterDomainInput) SetDomainName(v string) *RegisterDomainInput {
 	s.DomainName = &v
@@ -7766,6 +7826,12 @@ func (s *RegisterDomainInput) SetIdnLangCode(v string) *RegisterDomainInput {
 // SetPrivacyProtectAdminContact sets the PrivacyProtectAdminContact field's value.
 func (s *RegisterDomainInput) SetPrivacyProtectAdminContact(v bool) *RegisterDomainInput {
 	s.PrivacyProtectAdminContact = &v
+	return s
+}
+
+// SetPrivacyProtectBillingContact sets the PrivacyProtectBillingContact field's value.
+func (s *RegisterDomainInput) SetPrivacyProtectBillingContact(v bool) *RegisterDomainInput {
+	s.PrivacyProtectBillingContact = &v
 	return s
 }
 
@@ -8484,6 +8550,13 @@ type TransferDomainInput struct {
 	// Default: true
 	AutoRenew *bool `type:"boolean"`
 
+	// Provides detailed contact information.
+	//
+	// BillingContact is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TransferDomainInput's
+	// String and GoString methods.
+	BillingContact *ContactDetail `type:"structure" sensitive:"true"`
+
 	// The name of the domain that you want to transfer to Route 53. The top-level
 	// domain (TLD), such as .com, must be a TLD that Route 53 supports. For a list
 	// of supported TLDs, see Domains that You Can Register with Amazon Route 53
@@ -8532,25 +8605,34 @@ type TransferDomainInput struct {
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the registrant contact (domain
-	// owner).
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the billing
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
+	PrivacyProtectBillingContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the registrant
+	// contact (domain owner).
+	//
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	//
 	// Default: true
 	PrivacyProtectRegistrantContact *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the technical contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the technical
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	//
 	// Default: true
 	PrivacyProtectTechContact *bool `type:"boolean"`
@@ -8618,6 +8700,11 @@ func (s *TransferDomainInput) Validate() error {
 			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.BillingContact != nil {
+		if err := s.BillingContact.Validate(); err != nil {
+			invalidParams.AddNested("BillingContact", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Nameservers != nil {
 		for i, v := range s.Nameservers {
 			if v == nil {
@@ -8663,6 +8750,12 @@ func (s *TransferDomainInput) SetAutoRenew(v bool) *TransferDomainInput {
 	return s
 }
 
+// SetBillingContact sets the BillingContact field's value.
+func (s *TransferDomainInput) SetBillingContact(v *ContactDetail) *TransferDomainInput {
+	s.BillingContact = v
+	return s
+}
+
 // SetDomainName sets the DomainName field's value.
 func (s *TransferDomainInput) SetDomainName(v string) *TransferDomainInput {
 	s.DomainName = &v
@@ -8690,6 +8783,12 @@ func (s *TransferDomainInput) SetNameservers(v []*Nameserver) *TransferDomainInp
 // SetPrivacyProtectAdminContact sets the PrivacyProtectAdminContact field's value.
 func (s *TransferDomainInput) SetPrivacyProtectAdminContact(v bool) *TransferDomainInput {
 	s.PrivacyProtectAdminContact = &v
+	return s
+}
+
+// SetPrivacyProtectBillingContact sets the PrivacyProtectBillingContact field's value.
+func (s *TransferDomainInput) SetPrivacyProtectBillingContact(v bool) *TransferDomainInput {
+	s.PrivacyProtectBillingContact = &v
 	return s
 }
 
@@ -8942,6 +9041,13 @@ type UpdateDomainContactInput struct {
 	// String and GoString methods.
 	AdminContact *ContactDetail `type:"structure" sensitive:"true"`
 
+	// Provides detailed contact information.
+	//
+	// BillingContact is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateDomainContactInput's
+	// String and GoString methods.
+	BillingContact *ContactDetail `type:"structure" sensitive:"true"`
+
 	// Customer's consent for the owner change request. Required if the domain is
 	// not free (consent price is more than $0.00).
 	Consent *Consent `type:"structure"`
@@ -8995,6 +9101,11 @@ func (s *UpdateDomainContactInput) Validate() error {
 			invalidParams.AddNested("AdminContact", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.BillingContact != nil {
+		if err := s.BillingContact.Validate(); err != nil {
+			invalidParams.AddNested("BillingContact", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Consent != nil {
 		if err := s.Consent.Validate(); err != nil {
 			invalidParams.AddNested("Consent", err.(request.ErrInvalidParams))
@@ -9020,6 +9131,12 @@ func (s *UpdateDomainContactInput) Validate() error {
 // SetAdminContact sets the AdminContact field's value.
 func (s *UpdateDomainContactInput) SetAdminContact(v *ContactDetail) *UpdateDomainContactInput {
 	s.AdminContact = v
+	return s
+}
+
+// SetBillingContact sets the BillingContact field's value.
+func (s *UpdateDomainContactInput) SetBillingContact(v *ContactDetail) *UpdateDomainContactInput {
+	s.BillingContact = v
 	return s
 }
 
@@ -9086,13 +9203,23 @@ type UpdateDomainContactPrivacyInput struct {
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the admin contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the admin
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	AdminPrivacy *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries return contact information either
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the billing
+	// contact.
+	//
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
+	BillingPrivacy *bool `type:"boolean"`
 
 	// The name of the domain that you want to update the privacy setting for.
 	//
@@ -9101,23 +9228,22 @@ type UpdateDomainContactPrivacyInput struct {
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the registrant contact (domain
-	// owner).
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the registrant
+	// contact (domain owner).
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	RegistrantPrivacy *bool `type:"boolean"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
 	// specify true, WHOIS ("who is") queries return contact information either
-	// for Amazon Registrar (for .com, .net, and .org domains) or for our registrar
-	// associate, Gandi (for all other TLDs). If you specify false, WHOIS queries
-	// return the information that you entered for the technical contact.
+	// for Amazon Registrar or for our registrar associate, Gandi. If you specify
+	// false, WHOIS queries return the information that you entered for the technical
+	// contact.
 	//
-	// You must specify the same privacy setting for the administrative, registrant,
-	// and technical contacts.
+	// You must specify the same privacy setting for the administrative, billing,
+	// registrant, and technical contacts.
 	TechPrivacy *bool `type:"boolean"`
 }
 
@@ -9155,6 +9281,12 @@ func (s *UpdateDomainContactPrivacyInput) Validate() error {
 // SetAdminPrivacy sets the AdminPrivacy field's value.
 func (s *UpdateDomainContactPrivacyInput) SetAdminPrivacy(v bool) *UpdateDomainContactPrivacyInput {
 	s.AdminPrivacy = &v
+	return s
+}
+
+// SetBillingPrivacy sets the BillingPrivacy field's value.
+func (s *UpdateDomainContactPrivacyInput) SetBillingPrivacy(v bool) *UpdateDomainContactPrivacyInput {
+	s.BillingPrivacy = &v
 	return s
 }
 
@@ -10604,6 +10736,12 @@ const (
 
 	// DomainAvailabilityDontKnow is a DomainAvailability enum value
 	DomainAvailabilityDontKnow = "DONT_KNOW"
+
+	// DomainAvailabilityInvalidNameForTld is a DomainAvailability enum value
+	DomainAvailabilityInvalidNameForTld = "INVALID_NAME_FOR_TLD"
+
+	// DomainAvailabilityPending is a DomainAvailability enum value
+	DomainAvailabilityPending = "PENDING"
 )
 
 // DomainAvailability_Values returns all elements of the DomainAvailability enum
@@ -10617,6 +10755,8 @@ func DomainAvailability_Values() []string {
 		DomainAvailabilityUnavailableRestricted,
 		DomainAvailabilityReserved,
 		DomainAvailabilityDontKnow,
+		DomainAvailabilityInvalidNameForTld,
+		DomainAvailabilityPending,
 	}
 }
 
@@ -10862,6 +11002,12 @@ const (
 
 	// OperationTypeInternalTransferInDomain is a OperationType enum value
 	OperationTypeInternalTransferInDomain = "INTERNAL_TRANSFER_IN_DOMAIN"
+
+	// OperationTypeReleaseToGandi is a OperationType enum value
+	OperationTypeReleaseToGandi = "RELEASE_TO_GANDI"
+
+	// OperationTypeTransferOnRenew is a OperationType enum value
+	OperationTypeTransferOnRenew = "TRANSFER_ON_RENEW"
 )
 
 // OperationType_Values returns all elements of the OperationType enum
@@ -10885,6 +11031,8 @@ func OperationType_Values() []string {
 		OperationTypePushDomain,
 		OperationTypeInternalTransferOutDomain,
 		OperationTypeInternalTransferInDomain,
+		OperationTypeReleaseToGandi,
+		OperationTypeTransferOnRenew,
 	}
 }
 
@@ -10996,7 +11144,7 @@ func StatusFlag_Values() []string {
 //
 // DOMAIN_IN_ANOTHER_ACCOUNT
 //
-// the domain exists in another Amazon Web Services account.
+// The domain exists in another Amazon Web Services account.
 //
 // PREMIUM_DOMAIN
 //

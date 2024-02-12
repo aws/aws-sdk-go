@@ -1040,7 +1040,9 @@
         "UNAVAILABLE_PREMIUM",
         "UNAVAILABLE_RESTRICTED",
         "RESERVED",
-        "DONT_KNOW"
+        "DONT_KNOW",
+        "INVALID_NAME_FOR_TLD",
+        "PENDING"
       ]
     },
     "DomainLimitExceeded":{
@@ -1276,7 +1278,9 @@
         "Reseller":{"shape":"Reseller"},
         "DnsSec":{"shape":"DNSSec"},
         "StatusList":{"shape":"DomainStatusList"},
-        "DnssecKeys":{"shape":"DnssecKeyList"}
+        "DnssecKeys":{"shape":"DnssecKeyList"},
+        "BillingContact":{"shape":"ContactDetail"},
+        "BillingPrivacy":{"shape":"Boolean"}
       }
     },
     "GetDomainSuggestionsRequest":{
@@ -1504,13 +1508,15 @@
         "RENEW_DOMAIN",
         "PUSH_DOMAIN",
         "INTERNAL_TRANSFER_OUT_DOMAIN",
-        "INTERNAL_TRANSFER_IN_DOMAIN"
+        "INTERNAL_TRANSFER_IN_DOMAIN",
+        "RELEASE_TO_GANDI",
+        "TRANSFER_ON_RENEW"
       ]
     },
     "OperationTypeList":{
       "type":"list",
       "member":{"shape":"OperationType"},
-      "max":18
+      "max":20
     },
     "Operator":{
       "type":"string",
@@ -1582,7 +1588,9 @@
         "TechContact":{"shape":"ContactDetail"},
         "PrivacyProtectAdminContact":{"shape":"Boolean"},
         "PrivacyProtectRegistrantContact":{"shape":"Boolean"},
-        "PrivacyProtectTechContact":{"shape":"Boolean"}
+        "PrivacyProtectTechContact":{"shape":"Boolean"},
+        "BillingContact":{"shape":"ContactDetail"},
+        "PrivacyProtectBillingContact":{"shape":"Boolean"}
       }
     },
     "RegisterDomainResponse":{
@@ -1755,7 +1763,9 @@
         "TechContact":{"shape":"ContactDetail"},
         "PrivacyProtectAdminContact":{"shape":"Boolean"},
         "PrivacyProtectRegistrantContact":{"shape":"Boolean"},
-        "PrivacyProtectTechContact":{"shape":"Boolean"}
+        "PrivacyProtectTechContact":{"shape":"Boolean"},
+        "BillingContact":{"shape":"ContactDetail"},
+        "PrivacyProtectBillingContact":{"shape":"Boolean"}
       }
     },
     "TransferDomainResponse":{
@@ -1807,7 +1817,8 @@
         "DomainName":{"shape":"DomainName"},
         "AdminPrivacy":{"shape":"Boolean"},
         "RegistrantPrivacy":{"shape":"Boolean"},
-        "TechPrivacy":{"shape":"Boolean"}
+        "TechPrivacy":{"shape":"Boolean"},
+        "BillingPrivacy":{"shape":"Boolean"}
       }
     },
     "UpdateDomainContactPrivacyResponse":{
@@ -1824,7 +1835,8 @@
         "AdminContact":{"shape":"ContactDetail"},
         "RegistrantContact":{"shape":"ContactDetail"},
         "TechContact":{"shape":"ContactDetail"},
-        "Consent":{"shape":"Consent"}
+        "Consent":{"shape":"Consent"},
+        "BillingContact":{"shape":"ContactDetail"}
       }
     },
     "UpdateDomainContactResponse":{
