@@ -1,3 +1,13 @@
+Release v1.50.16 (2024-02-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/monitoring`: Updates service API
+  * This release enables PutMetricData API request payload compression by default.
+* `service/route53domains`: Updates service API and documentation
+  * This release adds bill contact support for RegisterDomain, TransferDomain, UpdateDomainContact and GetDomainDetail API.
+
 Release v1.50.15 (2024-02-09)
 ===
 

@@ -747,6 +747,10 @@ func (c *AppSync) CreateFunctionRequest(input *CreateFunctionInput) (req *reques
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
 //
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateFunction
 func (c *AppSync) CreateFunction(input *CreateFunctionInput) (*CreateFunctionOutput, error) {
 	req, out := c.CreateFunctionRequest(input)
@@ -1500,6 +1504,10 @@ func (c *AppSync) DeleteFunctionRequest(input *DeleteFunctionInput) (req *reques
 //
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
+//
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteFunction
 func (c *AppSync) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutput, error) {
@@ -5614,6 +5622,10 @@ func (c *AppSync) UpdateFunctionRequest(input *UpdateFunctionInput) (req *reques
 //   - InternalFailureException
 //     An internal AppSync error occurred. Try your request again.
 //
+//   - BadRequestException
+//     The request is not well formed. For example, a value is invalid or a required
+//     field is missing. Check the field values, and then try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateFunction
 func (c *AppSync) UpdateFunction(input *UpdateFunctionInput) (*UpdateFunctionOutput, error) {
 	req, out := c.UpdateFunctionRequest(input)
@@ -6246,6 +6258,20 @@ type ApiCache struct {
 	// At-rest encryption flag for cache. You cannot update this setting after creation.
 	AtRestEncryptionEnabled *bool `locationName:"atRestEncryptionEnabled" type:"boolean"`
 
+	// Controls how cache health metrics will be emitted to CloudWatch. Cache health
+	// metrics include:
+	//
+	//    * NetworkBandwidthOutAllowanceExceeded: The network packets dropped because
+	//    the throughput exceeded the aggregated bandwidth limit. This is useful
+	//    for diagnosing bottlenecks in a cache configuration.
+	//
+	//    * EngineCPUUtilization: The CPU utilization (percentage) allocated to
+	//    the Redis process. This is useful for diagnosing bottlenecks in a cache
+	//    configuration.
+	//
+	// Metrics will be recorded by API ID. You can set the value to ENABLED or DISABLED.
+	HealthMetricsConfig *string `locationName:"healthMetricsConfig" type:"string" enum:"CacheHealthMetricsConfig"`
+
 	// The cache instance status.
 	//
 	//    * AVAILABLE: The instance is available for use.
@@ -6335,6 +6361,12 @@ func (s *ApiCache) SetApiCachingBehavior(v string) *ApiCache {
 // SetAtRestEncryptionEnabled sets the AtRestEncryptionEnabled field's value.
 func (s *ApiCache) SetAtRestEncryptionEnabled(v bool) *ApiCache {
 	s.AtRestEncryptionEnabled = &v
+	return s
+}
+
+// SetHealthMetricsConfig sets the HealthMetricsConfig field's value.
+func (s *ApiCache) SetHealthMetricsConfig(v string) *ApiCache {
+	s.HealthMetricsConfig = &v
 	return s
 }
 
@@ -7586,6 +7618,18 @@ type CreateApiCacheInput struct {
 	// At-rest encryption flag for cache. You cannot update this setting after creation.
 	AtRestEncryptionEnabled *bool `locationName:"atRestEncryptionEnabled" type:"boolean"`
 
+	// Controls how cache health metrics will be emitted to CloudWatch. Cache health
+	// metrics include:
+	//
+	//    * NetworkBandwidthOutAllowanceExceeded: The number of times a specified
+	//    GraphQL operation was called.
+	//
+	//    * EngineCPUUtilization: The number of GraphQL errors that occurred during
+	//    a specified GraphQL operation.
+	//
+	// Metrics will be recorded by API ID. You can set the value to ENABLED or DISABLED.
+	HealthMetricsConfig *string `locationName:"healthMetricsConfig" type:"string" enum:"CacheHealthMetricsConfig"`
+
 	// Transit encryption flag when connecting to cache. You cannot update this
 	// setting after creation.
 	TransitEncryptionEnabled *bool `locationName:"transitEncryptionEnabled" type:"boolean"`
@@ -7697,6 +7741,12 @@ func (s *CreateApiCacheInput) SetApiId(v string) *CreateApiCacheInput {
 // SetAtRestEncryptionEnabled sets the AtRestEncryptionEnabled field's value.
 func (s *CreateApiCacheInput) SetAtRestEncryptionEnabled(v bool) *CreateApiCacheInput {
 	s.AtRestEncryptionEnabled = &v
+	return s
+}
+
+// SetHealthMetricsConfig sets the HealthMetricsConfig field's value.
+func (s *CreateApiCacheInput) SetHealthMetricsConfig(v string) *CreateApiCacheInput {
+	s.HealthMetricsConfig = &v
 	return s
 }
 
@@ -7881,6 +7931,15 @@ type CreateDataSourceInput struct {
 	// Lambda settings.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
+	// Enables or disables enhanced data source metrics for specified data sources.
+	// Note that metricsConfig won't be used unless the dataSourceLevelMetricsBehavior
+	// value is set to PER_DATA_SOURCE_METRICS. If the dataSourceLevelMetricsBehavior
+	// is set to FULL_REQUEST_DATA_SOURCE_METRICS instead, metricsConfig will be
+	// ignored. However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"DataSourceLevelMetricsConfig"`
+
 	// A user-supplied name for the DataSource.
 	//
 	// Name is a required field
@@ -8015,6 +8074,12 @@ func (s *CreateDataSourceInput) SetHttpConfig(v *HttpDataSourceConfig) *CreateDa
 // SetLambdaConfig sets the LambdaConfig field's value.
 func (s *CreateDataSourceInput) SetLambdaConfig(v *LambdaDataSourceConfig) *CreateDataSourceInput {
 	s.LambdaConfig = v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *CreateDataSourceInput) SetMetricsConfig(v string) *CreateDataSourceInput {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -8413,6 +8478,9 @@ type CreateGraphqlApiInput struct {
 	// AuthenticationType is a required field
 	AuthenticationType *string `locationName:"authenticationType" type:"string" required:"true" enum:"AuthenticationType"`
 
+	// The enhancedMetricsConfig object.
+	EnhancedMetricsConfig *EnhancedMetricsConfig `locationName:"enhancedMetricsConfig" type:"structure"`
+
 	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
 	// introspection. If no value is provided, the introspection configuration will
 	// be set to ENABLED by default. This field will produce an error if the operation
@@ -8518,6 +8586,11 @@ func (s *CreateGraphqlApiInput) Validate() error {
 			}
 		}
 	}
+	if s.EnhancedMetricsConfig != nil {
+		if err := s.EnhancedMetricsConfig.Validate(); err != nil {
+			invalidParams.AddNested("EnhancedMetricsConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LambdaAuthorizerConfig != nil {
 		if err := s.LambdaAuthorizerConfig.Validate(); err != nil {
 			invalidParams.AddNested("LambdaAuthorizerConfig", err.(request.ErrInvalidParams))
@@ -8560,6 +8633,12 @@ func (s *CreateGraphqlApiInput) SetApiType(v string) *CreateGraphqlApiInput {
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *CreateGraphqlApiInput) SetAuthenticationType(v string) *CreateGraphqlApiInput {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetEnhancedMetricsConfig sets the EnhancedMetricsConfig field's value.
+func (s *CreateGraphqlApiInput) SetEnhancedMetricsConfig(v *EnhancedMetricsConfig) *CreateGraphqlApiInput {
+	s.EnhancedMetricsConfig = v
 	return s
 }
 
@@ -8709,6 +8788,15 @@ type CreateResolverInput struct {
 	// The maximum batching size for a resolver.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
 
+	// Enables or disables enhanced resolver metrics for specified resolvers. Note
+	// that metricsConfig won't be used unless the resolverLevelMetricsBehavior
+	// value is set to PER_RESOLVER_METRICS. If the resolverLevelMetricsBehavior
+	// is set to FULL_REQUEST_RESOLVER_METRICS instead, metricsConfig will be ignored.
+	// However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"ResolverLevelMetricsConfig"`
+
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
@@ -8848,6 +8936,12 @@ func (s *CreateResolverInput) SetKind(v string) *CreateResolverInput {
 // SetMaxBatchSize sets the MaxBatchSize field's value.
 func (s *CreateResolverInput) SetMaxBatchSize(v int64) *CreateResolverInput {
 	s.MaxBatchSize = &v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *CreateResolverInput) SetMetricsConfig(v string) *CreateResolverInput {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -9053,6 +9147,15 @@ type DataSource struct {
 	// Lambda settings.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
+	// Enables or disables enhanced data source metrics for specified data sources.
+	// Note that metricsConfig won't be used unless the dataSourceLevelMetricsBehavior
+	// value is set to PER_DATA_SOURCE_METRICS. If the dataSourceLevelMetricsBehavior
+	// is set to FULL_REQUEST_DATA_SOURCE_METRICS instead, metricsConfig will be
+	// ignored. However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"DataSourceLevelMetricsConfig"`
+
 	// The name of the data source.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -9149,6 +9252,12 @@ func (s *DataSource) SetHttpConfig(v *HttpDataSourceConfig) *DataSource {
 // SetLambdaConfig sets the LambdaConfig field's value.
 func (s *DataSource) SetLambdaConfig(v *LambdaDataSourceConfig) *DataSource {
 	s.LambdaConfig = v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *DataSource) SetMetricsConfig(v string) *DataSource {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -10680,6 +10789,189 @@ func (s *ElasticsearchDataSourceConfig) SetAwsRegion(v string) *ElasticsearchDat
 // SetEndpoint sets the Endpoint field's value.
 func (s *ElasticsearchDataSourceConfig) SetEndpoint(v string) *ElasticsearchDataSourceConfig {
 	s.Endpoint = &v
+	return s
+}
+
+// Enables and controls the enhanced metrics feature. Enhanced metrics emit
+// granular data on API usage and performance such as AppSync request and error
+// counts, latency, and cache hits/misses. All enhanced metric data is sent
+// to your CloudWatch account, and you can configure the types of data that
+// will be sent.
+//
+// Enhanced metrics can be configured at the resolver, data source, and operation
+// levels. EnhancedMetricsConfig contains three required parameters, each controlling
+// one of these categories:
+//
+// resolverLevelMetricsBehavior: Controls how resolver metrics will be emitted
+// to CloudWatch. Resolver metrics include:
+//
+//   - GraphQL errors: The number of GraphQL errors that occurred.
+//
+//   - Requests: The number of invocations that occurred during a request.
+//
+//   - Latency: The time to complete a resolver invocation.
+//
+//   - Cache hits: The number of cache hits during a request.
+//
+//   - Cache misses: The number of cache misses during a request.
+//
+// These metrics can be emitted to CloudWatch per resolver or for all resolvers
+// in the request. Metrics will be recorded by API ID and resolver name. resolverLevelMetricsBehavior
+// accepts one of these values at a time:
+//
+//   - FULL_REQUEST_RESOLVER_METRICS: Records and emits metric data for all
+//     resolvers in the request.
+//
+//   - PER_RESOLVER_METRICS: Records and emits metric data for resolvers that
+//     have the metricConfig value set to ENABLED.
+//
+// dataSourceLevelMetricsBehavior: Controls how data source metrics will be
+// emitted to CloudWatch. Data source metrics include:
+//
+//   - Requests: The number of invocations that occured during a request.
+//
+//   - Latency: The time to complete a data source invocation.
+//
+//   - Errors: The number of errors that occurred during a data source invocation.
+//
+// These metrics can be emitted to CloudWatch per data source or for all data
+// sources in the request. Metrics will be recorded by API ID and data source
+// name. dataSourceLevelMetricsBehavior accepts one of these values at a time:
+//
+//   - FULL_REQUEST_DATA_SOURCE_METRICS: Records and emits metric data for
+//     all data sources in the request.
+//
+//   - PER_DATA_SOURCE_METRICS: Records and emits metric data for data sources
+//     that have the metricConfig value set to ENABLED.
+//
+// operationLevelMetricsConfig: Controls how operation metrics will be emitted
+// to CloudWatch. Operation metrics include:
+//
+//   - Requests: The number of times a specified GraphQL operation was called.
+//
+//   - GraphQL errors: The number of GraphQL errors that occurred during a
+//     specified GraphQL operation.
+//
+// Metrics will be recorded by API ID and operation name. You can set the value
+// to ENABLED or DISABLED.
+type EnhancedMetricsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Controls how data source metrics will be emitted to CloudWatch. Data source
+	// metrics include:
+	//
+	//    * Requests: The number of invocations that occured during a request.
+	//
+	//    * Latency: The time to complete a data source invocation.
+	//
+	//    * Errors: The number of errors that occurred during a data source invocation.
+	//
+	// These metrics can be emitted to CloudWatch per data source or for all data
+	// sources in the request. Metrics will be recorded by API ID and data source
+	// name. dataSourceLevelMetricsBehavior accepts one of these values at a time:
+	//
+	//    * FULL_REQUEST_DATA_SOURCE_METRICS: Records and emits metric data for
+	//    all data sources in the request.
+	//
+	//    * PER_DATA_SOURCE_METRICS: Records and emits metric data for data sources
+	//    that have the metricConfig value set to ENABLED.
+	//
+	// DataSourceLevelMetricsBehavior is a required field
+	DataSourceLevelMetricsBehavior *string `locationName:"dataSourceLevelMetricsBehavior" type:"string" required:"true" enum:"DataSourceLevelMetricsBehavior"`
+
+	// Controls how operation metrics will be emitted to CloudWatch. Operation metrics
+	// include:
+	//
+	//    * Requests: The number of times a specified GraphQL operation was called.
+	//
+	//    * GraphQL errors: The number of GraphQL errors that occurred during a
+	//    specified GraphQL operation.
+	//
+	// Metrics will be recorded by API ID and operation name. You can set the value
+	// to ENABLED or DISABLED.
+	//
+	// OperationLevelMetricsConfig is a required field
+	OperationLevelMetricsConfig *string `locationName:"operationLevelMetricsConfig" type:"string" required:"true" enum:"OperationLevelMetricsConfig"`
+
+	// Controls how resolver metrics will be emitted to CloudWatch. Resolver metrics
+	// include:
+	//
+	//    * GraphQL errors: The number of GraphQL errors that occurred.
+	//
+	//    * Requests: The number of invocations that occurred during a request.
+	//
+	//    * Latency: The time to complete a resolver invocation.
+	//
+	//    * Cache hits: The number of cache hits during a request.
+	//
+	//    * Cache misses: The number of cache misses during a request.
+	//
+	// These metrics can be emitted to CloudWatch per resolver or for all resolvers
+	// in the request. Metrics will be recorded by API ID and resolver name. resolverLevelMetricsBehavior
+	// accepts one of these values at a time:
+	//
+	//    * FULL_REQUEST_RESOLVER_METRICS: Records and emits metric data for all
+	//    resolvers in the request.
+	//
+	//    * PER_RESOLVER_METRICS: Records and emits metric data for resolvers that
+	//    have the metricConfig value set to ENABLED.
+	//
+	// ResolverLevelMetricsBehavior is a required field
+	ResolverLevelMetricsBehavior *string `locationName:"resolverLevelMetricsBehavior" type:"string" required:"true" enum:"ResolverLevelMetricsBehavior"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnhancedMetricsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnhancedMetricsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnhancedMetricsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnhancedMetricsConfig"}
+	if s.DataSourceLevelMetricsBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceLevelMetricsBehavior"))
+	}
+	if s.OperationLevelMetricsConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperationLevelMetricsConfig"))
+	}
+	if s.ResolverLevelMetricsBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResolverLevelMetricsBehavior"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceLevelMetricsBehavior sets the DataSourceLevelMetricsBehavior field's value.
+func (s *EnhancedMetricsConfig) SetDataSourceLevelMetricsBehavior(v string) *EnhancedMetricsConfig {
+	s.DataSourceLevelMetricsBehavior = &v
+	return s
+}
+
+// SetOperationLevelMetricsConfig sets the OperationLevelMetricsConfig field's value.
+func (s *EnhancedMetricsConfig) SetOperationLevelMetricsConfig(v string) *EnhancedMetricsConfig {
+	s.OperationLevelMetricsConfig = &v
+	return s
+}
+
+// SetResolverLevelMetricsBehavior sets the ResolverLevelMetricsBehavior field's value.
+func (s *EnhancedMetricsConfig) SetResolverLevelMetricsBehavior(v string) *EnhancedMetricsConfig {
+	s.ResolverLevelMetricsBehavior = &v
 	return s
 }
 
@@ -12641,6 +12933,9 @@ type GraphqlApi struct {
 	// The DNS records for the API.
 	Dns map[string]*string `locationName:"dns" type:"map"`
 
+	// The enhancedMetricsConfig object.
+	EnhancedMetricsConfig *EnhancedMetricsConfig `locationName:"enhancedMetricsConfig" type:"structure"`
+
 	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
 	// introspection. If no value is provided, the introspection configuration will
 	// be set to ENABLED by default. This field will produce an error if the operation
@@ -12765,6 +13060,12 @@ func (s *GraphqlApi) SetAuthenticationType(v string) *GraphqlApi {
 // SetDns sets the Dns field's value.
 func (s *GraphqlApi) SetDns(v map[string]*string) *GraphqlApi {
 	s.Dns = v
+	return s
+}
+
+// SetEnhancedMetricsConfig sets the EnhancedMetricsConfig field's value.
+func (s *GraphqlApi) SetEnhancedMetricsConfig(v *EnhancedMetricsConfig) *GraphqlApi {
+	s.EnhancedMetricsConfig = v
 	return s
 }
 
@@ -15146,6 +15447,15 @@ type Resolver struct {
 	// The maximum batching size for a resolver.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
 
+	// Enables or disables enhanced resolver metrics for specified resolvers. Note
+	// that metricsConfig won't be used unless the resolverLevelMetricsBehavior
+	// value is set to PER_RESOLVER_METRICS. If the resolverLevelMetricsBehavior
+	// is set to FULL_REQUEST_RESOLVER_METRICS instead, metricsConfig will be ignored.
+	// However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"ResolverLevelMetricsConfig"`
+
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
 
@@ -15222,6 +15532,12 @@ func (s *Resolver) SetKind(v string) *Resolver {
 // SetMaxBatchSize sets the MaxBatchSize field's value.
 func (s *Resolver) SetMaxBatchSize(v int64) *Resolver {
 	s.MaxBatchSize = &v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *Resolver) SetMetricsConfig(v string) *Resolver {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -16216,6 +16532,18 @@ type UpdateApiCacheInput struct {
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
 
+	// Controls how cache health metrics will be emitted to CloudWatch. Cache health
+	// metrics include:
+	//
+	//    * NetworkBandwidthOutAllowanceExceeded: The number of times a specified
+	//    GraphQL operation was called.
+	//
+	//    * EngineCPUUtilization: The number of GraphQL errors that occurred during
+	//    a specified GraphQL operation.
+	//
+	// Metrics will be recorded by API ID. You can set the value to ENABLED or DISABLED.
+	HealthMetricsConfig *string `locationName:"healthMetricsConfig" type:"string" enum:"CacheHealthMetricsConfig"`
+
 	// TTL in seconds for cache entries.
 	//
 	// Valid values are 1–3,600 seconds.
@@ -16317,6 +16645,12 @@ func (s *UpdateApiCacheInput) SetApiCachingBehavior(v string) *UpdateApiCacheInp
 // SetApiId sets the ApiId field's value.
 func (s *UpdateApiCacheInput) SetApiId(v string) *UpdateApiCacheInput {
 	s.ApiId = &v
+	return s
+}
+
+// SetHealthMetricsConfig sets the HealthMetricsConfig field's value.
+func (s *UpdateApiCacheInput) SetHealthMetricsConfig(v string) *UpdateApiCacheInput {
+	s.HealthMetricsConfig = &v
 	return s
 }
 
@@ -16510,6 +16844,15 @@ type UpdateDataSourceInput struct {
 	// The new Lambda configuration.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
+	// Enables or disables enhanced data source metrics for specified data sources.
+	// Note that metricsConfig won't be used unless the dataSourceLevelMetricsBehavior
+	// value is set to PER_DATA_SOURCE_METRICS. If the dataSourceLevelMetricsBehavior
+	// is set to FULL_REQUEST_DATA_SOURCE_METRICS instead, metricsConfig will be
+	// ignored. However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"DataSourceLevelMetricsConfig"`
+
 	// The new name for the data source.
 	//
 	// Name is a required field
@@ -16642,6 +16985,12 @@ func (s *UpdateDataSourceInput) SetHttpConfig(v *HttpDataSourceConfig) *UpdateDa
 // SetLambdaConfig sets the LambdaConfig field's value.
 func (s *UpdateDataSourceInput) SetLambdaConfig(v *LambdaDataSourceConfig) *UpdateDataSourceInput {
 	s.LambdaConfig = v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *UpdateDataSourceInput) SetMetricsConfig(v string) *UpdateDataSourceInput {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -17036,6 +17385,9 @@ type UpdateGraphqlApiInput struct {
 	// The new authentication type for the GraphqlApi object.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
+	// The enhancedMetricsConfig object.
+	EnhancedMetricsConfig *EnhancedMetricsConfig `locationName:"enhancedMetricsConfig" type:"structure"`
+
 	// Sets the value of the GraphQL API to enable (ENABLED) or disable (DISABLED)
 	// introspection. If no value is provided, the introspection configuration will
 	// be set to ENABLED by default. This field will produce an error if the operation
@@ -17133,6 +17485,11 @@ func (s *UpdateGraphqlApiInput) Validate() error {
 			}
 		}
 	}
+	if s.EnhancedMetricsConfig != nil {
+		if err := s.EnhancedMetricsConfig.Validate(); err != nil {
+			invalidParams.AddNested("EnhancedMetricsConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LambdaAuthorizerConfig != nil {
 		if err := s.LambdaAuthorizerConfig.Validate(); err != nil {
 			invalidParams.AddNested("LambdaAuthorizerConfig", err.(request.ErrInvalidParams))
@@ -17175,6 +17532,12 @@ func (s *UpdateGraphqlApiInput) SetApiId(v string) *UpdateGraphqlApiInput {
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *UpdateGraphqlApiInput) SetAuthenticationType(v string) *UpdateGraphqlApiInput {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetEnhancedMetricsConfig sets the EnhancedMetricsConfig field's value.
+func (s *UpdateGraphqlApiInput) SetEnhancedMetricsConfig(v *EnhancedMetricsConfig) *UpdateGraphqlApiInput {
+	s.EnhancedMetricsConfig = v
 	return s
 }
 
@@ -17311,6 +17674,15 @@ type UpdateResolverInput struct {
 
 	// The maximum batching size for a resolver.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+
+	// Enables or disables enhanced resolver metrics for specified resolvers. Note
+	// that metricsConfig won't be used unless the resolverLevelMetricsBehavior
+	// value is set to PER_RESOLVER_METRICS. If the resolverLevelMetricsBehavior
+	// is set to FULL_REQUEST_RESOLVER_METRICS instead, metricsConfig will be ignored.
+	// However, you can still set its value.
+	//
+	// metricsConfig can be ENABLED or DISABLED.
+	MetricsConfig *string `locationName:"metricsConfig" type:"string" enum:"ResolverLevelMetricsConfig"`
 
 	// The PipelineConfig.
 	PipelineConfig *PipelineConfig `locationName:"pipelineConfig" type:"structure"`
@@ -17451,6 +17823,12 @@ func (s *UpdateResolverInput) SetKind(v string) *UpdateResolverInput {
 // SetMaxBatchSize sets the MaxBatchSize field's value.
 func (s *UpdateResolverInput) SetMaxBatchSize(v int64) *UpdateResolverInput {
 	s.MaxBatchSize = &v
+	return s
+}
+
+// SetMetricsConfig sets the MetricsConfig field's value.
+func (s *UpdateResolverInput) SetMetricsConfig(v string) *UpdateResolverInput {
+	s.MetricsConfig = &v
 	return s
 }
 
@@ -18034,6 +18412,22 @@ func BadRequestReason_Values() []string {
 }
 
 const (
+	// CacheHealthMetricsConfigEnabled is a CacheHealthMetricsConfig enum value
+	CacheHealthMetricsConfigEnabled = "ENABLED"
+
+	// CacheHealthMetricsConfigDisabled is a CacheHealthMetricsConfig enum value
+	CacheHealthMetricsConfigDisabled = "DISABLED"
+)
+
+// CacheHealthMetricsConfig_Values returns all elements of the CacheHealthMetricsConfig enum
+func CacheHealthMetricsConfig_Values() []string {
+	return []string{
+		CacheHealthMetricsConfigEnabled,
+		CacheHealthMetricsConfigDisabled,
+	}
+}
+
+const (
 	// ConflictDetectionTypeVersion is a ConflictDetectionType enum value
 	ConflictDetectionTypeVersion = "VERSION"
 
@@ -18090,6 +18484,38 @@ func DataSourceIntrospectionStatus_Values() []string {
 		DataSourceIntrospectionStatusProcessing,
 		DataSourceIntrospectionStatusFailed,
 		DataSourceIntrospectionStatusSuccess,
+	}
+}
+
+const (
+	// DataSourceLevelMetricsBehaviorFullRequestDataSourceMetrics is a DataSourceLevelMetricsBehavior enum value
+	DataSourceLevelMetricsBehaviorFullRequestDataSourceMetrics = "FULL_REQUEST_DATA_SOURCE_METRICS"
+
+	// DataSourceLevelMetricsBehaviorPerDataSourceMetrics is a DataSourceLevelMetricsBehavior enum value
+	DataSourceLevelMetricsBehaviorPerDataSourceMetrics = "PER_DATA_SOURCE_METRICS"
+)
+
+// DataSourceLevelMetricsBehavior_Values returns all elements of the DataSourceLevelMetricsBehavior enum
+func DataSourceLevelMetricsBehavior_Values() []string {
+	return []string{
+		DataSourceLevelMetricsBehaviorFullRequestDataSourceMetrics,
+		DataSourceLevelMetricsBehaviorPerDataSourceMetrics,
+	}
+}
+
+const (
+	// DataSourceLevelMetricsConfigEnabled is a DataSourceLevelMetricsConfig enum value
+	DataSourceLevelMetricsConfigEnabled = "ENABLED"
+
+	// DataSourceLevelMetricsConfigDisabled is a DataSourceLevelMetricsConfig enum value
+	DataSourceLevelMetricsConfigDisabled = "DISABLED"
+)
+
+// DataSourceLevelMetricsConfig_Values returns all elements of the DataSourceLevelMetricsConfig enum
+func DataSourceLevelMetricsConfig_Values() []string {
+	return []string{
+		DataSourceLevelMetricsConfigEnabled,
+		DataSourceLevelMetricsConfigDisabled,
 	}
 }
 
@@ -18234,6 +18660,22 @@ func MergeType_Values() []string {
 }
 
 const (
+	// OperationLevelMetricsConfigEnabled is a OperationLevelMetricsConfig enum value
+	OperationLevelMetricsConfigEnabled = "ENABLED"
+
+	// OperationLevelMetricsConfigDisabled is a OperationLevelMetricsConfig enum value
+	OperationLevelMetricsConfigDisabled = "DISABLED"
+)
+
+// OperationLevelMetricsConfig_Values returns all elements of the OperationLevelMetricsConfig enum
+func OperationLevelMetricsConfig_Values() []string {
+	return []string{
+		OperationLevelMetricsConfigEnabled,
+		OperationLevelMetricsConfigDisabled,
+	}
+}
+
+const (
 	// OutputTypeSdl is a OutputType enum value
 	OutputTypeSdl = "SDL"
 
@@ -18290,6 +18732,38 @@ func ResolverKind_Values() []string {
 	return []string{
 		ResolverKindUnit,
 		ResolverKindPipeline,
+	}
+}
+
+const (
+	// ResolverLevelMetricsBehaviorFullRequestResolverMetrics is a ResolverLevelMetricsBehavior enum value
+	ResolverLevelMetricsBehaviorFullRequestResolverMetrics = "FULL_REQUEST_RESOLVER_METRICS"
+
+	// ResolverLevelMetricsBehaviorPerResolverMetrics is a ResolverLevelMetricsBehavior enum value
+	ResolverLevelMetricsBehaviorPerResolverMetrics = "PER_RESOLVER_METRICS"
+)
+
+// ResolverLevelMetricsBehavior_Values returns all elements of the ResolverLevelMetricsBehavior enum
+func ResolverLevelMetricsBehavior_Values() []string {
+	return []string{
+		ResolverLevelMetricsBehaviorFullRequestResolverMetrics,
+		ResolverLevelMetricsBehaviorPerResolverMetrics,
+	}
+}
+
+const (
+	// ResolverLevelMetricsConfigEnabled is a ResolverLevelMetricsConfig enum value
+	ResolverLevelMetricsConfigEnabled = "ENABLED"
+
+	// ResolverLevelMetricsConfigDisabled is a ResolverLevelMetricsConfig enum value
+	ResolverLevelMetricsConfigDisabled = "DISABLED"
+)
+
+// ResolverLevelMetricsConfig_Values returns all elements of the ResolverLevelMetricsConfig enum
+func ResolverLevelMetricsConfig_Values() []string {
+	return []string{
+		ResolverLevelMetricsConfigEnabled,
+		ResolverLevelMetricsConfigDisabled,
 	}
 }
 
