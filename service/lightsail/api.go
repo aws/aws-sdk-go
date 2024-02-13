@@ -45426,6 +45426,13 @@ type UpdateRelationalDatabaseInput struct {
 	// resources in the same region as your database.
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
 
+	// This parameter is used to update the major version of the database. Enter
+	// the blueprintId for the major version that you want to update to.
+	//
+	// Use the GetRelationalDatabaseBlueprints (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRelationalDatabaseBlueprints.html)
+	// action to get a list of available blueprint IDs.
+	RelationalDatabaseBlueprintId *string `locationName:"relationalDatabaseBlueprintId" type:"string"`
+
 	// The name of your Lightsail database resource to update.
 	//
 	// RelationalDatabaseName is a required field
@@ -45515,6 +45522,12 @@ func (s *UpdateRelationalDatabaseInput) SetPreferredMaintenanceWindow(v string) 
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *UpdateRelationalDatabaseInput) SetPubliclyAccessible(v bool) *UpdateRelationalDatabaseInput {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRelationalDatabaseBlueprintId sets the RelationalDatabaseBlueprintId field's value.
+func (s *UpdateRelationalDatabaseInput) SetRelationalDatabaseBlueprintId(v string) *UpdateRelationalDatabaseInput {
+	s.RelationalDatabaseBlueprintId = &v
 	return s
 }
 

@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace. </p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
-    "BatchDescribeEntities": "<p>Returns metadata and content for multiple entities.</p>",
+    "BatchDescribeEntities": "<p>Returns metadata and content for multiple entities. This is the Batch version of the <code>DescribeEntity</code> API and uses the same IAM permission action as <code>DescribeEntity</code> API.</p>",
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
     "DeleteResourcePolicy": "<p>Deletes a resource-based policy on an entity that is identified by its resource ARN.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
@@ -53,7 +53,7 @@
       }
     },
     "AmiProductFilters": {
-      "base": "<p>Object containing all the filter fields for AMI products. Client can add a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
+      "base": "<p>Object containing all the filter fields for AMI products. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$AmiProductFilters": "<p>A filter for AMI products.</p>"
       }
@@ -261,7 +261,7 @@
       }
     },
     "ContainerProductFilters": {
-      "base": "<p>Object containing all the filter fields for container products. Client can add a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
+      "base": "<p>Object containing all the filter fields for container products. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$ContainerProductFilters": "<p>A filter for container products.</p>"
       }
@@ -354,7 +354,7 @@
       }
     },
     "DataProductFilters": {
-      "base": "<p>Object containing all the filter fields for data products. Client can add a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
+      "base": "<p>Object containing all the filter fields for data products. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$DataProductFilters": "<p>A filter for data products.</p>"
       }
@@ -664,6 +664,13 @@
         "EntityDetail$EntityIdentifier": "<p>The ID of the entity, in the format of <code>EntityId@RevisionId</code>.</p>"
       }
     },
+    "Intent": {
+      "base": null,
+      "refs": {
+        "DescribeChangeSetResponse$Intent": "<p>The optional intent provided in the <code>StartChangeSet</code> request. If you do not provide an intent, <code>APPLY</code> is set by default.</p>",
+        "StartChangeSetRequest$Intent": "<p>The intent related to the request. The default is <code>APPLY</code>. To test your request before applying changes to your entities, use <code>VALIDATE</code>. This feature is currently available for adding versions to single-AMI products. For more information, see <a href=\"https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/ami-products.html#ami-add-version\">Add a new version</a>.</p>"
+      }
+    },
     "InternalServiceException": {
       "base": "<p>There was an internal service exception.</p> <p>HTTP status code: 500</p>",
       "refs": {
@@ -792,7 +799,7 @@
       }
     },
     "OfferFilters": {
-      "base": "<p>A filter for offers entity.</p>",
+      "base": "<p>Object containing all the filter fields for offers entity. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$OfferFilters": "<p>A filter for offers.</p>"
       }
@@ -999,7 +1006,7 @@
       }
     },
     "ResaleAuthorizationFilters": {
-      "base": "<p>A filter for ResaleAuthorization entity.</p>",
+      "base": "<p>Object containing all the filter fields for resale authorization entity. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$ResaleAuthorizationFilters": "<p>A filter for Resale Authorizations.</p>"
       }
@@ -1320,7 +1327,7 @@
       }
     },
     "SaaSProductFilters": {
-      "base": "<p>Object containing all the filter fields for SaaS products. Client can add a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
+      "base": "<p>Object containing all the filter fields for SaaS products. Client can add only one wildcard filter and a maximum of 8 filters in a single <code>ListEntities</code> request.</p>",
       "refs": {
         "EntityTypeFilters$SaaSProductFilters": "<p>A filter for SaaS products.</p>"
       }

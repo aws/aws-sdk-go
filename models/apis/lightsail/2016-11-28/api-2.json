@@ -8128,7 +8128,8 @@
         "disableBackupRetention":{"shape":"boolean"},
         "publiclyAccessible":{"shape":"boolean"},
         "applyImmediately":{"shape":"boolean"},
-        "caCertificateIdentifier":{"shape":"string"}
+        "caCertificateIdentifier":{"shape":"string"},
+        "relationalDatabaseBlueprintId":{"shape":"string"}
       }
     },
     "UpdateRelationalDatabaseResult":{
