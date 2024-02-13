@@ -1,3 +1,13 @@
+Release v1.50.17 (2024-02-13)
+===
+
+### Service Client Updates
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to upgrade the major version of a database.
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/resource-explorer-2`: Adds new service
+* `service/securitylake`: Updates service documentation
+
 Release v1.50.16 (2024-02-12)
 ===
 

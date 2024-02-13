@@ -1112,6 +1112,9 @@
         "FailureDescription": {
           "shape": "ExceptionMessageContent"
         },
+        "Intent": {
+          "shape": "Intent"
+        },
         "StartTime": {
           "shape": "DateTimeISO8601"
         },
@@ -1437,6 +1440,13 @@
       "max": 255,
       "min": 1,
       "pattern": "^[\\w\\-@]+$",
+      "type": "string"
+    },
+    "Intent": {
+      "enum": [
+        "VALIDATE",
+        "APPLY"
+      ],
       "type": "string"
     },
     "InternalServiceException": {
@@ -2637,6 +2647,9 @@
         "ClientRequestToken": {
           "idempotencyToken": true,
           "shape": "ClientRequestToken"
+        },
+        "Intent": {
+          "shape": "Intent"
         }
       },
       "required": [

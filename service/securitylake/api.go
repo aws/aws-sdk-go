@@ -5498,19 +5498,23 @@ func (s *DataLakeLifecycleTransition) SetStorageClass(v string) *DataLakeLifecyc
 	return s
 }
 
-// Provides replication details of Amazon Security Lake object.
+// Provides replication details for objects stored in the Amazon Security Lake
+// data lake.
 type DataLakeReplicationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Replication enables automatic, asynchronous copying of objects across Amazon
-	// S3 buckets. Amazon S3 buckets that are configured for object replication
-	// can be owned by the same Amazon Web Services account or by different accounts.
-	// You can replicate objects to a single destination bucket or to multiple destination
-	// buckets. The destination buckets can be in different Amazon Web Services
-	// Regions or within the same Region as the source bucket.
+	// Specifies one or more centralized rollup Regions. The Amazon Web Services
+	// Region specified in the region parameter of the CreateDataLake (https://docs.aws.amazon.com/security-lake/latest/APIReference/API_CreateDataLake.html)
+	// or UpdateDataLake (https://docs.aws.amazon.com/security-lake/latest/APIReference/API_UpdateDataLake.html)
+	// operations contributes data to the rollup Region or Regions specified in
+	// this parameter.
 	//
-	// Set up one or more rollup Regions by providing the Region or Regions that
-	// should contribute to the central rollup Region.
+	// Replication enables automatic, asynchronous copying of objects across Amazon
+	// S3 buckets. S3 buckets that are configured for object replication can be
+	// owned by the same Amazon Web Services account or by different accounts. You
+	// can replicate objects to a single destination bucket or to multiple destination
+	// buckets. The destination buckets can be in different Regions or within the
+	// same Region as the source bucket.
 	Regions []*string `locationName:"regions" type:"list"`
 
 	// Replication settings for the Amazon S3 buckets. This parameter uses the Identity
@@ -6968,7 +6972,7 @@ type ListDataLakeExceptionsInput struct {
 	// token will return an HTTP 400 InvalidToken error.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// List the Amazon Web Services Regions from which exceptions are retrieved.
+	// The Amazon Web Services Regions from which exceptions are retrieved.
 	Regions []*string `locationName:"regions" type:"list"`
 }
 
@@ -7069,7 +7073,7 @@ func (s *ListDataLakeExceptionsOutput) SetNextToken(v string) *ListDataLakeExcep
 type ListDataLakesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The list of regions where Security Lake is enabled.
+	// The list of Regions where Security Lake is enabled.
 	Regions []*string `location:"querystring" locationName:"regions" type:"list"`
 }
 
@@ -7141,7 +7145,7 @@ type ListLogSourcesInput struct {
 	// the call using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of regions for which log sources are displayed.
+	// The list of Regions for which log sources are displayed.
 	Regions []*string `locationName:"regions" type:"list"`
 
 	// The list of sources for which log sources are displayed.
