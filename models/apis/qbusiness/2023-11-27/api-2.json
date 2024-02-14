@@ -2301,6 +2301,12 @@
       "box": true,
       "type": "boolean"
     },
+    "BoostingDurationInSeconds": {
+      "box": true,
+      "max": 999999999,
+      "min": 0,
+      "type": "long"
+    },
     "ChatSyncInput": {
       "members": {
         "applicationId": {
@@ -2878,6 +2884,20 @@
       },
       "type": "list"
     },
+    "DateAttributeBoostingConfiguration": {
+      "members": {
+        "boostingDurationInSeconds": {
+          "shape": "BoostingDurationInSeconds"
+        },
+        "boostingLevel": {
+          "shape": "DocumentAttributeBoostingLevel"
+        }
+      },
+      "required": [
+        "boostingLevel"
+      ],
+      "type": "structure"
+    },
     "DeleteApplicationRequest": {
       "members": {
         "applicationId": {
@@ -3185,6 +3205,44 @@
         "value"
       ],
       "type": "structure"
+    },
+    "DocumentAttributeBoostingConfiguration": {
+      "members": {
+        "dateConfiguration": {
+          "shape": "DateAttributeBoostingConfiguration"
+        },
+        "numberConfiguration": {
+          "shape": "NumberAttributeBoostingConfiguration"
+        },
+        "stringConfiguration": {
+          "shape": "StringAttributeBoostingConfiguration"
+        },
+        "stringListConfiguration": {
+          "shape": "StringListAttributeBoostingConfiguration"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "DocumentAttributeBoostingLevel": {
+      "enum": [
+        "NONE",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "VERY_HIGH"
+      ],
+      "type": "string"
+    },
+    "DocumentAttributeBoostingOverrideMap": {
+      "key": {
+        "shape": "DocumentAttributeKey"
+      },
+      "min": 1,
+      "type": "map",
+      "value": {
+        "shape": "DocumentAttributeBoostingConfiguration"
+      }
     },
     "DocumentAttributeCondition": {
       "members": {
@@ -4883,7 +4941,11 @@
         "FACTUALLY_CORRECT",
         "COMPLETE",
         "RELEVANT_SOURCES",
-        "HELPFUL"
+        "HELPFUL",
+        "NOT_BASED_ON_DOCUMENTS",
+        "NOT_COMPLETE",
+        "NOT_CONCISE",
+        "OTHER"
       ],
       "type": "string"
     },
@@ -4899,6 +4961,9 @@
     },
     "NativeIndexConfiguration": {
       "members": {
+        "boostingOverride": {
+          "shape": "DocumentAttributeBoostingOverrideMap"
+        },
         "indexId": {
           "shape": "IndexId"
         }
@@ -4911,6 +4976,27 @@
     "NextToken": {
       "max": 800,
       "min": 1,
+      "type": "string"
+    },
+    "NumberAttributeBoostingConfiguration": {
+      "members": {
+        "boostingLevel": {
+          "shape": "DocumentAttributeBoostingLevel"
+        },
+        "boostingType": {
+          "shape": "NumberAttributeBoostingType"
+        }
+      },
+      "required": [
+        "boostingLevel"
+      ],
+      "type": "structure"
+    },
+    "NumberAttributeBoostingType": {
+      "enum": [
+        "PRIORITIZE_LARGER_VALUES",
+        "PRIORITIZE_SMALLER_VALUES"
+      ],
       "type": "string"
     },
     "OAuth2ClientCredentialConfiguration": {
@@ -5500,6 +5586,51 @@
       "max": 2048,
       "min": 1,
       "type": "string"
+    },
+    "StringAttributeBoostingConfiguration": {
+      "members": {
+        "attributeValueBoosting": {
+          "shape": "StringAttributeValueBoosting"
+        },
+        "boostingLevel": {
+          "shape": "DocumentAttributeBoostingLevel"
+        }
+      },
+      "required": [
+        "boostingLevel"
+      ],
+      "type": "structure"
+    },
+    "StringAttributeValueBoosting": {
+      "key": {
+        "shape": "String"
+      },
+      "max": 10,
+      "min": 1,
+      "type": "map",
+      "value": {
+        "shape": "StringAttributeValueBoostingLevel"
+      }
+    },
+    "StringAttributeValueBoostingLevel": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "VERY_HIGH"
+      ],
+      "type": "string"
+    },
+    "StringListAttributeBoostingConfiguration": {
+      "members": {
+        "boostingLevel": {
+          "shape": "DocumentAttributeBoostingLevel"
+        }
+      },
+      "required": [
+        "boostingLevel"
+      ],
+      "type": "structure"
     },
     "SubnetId": {
       "max": 200,
