@@ -1,3 +1,11 @@
+Release v1.50.18 (2024-02-14)
+===
+
+### Service Client Updates
+* `service/controltower`: Updates service API, documentation, and paginators
+* `service/lookoutequipment`: Updates service API and documentation
+* `service/qbusiness`: Updates service API and documentation
+
 Release v1.50.17 (2024-02-13)
 ===
 

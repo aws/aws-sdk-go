@@ -64,17 +64,37 @@ type ControlTowerAPI interface {
 	DeleteLandingZoneWithContext(aws.Context, *controltower.DeleteLandingZoneInput, ...request.Option) (*controltower.DeleteLandingZoneOutput, error)
 	DeleteLandingZoneRequest(*controltower.DeleteLandingZoneInput) (*request.Request, *controltower.DeleteLandingZoneOutput)
 
+	DisableBaseline(*controltower.DisableBaselineInput) (*controltower.DisableBaselineOutput, error)
+	DisableBaselineWithContext(aws.Context, *controltower.DisableBaselineInput, ...request.Option) (*controltower.DisableBaselineOutput, error)
+	DisableBaselineRequest(*controltower.DisableBaselineInput) (*request.Request, *controltower.DisableBaselineOutput)
+
 	DisableControl(*controltower.DisableControlInput) (*controltower.DisableControlOutput, error)
 	DisableControlWithContext(aws.Context, *controltower.DisableControlInput, ...request.Option) (*controltower.DisableControlOutput, error)
 	DisableControlRequest(*controltower.DisableControlInput) (*request.Request, *controltower.DisableControlOutput)
+
+	EnableBaseline(*controltower.EnableBaselineInput) (*controltower.EnableBaselineOutput, error)
+	EnableBaselineWithContext(aws.Context, *controltower.EnableBaselineInput, ...request.Option) (*controltower.EnableBaselineOutput, error)
+	EnableBaselineRequest(*controltower.EnableBaselineInput) (*request.Request, *controltower.EnableBaselineOutput)
 
 	EnableControl(*controltower.EnableControlInput) (*controltower.EnableControlOutput, error)
 	EnableControlWithContext(aws.Context, *controltower.EnableControlInput, ...request.Option) (*controltower.EnableControlOutput, error)
 	EnableControlRequest(*controltower.EnableControlInput) (*request.Request, *controltower.EnableControlOutput)
 
+	GetBaseline(*controltower.GetBaselineInput) (*controltower.GetBaselineOutput, error)
+	GetBaselineWithContext(aws.Context, *controltower.GetBaselineInput, ...request.Option) (*controltower.GetBaselineOutput, error)
+	GetBaselineRequest(*controltower.GetBaselineInput) (*request.Request, *controltower.GetBaselineOutput)
+
+	GetBaselineOperation(*controltower.GetBaselineOperationInput) (*controltower.GetBaselineOperationOutput, error)
+	GetBaselineOperationWithContext(aws.Context, *controltower.GetBaselineOperationInput, ...request.Option) (*controltower.GetBaselineOperationOutput, error)
+	GetBaselineOperationRequest(*controltower.GetBaselineOperationInput) (*request.Request, *controltower.GetBaselineOperationOutput)
+
 	GetControlOperation(*controltower.GetControlOperationInput) (*controltower.GetControlOperationOutput, error)
 	GetControlOperationWithContext(aws.Context, *controltower.GetControlOperationInput, ...request.Option) (*controltower.GetControlOperationOutput, error)
 	GetControlOperationRequest(*controltower.GetControlOperationInput) (*request.Request, *controltower.GetControlOperationOutput)
+
+	GetEnabledBaseline(*controltower.GetEnabledBaselineInput) (*controltower.GetEnabledBaselineOutput, error)
+	GetEnabledBaselineWithContext(aws.Context, *controltower.GetEnabledBaselineInput, ...request.Option) (*controltower.GetEnabledBaselineOutput, error)
+	GetEnabledBaselineRequest(*controltower.GetEnabledBaselineInput) (*request.Request, *controltower.GetEnabledBaselineOutput)
 
 	GetEnabledControl(*controltower.GetEnabledControlInput) (*controltower.GetEnabledControlOutput, error)
 	GetEnabledControlWithContext(aws.Context, *controltower.GetEnabledControlInput, ...request.Option) (*controltower.GetEnabledControlOutput, error)
@@ -83,6 +103,20 @@ type ControlTowerAPI interface {
 	GetLandingZoneOperation(*controltower.GetLandingZoneOperationInput) (*controltower.GetLandingZoneOperationOutput, error)
 	GetLandingZoneOperationWithContext(aws.Context, *controltower.GetLandingZoneOperationInput, ...request.Option) (*controltower.GetLandingZoneOperationOutput, error)
 	GetLandingZoneOperationRequest(*controltower.GetLandingZoneOperationInput) (*request.Request, *controltower.GetLandingZoneOperationOutput)
+
+	ListBaselines(*controltower.ListBaselinesInput) (*controltower.ListBaselinesOutput, error)
+	ListBaselinesWithContext(aws.Context, *controltower.ListBaselinesInput, ...request.Option) (*controltower.ListBaselinesOutput, error)
+	ListBaselinesRequest(*controltower.ListBaselinesInput) (*request.Request, *controltower.ListBaselinesOutput)
+
+	ListBaselinesPages(*controltower.ListBaselinesInput, func(*controltower.ListBaselinesOutput, bool) bool) error
+	ListBaselinesPagesWithContext(aws.Context, *controltower.ListBaselinesInput, func(*controltower.ListBaselinesOutput, bool) bool, ...request.Option) error
+
+	ListEnabledBaselines(*controltower.ListEnabledBaselinesInput) (*controltower.ListEnabledBaselinesOutput, error)
+	ListEnabledBaselinesWithContext(aws.Context, *controltower.ListEnabledBaselinesInput, ...request.Option) (*controltower.ListEnabledBaselinesOutput, error)
+	ListEnabledBaselinesRequest(*controltower.ListEnabledBaselinesInput) (*request.Request, *controltower.ListEnabledBaselinesOutput)
+
+	ListEnabledBaselinesPages(*controltower.ListEnabledBaselinesInput, func(*controltower.ListEnabledBaselinesOutput, bool) bool) error
+	ListEnabledBaselinesPagesWithContext(aws.Context, *controltower.ListEnabledBaselinesInput, func(*controltower.ListEnabledBaselinesOutput, bool) bool, ...request.Option) error
 
 	ListEnabledControls(*controltower.ListEnabledControlsInput) (*controltower.ListEnabledControlsOutput, error)
 	ListEnabledControlsWithContext(aws.Context, *controltower.ListEnabledControlsInput, ...request.Option) (*controltower.ListEnabledControlsOutput, error)
@@ -102,6 +136,10 @@ type ControlTowerAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *controltower.ListTagsForResourceInput, ...request.Option) (*controltower.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*controltower.ListTagsForResourceInput) (*request.Request, *controltower.ListTagsForResourceOutput)
 
+	ResetEnabledBaseline(*controltower.ResetEnabledBaselineInput) (*controltower.ResetEnabledBaselineOutput, error)
+	ResetEnabledBaselineWithContext(aws.Context, *controltower.ResetEnabledBaselineInput, ...request.Option) (*controltower.ResetEnabledBaselineOutput, error)
+	ResetEnabledBaselineRequest(*controltower.ResetEnabledBaselineInput) (*request.Request, *controltower.ResetEnabledBaselineOutput)
+
 	ResetLandingZone(*controltower.ResetLandingZoneInput) (*controltower.ResetLandingZoneOutput, error)
 	ResetLandingZoneWithContext(aws.Context, *controltower.ResetLandingZoneInput, ...request.Option) (*controltower.ResetLandingZoneOutput, error)
 	ResetLandingZoneRequest(*controltower.ResetLandingZoneInput) (*request.Request, *controltower.ResetLandingZoneOutput)
@@ -113,6 +151,10 @@ type ControlTowerAPI interface {
 	UntagResource(*controltower.UntagResourceInput) (*controltower.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *controltower.UntagResourceInput, ...request.Option) (*controltower.UntagResourceOutput, error)
 	UntagResourceRequest(*controltower.UntagResourceInput) (*request.Request, *controltower.UntagResourceOutput)
+
+	UpdateEnabledBaseline(*controltower.UpdateEnabledBaselineInput) (*controltower.UpdateEnabledBaselineOutput, error)
+	UpdateEnabledBaselineWithContext(aws.Context, *controltower.UpdateEnabledBaselineInput, ...request.Option) (*controltower.UpdateEnabledBaselineOutput, error)
+	UpdateEnabledBaselineRequest(*controltower.UpdateEnabledBaselineInput) (*request.Request, *controltower.UpdateEnabledBaselineOutput)
 }
 
 var _ ControlTowerAPI = (*controltower.ControlTower)(nil)

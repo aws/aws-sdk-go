@@ -582,7 +582,7 @@
     "InferenceExecutionSummaries": {
       "base": null,
       "refs": {
-        "ListInferenceExecutionsResponse$InferenceExecutionSummaries": "<p>Provides an array of information about the individual inference executions returned from the <code>ListInferenceExecutions</code> operation, including model used, inference scheduler, data configuration, and so on. </p>"
+        "ListInferenceExecutionsResponse$InferenceExecutionSummaries": "<p>Provides an array of information about the individual inference executions returned from the <code>ListInferenceExecutions</code> operation, including model used, inference scheduler, data configuration, and so on. </p> <note> <p>If you don't supply the <code>InferenceSchedulerName</code> request parameter, or if you supply the name of an inference scheduler that doesn't exist, <code>ListInferenceExecutions</code> returns an empty array in <code>InferenceExecutionSummaries</code>.</p> </note>"
       }
     },
     "InferenceExecutionSummary": {
@@ -692,7 +692,7 @@
       "base": "<p>Gives statistics about how many files have been ingested, and which files have not been ingested, for a particular ingestion job.</p>",
       "refs": {
         "DescribeDataIngestionJobResponse$IngestedFilesSummary": null,
-        "DescribeDatasetResponse$IngestedFilesSummary": "<p> IngestedFilesSummary associated with the given dataset for the latest successful associated ingestion job id. </p>"
+        "DescribeDatasetResponse$IngestedFilesSummary": "<p>IngestedFilesSummary associated with the given dataset for the latest successful associated ingestion job id. </p>"
       }
     },
     "IngestionInputConfiguration": {
@@ -762,7 +762,7 @@
         "MissingCompleteSensorData$AffectedSensorCount": "<p> Indicates the number of sensors that have data missing completely. </p>",
         "MissingSensorData$AffectedSensorCount": "<p> Indicates the number of sensors that have atleast some data missing. </p>",
         "MissingSensorData$TotalNumberOfMissingValues": "<p> Indicates the total number of missing values across all the sensors. </p>",
-        "SensorsWithShortDateRange$AffectedSensorCount": "<p> Indicates the number of sensors that have less than 90 days of data. </p>",
+        "SensorsWithShortDateRange$AffectedSensorCount": "<p> Indicates the number of sensors that have less than 14 days of data. </p>",
         "UnsupportedTimestamps$TotalNumberOfUnsupportedTimestamps": "<p> Indicates the total number of unsupported timestamps across the ingested data. </p>"
       }
     },
@@ -818,7 +818,7 @@
         "LabelSummary$LabelGroupName": "<p> The name of the label group. </p>",
         "LabelsInputConfiguration$LabelGroupName": "<p> The name of the label group to be used for label data. </p>",
         "ListLabelGroupsRequest$LabelGroupNameBeginsWith": "<p> The beginning of the name of the label groups to be listed. </p>",
-        "ListLabelsRequest$LabelGroupName": "<p> Retruns the name of the label group. </p>",
+        "ListLabelsRequest$LabelGroupName": "<p> Returns the name of the label group. </p>",
         "UpdateLabelGroupRequest$LabelGroupName": "<p> The name of the label group to be updated. </p>"
       }
     },
@@ -855,7 +855,7 @@
     "LabelSummaries": {
       "base": null,
       "refs": {
-        "ListLabelsResponse$LabelSummaries": "<p> A summary of the items in the label group. </p>"
+        "ListLabelsResponse$LabelSummaries": "<p> A summary of the items in the label group. </p> <note> <p>If you don't supply the <code>LabelGroupName</code> request parameter, or if you supply the name of a label group that doesn't exist, <code>ListLabels</code> returns an empty array in <code>LabelSummaries</code>.</p> </note>"
       }
     },
     "LabelSummary": {
@@ -1078,6 +1078,22 @@
         "UpdateActiveModelVersionResponse$ModelArn": "<p>The Amazon Resource Name (ARN) of the machine learning model for which the active model version was set.</p>"
       }
     },
+    "ModelDiagnosticsOutputConfiguration": {
+      "base": "<p>Output configuration information for the pointwise model diagnostics for an Amazon Lookout for Equipment model.</p>",
+      "refs": {
+        "CreateModelRequest$ModelDiagnosticsOutputConfiguration": "<p>The Amazon S3 location where you want Amazon Lookout for Equipment to save the pointwise model diagnostics. You must also specify the <code>RoleArn</code> request parameter.</p>",
+        "DescribeModelResponse$ModelDiagnosticsOutputConfiguration": "<p>Configuration information for the model's pointwise model diagnostics.</p>",
+        "DescribeModelVersionResponse$ModelDiagnosticsOutputConfiguration": "<p>The Amazon S3 location where Amazon Lookout for Equipment saves the pointwise model diagnostics for the model version.</p>",
+        "ModelSummary$ModelDiagnosticsOutputConfiguration": null,
+        "UpdateModelRequest$ModelDiagnosticsOutputConfiguration": "<p>The Amazon S3 location where you want Amazon Lookout for Equipment to save the pointwise model diagnostics for the model. You must also specify the <code>RoleArn</code> request parameter.</p>"
+      }
+    },
+    "ModelDiagnosticsS3OutputConfiguration": {
+      "base": "<p>The Amazon S3 location for the pointwise model diagnostics for an Amazon Lookout for Equipment model. </p>",
+      "refs": {
+        "ModelDiagnosticsOutputConfiguration$S3OutputConfiguration": "<p>The Amazon S3 location for the pointwise model diagnostics. </p>"
+      }
+    },
     "ModelMetrics": {
       "base": null,
       "refs": {
@@ -1215,7 +1231,7 @@
     "ModelVersionSummaries": {
       "base": null,
       "refs": {
-        "ListModelVersionsResponse$ModelVersionSummaries": "<p>Provides information on the specified model version, including the created time, model and dataset ARNs, and status.</p>"
+        "ListModelVersionsResponse$ModelVersionSummaries": "<p>Provides information on the specified model version, including the created time, model and dataset ARNs, and status.</p> <note> <p>If you don't supply the <code>ModelName</code> request parameter, or if you supply the name of a model that doesn't exist, <code>ListModelVersions</code> returns an empty array in <code>ModelVersionSummaries</code>. </p> </note>"
       }
     },
     "ModelVersionSummary": {
@@ -1250,7 +1266,8 @@
         "CreateModelRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>",
         "ImportDatasetRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key key used to encrypt model data by Amazon Lookout for Equipment. </p>",
         "ImportModelVersionRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key key used to encrypt model data by Amazon Lookout for Equipment. </p>",
-        "InferenceOutputConfiguration$KmsKeyId": "<p>The ID number for the KMS key key used to encrypt the inference output. </p>"
+        "InferenceOutputConfiguration$KmsKeyId": "<p>The ID number for the KMS key key used to encrypt the inference output. </p>",
+        "ModelDiagnosticsOutputConfiguration$KmsKeyId": "<p>The Amazon Web Services Key Management Service (KMS) key identifier to encrypt the pointwise model diagnostics files.</p>"
       }
     },
     "NextToken": {
@@ -1368,6 +1385,7 @@
         "InferenceS3OutputConfiguration$Bucket": "<p> The bucket containing the output results from the inference </p>",
         "IngestionS3InputConfiguration$Bucket": "<p>The name of the S3 bucket used for the input data for the data ingestion. </p>",
         "LabelsS3InputConfiguration$Bucket": "<p>The name of the S3 bucket holding the label data. </p>",
+        "ModelDiagnosticsS3OutputConfiguration$Bucket": "<p>The name of the Amazon S3 bucket where the pointwise model diagnostics are located. You must be the owner of the Amazon S3 bucket. </p>",
         "S3Object$Bucket": "<p>The name of the specific S3 bucket. </p>"
       }
     },
@@ -1380,6 +1398,7 @@
     "S3Object": {
       "base": "<p>Contains information about an S3 bucket. </p>",
       "refs": {
+        "DescribeModelVersionResponse$ModelDiagnosticsResultsObject": "<p>The Amazon S3 output prefix for where Lookout for Equipment saves the pointwise model diagnostics for the model version.</p>",
         "InferenceExecutionSummary$CustomerResultObject": "<p>The S3 object that the inference execution results were uploaded to.</p>",
         "ListOfDiscardedFiles$member": null
       }
@@ -1390,7 +1409,8 @@
         "InferenceS3InputConfiguration$Prefix": "<p>The prefix for the S3 bucket used for the input data for the inference. </p>",
         "InferenceS3OutputConfiguration$Prefix": "<p> The prefix for the S3 bucket used for the output results from the inference. </p>",
         "IngestionS3InputConfiguration$Prefix": "<p>The prefix for the S3 location being used for the input data for the data ingestion. </p>",
-        "LabelsS3InputConfiguration$Prefix": "<p> The prefix for the S3 bucket used for the label data. </p>"
+        "LabelsS3InputConfiguration$Prefix": "<p> The prefix for the S3 bucket used for the label data. </p>",
+        "ModelDiagnosticsS3OutputConfiguration$Prefix": "<p>The Amazon S3 prefix for the location of the pointwise model diagnostics. The prefix specifies the folder and evaluation result file name. (<code>bucket</code>).</p> <p>When you call <code>CreateModel</code> or <code>UpdateModel</code>, specify the path within the bucket that you want Lookout for Equipment to save the model to. During training, Lookout for Equipment creates the model evaluation model as a compressed JSON file with the name <code>model_diagnostics_results.json.gz</code>.</p> <p>When you call <code>DescribeModel</code> or <code>DescribeModelVersion</code>, <code>prefix</code> contains the file path and filename of the model evaluation file. </p>"
       }
     },
     "SensorName": {
@@ -1414,7 +1434,7 @@
     "SensorsWithShortDateRange": {
       "base": "<p> Entity that comprises information on sensors that have shorter date range. </p>",
       "refs": {
-        "InsufficientSensorData$SensorsWithShortDateRange": "<p> Parameter that describes the total number of sensors that have a short date range of less than 90 days of data overall. </p>"
+        "InsufficientSensorData$SensorsWithShortDateRange": "<p> Parameter that describes the total number of sensors that have a short date range of less than 14 days of data overall. </p>"
       }
     },
     "ServiceQuotaExceededException": {

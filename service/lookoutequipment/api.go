@@ -6451,6 +6451,11 @@ type CreateModelInput struct {
 	// model that's being created.
 	LabelsInputConfiguration *LabelsInputConfiguration `type:"structure"`
 
+	// The Amazon S3 location where you want Amazon Lookout for Equipment to save
+	// the pointwise model diagnostics. You must also specify the RoleArn request
+	// parameter.
+	ModelDiagnosticsOutputConfiguration *ModelDiagnosticsOutputConfiguration `type:"structure"`
+
 	// The name for the machine learning model to be created.
 	//
 	// ModelName is a required field
@@ -6531,6 +6536,11 @@ func (s *CreateModelInput) Validate() error {
 			invalidParams.AddNested("LabelsInputConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ModelDiagnosticsOutputConfiguration != nil {
+		if err := s.ModelDiagnosticsOutputConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ModelDiagnosticsOutputConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -6587,6 +6597,12 @@ func (s *CreateModelInput) SetEvaluationDataStartTime(v time.Time) *CreateModelI
 // SetLabelsInputConfiguration sets the LabelsInputConfiguration field's value.
 func (s *CreateModelInput) SetLabelsInputConfiguration(v *LabelsInputConfiguration) *CreateModelInput {
 	s.LabelsInputConfiguration = v
+	return s
+}
+
+// SetModelDiagnosticsOutputConfiguration sets the ModelDiagnosticsOutputConfiguration field's value.
+func (s *CreateModelInput) SetModelDiagnosticsOutputConfiguration(v *ModelDiagnosticsOutputConfiguration) *CreateModelInput {
+	s.ModelDiagnosticsOutputConfiguration = v
 	return s
 }
 
@@ -8722,6 +8738,9 @@ type DescribeModelOutput struct {
 	// The Amazon Resource Name (ARN) of the machine learning model being described.
 	ModelArn *string `min:"20" type:"string"`
 
+	// Configuration information for the model's pointwise model diagnostics.
+	ModelDiagnosticsOutputConfiguration *ModelDiagnosticsOutputConfiguration `type:"structure"`
+
 	// The Model Metrics show an aggregated summary of the model's performance within
 	// the evaluation time range. This is the JSON content of the metrics created
 	// when evaluating the model.
@@ -8940,6 +8959,12 @@ func (s *DescribeModelOutput) SetLatestScheduledRetrainingStatus(v string) *Desc
 // SetModelArn sets the ModelArn field's value.
 func (s *DescribeModelOutput) SetModelArn(v string) *DescribeModelOutput {
 	s.ModelArn = &v
+	return s
+}
+
+// SetModelDiagnosticsOutputConfiguration sets the ModelDiagnosticsOutputConfiguration field's value.
+func (s *DescribeModelOutput) SetModelDiagnosticsOutputConfiguration(v *ModelDiagnosticsOutputConfiguration) *DescribeModelOutput {
+	s.ModelDiagnosticsOutputConfiguration = v
 	return s
 }
 
@@ -9195,6 +9220,14 @@ type DescribeModelVersionOutput struct {
 	// this version belong to.
 	ModelArn *string `min:"20" type:"string"`
 
+	// The Amazon S3 location where Amazon Lookout for Equipment saves the pointwise
+	// model diagnostics for the model version.
+	ModelDiagnosticsOutputConfiguration *ModelDiagnosticsOutputConfiguration `type:"structure"`
+
+	// The Amazon S3 output prefix for where Lookout for Equipment saves the pointwise
+	// model diagnostics for the model version.
+	ModelDiagnosticsResultsObject *S3Object `type:"structure"`
+
 	// Shows an aggregated summary, in JSON format, of the model's performance within
 	// the evaluation time range. These metrics are created when evaluating the
 	// model.
@@ -9367,6 +9400,18 @@ func (s *DescribeModelVersionOutput) SetLastUpdatedTime(v time.Time) *DescribeMo
 // SetModelArn sets the ModelArn field's value.
 func (s *DescribeModelVersionOutput) SetModelArn(v string) *DescribeModelVersionOutput {
 	s.ModelArn = &v
+	return s
+}
+
+// SetModelDiagnosticsOutputConfiguration sets the ModelDiagnosticsOutputConfiguration field's value.
+func (s *DescribeModelVersionOutput) SetModelDiagnosticsOutputConfiguration(v *ModelDiagnosticsOutputConfiguration) *DescribeModelVersionOutput {
+	s.ModelDiagnosticsOutputConfiguration = v
+	return s
+}
+
+// SetModelDiagnosticsResultsObject sets the ModelDiagnosticsResultsObject field's value.
+func (s *DescribeModelVersionOutput) SetModelDiagnosticsResultsObject(v *S3Object) *DescribeModelVersionOutput {
+	s.ModelDiagnosticsResultsObject = v
 	return s
 }
 
@@ -11025,7 +11070,7 @@ type InsufficientSensorData struct {
 	MissingCompleteSensorData *MissingCompleteSensorData `type:"structure" required:"true"`
 
 	// Parameter that describes the total number of sensors that have a short date
-	// range of less than 90 days of data overall.
+	// range of less than 14 days of data overall.
 	//
 	// SensorsWithShortDateRange is a required field
 	SensorsWithShortDateRange *SensorsWithShortDateRange `type:"structure" required:"true"`
@@ -11985,6 +12030,10 @@ type ListInferenceExecutionsOutput struct {
 	// Provides an array of information about the individual inference executions
 	// returned from the ListInferenceExecutions operation, including model used,
 	// inference scheduler, data configuration, and so on.
+	//
+	// If you don't supply the InferenceSchedulerName request parameter, or if you
+	// supply the name of an inference scheduler that doesn't exist, ListInferenceExecutions
+	// returns an empty array in InferenceExecutionSummaries.
 	InferenceExecutionSummaries []*InferenceExecutionSummary `type:"list"`
 
 	// An opaque pagination token indicating where to continue the listing of inference
@@ -12275,7 +12324,7 @@ type ListLabelsInput struct {
 	// given.
 	IntervalStartTime *time.Time `type:"timestamp"`
 
-	// Retruns the name of the label group.
+	// Returns the name of the label group.
 	//
 	// LabelGroupName is a required field
 	LabelGroupName *string `min:"1" type:"string" required:"true"`
@@ -12377,6 +12426,10 @@ type ListLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A summary of the items in the label group.
+	//
+	// If you don't supply the LabelGroupName request parameter, or if you supply
+	// the name of a label group that doesn't exist, ListLabels returns an empty
+	// array in LabelSummaries.
 	LabelSummaries []*LabelSummary `type:"list"`
 
 	// An opaque pagination token indicating where to continue the listing of datasets.
@@ -12552,6 +12605,10 @@ type ListModelVersionsOutput struct {
 
 	// Provides information on the specified model version, including the created
 	// time, model and dataset ARNs, and status.
+	//
+	// If you don't supply the ModelName request parameter, or if you supply the
+	// name of a model that doesn't exist, ListModelVersions returns an empty array
+	// in ModelVersionSummaries.
 	ModelVersionSummaries []*ModelVersionSummary `type:"list"`
 
 	// If the total number of results exceeds the limit that the response can display,
@@ -13127,6 +13184,142 @@ func (s *MissingSensorData) SetTotalNumberOfMissingValues(v int64) *MissingSenso
 	return s
 }
 
+// Output configuration information for the pointwise model diagnostics for
+// an Amazon Lookout for Equipment model.
+type ModelDiagnosticsOutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Key Management Service (KMS) key identifier to encrypt
+	// the pointwise model diagnostics files.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The Amazon S3 location for the pointwise model diagnostics.
+	//
+	// S3OutputConfiguration is a required field
+	S3OutputConfiguration *ModelDiagnosticsS3OutputConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelDiagnosticsOutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelDiagnosticsOutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelDiagnosticsOutputConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelDiagnosticsOutputConfiguration"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.S3OutputConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputConfiguration"))
+	}
+	if s.S3OutputConfiguration != nil {
+		if err := s.S3OutputConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("S3OutputConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ModelDiagnosticsOutputConfiguration) SetKmsKeyId(v string) *ModelDiagnosticsOutputConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3OutputConfiguration sets the S3OutputConfiguration field's value.
+func (s *ModelDiagnosticsOutputConfiguration) SetS3OutputConfiguration(v *ModelDiagnosticsS3OutputConfiguration) *ModelDiagnosticsOutputConfiguration {
+	s.S3OutputConfiguration = v
+	return s
+}
+
+// The Amazon S3 location for the pointwise model diagnostics for an Amazon
+// Lookout for Equipment model.
+type ModelDiagnosticsS3OutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon S3 bucket where the pointwise model diagnostics are
+	// located. You must be the owner of the Amazon S3 bucket.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon S3 prefix for the location of the pointwise model diagnostics.
+	// The prefix specifies the folder and evaluation result file name. (bucket).
+	//
+	// When you call CreateModel or UpdateModel, specify the path within the bucket
+	// that you want Lookout for Equipment to save the model to. During training,
+	// Lookout for Equipment creates the model evaluation model as a compressed
+	// JSON file with the name model_diagnostics_results.json.gz.
+	//
+	// When you call DescribeModel or DescribeModelVersion, prefix contains the
+	// file path and filename of the model evaluation file.
+	Prefix *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelDiagnosticsS3OutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelDiagnosticsS3OutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelDiagnosticsS3OutputConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelDiagnosticsS3OutputConfiguration"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *ModelDiagnosticsS3OutputConfiguration) SetBucket(v string) *ModelDiagnosticsS3OutputConfiguration {
+	s.Bucket = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *ModelDiagnosticsS3OutputConfiguration) SetPrefix(v string) *ModelDiagnosticsS3OutputConfiguration {
+	s.Prefix = &v
+	return s
+}
+
 // Provides information about the specified machine learning model, including
 // dataset and model names and ARNs, as well as status.
 type ModelSummary struct {
@@ -13160,6 +13353,10 @@ type ModelSummary struct {
 
 	// The Amazon Resource Name (ARN) of the machine learning model.
 	ModelArn *string `min:"20" type:"string"`
+
+	// Output configuration information for the pointwise model diagnostics for
+	// an Amazon Lookout for Equipment model.
+	ModelDiagnosticsOutputConfiguration *ModelDiagnosticsOutputConfiguration `type:"structure"`
 
 	// The name of the machine learning model.
 	ModelName *string `min:"1" type:"string"`
@@ -13245,6 +13442,12 @@ func (s *ModelSummary) SetLatestScheduledRetrainingStatus(v string) *ModelSummar
 // SetModelArn sets the ModelArn field's value.
 func (s *ModelSummary) SetModelArn(v string) *ModelSummary {
 	s.ModelArn = &v
+	return s
+}
+
+// SetModelDiagnosticsOutputConfiguration sets the ModelDiagnosticsOutputConfiguration field's value.
+func (s *ModelSummary) SetModelDiagnosticsOutputConfiguration(v *ModelDiagnosticsOutputConfiguration) *ModelSummary {
+	s.ModelDiagnosticsOutputConfiguration = v
 	return s
 }
 
@@ -13915,7 +14118,7 @@ func (s *SensorStatisticsSummary) SetSensorName(v string) *SensorStatisticsSumma
 type SensorsWithShortDateRange struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates the number of sensors that have less than 90 days of data.
+	// Indicates the number of sensors that have less than 14 days of data.
 	//
 	// AffectedSensorCount is a required field
 	AffectedSensorCount *int64 `type:"integer" required:"true"`
@@ -15310,6 +15513,11 @@ type UpdateModelInput struct {
 	// hold label data.
 	LabelsInputConfiguration *LabelsInputConfiguration `type:"structure"`
 
+	// The Amazon S3 location where you want Amazon Lookout for Equipment to save
+	// the pointwise model diagnostics for the model. You must also specify the
+	// RoleArn request parameter.
+	ModelDiagnosticsOutputConfiguration *ModelDiagnosticsOutputConfiguration `type:"structure"`
+
 	// The name of the model to update.
 	//
 	// ModelName is a required field
@@ -15354,6 +15562,11 @@ func (s *UpdateModelInput) Validate() error {
 			invalidParams.AddNested("LabelsInputConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ModelDiagnosticsOutputConfiguration != nil {
+		if err := s.ModelDiagnosticsOutputConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ModelDiagnosticsOutputConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15364,6 +15577,12 @@ func (s *UpdateModelInput) Validate() error {
 // SetLabelsInputConfiguration sets the LabelsInputConfiguration field's value.
 func (s *UpdateModelInput) SetLabelsInputConfiguration(v *LabelsInputConfiguration) *UpdateModelInput {
 	s.LabelsInputConfiguration = v
+	return s
+}
+
+// SetModelDiagnosticsOutputConfiguration sets the ModelDiagnosticsOutputConfiguration field's value.
+func (s *UpdateModelInput) SetModelDiagnosticsOutputConfiguration(v *ModelDiagnosticsOutputConfiguration) *UpdateModelInput {
+	s.ModelDiagnosticsOutputConfiguration = v
 	return s
 }
 

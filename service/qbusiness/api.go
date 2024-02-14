@@ -495,8 +495,8 @@ func (c *QBusiness) CreateIndexRequest(input *CreateIndexInput) (req *request.Re
 // index is ready to use.
 //
 // Once the index is active, you can index your documents using the BatchPutDocument
-// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_BatchPutDocument.html)
-// API or the CreateDataSource (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CreateDataSource.html)
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_BatchPutDocument.html)
+// API or the CreateDataSource (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_CreateDataSource.html)
 // API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6812,8 +6812,7 @@ func (s *AttachmentsConfiguration) SetAttachmentsControlMode(v string) *Attachme
 	return s
 }
 
-// Enables filtering of Amazon Q web experience responses based on document
-// attributes or metadata fields.
+// Enables filtering of responses based on document attributes or metadata fields.
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -9206,6 +9205,66 @@ func (s *DataSourceVpcConfiguration) SetSubnetIds(v []*string) *DataSourceVpcCon
 	return s
 }
 
+// Provides information on boosting DATE type document attributes.
+//
+// For more information on how boosting document attributes work in Amazon Q,
+// see Boosting using document attributes (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/metadata-boosting.html).
+type DateAttributeBoostingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the duration, in seconds, of a boost applies to a DATE type document
+	// attribute.
+	BoostingDurationInSeconds *int64 `locationName:"boostingDurationInSeconds" type:"long"`
+
+	// Specifies how much a document attribute is boosted.
+	//
+	// BoostingLevel is a required field
+	BoostingLevel *string `locationName:"boostingLevel" type:"string" required:"true" enum:"DocumentAttributeBoostingLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateAttributeBoostingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DateAttributeBoostingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DateAttributeBoostingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DateAttributeBoostingConfiguration"}
+	if s.BoostingLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("BoostingLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBoostingDurationInSeconds sets the BoostingDurationInSeconds field's value.
+func (s *DateAttributeBoostingConfiguration) SetBoostingDurationInSeconds(v int64) *DateAttributeBoostingConfiguration {
+	s.BoostingDurationInSeconds = &v
+	return s
+}
+
+// SetBoostingLevel sets the BoostingLevel field's value.
+func (s *DateAttributeBoostingConfiguration) SetBoostingLevel(v string) *DateAttributeBoostingConfiguration {
+	s.BoostingLevel = &v
+	return s
+}
+
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10379,9 +10438,111 @@ func (s *DocumentAttribute) SetValue(v *DocumentAttributeValue) *DocumentAttribu
 	return s
 }
 
+// Provides information on boosting supported Amazon Q document attribute types.
+// When an end user chat query matches document attributes that have been boosted,
+// Amazon Q prioritizes generating responses from content that matches the boosted
+// document attributes.
+//
+// For STRING and STRING_LIST type document attributes to be used for boosting
+// on the console and the API, they must be enabled for search using the DocumentAttributeConfiguration
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeConfiguration.html)
+// object of the UpdateIndex (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_UpdateIndex.html)
+// API. If you haven't enabled searching on these attributes, you can't boost
+// attributes of these data types on either the console or the API.
+//
+// For more information on how boosting document attributes work in Amazon Q,
+// see Boosting using document attributes (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/metadata-boosting.html).
+type DocumentAttributeBoostingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information on boosting DATE type document attributes.
+	DateConfiguration *DateAttributeBoostingConfiguration `locationName:"dateConfiguration" type:"structure"`
+
+	// Provides information on boosting NUMBER type document attributes.
+	NumberConfiguration *NumberAttributeBoostingConfiguration `locationName:"numberConfiguration" type:"structure"`
+
+	// Provides information on boosting STRING type document attributes.
+	StringConfiguration *StringAttributeBoostingConfiguration `locationName:"stringConfiguration" type:"structure"`
+
+	// Provides information on boosting STRING_LIST type document attributes.
+	StringListConfiguration *StringListAttributeBoostingConfiguration `locationName:"stringListConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeBoostingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeBoostingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentAttributeBoostingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentAttributeBoostingConfiguration"}
+	if s.DateConfiguration != nil {
+		if err := s.DateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DateConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NumberConfiguration != nil {
+		if err := s.NumberConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NumberConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StringConfiguration != nil {
+		if err := s.StringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StringListConfiguration != nil {
+		if err := s.StringListConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StringListConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDateConfiguration sets the DateConfiguration field's value.
+func (s *DocumentAttributeBoostingConfiguration) SetDateConfiguration(v *DateAttributeBoostingConfiguration) *DocumentAttributeBoostingConfiguration {
+	s.DateConfiguration = v
+	return s
+}
+
+// SetNumberConfiguration sets the NumberConfiguration field's value.
+func (s *DocumentAttributeBoostingConfiguration) SetNumberConfiguration(v *NumberAttributeBoostingConfiguration) *DocumentAttributeBoostingConfiguration {
+	s.NumberConfiguration = v
+	return s
+}
+
+// SetStringConfiguration sets the StringConfiguration field's value.
+func (s *DocumentAttributeBoostingConfiguration) SetStringConfiguration(v *StringAttributeBoostingConfiguration) *DocumentAttributeBoostingConfiguration {
+	s.StringConfiguration = v
+	return s
+}
+
+// SetStringListConfiguration sets the StringListConfiguration field's value.
+func (s *DocumentAttributeBoostingConfiguration) SetStringListConfiguration(v *StringListAttributeBoostingConfiguration) *DocumentAttributeBoostingConfiguration {
+	s.StringListConfiguration = v
+	return s
+}
+
 // The condition used for the target document attribute or metadata field when
 // ingesting documents into Amazon Q. You use this with DocumentAttributeTarget
-// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeTarget.html)
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeTarget.html)
 // to apply the condition.
 //
 // For example, you can create the 'Department' target field and have it prefill
@@ -10558,11 +10719,11 @@ func (s *DocumentAttributeConfiguration) SetType(v string) *DocumentAttributeCon
 //
 // Amazon Q can't create a target field if it has not already been created as
 // an index field. After you create your index field, you can create a document
-// metadata field using DocumentAttributeTarget (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeTarget.html).
+// metadata field using DocumentAttributeTarget (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeTarget.html).
 // Amazon Q will then map your newly created document attribute to your index
 // field.
 //
-// You can also use this with DocumentAttributeCondition (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeCondition.html).
+// You can also use this with DocumentAttributeCondition (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeCondition.html).
 type DocumentAttributeTarget struct {
 	_ struct{} `type:"structure"`
 
@@ -10844,12 +11005,12 @@ type DocumentEnrichmentConfiguration struct {
 	// Amazon Q.
 	//
 	// You can configure your Lambda function using PreExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html)
+	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
 	// if you want to apply advanced alterations on the original or raw documents.
 	//
 	// If you want to apply advanced alterations on the Amazon Q structured documents,
 	// you must configure your Lambda function using PostExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html).
+	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
 	//
 	// You can only invoke one Lambda function. However, this function can invoke
 	// other functions it requires.
@@ -10862,12 +11023,12 @@ type DocumentEnrichmentConfiguration struct {
 	// Amazon Q.
 	//
 	// You can configure your Lambda function using PreExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html)
+	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
 	// if you want to apply advanced alterations on the original or raw documents.
 	//
 	// If you want to apply advanced alterations on the Amazon Q structured documents,
 	// you must configure your Lambda function using PostExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html).
+	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
 	//
 	// You can only invoke one Lambda function. However, this function can invoke
 	// other functions it requires.
@@ -12877,12 +13038,12 @@ func (s *GroupSummary) SetGroupName(v string) *GroupSummary {
 // Amazon Q.
 //
 // You can configure your Lambda function using PreExtractionHookConfiguration
-// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html)
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
 // if you want to apply advanced alterations on the original or raw documents.
 //
 // If you want to apply advanced alterations on the Amazon Q structured documents,
 // you must configure your Lambda function using PostExtractionHookConfiguration
-// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_CustomDocumentEnrichmentConfiguration.html).
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
 //
 // You can only invoke one Lambda function. However, this function can invoke
 // other functions it requires.
@@ -13126,7 +13287,7 @@ func (s *IndexStatistics) SetTextDocumentStatistics(v *TextDocumentStatistics) *
 // document metadata and content when ingesting documents into Amazon Q.
 //
 // To apply advanced logic, to go beyond what you can do with basic logic, see
-// HookConfiguration (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_HookConfiguration.html).
+// HookConfiguration (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_HookConfiguration.html).
 //
 // For more information, see Custom document enrichment (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/custom-document-enrichment.html).
 type InlineDocumentEnrichmentConfiguration struct {
@@ -13134,7 +13295,7 @@ type InlineDocumentEnrichmentConfiguration struct {
 
 	// The condition used for the target document attribute or metadata field when
 	// ingesting documents into Amazon Q. You use this with DocumentAttributeTarget
-	// (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeTarget.html)
+	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeTarget.html)
 	// to apply the condition.
 	//
 	// For example, you can create the 'Department' target field and have it prefill
@@ -13164,11 +13325,11 @@ type InlineDocumentEnrichmentConfiguration struct {
 	//
 	// Amazon Q can't create a target field if it has not already been created as
 	// an index field. After you create your index field, you can create a document
-	// metadata field using DocumentAttributeTarget (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeTarget.html).
+	// metadata field using DocumentAttributeTarget (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeTarget.html).
 	// Amazon Q will then map your newly created document attribute to your index
 	// field.
 	//
-	// You can also use this with DocumentAttributeCondition (https://docs.aws.amazon.com/enterpriseq/latest/APIReference/API_DocumentAttributeCondition.html).
+	// You can also use this with DocumentAttributeCondition (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeCondition.html).
 	Target *DocumentAttributeTarget `locationName:"target" type:"structure"`
 }
 
@@ -15249,6 +15410,10 @@ func (s *MessageUsefulnessFeedback) SetUsefulness(v string) *MessageUsefulnessFe
 type NativeIndexConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Overrides the default boosts applied by Amazon Q to supported document attribute
+	// data types.
+	BoostingOverride map[string]*DocumentAttributeBoostingConfiguration `locationName:"boostingOverride" min:"1" type:"map"`
+
 	// The identifier for the Amazon Q index.
 	//
 	// IndexId is a required field
@@ -15276,11 +15441,24 @@ func (s NativeIndexConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *NativeIndexConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "NativeIndexConfiguration"}
+	if s.BoostingOverride != nil && len(s.BoostingOverride) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BoostingOverride", 1))
+	}
 	if s.IndexId == nil {
 		invalidParams.Add(request.NewErrParamRequired("IndexId"))
 	}
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.BoostingOverride != nil {
+		for i, v := range s.BoostingOverride {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BoostingOverride", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15289,9 +15467,75 @@ func (s *NativeIndexConfiguration) Validate() error {
 	return nil
 }
 
+// SetBoostingOverride sets the BoostingOverride field's value.
+func (s *NativeIndexConfiguration) SetBoostingOverride(v map[string]*DocumentAttributeBoostingConfiguration) *NativeIndexConfiguration {
+	s.BoostingOverride = v
+	return s
+}
+
 // SetIndexId sets the IndexId field's value.
 func (s *NativeIndexConfiguration) SetIndexId(v string) *NativeIndexConfiguration {
 	s.IndexId = &v
+	return s
+}
+
+// Provides information on boosting NUMBER type document attributes.
+//
+// For more information on how boosting document attributes work in Amazon Q,
+// see Boosting using document attributes (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/metadata-boosting.html).
+type NumberAttributeBoostingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the duration, in seconds, of a boost applies to a NUMBER type document
+	// attribute.
+	//
+	// BoostingLevel is a required field
+	BoostingLevel *string `locationName:"boostingLevel" type:"string" required:"true" enum:"DocumentAttributeBoostingLevel"`
+
+	// Specifies how much a document attribute is boosted.
+	BoostingType *string `locationName:"boostingType" type:"string" enum:"NumberAttributeBoostingType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberAttributeBoostingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NumberAttributeBoostingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NumberAttributeBoostingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NumberAttributeBoostingConfiguration"}
+	if s.BoostingLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("BoostingLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBoostingLevel sets the BoostingLevel field's value.
+func (s *NumberAttributeBoostingConfiguration) SetBoostingLevel(v string) *NumberAttributeBoostingConfiguration {
+	s.BoostingLevel = &v
+	return s
+}
+
+// SetBoostingType sets the BoostingType field's value.
+func (s *NumberAttributeBoostingConfiguration) SetBoostingType(v string) *NumberAttributeBoostingConfiguration {
+	s.BoostingType = &v
 	return s
 }
 
@@ -16238,7 +16482,7 @@ type Rule struct {
 	// The configuration information for a rule.
 	RuleConfiguration *RuleConfiguration `locationName:"ruleConfiguration" type:"structure"`
 
-	// The type fo rule.
+	// The type of rule.
 	//
 	// RuleType is a required field
 	RuleType *string `locationName:"ruleType" type:"string" required:"true" enum:"RuleType"`
@@ -16900,6 +17144,132 @@ func (s StopDataSourceSyncJobOutput) GoString() string {
 	return s.String()
 }
 
+// Provides information on boosting STRING type document attributes.
+//
+// For STRING and STRING_LIST type document attributes to be used for boosting
+// on the console and the API, they must be enabled for search using the DocumentAttributeConfiguration
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeConfiguration.html)
+// object of the UpdateIndex (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_UpdateIndex.html)
+// API. If you haven't enabled searching on these attributes, you can't boost
+// attributes of these data types on either the console or the API.
+//
+// For more information on how boosting document attributes work in Amazon Q,
+// see Boosting using document attributes (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/metadata-boosting.html).
+type StringAttributeBoostingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies specific values of a STRING type document attribute being boosted.
+	AttributeValueBoosting map[string]*string `locationName:"attributeValueBoosting" min:"1" type:"map"`
+
+	// Specifies how much a document attribute is boosted.
+	//
+	// BoostingLevel is a required field
+	BoostingLevel *string `locationName:"boostingLevel" type:"string" required:"true" enum:"DocumentAttributeBoostingLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringAttributeBoostingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringAttributeBoostingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StringAttributeBoostingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StringAttributeBoostingConfiguration"}
+	if s.AttributeValueBoosting != nil && len(s.AttributeValueBoosting) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeValueBoosting", 1))
+	}
+	if s.BoostingLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("BoostingLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeValueBoosting sets the AttributeValueBoosting field's value.
+func (s *StringAttributeBoostingConfiguration) SetAttributeValueBoosting(v map[string]*string) *StringAttributeBoostingConfiguration {
+	s.AttributeValueBoosting = v
+	return s
+}
+
+// SetBoostingLevel sets the BoostingLevel field's value.
+func (s *StringAttributeBoostingConfiguration) SetBoostingLevel(v string) *StringAttributeBoostingConfiguration {
+	s.BoostingLevel = &v
+	return s
+}
+
+// Provides information on boosting STRING_LIST type document attributes.
+//
+// For STRING and STRING_LIST type document attributes to be used for boosting
+// on the console and the API, they must be enabled for search using the DocumentAttributeConfiguration
+// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentAttributeConfiguration.html)
+// object of the UpdateIndex (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_UpdateIndex.html)
+// API. If you haven't enabled searching on these attributes, you can't boost
+// attributes of these data types on either the console or the API.
+//
+// For more information on how boosting document attributes work in Amazon Q,
+// see Boosting using document attributes (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/metadata-boosting.html).
+type StringListAttributeBoostingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how much a document attribute is boosted.
+	//
+	// BoostingLevel is a required field
+	BoostingLevel *string `locationName:"boostingLevel" type:"string" required:"true" enum:"DocumentAttributeBoostingLevel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringListAttributeBoostingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StringListAttributeBoostingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StringListAttributeBoostingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StringListAttributeBoostingConfiguration"}
+	if s.BoostingLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("BoostingLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBoostingLevel sets the BoostingLevel field's value.
+func (s *StringListAttributeBoostingConfiguration) SetBoostingLevel(v string) *StringListAttributeBoostingConfiguration {
+	s.BoostingLevel = &v
+	return s
+}
+
 // A list of key/value pairs that identify an index, FAQ, or data source. Tag
 // keys and values can consist of Unicode letters, digits, white space, and
 // any of the following symbols: _ . : / = + - @.
@@ -17219,7 +17589,7 @@ func (s *ThrottlingException) RequestID() string {
 type TopicConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A description for your topic control configuration. Use this outline how
+	// A description for your topic control configuration. Use this to outline how
 	// the large language model (LLM) should use this topic control configuration.
 	Description *string `locationName:"description" type:"string"`
 
@@ -19132,6 +19502,34 @@ func DataSourceSyncJobStatus_Values() []string {
 }
 
 const (
+	// DocumentAttributeBoostingLevelNone is a DocumentAttributeBoostingLevel enum value
+	DocumentAttributeBoostingLevelNone = "NONE"
+
+	// DocumentAttributeBoostingLevelLow is a DocumentAttributeBoostingLevel enum value
+	DocumentAttributeBoostingLevelLow = "LOW"
+
+	// DocumentAttributeBoostingLevelMedium is a DocumentAttributeBoostingLevel enum value
+	DocumentAttributeBoostingLevelMedium = "MEDIUM"
+
+	// DocumentAttributeBoostingLevelHigh is a DocumentAttributeBoostingLevel enum value
+	DocumentAttributeBoostingLevelHigh = "HIGH"
+
+	// DocumentAttributeBoostingLevelVeryHigh is a DocumentAttributeBoostingLevel enum value
+	DocumentAttributeBoostingLevelVeryHigh = "VERY_HIGH"
+)
+
+// DocumentAttributeBoostingLevel_Values returns all elements of the DocumentAttributeBoostingLevel enum
+func DocumentAttributeBoostingLevel_Values() []string {
+	return []string{
+		DocumentAttributeBoostingLevelNone,
+		DocumentAttributeBoostingLevelLow,
+		DocumentAttributeBoostingLevelMedium,
+		DocumentAttributeBoostingLevelHigh,
+		DocumentAttributeBoostingLevelVeryHigh,
+	}
+}
+
+const (
 	// DocumentContentOperatorDelete is a DocumentContentOperator enum value
 	DocumentContentOperatorDelete = "DELETE"
 )
@@ -19403,6 +19801,18 @@ const (
 
 	// MessageUsefulnessReasonHelpful is a MessageUsefulnessReason enum value
 	MessageUsefulnessReasonHelpful = "HELPFUL"
+
+	// MessageUsefulnessReasonNotBasedOnDocuments is a MessageUsefulnessReason enum value
+	MessageUsefulnessReasonNotBasedOnDocuments = "NOT_BASED_ON_DOCUMENTS"
+
+	// MessageUsefulnessReasonNotComplete is a MessageUsefulnessReason enum value
+	MessageUsefulnessReasonNotComplete = "NOT_COMPLETE"
+
+	// MessageUsefulnessReasonNotConcise is a MessageUsefulnessReason enum value
+	MessageUsefulnessReasonNotConcise = "NOT_CONCISE"
+
+	// MessageUsefulnessReasonOther is a MessageUsefulnessReason enum value
+	MessageUsefulnessReasonOther = "OTHER"
 )
 
 // MessageUsefulnessReason_Values returns all elements of the MessageUsefulnessReason enum
@@ -19416,6 +19826,26 @@ func MessageUsefulnessReason_Values() []string {
 		MessageUsefulnessReasonComplete,
 		MessageUsefulnessReasonRelevantSources,
 		MessageUsefulnessReasonHelpful,
+		MessageUsefulnessReasonNotBasedOnDocuments,
+		MessageUsefulnessReasonNotComplete,
+		MessageUsefulnessReasonNotConcise,
+		MessageUsefulnessReasonOther,
+	}
+}
+
+const (
+	// NumberAttributeBoostingTypePrioritizeLargerValues is a NumberAttributeBoostingType enum value
+	NumberAttributeBoostingTypePrioritizeLargerValues = "PRIORITIZE_LARGER_VALUES"
+
+	// NumberAttributeBoostingTypePrioritizeSmallerValues is a NumberAttributeBoostingType enum value
+	NumberAttributeBoostingTypePrioritizeSmallerValues = "PRIORITIZE_SMALLER_VALUES"
+)
+
+// NumberAttributeBoostingType_Values returns all elements of the NumberAttributeBoostingType enum
+func NumberAttributeBoostingType_Values() []string {
+	return []string{
+		NumberAttributeBoostingTypePrioritizeLargerValues,
+		NumberAttributeBoostingTypePrioritizeSmallerValues,
 	}
 }
 
@@ -19556,6 +19986,30 @@ func Status_Values() []string {
 	return []string{
 		StatusEnabled,
 		StatusDisabled,
+	}
+}
+
+const (
+	// StringAttributeValueBoostingLevelLow is a StringAttributeValueBoostingLevel enum value
+	StringAttributeValueBoostingLevelLow = "LOW"
+
+	// StringAttributeValueBoostingLevelMedium is a StringAttributeValueBoostingLevel enum value
+	StringAttributeValueBoostingLevelMedium = "MEDIUM"
+
+	// StringAttributeValueBoostingLevelHigh is a StringAttributeValueBoostingLevel enum value
+	StringAttributeValueBoostingLevelHigh = "HIGH"
+
+	// StringAttributeValueBoostingLevelVeryHigh is a StringAttributeValueBoostingLevel enum value
+	StringAttributeValueBoostingLevelVeryHigh = "VERY_HIGH"
+)
+
+// StringAttributeValueBoostingLevel_Values returns all elements of the StringAttributeValueBoostingLevel enum
+func StringAttributeValueBoostingLevel_Values() []string {
+	return []string{
+		StringAttributeValueBoostingLevelLow,
+		StringAttributeValueBoostingLevelMedium,
+		StringAttributeValueBoostingLevelHigh,
+		StringAttributeValueBoostingLevelVeryHigh,
 	}
 }
 
