@@ -33,7 +33,7 @@
     "GetDetector": "<p>Retrieves an Amazon GuardDuty detector specified by the detectorId.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "GetFilter": "<p>Returns the details of the filter specified by the filter name.</p>",
     "GetFindings": "<p>Describes Amazon GuardDuty findings specified by finding IDs.</p>",
-    "GetFindingsStatistics": "<p>Lists Amazon GuardDuty findings statistics for the specified detector ID.</p>",
+    "GetFindingsStatistics": "<p>Lists Amazon GuardDuty findings statistics for the specified detector ID.</p> <p>There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "GetIPSet": "<p>Retrieves the IPSet specified by the <code>ipSetId</code>.</p>",
     "GetInvitationsCount": "<p>Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.</p>",
     "GetMalwareScanSettings": "<p>Returns the details of the malware scan settings.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
@@ -48,7 +48,7 @@
     "ListCoverage": "<p>Lists coverage details for your GuardDuty account. If you're a GuardDuty administrator, you can retrieve all resources associated with the active member accounts in your organization.</p> <p>Make sure the accounts have Runtime Monitoring enabled and GuardDuty agent running on their resources.</p>",
     "ListDetectors": "<p>Lists detectorIds of all the existing Amazon GuardDuty detector resources.</p>",
     "ListFilters": "<p>Returns a paginated list of the current filters.</p>",
-    "ListFindings": "<p>Lists Amazon GuardDuty findings for the specified detector ID.</p>",
+    "ListFindings": "<p>Lists GuardDuty findings for the specified detector ID.</p> <p>There might be regional differences because some flags might not be available in all the Regions where GuardDuty is currently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "ListIPSets": "<p>Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated administrator account.</p>",
     "ListInvitations": "<p>Lists all GuardDuty membership invitations that were sent to the current Amazon Web Services account.</p>",
     "ListMembers": "<p>Lists details about all member accounts for the current GuardDuty administrator account.</p>",
@@ -62,7 +62,7 @@
     "TagResource": "<p>Adds tags to a resource.</p>",
     "UnarchiveFindings": "<p>Unarchives GuardDuty findings specified by the <code>findingIds</code>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
-    "UpdateDetector": "<p>Updates the Amazon GuardDuty detector specified by the detectorId.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
+    "UpdateDetector": "<p>Updates the GuardDuty detector specified by the detectorId.</p> <p>There might be regional differences because some data sources might not be available in all the Amazon Web Services Regions where GuardDuty is presently supported. For more information, see <a href=\"https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html\">Regions and endpoints</a>.</p>",
     "UpdateFilter": "<p>Updates the filter specified by the filter name.</p>",
     "UpdateFindingsFeedback": "<p>Marks the specified GuardDuty findings as useful or not useful.</p>",
     "UpdateIPSet": "<p>Updates the IPSet specified by the IPSet ID.</p>",
@@ -2649,6 +2649,15 @@
         "VpcConfig$SecurityGroups": "<p>The identifier of the security group attached to the Lambda function.</p>"
       }
     },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "LocalIpDetails$IpAddressV4": "<p>The IPv4 local address of the connection.</p>",
+        "NetworkInterface$PrivateIpAddress": "<p>The private IP address of the EC2 instance.</p>",
+        "PrivateIpAddressDetails$PrivateIpAddress": "<p>The private IP address of the EC2 instance.</p>",
+        "RemoteIpDetails$IpAddressV4": "<p>The IPv4 remote address of the connection.</p>"
+      }
+    },
     "Service": {
       "base": "<p>Contains additional information about the generated finding.</p>",
       "refs": {
@@ -2914,7 +2923,6 @@
         "ListPublishingDestinationsResponse$NextToken": "<p>A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the <code>NextToken</code> value returned from the previous request to continue listing results after the first page.</p>",
         "ListThreatIntelSetsRequest$NextToken": "<p>You can use this parameter to paginate results in the response. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.</p>",
         "ListThreatIntelSetsResponse$NextToken": "<p>The pagination parameter to be used on the next list operation to retrieve more items.</p>",
-        "LocalIpDetails$IpAddressV4": "<p>The IPv4 local address of the connection.</p>",
         "LocalPortDetails$PortName": "<p>The port name of the local connection.</p>",
         "LoginAttribute$User": "<p>Indicates the user name which attempted to log in.</p>",
         "LoginAttribute$Application": "<p>Indicates the application name used to attempt log in.</p>",
@@ -2933,7 +2941,6 @@
         "NetworkConnectionAction$Protocol": "<p>The network connection protocol.</p>",
         "NetworkInterface$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "NetworkInterface$PrivateDnsName": "<p>The private DNS name of the EC2 instance.</p>",
-        "NetworkInterface$PrivateIpAddress": "<p>The private IP address of the EC2 instance.</p>",
         "NetworkInterface$PublicDnsName": "<p>The public DNS name of the EC2 instance.</p>",
         "NetworkInterface$PublicIp": "<p>The public IP address of the EC2 instance.</p>",
         "NetworkInterface$SubnetId": "<p>The subnet ID of the EC2 instance.</p>",
@@ -2946,7 +2953,6 @@
         "Organization$Org": "<p>The name of the internet provider.</p>",
         "Owner$Id": "<p>The canonical user ID of the bucket owner. For information about locating your canonical user ID see <a href=\"https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId\">Finding Your Account Canonical User ID.</a> </p>",
         "PrivateIpAddressDetails$PrivateDnsName": "<p>The private DNS name of the EC2 instance.</p>",
-        "PrivateIpAddressDetails$PrivateIpAddress": "<p>The private IP address of the EC2 instance.</p>",
         "ProcessDetails$Name": "<p>The name of the process.</p>",
         "ProcessDetails$ExecutablePath": "<p>The absolute path of the process executable file.</p>",
         "ProcessDetails$ExecutableSha256": "<p>The <code>SHA256</code> hash of the process executable.</p>",
@@ -2968,7 +2974,6 @@
         "RdsDbUserDetails$Ssl": "<p>The version of the Secure Socket Layer (SSL) used for the network.</p>",
         "RdsDbUserDetails$AuthMethod": "<p>The authentication method used by the user involved in the finding.</p>",
         "RemoteAccountDetails$AccountId": "<p>The Amazon Web Services account ID of the remote API caller.</p>",
-        "RemoteIpDetails$IpAddressV4": "<p>The IPv4 remote address of the connection.</p>",
         "RemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
         "Resource$ResourceType": "<p>The type of Amazon Web Services resource.</p>",
         "ResourceList$member": null,

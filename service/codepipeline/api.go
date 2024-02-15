@@ -4423,6 +4423,11 @@ type ActionDeclaration struct {
 
 	// The order in which actions are run.
 	RunOrder *int64 `locationName:"runOrder" min:"1" type:"integer"`
+
+	// A timeout duration in minutes that can be applied against the ActionType’s
+	// default timeout value specified in Quotas for CodePipeline (https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html).
+	// This attribute is available only to the manual approval ActionType.
+	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 }
 
 // String returns the string representation.
@@ -4463,6 +4468,9 @@ func (s *ActionDeclaration) Validate() error {
 	}
 	if s.RunOrder != nil && *s.RunOrder < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("RunOrder", 1))
+	}
+	if s.TimeoutInMinutes != nil && *s.TimeoutInMinutes < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutInMinutes", 5))
 	}
 	if s.ActionTypeId != nil {
 		if err := s.ActionTypeId.Validate(); err != nil {
@@ -4547,6 +4555,12 @@ func (s *ActionDeclaration) SetRoleArn(v string) *ActionDeclaration {
 // SetRunOrder sets the RunOrder field's value.
 func (s *ActionDeclaration) SetRunOrder(v int64) *ActionDeclaration {
 	s.RunOrder = &v
+	return s
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *ActionDeclaration) SetTimeoutInMinutes(v int64) *ActionDeclaration {
+	s.TimeoutInMinutes = &v
 	return s
 }
 

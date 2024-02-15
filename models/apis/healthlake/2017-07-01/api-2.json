@@ -456,6 +456,8 @@
       "type":"string",
       "enum":["R4"]
     },
+    "GenericDouble":{"type":"double"},
+    "GenericLong":{"type":"long"},
     "IamRoleArn":{
       "type":"string",
       "max":2048,
@@ -490,6 +492,7 @@
         "DatastoreId":{"shape":"DatastoreId"},
         "InputDataConfig":{"shape":"InputDataConfig"},
         "JobOutputDataConfig":{"shape":"OutputDataConfig"},
+        "JobProgressReport":{"shape":"JobProgressReport"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Message":{"shape":"Message"}
       }
@@ -524,6 +527,19 @@
       "max":64,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$"
+    },
+    "JobProgressReport":{
+      "type":"structure",
+      "members":{
+        "TotalNumberOfScannedFiles":{"shape":"GenericLong"},
+        "TotalSizeOfScannedFilesInMB":{"shape":"GenericDouble"},
+        "TotalNumberOfImportedFiles":{"shape":"GenericLong"},
+        "TotalNumberOfResourcesScanned":{"shape":"GenericLong"},
+        "TotalNumberOfResourcesImported":{"shape":"GenericLong"},
+        "TotalNumberOfResourcesWithCustomerError":{"shape":"GenericLong"},
+        "TotalNumberOfFilesReadWithCustomerError":{"shape":"GenericLong"},
+        "Throughput":{"shape":"GenericDouble"}
+      }
     },
     "JobStatus":{
       "type":"string",

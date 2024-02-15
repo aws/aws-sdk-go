@@ -1385,9 +1385,9 @@ func (c *SecretsManager) ListSecretsRequest(input *ListSecretsInput) (req *reque
 // account, not including secrets that are marked for deletion. To see secrets
 // marked for deletion, use the Secrets Manager console.
 //
-// ListSecrets is eventually consistent, however it might not reflect changes
-// from the last five minutes. To get the latest information for a specific
-// secret, use DescribeSecret.
+// All Secrets Manager operations are eventually consistent. ListSecrets might
+// not reflect changes from the last five minutes. You can get more recent information
+// for a specific secret by calling DescribeSecret.
 //
 // To list the versions of a secret, use ListSecretVersionIds.
 //
@@ -4028,7 +4028,9 @@ type DescribeSecretOutput struct {
 
 	// The next rotation is scheduled to occur on or before this date. If the secret
 	// isn't configured for rotation or rotation has been disabled, Secrets Manager
-	// returns null.
+	// returns null. If rotation fails, Secrets Manager retries the entire rotation
+	// process multiple times. If rotation is unsuccessful, this date may be in
+	// the past.
 	NextRotationDate *time.Time `type:"timestamp"`
 
 	// The ID of the service that created this secret. For more information, see

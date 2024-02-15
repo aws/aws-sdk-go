@@ -336,13 +336,6 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // as the administrator account. This operation is called by the account that
 // is enabling Detective.
 //
-// Before you try to enable Detective, make sure that your account has been
-// enrolled in Amazon GuardDuty for at least 48 hours. If you do not meet this
-// requirement, you cannot enable Detective. If you do meet the GuardDuty prerequisite,
-// then when you make the request to enable Detective, it checks whether your
-// data volume is within the Detective quota. If it exceeds the quota, then
-// you cannot enable Detective.
-//
 // The operation also enables Detective for the calling account in the currently
 // selected Region. It returns the ARN of the new behavior graph.
 //
@@ -376,15 +369,13 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 //   - ServiceQuotaExceededException
 //     This request cannot be completed for one of the following reasons.
 //
-//   - The request would cause the number of member accounts in the behavior
-//     graph to exceed the maximum allowed. A behavior graph cannot have more
-//     than 1200 member accounts.
+//   - This request cannot be completed if it would cause the number of member
+//     accounts in the behavior graph to exceed the maximum allowed. A behavior
+//     graph cannot have more than 1,200 member accounts.
 //
-//   - The request would cause the data rate for the behavior graph to exceed
-//     the maximum allowed.
-//
-//   - Detective is unable to verify the data rate for the member account.
-//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - This request cannot be completed if the current volume ingested is above
+//     the limit of 10 TB per day. Detective will not allow you to add additional
+//     member accounts.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateGraph
 func (c *Detective) CreateGraph(input *CreateGraphInput) (*CreateGraphOutput, error) {
@@ -509,15 +500,13 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 //   - ServiceQuotaExceededException
 //     This request cannot be completed for one of the following reasons.
 //
-//   - The request would cause the number of member accounts in the behavior
-//     graph to exceed the maximum allowed. A behavior graph cannot have more
-//     than 1200 member accounts.
+//   - This request cannot be completed if it would cause the number of member
+//     accounts in the behavior graph to exceed the maximum allowed. A behavior
+//     graph cannot have more than 1,200 member accounts.
 //
-//   - The request would cause the data rate for the behavior graph to exceed
-//     the maximum allowed.
-//
-//   - Detective is unable to verify the data rate for the member account.
-//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - This request cannot be completed if the current volume ingested is above
+//     the limit of 10 TB per day. Detective will not allow you to add additional
+//     member accounts.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateMembers
 func (c *Detective) CreateMembers(input *CreateMembersInput) (*CreateMembersOutput, error) {
@@ -1187,7 +1176,12 @@ func (c *Detective) GetInvestigationRequest(input *GetInvestigationInput) (req *
 
 // GetInvestigation API operation for Amazon Detective.
 //
-// Returns the investigation results of an investigation for a behavior graph.
+// Detective investigations lets you investigate IAM users and IAM roles using
+// indicators of compromise. An indicator of compromise (IOC) is an artifact
+// observed in or on a network, system, or environment that can (with a high
+// level of confidence) identify malicious activity or a security incident.
+// GetInvestigation returns the investigation results of an investigation for
+// a behavior graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1663,7 +1657,9 @@ func (c *Detective) ListIndicatorsRequest(input *ListIndicatorsInput) (req *requ
 
 // ListIndicators API operation for Amazon Detective.
 //
-// # Get the indicators from an investigation
+// Gets the indicators from an investigation. You can use the information from
+// the indicators to determine if an IAM user and/or IAM role is involved in
+// an unusual activity that could indicate malicious behavior and its impact.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1756,7 +1752,11 @@ func (c *Detective) ListInvestigationsRequest(input *ListInvestigationsInput) (r
 
 // ListInvestigations API operation for Amazon Detective.
 //
-// List all Investigations.
+// Detective investigations lets you investigate IAM users and IAM roles using
+// indicators of compromise. An indicator of compromise (IOC) is an artifact
+// observed in or on a network, system, or environment that can (with a high
+// level of confidence) identify malicious activity or a security incident.
+// ListInvestigations lists all active Detective investigations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2489,7 +2489,12 @@ func (c *Detective) StartInvestigationRequest(input *StartInvestigationInput) (r
 
 // StartInvestigation API operation for Amazon Detective.
 //
-// initiate an investigation on an entity in a graph
+// Detective investigations lets you investigate IAM users and IAM roles using
+// indicators of compromise. An indicator of compromise (IOC) is an artifact
+// observed in or on a network, system, or environment that can (with a high
+// level of confidence) identify malicious activity or a security incident.
+// StartInvestigation initiates an investigation on an entity in a behavior
+// graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2617,15 +2622,13 @@ func (c *Detective) StartMonitoringMemberRequest(input *StartMonitoringMemberInp
 //   - ServiceQuotaExceededException
 //     This request cannot be completed for one of the following reasons.
 //
-//   - The request would cause the number of member accounts in the behavior
-//     graph to exceed the maximum allowed. A behavior graph cannot have more
-//     than 1200 member accounts.
+//   - This request cannot be completed if it would cause the number of member
+//     accounts in the behavior graph to exceed the maximum allowed. A behavior
+//     graph cannot have more than 1,200 member accounts.
 //
-//   - The request would cause the data rate for the behavior graph to exceed
-//     the maximum allowed.
-//
-//   - Detective is unable to verify the data rate for the member account.
-//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - This request cannot be completed if the current volume ingested is above
+//     the limit of 10 TB per day. Detective will not allow you to add additional
+//     member accounts.
 //
 //   - ValidationException
 //     The request parameters are invalid.
@@ -2900,15 +2903,13 @@ func (c *Detective) UpdateDatasourcePackagesRequest(input *UpdateDatasourcePacka
 //   - ServiceQuotaExceededException
 //     This request cannot be completed for one of the following reasons.
 //
-//   - The request would cause the number of member accounts in the behavior
-//     graph to exceed the maximum allowed. A behavior graph cannot have more
-//     than 1200 member accounts.
+//   - This request cannot be completed if it would cause the number of member
+//     accounts in the behavior graph to exceed the maximum allowed. A behavior
+//     graph cannot have more than 1,200 member accounts.
 //
-//   - The request would cause the data rate for the behavior graph to exceed
-//     the maximum allowed.
-//
-//   - Detective is unable to verify the data rate for the member account.
-//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - This request cannot be completed if the current volume ingested is above
+//     the limit of 10 TB per day. Detective will not allow you to add additional
+//     member accounts.
 //
 //   - ValidationException
 //     The request parameters are invalid.
@@ -2979,7 +2980,7 @@ func (c *Detective) UpdateInvestigationStateRequest(input *UpdateInvestigationSt
 
 // UpdateInvestigationState API operation for Amazon Detective.
 //
-// Update the state of an investigation.
+// Updates the state of an investigation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3973,7 +3974,7 @@ type DateFilter struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp representing the end date of the time period until when data
-	// is filtered , including the end date.
+	// is filtered, including the end date.
 	//
 	// EndInclusive is a required field
 	EndInclusive *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -4621,7 +4622,7 @@ func (s *FlaggedIpAddressDetail) SetReason(v string) *FlaggedIpAddressDetail {
 type GetInvestigationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	//
 	// GraphArn is a required field
 	GraphArn *string `type:"string" required:"true"`
@@ -4684,17 +4685,18 @@ func (s *GetInvestigationInput) SetInvestigationId(v string) *GetInvestigationIn
 type GetInvestigationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The UTC time stamp of the creation time of the investigation report.
+	// The creation time of the investigation report in UTC time stamp format.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The unique Amazon Resource Name (ARN) of the IAM user and IAM role.
+	// The unique Amazon Resource Name (ARN). Detective supports IAM user ARNs and
+	// IAM role ARNs.
 	EntityArn *string `type:"string"`
 
-	// Type of entity. For example, Amazon Web Services accounts, such as IAM user
-	// and role.
+	// Type of entity. For example, Amazon Web Services accounts, such as an IAM
+	// user and/or IAM role.
 	EntityType *string `type:"string" enum:"EntityType"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	GraphArn *string `type:"string"`
 
 	// The investigation ID of the investigation report.
@@ -4704,19 +4706,20 @@ type GetInvestigationOutput struct {
 	// formatted string. For example, 2021-08-18T16:35:56.284Z.
 	ScopeEndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The start date and time for the scope time set to generate the investigation
-	// report.
+	// The start date and time used to set the scope time within which you want
+	// to generate the investigation report. The value is an UTC ISO8601 formatted
+	// string. For example, 2021-08-18T16:35:56.284Z.
 	ScopeStartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Severity based on the likelihood and impact of the indicators of compromise
-	// discovered in the investigation.
+	// The severity assigned is based on the likelihood and impact of the indicators
+	// of compromise discovered in the investigation.
 	Severity *string `type:"string" enum:"Severity"`
 
 	// The current state of the investigation. An archived investigation indicates
-	// you have completed reviewing the investigation.
+	// that you have completed reviewing the investigation.
 	State *string `type:"string" enum:"State"`
 
-	// Status based on the completion status of the investigation.
+	// The status based on the completion status of the investigation.
 	Status *string `type:"string" enum:"Status"`
 }
 
@@ -4966,10 +4969,10 @@ type ImpossibleTravelDetail struct {
 	// was used.
 	HourlyTimeDelta *int64 `type:"integer"`
 
-	// IP address where the resource was first used in the impossible travel
+	// IP address where the resource was first used in the impossible travel.
 	StartingIpAddress *string `type:"string"`
 
-	// Location where the resource was first used in the impossible travel
+	// Location where the resource was first used in the impossible travel.
 	StartingLocation *string `type:"string"`
 }
 
@@ -5021,13 +5024,19 @@ func (s *ImpossibleTravelDetail) SetStartingLocation(v string) *ImpossibleTravel
 	return s
 }
 
-// Investigations triages indicators of compromises such as a finding and surfaces
-// only the most critical and suspicious issues, so you can focus on high-level
-// investigations.
+// Detective investigations triages indicators of compromises such as a finding
+// and surfaces only the most critical and suspicious issues, so you can focus
+// on high-level investigations. An Indicator lets you determine if an Amazon
+// Web Services resource is involved in unusual activity that could indicate
+// malicious behavior and its impact.
 type Indicator struct {
 	_ struct{} `type:"structure"`
 
-	// Details about the indicator of compromise.
+	// Details about the indicators of compromise that are used to determine if
+	// a resource is involved in a security incident. An indicator of compromise
+	// (IOC) is an artifact observed in or on a network, system, or environment
+	// that can (with a high level of confidence) identify malicious activity or
+	// a security incident.
 	IndicatorDetail *IndicatorDetail `type:"structure"`
 
 	// The type of indicator.
@@ -5065,13 +5074,17 @@ func (s *Indicator) SetIndicatorType(v string) *Indicator {
 }
 
 // Details about the indicators of compromise which are used to determine if
-// a resource is involved in a security incident.
+// a resource is involved in a security incident. An indicator of compromise
+// (IOC) is an artifact observed in or on a network, system, or environment
+// that can (with a high level of confidence) identify malicious activity or
+// a security incident. For the list of indicators of compromise that are generated
+// by Detective investigations, see Detective investigations (https://docs.aws.amazon.com/detective/latest/userguide/detective-investigations.html).
 type IndicatorDetail struct {
 	_ struct{} `type:"structure"`
 
 	// Suspicious IP addresses that are flagged, which indicates critical or severe
 	// threats based on threat intelligence by Detective. This indicator is derived
-	// from AWS threat intelligence.
+	// from Amazon Web Services threat intelligence.
 	FlaggedIpAddressDetail *FlaggedIpAddressDetail `type:"structure"`
 
 	// Identifies unusual and impossible user activity for an account.
@@ -5227,11 +5240,12 @@ func (s *InternalServerException) RequestID() string {
 }
 
 // Details about the investigation related to a potential security event identified
-// by Detective
+// by Detective.
 type InvestigationDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The UTC time stamp of the creation time of the investigation report.
+	// The time stamp of the creation time of the investigation report. The value
+	// is an UTC ISO8601 formatted string. For example, 2021-08-18T16:35:56.284Z.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The unique Amazon Resource Name (ARN) of the IAM user and IAM role.
@@ -5534,12 +5548,13 @@ func (s *ListGraphsOutput) SetNextToken(v string) *ListGraphsOutput {
 type ListIndicatorsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	//
 	// GraphArn is a required field
 	GraphArn *string `type:"string" required:"true"`
 
-	// See Detective investigations. (https://docs.aws.amazon.com/detective/latest/userguide/detective-investigations.html).
+	// For the list of indicators of compromise that are generated by Detective
+	// investigations, see Detective investigations (https://docs.aws.amazon.com/detective/latest/userguide/detective-investigations.html).
 	IndicatorType *string `type:"string" enum:"IndicatorType"`
 
 	// The investigation ID of the investigation report.
@@ -5547,10 +5562,10 @@ type ListIndicatorsInput struct {
 	// InvestigationId is a required field
 	InvestigationId *string `min:"21" type:"string" required:"true"`
 
-	// List the maximum number of indicators in a page.
+	// Lists the maximum number of indicators in a page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// List if there are more results available. The value of nextToken is a unique
+	// Lists if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
 	// to retrieve the next page. Keep all other arguments unchanged.
 	//
@@ -5635,16 +5650,16 @@ func (s *ListIndicatorsInput) SetNextToken(v string) *ListIndicatorsInput {
 type ListIndicatorsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	GraphArn *string `type:"string"`
 
-	// Indicators of compromise listed based on severity.
+	// Lists the indicators of compromise.
 	Indicators []*Indicator `type:"list"`
 
 	// The investigation ID of the investigation report.
 	InvestigationId *string `min:"21" type:"string"`
 
-	// List if there are more results available. The value of nextToken is a unique
+	// Lists if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
 	// to retrieve the next page. Keep all other arguments unchanged.
 	//
@@ -5698,18 +5713,18 @@ func (s *ListIndicatorsOutput) SetNextToken(v string) *ListIndicatorsOutput {
 type ListInvestigationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filter the investigation results based on a criteria.
+	// Filters the investigation results based on a criteria.
 	FilterCriteria *FilterCriteria `type:"structure"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	//
 	// GraphArn is a required field
 	GraphArn *string `type:"string" required:"true"`
 
-	// List the maximum number of investigations in a page.
+	// Lists the maximum number of investigations in a page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// List if there are more results available. The value of nextToken is a unique
+	// Lists if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
 	// to retrieve the next page. Keep all other arguments unchanged.
 	//
@@ -5796,16 +5811,15 @@ func (s *ListInvestigationsInput) SetSortCriteria(v *SortCriteria) *ListInvestig
 type ListInvestigationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Investigations details lists the summary of uncommon behavior or malicious
-	// activity which indicates a compromise.
+	// Lists the summary of uncommon behavior or malicious activity which indicates
+	// a compromise.
 	InvestigationDetails []*InvestigationDetail `type:"list"`
 
-	// List if there are more results available. The value of nextToken is a unique
+	// Lists if there are more results available. The value of nextToken is a unique
 	// pagination token for each page. Repeat the call using the returned token
 	// to retrieve the next page. Keep all other arguments unchanged.
 	//
-	// Each pagination token expires after 24 hours. Using an expired pagination
-	// token will return an HTTP 400 InvalidToken error.
+	// Each pagination token expires after 24 hours.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6546,7 +6560,8 @@ type NewAsoDetail struct {
 	// Details about the new Autonomous System Organization (ASO).
 	Aso *string `type:"string"`
 
-	// Checks if the ASO is for new for the entire account.
+	// Checks if the Autonomous System Organization (ASO) is new for the entire
+	// account.
 	IsNewForEntireAccount *bool `type:"boolean"`
 }
 
@@ -6589,7 +6604,7 @@ type NewGeolocationDetail struct {
 	// IP address using which the resource was accessed.
 	IpAddress *string `type:"string"`
 
-	// Checks if the gelocation is new for the entire account.
+	// Checks if the geolocation is new for the entire account.
 	IsNewForEntireAccount *bool `type:"boolean"`
 
 	// Location where the resource was accessed.
@@ -6750,7 +6765,7 @@ func (s RejectInvitationOutput) GoString() string {
 type RelatedFindingDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the related finding.
+	// The Amazon Resource Name (ARN) of the related finding.
 	Arn *string `type:"string"`
 
 	// The IP address of the finding.
@@ -6896,15 +6911,13 @@ func (s *ResourceNotFoundException) RequestID() string {
 
 // This request cannot be completed for one of the following reasons.
 //
-//   - The request would cause the number of member accounts in the behavior
-//     graph to exceed the maximum allowed. A behavior graph cannot have more
-//     than 1200 member accounts.
+//   - This request cannot be completed if it would cause the number of member
+//     accounts in the behavior graph to exceed the maximum allowed. A behavior
+//     graph cannot have more than 1,200 member accounts.
 //
-//   - The request would cause the data rate for the behavior graph to exceed
-//     the maximum allowed.
-//
-//   - Detective is unable to verify the data rate for the member account.
-//     This is usually because the member account is not enrolled in Amazon GuardDuty.
+//   - This request cannot be completed if the current volume ingested is above
+//     the limit of 10 TB per day. Detective will not allow you to add additional
+//     member accounts.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7020,12 +7033,12 @@ type StartInvestigationInput struct {
 	// EntityArn is a required field
 	EntityArn *string `type:"string" required:"true"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	//
 	// GraphArn is a required field
 	GraphArn *string `type:"string" required:"true"`
 
-	// The data and time when the investigation began. The value is an UTC ISO8601
+	// The data and time when the investigation ended. The value is an UTC ISO8601
 	// formatted string. For example, 2021-08-18T16:35:56.284Z.
 	//
 	// ScopeEndTime is a required field
@@ -7278,13 +7291,14 @@ type TTPsObservedDetail struct {
 	// The total number of failed API requests.
 	APIFailureCount *int64 `type:"long"`
 
-	// The name of the API where the TTP was observed.
+	// The name of the API where the tactics, techniques, and procedure (TTP) was
+	// observed.
 	APIName *string `type:"string"`
 
 	// The total number of successful API requests.
 	APISuccessCount *int64 `type:"long"`
 
-	// The IP address where the TTP was observed.
+	// The IP address where the tactics, techniques, and procedure (TTP) was observed.
 	IpAddress *string `type:"string"`
 
 	// The procedure used, identified by the investigation.
@@ -7807,7 +7821,7 @@ func (s UpdateDatasourcePackagesOutput) GoString() string {
 type UpdateInvestigationStateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the behavior graph.
+	// The Amazon Resource Name (ARN) of the behavior graph.
 	//
 	// GraphArn is a required field
 	GraphArn *string `type:"string" required:"true"`

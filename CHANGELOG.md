@@ -1,3 +1,22 @@
+Release v1.50.19 (2024-02-15)
+===
+
+### Service Client Updates
+* `service/artifact`: Updates service API, documentation, paginators, and examples
+* `service/codepipeline`: Updates service API and documentation
+  * Add ability to override timeout on action level.
+* `service/detective`: Updates service documentation
+* `service/guardduty`: Updates service API and documentation
+  * Marked fields IpAddressV4, PrivateIpAddress, Email as Sensitive.
+* `service/healthlake`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds 1 new voice - Burcu (tr-TR)
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds a new API UpdateClusterSoftware for SageMaker HyperPod. This API allows users to patch HyperPod clusters with latest platform softwares.
+* `service/secretsmanager`: Updates service documentation
+  * Doc only update for Secrets Manager
+
 Release v1.50.18 (2024-02-14)
 ===
 

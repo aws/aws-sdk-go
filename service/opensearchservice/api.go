@@ -9180,7 +9180,8 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 type ColdStorageOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Whether to enable or disable cold storage on the domain.
+	// Whether to enable or disable cold storage on the domain. You must enable
+	// UltraWarm storage to enable cold storage.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
@@ -10937,7 +10938,7 @@ type DescribeDomainAutoTunesOutput struct {
 	AutoTunes []*AutoTune `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -11824,7 +11825,7 @@ type DescribeInboundConnectionsOutput struct {
 	Connections []*InboundConnection `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -12055,7 +12056,7 @@ type DescribeOutboundConnectionsOutput struct {
 	Connections []*OutboundConnection `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -12222,7 +12223,7 @@ type DescribePackagesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -12333,7 +12334,7 @@ type DescribeReservedInstanceOfferingsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -12444,7 +12445,7 @@ type DescribeReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -14747,7 +14748,7 @@ type GetPackageVersionHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -14870,7 +14871,7 @@ type GetUpgradeHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -15846,7 +15847,7 @@ type ListDomainMaintenancesOutput struct {
 	DomainMaintenances []*DomainMaintenanceDetails `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -16026,7 +16027,7 @@ type ListDomainsForPackageOutput struct {
 	DomainPackageDetailsList []*DomainPackageDetails `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -16173,7 +16174,7 @@ type ListInstanceTypeDetailsOutput struct {
 	InstanceTypeDetails []*InstanceTypeDetails `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -16287,7 +16288,7 @@ type ListPackagesForDomainOutput struct {
 	DomainPackageDetailsList []*DomainPackageDetails `type:"list"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 }
@@ -16396,7 +16397,7 @@ type ListScheduledActionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -16566,7 +16567,7 @@ type ListVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	NextToken *string `type:"string"`
 
@@ -16676,7 +16677,7 @@ type ListVpcEndpointAccessOutput struct {
 	AuthorizedPrincipalList []*AuthorizedPrincipal `type:"list" required:"true"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	//
 	// NextToken is a required field
@@ -16777,7 +16778,7 @@ type ListVpcEndpointsForDomainOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	//
 	// NextToken is a required field
@@ -16856,7 +16857,7 @@ type ListVpcEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// When nextToken is returned, there are more results available. The value of
-	// nextToken is a unique pagination token for each page. Make the call again
+	// nextToken is a unique pagination token for each page. Send the request again
 	// using the returned token to retrieve the next page.
 	//
 	// NextToken is a required field
@@ -22374,6 +22375,30 @@ const (
 	// OpenSearchPartitionInstanceTypeT32xlargeSearch is a OpenSearchPartitionInstanceType enum value
 	OpenSearchPartitionInstanceTypeT32xlargeSearch = "t3.2xlarge.search"
 
+	// OpenSearchPartitionInstanceTypeOr1MediumSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr1MediumSearch = "or1.medium.search"
+
+	// OpenSearchPartitionInstanceTypeOr1LargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr1LargeSearch = "or1.large.search"
+
+	// OpenSearchPartitionInstanceTypeOr1XlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr1XlargeSearch = "or1.xlarge.search"
+
+	// OpenSearchPartitionInstanceTypeOr12xlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr12xlargeSearch = "or1.2xlarge.search"
+
+	// OpenSearchPartitionInstanceTypeOr14xlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr14xlargeSearch = "or1.4xlarge.search"
+
+	// OpenSearchPartitionInstanceTypeOr18xlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr18xlargeSearch = "or1.8xlarge.search"
+
+	// OpenSearchPartitionInstanceTypeOr112xlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr112xlargeSearch = "or1.12xlarge.search"
+
+	// OpenSearchPartitionInstanceTypeOr116xlargeSearch is a OpenSearchPartitionInstanceType enum value
+	OpenSearchPartitionInstanceTypeOr116xlargeSearch = "or1.16xlarge.search"
+
 	// OpenSearchPartitionInstanceTypeUltrawarm1MediumSearch is a OpenSearchPartitionInstanceType enum value
 	OpenSearchPartitionInstanceTypeUltrawarm1MediumSearch = "ultrawarm1.medium.search"
 
@@ -22595,6 +22620,14 @@ func OpenSearchPartitionInstanceType_Values() []string {
 		OpenSearchPartitionInstanceTypeT3LargeSearch,
 		OpenSearchPartitionInstanceTypeT3XlargeSearch,
 		OpenSearchPartitionInstanceTypeT32xlargeSearch,
+		OpenSearchPartitionInstanceTypeOr1MediumSearch,
+		OpenSearchPartitionInstanceTypeOr1LargeSearch,
+		OpenSearchPartitionInstanceTypeOr1XlargeSearch,
+		OpenSearchPartitionInstanceTypeOr12xlargeSearch,
+		OpenSearchPartitionInstanceTypeOr14xlargeSearch,
+		OpenSearchPartitionInstanceTypeOr18xlargeSearch,
+		OpenSearchPartitionInstanceTypeOr112xlargeSearch,
+		OpenSearchPartitionInstanceTypeOr116xlargeSearch,
 		OpenSearchPartitionInstanceTypeUltrawarm1MediumSearch,
 		OpenSearchPartitionInstanceTypeUltrawarm1LargeSearch,
 		OpenSearchPartitionInstanceTypeUltrawarm1XlargeSearch,

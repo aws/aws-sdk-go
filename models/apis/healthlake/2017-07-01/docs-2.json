@@ -215,6 +215,24 @@
         "DatastoreProperties$DatastoreTypeVersion": "<p>The FHIR version. Only R4 version data is supported.</p>"
       }
     },
+    "GenericDouble": {
+      "base": null,
+      "refs": {
+        "JobProgressReport$TotalSizeOfScannedFilesInMB": "<p>The size (in MB) of the files scanned from the input S3 bucket.</p>",
+        "JobProgressReport$Throughput": "<p>The throughput (in MB/sec) of the import job.</p>"
+      }
+    },
+    "GenericLong": {
+      "base": null,
+      "refs": {
+        "JobProgressReport$TotalNumberOfScannedFiles": "<p>The number of files scanned from input S3 bucket.</p>",
+        "JobProgressReport$TotalNumberOfImportedFiles": "<p>The number of files imported so far.</p>",
+        "JobProgressReport$TotalNumberOfResourcesScanned": "<p>The number of resources scanned from the input S3 bucket.</p>",
+        "JobProgressReport$TotalNumberOfResourcesImported": "<p>The number of resources imported so far.</p>",
+        "JobProgressReport$TotalNumberOfResourcesWithCustomerError": "<p>The number of resources that failed due to customer error.</p>",
+        "JobProgressReport$TotalNumberOfFilesReadWithCustomerError": "<p>The number of files that failed to be read from the input S3 bucket due to customer error.</p>"
+      }
+    },
     "IamRoleArn": {
       "base": null,
       "refs": {
@@ -232,16 +250,16 @@
       }
     },
     "ImportJobProperties": {
-      "base": "<p>Displays the properties of the import job, including the ID, Arn, Name, and the status of the data store.</p>",
+      "base": "<p>Displays the properties of the import job, including the ID, Arn, Name, the status of the job, and the progress report of the job.</p>",
       "refs": {
-        "DescribeFHIRImportJobResponse$ImportJobProperties": "<p>The properties of the Import job request, including the ID, ARN, name, and the status of the job.</p>",
+        "DescribeFHIRImportJobResponse$ImportJobProperties": "<p>The properties of the Import job request, including the ID, ARN, name, status of the job, and the progress report of the job.</p>",
         "ImportJobPropertiesList$member": null
       }
     },
     "ImportJobPropertiesList": {
       "base": null,
       "refs": {
-        "ListFHIRImportJobsResponse$ImportJobPropertiesList": "<p> The properties of a listed FHIR import jobs, including the ID, ARN, name, and the status of the job. </p>"
+        "ListFHIRImportJobsResponse$ImportJobPropertiesList": "<p> The properties of a listed FHIR import jobs, including the ID, ARN, name, the status of the job, and the progress report of the job. </p>"
       }
     },
     "InputDataConfig": {
@@ -276,6 +294,12 @@
         "ListFHIRImportJobsRequest$JobName": "<p> This parameter limits the response to the import job with the specified job name. </p>",
         "StartFHIRExportJobRequest$JobName": "<p>The user generated name for an export job.</p>",
         "StartFHIRImportJobRequest$JobName": "<p>The name of the FHIR Import job in the StartFHIRImport job request.</p>"
+      }
+    },
+    "JobProgressReport": {
+      "base": "<p>The progress report of an import job.</p>",
+      "refs": {
+        "ImportJobProperties$JobProgressReport": "<p>Displays the progress of the import job, including total resources scanned, total resources ingested, and total size of data ingested.</p>"
       }
     },
     "JobStatus": {

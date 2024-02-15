@@ -288,7 +288,8 @@
     "UpdateAction": "<p>Updates an action.</p>",
     "UpdateAppImageConfig": "<p>Updates the properties of an AppImageConfig.</p>",
     "UpdateArtifact": "<p>Updates an artifact.</p>",
-    "UpdateCluster": "<p>Update a SageMaker HyperPod cluster.</p>",
+    "UpdateCluster": "<p>Updates a SageMaker HyperPod cluster.</p>",
+    "UpdateClusterSoftware": "<p>Updates the platform software of a SageMaker HyperPod cluster for security patching. To learn how to use this API, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-operate.html#sagemaker-hyperpod-operate-cli-command-update-cluster-software\">Update the SageMaker HyperPod platform software of a cluster</a>.</p>",
     "UpdateCodeRepository": "<p>Updates the specified Git repository with the specified values.</p>",
     "UpdateContext": "<p>Updates a context.</p>",
     "UpdateDeviceFleet": "<p>Updates a fleet of devices.</p>",
@@ -1979,7 +1980,8 @@
         "CreateClusterResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "DeleteClusterResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster to delete.</p>",
         "DescribeClusterResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster.</p>",
-        "UpdateClusterResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the updated SageMaker HyperPod cluster.</p>"
+        "UpdateClusterResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the updated SageMaker HyperPod cluster.</p>",
+        "UpdateClusterSoftwareResponse$ClusterArn": "<p>The Amazon Resource Name (ARN) of the SageMaker HyperPod cluster being updated for security patching.</p>"
       }
     },
     "ClusterInstanceCount": {
@@ -2075,7 +2077,8 @@
         "DescribeClusterNodeRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which the instance is.</p>",
         "DescribeClusterRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster.</p>",
         "ListClusterNodesRequest$ClusterName": "<p>The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which you want to retrieve the list of nodes.</p>",
-        "UpdateClusterRequest$ClusterName": "<p>Specify the name of the SageMaker HyperPod cluster you want to update.</p>"
+        "UpdateClusterRequest$ClusterName": "<p>Specify the name of the SageMaker HyperPod cluster you want to update.</p>",
+        "UpdateClusterSoftwareRequest$ClusterName": "<p>Specify the name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster you want to update for security patching.</p>"
       }
     },
     "ClusterNodeDetails": {
@@ -9385,7 +9388,7 @@
       }
     },
     "ModelArtifacts": {
-      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are the output that results from training a model, and typically consist of trained parameters, a model definition that describes how to compute inferences, and other metadata.</p>",
+      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are outputs that result from training a model. They typically consist of trained parameters, a model definition that describes how to compute inferences, and other metadata. A SageMaker container stores your trained model artifacts in the <code>/opt/ml/model</code> directory. After training has completed, by default, these artifacts are uploaded to your Amazon S3 bucket as compressed files.</p>",
       "refs": {
         "DescribeCompilationJobResponse$ModelArtifacts": "<p>Information about the location in Amazon S3 that has been configured for storing the model artifacts used in the compilation job.</p>",
         "DescribeTrainingJobResponse$ModelArtifacts": "<p>Information about the Amazon S3 location that is configured for storing model artifacts. </p>",
@@ -15755,6 +15758,16 @@
       }
     },
     "UpdateClusterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateClusterSoftwareRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateClusterSoftwareResponse": {
       "base": null,
       "refs": {
       }

@@ -3149,7 +3149,8 @@
     "Email":{
       "type":"string",
       "max":64,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "EnableOrganizationAdminAccountRequest":{
       "type":"structure",
@@ -4986,7 +4987,7 @@
       "type":"structure",
       "members":{
         "IpAddressV4":{
-          "shape":"String",
+          "shape":"SensitiveString",
           "locationName":"ipAddressV4"
         }
       }
@@ -5327,7 +5328,7 @@
           "locationName":"privateDnsName"
         },
         "PrivateIpAddress":{
-          "shape":"String",
+          "shape":"SensitiveString",
           "locationName":"privateIpAddress"
         },
         "PrivateIpAddresses":{
@@ -5806,7 +5807,7 @@
           "locationName":"privateDnsName"
         },
         "PrivateIpAddress":{
-          "shape":"String",
+          "shape":"SensitiveString",
           "locationName":"privateIpAddress"
         }
       }
@@ -6019,7 +6020,7 @@
           "locationName":"geoLocation"
         },
         "IpAddressV4":{
-          "shape":"String",
+          "shape":"SensitiveString",
           "locationName":"ipAddressV4"
         },
         "Organization":{
@@ -6556,6 +6557,10 @@
     "SecurityGroups":{
       "type":"list",
       "member":{"shape":"SecurityGroup"}
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "Service":{
       "type":"structure",

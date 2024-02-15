@@ -1430,6 +1430,10 @@ type SageMakerAPI interface {
 	UpdateClusterWithContext(aws.Context, *sagemaker.UpdateClusterInput, ...request.Option) (*sagemaker.UpdateClusterOutput, error)
 	UpdateClusterRequest(*sagemaker.UpdateClusterInput) (*request.Request, *sagemaker.UpdateClusterOutput)
 
+	UpdateClusterSoftware(*sagemaker.UpdateClusterSoftwareInput) (*sagemaker.UpdateClusterSoftwareOutput, error)
+	UpdateClusterSoftwareWithContext(aws.Context, *sagemaker.UpdateClusterSoftwareInput, ...request.Option) (*sagemaker.UpdateClusterSoftwareOutput, error)
+	UpdateClusterSoftwareRequest(*sagemaker.UpdateClusterSoftwareInput) (*request.Request, *sagemaker.UpdateClusterSoftwareOutput)
+
 	UpdateCodeRepository(*sagemaker.UpdateCodeRepositoryInput) (*sagemaker.UpdateCodeRepositoryOutput, error)
 	UpdateCodeRepositoryWithContext(aws.Context, *sagemaker.UpdateCodeRepositoryInput, ...request.Option) (*sagemaker.UpdateCodeRepositoryOutput, error)
 	UpdateCodeRepositoryRequest(*sagemaker.UpdateCodeRepositoryInput) (*request.Request, *sagemaker.UpdateCodeRepositoryOutput)
