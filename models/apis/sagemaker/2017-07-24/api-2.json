@@ -3191,6 +3191,19 @@
         {"shape":"ConflictException"}
       ]
     },
+    "UpdateClusterSoftware":{
+      "name":"UpdateClusterSoftware",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateClusterSoftwareRequest"},
+      "output":{"shape":"UpdateClusterSoftwareResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "UpdateCodeRepository":{
       "name":"UpdateCodeRepository",
       "http":{
@@ -22105,6 +22118,20 @@
       }
     },
     "UpdateClusterResponse":{
+      "type":"structure",
+      "required":["ClusterArn"],
+      "members":{
+        "ClusterArn":{"shape":"ClusterArn"}
+      }
+    },
+    "UpdateClusterSoftwareRequest":{
+      "type":"structure",
+      "required":["ClusterName"],
+      "members":{
+        "ClusterName":{"shape":"ClusterNameOrArn"}
+      }
+    },
+    "UpdateClusterSoftwareResponse":{
       "type":"structure",
       "required":["ClusterArn"],
       "members":{

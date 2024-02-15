@@ -2866,6 +2866,10 @@ func (c *GuardDuty) GetFindingsStatisticsRequest(input *GetFindingsStatisticsInp
 //
 // Lists Amazon GuardDuty findings statistics for the specified detector ID.
 //
+// There might be regional differences because some flags might not be available
+// in all the Regions where GuardDuty is currently supported. For more information,
+// see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4386,7 +4390,11 @@ func (c *GuardDuty) ListFindingsRequest(input *ListFindingsInput) (req *request.
 
 // ListFindings API operation for Amazon GuardDuty.
 //
-// Lists Amazon GuardDuty findings for the specified detector ID.
+// Lists GuardDuty findings for the specified detector ID.
+//
+// There might be regional differences because some flags might not be available
+// in all the Regions where GuardDuty is currently supported. For more information,
+// see Regions and endpoints (https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5963,7 +5971,7 @@ func (c *GuardDuty) UpdateDetectorRequest(input *UpdateDetectorInput) (req *requ
 
 // UpdateDetector API operation for Amazon GuardDuty.
 //
-// Updates the Amazon GuardDuty detector specified by the detectorId.
+// Updates the GuardDuty detector specified by the detectorId.
 //
 // There might be regional differences because some data sources might not be
 // available in all the Amazon Web Services Regions where GuardDuty is presently
@@ -7067,8 +7075,12 @@ type AccountDetail struct {
 
 	// The email address of the member account.
 	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AccountDetail's
+	// String and GoString methods.
+	//
 	// Email is a required field
-	Email *string `locationName:"email" min:"1" type:"string" required:"true"`
+	Email *string `locationName:"email" min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -18229,7 +18241,11 @@ type LocalIpDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The IPv4 local address of the connection.
-	IpAddressV4 *string `locationName:"ipAddressV4" type:"string"`
+	//
+	// IpAddressV4 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LocalIpDetails's
+	// String and GoString methods.
+	IpAddressV4 *string `locationName:"ipAddressV4" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -18543,8 +18559,12 @@ type Member struct {
 
 	// The email address of the member account.
 	//
+	// Email is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Member's
+	// String and GoString methods.
+	//
 	// Email is a required field
-	Email *string `locationName:"email" min:"1" type:"string" required:"true"`
+	Email *string `locationName:"email" min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The timestamp when the invitation was sent.
 	InvitedAt *string `locationName:"invitedAt" type:"string"`
@@ -18990,7 +19010,11 @@ type NetworkInterface struct {
 	PrivateDnsName *string `locationName:"privateDnsName" type:"string"`
 
 	// The private IP address of the EC2 instance.
-	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string"`
+	//
+	// PrivateIpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by NetworkInterface's
+	// String and GoString methods.
+	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string" sensitive:"true"`
 
 	// Other private IP address information of the EC2 instance.
 	PrivateIpAddresses []*PrivateIpAddressDetails `locationName:"privateIpAddresses" type:"list"`
@@ -20392,7 +20416,11 @@ type PrivateIpAddressDetails struct {
 	PrivateDnsName *string `locationName:"privateDnsName" type:"string"`
 
 	// The private IP address of the EC2 instance.
-	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string"`
+	//
+	// PrivateIpAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PrivateIpAddressDetails's
+	// String and GoString methods.
+	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -20900,7 +20928,11 @@ type RemoteIpDetails struct {
 	GeoLocation *GeoLocation `locationName:"geoLocation" type:"structure"`
 
 	// The IPv4 remote address of the connection.
-	IpAddressV4 *string `locationName:"ipAddressV4" type:"string"`
+	//
+	// IpAddressV4 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RemoteIpDetails's
+	// String and GoString methods.
+	IpAddressV4 *string `locationName:"ipAddressV4" type:"string" sensitive:"true"`
 
 	// The ISP organization information of the remote IP address.
 	Organization *Organization `locationName:"organization" type:"structure"`

@@ -302,6 +302,12 @@
         "StageState$actionStates": "<p>The state of the stage.</p>"
       }
     },
+    "ActionTimeout": {
+      "base": null,
+      "refs": {
+        "ActionDeclaration$timeoutInMinutes": "<p>A timeout duration in minutes that can be applied against the ActionType’s default timeout value specified in <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html\">Quotas for CodePipeline </a>. This attribute is available only to the manual approval ActionType.</p>"
+      }
+    },
     "ActionType": {
       "base": "<p>Returns information about the details of an action type.</p>",
       "refs": {

@@ -732,7 +732,8 @@
         "inputArtifacts":{"shape":"InputArtifactList"},
         "roleArn":{"shape":"RoleArn"},
         "region":{"shape":"AWSRegionName"},
-        "namespace":{"shape":"ActionNamespace"}
+        "namespace":{"shape":"ActionNamespace"},
+        "timeoutInMinutes":{"shape":"ActionTimeout"}
       }
     },
     "ActionExecution":{
@@ -880,6 +881,12 @@
     "ActionStateList":{
       "type":"list",
       "member":{"shape":"ActionState"}
+    },
+    "ActionTimeout":{
+      "type":"integer",
+      "box":true,
+      "max":86400,
+      "min":5
     },
     "ActionType":{
       "type":"structure",
