@@ -57,7 +57,8 @@ func (c *ConnectParticipant) CompleteAttachmentUploadRequest(input *CompleteAtta
 // CompleteAttachmentUpload API operation for Amazon Connect Participant Service.
 //
 // Allows you to confirm that the attachment has been uploaded using the pre-signed
-// URL provided in StartAttachmentUpload API.
+// URL provided in StartAttachmentUpload API. A conflict exception is thrown
+// when an attachment with that identifier is already being uploaded.
 //
 // ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
@@ -90,7 +91,8 @@ func (c *ConnectParticipant) CompleteAttachmentUploadRequest(input *CompleteAtta
 //     The number of attachments per contact exceeds the quota.
 //
 //   - ConflictException
-//     An attachment with that identifier is already being uploaded.
+//     The requested operation conflicts with the current state of a service resource
+//     associated with the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/CompleteAttachmentUpload
 func (c *ConnectParticipant) CompleteAttachmentUpload(input *CompleteAttachmentUploadInput) (*CompleteAttachmentUploadOutput, error) {
@@ -571,6 +573,20 @@ func (c *ConnectParticipant) GetTranscriptRequest(input *GetTranscriptInput) (re
 // For information about accessing past chat contact transcripts for a persistent
 // chat, see Enable persistent chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html).
 //
+// If you have a process that consumes events in the transcript of an chat that
+// has ended, note that chat transcripts contain the following event content
+// types if the event has occurred during the chat session:
+//
+//   - application/vnd.amazonaws.connect.event.participant.left
+//
+//   - application/vnd.amazonaws.connect.event.participant.joined
+//
+//   - application/vnd.amazonaws.connect.event.chat.ended
+//
+//   - application/vnd.amazonaws.connect.event.transfer.succeeded
+//
+//   - application/vnd.amazonaws.connect.event.transfer.failed
+//
 // ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
 // The Amazon Connect Participant Service APIs do not use Signature Version
@@ -714,7 +730,14 @@ func (c *ConnectParticipant) SendEventRequest(input *SendEventInput) (req *reque
 
 // SendEvent API operation for Amazon Connect Participant Service.
 //
-// Sends an event.
+// The application/vnd.amazonaws.connect.event.connection.acknowledged ContentType
+// will no longer be supported starting December 31, 2024. This event has been
+// migrated to the CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
+// API using the ConnectParticipant field.
+//
+// Sends an event. Message receipts are not supported when there are more than
+// two active participants in the chat. Using the SendEvent API for message
+// receipts when a supervisor is barged-in will result in a conflict exception.
 //
 // ConnectionToken is used for invoking this API instead of ParticipantToken.
 //
@@ -744,7 +767,8 @@ func (c *ConnectParticipant) SendEventRequest(input *SendEventInput) (req *reque
 //     The input fails to satisfy the constraints specified by Amazon Connect.
 //
 //   - ConflictException
-//     An attachment with that identifier is already being uploaded.
+//     The requested operation conflicts with the current state of a service resource
+//     associated with the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/SendEvent
 func (c *ConnectParticipant) SendEvent(input *SendEventInput) (*SendEventOutput, error) {
@@ -1189,7 +1213,8 @@ func (s CompleteAttachmentUploadOutput) GoString() string {
 	return s.String()
 }
 
-// An attachment with that identifier is already being uploaded.
+// The requested operation conflicts with the current state of a service resource
+// associated with the request.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2259,7 +2284,8 @@ type SendEventInput struct {
 	//
 	//    * application/vnd.amazonaws.connect.event.typing
 	//
-	//    * application/vnd.amazonaws.connect.event.connection.acknowledged
+	//    * application/vnd.amazonaws.connect.event.connection.acknowledged (will
+	//    be deprecated on December 31, 2024)
 	//
 	//    * application/vnd.amazonaws.connect.event.message.delivered
 	//

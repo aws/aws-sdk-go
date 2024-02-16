@@ -24,10 +24,10 @@ const (
 	// ErrCodeInvalidKMSResourceException for service response error code
 	// "InvalidKMSResourceException".
 	//
-	// Kinesis Data Firehose throws this exception when an attempt to put records
-	// or to start or stop delivery stream encryption fails. This happens when the
-	// KMS service throws one of the following exception types: AccessDeniedException,
-	// InvalidStateException, DisabledException, or NotFoundException.
+	// Firehose throws this exception when an attempt to put records or to start
+	// or stop delivery stream encryption fails. This happens when the KMS service
+	// throws one of the following exception types: AccessDeniedException, InvalidStateException,
+	// DisabledException, or NotFoundException.
 	ErrCodeInvalidKMSResourceException = "InvalidKMSResourceException"
 
 	// ErrCodeInvalidSourceException for service response error code
@@ -36,6 +36,10 @@ const (
 	// Only requests from CloudWatch Logs are supported when CloudWatch Logs decompression
 	// is enabled.
 	ErrCodeInvalidSourceException = "InvalidSourceException"
+
+	// ErrCodeInvalidStreamTypeException for service response error code
+	// "InvalidStreamTypeException".
+	ErrCodeInvalidStreamTypeException = "InvalidStreamTypeException"
 
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
@@ -61,17 +65,48 @@ const (
 	// The service is unavailable. Back off and retry the operation. If you continue
 	// to see the exception, throughput limits for the delivery stream may have
 	// been exceeded. For more information about limits and how to request an increase,
-	// see Amazon Kinesis Data Firehose Limits (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
+	// see Amazon Firehose Limits (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
+
+	// ErrCodeTagrisAccessDeniedException for service response error code
+	// "TagrisAccessDeniedException".
+	ErrCodeTagrisAccessDeniedException = "TagrisAccessDeniedException"
+
+	// ErrCodeTagrisInternalServiceException for service response error code
+	// "TagrisInternalServiceException".
+	ErrCodeTagrisInternalServiceException = "TagrisInternalServiceException"
+
+	// ErrCodeTagrisInvalidArnException for service response error code
+	// "TagrisInvalidArnException".
+	ErrCodeTagrisInvalidArnException = "TagrisInvalidArnException"
+
+	// ErrCodeTagrisInvalidParameterException for service response error code
+	// "TagrisInvalidParameterException".
+	ErrCodeTagrisInvalidParameterException = "TagrisInvalidParameterException"
+
+	// ErrCodeTagrisPartialResourcesExistResultsException for service response error code
+	// "TagrisPartialResourcesExistResultsException".
+	ErrCodeTagrisPartialResourcesExistResultsException = "TagrisPartialResourcesExistResultsException"
+
+	// ErrCodeTagrisThrottledException for service response error code
+	// "TagrisThrottledException".
+	ErrCodeTagrisThrottledException = "TagrisThrottledException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ConcurrentModificationException": newErrorConcurrentModificationException,
-	"InvalidArgumentException":        newErrorInvalidArgumentException,
-	"InvalidKMSResourceException":     newErrorInvalidKMSResourceException,
-	"InvalidSourceException":          newErrorInvalidSourceException,
-	"LimitExceededException":          newErrorLimitExceededException,
-	"ResourceInUseException":          newErrorResourceInUseException,
-	"ResourceNotFoundException":       newErrorResourceNotFoundException,
-	"ServiceUnavailableException":     newErrorServiceUnavailableException,
+	"ConcurrentModificationException":             newErrorConcurrentModificationException,
+	"InvalidArgumentException":                    newErrorInvalidArgumentException,
+	"InvalidKMSResourceException":                 newErrorInvalidKMSResourceException,
+	"InvalidSourceException":                      newErrorInvalidSourceException,
+	"InvalidStreamTypeException":                  newErrorInvalidStreamTypeException,
+	"LimitExceededException":                      newErrorLimitExceededException,
+	"ResourceInUseException":                      newErrorResourceInUseException,
+	"ResourceNotFoundException":                   newErrorResourceNotFoundException,
+	"ServiceUnavailableException":                 newErrorServiceUnavailableException,
+	"TagrisAccessDeniedException":                 newErrorTagrisAccessDeniedException,
+	"TagrisInternalServiceException":              newErrorTagrisInternalServiceException,
+	"TagrisInvalidArnException":                   newErrorTagrisInvalidArnException,
+	"TagrisInvalidParameterException":             newErrorTagrisInvalidParameterException,
+	"TagrisPartialResourcesExistResultsException": newErrorTagrisPartialResourcesExistResultsException,
+	"TagrisThrottledException":                    newErrorTagrisThrottledException,
 }

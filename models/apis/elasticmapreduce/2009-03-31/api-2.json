@@ -605,6 +605,17 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "SetUnhealthyNodeReplacement":{
+      "name":"SetUnhealthyNodeReplacement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetUnhealthyNodeReplacementInput"},
+      "errors":[
+        {"shape":"InternalServerError"}
+      ]
+    },
     "SetVisibleToAllUsers":{
       "name":"SetVisibleToAllUsers",
       "http":{
@@ -968,6 +979,7 @@
         "ReleaseLabel":{"shape":"String"},
         "AutoTerminate":{"shape":"Boolean"},
         "TerminationProtected":{"shape":"Boolean"},
+        "UnhealthyNodeReplacement":{"shape":"BooleanObject"},
         "VisibleToAllUsers":{"shape":"Boolean"},
         "Applications":{"shape":"ApplicationList"},
         "Tags":{"shape":"TagList"},
@@ -2073,6 +2085,7 @@
         "Placement":{"shape":"PlacementType"},
         "KeepJobFlowAliveWhenNoSteps":{"shape":"Boolean"},
         "TerminationProtected":{"shape":"Boolean"},
+        "UnhealthyNodeReplacement":{"shape":"BooleanObject"},
         "HadoopVersion":{"shape":"XmlStringMaxLen256"},
         "Ec2SubnetId":{"shape":"XmlStringMaxLen256"},
         "Ec2SubnetIds":{"shape":"XmlStringMaxLen256List"},
@@ -2103,6 +2116,7 @@
         "Placement":{"shape":"PlacementType"},
         "KeepJobFlowAliveWhenNoSteps":{"shape":"Boolean"},
         "TerminationProtected":{"shape":"Boolean"},
+        "UnhealthyNodeReplacement":{"shape":"BooleanObject"},
         "HadoopVersion":{"shape":"XmlStringMaxLen256"}
       }
     },
@@ -2882,6 +2896,17 @@
       "members":{
         "JobFlowIds":{"shape":"XmlStringList"},
         "TerminationProtected":{"shape":"Boolean"}
+      }
+    },
+    "SetUnhealthyNodeReplacementInput":{
+      "type":"structure",
+      "required":[
+        "JobFlowIds",
+        "UnhealthyNodeReplacement"
+      ],
+      "members":{
+        "JobFlowIds":{"shape":"XmlStringList"},
+        "UnhealthyNodeReplacement":{"shape":"BooleanObject"}
       }
     },
     "SetVisibleToAllUsersInput":{

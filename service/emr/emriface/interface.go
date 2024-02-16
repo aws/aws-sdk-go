@@ -292,6 +292,10 @@ type EMRAPI interface {
 	SetTerminationProtectionWithContext(aws.Context, *emr.SetTerminationProtectionInput, ...request.Option) (*emr.SetTerminationProtectionOutput, error)
 	SetTerminationProtectionRequest(*emr.SetTerminationProtectionInput) (*request.Request, *emr.SetTerminationProtectionOutput)
 
+	SetUnhealthyNodeReplacement(*emr.SetUnhealthyNodeReplacementInput) (*emr.SetUnhealthyNodeReplacementOutput, error)
+	SetUnhealthyNodeReplacementWithContext(aws.Context, *emr.SetUnhealthyNodeReplacementInput, ...request.Option) (*emr.SetUnhealthyNodeReplacementOutput, error)
+	SetUnhealthyNodeReplacementRequest(*emr.SetUnhealthyNodeReplacementInput) (*request.Request, *emr.SetUnhealthyNodeReplacementOutput)
+
 	SetVisibleToAllUsers(*emr.SetVisibleToAllUsersInput) (*emr.SetVisibleToAllUsersOutput, error)
 	SetVisibleToAllUsersWithContext(aws.Context, *emr.SetVisibleToAllUsersInput, ...request.Option) (*emr.SetVisibleToAllUsersOutput, error)
 	SetVisibleToAllUsersRequest(*emr.SetVisibleToAllUsersInput) (*request.Request, *emr.SetVisibleToAllUsersOutput)
