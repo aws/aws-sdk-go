@@ -17,7 +17,8 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// An attachment with that identifier is already being uploaded.
+	// The requested operation conflicts with the current state of a service resource
+	// associated with the request.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code

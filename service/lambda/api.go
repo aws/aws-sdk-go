@@ -3488,6 +3488,10 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 //
 // Invokes a function asynchronously.
 //
+// If you do use the InvokeAsync action, note that it doesn't support the use
+// of X-Ray active tracing. Trace ID is not propagated to the function, even
+// if X-Ray active tracing is turned on.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8850,8 +8854,9 @@ type CreateEventSourceMappingInput struct {
 	// the batch in two and retry.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Kinesis and DynamoDB Streams only) A standard Amazon SQS queue or standard
-	// Amazon SNS topic destination for discarded records.
+	// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration
+	// object that specifies the destination of an event after Lambda processes
+	// it.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
 	// Specific configuration settings for a DocumentDB event source.
@@ -8871,7 +8876,9 @@ type CreateEventSourceMappingInput struct {
 	//
 	//    * Amazon Simple Queue Service – The ARN of the queue.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster.
+	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster
+	//    or the ARN of the VPC connection (for cross-account event source mappings
+	//    (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).
 	//
 	//    * Amazon MQ – The ARN of the broker.
 	//
@@ -9227,7 +9234,8 @@ type CreateFunctionInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB.
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.
@@ -11427,7 +11435,8 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 }
 
 // The size of the function's /tmp directory in MB. The default value is 512,
-// but it can be any whole number between 512 and 10,240 MB.
+// but can be any whole number between 512 and 10,240 MB. For more information,
+// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
@@ -12106,8 +12115,9 @@ type FunctionConfiguration struct {
 	// Omitted from CloudTrail logs.
 	Environment *EnvironmentResponse `type:"structure"`
 
-	// The size of the function’s /tmp directory in MB. The default value is 512,
-	// but it can be any whole number between 512 and 10,240 MB.
+	// The size of the function's /tmp directory in MB. The default value is 512,
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
@@ -15193,7 +15203,8 @@ type InvokeInput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
 	// Up to 3,583 bytes of base64-encoded data about the invoking client to pass
-	// to the function in the context object.
+	// to the function in the context object. Lambda passes the ClientContext object
+	// to your function for synchronous invocations only.
 	ClientContext *string `location:"header" locationName:"X-Amz-Client-Context" type:"string"`
 
 	// The name of the Lambda function, version, or alias.
@@ -16734,7 +16745,9 @@ type ListEventSourceMappingsInput struct {
 	//
 	//    * Amazon Simple Queue Service – The ARN of the queue.
 	//
-	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster.
+	//    * Amazon Managed Streaming for Apache Kafka – The ARN of the cluster
+	//    or the ARN of the VPC connection (for cross-account event source mappings
+	//    (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc)).
 	//
 	//    * Amazon MQ – The ARN of the broker.
 	//
@@ -17348,7 +17361,7 @@ type ListLayerVersionsInput struct {
 	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
 
-	// A runtime identifier. For example, go1.x.
+	// A runtime identifier. For example, java21.
 	//
 	// The following list includes deprecated runtimes. For more information, see
 	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
@@ -17479,7 +17492,7 @@ type ListLayersInput struct {
 	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
 
-	// A runtime identifier. For example, go1.x.
+	// A runtime identifier. For example, java21.
 	//
 	// The following list includes deprecated runtimes. For more information, see
 	// Runtime deprecation policy (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy).
@@ -17920,7 +17933,7 @@ type LoggingConfig struct {
 
 	// Set this property to filter the application logs for your function that Lambda
 	// sends to CloudWatch. Lambda only sends application logs at the selected level
-	// and lower.
+	// of detail and lower, where TRACE is the highest level and FATAL is the lowest.
 	ApplicationLogLevel *string `type:"string" enum:"ApplicationLogLevel"`
 
 	// The format in which Lambda sends your function's application and system logs
@@ -17935,7 +17948,7 @@ type LoggingConfig struct {
 
 	// Set this property to filter the system logs for your function that Lambda
 	// sends to CloudWatch. Lambda only sends system logs at the selected level
-	// and lower.
+	// of detail and lower, where DEBUG is the highest level and WARN is the lowest.
 	SystemLogLevel *string `type:"string" enum:"SystemLogLevel"`
 }
 
@@ -17999,6 +18012,18 @@ type OnFailure struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the destination resource.
+	//
+	// To retain records of asynchronous invocations (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations),
+	// you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function,
+	// or Amazon EventBridge event bus as the destination.
+	//
+	// To retain records of failed invocations from Kinesis and DynamoDB event sources
+	// (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#event-source-mapping-destinations),
+	// you can configure an Amazon SNS topic or Amazon SQS queue as the destination.
+	//
+	// To retain records of failed invocations from self-managed Kafka (https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination)
+	// or Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination),
+	// you can configure an Amazon SNS topic or Amazon SQS queue as the destination.
 	Destination *string `type:"string"`
 }
 
@@ -21454,8 +21479,9 @@ type UpdateEventSourceMappingInput struct {
 	// the batch in two and retry.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Kinesis and DynamoDB Streams only) A standard Amazon SQS queue or standard
-	// Amazon SNS topic destination for discarded records.
+	// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration
+	// object that specifies the destination of an event after Lambda processes
+	// it.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
 	// Specific configuration settings for a DocumentDB event source.
@@ -21893,7 +21919,8 @@ type UpdateFunctionConfigurationInput struct {
 	Environment *Environment `type:"structure"`
 
 	// The size of the function's /tmp directory in MB. The default value is 512,
-	// but can be any whole number between 512 and 10,240 MB.
+	// but can be any whole number between 512 and 10,240 MB. For more information,
+	// see Configuring ephemeral storage (console) (https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage).
 	EphemeralStorage *EphemeralStorage `type:"structure"`
 
 	// Connection settings for an Amazon EFS file system.

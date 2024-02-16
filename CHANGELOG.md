@@ -1,3 +1,19 @@
+Release v1.50.20 (2024-02-16)
+===
+
+### Service Client Updates
+* `service/connectparticipant`: Updates service documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * adds fine grained control over Unhealthy Node Replacement to Amazon ElasticMapReduce
+* `service/firehose`: Updates service API and documentation
+  * This release adds support for Data Message Extraction for decompressed CloudWatch logs, and to use a custom file extension or time zone for S3 destinations.
+* `service/lambda`: Updates service documentation
+  * Documentation-only updates for Lambda to clarify a number of existing actions and properties.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Doc only update for a valid option in DB parameter group
+* `service/sns`: Updates service API and documentation
+  * This release marks phone numbers as sensitive inputs.
+
 Release v1.50.19 (2024-02-15)
 ===
 

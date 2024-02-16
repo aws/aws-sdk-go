@@ -1534,12 +1534,15 @@
       },
       "exception":true
     },
-    "PhoneNumber":{"type":"string"},
+    "PhoneNumber":{
+      "type":"string",
+      "sensitive":true
+    },
     "PhoneNumberInformation":{
       "type":"structure",
       "members":{
         "CreatedAt":{"shape":"Timestamp"},
-        "PhoneNumber":{"shape":"String"},
+        "PhoneNumber":{"shape":"PhoneNumber"},
         "Status":{"shape":"String"},
         "Iso2CountryCode":{"shape":"Iso2CountryCode"},
         "RouteType":{"shape":"RouteType"},
@@ -1557,7 +1560,8 @@
     "PhoneNumberString":{
       "type":"string",
       "max":20,
-      "pattern":"^(\\+[0-9]{8,}|[0-9]{0,9})$"
+      "pattern":"^(\\+[0-9]{8,}|[0-9]{0,9})$",
+      "sensitive":true
     },
     "PlatformApplication":{
       "type":"structure",
@@ -1634,7 +1638,7 @@
       "members":{
         "TopicArn":{"shape":"topicARN"},
         "TargetArn":{"shape":"String"},
-        "PhoneNumber":{"shape":"String"},
+        "PhoneNumber":{"shape":"PhoneNumber"},
         "Message":{"shape":"message"},
         "Subject":{"shape":"subject"},
         "MessageStructure":{"shape":"messageStructure"},
