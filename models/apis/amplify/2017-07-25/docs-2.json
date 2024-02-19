@@ -6,12 +6,12 @@
     "CreateBackendEnvironment": "<p>Creates a new backend environment for an Amplify app. </p>",
     "CreateBranch": "<p> Creates a new branch for an Amplify app. </p>",
     "CreateDeployment": "<p>Creates a deployment for a manually deployed Amplify app. Manually deployed apps are not connected to a repository. </p> <p>The maximum duration between the <code>CreateDeployment</code> call and the <code>StartDeployment</code> call cannot exceed 8 hours. If the duration exceeds 8 hours, the <code>StartDeployment</code> call and the associated <code>Job</code> will fail.</p>",
-    "CreateDomainAssociation": "<p> Creates a new domain association for an Amplify app. This action associates a custom domain with the Amplify app </p>",
+    "CreateDomainAssociation": "<p>Creates a new domain association for an Amplify app. This action associates a custom domain with the Amplify app </p>",
     "CreateWebhook": "<p>Creates a new webhook on an Amplify app. </p>",
     "DeleteApp": "<p>Deletes an existing Amplify app specified by an app ID. </p>",
     "DeleteBackendEnvironment": "<p>Deletes a backend environment for an Amplify app. </p>",
     "DeleteBranch": "<p> Deletes a branch for an Amplify app. </p>",
-    "DeleteDomainAssociation": "<p> Deletes a domain association for an Amplify app. </p>",
+    "DeleteDomainAssociation": "<p>Deletes a domain association for an Amplify app. </p>",
     "DeleteJob": "<p> Deletes a job for a branch of an Amplify app. </p>",
     "DeleteWebhook": "<p>Deletes a webhook. </p>",
     "GenerateAccessLogs": "<p>Returns the website access logs for a specific time range using a presigned URL. </p>",
@@ -19,14 +19,14 @@
     "GetArtifactUrl": "<p>Returns the artifact info that corresponds to an artifact id. </p>",
     "GetBackendEnvironment": "<p>Returns a backend environment for an Amplify app. </p>",
     "GetBranch": "<p> Returns a branch for an Amplify app. </p>",
-    "GetDomainAssociation": "<p> Returns the domain information for an Amplify app. </p>",
+    "GetDomainAssociation": "<p>Returns the domain information for an Amplify app. </p>",
     "GetJob": "<p> Returns a job for a branch of an Amplify app. </p>",
     "GetWebhook": "<p>Returns the webhook information that corresponds to a specified webhook ID. </p>",
     "ListApps": "<p>Returns a list of the existing Amplify apps. </p>",
     "ListArtifacts": "<p>Returns a list of artifacts for a specified app, branch, and job. </p>",
     "ListBackendEnvironments": "<p>Lists the backend environments for an Amplify app. </p>",
     "ListBranches": "<p> Lists the branches of an Amplify app. </p>",
-    "ListDomainAssociations": "<p> Returns the domain associations for an Amplify app. </p>",
+    "ListDomainAssociations": "<p>Returns the domain associations for an Amplify app. </p>",
     "ListJobs": "<p> Lists the jobs for a branch of an Amplify app. </p>",
     "ListTagsForResource": "<p>Returns a list of tags for a specified Amazon Resource Name (ARN).</p>",
     "ListWebhooks": "<p>Returns a list of webhooks for an Amplify app. </p>",
@@ -37,7 +37,7 @@
     "UntagResource": "<p>Untags a resource with a specified Amazon Resource Name (ARN).</p>",
     "UpdateApp": "<p>Updates an existing Amplify app. </p>",
     "UpdateBranch": "<p> Updates a branch for an Amplify app. </p>",
-    "UpdateDomainAssociation": "<p> Creates a new domain association for an Amplify app.</p>",
+    "UpdateDomainAssociation": "<p>Creates a new domain association for an Amplify app.</p>",
     "UpdateWebhook": "<p>Updates a webhook. </p>"
   },
   "shapes": {
@@ -312,9 +312,37 @@
         "UpdateBranchRequest$buildSpec": "<p> The build specification (build spec) for the branch. </p>"
       }
     },
+    "Certificate": {
+      "base": "<p>Describes the current SSL/TLS certificate that is in use for the domain. If you are using <code>CreateDomainAssociation</code> to create a new domain association, <code>Certificate</code> describes the new certificate that you are creating.</p>",
+      "refs": {
+        "DomainAssociation$certificate": "<p>Describes the SSL/TLS certificate for the domain association. This can be your own custom certificate or the default certificate that Amplify provisions for you.</p> <p>If you are updating your domain to use a different certificate, <code>certificate</code> points to the new certificate that is being created instead of the current active certificate. Otherwise, <code>certificate</code> points to the current active certificate.</p>"
+      }
+    },
+    "CertificateArn": {
+      "base": null,
+      "refs": {
+        "Certificate$customCertificateArn": "<p>The Amazon resource name (ARN) for a custom certificate that you have already added to Certificate Manager in your Amazon Web Services account. </p> <p>This field is required only when the certificate type is <code>CUSTOM</code>.</p>",
+        "CertificateSettings$customCertificateArn": "<p>The Amazon resource name (ARN) for the custom certificate that you have already added to Certificate Manager in your Amazon Web Services account.</p> <p>This field is required only when the certificate type is <code>CUSTOM</code>.</p>"
+      }
+    },
+    "CertificateSettings": {
+      "base": "<p>The type of SSL/TLS certificate to use for your custom domain. If a certificate type isn't specified, Amplify uses the default <code>AMPLIFY_MANAGED</code> certificate.</p>",
+      "refs": {
+        "CreateDomainAssociationRequest$certificateSettings": "<p>The type of SSL/TLS certificate to use for your custom domain. If you don't specify a certificate type, Amplify uses the default certificate that it provisions and manages for you.</p>",
+        "UpdateDomainAssociationRequest$certificateSettings": "<p>The type of SSL/TLS certificate to use for your custom domain.</p>"
+      }
+    },
+    "CertificateType": {
+      "base": null,
+      "refs": {
+        "Certificate$type": "<p>The type of SSL/TLS certificate that you want to use.</p> <p>Specify <code>AMPLIFY_MANAGED</code> to use the default certificate that Amplify provisions for you.</p> <p>Specify <code>CUSTOM</code> to use your own certificate that you have already added to Certificate Manager in your Amazon Web Services account. Make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1). For more information about using ACM, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing certificates into Certificate Manager</a> in the <i>ACM User guide</i> .</p>",
+        "CertificateSettings$type": "<p>The certificate type.</p> <p>Specify <code>AMPLIFY_MANAGED</code> to use the default certificate that Amplify provisions for you.</p> <p>Specify <code>CUSTOM</code> to use your own certificate that you have already added to Certificate Manager in your Amazon Web Services account. Make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1). For more information about using ACM, see <a href=\"https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\">Importing certificates into Certificate Manager</a> in the <i>ACM User guide</i>.</p>"
+      }
+    },
     "CertificateVerificationDNSRecord": {
       "base": null,
       "refs": {
+        "Certificate$certificateVerificationDNSRecord": "<p>The DNS record for certificate verification.</p>",
         "DomainAssociation$certificateVerificationDNSRecord": "<p> The DNS record for certificate verification. </p>"
       }
     },
@@ -567,7 +595,7 @@
       }
     },
     "DomainAssociation": {
-      "base": "<p> Describes a domain association that associates a custom domain with an Amplify app. </p>",
+      "base": "<p>Describes the association between a custom domain and an Amplify app. </p>",
       "refs": {
         "CreateDomainAssociationResult$domainAssociation": "<p> Describes the structure of a domain association, which associates a custom domain with an Amplify app. </p>",
         "DeleteDomainAssociationResult$domainAssociation": null,
@@ -1203,14 +1231,14 @@
     "Status": {
       "base": null,
       "refs": {
-        "CustomRule$status": "<p>The status code for a URL rewrite or redirect rule. </p> <dl> <dt>200</dt> <dd> <p>Represents a 200 rewrite rule.</p> </dd> <dt>301</dt> <dd> <p>Represents a 301 (moved pemanently) redirect rule. This and all future requests should be directed to the target URL. </p> </dd> <dt>302</dt> <dd> <p>Represents a 302 temporary redirect rule.</p> </dd> <dt>404</dt> <dd> <p>Represents a 404 redirect rule.</p> </dd> <dt>404-200</dt> <dd> <p>Represents a 404 rewrite rule.</p> </dd> </dl>",
+        "CustomRule$status": "<p>The status code for a URL rewrite or redirect rule. </p> <dl> <dt>200</dt> <dd> <p>Represents a 200 rewrite rule.</p> </dd> <dt>301</dt> <dd> <p>Represents a 301 (moved permanently) redirect rule. This and all future requests should be directed to the target URL. </p> </dd> <dt>302</dt> <dd> <p>Represents a 302 temporary redirect rule.</p> </dd> <dt>404</dt> <dd> <p>Represents a 404 redirect rule.</p> </dd> <dt>404-200</dt> <dd> <p>Represents a 404 rewrite rule.</p> </dd> </dl>",
         "ProductionBranch$status": "<p>The status of the production branch. </p>"
       }
     },
     "StatusReason": {
       "base": null,
       "refs": {
-        "DomainAssociation$statusReason": "<p> The reason for the current status of the domain association. </p>",
+        "DomainAssociation$statusReason": "<p> Additional information that describes why the domain association is in the current state.</p>",
         "Step$statusReason": "<p> The reason for the current step status. </p>"
       }
     },
@@ -1397,6 +1425,12 @@
     "UpdateDomainAssociationResult": {
       "base": "<p> The result structure for the update domain association request. </p>",
       "refs": {
+      }
+    },
+    "UpdateStatus": {
+      "base": null,
+      "refs": {
+        "DomainAssociation$updateStatus": "<p>The status of the domain update operation that is currently in progress. The following list describes the valid update states.</p> <dl> <dt>REQUESTING_CERTIFICATE</dt> <dd> <p>The certificate is in the process of being updated.</p> </dd> <dt>PENDING_VERIFICATION</dt> <dd> <p>Indicates that an Amplify managed certificate is in the process of being verified. This occurs during the creation of a custom domain or when a custom domain is updated to use a managed certificate.</p> </dd> <dt>IMPORTING_CUSTOM_CERTIFICATE</dt> <dd> <p>Indicates that an Amplify custom certificate is in the process of being imported. This occurs during the creation of a custom domain or when a custom domain is updated to use a custom certificate.</p> </dd> <dt>PENDING_DEPLOYMENT</dt> <dd> <p>Indicates that the subdomain or certificate changes are being propagated.</p> </dd> <dt>AWAITING_APP_CNAME</dt> <dd> <p>Amplify is waiting for CNAME records corresponding to subdomains to be propagated. If your custom domain is on Route 53, Amplify handles this for you automatically. For more information about custom domains, see <a href=\"https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html\">Setting up custom domains</a> in the <i>Amplify Hosting User Guide</i>. </p> </dd> <dt>UPDATE_COMPLETE</dt> <dd> <p>The certificate has been associated with a domain.</p> </dd> <dt>UPDATE_FAILED</dt> <dd> <p>The certificate has failed to be provisioned or associated, and there is no existing active certificate to roll back to.</p> </dd> </dl>"
       }
     },
     "UpdateTime": {

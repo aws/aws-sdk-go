@@ -1,3 +1,14 @@
+Release v1.50.21 (2024-02-19)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/chatbot`: Updates service API, documentation, paginators, and examples
+* `service/config`: Updates service documentation
+* `service/ivs`: Updates service documentation
+* `service/keyspaces`: Updates service documentation
+* `service/mediatailor`: Updates service API
+
 Release v1.50.20 (2024-02-16)
 ===
 

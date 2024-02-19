@@ -4015,8 +4015,6 @@ type Channel struct {
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
-	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
-	// and Standard, respectively.)
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
@@ -4226,8 +4224,6 @@ type ChannelSummary struct {
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
 	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
-	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
-	// and Standard, respectively.)
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
@@ -4417,9 +4413,7 @@ type CreateChannelInput struct {
 	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
-	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
-	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
-	// respectively.) Default: LOW.
+	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
@@ -8926,9 +8920,7 @@ type UpdateChannelInput struct {
 	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
-	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
-	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
-	// respectively.)
+	// Full HD. Use LOW for near-real-time interaction with viewers.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.

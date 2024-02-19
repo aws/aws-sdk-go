@@ -681,6 +681,15 @@ func (c *Keyspaces) GetTableAutoScalingSettingsRequest(input *GetTableAutoScalin
 // Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
 // in the Amazon Keyspaces Developer Guide.
 //
+// GetTableAutoScalingSettings can't be used as an action in an IAM policy.
+//
+// To define permissions for GetTableAutoScalingSettings, you must allow the
+// following two actions in the IAM policy statement's Action element:
+//
+//   - application-autoscaling:DescribeScalableTargets
+//
+//   - application-autoscaling:DescribeScalingPolicies
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1760,9 +1769,8 @@ func (s *AutoScalingPolicy) SetTargetTrackingScalingPolicyConfiguration(v *Targe
 // To turn on auto scaling for a table in throughputMode:PROVISIONED, you must
 // specify the following parameters.
 //
-// Configure the minimum and maximum units for write and read capacity. The
-// auto scaling policy ensures that capacity never goes below the minimum or
-// above the maximum range.
+// Configure the minimum and maximum capacity units. The auto scaling policy
+// ensures that capacity never goes below the minimum or above the maximum range.
 //
 //   - minimumUnits: The minimum level of throughput the table should always
 //     be ready to support. The value must be between 1 and the max throughput
@@ -1773,22 +1781,22 @@ func (s *AutoScalingPolicy) SetTargetTrackingScalingPolicyConfiguration(v *Targe
 //     per second quota for your account (40,000 by default).
 //
 //   - scalingPolicy: Amazon Keyspaces supports the target tracking scaling
-//     policy. The auto scaling target is the provisioned read and write capacity
-//     of the table. targetTrackingScalingPolicyConfiguration: To define the
-//     target tracking policy, you must define the target value. targetValue:
-//     The target utilization rate of the table. Amazon Keyspaces auto scaling
-//     ensures that the ratio of consumed capacity to provisioned capacity stays
-//     at or near this value. You define targetValue as a percentage. A double
-//     between 20 and 90. (Required) disableScaleIn: A boolean that specifies
-//     if scale-in is disabled or enabled for the table. This parameter is disabled
-//     by default. To turn on scale-in, set the boolean value to FALSE. This
-//     means that capacity for a table can be automatically scaled down on your
-//     behalf. (Optional) scaleInCooldown: A cooldown period in seconds between
-//     scaling activities that lets the table stabilize before another scale
-//     in activity starts. If no value is provided, the default is 0. (Optional)
-//     scaleOutCooldown: A cooldown period in seconds between scaling activities
-//     that lets the table stabilize before another scale out activity starts.
-//     If no value is provided, the default is 0. (Optional)
+//     policy. The auto scaling target is the provisioned capacity of the table.
+//     targetTrackingScalingPolicyConfiguration: To define the target tracking
+//     policy, you must define the target value. targetValue: The target utilization
+//     rate of the table. Amazon Keyspaces auto scaling ensures that the ratio
+//     of consumed capacity to provisioned capacity stays at or near this value.
+//     You define targetValue as a percentage. A double between 20 and 90. (Required)
+//     disableScaleIn: A boolean that specifies if scale-in is disabled or enabled
+//     for the table. This parameter is disabled by default. To turn on scale-in,
+//     set the boolean value to FALSE. This means that capacity for a table can
+//     be automatically scaled down on your behalf. (Optional) scaleInCooldown:
+//     A cooldown period in seconds between scaling activities that lets the
+//     table stabilize before another scale in activity starts. If no value is
+//     provided, the default is 0. (Optional) scaleOutCooldown: A cooldown period
+//     in seconds between scaling activities that lets the table stabilize before
+//     another scale out activity starts. If no value is provided, the default
+//     is 0. (Optional)
 //
 // For more information, see Managing throughput capacity automatically with
 // Amazon Keyspaces auto scaling (https://docs.aws.amazon.com/keyspaces/latest/devguide/autoscaling.html)
@@ -1879,8 +1887,8 @@ func (s *AutoScalingSettings) SetScalingPolicy(v *AutoScalingPolicy) *AutoScalin
 	return s
 }
 
-// The optional auto scaling settings for read and write capacity of a table
-// in provisioned capacity mode.
+// The optional auto scaling capacity settings for a table in provisioned capacity
+// mode.
 type AutoScalingSpecification struct {
 	_ struct{} `type:"structure"`
 

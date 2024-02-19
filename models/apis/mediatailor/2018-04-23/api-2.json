@@ -504,6 +504,7 @@
     },
     "AdBreak":{
       "type":"structure",
+      "required":["OffsetMillis"],
       "members":{
         "AdBreakMetadata":{"shape":"AdBreakMetadataList"},
         "MessageType":{"shape":"MessageType"},
