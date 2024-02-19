@@ -3879,7 +3879,9 @@ type AdBreak struct {
 	// How long (in milliseconds) after the beginning of the program that an ad
 	// starts. This value must fall within 100ms of a segment boundary, otherwise
 	// the ad break will be skipped.
-	OffsetMillis *int64 `type:"long"`
+	//
+	// OffsetMillis is a required field
+	OffsetMillis *int64 `type:"long" required:"true"`
 
 	// Ad break slate configuration.
 	Slate *SlateSource `type:"structure"`
@@ -3920,6 +3922,9 @@ func (s AdBreak) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AdBreak) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AdBreak"}
+	if s.OffsetMillis == nil {
+		invalidParams.Add(request.NewErrParamRequired("OffsetMillis"))
+	}
 	if s.AdBreakMetadata != nil {
 		for i, v := range s.AdBreakMetadata {
 			if v == nil {

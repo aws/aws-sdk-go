@@ -4556,6 +4556,143 @@ func (s *Branch) SetUpdateTime(v time.Time) *Branch {
 	return s
 }
 
+// Describes the current SSL/TLS certificate that is in use for the domain.
+// If you are using CreateDomainAssociation to create a new domain association,
+// Certificate describes the new certificate that you are creating.
+type Certificate struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS record for certificate verification.
+	CertificateVerificationDNSRecord *string `locationName:"certificateVerificationDNSRecord" type:"string"`
+
+	// The Amazon resource name (ARN) for a custom certificate that you have already
+	// added to Certificate Manager in your Amazon Web Services account.
+	//
+	// This field is required only when the certificate type is CUSTOM.
+	CustomCertificateArn *string `locationName:"customCertificateArn" type:"string"`
+
+	// The type of SSL/TLS certificate that you want to use.
+	//
+	// Specify AMPLIFY_MANAGED to use the default certificate that Amplify provisions
+	// for you.
+	//
+	// Specify CUSTOM to use your own certificate that you have already added to
+	// Certificate Manager in your Amazon Web Services account. Make sure you request
+	// (or import) the certificate in the US East (N. Virginia) Region (us-east-1).
+	// For more information about using ACM, see Importing certificates into Certificate
+	// Manager (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
+	// in the ACM User guide .
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"CertificateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Certificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Certificate) GoString() string {
+	return s.String()
+}
+
+// SetCertificateVerificationDNSRecord sets the CertificateVerificationDNSRecord field's value.
+func (s *Certificate) SetCertificateVerificationDNSRecord(v string) *Certificate {
+	s.CertificateVerificationDNSRecord = &v
+	return s
+}
+
+// SetCustomCertificateArn sets the CustomCertificateArn field's value.
+func (s *Certificate) SetCustomCertificateArn(v string) *Certificate {
+	s.CustomCertificateArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Certificate) SetType(v string) *Certificate {
+	s.Type = &v
+	return s
+}
+
+// The type of SSL/TLS certificate to use for your custom domain. If a certificate
+// type isn't specified, Amplify uses the default AMPLIFY_MANAGED certificate.
+type CertificateSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) for the custom certificate that you have already
+	// added to Certificate Manager in your Amazon Web Services account.
+	//
+	// This field is required only when the certificate type is CUSTOM.
+	CustomCertificateArn *string `locationName:"customCertificateArn" type:"string"`
+
+	// The certificate type.
+	//
+	// Specify AMPLIFY_MANAGED to use the default certificate that Amplify provisions
+	// for you.
+	//
+	// Specify CUSTOM to use your own certificate that you have already added to
+	// Certificate Manager in your Amazon Web Services account. Make sure you request
+	// (or import) the certificate in the US East (N. Virginia) Region (us-east-1).
+	// For more information about using ACM, see Importing certificates into Certificate
+	// Manager (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
+	// in the ACM User guide.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"CertificateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CertificateSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CertificateSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CertificateSettings"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomCertificateArn sets the CustomCertificateArn field's value.
+func (s *CertificateSettings) SetCustomCertificateArn(v string) *CertificateSettings {
+	s.CustomCertificateArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CertificateSettings) SetType(v string) *CertificateSettings {
+	s.Type = &v
+	return s
+}
+
 // The request structure used to create apps in Amplify.
 type CreateAppInput struct {
 	_ struct{} `type:"structure"`
@@ -5431,6 +5568,11 @@ type CreateDomainAssociationInput struct {
 	// Amazon Resource Name (ARN) for automatically creating subdomains.
 	AutoSubDomainIAMRole *string `locationName:"autoSubDomainIAMRole" type:"string"`
 
+	// The type of SSL/TLS certificate to use for your custom domain. If you don't
+	// specify a certificate type, Amplify uses the default certificate that it
+	// provisions and manages for you.
+	CertificateSettings *CertificateSettings `locationName:"certificateSettings" type:"structure"`
+
 	// The domain name for the domain association.
 	//
 	// DomainName is a required field
@@ -5478,6 +5620,11 @@ func (s *CreateDomainAssociationInput) Validate() error {
 	if s.SubDomainSettings == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubDomainSettings"))
 	}
+	if s.CertificateSettings != nil {
+		if err := s.CertificateSettings.Validate(); err != nil {
+			invalidParams.AddNested("CertificateSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SubDomainSettings != nil {
 		for i, v := range s.SubDomainSettings {
 			if v == nil {
@@ -5510,6 +5657,12 @@ func (s *CreateDomainAssociationInput) SetAutoSubDomainCreationPatterns(v []*str
 // SetAutoSubDomainIAMRole sets the AutoSubDomainIAMRole field's value.
 func (s *CreateDomainAssociationInput) SetAutoSubDomainIAMRole(v string) *CreateDomainAssociationInput {
 	s.AutoSubDomainIAMRole = &v
+	return s
+}
+
+// SetCertificateSettings sets the CertificateSettings field's value.
+func (s *CreateDomainAssociationInput) SetCertificateSettings(v *CertificateSettings) *CreateDomainAssociationInput {
+	s.CertificateSettings = v
 	return s
 }
 
@@ -5696,7 +5849,7 @@ type CustomRule struct {
 	//
 	// 301
 	//
-	// Represents a 301 (moved pemanently) redirect rule. This and all future requests
+	// Represents a 301 (moved permanently) redirect rule. This and all future requests
 	// should be directed to the target URL.
 	//
 	// 302
@@ -6142,8 +6295,7 @@ func (s *DeleteDomainAssociationInput) SetDomainName(v string) *DeleteDomainAsso
 type DeleteDomainAssociationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Describes a domain association that associates a custom domain with an Amplify
-	// app.
+	// Describes the association between a custom domain and an Amplify app.
 	//
 	// DomainAssociation is a required field
 	DomainAssociation *DomainAssociation `locationName:"domainAssociation" type:"structure" required:"true"`
@@ -6439,8 +6591,7 @@ func (s *DependentServiceFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a domain association that associates a custom domain with an Amplify
-// app.
+// Describes the association between a custom domain and an Amplify app.
 type DomainAssociation struct {
 	_ struct{} `type:"structure"`
 
@@ -6450,6 +6601,15 @@ type DomainAssociation struct {
 	// The required AWS Identity and Access Management (IAM) service role for the
 	// Amazon Resource Name (ARN) for automatically creating subdomains.
 	AutoSubDomainIAMRole *string `locationName:"autoSubDomainIAMRole" type:"string"`
+
+	// Describes the SSL/TLS certificate for the domain association. This can be
+	// your own custom certificate or the default certificate that Amplify provisions
+	// for you.
+	//
+	// If you are updating your domain to use a different certificate, certificate
+	// points to the new certificate that is being created instead of the current
+	// active certificate. Otherwise, certificate points to the current active certificate.
+	Certificate *Certificate `locationName:"certificate" type:"structure"`
 
 	// The DNS record for certificate verification.
 	CertificateVerificationDNSRecord *string `locationName:"certificateVerificationDNSRecord" type:"string"`
@@ -6474,7 +6634,8 @@ type DomainAssociation struct {
 	// EnableAutoSubDomain is a required field
 	EnableAutoSubDomain *bool `locationName:"enableAutoSubDomain" type:"boolean" required:"true"`
 
-	// The reason for the current status of the domain association.
+	// Additional information that describes why the domain association is in the
+	// current state.
 	//
 	// StatusReason is a required field
 	StatusReason *string `locationName:"statusReason" type:"string" required:"true"`
@@ -6483,6 +6644,47 @@ type DomainAssociation struct {
 	//
 	// SubDomains is a required field
 	SubDomains []*SubDomain `locationName:"subDomains" type:"list" required:"true"`
+
+	// The status of the domain update operation that is currently in progress.
+	// The following list describes the valid update states.
+	//
+	// REQUESTING_CERTIFICATE
+	//
+	// The certificate is in the process of being updated.
+	//
+	// PENDING_VERIFICATION
+	//
+	// Indicates that an Amplify managed certificate is in the process of being
+	// verified. This occurs during the creation of a custom domain or when a custom
+	// domain is updated to use a managed certificate.
+	//
+	// IMPORTING_CUSTOM_CERTIFICATE
+	//
+	// Indicates that an Amplify custom certificate is in the process of being imported.
+	// This occurs during the creation of a custom domain or when a custom domain
+	// is updated to use a custom certificate.
+	//
+	// PENDING_DEPLOYMENT
+	//
+	// Indicates that the subdomain or certificate changes are being propagated.
+	//
+	// AWAITING_APP_CNAME
+	//
+	// Amplify is waiting for CNAME records corresponding to subdomains to be propagated.
+	// If your custom domain is on Route 53, Amplify handles this for you automatically.
+	// For more information about custom domains, see Setting up custom domains
+	// (https://docs.aws.amazon.com/amplify/latest/userguide/custom-domains.html)
+	// in the Amplify Hosting User Guide.
+	//
+	// UPDATE_COMPLETE
+	//
+	// The certificate has been associated with a domain.
+	//
+	// UPDATE_FAILED
+	//
+	// The certificate has failed to be provisioned or associated, and there is
+	// no existing active certificate to roll back to.
+	UpdateStatus *string `locationName:"updateStatus" type:"string" enum:"UpdateStatus"`
 }
 
 // String returns the string representation.
@@ -6512,6 +6714,12 @@ func (s *DomainAssociation) SetAutoSubDomainCreationPatterns(v []*string) *Domai
 // SetAutoSubDomainIAMRole sets the AutoSubDomainIAMRole field's value.
 func (s *DomainAssociation) SetAutoSubDomainIAMRole(v string) *DomainAssociation {
 	s.AutoSubDomainIAMRole = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *DomainAssociation) SetCertificate(v *Certificate) *DomainAssociation {
+	s.Certificate = v
 	return s
 }
 
@@ -6554,6 +6762,12 @@ func (s *DomainAssociation) SetStatusReason(v string) *DomainAssociation {
 // SetSubDomains sets the SubDomains field's value.
 func (s *DomainAssociation) SetSubDomains(v []*SubDomain) *DomainAssociation {
 	s.SubDomains = v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *DomainAssociation) SetUpdateStatus(v string) *DomainAssociation {
+	s.UpdateStatus = &v
 	return s
 }
 
@@ -10257,6 +10471,9 @@ type UpdateDomainAssociationInput struct {
 	// Amazon Resource Name (ARN) for automatically creating subdomains.
 	AutoSubDomainIAMRole *string `locationName:"autoSubDomainIAMRole" type:"string"`
 
+	// The type of SSL/TLS certificate to use for your custom domain.
+	CertificateSettings *CertificateSettings `locationName:"certificateSettings" type:"structure"`
+
 	// The name of the domain.
 	//
 	// DomainName is a required field
@@ -10302,6 +10519,11 @@ func (s *UpdateDomainAssociationInput) Validate() error {
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
 	}
+	if s.CertificateSettings != nil {
+		if err := s.CertificateSettings.Validate(); err != nil {
+			invalidParams.AddNested("CertificateSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SubDomainSettings != nil {
 		for i, v := range s.SubDomainSettings {
 			if v == nil {
@@ -10334,6 +10556,12 @@ func (s *UpdateDomainAssociationInput) SetAutoSubDomainCreationPatterns(v []*str
 // SetAutoSubDomainIAMRole sets the AutoSubDomainIAMRole field's value.
 func (s *UpdateDomainAssociationInput) SetAutoSubDomainIAMRole(v string) *UpdateDomainAssociationInput {
 	s.AutoSubDomainIAMRole = &v
+	return s
+}
+
+// SetCertificateSettings sets the CertificateSettings field's value.
+func (s *UpdateDomainAssociationInput) SetCertificateSettings(v *CertificateSettings) *UpdateDomainAssociationInput {
+	s.CertificateSettings = v
 	return s
 }
 
@@ -10596,6 +10824,22 @@ func (s *Webhook) SetWebhookUrl(v string) *Webhook {
 }
 
 const (
+	// CertificateTypeAmplifyManaged is a CertificateType enum value
+	CertificateTypeAmplifyManaged = "AMPLIFY_MANAGED"
+
+	// CertificateTypeCustom is a CertificateType enum value
+	CertificateTypeCustom = "CUSTOM"
+)
+
+// CertificateType_Values returns all elements of the CertificateType enum
+func CertificateType_Values() []string {
+	return []string{
+		CertificateTypeAmplifyManaged,
+		CertificateTypeCustom,
+	}
+}
+
+const (
 	// DomainStatusPendingVerification is a DomainStatus enum value
 	DomainStatusPendingVerification = "PENDING_VERIFICATION"
 
@@ -10605,8 +10849,14 @@ const (
 	// DomainStatusAvailable is a DomainStatus enum value
 	DomainStatusAvailable = "AVAILABLE"
 
+	// DomainStatusImportingCustomCertificate is a DomainStatus enum value
+	DomainStatusImportingCustomCertificate = "IMPORTING_CUSTOM_CERTIFICATE"
+
 	// DomainStatusPendingDeployment is a DomainStatus enum value
 	DomainStatusPendingDeployment = "PENDING_DEPLOYMENT"
+
+	// DomainStatusAwaitingAppCname is a DomainStatus enum value
+	DomainStatusAwaitingAppCname = "AWAITING_APP_CNAME"
 
 	// DomainStatusFailed is a DomainStatus enum value
 	DomainStatusFailed = "FAILED"
@@ -10627,7 +10877,9 @@ func DomainStatus_Values() []string {
 		DomainStatusPendingVerification,
 		DomainStatusInProgress,
 		DomainStatusAvailable,
+		DomainStatusImportingCustomCertificate,
 		DomainStatusPendingDeployment,
+		DomainStatusAwaitingAppCname,
 		DomainStatusFailed,
 		DomainStatusCreating,
 		DomainStatusRequestingCertificate,
@@ -10760,5 +11012,41 @@ func Stage_Values() []string {
 		StageDevelopment,
 		StageExperimental,
 		StagePullRequest,
+	}
+}
+
+const (
+	// UpdateStatusRequestingCertificate is a UpdateStatus enum value
+	UpdateStatusRequestingCertificate = "REQUESTING_CERTIFICATE"
+
+	// UpdateStatusPendingVerification is a UpdateStatus enum value
+	UpdateStatusPendingVerification = "PENDING_VERIFICATION"
+
+	// UpdateStatusImportingCustomCertificate is a UpdateStatus enum value
+	UpdateStatusImportingCustomCertificate = "IMPORTING_CUSTOM_CERTIFICATE"
+
+	// UpdateStatusPendingDeployment is a UpdateStatus enum value
+	UpdateStatusPendingDeployment = "PENDING_DEPLOYMENT"
+
+	// UpdateStatusAwaitingAppCname is a UpdateStatus enum value
+	UpdateStatusAwaitingAppCname = "AWAITING_APP_CNAME"
+
+	// UpdateStatusUpdateComplete is a UpdateStatus enum value
+	UpdateStatusUpdateComplete = "UPDATE_COMPLETE"
+
+	// UpdateStatusUpdateFailed is a UpdateStatus enum value
+	UpdateStatusUpdateFailed = "UPDATE_FAILED"
+)
+
+// UpdateStatus_Values returns all elements of the UpdateStatus enum
+func UpdateStatus_Values() []string {
+	return []string{
+		UpdateStatusRequestingCertificate,
+		UpdateStatusPendingVerification,
+		UpdateStatusImportingCustomCertificate,
+		UpdateStatusPendingDeployment,
+		UpdateStatusAwaitingAppCname,
+		UpdateStatusUpdateComplete,
+		UpdateStatusUpdateFailed,
 	}
 }

@@ -4204,7 +4204,7 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 // rule names. It is only applicable, when you request all the organization
 // Config rules.
 //
-// # For accounts within an organzation
+// # For accounts within an organization
 //
 // If you deploy an organizational rule or conformance pack in an organization
 // administrator account, and then establish a delegated administrator and deploy
@@ -4574,7 +4574,7 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 // packs names. They are only applicable, when you request all the organization
 // conformance packs.
 //
-// # For accounts within an organzation
+// # For accounts within an organization
 //
 // If you deploy an organizational rule or conformance pack in an organization
 // administrator account, and then establish a delegated administrator and deploy
@@ -10306,12 +10306,16 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 // add a remediation configuration. The target (SSM document) must exist and
 // have permissions to use the target.
 //
+// # Be aware of backward incompatible changes
+//
 // If you make backward incompatible changes to the SSM document, you must call
 // this again to ensure the remediations can run.
 //
 // This API does not support adding remediation configurations for service-linked
 // Config Rules such as Organization Config rules, the rules deployed by conformance
 // packs, and rules deployed by Amazon Web Services Security Hub.
+//
+// # Required fields
 //
 // For manual remediation configuration, you need to provide a value for automationAssumeRole
 // or use a value in the assumeRolefield to remediate your resources. The SSM
@@ -10320,6 +10324,20 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 // However, for automatic remediation configuration, the only valid assumeRole
 // field value is AutomationAssumeRole and you need to provide a value for AutomationAssumeRole
 // to remediate your resources.
+//
+// # Auto remediation can be initiated even for compliant resources
+//
+// If you enable auto remediation for a specific Config rule using the PutRemediationConfigurations
+// (https://docs.aws.amazon.com/config/latest/APIReference/emAPI_PutRemediationConfigurations.html)
+// API or the Config console, it initiates the remediation process for all non-compliant
+// resources for that specific rule. The auto remediation process relies on
+// the compliance data snapshot which is captured on a periodic basis. Any non-compliant
+// resource that is updated between the snapshot schedule will continue to be
+// remediated based on the last known compliance data snapshot.
+//
+// This means that in some cases auto remediation can be initiated even for
+// compliant resources, since the bootstrap processor uses a database that can
+// have stale evaluation results based on the last known compliance data snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10421,9 +10439,13 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 // for auto-remediation. This API adds a new exception or updates an existing
 // exception for a specified resource with a specified Config rule.
 //
+// # Exceptions block auto remediation
+//
 // Config generates a remediation exception when a problem occurs running a
 // remediation action for a specified resource. Remediation exceptions blocks
 // auto-remediation until the exception is cleared.
+//
+// # Manual remediation is recommended when placing an exception
 //
 // When placing an exception on an Amazon Web Services resource, it is recommended
 // that remediation is set as manual remediation until the given Config rule
@@ -10434,12 +10456,28 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 // NON_COMPLIANT evaluation result can delete resources before the exception
 // is applied.
 //
+// # Exceptions can only be performed on non-compliant resources
+//
 // Placing an exception can only be performed on resources that are NON_COMPLIANT.
 // If you use this API for COMPLIANT resources or resources that are NOT_APPLICABLE,
 // a remediation exception will not be generated. For more information on the
 // conditions that initiate the possible Config evaluation results, see Concepts
 // | Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html#aws-config-rules)
 // in the Config Developer Guide.
+//
+// # Auto remediation can be initiated even for compliant resources
+//
+// If you enable auto remediation for a specific Config rule using the PutRemediationConfigurations
+// (https://docs.aws.amazon.com/config/latest/APIReference/emAPI_PutRemediationConfigurations.html)
+// API or the Config console, it initiates the remediation process for all non-compliant
+// resources for that specific rule. The auto remediation process relies on
+// the compliance data snapshot which is captured on a periodic basis. Any non-compliant
+// resource that is updated between the snapshot schedule will continue to be
+// remediated based on the last known compliance data snapshot.
+//
+// This means that in some cases auto remediation can be initiated even for
+// compliant resources, since the bootstrap processor uses a database that can
+// have stale evaluation results based on the last known compliance data snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19943,6 +19981,8 @@ func (s *EvaluationStatus) SetStatus(v string) *EvaluationStatus {
 //   - Asia Pacific (Hyderabad)
 //
 //   - Asia Pacific (Melbourne)
+//
+//   - Canada West (Calgary)
 //
 //   - Europe (Spain)
 //
@@ -29641,6 +29681,8 @@ type RecordingGroup struct {
 	//
 	//    * Asia Pacific (Melbourne)
 	//
+	//    * Canada West (Calgary)
+	//
 	//    * Europe (Spain)
 	//
 	//    * Europe (Zurich)
@@ -29653,8 +29695,8 @@ type RecordingGroup struct {
 	//
 	// The AWS::RDS::GlobalCluster resource type will be recorded in all supported
 	// Config Regions where the configuration recorder is enabled, even if includeGlobalResourceTypes
-	// is not set to true. The includeGlobalResourceTypes option is a bundle which
-	// only applies to IAM users, groups, roles, and customer managed policies.
+	// is setfalse. The includeGlobalResourceTypes option is a bundle which only
+	// applies to IAM users, groups, roles, and customer managed policies.
 	//
 	// If you do not want to record AWS::RDS::GlobalCluster in all enabled Regions,
 	// use one of the following recording strategies:
@@ -29666,6 +29708,26 @@ type RecordingGroup struct {
 	//
 	// For more information, see Selecting Which Resources are Recorded (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-all)
 	// in the Config developer guide.
+	//
+	// includeGlobalResourceTypes and the exclusion recording strategy
+	//
+	// The includeGlobalResourceTypes field has no impact on the EXCLUSION_BY_RESOURCE_TYPES
+	// recording strategy. This means that the global IAM resource types (IAM users,
+	// groups, roles, and customer managed policies) will not be automatically added
+	// as exclusions for exclusionByResourceTypes when includeGlobalResourceTypes
+	// is set to false.
+	//
+	// The includeGlobalResourceTypes field should only be used to modify the AllSupported
+	// field, as the default for the AllSupported field is to record configuration
+	// changes for all supported resource types excluding the global IAM resource
+	// types. To include the global IAM resource types when AllSupported is set
+	// to true, make sure to set includeGlobalResourceTypes to true.
+	//
+	// To exclude the global IAM resource types for the EXCLUSION_BY_RESOURCE_TYPES
+	// recording strategy, you need to manually add them to the resourceTypes field
+	// of exclusionByResourceTypes.
+	//
+	// Required and optional fields
 	//
 	// Before you set this field to true, set the allSupported field of RecordingGroup
 	// (https://docs.aws.amazon.com/config/latest/APIReference/API_RecordingGroup.html)
@@ -29748,6 +29810,8 @@ type RecordingGroup struct {
 	//    * Asia Pacific (Hyderabad)
 	//
 	//    * Asia Pacific (Melbourne)
+	//
+	//    * Canada West (Calgary)
 	//
 	//    * Europe (Spain)
 	//
@@ -30093,6 +30157,8 @@ type RecordingStrategy struct {
 	//    * Asia Pacific (Hyderabad)
 	//
 	//    * Asia Pacific (Melbourne)
+	//
+	//    * Canada West (Calgary)
 	//
 	//    * Europe (Spain)
 	//
@@ -33230,9 +33296,7 @@ type TemplateSSMDocumentDetails struct {
 
 	// The name or Amazon Resource Name (ARN) of the SSM document to use to create
 	// a conformance pack. If you use the document name, Config checks only your
-	// account and Amazon Web Services Region for the SSM document. If you want
-	// to use an SSM document from another Region or account, you must provide the
-	// ARN.
+	// account and Amazon Web Services Region for the SSM document.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
