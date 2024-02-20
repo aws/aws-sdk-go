@@ -72,10 +72,6 @@ type FirehoseAPI interface {
 	DescribeDeliveryStreamWithContext(aws.Context, *firehose.DescribeDeliveryStreamInput, ...request.Option) (*firehose.DescribeDeliveryStreamOutput, error)
 	DescribeDeliveryStreamRequest(*firehose.DescribeDeliveryStreamInput) (*request.Request, *firehose.DescribeDeliveryStreamOutput)
 
-	GetKinesisStream(*firehose.GetKinesisStreamInput) (*firehose.GetKinesisStreamOutput, error)
-	GetKinesisStreamWithContext(aws.Context, *firehose.GetKinesisStreamInput, ...request.Option) (*firehose.GetKinesisStreamOutput, error)
-	GetKinesisStreamRequest(*firehose.GetKinesisStreamInput) (*request.Request, *firehose.GetKinesisStreamOutput)
-
 	ListDeliveryStreams(*firehose.ListDeliveryStreamsInput) (*firehose.ListDeliveryStreamsOutput, error)
 	ListDeliveryStreamsWithContext(aws.Context, *firehose.ListDeliveryStreamsInput, ...request.Option) (*firehose.ListDeliveryStreamsOutput, error)
 	ListDeliveryStreamsRequest(*firehose.ListDeliveryStreamsInput) (*request.Request, *firehose.ListDeliveryStreamsOutput)
@@ -111,10 +107,6 @@ type FirehoseAPI interface {
 	UpdateDestination(*firehose.UpdateDestinationInput) (*firehose.UpdateDestinationOutput, error)
 	UpdateDestinationWithContext(aws.Context, *firehose.UpdateDestinationInput, ...request.Option) (*firehose.UpdateDestinationOutput, error)
 	UpdateDestinationRequest(*firehose.UpdateDestinationInput) (*request.Request, *firehose.UpdateDestinationOutput)
-
-	VerifyResourcesExistForTagris(*firehose.VerifyResourcesExistForTagrisInput) (*firehose.VerifyResourcesExistForTagrisOutput, error)
-	VerifyResourcesExistForTagrisWithContext(aws.Context, *firehose.VerifyResourcesExistForTagrisInput, ...request.Option) (*firehose.VerifyResourcesExistForTagrisOutput, error)
-	VerifyResourcesExistForTagrisRequest(*firehose.VerifyResourcesExistForTagrisInput) (*request.Request, *firehose.VerifyResourcesExistForTagrisOutput)
 }
 
 var _ FirehoseAPI = (*firehose.Firehose)(nil)

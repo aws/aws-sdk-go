@@ -11511,8 +11511,9 @@ type EventSourceMappingConfiguration struct {
 	// the batch in two and retry. The default value is false.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Kinesis and DynamoDB Streams only) An Amazon SQS queue or Amazon SNS topic
-	// destination for discarded records.
+	// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka event
+	// sources only) A configuration object that specifies the destination of an
+	// event after Lambda processes it.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
 	// Specific configuration settings for a DocumentDB event source.
@@ -18023,7 +18024,8 @@ type OnFailure struct {
 	//
 	// To retain records of failed invocations from self-managed Kafka (https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination)
 	// or Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination),
-	// you can configure an Amazon SNS topic or Amazon SQS queue as the destination.
+	// you can configure an Amazon SNS topic, Amazon SQS queue, or Amazon S3 bucket
+	// as the destination.
 	Destination *string `type:"string"`
 }
 
@@ -23160,6 +23162,9 @@ const (
 	// RuntimeDotnet6 is a Runtime enum value
 	RuntimeDotnet6 = "dotnet6"
 
+	// RuntimeDotnet8 is a Runtime enum value
+	RuntimeDotnet8 = "dotnet8"
+
 	// RuntimeNodejs43Edge is a Runtime enum value
 	RuntimeNodejs43Edge = "nodejs4.3-edge"
 
@@ -23230,6 +23235,7 @@ func Runtime_Values() []string {
 		RuntimeDotnetcore21,
 		RuntimeDotnetcore31,
 		RuntimeDotnet6,
+		RuntimeDotnet8,
 		RuntimeNodejs43Edge,
 		RuntimeGo1X,
 		RuntimeRuby25,

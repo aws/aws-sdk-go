@@ -1,3 +1,14 @@
+Release v1.50.22 (2024-02-20)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Publishing quick fix for doc only update.
+* `service/firehose`: Updates service API and documentation
+  * This release updates a few Firehose related APIs.
+* `service/lambda`: Updates service API and documentation
+  * Add .NET 8 (dotnet8) Runtime support to AWS Lambda.
+
 Release v1.50.21 (2024-02-19)
 ===
 
