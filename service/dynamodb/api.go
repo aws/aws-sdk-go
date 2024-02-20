@@ -7518,10 +7518,10 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 //   - Create a new global secondary index on the table. After the index begins
 //     backfilling, you can use UpdateTable to perform other operations.
 //
-// UpdateTable is an asynchronous operation; while it is executing, the table
-// status changes from ACTIVE to UPDATING. While it is UPDATING, you cannot
-// issue another UpdateTable request. When the table returns to the ACTIVE state,
-// the UpdateTable operation is complete.
+// UpdateTable is an asynchronous operation; while it's executing, the table
+// status changes from ACTIVE to UPDATING. While it's UPDATING, you can't issue
+// another UpdateTable request on the base table nor any replicas. When the
+// table returns to the ACTIVE state, the UpdateTable operation is complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
