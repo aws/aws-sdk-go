@@ -1,3 +1,14 @@
+Release v1.50.23 (2024-02-21)
+===
+
+### Service Client Updates
+* `service/iotevents`: Updates service API
+* `service/lookoutequipment`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * MediaLive now supports the ability to restart pipelines in a running channel.
+* `service/ssm`: Updates service API and documentation
+  * This release adds support for sharing Systems Manager parameters with other AWS accounts.
+
 Release v1.50.22 (2024-02-20)
 ===
 

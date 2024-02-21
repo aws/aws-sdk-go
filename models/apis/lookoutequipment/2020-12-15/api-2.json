@@ -952,7 +952,8 @@
       "members":{
         "InferenceSchedulerArn":{"shape":"InferenceSchedulerArn"},
         "InferenceSchedulerName":{"shape":"InferenceSchedulerName"},
-        "Status":{"shape":"InferenceSchedulerStatus"}
+        "Status":{"shape":"InferenceSchedulerStatus"},
+        "ModelQuality":{"shape":"ModelQuality"}
       }
     },
     "CreateLabelGroupRequest":{
@@ -1411,7 +1412,8 @@
         "AccumulatedInferenceDataStartTime":{"shape":"Timestamp"},
         "AccumulatedInferenceDataEndTime":{"shape":"Timestamp"},
         "RetrainingSchedulerStatus":{"shape":"RetrainingSchedulerStatus"},
-        "ModelDiagnosticsOutputConfiguration":{"shape":"ModelDiagnosticsOutputConfiguration"}
+        "ModelDiagnosticsOutputConfiguration":{"shape":"ModelDiagnosticsOutputConfiguration"},
+        "ModelQuality":{"shape":"ModelQuality"}
       }
     },
     "DescribeModelVersionRequest":{
@@ -1461,7 +1463,8 @@
         "AutoPromotionResult":{"shape":"AutoPromotionResult"},
         "AutoPromotionResultReason":{"shape":"AutoPromotionResultReason"},
         "ModelDiagnosticsOutputConfiguration":{"shape":"ModelDiagnosticsOutputConfiguration"},
-        "ModelDiagnosticsResultsObject":{"shape":"S3Object"}
+        "ModelDiagnosticsResultsObject":{"shape":"S3Object"},
+        "ModelQuality":{"shape":"ModelQuality"}
       }
     },
     "DescribeResourcePolicyRequest":{
@@ -2200,6 +2203,14 @@
         "MANUAL"
       ]
     },
+    "ModelQuality":{
+      "type":"string",
+      "enum":[
+        "QUALITY_THRESHOLD_MET",
+        "CANNOT_DETERMINE_QUALITY",
+        "POOR_QUALITY_DETECTED"
+      ]
+    },
     "ModelStatus":{
       "type":"string",
       "enum":[
@@ -2229,7 +2240,8 @@
         "LatestScheduledRetrainingStartTime":{"shape":"Timestamp"},
         "NextScheduledRetrainingStartDate":{"shape":"Timestamp"},
         "RetrainingSchedulerStatus":{"shape":"RetrainingSchedulerStatus"},
-        "ModelDiagnosticsOutputConfiguration":{"shape":"ModelDiagnosticsOutputConfiguration"}
+        "ModelDiagnosticsOutputConfiguration":{"shape":"ModelDiagnosticsOutputConfiguration"},
+        "ModelQuality":{"shape":"ModelQuality"}
       }
     },
     "ModelVersion":{
@@ -2273,7 +2285,8 @@
         "ModelVersionArn":{"shape":"ModelVersionArn"},
         "CreatedAt":{"shape":"Timestamp"},
         "Status":{"shape":"ModelVersionStatus"},
-        "SourceType":{"shape":"ModelVersionSourceType"}
+        "SourceType":{"shape":"ModelVersionSourceType"},
+        "ModelQuality":{"shape":"ModelQuality"}
       }
     },
     "MonotonicValues":{

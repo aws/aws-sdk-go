@@ -65,7 +65,8 @@
     "UpdateInputSecurityGroup": "Update an Input Security Group's Whilelists.",
     "UpdateMultiplex": "Updates a multiplex.",
     "UpdateMultiplexProgram": "Update a program in a multiplex.",
-    "UpdateReservation": "Update reservation."
+    "UpdateReservation": "Update reservation.",
+    "RestartChannelPipelines": "Restart pipelines in one channel that is currently running."
   },
   "shapes": {
     "AacCodingMode": {
@@ -166,7 +167,7 @@
     "AccessibilityType": {
       "base": "Accessibility Type",
       "refs": {
-        "CaptionDescription$Accessibility": "Indicates whether the caption track implements accessibility features such as written descriptions of spoken dialog, music, and sounds."
+        "CaptionDescription$Accessibility": "Indicates whether the caption track implements accessibility features such as written descriptions of spoken dialog, music, and sounds. This signaling is added to HLS output group and MediaPackage output group."
       }
     },
     "AccountConfiguration": {
@@ -596,7 +597,7 @@
       }
     },
     "CdiInputResolution": {
-      "base": "Maximum CDI input resolution; SD is 480i and 576i up to 30 frames-per-second (fps), HD is 720p up to 60 fps / 1080i up to 30 fps, FHD is 1080p up to 60 fps, UHD is 2160p up to 60 fps\n",
+      "base": "Maximum CDI input resolution; SD is 480i and 576i up to 30 frames-per-second (fps), HD is 720p up to 60 fps / 1080i up to 30 fps, FHD is 1080p up to 60 fps, UHD is 2160p up to 60 fps",
       "refs": {
         "CdiInputSpecification$Resolution": "Maximum CDI input resolution"
       }
@@ -1752,7 +1753,7 @@
     "InputClass": {
       "base": "A standard input has two sources and a single pipeline input only has one.",
       "refs": {
-        "Input$InputClass": "STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.\nSINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also  SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input.\n"
+        "Input$InputClass": "STANDARD - MediaLive expects two sources to be connected to this input. If the channel is also STANDARD, both sources will be ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested; the second source will always be ignored, even if the first source fails.\nSINGLE_PIPELINE - You can connect only one source to this input. If the ChannelClass is also  SINGLE_PIPELINE, this value is valid. If the ChannelClass is STANDARD, this value is not valid because the channel requires two sources in the input."
       }
     },
     "InputClippingSettings": {
@@ -2005,7 +2006,7 @@
       }
     },
     "InputPreference": {
-      "base": "Input preference when deciding which input to make active when a previously failed input has recovered.\nIf \\\"EQUAL_INPUT_PREFERENCE\\\", then the active input will stay active as long as it is healthy.\nIf \\\"PRIMARY_INPUT_PREFERRED\\\", then always switch back to the primary input when it is healthy.\n",
+      "base": "Input preference when deciding which input to make active when a previously failed input has recovered.\nIf \\\"EQUAL_INPUT_PREFERENCE\\\", then the active input will stay active as long as it is healthy.\nIf \\\"PRIMARY_INPUT_PREFERRED\\\", then always switch back to the primary input when it is healthy.",
       "refs": {
         "AutomaticInputFailoverSettings$InputPreference": "Input preference when deciding which input to make active when a previously failed input has recovered."
       }
@@ -2017,7 +2018,7 @@
       }
     },
     "InputResolution": {
-      "base": "Input resolution based on lines of vertical resolution in the input; SD is less than 720 lines, HD is 720 to 1080 lines, UHD is greater than 1080 lines\n",
+      "base": "Input resolution based on lines of vertical resolution in the input; SD is less than 720 lines, HD is 720 to 1080 lines, UHD is greater than 1080 lines",
       "refs": {
         "InputSpecification$Resolution": "Input resolution, categorized coarsely"
       }
@@ -2066,9 +2067,9 @@
       }
     },
     "InputSourceType": {
-      "base": "There are two types of input sources, static and dynamic. If an input source is dynamic you can\nchange the source url of the input dynamically using an input switch action. Currently, two input types\nsupport a dynamic url at this time, MP4_FILE and TS_FILE. By default all input sources are static.\n",
+      "base": "There are two types of input sources, static and dynamic. If an input source is dynamic you can\nchange the source url of the input dynamically using an input switch action. Currently, two input types\nsupport a dynamic url at this time, MP4_FILE and TS_FILE. By default all input sources are static.",
       "refs": {
-        "Input$InputSourceType": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE and TS_FILE inputs.\n"
+        "Input$InputSourceType": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE and TS_FILE inputs."
       }
     },
     "InputSpecification": {
@@ -2106,7 +2107,7 @@
       }
     },
     "InputVpcRequest": {
-      "base": "Settings for a private VPC Input.\nWhen this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.\nThis property requires setting the roleArn property on Input creation.\nNot compatible with the inputSecurityGroups property.\n",
+      "base": "Settings for a private VPC Input.\nWhen this property is specified, the input destination addresses will be created in a VPC rather than with public Internet addresses.\nThis property requires setting the roleArn property on Input creation.\nNot compatible with the inputSecurityGroups property.",
       "refs": {
         "CreateInput$Vpc": null
       }
@@ -2840,7 +2841,7 @@
       }
     },
     "PreferredChannelPipeline": {
-      "base": "Indicates which pipeline is preferred by the multiplex for program ingest.\nIf set to \\\"PIPELINE_0\\\" or \\\"PIPELINE_1\\\" and an unhealthy ingest causes the multiplex to switch to the non-preferred pipeline,\nit will switch back once that ingest is healthy again. If set to \\\"CURRENTLY_ACTIVE\\\",\nit will not switch back to the other pipeline based on it recovering to a healthy state,\nit will only switch if the active pipeline becomes unhealthy.\n",
+      "base": "Indicates which pipeline is preferred by the multiplex for program ingest.\nIf set to \\\"PIPELINE_0\\\" or \\\"PIPELINE_1\\\" and an unhealthy ingest causes the multiplex to switch to the non-preferred pipeline,\nit will switch back once that ingest is healthy again. If set to \\\"CURRENTLY_ACTIVE\\\",\nit will not switch back to the other pipeline based on it recovering to a healthy state,\nit will only switch if the active pipeline becomes unhealthy.",
       "refs": {
         "MultiplexProgramSettings$PreferredChannelPipeline": "Indicates which pipeline is preferred by the multiplex for program ingest."
       }
@@ -2933,7 +2934,7 @@
       }
     },
     "ReservationResolution": {
-      "base": "Resolution based on lines of vertical resolution; SD is less than 720 lines, HD is 720 to 1080 lines, FHD is 1080 lines, UHD is greater than 1080 lines\n",
+      "base": "Resolution based on lines of vertical resolution; SD is less than 720 lines, HD is 720 to 1080 lines, FHD is 1080 lines, UHD is greater than 1080 lines",
       "refs": {
         "ReservationResourceSpecification$Resolution": "Resolution, e.g. 'HD'"
       }
@@ -3663,13 +3664,13 @@
       }
     },
     "VpcOutputSettings": {
-      "base": "The properties for a private VPC Output\nWhen this property is specified, the output egress addresses will be created in a user specified VPC\n",
+      "base": "The properties for a private VPC Output\nWhen this property is specified, the output egress addresses will be created in a user specified VPC",
       "refs": {
         "CreateChannel$Vpc": "Settings for the VPC outputs"
       }
     },
     "VpcOutputSettingsDescription": {
-      "base": "The properties for a private VPC Output\n",
+      "base": "The properties for a private VPC Output",
       "refs": {
         "Channel$Vpc": "Settings for VPC output",
         "ChannelSummary$Vpc": "Settings for any VPC outputs."
@@ -4437,8 +4438,8 @@
     "__listOfInputSourceRequest": {
       "base": null,
       "refs": {
-        "CreateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n",
-        "UpdateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.\n"
+        "CreateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty.",
+        "UpdateInput$Sources": "The source URLs for a PULL-type input. Every PULL type input needs\nexactly two source URLs for redundancy.\nOnly specify sources for PULL type Inputs. Leave Destinations empty."
       }
     },
     "__listOfInputWhitelistRule": {
@@ -4462,8 +4463,8 @@
     "__listOfMediaConnectFlowRequest": {
       "base": null,
       "refs": {
-        "CreateInput$MediaConnectFlows": "A list of the MediaConnect Flows that you want to use in this input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues.\n",
-        "UpdateInput$MediaConnectFlows": "A list of the MediaConnect Flow ARNs that you want to use as the source of the input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues.\n"
+        "CreateInput$MediaConnectFlows": "A list of the MediaConnect Flows that you want to use in this input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues.",
+        "UpdateInput$MediaConnectFlows": "A list of the MediaConnect Flow ARNs that you want to use as the source of the input. You can specify as few as one\nFlow and presently, as many as two. The only requirement is when you have more than one is that each Flow is in a\nseparate Availability Zone as this ensures your EML input is redundant to AZ issues."
       }
     },
     "__listOfMediaPackageOutputDestinationSettings": {
@@ -4511,8 +4512,8 @@
     "__listOfOutputDestination": {
       "base": null,
       "refs": {
-        "Channel$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
-        "ChannelSummary$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.\n",
+        "Channel$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.",
+        "ChannelSummary$Destinations": "A list of destinations of the channel. For UDP outputs, there is one\ndestination per output. For other types (HLS, for example), there is\none destination per packager.",
         "CreateChannel$Destinations": null,
         "UpdateChannel$Destinations": "A list of output destinations for this channel.",
         "UpdateChannelClass$Destinations": "A list of output destinations for this channel."
@@ -4634,8 +4635,8 @@
         "InputPrepareScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
         "InputSecurityGroup$Inputs": "The list of inputs currently using this Input Security Group.",
         "InputSwitchScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
-        "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.\n",
-        "InputVpcRequest$SubnetIds": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ).\n",
+        "InputVpcRequest$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Input VPC network interfaces.\nRequires subnetIds. If none are specified then the VPC default security group will be used.",
+        "InputVpcRequest$SubnetIds": "A list of 2 VPC subnet IDs from the same VPC.\nSubnet IDs must be mapped to two unique availability zones (AZ).",
         "Multiplex$AvailabilityZones": "A list of availability zones for the multiplex.",
         "MultiplexSummary$AvailabilityZones": "A list of availability zones for the multiplex.",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
@@ -4643,13 +4644,13 @@
         "StaticImageOutputActivateScheduleActionSettings$OutputNames": "The name(s) of the output(s) the activation should apply to.",
         "StaticImageOutputDeactivateScheduleActionSettings$OutputNames": "The name(s) of the output(s) the deactivation should apply to.",
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
-        "VpcOutputSettings$PublicAddressAllocationIds": "List of public address allocation ids to associate with ENIs that will be created in Output VPC.\nMust specify one for SINGLE_PIPELINE, two for STANDARD channels\n",
-        "VpcOutputSettings$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC network interfaces.\nIf none are specified then the VPC default security group will be used\n",
-        "VpcOutputSettings$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n",
-        "VpcOutputSettingsDescription$AvailabilityZones": "The Availability Zones where the vpc subnets are located.\nThe first Availability Zone applies to the first subnet in the list of subnets.\nThe second Availability Zone applies to the second subnet.\n",
-        "VpcOutputSettingsDescription$NetworkInterfaceIds": "A list of Elastic Network Interfaces created by MediaLive in the customer's VPC\n",
-        "VpcOutputSettingsDescription$SecurityGroupIds": "A list of up EC2 VPC security group IDs attached to the Output VPC network interfaces.\n",
-        "VpcOutputSettingsDescription$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n"
+        "VpcOutputSettings$PublicAddressAllocationIds": "List of public address allocation ids to associate with ENIs that will be created in Output VPC.\nMust specify one for SINGLE_PIPELINE, two for STANDARD channels",
+        "VpcOutputSettings$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC network interfaces.\nIf none are specified then the VPC default security group will be used",
+        "VpcOutputSettings$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).",
+        "VpcOutputSettingsDescription$AvailabilityZones": "The Availability Zones where the vpc subnets are located.\nThe first Availability Zone applies to the first subnet in the list of subnets.\nThe second Availability Zone applies to the second subnet.",
+        "VpcOutputSettingsDescription$NetworkInterfaceIds": "A list of Elastic Network Interfaces created by MediaLive in the customer's VPC",
+        "VpcOutputSettingsDescription$SecurityGroupIds": "A list of up EC2 VPC security group IDs attached to the Output VPC network interfaces.",
+        "VpcOutputSettingsDescription$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ)."
       }
     },
     "__longMin0Max1099511627775": {
@@ -4720,17 +4721,17 @@
         "ClaimDeviceRequest$Id": "The id of the device you want to claim.",
         "ColorCorrection$Uri": "The URI of the 3D LUT file. The protocol must be 's3:' or 's3ssl:':.",
         "CreateChannel$Name": "Name of channel.",
-        "CreateChannel$RequestId": "Unique request ID to be specified. This is needed to prevent retries from\ncreating multiple resources.\n",
+        "CreateChannel$RequestId": "Unique request ID to be specified. This is needed to prevent retries from\ncreating multiple resources.",
         "CreateChannel$Reserved": "Deprecated field that's only usable by whitelisted customers.",
         "CreateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel.",
         "CreateInput$Name": "Name of the input.",
-        "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
+        "CreateInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.",
         "CreateInput$RoleArn": "The Amazon Resource Name (ARN) of the role this input assumes during and after creation.",
         "CreateMultiplex$Name": "Name of multiplex.",
-        "CreateMultiplex$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
+        "CreateMultiplex$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.",
         "CreateMultiplexProgram$ProgramName": "Name of multiplex program.",
-        "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
-        "CreatePartnerInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
+        "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.",
+        "CreatePartnerInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
         "EpochLockingSettings$CustomEpoch": "Optional. Enter a value here to use a custom epoch, instead of the standard epoch (which started at 1970-01-01T00:00:00 UTC). Specify the start time of the custom epoch, in YYYY-MM-DDTHH:MM:SS in UTC. The time must be 2000-01-01T00:00:00 or later. Always set the MM:SS portion to 00:00.",
@@ -4760,15 +4761,12 @@
         "Input$RoleArn": "The Amazon Resource Name (ARN) of the role this input assumes during and after creation.",
         "InputAttachment$InputAttachmentName": "User-specified name for the attachment. This is required if the user wants to use this input in an input switch action.",
         "InputAttachment$InputId": "The ID of the input",
-        "InputDestination$Ip": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input.\n",
-        "InputDestination$NetworkRouteCidr": "This is the networkRouteCidr of the on-prem push input. This is required for inputs of this type so that\nthe encoder can properly route in the input.\n",
+        "InputDestination$Ip": "The system-generated static IP address of endpoint.\nIt remains fixed for the lifetime of the input.",
         "InputDestination$Port": "The port number for the input.",
-        "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.\n",
-        "InputDestinationRequest$NetworkRouteCidr": "If the push input has an input location of ON-PREM it's a requirement to specify what the route of the input\nis going to be on the customer local network.\n",
-        "InputDestinationRequest$StaticIpAddress": "If the push input has an input location of ON-PREM it's a requirement to specify what the ip address\nof the input is going to be on the customer local network.\n",
-        "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.\n",
-        "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.\n",
-        "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.\n",
+        "InputDestination$Url": "This represents the endpoint that the customer stream will be\npushed to.",
+        "InputDestinationRequest$StreamName": "A unique name for the location the RTMP stream is being pushed\nto.",
+        "InputDestinationVpc$AvailabilityZone": "The availability zone of the Input destination.",
+        "InputDestinationVpc$NetworkInterfaceId": "The network interface ID of the Input destination in the VPC.",
         "InputDevice$Arn": "The unique ARN of the input device.",
         "InputDevice$AvailabilityZone": "The Availability Zone associated with this input device.",
         "InputDevice$Id": "The unique ID of the input device.",
@@ -4815,10 +4813,10 @@
         "InputSecurityGroup$Arn": "Unique ARN of Input Security Group",
         "InputSecurityGroup$Id": "The Id of the Input Security Group",
         "InputSource$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
-        "InputSource$Url": "This represents the customer's source URL where stream is\npulled from.\n",
+        "InputSource$Url": "This represents the customer's source URL where stream is\npulled from.",
         "InputSource$Username": "The username for the input source.",
         "InputSourceRequest$PasswordParam": "The key used to extract the password from EC2 Parameter store.",
-        "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.\n",
+        "InputSourceRequest$Url": "This represents the customer's source URL where stream is\npulled from.",
         "InputSourceRequest$Username": "The username for the input source.",
         "InputSwitchScheduleActionSettings$InputAttachmentNameReference": "The name of the input attachment (not the name of the input!) to switch to. The name is specified in the channel configuration.",
         "InputWhitelistRule$Cidr": "The IPv4 CIDR that's whitelisted.",
@@ -5099,6 +5097,24 @@
       "refs": {
         "InputDeviceUhdSettings$AudioChannelPairs": "An array of eight audio configurations, one for each audio pair in the source. Each audio configuration specifies either to exclude the pair, or to format it and include it in the output from the UHD device. Applies only when the device is configured as the source for a MediaConnect flow."
       }
+    },
+    "ChannelPipelineIdToRestart": {
+      "base": "Property of RestartChannelPipelinesRequest",
+      "refs": {
+        "__listOfChannelPipelineIdToRestart$member": null
+      }
+    },
+    "RestartChannelPipelinesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "__listOfChannelPipelineIdToRestart": {
+      "base": null,
+      "refs": {
+        "RestartChannelPipelinesRequest$PipelineIds": "An array of pipelines to restart in this channel. Format PIPELINE_0 or PIPELINE_1."
+      }
     }
-  }
+  },
+  "documentation": "API for AWS Elemental MediaLive"
 }

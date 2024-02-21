@@ -2424,6 +2424,46 @@
           "shape": "ConflictException"
         }
       ]
+    },
+    "RestartChannelPipelines": {
+      "name": "RestartChannelPipelines",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/channels/{channelId}/restartChannelPipelines",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "RestartChannelPipelinesRequest"
+      },
+      "output": {
+        "shape": "RestartChannelPipelinesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -14913,22 +14953,26 @@
     },
     "InputDeviceThumbnail": {
       "type": "blob",
-      "streaming": true
+      "streaming": true,
+      "documentation": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive."
     },
     "AcceptHeader": {
       "type": "string",
       "enum": [
         "image/jpeg"
-      ]
+      ],
+      "documentation": "The HTTP Accept header. Indicates the requested type fothe thumbnail."
     },
     "ContentType": {
       "type": "string",
       "enum": [
         "image/jpeg"
-      ]
+      ],
+      "documentation": "Specifies the media type of the thumbnail."
     },
     "__timestamp": {
-      "type": "timestamp"
+      "type": "timestamp",
+      "documentation": "Placeholder documentation for __timestamp"
     },
     "InputDeviceConfigurableAudioChannelPairConfig": {
       "type": "structure",
@@ -14992,6 +15036,117 @@
       "type": "list",
       "member": {
         "shape": "InputDeviceUhdAudioChannelPairConfig"
+      }
+    },
+    "ChannelPipelineIdToRestart": {
+      "type": "string",
+      "enum": [
+        "PIPELINE_0",
+        "PIPELINE_1"
+      ]
+    },
+    "RestartChannelPipelinesRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "channelId"
+        },
+        "PipelineIds": {
+          "shape": "__listOfChannelPipelineIdToRestart",
+          "locationName": "pipelineIds"
+        }
+      },
+      "required": [
+        "ChannelId"
+      ]
+    },
+    "RestartChannelPipelinesResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
+        "ChannelClass": {
+          "shape": "ChannelClass",
+          "locationName": "channelClass"
+        },
+        "Destinations": {
+          "shape": "__listOfOutputDestination",
+          "locationName": "destinations"
+        },
+        "EgressEndpoints": {
+          "shape": "__listOfChannelEgressEndpoint",
+          "locationName": "egressEndpoints"
+        },
+        "EncoderSettings": {
+          "shape": "EncoderSettings",
+          "locationName": "encoderSettings"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "InputAttachments": {
+          "shape": "__listOfInputAttachment",
+          "locationName": "inputAttachments"
+        },
+        "InputSpecification": {
+          "shape": "InputSpecification",
+          "locationName": "inputSpecification"
+        },
+        "LogLevel": {
+          "shape": "LogLevel",
+          "locationName": "logLevel"
+        },
+        "Maintenance": {
+          "shape": "MaintenanceStatus",
+          "locationName": "maintenance"
+        },
+        "MaintenanceStatus": {
+          "shape": "__string",
+          "locationName": "maintenanceStatus"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelineDetails": {
+          "shape": "__listOfPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        },
+        "State": {
+          "shape": "ChannelState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettingsDescription",
+          "locationName": "vpc"
+        }
+      }
+    },
+    "__listOfChannelPipelineIdToRestart": {
+      "type": "list",
+      "member": {
+        "shape": "ChannelPipelineIdToRestart"
       }
     }
   }

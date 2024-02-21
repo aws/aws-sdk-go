@@ -278,6 +278,10 @@ type MediaLiveAPI interface {
 	RejectInputDeviceTransferWithContext(aws.Context, *medialive.RejectInputDeviceTransferInput, ...request.Option) (*medialive.RejectInputDeviceTransferOutput, error)
 	RejectInputDeviceTransferRequest(*medialive.RejectInputDeviceTransferInput) (*request.Request, *medialive.RejectInputDeviceTransferOutput)
 
+	RestartChannelPipelines(*medialive.RestartChannelPipelinesInput) (*medialive.RestartChannelPipelinesOutput, error)
+	RestartChannelPipelinesWithContext(aws.Context, *medialive.RestartChannelPipelinesInput, ...request.Option) (*medialive.RestartChannelPipelinesOutput, error)
+	RestartChannelPipelinesRequest(*medialive.RestartChannelPipelinesInput) (*request.Request, *medialive.RestartChannelPipelinesOutput)
+
 	StartChannel(*medialive.StartChannelInput) (*medialive.StartChannelOutput, error)
 	StartChannelWithContext(aws.Context, *medialive.StartChannelInput, ...request.Option) (*medialive.StartChannelOutput, error)
 	StartChannelRequest(*medialive.StartChannelInput) (*request.Request, *medialive.StartChannelOutput)
