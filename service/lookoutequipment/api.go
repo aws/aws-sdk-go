@@ -6046,6 +6046,22 @@ type CreateInferenceSchedulerOutput struct {
 	// The name of inference scheduler being created.
 	InferenceSchedulerName *string `min:"1" type:"string"`
 
+	// Provides a quality assessment for a model that uses labels. If Lookout for
+	// Equipment determines that the model quality is poor based on training metrics,
+	// the value is POOR_QUALITY_DETECTED. Otherwise, the value is QUALITY_THRESHOLD_MET.
+	//
+	// If the model is unlabeled, the model quality can't be assessed and the value
+	// of ModelQuality is CANNOT_DETERMINE_QUALITY. In this situation, you can get
+	// a model quality assessment by adding labels to the input dataset and retraining
+	// the model.
+	//
+	// For information about using labels with your models, see Understanding labeling
+	// (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-labeling.html).
+	//
+	// For information about improving the quality of a model, see Best practices
+	// with Amazon Lookout for Equipment (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html).
+	ModelQuality *string `type:"string" enum:"ModelQuality"`
+
 	// Indicates the status of the CreateInferenceScheduler operation.
 	Status *string `type:"string" enum:"InferenceSchedulerStatus"`
 }
@@ -6077,6 +6093,12 @@ func (s *CreateInferenceSchedulerOutput) SetInferenceSchedulerArn(v string) *Cre
 // SetInferenceSchedulerName sets the InferenceSchedulerName field's value.
 func (s *CreateInferenceSchedulerOutput) SetInferenceSchedulerName(v string) *CreateInferenceSchedulerOutput {
 	s.InferenceSchedulerName = &v
+	return s
+}
+
+// SetModelQuality sets the ModelQuality field's value.
+func (s *CreateInferenceSchedulerOutput) SetModelQuality(v string) *CreateInferenceSchedulerOutput {
+	s.ModelQuality = &v
 	return s
 }
 
@@ -8749,6 +8771,22 @@ type DescribeModelOutput struct {
 	// The name of the machine learning model being described.
 	ModelName *string `min:"1" type:"string"`
 
+	// Provides a quality assessment for a model that uses labels. If Lookout for
+	// Equipment determines that the model quality is poor based on training metrics,
+	// the value is POOR_QUALITY_DETECTED. Otherwise, the value is QUALITY_THRESHOLD_MET.
+	//
+	// If the model is unlabeled, the model quality can't be assessed and the value
+	// of ModelQuality is CANNOT_DETERMINE_QUALITY. In this situation, you can get
+	// a model quality assessment by adding labels to the input dataset and retraining
+	// the model.
+	//
+	// For information about using labels with your models, see Understanding labeling
+	// (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-labeling.html).
+	//
+	// For information about improving the quality of a model, see Best practices
+	// with Amazon Lookout for Equipment (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html).
+	ModelQuality *string `type:"string" enum:"ModelQuality"`
+
 	// The date the active model version was activated.
 	ModelVersionActivatedAt *time.Time `type:"timestamp"`
 
@@ -8977,6 +9015,12 @@ func (s *DescribeModelOutput) SetModelMetrics(v aws.JSONValue) *DescribeModelOut
 // SetModelName sets the ModelName field's value.
 func (s *DescribeModelOutput) SetModelName(v string) *DescribeModelOutput {
 	s.ModelName = &v
+	return s
+}
+
+// SetModelQuality sets the ModelQuality field's value.
+func (s *DescribeModelOutput) SetModelQuality(v string) *DescribeModelOutput {
+	s.ModelQuality = &v
 	return s
 }
 
@@ -9236,6 +9280,22 @@ type DescribeModelVersionOutput struct {
 	// The name of the machine learning model that this version belongs to.
 	ModelName *string `min:"1" type:"string"`
 
+	// Provides a quality assessment for a model that uses labels. If Lookout for
+	// Equipment determines that the model quality is poor based on training metrics,
+	// the value is POOR_QUALITY_DETECTED. Otherwise, the value is QUALITY_THRESHOLD_MET.
+	//
+	// If the model is unlabeled, the model quality can't be assessed and the value
+	// of ModelQuality is CANNOT_DETERMINE_QUALITY. In this situation, you can get
+	// a model quality assessment by adding labels to the input dataset and retraining
+	// the model.
+	//
+	// For information about using labels with your models, see Understanding labeling
+	// (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-labeling.html).
+	//
+	// For information about improving the quality of a model, see Best practices
+	// with Amazon Lookout for Equipment (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html).
+	ModelQuality *string `type:"string" enum:"ModelQuality"`
+
 	// The version of the machine learning model.
 	ModelVersion *int64 `min:"1" type:"long"`
 
@@ -9424,6 +9484,12 @@ func (s *DescribeModelVersionOutput) SetModelMetrics(v string) *DescribeModelVer
 // SetModelName sets the ModelName field's value.
 func (s *DescribeModelVersionOutput) SetModelName(v string) *DescribeModelVersionOutput {
 	s.ModelName = &v
+	return s
+}
+
+// SetModelQuality sets the ModelQuality field's value.
+func (s *DescribeModelVersionOutput) SetModelQuality(v string) *DescribeModelVersionOutput {
+	s.ModelQuality = &v
 	return s
 }
 
@@ -13361,6 +13427,22 @@ type ModelSummary struct {
 	// The name of the machine learning model.
 	ModelName *string `min:"1" type:"string"`
 
+	// Provides a quality assessment for a model that uses labels. If Lookout for
+	// Equipment determines that the model quality is poor based on training metrics,
+	// the value is POOR_QUALITY_DETECTED. Otherwise, the value is QUALITY_THRESHOLD_MET.
+	//
+	// If the model is unlabeled, the model quality can't be assessed and the value
+	// of ModelQuality is CANNOT_DETERMINE_QUALITY. In this situation, you can get
+	// a model quality assessment by adding labels to the input dataset and retraining
+	// the model.
+	//
+	// For information about using labels with your models, see Understanding labeling
+	// (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/understanding-labeling.html).
+	//
+	// For information about improving the quality of a model, see Best practices
+	// with Amazon Lookout for Equipment (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html).
+	ModelQuality *string `type:"string" enum:"ModelQuality"`
+
 	// Indicates the date that the next scheduled retraining run will start on.
 	// Lookout for Equipment truncates the time you provide to the nearest UTC day
 	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-types.html#parameter-type-timestamp).
@@ -13457,6 +13539,12 @@ func (s *ModelSummary) SetModelName(v string) *ModelSummary {
 	return s
 }
 
+// SetModelQuality sets the ModelQuality field's value.
+func (s *ModelSummary) SetModelQuality(v string) *ModelSummary {
+	s.ModelQuality = &v
+	return s
+}
+
 // SetNextScheduledRetrainingStartDate sets the NextScheduledRetrainingStartDate field's value.
 func (s *ModelSummary) SetNextScheduledRetrainingStartDate(v time.Time) *ModelSummary {
 	s.NextScheduledRetrainingStartDate = &v
@@ -13488,6 +13576,19 @@ type ModelVersionSummary struct {
 
 	// The name of the model that this model version is a version of.
 	ModelName *string `min:"1" type:"string"`
+
+	// Provides a quality assessment for a model that uses labels. If Lookout for
+	// Equipment determines that the model quality is poor based on training metrics,
+	// the value is POOR_QUALITY_DETECTED. Otherwise, the value is QUALITY_THRESHOLD_MET.
+	//
+	// If the model is unlabeled, the model quality can't be assessed and the value
+	// of ModelQuality is CANNOT_DETERMINE_QUALITY. In this situation, you can get
+	// a model quality assessment by adding labels to the input dataset and retraining
+	// the model.
+	//
+	// For information about improving the quality of a model, see Best practices
+	// with Amazon Lookout for Equipment (https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/best-practices.html).
+	ModelQuality *string `type:"string" enum:"ModelQuality"`
 
 	// The version of the model.
 	ModelVersion *int64 `min:"1" type:"long"`
@@ -13535,6 +13636,12 @@ func (s *ModelVersionSummary) SetModelArn(v string) *ModelVersionSummary {
 // SetModelName sets the ModelName field's value.
 func (s *ModelVersionSummary) SetModelName(v string) *ModelVersionSummary {
 	s.ModelName = &v
+	return s
+}
+
+// SetModelQuality sets the ModelQuality field's value.
+func (s *ModelVersionSummary) SetModelQuality(v string) *ModelVersionSummary {
+	s.ModelQuality = &v
 	return s
 }
 
@@ -16026,6 +16133,26 @@ func ModelPromoteMode_Values() []string {
 	return []string{
 		ModelPromoteModeManaged,
 		ModelPromoteModeManual,
+	}
+}
+
+const (
+	// ModelQualityQualityThresholdMet is a ModelQuality enum value
+	ModelQualityQualityThresholdMet = "QUALITY_THRESHOLD_MET"
+
+	// ModelQualityCannotDetermineQuality is a ModelQuality enum value
+	ModelQualityCannotDetermineQuality = "CANNOT_DETERMINE_QUALITY"
+
+	// ModelQualityPoorQualityDetected is a ModelQuality enum value
+	ModelQualityPoorQualityDetected = "POOR_QUALITY_DETECTED"
+)
+
+// ModelQuality_Values returns all elements of the ModelQuality enum
+func ModelQuality_Values() []string {
+	return []string{
+		ModelQualityQualityThresholdMet,
+		ModelQualityCannotDetermineQuality,
+		ModelQualityPoorQualityDetected,
 	}
 }
 

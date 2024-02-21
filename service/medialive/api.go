@@ -4834,6 +4834,98 @@ func (c *MediaLive) RejectInputDeviceTransferWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opRestartChannelPipelines = "RestartChannelPipelines"
+
+// RestartChannelPipelinesRequest generates a "aws/request.Request" representing the
+// client's request for the RestartChannelPipelines operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RestartChannelPipelines for more information on using the RestartChannelPipelines
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RestartChannelPipelinesRequest method.
+//	req, resp := client.RestartChannelPipelinesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RestartChannelPipelines
+func (c *MediaLive) RestartChannelPipelinesRequest(input *RestartChannelPipelinesInput) (req *request.Request, output *RestartChannelPipelinesOutput) {
+	op := &request.Operation{
+		Name:       opRestartChannelPipelines,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/channels/{channelId}/restartChannelPipelines",
+	}
+
+	if input == nil {
+		input = &RestartChannelPipelinesInput{}
+	}
+
+	output = &RestartChannelPipelinesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RestartChannelPipelines API operation for AWS Elemental MediaLive.
+//
+// Restart pipelines in one channel that is currently running.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation RestartChannelPipelines for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - BadGatewayException
+//
+//   - NotFoundException
+//
+//   - GatewayTimeoutException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RestartChannelPipelines
+func (c *MediaLive) RestartChannelPipelines(input *RestartChannelPipelinesInput) (*RestartChannelPipelinesOutput, error) {
+	req, out := c.RestartChannelPipelinesRequest(input)
+	return out, req.Send()
+}
+
+// RestartChannelPipelinesWithContext is the same as RestartChannelPipelines with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RestartChannelPipelines for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) RestartChannelPipelinesWithContext(ctx aws.Context, input *RestartChannelPipelinesInput, opts ...request.Option) (*RestartChannelPipelinesOutput, error) {
+	req, out := c.RestartChannelPipelinesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartChannel = "StartChannel"
 
 // StartChannelRequest generates a "aws/request.Request" representing the
@@ -9672,7 +9764,8 @@ type CaptionDescription struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether the caption track implements accessibility features such
-	// as written descriptions of spoken dialog, music, and sounds.
+	// as written descriptions of spoken dialog, music, and sounds. This signaling
+	// is added to HLS output group and MediaPackage output group.
 	Accessibility *string `locationName:"accessibility" type:"string" enum:"AccessibilityType"`
 
 	// Specifies which input caption selector to use as a caption source when generating
@@ -28129,6 +28222,241 @@ func (s *ReservationResourceSpecification) SetVideoQuality(v string) *Reservatio
 	return s
 }
 
+type RestartChannelPipelinesInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelId is a required field
+	ChannelId *string `location:"uri" locationName:"channelId" type:"string" required:"true"`
+
+	// An array of pipelines to restart in this channel. Format PIPELINE_0 or PIPELINE_1.
+	PipelineIds []*string `locationName:"pipelineIds" type:"list" enum:"ChannelPipelineIdToRestart"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartChannelPipelinesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartChannelPipelinesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestartChannelPipelinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestartChannelPipelinesInput"}
+	if s.ChannelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelId"))
+	}
+	if s.ChannelId != nil && len(*s.ChannelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *RestartChannelPipelinesInput) SetChannelId(v string) *RestartChannelPipelinesInput {
+	s.ChannelId = &v
+	return s
+}
+
+// SetPipelineIds sets the PipelineIds field's value.
+func (s *RestartChannelPipelinesInput) SetPipelineIds(v []*string) *RestartChannelPipelinesInput {
+	s.PipelineIds = v
+	return s
+}
+
+type RestartChannelPipelinesOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
+	// A standard channel has two encoding pipelines and a single pipeline channel
+	// only has one.
+	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
+
+	Destinations []*OutputDestination `locationName:"destinations" type:"list"`
+
+	EgressEndpoints []*ChannelEgressEndpoint `locationName:"egressEndpoints" type:"list"`
+
+	// Encoder Settings
+	EncoderSettings *EncoderSettings `locationName:"encoderSettings" type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	InputAttachments []*InputAttachment `locationName:"inputAttachments" type:"list"`
+
+	InputSpecification *InputSpecification `locationName:"inputSpecification" type:"structure"`
+
+	// The log level the user wants for their channel.
+	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
+
+	Maintenance *MaintenanceStatus `locationName:"maintenance" type:"structure"`
+
+	MaintenanceStatus *string `locationName:"maintenanceStatus" type:"string"`
+
+	Name *string `locationName:"name" type:"string"`
+
+	PipelineDetails []*PipelineDetail `locationName:"pipelineDetails" type:"list"`
+
+	PipelinesRunningCount *int64 `locationName:"pipelinesRunningCount" type:"integer"`
+
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	State *string `locationName:"state" type:"string" enum:"ChannelState"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC Output
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartChannelPipelinesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartChannelPipelinesOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RestartChannelPipelinesOutput) SetArn(v string) *RestartChannelPipelinesOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *RestartChannelPipelinesOutput) SetCdiInputSpecification(v *CdiInputSpecification) *RestartChannelPipelinesOutput {
+	s.CdiInputSpecification = v
+	return s
+}
+
+// SetChannelClass sets the ChannelClass field's value.
+func (s *RestartChannelPipelinesOutput) SetChannelClass(v string) *RestartChannelPipelinesOutput {
+	s.ChannelClass = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *RestartChannelPipelinesOutput) SetDestinations(v []*OutputDestination) *RestartChannelPipelinesOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetEgressEndpoints sets the EgressEndpoints field's value.
+func (s *RestartChannelPipelinesOutput) SetEgressEndpoints(v []*ChannelEgressEndpoint) *RestartChannelPipelinesOutput {
+	s.EgressEndpoints = v
+	return s
+}
+
+// SetEncoderSettings sets the EncoderSettings field's value.
+func (s *RestartChannelPipelinesOutput) SetEncoderSettings(v *EncoderSettings) *RestartChannelPipelinesOutput {
+	s.EncoderSettings = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RestartChannelPipelinesOutput) SetId(v string) *RestartChannelPipelinesOutput {
+	s.Id = &v
+	return s
+}
+
+// SetInputAttachments sets the InputAttachments field's value.
+func (s *RestartChannelPipelinesOutput) SetInputAttachments(v []*InputAttachment) *RestartChannelPipelinesOutput {
+	s.InputAttachments = v
+	return s
+}
+
+// SetInputSpecification sets the InputSpecification field's value.
+func (s *RestartChannelPipelinesOutput) SetInputSpecification(v *InputSpecification) *RestartChannelPipelinesOutput {
+	s.InputSpecification = v
+	return s
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *RestartChannelPipelinesOutput) SetLogLevel(v string) *RestartChannelPipelinesOutput {
+	s.LogLevel = &v
+	return s
+}
+
+// SetMaintenance sets the Maintenance field's value.
+func (s *RestartChannelPipelinesOutput) SetMaintenance(v *MaintenanceStatus) *RestartChannelPipelinesOutput {
+	s.Maintenance = v
+	return s
+}
+
+// SetMaintenanceStatus sets the MaintenanceStatus field's value.
+func (s *RestartChannelPipelinesOutput) SetMaintenanceStatus(v string) *RestartChannelPipelinesOutput {
+	s.MaintenanceStatus = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RestartChannelPipelinesOutput) SetName(v string) *RestartChannelPipelinesOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPipelineDetails sets the PipelineDetails field's value.
+func (s *RestartChannelPipelinesOutput) SetPipelineDetails(v []*PipelineDetail) *RestartChannelPipelinesOutput {
+	s.PipelineDetails = v
+	return s
+}
+
+// SetPipelinesRunningCount sets the PipelinesRunningCount field's value.
+func (s *RestartChannelPipelinesOutput) SetPipelinesRunningCount(v int64) *RestartChannelPipelinesOutput {
+	s.PipelinesRunningCount = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *RestartChannelPipelinesOutput) SetRoleArn(v string) *RestartChannelPipelinesOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RestartChannelPipelinesOutput) SetState(v string) *RestartChannelPipelinesOutput {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestartChannelPipelinesOutput) SetTags(v map[string]*string) *RestartChannelPipelinesOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *RestartChannelPipelinesOutput) SetVpc(v *VpcOutputSettingsDescription) *RestartChannelPipelinesOutput {
+	s.Vpc = v
+	return s
+}
+
 // Rtmp Caption Info Destination Settings
 type RtmpCaptionInfoDestinationSettings struct {
 	_ struct{} `type:"structure"`
@@ -34723,6 +35051,23 @@ func ChannelClass_Values() []string {
 	return []string{
 		ChannelClassStandard,
 		ChannelClassSinglePipeline,
+	}
+}
+
+// Property of RestartChannelPipelinesRequest
+const (
+	// ChannelPipelineIdToRestartPipeline0 is a ChannelPipelineIdToRestart enum value
+	ChannelPipelineIdToRestartPipeline0 = "PIPELINE_0"
+
+	// ChannelPipelineIdToRestartPipeline1 is a ChannelPipelineIdToRestart enum value
+	ChannelPipelineIdToRestartPipeline1 = "PIPELINE_1"
+)
+
+// ChannelPipelineIdToRestart_Values returns all elements of the ChannelPipelineIdToRestart enum
+func ChannelPipelineIdToRestart_Values() []string {
+	return []string{
+		ChannelPipelineIdToRestartPipeline0,
+		ChannelPipelineIdToRestartPipeline1,
 	}
 }
 

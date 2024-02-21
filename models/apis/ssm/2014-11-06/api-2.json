@@ -390,7 +390,10 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"ResourcePolicyInvalidParameterException"},
-        {"shape":"ResourcePolicyConflictException"}
+        {"shape":"ResourcePolicyConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MalformedResourcePolicyDocumentException"},
+        {"shape":"ResourcePolicyNotFoundException"}
       ]
     },
     "DeregisterManagedInstance":{
@@ -1235,7 +1238,8 @@
       "output":{"shape":"GetResourcePoliciesResponse"},
       "errors":[
         {"shape":"InternalServerError"},
-        {"shape":"ResourcePolicyInvalidParameterException"}
+        {"shape":"ResourcePolicyInvalidParameterException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetServiceSetting":{
@@ -1593,7 +1597,10 @@
         {"shape":"InternalServerError"},
         {"shape":"ResourcePolicyInvalidParameterException"},
         {"shape":"ResourcePolicyLimitExceededException"},
-        {"shape":"ResourcePolicyConflictException"}
+        {"shape":"ResourcePolicyConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MalformedResourcePolicyDocumentException"},
+        {"shape":"ResourcePolicyNotFoundException"}
       ]
     },
     "RegisterDefaultPatchBaseline":{
@@ -4479,7 +4486,11 @@
           "shape":"MaxResults",
           "box":true
         },
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "Shared":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "DescribeParametersResult":{
@@ -7430,6 +7441,13 @@
       "type":"list",
       "member":{"shape":"MaintenanceWindowIdentityForTarget"}
     },
+    "MalformedResourcePolicyDocumentException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ManagedInstanceId":{
       "type":"string",
       "max":124,
@@ -8401,6 +8419,7 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"PSParameterName"},
+        "ARN":{"shape":"String"},
         "Type":{"shape":"ParameterType"},
         "KeyId":{"shape":"ParameterKeyId"},
         "LastModifiedDate":{"shape":"DateTime"},
@@ -9001,7 +9020,7 @@
     },
     "Policy":{
       "type":"string",
-      "pattern":"\\S+"
+      "pattern":"^(?!\\s*$).+"
     },
     "PolicyHash":{"type":"string"},
     "PolicyId":{"type":"string"},
@@ -9560,6 +9579,13 @@
       },
       "exception":true
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ResourcePolicyConflictException":{
       "type":"structure",
       "members":{
@@ -9588,6 +9614,13 @@
       "type":"integer",
       "max":50,
       "min":1
+    },
+    "ResourcePolicyNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
     },
     "ResourcePolicyParameterNamesList":{
       "type":"list",
