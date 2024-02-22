@@ -595,7 +595,8 @@
         "ServiceLocation":{"shape":"String"},
         "Status":{"shape":"HealthEventStatus"},
         "CausedBy":{"shape":"NetworkImpairment"},
-        "InternetHealth":{"shape":"InternetHealth"}
+        "InternetHealth":{"shape":"InternetHealth"},
+        "Ipv4Prefixes":{"shape":"Ipv4PrefixList"}
       }
     },
     "ImpactedLocationsList":{
@@ -634,6 +635,10 @@
       "members":{
         "S3Config":{"shape":"S3Config"}
       }
+    },
+    "Ipv4PrefixList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "LimitExceededException":{
       "type":"structure",

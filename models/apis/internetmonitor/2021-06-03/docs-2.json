@@ -224,6 +224,12 @@
         "UpdateMonitorInput$InternetMeasurementsLogDelivery": "<p>Publish internet measurements for Internet Monitor to another location, such as an Amazon S3 bucket. The measurements are also published to Amazon CloudWatch Logs.</p>"
       }
     },
+    "Ipv4PrefixList": {
+      "base": null,
+      "refs": {
+        "ImpactedLocation$Ipv4Prefixes": "<p>The IPv4 prefixes at the client location that was impacted by the health event.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The request exceeded a service quota.</p>",
       "refs": {
@@ -379,7 +385,7 @@
         "HealthEventsConfig$AvailabilityScoreThreshold": "<p>The health event threshold percentage set for availability scores.</p>",
         "HealthEventsConfig$PerformanceScoreThreshold": "<p>The health event threshold percentage set for performance scores.</p>",
         "LocalHealthEventsConfig$HealthScoreThreshold": "<p>The health event threshold percentage set for a local health score.</p>",
-        "LocalHealthEventsConfig$MinTrafficImpact": "<p>The minimum percentage of overall traffic for an application that must be impacted by an issue before Internet Monitor creates an event when a threshold is crossed for a local health score.</p> <p>If you don't set a minimum traffic impact threshold, the default value is 0.01%.</p>"
+        "LocalHealthEventsConfig$MinTrafficImpact": "<p>The minimum percentage of overall traffic for an application that must be impacted by an issue before Internet Monitor creates an event when a threshold is crossed for a local health score.</p> <p>If you don't set a minimum traffic impact threshold, the default value is 0.1%.</p>"
       }
     },
     "PerformanceMeasurement": {
@@ -427,7 +433,7 @@
     "QueryType": {
       "base": null,
       "refs": {
-        "StartQueryInput$QueryType": "<p>The type of query to run. The following are the three types of queries that you can run using the Internet Monitor query interface:</p> <ul> <li> <p> <code>MEASUREMENTS</code>: TBD definition</p> </li> <li> <p> <code>TOP_LOCATIONS</code>: TBD definition</p> </li> <li> <p> <code>TOP_LOCATION_DETAILS</code>: TBD definition</p> </li> </ul> <p>For lists of the fields returned with each query type and more information about how each type of query is performed, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html\"> Using the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>"
+        "StartQueryInput$QueryType": "<p>The type of query to run. The following are the three types of queries that you can run using the Internet Monitor query interface:</p> <ul> <li> <p> <code>MEASUREMENTS</code>: Provides availability score, performance score, total traffic, and round-trip times, at 5 minute intervals.</p> </li> <li> <p> <code>TOP_LOCATIONS</code>: Provides availability score, performance score, total traffic, and time to first byte (TTFB) information, for the top location and ASN combinations that you're monitoring, by traffic volume.</p> </li> <li> <p> <code>TOP_LOCATION_DETAILS</code>: Provides TTFB for Amazon CloudFront, your current configuration, and the best performing EC2 configuration, at 1 hour intervals.</p> </li> </ul> <p>For lists of the fields returned with each query type and more information about how each type of query is performed, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html\"> Using the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>"
       }
     },
     "ResourceName": {
@@ -523,6 +529,7 @@
         "ImpactedLocation$ServiceLocation": "<p>The service location where the health event is located.</p>",
         "InternalServerErrorException$message": null,
         "InternalServerException$message": null,
+        "Ipv4PrefixList$member": null,
         "LimitExceededException$message": null,
         "ListHealthEventsInput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListHealthEventsOutput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
