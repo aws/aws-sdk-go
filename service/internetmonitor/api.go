@@ -3111,6 +3111,10 @@ type ImpactedLocation struct {
 	// The calculated health at a specific location.
 	InternetHealth *InternetHealth `type:"structure"`
 
+	// The IPv4 prefixes at the client location that was impacted by the health
+	// event.
+	Ipv4Prefixes []*string `type:"list"`
+
 	// The latitude where the health event is located.
 	Latitude *float64 `type:"double"`
 
@@ -3201,6 +3205,12 @@ func (s *ImpactedLocation) SetCountryCode(v string) *ImpactedLocation {
 // SetInternetHealth sets the InternetHealth field's value.
 func (s *ImpactedLocation) SetInternetHealth(v *InternetHealth) *ImpactedLocation {
 	s.InternetHealth = v
+	return s
+}
+
+// SetIpv4Prefixes sets the Ipv4Prefixes field's value.
+func (s *ImpactedLocation) SetIpv4Prefixes(v []*string) *ImpactedLocation {
+	s.Ipv4Prefixes = v
 	return s
 }
 
@@ -3914,7 +3924,7 @@ type LocalHealthEventsConfig struct {
 	// is crossed for a local health score.
 	//
 	// If you don't set a minimum traffic impact threshold, the default value is
-	// 0.01%.
+	// 0.1%.
 	MinTrafficImpact *float64 `type:"double"`
 
 	// The status of whether Internet Monitor creates a health event based on a
@@ -4564,11 +4574,15 @@ type StartQueryInput struct {
 	// The type of query to run. The following are the three types of queries that
 	// you can run using the Internet Monitor query interface:
 	//
-	//    * MEASUREMENTS: TBD definition
+	//    * MEASUREMENTS: Provides availability score, performance score, total
+	//    traffic, and round-trip times, at 5 minute intervals.
 	//
-	//    * TOP_LOCATIONS: TBD definition
+	//    * TOP_LOCATIONS: Provides availability score, performance score, total
+	//    traffic, and time to first byte (TTFB) information, for the top location
+	//    and ASN combinations that you're monitoring, by traffic volume.
 	//
-	//    * TOP_LOCATION_DETAILS: TBD definition
+	//    * TOP_LOCATION_DETAILS: Provides TTFB for Amazon CloudFront, your current
+	//    configuration, and the best performing EC2 configuration, at 1 hour intervals.
 	//
 	// For lists of the fields returned with each query type and more information
 	// about how each type of query is performed, see Using the Amazon CloudWatch

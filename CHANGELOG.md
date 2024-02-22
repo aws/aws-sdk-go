@@ -1,3 +1,11 @@
+Release v1.50.24 (2024-02-22)
+===
+
+### Service Client Updates
+* `service/internetmonitor`: Updates service API and documentation
+* `service/kinesisvideo`: Updates service API
+  * Increasing NextToken parameter length restriction for List APIs from 512 to 1024.
+
 Release v1.50.23 (2024-02-21)
 ===
 
