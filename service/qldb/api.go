@@ -2666,7 +2666,8 @@ type DescribeLedgerOutput struct {
 
 	// Information about the encryption of data at rest in the ledger. This includes
 	// the current status, the KMS key, and when the key became inaccessible (in
-	// the case of an error).
+	// the case of an error). If this parameter is undefined, the ledger uses an
+	// Amazon Web Services owned KMS key for encryption.
 	EncryptionDescription *LedgerEncryptionDescription `type:"structure"`
 
 	// The name of the ledger.
@@ -3799,7 +3800,9 @@ type LedgerEncryptionDescription struct {
 
 	// The Amazon Resource Name (ARN) of the customer managed KMS key that the ledger
 	// uses for encryption at rest. If this parameter is undefined, the ledger uses
-	// an Amazon Web Services owned KMS key for encryption.
+	// an Amazon Web Services owned KMS key for encryption. It will display AWS_OWNED_KMS_KEY
+	// when updating the ledger's encryption configuration to the Amazon Web Services
+	// owned KMS key.
 	//
 	// KmsKeyArn is a required field
 	KmsKeyArn *string `min:"20" type:"string" required:"true"`

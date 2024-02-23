@@ -1,3 +1,13 @@
+Release v1.50.25 (2024-02-23)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service documentation
+* `service/qldb`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Add pattern and length based validations for DBShardGroupIdentifier
+* `service/rum`: Updates service documentation
+
 Release v1.50.24 (2024-02-22)
 ===
 

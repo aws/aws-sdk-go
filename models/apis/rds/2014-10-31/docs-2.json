@@ -1821,6 +1821,16 @@
       "refs": {
       }
     },
+    "DBShardGroupIdentifier": {
+      "base": null,
+      "refs": {
+        "DBShardGroup$DBShardGroupIdentifier": "<p>The name of the DB shard group.</p>",
+        "DeleteDBShardGroupMessage$DBShardGroupIdentifier": "<p>Teh name of the DB shard group to delete.</p>",
+        "DescribeDBShardGroupsMessage$DBShardGroupIdentifier": "<p>The user-supplied DB shard group identifier or the Amazon Resource Name (ARN) of the DB shard group. If this parameter is specified, information for only the specific DB shard group is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing DB shard group identifier.</p> </li> </ul>",
+        "ModifyDBShardGroupMessage$DBShardGroupIdentifier": "<p>The name of the DB shard group to modify.</p>",
+        "RebootDBShardGroupMessage$DBShardGroupIdentifier": "<p>The name of the DB shard group to reboot.</p>"
+      }
+    },
     "DBShardGroupNotFoundFault": {
       "base": "<p>The specified DB shard group name wasn't found.</p>",
       "refs": {
@@ -4983,7 +4993,6 @@
         "DBSecurityGroupMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DBSecurityGroupNameList$member": null,
         "DBShardGroup$DBShardGroupResourceId": "<p>The Amazon Web Services Region-unique, immutable identifier for the DB shard group.</p>",
-        "DBShardGroup$DBShardGroupIdentifier": "<p>The name of the DB shard group.</p>",
         "DBShardGroup$DBClusterIdentifier": "<p>The name of the primary DB cluster for the DB shard group.</p>",
         "DBShardGroup$Status": "<p>The status of the DB shard group.</p>",
         "DBShardGroup$Endpoint": "<p>The connection endpoint for the DB shard group.</p>",
@@ -5042,7 +5051,6 @@
         "DeleteDBParameterGroupMessage$DBParameterGroupName": "<p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be the name of an existing DB parameter group</p> </li> <li> <p>You can't delete a default DB parameter group</p> </li> <li> <p>Can't be associated with any DB instances</p> </li> </ul>",
         "DeleteDBProxyRequest$DBProxyName": "<p>The name of the DB proxy to delete.</p>",
         "DeleteDBSecurityGroupMessage$DBSecurityGroupName": "<p>The name of the DB security group to delete.</p> <note> <p>You can't delete the default DB security group.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> <li> <p>Must not be \"Default\"</p> </li> </ul>",
-        "DeleteDBShardGroupMessage$DBShardGroupIdentifier": "<p>Teh name of the DB shard group to delete.</p>",
         "DeleteDBSnapshotMessage$DBSnapshotIdentifier": "<p>The DB snapshot identifier.</p> <p>Constraints: Must be the name of an existing DB snapshot in the <code>available</code> state.</p>",
         "DeleteDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name of the database subnet group to delete.</p> <note> <p>You can't delete the default subnet group.</p> </note> <p>Constraints: Must match the name of an existing DBSubnetGroup. Must not be default.</p> <p>Example: <code>mydbsubnetgroup</code> </p>",
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the RDS event notification subscription you want to delete.</p>",
@@ -5116,7 +5124,6 @@
         "DescribeDBRecommendationsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBRecommendations</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeDBSecurityGroupsMessage$DBSecurityGroupName": "<p>The name of the DB security group to return details for.</p>",
         "DescribeDBSecurityGroupsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBSecurityGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
-        "DescribeDBShardGroupsMessage$DBShardGroupIdentifier": "<p>The user-supplied DB shard group identifier or the Amazon Resource Name (ARN) of the DB shard group. If this parameter is specified, information for only the specific DB shard group is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing DB shard group identifier.</p> </li> </ul>",
         "DescribeDBShardGroupsMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeDBShardGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBShardGroupsResponse$Marker": "<p>A pagination token that can be used in a later <code>DescribeDBClusters</code> request.</p>",
         "DescribeDBSnapshotAttributesMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to describe the attributes for.</p>",
@@ -5329,7 +5336,6 @@
         "ModifyDBRecommendationMessage$RecommendationId": "<p>The identifier of the recommendation to update.</p>",
         "ModifyDBRecommendationMessage$Locale": "<p>The language of the modified recommendation.</p>",
         "ModifyDBRecommendationMessage$Status": "<p>The recommendation status to update.</p> <p>Valid values:</p> <ul> <li> <p>active</p> </li> <li> <p>dismissed</p> </li> </ul>",
-        "ModifyDBShardGroupMessage$DBShardGroupIdentifier": "<p>The name of the DB shard group to modify.</p>",
         "ModifyDBSnapshotAttributeMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to modify the attributes for.</p>",
         "ModifyDBSnapshotAttributeMessage$AttributeName": "<p>The name of the DB snapshot attribute to modify.</p> <p>To manage authorization for other Amazon Web Services accounts to copy or restore a manual DB snapshot, set this value to <code>restore</code>.</p> <note> <p>To view the list of attributes available to modify, use the <a>DescribeDBSnapshotAttributes</a> API operation.</p> </note>",
         "ModifyDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier of the DB snapshot to modify.</p>",
@@ -5432,7 +5438,6 @@
         "ReadersArnList$member": null,
         "RebootDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
-        "RebootDBShardGroupMessage$DBShardGroupIdentifier": "<p>The name of the DB shard group to reboot.</p>",
         "RecommendedAction$ActionId": "<p>The unique identifier of the recommended action.</p>",
         "RecommendedAction$Title": "<p>A short description to summarize the action. The description might contain markdown.</p>",
         "RecommendedAction$Description": "<p>A detailed description of the action. The description might contain markdown.</p>",
