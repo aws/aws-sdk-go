@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateConnector = "CreateConnector"
@@ -534,6 +535,109 @@ func (c *KafkaConnect) DeleteCustomPlugin(input *DeleteCustomPluginInput) (*Dele
 // for more information on using Contexts.
 func (c *KafkaConnect) DeleteCustomPluginWithContext(ctx aws.Context, input *DeleteCustomPluginInput, opts ...request.Option) (*DeleteCustomPluginOutput, error) {
 	req, out := c.DeleteCustomPluginRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWorkerConfiguration = "DeleteWorkerConfiguration"
+
+// DeleteWorkerConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkerConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkerConfiguration for more information on using the DeleteWorkerConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteWorkerConfigurationRequest method.
+//	req, resp := client.DeleteWorkerConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/DeleteWorkerConfiguration
+func (c *KafkaConnect) DeleteWorkerConfigurationRequest(input *DeleteWorkerConfigurationInput) (req *request.Request, output *DeleteWorkerConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkerConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/worker-configurations/{workerConfigurationArn}",
+	}
+
+	if input == nil {
+		input = &DeleteWorkerConfigurationInput{}
+	}
+
+	output = &DeleteWorkerConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteWorkerConfiguration API operation for Managed Streaming for Kafka Connect.
+//
+// Deletes the specified worker configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka Connect's
+// API operation DeleteWorkerConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     HTTP Status Code 404: Resource not found due to incorrect input. Correct
+//     your request and then retry it.
+//
+//   - BadRequestException
+//     HTTP Status Code 400: Bad request due to incorrect input. Correct your request
+//     and then retry it.
+//
+//   - ForbiddenException
+//     HTTP Status Code 403: Access forbidden. Correct your credentials and then
+//     retry your request.
+//
+//   - ServiceUnavailableException
+//     HTTP Status Code 503: Service Unavailable. Retrying your request in some
+//     time might resolve the issue.
+//
+//   - TooManyRequestsException
+//     HTTP Status Code 429: Limit exceeded. Resource limit reached.
+//
+//   - UnauthorizedException
+//     HTTP Status Code 401: Unauthorized request. The provided credentials couldn't
+//     be validated.
+//
+//   - InternalServerErrorException
+//     HTTP Status Code 500: Unexpected internal server error. Retrying your request
+//     might resolve the issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/DeleteWorkerConfiguration
+func (c *KafkaConnect) DeleteWorkerConfiguration(input *DeleteWorkerConfigurationInput) (*DeleteWorkerConfigurationOutput, error) {
+	req, out := c.DeleteWorkerConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkerConfigurationWithContext is the same as DeleteWorkerConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkerConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KafkaConnect) DeleteWorkerConfigurationWithContext(ctx aws.Context, input *DeleteWorkerConfigurationInput, opts ...request.Option) (*DeleteWorkerConfigurationOutput, error) {
+	req, out := c.DeleteWorkerConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1170,6 +1274,109 @@ func (c *KafkaConnect) ListCustomPluginsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/ListTagsForResource
+func (c *KafkaConnect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Managed Streaming for Kafka Connect.
+//
+// Lists all the tags attached to the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka Connect's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     HTTP Status Code 404: Resource not found due to incorrect input. Correct
+//     your request and then retry it.
+//
+//   - BadRequestException
+//     HTTP Status Code 400: Bad request due to incorrect input. Correct your request
+//     and then retry it.
+//
+//   - ForbiddenException
+//     HTTP Status Code 403: Access forbidden. Correct your credentials and then
+//     retry your request.
+//
+//   - ServiceUnavailableException
+//     HTTP Status Code 503: Service Unavailable. Retrying your request in some
+//     time might resolve the issue.
+//
+//   - TooManyRequestsException
+//     HTTP Status Code 429: Limit exceeded. Resource limit reached.
+//
+//   - UnauthorizedException
+//     HTTP Status Code 401: Unauthorized request. The provided credentials couldn't
+//     be validated.
+//
+//   - InternalServerErrorException
+//     HTTP Status Code 500: Unexpected internal server error. Retrying your request
+//     might resolve the issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/ListTagsForResource
+func (c *KafkaConnect) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KafkaConnect) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListWorkerConfigurations = "ListWorkerConfigurations"
 
 // ListWorkerConfigurationsRequest generates a "aws/request.Request" representing the
@@ -1328,6 +1535,218 @@ func (c *KafkaConnect) ListWorkerConfigurationsPagesWithContext(ctx aws.Context,
 	}
 
 	return p.Err()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/TagResource
+func (c *KafkaConnect) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Managed Streaming for Kafka Connect.
+//
+// Attaches tags to the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka Connect's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     HTTP Status Code 404: Resource not found due to incorrect input. Correct
+//     your request and then retry it.
+//
+//   - ConflictException
+//     HTTP Status Code 409: Conflict. A resource with this name already exists.
+//     Retry your request with another name.
+//
+//   - BadRequestException
+//     HTTP Status Code 400: Bad request due to incorrect input. Correct your request
+//     and then retry it.
+//
+//   - ForbiddenException
+//     HTTP Status Code 403: Access forbidden. Correct your credentials and then
+//     retry your request.
+//
+//   - ServiceUnavailableException
+//     HTTP Status Code 503: Service Unavailable. Retrying your request in some
+//     time might resolve the issue.
+//
+//   - TooManyRequestsException
+//     HTTP Status Code 429: Limit exceeded. Resource limit reached.
+//
+//   - UnauthorizedException
+//     HTTP Status Code 401: Unauthorized request. The provided credentials couldn't
+//     be validated.
+//
+//   - InternalServerErrorException
+//     HTTP Status Code 500: Unexpected internal server error. Retrying your request
+//     might resolve the issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/TagResource
+func (c *KafkaConnect) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KafkaConnect) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/UntagResource
+func (c *KafkaConnect) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Managed Streaming for Kafka Connect.
+//
+// Removes tags from the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka Connect's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//     HTTP Status Code 404: Resource not found due to incorrect input. Correct
+//     your request and then retry it.
+//
+//   - BadRequestException
+//     HTTP Status Code 400: Bad request due to incorrect input. Correct your request
+//     and then retry it.
+//
+//   - ForbiddenException
+//     HTTP Status Code 403: Access forbidden. Correct your credentials and then
+//     retry your request.
+//
+//   - ServiceUnavailableException
+//     HTTP Status Code 503: Service Unavailable. Retrying your request in some
+//     time might resolve the issue.
+//
+//   - TooManyRequestsException
+//     HTTP Status Code 429: Limit exceeded. Resource limit reached.
+//
+//   - UnauthorizedException
+//     HTTP Status Code 401: Unauthorized request. The provided credentials couldn't
+//     be validated.
+//
+//   - InternalServerErrorException
+//     HTTP Status Code 500: Unexpected internal server error. Retrying your request
+//     might resolve the issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafkaconnect-2021-09-14/UntagResource
+func (c *KafkaConnect) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KafkaConnect) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateConnector = "UpdateConnector"
@@ -2450,7 +2869,13 @@ type CreateConnectorInput struct {
 	// Details about log delivery.
 	LogDelivery *LogDelivery `locationName:"logDelivery" type:"structure"`
 
-	// Specifies which plugins to use for the connector.
+	//
+	// Amazon MSK Connect does not currently support specifying multiple plugins
+	// as a list. To use more than one plugin for your connector, you can create
+	// a single custom plugin using a ZIP file that bundles multiple plugins together.
+	//
+	// Specifies which plugin to use for the connector. You must specify a single-element
+	// list containing one customPlugin object.
 	//
 	// Plugins is a required field
 	Plugins []*Plugin `locationName:"plugins" type:"list" required:"true"`
@@ -2463,6 +2888,9 @@ type CreateConnectorInput struct {
 	//
 	// ServiceExecutionRoleArn is a required field
 	ServiceExecutionRoleArn *string `locationName:"serviceExecutionRoleArn" type:"string" required:"true"`
+
+	// The tags you want to attach to the connector.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Specifies which worker configuration to use with the connector.
 	WorkerConfiguration *WorkerConfiguration `locationName:"workerConfiguration" type:"structure"`
@@ -2632,6 +3060,12 @@ func (s *CreateConnectorInput) SetServiceExecutionRoleArn(v string) *CreateConne
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateConnectorInput) SetTags(v map[string]*string) *CreateConnectorInput {
+	s.Tags = v
+	return s
+}
+
 // SetWorkerConfiguration sets the WorkerConfiguration field's value.
 func (s *CreateConnectorInput) SetWorkerConfiguration(v *WorkerConfiguration) *CreateConnectorInput {
 	s.WorkerConfiguration = v
@@ -2707,6 +3141,9 @@ type CreateCustomPluginInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The tags you want to attach to the custom plugin.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -2775,6 +3212,12 @@ func (s *CreateCustomPluginInput) SetLocation(v *CustomPluginLocation) *CreateCu
 // SetName sets the Name field's value.
 func (s *CreateCustomPluginInput) SetName(v string) *CreateCustomPluginInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomPluginInput) SetTags(v map[string]*string) *CreateCustomPluginInput {
+	s.Tags = v
 	return s
 }
 
@@ -2855,6 +3298,9 @@ type CreateWorkerConfigurationInput struct {
 	//
 	// PropertiesFileContent is a required field
 	PropertiesFileContent *string `locationName:"propertiesFileContent" type:"string" required:"true" sensitive:"true"`
+
+	// The tags you want to attach to the worker configuration.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -2912,6 +3358,12 @@ func (s *CreateWorkerConfigurationInput) SetPropertiesFileContent(v string) *Cre
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateWorkerConfigurationInput) SetTags(v map[string]*string) *CreateWorkerConfigurationInput {
+	s.Tags = v
+	return s
+}
+
 type CreateWorkerConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2926,6 +3378,9 @@ type CreateWorkerConfigurationOutput struct {
 
 	// The Amazon Resource Name (ARN) that Amazon assigned to the worker configuration.
 	WorkerConfigurationArn *string `locationName:"workerConfigurationArn" type:"string"`
+
+	// The state of the worker configuration.
+	WorkerConfigurationState *string `locationName:"workerConfigurationState" type:"string" enum:"WorkerConfigurationState"`
 }
 
 // String returns the string representation.
@@ -2970,8 +3425,14 @@ func (s *CreateWorkerConfigurationOutput) SetWorkerConfigurationArn(v string) *C
 	return s
 }
 
-// A plugin is an AWS resource that contains the code that defines a connector's
-// logic.
+// SetWorkerConfigurationState sets the WorkerConfigurationState field's value.
+func (s *CreateWorkerConfigurationOutput) SetWorkerConfigurationState(v string) *CreateWorkerConfigurationOutput {
+	s.WorkerConfigurationState = &v
+	return s
+}
+
+// A plugin is an Amazon Web Services resource that contains the code that defines
+// a connector's logic.
 type CustomPlugin struct {
 	_ struct{} `type:"structure"`
 
@@ -3547,6 +4008,97 @@ func (s *DeleteCustomPluginOutput) SetCustomPluginState(v string) *DeleteCustomP
 	return s
 }
 
+type DeleteWorkerConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the worker configuration that you want
+	// to delete.
+	//
+	// WorkerConfigurationArn is a required field
+	WorkerConfigurationArn *string `location:"uri" locationName:"workerConfigurationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkerConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkerConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWorkerConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWorkerConfigurationInput"}
+	if s.WorkerConfigurationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkerConfigurationArn"))
+	}
+	if s.WorkerConfigurationArn != nil && len(*s.WorkerConfigurationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkerConfigurationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkerConfigurationArn sets the WorkerConfigurationArn field's value.
+func (s *DeleteWorkerConfigurationInput) SetWorkerConfigurationArn(v string) *DeleteWorkerConfigurationInput {
+	s.WorkerConfigurationArn = &v
+	return s
+}
+
+type DeleteWorkerConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the worker configuration that you requested
+	// to delete.
+	WorkerConfigurationArn *string `locationName:"workerConfigurationArn" type:"string"`
+
+	// The state of the worker configuration.
+	WorkerConfigurationState *string `locationName:"workerConfigurationState" type:"string" enum:"WorkerConfigurationState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkerConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteWorkerConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkerConfigurationArn sets the WorkerConfigurationArn field's value.
+func (s *DeleteWorkerConfigurationOutput) SetWorkerConfigurationArn(v string) *DeleteWorkerConfigurationOutput {
+	s.WorkerConfigurationArn = &v
+	return s
+}
+
+// SetWorkerConfigurationState sets the WorkerConfigurationState field's value.
+func (s *DeleteWorkerConfigurationOutput) SetWorkerConfigurationState(v string) *DeleteWorkerConfigurationOutput {
+	s.WorkerConfigurationState = &v
+	return s
+}
+
 type DescribeConnectorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3981,6 +4533,9 @@ type DescribeWorkerConfigurationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the custom configuration.
 	WorkerConfigurationArn *string `locationName:"workerConfigurationArn" type:"string"`
+
+	// The state of the worker configuration.
+	WorkerConfigurationState *string `locationName:"workerConfigurationState" type:"string" enum:"WorkerConfigurationState"`
 }
 
 // String returns the string representation.
@@ -4028,6 +4583,12 @@ func (s *DescribeWorkerConfigurationOutput) SetName(v string) *DescribeWorkerCon
 // SetWorkerConfigurationArn sets the WorkerConfigurationArn field's value.
 func (s *DescribeWorkerConfigurationOutput) SetWorkerConfigurationArn(v string) *DescribeWorkerConfigurationOutput {
 	s.WorkerConfigurationArn = &v
+	return s
+}
+
+// SetWorkerConfigurationState sets the WorkerConfigurationState field's value.
+func (s *DescribeWorkerConfigurationOutput) SetWorkerConfigurationState(v string) *DescribeWorkerConfigurationOutput {
+	s.WorkerConfigurationState = &v
 	return s
 }
 
@@ -4619,6 +5180,9 @@ type ListCustomPluginsInput struct {
 	// The maximum number of custom plugins to list in one response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// Lists custom plugin names that start with the specified text string.
+	NamePrefix *string `location:"querystring" locationName:"namePrefix" type:"string"`
+
 	// If the response of a ListCustomPlugins operation is truncated, it will include
 	// a NextToken. Send this NextToken in a subsequent request to continue listing
 	// from where the previous operation left off.
@@ -4659,6 +5223,12 @@ func (s *ListCustomPluginsInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListCustomPluginsInput) SetMaxResults(v int64) *ListCustomPluginsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListCustomPluginsInput) SetNamePrefix(v string) *ListCustomPluginsInput {
+	s.NamePrefix = &v
 	return s
 }
 
@@ -4710,11 +5280,95 @@ func (s *ListCustomPluginsOutput) SetNextToken(v string) *ListCustomPluginsOutpu
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource for which you want to list
+	// all attached tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the tags attached to the specified resource in the corresponding request.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListWorkerConfigurationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of worker configurations to list in one response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Lists worker configuration names that start with the specified text string.
+	NamePrefix *string `location:"querystring" locationName:"namePrefix" type:"string"`
 
 	// If the response of a ListWorkerConfigurations operation is truncated, it
 	// will include a NextToken. Send this NextToken in a subsequent request to
@@ -4756,6 +5410,12 @@ func (s *ListWorkerConfigurationsInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListWorkerConfigurationsInput) SetMaxResults(v int64) *ListWorkerConfigurationsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListWorkerConfigurationsInput) SetNamePrefix(v string) *ListWorkerConfigurationsInput {
+	s.NamePrefix = &v
 	return s
 }
 
@@ -4958,8 +5618,8 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A plugin is an AWS resource that contains the code that defines your connector
-// logic.
+// A plugin is an Amazon Web Services resource that contains the code that defines
+// your connector logic.
 type Plugin struct {
 	_ struct{} `type:"structure"`
 
@@ -5832,6 +6492,92 @@ func (s *StateDescription) SetMessage(v string) *StateDescription {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource to which you want to attach
+	// tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The tags that you want to attach to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // HTTP Status Code 429: Limit exceeded. Resource limit reached.
 type TooManyRequestsException struct {
 	_            struct{}                  `type:"structure"`
@@ -5959,6 +6705,92 @@ func (s *UnauthorizedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnauthorizedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource from which you want to remove
+	// tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The keys of the tags that you want to remove from the resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateConnectorInput struct {
@@ -6417,6 +7249,9 @@ type WorkerConfigurationSummary struct {
 
 	// The Amazon Resource Name (ARN) of the worker configuration.
 	WorkerConfigurationArn *string `locationName:"workerConfigurationArn" type:"string"`
+
+	// The state of the worker configuration.
+	WorkerConfigurationState *string `locationName:"workerConfigurationState" type:"string" enum:"WorkerConfigurationState"`
 }
 
 // String returns the string representation.
@@ -6464,6 +7299,12 @@ func (s *WorkerConfigurationSummary) SetName(v string) *WorkerConfigurationSumma
 // SetWorkerConfigurationArn sets the WorkerConfigurationArn field's value.
 func (s *WorkerConfigurationSummary) SetWorkerConfigurationArn(v string) *WorkerConfigurationSummary {
 	s.WorkerConfigurationArn = &v
+	return s
+}
+
+// SetWorkerConfigurationState sets the WorkerConfigurationState field's value.
+func (s *WorkerConfigurationSummary) SetWorkerConfigurationState(v string) *WorkerConfigurationSummary {
+	s.WorkerConfigurationState = &v
 	return s
 }
 
@@ -6699,5 +7540,21 @@ func KafkaClusterEncryptionInTransitType_Values() []string {
 	return []string{
 		KafkaClusterEncryptionInTransitTypePlaintext,
 		KafkaClusterEncryptionInTransitTypeTls,
+	}
+}
+
+const (
+	// WorkerConfigurationStateActive is a WorkerConfigurationState enum value
+	WorkerConfigurationStateActive = "ACTIVE"
+
+	// WorkerConfigurationStateDeleting is a WorkerConfigurationState enum value
+	WorkerConfigurationStateDeleting = "DELETING"
+)
+
+// WorkerConfigurationState_Values returns all elements of the WorkerConfigurationState enum
+func WorkerConfigurationState_Values() []string {
+	return []string{
+		WorkerConfigurationStateActive,
+		WorkerConfigurationStateDeleting,
 	}
 }

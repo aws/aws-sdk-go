@@ -1,3 +1,14 @@
+Release v1.50.26 (2024-02-26)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway.
+* `service/drs`: Updates service API and documentation
+* `service/kafkaconnect`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for gp3 data volumes for Multi-AZ DB Clusters.
+
 Release v1.50.25 (2024-02-23)
 ===
 

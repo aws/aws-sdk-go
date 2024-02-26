@@ -10817,7 +10817,7 @@ func (c *APIGateway) UpdateModelRequest(input *UpdateModelInput) (req *request.R
 
 // UpdateModel API operation for Amazon API Gateway.
 //
-// Changes information about a model.
+// Changes information about a model. The maximum size of the model is 400 KB.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13133,7 +13133,7 @@ type CreateModelInput struct {
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The schema for the model. For application/json models, this should be JSON
-	// schema draft 4 model.
+	// schema draft 4 model. The maximum size of the model is 400 KB.
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -23479,7 +23479,8 @@ type Stage struct {
 	// Settings for logging access in this stage.
 	AccessLogSettings *AccessLogSettings `locationName:"accessLogSettings" type:"structure"`
 
-	// Specifies whether a cache cluster is enabled for the stage.
+	// Specifies whether a cache cluster is enabled for the stage. To activate a
+	// method-level cache, set CachingEnabled to true for a method.
 	CacheClusterEnabled *bool `locationName:"cacheClusterEnabled" type:"boolean"`
 
 	// The stage's cache capacity in GB. For more information about choosing a cache

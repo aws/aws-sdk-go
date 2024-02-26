@@ -113,6 +113,26 @@
       ],
       "idempotent":true
     },
+    "DeleteWorkerConfiguration":{
+      "name":"DeleteWorkerConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/worker-configurations/{workerConfigurationArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteWorkerConfigurationRequest"},
+      "output":{"shape":"DeleteWorkerConfigurationResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"}
+      ],
+      "idempotent":true
+    },
     "DescribeConnector":{
       "name":"DescribeConnector",
       "http":{
@@ -208,6 +228,25 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "ListWorkerConfigurations":{
       "name":"ListWorkerConfigurations",
       "http":{
@@ -226,6 +265,47 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InternalServerErrorException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"}
+      ],
+      "idempotent":true
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerErrorException"}
+      ],
+      "idempotent":true
     },
     "UpdateConnector":{
       "name":"UpdateConnector",
@@ -422,6 +502,7 @@
         "logDelivery":{"shape":"LogDelivery"},
         "plugins":{"shape":"__listOfPlugin"},
         "serviceExecutionRoleArn":{"shape":"__string"},
+        "tags":{"shape":"Tags"},
         "workerConfiguration":{"shape":"WorkerConfiguration"}
       }
     },
@@ -444,7 +525,8 @@
         "contentType":{"shape":"CustomPluginContentType"},
         "description":{"shape":"__stringMax1024"},
         "location":{"shape":"CustomPluginLocation"},
-        "name":{"shape":"__stringMin1Max128"}
+        "name":{"shape":"__stringMin1Max128"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateCustomPluginResponse":{
@@ -465,7 +547,8 @@
       "members":{
         "description":{"shape":"__stringMax1024"},
         "name":{"shape":"__stringMin1Max128"},
-        "propertiesFileContent":{"shape":"__sensitiveString"}
+        "propertiesFileContent":{"shape":"__sensitiveString"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateWorkerConfigurationResponse":{
@@ -474,7 +557,8 @@
         "creationTime":{"shape":"__timestampIso8601"},
         "latestRevision":{"shape":"WorkerConfigurationRevisionSummary"},
         "name":{"shape":"__string"},
-        "workerConfigurationArn":{"shape":"__string"}
+        "workerConfigurationArn":{"shape":"__string"},
+        "workerConfigurationState":{"shape":"WorkerConfigurationState"}
       }
     },
     "CustomPlugin":{
@@ -596,6 +680,24 @@
         "customPluginState":{"shape":"CustomPluginState"}
       }
     },
+    "DeleteWorkerConfigurationRequest":{
+      "type":"structure",
+      "required":["workerConfigurationArn"],
+      "members":{
+        "workerConfigurationArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"workerConfigurationArn"
+        }
+      }
+    },
+    "DeleteWorkerConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "workerConfigurationArn":{"shape":"__string"},
+        "workerConfigurationState":{"shape":"WorkerConfigurationState"}
+      }
+    },
     "DescribeConnectorRequest":{
       "type":"structure",
       "required":["connectorArn"],
@@ -670,7 +772,8 @@
         "description":{"shape":"__string"},
         "latestRevision":{"shape":"WorkerConfigurationRevisionDescription"},
         "name":{"shape":"__string"},
-        "workerConfigurationArn":{"shape":"__string"}
+        "workerConfigurationArn":{"shape":"__string"},
+        "workerConfigurationState":{"shape":"WorkerConfigurationState"}
       }
     },
     "FirehoseLogDelivery":{
@@ -796,6 +899,11 @@
           "location":"querystring",
           "locationName":"maxResults"
         },
+        "namePrefix":{
+          "shape":"__string",
+          "location":"querystring",
+          "locationName":"namePrefix"
+        },
         "nextToken":{
           "shape":"__string",
           "location":"querystring",
@@ -810,6 +918,23 @@
         "nextToken":{"shape":"__string"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"Tags"}
+      }
+    },
     "ListWorkerConfigurationsRequest":{
       "type":"structure",
       "members":{
@@ -817,6 +942,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "namePrefix":{
+          "shape":"__string",
+          "location":"querystring",
+          "locationName":"namePrefix"
         },
         "nextToken":{
           "shape":"__string",
@@ -996,6 +1126,49 @@
         "message":{"shape":"__string"}
       }
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "Tags":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":200,
+      "min":0
+    },
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
@@ -1017,6 +1190,30 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateConnectorRequest":{
       "type":"structure",
@@ -1096,6 +1293,13 @@
         "revision":{"shape":"__long"}
       }
     },
+    "WorkerConfigurationState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DELETING"
+      ]
+    },
     "WorkerConfigurationSummary":{
       "type":"structure",
       "members":{
@@ -1103,7 +1307,8 @@
         "description":{"shape":"__string"},
         "latestRevision":{"shape":"WorkerConfigurationRevisionSummary"},
         "name":{"shape":"__string"},
-        "workerConfigurationArn":{"shape":"__string"}
+        "workerConfigurationArn":{"shape":"__string"},
+        "workerConfigurationState":{"shape":"WorkerConfigurationState"}
       }
     },
     "WorkerLogDelivery":{

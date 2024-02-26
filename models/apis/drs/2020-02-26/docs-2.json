@@ -885,6 +885,7 @@
         "ValidationExceptionField$message": "<p>Validate exception field message.</p>",
         "ValidationExceptionField$name": "<p>Validate exception field name.</p>",
         "VolumeToConversionMap$key": null,
+        "VolumeToProductCodes$key": null,
         "VolumeToSizeMap$key": null
       }
     },
@@ -1332,6 +1333,30 @@
         "UpdateReplicationConfigurationRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.</p>",
         "UpdateReplicationConfigurationTemplateRequest$bandwidthThrottling": "<p>Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.</p>",
         "VolumeToSizeMap$value": null
+      }
+    },
+    "ProductCode": {
+      "base": "<p>Properties of a product code associated with a volume.</p>",
+      "refs": {
+        "ProductCodes$member": null
+      }
+    },
+    "ProductCodeId": {
+      "base": null,
+      "refs": {
+        "ProductCode$productCodeId": "<p>Id of a product code associated with a volume.</p>"
+      }
+    },
+    "ProductCodeMode": {
+      "base": null,
+      "refs": {
+        "ProductCode$productCodeMode": "<p>Mode of a product code associated with a volume.</p>"
+      }
+    },
+    "ProductCodes": {
+      "base": null,
+      "refs": {
+        "VolumeToProductCodes$value": null
       }
     },
     "PutLaunchActionRequest": {
@@ -2054,10 +2079,22 @@
         "ValidationException$reason": "<p>Validation exception reason.</p>"
       }
     },
+    "VolumeStatus": {
+      "base": null,
+      "refs": {
+        "DataReplicationInfoReplicatedDisk$volumeStatus": "<p>The status of the volume.</p>"
+      }
+    },
     "VolumeToConversionMap": {
       "base": null,
       "refs": {
         "ConversionProperties$volumeToConversionMap": "<p>A mapping between the volumes being converted and the converted snapshot ids</p>"
+      }
+    },
+    "VolumeToProductCodes": {
+      "base": null,
+      "refs": {
+        "ConversionProperties$volumeToProductCodes": "<p>A mapping between the volumes being converted and the product codes associated with them</p>"
       }
     },
     "VolumeToSizeMap": {

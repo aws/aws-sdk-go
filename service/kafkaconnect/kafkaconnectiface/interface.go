@@ -80,6 +80,10 @@ type KafkaConnectAPI interface {
 	DeleteCustomPluginWithContext(aws.Context, *kafkaconnect.DeleteCustomPluginInput, ...request.Option) (*kafkaconnect.DeleteCustomPluginOutput, error)
 	DeleteCustomPluginRequest(*kafkaconnect.DeleteCustomPluginInput) (*request.Request, *kafkaconnect.DeleteCustomPluginOutput)
 
+	DeleteWorkerConfiguration(*kafkaconnect.DeleteWorkerConfigurationInput) (*kafkaconnect.DeleteWorkerConfigurationOutput, error)
+	DeleteWorkerConfigurationWithContext(aws.Context, *kafkaconnect.DeleteWorkerConfigurationInput, ...request.Option) (*kafkaconnect.DeleteWorkerConfigurationOutput, error)
+	DeleteWorkerConfigurationRequest(*kafkaconnect.DeleteWorkerConfigurationInput) (*request.Request, *kafkaconnect.DeleteWorkerConfigurationOutput)
+
 	DescribeConnector(*kafkaconnect.DescribeConnectorInput) (*kafkaconnect.DescribeConnectorOutput, error)
 	DescribeConnectorWithContext(aws.Context, *kafkaconnect.DescribeConnectorInput, ...request.Option) (*kafkaconnect.DescribeConnectorOutput, error)
 	DescribeConnectorRequest(*kafkaconnect.DescribeConnectorInput) (*request.Request, *kafkaconnect.DescribeConnectorOutput)
@@ -106,12 +110,24 @@ type KafkaConnectAPI interface {
 	ListCustomPluginsPages(*kafkaconnect.ListCustomPluginsInput, func(*kafkaconnect.ListCustomPluginsOutput, bool) bool) error
 	ListCustomPluginsPagesWithContext(aws.Context, *kafkaconnect.ListCustomPluginsInput, func(*kafkaconnect.ListCustomPluginsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*kafkaconnect.ListTagsForResourceInput) (*kafkaconnect.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *kafkaconnect.ListTagsForResourceInput, ...request.Option) (*kafkaconnect.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*kafkaconnect.ListTagsForResourceInput) (*request.Request, *kafkaconnect.ListTagsForResourceOutput)
+
 	ListWorkerConfigurations(*kafkaconnect.ListWorkerConfigurationsInput) (*kafkaconnect.ListWorkerConfigurationsOutput, error)
 	ListWorkerConfigurationsWithContext(aws.Context, *kafkaconnect.ListWorkerConfigurationsInput, ...request.Option) (*kafkaconnect.ListWorkerConfigurationsOutput, error)
 	ListWorkerConfigurationsRequest(*kafkaconnect.ListWorkerConfigurationsInput) (*request.Request, *kafkaconnect.ListWorkerConfigurationsOutput)
 
 	ListWorkerConfigurationsPages(*kafkaconnect.ListWorkerConfigurationsInput, func(*kafkaconnect.ListWorkerConfigurationsOutput, bool) bool) error
 	ListWorkerConfigurationsPagesWithContext(aws.Context, *kafkaconnect.ListWorkerConfigurationsInput, func(*kafkaconnect.ListWorkerConfigurationsOutput, bool) bool, ...request.Option) error
+
+	TagResource(*kafkaconnect.TagResourceInput) (*kafkaconnect.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *kafkaconnect.TagResourceInput, ...request.Option) (*kafkaconnect.TagResourceOutput, error)
+	TagResourceRequest(*kafkaconnect.TagResourceInput) (*request.Request, *kafkaconnect.TagResourceOutput)
+
+	UntagResource(*kafkaconnect.UntagResourceInput) (*kafkaconnect.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *kafkaconnect.UntagResourceInput, ...request.Option) (*kafkaconnect.UntagResourceOutput, error)
+	UntagResourceRequest(*kafkaconnect.UntagResourceInput) (*request.Request, *kafkaconnect.UntagResourceOutput)
 
 	UpdateConnector(*kafkaconnect.UpdateConnectorInput) (*kafkaconnect.UpdateConnectorOutput, error)
 	UpdateConnectorWithContext(aws.Context, *kafkaconnect.UpdateConnectorInput, ...request.Option) (*kafkaconnect.UpdateConnectorOutput, error)

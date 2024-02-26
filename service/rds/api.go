@@ -28152,6 +28152,12 @@ type DBCluster struct {
 	// Indicates whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// The storage throughput for the DB cluster. The throughput is automatically
+	// set based on the IOPS that you provision, and is not configurable.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	StorageThroughput *int64 `type:"integer"`
+
 	// The storage type associated with the DB cluster.
 	StorageType *string `type:"string"`
 
@@ -28625,6 +28631,12 @@ func (s *DBCluster) SetStorageEncrypted(v bool) *DBCluster {
 	return s
 }
 
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBCluster) SetStorageThroughput(v int64) *DBCluster {
+	s.StorageThroughput = &v
+	return s
+}
+
 // SetStorageType sets the StorageType field's value.
 func (s *DBCluster) SetStorageType(v string) *DBCluster {
 	s.StorageType = &v
@@ -28734,6 +28746,12 @@ type DBClusterAutomatedBackup struct {
 
 	// Indicates whether the source DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
+
+	// The storage throughput for the automated backup. The throughput is automatically
+	// set based on the IOPS that you provision, and is not configurable.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	StorageThroughput *int64 `type:"integer"`
 
 	// The storage type associated with the DB cluster.
 	//
@@ -28891,6 +28909,12 @@ func (s *DBClusterAutomatedBackup) SetStatus(v string) *DBClusterAutomatedBackup
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBClusterAutomatedBackup) SetStorageEncrypted(v bool) *DBClusterAutomatedBackup {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBClusterAutomatedBackup) SetStorageThroughput(v int64) *DBClusterAutomatedBackup {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -29403,6 +29427,12 @@ type DBClusterSnapshot struct {
 	// Indicates whether the DB cluster snapshot is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// The storage throughput for the DB cluster snapshot. The throughput is automatically
+	// set based on the IOPS that you provision, and is not configurable.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	StorageThroughput *int64 `type:"integer"`
+
 	// The storage type associated with the DB cluster snapshot.
 	//
 	// This setting is only for Aurora DB clusters.
@@ -29563,6 +29593,12 @@ func (s *DBClusterSnapshot) SetStatus(v string) *DBClusterSnapshot {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBClusterSnapshot) SetStorageEncrypted(v bool) *DBClusterSnapshot {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageThroughput sets the StorageThroughput field's value.
+func (s *DBClusterSnapshot) SetStorageThroughput(v int64) *DBClusterSnapshot {
+	s.StorageThroughput = &v
 	return s
 }
 
@@ -56787,8 +56823,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
-	// The identifier for the RDS for MySQL Multi-AZ DB cluster snapshot to restore
-	// from.
+	// The identifier for the Multi-AZ DB cluster snapshot to restore from.
 	//
 	// For more information on Multi-AZ DB clusters, see Multi-AZ DB cluster deployments
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
@@ -56806,9 +56841,6 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//    the DBClusterSnapshotIdentifier must be the ARN of the shared snapshot.
 	//
 	//    * Can't be the identifier of an Aurora DB cluster snapshot.
-	//
-	//    * Can't be the identifier of an RDS for PostgreSQL Multi-AZ DB cluster
-	//    snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
 	// The compute and memory capacity of the Amazon RDS DB instance, for example

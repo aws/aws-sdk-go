@@ -2,17 +2,21 @@
   "version": "2.0",
   "service": "<p/>",
   "operations": {
-    "CreateConnector": "<p>Creates a connector using the specified properties.</p>",
+    "CreateConnector": "<p>Creates a connector using the specified properties. </p>",
     "CreateCustomPlugin": "<p>Creates a custom plugin using the specified properties.</p>",
     "CreateWorkerConfiguration": "<p>Creates a worker configuration using the specified properties.</p>",
     "DeleteConnector": "<p>Deletes the specified connector.</p>",
     "DeleteCustomPlugin": "<p>Deletes a custom plugin.</p>",
+    "DeleteWorkerConfiguration": "<p>Deletes the specified worker configuration.</p>",
     "DescribeConnector": "<p>Returns summary information about the connector.</p>",
     "DescribeCustomPlugin": "<p>A summary description of the custom plugin.</p>",
     "DescribeWorkerConfiguration": "<p>Returns information about a worker configuration.</p>",
     "ListConnectors": "<p>Returns a list of all the connectors in this account and Region. The list is limited to connectors whose name starts with the specified prefix. The response also includes a description of each of the listed connectors.</p>",
     "ListCustomPlugins": "<p>Returns a list of all of the custom plugins in this account and Region.</p>",
+    "ListTagsForResource": "<p>Lists all the tags attached to the specified resource.</p>",
     "ListWorkerConfigurations": "<p>Returns a list of all of the worker configurations in this account and Region.</p>",
+    "TagResource": "<p>Attaches tags to the specified resource.</p>",
+    "UntagResource": "<p>Removes tags from the specified resource.</p>",
     "UpdateConnector": "<p>Updates the specified connector.</p>"
   },
   "shapes": {
@@ -134,7 +138,7 @@
       }
     },
     "CustomPlugin": {
-      "base": "<p>A plugin is an AWS resource that contains the code that defines a connector's logic.</p>",
+      "base": "<p>A plugin is an Amazon Web Services resource that contains the code that defines a connector's logic.</p>",
       "refs": {
         "Plugin$customPlugin": "<p>Details about a custom plugin.</p>"
       }
@@ -208,6 +212,16 @@
       }
     },
     "DeleteCustomPluginResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkerConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -337,6 +351,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkerConfigurationsRequest": {
       "base": null,
       "refs": {
@@ -374,7 +398,7 @@
       }
     },
     "Plugin": {
-      "base": "<p>A plugin is an AWS resource that contains the code that defines your connector logic. </p>",
+      "base": "<p>A plugin is an Amazon Web Services resource that contains the code that defines your connector logic. </p>",
       "refs": {
         "__listOfPlugin$member": null
       }
@@ -475,6 +499,45 @@
         "DescribeCustomPluginResponse$stateDescription": "<p>Details about the state of a custom plugin.</p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "Tags$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The keys of the tags that you want to remove from the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "CreateConnectorRequest$tags": "<p>The tags you want to attach to the connector.</p>",
+        "CreateCustomPluginRequest$tags": "<p>The tags you want to attach to the custom plugin.</p>",
+        "CreateWorkerConfigurationRequest$tags": "<p>The tags you want to attach to the worker configuration.</p>",
+        "ListTagsForResourceResponse$tags": "<p>Lists the tags attached to the specified resource in the corresponding request.</p>",
+        "TagResourceRequest$tags": "<p>The tags that you want to attach to the resource.</p>"
+      }
+    },
     "TooManyRequestsException": {
       "base": "<p>HTTP Status Code 429: Limit exceeded. Resource limit reached.</p>",
       "refs": {
@@ -482,6 +545,16 @@
     },
     "UnauthorizedException": {
       "base": "<p>HTTP Status Code 401: Unauthorized request. The provided credentials couldn't be validated.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -531,6 +604,15 @@
       "refs": {
         "CreateWorkerConfigurationResponse$latestRevision": "<p>The latest revision of the worker configuration.</p>",
         "WorkerConfigurationSummary$latestRevision": "<p>The latest revision of a worker configuration.</p>"
+      }
+    },
+    "WorkerConfigurationState": {
+      "base": null,
+      "refs": {
+        "CreateWorkerConfigurationResponse$workerConfigurationState": "<p>The state of the worker configuration.</p>",
+        "DeleteWorkerConfigurationResponse$workerConfigurationState": "<p>The state of the worker configuration.</p>",
+        "DescribeWorkerConfigurationResponse$workerConfigurationState": "<p>The state of the worker configuration.</p>",
+        "WorkerConfigurationSummary$workerConfigurationState": "<p>The state of the worker configuration.</p>"
       }
     },
     "WorkerConfigurationSummary": {
@@ -618,7 +700,7 @@
     "__listOfPlugin": {
       "base": null,
       "refs": {
-        "CreateConnectorRequest$plugins": "<p>Specifies which plugins to use for the connector.</p>"
+        "CreateConnectorRequest$plugins": "<important> <p>Amazon MSK Connect does not currently support specifying multiple plugins as a list. To use more than one plugin for your connector, you can create a single custom plugin using a ZIP file that bundles multiple plugins together.</p> </important> <p>Specifies which plugin to use for the connector. You must specify a single-element list containing one <code>customPlugin</code> object.</p>"
       }
     },
     "__listOfPluginDescription": {
@@ -711,6 +793,8 @@
         "DeleteConnectorResponse$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you requested to delete.</p>",
         "DeleteCustomPluginRequest$customPluginArn": "<p>The Amazon Resource Name (ARN) of the custom plugin that you want to delete.</p>",
         "DeleteCustomPluginResponse$customPluginArn": "<p>The Amazon Resource Name (ARN) of the custom plugin that you requested to delete.</p>",
+        "DeleteWorkerConfigurationRequest$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration that you want to delete.</p>",
+        "DeleteWorkerConfigurationResponse$workerConfigurationArn": "<p>The Amazon Resource Name (ARN) of the worker configuration that you requested to delete.</p>",
         "DescribeConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to describe.</p>",
         "DescribeConnectorResponse$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector.</p>",
         "DescribeConnectorResponse$connectorDescription": "<p>A summary description of the connector.</p>",
@@ -733,8 +817,11 @@
         "ListConnectorsRequest$connectorNamePrefix": "<p>The name prefix that you want to use to search for and list connectors.</p>",
         "ListConnectorsRequest$nextToken": "<p>If the response of a ListConnectors operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where the previous operation left off.</p>",
         "ListConnectorsResponse$nextToken": "<p>If the response of a ListConnectors operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where it left off.</p>",
+        "ListCustomPluginsRequest$namePrefix": "<p>Lists custom plugin names that start with the specified text string.</p>",
         "ListCustomPluginsRequest$nextToken": "<p>If the response of a ListCustomPlugins operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where the previous operation left off.</p>",
         "ListCustomPluginsResponse$nextToken": "<p>If the response of a ListCustomPlugins operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where the previous operation left off.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which you want to list all attached tags.</p>",
+        "ListWorkerConfigurationsRequest$namePrefix": "<p>Lists worker configuration names that start with the specified text string.</p>",
         "ListWorkerConfigurationsRequest$nextToken": "<p>If the response of a ListWorkerConfigurations operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where the previous operation left off.</p>",
         "ListWorkerConfigurationsResponse$nextToken": "<p>If the response of a ListWorkerConfigurations operation is truncated, it will include a NextToken. Send this NextToken in a subsequent request to continue listing from where the previous operation left off.</p>",
         "NotFoundException$message": null,
@@ -751,8 +838,10 @@
         "ServiceUnavailableException$message": null,
         "StateDescription$code": "<p>A code that describes the state of a resource.</p>",
         "StateDescription$message": "<p>A message that describes the state of a resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which you want to attach tags.</p>",
         "TooManyRequestsException$message": null,
         "UnauthorizedException$message": null,
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which you want to remove tags.</p>",
         "UpdateConnectorRequest$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector that you want to update.</p>",
         "UpdateConnectorRequest$currentVersion": "<p>The current version of the connector that you want to update.</p>",
         "UpdateConnectorResponse$connectorArn": "<p>The Amazon Resource Name (ARN) of the connector.</p>",
