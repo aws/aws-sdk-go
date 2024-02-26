@@ -1006,6 +1006,7 @@
         "forceUefi":{"shape":"Boolean"},
         "rootVolumeName":{"shape":"LargeBoundedString"},
         "volumeToConversionMap":{"shape":"VolumeToConversionMap"},
+        "volumeToProductCodes":{"shape":"VolumeToProductCodes"},
         "volumeToVolumeSize":{"shape":"VolumeToSizeMap"}
       }
     },
@@ -1148,7 +1149,8 @@
         "deviceName":{"shape":"BoundedString"},
         "replicatedStorageBytes":{"shape":"PositiveInteger"},
         "rescannedStorageBytes":{"shape":"PositiveInteger"},
-        "totalStorageBytes":{"shape":"PositiveInteger"}
+        "totalStorageBytes":{"shape":"PositiveInteger"},
+        "volumeStatus":{"shape":"VolumeStatus"}
       }
     },
     "DataReplicationInfoReplicatedDisks":{
@@ -2280,6 +2282,30 @@
       "type":"long",
       "min":0
     },
+    "ProductCode":{
+      "type":"structure",
+      "members":{
+        "productCodeId":{"shape":"ProductCodeId"},
+        "productCodeMode":{"shape":"ProductCodeMode"}
+      }
+    },
+    "ProductCodeId":{
+      "type":"string",
+      "max":25,
+      "min":25,
+      "pattern":"^([A-Za-z0-9])+$"
+    },
+    "ProductCodeMode":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "ProductCodes":{
+      "type":"list",
+      "member":{"shape":"ProductCode"}
+    },
     "PutLaunchActionRequest":{
       "type":"structure",
       "required":[
@@ -3271,10 +3297,24 @@
         "other"
       ]
     },
+    "VolumeStatus":{
+      "type":"string",
+      "enum":[
+        "REGULAR",
+        "CONTAINS_MARKETPLACE_PRODUCT_CODES",
+        "MISSING_VOLUME_ATTRIBUTES",
+        "MISSING_VOLUME_ATTRIBUTES_AND_PRECHECK_UNAVAILABLE"
+      ]
+    },
     "VolumeToConversionMap":{
       "type":"map",
       "key":{"shape":"LargeBoundedString"},
       "value":{"shape":"ConversionMap"}
+    },
+    "VolumeToProductCodes":{
+      "type":"map",
+      "key":{"shape":"LargeBoundedString"},
+      "value":{"shape":"ProductCodes"}
     },
     "VolumeToSizeMap":{
       "type":"map",

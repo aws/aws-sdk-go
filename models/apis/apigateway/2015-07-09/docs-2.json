@@ -114,7 +114,7 @@
     "UpdateIntegrationResponse": "<p>Represents an update integration response.</p>",
     "UpdateMethod": "<p>Updates an existing Method resource.</p>",
     "UpdateMethodResponse": "<p>Updates an existing MethodResponse resource.</p>",
-    "UpdateModel": "<p>Changes information about a model.</p>",
+    "UpdateModel": "<p>Changes information about a model. The maximum size of the model is 400 KB.</p>",
     "UpdateRequestValidator": "<p>Updates a RequestValidator of a given RestApi.</p>",
     "UpdateResource": "<p>Changes information about a Resource resource.</p>",
     "UpdateRestApi": "<p>Changes information about the specified API.</p>",
@@ -245,7 +245,7 @@
         "RequestValidator$validateRequestParameters": "<p>A Boolean flag to indicate whether to validate request parameters (<code>true</code>) or not (<code>false</code>).</p>",
         "RestApi$disableExecuteApiEndpoint": "<p>Specifies whether clients can invoke your API by using the default <code>execute-api</code> endpoint. By default, clients can invoke your API with the default <code>https://{api_id}.execute-api.{region}.amazonaws.com</code> endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.</p>",
         "SdkConfigurationProperty$required": "<p>A boolean flag of an SdkType configuration property to indicate if the associated SDK configuration property is required (<code>true</code>) or not (<code>false</code>).</p>",
-        "Stage$cacheClusterEnabled": "<p>Specifies whether a cache cluster is enabled for the stage.</p>",
+        "Stage$cacheClusterEnabled": "<p>Specifies whether a cache cluster is enabled for the stage. To activate a method-level cache, set <code>CachingEnabled</code> to <code>true</code> for a method. </p>",
         "Stage$tracingEnabled": "<p>Specifies whether active tracing with X-ray is enabled for the Stage.</p>",
         "TlsConfig$insecureSkipVerification": "<p>Specifies whether or not API Gateway skips verification that the certificate for an integration endpoint is issued by a supported certificate authority. This isn’t recommended, but it enables you to use certificates that are signed by private certificate authorities, or certificates that are self-signed. If enabled, API Gateway still performs basic certificate validation, which includes checking the certificate's expiration date, hostname, and presence of a root certificate authority. Supported only for <code>HTTP</code> and <code>HTTP_PROXY</code> integrations.</p> <important> <p>Enabling <code>insecureSkipVerification</code> isn't recommended, especially for integrations with public HTTPS endpoints. If you enable <code>insecureSkipVerification</code>, you increase the risk of man-in-the-middle attacks.</p> </important>"
       }
@@ -1583,7 +1583,7 @@
         "CreateModelRequest$restApiId": "<p>The RestApi identifier under which the Model will be created.</p>",
         "CreateModelRequest$name": "<p>The name of the model. Must be alphanumeric.</p>",
         "CreateModelRequest$description": "<p>The description of the model.</p>",
-        "CreateModelRequest$schema": "<p>The schema for the model. For <code>application/json</code> models, this should be JSON schema draft 4 model.</p>",
+        "CreateModelRequest$schema": "<p>The schema for the model. For <code>application/json</code> models, this should be JSON schema draft 4 model. The maximum size of the model is 400 KB.</p>",
         "CreateModelRequest$contentType": "<p>The content-type for the model.</p>",
         "CreateRequestValidatorRequest$restApiId": "<p>The string identifier of the associated RestApi.</p>",
         "CreateRequestValidatorRequest$name": "<p>The name of the to-be-created RequestValidator.</p>",
