@@ -150,6 +150,10 @@ type AmplifyUIBuilderAPI interface {
 	ListFormsPages(*amplifyuibuilder.ListFormsInput, func(*amplifyuibuilder.ListFormsOutput, bool) bool) error
 	ListFormsPagesWithContext(aws.Context, *amplifyuibuilder.ListFormsInput, func(*amplifyuibuilder.ListFormsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*amplifyuibuilder.ListTagsForResourceInput) (*amplifyuibuilder.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *amplifyuibuilder.ListTagsForResourceInput, ...request.Option) (*amplifyuibuilder.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*amplifyuibuilder.ListTagsForResourceInput) (*request.Request, *amplifyuibuilder.ListTagsForResourceOutput)
+
 	ListThemes(*amplifyuibuilder.ListThemesInput) (*amplifyuibuilder.ListThemesOutput, error)
 	ListThemesWithContext(aws.Context, *amplifyuibuilder.ListThemesInput, ...request.Option) (*amplifyuibuilder.ListThemesOutput, error)
 	ListThemesRequest(*amplifyuibuilder.ListThemesInput) (*request.Request, *amplifyuibuilder.ListThemesOutput)
@@ -168,6 +172,14 @@ type AmplifyUIBuilderAPI interface {
 	StartCodegenJob(*amplifyuibuilder.StartCodegenJobInput) (*amplifyuibuilder.StartCodegenJobOutput, error)
 	StartCodegenJobWithContext(aws.Context, *amplifyuibuilder.StartCodegenJobInput, ...request.Option) (*amplifyuibuilder.StartCodegenJobOutput, error)
 	StartCodegenJobRequest(*amplifyuibuilder.StartCodegenJobInput) (*request.Request, *amplifyuibuilder.StartCodegenJobOutput)
+
+	TagResource(*amplifyuibuilder.TagResourceInput) (*amplifyuibuilder.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *amplifyuibuilder.TagResourceInput, ...request.Option) (*amplifyuibuilder.TagResourceOutput, error)
+	TagResourceRequest(*amplifyuibuilder.TagResourceInput) (*request.Request, *amplifyuibuilder.TagResourceOutput)
+
+	UntagResource(*amplifyuibuilder.UntagResourceInput) (*amplifyuibuilder.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *amplifyuibuilder.UntagResourceInput, ...request.Option) (*amplifyuibuilder.UntagResourceOutput, error)
+	UntagResourceRequest(*amplifyuibuilder.UntagResourceInput) (*request.Request, *amplifyuibuilder.UntagResourceOutput)
 
 	UpdateComponent(*amplifyuibuilder.UpdateComponentInput) (*amplifyuibuilder.UpdateComponentOutput, error)
 	UpdateComponentWithContext(aws.Context, *amplifyuibuilder.UpdateComponentInput, ...request.Option) (*amplifyuibuilder.UpdateComponentOutput, error)

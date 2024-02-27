@@ -1,3 +1,9 @@
+Release v1.50.27 (2024-02-27)
+===
+
+### Service Client Updates
+* `service/amplifyuibuilder`: Updates service API and documentation
+
 Release v1.50.26 (2024-02-26)
 ===
 

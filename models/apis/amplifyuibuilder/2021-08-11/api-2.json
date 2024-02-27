@@ -281,6 +281,23 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListThemes":{
       "name":"ListThemes",
       "http":{
@@ -306,7 +323,8 @@
       "errors":[
         {"shape":"UnauthorizedException"},
         {"shape":"InvalidParameterException"}
-      ]
+      ],
+      "idempotent":true
     },
     "RefreshToken":{
       "name":"RefreshToken",
@@ -335,6 +353,42 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
     },
     "UpdateComponent":{
       "name":"UpdateComponent",
@@ -1791,11 +1845,6 @@
         "nextToken":{"shape":"String"}
       }
     },
-    "ListComponentsLimit":{
-      "type":"integer",
-      "max":100,
-      "min":1
-    },
     "ListComponentsRequest":{
       "type":"structure",
       "required":[
@@ -1819,7 +1868,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"ListComponentsLimit",
+          "shape":"ListEntityLimit",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -1833,8 +1882,9 @@
         "nextToken":{"shape":"String"}
       }
     },
-    "ListFormsLimit":{
+    "ListEntityLimit":{
       "type":"integer",
+      "box":true,
       "max":100,
       "min":1
     },
@@ -1861,7 +1911,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"ListFormsLimit",
+          "shape":"ListEntityLimit",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -1875,10 +1925,23 @@
         "nextToken":{"shape":"String"}
       }
     },
-    "ListThemesLimit":{
-      "type":"integer",
-      "max":100,
-      "min":1
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "required":["tags"],
+      "members":{
+        "tags":{"shape":"Tags"}
+      }
     },
     "ListThemesRequest":{
       "type":"structure",
@@ -1903,7 +1966,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"ListThemesLimit",
+          "shape":"ListEntityLimit",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -2194,6 +2257,32 @@
       "min":1,
       "pattern":"(?!aws:)[a-zA-Z+-=._:/]+"
     },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "TagValue":{
       "type":"string",
       "max":256,
@@ -2297,6 +2386,30 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateComponentData":{
       "type":"structure",

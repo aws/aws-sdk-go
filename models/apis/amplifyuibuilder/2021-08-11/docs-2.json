@@ -20,10 +20,13 @@
     "ListCodegenJobs": "<p>Retrieves a list of code generation jobs for a specified Amplify app and backend environment.</p>",
     "ListComponents": "<p>Retrieves a list of components for a specified Amplify app and backend environment.</p>",
     "ListForms": "<p>Retrieves a list of forms for a specified Amplify app and backend environment.</p>",
+    "ListTagsForResource": "<p>Returns a list of tags for a specified Amazon Resource Name (ARN).</p>",
     "ListThemes": "<p>Retrieves a list of themes for a specified Amplify app and backend environment.</p>",
     "PutMetadataFlag": "<p>Stores the metadata information about a feature on a form.</p>",
     "RefreshToken": "<note> <p>This is for internal use.</p> </note> <p>Amplify uses this action to refresh a previously issued access token that might have expired.</p>",
     "StartCodegenJob": "<p>Starts a code generation job for a specified Amplify app and backend environment.</p>",
+    "TagResource": "<p>Tags the resource with a tag key and value.</p>",
+    "UntagResource": "<p>Untags a resource with a specified Amazon Resource Name (ARN).</p>",
     "UpdateComponent": "<p>Updates an existing component.</p>",
     "UpdateForm": "<p>Updates an existing form.</p>",
     "UpdateTheme": "<p>Updates an existing theme.</p>"
@@ -877,12 +880,6 @@
       "refs": {
       }
     },
-    "ListComponentsLimit": {
-      "base": null,
-      "refs": {
-        "ListComponentsRequest$maxResults": "<p>The maximum number of components to retrieve.</p>"
-      }
-    },
     "ListComponentsRequest": {
       "base": null,
       "refs": {
@@ -893,10 +890,12 @@
       "refs": {
       }
     },
-    "ListFormsLimit": {
+    "ListEntityLimit": {
       "base": null,
       "refs": {
-        "ListFormsRequest$maxResults": "<p>The maximum number of forms to retrieve.</p>"
+        "ListComponentsRequest$maxResults": "<p>The maximum number of components to retrieve.</p>",
+        "ListFormsRequest$maxResults": "<p>The maximum number of forms to retrieve.</p>",
+        "ListThemesRequest$maxResults": "<p>The maximum number of theme results to return in the response.</p>"
       }
     },
     "ListFormsRequest": {
@@ -909,10 +908,14 @@
       "refs": {
       }
     },
-    "ListThemesLimit": {
+    "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
-        "ListThemesRequest$maxResults": "<p>The maximum number of theme results to return in the response.</p>"
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ListThemesRequest": {
@@ -1259,6 +1262,7 @@
         "ListFormsRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ListFormsRequest$nextToken": "<p>The token to request the next page of results.</p>",
         "ListFormsResponse$nextToken": "<p>The pagination token that's included if more results are available.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) to use to list tags.</p>",
         "ListThemesRequest$appId": "<p>The unique ID for the Amplify app.</p>",
         "ListThemesRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ListThemesRequest$nextToken": "<p>The token to request the next page of results.</p>",
@@ -1286,6 +1290,7 @@
         "StartCodegenJobRequest$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "StartCodegenJobRequest$clientToken": "<p>The idempotency token used to ensure that the code generation job request completes only once.</p>",
         "StrValues$member": null,
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) to use to tag a resource.</p>",
         "Theme$appId": "<p>The unique ID for the Amplify app associated with the theme.</p>",
         "Theme$environmentName": "<p>The name of the backend environment that is a part of the Amplify app.</p>",
         "ThemeSummary$appId": "<p>The unique ID for the app associated with the theme summary.</p>",
@@ -1294,6 +1299,7 @@
         "ThemeValues$key": "<p>The name of the property.</p>",
         "ThrottlingException$message": null,
         "UnauthorizedException$message": null,
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) to use to untag a resource.</p>",
         "UpdateComponentData$sourceId": "<p>The unique ID of the component in its original source system, such as Figma.</p>",
         "UpdateComponentData$schemaVersion": "<p>The schema version of the component when it was imported.</p>",
         "UpdateComponentRequest$appId": "<p>The unique ID for the Amplify app.</p>",
@@ -1324,7 +1330,24 @@
     "TagKey": {
       "base": null,
       "refs": {
+        "TagKeyList$member": null,
         "Tags$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The tag keys to use to untag a resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
@@ -1342,7 +1365,9 @@
         "CreateFormData$tags": "<p>One or more key-value pairs to use when tagging the form data.</p>",
         "CreateThemeData$tags": "<p>One or more key-value pairs to use when tagging the theme data.</p>",
         "Form$tags": "<p>One or more key-value pairs to use when tagging the form.</p>",
+        "ListTagsForResourceResponse$tags": "<p>A list of tag key value pairs for a specified Amazon Resource Name (ARN).</p>",
         "StartCodegenJobData$tags": "<p>One or more key-value pairs to use when tagging the code generation job data.</p>",
+        "TagResourceRequest$tags": "<p>A list of tag key value pairs for a specified Amazon Resource Name (ARN).</p>",
         "Theme$tags": "<p>One or more key-value pairs to use when tagging the theme.</p>"
       }
     },
@@ -1420,6 +1445,16 @@
     },
     "UnauthorizedException": {
       "base": "<p>You don't have permission to perform this operation.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },
