@@ -100,6 +100,10 @@ type CostExplorerAPI interface {
 	GetAnomalySubscriptionsWithContext(aws.Context, *costexplorer.GetAnomalySubscriptionsInput, ...request.Option) (*costexplorer.GetAnomalySubscriptionsOutput, error)
 	GetAnomalySubscriptionsRequest(*costexplorer.GetAnomalySubscriptionsInput) (*request.Request, *costexplorer.GetAnomalySubscriptionsOutput)
 
+	GetApproximateUsageRecords(*costexplorer.GetApproximateUsageRecordsInput) (*costexplorer.GetApproximateUsageRecordsOutput, error)
+	GetApproximateUsageRecordsWithContext(aws.Context, *costexplorer.GetApproximateUsageRecordsInput, ...request.Option) (*costexplorer.GetApproximateUsageRecordsOutput, error)
+	GetApproximateUsageRecordsRequest(*costexplorer.GetApproximateUsageRecordsInput) (*request.Request, *costexplorer.GetApproximateUsageRecordsOutput)
+
 	GetCostAndUsage(*costexplorer.GetCostAndUsageInput) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageWithContext(aws.Context, *costexplorer.GetCostAndUsageInput, ...request.Option) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageRequest(*costexplorer.GetCostAndUsageInput) (*request.Request, *costexplorer.GetCostAndUsageOutput)

@@ -12761,7 +12761,7 @@
         "indexName":{"shape":"IndexName"},
         "queryString":{"shape":"QueryString"},
         "nextToken":{"shape":"NextToken"},
-        "maxResults":{"shape":"QueryMaxResults"},
+        "maxResults":{"shape":"SearchQueryMaxResults"},
         "queryVersion":{"shape":"QueryVersion"}
       }
     },
@@ -12772,6 +12772,10 @@
         "things":{"shape":"ThingDocumentList"},
         "thingGroups":{"shape":"ThingGroupDocumentList"}
       }
+    },
+    "SearchQueryMaxResults":{
+      "type":"integer",
+      "min":1
     },
     "SearchableAttributes":{
       "type":"list",

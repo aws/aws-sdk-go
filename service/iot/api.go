@@ -28291,7 +28291,8 @@ type AssociateTargetsWithJobInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// A list of thing group ARNs that define the targets of the job.
@@ -34372,7 +34373,8 @@ type CreateJobInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `locationName:"namespaceId" type:"string"`
 
 	// Configuration information for pre-signed S3 URLs.
@@ -38869,7 +38871,8 @@ type DeleteJobExecutionInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The name of the thing whose job execution will be deleted.
@@ -39003,7 +39006,8 @@ type DeleteJobInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 }
 
@@ -50220,7 +50224,8 @@ type Job struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `locationName:"namespaceId" type:"string"`
 
 	// Configuration for pre-signed S3 URLs.
@@ -54105,7 +54110,8 @@ type ListJobExecutionsForThingInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The token to retrieve the next set of results.
@@ -54346,7 +54352,8 @@ type ListJobsInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// The token to retrieve the next set of results.
@@ -63655,8 +63662,10 @@ type SearchIndexInput struct {
 	// The search index name.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
-	// The maximum number of results to return per page at one time. The response
-	// might contain fewer results but will never contain more.
+	// The maximum number of results to return per page at one time. This maximum
+	// number cannot exceed 100. The response might contain fewer results but will
+	// never contain more. You can use nextToken (https://docs.aws.amazon.com/iot/latest/apireference/API_SearchIndex.html#iot-SearchIndex-request-nextToken)
+	// to retrieve the next set of results until nextToken returns NULL.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token used to get the next set of results, or null if there are no additional
@@ -70758,7 +70767,8 @@ type UpdateJobInput struct {
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
-	// The namespaceId feature is in public preview.
+	// The namespaceId feature is only supported by IoT Greengrass at this time.
+	// For more information, see Setting up IoT Greengrass core devices. (https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html)
 	NamespaceId *string `location:"querystring" locationName:"namespaceId" type:"string"`
 
 	// Configuration information for pre-signed S3 URLs.

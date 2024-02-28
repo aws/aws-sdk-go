@@ -852,6 +852,89 @@ func (c *CostExplorer) GetAnomalySubscriptionsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetApproximateUsageRecords = "GetApproximateUsageRecords"
+
+// GetApproximateUsageRecordsRequest generates a "aws/request.Request" representing the
+// client's request for the GetApproximateUsageRecords operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetApproximateUsageRecords for more information on using the GetApproximateUsageRecords
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetApproximateUsageRecordsRequest method.
+//	req, resp := client.GetApproximateUsageRecordsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetApproximateUsageRecords
+func (c *CostExplorer) GetApproximateUsageRecordsRequest(input *GetApproximateUsageRecordsInput) (req *request.Request, output *GetApproximateUsageRecordsOutput) {
+	op := &request.Operation{
+		Name:       opGetApproximateUsageRecords,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetApproximateUsageRecordsInput{}
+	}
+
+	output = &GetApproximateUsageRecordsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetApproximateUsageRecords API operation for AWS Cost Explorer Service.
+//
+// Retrieves estimated usage records for hourly granularity or resource-level
+// data at daily granularity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetApproximateUsageRecords for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - DataUnavailableException
+//     The requested data is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetApproximateUsageRecords
+func (c *CostExplorer) GetApproximateUsageRecords(input *GetApproximateUsageRecordsInput) (*GetApproximateUsageRecordsOutput, error) {
+	req, out := c.GetApproximateUsageRecordsRequest(input)
+	return out, req.Send()
+}
+
+// GetApproximateUsageRecordsWithContext is the same as GetApproximateUsageRecords with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetApproximateUsageRecords for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetApproximateUsageRecordsWithContext(ctx aws.Context, input *GetApproximateUsageRecordsInput, opts ...request.Option) (*GetApproximateUsageRecordsOutput, error) {
+	req, out := c.GetApproximateUsageRecordsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCostAndUsage = "GetCostAndUsage"
 
 // GetCostAndUsageRequest generates a "aws/request.Request" representing the
@@ -7776,6 +7859,128 @@ func (s *GetAnomalySubscriptionsOutput) SetAnomalySubscriptions(v []*AnomalySubs
 // SetNextPageToken sets the NextPageToken field's value.
 func (s *GetAnomalySubscriptionsOutput) SetNextPageToken(v string) *GetAnomalySubscriptionsOutput {
 	s.NextPageToken = &v
+	return s
+}
+
+type GetApproximateUsageRecordsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The service to evaluate for the usage records. You can choose resource-level
+	// data at daily granularity, or hourly granularity with or without resource-level
+	// data.
+	//
+	// ApproximationDimension is a required field
+	ApproximationDimension *string `type:"string" required:"true" enum:"ApproximationDimension"`
+
+	// How granular you want the data to be. You can enable data at hourly or daily
+	// granularity.
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"Granularity"`
+
+	// The service metadata for the service or services you want to query. If not
+	// specified, all elements are returned.
+	Services []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetApproximateUsageRecordsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetApproximateUsageRecordsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetApproximateUsageRecordsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetApproximateUsageRecordsInput"}
+	if s.ApproximationDimension == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApproximationDimension"))
+	}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApproximationDimension sets the ApproximationDimension field's value.
+func (s *GetApproximateUsageRecordsInput) SetApproximationDimension(v string) *GetApproximateUsageRecordsInput {
+	s.ApproximationDimension = &v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *GetApproximateUsageRecordsInput) SetGranularity(v string) *GetApproximateUsageRecordsInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *GetApproximateUsageRecordsInput) SetServices(v []*string) *GetApproximateUsageRecordsInput {
+	s.Services = v
+	return s
+}
+
+type GetApproximateUsageRecordsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The lookback period that's used for the estimation.
+	LookbackPeriod *DateInterval `type:"structure"`
+
+	// The service metadata for the service or services in the response.
+	Services map[string]*int64 `type:"map"`
+
+	// The total number of usage records for all services in the services list.
+	TotalRecords *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetApproximateUsageRecordsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetApproximateUsageRecordsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLookbackPeriod sets the LookbackPeriod field's value.
+func (s *GetApproximateUsageRecordsOutput) SetLookbackPeriod(v *DateInterval) *GetApproximateUsageRecordsOutput {
+	s.LookbackPeriod = v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *GetApproximateUsageRecordsOutput) SetServices(v map[string]*int64) *GetApproximateUsageRecordsOutput {
+	s.Services = v
+	return s
+}
+
+// SetTotalRecords sets the TotalRecords field's value.
+func (s *GetApproximateUsageRecordsOutput) SetTotalRecords(v int64) *GetApproximateUsageRecordsOutput {
+	s.TotalRecords = &v
 	return s
 }
 
@@ -17244,6 +17449,22 @@ func AnomalySubscriptionFrequency_Values() []string {
 		AnomalySubscriptionFrequencyDaily,
 		AnomalySubscriptionFrequencyImmediate,
 		AnomalySubscriptionFrequencyWeekly,
+	}
+}
+
+const (
+	// ApproximationDimensionService is a ApproximationDimension enum value
+	ApproximationDimensionService = "SERVICE"
+
+	// ApproximationDimensionResource is a ApproximationDimension enum value
+	ApproximationDimensionResource = "RESOURCE"
+)
+
+// ApproximationDimension_Values returns all elements of the ApproximationDimension enum
+func ApproximationDimension_Values() []string {
+	return []string{
+		ApproximationDimensionService,
+		ApproximationDimensionResource,
 	}
 }
 

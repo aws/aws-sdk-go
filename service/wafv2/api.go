@@ -18893,6 +18893,17 @@ type RateBasedStatement struct {
 	// Specifies the aggregate keys to use in a rate-base rule.
 	CustomKeys []*RateBasedStatementCustomKey `min:"1" type:"list"`
 
+	// The amount of time, in seconds, that WAF should include in its request counts,
+	// looking back from the current time. For example, for a setting of 120, when
+	// WAF checks the rate, it counts the requests for the 2 minutes immediately
+	// preceding the current time. Valid settings are 60, 120, 300, and 600.
+	//
+	// This setting doesn't determine how often WAF checks the rate, but how far
+	// back it looks each time it checks. WAF checks the rate about every 10 seconds.
+	//
+	// Default: 300 (5 minutes)
+	EvaluationWindowSec *int64 `type:"long"`
+
 	// The configuration for inspecting IP addresses in an HTTP header that you
 	// specify, instead of using the IP address that's reported by the web request
 	// origin. Commonly, this is the X-Forwarded-For (XFF) header, but you can specify
@@ -18998,6 +19009,12 @@ func (s *RateBasedStatement) SetAggregateKeyType(v string) *RateBasedStatement {
 // SetCustomKeys sets the CustomKeys field's value.
 func (s *RateBasedStatement) SetCustomKeys(v []*RateBasedStatementCustomKey) *RateBasedStatement {
 	s.CustomKeys = v
+	return s
+}
+
+// SetEvaluationWindowSec sets the EvaluationWindowSec field's value.
+func (s *RateBasedStatement) SetEvaluationWindowSec(v int64) *RateBasedStatement {
+	s.EvaluationWindowSec = &v
 	return s
 }
 
