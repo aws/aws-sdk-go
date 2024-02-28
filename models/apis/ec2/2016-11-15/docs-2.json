@@ -10215,6 +10215,12 @@
       "refs": {
       }
     },
+    "GetNetworkInsightsAccessScopeAnalysisFindingsMaxResults": {
+      "base": null,
+      "refs": {
+        "GetNetworkInsightsAccessScopeAnalysisFindingsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
     "GetNetworkInsightsAccessScopeAnalysisFindingsRequest": {
       "base": null,
       "refs": {
@@ -15524,8 +15530,7 @@
         "DescribeNetworkInsightsAccessScopeAnalysesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeNetworkInsightsAccessScopesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "DescribeNetworkInsightsAnalysesRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
-        "DescribeNetworkInsightsPathsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
-        "GetNetworkInsightsAccessScopeAnalysisFindingsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+        "DescribeNetworkInsightsPathsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
     "NetworkInsightsPath": {

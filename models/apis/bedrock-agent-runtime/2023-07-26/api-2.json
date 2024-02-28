@@ -398,20 +398,24 @@
       ],
       "members":{
         "knowledgeBaseId":{"shape":"KnowledgeBaseId"},
-        "modelArn":{"shape":"BedrockModelArn"}
+        "modelArn":{"shape":"BedrockModelArn"},
+        "retrievalConfiguration":{"shape":"KnowledgeBaseRetrievalConfiguration"}
       }
     },
     "KnowledgeBaseVectorSearchConfiguration":{
       "type":"structure",
-      "required":["numberOfResults"],
       "members":{
-        "numberOfResults":{"shape":"KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger"}
+        "numberOfResults":{
+          "shape":"KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger",
+          "box":true
+        },
+        "overrideSearchType":{"shape":"SearchType"}
       }
     },
     "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger":{
       "type":"integer",
       "box":true,
-      "max":10,
+      "max":25,
       "min":1
     },
     "LambdaArn":{"type":"string"},
@@ -625,7 +629,8 @@
       "required":["text"],
       "members":{
         "text":{"shape":"String"}
-      }
+      },
+      "sensitive":true
     },
     "RetrievalResultLocation":{
       "type":"structure",
@@ -633,7 +638,8 @@
       "members":{
         "type":{"shape":"RetrievalResultLocationType"},
         "s3Location":{"shape":"RetrievalResultS3Location"}
-      }
+      },
+      "sensitive":true
     },
     "RetrievalResultLocationType":{
       "type":"string",
@@ -743,6 +749,13 @@
       "type":"list",
       "member":{"shape":"RetrievedReference"}
     },
+    "SearchType":{
+      "type":"string",
+      "enum":[
+        "HYBRID",
+        "SEMANTIC"
+      ]
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -816,7 +829,8 @@
       "members":{
         "text":{"shape":"String"},
         "span":{"shape":"Span"}
-      }
+      },
+      "sensitive":true
     },
     "ThrottlingException":{
       "type":"structure",

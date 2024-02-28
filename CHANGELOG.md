@@ -1,3 +1,17 @@
+Release v1.50.28 (2024-02-28)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This release adds Batch support for configuration of multicontainer jobs in ECS, Fargate, and EKS. This support is available for all types of jobs, including both array jobs and multi-node parallel jobs.
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release increases the range of MaxResults for GetNetworkInsightsAccessScopeAnalysisFindings to 1,000.
+* `service/iot`: Updates service API and documentation
+  * This release reduces the maximum results returned per query invocation from 500 to 100 for the SearchIndex API. This change has no implications as long as the API is invoked until the nextToken is NULL.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.50.27 (2024-02-27)
 ===
 

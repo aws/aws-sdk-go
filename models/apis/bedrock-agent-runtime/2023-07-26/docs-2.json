@@ -243,6 +243,7 @@
     "KnowledgeBaseRetrievalConfiguration": {
       "base": "<p>Search parameters for retrieving from knowledge base.</p>",
       "refs": {
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$retrievalConfiguration": null,
         "RetrieveRequest$retrievalConfiguration": null
       }
     },
@@ -552,6 +553,12 @@
       "refs": {
         "Citation$retrievedReferences": null,
         "KnowledgeBaseLookupOutput$retrievedReferences": null
+      }
+    },
+    "SearchType": {
+      "base": "<p>Query type to be performed on data store.</p>",
+      "refs": {
+        "KnowledgeBaseVectorSearchConfiguration$overrideSearchType": "<p>Override the type of query to be performed on data store</p>"
       }
     },
     "ServiceQuotaExceededException": {

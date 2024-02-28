@@ -1878,6 +1878,7 @@
     },
     "ErrorMessage":{"type":"string"},
     "ErrorReason":{"type":"string"},
+    "EvaluationWindowSec":{"type":"long"},
     "ExcludedRule":{
       "type":"structure",
       "required":["Name"],
@@ -3206,6 +3207,7 @@
       ],
       "members":{
         "Limit":{"shape":"RateLimit"},
+        "EvaluationWindowSec":{"shape":"EvaluationWindowSec"},
         "AggregateKeyType":{"shape":"RateBasedStatementAggregateKeyType"},
         "ScopeDownStatement":{"shape":"Statement"},
         "ForwardedIPConfig":{"shape":"ForwardedIPConfig"},

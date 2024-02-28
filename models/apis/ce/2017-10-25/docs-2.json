@@ -12,6 +12,7 @@
     "GetAnomalies": "<p>Retrieves all of the cost anomalies detected on your account during the time period that's specified by the <code>DateInterval</code> object. Anomalies are available for up to 90 days.</p>",
     "GetAnomalyMonitors": "<p>Retrieves the cost anomaly monitor definitions for your account. You can filter using a list of cost anomaly monitor Amazon Resource Names (ARNs). </p>",
     "GetAnomalySubscriptions": "<p>Retrieves the cost anomaly subscription objects for your account. You can filter using a list of cost anomaly monitor Amazon Resource Names (ARNs). </p>",
+    "GetApproximateUsageRecords": "<p>Retrieves estimated usage records for hourly granularity or resource-level data at daily granularity.</p>",
     "GetCostAndUsage": "<p>Retrieves cost and usage metrics for your account. You can specify which cost and usage-related metric that you want the request to return. For example, you can specify <code>BlendedCosts</code> or <code>UsageQuantity</code>. You can also filter and group your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range. For a complete list of valid dimensions, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html\">GetDimensionValues</a> operation. Management account in an organization in Organizations have access to all member accounts.</p> <p>For information about filter limitations, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-limits.html\">Quotas and restrictions</a> in the <i>Billing and Cost Management User Guide</i>.</p>",
     "GetCostAndUsageWithResources": "<p>Retrieves cost and usage metrics with resources for your account. You can specify which cost and usage-related metric, such as <code>BlendedCosts</code> or <code>UsageQuantity</code>, that you want the request to return. You can also filter and group your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range. For a complete list of valid dimensions, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html\">GetDimensionValues</a> operation. Management account in an organization in Organizations have access to all member accounts. This API is currently available for the Amazon Elastic Compute Cloud – Compute service only.</p> <note> <p>This is an opt-in only feature. You can enable this feature from the Cost Explorer Settings page. For information about how to access the Settings page, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-access.html\">Controlling Access for Cost Explorer</a> in the <i>Billing and Cost Management User Guide</i>.</p> </note>",
     "GetCostCategories": "<p>Retrieves an array of Cost Category names and values incurred cost.</p> <note> <p>If some Cost Category names and values are not associated with any cost, they will not be returned by this API.</p> </note>",
@@ -127,6 +128,18 @@
       "base": null,
       "refs": {
         "GetAnomalySubscriptionsResponse$AnomalySubscriptions": "<p>A list of cost anomaly subscriptions that includes the detailed metadata for each one. </p>"
+      }
+    },
+    "ApproximateUsageRecordsPerService": {
+      "base": null,
+      "refs": {
+        "GetApproximateUsageRecordsResponse$Services": "<p>The service metadata for the service or services in the response.</p>"
+      }
+    },
+    "ApproximationDimension": {
+      "base": null,
+      "refs": {
+        "GetApproximateUsageRecordsRequest$ApproximationDimension": "<p>The service to evaluate for the usage records. You can choose resource-level data at daily granularity, or hourly granularity with or without resource-level data.</p>"
       }
     },
     "Arn": {
@@ -508,6 +521,7 @@
       "refs": {
         "CoverageByTime$TimePeriod": "<p>The period that this coverage was used over.</p>",
         "ForecastResult$TimePeriod": "<p>The period of time that the forecast covers.</p>",
+        "GetApproximateUsageRecordsResponse$LookbackPeriod": "<p>The lookback period that's used for the estimation.</p>",
         "GetCostAndUsageRequest$TimePeriod": "<p>Sets the start date and end date for retrieving Amazon Web Services costs. The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
         "GetCostAndUsageWithResourcesRequest$TimePeriod": "<p>Sets the start and end dates for retrieving Amazon Web Services costs. The range must be within the last 14 days (the start date cannot be earlier than 14 days ago). The start date is inclusive, but the end date is exclusive. For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code> is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code> up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.</p>",
         "GetCostCategoriesRequest$TimePeriod": null,
@@ -795,6 +809,7 @@
         "AnomalySubscription$SubscriptionArn": "<p>The <code>AnomalySubscription</code> Amazon Resource Name (ARN). </p>",
         "AnomalySubscription$AccountId": "<p>Your unique account identifier. </p>",
         "AnomalySubscription$SubscriptionName": "<p>The name for the subscription. </p>",
+        "ApproximateUsageRecordsPerService$key": null,
         "CostCategoryInheritedValueDimension$DimensionKey": "<p>The key to extract cost category values.</p>",
         "CostCategorySplitChargeRule$Source": "<p>The Cost Category value that you want to split. That value can't be used as a source or a target in other split charge rules. To indicate uncategorized costs, you can use an empty string as the source.</p>",
         "CostCategorySplitChargeRuleParameterValuesList$member": null,
@@ -988,7 +1003,8 @@
         "UpdateAnomalySubscriptionRequest$SubscriptionArn": "<p>A cost anomaly subscription Amazon Resource Name (ARN). </p>",
         "UpdateAnomalySubscriptionRequest$SubscriptionName": "<p>The new name of the subscription. </p>",
         "UpdateAnomalySubscriptionResponse$SubscriptionArn": "<p>A cost anomaly subscription ARN. </p>",
-        "UpdateCostAllocationTagsStatusError$Code": "<p>An error code representing why the action failed on this entry. </p>"
+        "UpdateCostAllocationTagsStatusError$Code": "<p>An error code representing why the action failed on this entry. </p>",
+        "UsageServices$member": null
       }
     },
     "GetAnomaliesRequest": {
@@ -1017,6 +1033,16 @@
       }
     },
     "GetAnomalySubscriptionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApproximateUsageRecordsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApproximateUsageRecordsResponse": {
       "base": null,
       "refs": {
       }
@@ -1184,6 +1210,7 @@
     "Granularity": {
       "base": null,
       "refs": {
+        "GetApproximateUsageRecordsRequest$Granularity": "<p>How granular you want the data to be. You can enable data at hourly or daily granularity.</p>",
         "GetCostAndUsageRequest$Granularity": "<p>Sets the Amazon Web Services cost granularity to <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the response object doesn't include the <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. </p>",
         "GetCostAndUsageWithResourcesRequest$Granularity": "<p>Sets the Amazon Web Services cost granularity to <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the response object doesn't include the <code>Granularity</code>, <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>. </p>",
         "GetCostForecastRequest$Granularity": "<p>How granular you want the forecast to be. You can get 3 months of <code>DAILY</code> forecasts or 12 months of <code>MONTHLY</code> forecasts.</p> <p>The <code>GetCostForecast</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
@@ -1496,6 +1523,13 @@
         "GetRightsizingRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
         "GetSavingsPlansPurchaseRecommendationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>",
         "ListSavingsPlansPurchaseRecommendationGenerationRequest$PageSize": "<p>The number of recommendations that you want returned in a single response object.</p>"
+      }
+    },
+    "NonNegativeLong": {
+      "base": null,
+      "refs": {
+        "ApproximateUsageRecordsPerService$value": null,
+        "GetApproximateUsageRecordsResponse$TotalRecords": "<p>The total number of usage records for all services in the services list.</p>"
       }
     },
     "NullableNonNegativeDouble": {
@@ -2321,6 +2355,12 @@
     "UpdateCostCategoryDefinitionResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UsageServices": {
+      "base": null,
+      "refs": {
+        "GetApproximateUsageRecordsRequest$Services": "<p>The service metadata for the service or services you want to query. If not specified, all elements are returned.</p>"
       }
     },
     "UtilizationByTime": {

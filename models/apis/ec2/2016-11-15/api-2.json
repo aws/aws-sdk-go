@@ -23897,12 +23897,17 @@
         }
       }
     },
+    "GetNetworkInsightsAccessScopeAnalysisFindingsMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "GetNetworkInsightsAccessScopeAnalysisFindingsRequest":{
       "type":"structure",
       "required":["NetworkInsightsAccessScopeAnalysisId"],
       "members":{
         "NetworkInsightsAccessScopeAnalysisId":{"shape":"NetworkInsightsAccessScopeAnalysisId"},
-        "MaxResults":{"shape":"NetworkInsightsMaxResults"},
+        "MaxResults":{"shape":"GetNetworkInsightsAccessScopeAnalysisFindingsMaxResults"},
         "NextToken":{"shape":"NextToken"},
         "DryRun":{"shape":"Boolean"}
       }

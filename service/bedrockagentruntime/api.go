@@ -1216,7 +1216,11 @@ type GeneratedResponsePart struct {
 	_ struct{} `type:"structure"`
 
 	// Text response part
-	TextResponsePart *TextResponsePart `locationName:"textResponsePart" type:"structure"`
+	//
+	// TextResponsePart is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GeneratedResponsePart's
+	// String and GoString methods.
+	TextResponsePart *TextResponsePart `locationName:"textResponsePart" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -1834,11 +1838,19 @@ type KnowledgeBaseRetrievalResult struct {
 
 	// Content of a retrieval result.
 	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KnowledgeBaseRetrievalResult's
+	// String and GoString methods.
+	//
 	// Content is a required field
-	Content *RetrievalResultContent `locationName:"content" type:"structure" required:"true"`
+	Content *RetrievalResultContent `locationName:"content" type:"structure" required:"true" sensitive:"true"`
 
 	// The source location of a retrieval result.
-	Location *RetrievalResultLocation `locationName:"location" type:"structure"`
+	//
+	// Location is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KnowledgeBaseRetrievalResult's
+	// String and GoString methods.
+	Location *RetrievalResultLocation `locationName:"location" type:"structure" sensitive:"true"`
 
 	// The relevance score of a result.
 	Score *float64 `locationName:"score" type:"double"`
@@ -1893,6 +1905,9 @@ type KnowledgeBaseRetrieveAndGenerateConfiguration struct {
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
+
+	// Search parameters for retrieving from knowledge base.
+	RetrievalConfiguration *KnowledgeBaseRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
 
 // String returns the string representation.
@@ -1925,6 +1940,11 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) Validate() error {
 	if s.ModelArn != nil && len(*s.ModelArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelArn", 20))
 	}
+	if s.RetrievalConfiguration != nil {
+		if err := s.RetrievalConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RetrievalConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1944,14 +1964,21 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetModelArn(v string) *K
 	return s
 }
 
+// SetRetrievalConfiguration sets the RetrievalConfiguration field's value.
+func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetRetrievalConfiguration(v *KnowledgeBaseRetrievalConfiguration) *KnowledgeBaseRetrieveAndGenerateConfiguration {
+	s.RetrievalConfiguration = v
+	return s
+}
+
 // Knowledge base vector search configuration
 type KnowledgeBaseVectorSearchConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Top-K results to retrieve from knowledge base.
-	//
-	// NumberOfResults is a required field
-	NumberOfResults *int64 `locationName:"numberOfResults" min:"1" type:"integer" required:"true"`
+	NumberOfResults *int64 `locationName:"numberOfResults" min:"1" type:"integer"`
+
+	// Override the type of query to be performed on data store
+	OverrideSearchType *string `locationName:"overrideSearchType" type:"string" enum:"SearchType"`
 }
 
 // String returns the string representation.
@@ -1975,9 +2002,6 @@ func (s KnowledgeBaseVectorSearchConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *KnowledgeBaseVectorSearchConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "KnowledgeBaseVectorSearchConfiguration"}
-	if s.NumberOfResults == nil {
-		invalidParams.Add(request.NewErrParamRequired("NumberOfResults"))
-	}
 	if s.NumberOfResults != nil && *s.NumberOfResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("NumberOfResults", 1))
 	}
@@ -1991,6 +2015,12 @@ func (s *KnowledgeBaseVectorSearchConfiguration) Validate() error {
 // SetNumberOfResults sets the NumberOfResults field's value.
 func (s *KnowledgeBaseVectorSearchConfiguration) SetNumberOfResults(v int64) *KnowledgeBaseVectorSearchConfiguration {
 	s.NumberOfResults = &v
+	return s
+}
+
+// SetOverrideSearchType sets the OverrideSearchType field's value.
+func (s *KnowledgeBaseVectorSearchConfiguration) SetOverrideSearchType(v string) *KnowledgeBaseVectorSearchConfiguration {
+	s.OverrideSearchType = &v
 	return s
 }
 
@@ -3031,7 +3061,7 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 
 // Content of a retrieval result.
 type RetrievalResultContent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Content of a retrieval result in text
 	//
@@ -3065,7 +3095,7 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 
 // The source location of a retrieval result.
 type RetrievalResultLocation struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The S3 location of a retrieval result.
 	S3Location *RetrievalResultS3Location `locationName:"s3Location" type:"structure"`
@@ -3631,10 +3661,18 @@ type RetrievedReference struct {
 	_ struct{} `type:"structure"`
 
 	// Content of a retrieval result.
-	Content *RetrievalResultContent `locationName:"content" type:"structure"`
+	//
+	// Content is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RetrievedReference's
+	// String and GoString methods.
+	Content *RetrievalResultContent `locationName:"content" type:"structure" sensitive:"true"`
 
 	// The source location of a retrieval result.
-	Location *RetrievalResultLocation `locationName:"location" type:"structure"`
+	//
+	// Location is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RetrievedReference's
+	// String and GoString methods.
+	Location *RetrievalResultLocation `locationName:"location" type:"structure" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -3845,7 +3883,7 @@ func (s *Span) SetStart(v int64) *Span {
 
 // Text response part
 type TextResponsePart struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// Span of text
 	Span *Span `locationName:"span" type:"structure"`
@@ -4325,6 +4363,23 @@ const (
 func RetrieveAndGenerateType_Values() []string {
 	return []string{
 		RetrieveAndGenerateTypeKnowledgeBase,
+	}
+}
+
+// Query type to be performed on data store.
+const (
+	// SearchTypeHybrid is a SearchType enum value
+	SearchTypeHybrid = "HYBRID"
+
+	// SearchTypeSemantic is a SearchType enum value
+	SearchTypeSemantic = "SEMANTIC"
+)
+
+// SearchType_Values returns all elements of the SearchType enum
+func SearchType_Values() []string {
+	return []string{
+		SearchTypeHybrid,
+		SearchTypeSemantic,
 	}
 }
 

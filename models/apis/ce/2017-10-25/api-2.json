@@ -145,6 +145,19 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "GetApproximateUsageRecords":{
+      "name":"GetApproximateUsageRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetApproximateUsageRecordsRequest"},
+      "output":{"shape":"GetApproximateUsageRecordsResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"DataUnavailableException"}
+      ]
+    },
     "GetCostAndUsage":{
       "name":"GetCostAndUsage",
       "http":{
@@ -651,6 +664,18 @@
     "AnomalySubscriptions":{
       "type":"list",
       "member":{"shape":"AnomalySubscription"}
+    },
+    "ApproximateUsageRecordsPerService":{
+      "type":"map",
+      "key":{"shape":"GenericString"},
+      "value":{"shape":"NonNegativeLong"}
+    },
+    "ApproximationDimension":{
+      "type":"string",
+      "enum":[
+        "SERVICE",
+        "RESOURCE"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -1410,6 +1435,26 @@
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
+    "GetApproximateUsageRecordsRequest":{
+      "type":"structure",
+      "required":[
+        "Granularity",
+        "ApproximationDimension"
+      ],
+      "members":{
+        "Granularity":{"shape":"Granularity"},
+        "Services":{"shape":"UsageServices"},
+        "ApproximationDimension":{"shape":"ApproximationDimension"}
+      }
+    },
+    "GetApproximateUsageRecordsResponse":{
+      "type":"structure",
+      "members":{
+        "Services":{"shape":"ApproximateUsageRecordsPerService"},
+        "TotalRecords":{"shape":"NonNegativeLong"},
+        "LookbackPeriod":{"shape":"DateInterval"}
+      }
+    },
     "GetCostAndUsageRequest":{
       "type":"structure",
       "required":[
@@ -2067,6 +2112,10 @@
     },
     "NonNegativeInteger":{
       "type":"integer",
+      "min":0
+    },
+    "NonNegativeLong":{
+      "type":"long",
       "min":0
     },
     "NullableNonNegativeDouble":{
@@ -2976,6 +3025,10 @@
         "CostCategoryArn":{"shape":"Arn"},
         "EffectiveStart":{"shape":"ZonedDateTime"}
       }
+    },
+    "UsageServices":{
+      "type":"list",
+      "member":{"shape":"GenericString"}
     },
     "UtilizationByTime":{
       "type":"structure",
