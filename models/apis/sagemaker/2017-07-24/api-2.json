@@ -7099,7 +7099,8 @@
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
-        "SkipModelValidation":{"shape":"SkipModelValidation"}
+        "SkipModelValidation":{"shape":"SkipModelValidation"},
+        "SourceUri":{"shape":"ModelPackageSourceUri"}
       }
     },
     "CreateModelPackageOutput":{
@@ -9771,7 +9772,8 @@
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
-        "SkipModelValidation":{"shape":"SkipModelValidation"}
+        "SkipModelValidation":{"shape":"SkipModelValidation"},
+        "SourceUri":{"shape":"ModelPackageSourceUri"}
       }
     },
     "DescribeModelQualityJobDefinitionRequest":{
@@ -11190,7 +11192,7 @@
       "type":"map",
       "key":{"shape":"EnvironmentKey"},
       "value":{"shape":"EnvironmentValue"},
-      "max":16
+      "max":100
     },
     "EnvironmentParameter":{
       "type":"structure",
@@ -16363,6 +16365,7 @@
         "Task":{"shape":"String"},
         "SamplePayloadUrl":{"shape":"String"},
         "AdditionalInferenceSpecifications":{"shape":"AdditionalInferenceSpecifications"},
+        "SourceUri":{"shape":"ModelPackageSourceUri"},
         "Tags":{"shape":"TagList"},
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
         "DriftCheckBaselines":{"shape":"DriftCheckBaselines"},
@@ -16389,6 +16392,7 @@
         "Image":{"shape":"ContainerImage"},
         "ImageDigest":{"shape":"ImageDigest"},
         "ModelDataUrl":{"shape":"Url"},
+        "ModelDataSource":{"shape":"ModelDataSource"},
         "ProductId":{"shape":"ProductId"},
         "Environment":{"shape":"EnvironmentMap"},
         "ModelInput":{"shape":"ModelInput"},
@@ -16472,6 +16476,12 @@
         "Name",
         "CreationTime"
       ]
+    },
+    "ModelPackageSourceUri":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"[\\p{L}\\p{M}\\p{Z}\\p{N}\\p{P}]{0,1024}"
     },
     "ModelPackageStatus":{
       "type":"string",
@@ -20261,6 +20271,7 @@
       "required":["AlgorithmName"],
       "members":{
         "ModelDataUrl":{"shape":"Url"},
+        "ModelDataSource":{"shape":"ModelDataSource"},
         "AlgorithmName":{"shape":"ArnOrName"}
       }
     },
@@ -22435,7 +22446,9 @@
         "ApprovalDescription":{"shape":"ApprovalDescription"},
         "CustomerMetadataProperties":{"shape":"CustomerMetadataMap"},
         "CustomerMetadataPropertiesToRemove":{"shape":"CustomerMetadataKeyList"},
-        "AdditionalInferenceSpecificationsToAdd":{"shape":"AdditionalInferenceSpecifications"}
+        "AdditionalInferenceSpecificationsToAdd":{"shape":"AdditionalInferenceSpecifications"},
+        "InferenceSpecification":{"shape":"InferenceSpecification"},
+        "SourceUri":{"shape":"ModelPackageSourceUri"}
       }
     },
     "UpdateModelPackageOutput":{

@@ -15171,6 +15171,56 @@ func (s *BatchUpdateCustomVocabularyItemOutput) SetResources(v []*CustomVocabula
 	return s
 }
 
+// Contains details about the configuration of a Amazon Bedrock knowledge base.
+type BedrockKnowledgeStoreConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the knowledge base used.
+	//
+	// BedrockKnowledgeBaseArn is a required field
+	BedrockKnowledgeBaseArn *string `locationName:"bedrockKnowledgeBaseArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockKnowledgeStoreConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BedrockKnowledgeStoreConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BedrockKnowledgeStoreConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BedrockKnowledgeStoreConfiguration"}
+	if s.BedrockKnowledgeBaseArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BedrockKnowledgeBaseArn"))
+	}
+	if s.BedrockKnowledgeBaseArn != nil && len(*s.BedrockKnowledgeBaseArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BedrockKnowledgeBaseArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBedrockKnowledgeBaseArn sets the BedrockKnowledgeBaseArn field's value.
+func (s *BedrockKnowledgeStoreConfiguration) SetBedrockKnowledgeBaseArn(v string) *BedrockKnowledgeStoreConfiguration {
+	s.BedrockKnowledgeBaseArn = &v
+	return s
+}
+
 // Contains information about the Amazon Bedrock model used to interpret the
 // prompt used in descriptive bot building.
 type BedrockModelSpecification struct {
@@ -20088,6 +20138,11 @@ type CreateIntentInput struct {
 	// A unique identifier for the built-in intent to base this intent on.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
 
+	// Specifies the configuration of the built-in Amazon.QnAIntent. The AMAZON.QnAIntent
+	// intent is called when Amazon Lex can't determine another intent to invoke.
+	// If you specify this field, you can't specify the kendraConfiguration field.
+	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
+
 	// An array of strings that a user might say to signal the intent. For example,
 	// "I want a pizza", or "I want a {PizzaSize} pizza".
 	//
@@ -20191,6 +20246,11 @@ func (s *CreateIntentInput) Validate() error {
 			}
 		}
 	}
+	if s.QnAIntentConfiguration != nil {
+		if err := s.QnAIntentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QnAIntentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SampleUtterances != nil {
 		for i, v := range s.SampleUtterances {
 			if v == nil {
@@ -20292,6 +20352,12 @@ func (s *CreateIntentInput) SetParentIntentSignature(v string) *CreateIntentInpu
 	return s
 }
 
+// SetQnAIntentConfiguration sets the QnAIntentConfiguration field's value.
+func (s *CreateIntentInput) SetQnAIntentConfiguration(v *QnAIntentConfiguration) *CreateIntentInput {
+	s.QnAIntentConfiguration = v
+	return s
+}
+
 // SetSampleUtterances sets the SampleUtterances field's value.
 func (s *CreateIntentInput) SetSampleUtterances(v []*SampleUtterance) *CreateIntentInput {
 	s.SampleUtterances = v
@@ -20349,6 +20415,9 @@ type CreateIntentOutput struct {
 
 	// The signature of the parent intent specified for the intent.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
+
+	// Details about the the configuration of the built-in Amazon.QnAIntent.
+	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
 
 	// The sample utterances specified for the intent.
 	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
@@ -20465,6 +20534,12 @@ func (s *CreateIntentOutput) SetOutputContexts(v []*OutputContext) *CreateIntent
 // SetParentIntentSignature sets the ParentIntentSignature field's value.
 func (s *CreateIntentOutput) SetParentIntentSignature(v string) *CreateIntentOutput {
 	s.ParentIntentSignature = &v
+	return s
+}
+
+// SetQnAIntentConfiguration sets the QnAIntentConfiguration field's value.
+func (s *CreateIntentOutput) SetQnAIntentConfiguration(v *QnAIntentConfiguration) *CreateIntentOutput {
+	s.QnAIntentConfiguration = v
 	return s
 }
 
@@ -22188,6 +22263,89 @@ func (s *DataPrivacy) Validate() error {
 // SetChildDirected sets the ChildDirected field's value.
 func (s *DataPrivacy) SetChildDirected(v bool) *DataPrivacy {
 	s.ChildDirected = &v
+	return s
+}
+
+// Contains details about the configuration of the knowledge store used for
+// the AMAZON.QnAIntent. You must have already created the knowledge store and
+// indexed the documents within it.
+type DataSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains details about the configuration of the Amazon Bedrock knowledge
+	// base used for the AMAZON.QnAIntent. To set up a knowledge base, follow the
+	// steps at Building a knowledge base (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html).
+	BedrockKnowledgeStoreConfiguration *BedrockKnowledgeStoreConfiguration `locationName:"bedrockKnowledgeStoreConfiguration" type:"structure"`
+
+	// Contains details about the configuration of the Amazon Kendra index used
+	// for the AMAZON.QnAIntent. To create a Amazon Kendra index, follow the steps
+	// at Creating an index (https://docs.aws.amazon.com/kendra/latest/dg/create-index.html).
+	KendraConfiguration *QnAKendraConfiguration `locationName:"kendraConfiguration" type:"structure"`
+
+	// Contains details about the configuration of the Amazon OpenSearch Service
+	// database used for the AMAZON.QnAIntent. To create a domain, follow the steps
+	// at Creating and managing Amazon OpenSearch Service domains (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html).
+	OpensearchConfiguration *OpensearchConfiguration `locationName:"opensearchConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfiguration"}
+	if s.BedrockKnowledgeStoreConfiguration != nil {
+		if err := s.BedrockKnowledgeStoreConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BedrockKnowledgeStoreConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KendraConfiguration != nil {
+		if err := s.KendraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("KendraConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpensearchConfiguration != nil {
+		if err := s.OpensearchConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OpensearchConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBedrockKnowledgeStoreConfiguration sets the BedrockKnowledgeStoreConfiguration field's value.
+func (s *DataSourceConfiguration) SetBedrockKnowledgeStoreConfiguration(v *BedrockKnowledgeStoreConfiguration) *DataSourceConfiguration {
+	s.BedrockKnowledgeStoreConfiguration = v
+	return s
+}
+
+// SetKendraConfiguration sets the KendraConfiguration field's value.
+func (s *DataSourceConfiguration) SetKendraConfiguration(v *QnAKendraConfiguration) *DataSourceConfiguration {
+	s.KendraConfiguration = v
+	return s
+}
+
+// SetOpensearchConfiguration sets the OpensearchConfiguration field's value.
+func (s *DataSourceConfiguration) SetOpensearchConfiguration(v *OpensearchConfiguration) *DataSourceConfiguration {
+	s.OpensearchConfiguration = v
 	return s
 }
 
@@ -26153,6 +26311,9 @@ type DescribeIntentOutput struct {
 	// any.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
 
+	// Details about the configuration of the built-in Amazon.QnAIntent.
+	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
+
 	// User utterances that trigger this intent.
 	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
 
@@ -26278,6 +26439,12 @@ func (s *DescribeIntentOutput) SetOutputContexts(v []*OutputContext) *DescribeIn
 // SetParentIntentSignature sets the ParentIntentSignature field's value.
 func (s *DescribeIntentOutput) SetParentIntentSignature(v string) *DescribeIntentOutput {
 	s.ParentIntentSignature = &v
+	return s
+}
+
+// SetQnAIntentConfiguration sets the QnAIntentConfiguration field's value.
+func (s *DescribeIntentOutput) SetQnAIntentConfiguration(v *QnAIntentConfiguration) *DescribeIntentOutput {
+	s.QnAIntentConfiguration = v
 	return s
 }
 
@@ -28039,6 +28206,69 @@ func (s *EncryptionSetting) SetBotLocaleExportPassword(v string) *EncryptionSett
 // SetKmsKeyArn sets the KmsKeyArn field's value.
 func (s *EncryptionSetting) SetKmsKeyArn(v string) *EncryptionSetting {
 	s.KmsKeyArn = &v
+	return s
+}
+
+// Contains the names of the fields used for an exact response to the user.
+type ExactResponseFields struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field that contains the answer to the query made to the OpenSearch
+	// Service database.
+	//
+	// AnswerField is a required field
+	AnswerField *string `locationName:"answerField" type:"string" required:"true"`
+
+	// The name of the field that contains the query made to the OpenSearch Service
+	// database.
+	//
+	// QuestionField is a required field
+	QuestionField *string `locationName:"questionField" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExactResponseFields) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExactResponseFields) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExactResponseFields) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExactResponseFields"}
+	if s.AnswerField == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnswerField"))
+	}
+	if s.QuestionField == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuestionField"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnswerField sets the AnswerField field's value.
+func (s *ExactResponseFields) SetAnswerField(v string) *ExactResponseFields {
+	s.AnswerField = &v
+	return s
+}
+
+// SetQuestionField sets the QuestionField field's value.
+func (s *ExactResponseFields) SetQuestionField(v string) *ExactResponseFields {
+	s.QuestionField = &v
 	return s
 }
 
@@ -37306,6 +37536,108 @@ func (s *ObfuscationSetting) SetObfuscationSettingType(v string) *ObfuscationSet
 	return s
 }
 
+// Contains details about the configuration of the Amazon OpenSearch Service
+// database used for the AMAZON.QnAIntent.
+type OpensearchConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the Amazon OpenSearch Service domain.
+	//
+	// DomainEndpoint is a required field
+	DomainEndpoint *string `locationName:"domainEndpoint" type:"string" required:"true"`
+
+	// Specifies whether to return an exact response or to return an answer generated
+	// by the model using the fields you specify from the database.
+	ExactResponse *bool `locationName:"exactResponse" type:"boolean"`
+
+	// Contains the names of the fields used for an exact response to the user.
+	ExactResponseFields *ExactResponseFields `locationName:"exactResponseFields" type:"structure"`
+
+	// Contains a list of fields from the Amazon OpenSearch Service that the model
+	// can use to generate the answer to the query.
+	IncludeFields []*string `locationName:"includeFields" min:"1" type:"list"`
+
+	// The name of the Amazon OpenSearch Service index.
+	//
+	// IndexName is a required field
+	IndexName *string `locationName:"indexName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpensearchConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpensearchConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpensearchConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpensearchConfiguration"}
+	if s.DomainEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainEndpoint"))
+	}
+	if s.IncludeFields != nil && len(s.IncludeFields) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludeFields", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.ExactResponseFields != nil {
+		if err := s.ExactResponseFields.Validate(); err != nil {
+			invalidParams.AddNested("ExactResponseFields", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainEndpoint sets the DomainEndpoint field's value.
+func (s *OpensearchConfiguration) SetDomainEndpoint(v string) *OpensearchConfiguration {
+	s.DomainEndpoint = &v
+	return s
+}
+
+// SetExactResponse sets the ExactResponse field's value.
+func (s *OpensearchConfiguration) SetExactResponse(v bool) *OpensearchConfiguration {
+	s.ExactResponse = &v
+	return s
+}
+
+// SetExactResponseFields sets the ExactResponseFields field's value.
+func (s *OpensearchConfiguration) SetExactResponseFields(v *ExactResponseFields) *OpensearchConfiguration {
+	s.ExactResponseFields = v
+	return s
+}
+
+// SetIncludeFields sets the IncludeFields field's value.
+func (s *OpensearchConfiguration) SetIncludeFields(v []*string) *OpensearchConfiguration {
+	s.IncludeFields = v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *OpensearchConfiguration) SetIndexName(v string) *OpensearchConfiguration {
+	s.IndexName = &v
+	return s
+}
+
 // Describes a session context that is activated when an intent is fulfilled.
 type OutputContext struct {
 	_ struct{} `type:"structure"`
@@ -38301,6 +38633,156 @@ func (s *PromptSpecification) SetMessageSelectionStrategy(v string) *PromptSpeci
 // SetPromptAttemptsSpecification sets the PromptAttemptsSpecification field's value.
 func (s *PromptSpecification) SetPromptAttemptsSpecification(v map[string]*PromptAttemptSpecification) *PromptSpecification {
 	s.PromptAttemptsSpecification = v
+	return s
+}
+
+// Details about the the configuration of the built-in Amazon.QnAIntent.
+type QnAIntentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the Amazon Bedrock model used to interpret the
+	// prompt used in descriptive bot building.
+	BedrockModelConfiguration *BedrockModelSpecification `locationName:"bedrockModelConfiguration" type:"structure"`
+
+	// Contains details about the configuration of the data source used for the
+	// AMAZON.QnAIntent.
+	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QnAIntentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QnAIntentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QnAIntentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QnAIntentConfiguration"}
+	if s.BedrockModelConfiguration != nil {
+		if err := s.BedrockModelConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BedrockModelConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataSourceConfiguration != nil {
+		if err := s.DataSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DataSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBedrockModelConfiguration sets the BedrockModelConfiguration field's value.
+func (s *QnAIntentConfiguration) SetBedrockModelConfiguration(v *BedrockModelSpecification) *QnAIntentConfiguration {
+	s.BedrockModelConfiguration = v
+	return s
+}
+
+// SetDataSourceConfiguration sets the DataSourceConfiguration field's value.
+func (s *QnAIntentConfiguration) SetDataSourceConfiguration(v *DataSourceConfiguration) *QnAIntentConfiguration {
+	s.DataSourceConfiguration = v
+	return s
+}
+
+// Contains details about the configuration of the Amazon Kendra index used
+// for the AMAZON.QnAIntent.
+type QnAKendraConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to return an exact response from the Amazon Kendra index
+	// or to let the Amazon Bedrock model you select generate a response based on
+	// the results. To use this feature, you must first add FAQ questions to your
+	// index by following the steps at Adding frequently asked questions (FAQs)
+	// to an index (https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html).
+	ExactResponse *bool `locationName:"exactResponse" type:"boolean"`
+
+	// The ARN of the Amazon Kendra index to use.
+	//
+	// KendraIndex is a required field
+	KendraIndex *string `locationName:"kendraIndex" min:"32" type:"string" required:"true"`
+
+	// Contains the Amazon Kendra filter string to use if enabled. For more information
+	// on the Amazon Kendra search filter JSON format, see Using document attributes
+	// to filter search results (https://docs.aws.amazon.com/kendra/latest/dg/filtering.html#search-filtering).
+	QueryFilterString *string `locationName:"queryFilterString" min:"1" type:"string"`
+
+	// Specifies whether to enable an Amazon Kendra filter string or not.
+	QueryFilterStringEnabled *bool `locationName:"queryFilterStringEnabled" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QnAKendraConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QnAKendraConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QnAKendraConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QnAKendraConfiguration"}
+	if s.KendraIndex == nil {
+		invalidParams.Add(request.NewErrParamRequired("KendraIndex"))
+	}
+	if s.KendraIndex != nil && len(*s.KendraIndex) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("KendraIndex", 32))
+	}
+	if s.QueryFilterString != nil && len(*s.QueryFilterString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryFilterString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExactResponse sets the ExactResponse field's value.
+func (s *QnAKendraConfiguration) SetExactResponse(v bool) *QnAKendraConfiguration {
+	s.ExactResponse = &v
+	return s
+}
+
+// SetKendraIndex sets the KendraIndex field's value.
+func (s *QnAKendraConfiguration) SetKendraIndex(v string) *QnAKendraConfiguration {
+	s.KendraIndex = &v
+	return s
+}
+
+// SetQueryFilterString sets the QueryFilterString field's value.
+func (s *QnAKendraConfiguration) SetQueryFilterString(v string) *QnAKendraConfiguration {
+	s.QueryFilterString = &v
+	return s
+}
+
+// SetQueryFilterStringEnabled sets the QueryFilterStringEnabled field's value.
+func (s *QnAKendraConfiguration) SetQueryFilterStringEnabled(v bool) *QnAKendraConfiguration {
+	s.QueryFilterStringEnabled = &v
 	return s
 }
 
@@ -46024,6 +46506,11 @@ type UpdateIntentInput struct {
 	// The signature of the new built-in intent to use as the parent of this intent.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
 
+	// Specifies the configuration of the built-in Amazon.QnAIntent. The AMAZON.QnAIntent
+	// intent is called when Amazon Lex can't determine another intent to invoke.
+	// If you specify this field, you can't specify the kendraConfiguration field.
+	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
+
 	// New utterances used to invoke the intent.
 	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
 
@@ -46130,6 +46617,11 @@ func (s *UpdateIntentInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputContexts", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.QnAIntentConfiguration != nil {
+		if err := s.QnAIntentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("QnAIntentConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SampleUtterances != nil {
@@ -46249,6 +46741,12 @@ func (s *UpdateIntentInput) SetParentIntentSignature(v string) *UpdateIntentInpu
 	return s
 }
 
+// SetQnAIntentConfiguration sets the QnAIntentConfiguration field's value.
+func (s *UpdateIntentInput) SetQnAIntentConfiguration(v *QnAIntentConfiguration) *UpdateIntentInput {
+	s.QnAIntentConfiguration = v
+	return s
+}
+
 // SetSampleUtterances sets the SampleUtterances field's value.
 func (s *UpdateIntentInput) SetSampleUtterances(v []*SampleUtterance) *UpdateIntentInput {
 	s.SampleUtterances = v
@@ -46320,6 +46818,9 @@ type UpdateIntentOutput struct {
 
 	// The updated built-in intent that is the parent of this intent.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
+
+	// Details about the configuration of the built-in Amazon.QnAIntent.
+	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
 
 	// The updated list of sample utterances for the intent.
 	SampleUtterances []*SampleUtterance `locationName:"sampleUtterances" type:"list"`
@@ -46446,6 +46947,12 @@ func (s *UpdateIntentOutput) SetOutputContexts(v []*OutputContext) *UpdateIntent
 // SetParentIntentSignature sets the ParentIntentSignature field's value.
 func (s *UpdateIntentOutput) SetParentIntentSignature(v string) *UpdateIntentOutput {
 	s.ParentIntentSignature = &v
+	return s
+}
+
+// SetQnAIntentConfiguration sets the QnAIntentConfiguration field's value.
+func (s *UpdateIntentOutput) SetQnAIntentConfiguration(v *QnAIntentConfiguration) *UpdateIntentOutput {
+	s.QnAIntentConfiguration = v
 	return s
 }
 

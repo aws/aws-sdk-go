@@ -1,3 +1,17 @@
+Release v1.50.29 (2024-02-29)
+===
+
+### Service Client Updates
+* `service/docdb-elastic`: Updates service API and documentation
+* `service/eks`: Updates service API
+* `service/migrationhuborchestrator`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * TooltipTarget for Combo chart visuals; ColumnConfiguration limit increase to 2000; Documentation Update
+* `service/sagemaker`: Updates service API and documentation
+  * Adds support for ModelDataSource in Model Packages to support unzipped models. Adds support to specify SourceUri for models which allows registration of models without mandating a container for hosting. Using SourceUri, customers can decouple the model from hosting information during registration.
+* `service/securitylake`: Updates service API and documentation
+
 Release v1.50.28 (2024-02-28)
 ===
 
