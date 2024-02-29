@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateTemplate = "CreateTemplate"
+
+// CreateTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTemplate for more information on using the CreateTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateTemplateRequest method.
+//	req, resp := client.CreateTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/CreateTemplate
+func (c *MigrationHubOrchestrator) CreateTemplateRequest(input *CreateTemplateInput) (req *request.Request, output *CreateTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/template",
+	}
+
+	if input == nil {
+		input = &CreateTemplateInput{}
+	}
+
+	output = &CreateTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTemplate API operation for AWS Migration Hub Orchestrator.
+//
+// Creates a migration workflow template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Migration Hub Orchestrator's
+// API operation CreateTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ConflictException
+//     This exception is thrown when an attempt to update or delete a resource would
+//     cause an inconsistent state.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/CreateTemplate
+func (c *MigrationHubOrchestrator) CreateTemplate(input *CreateTemplateInput) (*CreateTemplateOutput, error) {
+	req, out := c.CreateTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateTemplateWithContext is the same as CreateTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubOrchestrator) CreateTemplateWithContext(ctx aws.Context, input *CreateTemplateInput, opts ...request.Option) (*CreateTemplateOutput, error) {
+	req, out := c.CreateTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkflow = "CreateWorkflow"
 
 // CreateWorkflowRequest generates a "aws/request.Request" representing the
@@ -272,6 +364,98 @@ func (c *MigrationHubOrchestrator) CreateWorkflowStepGroup(input *CreateWorkflow
 // for more information on using Contexts.
 func (c *MigrationHubOrchestrator) CreateWorkflowStepGroupWithContext(ctx aws.Context, input *CreateWorkflowStepGroupInput, opts ...request.Option) (*CreateWorkflowStepGroupOutput, error) {
 	req, out := c.CreateWorkflowStepGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTemplate = "DeleteTemplate"
+
+// DeleteTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTemplate for more information on using the DeleteTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTemplateRequest method.
+//	req, resp := client.DeleteTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/DeleteTemplate
+func (c *MigrationHubOrchestrator) DeleteTemplateRequest(input *DeleteTemplateInput) (req *request.Request, output *DeleteTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/template/{id}",
+	}
+
+	if input == nil {
+		input = &DeleteTemplateInput{}
+	}
+
+	output = &DeleteTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTemplate API operation for AWS Migration Hub Orchestrator.
+//
+// Deletes a migration workflow template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Migration Hub Orchestrator's
+// API operation DeleteTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/DeleteTemplate
+func (c *MigrationHubOrchestrator) DeleteTemplate(input *DeleteTemplateInput) (*DeleteTemplateOutput, error) {
+	req, out := c.DeleteTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTemplateWithContext is the same as DeleteTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubOrchestrator) DeleteTemplateWithContext(ctx aws.Context, input *DeleteTemplateInput, opts ...request.Option) (*DeleteTemplateOutput, error) {
+	req, out := c.DeleteTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2631,6 +2815,97 @@ func (c *MigrationHubOrchestrator) UntagResourceWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opUpdateTemplate = "UpdateTemplate"
+
+// UpdateTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTemplate for more information on using the UpdateTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateTemplateRequest method.
+//	req, resp := client.UpdateTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/UpdateTemplate
+func (c *MigrationHubOrchestrator) UpdateTemplateRequest(input *UpdateTemplateInput) (req *request.Request, output *UpdateTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/template/{id}",
+	}
+
+	if input == nil {
+		input = &UpdateTemplateInput{}
+	}
+
+	output = &UpdateTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTemplate API operation for AWS Migration Hub Orchestrator.
+//
+// Updates a migration workflow template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Migration Hub Orchestrator's
+// API operation UpdateTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     The resource is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/migrationhuborchestrator-2021-08-28/UpdateTemplate
+func (c *MigrationHubOrchestrator) UpdateTemplate(input *UpdateTemplateInput) (*UpdateTemplateOutput, error) {
+	req, out := c.UpdateTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTemplateWithContext is the same as UpdateTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHubOrchestrator) UpdateTemplateWithContext(ctx aws.Context, input *UpdateTemplateInput, opts ...request.Option) (*UpdateTemplateOutput, error) {
+	req, out := c.UpdateTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateWorkflow = "UpdateWorkflow"
 
 // UpdateWorkflowRequest generates a "aws/request.Request" representing the
@@ -2965,14 +3240,229 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This exception is thrown when an attempt to update or delete a resource would
+// cause an inconsistent state.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type CreateTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. For more information, see Idempotency (https://smithy.io/2.0/spec/behavior-traits.html#idempotencytoken-trait)
+	// in the Smithy documentation.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The tags to add to the migration workflow template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// A description of the migration workflow template.
+	TemplateDescription *string `locationName:"templateDescription" type:"string"`
+
+	// The name of the migration workflow template.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The source of the migration workflow template.
+	//
+	// TemplateSource is a required field
+	TemplateSource *TemplateSource `locationName:"templateSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTemplateInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateSource"))
+	}
+	if s.TemplateSource != nil {
+		if err := s.TemplateSource.Validate(); err != nil {
+			invalidParams.AddNested("TemplateSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateTemplateInput) SetClientToken(v string) *CreateTemplateInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTemplateInput) SetTags(v map[string]*string) *CreateTemplateInput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateDescription sets the TemplateDescription field's value.
+func (s *CreateTemplateInput) SetTemplateDescription(v string) *CreateTemplateInput {
+	s.TemplateDescription = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *CreateTemplateInput) SetTemplateName(v string) *CreateTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateSource sets the TemplateSource field's value.
+func (s *CreateTemplateInput) SetTemplateSource(v *TemplateSource) *CreateTemplateInput {
+	s.TemplateSource = v
+	return s
+}
+
+type CreateTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags added to the migration workflow template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The Amazon Resource Name (ARN) of the migration workflow template. The format
+	// for an Migration Hub Orchestrator template ARN is arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html)
+	// in the AWS General Reference.
+	TemplateArn *string `locationName:"templateArn" type:"string"`
+
+	// The ID of the migration workflow template.
+	TemplateId *string `locationName:"templateId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTemplateOutput) SetTags(v map[string]*string) *CreateTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *CreateTemplateOutput) SetTemplateArn(v string) *CreateTemplateOutput {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *CreateTemplateOutput) SetTemplateId(v string) *CreateTemplateOutput {
+	s.TemplateId = &v
+	return s
+}
+
 type CreateWorkflowInput struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration ID of the application configured in Application Discovery
 	// Service.
-	//
-	// ApplicationConfigurationId is a required field
-	ApplicationConfigurationId *string `locationName:"applicationConfigurationId" min:"1" type:"string" required:"true"`
+	ApplicationConfigurationId *string `locationName:"applicationConfigurationId" type:"string"`
 
 	// The description of the migration workflow.
 	Description *string `locationName:"description" type:"string"`
@@ -3024,12 +3514,6 @@ func (s CreateWorkflowInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateWorkflowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateWorkflowInput"}
-	if s.ApplicationConfigurationId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ApplicationConfigurationId"))
-	}
-	if s.ApplicationConfigurationId != nil && len(*s.ApplicationConfigurationId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ApplicationConfigurationId", 1))
-	}
 	if s.InputParameters == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputParameters"))
 	}
@@ -3627,6 +4111,77 @@ func (s *CreateWorkflowStepOutput) SetWorkflowId(v string) *CreateWorkflowStepOu
 	return s
 }
 
+type DeleteTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the request to delete a migration workflow template.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTemplateInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteTemplateInput) SetId(v string) *DeleteTemplateInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteWorkflowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3985,8 +4540,39 @@ type GetTemplateOutput struct {
 	// The name of the template.
 	Name *string `locationName:"name" type:"string"`
 
+	// The owner of the migration workflow template.
+	Owner *string `locationName:"owner" type:"string"`
+
 	// The status of the template.
 	Status *string `locationName:"status" type:"string" enum:"TemplateStatus"`
+
+	// The status message of retrieving migration workflow templates.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The tags added to the migration workflow template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// >The Amazon Resource Name (ARN) of the migration workflow template. The format
+	// for an Migration Hub Orchestrator template ARN is arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html)
+	// in the AWS General Reference.
+	TemplateArn *string `locationName:"templateArn" type:"string"`
+
+	// The class of the migration workflow template. The available template classes
+	// are:
+	//
+	//    * A2C
+	//
+	//    * MGN
+	//
+	//    * SAP_MULTI
+	//
+	//    * SQL_EC2
+	//
+	//    * SQL_RDS
+	//
+	//    * VMIE
+	TemplateClass *string `locationName:"templateClass" type:"string"`
 
 	// List of AWS services utilized in a migration workflow.
 	Tools []*Tool `locationName:"tools" type:"list"`
@@ -4040,9 +4626,39 @@ func (s *GetTemplateOutput) SetName(v string) *GetTemplateOutput {
 	return s
 }
 
+// SetOwner sets the Owner field's value.
+func (s *GetTemplateOutput) SetOwner(v string) *GetTemplateOutput {
+	s.Owner = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *GetTemplateOutput) SetStatus(v string) *GetTemplateOutput {
 	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetTemplateOutput) SetStatusMessage(v string) *GetTemplateOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetTemplateOutput) SetTags(v map[string]*string) *GetTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *GetTemplateOutput) SetTemplateArn(v string) *GetTemplateOutput {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateClass sets the TemplateClass field's value.
+func (s *GetTemplateOutput) SetTemplateClass(v string) *GetTemplateOutput {
+	s.TemplateClass = &v
 	return s
 }
 
@@ -4895,7 +5511,7 @@ type GetWorkflowStepInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
 
-	// desThe ID of the step group.
+	// The ID of the step group.
 	//
 	// StepGroupId is a required field
 	StepGroupId *string `location:"querystring" locationName:"stepGroupId" min:"1" type:"string" required:"true"`
@@ -7135,6 +7751,51 @@ func (s *TemplateInput_) SetRequired(v bool) *TemplateInput_ {
 	return s
 }
 
+// The migration workflow template used as the source for the new template.
+type TemplateSource struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the workflow from the source migration workflow template.
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TemplateSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TemplateSource"}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *TemplateSource) SetWorkflowId(v string) *TemplateSource {
+	s.WorkflowId = &v
+	return s
+}
+
 // The summary of the step group in the template.
 type TemplateStepGroupSummary struct {
 	_ struct{} `type:"structure"`
@@ -7547,6 +8208,141 @@ func (s UntagResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the request to update a migration workflow template.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" min:"1" type:"string" required:"true"`
+
+	// The description of the migration workflow template to update.
+	TemplateDescription *string `locationName:"templateDescription" type:"string"`
+
+	// The name of the migration workflow template to update.
+	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTemplateInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateTemplateInput) SetClientToken(v string) *UpdateTemplateInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateTemplateInput) SetId(v string) *UpdateTemplateInput {
+	s.Id = &v
+	return s
+}
+
+// SetTemplateDescription sets the TemplateDescription field's value.
+func (s *UpdateTemplateInput) SetTemplateDescription(v string) *UpdateTemplateInput {
+	s.TemplateDescription = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *UpdateTemplateInput) SetTemplateName(v string) *UpdateTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+type UpdateTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags added to the migration workflow template.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The ARN of the migration workflow template being updated. The format for
+	// an Migration Hub Orchestrator template ARN is arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html)
+	// in the AWS General Reference.
+	TemplateArn *string `locationName:"templateArn" type:"string"`
+
+	// The ID of the migration workflow template being updated.
+	TemplateId *string `locationName:"templateId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateTemplateOutput) SetTags(v map[string]*string) *UpdateTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *UpdateTemplateOutput) SetTemplateArn(v string) *UpdateTemplateOutput {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *UpdateTemplateOutput) SetTemplateId(v string) *UpdateTemplateOutput {
+	s.TemplateId = &v
+	return s
 }
 
 type UpdateWorkflowInput struct {
@@ -8878,6 +9674,9 @@ const (
 	// StepStatusAwaitingDependencies is a StepStatus enum value
 	StepStatusAwaitingDependencies = "AWAITING_DEPENDENCIES"
 
+	// StepStatusSkipped is a StepStatus enum value
+	StepStatusSkipped = "SKIPPED"
+
 	// StepStatusReady is a StepStatus enum value
 	StepStatusReady = "READY"
 
@@ -8901,6 +9700,7 @@ const (
 func StepStatus_Values() []string {
 	return []string{
 		StepStatusAwaitingDependencies,
+		StepStatusSkipped,
 		StepStatusReady,
 		StepStatusInProgress,
 		StepStatusCompleted,
@@ -8933,11 +9733,27 @@ func TargetType_Values() []string {
 const (
 	// TemplateStatusCreated is a TemplateStatus enum value
 	TemplateStatusCreated = "CREATED"
+
+	// TemplateStatusReady is a TemplateStatus enum value
+	TemplateStatusReady = "READY"
+
+	// TemplateStatusPendingCreation is a TemplateStatus enum value
+	TemplateStatusPendingCreation = "PENDING_CREATION"
+
+	// TemplateStatusCreating is a TemplateStatus enum value
+	TemplateStatusCreating = "CREATING"
+
+	// TemplateStatusCreationFailed is a TemplateStatus enum value
+	TemplateStatusCreationFailed = "CREATION_FAILED"
 )
 
 // TemplateStatus_Values returns all elements of the TemplateStatus enum
 func TemplateStatus_Values() []string {
 	return []string{
 		TemplateStatusCreated,
+		TemplateStatusReady,
+		TemplateStatusPendingCreation,
+		TemplateStatusCreating,
+		TemplateStatusCreationFailed,
 	}
 }

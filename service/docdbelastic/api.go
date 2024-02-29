@@ -12,6 +12,105 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCopyClusterSnapshot = "CopyClusterSnapshot"
+
+// CopyClusterSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the CopyClusterSnapshot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CopyClusterSnapshot for more information on using the CopyClusterSnapshot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CopyClusterSnapshotRequest method.
+//	req, resp := client.CopyClusterSnapshotRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/CopyClusterSnapshot
+func (c *DocDBElastic) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *request.Request, output *CopyClusterSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCopyClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cluster-snapshot/{snapshotArn}/copy",
+	}
+
+	if input == nil {
+		input = &CopyClusterSnapshotInput{}
+	}
+
+	output = &CopyClusterSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CopyClusterSnapshot API operation for Amazon DocumentDB Elastic Clusters.
+//
+// Copies a snapshot of an elastic cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB Elastic Clusters's
+// API operation CopyClusterSnapshot for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     ThrottlingException will be thrown when request was denied due to request
+//     throttling.
+//
+//   - ValidationException
+//     A structure defining a validation exception.
+//
+//   - ServiceQuotaExceededException
+//     The service quota for the action was exceeded.
+//
+//   - ConflictException
+//     There was an access conflict.
+//
+//   - InternalServerException
+//     There was an internal server error.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be located.
+//
+//   - AccessDeniedException
+//     An exception that occurs when there are not sufficient permissions to perform
+//     an action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/CopyClusterSnapshot
+func (c *DocDBElastic) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyClusterSnapshotOutput, error) {
+	req, out := c.CopyClusterSnapshotRequest(input)
+	return out, req.Send()
+}
+
+// CopyClusterSnapshotWithContext is the same as CopyClusterSnapshot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CopyClusterSnapshot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDBElastic) CopyClusterSnapshotWithContext(ctx aws.Context, input *CopyClusterSnapshotInput, opts ...request.Option) (*CopyClusterSnapshotOutput, error) {
+	req, out := c.CopyClusterSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a "aws/request.Request" representing the
@@ -55,7 +154,7 @@ func (c *DocDBElastic) CreateClusterRequest(input *CreateClusterInput) (req *req
 
 // CreateCluster API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Creates a new Elastic DocumentDB cluster and returns its Cluster structure.
+// Creates a new Amazon DocumentDB elastic cluster and returns its cluster structure.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -151,7 +250,7 @@ func (c *DocDBElastic) CreateClusterSnapshotRequest(input *CreateClusterSnapshot
 
 // CreateClusterSnapshot API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Creates a snapshot of a cluster.
+// Creates a snapshot of an elastic cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -250,7 +349,7 @@ func (c *DocDBElastic) DeleteClusterRequest(input *DeleteClusterInput) (req *req
 
 // DeleteCluster API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Delete a Elastic DocumentDB cluster.
+// Delete an elastic cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -346,7 +445,7 @@ func (c *DocDBElastic) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshot
 
 // DeleteClusterSnapshot API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Delete a Elastic DocumentDB snapshot.
+// Delete an elastic cluster snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -442,7 +541,7 @@ func (c *DocDBElastic) GetClusterRequest(input *GetClusterInput) (req *request.R
 
 // GetCluster API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Returns information about a specific Elastic DocumentDB cluster.
+// Returns information about a specific elastic cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -535,7 +634,7 @@ func (c *DocDBElastic) GetClusterSnapshotRequest(input *GetClusterSnapshotInput)
 
 // GetClusterSnapshot API operation for Amazon DocumentDB Elastic Clusters.
 //
-// # Returns information about a specific Elastic DocumentDB snapshot
+// # Returns information about a specific elastic cluster snapshot
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -634,7 +733,7 @@ func (c *DocDBElastic) ListClusterSnapshotsRequest(input *ListClusterSnapshotsIn
 
 // ListClusterSnapshots API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Returns information about Elastic DocumentDB snapshots for a specified cluster.
+// Returns information about snapshots for a specified elastic cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -781,7 +880,7 @@ func (c *DocDBElastic) ListClustersRequest(input *ListClustersInput) (req *reque
 
 // ListClusters API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Returns information about provisioned Elastic DocumentDB clusters.
+// Returns information about provisioned Amazon DocumentDB elastic clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -922,7 +1021,7 @@ func (c *DocDBElastic) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for Amazon DocumentDB Elastic Clusters.
 //
-// # Lists all tags on a Elastic DocumentDB resource
+// # Lists all tags on a elastic cluster resource
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1011,7 +1110,7 @@ func (c *DocDBElastic) RestoreClusterFromSnapshotRequest(input *RestoreClusterFr
 
 // RestoreClusterFromSnapshot API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Restores a Elastic DocumentDB cluster from a snapshot.
+// Restores an elastic cluster from a snapshot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1067,6 +1166,193 @@ func (c *DocDBElastic) RestoreClusterFromSnapshotWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opStartCluster = "StartCluster"
+
+// StartClusterRequest generates a "aws/request.Request" representing the
+// client's request for the StartCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCluster for more information on using the StartCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartClusterRequest method.
+//	req, resp := client.StartClusterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StartCluster
+func (c *DocDBElastic) StartClusterRequest(input *StartClusterInput) (req *request.Request, output *StartClusterOutput) {
+	op := &request.Operation{
+		Name:       opStartCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cluster/{clusterArn}/start",
+	}
+
+	if input == nil {
+		input = &StartClusterInput{}
+	}
+
+	output = &StartClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCluster API operation for Amazon DocumentDB Elastic Clusters.
+//
+// Restarts the stopped elastic cluster that is specified by clusterARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB Elastic Clusters's
+// API operation StartCluster for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     ThrottlingException will be thrown when request was denied due to request
+//     throttling.
+//
+//   - ValidationException
+//     A structure defining a validation exception.
+//
+//   - InternalServerException
+//     There was an internal server error.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be located.
+//
+//   - AccessDeniedException
+//     An exception that occurs when there are not sufficient permissions to perform
+//     an action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StartCluster
+func (c *DocDBElastic) StartCluster(input *StartClusterInput) (*StartClusterOutput, error) {
+	req, out := c.StartClusterRequest(input)
+	return out, req.Send()
+}
+
+// StartClusterWithContext is the same as StartCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDBElastic) StartClusterWithContext(ctx aws.Context, input *StartClusterInput, opts ...request.Option) (*StartClusterOutput, error) {
+	req, out := c.StartClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopCluster = "StopCluster"
+
+// StopClusterRequest generates a "aws/request.Request" representing the
+// client's request for the StopCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopCluster for more information on using the StopCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopClusterRequest method.
+//	req, resp := client.StopClusterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StopCluster
+func (c *DocDBElastic) StopClusterRequest(input *StopClusterInput) (req *request.Request, output *StopClusterOutput) {
+	op := &request.Operation{
+		Name:       opStopCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cluster/{clusterArn}/stop",
+	}
+
+	if input == nil {
+		input = &StopClusterInput{}
+	}
+
+	output = &StopClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopCluster API operation for Amazon DocumentDB Elastic Clusters.
+//
+// Stops the running elastic cluster that is specified by clusterArn. The elastic
+// cluster must be in the available state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB Elastic Clusters's
+// API operation StopCluster for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     ThrottlingException will be thrown when request was denied due to request
+//     throttling.
+//
+//   - ValidationException
+//     A structure defining a validation exception.
+//
+//   - InternalServerException
+//     There was an internal server error.
+//
+//   - ResourceNotFoundException
+//     The specified resource could not be located.
+//
+//   - AccessDeniedException
+//     An exception that occurs when there are not sufficient permissions to perform
+//     an action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-elastic-2022-11-28/StopCluster
+func (c *DocDBElastic) StopCluster(input *StopClusterInput) (*StopClusterOutput, error) {
+	req, out := c.StopClusterRequest(input)
+	return out, req.Send()
+}
+
+// StopClusterWithContext is the same as StopCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDBElastic) StopClusterWithContext(ctx aws.Context, input *StopClusterInput, opts ...request.Option) (*StopClusterOutput, error) {
+	req, out := c.StopClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1111,7 +1397,7 @@ func (c *DocDBElastic) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for Amazon DocumentDB Elastic Clusters.
 //
-// # Adds metadata tags to a Elastic DocumentDB resource
+// # Adds metadata tags to an elastic cluster resource
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,7 +1487,7 @@ func (c *DocDBElastic) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for Amazon DocumentDB Elastic Clusters.
 //
-// # Removes metadata tags to a Elastic DocumentDB resource
+// # Removes metadata tags from an elastic cluster resource
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1290,8 +1576,9 @@ func (c *DocDBElastic) UpdateClusterRequest(input *UpdateClusterInput) (req *req
 
 // UpdateCluster API operation for Amazon DocumentDB Elastic Clusters.
 //
-// Modifies a Elastic DocumentDB cluster. This includes updating admin-username/password,
-// upgrading API version setting up a backup window and maintenance window
+// Modifies an elastic cluster. This includes updating admin-username/password,
+// upgrading the API version, and setting up a backup window and maintenance
+// window
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1410,45 +1697,52 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returns information about a specific Elastic DocumentDB cluster.
+// Returns information about a specific elastic cluster.
 type Cluster struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Elastic DocumentDB cluster administrator.
+	// The name of the elastic cluster administrator.
 	//
 	// AdminUserName is a required field
 	AdminUserName *string `locationName:"adminUserName" type:"string" required:"true"`
 
-	// The authentication type for the Elastic DocumentDB cluster.
+	// The authentication type for the elastic cluster.
 	//
 	// AuthType is a required field
 	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"Auth"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The number of days for which automatic snapshots are retained.
+	BackupRetentionPeriod *int64 `locationName:"backupRetentionPeriod" type:"integer"`
+
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `locationName:"clusterArn" type:"string" required:"true"`
 
-	// The URL used to connect to the Elastic DocumentDB cluster.
+	// The URL used to connect to the elastic cluster.
 	//
 	// ClusterEndpoint is a required field
 	ClusterEndpoint *string `locationName:"clusterEndpoint" type:"string" required:"true"`
 
-	// The name of the Elastic DocumentDB cluster.
+	// The name of the elastic cluster.
 	//
 	// ClusterName is a required field
 	ClusterName *string `locationName:"clusterName" type:"string" required:"true"`
 
-	// The time when the Elastic DocumentDB cluster was created in Universal Coordinated
-	// Time (UTC).
+	// The time when the elastic cluster was created in Universal Coordinated Time
+	// (UTC).
 	//
 	// CreateTime is a required field
 	CreateTime *string `locationName:"createTime" type:"string" required:"true"`
 
-	// The KMS key identifier to use to encrypt the Elastic DocumentDB cluster.
+	// The KMS key identifier to use to encrypt the elastic cluster.
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string" required:"true"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, as determined by backupRetentionPeriod.
+	PreferredBackupWindow *string `locationName:"preferredBackupWindow" type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
@@ -1458,27 +1752,37 @@ type Cluster struct {
 	// PreferredMaintenanceWindow is a required field
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string" required:"true"`
 
-	// The capacity of each shard in the Elastic DocumentDB cluster.
+	// The number of vCPUs assigned to each elastic cluster shard. Maximum is 64.
+	// Allowed values are 2, 4, 8, 16, 32, 64.
 	//
 	// ShardCapacity is a required field
 	ShardCapacity *int64 `locationName:"shardCapacity" type:"integer" required:"true"`
 
-	// The number of shards in the Elastic DocumentDB cluster.
+	// The number of shards assigned to the elastic cluster. Maximum is 32.
 	//
 	// ShardCount is a required field
 	ShardCount *int64 `locationName:"shardCount" type:"integer" required:"true"`
 
-	// The status of the Elastic DocumentDB cluster.
+	// The number of replica instances applying to all shards in the cluster. A
+	// shardInstanceCount value of 1 means there is one writer instance, and any
+	// additional instances are replicas that can be used for reads and to improve
+	// availability.
+	ShardInstanceCount *int64 `locationName:"shardInstanceCount" type:"integer"`
+
+	// The total number of shards in the cluster.
+	Shards []*Shard `locationName:"shards" type:"list"`
+
+	// The status of the elastic cluster.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
 
-	// The Amazon EC2 subnet IDs for the Elastic DocumentDB cluster.
+	// The Amazon EC2 subnet IDs for the elastic cluster.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
 
-	// A list of EC2 VPC security groups associated with this cluster.
+	// A list of EC2 VPC security groups associated with thie elastic cluster.
 	//
 	// VpcSecurityGroupIds is a required field
 	VpcSecurityGroupIds []*string `locationName:"vpcSecurityGroupIds" type:"list" required:"true"`
@@ -1514,6 +1818,12 @@ func (s *Cluster) SetAuthType(v string) *Cluster {
 	return s
 }
 
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *Cluster) SetBackupRetentionPeriod(v int64) *Cluster {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
 // SetClusterArn sets the ClusterArn field's value.
 func (s *Cluster) SetClusterArn(v string) *Cluster {
 	s.ClusterArn = &v
@@ -1544,6 +1854,12 @@ func (s *Cluster) SetKmsKeyId(v string) *Cluster {
 	return s
 }
 
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *Cluster) SetPreferredBackupWindow(v string) *Cluster {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *Cluster) SetPreferredMaintenanceWindow(v string) *Cluster {
 	s.PreferredMaintenanceWindow = &v
@@ -1559,6 +1875,18 @@ func (s *Cluster) SetShardCapacity(v int64) *Cluster {
 // SetShardCount sets the ShardCount field's value.
 func (s *Cluster) SetShardCount(v int64) *Cluster {
 	s.ShardCount = &v
+	return s
+}
+
+// SetShardInstanceCount sets the ShardInstanceCount field's value.
+func (s *Cluster) SetShardInstanceCount(v int64) *Cluster {
+	s.ShardInstanceCount = &v
+	return s
+}
+
+// SetShards sets the Shards field's value.
+func (s *Cluster) SetShards(v []*Shard) *Cluster {
+	s.Shards = v
 	return s
 }
 
@@ -1580,21 +1908,21 @@ func (s *Cluster) SetVpcSecurityGroupIds(v []*string) *Cluster {
 	return s
 }
 
-// A list of Elastic DocumentDB cluster.
+// A list of Amazon DocumentDB elastic clusters.
 type ClusterInList struct {
 	_ struct{} `type:"structure"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `locationName:"clusterArn" type:"string" required:"true"`
 
-	// The name of the Elastic DocumentDB cluster.
+	// The name of the elastic cluster.
 	//
 	// ClusterName is a required field
 	ClusterName *string `locationName:"clusterName" type:"string" required:"true"`
 
-	// The status of the Elastic DocumentDB cluster.
+	// The status of the elastic cluster.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
@@ -1636,59 +1964,73 @@ func (s *ClusterInList) SetStatus(v string) *ClusterInList {
 	return s
 }
 
-// Returns information about a specific Elastic DocumentDB snapshot.
+// Returns information about a specific elastic cluster snapshot.
 type ClusterSnapshot struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Elastic DocumentDB cluster administrator.
+	// The name of the elastic cluster administrator.
 	//
 	// AdminUserName is a required field
 	AdminUserName *string `locationName:"adminUserName" type:"string" required:"true"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `locationName:"clusterArn" type:"string" required:"true"`
 
-	// The time when the Elastic DocumentDB cluster was created in Universal Coordinated
-	// Time (UTC).
+	// The time when the elastic cluster was created in Universal Coordinated Time
+	// (UTC).
 	//
 	// ClusterCreationTime is a required field
 	ClusterCreationTime *string `locationName:"clusterCreationTime" type:"string" required:"true"`
 
-	// The KMS key identifier to use to encrypt the Elastic DocumentDB cluster.
+	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
+	// key. If you are creating a cluster using the same Amazon account that owns
+	// this KMS encryption key, you can use the KMS key alias instead of the ARN
+	// as the KMS encryption key. If an encryption key is not specified here, Amazon
+	// DocumentDB uses the default encryption key that KMS creates for your account.
+	// Your account has a different default encryption key for each Amazon Region.
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string" required:"true"`
 
-	// The arn of the Elastic DocumentDB snapshot
+	// The ARN identifier of the elastic cluster snapshot.
 	//
 	// SnapshotArn is a required field
 	SnapshotArn *string `locationName:"snapshotArn" type:"string" required:"true"`
 
-	// The time when the Elastic DocumentDB snapshot was created in Universal Coordinated
+	// The time when the elastic cluster snapshot was created in Universal Coordinated
 	// Time (UTC).
 	//
 	// SnapshotCreationTime is a required field
 	SnapshotCreationTime *string `locationName:"snapshotCreationTime" type:"string" required:"true"`
 
-	// The name of the Elastic DocumentDB snapshot.
+	// The name of the elastic cluster snapshot.
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `locationName:"snapshotName" type:"string" required:"true"`
 
-	// The status of the Elastic DocumentDB snapshot.
+	// The type of cluster snapshots to be returned. You can specify one of the
+	// following values:
+	//
+	//    * automated - Return all cluster snapshots that Amazon DocumentDB has
+	//    automatically created for your Amazon Web Services account.
+	//
+	//    * manual - Return all cluster snapshots that you have manually created
+	//    for your Amazon Web Services account.
+	SnapshotType *string `locationName:"snapshotType" type:"string" enum:"SnapshotType"`
+
+	// The status of the elastic cluster snapshot.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
 
-	// A list of the IDs of subnets associated with the DB cluster snapshot.
+	// The Amazon EC2 subnet IDs for the elastic cluster.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
 
-	// A list of the IDs of the VPC security groups associated with the cluster
-	// snapshot.
+	// A list of EC2 VPC security groups to associate with the elastic cluster.
 	//
 	// VpcSecurityGroupIds is a required field
 	VpcSecurityGroupIds []*string `locationName:"vpcSecurityGroupIds" type:"list" required:"true"`
@@ -1754,6 +2096,12 @@ func (s *ClusterSnapshot) SetSnapshotName(v string) *ClusterSnapshot {
 	return s
 }
 
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *ClusterSnapshot) SetSnapshotType(v string) *ClusterSnapshot {
+	s.SnapshotType = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *ClusterSnapshot) SetStatus(v string) *ClusterSnapshot {
 	s.Status = &v
@@ -1772,32 +2120,32 @@ func (s *ClusterSnapshot) SetVpcSecurityGroupIds(v []*string) *ClusterSnapshot {
 	return s
 }
 
-// A list of Elastic DocumentDB snapshots.
+// A list of elastic cluster snapshots.
 type ClusterSnapshotInList struct {
 	_ struct{} `type:"structure"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `locationName:"clusterArn" type:"string" required:"true"`
 
-	// The arn of the Elastic DocumentDB snapshot
+	// The ARN identifier of the elastic cluster snapshot.
 	//
 	// SnapshotArn is a required field
 	SnapshotArn *string `locationName:"snapshotArn" type:"string" required:"true"`
 
-	// The time when the Elastic DocumentDB snapshot was created in Universal Coordinated
+	// The time when the elastic cluster snapshot was created in Universal Coordinated
 	// Time (UTC).
 	//
 	// SnapshotCreationTime is a required field
 	SnapshotCreationTime *string `locationName:"snapshotCreationTime" type:"string" required:"true"`
 
-	// The name of the Elastic DocumentDB snapshot.
+	// The name of the elastic cluster snapshot.
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `locationName:"snapshotName" type:"string" required:"true"`
 
-	// The status of the Elastic DocumentDB snapshot.
+	// The status of the elastic cluster snapshot.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
@@ -1925,10 +2273,167 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CopyClusterSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// Set to true to copy all tags from the source cluster snapshot to the target
+	// elastic cluster snapshot. The default is false.
+	CopyTags *bool `locationName:"copyTags" type:"boolean"`
+
+	// The Amazon Web Services KMS key ID for an encrypted elastic cluster snapshot.
+	// The Amazon Web Services KMS key ID is the Amazon Resource Name (ARN), Amazon
+	// Web Services KMS key identifier, or the Amazon Web Services KMS key alias
+	// for the Amazon Web Services KMS encryption key.
+	//
+	// If you copy an encrypted elastic cluster snapshot from your Amazon Web Services
+	// account, you can specify a value for KmsKeyId to encrypt the copy with a
+	// new Amazon Web ServicesS KMS encryption key. If you don't specify a value
+	// for KmsKeyId, then the copy of the elastic cluster snapshot is encrypted
+	// with the same AWS KMS key as the source elastic cluster snapshot.
+	//
+	// To copy an encrypted elastic cluster snapshot to another Amazon Web Services
+	// region, set KmsKeyId to the Amazon Web Services KMS key ID that you want
+	// to use to encrypt the copy of the elastic cluster snapshot in the destination
+	// region. Amazon Web Services KMS encryption keys are specific to the Amazon
+	// Web Services region that they are created in, and you can't use encryption
+	// keys from one Amazon Web Services region in another Amazon Web Services region.
+	//
+	// If you copy an unencrypted elastic cluster snapshot and specify a value for
+	// the KmsKeyId parameter, an error is returned.
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The Amazon Resource Name (ARN) identifier of the elastic cluster snapshot.
+	//
+	// SnapshotArn is a required field
+	SnapshotArn *string `location:"uri" locationName:"snapshotArn" type:"string" required:"true"`
+
+	// The tags to be assigned to the elastic cluster snapshot.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The identifier of the new elastic cluster snapshot to create from the source
+	// cluster snapshot. This parameter is not case sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must contain from 1 to 63 letters, numbers, or hyphens.
+	//
+	//    * The first character must be a letter.
+	//
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// Example: elastic-cluster-snapshot-5
+	//
+	// TargetSnapshotName is a required field
+	TargetSnapshotName *string `locationName:"targetSnapshotName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyClusterSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyClusterSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyClusterSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyClusterSnapshotInput"}
+	if s.SnapshotArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnapshotArn"))
+	}
+	if s.SnapshotArn != nil && len(*s.SnapshotArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnapshotArn", 1))
+	}
+	if s.TargetSnapshotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetSnapshotName"))
+	}
+	if s.TargetSnapshotName != nil && len(*s.TargetSnapshotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetSnapshotName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyTags sets the CopyTags field's value.
+func (s *CopyClusterSnapshotInput) SetCopyTags(v bool) *CopyClusterSnapshotInput {
+	s.CopyTags = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CopyClusterSnapshotInput) SetKmsKeyId(v string) *CopyClusterSnapshotInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSnapshotArn sets the SnapshotArn field's value.
+func (s *CopyClusterSnapshotInput) SetSnapshotArn(v string) *CopyClusterSnapshotInput {
+	s.SnapshotArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyClusterSnapshotInput) SetTags(v map[string]*string) *CopyClusterSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetSnapshotName sets the TargetSnapshotName field's value.
+func (s *CopyClusterSnapshotInput) SetTargetSnapshotName(v string) *CopyClusterSnapshotInput {
+	s.TargetSnapshotName = &v
+	return s
+}
+
+type CopyClusterSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns information about a specific elastic cluster snapshot.
+	//
+	// Snapshot is a required field
+	Snapshot *ClusterSnapshot `locationName:"snapshot" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyClusterSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CopyClusterSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *CopyClusterSnapshotOutput) SetSnapshot(v *ClusterSnapshot) *CopyClusterSnapshotOutput {
+	s.Snapshot = v
+	return s
+}
+
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Elastic DocumentDB cluster administrator.
+	// The name of the Amazon DocumentDB elastic clusters administrator.
 	//
 	// Constraints:
 	//
@@ -1941,8 +2446,8 @@ type CreateClusterInput struct {
 	// AdminUserName is a required field
 	AdminUserName *string `locationName:"adminUserName" type:"string" required:"true"`
 
-	// The password for the Elastic DocumentDB cluster administrator and can contain
-	// any printable ASCII characters.
+	// The password for the Amazon DocumentDB elastic clusters administrator. The
+	// password can contain any printable ASCII characters.
 	//
 	// Constraints:
 	//
@@ -1958,16 +2463,20 @@ type CreateClusterInput struct {
 	// AdminUserPassword is a required field
 	AdminUserPassword *string `locationName:"adminUserPassword" type:"string" required:"true" sensitive:"true"`
 
-	// The authentication type for the Elastic DocumentDB cluster.
+	// The authentication type used to determine where to fetch the password used
+	// for accessing the elastic cluster. Valid types are PLAIN_TEXT or SECRET_ARN.
 	//
 	// AuthType is a required field
 	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"Auth"`
 
-	// The client token for the Elastic DocumentDB cluster.
+	// The number of days for which automatic snapshots are retained.
+	BackupRetentionPeriod *int64 `locationName:"backupRetentionPeriod" type:"integer"`
+
+	// The client token for the elastic cluster.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The name of the new Elastic DocumentDB cluster. This parameter is stored
-	// as a lowercase string.
+	// The name of the new elastic cluster. This parameter is stored as a lowercase
+	// string.
 	//
 	// Constraints:
 	//
@@ -1982,17 +2491,21 @@ type CreateClusterInput struct {
 	// ClusterName is a required field
 	ClusterName *string `locationName:"clusterName" type:"string" required:"true"`
 
-	// The KMS key identifier to use to encrypt the new Elastic DocumentDB cluster.
+	// The KMS key identifier to use to encrypt the new elastic cluster.
 	//
 	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
 	// key. If you are creating a cluster using the same Amazon account that owns
 	// this KMS encryption key, you can use the KMS key alias instead of the ARN
 	// as the KMS encryption key.
 	//
-	// If an encryption key is not specified, Elastic DocumentDB uses the default
+	// If an encryption key is not specified, Amazon DocumentDB uses the default
 	// encryption key that KMS creates for your account. Your account has a different
 	// default encryption key for each Amazon Region.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, as determined by the backupRetentionPeriod.
+	PreferredBackupWindow *string `locationName:"preferredBackupWindow" type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
@@ -2007,24 +2520,30 @@ type CreateClusterInput struct {
 	// Constraints: Minimum 30-minute window.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
-	// The capacity of each shard in the new Elastic DocumentDB cluster.
+	// The number of vCPUs assigned to each elastic cluster shard. Maximum is 64.
+	// Allowed values are 2, 4, 8, 16, 32, 64.
 	//
 	// ShardCapacity is a required field
 	ShardCapacity *int64 `locationName:"shardCapacity" type:"integer" required:"true"`
 
-	// The number of shards to create in the new Elastic DocumentDB cluster.
+	// The number of shards assigned to the elastic cluster. Maximum is 32.
 	//
 	// ShardCount is a required field
 	ShardCount *int64 `locationName:"shardCount" type:"integer" required:"true"`
 
-	// The Amazon EC2 subnet IDs for the new Elastic DocumentDB cluster.
+	// The number of replica instances applying to all shards in the elastic cluster.
+	// A shardInstanceCount value of 1 means there is one writer instance, and any
+	// additional instances are replicas that can be used for reads and to improve
+	// availability.
+	ShardInstanceCount *int64 `locationName:"shardInstanceCount" type:"integer"`
+
+	// The Amazon EC2 subnet IDs for the new elastic cluster.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
-	// The tags to be assigned to the new Elastic DocumentDB cluster.
+	// The tags to be assigned to the new elastic cluster.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// A list of EC2 VPC security groups to associate with the new Elastic DocumentDB
-	// cluster.
+	// A list of EC2 VPC security groups to associate with the new elastic cluster.
 	VpcSecurityGroupIds []*string `locationName:"vpcSecurityGroupIds" type:"list"`
 }
 
@@ -2092,6 +2611,12 @@ func (s *CreateClusterInput) SetAuthType(v string) *CreateClusterInput {
 	return s
 }
 
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *CreateClusterInput) SetBackupRetentionPeriod(v int64) *CreateClusterInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateClusterInput) SetClientToken(v string) *CreateClusterInput {
 	s.ClientToken = &v
@@ -2110,6 +2635,12 @@ func (s *CreateClusterInput) SetKmsKeyId(v string) *CreateClusterInput {
 	return s
 }
 
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *CreateClusterInput) SetPreferredBackupWindow(v string) *CreateClusterInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *CreateClusterInput) SetPreferredMaintenanceWindow(v string) *CreateClusterInput {
 	s.PreferredMaintenanceWindow = &v
@@ -2125,6 +2656,12 @@ func (s *CreateClusterInput) SetShardCapacity(v int64) *CreateClusterInput {
 // SetShardCount sets the ShardCount field's value.
 func (s *CreateClusterInput) SetShardCount(v int64) *CreateClusterInput {
 	s.ShardCount = &v
+	return s
+}
+
+// SetShardInstanceCount sets the ShardInstanceCount field's value.
+func (s *CreateClusterInput) SetShardInstanceCount(v int64) *CreateClusterInput {
+	s.ShardInstanceCount = &v
 	return s
 }
 
@@ -2149,7 +2686,7 @@ func (s *CreateClusterInput) SetVpcSecurityGroupIds(v []*string) *CreateClusterI
 type CreateClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The new Elastic DocumentDB cluster that has been created.
+	// The new elastic cluster that has been created.
 	//
 	// Cluster is a required field
 	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
@@ -2182,18 +2719,17 @@ func (s *CreateClusterOutput) SetCluster(v *Cluster) *CreateClusterOutput {
 type CreateClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The arn of the Elastic DocumentDB cluster that the snapshot will be taken
-	// from.
+	// The ARN identifier of the elastic cluster of which you want to create a snapshot.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `locationName:"clusterArn" type:"string" required:"true"`
 
-	// The name of the Elastic DocumentDB snapshot.
+	// The name of the new elastic cluster snapshot.
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `locationName:"snapshotName" min:"1" type:"string" required:"true"`
 
-	// The tags to be assigned to the new Elastic DocumentDB snapshot.
+	// The tags to be assigned to the new elastic cluster snapshot.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -2255,7 +2791,7 @@ func (s *CreateClusterSnapshotInput) SetTags(v map[string]*string) *CreateCluste
 type CreateClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about the new Elastic DocumentDB snapshot.
+	// Returns information about the new elastic cluster snapshot.
 	//
 	// Snapshot is a required field
 	Snapshot *ClusterSnapshot `locationName:"snapshot" type:"structure" required:"true"`
@@ -2288,7 +2824,7 @@ func (s *CreateClusterSnapshotOutput) SetSnapshot(v *ClusterSnapshot) *CreateClu
 type DeleteClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB cluster that is to be deleted.
+	// The ARN identifier of the elastic cluster that is to be deleted.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -2337,7 +2873,7 @@ func (s *DeleteClusterInput) SetClusterArn(v string) *DeleteClusterInput {
 type DeleteClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about the newly deleted Elastic DocumentDB cluster.
+	// Returns information about the newly deleted elastic cluster.
 	//
 	// Cluster is a required field
 	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
@@ -2370,7 +2906,7 @@ func (s *DeleteClusterOutput) SetCluster(v *Cluster) *DeleteClusterOutput {
 type DeleteClusterSnapshotInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB snapshot that is to be deleted.
+	// The ARN identifier of the elastic cluster snapshot that is to be deleted.
 	//
 	// SnapshotArn is a required field
 	SnapshotArn *string `location:"uri" locationName:"snapshotArn" type:"string" required:"true"`
@@ -2419,7 +2955,7 @@ func (s *DeleteClusterSnapshotInput) SetSnapshotArn(v string) *DeleteClusterSnap
 type DeleteClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about the newly deleted Elastic DocumentDB snapshot.
+	// Returns information about the newly deleted elastic cluster snapshot.
 	//
 	// Snapshot is a required field
 	Snapshot *ClusterSnapshot `locationName:"snapshot" type:"structure" required:"true"`
@@ -2452,7 +2988,7 @@ func (s *DeleteClusterSnapshotOutput) SetSnapshot(v *ClusterSnapshot) *DeleteClu
 type GetClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -2501,7 +3037,7 @@ func (s *GetClusterInput) SetClusterArn(v string) *GetClusterInput {
 type GetClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about a specific Elastic DocumentDB cluster.
+	// Returns information about a specific elastic cluster.
 	//
 	// Cluster is a required field
 	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
@@ -2534,7 +3070,7 @@ func (s *GetClusterOutput) SetCluster(v *Cluster) *GetClusterOutput {
 type GetClusterSnapshotInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB snapshot.
+	// The ARN identifier of the elastic cluster snapshot.
 	//
 	// SnapshotArn is a required field
 	SnapshotArn *string `location:"uri" locationName:"snapshotArn" type:"string" required:"true"`
@@ -2583,7 +3119,7 @@ func (s *GetClusterSnapshotInput) SetSnapshotArn(v string) *GetClusterSnapshotIn
 type GetClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about a specific Elastic DocumentDB snapshot.
+	// Returns information about a specific elastic cluster snapshot.
 	//
 	// Snapshot is a required field
 	Snapshot *ClusterSnapshot `locationName:"snapshot" type:"structure" required:"true"`
@@ -2680,14 +3216,29 @@ func (s *InternalServerException) RequestID() string {
 type ListClusterSnapshotsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	ClusterArn *string `location:"querystring" locationName:"clusterArn" type:"string"`
 
-	// The maximum number of entries to recieve in the response.
+	// The maximum number of elastic cluster snapshot results to receive in the
+	// response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"20" type:"integer"`
 
-	// The nextToken which is used the get the next page of data.
+	// A pagination token provided by a previous request. If this parameter is specified,
+	// the response includes only records beyond this token, up to the value specified
+	// by max-results.
+	//
+	// If there is no more data in the responce, the nextToken will not be returned.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The type of cluster snapshots to be returned. You can specify one of the
+	// following values:
+	//
+	//    * automated - Return all cluster snapshots that Amazon DocumentDB has
+	//    automatically created for your Amazon Web Services account.
+	//
+	//    * manual - Return all cluster snapshots that you have manually created
+	//    for your Amazon Web Services account.
+	SnapshotType *string `location:"querystring" locationName:"snapshotType" type:"string"`
 }
 
 // String returns the string representation.
@@ -2739,15 +3290,23 @@ func (s *ListClusterSnapshotsInput) SetNextToken(v string) *ListClusterSnapshots
 	return s
 }
 
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *ListClusterSnapshotsInput) SetSnapshotType(v string) *ListClusterSnapshotsInput {
+	s.SnapshotType = &v
+	return s
+}
+
 type ListClusterSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The response will provide a nextToken if there is more data beyond the maxResults.
+	// A pagination token provided by a previous request. If this parameter is specified,
+	// the response includes only records beyond this token, up to the value specified
+	// by max-results.
 	//
 	// If there is no more data in the responce, the nextToken will not be returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A list of Elastic DocumentDB snapshots for a specified cluster.
+	// A list of snapshots for a specified elastic cluster.
 	Snapshots []*ClusterSnapshotInList `locationName:"snapshots" type:"list"`
 }
 
@@ -2784,10 +3343,15 @@ func (s *ListClusterSnapshotsOutput) SetSnapshots(v []*ClusterSnapshotInList) *L
 type ListClustersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The maximum number of entries to recieve in the response.
+	// The maximum number of elastic cluster snapshot results to receive in the
+	// response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The nextToken which is used the get the next page of data.
+	// A pagination token provided by a previous request. If this parameter is specified,
+	// the response includes only records beyond this token, up to the value specified
+	// by max-results.
+	//
+	// If there is no more data in the responce, the nextToken will not be returned.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -2837,10 +3401,12 @@ func (s *ListClustersInput) SetNextToken(v string) *ListClustersInput {
 type ListClustersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Elastic DocumentDB cluster.
+	// A list of Amazon DocumentDB elastic clusters.
 	Clusters []*ClusterInList `locationName:"clusters" type:"list"`
 
-	// The response will provide a nextToken if there is more data beyond the maxResults.
+	// A pagination token provided by a previous request. If this parameter is specified,
+	// the response includes only records beyond this token, up to the value specified
+	// by max-results.
 	//
 	// If there is no more data in the responce, the nextToken will not be returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -2879,7 +3445,7 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB resource.
+	// The ARN identifier of the elastic cluster resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -2928,7 +3494,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of tags for the specified Elastic DocumentDB resource.
+	// The list of tags for the specified elastic cluster resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3034,38 +3600,47 @@ func (s *ResourceNotFoundException) RequestID() string {
 type RestoreClusterFromSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Elastic DocumentDB cluster.
+	// The name of the elastic cluster.
 	//
 	// ClusterName is a required field
 	ClusterName *string `locationName:"clusterName" type:"string" required:"true"`
 
-	// The KMS key identifier to use to encrypt the new Elastic DocumentDB cluster.
+	// The KMS key identifier to use to encrypt the new Amazon DocumentDB elastic
+	// clusters cluster.
 	//
 	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
 	// key. If you are creating a cluster using the same Amazon account that owns
 	// this KMS encryption key, you can use the KMS key alias instead of the ARN
 	// as the KMS encryption key.
 	//
-	// If an encryption key is not specified here, Elastic DocumentDB uses the default
+	// If an encryption key is not specified here, Amazon DocumentDB uses the default
 	// encryption key that KMS creates for your account. Your account has a different
 	// default encryption key for each Amazon Region.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
-	// The arn of the Elastic DocumentDB snapshot.
+	// The capacity of each shard in the new restored elastic cluster.
+	ShardCapacity *int64 `locationName:"shardCapacity" type:"integer"`
+
+	// The number of replica instances applying to all shards in the elastic cluster.
+	// A shardInstanceCount value of 1 means there is one writer instance, and any
+	// additional instances are replicas that can be used for reads and to improve
+	// availability.
+	ShardInstanceCount *int64 `locationName:"shardInstanceCount" type:"integer"`
+
+	// The ARN identifier of the elastic cluster snapshot.
 	//
 	// SnapshotArn is a required field
 	SnapshotArn *string `location:"uri" locationName:"snapshotArn" type:"string" required:"true"`
 
-	// The Amazon EC2 subnet IDs for the Elastic DocumentDB cluster.
+	// The Amazon EC2 subnet IDs for the elastic cluster.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
-	// A list of the tag names to be assigned to the restored DB cluster, in the
-	// form of an array of key-value pairs in which the key is the tag name and
-	// the value is the key value.
+	// A list of the tag names to be assigned to the restored elastic cluster, in
+	// the form of an array of key-value pairs in which the key is the tag name
+	// and the value is the key value.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// A list of EC2 VPC security groups to associate with the Elastic DocumentDB
-	// cluster.
+	// A list of EC2 VPC security groups to associate with the elastic cluster.
 	VpcSecurityGroupIds []*string `locationName:"vpcSecurityGroupIds" type:"list"`
 }
 
@@ -3118,6 +3693,18 @@ func (s *RestoreClusterFromSnapshotInput) SetKmsKeyId(v string) *RestoreClusterF
 	return s
 }
 
+// SetShardCapacity sets the ShardCapacity field's value.
+func (s *RestoreClusterFromSnapshotInput) SetShardCapacity(v int64) *RestoreClusterFromSnapshotInput {
+	s.ShardCapacity = &v
+	return s
+}
+
+// SetShardInstanceCount sets the ShardInstanceCount field's value.
+func (s *RestoreClusterFromSnapshotInput) SetShardInstanceCount(v int64) *RestoreClusterFromSnapshotInput {
+	s.ShardInstanceCount = &v
+	return s
+}
+
 // SetSnapshotArn sets the SnapshotArn field's value.
 func (s *RestoreClusterFromSnapshotInput) SetSnapshotArn(v string) *RestoreClusterFromSnapshotInput {
 	s.SnapshotArn = &v
@@ -3145,7 +3732,7 @@ func (s *RestoreClusterFromSnapshotInput) SetVpcSecurityGroupIds(v []*string) *R
 type RestoreClusterFromSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about a the restored Elastic DocumentDB cluster.
+	// Returns information about a the restored elastic cluster.
 	//
 	// Cluster is a required field
 	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
@@ -3239,15 +3826,235 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The name of the shard.
+type Shard struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the shard was created in Universal Coordinated Time (UTC).
+	//
+	// CreateTime is a required field
+	CreateTime *string `locationName:"createTime" type:"string" required:"true"`
+
+	// The ID of the shard.
+	//
+	// ShardId is a required field
+	ShardId *string `locationName:"shardId" type:"string" required:"true"`
+
+	// The current status of the shard.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Shard) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Shard) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *Shard) SetCreateTime(v string) *Shard {
+	s.CreateTime = &v
+	return s
+}
+
+// SetShardId sets the ShardId field's value.
+func (s *Shard) SetShardId(v string) *Shard {
+	s.ShardId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Shard) SetStatus(v string) *Shard {
+	s.Status = &v
+	return s
+}
+
+type StartClusterInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN identifier of the elastic cluster.
+	//
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartClusterInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *StartClusterInput) SetClusterArn(v string) *StartClusterInput {
+	s.ClusterArn = &v
+	return s
+}
+
+type StartClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns information about a specific elastic cluster.
+	//
+	// Cluster is a required field
+	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *StartClusterOutput) SetCluster(v *Cluster) *StartClusterOutput {
+	s.Cluster = v
+	return s
+}
+
+type StopClusterInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN identifier of the elastic cluster.
+	//
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopClusterInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *StopClusterInput) SetClusterArn(v string) *StopClusterInput {
+	s.ClusterArn = &v
+	return s
+}
+
+type StopClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns information about a specific elastic cluster.
+	//
+	// Cluster is a required field
+	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *StopClusterOutput) SetCluster(v *Cluster) *StopClusterOutput {
+	s.Cluster = v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The arn of the Elastic DocumentDB resource.
+	// The ARN identifier of the elastic cluster resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// The tags to be assigned to the Elastic DocumentDB resource.
+	// The tags that are assigned to the elastic cluster resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -3395,12 +4202,12 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The arn of the Elastic DocumentDB resource.
+	// The ARN identifier of the elastic cluster resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
-	// The tag keys to be removed from the Elastic DocumentDB resource.
+	// The tag keys to be removed from the elastic cluster resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -3480,7 +4287,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// The password for the Elastic DocumentDB cluster administrator. This password
+	// The password associated with the elastic cluster administrator. This password
 	// can contain any printable ASCII character except forward slash (/), double
 	// quote ("), or the "at" symbol (@).
 	//
@@ -3491,16 +4298,24 @@ type UpdateClusterInput struct {
 	// String and GoString methods.
 	AdminUserPassword *string `locationName:"adminUserPassword" type:"string" sensitive:"true"`
 
-	// The authentication type for the Elastic DocumentDB cluster.
+	// The authentication type used to determine where to fetch the password used
+	// for accessing the elastic cluster. Valid types are PLAIN_TEXT or SECRET_ARN.
 	AuthType *string `locationName:"authType" type:"string" enum:"Auth"`
 
-	// The client token for the Elastic DocumentDB cluster.
+	// The number of days for which automatic snapshots are retained.
+	BackupRetentionPeriod *int64 `locationName:"backupRetentionPeriod" type:"integer"`
+
+	// The client token for the elastic cluster.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The arn of the Elastic DocumentDB cluster.
+	// The ARN identifier of the elastic cluster.
 	//
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, as determined by the backupRetentionPeriod.
+	PreferredBackupWindow *string `locationName:"preferredBackupWindow" type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
@@ -3515,17 +4330,23 @@ type UpdateClusterInput struct {
 	// Constraints: Minimum 30-minute window.
 	PreferredMaintenanceWindow *string `locationName:"preferredMaintenanceWindow" type:"string"`
 
-	// The capacity of each shard in the Elastic DocumentDB cluster.
+	// The number of vCPUs assigned to each elastic cluster shard. Maximum is 64.
+	// Allowed values are 2, 4, 8, 16, 32, 64.
 	ShardCapacity *int64 `locationName:"shardCapacity" type:"integer"`
 
-	// The number of shards to create in the Elastic DocumentDB cluster.
+	// The number of shards assigned to the elastic cluster. Maximum is 32.
 	ShardCount *int64 `locationName:"shardCount" type:"integer"`
 
-	// The number of shards to create in the Elastic DocumentDB cluster.
+	// The number of replica instances applying to all shards in the elastic cluster.
+	// A shardInstanceCount value of 1 means there is one writer instance, and any
+	// additional instances are replicas that can be used for reads and to improve
+	// availability.
+	ShardInstanceCount *int64 `locationName:"shardInstanceCount" type:"integer"`
+
+	// The Amazon EC2 subnet IDs for the elastic cluster.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
-	// A list of EC2 VPC security groups to associate with the new Elastic DocumentDB
-	// cluster.
+	// A list of EC2 VPC security groups to associate with the elastic cluster.
 	VpcSecurityGroupIds []*string `locationName:"vpcSecurityGroupIds" type:"list"`
 }
 
@@ -3575,6 +4396,12 @@ func (s *UpdateClusterInput) SetAuthType(v string) *UpdateClusterInput {
 	return s
 }
 
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *UpdateClusterInput) SetBackupRetentionPeriod(v int64) *UpdateClusterInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdateClusterInput) SetClientToken(v string) *UpdateClusterInput {
 	s.ClientToken = &v
@@ -3584,6 +4411,12 @@ func (s *UpdateClusterInput) SetClientToken(v string) *UpdateClusterInput {
 // SetClusterArn sets the ClusterArn field's value.
 func (s *UpdateClusterInput) SetClusterArn(v string) *UpdateClusterInput {
 	s.ClusterArn = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *UpdateClusterInput) SetPreferredBackupWindow(v string) *UpdateClusterInput {
+	s.PreferredBackupWindow = &v
 	return s
 }
 
@@ -3605,6 +4438,12 @@ func (s *UpdateClusterInput) SetShardCount(v int64) *UpdateClusterInput {
 	return s
 }
 
+// SetShardInstanceCount sets the ShardInstanceCount field's value.
+func (s *UpdateClusterInput) SetShardInstanceCount(v int64) *UpdateClusterInput {
+	s.ShardInstanceCount = &v
+	return s
+}
+
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *UpdateClusterInput) SetSubnetIds(v []*string) *UpdateClusterInput {
 	s.SubnetIds = v
@@ -3620,7 +4459,7 @@ func (s *UpdateClusterInput) SetVpcSecurityGroupIds(v []*string) *UpdateClusterI
 type UpdateClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about the updated Elastic DocumentDB cluster.
+	// Returns information about the updated elastic cluster.
 	//
 	// Cluster is a required field
 	Cluster *Cluster `locationName:"cluster" type:"structure" required:"true"`
@@ -3786,6 +4625,22 @@ func Auth_Values() []string {
 }
 
 const (
+	// SnapshotTypeManual is a SnapshotType enum value
+	SnapshotTypeManual = "MANUAL"
+
+	// SnapshotTypeAutomated is a SnapshotType enum value
+	SnapshotTypeAutomated = "AUTOMATED"
+)
+
+// SnapshotType_Values returns all elements of the SnapshotType enum
+func SnapshotType_Values() []string {
+	return []string{
+		SnapshotTypeManual,
+		SnapshotTypeAutomated,
+	}
+}
+
+const (
 	// StatusCreating is a Status enum value
 	StatusCreating = "CREATING"
 
@@ -3812,6 +4667,36 @@ const (
 
 	// StatusInaccessibleEncryptionCreds is a Status enum value
 	StatusInaccessibleEncryptionCreds = "INACCESSIBLE_ENCRYPTION_CREDS"
+
+	// StatusInaccessibleSecretArn is a Status enum value
+	StatusInaccessibleSecretArn = "INACCESSIBLE_SECRET_ARN"
+
+	// StatusInaccessibleVpcEndpoint is a Status enum value
+	StatusInaccessibleVpcEndpoint = "INACCESSIBLE_VPC_ENDPOINT"
+
+	// StatusIncompatibleNetwork is a Status enum value
+	StatusIncompatibleNetwork = "INCOMPATIBLE_NETWORK"
+
+	// StatusMerging is a Status enum value
+	StatusMerging = "MERGING"
+
+	// StatusModifying is a Status enum value
+	StatusModifying = "MODIFYING"
+
+	// StatusSplitting is a Status enum value
+	StatusSplitting = "SPLITTING"
+
+	// StatusCopying is a Status enum value
+	StatusCopying = "COPYING"
+
+	// StatusStarting is a Status enum value
+	StatusStarting = "STARTING"
+
+	// StatusStopping is a Status enum value
+	StatusStopping = "STOPPING"
+
+	// StatusStopped is a Status enum value
+	StatusStopped = "STOPPED"
 )
 
 // Status_Values returns all elements of the Status enum
@@ -3826,6 +4711,16 @@ func Status_Values() []string {
 		StatusInvalidSecurityGroupId,
 		StatusInvalidSubnetId,
 		StatusInaccessibleEncryptionCreds,
+		StatusInaccessibleSecretArn,
+		StatusInaccessibleVpcEndpoint,
+		StatusIncompatibleNetwork,
+		StatusMerging,
+		StatusModifying,
+		StatusSplitting,
+		StatusCopying,
+		StatusStarting,
+		StatusStopping,
+		StatusStopped,
 	}
 }
 

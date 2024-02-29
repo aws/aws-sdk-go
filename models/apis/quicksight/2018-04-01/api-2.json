@@ -4965,7 +4965,7 @@
     "ColumnConfigurationList":{
       "type":"list",
       "member":{"shape":"ColumnConfiguration"},
-      "max":200
+      "max":2000
     },
     "ColumnDataRole":{
       "type":"string",
@@ -5169,7 +5169,8 @@
         "Column":{"shape":"ColumnIdentifier"},
         "Label":{"shape":"String"},
         "Visibility":{"shape":"Visibility"},
-        "Aggregation":{"shape":"AggregationFunction"}
+        "Aggregation":{"shape":"AggregationFunction"},
+        "TooltipTarget":{"shape":"TooltipTarget"}
       }
     },
     "ComboChartAggregatedFieldWells":{
@@ -10339,7 +10340,8 @@
       "members":{
         "FieldId":{"shape":"FieldId"},
         "Label":{"shape":"String"},
-        "Visibility":{"shape":"Visibility"}
+        "Visibility":{"shape":"Visibility"},
+        "TooltipTarget":{"shape":"TooltipTarget"}
       }
     },
     "FieldValue":{
@@ -18470,6 +18472,14 @@
         "SelectedTooltipType":{"shape":"SelectedTooltipType"},
         "FieldBasedTooltip":{"shape":"FieldBasedTooltip"}
       }
+    },
+    "TooltipTarget":{
+      "type":"string",
+      "enum":[
+        "BOTH",
+        "BAR",
+        "LINE"
+      ]
     },
     "TooltipTitleType":{
       "type":"string",

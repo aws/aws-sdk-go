@@ -2554,6 +2554,7 @@
       "type":"string",
       "enum":["UtteranceTimestamp"]
     },
+    "AnswerField":{"type":"string"},
     "AssociatedTranscript":{
       "type":"structure",
       "members":{
@@ -2764,9 +2765,22 @@
         "resources":{"shape":"CustomVocabularyItems"}
       }
     },
+    "BedrockKnowledgeBaseArn":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,40}:[0-9]{12}:knowledge-base\\/[A-Za-z0-9]{10}$|^[A-Za-z0-9]{10}$"
+    },
+    "BedrockKnowledgeStoreConfiguration":{
+      "type":"structure",
+      "required":["bedrockKnowledgeBaseArn"],
+      "members":{
+        "bedrockKnowledgeBaseArn":{"shape":"BedrockKnowledgeBaseArn"}
+      }
+    },
     "BedrockModelArn":{
       "type":"string",
-      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model\\/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}$"
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}::foundation-model\\/[a-z0-9-]{1,63}[.]{1}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2}$"
     },
     "BedrockModelSpecification":{
       "type":"structure",
@@ -3906,7 +3920,8 @@
           "location":"uri",
           "locationName":"localeId"
         },
-        "initialResponseSetting":{"shape":"InitialResponseSetting"}
+        "initialResponseSetting":{"shape":"InitialResponseSetting"},
+        "qnAIntentConfiguration":{"shape":"QnAIntentConfiguration"}
       }
     },
     "CreateIntentResponse":{
@@ -3928,7 +3943,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
-        "initialResponseSetting":{"shape":"InitialResponseSetting"}
+        "initialResponseSetting":{"shape":"InitialResponseSetting"},
+        "qnAIntentConfiguration":{"shape":"QnAIntentConfiguration"}
       }
     },
     "CreateResourcePolicyRequest":{
@@ -4227,6 +4243,14 @@
       "required":["childDirected"],
       "members":{
         "childDirected":{"shape":"ChildDirected"}
+      }
+    },
+    "DataSourceConfiguration":{
+      "type":"structure",
+      "members":{
+        "opensearchConfiguration":{"shape":"OpensearchConfiguration"},
+        "kendraConfiguration":{"shape":"QnAKendraConfiguration"},
+        "bedrockKnowledgeStoreConfiguration":{"shape":"BedrockKnowledgeStoreConfiguration"}
       }
     },
     "DateRangeFilter":{
@@ -5076,7 +5100,8 @@
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
-        "initialResponseSetting":{"shape":"InitialResponseSetting"}
+        "initialResponseSetting":{"shape":"InitialResponseSetting"},
+        "qnAIntentConfiguration":{"shape":"QnAIntentConfiguration"}
       }
     },
     "DescribeResourcePolicyRequest":{
@@ -5372,6 +5397,10 @@
         "sessionAttributes":{"shape":"StringMap"}
       }
     },
+    "DomainEndpoint":{
+      "type":"string",
+      "pattern":"^(http|https):\\/\\/+[^\\s]+[\\w]"
+    },
     "DraftBotVersion":{
       "type":"string",
       "max":5,
@@ -5412,6 +5441,17 @@
       ]
     },
     "ErrorMessage":{"type":"string"},
+    "ExactResponseFields":{
+      "type":"structure",
+      "required":[
+        "questionField",
+        "answerField"
+      ],
+      "members":{
+        "questionField":{"shape":"QuestionField"},
+        "answerField":{"shape":"AnswerField"}
+      }
+    },
     "ExceptionMessage":{"type":"string"},
     "ExecutionErrorDetails":{
       "type":"structure",
@@ -5852,6 +5892,7 @@
       "min":5,
       "pattern":"^([0-9a-zA-Z_])+$"
     },
+    "IncludeField":{"type":"string"},
     "InitialResponseSetting":{
       "type":"structure",
       "members":{
@@ -7110,6 +7151,18 @@
       "min":1,
       "pattern":"^[0-9]+$"
     },
+    "OSIncludeFields":{
+      "type":"list",
+      "member":{"shape":"IncludeField"},
+      "max":5,
+      "min":1
+    },
+    "OSIndexName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?![_-])[a-z0-9][a-z0-9_\\-]{0,254}$"
+    },
     "ObfuscationSetting":{
       "type":"structure",
       "required":["obfuscationSettingType"],
@@ -7134,6 +7187,20 @@
       "member":{"shape":"ObjectPrefix"},
       "max":2,
       "min":1
+    },
+    "OpensearchConfiguration":{
+      "type":"structure",
+      "required":[
+        "domainEndpoint",
+        "indexName"
+      ],
+      "members":{
+        "domainEndpoint":{"shape":"DomainEndpoint"},
+        "indexName":{"shape":"OSIndexName"},
+        "exactResponse":{"shape":"Boolean"},
+        "exactResponseFields":{"shape":"ExactResponseFields"},
+        "includeFields":{"shape":"OSIncludeFields"}
+      }
     },
     "Operation":{
       "type":"string",
@@ -7341,11 +7408,29 @@
         "promptAttemptsSpecification":{"shape":"PromptAttemptsSpecificationMap"}
       }
     },
+    "QnAIntentConfiguration":{
+      "type":"structure",
+      "members":{
+        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
+        "bedrockModelConfiguration":{"shape":"BedrockModelSpecification"}
+      }
+    },
+    "QnAKendraConfiguration":{
+      "type":"structure",
+      "required":["kendraIndex"],
+      "members":{
+        "kendraIndex":{"shape":"KendraIndexArn"},
+        "queryFilterStringEnabled":{"shape":"Boolean"},
+        "queryFilterString":{"shape":"QueryFilterString"},
+        "exactResponse":{"shape":"Boolean"}
+      }
+    },
     "QueryFilterString":{
       "type":"string",
       "max":5000,
       "min":1
     },
+    "QuestionField":{"type":"string"},
     "RecommendedAction":{"type":"string"},
     "RecommendedActions":{
       "type":"list",
@@ -9066,7 +9151,8 @@
           "location":"uri",
           "locationName":"localeId"
         },
-        "initialResponseSetting":{"shape":"InitialResponseSetting"}
+        "initialResponseSetting":{"shape":"InitialResponseSetting"},
+        "qnAIntentConfiguration":{"shape":"QnAIntentConfiguration"}
       }
     },
     "UpdateIntentResponse":{
@@ -9090,7 +9176,8 @@
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"},
-        "initialResponseSetting":{"shape":"InitialResponseSetting"}
+        "initialResponseSetting":{"shape":"InitialResponseSetting"},
+        "qnAIntentConfiguration":{"shape":"QnAIntentConfiguration"}
       }
     },
     "UpdateResourcePolicyRequest":{

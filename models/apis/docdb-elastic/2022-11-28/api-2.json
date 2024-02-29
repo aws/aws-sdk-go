@@ -13,6 +13,26 @@
     "uid":"docdb-elastic-2022-11-28"
   },
   "operations":{
+    "CopyClusterSnapshot":{
+      "name":"CopyClusterSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/cluster-snapshot/{snapshotArn}/copy",
+        "responseCode":200
+      },
+      "input":{"shape":"CopyClusterSnapshotInput"},
+      "output":{"shape":"CopyClusterSnapshotOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "CreateCluster":{
       "name":"CreateCluster",
       "http":{
@@ -192,6 +212,42 @@
       ],
       "idempotent":true
     },
+    "StartCluster":{
+      "name":"StartCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/cluster/{clusterArn}/start",
+        "responseCode":200
+      },
+      "input":{"shape":"StartClusterInput"},
+      "output":{"shape":"StartClusterOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "StopCluster":{
+      "name":"StopCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/cluster/{clusterArn}/stop",
+        "responseCode":200
+      },
+      "input":{"shape":"StopClusterInput"},
+      "output":{"shape":"StopClusterOutput"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -270,6 +326,10 @@
         "SECRET_ARN"
       ]
     },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "Cluster":{
       "type":"structure",
       "required":[
@@ -290,14 +350,18 @@
       "members":{
         "adminUserName":{"shape":"String"},
         "authType":{"shape":"Auth"},
+        "backupRetentionPeriod":{"shape":"Integer"},
         "clusterArn":{"shape":"String"},
         "clusterEndpoint":{"shape":"String"},
         "clusterName":{"shape":"String"},
         "createTime":{"shape":"String"},
         "kmsKeyId":{"shape":"String"},
+        "preferredBackupWindow":{"shape":"String"},
         "preferredMaintenanceWindow":{"shape":"String"},
         "shardCapacity":{"shape":"Integer"},
         "shardCount":{"shape":"Integer"},
+        "shardInstanceCount":{"shape":"Integer"},
+        "shards":{"shape":"ShardList"},
         "status":{"shape":"Status"},
         "subnetIds":{"shape":"StringList"},
         "vpcSecurityGroupIds":{"shape":"StringList"}
@@ -342,6 +406,7 @@
         "snapshotArn":{"shape":"String"},
         "snapshotCreationTime":{"shape":"String"},
         "snapshotName":{"shape":"String"},
+        "snapshotType":{"shape":"SnapshotType"},
         "status":{"shape":"Status"},
         "subnetIds":{"shape":"StringList"},
         "vpcSecurityGroupIds":{"shape":"StringList"}
@@ -386,6 +451,36 @@
       },
       "exception":true
     },
+    "CopyClusterSnapshotInput":{
+      "type":"structure",
+      "required":[
+        "snapshotArn",
+        "targetSnapshotName"
+      ],
+      "members":{
+        "copyTags":{"shape":"Boolean"},
+        "kmsKeyId":{"shape":"String"},
+        "snapshotArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"snapshotArn"
+        },
+        "tags":{"shape":"TagMap"},
+        "targetSnapshotName":{"shape":"CopyClusterSnapshotInputTargetSnapshotNameString"}
+      }
+    },
+    "CopyClusterSnapshotInputTargetSnapshotNameString":{
+      "type":"string",
+      "max":63,
+      "min":1
+    },
+    "CopyClusterSnapshotOutput":{
+      "type":"structure",
+      "required":["snapshot"],
+      "members":{
+        "snapshot":{"shape":"ClusterSnapshot"}
+      }
+    },
     "CreateClusterInput":{
       "type":"structure",
       "required":[
@@ -400,15 +495,18 @@
         "adminUserName":{"shape":"String"},
         "adminUserPassword":{"shape":"Password"},
         "authType":{"shape":"Auth"},
+        "backupRetentionPeriod":{"shape":"Integer"},
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true
         },
         "clusterName":{"shape":"String"},
         "kmsKeyId":{"shape":"String"},
+        "preferredBackupWindow":{"shape":"String"},
         "preferredMaintenanceWindow":{"shape":"String"},
         "shardCapacity":{"shape":"Integer"},
         "shardCount":{"shape":"Integer"},
+        "shardInstanceCount":{"shape":"Integer"},
         "subnetIds":{"shape":"StringList"},
         "tags":{"shape":"TagMap"},
         "vpcSecurityGroupIds":{"shape":"StringList"}
@@ -549,6 +647,11 @@
           "shape":"PaginationToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "snapshotType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"snapshotType"
         }
       }
     },
@@ -642,6 +745,8 @@
       "members":{
         "clusterName":{"shape":"String"},
         "kmsKeyId":{"shape":"String"},
+        "shardCapacity":{"shape":"Integer"},
+        "shardInstanceCount":{"shape":"Integer"},
         "snapshotArn":{
           "shape":"String",
           "location":"uri",
@@ -671,6 +776,48 @@
       },
       "exception":true
     },
+    "Shard":{
+      "type":"structure",
+      "required":[
+        "createTime",
+        "shardId",
+        "status"
+      ],
+      "members":{
+        "createTime":{"shape":"String"},
+        "shardId":{"shape":"String"},
+        "status":{"shape":"Status"}
+      }
+    },
+    "ShardList":{
+      "type":"list",
+      "member":{"shape":"Shard"}
+    },
+    "SnapshotType":{
+      "type":"string",
+      "enum":[
+        "MANUAL",
+        "AUTOMATED"
+      ]
+    },
+    "StartClusterInput":{
+      "type":"structure",
+      "required":["clusterArn"],
+      "members":{
+        "clusterArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"clusterArn"
+        }
+      }
+    },
+    "StartClusterOutput":{
+      "type":"structure",
+      "required":["cluster"],
+      "members":{
+        "cluster":{"shape":"Cluster"}
+      }
+    },
     "Status":{
       "type":"string",
       "enum":[
@@ -682,8 +829,36 @@
         "IP_ADDRESS_LIMIT_EXCEEDED",
         "INVALID_SECURITY_GROUP_ID",
         "INVALID_SUBNET_ID",
-        "INACCESSIBLE_ENCRYPTION_CREDS"
+        "INACCESSIBLE_ENCRYPTION_CREDS",
+        "INACCESSIBLE_SECRET_ARN",
+        "INACCESSIBLE_VPC_ENDPOINT",
+        "INCOMPATIBLE_NETWORK",
+        "MERGING",
+        "MODIFYING",
+        "SPLITTING",
+        "COPYING",
+        "STARTING",
+        "STOPPING",
+        "STOPPED"
       ]
+    },
+    "StopClusterInput":{
+      "type":"structure",
+      "required":["clusterArn"],
+      "members":{
+        "clusterArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"clusterArn"
+        }
+      }
+    },
+    "StopClusterOutput":{
+      "type":"structure",
+      "required":["cluster"],
+      "members":{
+        "cluster":{"shape":"Cluster"}
+      }
     },
     "String":{"type":"string"},
     "StringList":{
@@ -780,6 +955,7 @@
       "members":{
         "adminUserPassword":{"shape":"Password"},
         "authType":{"shape":"Auth"},
+        "backupRetentionPeriod":{"shape":"Integer"},
         "clientToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -789,9 +965,11 @@
           "location":"uri",
           "locationName":"clusterArn"
         },
+        "preferredBackupWindow":{"shape":"String"},
         "preferredMaintenanceWindow":{"shape":"String"},
         "shardCapacity":{"shape":"Integer"},
         "shardCount":{"shape":"Integer"},
+        "shardInstanceCount":{"shape":"Integer"},
         "subnetIds":{"shape":"StringList"},
         "vpcSecurityGroupIds":{"shape":"StringList"}
       }

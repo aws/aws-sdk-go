@@ -14,6 +14,13 @@ const (
 	// You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// This exception is thrown when an attempt to update or delete a resource would
+	// cause an inconsistent state.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -41,6 +48,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":     newErrorAccessDeniedException,
+	"ConflictException":         newErrorConflictException,
 	"InternalServerException":   newErrorInternalServerException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,
 	"ThrottlingException":       newErrorThrottlingException,

@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Migration Hub Orchestrator.
 //	func myFunc(svc migrationhuborchestratoriface.MigrationHubOrchestratorAPI) bool {
-//	    // Make svc.CreateWorkflow request
+//	    // Make svc.CreateTemplate request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockMigrationHubOrchestratorClient struct {
 //	    migrationhuborchestratoriface.MigrationHubOrchestratorAPI
 //	}
-//	func (m *mockMigrationHubOrchestratorClient) CreateWorkflow(input *migrationhuborchestrator.CreateWorkflowInput) (*migrationhuborchestrator.CreateWorkflowOutput, error) {
+//	func (m *mockMigrationHubOrchestratorClient) CreateTemplate(input *migrationhuborchestrator.CreateTemplateInput) (*migrationhuborchestrator.CreateTemplateOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MigrationHubOrchestratorAPI interface {
+	CreateTemplate(*migrationhuborchestrator.CreateTemplateInput) (*migrationhuborchestrator.CreateTemplateOutput, error)
+	CreateTemplateWithContext(aws.Context, *migrationhuborchestrator.CreateTemplateInput, ...request.Option) (*migrationhuborchestrator.CreateTemplateOutput, error)
+	CreateTemplateRequest(*migrationhuborchestrator.CreateTemplateInput) (*request.Request, *migrationhuborchestrator.CreateTemplateOutput)
+
 	CreateWorkflow(*migrationhuborchestrator.CreateWorkflowInput) (*migrationhuborchestrator.CreateWorkflowOutput, error)
 	CreateWorkflowWithContext(aws.Context, *migrationhuborchestrator.CreateWorkflowInput, ...request.Option) (*migrationhuborchestrator.CreateWorkflowOutput, error)
 	CreateWorkflowRequest(*migrationhuborchestrator.CreateWorkflowInput) (*request.Request, *migrationhuborchestrator.CreateWorkflowOutput)
@@ -71,6 +75,10 @@ type MigrationHubOrchestratorAPI interface {
 	CreateWorkflowStepGroup(*migrationhuborchestrator.CreateWorkflowStepGroupInput) (*migrationhuborchestrator.CreateWorkflowStepGroupOutput, error)
 	CreateWorkflowStepGroupWithContext(aws.Context, *migrationhuborchestrator.CreateWorkflowStepGroupInput, ...request.Option) (*migrationhuborchestrator.CreateWorkflowStepGroupOutput, error)
 	CreateWorkflowStepGroupRequest(*migrationhuborchestrator.CreateWorkflowStepGroupInput) (*request.Request, *migrationhuborchestrator.CreateWorkflowStepGroupOutput)
+
+	DeleteTemplate(*migrationhuborchestrator.DeleteTemplateInput) (*migrationhuborchestrator.DeleteTemplateOutput, error)
+	DeleteTemplateWithContext(aws.Context, *migrationhuborchestrator.DeleteTemplateInput, ...request.Option) (*migrationhuborchestrator.DeleteTemplateOutput, error)
+	DeleteTemplateRequest(*migrationhuborchestrator.DeleteTemplateInput) (*request.Request, *migrationhuborchestrator.DeleteTemplateOutput)
 
 	DeleteWorkflow(*migrationhuborchestrator.DeleteWorkflowInput) (*migrationhuborchestrator.DeleteWorkflowOutput, error)
 	DeleteWorkflowWithContext(aws.Context, *migrationhuborchestrator.DeleteWorkflowInput, ...request.Option) (*migrationhuborchestrator.DeleteWorkflowOutput, error)
@@ -180,6 +188,10 @@ type MigrationHubOrchestratorAPI interface {
 	UntagResource(*migrationhuborchestrator.UntagResourceInput) (*migrationhuborchestrator.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *migrationhuborchestrator.UntagResourceInput, ...request.Option) (*migrationhuborchestrator.UntagResourceOutput, error)
 	UntagResourceRequest(*migrationhuborchestrator.UntagResourceInput) (*request.Request, *migrationhuborchestrator.UntagResourceOutput)
+
+	UpdateTemplate(*migrationhuborchestrator.UpdateTemplateInput) (*migrationhuborchestrator.UpdateTemplateOutput, error)
+	UpdateTemplateWithContext(aws.Context, *migrationhuborchestrator.UpdateTemplateInput, ...request.Option) (*migrationhuborchestrator.UpdateTemplateOutput, error)
+	UpdateTemplateRequest(*migrationhuborchestrator.UpdateTemplateInput) (*request.Request, *migrationhuborchestrator.UpdateTemplateOutput)
 
 	UpdateWorkflow(*migrationhuborchestrator.UpdateWorkflowInput) (*migrationhuborchestrator.UpdateWorkflowOutput, error)
 	UpdateWorkflowWithContext(aws.Context, *migrationhuborchestrator.UpdateWorkflowInput, ...request.Option) (*migrationhuborchestrator.UpdateWorkflowOutput, error)

@@ -29423,6 +29423,9 @@ type ColumnTooltipItem struct {
 	// The label of the tooltip item.
 	Label *string `type:"string"`
 
+	// Determines the target of the column tooltip item in a combo chart visual.
+	TooltipTarget *string `type:"string" enum:"TooltipTarget"`
+
 	// The visibility of the tooltip item.
 	Visibility *string `type:"string" enum:"Visibility"`
 }
@@ -29478,6 +29481,12 @@ func (s *ColumnTooltipItem) SetColumn(v *ColumnIdentifier) *ColumnTooltipItem {
 // SetLabel sets the Label field's value.
 func (s *ColumnTooltipItem) SetLabel(v string) *ColumnTooltipItem {
 	s.Label = &v
+	return s
+}
+
+// SetTooltipTarget sets the TooltipTarget field's value.
+func (s *ColumnTooltipItem) SetTooltipTarget(v string) *ColumnTooltipItem {
+	s.TooltipTarget = &v
 	return s
 }
 
@@ -54116,6 +54125,9 @@ type FieldTooltipItem struct {
 	// The label of the tooltip item.
 	Label *string `type:"string"`
 
+	// Determines the target of the field tooltip item in a combo chart visual.
+	TooltipTarget *string `type:"string" enum:"TooltipTarget"`
+
 	// The visibility of the tooltip item.
 	Visibility *string `type:"string" enum:"Visibility"`
 }
@@ -54163,6 +54175,12 @@ func (s *FieldTooltipItem) SetFieldId(v string) *FieldTooltipItem {
 // SetLabel sets the Label field's value.
 func (s *FieldTooltipItem) SetLabel(v string) *FieldTooltipItem {
 	s.Label = &v
+	return s
+}
+
+// SetTooltipTarget sets the TooltipTarget field's value.
+func (s *FieldTooltipItem) SetTooltipTarget(v string) *FieldTooltipItem {
+	s.TooltipTarget = &v
 	return s
 }
 
@@ -58903,10 +58921,12 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	AllowedDomains []*string `type:"list"`
 
 	// The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that
-	// the user is authorized to access during the lifetime of the session. If you
-	// choose Dashboard embedding experience, pass the list of dashboard ARNs in
-	// the account that you want the user to be able to view. Currently, you can
-	// pass up to 25 dashboard ARNs in each API call.
+	// the user is authorized to access during the lifetime of the session.
+	//
+	// If you choose Dashboard embedding experience, pass the list of dashboard
+	// ARNs in the account that you want the user to be able to view.
+	//
+	// Currently, you can pass up to 25 dashboard ARNs in each API call.
 	//
 	// AuthorizedResourceArns is a required field
 	AuthorizedResourceArns []*string `type:"list" required:"true"`
@@ -110472,6 +110492,26 @@ func TimeGranularity_Values() []string {
 		TimeGranularityMinute,
 		TimeGranularitySecond,
 		TimeGranularityMillisecond,
+	}
+}
+
+const (
+	// TooltipTargetBoth is a TooltipTarget enum value
+	TooltipTargetBoth = "BOTH"
+
+	// TooltipTargetBar is a TooltipTarget enum value
+	TooltipTargetBar = "BAR"
+
+	// TooltipTargetLine is a TooltipTarget enum value
+	TooltipTargetLine = "LINE"
+)
+
+// TooltipTarget_Values returns all elements of the TooltipTarget enum
+func TooltipTarget_Values() []string {
+	return []string{
+		TooltipTargetBoth,
+		TooltipTargetBar,
+		TooltipTargetLine,
 	}
 }
 

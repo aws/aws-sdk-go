@@ -19147,6 +19147,12 @@ const (
 
 	// AMITypesWindowsFull2022X8664 is a AMITypes enum value
 	AMITypesWindowsFull2022X8664 = "WINDOWS_FULL_2022_x86_64"
+
+	// AMITypesAl2023X8664Standard is a AMITypes enum value
+	AMITypesAl2023X8664Standard = "AL2023_x86_64_STANDARD"
+
+	// AMITypesAl2023Arm64Standard is a AMITypes enum value
+	AMITypesAl2023Arm64Standard = "AL2023_ARM_64_STANDARD"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -19164,6 +19170,8 @@ func AMITypes_Values() []string {
 		AMITypesWindowsFull2019X8664,
 		AMITypesWindowsCore2022X8664,
 		AMITypesWindowsFull2022X8664,
+		AMITypesAl2023X8664Standard,
+		AMITypesAl2023Arm64Standard,
 	}
 }
 

@@ -1,10 +1,12 @@
 {
   "version": "2.0",
-  "service": "<p>This API reference provides descriptions, syntax, and other details about each of the actions and data types for AWS Migration Hub Orchestrator. he topic for each action shows the API request parameters and the response. Alternatively, you can use one of the AWS SDKs to access an API that is tailored to the programming language or platform that you're using.</p>",
+  "service": "<p>This API reference provides descriptions, syntax, and other details about each of the actions and data types for AWS Migration Hub Orchestrator. The topic for each action shows the API request parameters and responses. Alternatively, you can use one of the AWS SDKs to access an API that is tailored to the programming language or platform that you're using.</p>",
   "operations": {
+    "CreateTemplate": "<p>Creates a migration workflow template.</p>",
     "CreateWorkflow": "<p>Create a workflow to orchestrate your migrations.</p>",
     "CreateWorkflowStep": "<p>Create a step in the migration workflow.</p>",
     "CreateWorkflowStepGroup": "<p>Create a step group in a migration workflow.</p>",
+    "DeleteTemplate": "<p>Deletes a migration workflow template.</p>",
     "DeleteWorkflow": "<p>Delete a migration workflow. You must pause a running workflow in Migration Hub Orchestrator console to delete it.</p>",
     "DeleteWorkflowStep": "<p>Delete a step in a migration workflow. Pause the workflow to delete a running step.</p>",
     "DeleteWorkflowStepGroup": "<p>Delete a step group in a migration workflow.</p>",
@@ -27,6 +29,7 @@
     "StopWorkflow": "<p>Stop an ongoing migration workflow.</p>",
     "TagResource": "<p>Tag a resource by specifying its Amazon Resource Name (ARN).</p>",
     "UntagResource": "<p>Deletes the tags for a resource.</p>",
+    "UpdateTemplate": "<p>Updates a migration workflow template.</p>",
     "UpdateWorkflow": "<p>Update a migration workflow.</p>",
     "UpdateWorkflowStep": "<p>Update a step in a migration workflow.</p>",
     "UpdateWorkflowStepGroup": "<p>Update the step group in a migration workflow.</p>"
@@ -49,6 +52,18 @@
         "StepOutput$required": "<p>Determine if an output is required from a step.</p>",
         "TemplateInput$required": "<p>Determine if an input is required from the template.</p>",
         "WorkflowStepOutput$required": "<p>Determine if an output is required from a step.</p>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://smithy.io/2.0/spec/behavior-traits.html#idempotencytoken-trait\">Idempotency</a> in the Smithy documentation.</p>",
+        "UpdateTemplateRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>This exception is thrown when an attempt to update or delete a resource would cause an inconsistent state.</p>",
+      "refs": {
       }
     },
     "CreateMigrationWorkflowRequest": {
@@ -81,6 +96,28 @@
       }
     },
     "CreateMigrationWorkflowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateTemplateRequestTemplateDescriptionString": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$templateDescription": "<p>A description of the migration workflow template.</p>"
+      }
+    },
+    "CreateTemplateRequestTemplateNameString": {
+      "base": null,
+      "refs": {
+        "CreateTemplateRequest$templateName": "<p>The name of the migration workflow template.</p>"
+      }
+    },
+    "CreateTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -119,6 +156,16 @@
       }
     },
     "DeleteMigrationWorkflowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -329,6 +376,19 @@
         "ListWorkflowStepsRequest$maxResults": "<p>The maximum number of results that can be returned.</p>"
       }
     },
+    "MaxStringList": {
+      "base": null,
+      "refs": {
+        "WorkflowStepOutputUnion$listOfStringValue": "<p>The list of string value.</p>"
+      }
+    },
+    "MaxStringValue": {
+      "base": null,
+      "refs": {
+        "MaxStringList$member": null,
+        "WorkflowStepOutputUnion$stringValue": "<p>The string value.</p>"
+      }
+    },
     "MigrationWorkflowDescription": {
       "base": null,
       "refs": {
@@ -357,6 +417,7 @@
         "StartMigrationWorkflowResponse$id": "<p>The ID of the migration workflow.</p>",
         "StopMigrationWorkflowRequest$id": "<p>The ID of the migration workflow.</p>",
         "StopMigrationWorkflowResponse$id": "<p>The ID of the migration workflow.</p>",
+        "TemplateSource$workflowId": "<p>The ID of the workflow from the source migration workflow template.</p>",
         "UpdateMigrationWorkflowRequest$id": "<p>The ID of the migration workflow.</p>",
         "UpdateMigrationWorkflowResponse$id": "<p>The ID of the migration workflow.</p>",
         "UpdateWorkflowStepGroupRequest$workflowId": "<p>The ID of the migration workflow.</p>",
@@ -561,7 +622,7 @@
         "GetTemplateStepResponse$stepGroupId": "<p>The ID of the step group.</p>",
         "GetWorkflowStepGroupRequest$id": "<p>The ID of the step group.</p>",
         "GetWorkflowStepGroupResponse$id": "<p>The ID of the step group.</p>",
-        "GetWorkflowStepRequest$stepGroupId": "<p>desThe ID of the step group.</p>",
+        "GetWorkflowStepRequest$stepGroupId": "<p>The ID of the step group.</p>",
         "ListTemplateStepsRequest$stepGroupId": "<p>The ID of the step group.</p>",
         "ListWorkflowStepsRequest$stepGroupId": "<p>The ID of the step group.</p>",
         "RetryWorkflowStepRequest$stepGroupId": "<p>The ID of the step group.</p>",
@@ -659,11 +720,14 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "ConflictException$message": null,
         "CreateMigrationWorkflowResponse$arn": "<p>The Amazon Resource Name (ARN) of the migration workflow.</p>",
         "CreateMigrationWorkflowResponse$name": "<p>The name of the migration workflow.</p>",
         "CreateMigrationWorkflowResponse$description": "<p>The description of the migration workflow.</p>",
         "CreateMigrationWorkflowResponse$templateId": "<p>The ID of the template.</p>",
         "CreateMigrationWorkflowResponse$adsApplicationConfigurationId": "<p>The configuration ID of the application configured in Application Discovery Service.</p>",
+        "CreateTemplateResponse$templateId": "<p>The ID of the migration workflow template.</p>",
+        "CreateTemplateResponse$templateArn": "<p>The Amazon Resource Name (ARN) of the migration workflow template. The format for an Migration Hub Orchestrator template ARN is <code>arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "CreateWorkflowStepGroupResponse$workflowId": "<p>The ID of the migration workflow that contains the step group.</p>",
         "CreateWorkflowStepGroupResponse$name": "<p>The name of the step group.</p>",
         "CreateWorkflowStepGroupResponse$id": "<p>The ID of the step group.</p>",
@@ -682,8 +746,12 @@
         "GetMigrationWorkflowResponse$statusMessage": "<p>The status message of the migration workflow.</p>",
         "GetMigrationWorkflowResponse$workflowBucket": "<p>The Amazon S3 bucket where the migration logs are stored.</p>",
         "GetMigrationWorkflowTemplateResponse$id": "<p>The ID of the template.</p>",
+        "GetMigrationWorkflowTemplateResponse$templateArn": "<p>&gt;The Amazon Resource Name (ARN) of the migration workflow template. The format for an Migration Hub Orchestrator template ARN is <code>arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "GetMigrationWorkflowTemplateResponse$name": "<p>The name of the template.</p>",
         "GetMigrationWorkflowTemplateResponse$description": "<p>The time at which the template was last created.</p>",
+        "GetMigrationWorkflowTemplateResponse$owner": "<p>The owner of the migration workflow template.</p>",
+        "GetMigrationWorkflowTemplateResponse$statusMessage": "<p>The status message of retrieving migration workflow templates.</p>",
+        "GetMigrationWorkflowTemplateResponse$templateClass": "<p>The class of the migration workflow template. The available template classes are:</p> <ul> <li> <p>A2C</p> </li> <li> <p>MGN</p> </li> <li> <p>SAP_MULTI</p> </li> <li> <p>SQL_EC2</p> </li> <li> <p>SQL_RDS</p> </li> <li> <p>VMIE</p> </li> </ul>",
         "GetTemplateStepGroupResponse$templateId": "<p>The ID of the template.</p>",
         "GetTemplateStepGroupResponse$id": "<p>The ID of the step group.</p>",
         "GetTemplateStepGroupResponse$name": "<p>The name of the step group.</p>",
@@ -739,6 +807,8 @@
         "UpdateMigrationWorkflowResponse$description": "<p>The description of the migration workflow.</p>",
         "UpdateMigrationWorkflowResponse$templateId": "<p>The ID of the template.</p>",
         "UpdateMigrationWorkflowResponse$adsApplicationConfigurationId": "<p>The ID of the application configured in Application Discovery Service.</p>",
+        "UpdateTemplateResponse$templateId": "<p>The ID of the migration workflow template being updated.</p>",
+        "UpdateTemplateResponse$templateArn": "<p>The ARN of the migration workflow template being updated. The format for an Migration Hub Orchestrator template ARN is <code>arn:aws:migrationhub-orchestrator:region:account:template/template-abcd1234</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "UpdateWorkflowStepGroupResponse$workflowId": "<p>The ID of the migration workflow.</p>",
         "UpdateWorkflowStepGroupResponse$name": "<p>The name of the step group.</p>",
         "UpdateWorkflowStepGroupResponse$id": "<p>The ID of the step group.</p>",
@@ -793,7 +863,6 @@
         "UpdateWorkflowStepRequest$next": "<p>The next step.</p>",
         "WorkflowStepGroupSummary$previous": "<p>The previous step group.</p>",
         "WorkflowStepGroupSummary$next": "<p>The next step group.</p>",
-        "WorkflowStepOutputUnion$listOfStringValue": "<p>The list of string value.</p>",
         "WorkflowStepSummary$previous": "<p>The previous step.</p>",
         "WorkflowStepSummary$next": "<p>The next step.</p>"
       }
@@ -809,9 +878,12 @@
       "refs": {
         "CreateMigrationWorkflowRequest$tags": "<p>The tags to add on a migration workflow.</p>",
         "CreateMigrationWorkflowResponse$tags": "<p>The tags to add on a migration workflow.</p>",
+        "CreateTemplateResponse$tags": "<p>The tags added to the migration workflow template.</p>",
         "GetMigrationWorkflowResponse$tags": "<p>The tags added to the migration workflow.</p>",
+        "GetMigrationWorkflowTemplateResponse$tags": "<p>The tags added to the migration workflow template.</p>",
         "StepInput$mapOfStringValue": "<p>Map of string values.</p>",
-        "UpdateMigrationWorkflowResponse$tags": "<p>The tags added to the migration workflow.</p>"
+        "UpdateMigrationWorkflowResponse$tags": "<p>The tags added to the migration workflow.</p>",
+        "UpdateTemplateResponse$tags": "<p>The tags added to the migration workflow template.</p>"
       }
     },
     "StringMapKey": {
@@ -829,8 +901,7 @@
     "StringValue": {
       "base": null,
       "refs": {
-        "StepInput$stringValue": "<p>String value.</p>",
-        "WorkflowStepOutputUnion$stringValue": "<p>The string value.</p>"
+        "StepInput$stringValue": "<p>String value.</p>"
       }
     },
     "TagKey": {
@@ -849,6 +920,7 @@
     "TagMap": {
       "base": null,
       "refs": {
+        "CreateTemplateRequest$tags": "<p>The tags to add to the migration workflow template.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags added to a resource.</p>",
         "TagResourceRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>"
       }
@@ -880,13 +952,15 @@
     "TemplateId": {
       "base": null,
       "refs": {
+        "DeleteTemplateRequest$id": "<p>The ID of the request to delete a migration workflow template.</p>",
         "GetMigrationWorkflowTemplateRequest$id": "<p>The ID of the template.</p>",
         "GetTemplateStepGroupRequest$templateId": "<p>The ID of the template.</p>",
         "GetTemplateStepRequest$templateId": "<p>The ID of the template.</p>",
         "GetTemplateStepResponse$templateId": "<p>The ID of the template.</p>",
         "ListMigrationWorkflowsRequest$templateId": "<p>The ID of the template.</p>",
         "ListTemplateStepGroupsRequest$templateId": "<p>The ID of the template.</p>",
-        "ListTemplateStepsRequest$templateId": "<p>The ID of the template.</p>"
+        "ListTemplateStepsRequest$templateId": "<p>The ID of the template.</p>",
+        "UpdateTemplateRequest$id": "<p>The ID of the request to update a migration workflow template.</p>"
       }
     },
     "TemplateInput": {
@@ -911,6 +985,12 @@
       "base": null,
       "refs": {
         "ListMigrationWorkflowTemplatesRequest$name": "<p>The name of the template.</p>"
+      }
+    },
+    "TemplateSource": {
+      "base": "<p>The migration workflow template used as the source for the new template.</p>",
+      "refs": {
+        "CreateTemplateRequest$templateSource": "<p>The source of the migration workflow template.</p>"
       }
     },
     "TemplateStatus": {
@@ -1033,6 +1113,28 @@
       }
     },
     "UpdateMigrationWorkflowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTemplateRequestTemplateDescriptionString": {
+      "base": null,
+      "refs": {
+        "UpdateTemplateRequest$templateDescription": "<p>The description of the migration workflow template to update.</p>"
+      }
+    },
+    "UpdateTemplateRequestTemplateNameString": {
+      "base": null,
+      "refs": {
+        "UpdateTemplateRequest$templateName": "<p>The name of the migration workflow template to update.</p>"
+      }
+    },
+    "UpdateTemplateResponse": {
       "base": null,
       "refs": {
       }

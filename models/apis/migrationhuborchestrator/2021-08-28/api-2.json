@@ -12,6 +12,23 @@
     "uid":"migrationhuborchestrator-2021-08-28"
   },
   "operations":{
+    "CreateTemplate":{
+      "name":"CreateTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/template",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateTemplateRequest"},
+      "output":{"shape":"CreateTemplateResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "CreateWorkflow":{
       "name":"CreateWorkflow",
       "http":{
@@ -59,6 +76,24 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
       ]
+    },
+    "DeleteTemplate":{
+      "name":"DeleteTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/template/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteTemplateRequest"},
+      "output":{"shape":"DeleteTemplateResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
     },
     "DeleteWorkflow":{
       "name":"DeleteWorkflow",
@@ -421,6 +456,23 @@
       ],
       "idempotent":true
     },
+    "UpdateTemplate":{
+      "name":"UpdateTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/template/{id}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateTemplateRequest"},
+      "output":{"shape":"UpdateTemplateResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateWorkflow":{
       "name":"UpdateWorkflow",
       "http":{
@@ -497,12 +549,30 @@
       "type":"boolean",
       "box":true
     },
+    "ClientToken":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[-a-zA-Z0-9]*"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true,
+      "retryable":{"throttling":false}
+    },
     "CreateMigrationWorkflowRequest":{
       "type":"structure",
       "required":[
         "name",
         "templateId",
-        "applicationConfigurationId",
         "inputParameters"
       ],
       "members":{
@@ -518,8 +588,8 @@
     "CreateMigrationWorkflowRequestApplicationConfigurationIdString":{
       "type":"string",
       "max":100,
-      "min":1,
-      "pattern":"[-a-zA-Z0-9_.+]+[-a-zA-Z0-9_.+ ]*"
+      "min":0,
+      "pattern":"[-a-zA-Z0-9_.+]*"
     },
     "CreateMigrationWorkflowRequestDescriptionString":{
       "type":"string",
@@ -552,6 +622,43 @@
         "stepTargets":{"shape":"StringList"},
         "status":{"shape":"MigrationWorkflowStatusEnum"},
         "creationTime":{"shape":"Timestamp"},
+        "tags":{"shape":"StringMap"}
+      }
+    },
+    "CreateTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "templateName",
+        "templateSource"
+      ],
+      "members":{
+        "templateName":{"shape":"CreateTemplateRequestTemplateNameString"},
+        "templateDescription":{"shape":"CreateTemplateRequestTemplateDescriptionString"},
+        "templateSource":{"shape":"TemplateSource"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateTemplateRequestTemplateDescriptionString":{
+      "type":"string",
+      "max":250,
+      "min":0,
+      "pattern":".*"
+    },
+    "CreateTemplateRequestTemplateNameString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[ a-zA-Z0-9]*"
+    },
+    "CreateTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "templateId":{"shape":"String"},
+        "templateArn":{"shape":"String"},
         "tags":{"shape":"StringMap"}
       }
     },
@@ -638,6 +745,22 @@
         "id":{"shape":"MigrationWorkflowId"},
         "arn":{"shape":"String"},
         "status":{"shape":"MigrationWorkflowStatusEnum"}
+      }
+    },
+    "DeleteTemplateRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"TemplateId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DeleteTemplateResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteWorkflowStepGroupRequest":{
@@ -745,12 +868,17 @@
       "type":"structure",
       "members":{
         "id":{"shape":"String"},
+        "templateArn":{"shape":"String"},
         "name":{"shape":"String"},
         "description":{"shape":"String"},
         "inputs":{"shape":"TemplateInputList"},
         "tools":{"shape":"ToolsList"},
+        "creationTime":{"shape":"Timestamp"},
+        "owner":{"shape":"String"},
         "status":{"shape":"TemplateStatus"},
-        "creationTime":{"shape":"Timestamp"}
+        "statusMessage":{"shape":"String"},
+        "templateClass":{"shape":"String"},
+        "tags":{"shape":"StringMap"}
       }
     },
     "GetTemplateStepGroupRequest":{
@@ -1187,6 +1315,15 @@
       "max":100,
       "min":0
     },
+    "MaxStringList":{
+      "type":"list",
+      "member":{"shape":"MaxStringValue"}
+    },
+    "MaxStringValue":{
+      "type":"string",
+      "max":2048,
+      "min":0
+    },
     "MigrationWorkflowDescription":{
       "type":"string",
       "max":500,
@@ -1306,7 +1443,7 @@
     },
     "ResourceArn":{
       "type":"string",
-      "pattern":"arn:aws:migrationhub-orchestrator:[a-z0-9-]+:[0-9]+:workflow/[.]*"
+      "pattern":"arn:aws:migrationhub-orchestrator:[a-z0-9-]+:[0-9]+:(template|workflow)/[.]*"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1456,10 +1593,7 @@
     "StepInput":{
       "type":"structure",
       "members":{
-        "integerValue":{
-          "shape":"Integer",
-          "box":true
-        },
+        "integerValue":{"shape":"Integer"},
         "stringValue":{"shape":"StringValue"},
         "listOfStringsValue":{"shape":"StringList"},
         "mapOfStringValue":{"shape":"StringMap"}
@@ -1500,6 +1634,7 @@
       "type":"string",
       "enum":[
         "AWAITING_DEPENDENCIES",
+        "SKIPPED",
         "READY",
         "IN_PROGRESS",
         "COMPLETED",
@@ -1536,7 +1671,7 @@
     },
     "StringListMember":{
       "type":"string",
-      "max":100,
+      "max":500,
       "min":0
     },
     "StringMap":{
@@ -1640,9 +1775,22 @@
       "min":1,
       "pattern":"[-a-zA-Z0-9_.+]+[-a-zA-Z0-9_.+ ]*"
     },
+    "TemplateSource":{
+      "type":"structure",
+      "members":{
+        "workflowId":{"shape":"MigrationWorkflowId"}
+      },
+      "union":true
+    },
     "TemplateStatus":{
       "type":"string",
-      "enum":["CREATED"]
+      "enum":[
+        "CREATED",
+        "READY",
+        "PENDING_CREATION",
+        "CREATING",
+        "CREATION_FAILED"
+      ]
     },
     "TemplateStepGroupSummary":{
       "type":"structure",
@@ -1780,6 +1928,43 @@
         "tags":{"shape":"StringMap"}
       }
     },
+    "UpdateTemplateRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"TemplateId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "templateName":{"shape":"UpdateTemplateRequestTemplateNameString"},
+        "templateDescription":{"shape":"UpdateTemplateRequestTemplateDescriptionString"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateTemplateRequestTemplateDescriptionString":{
+      "type":"string",
+      "max":250,
+      "min":0,
+      "pattern":".*"
+    },
+    "UpdateTemplateRequestTemplateNameString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[ a-zA-Z0-9]*"
+    },
+    "UpdateTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "templateId":{"shape":"String"},
+        "templateArn":{"shape":"String"},
+        "tags":{"shape":"StringMap"}
+      }
+    },
     "UpdateWorkflowStepGroupRequest":{
       "type":"structure",
       "required":[
@@ -1911,12 +2096,9 @@
     "WorkflowStepOutputUnion":{
       "type":"structure",
       "members":{
-        "integerValue":{
-          "shape":"Integer",
-          "box":true
-        },
-        "stringValue":{"shape":"StringValue"},
-        "listOfStringValue":{"shape":"StringList"}
+        "integerValue":{"shape":"Integer"},
+        "stringValue":{"shape":"MaxStringValue"},
+        "listOfStringValue":{"shape":"MaxStringList"}
       },
       "union":true
     },

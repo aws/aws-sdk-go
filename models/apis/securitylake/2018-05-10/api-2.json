@@ -652,7 +652,7 @@
       "type":"list",
       "member":{"shape":"AwsLogSourceConfiguration"},
       "max":50,
-      "min":0
+      "min":1
     },
     "AwsLogSourceName":{
       "type":"string",
@@ -662,7 +662,9 @@
         "SH_FINDINGS",
         "CLOUD_TRAIL_MGMT",
         "LAMBDA_EXECUTION",
-        "S3_DATA"
+        "S3_DATA",
+        "EKS_AUDIT",
+        "WAF"
       ]
     },
     "AwsLogSourceResource":{
@@ -674,7 +676,8 @@
     },
     "AwsLogSourceResourceList":{
       "type":"list",
-      "member":{"shape":"AwsLogSourceResource"}
+      "member":{"shape":"AwsLogSourceResource"},
+      "min":1
     },
     "AwsLogSourceVersion":{
       "type":"string",
@@ -723,7 +726,10 @@
     },
     "CreateCustomLogSourceRequest":{
       "type":"structure",
-      "required":["sourceName"],
+      "required":[
+        "configuration",
+        "sourceName"
+      ],
       "members":{
         "configuration":{"shape":"CustomLogSourceConfiguration"},
         "eventClasses":{"shape":"OcsfEventClassList"},
@@ -761,7 +767,6 @@
     },
     "CreateDataLakeOrganizationConfigurationRequest":{
       "type":"structure",
-      "required":["autoEnableNewAccount"],
       "members":{
         "autoEnableNewAccount":{"shape":"DataLakeAutoEnableNewAccountConfigurationList"}
       }
@@ -904,7 +909,8 @@
     },
     "DataLakeAutoEnableNewAccountConfigurationList":{
       "type":"list",
-      "member":{"shape":"DataLakeAutoEnableNewAccountConfiguration"}
+      "member":{"shape":"DataLakeAutoEnableNewAccountConfiguration"},
+      "min":1
     },
     "DataLakeConfiguration":{
       "type":"structure",
@@ -918,7 +924,8 @@
     },
     "DataLakeConfigurationList":{
       "type":"list",
-      "member":{"shape":"DataLakeConfiguration"}
+      "member":{"shape":"DataLakeConfiguration"},
+      "min":1
     },
     "DataLakeEncryptionConfiguration":{
       "type":"structure",
@@ -1096,7 +1103,6 @@
     },
     "DeleteDataLakeOrganizationConfigurationRequest":{
       "type":"structure",
-      "required":["autoEnableNewAccount"],
       "members":{
         "autoEnableNewAccount":{"shape":"DataLakeAutoEnableNewAccountConfigurationList"}
       }
@@ -1448,7 +1454,7 @@
     },
     "RoleArn":{
       "type":"string",
-      "pattern":"^arn:.*$"
+      "pattern":"^arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "S3BucketArn":{"type":"string"},
     "S3URI":{
@@ -1649,7 +1655,8 @@
       "type":"structure",
       "required":["configurations"],
       "members":{
-        "configurations":{"shape":"DataLakeConfigurationList"}
+        "configurations":{"shape":"DataLakeConfigurationList"},
+        "metaStoreManagerRoleArn":{"shape":"RoleArn"}
       }
     },
     "UpdateDataLakeResponse":{
