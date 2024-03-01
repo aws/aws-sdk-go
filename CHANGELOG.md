@@ -1,3 +1,13 @@
+Release v1.50.30 (2024-03-01)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service documentation
+* `service/autoscaling`: Updates service documentation
+  * With this release, Amazon EC2 Auto Scaling groups, EC2 Fleet, and Spot Fleet improve the default price protection behavior of attribute-based instance type selection of Spot Instances, to consistently select from a wide range of instance types.
+* `service/ec2`: Updates service documentation
+  * With this release, Amazon EC2 Auto Scaling groups, EC2 Fleet, and Spot Fleet improve the default price protection behavior of attribute-based instance type selection of Spot Instances, to consistently select from a wide range of instance types.
+
 Release v1.50.29 (2024-02-29)
 ===
 
