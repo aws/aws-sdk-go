@@ -2422,7 +2422,6 @@
     },
     "PolicyContent":{
       "type":"string",
-      "max":1000000,
       "min":1,
       "pattern":"[\\s\\S]*"
     },
@@ -2653,7 +2652,8 @@
       "members":{
         "Message":{"shape":"ExceptionMessage"}
       },
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "ServicePrincipal":{
       "type":"string",

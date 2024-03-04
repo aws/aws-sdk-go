@@ -3396,8 +3396,8 @@ func (c *FSx) DescribeSharedVpcConfigurationRequest(input *DescribeSharedVpcConf
 //
 // Indicates whether participant accounts in your organization can create Amazon
 // FSx for NetApp ONTAP Multi-AZ file systems in subnets that are shared by
-// a virtual private cloud (VPC) owner. For more information, see the Amazon
-// FSx for NetApp ONTAP User Guide (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/maz-shared-vpc.html).
+// a virtual private cloud (VPC) owner. For more information, see Creating FSx
+// for ONTAP file systems in shared subnets (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/creating-file-systems.html#fsxn-vpc-shared-subnets).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7279,8 +7279,8 @@ func (s *CopySnapshotAndUpdateVolumeOutput) SetVolumeId(v string) *CopySnapshotA
 	return s
 }
 
-// Used to specify the configuration options for a volume's storage aggregate
-// or aggregates.
+// Used to specify the configuration options for an FSx for ONTAP volume's storage
+// aggregate or aggregates.
 type CreateAggregateConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -8612,6 +8612,9 @@ type CreateFileSystemInput struct {
 	// A list of IDs specifying the security groups to apply to all network interfaces
 	// created for file system access. This list isn't returned in later requests
 	// to describe the file system.
+	//
+	// You must specify a security group if you are creating a Multi-AZ FSx for
+	// ONTAP file system in a VPC subnet that has been shared with you.
 	SecurityGroupIds []*string `type:"list"`
 
 	// Sets the storage capacity of the file system that you're creating, in gibibytes
@@ -8634,8 +8637,8 @@ type CreateFileSystemInput struct {
 	//
 	// FSx for ONTAP file systems - The amount of storage capacity that you can
 	// configure depends on the value of the HAPairs property. The minimum value
-	// is calculated as 1,024 * HAPairs and the maxium is calculated as 524,288
-	// * HAPairs..
+	// is calculated as 1,024 * HAPairs and the maximum is calculated as 524,288
+	// * HAPairs.
 	//
 	// FSx for OpenZFS file systems - The amount of storage capacity that you can
 	// configure is from 64 GiB up to 524,288 GiB (512 TiB).
@@ -9242,16 +9245,18 @@ type CreateFileSystemOntapConfiguration struct {
 	// String and GoString methods.
 	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
 
-	// Specifies how many high-availability (HA) pairs the file system will have.
-	// The default value is 1. The value of this property affects the values of
-	// StorageCapacity, Iops, and ThroughputCapacity. For more information, see
-	// High-availability (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
+	// Specifies how many high-availability (HA) pairs of file servers will power
+	// your file system. Scale-up file systems are powered by 1 HA pair. The default
+	// value is 1. FSx for ONTAP scale-out file systems are powered by up to 12
+	// HA pairs. The value of this property affects the values of StorageCapacity,
+	// Iops, and ThroughputCapacity. For more information, see High-availability
+	// (HA) pairs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/HA-pairs.html)
 	// in the FSx for ONTAP user guide.
 	//
 	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
 	// conditions:
 	//
-	//    * The value of HAPairs is less than 1 or greater than 6.
+	//    * The value of HAPairs is less than 1 or greater than 12.
 	//
 	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
 	//    is SINGLE_AZ_1 or MULTI_AZ_1.
@@ -9266,6 +9271,12 @@ type CreateFileSystemOntapConfiguration struct {
 	// all virtual private cloud (VPC) route tables associated with the subnets
 	// in which your clients are located. By default, Amazon FSx selects your VPC's
 	// default route table.
+	//
+	// Amazon FSx manages these route tables for Multi-AZ file systems using tag-based
+	// authentication. These route tables are tagged with Key: AmazonFSx; Value:
+	// ManagedByAmazonFSx. When creating FSx for ONTAP Multi-AZ file systems using
+	// CloudFormation we recommend that you add the Key: AmazonFSx; Value: ManagedByAmazonFSx
+	// tag manually.
 	RouteTableIds []*string `type:"list"`
 
 	// Sets the throughput capacity for the file system that you're creating in
@@ -9286,16 +9297,16 @@ type CreateFileSystemOntapConfiguration struct {
 	// Use to choose the throughput capacity per HA pair, rather than the total
 	// throughput for the file system.
 	//
-	// This field and ThroughputCapacity cannot be defined in the same API call,
-	// but one is required.
+	// You can define either the ThroughputCapacityPerHAPair or the ThroughputCapacity
+	// when creating a file system, but not both.
 	//
-	// This field and ThroughputCapacity are the same for file systems with one
-	// HA pair.
+	// This field and ThroughputCapacity are the same for scale-up file systems
+	// powered by one HA pair.
 	//
-	//    * For SINGLE_AZ_1 and MULTI_AZ_1, valid values are 128, 256, 512, 1024,
-	//    2048, or 4096 MBps.
+	//    * For SINGLE_AZ_1 and MULTI_AZ_1 file systems, valid values are 128, 256,
+	//    512, 1024, 2048, or 4096 MBps.
 	//
-	//    * For SINGLE_AZ_2, valid values are 3072 or 6144 MBps.
+	//    * For SINGLE_AZ_2 file systems, valid values are 3072 or 6144 MBps.
 	//
 	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
 	// conditions:
@@ -9305,7 +9316,7 @@ type CreateFileSystemOntapConfiguration struct {
 	//
 	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
 	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
-	//    6).
+	//    12).
 	//
 	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
 	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
@@ -10006,7 +10017,7 @@ type CreateOntapVolumeConfiguration struct {
 	// is not specified, it is automatically set to the root volume's security style.
 	// The security style determines the type of permissions that FSx for ONTAP
 	// uses to control data access. For more information, see Volume security style
-	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html#volume-security-style)
+	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-security-style)
 	// in the Amazon FSx for NetApp ONTAP User Guide. Specify one of the following
 	// values:
 	//
@@ -10018,14 +10029,19 @@ type CreateOntapVolumeConfiguration struct {
 	//    of users are SMB clients, and an application accessing the data uses a
 	//    Windows user as the service account.
 	//
-	//    * MIXED if the file system is managed by both UNIX and Windows administrators
-	//    and users consist of both NFS and SMB clients.
+	//    * MIXED This is an advanced setting. For more information, see the topic
+	//    What the security styles and their effects are (https://docs.netapp.com/us-en/ontap/nfs-admin/security-styles-their-effects-concept.html)
+	//    in the NetApp Documentation Center.
+	//
+	// For more information, see Volume security style (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-security-style.html)
+	// in the FSx for ONTAP User Guide.
 	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
 
-	// The configured size of the volume, in bytes.
+	// Specifies the configured size of the volume, in bytes.
 	SizeInBytes *int64 `type:"long"`
 
-	// Specifies the size of the volume, in megabytes (MB), that you are creating.
+	// Use SizeInBytes instead. Specifies the size of the volume, in megabytes (MB),
+	// that you are creating.
 	//
 	// Deprecated: This property is deprecated, use SizeInBytes instead
 	SizeInMegabytes *int64 `deprecated:"true" type:"integer"`
@@ -10055,8 +10071,10 @@ type CreateOntapVolumeConfiguration struct {
 	SnapshotPolicy *string `min:"1" type:"string"`
 
 	// Set to true to enable deduplication, compression, and compaction storage
-	// efficiency features on the volume, or set to false to disable them. This
-	// parameter is required.
+	// efficiency features on the volume, or set to false to disable them.
+	//
+	// StorageEfficiencyEnabled is required when creating a RW volume (OntapVolumeType
+	// set to RW).
 	StorageEfficiencyEnabled *bool `type:"boolean"`
 
 	// Specifies the ONTAP SVM in which to create the volume.
@@ -10084,9 +10102,10 @@ type CreateOntapVolumeConfiguration struct {
 	//    it from being moved to the capacity pool tier.
 	TieringPolicy *TieringPolicy `type:"structure"`
 
-	// Use to specify the style of an ONTAP volume. For more information about FlexVols
-	// and FlexGroups, see Volume types (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-types.html)
-	// in Amazon FSx for NetApp ONTAP User Guide.
+	// Use to specify the style of an ONTAP volume. FSx for ONTAP offers two styles
+	// of volumes that you can use for different purposes, FlexVol and FlexGroup
+	// volumes. For more information, see Volume styles (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-styles.html)
+	// in the Amazon FSx for NetApp ONTAP User Guide.
 	VolumeStyle *string `type:"string" enum:"VolumeStyle"`
 }
 
@@ -10385,7 +10404,7 @@ type CreateOpenZFSVolumeConfiguration struct {
 	// in the Amazon FSx for OpenZFS User Guide.
 	StorageCapacityReservationGiB *int64 `type:"integer"`
 
-	// An object specifying how much storage users or groups can use on the volume.
+	// Configures how much storage users and groups can use on the volume.
 	UserAndGroupQuotas []*OpenZFSUserOrGroupQuota `type:"list"`
 }
 
@@ -10790,7 +10809,7 @@ type CreateStorageVirtualMachineInput struct {
 
 	// Describes the self-managed Microsoft Active Directory to which you want to
 	// join the SVM. Joining an Active Directory provides user authentication and
-	// access control for SMB clients, including Microsoft Windows and macOS client
+	// access control for SMB clients, including Microsoft Windows and macOS clients
 	// accessing the file system.
 	ActiveDirectoryConfiguration *CreateSvmActiveDirectoryConfiguration `type:"structure"`
 
@@ -10816,12 +10835,13 @@ type CreateStorageVirtualMachineInput struct {
 	//    of users are NFS clients, and an application accessing the data uses a
 	//    UNIX user as the service account.
 	//
-	//    * NTFS if the file system is managed by a Windows administrator, the majority
-	//    of users are SMB clients, and an application accessing the data uses a
-	//    Windows user as the service account.
+	//    * NTFS if the file system is managed by a Microsoft Windows administrator,
+	//    the majority of users are SMB clients, and an application accessing the
+	//    data uses a Microsoft Windows user as the service account.
 	//
-	//    * MIXED if the file system is managed by both UNIX and Windows administrators
-	//    and users consist of both NFS and SMB clients.
+	//    * MIXED This is an advanced setting. For more information, see Volume
+	//    security style (fsx/latest/ONTAPGuide/volume-security-style.html) in the
+	//    Amazon FSx for NetApp ONTAP User Guide.
 	RootVolumeSecurityStyle *string `type:"string" enum:"StorageVirtualMachineRootVolumeSecurityStyle"`
 
 	// The password to use when managing the SVM using the NetApp ONTAP CLI or REST
@@ -10977,7 +10997,7 @@ func (s *CreateStorageVirtualMachineOutput) SetStorageVirtualMachine(v *StorageV
 
 // The configuration that Amazon FSx uses to join the ONTAP storage virtual
 // machine (SVM) to your self-managed (including on-premises) Microsoft Active
-// Directory (AD) directory.
+// Directory directory.
 type CreateSvmActiveDirectoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -14604,9 +14624,9 @@ type DescribeSnapshotsInput struct {
 	// The filters structure. The supported names are file-system-id or volume-id.
 	Filters []*SnapshotFilter `type:"list"`
 
-	// Set to false (default) if you want to only see the snapshots in your Amazon
-	// Web Services account. Set to true if you want to see the snapshots in your
-	// account and the ones shared with you from another account.
+	// Set to false (default) if you want to only see the snapshots owned by your
+	// Amazon Web Services account. Set to true if you want to see the snapshots
+	// in your account and the ones shared with you from another account.
 	IncludeShared *bool `type:"boolean"`
 
 	// The maximum number of resources to return in the response. This value must
@@ -15105,8 +15125,7 @@ type DiskIopsConfiguration struct {
 	Iops *int64 `type:"long"`
 
 	// Specifies whether the file system is using the AUTOMATIC setting of SSD IOPS
-	// of 3 IOPS per GB of storage capacity, , or if it using a USER_PROVISIONED
-	// value.
+	// of 3 IOPS per GB of storage capacity, or if it using a USER_PROVISIONED value.
 	Mode *string `type:"string" enum:"DiskIopsConfigurationMode"`
 }
 
@@ -16149,8 +16168,8 @@ type FileSystem struct {
 	SubnetIds []*string `type:"list"`
 
 	// The tags to associate with the file system. For more information, see Tagging
-	// your Amazon EC2 resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
-	// in the Amazon EC2 User Guide.
+	// your Amazon FSx resources (https://docs.aws.amazon.com/fsx/latest/LustreGuide/tag-resources.html)
+	// in the Amazon FSx for Lustre User Guide.
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The ID of the primary virtual private cloud (VPC) for the file system.
@@ -18233,7 +18252,7 @@ type OntapFileSystemConfiguration struct {
 	// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following
 	// conditions:
 	//
-	//    * The value of HAPairs is less than 1 or greater than 6.
+	//    * The value of HAPairs is less than 1 or greater than 12.
 	//
 	//    * The value of HAPairs is greater than 1 and the value of DeploymentType
 	//    is SINGLE_AZ_1 or MULTI_AZ_1.
@@ -18275,7 +18294,7 @@ type OntapFileSystemConfiguration struct {
 	//
 	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
 	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
-	//    6).
+	//    12).
 	//
 	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
 	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
@@ -19123,21 +19142,24 @@ func (s *OpenZFSOriginSnapshotConfiguration) SetSnapshotARN(v string) *OpenZFSOr
 	return s
 }
 
-// The configuration for how much storage a user or group can use on the volume.
+// Used to configure quotas that define how much storage a user or group can
+// use on an FSx for OpenZFS volume. For more information, see Volume properties
+// (https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/managing-volumes.html#volume-properties)
+// in the FSx for OpenZFS User Guide.
 type OpenZFSUserOrGroupQuota struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the user or group.
+	// The ID of the user or group that the quota applies to.
 	//
 	// Id is a required field
 	Id *int64 `type:"integer" required:"true"`
 
-	// The amount of storage that the user or group can use in gibibytes (GiB).
+	// The user or group's storage quota, in gibibytes (GiB).
 	//
 	// StorageCapacityQuotaGiB is a required field
 	StorageCapacityQuotaGiB *int64 `type:"integer" required:"true"`
 
-	// A value that specifies whether the quota applies to a user or group.
+	// Specifies whether the quota applies to a user or group.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"OpenZFSQuotaType"`
@@ -22567,7 +22589,7 @@ type UpdateFileSystemOntapConfiguration struct {
 	//
 	//    * The value of deployment type is SINGLE_AZ_2 and ThroughputCapacity /
 	//    ThroughputCapacityPerHAPair is a valid HA pair (a value between 2 and
-	//    6).
+	//    12).
 	//
 	//    * The value of ThroughputCapacityPerHAPair is not a valid value.
 	ThroughputCapacityPerHAPair *int64 `min:"128" type:"integer"`
