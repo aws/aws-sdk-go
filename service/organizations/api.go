@@ -24716,7 +24716,8 @@ type OrganizationalUnit struct {
 	// in the Amazon Web Services Service Authorization Reference.
 	Arn *string `type:"string"`
 
-	// The unique identifier (ID) associated with this OU.
+	// The unique identifier (ID) associated with this OU. The ID is unique to the
+	// organization only.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for an organizational
 	// unit ID string requires "ou-" followed by from 4 to 32 lowercase letters
@@ -26161,7 +26162,8 @@ type Root struct {
 	// in the Amazon Web Services Service Authorization Reference.
 	Arn *string `type:"string"`
 
-	// The unique identifier (ID) for the root.
+	// The unique identifier (ID) for the root. The ID is unique to the organization
+	// only.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a root ID string
 	// requires "r-" followed by from 4 to 32 lowercase letters or digits.

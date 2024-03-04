@@ -2603,7 +2603,7 @@
     },
     "HAPairs":{
       "type":"integer",
-      "max":6,
+      "max":12,
       "min":1
     },
     "IncludeShared":{"type":"boolean"},

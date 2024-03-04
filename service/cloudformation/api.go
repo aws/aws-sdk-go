@@ -9600,7 +9600,8 @@ type CreateChangeSetInput struct {
 	// The location of the file that contains the revised template. The URL must
 	// point to a template (max size: 460,800 bytes) that's located in an Amazon
 	// S3 bucket or a Systems Manager document. CloudFormation generates the change
-	// set by comparing this template with the stack that you specified.
+	// set by comparing this template with the stack that you specified. The location
+	// for an Amazon S3 bucket must start with https://.
 	//
 	// Conditional: You must specify only TemplateBody or TemplateURL.
 	TemplateURL *string `min:"1" type:"string"`
@@ -9989,7 +9990,7 @@ type CreateStackInput struct {
 	//    specify either of these capabilities, CloudFormation returns an InsufficientCapabilities
 	//    error. If your stack template contains these resources, we recommend that
 	//    you review all permissions associated with them and edit their permissions
-	//    if necessary. AWS::IAM::AccessKey (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html)
+	//    if necessary. AWS::IAM::AccessKey AWS::IAM::AccessKey (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html)
 	//    AWS::IAM::Group (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html)
 	//    AWS::IAM::InstanceProfile (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html)
 	//    AWS::IAM::Policy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html)
@@ -10133,8 +10134,8 @@ type CreateStackInput struct {
 
 	// Location of a file containing the stack policy. The URL must point to a policy
 	// (maximum size: 16 KB) located in an S3 bucket in the same Region as the stack.
-	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
-	// but not both.
+	// The location for an Amazon S3 bucket must start with https://. You can specify
+	// either the StackPolicyBody or the StackPolicyURL parameter, but not both.
 	StackPolicyURL *string `min:"1" type:"string"`
 
 	// Key-value pairs to associate with this stack. CloudFormation also propagates
@@ -10154,7 +10155,8 @@ type CreateStackInput struct {
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems
 	// Manager document. For more information, go to the Template anatomy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
-	// in the CloudFormation User Guide.
+	// in the CloudFormation User Guide. The location for an Amazon S3 bucket must
+	// start with https://.
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
 	// parameter, but not both.
@@ -15046,7 +15048,8 @@ type EstimateTemplateCostInput struct {
 	// Location of file containing the template body. The URL must point to a template
 	// that's located in an Amazon S3 bucket or a Systems Manager document. For
 	// more information, go to Template Anatomy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
-	// in the CloudFormation User Guide.
+	// in the CloudFormation User Guide. The location for an Amazon S3 bucket must
+	// start with https://.
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
 	// only TemplateBody is used.
@@ -15713,7 +15716,8 @@ type GetTemplateSummaryInput struct {
 	// (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems
 	// Manager document. For more information about templates, see Template anatomy
 	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
-	// in the CloudFormation User Guide.
+	// in the CloudFormation User Guide. The location for an Amazon S3 bucket must
+	// start with https://.
 	//
 	// Conditional: You must specify only one of the following parameters: StackName,
 	// StackSetName, TemplateBody, or TemplateURL.
@@ -19942,7 +19946,7 @@ type ResourceDefinition struct {
 	ResourceIdentifier map[string]*string `min:"1" type:"map" required:"true"`
 
 	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
-	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 	// in the CloudFormation User Guide
 	//
 	// ResourceType is a required field
@@ -20048,7 +20052,7 @@ type ResourceDetail struct {
 	ResourceStatusReason *string `type:"string"`
 
 	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
-	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 	// In the CloudFormation User Guide
 	ResourceType *string `min:"1" type:"string"`
 
@@ -20715,7 +20719,7 @@ type ScannedResource struct {
 	ResourceIdentifier map[string]*string `type:"map"`
 
 	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
-	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
+	// resources, see Resource type support (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
 	// In the CloudFormation User Guide
 	ResourceType *string `min:"1" type:"string"`
 }
@@ -20774,8 +20778,8 @@ type ScannedResourceIdentifier struct {
 	ResourceIdentifier map[string]*string `type:"map" required:"true"`
 
 	// The type of the resource, such as AWS::DynamoDB::Table. For the list of supported
-	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/generate-IaC-supported-resources.html)
-	// In the CloudFormation User Guide
+	// resources, see IaC generator supported resource types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html)
+	// In the CloudFormation User Guide.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
@@ -20847,8 +20851,9 @@ type SetStackPolicyInput struct {
 
 	// Location of a file containing the stack policy. The URL must point to a policy
 	// (maximum size: 16 KB) located in an Amazon S3 bucket in the same Amazon Web
-	// Services Region as the stack. You can specify either the StackPolicyBody
-	// or the StackPolicyURL parameter, but not both.
+	// Services Region as the stack. The location for an Amazon S3 bucket must start
+	// with https://. You can specify either the StackPolicyBody or the StackPolicyURL
+	// parameter, but not both.
 	StackPolicyURL *string `min:"1" type:"string"`
 }
 
@@ -20957,11 +20962,11 @@ type SetTypeConfigurationInput struct {
 
 	// The Amazon Resource Name (ARN) for the extension, in this account and Region.
 	//
-	// For public extensions, this will be the ARN assigned when you activate the
-	// type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
-	// in this account and Region. For private extensions, this will be the ARN
-	// assigned when you register the type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
-	// in this account and Region.
+	// For public extensions, this will be the ARN assigned when you call the ActivateType
+	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
+	// API operation in this account and Region. For private extensions, this will
+	// be the ARN assigned when you call the RegisterType (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
+	// API operation in this account and Region.
 	//
 	// Do not include the extension versions suffix at the end of the ARN. You can
 	// set the configuration for an extension, but not for a specific extension
@@ -21327,6 +21332,14 @@ type Stack struct {
 	// A user-defined description associated with the stack.
 	Description *string `min:"1" type:"string"`
 
+	// The detailed status of the resource or stack. If CONFIGURATION_COMPLETE is
+	// present, the resource or resource configuration phase has completed and the
+	// stabilization of the resources is in progress. The stack sets CONFIGURATION_COMPLETE
+	// when all of the resources in the stack have reached that event. For more
+	// information, see CloudFormation stack deployment (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-resource-configuration-complete.html)
+	// in the CloudFormation User Guide.
+	DetailedStatus *string `type:"string" enum:"DetailedStatus"`
+
 	// Boolean to enable or disable rollback on stack creation failures:
 	//
 	//    * true: disable rollback.
@@ -21462,6 +21475,12 @@ func (s *Stack) SetDeletionTime(v time.Time) *Stack {
 // SetDescription sets the Description field's value.
 func (s *Stack) SetDescription(v string) *Stack {
 	s.Description = &v
+	return s
+}
+
+// SetDetailedStatus sets the DetailedStatus field's value.
+func (s *Stack) SetDetailedStatus(v string) *Stack {
+	s.DetailedStatus = &v
 	return s
 }
 
@@ -21711,6 +21730,19 @@ type StackEvent struct {
 	// stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002.
 	ClientRequestToken *string `min:"1" type:"string"`
 
+	// An optional field containing information about the detailed status of the
+	// stack event.
+	//
+	//    * CONFIGURATION_COMPLETE - all of the resources in the stack have reached
+	//    that event. For more information, see CloudFormation stack deployment
+	//    (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-resource-configuration-complete.html)
+	//    in the CloudFormation User Guide.
+	//
+	//    * VALIDATION_FAILED - template validation failed because of invalid properties
+	//    in the template. The ResourceStatusReason field shows what properties
+	//    are defined incorrectly.
+	DetailedStatus *string `type:"string" enum:"DetailedStatus"`
+
 	// The unique ID of this event.
 	//
 	// EventId is a required field
@@ -21794,6 +21826,12 @@ func (s StackEvent) GoString() string {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *StackEvent) SetClientRequestToken(v string) *StackEvent {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDetailedStatus sets the DetailedStatus field's value.
+func (s *StackEvent) SetDetailedStatus(v string) *StackEvent {
+	s.DetailedStatus = &v
 	return s
 }
 
@@ -21955,7 +21993,11 @@ type StackInstance struct {
 	//    stack in an unstable state. Stacks in this state are excluded from further
 	//    UpdateStackSet operations. You might need to perform a DeleteStackInstances
 	//    operation, with RetainStacks set to true, to delete the stack instance,
-	//    and then delete the stack manually.
+	//    and then delete the stack manually. INOPERABLE can be returned here when
+	//    the cause is a failed import. If it's due to a failed import, the operation
+	//    can be retried once the failures are fixed. To see if this is due to a
+	//    failed import, look at the DetailedStatus member in the StackInstanceSummary
+	//    member that is a peer to this Status member.
 	//
 	//    * OUTDATED: The stack isn't currently up to date with the stack set because:
 	//    The associated stack failed during a CreateStackSet or UpdateStackSet
@@ -22070,6 +22112,12 @@ type StackInstanceComprehensiveStatus struct {
 	//
 	//    * FAILED: The operation in the specified account and Region failed. If
 	//    the stack set operation fails in enough accounts within a Region, the
+	//    failure tolerance for the stack set operation as a whole might be exceeded.
+	//
+	//    * FAILED_IMPORT: The import of the stack instance in the specified account
+	//    and Region failed and left the stack in an unstable state. Once the issues
+	//    causing the failure are fixed, the import operation can be retried. If
+	//    enough stack set operations fail in enough accounts within a Region, the
 	//    failure tolerance for the stack set operation as a whole might be exceeded.
 	//
 	//    * INOPERABLE: A DeleteStackInstances operation has failed and left the
@@ -22354,7 +22402,11 @@ type StackInstanceSummary struct {
 	//    stack in an unstable state. Stacks in this state are excluded from further
 	//    UpdateStackSet operations. You might need to perform a DeleteStackInstances
 	//    operation, with RetainStacks set to true, to delete the stack instance,
-	//    and then delete the stack manually.
+	//    and then delete the stack manually. INOPERABLE can be returned here when
+	//    the cause is a failed import. If it's due to a failed import, the operation
+	//    can be retried once the failures are fixed. To see if this is due to a
+	//    failed import, call the DescribeStackInstance API operation, look at the
+	//    DetailedStatus member returned in the StackInstanceSummary member.
 	//
 	//    * OUTDATED: The stack isn't currently up to date with the stack set because:
 	//    The associated stack failed during a CreateStackSet or UpdateStackSet
@@ -25154,11 +25206,11 @@ type TypeConfigurationDetails struct {
 
 	// The Amazon Resource Name (ARN) for the extension, in this account and Region.
 	//
-	// For public extensions, this will be the ARN assigned when you activate the
-	// type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
-	// in this account and Region. For private extensions, this will be the ARN
-	// assigned when you register the type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
-	// in this account and Region.
+	// For public extensions, this will be the ARN assigned when you call the ActivateType
+	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
+	// API operation in this account and Region. For private extensions, this will
+	// be the ARN assigned when you call the RegisterType (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
+	// API operation in this account and Region.
 	TypeArn *string `type:"string"`
 
 	// The name of the extension.
@@ -25234,11 +25286,11 @@ type TypeConfigurationIdentifier struct {
 
 	// The Amazon Resource Name (ARN) for the extension, in this account and Region.
 	//
-	// For public extensions, this will be the ARN assigned when you activate the
-	// type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
-	// in this account and Region. For private extensions, this will be the ARN
-	// assigned when you register the type (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
-	// in this account and Region.
+	// For public extensions, this will be the ARN assigned when you call the ActivateType
+	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
+	// API operation in this account and Region. For private extensions, this will
+	// be the ARN assigned when you call the RegisterType (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html)
+	// API operation in this account and Region.
 	TypeArn *string `type:"string"`
 
 	// The alias specified for this configuration, if one was specified when the
@@ -25488,9 +25540,9 @@ type TypeSummary struct {
 
 	// The name of the extension.
 	//
-	// If you specified a TypeNameAlias when you activate this extension (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
-	// in your account and Region, CloudFormation considers that alias as the type
-	// name.
+	// If you specified a TypeNameAlias when you call the ActivateType (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html)
+	// API operation in your account and Region, CloudFormation considers that alias
+	// as the type name.
 	TypeName *string `min:"10" type:"string"`
 }
 
@@ -25995,8 +26047,9 @@ type UpdateStackInput struct {
 
 	// Location of a file containing the temporary overriding stack policy. The
 	// URL must point to a policy (max size: 16KB) located in an S3 bucket in the
-	// same Region as the stack. You can specify either the StackPolicyDuringUpdateBody
-	// or the StackPolicyDuringUpdateURL parameter, but not both.
+	// same Region as the stack. The location for an Amazon S3 bucket must start
+	// with https://. You can specify either the StackPolicyDuringUpdateBody or
+	// the StackPolicyDuringUpdateURL parameter, but not both.
 	//
 	// If you want to update protected resources, specify a temporary overriding
 	// stack policy during this update. If you don't specify a stack policy, the
@@ -26005,8 +26058,9 @@ type UpdateStackInput struct {
 
 	// Location of a file containing the updated stack policy. The URL must point
 	// to a policy (max size: 16KB) located in an S3 bucket in the same Region as
-	// the stack. You can specify either the StackPolicyBody or the StackPolicyURL
-	// parameter, but not both.
+	// the stack. The location for an Amazon S3 bucket must start with https://.
+	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
+	// but not both.
 	//
 	// You might update the stack policy, for example, in order to protect a new
 	// resource that you created during a stack update. If you don't specify a stack
@@ -26034,7 +26088,8 @@ type UpdateStackInput struct {
 	// Location of file containing the template body. The URL must point to a template
 	// that's located in an Amazon S3 bucket or a Systems Manager document. For
 	// more information, go to Template Anatomy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
-	// in the CloudFormation User Guide.
+	// in the CloudFormation User Guide. The location for an Amazon S3 bucket must
+	// start with https://.
 	//
 	// Conditional: You must specify only one of the following parameters: TemplateBody,
 	// TemplateURL, or set the UsePreviousTemplate to true.
@@ -27047,7 +27102,8 @@ type ValidateTemplateInput struct {
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) that is located in an Amazon S3 bucket or a Systems
 	// Manager document. For more information, go to Template Anatomy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
-	// in the CloudFormation User Guide.
+	// in the CloudFormation User Guide. The location for an Amazon S3 bucket must
+	// start with https://.
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
 	// only TemplateBody is used.
@@ -27604,6 +27660,22 @@ func DeprecatedStatus_Values() []string {
 	return []string{
 		DeprecatedStatusLive,
 		DeprecatedStatusDeprecated,
+	}
+}
+
+const (
+	// DetailedStatusConfigurationComplete is a DetailedStatus enum value
+	DetailedStatusConfigurationComplete = "CONFIGURATION_COMPLETE"
+
+	// DetailedStatusValidationFailed is a DetailedStatus enum value
+	DetailedStatusValidationFailed = "VALIDATION_FAILED"
+)
+
+// DetailedStatus_Values returns all elements of the DetailedStatus enum
+func DetailedStatus_Values() []string {
+	return []string{
+		DetailedStatusConfigurationComplete,
+		DetailedStatusValidationFailed,
 	}
 }
 
@@ -28420,6 +28492,9 @@ const (
 
 	// StackInstanceDetailedStatusSkippedSuspendedAccount is a StackInstanceDetailedStatus enum value
 	StackInstanceDetailedStatusSkippedSuspendedAccount = "SKIPPED_SUSPENDED_ACCOUNT"
+
+	// StackInstanceDetailedStatusFailedImport is a StackInstanceDetailedStatus enum value
+	StackInstanceDetailedStatusFailedImport = "FAILED_IMPORT"
 )
 
 // StackInstanceDetailedStatus_Values returns all elements of the StackInstanceDetailedStatus enum
@@ -28432,6 +28507,7 @@ func StackInstanceDetailedStatus_Values() []string {
 		StackInstanceDetailedStatusCancelled,
 		StackInstanceDetailedStatusInoperable,
 		StackInstanceDetailedStatusSkippedSuspendedAccount,
+		StackInstanceDetailedStatusFailedImport,
 	}
 }
 

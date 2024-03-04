@@ -2250,6 +2250,13 @@
       "max":1024,
       "min":1
     },
+    "DetailedStatus":{
+      "type":"string",
+      "enum":[
+        "CONFIGURATION_COMPLETE",
+        "VALIDATION_FAILED"
+      ]
+    },
     "DetectStackDriftInput":{
       "type":"structure",
       "required":["StackName"],
@@ -3999,7 +4006,8 @@
         "ParentId":{"shape":"StackId"},
         "RootId":{"shape":"StackId"},
         "DriftInformation":{"shape":"StackDriftInformation"},
-        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"}
+        "RetainExceptOnCreate":{"shape":"RetainExceptOnCreate"},
+        "DetailedStatus":{"shape":"DetailedStatus"}
       }
     },
     "StackDriftDetectionId":{
@@ -4065,7 +4073,8 @@
         "HookStatus":{"shape":"HookStatus"},
         "HookStatusReason":{"shape":"HookStatusReason"},
         "HookInvocationPoint":{"shape":"HookInvocationPoint"},
-        "HookFailureMode":{"shape":"HookFailureMode"}
+        "HookFailureMode":{"shape":"HookFailureMode"},
+        "DetailedStatus":{"shape":"DetailedStatus"}
       }
     },
     "StackEvents":{
@@ -4115,7 +4124,8 @@
         "FAILED",
         "CANCELLED",
         "INOPERABLE",
-        "SKIPPED_SUSPENDED_ACCOUNT"
+        "SKIPPED_SUSPENDED_ACCOUNT",
+        "FAILED_IMPORT"
       ]
     },
     "StackInstanceFilter":{

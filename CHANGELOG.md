@@ -1,3 +1,13 @@
+Release v1.50.31 (2024-03-04)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Add DetailedStatus field to DescribeStackEvents and DescribeStacks APIs
+* `service/fsx`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * Documentation update for AWS Organizations
+
 Release v1.50.30 (2024-03-01)
 ===
 
