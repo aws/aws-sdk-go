@@ -53,7 +53,7 @@ func (c *Chatbot) CreateChimeWebhookConfigurationRequest(input *CreateChimeWebho
 	return
 }
 
-// CreateChimeWebhookConfiguration API operation for chatbot.
+// CreateChimeWebhookConfiguration API operation for AWS Chatbot.
 //
 // # Creates Chime Webhook Configuration
 //
@@ -61,7 +61,7 @@ func (c *Chatbot) CreateChimeWebhookConfigurationRequest(input *CreateChimeWebho
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation CreateChimeWebhookConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -145,7 +145,7 @@ func (c *Chatbot) CreateMicrosoftTeamsChannelConfigurationRequest(input *CreateM
 	return
 }
 
-// CreateMicrosoftTeamsChannelConfiguration API operation for chatbot.
+// CreateMicrosoftTeamsChannelConfiguration API operation for AWS Chatbot.
 //
 // # Creates MS Teams Channel Configuration
 //
@@ -153,7 +153,7 @@ func (c *Chatbot) CreateMicrosoftTeamsChannelConfigurationRequest(input *CreateM
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation CreateMicrosoftTeamsChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -237,7 +237,7 @@ func (c *Chatbot) CreateSlackChannelConfigurationRequest(input *CreateSlackChann
 	return
 }
 
-// CreateSlackChannelConfiguration API operation for chatbot.
+// CreateSlackChannelConfiguration API operation for AWS Chatbot.
 //
 // # Creates Slack Channel Configuration
 //
@@ -245,7 +245,7 @@ func (c *Chatbot) CreateSlackChannelConfigurationRequest(input *CreateSlackChann
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation CreateSlackChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -330,7 +330,7 @@ func (c *Chatbot) DeleteChimeWebhookConfigurationRequest(input *DeleteChimeWebho
 	return
 }
 
-// DeleteChimeWebhookConfiguration API operation for chatbot.
+// DeleteChimeWebhookConfiguration API operation for AWS Chatbot.
 //
 // # Deletes a Chime Webhook Configuration
 //
@@ -338,7 +338,7 @@ func (c *Chatbot) DeleteChimeWebhookConfigurationRequest(input *DeleteChimeWebho
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteChimeWebhookConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -420,7 +420,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsChannelConfigurationRequest(input *DeleteM
 	return
 }
 
-// DeleteMicrosoftTeamsChannelConfiguration API operation for chatbot.
+// DeleteMicrosoftTeamsChannelConfiguration API operation for AWS Chatbot.
 //
 // # Deletes MS Teams Channel Configuration
 //
@@ -428,7 +428,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsChannelConfigurationRequest(input *DeleteM
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteMicrosoftTeamsChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -510,7 +510,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsConfiguredTeamRequest(input *DeleteMicroso
 	return
 }
 
-// DeleteMicrosoftTeamsConfiguredTeam API operation for chatbot.
+// DeleteMicrosoftTeamsConfiguredTeam API operation for AWS Chatbot.
 //
 // Deletes the Microsoft Teams team authorization allowing for channels to be
 // configured in that Microsoft Teams team. Note that the Microsoft Teams team
@@ -520,7 +520,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsConfiguredTeamRequest(input *DeleteMicroso
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteMicrosoftTeamsConfiguredTeam for usage and error information.
 //
 // Returned Error Types:
@@ -596,7 +596,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsUserIdentityRequest(input *DeleteMicrosoft
 	return
 }
 
-// DeleteMicrosoftTeamsUserIdentity API operation for chatbot.
+// DeleteMicrosoftTeamsUserIdentity API operation for AWS Chatbot.
 //
 // # Deletes a Teams user identity
 //
@@ -604,7 +604,7 @@ func (c *Chatbot) DeleteMicrosoftTeamsUserIdentityRequest(input *DeleteMicrosoft
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteMicrosoftTeamsUserIdentity for usage and error information.
 //
 // Returned Error Types:
@@ -683,7 +683,7 @@ func (c *Chatbot) DeleteSlackChannelConfigurationRequest(input *DeleteSlackChann
 	return
 }
 
-// DeleteSlackChannelConfiguration API operation for chatbot.
+// DeleteSlackChannelConfiguration API operation for AWS Chatbot.
 //
 // # Deletes Slack Channel Configuration
 //
@@ -691,7 +691,7 @@ func (c *Chatbot) DeleteSlackChannelConfigurationRequest(input *DeleteSlackChann
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteSlackChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -773,7 +773,7 @@ func (c *Chatbot) DeleteSlackUserIdentityRequest(input *DeleteSlackUserIdentityI
 	return
 }
 
-// DeleteSlackUserIdentity API operation for chatbot.
+// DeleteSlackUserIdentity API operation for AWS Chatbot.
 //
 // # Deletes a Slack user identity
 //
@@ -781,7 +781,7 @@ func (c *Chatbot) DeleteSlackUserIdentityRequest(input *DeleteSlackUserIdentityI
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteSlackUserIdentity for usage and error information.
 //
 // Returned Error Types:
@@ -860,7 +860,7 @@ func (c *Chatbot) DeleteSlackWorkspaceAuthorizationRequest(input *DeleteSlackWor
 	return
 }
 
-// DeleteSlackWorkspaceAuthorization API operation for chatbot.
+// DeleteSlackWorkspaceAuthorization API operation for AWS Chatbot.
 //
 // Deletes the Slack workspace authorization that allows channels to be configured
 // in that workspace. This requires all configured channels in the workspace
@@ -870,7 +870,7 @@ func (c *Chatbot) DeleteSlackWorkspaceAuthorizationRequest(input *DeleteSlackWor
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DeleteSlackWorkspaceAuthorization for usage and error information.
 //
 // Returned Error Types:
@@ -950,7 +950,7 @@ func (c *Chatbot) DescribeChimeWebhookConfigurationsRequest(input *DescribeChime
 	return
 }
 
-// DescribeChimeWebhookConfigurations API operation for chatbot.
+// DescribeChimeWebhookConfigurations API operation for AWS Chatbot.
 //
 // # Lists Chime Webhook Configurations optionally filtered by ChatConfigurationArn
 //
@@ -958,7 +958,7 @@ func (c *Chatbot) DescribeChimeWebhookConfigurationsRequest(input *DescribeChime
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DescribeChimeWebhookConfigurations for usage and error information.
 //
 // Returned Error Types:
@@ -1093,7 +1093,7 @@ func (c *Chatbot) DescribeSlackChannelConfigurationsRequest(input *DescribeSlack
 	return
 }
 
-// DescribeSlackChannelConfigurations API operation for chatbot.
+// DescribeSlackChannelConfigurations API operation for AWS Chatbot.
 //
 // # Lists Slack Channel Configurations optionally filtered by ChatConfigurationArn
 //
@@ -1101,7 +1101,7 @@ func (c *Chatbot) DescribeSlackChannelConfigurationsRequest(input *DescribeSlack
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DescribeSlackChannelConfigurations for usage and error information.
 //
 // Returned Error Types:
@@ -1236,7 +1236,7 @@ func (c *Chatbot) DescribeSlackUserIdentitiesRequest(input *DescribeSlackUserIde
 	return
 }
 
-// DescribeSlackUserIdentities API operation for chatbot.
+// DescribeSlackUserIdentities API operation for AWS Chatbot.
 //
 // Lists all Slack user identities with a mapped role.
 //
@@ -1244,7 +1244,7 @@ func (c *Chatbot) DescribeSlackUserIdentitiesRequest(input *DescribeSlackUserIde
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DescribeSlackUserIdentities for usage and error information.
 //
 // Returned Error Types:
@@ -1379,7 +1379,7 @@ func (c *Chatbot) DescribeSlackWorkspacesRequest(input *DescribeSlackWorkspacesI
 	return
 }
 
-// DescribeSlackWorkspaces API operation for chatbot.
+// DescribeSlackWorkspaces API operation for AWS Chatbot.
 //
 // # Lists all authorized Slack Workspaces for AWS Account
 //
@@ -1387,7 +1387,7 @@ func (c *Chatbot) DescribeSlackWorkspacesRequest(input *DescribeSlackWorkspacesI
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation DescribeSlackWorkspaces for usage and error information.
 //
 // Returned Error Types:
@@ -1516,7 +1516,7 @@ func (c *Chatbot) GetAccountPreferencesRequest(input *GetAccountPreferencesInput
 	return
 }
 
-// GetAccountPreferences API operation for chatbot.
+// GetAccountPreferences API operation for AWS Chatbot.
 //
 // # Get Chatbot account level preferences
 //
@@ -1524,7 +1524,7 @@ func (c *Chatbot) GetAccountPreferencesRequest(input *GetAccountPreferencesInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation GetAccountPreferences for usage and error information.
 //
 // Returned Error Types:
@@ -1599,7 +1599,7 @@ func (c *Chatbot) GetMicrosoftTeamsChannelConfigurationRequest(input *GetMicroso
 	return
 }
 
-// GetMicrosoftTeamsChannelConfiguration API operation for chatbot.
+// GetMicrosoftTeamsChannelConfiguration API operation for AWS Chatbot.
 //
 // # Get a single MS Teams Channel Configurations
 //
@@ -1607,7 +1607,7 @@ func (c *Chatbot) GetMicrosoftTeamsChannelConfigurationRequest(input *GetMicroso
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation GetMicrosoftTeamsChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -1691,7 +1691,7 @@ func (c *Chatbot) ListMicrosoftTeamsChannelConfigurationsRequest(input *ListMicr
 	return
 }
 
-// ListMicrosoftTeamsChannelConfigurations API operation for chatbot.
+// ListMicrosoftTeamsChannelConfigurations API operation for AWS Chatbot.
 //
 // # Lists MS Teams Channel Configurations optionally filtered by TeamId
 //
@@ -1699,7 +1699,7 @@ func (c *Chatbot) ListMicrosoftTeamsChannelConfigurationsRequest(input *ListMicr
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation ListMicrosoftTeamsChannelConfigurations for usage and error information.
 //
 // Returned Error Types:
@@ -1834,7 +1834,7 @@ func (c *Chatbot) ListMicrosoftTeamsConfiguredTeamsRequest(input *ListMicrosoftT
 	return
 }
 
-// ListMicrosoftTeamsConfiguredTeams API operation for chatbot.
+// ListMicrosoftTeamsConfiguredTeams API operation for AWS Chatbot.
 //
 // # Lists all authorized MS teams for AWS Account
 //
@@ -1842,7 +1842,7 @@ func (c *Chatbot) ListMicrosoftTeamsConfiguredTeamsRequest(input *ListMicrosoftT
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation ListMicrosoftTeamsConfiguredTeams for usage and error information.
 //
 // Returned Error Types:
@@ -1977,7 +1977,7 @@ func (c *Chatbot) ListMicrosoftTeamsUserIdentitiesRequest(input *ListMicrosoftTe
 	return
 }
 
-// ListMicrosoftTeamsUserIdentities API operation for chatbot.
+// ListMicrosoftTeamsUserIdentities API operation for AWS Chatbot.
 //
 // Lists all Microsoft Teams user identities with a mapped role.
 //
@@ -1985,7 +1985,7 @@ func (c *Chatbot) ListMicrosoftTeamsUserIdentitiesRequest(input *ListMicrosoftTe
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation ListMicrosoftTeamsUserIdentities for usage and error information.
 //
 // Returned Error Types:
@@ -2114,7 +2114,7 @@ func (c *Chatbot) UpdateAccountPreferencesRequest(input *UpdateAccountPreference
 	return
 }
 
-// UpdateAccountPreferences API operation for chatbot.
+// UpdateAccountPreferences API operation for AWS Chatbot.
 //
 // # Update Chatbot account level preferences
 //
@@ -2122,7 +2122,7 @@ func (c *Chatbot) UpdateAccountPreferencesRequest(input *UpdateAccountPreference
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation UpdateAccountPreferences for usage and error information.
 //
 // Returned Error Types:
@@ -2200,7 +2200,7 @@ func (c *Chatbot) UpdateChimeWebhookConfigurationRequest(input *UpdateChimeWebho
 	return
 }
 
-// UpdateChimeWebhookConfiguration API operation for chatbot.
+// UpdateChimeWebhookConfiguration API operation for AWS Chatbot.
 //
 // # Updates a Chime Webhook Configuration
 //
@@ -2208,7 +2208,7 @@ func (c *Chatbot) UpdateChimeWebhookConfigurationRequest(input *UpdateChimeWebho
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation UpdateChimeWebhookConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -2289,7 +2289,7 @@ func (c *Chatbot) UpdateMicrosoftTeamsChannelConfigurationRequest(input *UpdateM
 	return
 }
 
-// UpdateMicrosoftTeamsChannelConfiguration API operation for chatbot.
+// UpdateMicrosoftTeamsChannelConfiguration API operation for AWS Chatbot.
 //
 // # Updates MS Teams Channel Configuration
 //
@@ -2297,7 +2297,7 @@ func (c *Chatbot) UpdateMicrosoftTeamsChannelConfigurationRequest(input *UpdateM
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation UpdateMicrosoftTeamsChannelConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -2378,7 +2378,7 @@ func (c *Chatbot) UpdateSlackChannelConfigurationRequest(input *UpdateSlackChann
 	return
 }
 
-// UpdateSlackChannelConfiguration API operation for chatbot.
+// UpdateSlackChannelConfiguration API operation for AWS Chatbot.
 //
 // # Updates Slack Channel Configuration
 //
@@ -2386,7 +2386,7 @@ func (c *Chatbot) UpdateSlackChannelConfigurationRequest(input *UpdateSlackChann
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for chatbot's
+// See the AWS API reference guide for AWS Chatbot's
 // API operation UpdateSlackChannelConfiguration for usage and error information.
 //
 // Returned Error Types:

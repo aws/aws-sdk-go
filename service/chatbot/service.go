@@ -13,7 +13,7 @@ import (
 )
 
 // Chatbot provides the API operation methods for making requests to
-// chatbot. See this package's package overview docs
+// AWS Chatbot. See this package's package overview docs
 // for details on the service.
 //
 // Chatbot methods are safe to use concurrently. It is not safe to

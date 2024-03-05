@@ -1,3 +1,14 @@
+Release v1.50.32 (2024-03-05)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway
+* `service/chatbot`: Updates service API
+* `service/organizations`: Adds new service
+  * This release contains an endpoint addition
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.50.31 (2024-03-04)
 ===
 

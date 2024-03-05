@@ -234,7 +234,7 @@
         "ImportDocumentationPartsRequest$failOnWarnings": "<p>A query parameter to specify whether to rollback the documentation importation (<code>true</code>) or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.</p>",
         "ImportRestApiRequest$failOnWarnings": "<p>A query parameter to indicate whether to rollback the API creation (<code>true</code>) or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.</p>",
         "MethodSetting$metricsEnabled": "<p>Specifies whether Amazon CloudWatch metrics are enabled for this method.</p>",
-        "MethodSetting$dataTraceEnabled": "<p>Specifies whether data trace logging is enabled for this method, which affects the log entries pushed to Amazon CloudWatch Logs.</p>",
+        "MethodSetting$dataTraceEnabled": "<p>Specifies whether data trace logging is enabled for this method, which affects the log entries pushed to Amazon CloudWatch Logs. This can be useful to troubleshoot APIs, but can result in logging sensitive data. We recommend that you don't enable this option for production APIs.</p>",
         "MethodSetting$cachingEnabled": "<p>Specifies whether responses should be cached and returned for requests. A cache cluster must be enabled on the stage for responses to be cached.</p>",
         "MethodSetting$cacheDataEncrypted": "<p>Specifies whether the cached responses are encrypted.</p>",
         "MethodSetting$requireAuthorizationForCacheControl": "<p>Specifies whether authorization is required for a cache invalidation request.</p>",

@@ -8704,9 +8704,11 @@ func (c *SESV2) UpdateContactRequest(input *UpdateContactInput) (req *request.Re
 
 // UpdateContact API operation for Amazon Simple Email Service.
 //
-// Updates a contact's preferences for a list. It is not necessary to specify
-// all existing topic preferences in the TopicPreferences object, just the ones
-// that need updating.
+// Updates a contact's preferences for a list.
+//
+// You must specify all existing topic preferences in the TopicPreferences object,
+// not just the ones that need updating; otherwise, all your existing preferences
+// will be removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14991,10 +14993,7 @@ type GetAccountOutput struct {
 	// Amazon Web Services Region.
 	//
 	// If the value is false, then your account is in the sandbox. When your account
-	// is in the sandbox, you can only send email to verified identities. Additionally,
-	// the maximum number of emails you can send in a 24-hour period (your sending
-	// quota) is 200, and the maximum number of emails you can send per second (your
-	// maximum sending rate) is 1.
+	// is in the sandbox, you can only send email to verified identities.
 	//
 	// If the value is true, then your account has production access. When your
 	// account has production access, you can send email to any address. The sending
@@ -19924,6 +19923,9 @@ type Message struct {
 	// Body is a required field
 	Body *Body `type:"structure" required:"true"`
 
+	// The list of message headers that will be added to the email message.
+	Headers []*MessageHeader `type:"list"`
+
 	// The subject line of the email. The subject line can only contain 7-bit ASCII
 	// characters. However, you can specify non-ASCII characters in the subject
 	// line by using encoded-word syntax, as described in RFC 2047 (https://tools.ietf.org/html/rfc2047).
@@ -19964,6 +19966,16 @@ func (s *Message) Validate() error {
 			invalidParams.AddNested("Body", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Headers != nil {
+		for i, v := range s.Headers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Headers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Subject != nil {
 		if err := s.Subject.Validate(); err != nil {
 			invalidParams.AddNested("Subject", err.(request.ErrInvalidParams))
@@ -19982,9 +19994,93 @@ func (s *Message) SetBody(v *Body) *Message {
 	return s
 }
 
+// SetHeaders sets the Headers field's value.
+func (s *Message) SetHeaders(v []*MessageHeader) *Message {
+	s.Headers = v
+	return s
+}
+
 // SetSubject sets the Subject field's value.
 func (s *Message) SetSubject(v *Content) *Message {
 	s.Subject = v
+	return s
+}
+
+// Contains the name and value of a message header that you add to an email.
+type MessageHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the message header. The message header name has to meet the following
+	// criteria:
+	//
+	//    * Can contain any printable ASCII character (33 - 126) except for colon
+	//    (:).
+	//
+	//    * Can contain no more than 126 characters.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the message header. The message header value has to meet the
+	// following criteria:
+	//
+	//    * Can contain any printable ASCII character.
+	//
+	//    * Can contain no more than 870 characters.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageHeader"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *MessageHeader) SetName(v string) *MessageHeader {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MessageHeader) SetValue(v string) *MessageHeader {
+	s.Value = &v
 	return s
 }
 
@@ -20842,10 +20938,7 @@ type PutAccountDetailsInput struct {
 	// current Amazon Web Services Region.
 	//
 	// If the value is false, then your account is in the sandbox. When your account
-	// is in the sandbox, you can only send email to verified identities. Additionally,
-	// the maximum number of emails you can send in a 24-hour period (your sending
-	// quota) is 200, and the maximum number of emails you can send per second (your
-	// maximum sending rate) is 1.
+	// is in the sandbox, you can only send email to verified identities.
 	//
 	// If the value is true, then your account has production access. When your
 	// account has production access, you can send email to any address. The sending
@@ -23395,7 +23488,7 @@ type SendEmailInput struct {
 	ConfigurationSetName *string `type:"string"`
 
 	// An object that contains the body of the message. You can send either a Simple
-	// message Raw message or a template Message.
+	// message, Raw message, or a Templated message.
 	//
 	// Content is a required field
 	Content *EmailContent `type:"structure" required:"true"`
@@ -23573,10 +23666,10 @@ type SendEmailOutput struct {
 	// A unique identifier for the message that is generated when the message is
 	// accepted.
 	//
-	// It's possible for Amazon SES to accept a message without sending it. This
-	// can happen when the message that you're trying to send has an attachment
-	// contains a virus, or when you send a templated email that contains invalid
-	// personalization content, for example.
+	// It's possible for Amazon SES to accept a message without sending it. For
+	// example, this can happen when the message that you're trying to send has
+	// an attachment that contains a virus, or when you send a templated email that
+	// contains invalid personalization content.
 	MessageId *string `type:"string"`
 }
 
@@ -24312,6 +24405,9 @@ func (s TagResourceOutput) GoString() string {
 type Template struct {
 	_ struct{} `type:"structure"`
 
+	// The list of message headers that will be added to the email message.
+	Headers []*MessageHeader `type:"list"`
+
 	// The Amazon Resource Name (ARN) of the template.
 	TemplateArn *string `type:"string"`
 
@@ -24350,11 +24446,27 @@ func (s *Template) Validate() error {
 	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
 	}
+	if s.Headers != nil {
+		for i, v := range s.Headers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Headers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *Template) SetHeaders(v []*MessageHeader) *Template {
+	s.Headers = v
+	return s
 }
 
 // SetTemplateArn sets the TemplateArn field's value.
