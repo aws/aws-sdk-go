@@ -3642,11 +3642,41 @@
       ],
       "members":{
         "Subject":{"shape":"Content"},
-        "Body":{"shape":"Body"}
+        "Body":{"shape":"Body"},
+        "Headers":{"shape":"MessageHeaderList"}
       }
     },
     "MessageContent":{"type":"string"},
     "MessageData":{"type":"string"},
+    "MessageHeader":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"MessageHeaderName"},
+        "Value":{"shape":"MessageHeaderValue"}
+      }
+    },
+    "MessageHeaderList":{
+      "type":"list",
+      "member":{"shape":"MessageHeader"},
+      "max":15,
+      "min":0
+    },
+    "MessageHeaderName":{
+      "type":"string",
+      "max":126,
+      "min":1,
+      "pattern":"^[!-9;-@A-~]+$"
+    },
+    "MessageHeaderValue":{
+      "type":"string",
+      "max":870,
+      "min":1,
+      "pattern":"[ -~]*"
+    },
     "MessageInsightsDataSource":{
       "type":"structure",
       "required":[
@@ -4537,7 +4567,8 @@
       "members":{
         "TemplateName":{"shape":"EmailTemplateName"},
         "TemplateArn":{"shape":"AmazonResourceName"},
-        "TemplateData":{"shape":"EmailTemplateData"}
+        "TemplateData":{"shape":"EmailTemplateData"},
+        "Headers":{"shape":"MessageHeaderList"}
       }
     },
     "TemplateContent":{"type":"string"},
