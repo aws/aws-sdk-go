@@ -1210,7 +1210,7 @@ type CreateEnvironmentInput struct {
 	// it defaults to the latest version. For more information, see Apache Airflow
 	// versions on Amazon Managed Workflows for Apache Airflow (MWAA) (https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html).
 	//
-	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2
+	// Valid values: 1.10.12, 2.0.2, 2.2.2, 2.4.3, 2.5.1, 2.6.3, 2.7.2 2.8.1
 	AirflowVersion *string `min:"1" type:"string"`
 
 	// The relative path to the DAGs folder on your Amazon S3 bucket. For example,

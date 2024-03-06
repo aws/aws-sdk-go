@@ -19534,6 +19534,15 @@ type ClusterPendingModifiedValues struct {
 	// The number of days for which automatic DB snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// Returns the details of the DB instance’s server certificate.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CertificateDetails *CertificateDetails `type:"structure"`
+
 	// The DBClusterIdentifier value for the DB cluster.
 	DBClusterIdentifier *string `type:"string"`
 
@@ -19589,6 +19598,12 @@ func (s *ClusterPendingModifiedValues) SetAllocatedStorage(v int64) *ClusterPend
 // SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
 func (s *ClusterPendingModifiedValues) SetBackupRetentionPeriod(v int64) *ClusterPendingModifiedValues {
 	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCertificateDetails sets the CertificateDetails field's value.
+func (s *ClusterPendingModifiedValues) SetCertificateDetails(v *CertificateDetails) *ClusterPendingModifiedValues {
+	s.CertificateDetails = v
 	return s
 }
 
@@ -21904,6 +21919,11 @@ type CreateDBClusterInput struct {
 	//    * Must be a value from 1 to 35.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// The CA certificate identifier to use for the DB cluster's server certificate.
+	//
+	// Valid for Cluster Type: Multi-AZ DB clusters
+	CACertificateIdentifier *string `type:"string"`
+
 	// The name of the character set (CharacterSet) to associate the DB cluster
 	// with.
 	//
@@ -22629,6 +22649,12 @@ func (s *CreateDBClusterInput) SetBackupRetentionPeriod(v int64) *CreateDBCluste
 	return s
 }
 
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *CreateDBClusterInput) SetCACertificateIdentifier(v string) *CreateDBClusterInput {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
 // SetCharacterSetName sets the CharacterSetName field's value.
 func (s *CreateDBClusterInput) SetCharacterSetName(v string) *CreateDBClusterInput {
 	s.CharacterSetName = &v
@@ -23275,16 +23301,17 @@ type CreateDBInstanceInput struct {
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 40
 	//    to 65536 for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 40 to 65536
 	//    for RDS Custom for Oracle, 16384 for RDS Custom for SQL Server.
 	//
 	// RDS for Db2
 	//
 	// Constraints to the amount of storage for each storage type are the following:
 	//
-	//    * General Purpose (SSD) storage (gp3): Must be an integer from 20 to 64000.
+	//    * General Purpose (SSD) storage (gp3): Must be an integer from 20 to 65536.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 64000.
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 100 to
+	//    65536.
 	//
 	// RDS for MariaDB
 	//
@@ -23293,7 +23320,8 @@ type CreateDBInstanceInput struct {
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
 	//    to 65536.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 100 to
+	//    65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
 	//
@@ -23304,7 +23332,8 @@ type CreateDBInstanceInput struct {
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
 	//    to 65536.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 100 to
+	//    65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
 	//
@@ -23315,7 +23344,8 @@ type CreateDBInstanceInput struct {
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
 	//    to 65536.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 100 to
+	//    65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 10 to 3072.
 	//
@@ -23326,7 +23356,8 @@ type CreateDBInstanceInput struct {
 	//    * General Purpose (SSD) storage (gp2, gp3): Must be an integer from 20
 	//    to 65536.
 	//
-	//    * Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.
+	//    * Provisioned IOPS storage (io1, io2): Must be an integer from 100 to
+	//    65536.
 	//
 	//    * Magnetic storage (standard): Must be an integer from 5 to 3072.
 	//
@@ -23338,9 +23369,9 @@ type CreateDBInstanceInput struct {
 	//    Must be an integer from 20 to 16384. Web and Express editions: Must be
 	//    an integer from 20 to 16384.
 	//
-	//    * Provisioned IOPS storage (io1): Enterprise and Standard editions: Must
-	//    be an integer from 100 to 16384. Web and Express editions: Must be an
-	//    integer from 100 to 16384.
+	//    * Provisioned IOPS storage (io1, io2): Enterprise and Standard editions:
+	//    Must be an integer from 100 to 16384. Web and Express editions: Must be
+	//    an integer from 100 to 16384.
 	//
 	//    * Magnetic storage (standard): Enterprise and Standard editions: Must
 	//    be an integer from 20 to 1024. Web and Express editions: Must be an integer
@@ -24299,12 +24330,13 @@ type CreateDBInstanceInput struct {
 
 	// The storage type to associate with the DB instance.
 	//
-	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
+	// If you specify io1, io2, or gp3, you must also include a value for the Iops
+	// parameter.
 	//
 	// This setting doesn't apply to Amazon Aurora DB instances. Storage is managed
 	// by the DB cluster.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
 	// Default: io1, if the Iops parameter is specified. Otherwise, gp2.
 	StorageType *string `type:"string"`
@@ -25300,9 +25332,10 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The storage type to associate with the read replica.
 	//
-	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
+	// If you specify io1, io2, or gp3, you must also include a value for the Iops
+	// parameter.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
 	// Default: io1 if the Iops parameter is specified. Otherwise, gp2.
 	StorageType *string `type:"string"`
@@ -27849,6 +27882,15 @@ type DBCluster struct {
 	// in the Amazon Aurora User Guide.
 	Capacity *int64 `type:"integer"`
 
+	// Returns the details of the DB instance’s server certificate.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CertificateDetails *CertificateDetails `type:"structure"`
+
 	// If present, specifies the name of the character set that this cluster is
 	// associated with.
 	CharacterSetName *string `type:"string"`
@@ -28268,6 +28310,12 @@ func (s *DBCluster) SetBackupRetentionPeriod(v int64) *DBCluster {
 // SetCapacity sets the Capacity field's value.
 func (s *DBCluster) SetCapacity(v int64) *DBCluster {
 	s.Capacity = &v
+	return s
+}
+
+// SetCertificateDetails sets the CertificateDetails field's value.
+func (s *DBCluster) SetCertificateDetails(v *CertificateDetails) *DBCluster {
+	s.CertificateDetails = v
 	return s
 }
 
@@ -46696,6 +46744,11 @@ type ModifyDBClusterInput struct {
 	//    * Must be a value from 1 to 35.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// The CA certificate identifier to use for the DB cluster's server certificate.
+	//
+	// Valid for Cluster Type: Multi-AZ DB clusters
+	CACertificateIdentifier *string `type:"string"`
+
 	// The configuration setting for the log types to be enabled for export to CloudWatch
 	// Logs for a specific DB cluster.
 	//
@@ -47267,6 +47320,12 @@ func (s *ModifyDBClusterInput) SetBacktrackWindow(v int64) *ModifyDBClusterInput
 // SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
 func (s *ModifyDBClusterInput) SetBackupRetentionPeriod(v int64) *ModifyDBClusterInput {
 	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *ModifyDBClusterInput) SetCACertificateIdentifier(v string) *ModifyDBClusterInput {
+	s.CACertificateIdentifier = &v
 	return s
 }
 
@@ -48591,8 +48650,8 @@ type ModifyDBInstanceInput struct {
 
 	// The storage type to associate with the DB instance.
 	//
-	// If you specify Provisioned IOPS (io1), you must also include a value for
-	// the Iops parameter.
+	// If you specify io1), io2, or gp3 you must also include a value for the Iops
+	// parameter.
 	//
 	// If you choose to migrate your DB instance from using standard storage to
 	// using Provisioned IOPS, or from using Provisioned IOPS to using standard
@@ -48607,7 +48666,7 @@ type ModifyDBInstanceInput struct {
 	// modifying the instance, rebooting the instance, deleting the instance, creating
 	// a read replica for the instance, and creating a DB snapshot of the instance.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
 	// Default: io1, if the Iops parameter is specified. Otherwise, gp2.
 	StorageType *string `type:"string"`
@@ -57147,9 +57206,10 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
-	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
+	// If you specify io1, io2, or gp3, you must also include a value for the Iops
+	// parameter.
 	//
 	// Default: io1 if the Iops parameter is specified, otherwise gp2
 	StorageType *string `type:"string"`
@@ -57901,9 +57961,10 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
-	// If you specify io1 or gp3, you must also include a value for the Iops parameter.
+	// If you specify io1, io2, or gp3, you must also include a value for the Iops
+	// parameter.
 	//
 	// Default: io1 if the Iops parameter is specified; otherwise gp2
 	StorageType *string `type:"string"`
@@ -58690,14 +58751,14 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The storage type to associate with the DB instance.
 	//
-	// Valid Values: gp2 | gp3 | io1 | standard
+	// Valid Values: gp2 | gp3 | io1 | io2 | standard
 	//
 	// Default: io1, if the Iops parameter is specified. Otherwise, gp2.
 	//
 	// Constraints:
 	//
-	//    * If you specify io1 or gp3, you must also include a value for the Iops
-	//    parameter.
+	//    * If you specify io1, io2, or gp3, you must also include a value for the
+	//    Iops parameter.
 	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
@@ -62067,7 +62128,8 @@ type ValidStorageOptions struct {
 	// 0-0.25.
 	StorageThroughputToIopsRatio []*DoubleRange `locationNameList:"DoubleRange" type:"list"`
 
-	// The valid storage types for your DB instance. For example: gp2, gp3, io1.
+	// The valid storage types for your DB instance. For example: gp2, gp3, io1,
+	// io2.
 	StorageType *string `type:"string"`
 
 	// Indicates whether or not Amazon RDS can automatically scale storage for DB
