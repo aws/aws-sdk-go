@@ -6946,7 +6946,7 @@ func (c *DynamoDB) UpdateGlobalTableRequest(input *UpdateGlobalTableInput) (req 
 //
 // This operation only applies to Version 2017.11.29 (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html)
 // of global tables. If you are using global tables Version 2019.11.21 (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html)
-// you can use DescribeTable (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html)
+// you can use UpdateTable (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html)
 // instead.
 //
 // Although you can use UpdateGlobalTable to add replicas and remove replicas
@@ -7924,7 +7924,7 @@ func (s *ArchivalSummary) SetArchivalReason(v string) *ArchivalSummary {
 	return s
 }
 
-// Represents an attribute for describing the key schema for the table and indexes.
+// Represents an attribute for describing the schema for the table and indexes.
 type AttributeDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -14783,6 +14783,9 @@ type ExportTableToPointInTimeInput struct {
 
 	// The ID of the Amazon Web Services account that owns the bucket the export
 	// will be stored in.
+	//
+	// S3BucketOwner is a required parameter when exporting to a S3 bucket in another
+	// account.
 	S3BucketOwner *string `type:"string"`
 
 	// The Amazon S3 bucket prefix to use as the file name and path of the exported
@@ -19020,6 +19023,8 @@ type Projection struct {
 	//    secondary index will include other non-key attributes that you specify.
 	//
 	//    * ALL - All of the table attributes are projected into the index.
+	//
+	// When using the DynamoDB console, ALL is selected by default.
 	ProjectionType *string `type:"string" enum:"ProjectionType"`
 }
 
@@ -19931,7 +19936,7 @@ type QueryInput struct {
 	// A FilterExpression is applied after the items have already been read; the
 	// process of filtering does not consume any additional read capacity units.
 	//
-	// For more information, see Filter Expressions (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Query.FilterExpression)
+	// For more information, see Filter Expressions (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.FilterExpression.html)
 	// in the Amazon DynamoDB Developer Guide.
 	FilterExpression *string `type:"string"`
 

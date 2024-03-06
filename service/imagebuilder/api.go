@@ -19417,6 +19417,9 @@ type LifecycleExecutionResource struct {
 	// The action to take for the identified resource.
 	Action *LifecycleExecutionResourceAction `locationName:"action" type:"structure"`
 
+	// The ending timestamp from the lifecycle action that was applied to the resource.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
 	// For an impacted container image, this identifies a list of URIs for associated
 	// container images distributed to ECR repositories.
 	ImageUris []*string `locationName:"imageUris" type:"list"`
@@ -19439,6 +19442,10 @@ type LifecycleExecutionResource struct {
 	// A list of associated resource snapshots for the impacted resource if it’s
 	// an AMI.
 	Snapshots []*LifecycleExecutionSnapshotResource `locationName:"snapshots" type:"list"`
+
+	// The starting timestamp from the lifecycle action that was applied to the
+	// resource.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// The runtime state for the lifecycle execution.
 	State *LifecycleExecutionResourceState `locationName:"state" type:"structure"`
@@ -19474,6 +19481,12 @@ func (s *LifecycleExecutionResource) SetAction(v *LifecycleExecutionResourceActi
 	return s
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *LifecycleExecutionResource) SetEndTime(v time.Time) *LifecycleExecutionResource {
+	s.EndTime = &v
+	return s
+}
+
 // SetImageUris sets the ImageUris field's value.
 func (s *LifecycleExecutionResource) SetImageUris(v []*string) *LifecycleExecutionResource {
 	s.ImageUris = v
@@ -19495,6 +19508,12 @@ func (s *LifecycleExecutionResource) SetResourceId(v string) *LifecycleExecution
 // SetSnapshots sets the Snapshots field's value.
 func (s *LifecycleExecutionResource) SetSnapshots(v []*LifecycleExecutionSnapshotResource) *LifecycleExecutionResource {
 	s.Snapshots = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LifecycleExecutionResource) SetStartTime(v time.Time) *LifecycleExecutionResource {
+	s.StartTime = &v
 	return s
 }
 
@@ -20039,7 +20058,7 @@ type LifecyclePolicyDetailExclusionRules struct {
 	Amis *LifecyclePolicyDetailExclusionRulesAmis `locationName:"amis" type:"structure"`
 
 	// Contains a list of tags that Image Builder uses to skip lifecycle actions
-	// for resources that have them.
+	// for Image Builder image resources that have them.
 	TagMap map[string]*string `locationName:"tagMap" min:"1" type:"map"`
 }
 
@@ -20353,8 +20372,8 @@ type LifecyclePolicyResourceSelection struct {
 	// that the lifecycle policy applies to.
 	Recipes []*LifecyclePolicyResourceSelectionRecipe `locationName:"recipes" min:"1" type:"list"`
 
-	// A list of tags that are used as selection criteria for the resources that
-	// the lifecycle policy applies to.
+	// A list of tags that are used as selection criteria for the Image Builder
+	// image resources that the lifecycle policy applies to.
 	TagMap map[string]*string `locationName:"tagMap" min:"1" type:"map"`
 }
 
@@ -28193,6 +28212,9 @@ const (
 
 	// LifecycleExecutionStatusSuccess is a LifecycleExecutionStatus enum value
 	LifecycleExecutionStatusSuccess = "SUCCESS"
+
+	// LifecycleExecutionStatusPending is a LifecycleExecutionStatus enum value
+	LifecycleExecutionStatusPending = "PENDING"
 )
 
 // LifecycleExecutionStatus_Values returns all elements of the LifecycleExecutionStatus enum
@@ -28203,6 +28225,7 @@ func LifecycleExecutionStatus_Values() []string {
 		LifecycleExecutionStatusCancelling,
 		LifecycleExecutionStatusFailed,
 		LifecycleExecutionStatusSuccess,
+		LifecycleExecutionStatusPending,
 	}
 }
 

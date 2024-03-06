@@ -570,10 +570,50 @@
         "clientIds":{"shape":"ClientIds"}
       }
     },
+    "CognitoUserPoolConfigurationDetail":{
+      "type":"structure",
+      "required":[
+        "userPoolArn",
+        "clientIds",
+        "issuer"
+      ],
+      "members":{
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "clientIds":{"shape":"ClientIds"},
+        "issuer":{"shape":"Issuer"}
+      }
+    },
+    "CognitoUserPoolConfigurationItem":{
+      "type":"structure",
+      "required":[
+        "userPoolArn",
+        "clientIds",
+        "issuer"
+      ],
+      "members":{
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "clientIds":{"shape":"ClientIds"},
+        "issuer":{"shape":"Issuer"}
+      }
+    },
     "Configuration":{
       "type":"structure",
       "members":{
         "cognitoUserPoolConfiguration":{"shape":"CognitoUserPoolConfiguration"}
+      },
+      "union":true
+    },
+    "ConfigurationDetail":{
+      "type":"structure",
+      "members":{
+        "cognitoUserPoolConfiguration":{"shape":"CognitoUserPoolConfigurationDetail"}
+      },
+      "union":true
+    },
+    "ConfigurationItem":{
+      "type":"structure",
+      "members":{
+        "cognitoUserPoolConfiguration":{"shape":"CognitoUserPoolConfigurationItem"}
       },
       "union":true
     },
@@ -893,7 +933,6 @@
       "type":"structure",
       "required":[
         "createdDate",
-        "details",
         "identitySourceId",
         "lastUpdatedDate",
         "policyStoreId",
@@ -901,11 +940,16 @@
       ],
       "members":{
         "createdDate":{"shape":"TimestampFormat"},
-        "details":{"shape":"IdentitySourceDetails"},
+        "details":{
+          "shape":"IdentitySourceDetails",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration"
+        },
         "identitySourceId":{"shape":"IdentitySourceId"},
         "lastUpdatedDate":{"shape":"TimestampFormat"},
         "policyStoreId":{"shape":"PolicyStoreId"},
-        "principalEntityType":{"shape":"PrincipalEntityType"}
+        "principalEntityType":{"shape":"PrincipalEntityType"},
+        "configuration":{"shape":"ConfigurationDetail"}
       }
     },
     "GetPolicyInput":{
@@ -1026,11 +1070,29 @@
     "IdentitySourceDetails":{
       "type":"structure",
       "members":{
-        "clientIds":{"shape":"ClientIds"},
-        "userPoolArn":{"shape":"UserPoolArn"},
-        "discoveryUrl":{"shape":"DiscoveryUrl"},
-        "openIdIssuer":{"shape":"OpenIdIssuer"}
-      }
+        "clientIds":{
+          "shape":"ClientIds",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds"
+        },
+        "userPoolArn":{
+          "shape":"UserPoolArn",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.userPoolArn"
+        },
+        "discoveryUrl":{
+          "shape":"DiscoveryUrl",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.issuer"
+        },
+        "openIdIssuer":{
+          "shape":"OpenIdIssuer",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration"
+        }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This shape has been replaced by ConfigurationDetail"
     },
     "IdentitySourceFilter":{
       "type":"structure",
@@ -1054,7 +1116,6 @@
       "type":"structure",
       "required":[
         "createdDate",
-        "details",
         "identitySourceId",
         "lastUpdatedDate",
         "policyStoreId",
@@ -1062,21 +1123,44 @@
       ],
       "members":{
         "createdDate":{"shape":"TimestampFormat"},
-        "details":{"shape":"IdentitySourceItemDetails"},
+        "details":{
+          "shape":"IdentitySourceItemDetails",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration"
+        },
         "identitySourceId":{"shape":"IdentitySourceId"},
         "lastUpdatedDate":{"shape":"TimestampFormat"},
         "policyStoreId":{"shape":"PolicyStoreId"},
-        "principalEntityType":{"shape":"PrincipalEntityType"}
+        "principalEntityType":{"shape":"PrincipalEntityType"},
+        "configuration":{"shape":"ConfigurationItem"}
       }
     },
     "IdentitySourceItemDetails":{
       "type":"structure",
       "members":{
-        "clientIds":{"shape":"ClientIds"},
-        "userPoolArn":{"shape":"UserPoolArn"},
-        "discoveryUrl":{"shape":"DiscoveryUrl"},
-        "openIdIssuer":{"shape":"OpenIdIssuer"}
-      }
+        "clientIds":{
+          "shape":"ClientIds",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds"
+        },
+        "userPoolArn":{
+          "shape":"UserPoolArn",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.userPoolArn"
+        },
+        "discoveryUrl":{
+          "shape":"DiscoveryUrl",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration.cognitoUserPoolConfiguration.issuer"
+        },
+        "openIdIssuer":{
+          "shape":"OpenIdIssuer",
+          "deprecated":true,
+          "deprecatedMessage":"This attribute has been replaced by configuration"
+        }
+      },
+      "deprecated":true,
+      "deprecatedMessage":"This shape has been replaced by ConfigurationItem"
     },
     "IdentitySources":{
       "type":"list",
@@ -1142,6 +1226,12 @@
         "determiningPolicies":{"shape":"DeterminingPolicyList"},
         "errors":{"shape":"EvaluationErrorList"}
       }
+    },
+    "Issuer":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"https://.*"
     },
     "ListIdentitySourcesInput":{
       "type":"structure",

@@ -1,3 +1,17 @@
+Release v1.50.33 (2024-03-06)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Doc only updates for DynamoDB documentation
+* `service/imagebuilder`: Updates service API and documentation
+* `service/mwaa`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updated the input of CreateDBCluster and ModifyDBCluster to support setting CA certificates. Updated the output of DescribeDBCluster to show current CA certificate setting value.
+* `service/redshift`: Updates service documentation
+  * Update for documentation only. Covers port ranges, definition updates for data sharing, and definition updates to cluster-snapshot documentation.
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.50.32 (2024-03-05)
 ===
 

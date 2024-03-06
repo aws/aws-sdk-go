@@ -240,9 +240,8 @@ func (c *VerifiedPermissions) CreateIdentitySourceRequest(input *CreateIdentityS
 // defined by the Amazon Cognito user pool.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -401,9 +400,8 @@ func (c *VerifiedPermissions) CreatePolicyRequest(input *CreatePolicyInput) (req
 // policy isn't stored.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -551,9 +549,8 @@ func (c *VerifiedPermissions) CreatePolicyStoreRequest(input *CreatePolicyStoreI
 // Verified Permissions currently supports only one namespace per policy store.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -701,9 +698,8 @@ func (c *VerifiedPermissions) CreatePolicyTemplateRequest(input *CreatePolicyTem
 // policies that are linked to that template are immediately updated as well.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3163,9 +3159,8 @@ func (c *VerifiedPermissions) PutSchemaRequest(input *PutSchemaInput) (req *requ
 // it is evaluated against the new schema at that time.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3312,9 +3307,8 @@ func (c *VerifiedPermissions) UpdateIdentitySourceRequest(input *UpdateIdentityS
 // principal entity type.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3464,7 +3458,7 @@ func (c *VerifiedPermissions) UpdatePolicyRequest(input *UpdatePolicyInput) (req
 //     the schema in the policy store. If the updated static policy doesn't pass
 //     validation, the operation fails and the update isn't stored.
 //
-//   - When you edit a static policy, You can change only certain elements
+//   - When you edit a static policy, you can change only certain elements
 //     of a static policy: The action referenced by the policy. A condition clause,
 //     such as when and unless. You can't change these elements of a static policy:
 //     Changing a policy from a static policy to a template-linked policy. Changing
@@ -3474,9 +3468,8 @@ func (c *VerifiedPermissions) UpdatePolicyRequest(input *UpdatePolicyInput) (req
 //   - To update a template-linked policy, you must update the template instead.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3621,9 +3614,8 @@ func (c *VerifiedPermissions) UpdatePolicyStoreRequest(input *UpdatePolicyStoreI
 // Modifies the validation setting for a policy store.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3770,9 +3762,8 @@ func (c *VerifiedPermissions) UpdatePolicyTemplateRequest(input *UpdatePolicyTem
 // that involve all template-linked policies instantiated from this template.
 //
 // Verified Permissions is eventually consistent (https://wikipedia.org/wiki/Eventual_consistency)
-// . It can take a few seconds for a new or changed element to be propagate
-// through the service and be visible in the results of other Verified Permissions
-// operations.
+// . It can take a few seconds for a new or changed element to propagate through
+// the service and be visible in the results of other Verified Permissions operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4466,7 +4457,7 @@ func (s *BatchIsAuthorizedOutputItem) SetRequest(v *BatchIsAuthorizedInputItem) 
 // an Amazon Cognito user pool used as an identity provider for Verified Permissions.
 //
 // This data type is used as a field that is part of an Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html)
-// structure that is used as a parameter to the Configuration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_Configuration.html).
+// structure that is used as a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
 // ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
@@ -4534,6 +4525,151 @@ func (s *CognitoUserPoolConfiguration) SetUserPoolArn(v string) *CognitoUserPool
 	return s
 }
 
+// The configuration for an identity source that represents a connection to
+// an Amazon Cognito user pool used as an identity provider for Verified Permissions.
+//
+// This data type is used as a field that is part of an ConfigurationDetail
+// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html)
+// structure that is part of the response to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+//
+// Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+type CognitoUserPoolConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The unique application client IDs that are associated with the specified
+	// Amazon Cognito user pool.
+	//
+	// Example: "clientIds": ["&ExampleCogClientId;"]
+	//
+	// ClientIds is a required field
+	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+
+	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
+	// contains the identities to be authorized.
+	//
+	// Example: "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1a2b3c4d5"
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the Amazon Cognito user pool that contains the identities to be authorized.
+	//
+	// Example: "userPoolArn": "arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5"
+	//
+	// UserPoolArn is a required field
+	UserPoolArn *string `locationName:"userPoolArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoUserPoolConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoUserPoolConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *CognitoUserPoolConfigurationDetail) SetClientIds(v []*string) *CognitoUserPoolConfigurationDetail {
+	s.ClientIds = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *CognitoUserPoolConfigurationDetail) SetIssuer(v string) *CognitoUserPoolConfigurationDetail {
+	s.Issuer = &v
+	return s
+}
+
+// SetUserPoolArn sets the UserPoolArn field's value.
+func (s *CognitoUserPoolConfigurationDetail) SetUserPoolArn(v string) *CognitoUserPoolConfigurationDetail {
+	s.UserPoolArn = &v
+	return s
+}
+
+// The configuration for an identity source that represents a connection to
+// an Amazon Cognito user pool used as an identity provider for Verified Permissions.
+//
+// This data type is used as a field that is part of the ConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationItem.html)
+// structure that is part of the response to ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+//
+// Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+type CognitoUserPoolConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique application client IDs that are associated with the specified
+	// Amazon Cognito user pool.
+	//
+	// Example: "clientIds": ["&ExampleCogClientId;"]
+	//
+	// ClientIds is a required field
+	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+
+	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
+	// contains the identities to be authorized.
+	//
+	// Example: "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_1a2b3c4d5"
+	//
+	// Issuer is a required field
+	Issuer *string `locationName:"issuer" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the Amazon Cognito user pool that contains the identities to be authorized.
+	//
+	// Example: "userPoolArn": "arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5"
+	//
+	// UserPoolArn is a required field
+	UserPoolArn *string `locationName:"userPoolArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoUserPoolConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoUserPoolConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetClientIds sets the ClientIds field's value.
+func (s *CognitoUserPoolConfigurationItem) SetClientIds(v []*string) *CognitoUserPoolConfigurationItem {
+	s.ClientIds = v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *CognitoUserPoolConfigurationItem) SetIssuer(v string) *CognitoUserPoolConfigurationItem {
+	s.Issuer = &v
+	return s
+}
+
+// SetUserPoolArn sets the UserPoolArn field's value.
+func (s *CognitoUserPoolConfigurationItem) SetUserPoolArn(v string) *CognitoUserPoolConfigurationItem {
+	s.UserPoolArn = &v
+	return s
+}
+
 // Contains configuration information used when creating a new identity source.
 //
 // At this time, the only valid member of this structure is a Amazon Cognito
@@ -4592,6 +4728,88 @@ func (s *Configuration) Validate() error {
 
 // SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
 func (s *Configuration) SetCognitoUserPoolConfiguration(v *CognitoUserPoolConfiguration) *Configuration {
+	s.CognitoUserPoolConfiguration = v
+	return s
+}
+
+// Contains configuration information about an identity source.
+//
+// This data type is a response parameter to the GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html)
+// operation.
+type ConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configuration details of a Amazon Cognito user pool that Verified
+	// Permissions can use as a source of authenticated identities as entities.
+	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of a Amazon Cognito user pool and one or more application client IDs.
+	//
+	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
+	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
+	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationDetail `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
+func (s *ConfigurationDetail) SetCognitoUserPoolConfiguration(v *CognitoUserPoolConfigurationDetail) *ConfigurationDetail {
+	s.CognitoUserPoolConfiguration = v
+	return s
+}
+
+// Contains configuration information about an identity source.
+//
+// This data type is a response parameter to the ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html)
+// operation.
+type ConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configuration details of a Amazon Cognito user pool that Verified
+	// Permissions can use as a source of authenticated identities as entities.
+	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of a Amazon Cognito user pool and one or more application client IDs.
+	//
+	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
+	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
+	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationItem `locationName:"cognitoUserPoolConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetCognitoUserPoolConfiguration sets the CognitoUserPoolConfiguration field's value.
+func (s *ConfigurationItem) SetCognitoUserPoolConfiguration(v *CognitoUserPoolConfigurationItem) *ConfigurationItem {
 	s.CognitoUserPoolConfiguration = v
 	return s
 }
@@ -4744,7 +4962,11 @@ type CreateIdentitySourceInput struct {
 	// one for you.
 	//
 	// If you retry the operation with the same ClientToken, but with different
-	// parameters, the retry fails with an IdempotentParameterMismatch error.
+	// parameters, the retry fails with an ConflictException error.
+	//
+	// Verified Permissions recognizes a ClientToken for eight hours. After eight
+	// hours, the next request with the same parameters performs the operation again
+	// regardless of the value of ClientToken.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies the details required to communicate with the identity provider
@@ -4925,7 +5147,11 @@ type CreatePolicyInput struct {
 	// one for you.
 	//
 	// If you retry the operation with the same ClientToken, but with different
-	// parameters, the retry fails with an IdempotentParameterMismatch error.
+	// parameters, the retry fails with an ConflictException error.
+	//
+	// Verified Permissions recognizes a ClientToken for eight hours. After eight
+	// hours, the next request with the same parameters performs the operation again
+	// regardless of the value of ClientToken.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A structure that specifies the policy type and content to use for the new
@@ -5115,7 +5341,11 @@ type CreatePolicyStoreInput struct {
 	// one for you.
 	//
 	// If you retry the operation with the same ClientToken, but with different
-	// parameters, the retry fails with an IdempotentParameterMismatch error.
+	// parameters, the retry fails with an ConflictException error.
+	//
+	// Verified Permissions recognizes a ClientToken for eight hours. After eight
+	// hours, the next request with the same parameters performs the operation again
+	// regardless of the value of ClientToken.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Descriptive text that you can provide to help with identification of the
@@ -5277,7 +5507,11 @@ type CreatePolicyTemplateInput struct {
 	// one for you.
 	//
 	// If you retry the operation with the same ClientToken, but with different
-	// parameters, the retry fails with an IdempotentParameterMismatch error.
+	// parameters, the retry fails with an ConflictException error.
+	//
+	// Verified Permissions recognizes a ClientToken for eight hours. After eight
+	// hours, the next request with the same parameters performs the operation again
+	// regardless of the value of ClientToken.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies a description for the policy template.
@@ -6237,6 +6471,9 @@ func (s *GetIdentitySourceInput) SetPolicyStoreId(v string) *GetIdentitySourceIn
 type GetIdentitySourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains configuration information about an identity source.
+	Configuration *ConfigurationDetail `locationName:"configuration" type:"structure"`
+
 	// The date and time that the identity source was originally created.
 	//
 	// CreatedDate is a required field
@@ -6244,8 +6481,8 @@ type GetIdentitySourceOutput struct {
 
 	// A structure that describes the configuration of the identity source.
 	//
-	// Details is a required field
-	Details *IdentitySourceDetails `locationName:"details" type:"structure" required:"true"`
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration
+	Details *IdentitySourceDetails `locationName:"details" deprecated:"true" type:"structure"`
 
 	// The ID of the identity source.
 	//
@@ -6289,6 +6526,12 @@ func (s GetIdentitySourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetIdentitySourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GetIdentitySourceOutput) SetConfiguration(v *ConfigurationDetail) *GetIdentitySourceOutput {
+	s.Configuration = v
+	return s
 }
 
 // SetCreatedDate sets the CreatedDate field's value.
@@ -6935,15 +7178,18 @@ func (s *GetSchemaOutput) SetSchema(v string) *GetSchemaOutput {
 
 // A structure that contains configuration of the identity source.
 //
-// This data type is used as a response parameter for the CreateIdentitySource
-// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
-// operation.
+// This data type was a response parameter for the GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html)
+// operation. Replaced by ConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationDetail.html).
+//
+// Deprecated: This shape has been replaced by ConfigurationDetail
 type IdentitySourceDetails struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The application client IDs associated with the specified Amazon Cognito user
 	// pool that are enabled for this identity source.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds
+	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list"`
 
 	// The well-known URL that points to this user pool's OIDC discovery endpoint.
 	// This is a URL string in the following format. This URL replaces the placeholders
@@ -6951,18 +7197,24 @@ type IdentitySourceDetails struct {
 	// those appropriate for this user pool.
 	//
 	// https://cognito-idp.<region>.amazonaws.com/<user-pool-id>/.well-known/openid-configuration
-	DiscoveryUrl *string `locationName:"discoveryUrl" min:"1" type:"string"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.issuer
+	DiscoveryUrl *string `locationName:"discoveryUrl" min:"1" deprecated:"true" type:"string"`
 
 	// A string that identifies the type of OIDC service represented by this identity
 	// source.
 	//
 	// At this time, the only valid value is cognito.
-	OpenIdIssuer *string `locationName:"openIdIssuer" type:"string" enum:"OpenIdIssuer"`
+	//
+	// Deprecated: This attribute has been replaced by configuration
+	OpenIdIssuer *string `locationName:"openIdIssuer" deprecated:"true" type:"string" enum:"OpenIdIssuer"`
 
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the Amazon Cognito user pool whose identities are accessible to this Verified
 	// Permissions policy store.
-	UserPoolArn *string `locationName:"userPoolArn" min:"1" type:"string"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.userPoolArn
+	UserPoolArn *string `locationName:"userPoolArn" min:"1" deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -7010,8 +7262,7 @@ func (s *IdentitySourceDetails) SetUserPoolArn(v string) *IdentitySourceDetails 
 // A structure that defines characteristics of an identity source that you can
 // use to filter.
 //
-// This data type is used as a request parameter for the ListIdentityStores
-// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentityStores.html)
+// This data type is a request parameter for the ListIdentityStores (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentityStores.html)
 // operation.
 type IdentitySourceFilter struct {
 	_ struct{} `type:"structure"`
@@ -7064,11 +7315,13 @@ func (s *IdentitySourceFilter) SetPrincipalEntityType(v string) *IdentitySourceF
 
 // A structure that defines an identity source.
 //
-// This data type is used as a request parameter for the ListIdentityStores
-// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentityStores.html)
+// This data type is a response parameter to the ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html)
 // operation.
 type IdentitySourceItem struct {
 	_ struct{} `type:"structure"`
+
+	// Contains configuration information about an identity source.
+	Configuration *ConfigurationItem `locationName:"configuration" type:"structure"`
 
 	// The date and time the identity source was originally created.
 	//
@@ -7078,8 +7331,8 @@ type IdentitySourceItem struct {
 	// A structure that contains the details of the associated identity provider
 	// (IdP).
 	//
-	// Details is a required field
-	Details *IdentitySourceItemDetails `locationName:"details" type:"structure" required:"true"`
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration
+	Details *IdentitySourceItemDetails `locationName:"details" deprecated:"true" type:"structure"`
 
 	// The unique identifier of the identity source.
 	//
@@ -7125,6 +7378,12 @@ func (s IdentitySourceItem) GoString() string {
 	return s.String()
 }
 
+// SetConfiguration sets the Configuration field's value.
+func (s *IdentitySourceItem) SetConfiguration(v *ConfigurationItem) *IdentitySourceItem {
+	s.Configuration = v
+	return s
+}
+
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *IdentitySourceItem) SetCreatedDate(v time.Time) *IdentitySourceItem {
 	s.CreatedDate = &v
@@ -7163,15 +7422,18 @@ func (s *IdentitySourceItem) SetPrincipalEntityType(v string) *IdentitySourceIte
 
 // A structure that contains configuration of the identity source.
 //
-// This data type is used as a response parameter for the CreateIdentitySource
-// (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
-// operation.
+// This data type was a response parameter for the ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html)
+// operation. Replaced by ConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ConfigurationItem.html).
+//
+// Deprecated: This shape has been replaced by ConfigurationItem
 type IdentitySourceItemDetails struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The application client IDs associated with the specified Amazon Cognito user
 	// pool that are enabled for this identity source.
-	ClientIds []*string `locationName:"clientIds" type:"list"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.clientIds
+	ClientIds []*string `locationName:"clientIds" deprecated:"true" type:"list"`
 
 	// The well-known URL that points to this user pool's OIDC discovery endpoint.
 	// This is a URL string in the following format. This URL replaces the placeholders
@@ -7179,17 +7441,23 @@ type IdentitySourceItemDetails struct {
 	// those appropriate for this user pool.
 	//
 	// https://cognito-idp.<region>.amazonaws.com/<user-pool-id>/.well-known/openid-configuration
-	DiscoveryUrl *string `locationName:"discoveryUrl" min:"1" type:"string"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.issuer
+	DiscoveryUrl *string `locationName:"discoveryUrl" min:"1" deprecated:"true" type:"string"`
 
 	// A string that identifies the type of OIDC service represented by this identity
 	// source.
 	//
 	// At this time, the only valid value is cognito.
-	OpenIdIssuer *string `locationName:"openIdIssuer" type:"string" enum:"OpenIdIssuer"`
+	//
+	// Deprecated: This attribute has been replaced by configuration
+	OpenIdIssuer *string `locationName:"openIdIssuer" deprecated:"true" type:"string" enum:"OpenIdIssuer"`
 
 	// The Amazon Cognito user pool whose identities are accessible to this Verified
 	// Permissions policy store.
-	UserPoolArn *string `locationName:"userPoolArn" min:"1" type:"string"`
+	//
+	// Deprecated: This attribute has been replaced by configuration.cognitoUserPoolConfiguration.userPoolArn
+	UserPoolArn *string `locationName:"userPoolArn" min:"1" deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -7492,8 +7760,11 @@ type IsAuthorizedWithTokenInput struct {
 
 	// Specifies an access token for the principal to be authorized. This token
 	// is provided to you by the identity provider (IdP) associated with the specified
-	// identity source. You must specify either an AccessToken, or an IdentityToken,
+	// identity source. You must specify either an accessToken, an identityToken,
 	// or both.
+	//
+	// Must be an access token. Verified Permissions returns an error if the token_use
+	// claim in the submitted token isn't access.
 	//
 	// AccessToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by IsAuthorizedWithTokenInput's
@@ -7522,8 +7793,11 @@ type IsAuthorizedWithTokenInput struct {
 
 	// Specifies an identity token for the principal to be authorized. This token
 	// is provided to you by the identity provider (IdP) associated with the specified
-	// identity source. You must specify either an AccessToken or an IdentityToken,
+	// identity source. You must specify either an accessToken, an identityToken,
 	// or both.
+	//
+	// Must be an ID token. Verified Permissions returns an error if the token_use
+	// claim in the submitted token isn't id.
 	//
 	// IdentityToken is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by IsAuthorizedWithTokenInput's
@@ -9426,11 +9700,8 @@ func (s *TemplateLinkedPolicyDefinition) SetResource(v *EntityIdentifier) *Templ
 	return s
 }
 
-// Contains information about a policy that was
-//
-// created by instantiating a policy template.
-//
-// This
+// Contains information about a policy that was created by instantiating a policy
+// template.
 type TemplateLinkedPolicyDefinitionDetail struct {
 	_ struct{} `type:"structure"`
 

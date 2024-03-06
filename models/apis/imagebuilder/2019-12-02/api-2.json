@@ -3340,7 +3340,9 @@
         "action":{"shape":"LifecycleExecutionResourceAction"},
         "region":{"shape":"NonEmptyString"},
         "snapshots":{"shape":"LifecycleExecutionSnapshotResourceList"},
-        "imageUris":{"shape":"StringList"}
+        "imageUris":{"shape":"StringList"},
+        "startTime":{"shape":"DateTimeTimestamp"},
+        "endTime":{"shape":"DateTimeTimestamp"}
       }
     },
     "LifecycleExecutionResourceAction":{
@@ -3410,7 +3412,8 @@
         "CANCELLED",
         "CANCELLING",
         "FAILED",
-        "SUCCESS"
+        "SUCCESS",
+        "PENDING"
       ]
     },
     "LifecycleExecutionsList":{
