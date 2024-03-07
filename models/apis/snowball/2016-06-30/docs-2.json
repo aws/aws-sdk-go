@@ -951,7 +951,7 @@
         "DescribeAddressesResult$NextToken": "<p>HTTP requests are stateless. If you use the automatically generated <code>NextToken</code> value in your next <code>DescribeAddresses</code> call, your list of returned addresses will start from this point in the array.</p>",
         "DescribeReturnShippingLabelResult$ReturnShippingLabelURI": "<p>The pre-signed Amazon S3 URI used to download the return shipping label.</p>",
         "EKSOnDeviceServiceConfiguration$KubernetesVersion": "<p>The Kubernetes version for EKS Anywhere on the Snow Family device.</p>",
-        "EKSOnDeviceServiceConfiguration$EKSAnywhereVersion": "<p>The version of EKS Anywhere on the Snow Family device.</p>",
+        "EKSOnDeviceServiceConfiguration$EKSAnywhereVersion": "<p>The optional version of EKS Anywhere on the Snow Family device.</p>",
         "Ec2AmiResource$SnowballAmiId": "<p>The ID of the AMI on the Snow device.</p>",
         "Ec2RequestFailedException$Message": null,
         "GetJobManifestResult$ManifestURI": "<p>The Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code> value.</p>",

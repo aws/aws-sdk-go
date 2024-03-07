@@ -528,8 +528,7 @@ func (c *AppConfig) CreateExtensionRequest(input *CreateExtensionInput) (req *re
 //   - For a custom Amazon SQS notification extension, enter the ARN of an
 //     Amazon SQS message queue in the Uri field.
 //
-// For more information about extensions, see Working with AppConfig extensions
-// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// For more information about extensions, see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -643,8 +642,7 @@ func (c *AppConfig) CreateExtensionAssociationRequest(input *CreateExtensionAsso
 // with an AppConfig resource is called an extension association. An extension
 // association is a specified relationship between an extension and an AppConfig
 // resource, such as an application or a configuration profile. For more information
-// about extensions and associations, see Working with AppConfig extensions
-// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// about extensions and associations, see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2112,8 +2110,7 @@ func (c *AppConfig) GetExtensionAssociationRequest(input *GetExtensionAssociatio
 // GetExtensionAssociation API operation for Amazon AppConfig.
 //
 // Returns information about an AppConfig extension association. For more information
-// about extensions and associations, see Working with AppConfig extensions
-// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// about extensions and associations, see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3003,8 +3000,7 @@ func (c *AppConfig) ListExtensionAssociationsRequest(input *ListExtensionAssocia
 // ListExtensionAssociations API operation for Amazon AppConfig.
 //
 // Lists all AppConfig extension associations in the account. For more information
-// about extensions and associations, see Working with AppConfig extensions
-// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// about extensions and associations, see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3146,8 +3142,8 @@ func (c *AppConfig) ListExtensionsRequest(input *ListExtensionsInput) (req *requ
 // ListExtensions API operation for Amazon AppConfig.
 //
 // Lists all custom and Amazon Web Services authored AppConfig extensions in
-// the account. For more information about extensions, see Working with AppConfig
-// extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// the account. For more information about extensions, see Extending workflows
+// (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4210,7 +4206,7 @@ func (c *AppConfig) UpdateExtensionRequest(input *UpdateExtensionInput) (req *re
 // UpdateExtension API operation for Amazon AppConfig.
 //
 // Updates an AppConfig extension. For more information about extensions, see
-// Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4302,7 +4298,7 @@ func (c *AppConfig) UpdateExtensionAssociationRequest(input *UpdateExtensionAsso
 // UpdateExtensionAssociation API operation for Amazon AppConfig.
 //
 // Updates an association. For more information about extensions and associations,
-// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10422,13 +10418,18 @@ func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 // A value such as an Amazon Resource Name (ARN) or an Amazon Simple Notification
 // Service topic entered in an extension when invoked. Parameter values are
 // specified in an extension association. For more information about extensions,
-// see Working with AppConfig extensions (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
+// see Extending workflows (https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html)
 // in the AppConfig User Guide.
 type Parameter struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the parameter.
 	Description *string `type:"string"`
+
+	// Indicates whether this parameter's value can be supplied at the extension's
+	// action point instead of during extension association. Dynamic parameters
+	// can't be marked Required.
+	Dynamic *bool `type:"boolean"`
 
 	// A parameter value must be specified in the extension association.
 	Required *bool `type:"boolean"`
@@ -10455,6 +10456,12 @@ func (s Parameter) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *Parameter) SetDescription(v string) *Parameter {
 	s.Description = &v
+	return s
+}
+
+// SetDynamic sets the Dynamic field's value.
+func (s *Parameter) SetDynamic(v bool) *Parameter {
+	s.Dynamic = &v
 	return s
 }
 
@@ -10706,6 +10713,10 @@ type StartDeploymentInput struct {
 	// A description of the deployment.
 	Description *string `type:"string"`
 
+	// A map of dynamic extension parameter names to values to pass to associated
+	// extensions with PRE_START_DEPLOYMENT actions.
+	DynamicExtensionParameters map[string]*string `min:"1" type:"map"`
+
 	// The environment ID.
 	//
 	// EnvironmentId is a required field
@@ -10760,6 +10771,9 @@ func (s *StartDeploymentInput) Validate() error {
 	if s.DeploymentStrategyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DeploymentStrategyId"))
 	}
+	if s.DynamicExtensionParameters != nil && len(s.DynamicExtensionParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DynamicExtensionParameters", 1))
+	}
 	if s.EnvironmentId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EnvironmentId"))
 	}
@@ -10803,6 +10817,12 @@ func (s *StartDeploymentInput) SetDeploymentStrategyId(v string) *StartDeploymen
 // SetDescription sets the Description field's value.
 func (s *StartDeploymentInput) SetDescription(v string) *StartDeploymentInput {
 	s.Description = &v
+	return s
+}
+
+// SetDynamicExtensionParameters sets the DynamicExtensionParameters field's value.
+func (s *StartDeploymentInput) SetDynamicExtensionParameters(v map[string]*string) *StartDeploymentInput {
+	s.DynamicExtensionParameters = v
 	return s
 }
 

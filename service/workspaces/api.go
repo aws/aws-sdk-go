@@ -1347,6 +1347,8 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //   - You don't need to specify the PCOIP protocol for Linux bundles because
 //     WSP is the default protocol for those bundles.
 //
+//   - User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5824,7 +5826,9 @@ func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req 
 //
 // Reboots the specified WorkSpaces.
 //
-// You cannot reboot a WorkSpace unless its state is AVAILABLE or UNHEALTHY.
+// You cannot reboot a WorkSpace unless its state is AVAILABLE, UNHEALTHY, or
+// REBOOTING. Reboot a WorkSpace in the REBOOTING state only if your WorkSpace
+// has been stuck in the REBOOTING state for over 20 minutes.
 //
 // This operation is asynchronous and returns before the WorkSpaces have rebooted.
 //
@@ -18468,6 +18472,45 @@ type Workspace struct {
 	StandbyWorkspacesProperties []*StandbyWorkspacesProperties `type:"list"`
 
 	// The operational state of the WorkSpace.
+	//
+	//    * PENDING – The WorkSpace is in a waiting state (for example, the WorkSpace
+	//    is being created).
+	//
+	//    * AVAILABLE – The WorkSpace is running and has passed the health checks.
+	//
+	//    * IMPAIRED – Refer to UNHEALTHY state.
+	//
+	//    * UNHEALTHY – The WorkSpace is not responding to health checks.
+	//
+	//    * REBOOTING – The WorkSpace is being rebooted (restarted).
+	//
+	//    * STARTING – The WorkSpace is starting up and health checks are being
+	//    run.
+	//
+	//    * REBUILDING – The WorkSpace is being rebuilt.
+	//
+	//    * RESTORING – The WorkSpace is being restored.
+	//
+	//    * MAINTENANCE – The WorkSpace is undergoing scheduled maintenance by
+	//    Amazon Web Services.
+	//
+	//    * ADMIN_MAINTENANCE – The WorkSpace is undergoing maintenance by the
+	//    WorkSpaces administrator.
+	//
+	//    * TERMINATING – The WorkSpace is being deleted.
+	//
+	//    * TERMINATED – The WorkSpace has been deleted.
+	//
+	//    * SUSPENDED – The WorkSpace has been suspended for image creation.
+	//
+	//    * UPDATING – The WorkSpace is undergoing an update.
+	//
+	//    * STOPPING – The WorkSpace is being stopped.
+	//
+	//    * STOPPED – The WorkSpace has been stopped.
+	//
+	//    * ERROR – The WorkSpace is an error state (for example, an error occurred
+	//    during startup).
 	//
 	// After a WorkSpace is terminated, the TERMINATED state is returned only briefly
 	// before the WorkSpace directory metadata is cleaned up, so this state is rarely

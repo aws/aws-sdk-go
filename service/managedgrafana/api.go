@@ -2151,7 +2151,15 @@ func (s *AssertionAttributes) SetRole(v string) *AssertionAttributes {
 type AssociateLicenseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// A token from Grafana Labs that ties your Amazon Web Services account with
+	// a Grafana Labs account. For more information, see Register with Grafana Labs
+	// (https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise).
+	GrafanaToken *string `location:"header" locationName:"Grafana-Token" min:"1" type:"string"`
+
 	// The type of license to associate with the workspace.
+	//
+	// Amazon Managed Grafana workspaces no longer support Grafana Enterprise free
+	// trials.
 	//
 	// LicenseType is a required field
 	LicenseType *string `location:"uri" locationName:"licenseType" type:"string" required:"true" enum:"LicenseType"`
@@ -2183,6 +2191,9 @@ func (s AssociateLicenseInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AssociateLicenseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AssociateLicenseInput"}
+	if s.GrafanaToken != nil && len(*s.GrafanaToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrafanaToken", 1))
+	}
 	if s.LicenseType == nil {
 		invalidParams.Add(request.NewErrParamRequired("LicenseType"))
 	}
@@ -2200,6 +2211,12 @@ func (s *AssociateLicenseInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGrafanaToken sets the GrafanaToken field's value.
+func (s *AssociateLicenseInput) SetGrafanaToken(v string) *AssociateLicenseInput {
+	s.GrafanaToken = &v
+	return s
 }
 
 // SetLicenseType sets the LicenseType field's value.
@@ -2632,10 +2649,9 @@ type CreateWorkspaceInput struct {
 	// AccountAccessType is a required field
 	AccountAccessType *string `locationName:"accountAccessType" type:"string" required:"true" enum:"AccountAccessType"`
 
-	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor
-	// to Single Sign-On), or both to authenticate users for using the Grafana console
-	// within a workspace. For more information, see User authentication in Amazon
-	// Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
+	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both
+	// to authenticate users for using the Grafana console within a workspace. For
+	// more information, see User authentication in Amazon Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
 	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
@@ -2649,9 +2665,10 @@ type CreateWorkspaceInput struct {
 	// Grafana workspace (https://docs.aws.amazon.com/grafana/latest/userguide/AMG-configure-workspace.html).
 	Configuration *string `locationName:"configuration" min:"2" type:"string"`
 
-	// Specifies the version of Grafana to support in the new workspace.
+	// Specifies the version of Grafana to support in the new workspace. If not
+	// specified, defaults to the latest version (for example, 9.4).
 	//
-	// To get a list of supported version, use the ListVersions operation.
+	// To get a list of supported versions, use the ListVersions operation.
 	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
 
 	// Configuration for network access to your workspace.
@@ -5063,10 +5080,9 @@ func (s *UpdatePermissionsOutput) SetErrors(v []*UpdateError) *UpdatePermissions
 type UpdateWorkspaceAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor
-	// to Single Sign-On), or both to authenticate users for using the Grafana console
-	// within a workspace. For more information, see User authentication in Amazon
-	// Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
+	// Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both
+	// to authenticate users for using the Grafana console within a workspace. For
+	// more information, see User authentication in Amazon Managed Grafana (https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html).
 	//
 	// AuthenticationProviders is a required field
 	AuthenticationProviders []*string `locationName:"authenticationProviders" type:"list" required:"true" enum:"AuthenticationProviderTypes"`
@@ -5186,13 +5202,15 @@ type UpdateWorkspaceConfigurationInput struct {
 	// Configuration is a required field
 	Configuration *string `locationName:"configuration" min:"2" type:"string" required:"true"`
 
-	// Specifies the version of Grafana to support in the new workspace.
+	// Specifies the version of Grafana to support in the workspace. If not specified,
+	// keeps the current version of the workspace.
 	//
 	// Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade
 	// (for example, from 9.4 to 8.4).
 	//
 	// To know what versions are available to upgrade to for a specific workspace,
-	// see the ListVersions operation.
+	// see the ListVersions (https://docs.aws.amazon.com/grafana/latest/APIReference/API_ListVersions.html)
+	// operation.
 	GrafanaVersion *string `locationName:"grafanaVersion" min:"1" type:"string"`
 
 	// The ID of the workspace to update.
@@ -5890,11 +5908,21 @@ type WorkspaceDescription struct {
 
 	// Specifies whether this workspace has already fully used its free trial for
 	// Grafana Enterprise.
+	//
+	// Amazon Managed Grafana workspaces no longer support Grafana Enterprise free
+	// trials.
 	FreeTrialConsumed *bool `locationName:"freeTrialConsumed" type:"boolean"`
 
 	// If this workspace is currently in the free trial period for Grafana Enterprise,
 	// this value specifies when that free trial ends.
+	//
+	// Amazon Managed Grafana workspaces no longer support Grafana Enterprise free
+	// trials.
 	FreeTrialExpiration *time.Time `locationName:"freeTrialExpiration" type:"timestamp"`
+
+	// The token that ties this workspace to a Grafana Labs account. For more information,
+	// see Register with Grafana Labs (https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise).
+	GrafanaToken *string `locationName:"grafanaToken" min:"1" type:"string"`
 
 	// The version of Grafana supported in this workspace.
 	//
@@ -5906,12 +5934,17 @@ type WorkspaceDescription struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// If this workspace has a full Grafana Enterprise license, this specifies when
-	// the license ends and will need to be renewed.
+	// If this workspace has a full Grafana Enterprise license purchased through
+	// Amazon Web Services Marketplace, this specifies when the license ends and
+	// will need to be renewed. Purchasing the Enterprise plugins option through
+	// Amazon Managed Grafana does not have an expiration. It is valid until the
+	// license is removed.
 	LicenseExpiration *time.Time `locationName:"licenseExpiration" type:"timestamp"`
 
-	// Specifies whether this workspace has a full Grafana Enterprise license or
-	// a free trial license.
+	// Specifies whether this workspace has a full Grafana Enterprise license.
+	//
+	// Amazon Managed Grafana workspaces no longer support Grafana Enterprise free
+	// trials.
 	LicenseType *string `locationName:"licenseType" type:"string" enum:"LicenseType"`
 
 	// The most recent date that the workspace was modified.
@@ -6061,6 +6094,12 @@ func (s *WorkspaceDescription) SetFreeTrialExpiration(v time.Time) *WorkspaceDes
 	return s
 }
 
+// SetGrafanaToken sets the GrafanaToken field's value.
+func (s *WorkspaceDescription) SetGrafanaToken(v string) *WorkspaceDescription {
+	s.GrafanaToken = &v
+	return s
+}
+
 // SetGrafanaVersion sets the GrafanaVersion field's value.
 func (s *WorkspaceDescription) SetGrafanaVersion(v string) *WorkspaceDescription {
 	s.GrafanaVersion = &v
@@ -6184,6 +6223,10 @@ type WorkspaceSummary struct {
 	// Endpoint is a required field
 	Endpoint *string `locationName:"endpoint" min:"1" type:"string" required:"true"`
 
+	// The token that ties this workspace to a Grafana Labs account. For more information,
+	// see Register with Grafana Labs (https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise).
+	GrafanaToken *string `locationName:"grafanaToken" min:"1" type:"string"`
+
 	// The Grafana version that the workspace is running.
 	//
 	// GrafanaVersion is a required field
@@ -6193,6 +6236,12 @@ type WorkspaceSummary struct {
 	//
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// Specifies whether this workspace has a full Grafana Enterprise license.
+	//
+	// Amazon Managed Grafana workspaces no longer support Grafana Enterprise free
+	// trials.
+	LicenseType *string `locationName:"licenseType" type:"string" enum:"LicenseType"`
 
 	// The most recent date that the workspace was modified.
 	//
@@ -6262,6 +6311,12 @@ func (s *WorkspaceSummary) SetEndpoint(v string) *WorkspaceSummary {
 	return s
 }
 
+// SetGrafanaToken sets the GrafanaToken field's value.
+func (s *WorkspaceSummary) SetGrafanaToken(v string) *WorkspaceSummary {
+	s.GrafanaToken = &v
+	return s
+}
+
 // SetGrafanaVersion sets the GrafanaVersion field's value.
 func (s *WorkspaceSummary) SetGrafanaVersion(v string) *WorkspaceSummary {
 	s.GrafanaVersion = &v
@@ -6271,6 +6326,12 @@ func (s *WorkspaceSummary) SetGrafanaVersion(v string) *WorkspaceSummary {
 // SetId sets the Id field's value.
 func (s *WorkspaceSummary) SetId(v string) *WorkspaceSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLicenseType sets the LicenseType field's value.
+func (s *WorkspaceSummary) SetLicenseType(v string) *WorkspaceSummary {
+	s.LicenseType = &v
 	return s
 }
 

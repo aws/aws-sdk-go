@@ -1,3 +1,22 @@
+Release v1.50.34 (2024-03-07)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds an optional parameter to RegisterImage and CopyImage APIs to support tagging AMIs at the time of creation.
+* `service/grafana`: Updates service API and documentation
+* `service/lambda`: Updates service documentation
+  * Documentation updates for AWS Lambda
+* `service/payment-cryptography-data`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for io2 storage for Multi-AZ DB clusters
+* `service/snowball`: Updates service documentation
+  * Doc-only update for change to EKS-Anywhere ordering.
+* `service/wafv2`: Updates service API and documentation
+* `service/workspaces`: Updates service documentation
+  * Added note for user decoupling
+
 Release v1.50.33 (2024-03-06)
 ===
 

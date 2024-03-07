@@ -5188,7 +5188,7 @@ func (s *DeviceConfiguration) SetSnowconeDeviceConfiguration(v *SnowconeDeviceCo
 type EKSOnDeviceServiceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The version of EKS Anywhere on the Snow Family device.
+	// The optional version of EKS Anywhere on the Snow Family device.
 	EKSAnywhereVersion *string `min:"1" type:"string"`
 
 	// The Kubernetes version for EKS Anywhere on the Snow Family device.

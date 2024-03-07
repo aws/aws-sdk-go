@@ -297,7 +297,8 @@
       "output":{"shape":"DescribeAllManagedProductsResponse"},
       "errors":[
         {"shape":"WAFInvalidOperationException"},
-        {"shape":"WAFInternalErrorException"}
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"}
       ]
     },
     "DescribeManagedProductsByVendor":{
@@ -371,6 +372,7 @@
       "output":{"shape":"GetDecryptedAPIKeyResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFInvalidOperationException"},
         {"shape":"WAFInvalidResourceException"}
@@ -956,7 +958,7 @@
       "required":["InspectionLevel"],
       "members":{
         "InspectionLevel":{"shape":"InspectionLevel"},
-        "EnableMachineLearning":{"shape":"Boolean"}
+        "EnableMachineLearning":{"shape":"EnableMachineLearning"}
       }
     },
     "Action":{"type":"string"},
@@ -1030,7 +1032,13 @@
     },
     "AssociatedResourceType":{
       "type":"string",
-      "enum":["CLOUDFRONT"]
+      "enum":[
+        "CLOUDFRONT",
+        "API_GATEWAY",
+        "COGNITO_USER_POOL",
+        "APP_RUNNER_SERVICE",
+        "VERIFIED_ACCESS_INSTANCE"
+      ]
     },
     "AssociationConfig":{
       "type":"structure",
@@ -1858,6 +1866,7 @@
         "Identifier":{"shape":"FieldIdentifier"}
       }
     },
+    "EnableMachineLearning":{"type":"boolean"},
     "EntityDescription":{
       "type":"string",
       "max":256,
@@ -3240,8 +3249,7 @@
     "RateBasedStatementCustomKeys":{
       "type":"list",
       "member":{"shape":"RateBasedStatementCustomKey"},
-      "max":5,
-      "min":1
+      "max":5
     },
     "RateBasedStatementManagedKeysIPSet":{
       "type":"structure",
@@ -3646,8 +3654,7 @@
     "RuleActionOverrides":{
       "type":"list",
       "member":{"shape":"RuleActionOverride"},
-      "max":100,
-      "min":1
+      "max":100
     },
     "RuleGroup":{
       "type":"structure",
@@ -3807,6 +3814,7 @@
       ]
     },
     "SolveTimestamp":{"type":"long"},
+    "SourceType":{"type":"string"},
     "SqliMatchStatement":{
       "type":"structure",
       "required":[
@@ -4257,7 +4265,8 @@
     "WAFLimitsExceededException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ErrorMessage"}
+        "Message":{"shape":"ErrorMessage"},
+        "SourceType":{"shape":"SourceType"}
       },
       "exception":true
     },

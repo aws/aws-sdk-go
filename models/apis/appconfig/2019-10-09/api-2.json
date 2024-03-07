@@ -1235,6 +1235,17 @@
       "max":1024,
       "min":0
     },
+    "DynamicParameterKey":{
+      "type":"string",
+      "pattern":"^([^#\\n]{1,96})#([^\\/#\\n]{1,64})$"
+    },
+    "DynamicParameterMap":{
+      "type":"map",
+      "key":{"shape":"DynamicParameterKey"},
+      "value":{"shape":"StringWithLengthBetween1And2048"},
+      "max":10,
+      "min":1
+    },
     "Environment":{
       "type":"structure",
       "members":{
@@ -1886,21 +1897,22 @@
       "type":"structure",
       "members":{
         "Description":{"shape":"Description"},
-        "Required":{"shape":"Boolean"}
+        "Required":{"shape":"Boolean"},
+        "Dynamic":{"shape":"Boolean"}
       }
     },
     "ParameterMap":{
       "type":"map",
       "key":{"shape":"ExtensionOrParameterName"},
       "value":{"shape":"Parameter"},
-      "max":5,
+      "max":10,
       "min":1
     },
     "ParameterValueMap":{
       "type":"map",
       "key":{"shape":"ExtensionOrParameterName"},
       "value":{"shape":"StringWithLengthBetween1And2048"},
-      "max":5,
+      "max":10,
       "min":0
     },
     "PayloadTooLargeException":{
@@ -1985,7 +1997,8 @@
         "ConfigurationVersion":{"shape":"Version"},
         "Description":{"shape":"Description"},
         "Tags":{"shape":"TagMap"},
-        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"}
+        "KmsKeyIdentifier":{"shape":"KmsKeyIdentifier"},
+        "DynamicExtensionParameters":{"shape":"DynamicParameterMap"}
       }
     },
     "StopDeploymentRequest":{

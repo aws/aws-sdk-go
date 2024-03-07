@@ -7764,7 +7764,7 @@ type AddPermissionInput struct {
 	// For Alexa Smart Home functions, a token that the invoker must supply.
 	EventSourceToken *string `type:"string"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -8612,7 +8612,7 @@ type CreateAliasInput struct {
 	// A description of the alias.
 	Description *string `type:"string"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -8890,7 +8890,7 @@ type CreateEventSourceMappingInput struct {
 	// (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 	FilterCriteria *FilterCriteria `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -9241,7 +9241,7 @@ type CreateFunctionInput struct {
 	// Connection settings for an Amazon EFS file system.
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -9569,7 +9569,7 @@ type CreateFunctionUrlConfigInput struct {
 	// settings for your function URL.
 	Cors *Cors `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -9805,7 +9805,7 @@ func (s *DeadLetterConfig) SetTargetArn(v string) *DeadLetterConfig {
 type DeleteAliasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -10024,7 +10024,7 @@ func (s *DeleteEventSourceMappingInput) SetUUID(v string) *DeleteEventSourceMapp
 type DeleteFunctionCodeSigningConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -10106,7 +10106,7 @@ func (s DeleteFunctionCodeSigningConfigOutput) GoString() string {
 type DeleteFunctionConcurrencyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -10188,7 +10188,7 @@ func (s DeleteFunctionConcurrencyOutput) GoString() string {
 type DeleteFunctionEventInvokeConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -10283,7 +10283,7 @@ func (s DeleteFunctionEventInvokeConfigOutput) GoString() string {
 type DeleteFunctionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function or version.
+	// The name or ARN of the Lambda function or version.
 	//
 	// Name formats
 	//
@@ -10378,7 +10378,7 @@ func (s DeleteFunctionOutput) GoString() string {
 type DeleteFunctionUrlConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -10557,7 +10557,7 @@ func (s DeleteLayerVersionOutput) GoString() string {
 type DeleteProvisionedConcurrencyConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -12711,7 +12711,7 @@ func (s *GetAccountSettingsOutput) SetAccountUsage(v *AccountUsage) *GetAccountS
 type GetAliasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -12919,7 +12919,7 @@ func (s *GetEventSourceMappingInput) SetUUID(v string) *GetEventSourceMappingInp
 type GetFunctionCodeSigningConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -12984,7 +12984,7 @@ type GetFunctionCodeSigningConfigOutput struct {
 	// CodeSigningConfigArn is a required field
 	CodeSigningConfigArn *string `type:"string" required:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -13034,7 +13034,7 @@ func (s *GetFunctionCodeSigningConfigOutput) SetFunctionName(v string) *GetFunct
 type GetFunctionConcurrencyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -13125,7 +13125,7 @@ func (s *GetFunctionConcurrencyOutput) SetReservedConcurrentExecutions(v int64) 
 type GetFunctionConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -13199,7 +13199,7 @@ func (s *GetFunctionConfigurationInput) SetQualifier(v string) *GetFunctionConfi
 type GetFunctionEventInvokeConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -13349,7 +13349,7 @@ func (s *GetFunctionEventInvokeConfigOutput) SetMaximumRetryAttempts(v int64) *G
 type GetFunctionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -13481,7 +13481,7 @@ func (s *GetFunctionOutput) SetTags(v map[string]*string) *GetFunctionOutput {
 type GetFunctionUrlConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -14092,7 +14092,7 @@ func (s *GetLayerVersionPolicyOutput) SetRevisionId(v string) *GetLayerVersionPo
 type GetPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -14205,7 +14205,7 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 type GetProvisionedConcurrencyConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -14362,7 +14362,7 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 type GetRuntimeManagementConfigInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -15094,7 +15094,7 @@ func (s *InvalidZipFileException) RequestID() string {
 type InvokeAsyncInput struct {
 	_ struct{} `deprecated:"true" type:"structure" payload:"InvokeArgs"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -15208,7 +15208,7 @@ type InvokeInput struct {
 	// to your function for synchronous invocations only.
 	ClientContext *string `location:"header" locationName:"X-Amz-Client-Context" type:"string"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -15553,7 +15553,7 @@ type InvokeWithResponseStreamInput struct {
 	// to the function in the context object.
 	ClientContext *string `location:"header" locationName:"X-Amz-Client-Context" type:"string"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -16510,7 +16510,7 @@ func (s *LayersListItem) SetLayerName(v string) *LayersListItem {
 type ListAliasesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -16755,7 +16755,7 @@ type ListEventSourceMappingsInput struct {
 	//    * Amazon DocumentDB – The ARN of the DocumentDB change stream.
 	EventSourceArn *string `location:"querystring" locationName:"EventSourceArn" type:"string"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -16882,7 +16882,7 @@ func (s *ListEventSourceMappingsOutput) SetNextMarker(v string) *ListEventSource
 type ListFunctionEventInvokeConfigsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -17004,7 +17004,7 @@ func (s *ListFunctionEventInvokeConfigsOutput) SetNextMarker(v string) *ListFunc
 type ListFunctionUrlConfigsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -17604,7 +17604,7 @@ func (s *ListLayersOutput) SetNextMarker(v string) *ListLayersOutput {
 type ListProvisionedConcurrencyConfigsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -17807,7 +17807,7 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 type ListVersionsByFunctionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -18614,7 +18614,7 @@ type PublishVersionInput struct {
 	// configuration.
 	Description *string `type:"string"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -18702,7 +18702,7 @@ type PutFunctionCodeSigningConfigInput struct {
 	// CodeSigningConfigArn is a required field
 	CodeSigningConfigArn *string `type:"string" required:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -18776,7 +18776,7 @@ type PutFunctionCodeSigningConfigOutput struct {
 	// CodeSigningConfigArn is a required field
 	CodeSigningConfigArn *string `type:"string" required:"true"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -18826,7 +18826,7 @@ func (s *PutFunctionCodeSigningConfigOutput) SetFunctionName(v string) *PutFunct
 type PutFunctionConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -18945,7 +18945,7 @@ type PutFunctionEventInvokeConfigInput struct {
 	//    * Event Bus - The ARN of an Amazon EventBridge event bus.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -19122,7 +19122,7 @@ func (s *PutFunctionEventInvokeConfigOutput) SetMaximumRetryAttempts(v int64) *P
 type PutProvisionedConcurrencyConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -19296,7 +19296,7 @@ func (s *PutProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *PutPr
 type PutRuntimeManagementConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -19652,7 +19652,7 @@ func (s RemoveLayerVersionPermissionOutput) GoString() string {
 type RemovePermissionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -21226,7 +21226,7 @@ type UpdateAliasInput struct {
 	// A description of the alias.
 	Description *string `type:"string"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -21500,7 +21500,7 @@ type UpdateEventSourceMappingInput struct {
 	// (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
 	FilterCriteria *FilterCriteria `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -21747,7 +21747,7 @@ type UpdateFunctionCodeInput struct {
 	// modifying the function code.
 	DryRun *bool `type:"boolean"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -21928,7 +21928,7 @@ type UpdateFunctionConfigurationInput struct {
 	// Connection settings for an Amazon EFS file system.
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//
@@ -22205,7 +22205,7 @@ type UpdateFunctionEventInvokeConfigInput struct {
 	//    * Event Bus - The ARN of an Amazon EventBridge event bus.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
-	// The name of the Lambda function, version, or alias.
+	// The name or ARN of the Lambda function, version, or alias.
 	//
 	// Name formats
 	//
@@ -22392,7 +22392,7 @@ type UpdateFunctionUrlConfigInput struct {
 	// settings for your function URL.
 	Cors *Cors `type:"structure"`
 
-	// The name of the Lambda function.
+	// The name or ARN of the Lambda function.
 	//
 	// Name formats
 	//

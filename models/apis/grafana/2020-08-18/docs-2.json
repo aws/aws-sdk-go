@@ -108,8 +108,8 @@
       "refs": {
         "AuthenticationDescription$providers": "<p>Specifies whether this workspace uses IAM Identity Center, SAML, or both methods to authenticate users to use the Grafana console in the Amazon Managed Grafana workspace.</p>",
         "AuthenticationSummary$providers": "<p>Specifies whether the workspace uses SAML, IAM Identity Center, or both methods for user authentication.</p>",
-        "CreateWorkspaceRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to Single Sign-On), or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>",
-        "UpdateWorkspaceAuthenticationRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to Single Sign-On), or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>"
+        "CreateWorkspaceRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>",
+        "UpdateWorkspaceAuthenticationRequest$authenticationProviders": "<p>Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate users for using the Grafana console within a workspace. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html\">User authentication in Amazon Managed Grafana</a>.</p>"
       }
     },
     "AuthenticationSummary": {
@@ -130,7 +130,7 @@
       "refs": {
         "UpdateWorkspaceRequest$removeNetworkAccessConfiguration": "<p>Whether to remove the network access configuration from the workspace.</p> <p>Setting this to <code>true</code> and providing a <code>networkAccessControl</code> to set will return an error.</p> <p>If you remove this configuration by setting this to <code>true</code>, then all IP addresses and VPC endpoints will be allowed. Standard Grafana authentication and authorization will still be required.</p>",
         "UpdateWorkspaceRequest$removeVpcConfiguration": "<p>Whether to remove the VPC configuration from the workspace.</p> <p>Setting this to <code>true</code> and providing a <code>vpcConfiguration</code> to set will return an error.</p>",
-        "WorkspaceDescription$freeTrialConsumed": "<p>Specifies whether this workspace has already fully used its free trial for Grafana Enterprise.</p>"
+        "WorkspaceDescription$freeTrialConsumed": "<p>Specifies whether this workspace has already fully used its free trial for Grafana Enterprise.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>"
       }
     },
     "ClientToken": {
@@ -260,13 +260,21 @@
         "WorkspaceSummary$endpoint": "<p>The URL endpoint to use to access the Grafana console in the workspace.</p>"
       }
     },
+    "GrafanaToken": {
+      "base": null,
+      "refs": {
+        "AssociateLicenseRequest$grafanaToken": "<p>A token from Grafana Labs that ties your Amazon Web Services account with a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>",
+        "WorkspaceDescription$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>",
+        "WorkspaceSummary$grafanaToken": "<p>The token that ties this workspace to a Grafana Labs account. For more information, see <a href=\"https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html#AMG-workspace-register-enterprise\">Register with Grafana Labs</a>.</p>"
+      }
+    },
     "GrafanaVersion": {
       "base": null,
       "refs": {
-        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>To get a list of supported version, use the <code>ListVersions</code> operation.</p>",
+        "CreateWorkspaceRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace. If not specified, defaults to the latest version (for example, 9.4).</p> <p>To get a list of supported versions, use the <code>ListVersions</code> operation.</p>",
         "DescribeWorkspaceConfigurationResponse$grafanaVersion": "<p>The supported Grafana version for the workspace.</p>",
         "GrafanaVersionList$member": null,
-        "UpdateWorkspaceConfigurationRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the new workspace.</p> <p>Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade (for example, from 9.4 to 8.4).</p> <p>To know what versions are available to upgrade to for a specific workspace, see the <code>ListVersions</code> operation.</p>",
+        "UpdateWorkspaceConfigurationRequest$grafanaVersion": "<p>Specifies the version of Grafana to support in the workspace. If not specified, keeps the current version of the workspace.</p> <p>Can only be used to upgrade (for example, from 8.4 to 9.4), not downgrade (for example, from 9.4 to 8.4).</p> <p>To know what versions are available to upgrade to for a specific workspace, see the <a href=\"https://docs.aws.amazon.com/grafana/latest/APIReference/API_ListVersions.html\">ListVersions</a> operation.</p>",
         "WorkspaceDescription$grafanaVersion": "<p>The version of Grafana supported in this workspace.</p>",
         "WorkspaceSummary$grafanaVersion": "<p>The Grafana version that the workspace is running.</p>"
       }
@@ -312,9 +320,10 @@
     "LicenseType": {
       "base": null,
       "refs": {
-        "AssociateLicenseRequest$licenseType": "<p>The type of license to associate with the workspace.</p>",
+        "AssociateLicenseRequest$licenseType": "<p>The type of license to associate with the workspace.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>",
         "DisassociateLicenseRequest$licenseType": "<p>The type of license to remove from the workspace.</p>",
-        "WorkspaceDescription$licenseType": "<p>Specifies whether this workspace has a full Grafana Enterprise license or a free trial license.</p>"
+        "WorkspaceDescription$licenseType": "<p>Specifies whether this workspace has a full Grafana Enterprise license.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>",
+        "WorkspaceSummary$licenseType": "<p>Specifies whether this workspace has a full Grafana Enterprise license.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>"
       }
     },
     "ListPermissionsRequest": {
@@ -657,8 +666,8 @@
       "base": null,
       "refs": {
         "WorkspaceDescription$created": "<p>The date that the workspace was created.</p>",
-        "WorkspaceDescription$freeTrialExpiration": "<p>If this workspace is currently in the free trial period for Grafana Enterprise, this value specifies when that free trial ends.</p>",
-        "WorkspaceDescription$licenseExpiration": "<p>If this workspace has a full Grafana Enterprise license, this specifies when the license ends and will need to be renewed.</p>",
+        "WorkspaceDescription$freeTrialExpiration": "<p>If this workspace is currently in the free trial period for Grafana Enterprise, this value specifies when that free trial ends.</p> <note> <p>Amazon Managed Grafana workspaces no longer support Grafana Enterprise free trials.</p> </note>",
+        "WorkspaceDescription$licenseExpiration": "<p>If this workspace has a full Grafana Enterprise license purchased through Amazon Web Services Marketplace, this specifies when the license ends and will need to be renewed. Purchasing the Enterprise plugins option through Amazon Managed Grafana does not have an expiration. It is valid until the license is removed.</p>",
         "WorkspaceDescription$modified": "<p>The most recent date that the workspace was modified.</p>",
         "WorkspaceSummary$created": "<p>The date that the workspace was created.</p>",
         "WorkspaceSummary$modified": "<p>The most recent date that the workspace was modified.</p>"
