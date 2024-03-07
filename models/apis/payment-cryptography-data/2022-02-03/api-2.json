@@ -450,6 +450,37 @@
         "ServiceCode":{"shape":"NumberLengthEquals3"}
       }
     },
+    "EmvEncryptionAttributes":{
+      "type":"structure",
+      "required":[
+        "MajorKeyDerivationMode",
+        "PanSequenceNumber",
+        "PrimaryAccountNumber",
+        "SessionDerivationData"
+      ],
+      "members":{
+        "InitializationVector":{"shape":"HexLength16Or32"},
+        "MajorKeyDerivationMode":{"shape":"EmvMajorKeyDerivationMode"},
+        "Mode":{"shape":"EmvEncryptionMode"},
+        "PanSequenceNumber":{"shape":"HexLengthEquals2"},
+        "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
+        "SessionDerivationData":{"shape":"HexLengthEquals16"}
+      }
+    },
+    "EmvEncryptionMode":{
+      "type":"string",
+      "enum":[
+        "ECB",
+        "CBC"
+      ]
+    },
+    "EmvMajorKeyDerivationMode":{
+      "type":"string",
+      "enum":[
+        "EMV_OPTION_A",
+        "EMV_OPTION_B"
+      ]
+    },
     "EncryptDataInput":{
       "type":"structure",
       "required":[
@@ -484,6 +515,7 @@
       "members":{
         "Asymmetric":{"shape":"AsymmetricEncryptionAttributes"},
         "Dukpt":{"shape":"DukptEncryptionAttributes"},
+        "Emv":{"shape":"EmvEncryptionAttributes"},
         "Symmetric":{"shape":"SymmetricEncryptionAttributes"}
       },
       "union":true
@@ -569,10 +601,7 @@
         "GenerationAttributes":{"shape":"PinGenerationAttributes"},
         "GenerationKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "PinBlockFormat":{"shape":"PinBlockFormatForPinData"},
-        "PinDataLength":{
-          "shape":"IntegerRangeBetween4And12",
-          "box":true
-        },
+        "PinDataLength":{"shape":"IntegerRangeBetween4And12"},
         "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"}
       }
     },
@@ -800,6 +829,7 @@
     },
     "IntegerRangeBetween4And12":{
       "type":"integer",
+      "box":true,
       "max":12,
       "min":4
     },
@@ -1349,10 +1379,7 @@
         "EncryptedPinBlock":{"shape":"HexLengthBetween16And32"},
         "EncryptionKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "PinBlockFormat":{"shape":"PinBlockFormatForPinData"},
-        "PinDataLength":{
-          "shape":"IntegerRangeBetween4And12",
-          "box":true
-        },
+        "PinDataLength":{"shape":"IntegerRangeBetween4And12"},
         "PrimaryAccountNumber":{"shape":"NumberLengthBetween12And19"},
         "VerificationAttributes":{"shape":"PinVerificationAttributes"},
         "VerificationKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"}

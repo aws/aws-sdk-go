@@ -1979,6 +1979,21 @@ func (c *WAFV2) DescribeAllManagedProductsRequest(input *DescribeAllManagedProdu
 //     Your request is valid, but WAF couldn’t perform the operation because of
 //     a system problem. Retry your request.
 //
+//   - WAFInvalidParameterException
+//     The operation failed because WAF didn't recognize a parameter in the request.
+//     For example:
+//
+//   - You specified a parameter name or value that isn't valid.
+//
+//   - Your nested statement isn't valid. You might have tried to nest a statement
+//     that can’t be nested.
+//
+//   - You tried to update a WebACL with a DefaultAction that isn't among the
+//     types available at DefaultAction.
+//
+//   - Your request references an ARN that is malformed, or corresponds to
+//     a resource with which a web ACL can't be associated.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeAllManagedProducts
 func (c *WAFV2) DescribeAllManagedProducts(input *DescribeAllManagedProductsInput) (*DescribeAllManagedProductsOutput, error) {
 	req, out := c.DescribeAllManagedProductsRequest(input)
@@ -2510,6 +2525,12 @@ func (c *WAFV2) GetDecryptedAPIKeyRequest(input *GetDecryptedAPIKeyInput) (req *
 //   - WAFInternalErrorException
 //     Your request is valid, but WAF couldn’t perform the operation because of
 //     a system problem. Retry your request.
+//
+//   - WAFNonexistentItemException
+//     WAF couldn’t perform the operation because your resource doesn't exist.
+//     If you've just created a resource that you're using in this operation, you
+//     might just need to wait a few minutes. It can take from a few seconds to
+//     a number of minutes for changes to propagate.
 //
 //   - WAFInvalidParameterException
 //     The operation failed because WAF didn't recognize a parameter in the request.
@@ -7276,22 +7297,32 @@ func (s AssociateWebACLOutput) GoString() string {
 // and protected resources.
 //
 // Use this to customize the maximum size of the request body that your protected
-// CloudFront distributions forward to WAF for inspection. The default is 16
-// KB (16,384 bytes).
+// resources forward to WAF for inspection. You can customize this setting for
+// CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources.
+// The default setting is 16 KB (16,384 bytes).
 //
 // You are charged additional fees when your protected resources forward body
 // sizes that are larger than the default. For more information, see WAF Pricing
 // (http://aws.amazon.com/waf/pricing/).
+//
+// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+// bytes).
 type AssociationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Customizes the maximum size of the request body that your protected CloudFront
-	// distributions forward to WAF for inspection. The default size is 16 KB (16,384
-	// bytes).
+	// Customizes the maximum size of the request body that your protected CloudFront,
+	// API Gateway, Amazon Cognito, App Runner, and Verified Access resources forward
+	// to WAF for inspection. The default size is 16 KB (16,384 bytes). You can
+	// change the setting for any of the available resource types.
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
 	// (http://aws.amazon.com/waf/pricing/).
+	//
+	// Example JSON: { "API_GATEWAY": "KB_48", "APP_RUNNER_SERVICE": "KB_32" }
+	//
+	// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+	// bytes).
 	RequestBody map[string]*RequestBodyAssociatedResourceTypeConfig `type:"map"`
 }
 
@@ -7402,16 +7433,20 @@ func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
 type Body struct {
 	_ struct{} `type:"structure"`
 
-	// What WAF should do if the body is larger than WAF can inspect. WAF does not
-	// support inspecting the entire contents of the web request body if the body
-	// exceeds the limit for the resource type. If the body is larger than the limit,
-	// the underlying host service only forwards the contents that are below the
-	// limit to WAF for inspection.
+	// What WAF should do if the body is larger than WAF can inspect.
 	//
-	// The default limit is 8 KB (8,192 bytes) for regional resources and 16 KB
-	// (16,384 bytes) for CloudFront distributions. For CloudFront distributions,
-	// you can increase the limit in the web ACL AssociationConfig, for additional
-	// processing fees.
+	// WAF does not support inspecting the entire contents of the web request body
+	// if the body exceeds the limit for the resource type. When a web request body
+	// is larger than the limit, the underlying host service only forwards the contents
+	// that are within the limit to WAF for inspection.
+	//
+	//    * For Application Load Balancer and AppSync, the limit is fixed at 8 KB
+	//    (8,192 bytes).
+	//
+	//    * For CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified
+	//    Access, the default limit is 16 KB (16,384 bytes), and you can increase
+	//    the limit for each resource type in the web ACL AssociationConfig, for
+	//    additional processing fees.
 	//
 	// The options for oversize handling are the following:
 	//
@@ -9165,12 +9200,16 @@ type CreateWebACLInput struct {
 	// and protected resources.
 	//
 	// Use this to customize the maximum size of the request body that your protected
-	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 bytes).
+	// resources forward to WAF for inspection. You can customize this setting for
+	// CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources.
+	// The default setting is 16 KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
 	// (http://aws.amazon.com/waf/pricing/).
+	//
+	// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+	// bytes).
 	AssociationConfig *AssociationConfig `type:"structure"`
 
 	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
@@ -11389,20 +11428,27 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 	return s
 }
 
-// The part of the web request that you want WAF to inspect. Include the single
-// FieldToMatch type that you want to inspect, with additional specifications
-// as needed, according to the type. You specify a single request component
-// in FieldToMatch for each rule statement that requires it. To inspect more
-// than one component of the web request, create a separate rule statement for
-// each component.
+// Specifies a web request component to be used in a rule match statement or
+// in a logging configuration.
 //
-// Example JSON for a QueryString field to match:
+//   - In a rule statement, this is the part of the web request that you want
+//     WAF to inspect. Include the single FieldToMatch type that you want to
+//     inspect, with additional specifications as needed, according to the type.
+//     You specify a single request component in FieldToMatch for each rule statement
+//     that requires it. To inspect more than one component of the web request,
+//     create a separate rule statement for each component. Example JSON for
+//     a QueryString field to match: "FieldToMatch": { "QueryString": {} } Example
+//     JSON for a Method field to match specification: "FieldToMatch": { "Method":
+//     { "Name": "DELETE" } }
 //
-// "FieldToMatch": { "QueryString": {} }
-//
-// Example JSON for a Method field to match specification:
-//
-// "FieldToMatch": { "Method": { "Name": "DELETE" } }
+//   - In a logging configuration, this is used in the RedactedFields property
+//     to specify a field to redact from the logging records. For this use case,
+//     note the following: Even though all FieldToMatch settings are available,
+//     the only valid settings for field redaction are UriPath, QueryString,
+//     SingleHeader, and Method. In this documentation, the descriptions of the
+//     individual fields talk about specifying the web request component to inspect,
+//     but for field redaction, you are specifying the component type to redact
+//     from the logs.
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -11414,11 +11460,18 @@ type FieldToMatch struct {
 	// data that you want to send to your web server as the HTTP request body, such
 	// as data from a form.
 	//
-	// A limited amount of the request body is forwarded to WAF for inspection by
-	// the underlying host service. For regional resources, the limit is 8 KB (8,192
-	// bytes) and for CloudFront distributions, the limit is 16 KB (16,384 bytes).
-	// For CloudFront distributions, you can increase the limit in the web ACL's
-	// AssociationConfig, for additional processing fees.
+	// WAF does not support inspecting the entire contents of the web request body
+	// if the body exceeds the limit for the resource type. When a web request body
+	// is larger than the limit, the underlying host service only forwards the contents
+	// that are within the limit to WAF for inspection.
+	//
+	//    * For Application Load Balancer and AppSync, the limit is fixed at 8 KB
+	//    (8,192 bytes).
+	//
+	//    * For CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified
+	//    Access, the default limit is 16 KB (16,384 bytes), and you can increase
+	//    the limit for each resource type in the web ACL AssociationConfig, for
+	//    additional processing fees.
 	//
 	// For information about how to handle oversized request bodies, see the Body
 	// object configuration.
@@ -11476,11 +11529,18 @@ type FieldToMatch struct {
 	// data that you want to send to your web server as the HTTP request body, such
 	// as data from a form.
 	//
-	// A limited amount of the request body is forwarded to WAF for inspection by
-	// the underlying host service. For regional resources, the limit is 8 KB (8,192
-	// bytes) and for CloudFront distributions, the limit is 16 KB (16,384 bytes).
-	// For CloudFront distributions, you can increase the limit in the web ACL's
-	// AssociationConfig, for additional processing fees.
+	// WAF does not support inspecting the entire contents of the web request body
+	// if the body exceeds the limit for the resource type. When a web request body
+	// is larger than the limit, the underlying host service only forwards the contents
+	// that are within the limit to WAF for inspection.
+	//
+	//    * For Application Load Balancer and AppSync, the limit is fixed at 8 KB
+	//    (8,192 bytes).
+	//
+	//    * For CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified
+	//    Access, the default limit is 16 KB (16,384 bytes), and you can increase
+	//    the limit for each resource type in the web ACL AssociationConfig, for
+	//    additional processing fees.
 	//
 	// For information about how to handle oversized request bodies, see the JsonBody
 	// object configuration.
@@ -14705,16 +14765,20 @@ type JsonBody struct {
 	// MatchScope is a required field
 	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
 
-	// What WAF should do if the body is larger than WAF can inspect. WAF does not
-	// support inspecting the entire contents of the web request body if the body
-	// exceeds the limit for the resource type. If the body is larger than the limit,
-	// the underlying host service only forwards the contents that are below the
-	// limit to WAF for inspection.
+	// What WAF should do if the body is larger than WAF can inspect.
 	//
-	// The default limit is 8 KB (8,192 bytes) for regional resources and 16 KB
-	// (16,384 bytes) for CloudFront distributions. For CloudFront distributions,
-	// you can increase the limit in the web ACL AssociationConfig, for additional
-	// processing fees.
+	// WAF does not support inspecting the entire contents of the web request body
+	// if the body exceeds the limit for the resource type. When a web request body
+	// is larger than the limit, the underlying host service only forwards the contents
+	// that are within the limit to WAF for inspection.
+	//
+	//    * For Application Load Balancer and AppSync, the limit is fixed at 8 KB
+	//    (8,192 bytes).
+	//
+	//    * For CloudFront, API Gateway, Amazon Cognito, App Runner, and Verified
+	//    Access, the default limit is 16 KB (16,384 bytes), and you can increase
+	//    the limit for each resource type in the web ACL AssociationConfig, for
+	//    additional processing fees.
 	//
 	// The options for oversize handling are the following:
 	//
@@ -17271,7 +17335,7 @@ type ManagedRuleGroupStatement struct {
 	// how the rule group would handle your web traffic. You can also permanently
 	// override some or all actions, to modify how the rule group manages your web
 	// traffic.
-	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
+	RuleActionOverrides []*RuleActionOverride `type:"list"`
 
 	// An optional nested statement that narrows the scope of the web requests that
 	// are evaluated by the managed rule group. Requests are only evaluated by the
@@ -17319,9 +17383,6 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
 	}
 	if s.VendorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VendorName"))
@@ -18783,6 +18844,10 @@ func (s QueryString) GoString() string {
 // to your aggregation criteria, collects them into aggregation instances, and
 // counts and rate limits the requests for each instance.
 //
+// If you change any of these settings in a rule that's currently in use, the
+// change resets the rule's rate limiting counts. This can pause the rule's
+// rate limiting activities for up to a minute.
+//
 // You can specify individual aggregation keys, like IP address or HTTP method.
 // You can also specify aggregation key combinations, like IP address and HTTP
 // method, or HTTP method, query argument, and cookie.
@@ -18891,7 +18956,7 @@ type RateBasedStatement struct {
 	AggregateKeyType *string `type:"string" required:"true" enum:"RateBasedStatementAggregateKeyType"`
 
 	// Specifies the aggregate keys to use in a rate-base rule.
-	CustomKeys []*RateBasedStatementCustomKey `min:"1" type:"list"`
+	CustomKeys []*RateBasedStatementCustomKey `type:"list"`
 
 	// The amount of time, in seconds, that WAF should include in its request counts,
 	// looking back from the current time. For example, for a setting of 120, when
@@ -18963,9 +19028,6 @@ func (s *RateBasedStatement) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RateBasedStatement"}
 	if s.AggregateKeyType == nil {
 		invalidParams.Add(request.NewErrParamRequired("AggregateKeyType"))
-	}
-	if s.CustomKeys != nil && len(s.CustomKeys) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("CustomKeys", 1))
 	}
 	if s.Limit == nil {
 		invalidParams.Add(request.NewErrParamRequired("Limit"))
@@ -20294,21 +20356,28 @@ func (s *ReleaseSummary) SetTimestamp(v time.Time) *ReleaseSummary {
 	return s
 }
 
-// Customizes the maximum size of the request body that your protected CloudFront
-// distributions forward to WAF for inspection. The default size is 16 KB (16,384
-// bytes).
+// Customizes the maximum size of the request body that your protected CloudFront,
+// API Gateway, Amazon Cognito, App Runner, and Verified Access resources forward
+// to WAF for inspection. The default size is 16 KB (16,384 bytes). You can
+// change the setting for any of the available resource types.
 //
 // You are charged additional fees when your protected resources forward body
 // sizes that are larger than the default. For more information, see WAF Pricing
 // (http://aws.amazon.com/waf/pricing/).
+//
+// Example JSON: { "API_GATEWAY": "KB_48", "APP_RUNNER_SERVICE": "KB_32" }
+//
+// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+// bytes).
 //
 // This is used in the AssociationConfig of the web ACL.
 type RequestBodyAssociatedResourceTypeConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the maximum size of the web request body component that an associated
-	// CloudFront distribution should send to WAF for inspection. This applies to
-	// statements in the web ACL that inspect the body or JSON body.
+	// CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resource
+	// should send to WAF for inspection. This applies to statements in the web
+	// ACL that inspect the body or JSON body.
 	//
 	// Default: 16 KB (16,384 bytes)
 	//
@@ -21805,7 +21874,7 @@ type RuleGroupReferenceStatement struct {
 	// how the rule group would handle your web traffic. You can also permanently
 	// override some or all actions, to modify how the rule group manages your web
 	// traffic.
-	RuleActionOverrides []*RuleActionOverride `min:"1" type:"list"`
+	RuleActionOverrides []*RuleActionOverride `type:"list"`
 }
 
 // String returns the string representation.
@@ -21834,9 +21903,6 @@ func (s *RuleGroupReferenceStatement) Validate() error {
 	}
 	if s.ARN != nil && len(*s.ARN) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ARN", 20))
-	}
-	if s.RuleActionOverrides != nil && len(s.RuleActionOverrides) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RuleActionOverrides", 1))
 	}
 	if s.ExcludedRules != nil {
 		for i, v := range s.ExcludedRules {
@@ -22275,13 +22341,12 @@ func (s *SingleQueryArgument) SetName(v string) *SingleQueryArgument {
 // query strings that are longer than 100 bytes.
 //
 // If you configure WAF to inspect the request body, WAF inspects only the number
-// of bytes of the body up to the limit for the web ACL. By default, for regional
-// web ACLs, this limit is 8 KB (8,192 bytes) and for CloudFront web ACLs, this
-// limit is 16 KB (16,384 bytes). For CloudFront web ACLs, you can increase
-// the limit in the web ACL AssociationConfig, for additional fees. If you know
-// that the request body for your web requests should never exceed the inspection
-// limit, you could use a size constraint statement to block requests that have
-// a larger request body size.
+// of bytes in the body up to the limit for the web ACL and protected resource
+// type. If you know that the request body for your web requests should never
+// exceed the inspection limit, you can use a size constraint statement to block
+// requests that have a larger request body size. For more information about
+// the inspection limits, see Body and JsonBody settings for the FieldToMatch
+// data type.
 //
 // If you choose URI for the value of Part of the request to filter on, the
 // slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -22609,6 +22674,10 @@ type Statement struct {
 	// to your aggregation criteria, collects them into aggregation instances, and
 	// counts and rate limits the requests for each instance.
 	//
+	// If you change any of these settings in a rule that's currently in use, the
+	// change resets the rule's rate limiting counts. This can pause the rule's
+	// rate limiting activities for up to a minute.
+	//
 	// You can specify individual aggregation keys, like IP address or HTTP method.
 	// You can also specify aggregation key combinations, like IP address and HTTP
 	// method, or HTTP method, query argument, and cookie.
@@ -22717,13 +22786,12 @@ type Statement struct {
 	// query strings that are longer than 100 bytes.
 	//
 	// If you configure WAF to inspect the request body, WAF inspects only the number
-	// of bytes of the body up to the limit for the web ACL. By default, for regional
-	// web ACLs, this limit is 8 KB (8,192 bytes) and for CloudFront web ACLs, this
-	// limit is 16 KB (16,384 bytes). For CloudFront web ACLs, you can increase
-	// the limit in the web ACL AssociationConfig, for additional fees. If you know
-	// that the request body for your web requests should never exceed the inspection
-	// limit, you could use a size constraint statement to block requests that have
-	// a larger request body size.
+	// of bytes in the body up to the limit for the web ACL and protected resource
+	// type. If you know that the request body for your web requests should never
+	// exceed the inspection limit, you can use a size constraint statement to block
+	// requests that have a larger request body size. For more information about
+	// the inspection limits, see Body and JsonBody settings for the FieldToMatch
+	// data type.
 	//
 	// If you choose URI for the value of Part of the request to filter on, the
 	// slash (/) in the URI counts as one character. For example, the URI /logo.jpg
@@ -24247,12 +24315,16 @@ type UpdateWebACLInput struct {
 	// and protected resources.
 	//
 	// Use this to customize the maximum size of the request body that your protected
-	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 bytes).
+	// resources forward to WAF for inspection. You can customize this setting for
+	// CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources.
+	// The default setting is 16 KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
 	// (http://aws.amazon.com/waf/pricing/).
+	//
+	// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+	// bytes).
 	AssociationConfig *AssociationConfig `type:"structure"`
 
 	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
@@ -25463,6 +25535,9 @@ type WAFLimitsExceededException struct {
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
+
+	// Source type for the exception.
+	SourceType *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -25508,7 +25583,7 @@ func (s *WAFLimitsExceededException) OrigErr() error {
 }
 
 func (s *WAFLimitsExceededException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -26144,12 +26219,16 @@ type WebACL struct {
 	// and protected resources.
 	//
 	// Use this to customize the maximum size of the request body that your protected
-	// CloudFront distributions forward to WAF for inspection. The default is 16
-	// KB (16,384 bytes).
+	// resources forward to WAF for inspection. You can customize this setting for
+	// CloudFront, API Gateway, Amazon Cognito, App Runner, or Verified Access resources.
+	// The default setting is 16 KB (16,384 bytes).
 	//
 	// You are charged additional fees when your protected resources forward body
 	// sizes that are larger than the default. For more information, see WAF Pricing
 	// (http://aws.amazon.com/waf/pricing/).
+	//
+	// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192
+	// bytes).
 	AssociationConfig *AssociationConfig `type:"structure"`
 
 	// The web ACL capacity units (WCUs) currently being used by this web ACL.
@@ -26592,12 +26671,28 @@ func ActionValue_Values() []string {
 const (
 	// AssociatedResourceTypeCloudfront is a AssociatedResourceType enum value
 	AssociatedResourceTypeCloudfront = "CLOUDFRONT"
+
+	// AssociatedResourceTypeApiGateway is a AssociatedResourceType enum value
+	AssociatedResourceTypeApiGateway = "API_GATEWAY"
+
+	// AssociatedResourceTypeCognitoUserPool is a AssociatedResourceType enum value
+	AssociatedResourceTypeCognitoUserPool = "COGNITO_USER_POOL"
+
+	// AssociatedResourceTypeAppRunnerService is a AssociatedResourceType enum value
+	AssociatedResourceTypeAppRunnerService = "APP_RUNNER_SERVICE"
+
+	// AssociatedResourceTypeVerifiedAccessInstance is a AssociatedResourceType enum value
+	AssociatedResourceTypeVerifiedAccessInstance = "VERIFIED_ACCESS_INSTANCE"
 )
 
 // AssociatedResourceType_Values returns all elements of the AssociatedResourceType enum
 func AssociatedResourceType_Values() []string {
 	return []string{
 		AssociatedResourceTypeCloudfront,
+		AssociatedResourceTypeApiGateway,
+		AssociatedResourceTypeCognitoUserPool,
+		AssociatedResourceTypeAppRunnerService,
+		AssociatedResourceTypeVerifiedAccessInstance,
 	}
 }
 

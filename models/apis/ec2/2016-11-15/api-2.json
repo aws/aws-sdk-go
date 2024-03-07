@@ -10037,7 +10037,11 @@
           "shape":"Boolean",
           "locationName":"dryRun"
         },
-        "CopyImageTags":{"shape":"Boolean"}
+        "CopyImageTags":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CopyImageResult":{
@@ -37029,7 +37033,11 @@
         "BootMode":{"shape":"BootModeValues"},
         "TpmSupport":{"shape":"TpmSupportValues"},
         "UefiData":{"shape":"StringType"},
-        "ImdsSupport":{"shape":"ImdsSupportValues"}
+        "ImdsSupport":{"shape":"ImdsSupportValues"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "RegisterImageResult":{

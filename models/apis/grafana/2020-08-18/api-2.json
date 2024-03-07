@@ -405,6 +405,11 @@
         "workspaceId"
       ],
       "members":{
+        "grafanaToken":{
+          "shape":"GrafanaToken",
+          "location":"header",
+          "locationName":"Grafana-Token"
+        },
         "licenseType":{
           "shape":"LicenseType",
           "location":"uri",
@@ -721,6 +726,11 @@
     "Endpoint":{
       "type":"string",
       "max":2048,
+      "min":1
+    },
+    "GrafanaToken":{
+      "type":"string",
+      "max":36,
       "min":1
     },
     "GrafanaVersion":{
@@ -1437,6 +1447,7 @@
         "endpoint":{"shape":"Endpoint"},
         "freeTrialConsumed":{"shape":"Boolean"},
         "freeTrialExpiration":{"shape":"Timestamp"},
+        "grafanaToken":{"shape":"GrafanaToken"},
         "grafanaVersion":{"shape":"GrafanaVersion"},
         "id":{"shape":"WorkspaceId"},
         "licenseExpiration":{"shape":"Timestamp"},
@@ -1502,8 +1513,10 @@
         "created":{"shape":"Timestamp"},
         "description":{"shape":"Description"},
         "endpoint":{"shape":"Endpoint"},
+        "grafanaToken":{"shape":"GrafanaToken"},
         "grafanaVersion":{"shape":"GrafanaVersion"},
         "id":{"shape":"WorkspaceId"},
+        "licenseType":{"shape":"LicenseType"},
         "modified":{"shape":"Timestamp"},
         "name":{"shape":"WorkspaceName"},
         "notificationDestinations":{"shape":"NotificationDestinationsList"},

@@ -21921,6 +21921,10 @@ type CreateDBClusterInput struct {
 
 	// The CA certificate identifier to use for the DB cluster's server certificate.
 	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide.
+	//
 	// Valid for Cluster Type: Multi-AZ DB clusters
 	CACertificateIdentifier *string `type:"string"`
 
@@ -22561,7 +22565,7 @@ type CreateDBClusterInput struct {
 	//
 	//    * Aurora DB clusters - aurora | aurora-iopt1
 	//
-	//    * Multi-AZ DB clusters - io1
+	//    * Multi-AZ DB clusters - io1 | io2 | gp3
 	//
 	// Default:
 	//
@@ -46746,6 +46750,10 @@ type ModifyDBClusterInput struct {
 
 	// The CA certificate identifier to use for the DB cluster's server certificate.
 	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide.
+	//
 	// Valid for Cluster Type: Multi-AZ DB clusters
 	CACertificateIdentifier *string `type:"string"`
 
@@ -47226,7 +47234,7 @@ type ModifyDBClusterInput struct {
 	//
 	//    * Aurora DB clusters - aurora | aurora-iopt1
 	//
-	//    * Multi-AZ DB clusters - io1
+	//    * Multi-AZ DB clusters - io1 | io2 | gp3
 	//
 	// Default:
 	//
@@ -48650,7 +48658,7 @@ type ModifyDBInstanceInput struct {
 
 	// The storage type to associate with the DB instance.
 	//
-	// If you specify io1), io2, or gp3 you must also include a value for the Iops
+	// If you specify io1, io2, or gp3 you must also include a value for the Iops
 	// parameter.
 	//
 	// If you choose to migrate your DB instance from using standard storage to
