@@ -5299,6 +5299,11 @@ type CreateJobQueueInput struct {
 	// JobQueueName is a required field
 	JobQueueName *string `locationName:"jobQueueName" type:"string" required:"true"`
 
+	// The set of actions that Batch performs on jobs that remain at the head of
+	// the job queue in the specified state longer than specified times. Batch will
+	// perform each action after maxTimeSeconds has passed.
+	JobStateTimeLimitActions []*JobStateTimeLimitAction `locationName:"jobStateTimeLimitActions" type:"list"`
+
 	// The priority of the job queue. Job queues with a higher priority (or a higher
 	// integer value for the priority parameter) are evaluated first when associated
 	// with the same compute environment. Priority is determined in descending order.
@@ -5373,6 +5378,16 @@ func (s *CreateJobQueueInput) Validate() error {
 			}
 		}
 	}
+	if s.JobStateTimeLimitActions != nil {
+		for i, v := range s.JobStateTimeLimitActions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "JobStateTimeLimitActions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5389,6 +5404,12 @@ func (s *CreateJobQueueInput) SetComputeEnvironmentOrder(v []*ComputeEnvironment
 // SetJobQueueName sets the JobQueueName field's value.
 func (s *CreateJobQueueInput) SetJobQueueName(v string) *CreateJobQueueInput {
 	s.JobQueueName = &v
+	return s
+}
+
+// SetJobStateTimeLimitActions sets the JobStateTimeLimitActions field's value.
+func (s *CreateJobQueueInput) SetJobStateTimeLimitActions(v []*JobStateTimeLimitAction) *CreateJobQueueInput {
+	s.JobStateTimeLimitActions = v
 	return s
 }
 
@@ -9676,6 +9697,18 @@ type JobDetail struct {
 
 	// A short, human-readable string to provide more details for the current status
 	// of the job.
+	//
+	//    * CAPACITY:INSUFFICIENT_INSTANCE_CAPACITY - All compute environments have
+	//    insufficient capacity to service the job.
+	//
+	//    * MISCONFIGURATION:COMPUTE_ENVIRONMENT_MAX_RESOURCE - All compute environments
+	//    have a maxVcpu setting that is smaller than the job requirements.
+	//
+	//    * MISCONFIGURATION:JOB_RESOURCE_REQUIREMENT - All compute environments
+	//    have no connected instances that meet the job requirements.
+	//
+	//    * MISCONFIGURATION:SERVICE_ROLE_PERMISSIONS - All compute environments
+	//    have problems with the service role permissions.
 	StatusReason *string `locationName:"statusReason" type:"string"`
 
 	// The Unix timestamp (in milliseconds) for when the job was stopped. More specifically,
@@ -9903,6 +9936,11 @@ type JobQueueDetail struct {
 	// JobQueueName is a required field
 	JobQueueName *string `locationName:"jobQueueName" type:"string" required:"true"`
 
+	// The set of actions that Batch perform on jobs that remain at the head of
+	// the job queue in the specified state longer than specified times. Batch will
+	// perform each action after maxTimeSeconds has passed.
+	JobStateTimeLimitActions []*JobStateTimeLimitAction `locationName:"jobStateTimeLimitActions" type:"list"`
+
 	// The priority of the job queue. Job queues with a higher priority (or a higher
 	// integer value for the priority parameter) are evaluated first when associated
 	// with the same compute environment. Priority is determined in descending order.
@@ -9974,6 +10012,12 @@ func (s *JobQueueDetail) SetJobQueueName(v string) *JobQueueDetail {
 	return s
 }
 
+// SetJobStateTimeLimitActions sets the JobStateTimeLimitActions field's value.
+func (s *JobQueueDetail) SetJobStateTimeLimitActions(v []*JobStateTimeLimitAction) *JobQueueDetail {
+	s.JobStateTimeLimitActions = v
+	return s
+}
+
 // SetPriority sets the Priority field's value.
 func (s *JobQueueDetail) SetPriority(v int64) *JobQueueDetail {
 	s.Priority = &v
@@ -10007,6 +10051,101 @@ func (s *JobQueueDetail) SetStatusReason(v string) *JobQueueDetail {
 // SetTags sets the Tags field's value.
 func (s *JobQueueDetail) SetTags(v map[string]*string) *JobQueueDetail {
 	s.Tags = v
+	return s
+}
+
+// Specifies an action that Batch will take after the job has remained at the
+// head of the queue in the specified state for longer than the specified time.
+type JobStateTimeLimitAction struct {
+	_ struct{} `type:"structure"`
+
+	// The action to take when a job is at the head of the job queue in the specified
+	// state for the specified period of time. The only supported value is "CANCEL",
+	// which will cancel the job.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"JobStateTimeLimitActionsAction"`
+
+	// The approximate amount of time, in seconds, that must pass with the job in
+	// the specified state before the action is taken. The minimum value is 600
+	// (10 minutes) and the maximum value is 86,400 (24 hours).
+	//
+	// MaxTimeSeconds is a required field
+	MaxTimeSeconds *int64 `locationName:"maxTimeSeconds" type:"integer" required:"true"`
+
+	// The reason to log for the action being taken.
+	//
+	// Reason is a required field
+	Reason *string `locationName:"reason" type:"string" required:"true"`
+
+	// The state of the job needed to trigger the action. The only supported value
+	// is "RUNNABLE".
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"JobStateTimeLimitActionsState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStateTimeLimitAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStateTimeLimitAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobStateTimeLimitAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobStateTimeLimitAction"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.MaxTimeSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxTimeSeconds"))
+	}
+	if s.Reason == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reason"))
+	}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *JobStateTimeLimitAction) SetAction(v string) *JobStateTimeLimitAction {
+	s.Action = &v
+	return s
+}
+
+// SetMaxTimeSeconds sets the MaxTimeSeconds field's value.
+func (s *JobStateTimeLimitAction) SetMaxTimeSeconds(v int64) *JobStateTimeLimitAction {
+	s.MaxTimeSeconds = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *JobStateTimeLimitAction) SetReason(v string) *JobStateTimeLimitAction {
+	s.Reason = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *JobStateTimeLimitAction) SetState(v string) *JobStateTimeLimitAction {
+	s.State = &v
 	return s
 }
 
@@ -13156,7 +13295,7 @@ type TaskContainerDetails struct {
 	// false, its failure doesn't affect the rest of the containers in a task. If
 	// this parameter is omitted, a container is assumed to be essential.
 	//
-	// All tasks must have at least one essential container. If you have an application
+	// All jobs must have at least one essential container. If you have an application
 	// that's composed of multiple containers, group containers that are used for
 	// a common purpose into components, and separate the different components into
 	// multiple task definitions. For more information, see Application Architecture
@@ -13584,7 +13723,7 @@ type TaskContainerProperties struct {
 	// false, its failure doesn't affect the rest of the containers in a task. If
 	// this parameter is omitted, a container is assumed to be essential.
 	//
-	// All tasks must have at least one essential container. If you have an application
+	// All jobs must have at least one essential container. If you have an application
 	// that's composed of multiple containers, group containers that are used for
 	// a common purpose into components, and separate the different components into
 	// multiple task definitions. For more information, see Application Architecture
@@ -14511,6 +14650,11 @@ type UpdateJobQueueInput struct {
 	// JobQueue is a required field
 	JobQueue *string `locationName:"jobQueue" type:"string" required:"true"`
 
+	// The set of actions that Batch perform on jobs that remain at the head of
+	// the job queue in the specified state longer than specified times. Batch will
+	// perform each action after maxTimeSeconds has passed.
+	JobStateTimeLimitActions []*JobStateTimeLimitAction `locationName:"jobStateTimeLimitActions" type:"list"`
+
 	// The priority of the job queue. Job queues with a higher priority (or a higher
 	// integer value for the priority parameter) are evaluated first when associated
 	// with the same compute environment. Priority is determined in descending order.
@@ -14566,6 +14710,16 @@ func (s *UpdateJobQueueInput) Validate() error {
 			}
 		}
 	}
+	if s.JobStateTimeLimitActions != nil {
+		for i, v := range s.JobStateTimeLimitActions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "JobStateTimeLimitActions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14582,6 +14736,12 @@ func (s *UpdateJobQueueInput) SetComputeEnvironmentOrder(v []*ComputeEnvironment
 // SetJobQueue sets the JobQueue field's value.
 func (s *UpdateJobQueueInput) SetJobQueue(v string) *UpdateJobQueueInput {
 	s.JobQueue = &v
+	return s
+}
+
+// SetJobStateTimeLimitActions sets the JobStateTimeLimitActions field's value.
+func (s *UpdateJobQueueInput) SetJobStateTimeLimitActions(v []*JobStateTimeLimitAction) *UpdateJobQueueInput {
+	s.JobStateTimeLimitActions = v
 	return s
 }
 
@@ -15139,6 +15299,30 @@ func JobDefinitionType_Values() []string {
 	return []string{
 		JobDefinitionTypeContainer,
 		JobDefinitionTypeMultinode,
+	}
+}
+
+const (
+	// JobStateTimeLimitActionsActionCancel is a JobStateTimeLimitActionsAction enum value
+	JobStateTimeLimitActionsActionCancel = "CANCEL"
+)
+
+// JobStateTimeLimitActionsAction_Values returns all elements of the JobStateTimeLimitActionsAction enum
+func JobStateTimeLimitActionsAction_Values() []string {
+	return []string{
+		JobStateTimeLimitActionsActionCancel,
+	}
+}
+
+const (
+	// JobStateTimeLimitActionsStateRunnable is a JobStateTimeLimitActionsState enum value
+	JobStateTimeLimitActionsStateRunnable = "RUNNABLE"
+)
+
+// JobStateTimeLimitActionsState_Values returns all elements of the JobStateTimeLimitActionsState enum
+func JobStateTimeLimitActionsState_Values() []string {
+	return []string{
+		JobStateTimeLimitActionsStateRunnable,
 	}
 }
 

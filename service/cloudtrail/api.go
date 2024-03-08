@@ -702,6 +702,9 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //     This exception is thrown when the combination of parameters provided is not
 //     valid.
 //
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
+//
 //   - KmsKeyNotFoundException
 //     This exception is thrown when the KMS key does not exist, when the S3 bucket
 //     and the KMS key are not in the same Region, or when the KMS key associated
@@ -1593,6 +1596,16 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *req
 //     and my--namespace are not valid.
 //
 //   - Not be in IP address format (for example, 192.168.5.4)
+//
+//   - ARNInvalidException
+//     This exception is thrown when an operation is called with an ARN that is
+//     not valid.
+//
+//     The following is the format of a trail ARN: arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
+//
+//     The following is the format of an event data store ARN: arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE
+//
+//     The following is the format of a channel ARN: arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890
 //
 //   - NoManagementAccountSLRExistsException
 //     This exception is thrown when the management account does not have a service-linked
@@ -3320,6 +3333,9 @@ func (c *CloudTrail) ListImportFailuresRequest(input *ListImportFailuresInput) (
 //
 //   - UnsupportedOperationException
 //     This exception is thrown when the requested operation is not supported.
+//
+//   - InvalidParameterException
+//     The request includes a parameter that is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListImportFailures
 func (c *CloudTrail) ListImportFailures(input *ListImportFailuresInput) (*ListImportFailuresOutput, error) {
@@ -7523,25 +7539,38 @@ func (s AddTagsOutput) GoString() string {
 	return s.String()
 }
 
-// Advanced event selectors let you create fine-grained selectors for the following
-// CloudTrail event record ﬁelds. They help you control costs by logging only
-// those events that are important to you. For more information about advanced
-// event selectors, see Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
+// Advanced event selectors let you create fine-grained selectors for CloudTrail
+// management and data events. They help you control costs by logging only those
+// events that are important to you. For more information about advanced event
+// selectors, see Logging management events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html)
+// and Logging data events (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html)
 // in the CloudTrail User Guide.
 //
-//   - readOnly
+// You cannot apply both event selectors and advanced event selectors to a trail.
+//
+// Supported CloudTrail event record fields for management events
+//
+//   - eventCategory (required)
 //
 //   - eventSource
 //
+//   - readOnly
+//
+// Supported CloudTrail event record fields for data events
+//
+//   - eventCategory (required)
+//
+//   - resources.type (required)
+//
+//   - readOnly
+//
 //   - eventName
-//
-//   - eventCategory
-//
-//   - resources.type
 //
 //   - resources.ARN
 //
-// You cannot apply both event selectors and advanced event selectors to a trail.
+// For event data stores for CloudTrail Insights events, Config configuration
+// items, Audit Manager evidence, or events outside of Amazon Web Services,
+// the only supported field is eventCategory.
 type AdvancedEventSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -7662,23 +7691,26 @@ type AdvancedFieldSelector struct {
 	//    * resources.type - This ﬁeld is required for CloudTrail data events.
 	//    resources.type can only use the Equals operator, and the value can be
 	//    one of the following: AWS::DynamoDB::Table AWS::Lambda::Function AWS::S3::Object
-	//    AWS::B2BI::Transformer AWS::Bedrock::AgentAlias AWS::Bedrock::KnowledgeBase
-	//    AWS::Cassandra::Table AWS::CloudFront::KeyValueStore AWS::CloudTrail::Channel
-	//    AWS::CodeWhisperer::Customization AWS::CodeWhisperer::Profile AWS::Cognito::IdentityPool
-	//    AWS::DynamoDB::Stream AWS::EC2::Snapshot AWS::EMRWAL::Workspace AWS::FinSpace::Environment
-	//    AWS::Glue::Table AWS::GuardDuty::Detector AWS::IoTTwinMaker::Entity AWS::IoTTwinMaker::Workspace
-	//    AWS::KendraRanking::ExecutionPlan AWS::KinesisVideo::Stream AWS::ManagedBlockchain::Network
-	//    AWS::ManagedBlockchain::Node AWS::MedicalImaging::Datastore AWS::NeptuneGraph::Graph
-	//    AWS::PCAConnectorAD::Connector AWS::QBusiness::Application AWS::QBusiness::DataSource
-	//    AWS::QBusiness::Index AWS::QBusiness::WebExperience AWS::RDS::DBCluster
-	//    AWS::SageMaker::Endpoint AWS::SageMaker::ExperimentTrialComponent AWS::SageMaker::FeatureGroup
-	//    AWS::ServiceDiscovery::Namespace AWS::ServiceDiscovery::Service AWS::SCN::Instance
-	//    AWS::SNS::PlatformEndpoint AWS::SNS::Topic AWS::SQS::Queue AWS::S3::AccessPoint
-	//    AWS::S3ObjectLambda::AccessPoint AWS::S3Outposts::Object AWS::SSMMessages::ControlChannel
-	//    AWS::ThinClient::Device AWS::ThinClient::Environment AWS::Timestream::Database
-	//    AWS::Timestream::Table AWS::VerifiedPermissions::PolicyStore You can have
-	//    only one resources.type ﬁeld per selector. To log data events on more
-	//    than one resource type, add another selector.
+	//    AWS::AppConfig::Configuration AWS::B2BI::Transformer AWS::Bedrock::AgentAlias
+	//    AWS::Bedrock::KnowledgeBase AWS::Cassandra::Table AWS::CloudFront::KeyValueStore
+	//    AWS::CloudTrail::Channel AWS::CodeWhisperer::Customization AWS::CodeWhisperer::Profile
+	//    AWS::Cognito::IdentityPool AWS::DynamoDB::Stream AWS::EC2::Snapshot AWS::EMRWAL::Workspace
+	//    AWS::FinSpace::Environment AWS::Glue::Table AWS::GreengrassV2::ComponentVersion
+	//    AWS::GreengrassV2::Deployment AWS::GuardDuty::Detector AWS::IoT::Certificate
+	//    AWS::IoT::Thing AWS::IoTSiteWise::Asset AWS::IoTSiteWise::TimeSeries AWS::IoTTwinMaker::Entity
+	//    AWS::IoTTwinMaker::Workspace AWS::KendraRanking::ExecutionPlan AWS::KinesisVideo::Stream
+	//    AWS::ManagedBlockchain::Network AWS::ManagedBlockchain::Node AWS::MedicalImaging::Datastore
+	//    AWS::NeptuneGraph::Graph AWS::PCAConnectorAD::Connector AWS::QBusiness::Application
+	//    AWS::QBusiness::DataSource AWS::QBusiness::Index AWS::QBusiness::WebExperience
+	//    AWS::RDS::DBCluster AWS::S3::AccessPoint AWS::S3ObjectLambda::AccessPoint
+	//    AWS::S3Outposts::Object AWS::SageMaker::Endpoint AWS::SageMaker::ExperimentTrialComponent
+	//    AWS::SageMaker::FeatureGroup AWS::ServiceDiscovery::Namespace AWS::ServiceDiscovery::Service
+	//    AWS::SCN::Instance AWS::SNS::PlatformEndpoint AWS::SNS::Topic AWS::SWF::Domain
+	//    AWS::SQS::Queue AWS::SSMMessages::ControlChannel AWS::ThinClient::Device
+	//    AWS::ThinClient::Environment AWS::Timestream::Database AWS::Timestream::Table
+	//    AWS::VerifiedPermissions::PolicyStore You can have only one resources.type
+	//    ﬁeld per selector. To log data events on more than one resource type,
+	//    add another selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
 	//    you use Equals or NotEquals, the value must exactly match the ARN of a
@@ -7694,6 +7726,9 @@ type AdvancedFieldSelector struct {
 	//    the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>
 	//    When resources.type equals AWS::Lambda::Function, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:lambda:<region>:<account_ID>:function:<function_name>
+	//    When resources.type equals AWS::AppConfig::Configuration, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:appconfig:<region>:<account_ID>:application/<application_ID>/environment/<environment_ID>/configuration/<configuration_profile_ID>
 	//    When resources.type equals AWS::B2BI::Transformer, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:b2bi:<region>:<account_ID>:transformer/<transformer_ID>
 	//    When resources.type equals AWS::Bedrock::AgentAlias, and the operator
@@ -7730,9 +7765,24 @@ type AdvancedFieldSelector struct {
 	//    arn:<partition>:finspace:<region>:<account_ID>:environment/<environment_ID>
 	//    When resources.type equals AWS::Glue::Table, and the operator is set to
 	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:glue:<region>:<account_ID>:table/<database_name>/<table_name>
+	//    When resources.type equals AWS::GreengrassV2::ComponentVersion, and the
+	//    operator is set to Equals or NotEquals, the ARN must be in the following
+	//    format: arn:<partition>:greengrass:<region>:<account_ID>:components/<component_name>
+	//    When resources.type equals AWS::GreengrassV2::Deployment, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:greengrass:<region>:<account_ID>:deployments/<deployment_ID
 	//    When resources.type equals AWS::GuardDuty::Detector, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:guardduty:<region>:<account_ID>:detector/<detector_ID>
+	//    When resources.type equals AWS::IoT::Certificate, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:iot:<region>:<account_ID>:cert/<certificate_ID>
+	//    When resources.type equals AWS::IoT::Thing, and the operator is set to
+	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:iot:<region>:<account_ID>:thing/<thing_ID>
+	//    When resources.type equals AWS::IoTSiteWise::Asset, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:iotsitewise:<region>:<account_ID>:asset/<asset_ID>
+	//    When resources.type equals AWS::IoTSiteWise::TimeSeries, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:iotsitewise:<region>:<account_ID>:timeseries/<timeseries_ID>
 	//    When resources.type equals AWS::IoTTwinMaker::Entity, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:iottwinmaker:<region>:<account_ID>:workspace/<workspace_ID>/entity/<entity_ID>
@@ -7772,6 +7822,17 @@ type AdvancedFieldSelector struct {
 	//    arn:<partition>:qbusiness:<region>:<account_ID>:application/<application_ID>/web-experience/<web_experience_ID>
 	//    When resources.type equals AWS::RDS::DBCluster, and the operator is set
 	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:rds:<region>:<account_ID>:cluster/<cluster_name>
+	//    When resources.type equals AWS::S3::AccessPoint, and the operator is set
+	//    to Equals or NotEquals, the ARN must be in one of the following formats.
+	//    To log events on all objects in an S3 access point, we recommend that
+	//    you use only the access point ARN, don’t include the object path, and
+	//    use the StartsWith or NotStartsWith operators. arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>
+	//    arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>/object/<object_path>
+	//    When resources.type equals AWS::S3ObjectLambda::AccessPoint, and the operator
+	//    is set to Equals or NotEquals, the ARN must be in the following format:
+	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
+	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
 	//    When resources.type equals AWS::SageMaker::Endpoint, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:sagemaker:<region>:<account_ID>:endpoint/<endpoint_name>
@@ -7794,19 +7855,10 @@ type AdvancedFieldSelector struct {
 	//    arn:<partition>:sns:<region>:<account_ID>:endpoint/<endpoint_type>/<endpoint_name>/<endpoint_ID>
 	//    When resources.type equals AWS::SNS::Topic, and the operator is set to
 	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:sns:<region>:<account_ID>:<topic_name>
+	//    When resources.type equals AWS::SWF::Domain, and the operator is set to
+	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:swf:<region>:<account_ID>:domain/<domain_name>
 	//    When resources.type equals AWS::SQS::Queue, and the operator is set to
 	//    Equals or NotEquals, the ARN must be in the following format: arn:<partition>:sqs:<region>:<account_ID>:<queue_name>
-	//    When resources.type equals AWS::S3::AccessPoint, and the operator is set
-	//    to Equals or NotEquals, the ARN must be in one of the following formats.
-	//    To log events on all objects in an S3 access point, we recommend that
-	//    you use only the access point ARN, don’t include the object path, and
-	//    use the StartsWith or NotStartsWith operators. arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>
-	//    arn:<partition>:s3:<region>:<account_ID>:accesspoint/<access_point_name>/object/<object_path>
-	//    When resources.type equals AWS::S3ObjectLambda::AccessPoint, and the operator
-	//    is set to Equals or NotEquals, the ARN must be in the following format:
-	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
-	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
-	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
 	//    When resources.type equals AWS::SSMMessages::ControlChannel, and the operator
 	//    is set to Equals or NotEquals, the ARN must be in the following format:
 	//    arn:<partition>:ssmmessages:<region>:<account_ID>:control-channel/<channel_ID>
@@ -16844,6 +16896,10 @@ type LookupAttribute struct {
 	AttributeKey *string `type:"string" required:"true" enum:"LookupAttributeKey"`
 
 	// Specifies a value for the specified AttributeKey.
+	//
+	// The maximum length for the AttributeValue is 2000 characters. The following
+	// characters ('_', '', ',', '\\n') count as two characters towards the 2000
+	// character limit.
 	//
 	// AttributeValue is a required field
 	AttributeValue *string `min:"1" type:"string" required:"true"`

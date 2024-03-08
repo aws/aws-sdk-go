@@ -11,59 +11,59 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// This exception is thrown when a request is denied per access permissions
+	// The request is denied because of missing access permissions. Check your permissions
+	// and retry your request.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeBadGatewayException for service response error code
 	// "BadGatewayException".
 	//
-	// This exception is thrown when a request fails due to dependency like Lambda,
-	// Bedrock, STS resource
+	// There was an issue with a dependency due to a server issue. Retry your request.
 	ErrCodeBadGatewayException = "BadGatewayException"
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// This exception is thrown when there is a conflict performing an operation
+	// There was a conflict performing an operation. Resolve the conflict and retry
+	// your request.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeDependencyFailedException for service response error code
 	// "DependencyFailedException".
 	//
-	// This exception is thrown when a request fails due to dependency like Lambda,
-	// Bedrock, STS resource due to a customer fault (i.e. bad configuration)
+	// There was an issue with a dependency. Check the resource configurations and
+	// retry the request.
 	ErrCodeDependencyFailedException = "DependencyFailedException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// This exception is thrown if there was an unexpected error during processing
-	// of request
+	// An internal server error occurred. Retry your request.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// This exception is thrown when a resource referenced by the operation does
-	// not exist
+	// The specified resource ARN was not found. Check the ARN and try your request
+	// again.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// This exception is thrown when a request is made beyond the service quota
+	// The number of requests exceeds the service quota. Resubmit your request later.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// This exception is thrown when the number of requests exceeds the limit
+	// The number of requests exceeds the limit. Resubmit your request later.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// This exception is thrown when the request's input validation fails
+	// Input validation failed. Check your request parameters and retry the request.
 	ErrCodeValidationException = "ValidationException"
 )
 

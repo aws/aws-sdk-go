@@ -695,7 +695,8 @@
         "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "jobStateTimeLimitActions":{"shape":"JobStateTimeLimitActions"}
       }
     },
     "CreateJobQueueResponse":{
@@ -1409,12 +1410,40 @@
         "statusReason":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "jobStateTimeLimitActions":{"shape":"JobStateTimeLimitActions"}
       }
     },
     "JobQueueDetailList":{
       "type":"list",
       "member":{"shape":"JobQueueDetail"}
+    },
+    "JobStateTimeLimitAction":{
+      "type":"structure",
+      "required":[
+        "reason",
+        "state",
+        "maxTimeSeconds",
+        "action"
+      ],
+      "members":{
+        "reason":{"shape":"String"},
+        "state":{"shape":"JobStateTimeLimitActionsState"},
+        "maxTimeSeconds":{"shape":"Integer"},
+        "action":{"shape":"JobStateTimeLimitActionsAction"}
+      }
+    },
+    "JobStateTimeLimitActions":{
+      "type":"list",
+      "member":{"shape":"JobStateTimeLimitAction"}
+    },
+    "JobStateTimeLimitActionsAction":{
+      "type":"string",
+      "enum":["CANCEL"]
+    },
+    "JobStateTimeLimitActionsState":{
+      "type":"string",
+      "enum":["RUNNABLE"]
     },
     "JobStatus":{
       "type":"string",
@@ -2137,7 +2166,8 @@
         "state":{"shape":"JQState"},
         "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
-        "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"}
+        "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"},
+        "jobStateTimeLimitActions":{"shape":"JobStateTimeLimitActions"}
       }
     },
     "UpdateJobQueueResponse":{

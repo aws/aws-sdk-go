@@ -138,6 +138,7 @@
         {"shape":"TrailNotProvidedException"},
         {"shape":"TagsLimitExceededException"},
         {"shape":"InvalidParameterCombinationException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"KmsKeyNotFoundException"},
         {"shape":"KmsKeyDisabledException"},
         {"shape":"KmsException"},
@@ -295,6 +296,7 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"InvalidTrailNameException"},
+        {"shape":"CloudTrailARNInvalidException"},
         {"shape":"NoManagementAccountSLRExistsException"}
       ],
       "idempotent":true
@@ -556,7 +558,8 @@
       "errors":[
         {"shape":"InvalidNextTokenException"},
         {"shape":"OperationNotPermittedException"},
-        {"shape":"UnsupportedOperationException"}
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidParameterException"}
       ],
       "idempotent":true
     },

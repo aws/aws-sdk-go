@@ -3,7 +3,7 @@
 // Package bedrockagentruntime provides the client and types for making API
 // requests to Agents for Amazon Bedrock Runtime.
 //
-// # Amazon Bedrock Agent
+// Contains APIs related to model invocation and querying of knowledge bases.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26 for more information on this service.
 //

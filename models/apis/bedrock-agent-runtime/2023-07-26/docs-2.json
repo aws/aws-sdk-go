@@ -1,324 +1,324 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Bedrock Agent</p>",
+  "service": "<p>Contains APIs related to model invocation and querying of knowledge bases.</p>",
   "operations": {
-    "InvokeAgent": "<p>Invokes the specified Bedrock model to run inference using the input provided in the request body.</p>",
-    "Retrieve": "<p>Retrieve from knowledge base.</p>",
-    "RetrieveAndGenerate": "<p>RetrieveAndGenerate API</p>"
+    "InvokeAgent": "<p>Sends a prompt for the agent to process and respond to.</p> <note> <p>The CLI doesn't support <code>InvokeAgent</code>.</p> </note> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>Include attributes for the session or prompt in the <code>sessionState</code> object.</p> </li> </ul> <p>The response is returned in the <code>bytes</code> field of the <code>chunk</code> object.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>",
+    "Retrieve": "<p>Queries a knowledge base and retrieves information from it.</p>",
+    "RetrieveAndGenerate": "<p>Queries a knowledge base and generates responses based on the retrieved results. The response cites up to five sources but only selects the ones that are relevant to the query.</p> <note> <p>The <code>numberOfResults</code> field is currently unsupported for <code>RetrieveAndGenerate</code>. Don't include it in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_KnowledgeBaseVectorSearchConfiguration.html\">vectorSearchConfiguration</a> object.</p> </note>"
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>This exception is thrown when a request is denied per access permissions</p>",
+      "base": "<p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>",
       "refs": {
-        "ResponseStream$accessDeniedException": null
+        "ResponseStream$accessDeniedException": "<p>The request is denied because of missing access permissions. Check your permissions and retry your request.</p>"
       }
     },
     "ActionGroupInvocationInput": {
-      "base": "<p>input to lambda used in action group</p>",
+      "base": "<p>Contains information about the action group being invoked.</p>",
       "refs": {
-        "InvocationInput$actionGroupInvocationInput": null
+        "InvocationInput$actionGroupInvocationInput": "<p>Contains information about the action group to be invoked.</p>"
       }
     },
     "ActionGroupInvocationOutput": {
-      "base": "<p>output from lambda used in action group</p>",
+      "base": "<p>Contains the JSON-formatted string returned by the API invoked by the action group.</p>",
       "refs": {
-        "Observation$actionGroupInvocationOutput": null
+        "Observation$actionGroupInvocationOutput": "<p>Contains the JSON-formatted string returned by the API invoked by the action group.</p>"
       }
     },
     "ActionGroupName": {
-      "base": "<p>Agent Trace Action Group Name</p>",
+      "base": null,
       "refs": {
-        "ActionGroupInvocationInput$actionGroupName": null
+        "ActionGroupInvocationInput$actionGroupName": "<p>The name of the action group.</p>"
       }
     },
     "ActionGroupOutputString": {
-      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "base": null,
       "refs": {
-        "ActionGroupInvocationOutput$text": null
+        "ActionGroupInvocationOutput$text": "<p>The JSON-formatted string returned by the API invoked by the action group.</p>"
       }
     },
     "AgentAliasId": {
-      "base": "<p>Identifier of the agent alias.</p>",
+      "base": null,
       "refs": {
-        "InvokeAgentRequest$agentAliasId": "<p>Identifier for Agent Alias</p>",
-        "TracePart$agentAliasId": null
+        "InvokeAgentRequest$agentAliasId": "<p>The alias of the agent to use.</p>",
+        "TracePart$agentAliasId": "<p>The unique identifier of the alias of the agent.</p>"
       }
     },
     "AgentId": {
-      "base": "<p>Identifier of the agent.</p>",
+      "base": null,
       "refs": {
-        "InvokeAgentRequest$agentId": "<p>Identifier for Agent</p>",
-        "TracePart$agentId": null
+        "InvokeAgentRequest$agentId": "<p>The unique identifier of the agent to use.</p>",
+        "TracePart$agentId": "<p>The unique identifier of the agent.</p>"
       }
     },
     "ApiPath": {
-      "base": "<p>Agent Trace Action Group API path</p>",
+      "base": null,
       "refs": {
-        "ActionGroupInvocationInput$apiPath": null
+        "ActionGroupInvocationInput$apiPath": "<p>The path to the API to call, based off the action group.</p>"
       }
     },
     "Attribution": {
-      "base": "<p>Citations associated with final agent response</p>",
+      "base": "<p>Contains citations for a part of an agent response.</p>",
       "refs": {
-        "PayloadPart$attribution": null
+        "PayloadPart$attribution": "<p>Contains citations for a part of an agent response.</p>"
       }
     },
     "BadGatewayException": {
-      "base": "<p>This exception is thrown when a request fails due to dependency like Lambda, Bedrock, STS resource</p>",
+      "base": "<p>There was an issue with a dependency due to a server issue. Retry your request.</p>",
       "refs": {
-        "ResponseStream$badGatewayException": null
+        "ResponseStream$badGatewayException": "<p>There was an issue with a dependency due to a server issue. Retry your request.</p>"
       }
     },
     "BedrockModelArn": {
-      "base": "<p>Arn of a Bedrock model.</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseRetrieveAndGenerateConfiguration$modelArn": null
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$modelArn": "<p>The ARN of the foundation model used to generate a response.</p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
-        "InvokeAgentRequest$endSession": "<p>End current session</p>",
-        "InvokeAgentRequest$enableTrace": "<p>Enable agent trace events for improved debugging</p>",
-        "PreProcessingParsedResponse$isValid": "<p>Boolean value</p>"
+        "InvokeAgentRequest$enableTrace": "<p>Specifies whether to turn on the trace or not to track the agent's reasoning process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p>",
+        "InvokeAgentRequest$endSession": "<p>Specifies whether to end the session with the agent or not.</p>",
+        "PreProcessingParsedResponse$isValid": "<p>Whether the user input is valid or not. If <code>false</code>, the agent doesn't proceed to orchestration.</p>"
       }
     },
     "Citation": {
-      "base": "<p>Citation associated with the agent response</p>",
+      "base": "<p>An object containing a segment of the generated response that is based on a source in the knowledge base, alongside information about the source.</p>",
       "refs": {
         "Citations$member": null
       }
     },
     "Citations": {
-      "base": "<p>List of citations</p>",
+      "base": null,
       "refs": {
-        "Attribution$citations": null,
-        "RetrieveAndGenerateResponse$citations": null
+        "Attribution$citations": "<p>A list of citations and related information for a part of an agent response.</p>",
+        "RetrieveAndGenerateResponse$citations": "<p>A list of segments of the generated response that are based on sources in the knowledge base, alongside information about the sources.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p>This exception is thrown when there is a conflict performing an operation</p>",
+      "base": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>",
       "refs": {
-        "ResponseStream$conflictException": null
+        "ResponseStream$conflictException": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>"
       }
     },
     "ContentMap": {
-      "base": "<p>Content type paramter map</p>",
+      "base": null,
       "refs": {
-        "RequestBody$content": null
+        "RequestBody$content": "<p>The content in the request body.</p>"
       }
     },
     "CreationMode": {
-      "base": "<p>indicates if agent uses default prompt or overriden prompt</p>",
+      "base": null,
       "refs": {
-        "ModelInvocationInput$promptCreationMode": null,
-        "ModelInvocationInput$parserMode": null
+        "ModelInvocationInput$parserMode": "<p>Specifies whether to override the default parser Lambda function when parsing the raw foundation model output in the part of the agent sequence defined by the <code>promptType</code>.</p>",
+        "ModelInvocationInput$promptCreationMode": "<p>Specifies whether the default prompt template was <code>OVERRIDDEN</code>. If it was, the <code>basePromptTemplate</code> that was set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object when the agent was created or updated is used instead.</p>"
       }
     },
     "DependencyFailedException": {
-      "base": "<p>This exception is thrown when a request fails due to dependency like Lambda, Bedrock, STS resource due to a customer fault (i.e. bad configuration)</p>",
+      "base": "<p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>",
       "refs": {
-        "ResponseStream$dependencyFailedException": null
+        "ResponseStream$dependencyFailedException": "<p>There was an issue with a dependency. Check the resource configurations and retry the request.</p>"
       }
     },
     "Double": {
       "base": null,
       "refs": {
-        "KnowledgeBaseRetrievalResult$score": "<p>The relevance score of a result.</p>"
+        "KnowledgeBaseRetrievalResult$score": "<p>The level of relevance of the result to the query.</p>"
       }
     },
     "FailureReasonString": {
-      "base": "<p>Agent Trace Failed Reason String</p>",
+      "base": null,
       "refs": {
-        "FailureTrace$failureReason": null
+        "FailureTrace$failureReason": "<p>The reason the interaction failed.</p>"
       }
     },
     "FailureTrace": {
-      "base": "<p>Trace Part which is emitted when agent trace could not be generated</p>",
+      "base": "<p>Contains information about the failure of the interaction.</p>",
       "refs": {
-        "Trace$failureTrace": null
+        "Trace$failureTrace": "<p>Contains information about the failure of the interaction.</p>"
       }
     },
     "FinalResponse": {
-      "base": "<p>Agent finish output</p>",
+      "base": "<p>Contains details about the response to the user.</p>",
       "refs": {
-        "Observation$finalResponse": null
+        "Observation$finalResponse": "<p>Contains details about the response to the user.</p>"
       }
     },
     "FinalResponseString": {
-      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "base": null,
       "refs": {
-        "FinalResponse$text": null
+        "FinalResponse$text": "<p>The text in the response to the user.</p>"
       }
     },
     "GeneratedResponsePart": {
-      "base": "<p>Generate response part</p>",
+      "base": "<p>Contains metadata about a part of the generated response that is accompanied by a citation.</p>",
       "refs": {
-        "Citation$generatedResponsePart": null
+        "Citation$generatedResponsePart": "<p>Contains the generated response and metadata </p>"
       }
     },
     "InferenceConfiguration": {
-      "base": "<p>Configurations for controlling the inference response of an InvokeAgent API call</p>",
+      "base": "<p>Specifications about the inference parameters that were provided alongside the prompt. These are specified in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>",
       "refs": {
-        "ModelInvocationInput$inferenceConfiguration": null
+        "ModelInvocationInput$inferenceConfiguration": "<p>Specifications about the inference parameters that were provided alongside the prompt. These are specified in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>"
       }
     },
     "InputText": {
-      "base": "<p>Model text input</p>",
+      "base": null,
       "refs": {
-        "InvokeAgentRequest$inputText": "<p>Input data in the format specified in the Content-Type request header.</p>"
+        "InvokeAgentRequest$inputText": "<p>The prompt text to send the agent.</p>"
       }
     },
     "InternalServerException": {
-      "base": "<p>This exception is thrown if there was an unexpected error during processing of request</p>",
+      "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
-        "ResponseStream$internalServerException": null
+        "ResponseStream$internalServerException": "<p>An internal server error occurred. Retry your request.</p>"
       }
     },
     "InvocationInput": {
-      "base": "<p>Trace Part which contains input details for action group or knowledge base</p>",
+      "base": "<p>Contains information pertaining to the action group or knowledge base that is being invoked.</p>",
       "refs": {
-        "OrchestrationTrace$invocationInput": null
+        "OrchestrationTrace$invocationInput": "<p>Contains information pertaining to the action group or knowledge base that is being invoked.</p>"
       }
     },
     "InvocationType": {
-      "base": "<p>types of invocations</p>",
+      "base": null,
       "refs": {
-        "InvocationInput$invocationType": null
+        "InvocationInput$invocationType": "<p>Specifies whether the agent is invoking an action group or a knowledge base.</p>"
       }
     },
     "InvokeAgentRequest": {
-      "base": "<p>InvokeAgent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "InvokeAgentResponse": {
-      "base": "<p>InvokeAgent Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "KmsKeyArn": {
-      "base": "<p>A KMS key ARN</p>",
+      "base": null,
       "refs": {
-        "RetrieveAndGenerateSessionConfiguration$kmsKeyArn": "<p>The KMS key arn to encrypt the customer data of the session.</p>"
+        "RetrieveAndGenerateSessionConfiguration$kmsKeyArn": "<p>The ARN of the KMS key encrypting the session.</p>"
       }
     },
     "KnowledgeBaseId": {
-      "base": "<p>Identifier of the KnowledgeBase</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseRetrieveAndGenerateConfiguration$knowledgeBaseId": null,
-        "RetrieveRequest$knowledgeBaseId": null
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$knowledgeBaseId": "<p>The unique identifier of the knowledge base that is queried and the foundation model used for generation.</p>",
+        "RetrieveRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to query.</p>"
       }
     },
     "KnowledgeBaseLookupInput": {
-      "base": "<p>Input to lambda used in action group</p>",
+      "base": "<p>Contains details about the knowledge base to look up and the query to be made.</p>",
       "refs": {
-        "InvocationInput$knowledgeBaseLookupInput": null
+        "InvocationInput$knowledgeBaseLookupInput": "<p>Contains details about the knowledge base to look up and the query to be made.</p>"
       }
     },
     "KnowledgeBaseLookupInputString": {
-      "base": "<p>Agent Trace Action Group Lambda Invocation Output String</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseLookupInput$text": null
+        "KnowledgeBaseLookupInput$text": "<p>The query made to the knowledge base.</p>"
       }
     },
     "KnowledgeBaseLookupOutput": {
-      "base": "<p>Input to lambda used in action group</p>",
+      "base": "<p>Contains details about the results from looking up the knowledge base.</p>",
       "refs": {
-        "Observation$knowledgeBaseLookupOutput": null
+        "Observation$knowledgeBaseLookupOutput": "<p>Contains details about the results from looking up the knowledge base.</p>"
       }
     },
     "KnowledgeBaseQuery": {
-      "base": "<p>Knowledge base input query.</p>",
+      "base": "<p>Contains the query made to the knowledge base.</p>",
       "refs": {
-        "RetrieveRequest$retrievalQuery": null
+        "RetrieveRequest$retrievalQuery": "<p>The query to send the knowledge base.</p>"
       }
     },
     "KnowledgeBaseQueryTextString": {
       "base": null,
       "refs": {
-        "KnowledgeBaseQuery$text": "<p>Knowledge base input query in text</p>"
+        "KnowledgeBaseQuery$text": "<p>The text of the query made to the knowledge base.</p>"
       }
     },
     "KnowledgeBaseRetrievalConfiguration": {
-      "base": "<p>Search parameters for retrieving from knowledge base.</p>",
+      "base": "<p>Contains details about how the results should be returned.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request body</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request body</a> </p> </li> </ul>",
       "refs": {
-        "KnowledgeBaseRetrieveAndGenerateConfiguration$retrievalConfiguration": null,
-        "RetrieveRequest$retrievalConfiguration": null
+        "KnowledgeBaseRetrieveAndGenerateConfiguration$retrievalConfiguration": "<p>Contains configurations for how to retrieve and return the knowledge base query.</p>",
+        "RetrieveRequest$retrievalConfiguration": "<p>Contains details about how the results should be returned.</p>"
       }
     },
     "KnowledgeBaseRetrievalResult": {
-      "base": "<p>Result item returned from a knowledge base retrieval.</p>",
+      "base": "<p>Details about a result from querying the knowledge base.</p>",
       "refs": {
         "KnowledgeBaseRetrievalResults$member": null
       }
     },
     "KnowledgeBaseRetrievalResults": {
-      "base": "<p>List of knowledge base retrieval results</p>",
+      "base": null,
       "refs": {
-        "RetrieveResponse$retrievalResults": null
+        "RetrieveResponse$retrievalResults": "<p>A list of results from querying the knowledge base.</p>"
       }
     },
     "KnowledgeBaseRetrieveAndGenerateConfiguration": {
-      "base": "<p>Configurations for retrieval and generation for knowledge base.</p>",
+      "base": "<p>Contains details about the resource being queried.</p>",
       "refs": {
-        "RetrieveAndGenerateConfiguration$knowledgeBaseConfiguration": null
+        "RetrieveAndGenerateConfiguration$knowledgeBaseConfiguration": "<p>Contains details about the resource being queried.</p>"
       }
     },
     "KnowledgeBaseVectorSearchConfiguration": {
-      "base": "<p>Knowledge base vector search configuration</p>",
+      "base": "<p>Configurations for how to carry out the search.</p>",
       "refs": {
-        "KnowledgeBaseRetrievalConfiguration$vectorSearchConfiguration": null
+        "KnowledgeBaseRetrievalConfiguration$vectorSearchConfiguration": "<p>Contains details about how the results from the vector search should be returned.</p>"
       }
     },
     "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger": {
       "base": null,
       "refs": {
-        "KnowledgeBaseVectorSearchConfiguration$numberOfResults": "<p>Top-K results to retrieve from knowledge base.</p>"
+        "KnowledgeBaseVectorSearchConfiguration$numberOfResults": "<p>The number of results to return.</p> <note> <p>The <code>numberOfResults</code> field is currently unsupported for <code>RetrieveAndGenerate</code>. Don't include it in this field if you are sending a <code>RetrieveAndGenerate</code> request.</p> </note>"
       }
     },
     "LambdaArn": {
-      "base": "<p>ARN of a Lambda.</p>",
+      "base": null,
       "refs": {
-        "ModelInvocationInput$overrideLambda": null
+        "ModelInvocationInput$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence.</p>"
       }
     },
     "MaximumLength": {
-      "base": "<p>Maximum length of output</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$maximumLength": null
+        "InferenceConfiguration$maximumLength": "<p>The maximum number of tokens allowed in the generated response.</p>"
       }
     },
     "MimeType": {
-      "base": "<p>Content type of the request</p>",
+      "base": null,
       "refs": {
-        "InvokeAgentResponse$contentType": "<p>streaming response mimetype of the model</p>"
+        "InvokeAgentResponse$contentType": "<p>The MIME type of the input data in the request. The default value is <code>application/json</code>.</p>"
       }
     },
     "ModelInvocationInput": {
-      "base": "<p>Trace Part which contains information used to call Invoke Model</p>",
+      "base": "<p>The input for the pre-processing step.</p> <ul> <li> <p>The <code>type</code> matches the agent step.</p> </li> <li> <p>The <code>text</code> contains the prompt.</p> </li> <li> <p>The <code>inferenceConfiguration</code>, <code>parserMode</code>, and <code>overrideLambda</code> values are set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated.</p> </li> </ul>",
       "refs": {
-        "OrchestrationTrace$modelInvocationInput": null,
-        "PostProcessingTrace$modelInvocationInput": null,
-        "PreProcessingTrace$modelInvocationInput": null
+        "OrchestrationTrace$modelInvocationInput": "<p>The input for the orchestration step.</p> <ul> <li> <p>The <code>type</code> is <code>ORCHESTRATION</code>.</p> </li> <li> <p>The <code>text</code> contains the prompt.</p> </li> <li> <p>The <code>inferenceConfiguration</code>, <code>parserMode</code>, and <code>overrideLambda</code> values are set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated.</p> </li> </ul>",
+        "PostProcessingTrace$modelInvocationInput": "<p>The input for the post-processing step.</p> <ul> <li> <p>The <code>type</code> is <code>POST_PROCESSING</code>.</p> </li> <li> <p>The <code>text</code> contains the prompt.</p> </li> <li> <p>The <code>inferenceConfiguration</code>, <code>parserMode</code>, and <code>overrideLambda</code> values are set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated.</p> </li> </ul>",
+        "PreProcessingTrace$modelInvocationInput": "<p>The input for the pre-processing step.</p> <ul> <li> <p>The <code>type</code> is <code>PRE_PROCESSING</code>.</p> </li> <li> <p>The <code>text</code> contains the prompt.</p> </li> <li> <p>The <code>inferenceConfiguration</code>, <code>parserMode</code>, and <code>overrideLambda</code> values are set in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> object that was set when the agent was created or updated.</p> </li> </ul>"
       }
     },
     "NextToken": {
-      "base": "<p>Opaque continuation token of previous paginated response.</p>",
+      "base": null,
       "refs": {
-        "RetrieveRequest$nextToken": null,
-        "RetrieveResponse$nextToken": null
+        "RetrieveRequest$nextToken": "<p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>",
+        "RetrieveResponse$nextToken": "<p>If there are more results than can fit in the response, the response returns a <code>nextToken</code>. Use this token in the <code>nextToken</code> field of another request to retrieve the next batch of results.</p>"
       }
     },
     "NonBlankString": {
-      "base": "<p>Non Blank String</p>",
+      "base": null,
       "refs": {
         "AccessDeniedException$message": null,
         "BadGatewayException$message": null,
-        "BadGatewayException$resourceName": null,
+        "BadGatewayException$resourceName": "<p>The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.</p>",
         "ConflictException$message": null,
         "DependencyFailedException$message": null,
-        "DependencyFailedException$resourceName": null,
+        "DependencyFailedException$resourceName": "<p>The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.</p>",
         "InternalServerException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
@@ -327,187 +327,187 @@
       }
     },
     "Observation": {
-      "base": "<p>Trace Part which contains output details for action group or knowledge base or final response</p>",
+      "base": "<p>Contains the result or output of an action group or knowledge base, or the response to the user.</p>",
       "refs": {
-        "OrchestrationTrace$observation": null
+        "OrchestrationTrace$observation": "<p>Details about the observation (the output of the action group Lambda or knowledge base) made by the agent.</p>"
       }
     },
     "OrchestrationTrace": {
-      "base": "<p>Trace contains intermidate response during orchestration</p>",
+      "base": "<p>Details about the orchestration step, in which the agent determines the order in which actions are executed and which knowledge bases are retrieved.</p>",
       "refs": {
-        "Trace$orchestrationTrace": null
+        "Trace$orchestrationTrace": "<p>Details about the orchestration step, in which the agent determines the order in which actions are executed and which knowledge bases are retrieved.</p>"
       }
     },
     "OutputString": {
-      "base": "<p>Agent Trace Output String</p>",
+      "base": null,
       "refs": {
-        "PostProcessingParsedResponse$text": null
+        "PostProcessingParsedResponse$text": "<p>The text returned by the parser.</p>"
       }
     },
     "Parameter": {
-      "base": "<p>parameters included in action group invocation</p>",
+      "base": "<p>A parameter in the Lambda input event.</p>",
       "refs": {
         "Parameters$member": null
       }
     },
     "Parameters": {
-      "base": "<p>list of parameters included in action group invocation</p>",
+      "base": null,
       "refs": {
-        "ActionGroupInvocationInput$parameters": null,
+        "ActionGroupInvocationInput$parameters": "<p>The parameters in the Lambda input event.</p>",
         "ContentMap$value": null
       }
     },
     "PartBody": {
-      "base": "<p>PartBody of the payload in bytes</p>",
+      "base": null,
       "refs": {
-        "PayloadPart$bytes": null
+        "PayloadPart$bytes": "<p>A part of the agent response in bytes.</p>"
       }
     },
     "PayloadPart": {
-      "base": "<p>Base 64 endoded byte response</p>",
+      "base": "<p>Contains a part of an agent response and citations for it.</p>",
       "refs": {
-        "ResponseStream$chunk": null
+        "ResponseStream$chunk": "<p>Contains a part of an agent response and citations for it.</p>"
       }
     },
     "PostProcessingModelInvocationOutput": {
-      "base": "<p>Trace Part which contains information related to postprocessing</p>",
+      "base": "<p>The foundation model output from the post-processing step.</p>",
       "refs": {
-        "PostProcessingTrace$modelInvocationOutput": null
+        "PostProcessingTrace$modelInvocationOutput": "<p>The foundation model output from the post-processing step.</p>"
       }
     },
     "PostProcessingParsedResponse": {
-      "base": "<p>Trace Part which contains information if preprocessing was successful</p>",
+      "base": "<p>Details about the response from the Lambda parsing of the output from the post-processing step.</p>",
       "refs": {
-        "PostProcessingModelInvocationOutput$parsedResponse": null
+        "PostProcessingModelInvocationOutput$parsedResponse": "<p>Details about the response from the Lambda parsing of the output of the post-processing step.</p>"
       }
     },
     "PostProcessingTrace": {
-      "base": "<p>Trace Part which contains information related to post processing step</p>",
+      "base": "<p>Details about the post-processing step, in which the agent shapes the response.</p>",
       "refs": {
-        "Trace$postProcessingTrace": null
+        "Trace$postProcessingTrace": "<p>Details about the post-processing step, in which the agent shapes the response..</p>"
       }
     },
     "PreProcessingModelInvocationOutput": {
-      "base": "<p>Trace Part which contains information related to preprocessing</p>",
+      "base": "<p>The foundation model output from the pre-processing step.</p>",
       "refs": {
-        "PreProcessingTrace$modelInvocationOutput": null
+        "PreProcessingTrace$modelInvocationOutput": "<p>The foundation model output from the pre-processing step.</p>"
       }
     },
     "PreProcessingParsedResponse": {
-      "base": "<p>Trace Part which contains information if preprocessing was successful</p>",
+      "base": "<p>Details about the response from the Lambda parsing of the output from the pre-processing step.</p>",
       "refs": {
-        "PreProcessingModelInvocationOutput$parsedResponse": null
+        "PreProcessingModelInvocationOutput$parsedResponse": "<p>Details about the response from the Lambda parsing of the output of the pre-processing step.</p>"
       }
     },
     "PreProcessingTrace": {
-      "base": "<p>Trace Part which contains information related to preprocessing step</p>",
+      "base": "<p>Details about the pre-processing step, in which the agent contextualizes and categorizes user inputs.</p>",
       "refs": {
-        "Trace$preProcessingTrace": null
+        "Trace$preProcessingTrace": "<p>Details about the pre-processing step, in which the agent contextualizes and categorizes user inputs.</p>"
       }
     },
     "PromptSessionAttributesMap": {
-      "base": "<p>Session attributes that go to the prompt</p>",
+      "base": null,
       "refs": {
-        "SessionState$promptSessionAttributes": "<p>Prompt Session Attributes</p>"
+        "SessionState$promptSessionAttributes": "<p>Contains attributes that persist across a prompt and the values of those attributes. These attributes replace the $prompt_session_attributes$ placeholder variable in the orchestration prompt template. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html\">Prompt template placeholder variables</a>.</p>"
       }
     },
     "PromptText": {
-      "base": "<p>Prompt Message</p>",
+      "base": null,
       "refs": {
-        "ModelInvocationInput$text": null
+        "ModelInvocationInput$text": "<p>The text that prompted the agent at this step.</p>"
       }
     },
     "PromptType": {
-      "base": "<p>types of prompts</p>",
+      "base": null,
       "refs": {
-        "ModelInvocationInput$type": null
+        "ModelInvocationInput$type": "<p>The step in the agent sequence.</p>"
       }
     },
     "Rationale": {
-      "base": "<p>Trace Part which contains information related to reasoning</p>",
+      "base": "<p>Contains the reasoning, based on the input, that the agent uses to justify carrying out an action group or getting information from a knowledge base.</p>",
       "refs": {
-        "OrchestrationTrace$rationale": null
+        "OrchestrationTrace$rationale": "<p>Details about the reasoning, based on the input, that the agent uses to justify carrying out an action group or getting information from a knowledge base.</p>"
       }
     },
     "RationaleString": {
-      "base": "<p>Agent Trace Rationale String</p>",
+      "base": null,
       "refs": {
-        "PreProcessingParsedResponse$rationale": null,
-        "Rationale$text": null
+        "PreProcessingParsedResponse$rationale": "<p>The text returned by the parsing of the pre-processing step, explaining the steps that the agent plans to take in orchestration, if the user input is valid.</p>",
+        "Rationale$text": "<p>The reasoning or thought process of the agent, based on the input.</p>"
       }
     },
     "RepromptResponse": {
-      "base": "<p>Observation information if there were reprompts</p>",
+      "base": "<p>Contains details about the agent's response to reprompt the input.</p>",
       "refs": {
-        "Observation$repromptResponse": null
+        "Observation$repromptResponse": "<p>Contains details about the response to reprompt the input.</p>"
       }
     },
     "RequestBody": {
-      "base": "<p>Request Body Content Map</p>",
+      "base": "<p>The parameters in the request body for the Lambda input event.</p>",
       "refs": {
-        "ActionGroupInvocationInput$requestBody": null
+        "ActionGroupInvocationInput$requestBody": "<p>The parameters in the request body for the Lambda input event.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>This exception is thrown when a resource referenced by the operation does not exist</p>",
+      "base": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>",
       "refs": {
-        "ResponseStream$resourceNotFoundException": null
+        "ResponseStream$resourceNotFoundException": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>"
       }
     },
     "ResponseStream": {
-      "base": "<p>Response body of is a stream</p>",
+      "base": "<p>The response from invoking the agent and associated citations and trace information.</p>",
       "refs": {
-        "InvokeAgentResponse$completion": "<p>Inference response from the model in the format specified in the Content-Type response header.</p>"
+        "InvokeAgentResponse$completion": "<p>The agent's response to the user prompt.</p>"
       }
     },
     "RetrievalResultContent": {
-      "base": "<p>Content of a retrieval result.</p>",
+      "base": "<p>Contains the cited text from the data source.</p>",
       "refs": {
-        "KnowledgeBaseRetrievalResult$content": null,
-        "RetrievedReference$content": null
+        "KnowledgeBaseRetrievalResult$content": "<p>Contains a chunk of text from a data source in the knowledge base.</p>",
+        "RetrievedReference$content": "<p>Contains the cited text from the data source.</p>"
       }
     },
     "RetrievalResultLocation": {
-      "base": "<p>The source location of a retrieval result.</p>",
+      "base": "<p>Contains information about the location of the data source.</p>",
       "refs": {
-        "KnowledgeBaseRetrievalResult$location": null,
-        "RetrievedReference$location": null
+        "KnowledgeBaseRetrievalResult$location": "<p>Contains information about the location of the data source.</p>",
+        "RetrievedReference$location": "<p>Contains information about the location of the data source.</p>"
       }
     },
     "RetrievalResultLocationType": {
-      "base": "<p>The location type of a retrieval result.</p>",
+      "base": null,
       "refs": {
-        "RetrievalResultLocation$type": null
+        "RetrievalResultLocation$type": "<p>The type of the location of the data source.</p>"
       }
     },
     "RetrievalResultS3Location": {
-      "base": "<p>The S3 location of a retrieval result.</p>",
+      "base": "<p>Contains the S3 location of the data source.</p>",
       "refs": {
-        "RetrievalResultLocation$s3Location": null
+        "RetrievalResultLocation$s3Location": "<p>Contains the S3 location of the data source.</p>"
       }
     },
     "RetrieveAndGenerateConfiguration": {
-      "base": "<p>Configures the retrieval and generation for the session.</p>",
+      "base": "<p>Contains details about the resource being queried.</p>",
       "refs": {
-        "RetrieveAndGenerateRequest$retrieveAndGenerateConfiguration": null
+        "RetrieveAndGenerateRequest$retrieveAndGenerateConfiguration": "<p>Contains details about the resource being queried and the foundation model used for generation.</p>"
       }
     },
     "RetrieveAndGenerateInput": {
-      "base": "<p>Customer input of the turn</p>",
+      "base": "<p>Contains the query made to the knowledge base.</p>",
       "refs": {
-        "RetrieveAndGenerateRequest$input": null
+        "RetrieveAndGenerateRequest$input": "<p>Contains the query made to the knowledge base.</p>"
       }
     },
     "RetrieveAndGenerateInputTextString": {
       "base": null,
       "refs": {
-        "RetrieveAndGenerateInput$text": "<p>Customer input of the turn in text</p>"
+        "RetrieveAndGenerateInput$text": "<p>The query made to the knowledge base.</p>"
       }
     },
     "RetrieveAndGenerateOutput": {
-      "base": "<p>Service response of the turn</p>",
+      "base": "<p>Contains the response generated from querying the knowledge base.</p>",
       "refs": {
-        "RetrieveAndGenerateResponse$output": null
+        "RetrieveAndGenerateResponse$output": "<p>Contains the response generated from querying the knowledge base.</p>"
       }
     },
     "RetrieveAndGenerateRequest": {
@@ -521,15 +521,15 @@
       }
     },
     "RetrieveAndGenerateSessionConfiguration": {
-      "base": "<p>Configures common parameters of the session.</p>",
+      "base": "<p>Contains configuration about the session with the knowledge base.</p>",
       "refs": {
-        "RetrieveAndGenerateRequest$sessionConfiguration": null
+        "RetrieveAndGenerateRequest$sessionConfiguration": "<p>Contains details about the session with the knowledge base.</p>"
       }
     },
     "RetrieveAndGenerateType": {
-      "base": "<p>The type of RetrieveAndGenerate.</p>",
+      "base": null,
       "refs": {
-        "RetrieveAndGenerateConfiguration$type": null
+        "RetrieveAndGenerateConfiguration$type": "<p>The type of resource that is queried by the request.</p>"
       }
     },
     "RetrieveRequest": {
@@ -543,177 +543,177 @@
       }
     },
     "RetrievedReference": {
-      "base": "<p>Retrieved reference</p>",
+      "base": "<p>Contains metadata about a sources cited for the generated response.</p>",
       "refs": {
         "RetrievedReferences$member": null
       }
     },
     "RetrievedReferences": {
-      "base": "<p>list of retrieved references</p>",
+      "base": null,
       "refs": {
-        "Citation$retrievedReferences": null,
-        "KnowledgeBaseLookupOutput$retrievedReferences": null
+        "Citation$retrievedReferences": "<p>Contains metadata about the sources cited for the generated response.</p>",
+        "KnowledgeBaseLookupOutput$retrievedReferences": "<p>Contains metadata about the sources cited for the generated response.</p>"
       }
     },
     "SearchType": {
-      "base": "<p>Query type to be performed on data store.</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseVectorSearchConfiguration$overrideSearchType": "<p>Override the type of query to be performed on data store</p>"
+        "KnowledgeBaseVectorSearchConfiguration$overrideSearchType": "<p>By default, Amazon Bedrock decides a search strategy for you. If you're using an Amazon OpenSearch Serverless vector store that contains a filterable text field, you can specify whether to query the knowledge base with a <code>HYBRID</code> search using both vector embeddings and raw text, or <code>SEMANTIC</code> search using only vector embeddings. For other vector store configurations, only <code>SEMANTIC</code> search is available. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-test.html\">Test a knowledge base</a>.</p>"
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>This exception is thrown when a request is made beyond the service quota</p>",
+      "base": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>",
       "refs": {
-        "ResponseStream$serviceQuotaExceededException": null
+        "ResponseStream$serviceQuotaExceededException": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>"
       }
     },
     "SessionAttributesMap": {
-      "base": "<p>Session attributes are pass through attributes passed to the action group</p>",
+      "base": null,
       "refs": {
-        "SessionState$sessionAttributes": "<p>Session Attributes</p>"
+        "SessionState$sessionAttributes": "<p>Contains attributes that persist across a session and the values of those attributes.</p>"
       }
     },
     "SessionId": {
-      "base": "<p>Identifier of the session.</p>",
+      "base": null,
       "refs": {
-        "InvokeAgentRequest$sessionId": "<p>Identifier used for the current session</p>",
-        "InvokeAgentResponse$sessionId": "<p>streaming response mimetype of the model</p>",
-        "RetrieveAndGenerateRequest$sessionId": null,
-        "RetrieveAndGenerateResponse$sessionId": null,
-        "TracePart$sessionId": null
+        "InvokeAgentRequest$sessionId": "<p>The unique identifier of the session. Use the same value across requests to continue the same conversation.</p>",
+        "InvokeAgentResponse$sessionId": "<p>The unique identifier of the session with the agent.</p>",
+        "RetrieveAndGenerateRequest$sessionId": "<p>The unique identifier of the session. Reuse the same value to continue the same session with the knowledge base.</p>",
+        "RetrieveAndGenerateResponse$sessionId": "<p>The unique identifier of the session. Reuse the same value to continue the same session with the knowledge base.</p>",
+        "TracePart$sessionId": "<p>The unique identifier of the session with the agent.</p>"
       }
     },
     "SessionState": {
-      "base": "<p>Session state provided</p>",
+      "base": "<p>Contains parameters that specify various attributes that persist across a session or prompt. You can define session state attributes as key-value pairs when writing a <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-lambda.html\">Lambda function</a> for an action group or pass them when making an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request. Use session state attributes to control and provide conversational context for your agent and to help customize your agent's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/sessionstate.html\">Session context</a>.</p>",
       "refs": {
-        "InvokeAgentRequest$sessionState": "<p>Session state passed by customer. Base64 encoded json string representation of SessionState.</p>"
+        "InvokeAgentRequest$sessionState": "<p>Contains parameters that specify various attributes of the session.</p>"
       }
     },
     "Source": {
-      "base": "<p>Parsing error source</p>",
+      "base": null,
       "refs": {
-        "RepromptResponse$source": null
+        "RepromptResponse$source": "<p>Specifies what output is prompting the agent to reprompt the input.</p>"
       }
     },
     "Span": {
-      "base": "<p>Span of text</p>",
+      "base": "<p>Contains information about where the text with a citation begins and ends in the generated output.</p>",
       "refs": {
-        "TextResponsePart$span": null
+        "TextResponsePart$span": "<p>Contains information about where the text with a citation begins and ends in the generated output.</p>"
       }
     },
     "SpanEndInteger": {
       "base": null,
       "refs": {
-        "Span$end": "<p>End of span</p>"
+        "Span$end": "<p>Where the text with a citation ends in the generated output.</p>"
       }
     },
     "SpanStartInteger": {
       "base": null,
       "refs": {
-        "Span$start": "<p>Start of span</p>"
+        "Span$start": "<p>Where the text with a citation starts in the generated output.</p>"
       }
     },
     "StopSequences": {
-      "base": "<p>List of stop sequences</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$stopSequences": null
+        "InferenceConfiguration$stopSequences": "<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.</p>"
       }
     },
     "String": {
       "base": null,
       "refs": {
         "ContentMap$key": null,
-        "Parameter$name": "<p>Name of parameter</p>",
-        "Parameter$type": "<p>Type of parameter</p>",
-        "Parameter$value": "<p>Value of parameter</p>",
+        "Parameter$name": "<p>The name of the parameter.</p>",
+        "Parameter$type": "<p>The type of the parameter.</p>",
+        "Parameter$value": "<p>The value of the parameter.</p>",
         "PromptSessionAttributesMap$key": null,
         "PromptSessionAttributesMap$value": null,
-        "RepromptResponse$text": "<p>Reprompt response text</p>",
-        "RetrievalResultContent$text": "<p>Content of a retrieval result in text</p>",
-        "RetrievalResultS3Location$uri": "<p>URI of S3 location</p>",
-        "RetrieveAndGenerateOutput$text": "<p>Service response of the turn in text</p>",
+        "RepromptResponse$text": "<p>The text reprompting the input.</p>",
+        "RetrievalResultContent$text": "<p>The cited text from the data source.</p>",
+        "RetrievalResultS3Location$uri": "<p>The S3 URI of the data source.</p>",
+        "RetrieveAndGenerateOutput$text": "<p>The response generated from querying the knowledge base.</p>",
         "SessionAttributesMap$key": null,
         "SessionAttributesMap$value": null,
         "StopSequences$member": null,
-        "TextResponsePart$text": "<p>Response part in text</p>"
+        "TextResponsePart$text": "<p>The part of the generated text that contains a citation.</p>"
       }
     },
     "Temperature": {
-      "base": "<p>Controls randomness, higher values increase diversity</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$temperature": null
+        "InferenceConfiguration$temperature": "<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p>"
       }
     },
     "TextResponsePart": {
-      "base": "<p>Text response part</p>",
+      "base": "<p>Contains the part of the generated text that contains a citation, alongside where it begins and ends.</p>",
       "refs": {
-        "GeneratedResponsePart$textResponsePart": null
+        "GeneratedResponsePart$textResponsePart": "<p>Contains metadata about a textual part of the generated response that is accompanied by a citation.</p>"
       }
     },
     "ThrottlingException": {
-      "base": "<p>This exception is thrown when the number of requests exceeds the limit</p>",
+      "base": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
       "refs": {
-        "ResponseStream$throttlingException": null
+        "ResponseStream$throttlingException": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>"
       }
     },
     "TopK": {
-      "base": "<p>Sample from the k most likely next tokens</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$topK": null
+        "InferenceConfiguration$topK": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>topK</code> is the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topK</code> to 50, the model selects the next token from among the top 50 most likely choices.</p>"
       }
     },
     "TopP": {
-      "base": "<p>Cumulative probability cutoff for token selection</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$topP": null
+        "InferenceConfiguration$topP": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>"
       }
     },
     "Trace": {
-      "base": "<p>Trace contains intermidate response for customer</p>",
+      "base": "<p>Contains one part of the agent's reasoning process and results from calling API actions and querying knowledge bases. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement\">Trace enablement</a>.</p>",
       "refs": {
-        "TracePart$trace": null
+        "TracePart$trace": "<p>Contains one part of the agent's reasoning process and results from calling API actions and querying knowledge bases. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement\">Trace enablement</a>.</p>"
       }
     },
     "TraceId": {
-      "base": "<p>Identifier for trace</p>",
+      "base": null,
       "refs": {
-        "FailureTrace$traceId": null,
-        "InvocationInput$traceId": null,
-        "ModelInvocationInput$traceId": null,
-        "Observation$traceId": null,
-        "PostProcessingModelInvocationOutput$traceId": null,
-        "PreProcessingModelInvocationOutput$traceId": null,
-        "Rationale$traceId": null
+        "FailureTrace$traceId": "<p>The unique identifier of the trace.</p>",
+        "InvocationInput$traceId": "<p>The unique identifier of the trace.</p>",
+        "ModelInvocationInput$traceId": "<p>The unique identifier of the trace.</p>",
+        "Observation$traceId": "<p>The unique identifier of the trace.</p>",
+        "PostProcessingModelInvocationOutput$traceId": "<p>The unique identifier of the trace.</p>",
+        "PreProcessingModelInvocationOutput$traceId": "<p>The unique identifier of the trace.</p>",
+        "Rationale$traceId": "<p>The unique identifier of the trace step.</p>"
       }
     },
     "TraceKnowledgeBaseId": {
-      "base": "<p>Agent Trace Action Group Knowledge Base Id</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseLookupInput$knowledgeBaseId": null
+        "KnowledgeBaseLookupInput$knowledgeBaseId": "<p>The unique identifier of the knowledge base to look up.</p>"
       }
     },
     "TracePart": {
-      "base": "<p>Trace Part which contains intermidate response for customer</p>",
+      "base": "<p>Contains information about the agent and session, alongside the agent's reasoning process and results from calling API actions and querying knowledge bases and metadata about the trace. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement\">Trace enablement</a>.</p>",
       "refs": {
-        "ResponseStream$trace": null
+        "ResponseStream$trace": "<p>Contains information about the agent and session, alongside the agent's reasoning process and results from calling API actions and querying knowledge bases and metadata about the trace. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html\">Trace events</a>.</p>"
       }
     },
     "Type": {
-      "base": "<p>types of observations</p>",
+      "base": null,
       "refs": {
-        "Observation$type": null
+        "Observation$type": "<p>Specifies what kind of information the agent returns in the observation. The following values are possible.</p> <ul> <li> <p> <code>ACTION_GROUP</code> – The agent returns the result of an action group.</p> </li> <li> <p> <code>KNOWLEDGE_BASE</code> – The agent returns information from a knowledge base.</p> </li> <li> <p> <code>FINISH</code> – The agent returns a final response to the user with no follow-up.</p> </li> <li> <p> <code>ASK_USER</code> – The agent asks the user a question.</p> </li> <li> <p> <code>REPROMPT</code> – The agent prompts the user again for the same information.</p> </li> </ul>"
       }
     },
     "ValidationException": {
-      "base": "<p>This exception is thrown when the request's input validation fails</p>",
+      "base": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
       "refs": {
-        "ResponseStream$validationException": null
+        "ResponseStream$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>"
       }
     },
     "Verb": {
-      "base": "<p>Agent Trace Action Group Action verb</p>",
+      "base": null,
       "refs": {
-        "ActionGroupInvocationInput$verb": null
+        "ActionGroupInvocationInput$verb": "<p>The API method being used, based off the action group.</p>"
       }
     }
   }
