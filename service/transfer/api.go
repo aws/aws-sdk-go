@@ -263,7 +263,7 @@ func (c *Transfer) CreateConnectorRequest(input *CreateConnectorInput) (req *req
 // the AS2 or SFTP protocol. For AS2, the connector is required for sending
 // files to an externally hosted AS2 server. For SFTP, the connector is required
 // when sending files to an SFTP server or receiving files from an SFTP server.
-// For more details about connectors, see Create AS2 connectors (https://docs.aws.amazon.com/transfer/latest/userguide/create-b2b-server.html#configure-as2-connector)
+// For more details about connectors, see Configure AS2 connectors (https://docs.aws.amazon.com/transfer/latest/userguide/configure-as2-connector.html)
 // and Create SFTP connectors (https://docs.aws.amazon.com/transfer/latest/userguide/configure-sftp-connector.html).
 //
 // You must specify exactly one configuration object: either for AS2 (As2Config)
@@ -6251,6 +6251,19 @@ func (c *Transfer) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //
 // The response returns the ServerId and the UserName for the updated user.
 //
+// In the console, you can select Restricted when you create or update a user.
+// This ensures that the user can't access anything outside of their home directory.
+// The programmatic way to configure this behavior is to update the user. Set
+// their HomeDirectoryType to LOGICAL, and specify HomeDirectoryMappings with
+// Entry as root (/) and Target as their home directory.
+//
+// For example, if the user's home directory is /test/admin-user, the following
+// command updates the user so that their configuration in the console shows
+// the Restricted flag as selected.
+//
+// aws transfer update-user --server-id <server-id> --user-name admin-user --home-directory-type
+// LOGICAL --home-directory-mappings "[{\"Entry\":\"/\", \"Target\":\"/test/admin-user\"}]"
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6406,8 +6419,13 @@ type As2ConnectorConfig struct {
 
 	// The algorithm that is used to encrypt the file.
 	//
-	// You can only specify NONE if the URL for your connector uses HTTPS. This
-	// ensures that no traffic is sent in clear text.
+	// Note the following:
+	//
+	//    * Do not use the DES_EDE3_CBC algorithm unless you must support a legacy
+	//    client that requires it, as it is a weak encryption algorithm.
+	//
+	//    * You can only specify NONE if the URL for your connector uses HTTPS.
+	//    Using HTTPS ensures that no traffic is sent in clear text.
 	EncryptionAlgorithm *string `type:"string" enum:"EncryptionAlg"`
 
 	// A unique identifier for the AS2 local profile.
@@ -12173,8 +12191,34 @@ type EndpointDetails struct {
 	// A list of address allocation IDs that are required to attach an Elastic IP
 	// address to your server's endpoint.
 	//
-	// This property can only be set when EndpointType is set to VPC and it is only
-	// valid in the UpdateServer API.
+	// An address allocation ID corresponds to the allocation ID of an Elastic IP
+	// address. This value can be retrieved from the allocationId field from the
+	// Amazon EC2 Address (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Address.html)
+	// data type. One way to retrieve this value is by calling the EC2 DescribeAddresses
+	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html)
+	// API.
+	//
+	// This parameter is optional. Set this parameter if you want to make your VPC
+	// endpoint public-facing. For details, see Create an internet-facing endpoint
+	// for your server (https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#create-internet-facing-endpoint).
+	//
+	// This property can only be set as follows:
+	//
+	//    * EndpointType must be set to VPC
+	//
+	//    * The Transfer Family server must be offline.
+	//
+	//    * You cannot set this parameter for Transfer Family servers that use the
+	//    FTP protocol.
+	//
+	//    * The server must already have SubnetIds populated (SubnetIds and AddressAllocationIds
+	//    cannot be updated simultaneously).
+	//
+	//    * AddressAllocationIds can't contain duplicates, and must be equal in
+	//    length to SubnetIds. For example, if you have three subnet IDs, you must
+	//    also specify three address allocation IDs.
+	//
+	//    * Call the UpdateServer API to set or change this parameter.
 	AddressAllocationIds []*string `type:"list"`
 
 	// A list of security groups IDs that are available to attach to your server's
@@ -16510,6 +16554,12 @@ func (s *ServiceUnavailableException) RequestID() string {
 
 // Contains the details for an SFTP connector object. The connector object is
 // used for transferring files to and from a partner's SFTP server.
+//
+// Because the SftpConnectorConfig data type is used for both creating and updating
+// SFTP connectors, its parameters, TrustedHostKeys and UserSecretId are marked
+// as not required. This is a bit misleading, as they are not required when
+// you are updating an existing SFTP connector, but are required when you are
+// creating a new SFTP connector.
 type SftpConnectorConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -16529,6 +16579,18 @@ type SftpConnectorConfig struct {
 	//    * For ECDSA keys, the <key type> string is either ecdsa-sha2-nistp256,
 	//    ecdsa-sha2-nistp384, or ecdsa-sha2-nistp521, depending on the size of
 	//    the key you generated.
+	//
+	// Run this command to retrieve the SFTP server host key, where your SFTP server
+	// name is ftp.host.com.
+	//
+	// ssh-keyscan ftp.host.com
+	//
+	// This prints the public host key to standard output.
+	//
+	// ftp.host.com ssh-rsa AAAAB3Nza...<long-string-for-public-key
+	//
+	// Copy and paste this string into the TrustedHostKeys field for the create-connector
+	// command or into the Trusted host keys field in the console.
 	TrustedHostKeys []*string `min:"1" type:"list"`
 
 	// The identifier for the secret (in Amazon Web Services Secrets Manager) that
@@ -19764,6 +19826,9 @@ const (
 	// EncryptionAlgAes256Cbc is a EncryptionAlg enum value
 	EncryptionAlgAes256Cbc = "AES256_CBC"
 
+	// EncryptionAlgDesEde3Cbc is a EncryptionAlg enum value
+	EncryptionAlgDesEde3Cbc = "DES_EDE3_CBC"
+
 	// EncryptionAlgNone is a EncryptionAlg enum value
 	EncryptionAlgNone = "NONE"
 )
@@ -19774,6 +19839,7 @@ func EncryptionAlg_Values() []string {
 		EncryptionAlgAes128Cbc,
 		EncryptionAlgAes192Cbc,
 		EncryptionAlgAes256Cbc,
+		EncryptionAlgDesEde3Cbc,
 		EncryptionAlgNone,
 	}
 }

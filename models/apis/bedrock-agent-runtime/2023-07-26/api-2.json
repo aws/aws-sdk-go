@@ -92,10 +92,10 @@
       "type":"structure",
       "members":{
         "actionGroupName":{"shape":"ActionGroupName"},
-        "verb":{"shape":"Verb"},
         "apiPath":{"shape":"ApiPath"},
         "parameters":{"shape":"Parameters"},
-        "requestBody":{"shape":"RequestBody"}
+        "requestBody":{"shape":"RequestBody"},
+        "verb":{"shape":"Verb"}
       }
     },
     "ActionGroupInvocationOutput":{
@@ -116,13 +116,13 @@
       "type":"string",
       "max":10,
       "min":0,
-      "pattern":"[0-9a-zA-Z]+"
+      "pattern":"^[0-9a-zA-Z]+$"
     },
     "AgentId":{
       "type":"string",
       "max":10,
       "min":0,
-      "pattern":"[0-9a-zA-Z]+"
+      "pattern":"^[0-9a-zA-Z]+$"
     },
     "ApiPath":{
       "type":"string",
@@ -148,7 +148,7 @@
       "type":"string",
       "max":1011,
       "min":20,
-      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))"
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))$"
     },
     "Boolean":{
       "type":"boolean",
@@ -211,8 +211,8 @@
     "FailureTrace":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "failureReason":{"shape":"FailureReasonString"}
+        "failureReason":{"shape":"FailureReasonString"},
+        "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
     },
@@ -235,11 +235,11 @@
     "InferenceConfiguration":{
       "type":"structure",
       "members":{
-        "temperature":{"shape":"Temperature"},
-        "topP":{"shape":"TopP"},
-        "topK":{"shape":"TopK"},
         "maximumLength":{"shape":"MaximumLength"},
-        "stopSequences":{"shape":"StopSequences"}
+        "stopSequences":{"shape":"StopSequences"},
+        "temperature":{"shape":"Temperature"},
+        "topK":{"shape":"TopK"},
+        "topP":{"shape":"TopP"}
       }
     },
     "InputText":{
@@ -260,10 +260,10 @@
     "InvocationInput":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "invocationType":{"shape":"InvocationType"},
         "actionGroupInvocationInput":{"shape":"ActionGroupInvocationInput"},
-        "knowledgeBaseLookupInput":{"shape":"KnowledgeBaseLookupInput"}
+        "invocationType":{"shape":"InvocationType"},
+        "knowledgeBaseLookupInput":{"shape":"KnowledgeBaseLookupInput"},
+        "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
     },
@@ -278,31 +278,31 @@
     "InvokeAgentRequest":{
       "type":"structure",
       "required":[
-        "agentId",
         "agentAliasId",
-        "sessionId",
-        "inputText"
+        "agentId",
+        "inputText",
+        "sessionId"
       ],
       "members":{
-        "sessionState":{"shape":"SessionState"},
-        "agentId":{
-          "shape":"AgentId",
-          "location":"uri",
-          "locationName":"agentId"
-        },
         "agentAliasId":{
           "shape":"AgentAliasId",
           "location":"uri",
           "locationName":"agentAliasId"
         },
+        "agentId":{
+          "shape":"AgentId",
+          "location":"uri",
+          "locationName":"agentId"
+        },
+        "enableTrace":{"shape":"Boolean"},
+        "endSession":{"shape":"Boolean"},
+        "inputText":{"shape":"InputText"},
         "sessionId":{
           "shape":"SessionId",
           "location":"uri",
           "locationName":"sessionId"
         },
-        "endSession":{"shape":"Boolean"},
-        "enableTrace":{"shape":"Boolean"},
-        "inputText":{"shape":"InputText"}
+        "sessionState":{"shape":"SessionState"}
       }
     },
     "InvokeAgentResponse":{
@@ -331,19 +331,19 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}"
+      "pattern":"^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$"
     },
     "KnowledgeBaseId":{
       "type":"string",
       "max":10,
       "min":0,
-      "pattern":"[0-9a-zA-Z]+"
+      "pattern":"^[0-9a-zA-Z]+$"
     },
     "KnowledgeBaseLookupInput":{
       "type":"structure",
       "members":{
-        "text":{"shape":"KnowledgeBaseLookupInputString"},
-        "knowledgeBaseId":{"shape":"TraceKnowledgeBaseId"}
+        "knowledgeBaseId":{"shape":"TraceKnowledgeBaseId"},
+        "text":{"shape":"KnowledgeBaseLookupInputString"}
       }
     },
     "KnowledgeBaseLookupInputString":{
@@ -429,13 +429,13 @@
     "ModelInvocationInput":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "text":{"shape":"PromptText"},
-        "type":{"shape":"PromptType"},
         "inferenceConfiguration":{"shape":"InferenceConfiguration"},
         "overrideLambda":{"shape":"LambdaArn"},
+        "parserMode":{"shape":"CreationMode"},
         "promptCreationMode":{"shape":"CreationMode"},
-        "parserMode":{"shape":"CreationMode"}
+        "text":{"shape":"PromptText"},
+        "traceId":{"shape":"TraceId"},
+        "type":{"shape":"PromptType"}
       },
       "sensitive":true
     },
@@ -443,31 +443,31 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"\\S*"
+      "pattern":"^\\S*$"
     },
     "NonBlankString":{
       "type":"string",
-      "pattern":"[\\s\\S]*"
+      "pattern":"^[\\s\\S]*$"
     },
     "Observation":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "type":{"shape":"Type"},
         "actionGroupInvocationOutput":{"shape":"ActionGroupInvocationOutput"},
-        "knowledgeBaseLookupOutput":{"shape":"KnowledgeBaseLookupOutput"},
         "finalResponse":{"shape":"FinalResponse"},
-        "repromptResponse":{"shape":"RepromptResponse"}
+        "knowledgeBaseLookupOutput":{"shape":"KnowledgeBaseLookupOutput"},
+        "repromptResponse":{"shape":"RepromptResponse"},
+        "traceId":{"shape":"TraceId"},
+        "type":{"shape":"Type"}
       },
       "sensitive":true
     },
     "OrchestrationTrace":{
       "type":"structure",
       "members":{
-        "rationale":{"shape":"Rationale"},
         "invocationInput":{"shape":"InvocationInput"},
+        "modelInvocationInput":{"shape":"ModelInvocationInput"},
         "observation":{"shape":"Observation"},
-        "modelInvocationInput":{"shape":"ModelInvocationInput"}
+        "rationale":{"shape":"Rationale"}
       },
       "sensitive":true,
       "union":true
@@ -497,8 +497,8 @@
     "PayloadPart":{
       "type":"structure",
       "members":{
-        "bytes":{"shape":"PartBody"},
-        "attribution":{"shape":"Attribution"}
+        "attribution":{"shape":"Attribution"},
+        "bytes":{"shape":"PartBody"}
       },
       "event":true,
       "sensitive":true
@@ -506,8 +506,8 @@
     "PostProcessingModelInvocationOutput":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "parsedResponse":{"shape":"PostProcessingParsedResponse"}
+        "parsedResponse":{"shape":"PostProcessingParsedResponse"},
+        "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
     },
@@ -530,16 +530,16 @@
     "PreProcessingModelInvocationOutput":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "parsedResponse":{"shape":"PreProcessingParsedResponse"}
+        "parsedResponse":{"shape":"PreProcessingParsedResponse"},
+        "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
     },
     "PreProcessingParsedResponse":{
       "type":"structure",
       "members":{
-        "rationale":{"shape":"RationaleString"},
-        "isValid":{"shape":"Boolean"}
+        "isValid":{"shape":"Boolean"},
+        "rationale":{"shape":"RationaleString"}
       },
       "sensitive":true
     },
@@ -573,8 +573,8 @@
     "Rationale":{
       "type":"structure",
       "members":{
-        "traceId":{"shape":"TraceId"},
-        "text":{"shape":"RationaleString"}
+        "text":{"shape":"RationaleString"},
+        "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
     },
@@ -585,8 +585,8 @@
     "RepromptResponse":{
       "type":"structure",
       "members":{
-        "text":{"shape":"String"},
-        "source":{"shape":"Source"}
+        "source":{"shape":"Source"},
+        "text":{"shape":"String"}
       },
       "sensitive":true
     },
@@ -610,17 +610,17 @@
     "ResponseStream":{
       "type":"structure",
       "members":{
+        "accessDeniedException":{"shape":"AccessDeniedException"},
+        "badGatewayException":{"shape":"BadGatewayException"},
         "chunk":{"shape":"PayloadPart"},
-        "trace":{"shape":"TracePart"},
+        "conflictException":{"shape":"ConflictException"},
+        "dependencyFailedException":{"shape":"DependencyFailedException"},
         "internalServerException":{"shape":"InternalServerException"},
-        "validationException":{"shape":"ValidationException"},
         "resourceNotFoundException":{"shape":"ResourceNotFoundException"},
         "serviceQuotaExceededException":{"shape":"ServiceQuotaExceededException"},
         "throttlingException":{"shape":"ThrottlingException"},
-        "accessDeniedException":{"shape":"AccessDeniedException"},
-        "conflictException":{"shape":"ConflictException"},
-        "dependencyFailedException":{"shape":"DependencyFailedException"},
-        "badGatewayException":{"shape":"BadGatewayException"}
+        "trace":{"shape":"TracePart"},
+        "validationException":{"shape":"ValidationException"}
       },
       "eventstream":true
     },
@@ -636,8 +636,8 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "type":{"shape":"RetrievalResultLocationType"},
-        "s3Location":{"shape":"RetrievalResultS3Location"}
+        "s3Location":{"shape":"RetrievalResultS3Location"},
+        "type":{"shape":"RetrievalResultLocationType"}
       },
       "sensitive":true
     },
@@ -655,8 +655,8 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "type":{"shape":"RetrieveAndGenerateType"},
-        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseRetrieveAndGenerateConfiguration"}
+        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseRetrieveAndGenerateConfiguration"},
+        "type":{"shape":"RetrieveAndGenerateType"}
       }
     },
     "RetrieveAndGenerateInput":{
@@ -684,22 +684,22 @@
       "type":"structure",
       "required":["input"],
       "members":{
-        "sessionId":{"shape":"SessionId"},
         "input":{"shape":"RetrieveAndGenerateInput"},
         "retrieveAndGenerateConfiguration":{"shape":"RetrieveAndGenerateConfiguration"},
-        "sessionConfiguration":{"shape":"RetrieveAndGenerateSessionConfiguration"}
+        "sessionConfiguration":{"shape":"RetrieveAndGenerateSessionConfiguration"},
+        "sessionId":{"shape":"SessionId"}
       }
     },
     "RetrieveAndGenerateResponse":{
       "type":"structure",
       "required":[
-        "sessionId",
-        "output"
+        "output",
+        "sessionId"
       ],
       "members":{
-        "sessionId":{"shape":"SessionId"},
+        "citations":{"shape":"Citations"},
         "output":{"shape":"RetrieveAndGenerateOutput"},
-        "citations":{"shape":"Citations"}
+        "sessionId":{"shape":"SessionId"}
       }
     },
     "RetrieveAndGenerateSessionConfiguration":{
@@ -725,17 +725,17 @@
           "location":"uri",
           "locationName":"knowledgeBaseId"
         },
-        "retrievalQuery":{"shape":"KnowledgeBaseQuery"},
+        "nextToken":{"shape":"NextToken"},
         "retrievalConfiguration":{"shape":"KnowledgeBaseRetrievalConfiguration"},
-        "nextToken":{"shape":"NextToken"}
+        "retrievalQuery":{"shape":"KnowledgeBaseQuery"}
       }
     },
     "RetrieveResponse":{
       "type":"structure",
       "required":["retrievalResults"],
       "members":{
-        "retrievalResults":{"shape":"KnowledgeBaseRetrievalResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "retrievalResults":{"shape":"KnowledgeBaseRetrievalResults"}
       }
     },
     "RetrievedReference":{
@@ -776,13 +776,13 @@
       "type":"string",
       "max":100,
       "min":2,
-      "pattern":"[0-9a-zA-Z._:-]+"
+      "pattern":"^[0-9a-zA-Z._:-]+$"
     },
     "SessionState":{
       "type":"structure",
       "members":{
-        "sessionAttributes":{"shape":"SessionAttributesMap"},
-        "promptSessionAttributes":{"shape":"PromptSessionAttributesMap"}
+        "promptSessionAttributes":{"shape":"PromptSessionAttributesMap"},
+        "sessionAttributes":{"shape":"SessionAttributesMap"}
       }
     },
     "Source":{
@@ -797,8 +797,8 @@
     "Span":{
       "type":"structure",
       "members":{
-        "start":{"shape":"SpanStartInteger"},
-        "end":{"shape":"SpanEndInteger"}
+        "end":{"shape":"SpanEndInteger"},
+        "start":{"shape":"SpanStartInteger"}
       }
     },
     "SpanEndInteger":{
@@ -827,8 +827,8 @@
     "TextResponsePart":{
       "type":"structure",
       "members":{
-        "text":{"shape":"String"},
-        "span":{"shape":"Span"}
+        "span":{"shape":"Span"},
+        "text":{"shape":"String"}
       },
       "sensitive":true
     },
@@ -858,10 +858,10 @@
     "Trace":{
       "type":"structure",
       "members":{
-        "preProcessingTrace":{"shape":"PreProcessingTrace"},
+        "failureTrace":{"shape":"FailureTrace"},
         "orchestrationTrace":{"shape":"OrchestrationTrace"},
         "postProcessingTrace":{"shape":"PostProcessingTrace"},
-        "failureTrace":{"shape":"FailureTrace"}
+        "preProcessingTrace":{"shape":"PreProcessingTrace"}
       },
       "sensitive":true,
       "union":true
@@ -878,8 +878,8 @@
     "TracePart":{
       "type":"structure",
       "members":{
-        "agentId":{"shape":"AgentId"},
         "agentAliasId":{"shape":"AgentAliasId"},
+        "agentId":{"shape":"AgentId"},
         "sessionId":{"shape":"SessionId"},
         "trace":{"shape":"Trace"}
       },

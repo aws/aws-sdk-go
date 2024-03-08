@@ -4122,7 +4122,13 @@ func (c *CodeBuild) StartBuildRequest(input *StartBuildInput) (req *request.Requ
 
 // StartBuild API operation for AWS CodeBuild.
 //
-// Starts running a build.
+// Starts running a build with the settings defined in the project. These setting
+// include: how to run a build, where to get the source code, which build environment
+// to use, which build commands to run, and where to store the build output.
+//
+// You can also start a build run by overriding some of the build settings in
+// the project. The overrides only apply for that specific start build request.
+// The settings in the project are unaltered.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15659,8 +15665,9 @@ type StartBuildInput struct {
 	// is GITHUB, GITHUB_ENTERPRISE, or BITBUCKET.
 	BuildStatusConfigOverride *BuildStatusConfig `locationName:"buildStatusConfigOverride" type:"structure"`
 
-	// A buildspec file declaration that overrides, for this build only, the latest
-	// one already defined in the build project.
+	// A buildspec file declaration that overrides the latest one defined in the
+	// build project, for this build only. The buildspec defined on the project
+	// is not changed.
 	//
 	// If this value is set, it can be either an inline buildspec definition, the
 	// path to an alternate buildspec file relative to the value of the built-in
@@ -15670,6 +15677,12 @@ type StartBuildInput struct {
 	// If this value is not provided or is set to an empty string, the source code
 	// must contain a buildspec file in its root directory. For more information,
 	// see Buildspec File Name and Storage Location (https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-name-storage).
+	//
+	// Since this property allows you to change the build commands that will run
+	// in the container, you should note that an IAM principal with the ability
+	// to call this API and set this parameter can override the default settings.
+	// Moreover, we encourage that you use a trustworthy buildspec location like
+	// a file in your source repository or a Amazon S3 bucket.
 	BuildspecOverride *string `locationName:"buildspecOverride" type:"string"`
 
 	// A ProjectCache object specified for this build that overrides the one defined
@@ -17854,53 +17867,36 @@ type WebhookFilter struct {
 	// The type of webhook filter. There are six webhook filter types: EVENT, ACTOR_ACCOUNT_ID,
 	// HEAD_REF, BASE_REF, FILE_PATH, and COMMIT_MESSAGE.
 	//
-	// EVENT
+	//    * EVENT A webhook event triggers a build when the provided pattern matches
+	//    one of six event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED,
+	//    PULL_REQUEST_CLOSED, PULL_REQUEST_REOPENED, and PULL_REQUEST_MERGED. The
+	//    EVENT patterns are specified as a comma-separated string. For example,
+	//    PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED filters all push, pull
+	//    request created, and pull request updated events. The PULL_REQUEST_REOPENED
+	//    works with GitHub and GitHub Enterprise only.
 	//
-	// A webhook event triggers a build when the provided pattern matches one of
-	// five event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED, PULL_REQUEST_REOPENED,
-	// and PULL_REQUEST_MERGED. The EVENT patterns are specified as a comma-separated
-	// string. For example, PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED filters
-	// all push, pull request created, and pull request updated events.
+	//    * ACTOR_ACCOUNT_ID A webhook event triggers a build when a GitHub, GitHub
+	//    Enterprise, or Bitbucket account ID matches the regular expression pattern.
 	//
-	// The PULL_REQUEST_REOPENED works with GitHub and GitHub Enterprise only.
+	//    * HEAD_REF A webhook event triggers a build when the head reference matches
+	//    the regular expression pattern. For example, refs/heads/branch-name and
+	//    refs/tags/tag-name. Works with GitHub and GitHub Enterprise push, GitHub
+	//    and GitHub Enterprise pull request, Bitbucket push, and Bitbucket pull
+	//    request events.
 	//
-	// ACTOR_ACCOUNT_ID
+	//    * BASE_REF A webhook event triggers a build when the base reference matches
+	//    the regular expression pattern. For example, refs/heads/branch-name. Works
+	//    with pull request events only.
 	//
-	// A webhook event triggers a build when a GitHub, GitHub Enterprise, or Bitbucket
-	// account ID matches the regular expression pattern.
+	//    * FILE_PATH A webhook triggers a build when the path of a changed file
+	//    matches the regular expression pattern. Works with GitHub and Bitbucket
+	//    events push and pull requests events. Also works with GitHub Enterprise
+	//    push events, but does not work with GitHub Enterprise pull request events.
 	//
-	// HEAD_REF
-	//
-	// A webhook event triggers a build when the head reference matches the regular
-	// expression pattern. For example, refs/heads/branch-name and refs/tags/tag-name.
-	//
-	// Works with GitHub and GitHub Enterprise push, GitHub and GitHub Enterprise
-	// pull request, Bitbucket push, and Bitbucket pull request events.
-	//
-	// BASE_REF
-	//
-	// A webhook event triggers a build when the base reference matches the regular
-	// expression pattern. For example, refs/heads/branch-name.
-	//
-	// Works with pull request events only.
-	//
-	// FILE_PATH
-	//
-	// A webhook triggers a build when the path of a changed file matches the regular
-	// expression pattern.
-	//
-	// Works with GitHub and Bitbucket events push and pull requests events. Also
-	// works with GitHub Enterprise push events, but does not work with GitHub Enterprise
-	// pull request events.
-	//
-	// COMMIT_MESSAGE
-	//
-	// A webhook triggers a build when the head commit message matches the regular
-	// expression pattern.
-	//
-	// Works with GitHub and Bitbucket events push and pull requests events. Also
-	// works with GitHub Enterprise push events, but does not work with GitHub Enterprise
-	// pull request events.
+	//    * COMMIT_MESSAGE A webhook triggers a build when the head commit message
+	//    matches the regular expression pattern. Works with GitHub and Bitbucket
+	//    events push and pull requests events. Also works with GitHub Enterprise
+	//    push events, but does not work with GitHub Enterprise pull request events.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"WebhookFilterType"`

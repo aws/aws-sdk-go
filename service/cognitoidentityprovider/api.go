@@ -2358,6 +2358,10 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 // Resets the specified user's password in a user pool as an administrator.
 // Works on any user.
 //
+// To use this API operation, your user pool must have self-service account
+// recovery configured. Use AdminSetUserPassword (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserPassword.html)
+// if you manage passwords as an administrator.
+//
 // This action might generate an SMS text message. Starting June 1, 2021, US
 // telecom carriers require you to register an origination phone number before
 // you can send SMS messages to US phone numbers. If you use SMS text messages
@@ -6725,6 +6729,10 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 // returns InvalidParameterException. If your app client has a client secret
 // and you don't provide a SECRET_HASH parameter, this API returns NotAuthorizedException.
 //
+// To use this API operation, your user pool must have self-service account
+// recovery configured. Use AdminSetUserPassword (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserPassword.html)
+// if you manage passwords as an administrator.
+//
 // Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
 // in requests for this API operation. For this operation, you can't use IAM
 // credentials to authorize requests, and you can't grant IAM permissions in
@@ -10633,6 +10641,9 @@ func (c *CognitoIdentityProvider) SetUserPoolMfaConfigRequest(input *SetUserPool
 //     This exception is thrown when the user has made too many requests for a given
 //     operation.
 //
+//   - ConcurrentModificationException
+//     This exception is thrown if two or more modifications are happening concurrently.
+//
 //   - ResourceNotFoundException
 //     This exception is thrown when the Amazon Cognito service can't find the requested
 //     resource.
@@ -13157,8 +13168,9 @@ type AdminAddUserToGroupInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminAddUserToGroupInput's
@@ -13295,8 +13307,9 @@ type AdminConfirmSignUpInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminConfirmSignUpInput's
@@ -13775,8 +13788,9 @@ type AdminDeleteUserAttributesInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDeleteUserAttributesInput's
@@ -13882,8 +13896,9 @@ type AdminDeleteUserInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDeleteUserInput's
@@ -14065,8 +14080,9 @@ type AdminDisableUserInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminDisableUserInput's
@@ -14163,8 +14179,9 @@ type AdminEnableUserInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminEnableUserInput's
@@ -14266,8 +14283,9 @@ type AdminForgetDeviceInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminForgetDeviceInput's
@@ -14379,8 +14397,9 @@ type AdminGetDeviceInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminGetDeviceInput's
@@ -14500,8 +14519,9 @@ type AdminGetUserInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminGetUserInput's
@@ -15227,8 +15247,9 @@ type AdminListDevicesInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListDevicesInput's
@@ -15366,8 +15387,9 @@ type AdminListGroupsForUserInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListGroupsForUserInput's
@@ -15502,8 +15524,9 @@ type AdminListUserAuthEventsInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminListUserAuthEventsInput's
@@ -15636,8 +15659,9 @@ type AdminRemoveUserFromGroupInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminRemoveUserFromGroupInput's
@@ -15775,8 +15799,9 @@ type AdminResetUserPasswordInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminResetUserPasswordInput's
@@ -16220,8 +16245,9 @@ type AdminSetUserMFAPreferenceInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserMFAPreferenceInput's
@@ -16339,8 +16365,9 @@ type AdminSetUserPasswordInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserPasswordInput's
@@ -16457,8 +16484,9 @@ type AdminSetUserSettingsInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminSetUserSettingsInput's
@@ -16586,8 +16614,9 @@ type AdminUpdateAuthEventFeedbackInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateAuthEventFeedbackInput's
@@ -16711,8 +16740,9 @@ type AdminUpdateDeviceStatusInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateDeviceStatusInput's
@@ -16878,8 +16908,9 @@ type AdminUpdateUserAttributesInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUpdateUserAttributesInput's
@@ -17001,8 +17032,9 @@ type AdminUserGlobalSignOutInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AdminUserGlobalSignOutInput's
@@ -18425,8 +18457,9 @@ type ConfirmForgotPasswordInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmForgotPasswordInput's
@@ -18640,8 +18673,9 @@ type ConfirmSignUpInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ConfirmSignUpInput's
@@ -23120,8 +23154,9 @@ type ForgotPasswordInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ForgotPasswordInput's
@@ -27803,7 +27838,9 @@ func (s *NotifyEmailType) SetTextBody(v string) *NotifyEmailType {
 type NumberAttributeConstraintsType struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum value of an attribute that is of the number data type.
+	// The maximum length of a number attribute value. Must be a number less than
+	// or equal to 2^1023, represented as a string with a length of 131072 characters
+	// or fewer.
 	MaxValue *string `type:"string"`
 
 	// The minimum value of an attribute that is of the number data type.
@@ -28399,8 +28436,9 @@ type ResendConfirmationCodeInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ResendConfirmationCodeInput's
@@ -31003,7 +31041,9 @@ func (s *StopUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *StopUs
 type StringAttributeConstraintsType struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum length.
+	// The maximum length of a string attribute value. Must be a number less than
+	// or equal to 2^1023, represented as a string with a length of 131072 characters
+	// or fewer.
 	MaxLength *string `type:"string"`
 
 	// The minimum length.
@@ -31919,8 +31959,9 @@ type UpdateAuthEventFeedbackInput struct {
 
 	// The username of the user that you want to query or modify. The value of this
 	// parameter is typically your user's username, but it can be any of their alias
-	// attributes. If username isn't an alias attribute in your user pool, you can
-	// also use their sub in this request.
+	// attributes. If username isn't an alias attribute in your user pool, this
+	// value must be the sub of a local user or the username of a user from a third-party
+	// IdP.
 	//
 	// Username is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateAuthEventFeedbackInput's

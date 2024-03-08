@@ -1626,6 +1626,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},

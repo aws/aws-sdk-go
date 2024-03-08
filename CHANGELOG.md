@@ -1,3 +1,20 @@
+Release v1.50.35 (2024-03-08)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This release adds JobStateTimeLimitActions setting to the Job Queue API. It allows you to configure an action Batch can take for a blocking job in front of the queue after the defined period of time. The new parameter applies for ECS, EKS, and FARGATE Job Queues.
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/cloudtrail`: Updates service API and documentation
+  * Added exceptions to CreateTrail, DescribeTrails, and ListImportFailures APIs.
+* `service/codebuild`: Updates service documentation
+  * This release adds support for a new webhook event: PULL_REQUEST_CLOSED.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Add RDS Provisioned and Serverless Usage types
+* `service/transfer`: Updates service API and documentation
+  * Added DES_EDE3_CBC to the list of supported encryption algorithms for messages sent with an AS2 connector.
+
 Release v1.50.34 (2024-03-07)
 ===
 

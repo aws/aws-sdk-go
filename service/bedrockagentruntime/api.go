@@ -72,8 +72,30 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 
 // InvokeAgent API operation for Agents for Amazon Bedrock Runtime.
 //
-// Invokes the specified Bedrock model to run inference using the input provided
-// in the request body.
+// Sends a prompt for the agent to process and respond to.
+//
+// The CLI doesn't support InvokeAgent.
+//
+//   - To continue the same conversation with an agent, use the same sessionId
+//     value in the request.
+//
+//   - To activate trace enablement, turn enableTrace to true. Trace enablement
+//     helps you follow the agent's reasoning process that led it to the information
+//     it processed, the actions it took, and the final result it yielded. For
+//     more information, see Trace enablement (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events).
+//
+//   - End a conversation by setting endSession to true.
+//
+//   - Include attributes for the session or prompt in the sessionState object.
+//
+// The response is returned in the bytes field of the chunk object.
+//
+//   - The attribution object contains citations for parts of the response.
+//
+//   - If you set enableTrace to true in the request, you can trace the agent's
+//     steps and reasoning process that led it to the response.
+//
+//   - Errors are also surfaced in the response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -85,35 +107,35 @@ func (c *BedrockAgentRuntime) InvokeAgentRequest(input *InvokeAgentInput) (req *
 // Returned Error Types:
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - DependencyFailedException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource due to a customer fault (i.e. bad configuration)
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
 //
 //   - BadGatewayException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource
+//     There was an issue with a dependency due to a server issue. Retry your request.
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/InvokeAgent
 func (c *BedrockAgentRuntime) InvokeAgent(input *InvokeAgentInput) (*InvokeAgentOutput, error) {
@@ -335,7 +357,7 @@ func (c *BedrockAgentRuntime) RetrieveRequest(input *RetrieveInput) (req *reques
 
 // Retrieve API operation for Agents for Amazon Bedrock Runtime.
 //
-// Retrieve from knowledge base.
+// Queries a knowledge base and retrieves information from it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -347,35 +369,35 @@ func (c *BedrockAgentRuntime) RetrieveRequest(input *RetrieveInput) (req *reques
 // Returned Error Types:
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - DependencyFailedException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource due to a customer fault (i.e. bad configuration)
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
 //
 //   - BadGatewayException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource
+//     There was an issue with a dependency due to a server issue. Retry your request.
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/Retrieve
 func (c *BedrockAgentRuntime) Retrieve(input *RetrieveInput) (*RetrieveOutput, error) {
@@ -493,7 +515,13 @@ func (c *BedrockAgentRuntime) RetrieveAndGenerateRequest(input *RetrieveAndGener
 
 // RetrieveAndGenerate API operation for Agents for Amazon Bedrock Runtime.
 //
-// # RetrieveAndGenerate API
+// Queries a knowledge base and generates responses based on the retrieved results.
+// The response cites up to five sources but only selects the ones that are
+// relevant to the query.
+//
+// The numberOfResults field is currently unsupported for RetrieveAndGenerate.
+// Don't include it in the vectorSearchConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_KnowledgeBaseVectorSearchConfiguration.html)
+// object.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -505,35 +533,35 @@ func (c *BedrockAgentRuntime) RetrieveAndGenerateRequest(input *RetrieveAndGener
 // Returned Error Types:
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation. Resolve the conflict and retry
+//     your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - DependencyFailedException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource due to a customer fault (i.e. bad configuration)
+//     There was an issue with a dependency. Check the resource configurations and
+//     retry the request.
 //
 //   - BadGatewayException
-//     This exception is thrown when a request fails due to dependency like Lambda,
-//     Bedrock, STS resource
+//     There was an issue with a dependency due to a server issue. Retry your request.
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions. Check your permissions
+//     and retry your request.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-runtime-2023-07-26/RetrieveAndGenerate
 func (c *BedrockAgentRuntime) RetrieveAndGenerate(input *RetrieveAndGenerateInput) (*RetrieveAndGenerateOutput, error) {
@@ -557,12 +585,12 @@ func (c *BedrockAgentRuntime) RetrieveAndGenerateWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// This exception is thrown when a request is denied per access permissions
+// The request is denied because of missing access permissions. Check your permissions
+// and retry your request.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -651,31 +679,31 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// input to lambda used in action group
+// Contains information about the action group being invoked.
 type ActionGroupInvocationInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Agent Trace Action Group Name
+	// The name of the action group.
 	//
 	// ActionGroupName is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActionGroupInvocationInput_'s
 	// String and GoString methods.
 	ActionGroupName *string `locationName:"actionGroupName" type:"string" sensitive:"true"`
 
-	// Agent Trace Action Group API path
+	// The path to the API to call, based off the action group.
 	//
 	// ApiPath is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActionGroupInvocationInput_'s
 	// String and GoString methods.
 	ApiPath *string `locationName:"apiPath" type:"string" sensitive:"true"`
 
-	// list of parameters included in action group invocation
+	// The parameters in the Lambda input event.
 	Parameters []*Parameter `locationName:"parameters" type:"list"`
 
-	// Request Body Content Map
+	// The parameters in the request body for the Lambda input event.
 	RequestBody *RequestBody `locationName:"requestBody" type:"structure"`
 
-	// Agent Trace Action Group Action verb
+	// The API method being used, based off the action group.
 	//
 	// Verb is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActionGroupInvocationInput_'s
@@ -731,11 +759,12 @@ func (s *ActionGroupInvocationInput_) SetVerb(v string) *ActionGroupInvocationIn
 	return s
 }
 
-// output from lambda used in action group
+// Contains the JSON-formatted string returned by the API invoked by the action
+// group.
 type ActionGroupInvocationOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Agent Trace Action Group Lambda Invocation Output String
+	// The JSON-formatted string returned by the API invoked by the action group.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ActionGroupInvocationOutput_'s
@@ -767,11 +796,11 @@ func (s *ActionGroupInvocationOutput_) SetText(v string) *ActionGroupInvocationO
 	return s
 }
 
-// Citations associated with final agent response
+// Contains citations for a part of an agent response.
 type Attribution struct {
 	_ struct{} `type:"structure"`
 
-	// List of citations
+	// A list of citations and related information for a part of an agent response.
 	Citations []*Citation `locationName:"citations" type:"list"`
 }
 
@@ -799,16 +828,15 @@ func (s *Attribution) SetCitations(v []*Citation) *Attribution {
 	return s
 }
 
-// This exception is thrown when a request fails due to dependency like Lambda,
-// Bedrock, STS resource
+// There was an issue with a dependency due to a server issue. Retry your request.
 type BadGatewayException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 
-	// Non Blank String
+	// The name of the dependency that caused the issue, such as Amazon Bedrock,
+	// Lambda, or STS.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
@@ -897,14 +925,15 @@ func (s *BadGatewayException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Citation associated with the agent response
+// An object containing a segment of the generated response that is based on
+// a source in the knowledge base, alongside information about the source.
 type Citation struct {
 	_ struct{} `type:"structure"`
 
-	// Generate response part
+	// Contains the generated response and metadata
 	GeneratedResponsePart *GeneratedResponsePart `locationName:"generatedResponsePart" type:"structure"`
 
-	// list of retrieved references
+	// Contains metadata about the sources cited for the generated response.
 	RetrievedReferences []*RetrievedReference `locationName:"retrievedReferences" type:"list"`
 }
 
@@ -938,12 +967,12 @@ func (s *Citation) SetRetrievedReferences(v []*RetrievedReference) *Citation {
 	return s
 }
 
-// This exception is thrown when there is a conflict performing an operation
+// There was a conflict performing an operation. Resolve the conflict and retry
+// your request.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -1032,16 +1061,16 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when a request fails due to dependency like Lambda,
-// Bedrock, STS resource due to a customer fault (i.e. bad configuration)
+// There was an issue with a dependency. Check the resource configurations and
+// retry the request.
 type DependencyFailedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 
-	// Non Blank String
+	// The name of the dependency that caused the issue, such as Amazon Bedrock,
+	// Lambda, or STS.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 }
 
@@ -1130,18 +1159,18 @@ func (s *DependencyFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Trace Part which is emitted when agent trace could not be generated
+// Contains information about the failure of the interaction.
 type FailureTrace struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Agent Trace Failed Reason String
+	// The reason the interaction failed.
 	//
 	// FailureReason is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by FailureTrace's
 	// String and GoString methods.
 	FailureReason *string `locationName:"failureReason" type:"string" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 }
 
@@ -1175,11 +1204,11 @@ func (s *FailureTrace) SetTraceId(v string) *FailureTrace {
 	return s
 }
 
-// Agent finish output
+// Contains details about the response to the user.
 type FinalResponse struct {
 	_ struct{} `type:"structure"`
 
-	// Agent Trace Action Group Lambda Invocation Output String
+	// The text in the response to the user.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by FinalResponse's
@@ -1211,11 +1240,13 @@ func (s *FinalResponse) SetText(v string) *FinalResponse {
 	return s
 }
 
-// Generate response part
+// Contains metadata about a part of the generated response that is accompanied
+// by a citation.
 type GeneratedResponsePart struct {
 	_ struct{} `type:"structure"`
 
-	// Text response part
+	// Contains metadata about a textual part of the generated response that is
+	// accompanied by a citation.
 	//
 	// TextResponsePart is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GeneratedResponsePart's
@@ -1247,24 +1278,39 @@ func (s *GeneratedResponsePart) SetTextResponsePart(v *TextResponsePart) *Genera
 	return s
 }
 
-// Configurations for controlling the inference response of an InvokeAgent API
-// call
+// Specifications about the inference parameters that were provided alongside
+// the prompt. These are specified in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+// object that was set when the agent was created or updated. For more information,
+// see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 type InferenceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum length of output
+	// The maximum number of tokens allowed in the generated response.
 	MaximumLength *int64 `locationName:"maximumLength" type:"integer"`
 
-	// List of stop sequences
+	// A list of stop sequences. A stop sequence is a sequence of characters that
+	// causes the model to stop generating the response.
 	StopSequences []*string `locationName:"stopSequences" type:"list"`
 
-	// Controls randomness, higher values increase diversity
+	// The likelihood of the model selecting higher-probability options while generating
+	// a response. A lower value makes the model more likely to choose higher-probability
+	// options, while a higher value makes the model more likely to choose lower-probability
+	// options.
 	Temperature *float64 `locationName:"temperature" type:"float"`
 
-	// Sample from the k most likely next tokens
+	// While generating a response, the model determines the probability of the
+	// following token at each point of generation. The value that you set for topK
+	// is the number of most-likely candidates from which the model chooses the
+	// next token in the sequence. For example, if you set topK to 50, the model
+	// selects the next token from among the top 50 most likely choices.
 	TopK *int64 `locationName:"topK" type:"integer"`
 
-	// Cumulative probability cutoff for token selection
+	// While generating a response, the model determines the probability of the
+	// following token at each point of generation. The value that you set for Top
+	// P determines the number of most-likely candidates from which the model chooses
+	// the next token in the sequence. For example, if you set topP to 80, the model
+	// only selects the next token from the top 80% of the probability distribution
+	// of next tokens.
 	TopP *float64 `locationName:"topP" type:"float"`
 }
 
@@ -1316,13 +1362,11 @@ func (s *InferenceConfiguration) SetTopP(v float64) *InferenceConfiguration {
 	return s
 }
 
-// This exception is thrown if there was an unexpected error during processing
-// of request
+// An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -1411,20 +1455,22 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Trace Part which contains input details for action group or knowledge base
+// Contains information pertaining to the action group or knowledge base that
+// is being invoked.
 type InvocationInput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// input to lambda used in action group
+	// Contains information about the action group to be invoked.
 	ActionGroupInvocationInput *ActionGroupInvocationInput_ `locationName:"actionGroupInvocationInput" type:"structure"`
 
-	// types of invocations
+	// Specifies whether the agent is invoking an action group or a knowledge base.
 	InvocationType *string `locationName:"invocationType" type:"string" enum:"InvocationType"`
 
-	// Input to lambda used in action group
+	// Contains details about the knowledge base to look up and the query to be
+	// made.
 	KnowledgeBaseLookupInput *KnowledgeBaseLookupInput_ `locationName:"knowledgeBaseLookupInput" type:"structure"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 }
 
@@ -1470,27 +1516,27 @@ func (s *InvocationInput_) SetTraceId(v string) *InvocationInput_ {
 	return s
 }
 
-// InvokeAgent Request
 type InvokeAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for Agent Alias
+	// The alias of the agent to use.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `location:"uri" locationName:"agentAliasId" type:"string" required:"true"`
 
-	// Identifier for Agent
+	// The unique identifier of the agent to use.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Enable agent trace events for improved debugging
+	// Specifies whether to turn on the trace or not to track the agent's reasoning
+	// process. For more information, see Trace enablement (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events).
 	EnableTrace *bool `locationName:"enableTrace" type:"boolean"`
 
-	// End current session
+	// Specifies whether to end the session with the agent or not.
 	EndSession *bool `locationName:"endSession" type:"boolean"`
 
-	// Input data in the format specified in the Content-Type request header.
+	// The prompt text to send the agent.
 	//
 	// InputText is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeAgentInput's
@@ -1499,13 +1545,13 @@ type InvokeAgentInput struct {
 	// InputText is a required field
 	InputText *string `locationName:"inputText" type:"string" required:"true" sensitive:"true"`
 
-	// Identifier used for the current session
+	// The unique identifier of the session. Use the same value across requests
+	// to continue the same conversation.
 	//
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" min:"2" type:"string" required:"true"`
 
-	// Session state passed by customer. Base64 encoded json string representation
-	// of SessionState.
+	// Contains parameters that specify various attributes of the session.
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
@@ -1600,18 +1646,17 @@ func (s *InvokeAgentInput) SetSessionState(v *SessionState) *InvokeAgentInput {
 	return s
 }
 
-// InvokeAgent Response
 type InvokeAgentOutput struct {
 	_ struct{} `type:"structure" payload:"Completion"`
 
 	eventStream *InvokeAgentEventStream
 
-	// streaming response mimetype of the model
+	// The MIME type of the input data in the request. The default value is application/json.
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"x-amzn-bedrock-agent-content-type" type:"string" required:"true"`
 
-	// streaming response mimetype of the model
+	// The unique identifier of the session with the agent.
 	//
 	// SessionId is a required field
 	SessionId *string `location:"header" locationName:"x-amz-bedrock-agent-session-id" min:"2" type:"string" required:"true"`
@@ -1652,18 +1697,19 @@ func (s *InvokeAgentOutput) GetStream() *InvokeAgentEventStream {
 	return s.eventStream
 }
 
-// Input to lambda used in action group
+// Contains details about the knowledge base to look up and the query to be
+// made.
 type KnowledgeBaseLookupInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// Agent Trace Action Group Knowledge Base Id
+	// The unique identifier of the knowledge base to look up.
 	//
 	// KnowledgeBaseId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by KnowledgeBaseLookupInput_'s
 	// String and GoString methods.
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" sensitive:"true"`
 
-	// Agent Trace Action Group Lambda Invocation Output String
+	// The query made to the knowledge base.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by KnowledgeBaseLookupInput_'s
@@ -1701,11 +1747,11 @@ func (s *KnowledgeBaseLookupInput_) SetText(v string) *KnowledgeBaseLookupInput_
 	return s
 }
 
-// Input to lambda used in action group
+// Contains details about the results from looking up the knowledge base.
 type KnowledgeBaseLookupOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// list of retrieved references
+	// Contains metadata about the sources cited for the generated response.
 	RetrievedReferences []*RetrievedReference `locationName:"retrievedReferences" type:"list"`
 }
 
@@ -1733,11 +1779,11 @@ func (s *KnowledgeBaseLookupOutput_) SetRetrievedReferences(v []*RetrievedRefere
 	return s
 }
 
-// Knowledge base input query.
+// Contains the query made to the knowledge base.
 type KnowledgeBaseQuery struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Knowledge base input query in text
+	// The text of the query made to the knowledge base.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" type:"string" required:"true"`
@@ -1780,11 +1826,17 @@ func (s *KnowledgeBaseQuery) SetText(v string) *KnowledgeBaseQuery {
 	return s
 }
 
-// Search parameters for retrieving from knowledge base.
+// Contains details about how the results should be returned.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//
+//   - RetrieveAndGenerate request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
 type KnowledgeBaseRetrievalConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Knowledge base vector search configuration
+	// Contains details about how the results from the vector search should be returned.
 	//
 	// VectorSearchConfiguration is a required field
 	VectorSearchConfiguration *KnowledgeBaseVectorSearchConfiguration `locationName:"vectorSearchConfiguration" type:"structure" required:"true"`
@@ -1832,11 +1884,11 @@ func (s *KnowledgeBaseRetrievalConfiguration) SetVectorSearchConfiguration(v *Kn
 	return s
 }
 
-// Result item returned from a knowledge base retrieval.
+// Details about a result from querying the knowledge base.
 type KnowledgeBaseRetrievalResult struct {
 	_ struct{} `type:"structure"`
 
-	// Content of a retrieval result.
+	// Contains a chunk of text from a data source in the knowledge base.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by KnowledgeBaseRetrievalResult's
@@ -1845,14 +1897,14 @@ type KnowledgeBaseRetrievalResult struct {
 	// Content is a required field
 	Content *RetrievalResultContent `locationName:"content" type:"structure" required:"true" sensitive:"true"`
 
-	// The source location of a retrieval result.
+	// Contains information about the location of the data source.
 	//
 	// Location is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by KnowledgeBaseRetrievalResult's
 	// String and GoString methods.
 	Location *RetrievalResultLocation `locationName:"location" type:"structure" sensitive:"true"`
 
-	// The relevance score of a result.
+	// The level of relevance of the result to the query.
 	Score *float64 `locationName:"score" type:"double"`
 }
 
@@ -1892,21 +1944,23 @@ func (s *KnowledgeBaseRetrievalResult) SetScore(v float64) *KnowledgeBaseRetriev
 	return s
 }
 
-// Configurations for retrieval and generation for knowledge base.
+// Contains details about the resource being queried.
 type KnowledgeBaseRetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the KnowledgeBase
+	// The unique identifier of the knowledge base that is queried and the foundation
+	// model used for generation.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Arn of a Bedrock model.
+	// The ARN of the foundation model used to generate a response.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
 
-	// Search parameters for retrieving from knowledge base.
+	// Contains configurations for how to retrieve and return the knowledge base
+	// query.
 	RetrievalConfiguration *KnowledgeBaseRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 }
 
@@ -1970,14 +2024,22 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetRetrievalConfiguratio
 	return s
 }
 
-// Knowledge base vector search configuration
+// Configurations for how to carry out the search.
 type KnowledgeBaseVectorSearchConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Top-K results to retrieve from knowledge base.
+	// The number of results to return.
+	//
+	// The numberOfResults field is currently unsupported for RetrieveAndGenerate.
+	// Don't include it in this field if you are sending a RetrieveAndGenerate request.
 	NumberOfResults *int64 `locationName:"numberOfResults" min:"1" type:"integer"`
 
-	// Override the type of query to be performed on data store
+	// By default, Amazon Bedrock decides a search strategy for you. If you're using
+	// an Amazon OpenSearch Serverless vector store that contains a filterable text
+	// field, you can specify whether to query the knowledge base with a HYBRID
+	// search using both vector embeddings and raw text, or SEMANTIC search using
+	// only vector embeddings. For other vector store configurations, only SEMANTIC
+	// search is available. For more information, see Test a knowledge base (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-test.html).
 	OverrideSearchType *string `locationName:"overrideSearchType" type:"string" enum:"SearchType"`
 }
 
@@ -2024,34 +2086,49 @@ func (s *KnowledgeBaseVectorSearchConfiguration) SetOverrideSearchType(v string)
 	return s
 }
 
-// Trace Part which contains information used to call Invoke Model
+// The input for the pre-processing step.
+//
+//   - The type matches the agent step.
+//
+//   - The text contains the prompt.
+//
+//   - The inferenceConfiguration, parserMode, and overrideLambda values are
+//     set in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+//     object that was set when the agent was created or updated.
 type ModelInvocationInput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Configurations for controlling the inference response of an InvokeAgent API
-	// call
+	// Specifications about the inference parameters that were provided alongside
+	// the prompt. These are specified in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	// object that was set when the agent was created or updated. For more information,
+	// see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	InferenceConfiguration *InferenceConfiguration `locationName:"inferenceConfiguration" type:"structure"`
 
-	// ARN of a Lambda.
+	// The ARN of the Lambda function to use when parsing the raw foundation model
+	// output in parts of the agent sequence.
 	OverrideLambda *string `locationName:"overrideLambda" type:"string"`
 
-	// indicates if agent uses default prompt or overriden prompt
+	// Specifies whether to override the default parser Lambda function when parsing
+	// the raw foundation model output in the part of the agent sequence defined
+	// by the promptType.
 	ParserMode *string `locationName:"parserMode" type:"string" enum:"CreationMode"`
 
-	// indicates if agent uses default prompt or overriden prompt
+	// Specifies whether the default prompt template was OVERRIDDEN. If it was,
+	// the basePromptTemplate that was set in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	// object when the agent was created or updated is used instead.
 	PromptCreationMode *string `locationName:"promptCreationMode" type:"string" enum:"CreationMode"`
 
-	// Prompt Message
+	// The text that prompted the agent at this step.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ModelInvocationInput_'s
 	// String and GoString methods.
 	Text *string `locationName:"text" type:"string" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 
-	// types of prompts
+	// The step in the agent sequence.
 	Type *string `locationName:"type" type:"string" enum:"PromptType"`
 }
 
@@ -2115,31 +2192,43 @@ func (s *ModelInvocationInput_) SetType(v string) *ModelInvocationInput_ {
 	return s
 }
 
-// Trace Part which contains output details for action group or knowledge base
-// or final response
+// Contains the result or output of an action group or knowledge base, or the
+// response to the user.
 type Observation struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// output from lambda used in action group
+	// Contains the JSON-formatted string returned by the API invoked by the action
+	// group.
 	ActionGroupInvocationOutput *ActionGroupInvocationOutput_ `locationName:"actionGroupInvocationOutput" type:"structure"`
 
-	// Agent finish output
+	// Contains details about the response to the user.
 	FinalResponse *FinalResponse `locationName:"finalResponse" type:"structure"`
 
-	// Input to lambda used in action group
+	// Contains details about the results from looking up the knowledge base.
 	KnowledgeBaseLookupOutput *KnowledgeBaseLookupOutput_ `locationName:"knowledgeBaseLookupOutput" type:"structure"`
 
-	// Observation information if there were reprompts
+	// Contains details about the response to reprompt the input.
 	//
 	// RepromptResponse is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Observation's
 	// String and GoString methods.
 	RepromptResponse *RepromptResponse `locationName:"repromptResponse" type:"structure" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 
-	// types of observations
+	// Specifies what kind of information the agent returns in the observation.
+	// The following values are possible.
+	//
+	//    * ACTION_GROUP – The agent returns the result of an action group.
+	//
+	//    * KNOWLEDGE_BASE – The agent returns information from a knowledge base.
+	//
+	//    * FINISH – The agent returns a final response to the user with no follow-up.
+	//
+	//    * ASK_USER – The agent asks the user a question.
+	//
+	//    * REPROMPT – The agent prompts the user again for the same information.
 	Type *string `locationName:"type" type:"string" enum:"Type"`
 }
 
@@ -2197,33 +2286,44 @@ func (s *Observation) SetType(v string) *Observation {
 	return s
 }
 
-// Trace contains intermidate response during orchestration
+// Details about the orchestration step, in which the agent determines the order
+// in which actions are executed and which knowledge bases are retrieved.
 type OrchestrationTrace struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which contains input details for action group or knowledge base
+	// Contains information pertaining to the action group or knowledge base that
+	// is being invoked.
 	//
 	// InvocationInput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OrchestrationTrace's
 	// String and GoString methods.
 	InvocationInput *InvocationInput_ `locationName:"invocationInput" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information used to call Invoke Model
+	// The input for the orchestration step.
+	//
+	//    * The type is ORCHESTRATION.
+	//
+	//    * The text contains the prompt.
+	//
+	//    * The inferenceConfiguration, parserMode, and overrideLambda values are
+	//    set in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	//    object that was set when the agent was created or updated.
 	//
 	// ModelInvocationInput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OrchestrationTrace's
 	// String and GoString methods.
 	ModelInvocationInput *ModelInvocationInput_ `locationName:"modelInvocationInput" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains output details for action group or knowledge base
-	// or final response
+	// Details about the observation (the output of the action group Lambda or knowledge
+	// base) made by the agent.
 	//
 	// Observation is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OrchestrationTrace's
 	// String and GoString methods.
 	Observation *Observation `locationName:"observation" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information related to reasoning
+	// Details about the reasoning, based on the input, that the agent uses to justify
+	// carrying out an action group or getting information from a knowledge base.
 	//
 	// Rationale is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by OrchestrationTrace's
@@ -2273,17 +2373,17 @@ func (s *OrchestrationTrace) SetRationale(v *Rationale) *OrchestrationTrace {
 	return s
 }
 
-// parameters included in action group invocation
+// A parameter in the Lambda input event.
 type Parameter struct {
 	_ struct{} `type:"structure"`
 
-	// Name of parameter
+	// The name of the parameter.
 	Name *string `locationName:"name" type:"string"`
 
-	// Type of parameter
+	// The type of the parameter.
 	Type *string `locationName:"type" type:"string"`
 
-	// Value of parameter
+	// The value of the parameter.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -2323,14 +2423,14 @@ func (s *Parameter) SetValue(v string) *Parameter {
 	return s
 }
 
-// Base 64 endoded byte response
+// Contains a part of an agent response and citations for it.
 type PayloadPart struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Citations associated with final agent response
+	// Contains citations for a part of an agent response.
 	Attribution *Attribution `locationName:"attribution" type:"structure"`
 
-	// PartBody of the payload in bytes
+	// A part of the agent response in bytes.
 	//
 	// Bytes is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PayloadPart's
@@ -2399,18 +2499,19 @@ func (s *PayloadPart) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstrea
 	return msg, err
 }
 
-// Trace Part which contains information related to postprocessing
+// The foundation model output from the post-processing step.
 type PostProcessingModelInvocationOutput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information if preprocessing was successful
+	// Details about the response from the Lambda parsing of the output of the post-processing
+	// step.
 	//
 	// ParsedResponse is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostProcessingModelInvocationOutput_'s
 	// String and GoString methods.
 	ParsedResponse *PostProcessingParsedResponse `locationName:"parsedResponse" type:"structure" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 }
 
@@ -2444,11 +2545,12 @@ func (s *PostProcessingModelInvocationOutput_) SetTraceId(v string) *PostProcess
 	return s
 }
 
-// Trace Part which contains information if preprocessing was successful
+// Details about the response from the Lambda parsing of the output from the
+// post-processing step.
 type PostProcessingParsedResponse struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Agent Trace Output String
+	// The text returned by the parser.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostProcessingParsedResponse's
@@ -2480,18 +2582,26 @@ func (s *PostProcessingParsedResponse) SetText(v string) *PostProcessingParsedRe
 	return s
 }
 
-// Trace Part which contains information related to post processing step
+// Details about the post-processing step, in which the agent shapes the response.
 type PostProcessingTrace struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information used to call Invoke Model
+	// The input for the post-processing step.
+	//
+	//    * The type is POST_PROCESSING.
+	//
+	//    * The text contains the prompt.
+	//
+	//    * The inferenceConfiguration, parserMode, and overrideLambda values are
+	//    set in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	//    object that was set when the agent was created or updated.
 	//
 	// ModelInvocationInput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostProcessingTrace's
 	// String and GoString methods.
 	ModelInvocationInput *ModelInvocationInput_ `locationName:"modelInvocationInput" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information related to postprocessing
+	// The foundation model output from the post-processing step.
 	//
 	// ModelInvocationOutput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PostProcessingTrace's
@@ -2529,18 +2639,19 @@ func (s *PostProcessingTrace) SetModelInvocationOutput(v *PostProcessingModelInv
 	return s
 }
 
-// Trace Part which contains information related to preprocessing
+// The foundation model output from the pre-processing step.
 type PreProcessingModelInvocationOutput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information if preprocessing was successful
+	// Details about the response from the Lambda parsing of the output of the pre-processing
+	// step.
 	//
 	// ParsedResponse is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PreProcessingModelInvocationOutput_'s
 	// String and GoString methods.
 	ParsedResponse *PreProcessingParsedResponse `locationName:"parsedResponse" type:"structure" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 }
 
@@ -2574,14 +2685,18 @@ func (s *PreProcessingModelInvocationOutput_) SetTraceId(v string) *PreProcessin
 	return s
 }
 
-// Trace Part which contains information if preprocessing was successful
+// Details about the response from the Lambda parsing of the output from the
+// pre-processing step.
 type PreProcessingParsedResponse struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Boolean value
+	// Whether the user input is valid or not. If false, the agent doesn't proceed
+	// to orchestration.
 	IsValid *bool `locationName:"isValid" type:"boolean"`
 
-	// Agent Trace Rationale String
+	// The text returned by the parsing of the pre-processing step, explaining the
+	// steps that the agent plans to take in orchestration, if the user input is
+	// valid.
 	//
 	// Rationale is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PreProcessingParsedResponse's
@@ -2619,18 +2734,27 @@ func (s *PreProcessingParsedResponse) SetRationale(v string) *PreProcessingParse
 	return s
 }
 
-// Trace Part which contains information related to preprocessing step
+// Details about the pre-processing step, in which the agent contextualizes
+// and categorizes user inputs.
 type PreProcessingTrace struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information used to call Invoke Model
+	// The input for the pre-processing step.
+	//
+	//    * The type is PRE_PROCESSING.
+	//
+	//    * The text contains the prompt.
+	//
+	//    * The inferenceConfiguration, parserMode, and overrideLambda values are
+	//    set in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	//    object that was set when the agent was created or updated.
 	//
 	// ModelInvocationInput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PreProcessingTrace's
 	// String and GoString methods.
 	ModelInvocationInput *ModelInvocationInput_ `locationName:"modelInvocationInput" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information related to preprocessing
+	// The foundation model output from the pre-processing step.
 	//
 	// ModelInvocationOutput is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PreProcessingTrace's
@@ -2668,18 +2792,19 @@ func (s *PreProcessingTrace) SetModelInvocationOutput(v *PreProcessingModelInvoc
 	return s
 }
 
-// Trace Part which contains information related to reasoning
+// Contains the reasoning, based on the input, that the agent uses to justify
+// carrying out an action group or getting information from a knowledge base.
 type Rationale struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Agent Trace Rationale String
+	// The reasoning or thought process of the agent, based on the input.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Rationale's
 	// String and GoString methods.
 	Text *string `locationName:"text" type:"string" sensitive:"true"`
 
-	// Identifier for trace
+	// The unique identifier of the trace step.
 	TraceId *string `locationName:"traceId" min:"2" type:"string"`
 }
 
@@ -2713,18 +2838,18 @@ func (s *Rationale) SetTraceId(v string) *Rationale {
 	return s
 }
 
-// Observation information if there were reprompts
+// Contains details about the agent's response to reprompt the input.
 type RepromptResponse struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Parsing error source
+	// Specifies what output is prompting the agent to reprompt the input.
 	//
 	// Source is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RepromptResponse's
 	// String and GoString methods.
 	Source *string `locationName:"source" type:"string" enum:"Source" sensitive:"true"`
 
-	// Reprompt response text
+	// The text reprompting the input.
 	Text *string `locationName:"text" type:"string"`
 }
 
@@ -2758,11 +2883,11 @@ func (s *RepromptResponse) SetText(v string) *RepromptResponse {
 	return s
 }
 
-// Request Body Content Map
+// The parameters in the request body for the Lambda input event.
 type RequestBody struct {
 	_ struct{} `type:"structure"`
 
-	// Content type paramter map
+	// The content in the request body.
 	Content map[string][]*Parameter `locationName:"content" type:"map"`
 }
 
@@ -2790,13 +2915,12 @@ func (s *RequestBody) SetContent(v map[string][]*Parameter) *RequestBody {
 	return s
 }
 
-// This exception is thrown when a resource referenced by the operation does
-// not exist
+// The specified resource ARN was not found. Check the ARN and try your request
+// again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -3059,11 +3183,11 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 	return nil
 }
 
-// Content of a retrieval result.
+// Contains the cited text from the data source.
 type RetrievalResultContent struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Content of a retrieval result in text
+	// The cited text from the data source.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" type:"string" required:"true"`
@@ -3093,14 +3217,14 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 	return s
 }
 
-// The source location of a retrieval result.
+// Contains information about the location of the data source.
 type RetrievalResultLocation struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// The S3 location of a retrieval result.
+	// Contains the S3 location of the data source.
 	S3Location *RetrievalResultS3Location `locationName:"s3Location" type:"structure"`
 
-	// The location type of a retrieval result.
+	// The type of the location of the data source.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"RetrievalResultLocationType"`
@@ -3136,11 +3260,11 @@ func (s *RetrievalResultLocation) SetType(v string) *RetrievalResultLocation {
 	return s
 }
 
-// The S3 location of a retrieval result.
+// Contains the S3 location of the data source.
 type RetrievalResultS3Location struct {
 	_ struct{} `type:"structure"`
 
-	// URI of S3 location
+	// The S3 URI of the data source.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -3168,14 +3292,14 @@ func (s *RetrievalResultS3Location) SetUri(v string) *RetrievalResultS3Location 
 	return s
 }
 
-// Configures the retrieval and generation for the session.
+// Contains details about the resource being queried.
 type RetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Configurations for retrieval and generation for knowledge base.
+	// Contains details about the resource being queried.
 	KnowledgeBaseConfiguration *KnowledgeBaseRetrieveAndGenerateConfiguration `locationName:"knowledgeBaseConfiguration" type:"structure"`
 
-	// The type of RetrieveAndGenerate.
+	// The type of resource that is queried by the request.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"RetrieveAndGenerateType"`
@@ -3232,7 +3356,7 @@ func (s *RetrieveAndGenerateConfiguration) SetType(v string) *RetrieveAndGenerat
 type RetrieveAndGenerateInput struct {
 	_ struct{} `type:"structure"`
 
-	// Customer input of the turn
+	// Contains the query made to the knowledge base.
 	//
 	// Input is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveAndGenerateInput's
@@ -3241,13 +3365,15 @@ type RetrieveAndGenerateInput struct {
 	// Input is a required field
 	Input *RetrieveAndGenerateInput_ `locationName:"input" type:"structure" required:"true" sensitive:"true"`
 
-	// Configures the retrieval and generation for the session.
+	// Contains details about the resource being queried and the foundation model
+	// used for generation.
 	RetrieveAndGenerateConfiguration *RetrieveAndGenerateConfiguration `locationName:"retrieveAndGenerateConfiguration" type:"structure"`
 
-	// Configures common parameters of the session.
+	// Contains details about the session with the knowledge base.
 	SessionConfiguration *RetrieveAndGenerateSessionConfiguration `locationName:"sessionConfiguration" type:"structure"`
 
-	// Identifier of the session.
+	// The unique identifier of the session. Reuse the same value to continue the
+	// same session with the knowledge base.
 	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
 }
 
@@ -3324,11 +3450,11 @@ func (s *RetrieveAndGenerateInput) SetSessionId(v string) *RetrieveAndGenerateIn
 	return s
 }
 
-// Customer input of the turn
+// Contains the query made to the knowledge base.
 type RetrieveAndGenerateInput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Customer input of the turn in text
+	// The query made to the knowledge base.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" type:"string" required:"true"`
@@ -3374,10 +3500,11 @@ func (s *RetrieveAndGenerateInput_) SetText(v string) *RetrieveAndGenerateInput_
 type RetrieveAndGenerateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of citations
+	// A list of segments of the generated response that are based on sources in
+	// the knowledge base, alongside information about the sources.
 	Citations []*Citation `locationName:"citations" type:"list"`
 
-	// Service response of the turn
+	// Contains the response generated from querying the knowledge base.
 	//
 	// Output is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveAndGenerateOutput's
@@ -3386,7 +3513,8 @@ type RetrieveAndGenerateOutput struct {
 	// Output is a required field
 	Output *RetrieveAndGenerateOutput_ `locationName:"output" type:"structure" required:"true" sensitive:"true"`
 
-	// Identifier of the session.
+	// The unique identifier of the session. Reuse the same value to continue the
+	// same session with the knowledge base.
 	//
 	// SessionId is a required field
 	SessionId *string `locationName:"sessionId" min:"2" type:"string" required:"true"`
@@ -3428,11 +3556,11 @@ func (s *RetrieveAndGenerateOutput) SetSessionId(v string) *RetrieveAndGenerateO
 	return s
 }
 
-// Service response of the turn
+// Contains the response generated from querying the knowledge base.
 type RetrieveAndGenerateOutput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Service response of the turn in text
+	// The response generated from querying the knowledge base.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" type:"string" required:"true"`
@@ -3462,11 +3590,11 @@ func (s *RetrieveAndGenerateOutput_) SetText(v string) *RetrieveAndGenerateOutpu
 	return s
 }
 
-// Configures common parameters of the session.
+// Contains configuration about the session with the knowledge base.
 type RetrieveAndGenerateSessionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS key arn to encrypt the customer data of the session.
+	// The ARN of the KMS key encrypting the session.
 	//
 	// KmsKeyArn is a required field
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string" required:"true"`
@@ -3515,18 +3643,20 @@ func (s *RetrieveAndGenerateSessionConfiguration) SetKmsKeyArn(v string) *Retrie
 type RetrieveInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the KnowledgeBase
+	// The unique identifier of the knowledge base to query.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If there are more results than can fit in the response, the response returns
+	// a nextToken. Use this token in the nextToken field of another request to
+	// retrieve the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// Search parameters for retrieving from knowledge base.
+	// Contains details about how the results should be returned.
 	RetrievalConfiguration *KnowledgeBaseRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 
-	// Knowledge base input query.
+	// The query to send the knowledge base.
 	//
 	// RetrievalQuery is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveInput's
@@ -3613,10 +3743,12 @@ func (s *RetrieveInput) SetRetrievalQuery(v *KnowledgeBaseQuery) *RetrieveInput 
 type RetrieveOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Opaque continuation token of previous paginated response.
+	// If there are more results than can fit in the response, the response returns
+	// a nextToken. Use this token in the nextToken field of another request to
+	// retrieve the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// List of knowledge base retrieval results
+	// A list of results from querying the knowledge base.
 	//
 	// RetrievalResults is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveOutput's
@@ -3656,18 +3788,18 @@ func (s *RetrieveOutput) SetRetrievalResults(v []*KnowledgeBaseRetrievalResult) 
 	return s
 }
 
-// Retrieved reference
+// Contains metadata about a sources cited for the generated response.
 type RetrievedReference struct {
 	_ struct{} `type:"structure"`
 
-	// Content of a retrieval result.
+	// Contains the cited text from the data source.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrievedReference's
 	// String and GoString methods.
 	Content *RetrievalResultContent `locationName:"content" type:"structure" sensitive:"true"`
 
-	// The source location of a retrieval result.
+	// Contains information about the location of the data source.
 	//
 	// Location is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrievedReference's
@@ -3705,12 +3837,11 @@ func (s *RetrievedReference) SetLocation(v *RetrievalResultLocation) *RetrievedR
 	return s
 }
 
-// This exception is thrown when a request is made beyond the service quota
+// The number of requests exceeds the service quota. Resubmit your request later.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -3799,14 +3930,24 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Session state provided
+// Contains parameters that specify various attributes that persist across a
+// session or prompt. You can define session state attributes as key-value pairs
+// when writing a Lambda function (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-lambda.html)
+// for an action group or pass them when making an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+// request. Use session state attributes to control and provide conversational
+// context for your agent and to help customize your agent's behavior. For more
+// information, see Session context (https://docs.aws.amazon.com/bedrock/latest/userguide/sessionstate.html).
 type SessionState struct {
 	_ struct{} `type:"structure"`
 
-	// Prompt Session Attributes
+	// Contains attributes that persist across a prompt and the values of those
+	// attributes. These attributes replace the $prompt_session_attributes$ placeholder
+	// variable in the orchestration prompt template. For more information, see
+	// Prompt template placeholder variables (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html).
 	PromptSessionAttributes map[string]*string `locationName:"promptSessionAttributes" type:"map"`
 
-	// Session Attributes
+	// Contains attributes that persist across a session and the values of those
+	// attributes.
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map"`
 }
 
@@ -3840,14 +3981,15 @@ func (s *SessionState) SetSessionAttributes(v map[string]*string) *SessionState 
 	return s
 }
 
-// Span of text
+// Contains information about where the text with a citation begins and ends
+// in the generated output.
 type Span struct {
 	_ struct{} `type:"structure"`
 
-	// End of span
+	// Where the text with a citation ends in the generated output.
 	End *int64 `locationName:"end" type:"integer"`
 
-	// Start of span
+	// Where the text with a citation starts in the generated output.
 	Start *int64 `locationName:"start" type:"integer"`
 }
 
@@ -3881,14 +4023,16 @@ func (s *Span) SetStart(v int64) *Span {
 	return s
 }
 
-// Text response part
+// Contains the part of the generated text that contains a citation, alongside
+// where it begins and ends.
 type TextResponsePart struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Span of text
+	// Contains information about where the text with a citation begins and ends
+	// in the generated output.
 	Span *Span `locationName:"span" type:"structure"`
 
-	// Response part in text
+	// The part of the generated text that contains a citation.
 	Text *string `locationName:"text" type:"string"`
 }
 
@@ -3922,12 +4066,11 @@ func (s *TextResponsePart) SetText(v string) *TextResponsePart {
 	return s
 }
 
-// This exception is thrown when the number of requests exceeds the limit
+// The number of requests exceeds the limit. Resubmit your request later.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -4016,32 +4159,37 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Trace contains intermidate response for customer
+// Contains one part of the agent's reasoning process and results from calling
+// API actions and querying knowledge bases. You can use the trace to understand
+// how the agent arrived at the response it provided the customer. For more
+// information, see Trace enablement (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement).
 type Trace struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Trace Part which is emitted when agent trace could not be generated
+	// Contains information about the failure of the interaction.
 	//
 	// FailureTrace is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Trace's
 	// String and GoString methods.
 	FailureTrace *FailureTrace `locationName:"failureTrace" type:"structure" sensitive:"true"`
 
-	// Trace contains intermidate response during orchestration
+	// Details about the orchestration step, in which the agent determines the order
+	// in which actions are executed and which knowledge bases are retrieved.
 	//
 	// OrchestrationTrace is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Trace's
 	// String and GoString methods.
 	OrchestrationTrace *OrchestrationTrace `locationName:"orchestrationTrace" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information related to post processing step
+	// Details about the post-processing step, in which the agent shapes the response..
 	//
 	// PostProcessingTrace is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Trace's
 	// String and GoString methods.
 	PostProcessingTrace *PostProcessingTrace `locationName:"postProcessingTrace" type:"structure" sensitive:"true"`
 
-	// Trace Part which contains information related to preprocessing step
+	// Details about the pre-processing step, in which the agent contextualizes
+	// and categorizes user inputs.
 	//
 	// PreProcessingTrace is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Trace's
@@ -4091,20 +4239,27 @@ func (s *Trace) SetPreProcessingTrace(v *PreProcessingTrace) *Trace {
 	return s
 }
 
-// Trace Part which contains intermidate response for customer
+// Contains information about the agent and session, alongside the agent's reasoning
+// process and results from calling API actions and querying knowledge bases
+// and metadata about the trace. You can use the trace to understand how the
+// agent arrived at the response it provided the customer. For more information,
+// see Trace enablement (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement).
 type TracePart struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// Identifier of the agent alias.
+	// The unique identifier of the alias of the agent.
 	AgentAliasId *string `locationName:"agentAliasId" type:"string"`
 
-	// Identifier of the agent.
+	// The unique identifier of the agent.
 	AgentId *string `locationName:"agentId" type:"string"`
 
-	// Identifier of the session.
+	// The unique identifier of the session with the agent.
 	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
 
-	// Trace contains intermidate response for customer
+	// Contains one part of the agent's reasoning process and results from calling
+	// API actions and querying knowledge bases. You can use the trace to understand
+	// how the agent arrived at the response it provided the customer. For more
+	// information, see Trace enablement (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement).
 	//
 	// Trace is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TracePart's
@@ -4183,12 +4338,11 @@ func (s *TracePart) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.
 	return msg, err
 }
 
-// This exception is thrown when the request's input validation fails
+// Input validation failed. Check your request parameters and retry the request.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -4277,7 +4431,6 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// indicates if agent uses default prompt or overriden prompt
 const (
 	// CreationModeDefault is a CreationMode enum value
 	CreationModeDefault = "DEFAULT"
@@ -4294,7 +4447,6 @@ func CreationMode_Values() []string {
 	}
 }
 
-// types of invocations
 const (
 	// InvocationTypeActionGroup is a InvocationType enum value
 	InvocationTypeActionGroup = "ACTION_GROUP"
@@ -4315,7 +4467,6 @@ func InvocationType_Values() []string {
 	}
 }
 
-// types of prompts
 const (
 	// PromptTypePreProcessing is a PromptType enum value
 	PromptTypePreProcessing = "PRE_PROCESSING"
@@ -4340,7 +4491,6 @@ func PromptType_Values() []string {
 	}
 }
 
-// The location type of a retrieval result.
 const (
 	// RetrievalResultLocationTypeS3 is a RetrievalResultLocationType enum value
 	RetrievalResultLocationTypeS3 = "S3"
@@ -4353,7 +4503,6 @@ func RetrievalResultLocationType_Values() []string {
 	}
 }
 
-// The type of RetrieveAndGenerate.
 const (
 	// RetrieveAndGenerateTypeKnowledgeBase is a RetrieveAndGenerateType enum value
 	RetrieveAndGenerateTypeKnowledgeBase = "KNOWLEDGE_BASE"
@@ -4366,7 +4515,6 @@ func RetrieveAndGenerateType_Values() []string {
 	}
 }
 
-// Query type to be performed on data store.
 const (
 	// SearchTypeHybrid is a SearchType enum value
 	SearchTypeHybrid = "HYBRID"
@@ -4383,7 +4531,6 @@ func SearchType_Values() []string {
 	}
 }
 
-// Parsing error source
 const (
 	// SourceActionGroup is a Source enum value
 	SourceActionGroup = "ACTION_GROUP"
@@ -4404,7 +4551,6 @@ func Source_Values() []string {
 	}
 }
 
-// types of observations
 const (
 	// TypeActionGroup is a Type enum value
 	TypeActionGroup = "ACTION_GROUP"
