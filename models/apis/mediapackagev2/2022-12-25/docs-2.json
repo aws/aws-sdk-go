@@ -271,6 +271,23 @@
         "Encryption$EncryptionMethod": "<p>The encryption method to use.</p>"
       }
     },
+    "EntityTag": {
+      "base": null,
+      "refs": {
+        "CreateChannelGroupResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "CreateChannelResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "CreateOriginEndpointResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "GetChannelGroupResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "GetChannelResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "GetOriginEndpointResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "UpdateChannelGroupRequest$ETag": "<p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>",
+        "UpdateChannelGroupResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "UpdateChannelRequest$ETag": "<p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>",
+        "UpdateChannelResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>",
+        "UpdateOriginEndpointRequest$ETag": "<p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>",
+        "UpdateOriginEndpointResponse$ETag": "<p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>"
+      }
+    },
     "FilterConfiguration": {
       "base": "<p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>",
       "refs": {

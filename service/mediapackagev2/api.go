@@ -2928,6 +2928,10 @@ type CreateChannelGroupOutput struct {
 	// The description for your channel group.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// The output domain where the source stream should be sent. Integrate the egress
 	// domain with a downstream CDN (such as Amazon CloudFront) or playback device.
 	//
@@ -2982,6 +2986,12 @@ func (s *CreateChannelGroupOutput) SetCreatedAt(v time.Time) *CreateChannelGroup
 // SetDescription sets the Description field's value.
 func (s *CreateChannelGroupOutput) SetDescription(v string) *CreateChannelGroupOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateChannelGroupOutput) SetETag(v string) *CreateChannelGroupOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -3136,6 +3146,10 @@ type CreateChannelOutput struct {
 	// The description for your channel.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
 
@@ -3193,6 +3207,12 @@ func (s *CreateChannelOutput) SetCreatedAt(v time.Time) *CreateChannelOutput {
 // SetDescription sets the Description field's value.
 func (s *CreateChannelOutput) SetDescription(v string) *CreateChannelOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateChannelOutput) SetETag(v string) *CreateChannelOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -3715,6 +3735,10 @@ type CreateOriginEndpointOutput struct {
 	// The description for your origin endpoint.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
 
@@ -3799,6 +3823,12 @@ func (s *CreateOriginEndpointOutput) SetCreatedAt(v time.Time) *CreateOriginEndp
 // SetDescription sets the Description field's value.
 func (s *CreateOriginEndpointOutput) SetDescription(v string) *CreateOriginEndpointOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateOriginEndpointOutput) SetETag(v string) *CreateOriginEndpointOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -4736,6 +4766,10 @@ type GetChannelGroupOutput struct {
 	// The description for your channel group.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// The output domain where the source stream should be sent. Integrate the domain
 	// with a downstream CDN (such as Amazon CloudFront) or playback device.
 	//
@@ -4790,6 +4824,12 @@ func (s *GetChannelGroupOutput) SetCreatedAt(v time.Time) *GetChannelGroupOutput
 // SetDescription sets the Description field's value.
 func (s *GetChannelGroupOutput) SetDescription(v string) *GetChannelGroupOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetChannelGroupOutput) SetETag(v string) *GetChannelGroupOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -4909,6 +4949,10 @@ type GetChannelOutput struct {
 	// The description for your channel.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
 
@@ -4966,6 +5010,12 @@ func (s *GetChannelOutput) SetCreatedAt(v time.Time) *GetChannelOutput {
 // SetDescription sets the Description field's value.
 func (s *GetChannelOutput) SetDescription(v string) *GetChannelOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetChannelOutput) SetETag(v string) *GetChannelOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -5454,6 +5504,10 @@ type GetOriginEndpointOutput struct {
 	// The description for your origin endpoint.
 	Description *string `type:"string"`
 
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
+
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
 
@@ -5538,6 +5592,12 @@ func (s *GetOriginEndpointOutput) SetCreatedAt(v time.Time) *GetOriginEndpointOu
 // SetDescription sets the Description field's value.
 func (s *GetOriginEndpointOutput) SetDescription(v string) *GetOriginEndpointOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetOriginEndpointOutput) SetETag(v string) *GetOriginEndpointOutput {
+	s.ETag = &v
 	return s
 }
 
@@ -7466,6 +7526,11 @@ type UpdateChannelGroupInput struct {
 	// Any descriptive information that you want to add to the channel group for
 	// future identification purposes.
 	Description *string `type:"string"`
+
+	// The expected current Entity Tag (ETag) for the resource. If the specified
+	// ETag does not match the resource's current entity tag, the update request
+	// will be rejected.
+	ETag *string `location:"header" locationName:"x-amzn-update-if-match" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -7495,6 +7560,9 @@ func (s *UpdateChannelGroupInput) Validate() error {
 	if s.ChannelGroupName != nil && len(*s.ChannelGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelGroupName", 1))
 	}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7511,6 +7579,12 @@ func (s *UpdateChannelGroupInput) SetChannelGroupName(v string) *UpdateChannelGr
 // SetDescription sets the Description field's value.
 func (s *UpdateChannelGroupInput) SetDescription(v string) *UpdateChannelGroupInput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateChannelGroupInput) SetETag(v string) *UpdateChannelGroupInput {
+	s.ETag = &v
 	return s
 }
 
@@ -7535,6 +7609,10 @@ type UpdateChannelGroupOutput struct {
 
 	// The description for your channel group.
 	Description *string `type:"string"`
+
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
 
 	// The output domain where the source stream is sent. Integrate the domain with
 	// a downstream CDN (such as Amazon CloudFront) or playback device.
@@ -7593,6 +7671,12 @@ func (s *UpdateChannelGroupOutput) SetDescription(v string) *UpdateChannelGroupO
 	return s
 }
 
+// SetETag sets the ETag field's value.
+func (s *UpdateChannelGroupOutput) SetETag(v string) *UpdateChannelGroupOutput {
+	s.ETag = &v
+	return s
+}
+
 // SetEgressDomain sets the EgressDomain field's value.
 func (s *UpdateChannelGroupOutput) SetEgressDomain(v string) *UpdateChannelGroupOutput {
 	s.EgressDomain = &v
@@ -7630,6 +7714,11 @@ type UpdateChannelInput struct {
 	// Any descriptive information that you want to add to the channel for future
 	// identification purposes.
 	Description *string `type:"string"`
+
+	// The expected current Entity Tag (ETag) for the resource. If the specified
+	// ETag does not match the resource's current entity tag, the update request
+	// will be rejected.
+	ETag *string `location:"header" locationName:"x-amzn-update-if-match" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -7665,6 +7754,9 @@ func (s *UpdateChannelInput) Validate() error {
 	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
 	}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7687,6 +7779,12 @@ func (s *UpdateChannelInput) SetChannelName(v string) *UpdateChannelInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateChannelInput) SetDescription(v string) *UpdateChannelInput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateChannelInput) SetETag(v string) *UpdateChannelInput {
+	s.ETag = &v
 	return s
 }
 
@@ -7718,6 +7816,10 @@ type UpdateChannelOutput struct {
 
 	// The description for your channel.
 	Description *string `type:"string"`
+
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
 
 	// The list of ingest endpoints.
 	IngestEndpoints []*IngestEndpoint `type:"list"`
@@ -7779,6 +7881,12 @@ func (s *UpdateChannelOutput) SetDescription(v string) *UpdateChannelOutput {
 	return s
 }
 
+// SetETag sets the ETag field's value.
+func (s *UpdateChannelOutput) SetETag(v string) *UpdateChannelOutput {
+	s.ETag = &v
+	return s
+}
+
 // SetIngestEndpoints sets the IngestEndpoints field's value.
 func (s *UpdateChannelOutput) SetIngestEndpoints(v []*IngestEndpoint) *UpdateChannelOutput {
 	s.IngestEndpoints = v
@@ -7823,6 +7931,11 @@ type UpdateOriginEndpointInput struct {
 	// Any descriptive information that you want to add to the origin endpoint for
 	// future identification purposes.
 	Description *string `type:"string"`
+
+	// The expected current Entity Tag (ETag) for the resource. If the specified
+	// ETag does not match the resource's current entity tag, the update request
+	// will be rejected.
+	ETag *string `location:"header" locationName:"x-amzn-update-if-match" min:"1" type:"string"`
 
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*CreateHlsManifestConfiguration `type:"list"`
@@ -7883,6 +7996,9 @@ func (s *UpdateOriginEndpointInput) Validate() error {
 	}
 	if s.ContainerType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContainerType"))
+	}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
 	}
 	if s.OriginEndpointName == nil {
 		invalidParams.Add(request.NewErrParamRequired("OriginEndpointName"))
@@ -7949,6 +8065,12 @@ func (s *UpdateOriginEndpointInput) SetDescription(v string) *UpdateOriginEndpoi
 	return s
 }
 
+// SetETag sets the ETag field's value.
+func (s *UpdateOriginEndpointInput) SetETag(v string) *UpdateOriginEndpointInput {
+	s.ETag = &v
+	return s
+}
+
 // SetHlsManifests sets the HlsManifests field's value.
 func (s *UpdateOriginEndpointInput) SetHlsManifests(v []*CreateHlsManifestConfiguration) *UpdateOriginEndpointInput {
 	s.HlsManifests = v
@@ -8012,6 +8134,10 @@ type UpdateOriginEndpointOutput struct {
 
 	// The description of the origin endpoint.
 	Description *string `type:"string"`
+
+	// The current Entity Tag (ETag) associated with this resource. The entity tag
+	// can be used to safely make concurrent updates to the resource.
+	ETag *string `min:"1" type:"string"`
 
 	// An HTTP live streaming (HLS) manifest configuration.
 	HlsManifests []*GetHlsManifestConfiguration `type:"list"`
@@ -8097,6 +8223,12 @@ func (s *UpdateOriginEndpointOutput) SetCreatedAt(v time.Time) *UpdateOriginEndp
 // SetDescription sets the Description field's value.
 func (s *UpdateOriginEndpointOutput) SetDescription(v string) *UpdateOriginEndpointOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateOriginEndpointOutput) SetETag(v string) *UpdateOriginEndpointOutput {
+	s.ETag = &v
 	return s
 }
 

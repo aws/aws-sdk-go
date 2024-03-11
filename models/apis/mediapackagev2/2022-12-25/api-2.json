@@ -562,6 +562,7 @@
         "EgressDomain":{"shape":"String"},
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
+        "ETag":{"shape":"EntityTag"},
         "Description":{"shape":"ResourceDescription"},
         "Tags":{"shape":"TagMap"}
       }
@@ -609,6 +610,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -627,7 +629,6 @@
     "CreateHlsManifestConfigurationManifestWindowSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":900,
       "min":30
     },
     "CreateHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger":{
@@ -655,7 +656,6 @@
     "CreateLowLatencyHlsManifestConfigurationManifestWindowSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":900,
       "min":30
     },
     "CreateLowLatencyHlsManifestConfigurationProgramDateTimeIntervalSecondsInteger":{
@@ -734,6 +734,7 @@
         "StartoverWindowSeconds":{"shape":"Integer"},
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -913,6 +914,12 @@
         "CmafEncryptionMethod":{"shape":"CmafEncryptionMethod"}
       }
     },
+    "EntityTag":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\S]+"
+    },
     "FilterConfiguration":{
       "type":"structure",
       "members":{
@@ -960,6 +967,7 @@
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
@@ -1034,6 +1042,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -1167,6 +1176,7 @@
         "StartoverWindowSeconds":{"shape":"Integer"},
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -1673,6 +1683,11 @@
           "location":"uri",
           "locationName":"ChannelGroupName"
         },
+        "ETag":{
+          "shape":"EntityTag",
+          "location":"header",
+          "locationName":"x-amzn-update-if-match"
+        },
         "Description":{"shape":"ResourceDescription"}
       }
     },
@@ -1692,6 +1707,7 @@
         "CreatedAt":{"shape":"Timestamp"},
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
@@ -1715,6 +1731,11 @@
           "location":"uri",
           "locationName":"ChannelName"
         },
+        "ETag":{
+          "shape":"EntityTag",
+          "location":"header",
+          "locationName":"x-amzn-update-if-match"
+        },
         "Description":{"shape":"ResourceDescription"}
       }
     },
@@ -1735,6 +1756,7 @@
         "ModifiedAt":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "IngestEndpoints":{"shape":"IngestEndpointList"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"
@@ -1770,7 +1792,12 @@
         "Description":{"shape":"ResourceDescription"},
         "StartoverWindowSeconds":{"shape":"UpdateOriginEndpointRequestStartoverWindowSecondsInteger"},
         "HlsManifests":{"shape":"CreateHlsManifests"},
-        "LowLatencyHlsManifests":{"shape":"CreateLowLatencyHlsManifests"}
+        "LowLatencyHlsManifests":{"shape":"CreateLowLatencyHlsManifests"},
+        "ETag":{
+          "shape":"EntityTag",
+          "location":"header",
+          "locationName":"x-amzn-update-if-match"
+        }
       }
     },
     "UpdateOriginEndpointRequestStartoverWindowSecondsInteger":{
@@ -1804,6 +1831,7 @@
         "StartoverWindowSeconds":{"shape":"Integer"},
         "HlsManifests":{"shape":"GetHlsManifests"},
         "LowLatencyHlsManifests":{"shape":"GetLowLatencyHlsManifests"},
+        "ETag":{"shape":"EntityTag"},
         "Tags":{
           "shape":"TagMap",
           "locationName":"tags"

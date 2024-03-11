@@ -591,7 +591,9 @@
         "RepositoryLinkId":{"shape":"RepositoryLinkId"},
         "ResourceName":{"shape":"ResourceName"},
         "RoleArn":{"shape":"IamRoleArn"},
-        "SyncType":{"shape":"SyncConfigurationType"}
+        "SyncType":{"shape":"SyncConfigurationType"},
+        "PublishDeploymentStatus":{"shape":"PublishDeploymentStatus"},
+        "TriggerResourceUpdateOn":{"shape":"TriggerResourceUpdateOn"}
       }
     },
     "CreateSyncConfigurationOutput":{
@@ -985,6 +987,13 @@
         "GitLabSelfManaged"
       ]
     },
+    "PublishDeploymentStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "RepositoryLinkArn":{
       "type":"string",
       "pattern":"^arn:aws(?:-[a-z]+)*:codestar-connections:[a-z\\-0-9]+:\\d{12}:repository-link\\/[a-zA-Z0-9\\-:/]+"
@@ -1296,7 +1305,9 @@
         "RepositoryName":{"shape":"RepositoryName"},
         "ResourceName":{"shape":"ResourceName"},
         "RoleArn":{"shape":"IamRoleArn"},
-        "SyncType":{"shape":"SyncConfigurationType"}
+        "SyncType":{"shape":"SyncConfigurationType"},
+        "PublishDeploymentStatus":{"shape":"PublishDeploymentStatus"},
+        "TriggerResourceUpdateOn":{"shape":"TriggerResourceUpdateOn"}
       }
     },
     "SyncConfigurationList":{
@@ -1379,6 +1390,13 @@
       "max":16384,
       "min":1,
       "pattern":"[\\s\\S]*"
+    },
+    "TriggerResourceUpdateOn":{
+      "type":"string",
+      "enum":[
+        "ANY_CHANGE",
+        "FILE_CHANGE"
+      ]
     },
     "Type":{"type":"string"},
     "UnsupportedOperationException":{
@@ -1487,7 +1505,9 @@
         "RepositoryLinkId":{"shape":"RepositoryLinkId"},
         "ResourceName":{"shape":"ResourceName"},
         "RoleArn":{"shape":"IamRoleArn"},
-        "SyncType":{"shape":"SyncConfigurationType"}
+        "SyncType":{"shape":"SyncConfigurationType"},
+        "PublishDeploymentStatus":{"shape":"PublishDeploymentStatus"},
+        "TriggerResourceUpdateOn":{"shape":"TriggerResourceUpdateOn"}
       }
     },
     "UpdateSyncConfigurationOutput":{

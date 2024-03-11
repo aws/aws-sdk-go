@@ -3468,6 +3468,9 @@ type CreateSyncConfigurationInput struct {
 	// ConfigFile is a required field
 	ConfigFile *string `type:"string" required:"true"`
 
+	// Whether to enable or disable publishing of deployment status to source providers.
+	PublishDeploymentStatus *string `type:"string" enum:"PublishDeploymentStatus"`
+
 	// The ID of the repository link created for the connection. A repository link
 	// allows Git sync to monitor and sync changes to files in a specified Git repository.
 	//
@@ -3491,6 +3494,9 @@ type CreateSyncConfigurationInput struct {
 	//
 	// SyncType is a required field
 	SyncType *string `type:"string" required:"true" enum:"SyncConfigurationType"`
+
+	// When to trigger Git sync to begin the stack update.
+	TriggerResourceUpdateOn *string `type:"string" enum:"TriggerResourceUpdateOn"`
 }
 
 // String returns the string representation.
@@ -3560,6 +3566,12 @@ func (s *CreateSyncConfigurationInput) SetConfigFile(v string) *CreateSyncConfig
 	return s
 }
 
+// SetPublishDeploymentStatus sets the PublishDeploymentStatus field's value.
+func (s *CreateSyncConfigurationInput) SetPublishDeploymentStatus(v string) *CreateSyncConfigurationInput {
+	s.PublishDeploymentStatus = &v
+	return s
+}
+
 // SetRepositoryLinkId sets the RepositoryLinkId field's value.
 func (s *CreateSyncConfigurationInput) SetRepositoryLinkId(v string) *CreateSyncConfigurationInput {
 	s.RepositoryLinkId = &v
@@ -3581,6 +3593,12 @@ func (s *CreateSyncConfigurationInput) SetRoleArn(v string) *CreateSyncConfigura
 // SetSyncType sets the SyncType field's value.
 func (s *CreateSyncConfigurationInput) SetSyncType(v string) *CreateSyncConfigurationInput {
 	s.SyncType = &v
+	return s
+}
+
+// SetTriggerResourceUpdateOn sets the TriggerResourceUpdateOn field's value.
+func (s *CreateSyncConfigurationInput) SetTriggerResourceUpdateOn(v string) *CreateSyncConfigurationInput {
+	s.TriggerResourceUpdateOn = &v
 	return s
 }
 
@@ -6626,6 +6644,9 @@ type SyncConfiguration struct {
 	// ProviderType is a required field
 	ProviderType *string `type:"string" required:"true" enum:"ProviderType"`
 
+	// Whether to enable or disable publishing of deployment status to source providers.
+	PublishDeploymentStatus *string `type:"string" enum:"PublishDeploymentStatus"`
+
 	// The ID of the repository link associated with a specific sync configuration.
 	//
 	// RepositoryLinkId is a required field
@@ -6651,6 +6672,9 @@ type SyncConfiguration struct {
 	//
 	// SyncType is a required field
 	SyncType *string `type:"string" required:"true" enum:"SyncConfigurationType"`
+
+	// When to trigger Git sync to begin the stack update.
+	TriggerResourceUpdateOn *string `type:"string" enum:"TriggerResourceUpdateOn"`
 }
 
 // String returns the string representation.
@@ -6695,6 +6719,12 @@ func (s *SyncConfiguration) SetProviderType(v string) *SyncConfiguration {
 	return s
 }
 
+// SetPublishDeploymentStatus sets the PublishDeploymentStatus field's value.
+func (s *SyncConfiguration) SetPublishDeploymentStatus(v string) *SyncConfiguration {
+	s.PublishDeploymentStatus = &v
+	return s
+}
+
 // SetRepositoryLinkId sets the RepositoryLinkId field's value.
 func (s *SyncConfiguration) SetRepositoryLinkId(v string) *SyncConfiguration {
 	s.RepositoryLinkId = &v
@@ -6722,6 +6752,12 @@ func (s *SyncConfiguration) SetRoleArn(v string) *SyncConfiguration {
 // SetSyncType sets the SyncType field's value.
 func (s *SyncConfiguration) SetSyncType(v string) *SyncConfiguration {
 	s.SyncType = &v
+	return s
+}
+
+// SetTriggerResourceUpdateOn sets the TriggerResourceUpdateOn field's value.
+func (s *SyncConfiguration) SetTriggerResourceUpdateOn(v string) *SyncConfiguration {
+	s.TriggerResourceUpdateOn = &v
 	return s
 }
 
@@ -7651,6 +7687,9 @@ type UpdateSyncConfigurationInput struct {
 	// The configuration file for the sync configuration to be updated.
 	ConfigFile *string `type:"string"`
 
+	// Whether to enable or disable publishing of deployment status to source providers.
+	PublishDeploymentStatus *string `type:"string" enum:"PublishDeploymentStatus"`
+
 	// The ID of the repository link for the sync configuration to be updated.
 	RepositoryLinkId *string `type:"string"`
 
@@ -7667,6 +7706,9 @@ type UpdateSyncConfigurationInput struct {
 	//
 	// SyncType is a required field
 	SyncType *string `type:"string" required:"true" enum:"SyncConfigurationType"`
+
+	// When to trigger Git sync to begin the stack update.
+	TriggerResourceUpdateOn *string `type:"string" enum:"TriggerResourceUpdateOn"`
 }
 
 // String returns the string representation.
@@ -7724,6 +7766,12 @@ func (s *UpdateSyncConfigurationInput) SetConfigFile(v string) *UpdateSyncConfig
 	return s
 }
 
+// SetPublishDeploymentStatus sets the PublishDeploymentStatus field's value.
+func (s *UpdateSyncConfigurationInput) SetPublishDeploymentStatus(v string) *UpdateSyncConfigurationInput {
+	s.PublishDeploymentStatus = &v
+	return s
+}
+
 // SetRepositoryLinkId sets the RepositoryLinkId field's value.
 func (s *UpdateSyncConfigurationInput) SetRepositoryLinkId(v string) *UpdateSyncConfigurationInput {
 	s.RepositoryLinkId = &v
@@ -7745,6 +7793,12 @@ func (s *UpdateSyncConfigurationInput) SetRoleArn(v string) *UpdateSyncConfigura
 // SetSyncType sets the SyncType field's value.
 func (s *UpdateSyncConfigurationInput) SetSyncType(v string) *UpdateSyncConfigurationInput {
 	s.SyncType = &v
+	return s
+}
+
+// SetTriggerResourceUpdateOn sets the TriggerResourceUpdateOn field's value.
+func (s *UpdateSyncConfigurationInput) SetTriggerResourceUpdateOn(v string) *UpdateSyncConfigurationInput {
+	s.TriggerResourceUpdateOn = &v
 	return s
 }
 
@@ -7958,6 +8012,22 @@ func ProviderType_Values() []string {
 }
 
 const (
+	// PublishDeploymentStatusEnabled is a PublishDeploymentStatus enum value
+	PublishDeploymentStatusEnabled = "ENABLED"
+
+	// PublishDeploymentStatusDisabled is a PublishDeploymentStatus enum value
+	PublishDeploymentStatusDisabled = "DISABLED"
+)
+
+// PublishDeploymentStatus_Values returns all elements of the PublishDeploymentStatus enum
+func PublishDeploymentStatus_Values() []string {
+	return []string{
+		PublishDeploymentStatusEnabled,
+		PublishDeploymentStatusDisabled,
+	}
+}
+
+const (
 	// RepositorySyncStatusFailed is a RepositorySyncStatus enum value
 	RepositorySyncStatusFailed = "FAILED"
 
@@ -8018,5 +8088,21 @@ const (
 func SyncConfigurationType_Values() []string {
 	return []string{
 		SyncConfigurationTypeCfnStackSync,
+	}
+}
+
+const (
+	// TriggerResourceUpdateOnAnyChange is a TriggerResourceUpdateOn enum value
+	TriggerResourceUpdateOnAnyChange = "ANY_CHANGE"
+
+	// TriggerResourceUpdateOnFileChange is a TriggerResourceUpdateOn enum value
+	TriggerResourceUpdateOnFileChange = "FILE_CHANGE"
+)
+
+// TriggerResourceUpdateOn_Values returns all elements of the TriggerResourceUpdateOn enum
+func TriggerResourceUpdateOn_Values() []string {
+	return []string{
+		TriggerResourceUpdateOnAnyChange,
+		TriggerResourceUpdateOnFileChange,
 	}
 }

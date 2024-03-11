@@ -1366,8 +1366,8 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // This API can be used to create a standalone regional replication group or
 // a secondary replication group associated with a Global datastore.
 //
-// A Redis (cluster mode disabled) replication group is a collection of clusters,
-// where one of the clusters is a read/write primary and the others are read-only
+// A Redis (cluster mode disabled) replication group is a collection of nodes,
+// where one of the nodes is a read/write primary and the others are read-only
 // replicas. Writes to the primary are asynchronously propagated to the replicas.
 //
 // A Redis cluster-mode enabled cluster is comprised of from 1 to 90 shards
@@ -12188,11 +12188,6 @@ type CreateReplicationGroupInput struct {
 
 	// Specifies the weekly time range during which maintenance on the cluster is
 	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-	// values for ddd are:
-	//
-	// Specifies the weekly time range during which maintenance on the cluster is
-	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 	//
 	// Valid values for ddd are:
@@ -17630,7 +17625,7 @@ func (s *ECPUPerSecond) SetMaximum(v int64) *ECPUPerSecond {
 }
 
 // Represents the information required for client programs to connect to a cache
-// node.
+// node. This value is read-only.
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -20897,7 +20892,8 @@ type NodeGroup struct {
 	// The endpoint of the primary node in this node group (shard).
 	PrimaryEndpoint *Endpoint `type:"structure"`
 
-	// The endpoint of the replica nodes in this node group (shard).
+	// The endpoint of the replica nodes in this node group (shard). This value
+	// is read-only.
 	ReaderEndpoint *Endpoint `type:"structure"`
 
 	// The keyspace for this node group (shard).
@@ -23455,7 +23451,7 @@ type ServerlessCache struct {
 	Description *string `type:"string"`
 
 	// Represents the information required for client programs to connect to a cache
-	// node.
+	// node. This value is read-only.
 	Endpoint *Endpoint `type:"structure"`
 
 	// The engine the serverless cache is compatible with.
@@ -23473,7 +23469,7 @@ type ServerlessCache struct {
 	MajorEngineVersion *string `type:"string"`
 
 	// Represents the information required for client programs to connect to a cache
-	// node.
+	// node. This value is read-only.
 	ReaderEndpoint *Endpoint `type:"structure"`
 
 	// The IDs of the EC2 security groups associated with the serverless cache.
@@ -23490,10 +23486,10 @@ type ServerlessCache struct {
 	// AVAILABLE, DELETING, CREATE-FAILED and MODIFYING.
 	Status *string `type:"string"`
 
-	// If no subnet IDs are given and your VPC is in SFO, then ElastiCache will
-	// select 2 default subnets across AZs in your VPC. For all other Regions, if
-	// no subnet IDs are given then ElastiCache will select 3 default subnets across
-	// AZs in your default VPC.
+	// If no subnet IDs are given and your VPC is in us-west-1, then ElastiCache
+	// will select 2 default subnets across AZs in your VPC. For all other Regions,
+	// if no subnet IDs are given then ElastiCache will select 3 default subnets
+	// across AZs in your default VPC.
 	SubnetIds []*string `locationNameList:"SubnetId" type:"list"`
 
 	// The identifier of the user group associated with the serverless cache. Available
