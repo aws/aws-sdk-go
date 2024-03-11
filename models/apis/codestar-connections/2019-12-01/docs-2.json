@@ -530,6 +530,14 @@
         "SyncConfiguration$ProviderType": "<p>The connection provider type associated with a specific sync configuration, such as GitHub.</p>"
       }
     },
+    "PublishDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "CreateSyncConfigurationInput$PublishDeploymentStatus": "<p>Whether to enable or disable publishing of deployment status to source providers.</p>",
+        "SyncConfiguration$PublishDeploymentStatus": "<p>Whether to enable or disable publishing of deployment status to source providers.</p>",
+        "UpdateSyncConfigurationInput$PublishDeploymentStatus": "<p>Whether to enable or disable publishing of deployment status to source providers.</p>"
+      }
+    },
     "RepositoryLinkArn": {
       "base": null,
       "refs": {
@@ -880,6 +888,14 @@
       "base": null,
       "refs": {
         "VpcConfiguration$TlsCertificate": "<p>The value of the Transport Layer Security (TLS) certificate associated with the infrastructure where your provider type is installed.</p>"
+      }
+    },
+    "TriggerResourceUpdateOn": {
+      "base": null,
+      "refs": {
+        "CreateSyncConfigurationInput$TriggerResourceUpdateOn": "<p>When to trigger Git sync to begin the stack update.</p>",
+        "SyncConfiguration$TriggerResourceUpdateOn": "<p>When to trigger Git sync to begin the stack update.</p>",
+        "UpdateSyncConfigurationInput$TriggerResourceUpdateOn": "<p>When to trigger Git sync to begin the stack update.</p>"
       }
     },
     "Type": {

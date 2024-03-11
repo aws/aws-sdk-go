@@ -1,3 +1,12 @@
+Release v1.50.36 (2024-03-11)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Revisions to API text that are now to be carried over to SDK text, changing usages of "SFO" in code examples to "us-west-1", and some other typos.
+* `service/mediapackagev2`: Updates service API and documentation
+
 Release v1.50.35 (2024-03-08)
 ===
 
