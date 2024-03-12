@@ -2415,7 +2415,8 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 // DescribeStackEvents API operation for AWS CloudFormation.
 //
 // Returns all stack related events for a specified stack in reverse chronological
-// order. For more information about a stack's event history, go to Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
+// order. For more information about a stack's event history, see CloudFormation
+// stack creation events (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-resource-configuration-complete.html)
 // in the CloudFormation User Guide.
 //
 // You can list events for stacks that have failed to create or have been deleted
@@ -3103,7 +3104,9 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 // DescribeStacks API operation for AWS CloudFormation.
 //
 // Returns the description for the specified stack; if no stack name was specified,
-// then it returns the description for all the stacks created.
+// then it returns the description for all the stacks created. For more information
+// about a stack's event history, see CloudFormation stack creation events (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-resource-configuration-complete.html)
+// in the CloudFormation User Guide.
 //
 // If the stack doesn't exist, a ValidationError is returned.
 //
@@ -22112,12 +22115,6 @@ type StackInstanceComprehensiveStatus struct {
 	//
 	//    * FAILED: The operation in the specified account and Region failed. If
 	//    the stack set operation fails in enough accounts within a Region, the
-	//    failure tolerance for the stack set operation as a whole might be exceeded.
-	//
-	//    * FAILED_IMPORT: The import of the stack instance in the specified account
-	//    and Region failed and left the stack in an unstable state. Once the issues
-	//    causing the failure are fixed, the import operation can be retried. If
-	//    enough stack set operations fail in enough accounts within a Region, the
 	//    failure tolerance for the stack set operation as a whole might be exceeded.
 	//
 	//    * INOPERABLE: A DeleteStackInstances operation has failed and left the

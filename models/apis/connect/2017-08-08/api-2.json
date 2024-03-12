@@ -10697,6 +10697,12 @@
       "max":25,
       "min":1
     },
+    "MaxResult500":{
+      "type":"integer",
+      "box":true,
+      "max":500,
+      "min":1
+    },
     "MaxResult7":{
       "type":"integer",
       "max":7,
@@ -12853,7 +12859,7 @@
         "InstanceId":{"shape":"InstanceId"},
         "NextToken":{"shape":"NextToken2500"},
         "MaxResults":{
-          "shape":"MaxResult100",
+          "shape":"MaxResult500",
           "box":true
         },
         "SearchFilter":{"shape":"QueueSearchFilter"},
@@ -12918,7 +12924,7 @@
         "InstanceId":{"shape":"InstanceId"},
         "NextToken":{"shape":"NextToken2500"},
         "MaxResults":{
-          "shape":"MaxResult100",
+          "shape":"MaxResult500",
           "box":true
         },
         "SearchFilter":{"shape":"RoutingProfileSearchFilter"},
@@ -12973,7 +12979,7 @@
         "InstanceId":{"shape":"InstanceId"},
         "NextToken":{"shape":"NextToken2500"},
         "MaxResults":{
-          "shape":"MaxResult100",
+          "shape":"MaxResult500",
           "box":true
         },
         "SearchFilter":{"shape":"UserSearchFilter"},

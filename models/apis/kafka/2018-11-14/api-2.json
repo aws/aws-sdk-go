@@ -4425,6 +4425,19 @@
         }
       }
     },
+    "ReplicationStartingPosition" : {
+      "type" : "structure",
+      "members" : {
+        "Type" : {
+          "shape" : "ReplicationStartingPositionType",
+          "locationName" : "type"
+        }
+      }
+    },
+    "ReplicationStartingPositionType" : {
+      "type" : "string",
+      "enum" : [ "LATEST", "EARLIEST" ]
+    },
     "ReplicationStateInfo": {
       "type": "structure",
       "members": {
@@ -4624,6 +4637,10 @@
         "DetectAndCopyNewTopics": {
           "shape": "__boolean",
           "locationName": "detectAndCopyNewTopics"
+        },
+        "StartingPosition" : {
+          "shape" : "ReplicationStartingPosition",
+          "locationName" : "startingPosition"
         },
         "TopicsToExclude": {
           "shape": "__listOf__stringMax249",
