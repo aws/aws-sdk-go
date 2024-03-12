@@ -4699,7 +4699,7 @@ func (s *CloudWatchEventsExecutionDataDetails) SetIncluded(v bool) *CloudWatchEv
 type CloudWatchLogsLogGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the the CloudWatch log group to which you want your logs emitted
+	// The ARN of the CloudWatch log group to which you want your logs emitted
 	// to. The ARN must end with :*
 	LogGroupArn *string `locationName:"logGroupArn" min:"1" type:"string"`
 }

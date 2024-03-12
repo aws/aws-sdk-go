@@ -7549,7 +7549,7 @@ type ColorCorrector struct {
 	// SMPTE ST 2086 Mastering Display Color Volume static metadata that you want
 	// signaled in the output. These values don't affect the pixel values that are
 	// encoded in the video stream. They are intended to help the downstream video
-	// player display content in a way that reflects the intentions of the the content
+	// player display content in a way that reflects the intentions of the content
 	// creator. When you set Color space conversion to HDR 10, these settings are
 	// required. You must set values for Max frame average light level and Max content
 	// light level; these settings don't have a default value. The default values
@@ -13838,7 +13838,7 @@ func (s *H265Settings) SetWriteMp4PackagingType(v string) *H265Settings {
 // Use these settings to specify static color calibration metadata, as defined
 // by SMPTE ST 2086. These values don't affect the pixel values that are encoded
 // in the video stream. They are intended to help the downstream video player
-// display content in a way that reflects the intentions of the the content
+// display content in a way that reflects the intentions of the content
 // creator.
 type Hdr10Metadata struct {
 	_ struct{} `type:"structure"`
@@ -15324,7 +15324,7 @@ type Input struct {
 	// for the metadata XML file. MediaConvert uses this file to provide global
 	// and frame-level metadata for Dolby Vision preprocessing. When you specify
 	// a file here and your input also has interleaved global and frame level metadata,
-	// MediaConvert ignores the interleaved metadata and uses only the the metadata
+	// MediaConvert ignores the interleaved metadata and uses only the metadata
 	// from this external XML file. Note that your IAM service role must grant MediaConvert
 	// read permissions to this file. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.
 	DolbyVisionMetadataXml *string `locationName:"dolbyVisionMetadataXml" min:"14" type:"string"`
@@ -15885,7 +15885,7 @@ type InputTemplate struct {
 	// for the metadata XML file. MediaConvert uses this file to provide global
 	// and frame-level metadata for Dolby Vision preprocessing. When you specify
 	// a file here and your input also has interleaved global and frame level metadata,
-	// MediaConvert ignores the interleaved metadata and uses only the the metadata
+	// MediaConvert ignores the interleaved metadata and uses only the metadata
 	// from this external XML file. Note that your IAM service role must grant MediaConvert
 	// read permissions to this file. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.
 	DolbyVisionMetadataXml *string `locationName:"dolbyVisionMetadataXml" min:"14" type:"string"`
@@ -26168,7 +26168,7 @@ type VideoSelector struct {
 	// values during the HDR 10 mastering process. The valid range for each of these
 	// settings is 0 to 50,000. Each increment represents 0.00002 in CIE1931 color
 	// coordinate. Related settings - When you specify these values, you must also
-	// set Color space to HDR 10. To specify whether the the values you specify
+	// set Color space to HDR 10. To specify whether the values you specify
 	// here take precedence over the values in the metadata of your input file,
 	// set Color space usage. To specify whether color metadata is included in an
 	// output, set Color metadata. For more information about MediaConvert HDR jobs,

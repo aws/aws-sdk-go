@@ -299,7 +299,7 @@ func Set(name NameBuilder, operandBuilder OperandBuilder) UpdateBuilder {
 
 // Set adds a Set operation to the argument UpdateBuilder. The argument name
 // should specify the item attribute to modify. The argument OperandBuilder
-// should specify the value to modify the the item attribute to. The resulting
+// should specify the value to modify the item attribute to. The resulting
 // UpdateBuilder can be used as an argument to the WithUpdate() method for the
 // Builder struct.
 //

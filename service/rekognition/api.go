@@ -24494,7 +24494,7 @@ type RecognizeCelebritiesOutput struct {
 	CelebrityFaces []*Celebrity `type:"list"`
 
 	//
-	// Support for estimating image orientation using the the OrientationCorrection
+	// Support for estimating image orientation using the OrientationCorrection
 	// field has ceased as of August 2021. Any returned values for this field included
 	// in an API response will always be NULL.
 	//

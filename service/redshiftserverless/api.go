@@ -8249,7 +8249,7 @@ type GetCredentialsOutput struct {
 
 	// A database user name that is authorized to log on to the database DbName
 	// using the password DbPassword. If the specified DbUser exists in the database,
-	// the new user name has the same database privileges as the the user named
+	// the new user name has the same database privileges as the user named
 	// in DbUser. By default, the user is added to PUBLIC.
 	//
 	// DbUser is a sensitive parameter and its value will be

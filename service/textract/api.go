@@ -10694,7 +10694,7 @@ type UpdateAdapterOutput struct {
 	// The auto-update status of the adapter that has been updated.
 	AutoUpdate *string `type:"string" enum:"AutoUpdate"`
 
-	// An object specifying the creation time of the the adapter that has been updated.
+	// An object specifying the creation time of the adapter that has been updated.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// A string containing the description of the adapter that has been updated.

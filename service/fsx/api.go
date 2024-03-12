@@ -12284,7 +12284,7 @@ func (s *DataRepositoryTaskFailureDetails) SetMessage(v string) *DataRepositoryT
 }
 
 // (Optional) An array of filter objects you can use to filter the response
-// of data repository tasks you will see in the the response. You can filter
+// of data repository tasks you will see in the response. You can filter
 // the tasks returned in the response by one or more file system IDs, task lifecycles,
 // and by task type. A filter object consists of a filter Name, and one or more
 // Values for the filter.
@@ -15795,7 +15795,7 @@ type FileCacheLustreConfiguration struct {
 	MetadataConfiguration *FileCacheLustreMetadataConfiguration `type:"structure"`
 
 	// You use the MountName value when mounting the cache. If you pass a cache
-	// ID to the DescribeFileCaches operation, it returns the the MountName value
+	// ID to the DescribeFileCaches operation, it returns the MountName value
 	// as part of the cache's description.
 	MountName *string `min:"1" type:"string"`
 

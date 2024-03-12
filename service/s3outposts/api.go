@@ -1426,7 +1426,7 @@ type ListOutpostsWithS3Output struct {
 	//
 	//    * outposts that are Active (not pending any provisioning nor decommissioned)
 	//
-	//    * outposts to which the the calling Amazon Web Services account has access
+	//    * outposts to which the calling Amazon Web Services account has access
 	Outposts []*Outpost `type:"list"`
 }
 

@@ -29406,7 +29406,7 @@ type GetClusterCredentialsOutput struct {
 
 	// A database user name that is authorized to log on to the database DbName
 	// using the password DbPassword. If the specified DbUser exists in the database,
-	// the new user name has the same database permissions as the the user named
+	// the new user name has the same database permissions as the user named
 	// in DbUser. By default, the user is added to PUBLIC. If the DbGroups parameter
 	// is specifed, DbUser is added to the listed groups for any sessions created
 	// using these credentials.

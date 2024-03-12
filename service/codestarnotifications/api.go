@@ -3438,7 +3438,7 @@ func (s *UnsubscribeInput) SetTargetAddress(v string) *UnsubscribeInput {
 type UnsubscribeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the the notification rule from which you
+	// The Amazon Resource Name (ARN) of the notification rule from which you
 	// have removed a subscription.
 	//
 	// Arn is a required field

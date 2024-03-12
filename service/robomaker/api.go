@@ -9670,7 +9670,7 @@ func (s DeleteFleetOutput) GoString() string {
 type DeleteRobotApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the the robot application.
+	// The Amazon Resource Name (ARN) of the robot application.
 	//
 	// Application is a required field
 	Application *string `locationName:"application" min:"1" type:"string" required:"true"`

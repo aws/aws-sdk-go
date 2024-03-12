@@ -7103,7 +7103,7 @@ func (c *Backup) ListRestoreJobSummariesRequest(input *ListRestoreJobSummariesIn
 // ListRestoreJobSummaries API operation for AWS Backup.
 //
 // This request obtains a summary of restore jobs created or running within
-// the the most recent 30 days. You can include parameters AccountID, State,
+// the most recent 30 days. You can include parameters AccountID, State,
 // ResourceType, AggregationPeriod, MaxResults, or NextToken to filter results.
 //
 // This request returns a summary that contains Region, Account, State, RestourceType,

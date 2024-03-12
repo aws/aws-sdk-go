@@ -3231,7 +3231,7 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Re
 //
 // It's recommended that for successive pagination calls of this API, you continue
 // to the use the same parameter/value pairs as used in the original call, e.g.,
-// if you used IdentityType=Domain in the the original call and received a NextToken
+// if you used IdentityType=Domain in the original call and received a NextToken
 // in the response, you should continue providing the IdentityType=Domain parameter
 // for further NextToken calls; however, if you didn't provide the IdentityType
 // parameter in the original call, then continue to not provide it for successive

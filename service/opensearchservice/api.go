@@ -21321,7 +21321,7 @@ func (s *ValidationFailure) SetMessage(v string) *ValidationFailure {
 	return s
 }
 
-// The status of the the OpenSearch or Elasticsearch version options for the
+// The status of the OpenSearch or Elasticsearch version options for the
 // specified Amazon OpenSearch Service domain.
 type VersionStatus struct {
 	_ struct{} `type:"structure"`

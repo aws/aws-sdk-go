@@ -11420,7 +11420,7 @@ type CsvOptions struct {
 	// List of the headers used to specify a common header for all source CSV files
 	// being imported. If this field is specified then the first line of each CSV
 	// file is treated as data instead of the header. If this field is not specified
-	// the the first line of each CSV file is treated as the header.
+	// the first line of each CSV file is treated as the header.
 	HeaderList []*string `min:"1" type:"list"`
 }
 

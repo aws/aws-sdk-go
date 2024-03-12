@@ -7160,7 +7160,7 @@ func (s *User) SetUsername(v string) *User {
 type UserPendingChanges struct {
 	_ struct{} `type:"structure"`
 
-	// Enables access to the the ActiveMQ Web Console for the ActiveMQ user.
+	// Enables access to the ActiveMQ Web Console for the ActiveMQ user.
 	ConsoleAccess *bool `locationName:"consoleAccess" type:"boolean"`
 
 	// The list of groups (20 maximum) to which the ActiveMQ user belongs. This

@@ -9215,7 +9215,7 @@ type UpdateHttpNamespaceInput struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// Updated properties for the the HTTP namespace.
+	// Updated properties for the HTTP namespace.
 	//
 	// Namespace is a required field
 	Namespace *HttpNamespaceChange `type:"structure" required:"true"`

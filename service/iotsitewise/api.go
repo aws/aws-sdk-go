@@ -11263,7 +11263,7 @@ func (s *AssetModelCompositeModelPathSegment) SetName(v string) *AssetModelCompo
 type AssetModelCompositeModelSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the the composite model that this summary describes..
+	// The description of the composite model that this summary describes..
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The external ID of a composite model on this asset model. For more information,
@@ -11271,12 +11271,12 @@ type AssetModelCompositeModelSummary struct {
 	// in the IoT SiteWise User Guide.
 	ExternalId *string `locationName:"externalId" min:"2" type:"string"`
 
-	// The ID of the the composite model that this summary describes..
+	// The ID of the composite model that this summary describes..
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
-	// The name of the the composite model that this summary describes..
+	// The name of the composite model that this summary describes..
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`

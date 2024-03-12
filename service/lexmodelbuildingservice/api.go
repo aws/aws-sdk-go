@@ -12723,7 +12723,7 @@ type PutIntentInput struct {
 	//    an intent it starts a conversation for the intent.
 	//
 	//    * If the user says "No" it responds with the rejection statement configured
-	//    for the the follow-up prompt.
+	//    for the follow-up prompt.
 	//
 	//    * If it doesn't recognize the utterance it repeats the follow-up prompt
 	//    again.

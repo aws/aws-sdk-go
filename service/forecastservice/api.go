@@ -13929,7 +13929,7 @@ type DescribePredictorOutput struct {
 	// The ARN of the predictor.
 	PredictorArn *string `min:"1" type:"string"`
 
-	// Details on the the status and results of the backtests performed to evaluate
+	// Details on the status and results of the backtests performed to evaluate
 	// the accuracy of the predictor. You specify the number of backtests to perform
 	// when you call the operation.
 	PredictorExecutionDetails *PredictorExecutionDetails `type:"structure"`

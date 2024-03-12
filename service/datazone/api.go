@@ -30799,7 +30799,7 @@ func (s *RedshiftStorage) SetRedshiftServerlessSource(v *RedshiftServerlessStora
 type RejectChoice struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the the automatically generated business metadata that can be rejected.
+	// Specifies the automatically generated business metadata that can be rejected.
 	PredictionChoices []*int64 `locationName:"predictionChoices" type:"list"`
 
 	// Specifies the target (for example, a column name) where a prediction can

@@ -2800,7 +2800,7 @@ type BatchGetFrameMetricDataInput struct {
 	// (PT24H or P1D).
 	Period *string `location:"querystring" locationName:"period" min:"1" type:"string"`
 
-	// The name of the profiling group associated with the the frame metrics used
+	// The name of the profiling group associated with the frame metrics used
 	// to return the time series values.
 	//
 	// ProfilingGroupName is a required field

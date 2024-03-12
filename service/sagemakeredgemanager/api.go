@@ -1093,7 +1093,7 @@ type SendHeartbeatInput struct {
 	// DeviceName is a required field
 	DeviceName *string `min:"1" type:"string" required:"true"`
 
-	// Returns a list of models deployed on the the device.
+	// Returns a list of models deployed on the device.
 	Models []*Model `type:"list"`
 }
 

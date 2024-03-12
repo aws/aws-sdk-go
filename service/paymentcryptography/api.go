@@ -608,13 +608,13 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // GetParametersForExport. This operation also generates a key pair for the
 // purpose of key export, signs the key and returns back the signing public
 // key certificate (also known as KDH signing certificate) and root certificate
-// chain. The KDH uses the private key to sign the the export payload and the
+// chain. The KDH uses the private key to sign the export payload and the
 // signing public key certificate is provided to KRD to verify the signature.
 // The KRD can import the root certificate into its Hardware Security Module
 // (HSM), as required. The export token and the associated KDH signing certificate
 // expires after 7 days.
 //
-// Next the KRD generates a key pair for the the purpose of encrypting the KDH
+// Next the KRD generates a key pair for the purpose of encrypting the KDH
 // key and provides the public key cerificate (also known as KRD wrapping certificate)
 // back to KDH. The KRD will also import the root cerificate chain into Amazon
 // Web Services Payment Cryptography by calling ImportKey for RootCertificatePublicKey.
@@ -3762,7 +3762,7 @@ func (s *ExportKeyOutput) SetWrappedKey(v *WrappedKey) *ExportKeyOutput {
 type ExportTr31KeyBlock struct {
 	_ struct{} `type:"structure"`
 
-	// The KeyARN of the the wrapping key. This key encrypts or wraps the key under
+	// The KeyARN of the wrapping key. This key encrypts or wraps the key under
 	// export for TR-31 key block generation.
 	//
 	// WrappingKeyIdentifier is a required field

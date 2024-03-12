@@ -4822,7 +4822,7 @@ type JobInput struct {
 	Interlaced *string `type:"string"`
 
 	// The name of the file to transcode. Elsewhere in the body of the JSON block
-	// is the the ID of the pipeline to use for processing the job. The InputBucket
+	// is the ID of the pipeline to use for processing the job. The InputBucket
 	// object in that pipeline tells Elastic Transcoder which Amazon S3 bucket to
 	// get the file from.
 	//

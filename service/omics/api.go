@@ -21624,7 +21624,7 @@ type ReadSetUploadPartListItem struct {
 	// PartNumber is a required field
 	PartNumber *int64 `locationName:"partNumber" min:"1" type:"integer" required:"true"`
 
-	// The size of the the part in an upload.
+	// The size of the part in an upload.
 	//
 	// PartSize is a required field
 	PartSize *int64 `locationName:"partSize" min:"1" type:"long" required:"true"`

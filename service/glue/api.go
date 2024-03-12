@@ -77641,7 +77641,7 @@ type WorkflowGraph struct {
 	// workflow.
 	Edges []*Edge `type:"list"`
 
-	// A list of the the Glue components belong to the workflow represented as nodes.
+	// A list of the Glue components belong to the workflow represented as nodes.
 	Nodes []*Node `type:"list"`
 }
 

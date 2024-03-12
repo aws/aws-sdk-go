@@ -6314,7 +6314,7 @@ type CopyDBClusterSnapshotInput struct {
 	//    * SourceRegion - The ID of the region that contains the snapshot to be
 	//    copied.
 	//
-	//    * SourceDBClusterSnapshotIdentifier - The identifier for the the encrypted
+	//    * SourceDBClusterSnapshotIdentifier - The identifier for the encrypted
 	//    cluster snapshot to be copied. This identifier must be in the Amazon Resource
 	//    Name (ARN) format for the source Amazon Web Services Region. For example,
 	//    if you are copying an encrypted cluster snapshot from the us-east-1 Amazon

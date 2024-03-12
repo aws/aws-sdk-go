@@ -79,7 +79,7 @@
 // AppConfig hosted configuration store or any Amazon Web Services service that
 // integrates with AppConfig, as described in Creating a free form configuration
 // profile (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-free-form-configurations-creating.html)
-// in the the AppConfig User Guide.
+// in the AppConfig User Guide.
 //
 // A configuration profile can also include optional validators to ensure your
 // configuration data is syntactically and semantically correct. AppConfig performs
@@ -124,7 +124,7 @@
 // your application makes an HTTP call to the localhost server. AppConfig Agent
 // supports several use cases, as described in Simplified retrieval methods
 // (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-simplified-methods.html)
-// in the the AppConfig User Guide.
+// in the AppConfig User Guide.
 //
 // If AppConfig Agent isn't supported for your use case, you can configure your
 // application to poll AppConfig for configuration updates by directly calling

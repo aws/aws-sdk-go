@@ -16979,7 +16979,7 @@ type ManagedProductDescriptor struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether the rule group provides an advanced set of protections,
-	// such as the the Amazon Web Services Managed Rules rule groups that are used
+	// such as the Amazon Web Services Managed Rules rule groups that are used
 	// for WAF intelligent threat mitigation.
 	IsAdvancedManagedRuleSet *bool `type:"boolean"`
 

@@ -291,7 +291,7 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // loss of transactions. When your traffic reduces, capacity returns to the
 // minProvisionedTPS.
 //
-// You are charged for the the minimum provisioned TPS or, if your requests
+// You are charged for the minimum provisioned TPS or, if your requests
 // exceed the minProvisionedTPS, the actual TPS. The actual TPS is the total
 // number of recommendation requests you make. We recommend starting with a
 // low minProvisionedTPS, track your usage using Amazon CloudWatch metrics,

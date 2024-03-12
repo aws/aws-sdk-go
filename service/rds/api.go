@@ -31167,7 +31167,7 @@ func (s *DBInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBIn
 type DBInstanceAutomatedBackup struct {
 	_ struct{} `type:"structure"`
 
-	// The allocated storage size for the the automated backup in gibibytes (GiB).
+	// The allocated storage size for the automated backup in gibibytes (GiB).
 	AllocatedStorage *int64 `type:"integer"`
 
 	// The Availability Zone that the automated backup was created in. For information

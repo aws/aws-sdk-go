@@ -20416,7 +20416,7 @@ type CreateIntentOutput struct {
 	// The signature of the parent intent specified for the intent.
 	ParentIntentSignature *string `locationName:"parentIntentSignature" type:"string"`
 
-	// Details about the the configuration of the built-in Amazon.QnAIntent.
+	// Details about the configuration of the built-in Amazon.QnAIntent.
 	QnAIntentConfiguration *QnAIntentConfiguration `locationName:"qnAIntentConfiguration" type:"structure"`
 
 	// The sample utterances specified for the intent.
@@ -38636,7 +38636,7 @@ func (s *PromptSpecification) SetPromptAttemptsSpecification(v map[string]*Promp
 	return s
 }
 
-// Details about the the configuration of the built-in Amazon.QnAIntent.
+// Details about the configuration of the built-in Amazon.QnAIntent.
 type QnAIntentConfiguration struct {
 	_ struct{} `type:"structure"`
 

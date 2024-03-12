@@ -17533,7 +17533,7 @@ func PackageType_Values() []string {
 //
 //   - AWS_ACCOUNT: Indicates that the account is owned by an AWS user.
 //
-//   - AWS_SERVICE: Indicates the the account is owned by an AWS service.
+//   - AWS_SERVICE: Indicates the account is owned by an AWS service.
 const (
 	// PrincipalTypeAwsAccount is a PrincipalType enum value
 	PrincipalTypeAwsAccount = "AWS_ACCOUNT"

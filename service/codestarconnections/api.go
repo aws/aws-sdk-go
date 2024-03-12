@@ -5227,7 +5227,7 @@ type ListRepositorySyncDefinitionsInput struct {
 	// RepositoryLinkId is a required field
 	RepositoryLinkId *string `type:"string" required:"true"`
 
-	// The sync type of the repository link for the the sync definition for which
+	// The sync type of the repository link for the sync definition for which
 	// you want to retrieve information.
 	//
 	// SyncType is a required field
