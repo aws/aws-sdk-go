@@ -14024,6 +14024,39 @@ func (s *ReplicationInfoSummary) SetTargetKafkaClusterAlias(v string) *Replicati
 	return s
 }
 
+// Configuration for specifying the position in the topics to start replicating
+// from.
+type ReplicationStartingPosition struct {
+	_ struct{} `type:"structure"`
+
+	// The type of replication starting position.
+	Type *string `locationName:"type" type:"string" enum:"ReplicationStartingPositionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStartingPosition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicationStartingPosition) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *ReplicationStartingPosition) SetType(v string) *ReplicationStartingPosition {
+	s.Type = &v
+	return s
+}
+
 // Details about the state of a replicator
 type ReplicationStateInfo struct {
 	_ struct{} `type:"structure"`
@@ -14838,6 +14871,10 @@ type TopicReplication struct {
 	// Whether to periodically check for new topics and partitions.
 	DetectAndCopyNewTopics *bool `locationName:"detectAndCopyNewTopics" type:"boolean"`
 
+	// Configuration for specifying the position in the topics to start replicating
+	// from.
+	StartingPosition *ReplicationStartingPosition `locationName:"startingPosition" type:"structure"`
+
 	// List of regular expression patterns indicating the topics that should not
 	// be replicated.
 	TopicsToExclude []*string `locationName:"topicsToExclude" type:"list"`
@@ -14894,6 +14931,12 @@ func (s *TopicReplication) SetCopyTopicConfigurations(v bool) *TopicReplication 
 // SetDetectAndCopyNewTopics sets the DetectAndCopyNewTopics field's value.
 func (s *TopicReplication) SetDetectAndCopyNewTopics(v bool) *TopicReplication {
 	s.DetectAndCopyNewTopics = &v
+	return s
+}
+
+// SetStartingPosition sets the StartingPosition field's value.
+func (s *TopicReplication) SetStartingPosition(v *ReplicationStartingPosition) *TopicReplication {
+	s.StartingPosition = v
 	return s
 }
 
@@ -17405,6 +17448,23 @@ const (
 func NodeType_Values() []string {
 	return []string{
 		NodeTypeBroker,
+	}
+}
+
+// The type of replication starting position.
+const (
+	// ReplicationStartingPositionTypeLatest is a ReplicationStartingPositionType enum value
+	ReplicationStartingPositionTypeLatest = "LATEST"
+
+	// ReplicationStartingPositionTypeEarliest is a ReplicationStartingPositionType enum value
+	ReplicationStartingPositionTypeEarliest = "EARLIEST"
+)
+
+// ReplicationStartingPositionType_Values returns all elements of the ReplicationStartingPositionType enum
+func ReplicationStartingPositionType_Values() []string {
+	return []string{
+		ReplicationStartingPositionTypeLatest,
+		ReplicationStartingPositionTypeEarliest,
 	}
 }
 

@@ -745,6 +745,18 @@
         "__listOfReplicationInfoSummary$member" : null
       }
     },
+    "ReplicationStartingPosition" : {
+      "base" : "<p>Configuration for specifying the position in the topics to start replicating from.</p>",
+      "refs" : {
+        "TopicReplication$StartingPosition" : "<p>Configuration for specifying the position in the topics to start replicating from.</p>"
+      }
+    },
+    "ReplicationStartingPositionType" : {
+      "base" : "<p>The type of replication starting position.</p>",
+      "refs" : {
+        "ReplicationStartingPosition$Type" : "<p>The type of replication starting position.</p>"
+      }
+    },
     "ReplicationStateInfo" : {
       "base" : "Details about the state of a replicator",
       "refs" : {

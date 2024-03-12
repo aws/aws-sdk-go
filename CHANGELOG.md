@@ -1,3 +1,16 @@
+Release v1.50.37 (2024-03-12)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service documentation
+  * CloudFormation documentation update for March, 2024
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/kafka`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * March 2024 doc-only updates for Systems Manager.
+
 Release v1.50.36 (2024-03-11)
 ===
 
