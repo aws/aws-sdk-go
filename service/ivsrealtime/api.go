@@ -4908,6 +4908,21 @@ type GridConfiguration struct {
 	// attribute set to "true" (as a string value) in ParticipantTokenConfiguration
 	// is placed in the featured slot.
 	FeaturedParticipantAttribute *string `locationName:"featuredParticipantAttribute" type:"string"`
+
+	// Specifies the spacing between participant tiles in pixels. Default: 2.
+	GridGap *int64 `locationName:"gridGap" type:"integer"`
+
+	// Determines whether to omit participants with stopped video in the composition.
+	// Default: false.
+	OmitStoppedVideo *bool `locationName:"omitStoppedVideo" type:"boolean"`
+
+	// Sets the non-featured participant display mode. Default: VIDEO.
+	VideoAspectRatio *string `locationName:"videoAspectRatio" type:"string" enum:"VideoAspectRatio"`
+
+	// Defines how video fits within the participant tile. When not set, videoFillMode
+	// defaults to COVER fill mode for participants in the grid and to CONTAIN fill
+	// mode for featured participants.
+	VideoFillMode *string `locationName:"videoFillMode" type:"string" enum:"VideoFillMode"`
 }
 
 // String returns the string representation.
@@ -4931,6 +4946,30 @@ func (s GridConfiguration) GoString() string {
 // SetFeaturedParticipantAttribute sets the FeaturedParticipantAttribute field's value.
 func (s *GridConfiguration) SetFeaturedParticipantAttribute(v string) *GridConfiguration {
 	s.FeaturedParticipantAttribute = &v
+	return s
+}
+
+// SetGridGap sets the GridGap field's value.
+func (s *GridConfiguration) SetGridGap(v int64) *GridConfiguration {
+	s.GridGap = &v
+	return s
+}
+
+// SetOmitStoppedVideo sets the OmitStoppedVideo field's value.
+func (s *GridConfiguration) SetOmitStoppedVideo(v bool) *GridConfiguration {
+	s.OmitStoppedVideo = &v
+	return s
+}
+
+// SetVideoAspectRatio sets the VideoAspectRatio field's value.
+func (s *GridConfiguration) SetVideoAspectRatio(v string) *GridConfiguration {
+	s.VideoAspectRatio = &v
+	return s
+}
+
+// SetVideoFillMode sets the VideoFillMode field's value.
+func (s *GridConfiguration) SetVideoFillMode(v string) *GridConfiguration {
+	s.VideoFillMode = &v
 	return s
 }
 
@@ -5006,6 +5045,9 @@ type LayoutConfiguration struct {
 
 	// Configuration related to grid layout. Default: Grid layout.
 	Grid *GridConfiguration `locationName:"grid" type:"structure"`
+
+	// Configuration related to PiP layout.
+	Pip *PipConfiguration `locationName:"pip" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5026,9 +5068,30 @@ func (s LayoutConfiguration) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LayoutConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LayoutConfiguration"}
+	if s.Pip != nil {
+		if err := s.Pip.Validate(); err != nil {
+			invalidParams.AddNested("Pip", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetGrid sets the Grid field's value.
 func (s *LayoutConfiguration) SetGrid(v *GridConfiguration) *LayoutConfiguration {
 	s.Grid = v
+	return s
+}
+
+// SetPip sets the Pip field's value.
+func (s *LayoutConfiguration) SetPip(v *PipConfiguration) *LayoutConfiguration {
+	s.Pip = v
 	return s
 }
 
@@ -6410,6 +6473,146 @@ func (s *PendingVerification) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration information specific to Picture-in-Picture (PiP) layout, for
+// server-side composition (https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/server-side-composition.html).
+type PipConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// This attribute name identifies the featured slot. A participant with this
+	// attribute set to "true" (as a string value) in ParticipantTokenConfiguration
+	// is placed in the featured slot.
+	FeaturedParticipantAttribute *string `locationName:"featuredParticipantAttribute" type:"string"`
+
+	// Specifies the spacing between participant tiles in pixels. Default: 0.
+	GridGap *int64 `locationName:"gridGap" type:"integer"`
+
+	// Determines whether to omit participants with stopped video in the composition.
+	// Default: false.
+	OmitStoppedVideo *bool `locationName:"omitStoppedVideo" type:"boolean"`
+
+	// Defines PiP behavior when all participants have left. Default: STATIC.
+	PipBehavior *string `locationName:"pipBehavior" type:"string" enum:"PipBehavior"`
+
+	// Specifies the height of the PiP window in pixels. When this is not set explicitly,
+	// pipHeight’s value will be based on the size of the composition and the
+	// aspect ratio of the participant’s video.
+	PipHeight *int64 `locationName:"pipHeight" min:"1" type:"integer"`
+
+	// Sets the PiP window’s offset position in pixels from the closest edges
+	// determined by PipPosition. Default: 0.
+	PipOffset *int64 `locationName:"pipOffset" type:"integer"`
+
+	// Identifies the PiP slot. A participant with this attribute set to "true"
+	// (as a string value) in ParticipantTokenConfiguration is placed in the PiP
+	// slot.
+	PipParticipantAttribute *string `locationName:"pipParticipantAttribute" type:"string"`
+
+	// Determines the corner position of the PiP window. Default: BOTTOM_RIGHT.
+	PipPosition *string `locationName:"pipPosition" type:"string" enum:"PipPosition"`
+
+	// Specifies the width of the PiP window in pixels. When this is not set explicitly,
+	// pipWidth’s value will be based on the size of the composition and the aspect
+	// ratio of the participant’s video.
+	PipWidth *int64 `locationName:"pipWidth" min:"1" type:"integer"`
+
+	// Defines how video fits within the participant tile. Default: COVER.
+	VideoFillMode *string `locationName:"videoFillMode" type:"string" enum:"VideoFillMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipConfiguration"}
+	if s.PipHeight != nil && *s.PipHeight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PipHeight", 1))
+	}
+	if s.PipWidth != nil && *s.PipWidth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PipWidth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFeaturedParticipantAttribute sets the FeaturedParticipantAttribute field's value.
+func (s *PipConfiguration) SetFeaturedParticipantAttribute(v string) *PipConfiguration {
+	s.FeaturedParticipantAttribute = &v
+	return s
+}
+
+// SetGridGap sets the GridGap field's value.
+func (s *PipConfiguration) SetGridGap(v int64) *PipConfiguration {
+	s.GridGap = &v
+	return s
+}
+
+// SetOmitStoppedVideo sets the OmitStoppedVideo field's value.
+func (s *PipConfiguration) SetOmitStoppedVideo(v bool) *PipConfiguration {
+	s.OmitStoppedVideo = &v
+	return s
+}
+
+// SetPipBehavior sets the PipBehavior field's value.
+func (s *PipConfiguration) SetPipBehavior(v string) *PipConfiguration {
+	s.PipBehavior = &v
+	return s
+}
+
+// SetPipHeight sets the PipHeight field's value.
+func (s *PipConfiguration) SetPipHeight(v int64) *PipConfiguration {
+	s.PipHeight = &v
+	return s
+}
+
+// SetPipOffset sets the PipOffset field's value.
+func (s *PipConfiguration) SetPipOffset(v int64) *PipConfiguration {
+	s.PipOffset = &v
+	return s
+}
+
+// SetPipParticipantAttribute sets the PipParticipantAttribute field's value.
+func (s *PipConfiguration) SetPipParticipantAttribute(v string) *PipConfiguration {
+	s.PipParticipantAttribute = &v
+	return s
+}
+
+// SetPipPosition sets the PipPosition field's value.
+func (s *PipConfiguration) SetPipPosition(v string) *PipConfiguration {
+	s.PipPosition = &v
+	return s
+}
+
+// SetPipWidth sets the PipWidth field's value.
+func (s *PipConfiguration) SetPipWidth(v int64) *PipConfiguration {
+	s.PipWidth = &v
+	return s
+}
+
+// SetVideoFillMode sets the VideoFillMode field's value.
+func (s *PipConfiguration) SetVideoFillMode(v string) *PipConfiguration {
+	s.VideoFillMode = &v
+	return s
+}
+
 // An object representing a configuration to record a stage stream.
 type RecordingConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -7047,6 +7250,11 @@ func (s *StartCompositionInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Destinations", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.Layout != nil {
+		if err := s.Layout.Validate(); err != nil {
+			invalidParams.AddNested("Layout", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7894,6 +8102,46 @@ func ParticipantTokenCapability_Values() []string {
 }
 
 const (
+	// PipBehaviorStatic is a PipBehavior enum value
+	PipBehaviorStatic = "STATIC"
+
+	// PipBehaviorDynamic is a PipBehavior enum value
+	PipBehaviorDynamic = "DYNAMIC"
+)
+
+// PipBehavior_Values returns all elements of the PipBehavior enum
+func PipBehavior_Values() []string {
+	return []string{
+		PipBehaviorStatic,
+		PipBehaviorDynamic,
+	}
+}
+
+const (
+	// PipPositionTopLeft is a PipPosition enum value
+	PipPositionTopLeft = "TOP_LEFT"
+
+	// PipPositionTopRight is a PipPosition enum value
+	PipPositionTopRight = "TOP_RIGHT"
+
+	// PipPositionBottomLeft is a PipPosition enum value
+	PipPositionBottomLeft = "BOTTOM_LEFT"
+
+	// PipPositionBottomRight is a PipPosition enum value
+	PipPositionBottomRight = "BOTTOM_RIGHT"
+)
+
+// PipPosition_Values returns all elements of the PipPosition enum
+func PipPosition_Values() []string {
+	return []string{
+		PipPositionTopLeft,
+		PipPositionTopRight,
+		PipPositionBottomLeft,
+		PipPositionBottomRight,
+	}
+}
+
+const (
 	// RecordingConfigurationFormatHls is a RecordingConfigurationFormat enum value
 	RecordingConfigurationFormatHls = "HLS"
 )
@@ -7902,5 +8150,49 @@ const (
 func RecordingConfigurationFormat_Values() []string {
 	return []string{
 		RecordingConfigurationFormatHls,
+	}
+}
+
+const (
+	// VideoAspectRatioAuto is a VideoAspectRatio enum value
+	VideoAspectRatioAuto = "AUTO"
+
+	// VideoAspectRatioVideo is a VideoAspectRatio enum value
+	VideoAspectRatioVideo = "VIDEO"
+
+	// VideoAspectRatioSquare is a VideoAspectRatio enum value
+	VideoAspectRatioSquare = "SQUARE"
+
+	// VideoAspectRatioPortrait is a VideoAspectRatio enum value
+	VideoAspectRatioPortrait = "PORTRAIT"
+)
+
+// VideoAspectRatio_Values returns all elements of the VideoAspectRatio enum
+func VideoAspectRatio_Values() []string {
+	return []string{
+		VideoAspectRatioAuto,
+		VideoAspectRatioVideo,
+		VideoAspectRatioSquare,
+		VideoAspectRatioPortrait,
+	}
+}
+
+const (
+	// VideoFillModeFill is a VideoFillMode enum value
+	VideoFillModeFill = "FILL"
+
+	// VideoFillModeCover is a VideoFillMode enum value
+	VideoFillModeCover = "COVER"
+
+	// VideoFillModeContain is a VideoFillMode enum value
+	VideoFillModeContain = "CONTAIN"
+)
+
+// VideoFillMode_Values returns all elements of the VideoFillMode enum
+func VideoFillMode_Values() []string {
+	return []string{
+		VideoFillModeFill,
+		VideoFillModeCover,
+		VideoFillModeContain,
 	}
 }

@@ -945,8 +945,16 @@
     "GridConfiguration":{
       "type":"structure",
       "members":{
-        "featuredParticipantAttribute":{"shape":"AttributeKey"}
+        "featuredParticipantAttribute":{"shape":"AttributeKey"},
+        "gridGap":{"shape":"GridGap"},
+        "omitStoppedVideo":{"shape":"OmitStoppedVideo"},
+        "videoAspectRatio":{"shape":"VideoAspectRatio"},
+        "videoFillMode":{"shape":"VideoFillMode"}
       }
+    },
+    "GridGap":{
+      "type":"integer",
+      "min":0
     },
     "Height":{
       "type":"integer",
@@ -966,7 +974,8 @@
     "LayoutConfiguration":{
       "type":"structure",
       "members":{
-        "grid":{"shape":"GridConfiguration"}
+        "grid":{"shape":"GridConfiguration"},
+        "pip":{"shape":"PipConfiguration"}
       }
     },
     "ListCompositionsRequest":{
@@ -1155,6 +1164,7 @@
       "max":100,
       "min":1
     },
+    "OmitStoppedVideo":{"type":"boolean"},
     "PaginationToken":{
       "type":"string",
       "max":1024,
@@ -1295,6 +1305,51 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "PipBehavior":{
+      "type":"string",
+      "enum":[
+        "STATIC",
+        "DYNAMIC"
+      ]
+    },
+    "PipConfiguration":{
+      "type":"structure",
+      "members":{
+        "featuredParticipantAttribute":{"shape":"AttributeKey"},
+        "gridGap":{"shape":"GridGap"},
+        "omitStoppedVideo":{"shape":"OmitStoppedVideo"},
+        "pipBehavior":{"shape":"PipBehavior"},
+        "pipHeight":{"shape":"PipHeight"},
+        "pipOffset":{"shape":"PipOffset"},
+        "pipParticipantAttribute":{"shape":"AttributeKey"},
+        "pipPosition":{"shape":"PipPosition"},
+        "pipWidth":{"shape":"PipWidth"},
+        "videoFillMode":{"shape":"VideoFillMode"}
+      }
+    },
+    "PipHeight":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "PipOffset":{
+      "type":"integer",
+      "min":0
+    },
+    "PipPosition":{
+      "type":"string",
+      "enum":[
+        "TOP_LEFT",
+        "TOP_RIGHT",
+        "BOTTOM_LEFT",
+        "BOTTOM_RIGHT"
+      ]
+    },
+    "PipWidth":{
+      "type":"integer",
+      "box":true,
+      "min":1
     },
     "Published":{"type":"boolean"},
     "RecordingConfiguration":{
@@ -1610,6 +1665,23 @@
         "height":{"shape":"Height"},
         "width":{"shape":"Width"}
       }
+    },
+    "VideoAspectRatio":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "VIDEO",
+        "SQUARE",
+        "PORTRAIT"
+      ]
+    },
+    "VideoFillMode":{
+      "type":"string",
+      "enum":[
+        "FILL",
+        "COVER",
+        "CONTAIN"
+      ]
     },
     "Width":{
       "type":"integer",

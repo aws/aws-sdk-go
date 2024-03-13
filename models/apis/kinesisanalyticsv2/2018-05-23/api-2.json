@@ -2418,7 +2418,8 @@
         "SnapshotName":{"shape":"SnapshotName"},
         "SnapshotStatus":{"shape":"SnapshotStatus"},
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "SnapshotCreationTimestamp":{"shape":"Timestamp"}
+        "SnapshotCreationTimestamp":{"shape":"Timestamp"},
+        "RuntimeEnvironment":{"shape":"RuntimeEnvironment"}
       }
     },
     "SnapshotName":{
@@ -2643,7 +2644,8 @@
         "ServiceExecutionRoleUpdate":{"shape":"RoleARN"},
         "RunConfigurationUpdate":{"shape":"RunConfigurationUpdate"},
         "CloudWatchLoggingOptionUpdates":{"shape":"CloudWatchLoggingOptionUpdates"},
-        "ConditionalToken":{"shape":"ConditionalToken"}
+        "ConditionalToken":{"shape":"ConditionalToken"},
+        "RuntimeEnvironmentUpdate":{"shape":"RuntimeEnvironment"}
       }
     },
     "UpdateApplicationResponse":{
