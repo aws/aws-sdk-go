@@ -1,3 +1,12 @@
+Release v1.50.38 (2024-03-13)
+===
+
+### Service Client Updates
+* `service/ivs-realtime`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/s3`: Updates service examples
+  * This release makes the default option for S3 on Outposts request signing to use the SigV4A algorithm when using AWS Common Runtime (CRT).
+
 Release v1.50.37 (2024-03-12)
 ===
 

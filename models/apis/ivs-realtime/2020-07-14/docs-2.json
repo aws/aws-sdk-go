@@ -39,7 +39,9 @@
     "AttributeKey": {
       "base": null,
       "refs": {
-        "GridConfiguration$featuredParticipantAttribute": "<p>This attribute name identifies the featured slot. A participant with this attribute set to <code>\"true\"</code> (as a string value) in <a>ParticipantTokenConfiguration</a> is placed in the featured slot.</p>"
+        "GridConfiguration$featuredParticipantAttribute": "<p>This attribute name identifies the featured slot. A participant with this attribute set to <code>\"true\"</code> (as a string value) in <a>ParticipantTokenConfiguration</a> is placed in the featured slot.</p>",
+        "PipConfiguration$featuredParticipantAttribute": "<p>This attribute name identifies the featured slot. A participant with this attribute set to <code>\"true\"</code> (as a string value) in <a>ParticipantTokenConfiguration</a> is placed in the featured slot.</p>",
+        "PipConfiguration$pipParticipantAttribute": "<p>Identifies the PiP slot. A participant with this attribute set to <code>\"true\"</code> (as a string value) in <a>ParticipantTokenConfiguration</a> is placed in the PiP slot.</p>"
       }
     },
     "Bitrate": {
@@ -389,6 +391,13 @@
         "LayoutConfiguration$grid": "<p>Configuration related to grid layout. Default: Grid layout.</p>"
       }
     },
+    "GridGap": {
+      "base": null,
+      "refs": {
+        "GridConfiguration$gridGap": "<p>Specifies the spacing between participant tiles in pixels. Default: <code>2</code>.</p>",
+        "PipConfiguration$gridGap": "<p>Specifies the spacing between participant tiles in pixels. Default: <code>0</code>.</p>"
+      }
+    },
     "Height": {
       "base": null,
       "refs": {
@@ -527,6 +536,13 @@
       "base": null,
       "refs": {
         "ListStorageConfigurationsRequest$maxResults": "<p>Maximum number of storage configurations to return. Default: your service quota or 100, whichever is smaller.</p>"
+      }
+    },
+    "OmitStoppedVideo": {
+      "base": null,
+      "refs": {
+        "GridConfiguration$omitStoppedVideo": "<p>Determines whether to omit participants with stopped video in the composition. Default: <code>false</code>.</p>",
+        "PipConfiguration$omitStoppedVideo": "<p>Determines whether to omit participants with stopped video in the composition. Default: <code>false</code>.</p>"
       }
     },
     "PaginationToken": {
@@ -687,6 +703,42 @@
     "PendingVerification": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "PipBehavior": {
+      "base": null,
+      "refs": {
+        "PipConfiguration$pipBehavior": "<p>Defines PiP behavior when all participants have left. Default: <code>STATIC</code>.</p>"
+      }
+    },
+    "PipConfiguration": {
+      "base": "<p>Configuration information specific to Picture-in-Picture (PiP) layout, for <a href=\"https://docs.aws.amazon.com/ivs/latest/RealTimeUserGuide/server-side-composition.html\">server-side composition</a>. </p>",
+      "refs": {
+        "LayoutConfiguration$pip": "<p>Configuration related to PiP layout.</p>"
+      }
+    },
+    "PipHeight": {
+      "base": null,
+      "refs": {
+        "PipConfiguration$pipHeight": "<p>Specifies the height of the PiP window in pixels. When this is not set explicitly, <code>pipHeight</code>’s value will be based on the size of the composition and the aspect ratio of the participant’s video.</p>"
+      }
+    },
+    "PipOffset": {
+      "base": null,
+      "refs": {
+        "PipConfiguration$pipOffset": "<p>Sets the PiP window’s offset position in pixels from the closest edges determined by <code>PipPosition</code>. Default: <code>0</code>.</p>"
+      }
+    },
+    "PipPosition": {
+      "base": null,
+      "refs": {
+        "PipConfiguration$pipPosition": "<p>Determines the corner position of the PiP window. Default: <code>BOTTOM_RIGHT</code>.</p>"
+      }
+    },
+    "PipWidth": {
+      "base": null,
+      "refs": {
+        "PipConfiguration$pipWidth": "<p>Specifies the width of the PiP window in pixels. When this is not set explicitly, <code>pipWidth</code>’s value will be based on the size of the composition and the aspect ratio of the participant’s video.</p>"
       }
     },
     "Published": {
@@ -1009,6 +1061,19 @@
       "refs": {
         "CreateEncoderConfigurationRequest$video": "<p>Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps.</p>",
         "EncoderConfiguration$video": "<p>Video configuration. Default: video resolution 1280x720, bitrate 2500 kbps, 30 fps</p>"
+      }
+    },
+    "VideoAspectRatio": {
+      "base": null,
+      "refs": {
+        "GridConfiguration$videoAspectRatio": "<p>Sets the non-featured participant display mode. Default: <code>VIDEO</code>.</p>"
+      }
+    },
+    "VideoFillMode": {
+      "base": null,
+      "refs": {
+        "GridConfiguration$videoFillMode": "<p>Defines how video fits within the participant tile. When not set, <code>videoFillMode</code> defaults to <code>COVER</code> fill mode for participants in the grid and to <code>CONTAIN</code> fill mode for featured participants.</p>",
+        "PipConfiguration$videoFillMode": "<p>Defines how video fits within the participant tile. Default: <code>COVER</code>. </p>"
       }
     },
     "Width": {

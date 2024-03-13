@@ -1,38 +1,38 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Kinesis Data Analytics is a fully managed service that you can use to process and analyze streaming data using Java, SQL, or Scala. The service enables you to quickly author and run Java, SQL, or Scala code against streaming sources to perform time series analytics, feed real-time dashboards, and create real-time metrics.</p>",
+  "service": "<note> <p>Amazon Managed Service for Apache Flink was previously known as Amazon Kinesis Data Analytics for Apache Flink.</p> </note> <p>Amazon Managed Service for Apache Flink is a fully managed service that you can use to process and analyze streaming data using Java, Python, SQL, or Scala. The service enables you to quickly author and run Java, SQL, or Scala code against streaming sources to perform time series analytics, feed real-time dashboards, and create real-time metrics.</p>",
   "operations": {
     "AddApplicationCloudWatchLoggingOption": "<p>Adds an Amazon CloudWatch log stream to monitor application configuration errors.</p>",
     "AddApplicationInput": "<p> Adds a streaming source to your SQL-based Kinesis Data Analytics application. </p> <p>You can add a streaming source when you create an application, or you can use this operation to add a streaming source after you create an application. For more information, see <a>CreateApplication</a>.</p> <p>Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version. </p>",
     "AddApplicationInputProcessingConfiguration": "<p>Adds an <a>InputProcessingConfiguration</a> to a SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">Amazon Lambda</a>.</p>",
     "AddApplicationOutput": "<p>Adds an external destination to your SQL-based Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an Amazon Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
     "AddApplicationReferenceDataSource": "<p>Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
-    "AddApplicationVpcConfiguration": "<p>Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.</p> <p>Note the following about VPC configurations for Kinesis Data Analytics applications:</p> <ul> <li> <p>VPC configurations are not supported for SQL applications.</p> </li> <li> <p>When a VPC is added to a Kinesis Data Analytics application, the application can no longer be accessed from the Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.</p> </li> </ul>",
-    "CreateApplication": "<p>Creates a Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>.</p>",
+    "AddApplicationVpcConfiguration": "<p>Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.</p> <p>Note the following about VPC configurations for Managed Service for Apache Flink applications:</p> <ul> <li> <p>VPC configurations are not supported for SQL applications.</p> </li> <li> <p>When a VPC is added to a Managed Service for Apache Flink application, the application can no longer be accessed from the Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.</p> </li> </ul>",
+    "CreateApplication": "<p>Creates a Managed Service for Apache Flink application. For information about creating a Managed Service for Apache Flink application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>.</p>",
     "CreateApplicationPresignedUrl": "<p>Creates and returns a URL that you can use to connect to an application's extension.</p> <p>The IAM role or user used to call this API defines the permissions to access the extension. After the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request that attempts to connect to the extension. </p> <p>You control the amount of time that the URL will be valid using the <code>SessionExpirationDurationInSeconds</code> parameter. If you do not provide this parameter, the returned URL is valid for twelve hours.</p> <note> <p>The URL that you get from a call to CreateApplicationPresignedUrl must be used within 3 minutes to be valid. If you first try to use the URL after the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.</p> </note>",
     "CreateApplicationSnapshot": "<p>Creates a snapshot of the application's state data.</p>",
-    "DeleteApplication": "<p>Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.</p>",
-    "DeleteApplicationCloudWatchLoggingOption": "<p>Deletes an Amazon CloudWatch log stream from an Kinesis Data Analytics application. </p>",
+    "DeleteApplication": "<p>Deletes the specified application. Managed Service for Apache Flink halts application execution and deletes the application.</p>",
+    "DeleteApplicationCloudWatchLoggingOption": "<p>Deletes an Amazon CloudWatch log stream from an SQL-based Kinesis Data Analytics application. </p>",
     "DeleteApplicationInputProcessingConfiguration": "<p>Deletes an <a>InputProcessingConfiguration</a> from an input.</p>",
     "DeleteApplicationOutput": "<p>Deletes the output destination configuration from your SQL-based Kinesis Data Analytics application's configuration. Kinesis Data Analytics will no longer write data from the corresponding in-application stream to the external output destination.</p>",
     "DeleteApplicationReferenceDataSource": "<p>Deletes a reference data source configuration from the specified SQL-based Kinesis Data Analytics application's configuration.</p> <p>If the application is running, Kinesis Data Analytics immediately removes the in-application table that you created using the <a>AddApplicationReferenceDataSource</a> operation. </p>",
     "DeleteApplicationSnapshot": "<p>Deletes a snapshot of application state.</p>",
-    "DeleteApplicationVpcConfiguration": "<p>Removes a VPC configuration from a Kinesis Data Analytics application.</p>",
-    "DescribeApplication": "<p>Returns information about a specific Kinesis Data Analytics application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
+    "DeleteApplicationVpcConfiguration": "<p>Removes a VPC configuration from a Managed Service for Apache Flink application.</p>",
+    "DescribeApplication": "<p>Returns information about a specific Managed Service for Apache Flink application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
     "DescribeApplicationSnapshot": "<p>Returns information about a snapshot of application state data.</p>",
-    "DescribeApplicationVersion": "<p>Provides a detailed description of a specified version of the application. To see a list of all the versions of an application, invoke the <a>ListApplicationVersions</a> operation.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>",
+    "DescribeApplicationVersion": "<p>Provides a detailed description of a specified version of the application. To see a list of all the versions of an application, invoke the <a>ListApplicationVersions</a> operation.</p> <note> <p>This operation is supported only for Managed Service for Apache Flink.</p> </note>",
     "DiscoverInputSchema": "<p>Infers a schema for a SQL-based Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
     "ListApplicationSnapshots": "<p>Lists information about the current application snapshots.</p>",
-    "ListApplicationVersions": "<p>Lists all the versions for the specified application, including versions that were rolled back. The response also includes a summary of the configuration associated with each version.</p> <p>To get the complete description of a specific application version, invoke the <a>DescribeApplicationVersion</a> operation.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>",
-    "ListApplications": "<p>Returns a list of Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
+    "ListApplicationVersions": "<p>Lists all the versions for the specified application, including versions that were rolled back. The response also includes a summary of the configuration associated with each version.</p> <p>To get the complete description of a specific application version, invoke the <a>DescribeApplicationVersion</a> operation.</p> <note> <p>This operation is supported only for Managed Service for Apache Flink.</p> </note>",
+    "ListApplications": "<p>Returns a list of Managed Service for Apache Flink applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
-    "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code> or <code>AUTOSCALING</code> status.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Kinesis Data Analytics rejects the rollback request.</p> <p>This action is not supported for Kinesis Data Analytics for SQL applications.</p>",
-    "StartApplication": "<p>Starts the specified Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p>",
-    "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Kinesis Data Analytics takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
-    "TagResource": "<p>Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
-    "UntagResource": "<p>Removes one or more tags from a Kinesis Data Analytics application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
-    "UpdateApplication": "<p>Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>You cannot update the <code>RuntimeEnvironment</code> of an existing application. If you need to update an application's <code>RuntimeEnvironment</code>, you must delete the application and create it again.</p> </note>",
-    "UpdateApplicationMaintenanceConfiguration": "<p>Updates the maintenance configuration of the Kinesis Data Analytics application. </p> <p>You can invoke this operation on an application that is in one of the two following states: <code>READY</code> or <code>RUNNING</code>. If you invoke it when the application is in a state other than these two states, it throws a <code>ResourceInUseException</code>. The service makes use of the updated configuration the next time it schedules maintenance for the application. If you invoke this operation after the service schedules maintenance, the service will apply the configuration update the next time it schedules maintenance for the application. This means that you might not see the maintenance configuration update applied to the maintenance process that follows a successful invocation of this operation, but to the following maintenance process instead.</p> <p>To see the current maintenance configuration of your application, invoke the <a>DescribeApplication</a> operation.</p> <p>For information about application maintenance, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html\">Kinesis Data Analytics for Apache Flink Maintenance</a>.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>"
+    "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code> or <code>AUTOSCALING</code> status.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Managed Service for Apache Flink rejects the rollback request.</p> <p>This action is not supported for Managed Service for Apache Flink for SQL applications.</p>",
+    "StartApplication": "<p>Starts the specified Managed Service for Apache Flink application. After creating an application, you must exclusively call this operation to start your application.</p>",
+    "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Managed Service for Apache Flink takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
+    "TagResource": "<p>Adds one or more key-value tags to a Managed Service for Apache Flink application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
+    "UntagResource": "<p>Removes one or more tags from a Managed Service for Apache Flink application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
+    "UpdateApplication": "<p>Updates an existing Managed Service for Apache Flink application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Managed Service for Apache Flink updates the <code>ApplicationVersionId</code> each time you update your application. </p>",
+    "UpdateApplicationMaintenanceConfiguration": "<p>Updates the maintenance configuration of the Managed Service for Apache Flink application. </p> <p>You can invoke this operation on an application that is in one of the two following states: <code>READY</code> or <code>RUNNING</code>. If you invoke it when the application is in a state other than these two states, it throws a <code>ResourceInUseException</code>. The service makes use of the updated configuration the next time it schedules maintenance for the application. If you invoke this operation after the service schedules maintenance, the service will apply the configuration update the next time it schedules maintenance for the application. This means that you might not see the maintenance configuration update applied to the maintenance process that follows a successful invocation of this operation, but to the following maintenance process instead.</p> <p>To see the current maintenance configuration of your application, invoke the <a>DescribeApplication</a> operation.</p> <p>For information about application maintenance, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html\">Managed Service for Apache Flink for Apache Flink Maintenance</a>.</p> <note> <p>This operation is supported only for Managed Service for Apache Flink.</p> </note>"
   },
   "shapes": {
     "AddApplicationCloudWatchLoggingOptionRequest": {
@@ -98,31 +98,31 @@
     "ApplicationCodeConfiguration": {
       "base": "<p>Describes code configuration for an application.</p>",
       "refs": {
-        "ApplicationConfiguration$ApplicationCodeConfiguration": "<p>The code location and type parameters for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfiguration$ApplicationCodeConfiguration": "<p>The code location and type parameters for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationCodeConfigurationDescription": {
       "base": "<p>Describes code configuration for an application.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$ApplicationCodeConfigurationDescription": "<p>The details about the application code for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationDescription$ApplicationCodeConfigurationDescription": "<p>The details about the application code for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationCodeConfigurationUpdate": {
-      "base": "<p>Describes code configuration updates for an application. This is supported for a Flink-based Kinesis Data Analytics application or a SQL-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes code configuration updates for an application. This is supported for a Managed Service for Apache Flink application or a SQL-based Kinesis Data Analytics application.</p>",
       "refs": {
         "ApplicationConfigurationUpdate$ApplicationCodeConfigurationUpdate": "<p>Describes updates to an application's code configuration.</p>"
       }
     },
     "ApplicationConfiguration": {
-      "base": "<p>Specifies the creation parameters for a Kinesis Data Analytics application.</p>",
+      "base": "<p>Specifies the creation parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
         "CreateApplicationRequest$ApplicationConfiguration": "<p>Use this parameter to configure the application.</p>"
       }
     },
     "ApplicationConfigurationDescription": {
-      "base": "<p>Describes details about the application code and starting parameters for a Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes details about the application code and starting parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationDetail$ApplicationConfigurationDescription": "<p>Describes details about the application code and starting parameters for a Kinesis Data Analytics application.</p>"
+        "ApplicationDetail$ApplicationConfigurationDescription": "<p>Describes details about the application code and starting parameters for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationConfigurationUpdate": {
@@ -141,7 +141,7 @@
     "ApplicationDetail": {
       "base": "<p>Describes the application, including the application Amazon Resource Name (ARN), status, latest version, and input and output configurations.</p>",
       "refs": {
-        "CreateApplicationResponse$ApplicationDetail": "<p>In response to your <code>CreateApplication</code> request, Kinesis Data Analytics returns a response with details of the application it created.</p>",
+        "CreateApplicationResponse$ApplicationDetail": "<p>In response to your <code>CreateApplication</code> request, Managed Service for Apache Flink returns a response with details of the application it created.</p>",
         "DescribeApplicationResponse$ApplicationDetail": "<p>Provides a description of the application, such as the application's Amazon Resource Name (ARN), status, and latest version.</p>",
         "DescribeApplicationVersionResponse$ApplicationVersionDetail": null,
         "RollbackApplicationResponse$ApplicationDetail": null,
@@ -177,9 +177,9 @@
     "ApplicationMode": {
       "base": null,
       "refs": {
-        "ApplicationDetail$ApplicationMode": "<p>To create a Kinesis Data Analytics Studio notebook, you must set the mode to <code>INTERACTIVE</code>. However, for a Kinesis Data Analytics for Apache Flink application, the mode is optional.</p>",
-        "ApplicationSummary$ApplicationMode": "<p>For a Kinesis Data Analytics for Apache Flink application, the mode is <code>STREAMING</code>. For a Kinesis Data Analytics Studio notebook, it is <code>INTERACTIVE</code>.</p>",
-        "CreateApplicationRequest$ApplicationMode": "<p>Use the <code>STREAMING</code> mode to create a Kinesis Data Analytics For Flink application. To create a Kinesis Data Analytics Studio notebook, use the <code>INTERACTIVE</code> mode.</p>"
+        "ApplicationDetail$ApplicationMode": "<p>To create a Managed Service for Apache Flink Studio notebook, you must set the mode to <code>INTERACTIVE</code>. However, for a Managed Service for Apache Flink application, the mode is optional.</p>",
+        "ApplicationSummary$ApplicationMode": "<p>For a Managed Service for Apache Flink application, the mode is <code>STREAMING</code>. For a Managed Service for Apache Flink Studio notebook, it is <code>INTERACTIVE</code>.</p>",
+        "CreateApplicationRequest$ApplicationMode": "<p>Use the <code>STREAMING</code> mode to create a Managed Service for Apache Flink application. To create a Managed Service for Apache Flink Studio notebook, use the <code>INTERACTIVE</code> mode.</p>"
       }
     },
     "ApplicationName": {
@@ -232,21 +232,21 @@
       }
     },
     "ApplicationSnapshotConfiguration": {
-      "base": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfiguration$ApplicationSnapshotConfiguration": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfiguration$ApplicationSnapshotConfiguration": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationSnapshotConfigurationDescription": {
-      "base": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$ApplicationSnapshotConfigurationDescription": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationDescription$ApplicationSnapshotConfigurationDescription": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationSnapshotConfigurationUpdate": {
-      "base": "<p>Describes updates to whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes updates to whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfigurationUpdate$ApplicationSnapshotConfigurationUpdate": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationUpdate$ApplicationSnapshotConfigurationUpdate": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ApplicationStatus": {
@@ -272,8 +272,8 @@
     "ApplicationVersionId": {
       "base": null,
       "refs": {
-        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the Kinesis Data Analytics application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
-        "AddApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The new version ID of the Kinesis Data Analytics application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options. </p>",
+        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the SQL-based Kinesis Data Analytics application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
+        "AddApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The new version ID of the SQL-based Kinesis Data Analytics application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options. </p>",
         "AddApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the input processing configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. </p>",
         "AddApplicationInputRequest$CurrentApplicationVersionId": "<p>The current version of your application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
@@ -283,13 +283,13 @@
         "AddApplicationReferenceDataSourceRequest$CurrentApplicationVersionId": "<p>The version of the application for which you are adding the reference data source. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated application version ID. Kinesis Data Analytics increments this ID when the application is updated.</p>",
         "AddApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the VPC configuration. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
-        "AddApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the ApplicationVersionId each time you update the application.</p>",
-        "ApplicationDetail$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
+        "AddApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. Managed Service for Apache Flink updates the ApplicationVersionId each time you update the application.</p>",
+        "ApplicationDetail$ApplicationVersionId": "<p>Provides the current application version. Managed Service for Apache Flink updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "ApplicationDetail$ApplicationVersionUpdatedFrom": "<p>The previous application version before the latest application update. <a>RollbackApplication</a> reverts the application to this version.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackFrom": "<p>If you reverted the application using <a>RollbackApplication</a>, the application version when <code>RollbackApplication</code> was called.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackTo": "<p>The version to which you want to roll back the application.</p>",
         "ApplicationSummary$ApplicationVersionId": "<p>Provides the current application version.</p>",
-        "ApplicationVersionSummary$ApplicationVersionId": "<p>The ID of the application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
+        "ApplicationVersionSummary$ApplicationVersionId": "<p>The ID of the application version. Managed Service for Apache Flink updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options.</p>",
         "DeleteApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
@@ -342,18 +342,18 @@
     "BooleanObject": {
       "base": null,
       "refs": {
-        "ApplicationSnapshotConfiguration$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
-        "ApplicationSnapshotConfigurationDescription$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
+        "ApplicationSnapshotConfiguration$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
+        "ApplicationSnapshotConfigurationDescription$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Managed Service for Apache Flink application.</p>",
         "ApplicationSnapshotConfigurationUpdate$SnapshotsEnabledUpdate": "<p>Describes updates to whether snapshots are enabled for an application.</p>",
-        "CheckpointConfiguration$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
-        "CheckpointConfigurationDescription$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
+        "CheckpointConfiguration$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Managed Service for Apache Flink application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
+        "CheckpointConfigurationDescription$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Managed Service for Apache Flink application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
         "CheckpointConfigurationUpdate$CheckpointingEnabledUpdate": "<p>Describes updates to whether checkpointing is enabled for an application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
-        "DescribeApplicationRequest$IncludeAdditionalDetails": "<p>Displays verbose information about a Kinesis Data Analytics application, including the application's job plan.</p>",
+        "DescribeApplicationRequest$IncludeAdditionalDetails": "<p>Displays verbose information about a Managed Service for Apache Flink application, including the application's job plan.</p>",
         "FlinkRunConfiguration$AllowNonRestoredState": "<p>When restoring from a snapshot, specifies whether the runtime is allowed to skip a state that cannot be mapped to the new program. This will happen if the program is updated between snapshots to remove stateful parameters, and state data in the snapshot no longer corresponds to valid application data. For more information, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/ops/state/savepoints.html#allowing-non-restored-state\"> Allowing Non-Restored State</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink documentation</a>.</p> <note> <p>This value defaults to <code>false</code>. If you update your application without specifying this parameter, <code>AllowNonRestoredState</code> will be set to <code>false</code>, even if it was previously set to <code>true</code>.</p> </note>",
-        "ParallelismConfiguration$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
-        "ParallelismConfigurationDescription$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
-        "ParallelismConfigurationUpdate$AutoScalingEnabledUpdate": "<p>Describes updates to whether the Kinesis Data Analytics service can increase the parallelism of a Flink-based Kinesis Data Analytics application in response to increased throughput.</p>",
-        "StopApplicationRequest$Force": "<p>Set to <code>true</code> to force the application to stop. If you set <code>Force</code> to <code>true</code>, Kinesis Data Analytics stops the application without taking a snapshot. </p> <note> <p>Force-stopping your application may lead to data loss or duplication. To prevent data loss or duplicate processing of data during application restarts, we recommend you to take frequent snapshots of your application.</p> </note> <p>You can only force stop a Flink-based Kinesis Data Analytics application. You can't force stop a SQL-based Kinesis Data Analytics application.</p> <p>The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> status. </p>"
+        "ParallelismConfiguration$AutoScalingEnabled": "<p>Describes whether the Managed Service for Apache Flink service can increase the parallelism of the application in response to increased throughput.</p>",
+        "ParallelismConfigurationDescription$AutoScalingEnabled": "<p>Describes whether the Managed Service for Apache Flink service can increase the parallelism of the application in response to increased throughput.</p>",
+        "ParallelismConfigurationUpdate$AutoScalingEnabledUpdate": "<p>Describes updates to whether the Managed Service for Apache Flink service can increase the parallelism of a Managed Service for Apache Flink application in response to increased throughput.</p>",
+        "StopApplicationRequest$Force": "<p>Set to <code>true</code> to force the application to stop. If you set <code>Force</code> to <code>true</code>, Managed Service for Apache Flink stops the application without taking a snapshot. </p> <note> <p>Force-stopping your application may lead to data loss or duplication. To prevent data loss or duplicate processing of data during application restarts, we recommend you to take frequent snapshots of your application.</p> </note> <p>You can only force stop a Managed Service for Apache Flink application. You can't force stop a SQL-based Kinesis Data Analytics application.</p> <p>The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> status. </p>"
       }
     },
     "BucketARN": {
@@ -378,21 +378,21 @@
       }
     },
     "CatalogConfiguration": {
-      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfiguration$CatalogConfiguration": "<p>The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfiguration$CatalogConfiguration": "<p>The Amazon Glue Data Catalog that you use in queries in a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "CatalogConfigurationDescription": {
-      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationDescription$CatalogConfigurationDescription": "<p>The Amazon Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationDescription$CatalogConfigurationDescription": "<p>The Amazon Glue Data Catalog that is associated with the Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "CatalogConfigurationUpdate": {
-      "base": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationUpdate$CatalogConfigurationUpdate": "<p>Updates to the configuration of the Amazon Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationUpdate$CatalogConfigurationUpdate": "<p>Updates to the configuration of the Amazon Glue Data Catalog that is associated with the Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "CheckpointConfiguration": {
@@ -402,13 +402,13 @@
       }
     },
     "CheckpointConfigurationDescription": {
-      "base": "<p>Describes checkpointing parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes checkpointing parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
         "FlinkApplicationConfigurationDescription$CheckpointConfigurationDescription": "<p>Describes an application's checkpointing configuration. Checkpointing is the process of persisting application state for fault tolerance.</p>"
       }
     },
     "CheckpointConfigurationUpdate": {
-      "base": "<p>Describes updates to the checkpointing parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes updates to the checkpointing parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
         "FlinkApplicationConfigurationUpdate$CheckpointConfigurationUpdate": "<p>Describes updates to an application's checkpointing configuration. Checkpointing is the process of persisting application state for fault tolerance.</p>"
       }
@@ -437,7 +437,7 @@
     "CloudWatchLoggingOptionDescriptions": {
       "base": null,
       "refs": {
-        "AddApplicationCloudWatchLoggingOptionResponse$CloudWatchLoggingOptionDescriptions": "<p>The descriptions of the current CloudWatch logging options for the Kinesis Data Analytics application.</p>",
+        "AddApplicationCloudWatchLoggingOptionResponse$CloudWatchLoggingOptionDescriptions": "<p>The descriptions of the current CloudWatch logging options for the SQL-based Kinesis Data Analytics application.</p>",
         "ApplicationDetail$CloudWatchLoggingOptionDescriptions": "<p>Describes the application Amazon CloudWatch logging options.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$CloudWatchLoggingOptionDescriptions": "<p>The descriptions of the remaining CloudWatch logging options for the application.</p>"
       }
@@ -461,13 +461,13 @@
       }
     },
     "CodeContent": {
-      "base": "<p>Specifies either the application code, or the location of the application code, for a Flink-based Kinesis Data Analytics application. </p>",
+      "base": "<p>Specifies either the application code, or the location of the application code, for a Managed Service for Apache Flink application. </p>",
       "refs": {
         "ApplicationCodeConfiguration$CodeContent": "<p>The location and type of the application code.</p>"
       }
     },
     "CodeContentDescription": {
-      "base": "<p>Describes details about the code of a Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes details about the code of a Managed Service for Apache Flink application.</p>",
       "refs": {
         "ApplicationCodeConfigurationDescription$CodeContentDescription": "<p>Describes details about the location and format of the application code.</p>"
       }
@@ -522,15 +522,15 @@
     "ConfigurationType": {
       "base": null,
       "refs": {
-        "CheckpointConfiguration$ConfigurationType": "<p>Describes whether the application uses Kinesis Data Analytics' default checkpointing behavior. You must set this property to <code>CUSTOM</code> in order to set the <code>CheckpointingEnabled</code>, <code>CheckpointInterval</code>, or <code>MinPauseBetweenCheckpoints</code> parameters.</p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
-        "CheckpointConfigurationDescription$ConfigurationType": "<p>Describes whether the application uses the default checkpointing behavior in Kinesis Data Analytics. </p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
-        "CheckpointConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether the application uses the default checkpointing behavior of Kinesis Data Analytics. You must set this property to <code>CUSTOM</code> in order to set the <code>CheckpointingEnabled</code>, <code>CheckpointInterval</code>, or <code>MinPauseBetweenCheckpoints</code> parameters. </p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
+        "CheckpointConfiguration$ConfigurationType": "<p>Describes whether the application uses Managed Service for Apache Flink' default checkpointing behavior. You must set this property to <code>CUSTOM</code> in order to set the <code>CheckpointingEnabled</code>, <code>CheckpointInterval</code>, or <code>MinPauseBetweenCheckpoints</code> parameters.</p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
+        "CheckpointConfigurationDescription$ConfigurationType": "<p>Describes whether the application uses the default checkpointing behavior in Managed Service for Apache Flink. </p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
+        "CheckpointConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether the application uses the default checkpointing behavior of Managed Service for Apache Flink. You must set this property to <code>CUSTOM</code> in order to set the <code>CheckpointingEnabled</code>, <code>CheckpointInterval</code>, or <code>MinPauseBetweenCheckpoints</code> parameters. </p> <note> <p>If this value is set to <code>DEFAULT</code>, the application will use the following values, even if they are set to other values using APIs or application code:</p> <ul> <li> <p> <b>CheckpointingEnabled:</b> true</p> </li> <li> <p> <b>CheckpointInterval:</b> 60000</p> </li> <li> <p> <b>MinPauseBetweenCheckpoints:</b> 5000</p> </li> </ul> </note>",
         "MonitoringConfiguration$ConfigurationType": "<p>Describes whether to use the default CloudWatch logging configuration for an application. You must set this property to <code>CUSTOM</code> in order to set the <code>LogLevel</code> or <code>MetricsLevel</code> parameters.</p>",
         "MonitoringConfigurationDescription$ConfigurationType": "<p>Describes whether to use the default CloudWatch logging configuration for an application.</p>",
         "MonitoringConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether to use the default CloudWatch logging configuration for an application. You must set this property to <code>CUSTOM</code> in order to set the <code>LogLevel</code> or <code>MetricsLevel</code> parameters.</p>",
-        "ParallelismConfiguration$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Kinesis Data Analytics service. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>",
-        "ParallelismConfigurationDescription$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Kinesis Data Analytics service. </p>",
-        "ParallelismConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether the application uses the default parallelism for the Kinesis Data Analytics service, or if a custom parallelism is used. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>"
+        "ParallelismConfiguration$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Managed Service for Apache Flink service. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>",
+        "ParallelismConfigurationDescription$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Managed Service for Apache Flink service. </p>",
+        "ParallelismConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether the application uses the default parallelism for the Managed Service for Apache Flink service, or if a custom parallelism is used. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>"
       }
     },
     "CreateApplicationPresignedUrlRequest": {
@@ -667,15 +667,15 @@
       }
     },
     "DeployAsApplicationConfiguration": {
-      "base": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>",
+      "base": "<p>The information required to deploy a Managed Service for Apache Flink Studio notebook as an application with durable state.</p>",
       "refs": {
-        "ZeppelinApplicationConfiguration$DeployAsApplicationConfiguration": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>"
+        "ZeppelinApplicationConfiguration$DeployAsApplicationConfiguration": "<p>The information required to deploy a Managed Service for Apache Flink Studio notebook as an application with durable state.</p>"
       }
     },
     "DeployAsApplicationConfigurationDescription": {
       "base": "<p>The configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationDescription$DeployAsApplicationConfigurationDescription": "<p>The parameters required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>"
+        "ZeppelinApplicationConfigurationDescription$DeployAsApplicationConfigurationDescription": "<p>The parameters required to deploy a Managed Service for Apache Flink Studio notebook as an application with durable state.</p>"
       }
     },
     "DeployAsApplicationConfigurationUpdate": {
@@ -733,21 +733,21 @@
       }
     },
     "EnvironmentProperties": {
-      "base": "<p>Describes execution properties for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes execution properties for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfiguration$EnvironmentProperties": "<p>Describes execution properties for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfiguration$EnvironmentProperties": "<p>Describes execution properties for a Managed Service for Apache Flink application.</p>"
       }
     },
     "EnvironmentPropertyDescriptions": {
       "base": "<p>Describes the execution properties for an Apache Flink runtime.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$EnvironmentPropertyDescriptions": "<p>Describes execution properties for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationDescription$EnvironmentPropertyDescriptions": "<p>Describes execution properties for a Managed Service for Apache Flink application.</p>"
       }
     },
     "EnvironmentPropertyUpdates": {
-      "base": "<p>Describes updates to the execution property groups for a Flink-based Kinesis Data Analytics application or a Studio notebook.</p>",
+      "base": "<p>Describes updates to the execution property groups for a Managed Service for Apache Flink application or a Studio notebook.</p>",
       "refs": {
-        "ApplicationConfigurationUpdate$EnvironmentPropertyUpdates": "<p>Describes updates to the environment properties for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationUpdate$EnvironmentPropertyUpdates": "<p>Describes updates to the environment properties for a Managed Service for Apache Flink application.</p>"
       }
     },
     "ErrorMessage": {
@@ -781,47 +781,47 @@
       }
     },
     "FlinkApplicationConfiguration": {
-      "base": "<p>Describes configuration parameters for a Flink-based Kinesis Data Analytics application or a Studio notebook.</p>",
+      "base": "<p>Describes configuration parameters for a Managed Service for Apache Flink application or a Studio notebook.</p>",
       "refs": {
-        "ApplicationConfiguration$FlinkApplicationConfiguration": "<p>The creation and update parameters for a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfiguration$FlinkApplicationConfiguration": "<p>The creation and update parameters for a Managed Service for Apache Flink application.</p>"
       }
     },
     "FlinkApplicationConfigurationDescription": {
-      "base": "<p>Describes configuration parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes configuration parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$FlinkApplicationConfigurationDescription": "<p>The details about a Flink-based Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationDescription$FlinkApplicationConfigurationDescription": "<p>The details about a Managed Service for Apache Flink application.</p>"
       }
     },
     "FlinkApplicationConfigurationUpdate": {
-      "base": "<p>Describes updates to the configuration parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes updates to the configuration parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfigurationUpdate$FlinkApplicationConfigurationUpdate": "<p>Describes updates to a Flink-based Kinesis Data Analytics application's configuration.</p>"
+        "ApplicationConfigurationUpdate$FlinkApplicationConfigurationUpdate": "<p>Describes updates to a Managed Service for Apache Flink application's configuration.</p>"
       }
     },
     "FlinkRunConfiguration": {
-      "base": "<p>Describes the starting parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes the starting parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "RunConfiguration$FlinkRunConfiguration": "<p>Describes the starting parameters for a Flink-based Kinesis Data Analytics application.</p>",
+        "RunConfiguration$FlinkRunConfiguration": "<p>Describes the starting parameters for a Managed Service for Apache Flink application.</p>",
         "RunConfigurationDescription$FlinkRunConfigurationDescription": null,
-        "RunConfigurationUpdate$FlinkRunConfiguration": "<p>Describes the starting parameters for a Flink-based Kinesis Data Analytics application.</p>"
+        "RunConfigurationUpdate$FlinkRunConfiguration": "<p>Describes the starting parameters for a Managed Service for Apache Flink application.</p>"
       }
     },
     "GlueDataCatalogConfiguration": {
       "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
       "refs": {
-        "CatalogConfiguration$GlueDataCatalogConfiguration": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfiguration$GlueDataCatalogConfiguration": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "GlueDataCatalogConfigurationDescription": {
       "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
       "refs": {
-        "CatalogConfigurationDescription$GlueDataCatalogConfigurationDescription": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfigurationDescription$GlueDataCatalogConfigurationDescription": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "GlueDataCatalogConfigurationUpdate": {
-      "base": "<p>Updates to the configuration of the Glue Data Catalog that you use for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>Updates to the configuration of the Glue Data Catalog that you use for SQL queries that you write in a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "CatalogConfigurationUpdate$GlueDataCatalogConfigurationUpdate": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfigurationUpdate$GlueDataCatalogConfigurationUpdate": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "Id": {
@@ -968,7 +968,7 @@
     "InputStartingPositionConfiguration": {
       "base": "<p>Describes the point at which the application reads from the streaming source.</p>",
       "refs": {
-        "DiscoverInputSchemaRequest$InputStartingPositionConfiguration": "<p>The point at which you want Kinesis Data Analytics to start reading records from the specified streaming source discovery purposes.</p>",
+        "DiscoverInputSchemaRequest$InputStartingPositionConfiguration": "<p>The point at which you want Kinesis Data Analytics to start reading records from the specified streaming source for discovery purposes.</p>",
         "InputDescription$InputStartingPositionConfiguration": "<p>The point at which the application is configured to read from the input stream.</p>",
         "SqlRunConfiguration$InputStartingPositionConfiguration": "<p>The point at which you want the application to start processing records from the streaming source. </p>"
       }
@@ -1023,7 +1023,7 @@
       "refs": {
         "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the application for which to retrieve tags.</p>",
         "TagResourceRequest$ResourceARN": "<p>The ARN of the application to assign the tags.</p>",
-        "UntagResourceRequest$ResourceARN": "<p>The ARN of the Kinesis Data Analytics application from which to remove the tags.</p>"
+        "UntagResourceRequest$ResourceARN": "<p>The ARN of the Managed Service for Apache Flink application from which to remove the tags.</p>"
       }
     },
     "KinesisFirehoseInput": {
@@ -1187,7 +1187,7 @@
         "MonitoringConfigurationUpdate$LogLevelUpdate": "<p>Describes updates to the verbosity of the CloudWatch Logs for an application.</p>",
         "ZeppelinMonitoringConfiguration$LogLevel": "<p>The verbosity of the CloudWatch Logs for an application.</p>",
         "ZeppelinMonitoringConfigurationDescription$LogLevel": "<p>Describes the verbosity of the CloudWatch Logs for an application.</p>",
-        "ZeppelinMonitoringConfigurationUpdate$LogLevelUpdate": "<p>Updates to the logging level for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinMonitoringConfigurationUpdate$LogLevelUpdate": "<p>Updates to the logging level for Apache Zeppelin within a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "LogStreamARN": {
@@ -1321,20 +1321,20 @@
     "Parallelism": {
       "base": null,
       "refs": {
-        "ParallelismConfiguration$Parallelism": "<p>Describes the initial number of parallel tasks that a Flink-based Kinesis Data Analytics application can perform. If <code>AutoScalingEnabled</code> is set to True, Kinesis Data Analytics increases the <code>CurrentParallelism</code> value in response to application load. The service can increase the <code>CurrentParallelism</code> value up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
-        "ParallelismConfigurationDescription$Parallelism": "<p>Describes the initial number of parallel tasks that a Flink-based Kinesis Data Analytics application can perform. If <code>AutoScalingEnabled</code> is set to True, then Kinesis Data Analytics can increase the <code>CurrentParallelism</code> value in response to application load. The service can increase <code>CurrentParallelism</code> up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
-        "ParallelismConfigurationDescription$CurrentParallelism": "<p>Describes the current number of parallel tasks that a Flink-based Kinesis Data Analytics application can perform. If <code>AutoScalingEnabled</code> is set to True, Kinesis Data Analytics can increase this value in response to application load. The service can increase this value up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
-        "ParallelismConfigurationUpdate$ParallelismUpdate": "<p>Describes updates to the initial number of parallel tasks an application can perform. If <code>AutoScalingEnabled</code> is set to True, then Kinesis Data Analytics can increase the <code>CurrentParallelism</code> value in response to application load. The service can increase <code>CurrentParallelism</code> up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service will reduce <code>CurrentParallelism</code> down to the <code>Parallelism</code> setting.</p>"
+        "ParallelismConfiguration$Parallelism": "<p>Describes the initial number of parallel tasks that a Managed Service for Apache Flink application can perform. If <code>AutoScalingEnabled</code> is set to True, Managed Service for Apache Flink increases the <code>CurrentParallelism</code> value in response to application load. The service can increase the <code>CurrentParallelism</code> value up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
+        "ParallelismConfigurationDescription$Parallelism": "<p>Describes the initial number of parallel tasks that a Managed Service for Apache Flink application can perform. If <code>AutoScalingEnabled</code> is set to True, then Managed Service for Apache Flink can increase the <code>CurrentParallelism</code> value in response to application load. The service can increase <code>CurrentParallelism</code> up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
+        "ParallelismConfigurationDescription$CurrentParallelism": "<p>Describes the current number of parallel tasks that a Managed Service for Apache Flink application can perform. If <code>AutoScalingEnabled</code> is set to True, Managed Service for Apache Flink can increase this value in response to application load. The service can increase this value up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service can reduce the <code>CurrentParallelism</code> value down to the <code>Parallelism</code> setting.</p>",
+        "ParallelismConfigurationUpdate$ParallelismUpdate": "<p>Describes updates to the initial number of parallel tasks an application can perform. If <code>AutoScalingEnabled</code> is set to True, then Managed Service for Apache Flink can increase the <code>CurrentParallelism</code> value in response to application load. The service can increase <code>CurrentParallelism</code> up to the maximum parallelism, which is <code>ParalellismPerKPU</code> times the maximum KPUs for the application. The maximum KPUs for an application is 32 by default, and can be increased by requesting a limit increase. If application load is reduced, the service will reduce <code>CurrentParallelism</code> down to the <code>Parallelism</code> setting.</p>"
       }
     },
     "ParallelismConfiguration": {
-      "base": "<p>Describes parameters for how a Flink-based Kinesis Data Analytics application executes multiple tasks simultaneously. For more information about parallelism, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html\">Parallel Execution</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink Documentation</a>.</p>",
+      "base": "<p>Describes parameters for how a Managed Service for Apache Flink application executes multiple tasks simultaneously. For more information about parallelism, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html\">Parallel Execution</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink Documentation</a>.</p>",
       "refs": {
         "FlinkApplicationConfiguration$ParallelismConfiguration": "<p>Describes parameters for how an application executes multiple tasks simultaneously.</p>"
       }
     },
     "ParallelismConfigurationDescription": {
-      "base": "<p>Describes parameters for how a Flink-based Kinesis Data Analytics application executes multiple tasks simultaneously.</p>",
+      "base": "<p>Describes parameters for how a Managed Service for Apache Flink application executes multiple tasks simultaneously.</p>",
       "refs": {
         "FlinkApplicationConfigurationDescription$ParallelismConfigurationDescription": "<p>Describes parameters for how an application executes multiple tasks simultaneously.</p>"
       }
@@ -1348,8 +1348,8 @@
     "ParallelismPerKPU": {
       "base": null,
       "refs": {
-        "ParallelismConfiguration$ParallelismPerKPU": "<p>Describes the number of parallel tasks that a Flink-based Kinesis Data Analytics application can perform per Kinesis Processing Unit (KPU) used by the application. For more information about KPUs, see <a href=\"http://aws.amazon.com/kinesis/data-analytics/pricing/\">Amazon Kinesis Data Analytics Pricing</a>.</p>",
-        "ParallelismConfigurationDescription$ParallelismPerKPU": "<p>Describes the number of parallel tasks that a Flink-based Kinesis Data Analytics application can perform per Kinesis Processing Unit (KPU) used by the application.</p>",
+        "ParallelismConfiguration$ParallelismPerKPU": "<p>Describes the number of parallel tasks that a Managed Service for Apache Flink application can perform per Kinesis Processing Unit (KPU) used by the application. For more information about KPUs, see <a href=\"http://aws.amazon.com/kinesis/data-analytics/pricing/\">Amazon Managed Service for Apache Flink Pricing</a>.</p>",
+        "ParallelismConfigurationDescription$ParallelismPerKPU": "<p>Describes the number of parallel tasks that a Managed Service for Apache Flink application can perform per Kinesis Processing Unit (KPU) used by the application.</p>",
         "ParallelismConfigurationUpdate$ParallelismPerKPUUpdate": "<p>Describes updates to the number of parallel tasks an application can perform per Kinesis Processing Unit (KPU) used by the application.</p>"
       }
     },
@@ -1552,7 +1552,7 @@
         "DeleteApplicationInputProcessingConfigurationResponse$ApplicationARN": "<p>The Amazon Resource Name (ARN) of the application.</p>",
         "DeleteApplicationOutputResponse$ApplicationARN": "<p>The application Amazon Resource Name (ARN).</p>",
         "DeleteApplicationReferenceDataSourceResponse$ApplicationARN": "<p>The application Amazon Resource Name (ARN).</p>",
-        "DeleteApplicationVpcConfigurationResponse$ApplicationARN": "<p>The ARN of the Kinesis Data Analytics application.</p>",
+        "DeleteApplicationVpcConfigurationResponse$ApplicationARN": "<p>The ARN of the Managed Service for Apache Flink application.</p>",
         "DiscoverInputSchemaRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the streaming source.</p>",
         "InputLambdaProcessor$ResourceARN": "<p>The ARN of the Amazon Lambda function that operates on records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
         "InputLambdaProcessorDescription$ResourceARN": "<p>The ARN of the Amazon Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
@@ -1618,19 +1618,19 @@
       }
     },
     "RunConfiguration": {
-      "base": "<p>Describes the starting parameters for an Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes the starting parameters for an Managed Service for Apache Flink application.</p>",
       "refs": {
-        "StartApplicationRequest$RunConfiguration": "<p>Identifies the run configuration (start parameters) of a Kinesis Data Analytics application.</p>"
+        "StartApplicationRequest$RunConfiguration": "<p>Identifies the run configuration (start parameters) of a Managed Service for Apache Flink application.</p>"
       }
     },
     "RunConfigurationDescription": {
-      "base": "<p>Describes the starting properties for a Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes the starting properties for a Managed Service for Apache Flink application.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$RunConfigurationDescription": "<p>The details about the starting properties for a Kinesis Data Analytics application.</p>"
+        "ApplicationConfigurationDescription$RunConfigurationDescription": "<p>The details about the starting properties for a Managed Service for Apache Flink application.</p>"
       }
     },
     "RunConfigurationUpdate": {
-      "base": "<p>Describes the updates to the starting parameters for a Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes the updates to the starting parameters for a Managed Service for Apache Flink application.</p>",
       "refs": {
         "UpdateApplicationRequest$RunConfigurationUpdate": "<p>Describes updates to the application's starting parameters.</p>"
       }
@@ -1640,7 +1640,9 @@
       "refs": {
         "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application.</p>",
         "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application.</p>",
-        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application.</p>"
+        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application.</p>",
+        "SnapshotDetails$RuntimeEnvironment": "<p>The Flink Runtime for the application snapshot.</p>",
+        "UpdateApplicationRequest$RuntimeEnvironmentUpdate": "<p>Updates the Managed Service for Apache Flink runtime environment used to run your code. To avoid issues you must:</p> <ul> <li> <p>Ensure your new jar and dependencies are compatible with the new runtime selected.</p> </li> <li> <p>Ensure your new code's state is compatible with the snapshot from which your application will start</p> </li> </ul>"
       }
     },
     "S3ApplicationCodeLocationDescription": {
@@ -1674,7 +1676,7 @@
       }
     },
     "S3ContentLocation": {
-      "base": "<p>For a Kinesis Data Analytics application provides a description of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data. </p>",
+      "base": "<p>For a Managed Service for Apache Flink application provides a description of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data. </p>",
       "refs": {
         "CodeContent$S3ContentLocation": "<p>Information about the Amazon S3 bucket that contains the application code.</p>",
         "CustomArtifactConfiguration$S3ContentLocation": null,
@@ -1688,9 +1690,9 @@
       }
     },
     "S3ReferenceDataSource": {
-      "base": "<p>For a SQL-based Kinesis Data Analytics application, identifies the Amazon S3 bucket and object that contains the reference data.</p> <p>A Kinesis Data Analytics application loads reference data only once. If the data changes, you call the <a>UpdateApplication</a> operation to trigger reloading of data into your application. </p>",
+      "base": "<p>For a SQL-based Kinesis Data Analytics application, identifies the Amazon S3 bucket and object that contains the reference data.</p> <p>A SQL-based Kinesis Data Analytics application loads reference data only once. If the data changes, you call the <a>UpdateApplication</a> operation to trigger reloading of data into your application. </p>",
       "refs": {
-        "ReferenceDataSource$S3ReferenceDataSource": "<p>Identifies the S3 bucket and object that contains the reference data. A Kinesis Data Analytics application loads reference data only once. If the data changes, you call the <a>UpdateApplication</a> operation to trigger reloading of data into your application. </p>"
+        "ReferenceDataSource$S3ReferenceDataSource": "<p>Identifies the S3 bucket and object that contains the reference data. A SQL-based Kinesis Data Analytics application loads reference data only once. If the data changes, you call the <a>UpdateApplication</a> operation to trigger reloading of data into your application. </p>"
       }
     },
     "S3ReferenceDataSourceDescription": {
@@ -1880,7 +1882,7 @@
     "TextContent": {
       "base": null,
       "refs": {
-        "CodeContent$TextContent": "<p>The text-format code for a Flink-based Kinesis Data Analytics application.</p>",
+        "CodeContent$TextContent": "<p>The text-format code for a Managed Service for Apache Flink application.</p>",
         "CodeContentDescription$TextContent": "<p>The text-format code</p>",
         "CodeContentUpdate$TextContentUpdate": "<p>Describes an update to the text code for an application.</p>"
       }
@@ -1991,45 +1993,45 @@
       }
     },
     "ZeppelinApplicationConfiguration": {
-      "base": "<p>The configuration of a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration of a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ApplicationConfiguration$ZeppelinApplicationConfiguration": "<p>The configuration parameters for a Kinesis Data Analytics Studio notebook.</p>"
+        "ApplicationConfiguration$ZeppelinApplicationConfiguration": "<p>The configuration parameters for a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZeppelinApplicationConfigurationDescription": {
-      "base": "<p>The configuration of a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration of a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ApplicationConfigurationDescription$ZeppelinApplicationConfigurationDescription": "<p>The configuration parameters for a Kinesis Data Analytics Studio notebook.</p>"
+        "ApplicationConfigurationDescription$ZeppelinApplicationConfigurationDescription": "<p>The configuration parameters for a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZeppelinApplicationConfigurationUpdate": {
-      "base": "<p>Updates to the configuration of Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>Updates to the configuration of Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ApplicationConfigurationUpdate$ZeppelinApplicationConfigurationUpdate": "<p>Updates to the configuration of a Kinesis Data Analytics Studio notebook.</p>"
+        "ApplicationConfigurationUpdate$ZeppelinApplicationConfigurationUpdate": "<p>Updates to the configuration of a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZeppelinMonitoringConfiguration": {
-      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Kinesis Data Analytics Studio notebook. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
+      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Managed Service for Apache Flink Studio notebook. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
       "refs": {
-        "ZeppelinApplicationConfiguration$MonitoringConfiguration": "<p>The monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfiguration$MonitoringConfiguration": "<p>The monitoring configuration of a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZeppelinMonitoringConfigurationDescription": {
-      "base": "<p>The monitoring configuration for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The monitoring configuration for Apache Zeppelin within a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationDescription$MonitoringConfigurationDescription": "<p>The monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationDescription$MonitoringConfigurationDescription": "<p>The monitoring configuration of a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZeppelinMonitoringConfigurationUpdate": {
-      "base": "<p>Updates to the monitoring configuration for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>Updates to the monitoring configuration for Apache Zeppelin within a Managed Service for Apache Flink Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationUpdate$MonitoringConfigurationUpdate": "<p>Updates to the monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationUpdate$MonitoringConfigurationUpdate": "<p>Updates to the monitoring configuration of a Managed Service for Apache Flink Studio notebook.</p>"
       }
     },
     "ZipFileContent": {
       "base": null,
       "refs": {
-        "CodeContent$ZipFileContent": "<p>The zip-format code for a Flink-based Kinesis Data Analytics application.</p>",
+        "CodeContent$ZipFileContent": "<p>The zip-format code for a Managed Service for Apache Flink application.</p>",
         "CodeContentUpdate$ZipFileContentUpdate": "<p>Describes an update to the zipped code for an application.</p>"
       }
     }
