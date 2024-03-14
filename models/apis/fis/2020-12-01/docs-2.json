@@ -1,9 +1,9 @@
 {
   "version": "2.0",
-  "service": "<p>Fault Injection Simulator is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/\">Fault Injection Simulator User Guide</a>.</p>",
+  "service": "<p>Fault Injection Service is a managed service that enables you to perform fault injection experiments on your Amazon Web Services workloads. For more information, see the <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/\">Fault Injection Service User Guide</a>.</p>",
   "operations": {
-    "CreateExperimentTemplate": "<p>Creates an experiment template. </p> <p>An experiment template includes the following components:</p> <ul> <li> <p> <b>Targets</b>: A target can be a specific resource in your Amazon Web Services environment, or one or more resources that match criteria that you specify, for example, resources that have specific tags.</p> </li> <li> <p> <b>Actions</b>: The actions to carry out on the target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.</p> </li> <li> <p> <b>Stop conditions</b>: If a stop condition is triggered while an experiment is running, the experiment is automatically stopped. You can define a stop condition as a CloudWatch alarm.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html\">experiment templates</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
-    "CreateTargetAccountConfiguration": "<p>Creates a target account configuration for the experiment template. A target account configuration is required when <code>accountTargeting</code> of <code>experimentOptions</code> is set to <code>multi-account</code>. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html\">experiment options</a> in the <i>Fault Injection Simulator User Guide</i>. </p>",
+    "CreateExperimentTemplate": "<p>Creates an experiment template. </p> <p>An experiment template includes the following components:</p> <ul> <li> <p> <b>Targets</b>: A target can be a specific resource in your Amazon Web Services environment, or one or more resources that match criteria that you specify, for example, resources that have specific tags.</p> </li> <li> <p> <b>Actions</b>: The actions to carry out on the target. You can specify multiple actions, the duration of each action, and when to start each action during an experiment.</p> </li> <li> <p> <b>Stop conditions</b>: If a stop condition is triggered while an experiment is running, the experiment is automatically stopped. You can define a stop condition as a CloudWatch alarm.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html\">experiment templates</a> in the <i>Fault Injection Service User Guide</i>.</p>",
+    "CreateTargetAccountConfiguration": "<p>Creates a target account configuration for the experiment template. A target account configuration is required when <code>accountTargeting</code> of <code>experimentOptions</code> is set to <code>multi-account</code>. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html\">experiment options</a> in the <i>Fault Injection Service User Guide</i>. </p>",
     "DeleteExperimentTemplate": "<p>Deletes the specified experiment template.</p>",
     "DeleteTargetAccountConfiguration": "<p>Deletes the specified target account configuration of the experiment template.</p>",
     "GetAction": "<p>Gets information about the specified FIS action.</p>",
@@ -37,7 +37,7 @@
       }
     },
     "Action": {
-      "base": "<p>Describes an action. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html\">FIS actions</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "base": "<p>Describes an action. For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html\">FIS actions</a> in the <i>Fault Injection Service User Guide</i>.</p>",
       "refs": {
         "GetActionResponse$action": "<p>Information about the action.</p>"
       }
@@ -122,6 +122,13 @@
         "ActionTargetMap$key": null
       }
     },
+    "ActionsMode": {
+      "base": null,
+      "refs": {
+        "ExperimentOptions$actionsMode": "<p>The actions mode of the experiment that is set from the StartExperiment API command.</p>",
+        "StartExperimentExperimentOptionsInput$actionsMode": "<p>Specifies the actions mode for experiment options.</p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
@@ -144,7 +151,7 @@
       }
     },
     "CreateExperimentTemplateActionInput": {
-      "base": "<p>Specifies an action for an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/actions.html\">Actions</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "base": "<p>Specifies an action for an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/actions.html\">Actions</a> in the <i>Fault Injection Service User Guide</i>.</p>",
       "refs": {
         "CreateExperimentTemplateActionInputMap$value": null
       }
@@ -190,7 +197,7 @@
       }
     },
     "CreateExperimentTemplateTargetInput": {
-      "base": "<p>Specifies a target for an experiment. You must specify at least one Amazon Resource Name (ARN) or at least one resource tag. You cannot specify both ARNs and tags.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html\">Targets</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "base": "<p>Specifies a target for an experiment. You must specify at least one Amazon Resource Name (ARN) or at least one resource tag. You cannot specify both ARNs and tags.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html\">Targets</a> in the <i>Fault Injection Service User Guide</i>.</p>",
       "refs": {
         "CreateExperimentTemplateTargetInputMap$value": null
       }
@@ -395,7 +402,8 @@
     "ExperimentOptions": {
       "base": "<p>Describes the options for an experiment.</p>",
       "refs": {
-        "Experiment$experimentOptions": "<p>The experiment options for the experiment.</p>"
+        "Experiment$experimentOptions": "<p>The experiment options for the experiment.</p>",
+        "ExperimentSummary$experimentOptions": "<p>The experiment options for the experiment.</p>"
       }
     },
     "ExperimentS3LogConfiguration": {
@@ -669,6 +677,7 @@
         "ExperimentTemplateSummary$id": "<p>The ID of the experiment template.</p>",
         "GetExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
         "GetTargetAccountConfigurationRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
+        "ListExperimentsRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "ListTargetAccountConfigurationsRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "StartExperimentRequest$experimentTemplateId": "<p>The ID of the experiment template.</p>",
         "UpdateExperimentTemplateRequest$id": "<p>The ID of the experiment template.</p>",
@@ -764,7 +773,7 @@
       }
     },
     "ExperimentTemplateTargetInputFilter": {
-      "base": "<p>Specifies a filter used for the target resource input in an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters\">Resource filters</a> in the <i>Fault Injection Simulator User Guide</i>.</p>",
+      "base": "<p>Specifies a filter used for the target resource input in an experiment template.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters\">Resource filters</a> in the <i>Fault Injection Service User Guide</i>.</p>",
       "refs": {
         "ExperimentTemplateTargetFilterInputList$member": null
       }
@@ -1038,6 +1047,12 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "Action$arn": "<p>The Amazon Resource Name (ARN) of the action.</p>",
+        "ActionSummary$arn": "<p>The Amazon Resource Name (ARN) of the action.</p>",
+        "Experiment$arn": "<p>The Amazon Resource Name (ARN) of the experiment.</p>",
+        "ExperimentSummary$arn": "<p>The Amazon Resource Name (ARN) of the experiment.</p>",
+        "ExperimentTemplate$arn": "<p>The Amazon Resource Name (ARN) of the experiment template.</p>",
+        "ExperimentTemplateSummary$arn": "<p>The Amazon Resource Name (ARN) of the experiment template.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ResourceArnList$member": null,
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -1092,6 +1107,12 @@
     "ServiceQuotaExceededException": {
       "base": "<p>You have exceeded your service quota.</p>",
       "refs": {
+      }
+    },
+    "StartExperimentExperimentOptionsInput": {
+      "base": "<p>Specifies experiment options for running an experiment.</p>",
+      "refs": {
+        "StartExperimentRequest$experimentOptions": "<p>The experiment options for running the experiment.</p>"
       }
     },
     "StartExperimentRequest": {
@@ -1222,15 +1243,15 @@
     "TargetAccountId": {
       "base": null,
       "refs": {
-        "CreateTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
-        "DeleteTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
-        "ExperimentTargetAccountConfiguration$accountId": "<p>The AWS account ID of the target account.</p>",
-        "ExperimentTargetAccountConfigurationSummary$accountId": "<p>The AWS account ID of the target account.</p>",
-        "GetExperimentTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
-        "GetTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>",
-        "TargetAccountConfiguration$accountId": "<p>The AWS account ID of the target account.</p>",
-        "TargetAccountConfigurationSummary$accountId": "<p>The AWS account ID of the target account.</p>",
-        "UpdateTargetAccountConfigurationRequest$accountId": "<p>The AWS account ID of the target account.</p>"
+        "CreateTargetAccountConfigurationRequest$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "DeleteTargetAccountConfigurationRequest$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "ExperimentTargetAccountConfiguration$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "ExperimentTargetAccountConfigurationSummary$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "GetExperimentTargetAccountConfigurationRequest$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "GetTargetAccountConfigurationRequest$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "TargetAccountConfiguration$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "TargetAccountConfigurationSummary$accountId": "<p>The Amazon Web Services account ID of the target account.</p>",
+        "UpdateTargetAccountConfigurationRequest$accountId": "<p>The Amazon Web Services account ID of the target account.</p>"
       }
     },
     "TargetInformationKey": {

@@ -1,3 +1,21 @@
+Release v1.51.0 (2024-03-14)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service documentation
+* `service/ec2-instance-connect`: Updates service API and documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/fis`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for EBCDIC collation for RDS for Db2.
+* `service/secretsmanager`: Updates service documentation
+  * Doc only update for Secrets Manager
+* `service/timestream-influxdb`: Adds new service
+
+### SDK Features
+* `service/iotroborunner`: Remove Iotroborunner
+  * This change removes the iotroborunner service, since it is deprecated.
+
 Release v1.50.38 (2024-03-13)
 ===
 

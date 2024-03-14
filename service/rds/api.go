@@ -23582,7 +23582,10 @@ type CreateDBInstanceInput struct {
 	// RDS for Db2
 	//
 	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, no database is created in the DB instance.
+	// parameter isn't specified, no database is created in the DB instance. In
+	// some cases, we recommend that you don't add a database name. For more information,
+	// see Additional considerations (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-db-instance-prereqs.html#db2-prereqs-additional-considerations)
+	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
 	//
@@ -41499,7 +41502,14 @@ func (s *DescribeExportTasksOutput) SetMarker(v string) *DescribeExportTasksOutp
 type DescribeGlobalClustersInput struct {
 	_ struct{} `type:"structure"`
 
-	// This parameter isn't currently supported.
+	// A filter that specifies one or more global database clusters to describe.
+	// This parameter is case-sensitive.
+	//
+	// Currently, the only supported filter is region.
+	//
+	// If used, the request returns information about any global cluster with at
+	// least one member (primary or secondary) in the specified Amazon Web Services
+	// Regions.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// The user-supplied DB cluster identifier. If this parameter is specified,

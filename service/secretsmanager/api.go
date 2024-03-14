@@ -877,9 +877,6 @@ func (c *SecretsManager) GetRandomPasswordRequest(input *GetRandomPasswordInput)
 // letters, numbers, and the following characters in passwords: !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~
 //
 // Secrets Manager generates a CloudTrail log entry when you call this action.
-// Do not include sensitive information in request parameters because it might
-// be logged. For more information, see Logging Secrets Manager events with
-// CloudTrail (https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieve-ct-entries.html).
 //
 // Required permissions: secretsmanager:GetRandomPassword. For more information,
 // see IAM policy actions for Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions)
@@ -3070,7 +3067,8 @@ type BatchGetSecretValueInput struct {
 	//
 	// If there are more results available, in the response, Secrets Manager includes
 	// NextToken. To get the next results, call BatchGetSecretValue again with the
-	// value from NextToken.
+	// value from NextToken. To use this parameter, you must also use the Filters
+	// parameter.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// A token that indicates where the output should continue from, if a previous
@@ -4031,6 +4029,11 @@ type DescribeSecretOutput struct {
 	// returns null. If rotation fails, Secrets Manager retries the entire rotation
 	// process multiple times. If rotation is unsuccessful, this date may be in
 	// the past.
+	//
+	// This date represents the latest date that rotation will occur, but it is
+	// not an approximate rotation date. In some cases, for example if you turn
+	// off automatic rotation and then turn it back on, the next rotation may occur
+	// much sooner than this date.
 	NextRotationDate *time.Time `type:"timestamp"`
 
 	// The ID of the service that created this secret. For more information, see

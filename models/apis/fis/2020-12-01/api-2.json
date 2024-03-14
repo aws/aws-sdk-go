@@ -353,6 +353,7 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ActionId"},
+        "arn":{"shape":"ResourceArn"},
         "description":{"shape":"ActionDescription"},
         "parameters":{"shape":"ActionParameterMap"},
         "targets":{"shape":"ActionTargetMap"},
@@ -399,6 +400,7 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ActionId"},
+        "arn":{"shape":"ResourceArn"},
         "description":{"shape":"ActionDescription"},
         "targets":{"shape":"ActionTargetMap"},
         "tags":{"shape":"TagMap"}
@@ -423,6 +425,13 @@
       "type":"string",
       "max":64,
       "pattern":"[\\S]+"
+    },
+    "ActionsMode":{
+      "type":"string",
+      "enum":[
+        "skip-all",
+        "run-all"
+      ]
     },
     "ClientToken":{
       "type":"string",
@@ -629,6 +638,7 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ExperimentId"},
+        "arn":{"shape":"ResourceArn"},
         "experimentTemplateId":{"shape":"ExperimentTemplateId"},
         "roleArn":{"shape":"RoleArn"},
         "state":{"shape":"ExperimentState"},
@@ -758,7 +768,8 @@
       "type":"structure",
       "members":{
         "accountTargeting":{"shape":"AccountTargeting"},
-        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"}
+        "emptyTargetResolutionMode":{"shape":"EmptyTargetResolutionMode"},
+        "actionsMode":{"shape":"ActionsMode"}
       }
     },
     "ExperimentS3LogConfiguration":{
@@ -808,10 +819,12 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ExperimentId"},
+        "arn":{"shape":"ResourceArn"},
         "experimentTemplateId":{"shape":"ExperimentTemplateId"},
         "state":{"shape":"ExperimentState"},
         "creationTime":{"shape":"CreationTime"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "experimentOptions":{"shape":"ExperimentOptions"}
       }
     },
     "ExperimentSummaryList":{
@@ -908,6 +921,7 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ExperimentTemplateId"},
+        "arn":{"shape":"ResourceArn"},
         "description":{"shape":"ExperimentTemplateDescription"},
         "targets":{"shape":"ExperimentTemplateTargetMap"},
         "actions":{"shape":"ExperimentTemplateActionMap"},
@@ -1048,6 +1062,7 @@
       "type":"structure",
       "members":{
         "id":{"shape":"ExperimentTemplateId"},
+        "arn":{"shape":"ResourceArn"},
         "description":{"shape":"ExperimentTemplateDescription"},
         "creationTime":{"shape":"CreationTime"},
         "lastUpdateTime":{"shape":"LastUpdateTime"},
@@ -1395,6 +1410,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "experimentTemplateId":{
+          "shape":"ExperimentTemplateId",
+          "location":"querystring",
+          "locationName":"experimentTemplateId"
         }
       }
     },
@@ -1548,6 +1568,12 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "StartExperimentExperimentOptionsInput":{
+      "type":"structure",
+      "members":{
+        "actionsMode":{"shape":"ActionsMode"}
+      }
+    },
     "StartExperimentRequest":{
       "type":"structure",
       "required":[
@@ -1560,6 +1586,7 @@
           "idempotencyToken":true
         },
         "experimentTemplateId":{"shape":"ExperimentTemplateId"},
+        "experimentOptions":{"shape":"StartExperimentExperimentOptionsInput"},
         "tags":{"shape":"TagMap"}
       }
     },

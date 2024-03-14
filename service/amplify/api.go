@@ -149,6 +149,12 @@ func (c *Amplify) CreateBackendEnvironmentRequest(input *CreateBackendEnvironmen
 //
 // Creates a new backend environment for an Amplify app.
 //
+// This API is available only to Amplify Gen 1 applications where the backend
+// is created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to applications created using the Amplify Gen
+// 2 public preview. When you deploy an application with Amplify Gen 2, you
+// provision the app's backend infrastructure using Typescript code.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -706,6 +712,12 @@ func (c *Amplify) DeleteBackendEnvironmentRequest(input *DeleteBackendEnvironmen
 // DeleteBackendEnvironment API operation for AWS Amplify.
 //
 // Deletes a backend environment for an Amplify app.
+//
+// This API is available only to Amplify Gen 1 applications where the backend
+// was created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to applications created using the Amplify Gen
+// 2 public preview. When you deploy an application with Amplify Gen 2, you
+// provision the app's backend infrastructure using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1430,6 +1442,12 @@ func (c *Amplify) GetBackendEnvironmentRequest(input *GetBackendEnvironmentInput
 //
 // Returns a backend environment for an Amplify app.
 //
+// This API is available only to Amplify Gen 1 applications where the backend
+// was created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to applications created using the Amplify Gen
+// 2 public preview. When you deploy an application with Amplify Gen 2, you
+// provision the app's backend infrastructure using Typescript code.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2105,6 +2123,12 @@ func (c *Amplify) ListBackendEnvironmentsRequest(input *ListBackendEnvironmentsI
 // ListBackendEnvironments API operation for AWS Amplify.
 //
 // Lists the backend environments for an Amplify app.
+//
+// This API is available only to Amplify Gen 1 applications where the backend
+// was created using Amplify Studio or the Amplify command line interface (CLI).
+// This API isn’t available to applications created using the Amplify Gen
+// 2 public preview. When you deploy an application with Amplify Gen 2, you
+// provision the app's backend infrastructure using Typescript code.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
