@@ -50,7 +50,8 @@
         {"shape":"SerialConsoleSessionLimitExceededException"},
         {"shape":"SerialConsoleSessionUnavailableException"},
         {"shape":"EC2InstanceStateInvalidException"},
-        {"shape":"EC2InstanceUnavailableException"}
+        {"shape":"EC2InstanceUnavailableException"},
+        {"shape":"SerialConsoleSessionUnsupportedException"}
       ]
     }
   },
@@ -106,7 +107,7 @@
       "type":"string",
       "max":32,
       "min":1,
-      "pattern":"^[A-Za-z_][A-Za-z0-9\\@\\._-]{0,30}[A-Za-z0-9\\$_-]?$"
+      "pattern":"(^[A-Za-z_][A-Za-z0-9\\@\\._-]{0,30}[A-Za-z0-9\\$_-]?$)|(^(?=.{2,32}$)[0-9]{1,32}[A-Za-z\\@\\._-][A-Za-z0-9\\@\\._-]*[A-Za-z0-9\\$_-]?$)"
     },
     "InvalidArgsException":{
       "type":"structure",
@@ -182,6 +183,13 @@
       },
       "exception":true,
       "fault":true
+    },
+    "SerialConsoleSessionUnsupportedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
     },
     "SerialPort":{
       "type":"integer",

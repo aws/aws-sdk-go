@@ -218,6 +218,10 @@ func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKeyRequest(input *SendSer
 //   - EC2InstanceUnavailableException
 //     The instance is currently unavailable. Wait a few minutes and try again.
 //
+//   - SerialConsoleSessionUnsupportedException
+//     Your instance's BIOS version is unsupported for serial console connection.
+//     Reboot your instance to update its BIOS, and then try again to connect.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02/SendSerialConsoleSSHPublicKey
 func (c *EC2InstanceConnect) SendSerialConsoleSSHPublicKey(input *SendSerialConsoleSSHPublicKeyInput) (*SendSerialConsoleSSHPublicKeyOutput, error) {
 	req, out := c.SendSerialConsoleSSHPublicKeyRequest(input)
@@ -1079,6 +1083,71 @@ func (s *SerialConsoleSessionUnavailableException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *SerialConsoleSessionUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Your instance's BIOS version is unsupported for serial console connection.
+// Reboot your instance to update its BIOS, and then try again to connect.
+type SerialConsoleSessionUnsupportedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SerialConsoleSessionUnsupportedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SerialConsoleSessionUnsupportedException) GoString() string {
+	return s.String()
+}
+
+func newErrorSerialConsoleSessionUnsupportedException(v protocol.ResponseMetadata) error {
+	return &SerialConsoleSessionUnsupportedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *SerialConsoleSessionUnsupportedException) Code() string {
+	return "SerialConsoleSessionUnsupportedException"
+}
+
+// Message returns the exception's message.
+func (s *SerialConsoleSessionUnsupportedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *SerialConsoleSessionUnsupportedException) OrigErr() error {
+	return nil
+}
+
+func (s *SerialConsoleSessionUnsupportedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *SerialConsoleSessionUnsupportedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *SerialConsoleSessionUnsupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

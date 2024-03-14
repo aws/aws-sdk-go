@@ -70,6 +70,13 @@ const (
 	// Unable to start a serial console session. Please try again.
 	ErrCodeSerialConsoleSessionUnavailableException = "SerialConsoleSessionUnavailableException"
 
+	// ErrCodeSerialConsoleSessionUnsupportedException for service response error code
+	// "SerialConsoleSessionUnsupportedException".
+	//
+	// Your instance's BIOS version is unsupported for serial console connection.
+	// Reboot your instance to update its BIOS, and then try again to connect.
+	ErrCodeSerialConsoleSessionUnsupportedException = "SerialConsoleSessionUnsupportedException"
+
 	// ErrCodeServiceException for service response error code
 	// "ServiceException".
 	//
@@ -96,6 +103,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"SerialConsoleAccessDisabledException":       newErrorSerialConsoleAccessDisabledException,
 	"SerialConsoleSessionLimitExceededException": newErrorSerialConsoleSessionLimitExceededException,
 	"SerialConsoleSessionUnavailableException":   newErrorSerialConsoleSessionUnavailableException,
+	"SerialConsoleSessionUnsupportedException":   newErrorSerialConsoleSessionUnsupportedException,
 	"ServiceException":                           newErrorServiceException,
 	"ThrottlingException":                        newErrorThrottlingException,
 }

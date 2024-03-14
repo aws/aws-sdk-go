@@ -73,7 +73,7 @@ func (c *FIS) CreateExperimentTemplateRequest(input *CreateExperimentTemplateInp
 //     stop condition as a CloudWatch alarm.
 //
 // For more information, see experiment templates (https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -165,7 +165,7 @@ func (c *FIS) CreateTargetAccountConfigurationRequest(input *CreateTargetAccount
 // Creates a target account configuration for the experiment template. A target
 // account configuration is required when accountTargeting of experimentOptions
 // is set to multi-account. For more information, see experiment options (https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2347,9 +2347,12 @@ func (c *FIS) UpdateTargetAccountConfigurationWithContext(ctx aws.Context, input
 }
 
 // Describes an action. For more information, see FIS actions (https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 type Action struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the action.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
 
 	// The description for the action.
 	Description *string `locationName:"description" type:"string"`
@@ -2383,6 +2386,12 @@ func (s Action) String() string {
 // value will be replaced with "sensitive".
 func (s Action) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Action) SetArn(v string) *Action {
+	s.Arn = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -2460,6 +2469,9 @@ func (s *ActionParameter) SetRequired(v bool) *ActionParameter {
 type ActionSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the action.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The description for the action.
 	Description *string `locationName:"description" type:"string"`
 
@@ -2489,6 +2501,12 @@ func (s ActionSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ActionSummary) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ActionSummary) SetArn(v string) *ActionSummary {
+	s.Arn = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -2614,7 +2632,7 @@ func (s *ConflictException) RequestID() string {
 // Specifies an action for an experiment template.
 //
 // For more information, see Actions (https://docs.aws.amazon.com/fis/latest/userguide/actions.html)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 type CreateExperimentTemplateActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3088,7 +3106,7 @@ func (s *CreateExperimentTemplateStopConditionInput) SetValue(v string) *CreateE
 // ARNs and tags.
 //
 // For more information, see Targets (https://docs.aws.amazon.com/fis/latest/userguide/targets.html)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 type CreateExperimentTemplateTargetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3211,7 +3229,7 @@ func (s *CreateExperimentTemplateTargetInput) SetSelectionMode(v string) *Create
 type CreateTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -3427,7 +3445,7 @@ func (s *DeleteExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemp
 type DeleteTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -3528,6 +3546,9 @@ type Experiment struct {
 	// The actions for the experiment.
 	Actions map[string]*ExperimentAction `locationName:"actions" type:"map"`
 
+	// The Amazon Resource Name (ARN) of the experiment.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The time that the experiment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
@@ -3590,6 +3611,12 @@ func (s Experiment) GoString() string {
 // SetActions sets the Actions field's value.
 func (s *Experiment) SetActions(v map[string]*ExperimentAction) *Experiment {
 	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Experiment) SetArn(v string) *Experiment {
+	s.Arn = &v
 	return s
 }
 
@@ -3897,6 +3924,10 @@ type ExperimentOptions struct {
 	// The account targeting setting for an experiment.
 	AccountTargeting *string `locationName:"accountTargeting" type:"string" enum:"AccountTargeting"`
 
+	// The actions mode of the experiment that is set from the StartExperiment API
+	// command.
+	ActionsMode *string `locationName:"actionsMode" type:"string" enum:"ActionsMode"`
+
 	// The empty target resolution mode for an experiment.
 	EmptyTargetResolutionMode *string `locationName:"emptyTargetResolutionMode" type:"string" enum:"EmptyTargetResolutionMode"`
 }
@@ -3922,6 +3953,12 @@ func (s ExperimentOptions) GoString() string {
 // SetAccountTargeting sets the AccountTargeting field's value.
 func (s *ExperimentOptions) SetAccountTargeting(v string) *ExperimentOptions {
 	s.AccountTargeting = &v
+	return s
+}
+
+// SetActionsMode sets the ActionsMode field's value.
+func (s *ExperimentOptions) SetActionsMode(v string) *ExperimentOptions {
+	s.ActionsMode = &v
 	return s
 }
 
@@ -4058,8 +4095,14 @@ func (s *ExperimentStopCondition) SetValue(v string) *ExperimentStopCondition {
 type ExperimentSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the experiment.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The time that the experiment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
+
+	// The experiment options for the experiment.
+	ExperimentOptions *ExperimentOptions `locationName:"experimentOptions" type:"structure"`
 
 	// The ID of the experiment template.
 	ExperimentTemplateId *string `locationName:"experimentTemplateId" type:"string"`
@@ -4092,9 +4135,21 @@ func (s ExperimentSummary) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *ExperimentSummary) SetArn(v string) *ExperimentSummary {
+	s.Arn = &v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *ExperimentSummary) SetCreationTime(v time.Time) *ExperimentSummary {
 	s.CreationTime = &v
+	return s
+}
+
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *ExperimentSummary) SetExperimentOptions(v *ExperimentOptions) *ExperimentSummary {
+	s.ExperimentOptions = v
 	return s
 }
 
@@ -4203,7 +4258,7 @@ func (s *ExperimentTarget) SetSelectionMode(v string) *ExperimentTarget {
 type ExperimentTargetAccountConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
 	// The description of the target account.
@@ -4253,7 +4308,7 @@ func (s *ExperimentTargetAccountConfiguration) SetRoleArn(v string) *ExperimentT
 type ExperimentTargetAccountConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
 	// The description of the target account.
@@ -4347,6 +4402,9 @@ type ExperimentTemplate struct {
 	// The actions for the experiment.
 	Actions map[string]*ExperimentTemplateAction `locationName:"actions" type:"map"`
 
+	// The Amazon Resource Name (ARN) of the experiment template.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The time the experiment template was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
@@ -4402,6 +4460,12 @@ func (s ExperimentTemplate) GoString() string {
 // SetActions sets the Actions field's value.
 func (s *ExperimentTemplate) SetActions(v map[string]*ExperimentTemplateAction) *ExperimentTemplate {
 	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ExperimentTemplate) SetArn(v string) *ExperimentTemplate {
+	s.Arn = &v
 	return s
 }
 
@@ -4862,6 +4926,9 @@ func (s *ExperimentTemplateStopCondition) SetValue(v string) *ExperimentTemplate
 type ExperimentTemplateSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the experiment template.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The time that the experiment template was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
@@ -4894,6 +4961,12 @@ func (s ExperimentTemplateSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ExperimentTemplateSummary) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ExperimentTemplateSummary) SetArn(v string) *ExperimentTemplateSummary {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -5047,7 +5120,7 @@ func (s *ExperimentTemplateTargetFilter) SetValues(v []*string) *ExperimentTempl
 // Specifies a filter used for the target resource input in an experiment template.
 //
 // For more information, see Resource filters (https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-filters)
-// in the Fault Injection Simulator User Guide.
+// in the Fault Injection Service User Guide.
 type ExperimentTemplateTargetInputFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -5271,7 +5344,7 @@ func (s *GetExperimentOutput) SetExperiment(v *Experiment) *GetExperimentOutput 
 type GetExperimentTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -5448,7 +5521,7 @@ func (s *GetExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemplat
 type GetTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -6047,6 +6120,9 @@ func (s *ListExperimentTemplatesOutput) SetNextToken(v string) *ListExperimentTe
 type ListExperimentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the experiment template.
+	ExperimentTemplateId *string `location:"querystring" locationName:"experimentTemplateId" type:"string"`
+
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -6087,6 +6163,12 @@ func (s *ListExperimentsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExperimentTemplateId sets the ExperimentTemplateId field's value.
+func (s *ListExperimentsInput) SetExperimentTemplateId(v string) *ListExperimentsInput {
+	s.ExperimentTemplateId = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -6613,12 +6695,47 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies experiment options for running an experiment.
+type StartExperimentExperimentOptionsInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the actions mode for experiment options.
+	ActionsMode *string `locationName:"actionsMode" type:"string" enum:"ActionsMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExperimentExperimentOptionsInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExperimentExperimentOptionsInput_) GoString() string {
+	return s.String()
+}
+
+// SetActionsMode sets the ActionsMode field's value.
+func (s *StartExperimentExperimentOptionsInput_) SetActionsMode(v string) *StartExperimentExperimentOptionsInput_ {
+	s.ActionsMode = &v
+	return s
+}
+
 type StartExperimentInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The experiment options for running the experiment.
+	ExperimentOptions *StartExperimentExperimentOptionsInput_ `locationName:"experimentOptions" type:"structure"`
 
 	// The ID of the experiment template.
 	//
@@ -6666,6 +6783,12 @@ func (s *StartExperimentInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *StartExperimentInput) SetClientToken(v string) *StartExperimentInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetExperimentOptions sets the ExperimentOptions field's value.
+func (s *StartExperimentInput) SetExperimentOptions(v *StartExperimentExperimentOptionsInput_) *StartExperimentInput {
+	s.ExperimentOptions = v
 	return s
 }
 
@@ -6881,7 +7004,7 @@ func (s TagResourceOutput) GoString() string {
 type TargetAccountConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
 	// The description of the target account.
@@ -6931,7 +7054,7 @@ func (s *TargetAccountConfiguration) SetRoleArn(v string) *TargetAccountConfigur
 type TargetAccountConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
 	// The description of the target account.
@@ -7707,7 +7830,7 @@ func (s *UpdateExperimentTemplateTargetInput) SetSelectionMode(v string) *Update
 type UpdateTargetAccountConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the target account.
+	// The Amazon Web Services account ID of the target account.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" min:"12" type:"string" required:"true"`
@@ -7900,6 +8023,22 @@ func AccountTargeting_Values() []string {
 	return []string{
 		AccountTargetingSingleAccount,
 		AccountTargetingMultiAccount,
+	}
+}
+
+const (
+	// ActionsModeSkipAll is a ActionsMode enum value
+	ActionsModeSkipAll = "skip-all"
+
+	// ActionsModeRunAll is a ActionsMode enum value
+	ActionsModeRunAll = "run-all"
+)
+
+// ActionsMode_Values returns all elements of the ActionsMode enum
+func ActionsMode_Values() []string {
+	return []string{
+		ActionsModeSkipAll,
+		ActionsModeRunAll,
 	}
 }
 
