@@ -1119,6 +1119,7 @@
         "environmentType":{"shape":"EnvironmentType"},
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
+        "overflowBehavior":{"shape":"FleetOverflowBehavior"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1458,6 +1459,7 @@
         "environmentType":{"shape":"EnvironmentType"},
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationOutput"},
+        "overflowBehavior":{"shape":"FleetOverflowBehavior"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -1489,6 +1491,13 @@
       "member":{"shape":"NonEmptyString"},
       "max":100,
       "min":1
+    },
+    "FleetOverflowBehavior":{
+      "type":"string",
+      "enum":[
+        "QUEUE",
+        "ON_DEMAND"
+      ]
     },
     "FleetScalingMetricType":{
       "type":"string",
@@ -2696,6 +2705,7 @@
         "environmentType":{"shape":"EnvironmentType"},
         "computeType":{"shape":"ComputeType"},
         "scalingConfiguration":{"shape":"ScalingConfigurationInput"},
+        "overflowBehavior":{"shape":"FleetOverflowBehavior"},
         "tags":{"shape":"TagList"}
       }
     },

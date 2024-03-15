@@ -13383,7 +13383,7 @@
     "LaunchSpecsList": {
       "base": null,
       "refs": {
-        "SpotFleetRequestConfigData$LaunchSpecifications": "<p>The launch specifications for the Spot Fleet request. If you specify <code>LaunchSpecifications</code>, you can't specify <code>LaunchTemplateConfigs</code>. If you include On-Demand capacity in your request, you must use <code>LaunchTemplateConfigs</code>.</p>"
+        "SpotFleetRequestConfigData$LaunchSpecifications": "<p>The launch specifications for the Spot Fleet request. If you specify <code>LaunchSpecifications</code>, you can't specify <code>LaunchTemplateConfigs</code>. If you include On-Demand capacity in your request, you must use <code>LaunchTemplateConfigs</code>.</p> <note> <p>If an AMI specified in a launch specification is deregistered or disabled, no new instances can be launched from the AMI. For fleets of type <code>maintain</code>, the target capacity will not be maintained.</p> </note>"
       }
     },
     "LaunchTemplate": {
@@ -14372,6 +14372,54 @@
       "base": null,
       "refs": {
         "EbsOptimizedInfo$MaximumThroughputInMBps": "<p>The maximum throughput performance for an EBS-optimized instance type, in MB/s.</p>"
+      }
+    },
+    "MediaAcceleratorInfo": {
+      "base": "<p>Describes the media accelerators for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$MediaAcceleratorInfo": "<p>Describes the media accelerator settings for the instance type.</p>"
+      }
+    },
+    "MediaDeviceCount": {
+      "base": null,
+      "refs": {
+        "MediaDeviceInfo$Count": "<p>The number of media accelerators for the instance type.</p>"
+      }
+    },
+    "MediaDeviceInfo": {
+      "base": "<p>Describes the media accelerators for the instance type.</p>",
+      "refs": {
+        "MediaDeviceInfoList$member": null
+      }
+    },
+    "MediaDeviceInfoList": {
+      "base": null,
+      "refs": {
+        "MediaAcceleratorInfo$Accelerators": "<p>Describes the media accelerators for the instance type.</p>"
+      }
+    },
+    "MediaDeviceManufacturerName": {
+      "base": null,
+      "refs": {
+        "MediaDeviceInfo$Manufacturer": "<p>The manufacturer of the media accelerator.</p>"
+      }
+    },
+    "MediaDeviceMemoryInfo": {
+      "base": "<p>Describes the memory available to the media accelerator.</p>",
+      "refs": {
+        "MediaDeviceInfo$MemoryInfo": "<p>Describes the memory available to the media accelerator.</p>"
+      }
+    },
+    "MediaDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "MediaDeviceMemoryInfo$SizeInMiB": "<p>The size of the memory available to each media accelerator, in MiB.</p>"
+      }
+    },
+    "MediaDeviceName": {
+      "base": null,
+      "refs": {
+        "MediaDeviceInfo$Name": "<p>The name of the media accelerator.</p>"
       }
     },
     "MembershipType": {
@@ -15766,6 +15814,66 @@
       "refs": {
         "NetworkCardInfo$NetworkPerformance": "<p>The network performance of the network card.</p>",
         "NetworkInfo$NetworkPerformance": "<p>The network performance.</p>"
+      }
+    },
+    "NeuronDeviceCoreCount": {
+      "base": null,
+      "refs": {
+        "NeuronDeviceCoreInfo$Count": "<p>The number of cores available to the neuron accelerator.</p>"
+      }
+    },
+    "NeuronDeviceCoreInfo": {
+      "base": "<p>Describes the cores available to the neuron accelerator.</p>",
+      "refs": {
+        "NeuronDeviceInfo$CoreInfo": "<p>Describes the cores available to each neuron accelerator.</p>"
+      }
+    },
+    "NeuronDeviceCoreVersion": {
+      "base": null,
+      "refs": {
+        "NeuronDeviceCoreInfo$Version": "<p>The version of the neuron accelerator.</p>"
+      }
+    },
+    "NeuronDeviceCount": {
+      "base": null,
+      "refs": {
+        "NeuronDeviceInfo$Count": "<p>The number of neuron accelerators for the instance type.</p>"
+      }
+    },
+    "NeuronDeviceInfo": {
+      "base": "<p>Describes the neuron accelerators for the instance type.</p>",
+      "refs": {
+        "NeuronDeviceInfoList$member": null
+      }
+    },
+    "NeuronDeviceInfoList": {
+      "base": null,
+      "refs": {
+        "NeuronInfo$NeuronDevices": "<p>Describes the neuron accelerators for the instance type.</p>"
+      }
+    },
+    "NeuronDeviceMemoryInfo": {
+      "base": "<p>Describes the memory available to the neuron accelerator.</p>",
+      "refs": {
+        "NeuronDeviceInfo$MemoryInfo": "<p>Describes the memory available to each neuron accelerator.</p>"
+      }
+    },
+    "NeuronDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "NeuronDeviceMemoryInfo$SizeInMiB": "<p>The size of the memory available to the neuron accelerator, in MiB.</p>"
+      }
+    },
+    "NeuronDeviceName": {
+      "base": null,
+      "refs": {
+        "NeuronDeviceInfo$Name": "<p>The name of the neuron accelerator.</p>"
+      }
+    },
+    "NeuronInfo": {
+      "base": "<p>Describes the neuron accelerators for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$NeuronInfo": "<p>Describes the Neuron accelerator settings for the instance type.</p>"
       }
     },
     "NewDhcpConfiguration": {
@@ -21827,6 +21935,18 @@
       "base": "<p>The minimum and maximum amount of total local storage, in GB.</p>",
       "refs": {
         "InstanceRequirementsRequest$TotalLocalStorageGB": "<p>The minimum and maximum amount of total local storage, in GB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "TotalMediaMemory": {
+      "base": null,
+      "refs": {
+        "MediaAcceleratorInfo$TotalMediaMemoryInMiB": "<p>The total size of the memory for the media accelerators for the instance type, in MiB.</p>"
+      }
+    },
+    "TotalNeuronMemory": {
+      "base": null,
+      "refs": {
+        "NeuronInfo$TotalNeuronDeviceMemoryInMiB": "<p>The total size of the memory for the neuron accelerators for the instance type, in MiB.</p>"
       }
     },
     "TpmSupportValues": {

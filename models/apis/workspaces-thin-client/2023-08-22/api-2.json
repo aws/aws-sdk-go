@@ -1045,8 +1045,7 @@
         },
         "name":{"shape":"DeviceName"},
         "desiredSoftwareSetId":{"shape":"SoftwareSetId"},
-        "softwareSetUpdateSchedule":{"shape":"SoftwareSetUpdateSchedule"},
-        "kmsKeyArn":{"shape":"KmsKeyArn"}
+        "softwareSetUpdateSchedule":{"shape":"SoftwareSetUpdateSchedule"}
       }
     },
     "UpdateDeviceResponse":{

@@ -847,10 +847,23 @@
         "DescribeInstanceAttributeResponse$Attribute": "<p>The type of attribute.</p>"
       }
     },
+    "AttributeAndCondition": {
+      "base": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>",
+      "refs": {
+        "AttributeOrConditionList$member": null,
+        "ControlPlaneUserAttributeFilter$AndCondition": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>"
+      }
+    },
     "AttributeName": {
       "base": null,
       "refs": {
         "Attributes$key": null
+      }
+    },
+    "AttributeOrConditionList": {
+      "base": null,
+      "refs": {
+        "ControlPlaneUserAttributeFilter$OrConditions": "<p>A list of conditions which would be applied together with an <code>OR</code> condition.</p>"
       }
     },
     "AttributeValue": {
@@ -1556,6 +1569,12 @@
         "RoutingProfileSearchFilter$TagFilter": null,
         "SecurityProfilesSearchFilter$TagFilter": null,
         "UserSearchFilter$TagFilter": null
+      }
+    },
+    "ControlPlaneUserAttributeFilter": {
+      "base": "<p>An object that can be used to specify Tag conditions or Hierarchy Group conditions inside the <code>SearchFilter</code>.</p> <p>This accepts an <code>OR</code> of <code>AND</code> (List of List) input where:</p> <ul> <li> <p>The top level list specifies conditions that need to be applied with <code>OR</code> operator</p> </li> <li> <p>The inner list specifies conditions that need to be applied with <code>AND</code> operator.</p> </li> </ul> <note> <p>Only one field can be populated. Maximum number of allowed Tag conditions is 25. Maximum number of allowed Hierarchy Group conditions is 20. </p> </note>",
+      "refs": {
+        "UserSearchFilter$UserAttributeFilter": "<p>An object that can be used to specify Tag conditions or Hierarchy Group conditions inside the SearchFilter.</p> <p>This accepts an <code>OR</code> of <code>AND</code> (List of List) input where:</p> <ul> <li> <p>The top level list specifies conditions that need to be applied with <code>OR</code> operator.</p> </li> <li> <p>The inner list specifies conditions that need to be applied with <code>AND</code> operator.</p> </li> </ul> <note> <p>Only one field can be populated. This object can’t be used along with TagFilter. Request can either contain TagFilter or UserAttributeFilter if SearchFilter is specified, combination of both is not supported and such request will throw AccessDeniedException.</p> </note>"
       }
     },
     "CreateAgentStatusRequest": {
@@ -3213,12 +3232,15 @@
     "HierarchyGroupCondition": {
       "base": "<p>A leaf node condition which can be used to specify a hierarchy group condition.</p>",
       "refs": {
+        "AttributeAndCondition$HierarchyGroupCondition": null,
+        "ControlPlaneUserAttributeFilter$HierarchyGroupCondition": null,
         "UserSearchCriteria$HierarchyGroupCondition": "<p>A leaf node condition which can be used to specify a hierarchy group condition.</p>"
       }
     },
     "HierarchyGroupId": {
       "base": null,
       "refs": {
+        "CreateSecurityProfileRequest$AllowedAccessControlHierarchyGroupId": "<p>The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.</p>",
         "CreateUserHierarchyGroupRequest$ParentGroupId": "<p>The identifier for the parent hierarchy group. The user hierarchy is created at level one if the parent group ID is null.</p>",
         "CreateUserHierarchyGroupResponse$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "CreateUserRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>",
@@ -3228,6 +3250,8 @@
         "HierarchyGroupIdList$member": null,
         "HierarchyGroupSummary$Id": "<p>The identifier of the hierarchy group.</p>",
         "HierarchyGroupSummaryReference$Id": "<p>The unique identifier for the hierarchy group.</p>",
+        "SecurityProfile$AllowedAccessControlHierarchyGroupId": "<p>The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.</p>",
+        "UpdateSecurityProfileRequest$AllowedAccessControlHierarchyGroupId": "<p>The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.</p>",
         "UpdateUserHierarchyGroupNameRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "UpdateUserHierarchyRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "User$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>",
@@ -3331,6 +3355,20 @@
       "base": "<p>Information about the levels in the hierarchy group.</p>",
       "refs": {
         "UserData$HierarchyPath": "<p>Contains information about the levels of a hierarchy group assigned to a user.</p>"
+      }
+    },
+    "HierarchyRestrictedResourceList": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$HierarchyRestrictedResources": "<p>The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following are acceptable ResourceNames: <code>User</code>.</p>",
+        "SecurityProfile$HierarchyRestrictedResources": "<p>The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following are acceptable ResourceNames: <code>User</code>.</p>",
+        "UpdateSecurityProfileRequest$HierarchyRestrictedResources": "<p>The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following are acceptable ResourceNames: <code>User</code>.</p>"
+      }
+    },
+    "HierarchyRestrictedResourceName": {
+      "base": null,
+      "refs": {
+        "HierarchyRestrictedResourceList$member": null
       }
     },
     "HierarchyStructure": {
@@ -7200,6 +7238,7 @@
     "TagAndConditionList": {
       "base": null,
       "refs": {
+        "AttributeAndCondition$TagConditions": "<p>A leaf node condition which can be used to specify a tag condition.</p>",
         "ControlPlaneTagFilter$AndConditions": "<p>A list of conditions which would be applied together with an <code>AND</code> condition.</p>",
         "TagOrConditionList$member": null
       }
@@ -7208,6 +7247,7 @@
       "base": "<p>A leaf node condition which can be used to specify a tag condition, for example, <code>HAVE BPO = 123</code>. </p>",
       "refs": {
         "ControlPlaneTagFilter$TagCondition": "<p>A leaf node condition which can be used to specify a tag condition. </p>",
+        "ControlPlaneUserAttributeFilter$TagCondition": null,
         "TagAndConditionList$member": null
       }
     },

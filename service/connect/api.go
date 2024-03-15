@@ -29316,6 +29316,47 @@ func (s *Attribute) SetValue(v string) *Attribute {
 	return s
 }
 
+// A list of conditions which would be applied together with an AND condition.
+type AttributeAndCondition struct {
+	_ struct{} `type:"structure"`
+
+	// A leaf node condition which can be used to specify a hierarchy group condition.
+	HierarchyGroupCondition *HierarchyGroupCondition `type:"structure"`
+
+	// A leaf node condition which can be used to specify a tag condition.
+	TagConditions []*TagCondition `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeAndCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeAndCondition) GoString() string {
+	return s.String()
+}
+
+// SetHierarchyGroupCondition sets the HierarchyGroupCondition field's value.
+func (s *AttributeAndCondition) SetHierarchyGroupCondition(v *HierarchyGroupCondition) *AttributeAndCondition {
+	s.HierarchyGroupCondition = v
+	return s
+}
+
+// SetTagConditions sets the TagConditions field's value.
+func (s *AttributeAndCondition) SetTagConditions(v []*TagCondition) *AttributeAndCondition {
+	s.TagConditions = v
+	return s
+}
+
 // Has audio-specific configurations as the operating parameter for Echo Reduction.
 type AudioFeatures struct {
 	_ struct{} `type:"structure"`
@@ -31764,6 +31805,78 @@ func (s *ControlPlaneTagFilter) SetOrConditions(v [][]*TagCondition) *ControlPla
 
 // SetTagCondition sets the TagCondition field's value.
 func (s *ControlPlaneTagFilter) SetTagCondition(v *TagCondition) *ControlPlaneTagFilter {
+	s.TagCondition = v
+	return s
+}
+
+// An object that can be used to specify Tag conditions or Hierarchy Group conditions
+// inside the SearchFilter.
+//
+// This accepts an OR of AND (List of List) input where:
+//
+//   - The top level list specifies conditions that need to be applied with
+//     OR operator
+//
+//   - The inner list specifies conditions that need to be applied with AND
+//     operator.
+//
+// Only one field can be populated. Maximum number of allowed Tag conditions
+// is 25. Maximum number of allowed Hierarchy Group conditions is 20.
+type ControlPlaneUserAttributeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of conditions which would be applied together with an AND condition.
+	AndCondition *AttributeAndCondition `type:"structure"`
+
+	// A leaf node condition which can be used to specify a hierarchy group condition.
+	HierarchyGroupCondition *HierarchyGroupCondition `type:"structure"`
+
+	// A list of conditions which would be applied together with an OR condition.
+	OrConditions []*AttributeAndCondition `type:"list"`
+
+	// A leaf node condition which can be used to specify a tag condition, for example,
+	// HAVE BPO = 123.
+	TagCondition *TagCondition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneUserAttributeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlPlaneUserAttributeFilter) GoString() string {
+	return s.String()
+}
+
+// SetAndCondition sets the AndCondition field's value.
+func (s *ControlPlaneUserAttributeFilter) SetAndCondition(v *AttributeAndCondition) *ControlPlaneUserAttributeFilter {
+	s.AndCondition = v
+	return s
+}
+
+// SetHierarchyGroupCondition sets the HierarchyGroupCondition field's value.
+func (s *ControlPlaneUserAttributeFilter) SetHierarchyGroupCondition(v *HierarchyGroupCondition) *ControlPlaneUserAttributeFilter {
+	s.HierarchyGroupCondition = v
+	return s
+}
+
+// SetOrConditions sets the OrConditions field's value.
+func (s *ControlPlaneUserAttributeFilter) SetOrConditions(v []*AttributeAndCondition) *ControlPlaneUserAttributeFilter {
+	s.OrConditions = v
+	return s
+}
+
+// SetTagCondition sets the TagCondition field's value.
+func (s *ControlPlaneUserAttributeFilter) SetTagCondition(v *TagCondition) *ControlPlaneUserAttributeFilter {
 	s.TagCondition = v
 	return s
 }
@@ -34342,6 +34455,10 @@ func (s *CreateRuleOutput) SetRuleId(v string) *CreateRuleOutput {
 type CreateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the hierarchy group that a security profile uses to restrict
+	// access to resources in Amazon Connect.
+	AllowedAccessControlHierarchyGroupId *string `type:"string"`
+
 	// The list of tags that a security profile uses to restrict access to resources
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
@@ -34354,6 +34471,10 @@ type CreateSecurityProfileInput struct {
 
 	// The description of the security profile.
 	Description *string `type:"string"`
+
+	// The list of resources that a security profile applies hierarchy restrictions
+	// to in Amazon Connect. Following are acceptable ResourceNames: User.
+	HierarchyRestrictedResources []*string `type:"list"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
@@ -34434,6 +34555,12 @@ func (s *CreateSecurityProfileInput) Validate() error {
 	return nil
 }
 
+// SetAllowedAccessControlHierarchyGroupId sets the AllowedAccessControlHierarchyGroupId field's value.
+func (s *CreateSecurityProfileInput) SetAllowedAccessControlHierarchyGroupId(v string) *CreateSecurityProfileInput {
+	s.AllowedAccessControlHierarchyGroupId = &v
+	return s
+}
+
 // SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
 func (s *CreateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *CreateSecurityProfileInput {
 	s.AllowedAccessControlTags = v
@@ -34449,6 +34576,12 @@ func (s *CreateSecurityProfileInput) SetApplications(v []*Application) *CreateSe
 // SetDescription sets the Description field's value.
 func (s *CreateSecurityProfileInput) SetDescription(v string) *CreateSecurityProfileInput {
 	s.Description = &v
+	return s
+}
+
+// SetHierarchyRestrictedResources sets the HierarchyRestrictedResources field's value.
+func (s *CreateSecurityProfileInput) SetHierarchyRestrictedResources(v []*string) *CreateSecurityProfileInput {
+	s.HierarchyRestrictedResources = v
 	return s
 }
 
@@ -64769,6 +64902,10 @@ func (s *SecurityKey) SetKey(v string) *SecurityKey {
 type SecurityProfile struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the hierarchy group that a security profile uses to restrict
+	// access to resources in Amazon Connect.
+	AllowedAccessControlHierarchyGroupId *string `type:"string"`
+
 	// The list of tags that a security profile uses to restrict access to resources
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
@@ -64778,6 +64915,10 @@ type SecurityProfile struct {
 
 	// The description of the security profile.
 	Description *string `type:"string"`
+
+	// The list of resources that a security profile applies hierarchy restrictions
+	// to in Amazon Connect. Following are acceptable ResourceNames: User.
+	HierarchyRestrictedResources []*string `type:"list"`
 
 	// The identifier for the security profile.
 	Id *string `type:"string"`
@@ -64821,6 +64962,12 @@ func (s SecurityProfile) GoString() string {
 	return s.String()
 }
 
+// SetAllowedAccessControlHierarchyGroupId sets the AllowedAccessControlHierarchyGroupId field's value.
+func (s *SecurityProfile) SetAllowedAccessControlHierarchyGroupId(v string) *SecurityProfile {
+	s.AllowedAccessControlHierarchyGroupId = &v
+	return s
+}
+
 // SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
 func (s *SecurityProfile) SetAllowedAccessControlTags(v map[string]*string) *SecurityProfile {
 	s.AllowedAccessControlTags = v
@@ -64836,6 +64983,12 @@ func (s *SecurityProfile) SetArn(v string) *SecurityProfile {
 // SetDescription sets the Description field's value.
 func (s *SecurityProfile) SetDescription(v string) *SecurityProfile {
 	s.Description = &v
+	return s
+}
+
+// SetHierarchyRestrictedResources sets the HierarchyRestrictedResources field's value.
+func (s *SecurityProfile) SetHierarchyRestrictedResources(v []*string) *SecurityProfile {
+	s.HierarchyRestrictedResources = v
 	return s
 }
 
@@ -73843,6 +73996,10 @@ func (s UpdateRuleOutput) GoString() string {
 type UpdateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the hierarchy group that a security profile uses to restrict
+	// access to resources in Amazon Connect.
+	AllowedAccessControlHierarchyGroupId *string `type:"string"`
+
 	// The list of tags that a security profile uses to restrict access to resources
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
@@ -73854,6 +74011,10 @@ type UpdateSecurityProfileInput struct {
 
 	// The description of the security profile.
 	Description *string `type:"string"`
+
+	// The list of resources that a security profile applies hierarchy restrictions
+	// to in Amazon Connect. Following are acceptable ResourceNames: User.
+	HierarchyRestrictedResources []*string `type:"list"`
 
 	// The identifier of the Amazon Connect instance. You can find the instance
 	// ID (https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html)
@@ -73926,6 +74087,12 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 	return nil
 }
 
+// SetAllowedAccessControlHierarchyGroupId sets the AllowedAccessControlHierarchyGroupId field's value.
+func (s *UpdateSecurityProfileInput) SetAllowedAccessControlHierarchyGroupId(v string) *UpdateSecurityProfileInput {
+	s.AllowedAccessControlHierarchyGroupId = &v
+	return s
+}
+
 // SetAllowedAccessControlTags sets the AllowedAccessControlTags field's value.
 func (s *UpdateSecurityProfileInput) SetAllowedAccessControlTags(v map[string]*string) *UpdateSecurityProfileInput {
 	s.AllowedAccessControlTags = v
@@ -73941,6 +74108,12 @@ func (s *UpdateSecurityProfileInput) SetApplications(v []*Application) *UpdateSe
 // SetDescription sets the Description field's value.
 func (s *UpdateSecurityProfileInput) SetDescription(v string) *UpdateSecurityProfileInput {
 	s.Description = &v
+	return s
+}
+
+// SetHierarchyRestrictedResources sets the HierarchyRestrictedResources field's value.
+func (s *UpdateSecurityProfileInput) SetHierarchyRestrictedResources(v []*string) *UpdateSecurityProfileInput {
+	s.HierarchyRestrictedResources = v
 	return s
 }
 
@@ -76557,6 +76730,23 @@ type UserSearchFilter struct {
 	//
 	//    * Inner list specifies conditions that need to be applied with AND operator.
 	TagFilter *ControlPlaneTagFilter `type:"structure"`
+
+	// An object that can be used to specify Tag conditions or Hierarchy Group conditions
+	// inside the SearchFilter.
+	//
+	// This accepts an OR of AND (List of List) input where:
+	//
+	//    * The top level list specifies conditions that need to be applied with
+	//    OR operator.
+	//
+	//    * The inner list specifies conditions that need to be applied with AND
+	//    operator.
+	//
+	// Only one field can be populated. This object can’t be used along with TagFilter.
+	// Request can either contain TagFilter or UserAttributeFilter if SearchFilter
+	// is specified, combination of both is not supported and such request will
+	// throw AccessDeniedException.
+	UserAttributeFilter *ControlPlaneUserAttributeFilter `type:"structure"`
 }
 
 // String returns the string representation.
@@ -76580,6 +76770,12 @@ func (s UserSearchFilter) GoString() string {
 // SetTagFilter sets the TagFilter field's value.
 func (s *UserSearchFilter) SetTagFilter(v *ControlPlaneTagFilter) *UserSearchFilter {
 	s.TagFilter = v
+	return s
+}
+
+// SetUserAttributeFilter sets the UserAttributeFilter field's value.
+func (s *UserSearchFilter) SetUserAttributeFilter(v *ControlPlaneUserAttributeFilter) *UserSearchFilter {
+	s.UserAttributeFilter = v
 	return s
 }
 

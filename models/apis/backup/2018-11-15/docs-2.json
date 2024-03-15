@@ -82,7 +82,7 @@
     "StartCopyJob": "<p>Starts a job to create a one-time copy of the specified resource.</p> <p>Does not support continuous backups.</p>",
     "StartReportJob": "<p>Starts an on-demand report job for the specified report plan.</p>",
     "StartRestoreJob": "<p>Recovers the saved resource identified by an Amazon Resource Name (ARN).</p>",
-    "StopBackupJob": "<p>Attempts to cancel a job to create a one-time backup of a resource.</p> <p>This action is not supported for the following services: Amazon FSx for Windows File Server, Amazon FSx for Lustre, FSx for ONTAP , Amazon FSx for OpenZFS, Amazon DocumentDB (with MongoDB compatibility), Amazon RDS, Amazon Aurora, and Amazon Neptune.</p>",
+    "StopBackupJob": "<p>Attempts to cancel a job to create a one-time backup of a resource.</p> <p>This action is not supported for the following services: Amazon FSx for Windows File Server, Amazon FSx for Lustre, Amazon FSx for NetApp ONTAP , Amazon FSx for OpenZFS, Amazon DocumentDB (with MongoDB compatibility), Amazon RDS, Amazon Aurora, and Amazon Neptune.</p>",
     "TagResource": "<p>Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN).</p>",
     "UntagResource": "<p>Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)</p>",
     "UpdateBackupPlan": "<p>Updates an existing backup plan identified by its <code>backupPlanId</code> with the input document in JSON format. The new version is uniquely identified by a <code>VersionId</code>.</p>",
@@ -267,14 +267,14 @@
         "BackupJob$State": "<p>The current state of a backup job.</p>",
         "BackupJobChildJobsInState$key": null,
         "DescribeBackupJobOutput$State": "<p>The current state of a backup job.</p>",
-        "ListBackupJobsInput$ByState": "<p>Returns only backup jobs that are in the specified state.</p>"
+        "ListBackupJobsInput$ByState": "<p>Returns only backup jobs that are in the specified state.</p> <p> <code>Completed with issues</code> is a status found only in the Backup console. For API, this status refers to jobs with a state of <code>COMPLETED</code> and a <code>MessageCategory</code> with a value other than <code>SUCCESS</code>; that is, the status is completed but comes with a status message.</p> <p>To obtain the job count for <code>Completed with issues</code>, run two GET requests, and subtract the second, smaller number:</p> <p>GET /backup-jobs/?state=COMPLETED</p> <p>GET /backup-jobs/?messageCategory=SUCCESS&amp;state=COMPLETED</p>"
       }
     },
     "BackupJobStatus": {
       "base": null,
       "refs": {
         "BackupJobSummary$State": "<p>This value is job count for jobs with the specified state.</p>",
-        "ListBackupJobSummariesInput$State": "<p>This parameter returns the job count for jobs with the specified state.</p> <p>The the value ANY returns count of all states.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all states and returns the sum.</p>"
+        "ListBackupJobSummariesInput$State": "<p>This parameter returns the job count for jobs with the specified state.</p> <p>The the value ANY returns count of all states.</p> <p> <code>AGGREGATE_ALL</code> aggregates job counts for all states and returns the sum.</p> <p> <code>Completed with issues</code> is a status found only in the Backup console. For API, this status refers to jobs with a state of <code>COMPLETED</code> and a <code>MessageCategory</code> with a value other than <code>SUCCESS</code>; that is, the status is completed but comes with a status message. To obtain the job count for <code>Completed with issues</code>, run two GET requests, and subtract the second, smaller number:</p> <p>GET /audit/backup-job-summaries?AggregationPeriod=FOURTEEN_DAYS&amp;State=COMPLETED</p> <p>GET /audit/backup-job-summaries?AggregationPeriod=FOURTEEN_DAYS&amp;MessageCategory=SUCCESS&amp;State=COMPLETED</p>"
       }
     },
     "BackupJobSummary": {
@@ -599,7 +599,7 @@
     "ControlScope": {
       "base": "<p>A framework consists of one or more controls. Each control has its own control scope. The control scope can include one or more resource types, a combination of a tag key and value, or a combination of one resource type and one resource ID. If no scope is specified, evaluations for the rule are triggered when any resource in your recording group changes in configuration.</p> <note> <p>To set a control scope that includes all of a particular resource, leave the <code>ControlScope</code> empty or do not pass it when calling <code>CreateFramework</code>.</p> </note>",
       "refs": {
-        "FrameworkControl$ControlScope": "<p>The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans.</p>"
+        "FrameworkControl$ControlScope": "<p>The scope of a control. The control scope defines what the control will evaluate. Three examples of control scopes are: a specific backup plan, all backup plans with a specific tag, or all backup plans.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ControlScope.html\"> <code>ControlScope</code>.</a> </p>"
       }
     },
     "CopyAction": {
@@ -2335,7 +2335,8 @@
         "DescribeBackupVaultOutput$VaultType": "<p>This is the type of vault described.</p>",
         "DescribeRecoveryPointOutput$VaultType": "<p>This is the type of vault in which the described recovery point is stored.</p>",
         "ListBackupVaultsInput$ByVaultType": "<p>This parameter will sort the list of vaults by vault type.</p>",
-        "RecoveryPointByBackupVault$VaultType": "<p>This is the type of vault in which the described recovery point is stored.</p>"
+        "RecoveryPointByBackupVault$VaultType": "<p>This is the type of vault in which the described recovery point is stored.</p>",
+        "RecoveryPointByResource$VaultType": "<p>This is the type of vault in which the described recovery point is stored.</p>"
       }
     },
     "WindowMinutes": {
@@ -2358,6 +2359,7 @@
         "DescribeRecoveryPointOutput$IsEncrypted": "<p>A Boolean value that is returned as <code>TRUE</code> if the specified recovery point is encrypted, or <code>FALSE</code> if the recovery point is not encrypted.</p>",
         "DescribeRecoveryPointOutput$IsParent": "<p>This returns the boolean value that a recovery point is a parent (composite) job.</p>",
         "ListBackupVaultsInput$ByShared": "<p>This parameter will sort the list of vaults by shared vaults.</p>",
+        "ListRecoveryPointsByResourceInput$ManagedByAWSBackupOnly": "<p>This attribute filters recovery points based on ownership.</p> <p>If this is set to <code>TRUE</code>, the response will contain recovery points associated with the selected resources that are managed by Backup.</p> <p>If this is set to <code>FALSE</code>, the response will contain all recovery points associated with the selected resource.</p> <p>Type: Boolean</p>",
         "RecoveryPointByBackupVault$IsEncrypted": "<p>A Boolean value that is returned as <code>TRUE</code> if the specified recovery point is encrypted, or <code>FALSE</code> if the recovery point is not encrypted.</p>",
         "RecoveryPointByBackupVault$IsParent": "<p>This is a boolean value indicating this is a parent (composite) recovery point.</p>",
         "RecoveryPointByResource$IsParent": "<p>This is a boolean value indicating this is a parent (composite) recovery point.</p>",
