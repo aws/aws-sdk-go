@@ -7404,6 +7404,15 @@ type CreateFleetInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"2" type:"string" required:"true"`
 
+	// The compute fleet overflow behavior.
+	//
+	//    * For overflow behavior QUEUE, your overflow builds need to wait on the
+	//    existing fleet instance to become available.
+	//
+	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
+	//    on-demand.
+	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
+
 	// The scaling configuration of the compute fleet.
 	ScalingConfiguration *ScalingConfigurationInput_ `locationName:"scalingConfiguration" type:"structure"`
 
@@ -7496,6 +7505,12 @@ func (s *CreateFleetInput) SetEnvironmentType(v string) *CreateFleetInput {
 // SetName sets the Name field's value.
 func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
 	s.Name = &v
+	return s
+}
+
+// SetOverflowBehavior sets the OverflowBehavior field's value.
+func (s *CreateFleetInput) SetOverflowBehavior(v string) *CreateFleetInput {
+	s.OverflowBehavior = &v
 	return s
 }
 
@@ -9543,6 +9558,15 @@ type Fleet struct {
 	// The name of the compute fleet.
 	Name *string `locationName:"name" min:"2" type:"string"`
 
+	// The compute fleet overflow behavior.
+	//
+	//    * For overflow behavior QUEUE, your overflow builds need to wait on the
+	//    existing fleet instance to become available.
+	//
+	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
+	//    on-demand.
+	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
+
 	// The scaling configuration of the compute fleet.
 	ScalingConfiguration *ScalingConfigurationOutput_ `locationName:"scalingConfiguration" type:"structure"`
 
@@ -9619,6 +9643,12 @@ func (s *Fleet) SetLastModified(v time.Time) *Fleet {
 // SetName sets the Name field's value.
 func (s *Fleet) SetName(v string) *Fleet {
 	s.Name = &v
+	return s
+}
+
+// SetOverflowBehavior sets the OverflowBehavior field's value.
+func (s *Fleet) SetOverflowBehavior(v string) *Fleet {
+	s.OverflowBehavior = &v
 	return s
 }
 
@@ -16761,6 +16791,15 @@ type UpdateFleetInput struct {
 	// in the CodeBuild user guide.
 	EnvironmentType *string `locationName:"environmentType" type:"string" enum:"EnvironmentType"`
 
+	// The compute fleet overflow behavior.
+	//
+	//    * For overflow behavior QUEUE, your overflow builds need to wait on the
+	//    existing fleet instance to become available.
+	//
+	//    * For overflow behavior ON_DEMAND, your overflow builds run on CodeBuild
+	//    on-demand.
+	OverflowBehavior *string `locationName:"overflowBehavior" type:"string" enum:"FleetOverflowBehavior"`
+
 	// The scaling configuration of the compute fleet.
 	ScalingConfiguration *ScalingConfigurationInput_ `locationName:"scalingConfiguration" type:"structure"`
 
@@ -16844,6 +16883,12 @@ func (s *UpdateFleetInput) SetComputeType(v string) *UpdateFleetInput {
 // SetEnvironmentType sets the EnvironmentType field's value.
 func (s *UpdateFleetInput) SetEnvironmentType(v string) *UpdateFleetInput {
 	s.EnvironmentType = &v
+	return s
+}
+
+// SetOverflowBehavior sets the OverflowBehavior field's value.
+func (s *UpdateFleetInput) SetOverflowBehavior(v string) *UpdateFleetInput {
+	s.OverflowBehavior = &v
 	return s
 }
 
@@ -18349,6 +18394,22 @@ func FleetContextCode_Values() []string {
 	return []string{
 		FleetContextCodeCreateFailed,
 		FleetContextCodeUpdateFailed,
+	}
+}
+
+const (
+	// FleetOverflowBehaviorQueue is a FleetOverflowBehavior enum value
+	FleetOverflowBehaviorQueue = "QUEUE"
+
+	// FleetOverflowBehaviorOnDemand is a FleetOverflowBehavior enum value
+	FleetOverflowBehaviorOnDemand = "ON_DEMAND"
+)
+
+// FleetOverflowBehavior_Values returns all elements of the FleetOverflowBehavior enum
+func FleetOverflowBehavior_Values() []string {
+	return []string{
+		FleetOverflowBehaviorQueue,
+		FleetOverflowBehaviorOnDemand,
 	}
 }
 

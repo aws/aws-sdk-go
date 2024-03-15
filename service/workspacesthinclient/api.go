@@ -4615,10 +4615,6 @@ type UpdateDeviceInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Key Management Service key to use for
-	// the update.
-	KmsKeyArn *string `locationName:"kmsKeyArn" min:"20" type:"string"`
-
 	// The name of the device to update.
 	//
 	// Name is a sensitive parameter and its value will be
@@ -4658,9 +4654,6 @@ func (s *UpdateDeviceInput) Validate() error {
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
-	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 20))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4677,12 +4670,6 @@ func (s *UpdateDeviceInput) SetDesiredSoftwareSetId(v string) *UpdateDeviceInput
 // SetId sets the Id field's value.
 func (s *UpdateDeviceInput) SetId(v string) *UpdateDeviceInput {
 	s.Id = &v
-	return s
-}
-
-// SetKmsKeyArn sets the KmsKeyArn field's value.
-func (s *UpdateDeviceInput) SetKmsKeyArn(v string) *UpdateDeviceInput {
-	s.KmsKeyArn = &v
 	return s
 }
 

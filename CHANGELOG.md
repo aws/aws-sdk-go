@@ -1,3 +1,20 @@
+Release v1.51.1 (2024-03-15)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports overflow behavior on Reserved Capacity.
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Add media accelerator and neuron device information on the describe instance types API.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3.
+* `service/sagemaker`: Updates service API and documentation
+  * Adds m6i, m6id, m7i, c6i, c6id, c7i, r6i r6id, r7i, p5 instance type support to Sagemaker Notebook Instances and miscellaneous wording fixes for previous Sagemaker documentation.
+* `service/workspaces-thin-client`: Updates service API and documentation
+
 Release v1.51.0 (2024-03-14)
 ===
 

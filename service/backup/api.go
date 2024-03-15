@@ -8737,9 +8737,9 @@ func (c *Backup) StopBackupJobRequest(input *StopBackupJobInput) (req *request.R
 // Attempts to cancel a job to create a one-time backup of a resource.
 //
 // This action is not supported for the following services: Amazon FSx for Windows
-// File Server, Amazon FSx for Lustre, FSx for ONTAP , Amazon FSx for OpenZFS,
-// Amazon DocumentDB (with MongoDB compatibility), Amazon RDS, Amazon Aurora,
-// and Amazon Neptune.
+// File Server, Amazon FSx for Lustre, Amazon FSx for NetApp ONTAP , Amazon
+// FSx for OpenZFS, Amazon DocumentDB (with MongoDB compatibility), Amazon RDS,
+// Amazon Aurora, and Amazon Neptune.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15755,6 +15755,8 @@ type FrameworkControl struct {
 	// The scope of a control. The control scope defines what the control will evaluate.
 	// Three examples of control scopes are: a specific backup plan, all backup
 	// plans with a specific tag, or all backup plans.
+	//
+	// For more information, see ControlScope. (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ControlScope.html)
 	ControlScope *ControlScope `type:"structure"`
 }
 
@@ -18147,6 +18149,16 @@ type ListBackupJobSummariesInput struct {
 	// The the value ANY returns count of all states.
 	//
 	// AGGREGATE_ALL aggregates job counts for all states and returns the sum.
+	//
+	// Completed with issues is a status found only in the Backup console. For API,
+	// this status refers to jobs with a state of COMPLETED and a MessageCategory
+	// with a value other than SUCCESS; that is, the status is completed but comes
+	// with a status message. To obtain the job count for Completed with issues,
+	// run two GET requests, and subtract the second, smaller number:
+	//
+	// GET /audit/backup-job-summaries?AggregationPeriod=FOURTEEN_DAYS&State=COMPLETED
+	//
+	// GET /audit/backup-job-summaries?AggregationPeriod=FOURTEEN_DAYS&MessageCategory=SUCCESS&State=COMPLETED
 	State *string `location:"querystring" locationName:"State" type:"string" enum:"BackupJobStatus"`
 }
 
@@ -18368,6 +18380,18 @@ type ListBackupJobsInput struct {
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// Returns only backup jobs that are in the specified state.
+	//
+	// Completed with issues is a status found only in the Backup console. For API,
+	// this status refers to jobs with a state of COMPLETED and a MessageCategory
+	// with a value other than SUCCESS; that is, the status is completed but comes
+	// with a status message.
+	//
+	// To obtain the job count for Completed with issues, run two GET requests,
+	// and subtract the second, smaller number:
+	//
+	// GET /backup-jobs/?state=COMPLETED
+	//
+	// GET /backup-jobs/?messageCategory=SUCCESS&state=COMPLETED
 	ByState *string `location:"querystring" locationName:"state" type:"string" enum:"JobState"`
 
 	// The maximum number of items to be returned.
@@ -20303,6 +20327,17 @@ func (s *ListRecoveryPointsByLegalHoldOutput) SetRecoveryPoints(v []*RecoveryPoi
 type ListRecoveryPointsByResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// This attribute filters recovery points based on ownership.
+	//
+	// If this is set to TRUE, the response will contain recovery points associated
+	// with the selected resources that are managed by Backup.
+	//
+	// If this is set to FALSE, the response will contain all recovery points associated
+	// with the selected resource.
+	//
+	// Type: Boolean
+	ManagedByAWSBackupOnly *bool `location:"querystring" locationName:"managedByAWSBackupOnly" type:"boolean"`
+
 	// The maximum number of items to be returned.
 	//
 	// Amazon RDS requires a value of at least 20.
@@ -20356,6 +20391,12 @@ func (s *ListRecoveryPointsByResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetManagedByAWSBackupOnly sets the ManagedByAWSBackupOnly field's value.
+func (s *ListRecoveryPointsByResourceInput) SetManagedByAWSBackupOnly(v bool) *ListRecoveryPointsByResourceInput {
+	s.ManagedByAWSBackupOnly = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -22844,6 +22885,9 @@ type RecoveryPointByResource struct {
 
 	// A message explaining the reason of the recovery point deletion failure.
 	StatusMessage *string `type:"string"`
+
+	// This is the type of vault in which the described recovery point is stored.
+	VaultType *string `type:"string" enum:"VaultType"`
 }
 
 // String returns the string representation.
@@ -22921,6 +22965,12 @@ func (s *RecoveryPointByResource) SetStatus(v string) *RecoveryPointByResource {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *RecoveryPointByResource) SetStatusMessage(v string) *RecoveryPointByResource {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetVaultType sets the VaultType field's value.
+func (s *RecoveryPointByResource) SetVaultType(v string) *RecoveryPointByResource {
+	s.VaultType = &v
 	return s
 }
 

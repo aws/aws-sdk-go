@@ -696,6 +696,14 @@
         "BatchGetFleetsOutput$fleetsNotFound": "<p>The names of compute fleets for which information could not be found.</p>"
       }
     },
+    "FleetOverflowBehavior": {
+      "base": null,
+      "refs": {
+        "CreateFleetInput$overflowBehavior": "<p>The compute fleet overflow behavior.</p> <ul> <li> <p>For overflow behavior <code>QUEUE</code>, your overflow builds need to wait on the existing fleet instance to become available.</p> </li> <li> <p>For overflow behavior <code>ON_DEMAND</code>, your overflow builds run on CodeBuild on-demand.</p> </li> </ul>",
+        "Fleet$overflowBehavior": "<p>The compute fleet overflow behavior.</p> <ul> <li> <p>For overflow behavior <code>QUEUE</code>, your overflow builds need to wait on the existing fleet instance to become available.</p> </li> <li> <p>For overflow behavior <code>ON_DEMAND</code>, your overflow builds run on CodeBuild on-demand.</p> </li> </ul>",
+        "UpdateFleetInput$overflowBehavior": "<p>The compute fleet overflow behavior.</p> <ul> <li> <p>For overflow behavior <code>QUEUE</code>, your overflow builds need to wait on the existing fleet instance to become available.</p> </li> <li> <p>For overflow behavior <code>ON_DEMAND</code>, your overflow builds run on CodeBuild on-demand.</p> </li> </ul>"
+      }
+    },
     "FleetScalingMetricType": {
       "base": null,
       "refs": {

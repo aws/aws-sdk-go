@@ -28563,6 +28563,14 @@
         "NitroTpmInfo":{
           "shape":"NitroTpmInfo",
           "locationName":"nitroTpmInfo"
+        },
+        "MediaAcceleratorInfo":{
+          "shape":"MediaAcceleratorInfo",
+          "locationName":"mediaAcceleratorInfo"
+        },
+        "NeuronInfo":{
+          "shape":"NeuronInfo",
+          "locationName":"neuronInfo"
         }
       }
     },
@@ -32084,6 +32092,60 @@
     "MaximumIops":{"type":"integer"},
     "MaximumNetworkCards":{"type":"integer"},
     "MaximumThroughputInMBps":{"type":"double"},
+    "MediaAcceleratorInfo":{
+      "type":"structure",
+      "members":{
+        "Accelerators":{
+          "shape":"MediaDeviceInfoList",
+          "locationName":"accelerators"
+        },
+        "TotalMediaMemoryInMiB":{
+          "shape":"TotalMediaMemory",
+          "locationName":"totalMediaMemoryInMiB"
+        }
+      }
+    },
+    "MediaDeviceCount":{"type":"integer"},
+    "MediaDeviceInfo":{
+      "type":"structure",
+      "members":{
+        "Count":{
+          "shape":"MediaDeviceCount",
+          "locationName":"count"
+        },
+        "Name":{
+          "shape":"MediaDeviceName",
+          "locationName":"name"
+        },
+        "Manufacturer":{
+          "shape":"MediaDeviceManufacturerName",
+          "locationName":"manufacturer"
+        },
+        "MemoryInfo":{
+          "shape":"MediaDeviceMemoryInfo",
+          "locationName":"memoryInfo"
+        }
+      }
+    },
+    "MediaDeviceInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"MediaDeviceInfo",
+        "locationName":"item"
+      }
+    },
+    "MediaDeviceManufacturerName":{"type":"string"},
+    "MediaDeviceMemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"MediaDeviceMemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "MediaDeviceMemorySize":{"type":"integer"},
+    "MediaDeviceName":{"type":"string"},
     "MembershipType":{
       "type":"string",
       "enum":[
@@ -35101,6 +35163,74 @@
       }
     },
     "NetworkPerformance":{"type":"string"},
+    "NeuronDeviceCoreCount":{"type":"integer"},
+    "NeuronDeviceCoreInfo":{
+      "type":"structure",
+      "members":{
+        "Count":{
+          "shape":"NeuronDeviceCoreCount",
+          "locationName":"count"
+        },
+        "Version":{
+          "shape":"NeuronDeviceCoreVersion",
+          "locationName":"version"
+        }
+      }
+    },
+    "NeuronDeviceCoreVersion":{"type":"integer"},
+    "NeuronDeviceCount":{"type":"integer"},
+    "NeuronDeviceInfo":{
+      "type":"structure",
+      "members":{
+        "Count":{
+          "shape":"NeuronDeviceCount",
+          "locationName":"count"
+        },
+        "Name":{
+          "shape":"NeuronDeviceName",
+          "locationName":"name"
+        },
+        "CoreInfo":{
+          "shape":"NeuronDeviceCoreInfo",
+          "locationName":"coreInfo"
+        },
+        "MemoryInfo":{
+          "shape":"NeuronDeviceMemoryInfo",
+          "locationName":"memoryInfo"
+        }
+      }
+    },
+    "NeuronDeviceInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"NeuronDeviceInfo",
+        "locationName":"item"
+      }
+    },
+    "NeuronDeviceMemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"NeuronDeviceMemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "NeuronDeviceMemorySize":{"type":"integer"},
+    "NeuronDeviceName":{"type":"string"},
+    "NeuronInfo":{
+      "type":"structure",
+      "members":{
+        "NeuronDevices":{
+          "shape":"NeuronDeviceInfoList",
+          "locationName":"neuronDevices"
+        },
+        "TotalNeuronDeviceMemoryInMiB":{
+          "shape":"TotalNeuronMemory",
+          "locationName":"totalNeuronDeviceMemoryInMiB"
+        }
+      }
+    },
     "NewDhcpConfiguration":{
       "type":"structure",
       "members":{
@@ -42568,6 +42698,8 @@
         "Max":{"shape":"Double"}
       }
     },
+    "TotalMediaMemory":{"type":"integer"},
+    "TotalNeuronMemory":{"type":"integer"},
     "TpmSupportValues":{
       "type":"string",
       "enum":["v2.0"]

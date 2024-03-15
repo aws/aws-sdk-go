@@ -3725,6 +3725,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "ManagedByAWSBackupOnly":{
+          "shape":"boolean",
+          "location":"querystring",
+          "locationName":"managedByAWSBackupOnly"
         }
       }
     },
@@ -4196,7 +4201,8 @@
         "BackupVaultName":{"shape":"BackupVaultName"},
         "IsParent":{"shape":"boolean"},
         "ParentRecoveryPointArn":{"shape":"ARN"},
-        "ResourceName":{"shape":"string"}
+        "ResourceName":{"shape":"string"},
+        "VaultType":{"shape":"VaultType"}
       }
     },
     "RecoveryPointByResourceList":{

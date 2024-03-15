@@ -3,14 +3,14 @@
 // Package workspacesthinclient provides the client and types for making API
 // requests to Amazon WorkSpaces Thin Client.
 //
-// Amazon WorkSpaces Thin Client is a affordable device built to work with Amazon
-// Web Services End User Computing (EUC) virtual desktops to provide users with
-// a complete cloud desktop solution. WorkSpaces Thin Client is a compact device
-// designed to connect up to two monitors and USB devices like a keyboard, mouse,
-// headset, and webcam. To maximize endpoint security, WorkSpaces Thin Client
-// devices do not allow local data storage or installation of unapproved applications.
-// The WorkSpaces Thin Client device ships preloaded with device management
-// software.
+// Amazon WorkSpaces Thin Client is an affordable device built to work with
+// Amazon Web Services End User Computing (EUC) virtual desktops to provide
+// users with a complete cloud desktop solution. WorkSpaces Thin Client is a
+// compact device designed to connect up to two monitors and USB devices like
+// a keyboard, mouse, headset, and webcam. To maximize endpoint security, WorkSpaces
+// Thin Client devices do not allow local data storage or installation of unapproved
+// applications. The WorkSpaces Thin Client device ships preloaded with device
+// management software.
 //
 // You can use these APIs to complete WorkSpaces Thin Client tasks, such as
 // creating environments or viewing devices. For more information about WorkSpaces
