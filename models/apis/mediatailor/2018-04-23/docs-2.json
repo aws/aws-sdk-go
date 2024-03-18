@@ -113,6 +113,30 @@
         "Alert$Category": "<p>The category that MediaTailor assigns to the alert.</p>"
       }
     },
+    "AlternateMedia": {
+      "base": "<p>A playlist of media (VOD and/or live) to be played instead of the default media on a particular program.</p>",
+      "refs": {
+        "__listOfAlternateMedia$member": null
+      }
+    },
+    "AudienceMedia": {
+      "base": "<p>An AudienceMedia object contains an Audience and a list of AlternateMedia.</p>",
+      "refs": {
+        "__listOfAudienceMedia$member": null
+      }
+    },
+    "Audiences": {
+      "base": null,
+      "refs": {
+        "Channel$Audiences": "<p>The list of audiences defined in channel.</p>",
+        "CreateChannelRequest$Audiences": "<p>The list of audiences defined in channel.</p>",
+        "CreateChannelResponse$Audiences": "<p>The list of audiences defined in channel.</p>",
+        "DescribeChannelResponse$Audiences": "<p>The list of audiences defined in channel.</p>",
+        "ScheduleEntry$Audiences": "<p>The list of audiences defined in ScheduleEntry.</p>",
+        "UpdateChannelRequest$Audiences": "<p>The list of audiences defined in channel.</p>",
+        "UpdateChannelResponse$Audiences": "<p>The list of audiences defined in channel.</p>"
+      }
+    },
     "AvailMatchingCriteria": {
       "base": "<p>MediaTailor only places (consumes) prefetched ads if the ad break meets the criteria defined by the dynamic variables. This gives you granular control over which ad break to place the prefetched ads into.</p> <p>As an example, let's say that you set <code>DynamicVariable</code> to <code>scte.event_id</code> and <code>Operator</code> to <code>EQUALS</code>, and your playback configuration has an ADS URL of <code>https://my.ads.server.com/path?&amp;podId=[scte.avail_num]&amp;event=[scte.event_id]&amp;duration=[session.avail_duration_secs]</code>. And the prefetch request to the ADS contains these values <code>https://my.ads.server.com/path?&amp;podId=3&amp;event=my-awesome-event&amp;duration=30</code>. MediaTailor will only insert the prefetched ads into the ad break if has a SCTE marker with an event id of <code>my-awesome-event</code>, since it must match the event id that MediaTailor uses to query the ADS.</p> <p>You can specify up to five <code>AvailMatchingCriteria</code>. If you specify multiple <code>AvailMatchingCriteria</code>, MediaTailor combines them to match using a logical <code>AND</code>. You can model logical <code>OR</code> combinations by creating multiple prefetch schedules.</p>",
       "refs": {
@@ -168,6 +192,7 @@
     "ClipRange": {
       "base": "<p>Clip range configuration for the VOD source associated with the program.</p>",
       "refs": {
+        "AlternateMedia$ClipRange": null,
         "CreateProgramResponse$ClipRange": "<p>The clip range configuration settings.</p>",
         "DescribeProgramResponse$ClipRange": "<p>The clip range configuration settings.</p>",
         "ScheduleConfiguration$ClipRange": "<p>Program clip range configuration.</p>",
@@ -905,6 +930,7 @@
     "String": {
       "base": null,
       "refs": {
+        "Audiences$member": null,
         "KeyValuePair$Key": "<p>For <code>SCTE35_ENHANCED</code> output, defines a key. MediaTailor takes this key, and its associated value, and generates the key/value pair within the <code>EXT-X-ASSET</code>tag. If you specify a key, you must also specify a corresponding value.</p>",
         "KeyValuePair$Value": "<p>For <code>SCTE35_ENHANCED</code> output, defines a value. MediaTailor; takes this value, and its associated key, and generates the key/value pair within the <code>EXT-X-ASSET</code>tag. If you specify a value, you must also specify a corresponding key.</p>",
         "SegmentationDescriptor$SegmentationUpid": "<p>The Upid to assign to the <code>segmentation_descriptor.segmentation_upid</code> message, as defined in section 10.3.3.1 of the 2022 SCTE-35 specification. The value must be a hexadecimal string containing only the characters 0 though 9 and A through F. The default value is \"\" (an empty string).</p>"
@@ -1065,6 +1091,7 @@
     "__listOfAdBreak": {
       "base": null,
       "refs": {
+        "AlternateMedia$AdBreaks": "<p>Ad break configuration parameters defined in AlternateMedia.</p>",
         "CreateProgramRequest$AdBreaks": "<p>The ad break configuration settings.</p>",
         "CreateProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>",
         "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>",
@@ -1076,6 +1103,22 @@
       "base": null,
       "refs": {
         "ListAlertsResponse$Items": "<p>A list of alerts that are associated with this resource.</p>"
+      }
+    },
+    "__listOfAlternateMedia": {
+      "base": null,
+      "refs": {
+        "AudienceMedia$AlternateMedia": "<p>The list of AlternateMedia defined in AudienceMedia.</p>"
+      }
+    },
+    "__listOfAudienceMedia": {
+      "base": null,
+      "refs": {
+        "CreateProgramRequest$AudienceMedia": "<p>The list of AudienceMedia defined in program.</p>",
+        "CreateProgramResponse$AudienceMedia": "<p>The list of AudienceMedia defined in program.</p>",
+        "DescribeProgramResponse$AudienceMedia": "<p>The list of AudienceMedia defined in program.</p>",
+        "UpdateProgramRequest$AudienceMedia": "<p>The list of AudienceMedia defined in program.</p>",
+        "UpdateProgramResponse$AudienceMedia": "<p>The list of AudienceMedia defined in program.</p>"
       }
     },
     "__listOfAvailMatchingCriteria": {
@@ -1155,7 +1198,10 @@
       "refs": {
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
         "AdBreakOpportunity$OffsetMillis": "<p>The offset in milliseconds from the start of the VOD source at which an ad marker was detected.</p>",
+        "AlternateMedia$DurationMillis": "<p>The duration of the alternateMedia in milliseconds.</p>",
+        "AlternateMedia$ScheduledStartTimeMillis": "<p>The date and time that the alternateMedia is scheduled to start, in epoch milliseconds.</p>",
         "ClipRange$EndOffsetMillis": "<p>The end offset of the clip range, in milliseconds, starting from the beginning of the VOD source associated with the program.</p>",
+        "ClipRange$StartOffsetMillis": "<p>The start offset of the clip range, in milliseconds. This offset truncates the start at the number of milliseconds into the duration of the VOD source.</p>",
         "CreateProgramResponse$DurationMillis": "<p>The duration of the live program in milliseconds.</p>",
         "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",
         "ScheduleEntry$ApproximateDurationSeconds": "<p>The approximate duration of this program, in seconds.</p>",
@@ -1206,6 +1252,10 @@
         "Alert$AlertCode": "<p>The code for the alert. For example, <code>NOT_PROCESSED</code>.</p>",
         "Alert$AlertMessage": "<p>If an alert is generated for a resource, an explanation of the reason for the alert.</p>",
         "Alert$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "AlternateMedia$LiveSourceName": "<p>The name of the live source for alternateMedia.</p>",
+        "AlternateMedia$SourceLocationName": "<p>The name of the source location for alternateMedia.</p>",
+        "AlternateMedia$VodSourceName": "<p>The name of the VOD source for alternateMedia.</p>",
+        "AudienceMedia$Audience": "<p>The Audience defined in AudienceMedia.</p>",
         "AvailMatchingCriteria$DynamicVariable": "<p>The dynamic variable(s) that MediaTailor should use as avail matching criteria. MediaTailor only places the prefetched ads into the avail if the avail matches the criteria defined by the dynamic variable. For information about dynamic variables, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html\">Using dynamic ad variables</a> in the <i>MediaTailor User Guide</i>.</p> <p>You can include up to 100 dynamic variables.</p>",
         "AvailSuppression$Value": "<p>A live edge offset time in HH:MM:SS. MediaTailor won't fill ad breaks on or behind this time in the manifest lookback window. If Value is set to 00:00:00, it is in sync with the live edge, and MediaTailor won't fill any ad breaks on or behind the live edge. If you set a Value time, MediaTailor won't fill any ad breaks on or behind this time in the manifest lookback window. For example, if you set 00:45:00, then MediaTailor will fill ad breaks that occur within 45 minutes behind the live edge, but won't fill ad breaks on or behind 45 minutes behind the live edge.</p>",
         "BadRequestException$Message": null,
@@ -1304,6 +1354,7 @@
         "DescribeVodSourceResponse$VodSourceName": "<p>The name of the VOD source.</p>",
         "GetChannelPolicyRequest$ChannelName": "<p>The name of the channel associated with this Channel Policy.</p>",
         "GetChannelPolicyResponse$Policy": "<p>The IAM policy for the channel. IAM policies are used to control access to your channel.</p>",
+        "GetChannelScheduleRequest$Audience": "<p>The single audience for GetChannelScheduleRequest.</p>",
         "GetChannelScheduleRequest$ChannelName": "<p>The name of the channel associated with this Channel Schedule.</p>",
         "GetChannelScheduleRequest$DurationMinutes": "<p>The duration in minutes of the channel schedule.</p>",
         "GetChannelScheduleRequest$NextToken": "<p>(Optional) If the playback configuration has more than <code>MaxResults</code> channel schedules, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>GetChannelScheduleRequest</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p> <p>If the previous response didn't include a <code>NextToken</code> element, there are no more channel schedules to get.</p>",

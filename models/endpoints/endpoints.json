@@ -2099,6 +2099,12 @@
               "tags" : [ "dualstack" ]
             } ]
           },
+          "ca-west-1" : {
+            "variants" : [ {
+              "hostname" : "athena.ca-west-1.api.aws",
+              "tags" : [ "dualstack" ]
+            } ]
+          },
           "eu-central-1" : {
             "variants" : [ {
               "hostname" : "athena.eu-central-1.api.aws",
@@ -12802,6 +12808,12 @@
             },
             "hostname" : "oidc.ap-southeast-3.amazonaws.com"
           },
+          "ap-southeast-4" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-4"
+            },
+            "hostname" : "oidc.ap-southeast-4.amazonaws.com"
+          },
           "ca-central-1" : {
             "credentialScope" : {
               "region" : "ca-central-1"
@@ -13458,6 +13470,12 @@
               "region" : "ap-southeast-3"
             },
             "hostname" : "portal.sso.ap-southeast-3.amazonaws.com"
+          },
+          "ap-southeast-4" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-4"
+            },
+            "hostname" : "portal.sso.ap-southeast-4.amazonaws.com"
           },
           "ca-central-1" : {
             "credentialScope" : {
@@ -17943,6 +17961,7 @@
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ap-southeast-3" : { },
+          "ap-southeast-4" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
           "eu-central-2" : { },
@@ -27894,6 +27913,30 @@
       "states" : {
         "endpoints" : {
           "us-isob-east-1" : { }
+        }
+      },
+      "storagegateway" : {
+        "endpoints" : {
+          "fips" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "storagegateway-fips.us-isob-east-1.sc2s.sgov.gov"
+          },
+          "us-isob-east-1" : {
+            "variants" : [ {
+              "hostname" : "storagegateway-fips.us-isob-east-1.sc2s.sgov.gov",
+              "tags" : [ "fips" ]
+            } ]
+          },
+          "us-isob-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "storagegateway-fips.us-isob-east-1.sc2s.sgov.gov"
+          }
         }
       },
       "streams.dynamodb" : {

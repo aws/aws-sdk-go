@@ -681,6 +681,10 @@ type RDSAPI interface {
 	ModifyGlobalClusterWithContext(aws.Context, *rds.ModifyGlobalClusterInput, ...request.Option) (*rds.ModifyGlobalClusterOutput, error)
 	ModifyGlobalClusterRequest(*rds.ModifyGlobalClusterInput) (*request.Request, *rds.ModifyGlobalClusterOutput)
 
+	ModifyIntegration(*rds.ModifyIntegrationInput) (*rds.ModifyIntegrationOutput, error)
+	ModifyIntegrationWithContext(aws.Context, *rds.ModifyIntegrationInput, ...request.Option) (*rds.ModifyIntegrationOutput, error)
+	ModifyIntegrationRequest(*rds.ModifyIntegrationInput) (*request.Request, *rds.ModifyIntegrationOutput)
+
 	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupWithContext(aws.Context, *rds.ModifyOptionGroupInput, ...request.Option) (*rds.ModifyOptionGroupOutput, error)
 	ModifyOptionGroupRequest(*rds.ModifyOptionGroupInput) (*request.Request, *rds.ModifyOptionGroupOutput)

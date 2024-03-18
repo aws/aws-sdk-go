@@ -1,3 +1,18 @@
+Release v1.51.2 (2024-03-18)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * This release supports for a new API ListStackSetAutoDeploymentTargets, which provider auto-deployment configuration as a describable resource. Customers can now view the specific combinations of regions and OUs that are being auto-deployed.
+* `service/kms`: Updates service API and documentation
+  * Adds the ability to use the default policy name by omitting the policyName parameter in calls to PutKeyPolicy and GetKeyPolicy
+* `service/mediatailor`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release launches the ModifyIntegration API and support for data filtering for zero-ETL Integrations.
+* `service/s3`: Updates service API and examples
+  * Fix two issues with response root node names.
+* `service/timestream-query`: Updates service documentation
+
 Release v1.51.1 (2024-03-15)
 ===
 

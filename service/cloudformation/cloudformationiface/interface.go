@@ -323,6 +323,10 @@ type CloudFormationAPI interface {
 	ListStackResourcesPages(*cloudformation.ListStackResourcesInput, func(*cloudformation.ListStackResourcesOutput, bool) bool) error
 	ListStackResourcesPagesWithContext(aws.Context, *cloudformation.ListStackResourcesInput, func(*cloudformation.ListStackResourcesOutput, bool) bool, ...request.Option) error
 
+	ListStackSetAutoDeploymentTargets(*cloudformation.ListStackSetAutoDeploymentTargetsInput) (*cloudformation.ListStackSetAutoDeploymentTargetsOutput, error)
+	ListStackSetAutoDeploymentTargetsWithContext(aws.Context, *cloudformation.ListStackSetAutoDeploymentTargetsInput, ...request.Option) (*cloudformation.ListStackSetAutoDeploymentTargetsOutput, error)
+	ListStackSetAutoDeploymentTargetsRequest(*cloudformation.ListStackSetAutoDeploymentTargetsInput) (*request.Request, *cloudformation.ListStackSetAutoDeploymentTargetsOutput)
+
 	ListStackSetOperationResults(*cloudformation.ListStackSetOperationResultsInput) (*cloudformation.ListStackSetOperationResultsOutput, error)
 	ListStackSetOperationResultsWithContext(aws.Context, *cloudformation.ListStackSetOperationResultsInput, ...request.Option) (*cloudformation.ListStackSetOperationResultsOutput, error)
 	ListStackSetOperationResultsRequest(*cloudformation.ListStackSetOperationResultsInput) (*request.Request, *cloudformation.ListStackSetOperationResultsOutput)
