@@ -1106,6 +1106,7 @@
         },
         "output": {
           "CreateTime": "2023-12-28T17:20:20.629Z",
+          "IntegrationArn": "arn:aws:rds:us-east-1:123456789012:integration:5b9f3d79-7392-4a3e-896c-58eaa1b53231",
           "IntegrationName": "my-integration",
           "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
           "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
@@ -1663,6 +1664,7 @@
         },
         "output": {
           "CreateTime": "2023-12-28T17:20:20.629Z",
+          "IntegrationArn": "arn:aws:rds:us-east-1:123456789012:integration:5b9f3d79-7392-4a3e-896c-58eaa1b53231",
           "IntegrationName": "my-integration",
           "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
           "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
@@ -3184,6 +3186,7 @@
           "Integrations": [
             {
               "CreateTime": "2023-12-28T17:20:20.629Z",
+              "IntegrationArn": "arn:aws:rds:us-east-1:123456789012:integration:5b9f3d79-7392-4a3e-896c-58eaa1b53231",
               "IntegrationName": "my-integration",
               "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
               "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
@@ -4267,6 +4270,36 @@
         "description": "The following example enables deletion protection for an Aurora MySQL-based global database cluster.",
         "id": "to-modify-a-global-database-cluster-1680385137511",
         "title": "To modify a global database cluster"
+      }
+    ],
+    "ModifyIntegration": [
+      {
+        "input": {
+          "IntegrationIdentifier": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+          "IntegrationName": "my-renamed-integration"
+        },
+        "output": {
+          "CreateTime": "2023-12-28T17:20:20.629Z",
+          "DataFilter": "include: *.*",
+          "IntegrationArn": "arn:aws:rds:us-east-1:123456789012:integration:5b9f3d79-7392-4a3e-896c-58eaa1b53231",
+          "IntegrationName": "my-renamed-integration",
+          "KMSKeyId": "arn:aws:kms:us-east-1:123456789012:key/a1b2c3d4-5678-90ab-cdef-EXAMPLEaaaaa",
+          "SourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:my-cluster",
+          "Status": "active",
+          "Tags": [
+
+          ],
+          "TargetArn": "arn:aws:redshift-serverless:us-east-1:123456789012:namespace/62c70612-0302-4db7-8414-b5e3e049f0d8"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example modifies the name of an existing zero-ETL integration.",
+        "id": "to-modify-a-zero-etl-integration-1680407173998",
+        "title": "To modify a zero-ETL integration"
       }
     ],
     "ModifyOptionGroup": [

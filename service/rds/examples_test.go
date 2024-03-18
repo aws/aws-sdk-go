@@ -3575,6 +3575,39 @@ func ExampleRDS_ModifyGlobalCluster_shared00() {
 	fmt.Println(result)
 }
 
+// To modify a zero-ETL integration
+// The following example modifies the name of an existing zero-ETL integration.
+func ExampleRDS_ModifyIntegration_shared00() {
+	svc := rds.New(session.New())
+	input := &rds.ModifyIntegrationInput{
+		IntegrationIdentifier: aws.String("a1b2c3d4-5678-90ab-cdef-EXAMPLE11111"),
+		IntegrationName:       aws.String("my-renamed-integration"),
+	}
+
+	result, err := svc.ModifyIntegration(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case rds.ErrCodeIntegrationNotFoundFault:
+				fmt.Println(rds.ErrCodeIntegrationNotFoundFault, aerr.Error())
+			case rds.ErrCodeInvalidIntegrationStateFault:
+				fmt.Println(rds.ErrCodeInvalidIntegrationStateFault, aerr.Error())
+			case rds.ErrCodeIntegrationConflictOperationFault:
+				fmt.Println(rds.ErrCodeIntegrationConflictOperationFault, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To modify an option group
 // The following example adds an option to an option group.
 func ExampleRDS_ModifyOptionGroup_shared00() {

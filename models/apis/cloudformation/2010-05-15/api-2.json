@@ -839,6 +839,21 @@
         "resultWrapper":"ListStackResourcesResult"
       }
     },
+    "ListStackSetAutoDeploymentTargets":{
+      "name":"ListStackSetAutoDeploymentTargets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStackSetAutoDeploymentTargetsInput"},
+      "output":{
+        "shape":"ListStackSetAutoDeploymentTargetsOutput",
+        "resultWrapper":"ListStackSetAutoDeploymentTargetsResult"
+      },
+      "errors":[
+        {"shape":"StackSetNotFoundException"}
+      ]
+    },
     "ListStackSetOperationResults":{
       "name":"ListStackSetOperationResults",
       "http":{
@@ -2918,6 +2933,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListStackSetAutoDeploymentTargetsInput":{
+      "type":"structure",
+      "required":["StackSetName"],
+      "members":{
+        "StackSetName":{"shape":"StackSetNameOrId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "CallAs":{"shape":"CallAs"}
+      }
+    },
+    "ListStackSetAutoDeploymentTargetsOutput":{
+      "type":"structure",
+      "members":{
+        "Summaries":{"shape":"StackSetAutoDeploymentTargetSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListStackSetOperationResultsInput":{
       "type":"structure",
       "required":[
@@ -4407,6 +4439,17 @@
       }
     },
     "StackSetARN":{"type":"string"},
+    "StackSetAutoDeploymentTargetSummaries":{
+      "type":"list",
+      "member":{"shape":"StackSetAutoDeploymentTargetSummary"}
+    },
+    "StackSetAutoDeploymentTargetSummary":{
+      "type":"structure",
+      "members":{
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
+        "Regions":{"shape":"RegionList"}
+      }
+    },
     "StackSetDriftDetectionDetails":{
       "type":"structure",
       "members":{

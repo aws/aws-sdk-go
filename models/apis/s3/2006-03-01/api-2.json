@@ -3978,7 +3978,10 @@
     "GetObjectLegalHoldOutput":{
       "type":"structure",
       "members":{
-        "LegalHold":{"shape":"ObjectLockLegalHold"}
+        "LegalHold":{
+          "shape":"ObjectLockLegalHold",
+          "locationName":"LegalHold"
+        }
       },
       "payload":"LegalHold"
     },
@@ -4349,7 +4352,10 @@
     "GetObjectRetentionOutput":{
       "type":"structure",
       "members":{
-        "Retention":{"shape":"ObjectLockRetention"}
+        "Retention":{
+          "shape":"ObjectLockRetention",
+          "locationName":"Retention"
+        }
       },
       "payload":"Retention"
     },

@@ -568,6 +568,29 @@
         "INFO"
       ]
     },
+    "AlternateMedia":{
+      "type":"structure",
+      "members":{
+        "AdBreaks":{"shape":"__listOfAdBreak"},
+        "ClipRange":{"shape":"ClipRange"},
+        "DurationMillis":{"shape":"__long"},
+        "LiveSourceName":{"shape":"__string"},
+        "ScheduledStartTimeMillis":{"shape":"__long"},
+        "SourceLocationName":{"shape":"__string"},
+        "VodSourceName":{"shape":"__string"}
+      }
+    },
+    "AudienceMedia":{
+      "type":"structure",
+      "members":{
+        "AlternateMedia":{"shape":"__listOfAlternateMedia"},
+        "Audience":{"shape":"__string"}
+      }
+    },
+    "Audiences":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "AvailMatchingCriteria":{
       "type":"structure",
       "required":[
@@ -625,6 +648,7 @@
       ],
       "members":{
         "Arn":{"shape":"__string"},
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{"shape":"__string"},
         "ChannelState":{"shape":"__string"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -649,9 +673,12 @@
     },
     "ClipRange":{
       "type":"structure",
-      "required":["EndOffsetMillis"],
       "members":{
-        "EndOffsetMillis":{"shape":"__long"}
+        "EndOffsetMillis":{
+          "shape":"__long",
+          "box":true
+        },
+        "StartOffsetMillis":{"shape":"__long"}
       }
     },
     "ConfigurationAliasesRequest":{
@@ -709,6 +736,7 @@
         "PlaybackMode"
       ],
       "members":{
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{
           "shape":"__string",
           "location":"uri",
@@ -729,6 +757,7 @@
       "type":"structure",
       "members":{
         "Arn":{"shape":"__string"},
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{"shape":"__string"},
         "ChannelState":{"shape":"ChannelState"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -829,6 +858,7 @@
       ],
       "members":{
         "AdBreaks":{"shape":"__listOfAdBreak"},
+        "AudienceMedia":{"shape":"__listOfAudienceMedia"},
         "ChannelName":{
           "shape":"__string",
           "location":"uri",
@@ -850,6 +880,7 @@
       "members":{
         "AdBreaks":{"shape":"__listOfAdBreak"},
         "Arn":{"shape":"__string"},
+        "AudienceMedia":{"shape":"__listOfAudienceMedia"},
         "ChannelName":{"shape":"__string"},
         "ClipRange":{"shape":"ClipRange"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -1146,6 +1177,7 @@
       "required":["LogConfiguration"],
       "members":{
         "Arn":{"shape":"__string"},
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{"shape":"__string"},
         "ChannelState":{"shape":"ChannelState"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -1220,6 +1252,7 @@
       "members":{
         "AdBreaks":{"shape":"__listOfAdBreak"},
         "Arn":{"shape":"__string"},
+        "AudienceMedia":{"shape":"__listOfAudienceMedia"},
         "ChannelName":{"shape":"__string"},
         "ClipRange":{"shape":"ClipRange"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -1322,6 +1355,11 @@
       "type":"structure",
       "required":["ChannelName"],
       "members":{
+        "Audience":{
+          "shape":"__string",
+          "location":"querystring",
+          "locationName":"audience"
+        },
         "ChannelName":{
           "shape":"__string",
           "location":"uri",
@@ -1965,6 +2003,7 @@
         "ApproximateDurationSeconds":{"shape":"__long"},
         "ApproximateStartTime":{"shape":"__timestampUnix"},
         "Arn":{"shape":"__string"},
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{"shape":"__string"},
         "LiveSourceName":{"shape":"__string"},
         "ProgramName":{"shape":"__string"},
@@ -1978,7 +2017,8 @@
       "type":"string",
       "enum":[
         "PROGRAM",
-        "FILLER_SLATE"
+        "FILLER_SLATE",
+        "ALTERNATE_MEDIA"
       ]
     },
     "SecretsManagerAccessTokenConfiguration":{
@@ -2169,6 +2209,7 @@
         "Outputs"
       ],
       "members":{
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{
           "shape":"__string",
           "location":"uri",
@@ -2183,6 +2224,7 @@
       "type":"structure",
       "members":{
         "Arn":{"shape":"__string"},
+        "Audiences":{"shape":"Audiences"},
         "ChannelName":{"shape":"__string"},
         "ChannelState":{"shape":"ChannelState"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -2243,6 +2285,7 @@
       ],
       "members":{
         "AdBreaks":{"shape":"__listOfAdBreak"},
+        "AudienceMedia":{"shape":"__listOfAudienceMedia"},
         "ChannelName":{
           "shape":"__string",
           "location":"uri",
@@ -2261,6 +2304,7 @@
       "members":{
         "AdBreaks":{"shape":"__listOfAdBreak"},
         "Arn":{"shape":"__string"},
+        "AudienceMedia":{"shape":"__listOfAudienceMedia"},
         "ChannelName":{"shape":"__string"},
         "ClipRange":{"shape":"ClipRange"},
         "CreationTime":{"shape":"__timestampUnix"},
@@ -2404,6 +2448,14 @@
     "__listOfAlert":{
       "type":"list",
       "member":{"shape":"Alert"}
+    },
+    "__listOfAlternateMedia":{
+      "type":"list",
+      "member":{"shape":"AlternateMedia"}
+    },
+    "__listOfAudienceMedia":{
+      "type":"list",
+      "member":{"shape":"AudienceMedia"}
     },
     "__listOfAvailMatchingCriteria":{
       "type":"list",

@@ -1588,10 +1588,7 @@
     },
     "GetKeyPolicyRequest":{
       "type":"structure",
-      "required":[
-        "KeyId",
-        "PolicyName"
-      ],
+      "required":["KeyId"],
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "PolicyName":{"shape":"PolicyNameType"}
@@ -1600,7 +1597,8 @@
     "GetKeyPolicyResponse":{
       "type":"structure",
       "members":{
-        "Policy":{"shape":"PolicyType"}
+        "Policy":{"shape":"PolicyType"},
+        "PolicyName":{"shape":"PolicyNameType"}
       }
     },
     "GetKeyRotationStatusRequest":{
@@ -2202,7 +2200,6 @@
       "type":"structure",
       "required":[
         "KeyId",
-        "PolicyName",
         "Policy"
       ],
       "members":{

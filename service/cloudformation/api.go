@@ -5589,6 +5589,84 @@ func (c *CloudFormation) ListStackResourcesPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opListStackSetAutoDeploymentTargets = "ListStackSetAutoDeploymentTargets"
+
+// ListStackSetAutoDeploymentTargetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStackSetAutoDeploymentTargets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStackSetAutoDeploymentTargets for more information on using the ListStackSetAutoDeploymentTargets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListStackSetAutoDeploymentTargetsRequest method.
+//	req, resp := client.ListStackSetAutoDeploymentTargetsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListStackSetAutoDeploymentTargets
+func (c *CloudFormation) ListStackSetAutoDeploymentTargetsRequest(input *ListStackSetAutoDeploymentTargetsInput) (req *request.Request, output *ListStackSetAutoDeploymentTargetsOutput) {
+	op := &request.Operation{
+		Name:       opListStackSetAutoDeploymentTargets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListStackSetAutoDeploymentTargetsInput{}
+	}
+
+	output = &ListStackSetAutoDeploymentTargetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStackSetAutoDeploymentTargets API operation for AWS CloudFormation.
+//
+// Returns summary information about deployment targets for a stack set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListStackSetAutoDeploymentTargets for usage and error information.
+//
+// Returned Error Codes:
+//   - ErrCodeStackSetNotFoundException "StackSetNotFoundException"
+//     The specified stack set doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15/ListStackSetAutoDeploymentTargets
+func (c *CloudFormation) ListStackSetAutoDeploymentTargets(input *ListStackSetAutoDeploymentTargetsInput) (*ListStackSetAutoDeploymentTargetsOutput, error) {
+	req, out := c.ListStackSetAutoDeploymentTargetsRequest(input)
+	return out, req.Send()
+}
+
+// ListStackSetAutoDeploymentTargetsWithContext is the same as ListStackSetAutoDeploymentTargets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStackSetAutoDeploymentTargets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFormation) ListStackSetAutoDeploymentTargetsWithContext(ctx aws.Context, input *ListStackSetAutoDeploymentTargetsInput, opts ...request.Option) (*ListStackSetAutoDeploymentTargetsOutput, error) {
+	req, out := c.ListStackSetAutoDeploymentTargetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListStackSetOperationResults = "ListStackSetOperationResults"
 
 // ListStackSetOperationResultsRequest generates a "aws/request.Request" representing the
@@ -9993,7 +10071,7 @@ type CreateStackInput struct {
 	//    specify either of these capabilities, CloudFormation returns an InsufficientCapabilities
 	//    error. If your stack template contains these resources, we recommend that
 	//    you review all permissions associated with them and edit their permissions
-	//    if necessary. AWS::IAM::AccessKey AWS::IAM::AccessKey (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html)
+	//    if necessary. AWS::IAM::AccessKey (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html)
 	//    AWS::IAM::Group (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html)
 	//    AWS::IAM::InstanceProfile (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html)
 	//    AWS::IAM::Policy (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html)
@@ -17386,6 +17464,145 @@ func (s *ListStackResourcesOutput) SetStackResourceSummaries(v []*StackResourceS
 	return s
 }
 
+type ListStackSetAutoDeploymentTargetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether you are acting as an account administrator in the organization's
+	// management account or as a delegated administrator in a member account.
+	//
+	// By default, SELF is specified. Use SELF for StackSets with self-managed permissions.
+	//
+	//    * If you are signed in to the management account, specify SELF.
+	//
+	//    * If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN.
+	//    Your Amazon Web Services account must be registered as a delegated administrator
+	//    in the management account. For more information, see Register a delegated
+	//    administrator (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html)
+	//    in the CloudFormation User Guide.
+	CallAs *string `type:"string" enum:"CallAs"`
+
+	// The maximum number of results to be returned with a single call. If the number
+	// of available results exceeds this maximum, the response includes a NextToken
+	// value that you can assign to the NextToken request parameter to get the next
+	// set of results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string that identifies the next page of stack set deployment targets that
+	// you want to retrieve.
+	NextToken *string `min:"1" type:"string"`
+
+	// The name or unique ID of the stack set that you want to get automatic deployment
+	// targets for.
+	//
+	// StackSetName is a required field
+	StackSetName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStackSetAutoDeploymentTargetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStackSetAutoDeploymentTargetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStackSetAutoDeploymentTargetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStackSetAutoDeploymentTargetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StackSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StackSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallAs sets the CallAs field's value.
+func (s *ListStackSetAutoDeploymentTargetsInput) SetCallAs(v string) *ListStackSetAutoDeploymentTargetsInput {
+	s.CallAs = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStackSetAutoDeploymentTargetsInput) SetMaxResults(v int64) *ListStackSetAutoDeploymentTargetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStackSetAutoDeploymentTargetsInput) SetNextToken(v string) *ListStackSetAutoDeploymentTargetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackSetName sets the StackSetName field's value.
+func (s *ListStackSetAutoDeploymentTargetsInput) SetStackSetName(v string) *ListStackSetAutoDeploymentTargetsInput {
+	s.StackSetName = &v
+	return s
+}
+
+type ListStackSetAutoDeploymentTargetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request doesn't return all the remaining results, NextToken is set
+	// to a token. To retrieve the next set of results, call ListStackSetAutoDeploymentTargets
+	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ListStackSetAutoDeploymentTargets.html)
+	// again and use that value for the NextToken parameter. If the request returns
+	// all results, NextToken is set to an empty string.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of summaries of the deployment targets for the stack set.
+	Summaries []*StackSetAutoDeploymentTargetSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStackSetAutoDeploymentTargetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStackSetAutoDeploymentTargetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStackSetAutoDeploymentTargetsOutput) SetNextToken(v string) *ListStackSetAutoDeploymentTargetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaries sets the Summaries field's value.
+func (s *ListStackSetAutoDeploymentTargetsOutput) SetSummaries(v []*StackSetAutoDeploymentTargetSummary) *ListStackSetAutoDeploymentTargetsOutput {
+	s.Summaries = v
+	return s
+}
+
 type ListStackSetOperationResultsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22117,6 +22334,12 @@ type StackInstanceComprehensiveStatus struct {
 	//    the stack set operation fails in enough accounts within a Region, the
 	//    failure tolerance for the stack set operation as a whole might be exceeded.
 	//
+	//    * FAILED_IMPORT: The import of the stack instance in the specified account
+	//    and Region failed and left the stack in an unstable state. Once the issues
+	//    causing the failure are fixed, the import operation can be retried. If
+	//    enough stack set operations fail in enough accounts within a Region, the
+	//    failure tolerance for the stack set operation as a whole might be exceeded.
+	//
 	//    * INOPERABLE: A DeleteStackInstances operation has failed and left the
 	//    stack in an unstable state. Stacks in this state are excluded from further
 	//    UpdateStackSet operations. You might need to perform a DeleteStackInstances
@@ -23396,6 +23619,50 @@ func (s *StackSet) SetTags(v []*Tag) *StackSet {
 // SetTemplateBody sets the TemplateBody field's value.
 func (s *StackSet) SetTemplateBody(v string) *StackSet {
 	s.TemplateBody = &v
+	return s
+}
+
+// One of the targets for the stack set. Returned by the ListStackSetAutoDeploymentTargets
+// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ListStackSetAutoDeploymentTargets.html)
+// API operation.
+type StackSetAutoDeploymentTargetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The organization root ID or organizational unit (OU) IDs where the stack
+	// set is targeted.
+	OrganizationalUnitId *string `type:"string"`
+
+	// The list of Regions targeted for this organization or OU.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StackSetAutoDeploymentTargetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StackSetAutoDeploymentTargetSummary) GoString() string {
+	return s.String()
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *StackSetAutoDeploymentTargetSummary) SetOrganizationalUnitId(v string) *StackSetAutoDeploymentTargetSummary {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *StackSetAutoDeploymentTargetSummary) SetRegions(v []*string) *StackSetAutoDeploymentTargetSummary {
+	s.Regions = v
 	return s
 }
 

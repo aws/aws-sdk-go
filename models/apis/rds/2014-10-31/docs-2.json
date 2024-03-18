@@ -128,6 +128,7 @@
     "ModifyDBSubnetGroup": "<p>Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the Amazon Web Services Region.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing RDS event notification subscription. You can't modify the source identifiers using this call. To change source identifiers for a subscription, use the <code>AddSourceIdentifierToSubscription</code> and <code>RemoveSourceIdentifierFromSubscription</code> calls.</p> <p>You can see a list of the event categories for a given source type (<code>SourceType</code>) in <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html\">Events</a> in the <i>Amazon RDS User Guide</i> or by using the <code>DescribeEventCategories</code> operation.</p>",
     "ModifyGlobalCluster": "<p>Modifies a setting for an Amazon Aurora global database cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This operation only applies to Aurora global database clusters.</p> </note>",
+    "ModifyIntegration": "<p>Modifies a zero-ETL integration with Amazon Redshift.</p> <note> <p>Currently, you can only modify integrations that have Aurora MySQL source DB clusters. Integrations with Aurora PostgreSQL and RDS sources currently don't support modifying the integration.</p> </note>",
     "ModifyOptionGroup": "<p>Modifies an existing option group.</p>",
     "ModifyTenantDatabase": "<p>Modifies an existing tenant database in a DB instance. You can change the tenant database name or the master user password. This operation is supported only for RDS for Oracle CDB instances using the multi-tenant configuration.</p>",
     "PromoteReadReplica": "<p>Promotes a read replica DB instance to a standalone DB instance.</p> <note> <ul> <li> <p>Backup duration is a function of the amount of changes to the database since the previous backup. If you plan to promote a read replica to a standalone instance, we recommend that you enable backups and complete at least one backup prior to promotion. In addition, a read replica cannot be promoted to a standalone instance when it is in the <code>backing-up</code> status. If you have enabled backups on your read replica, configure the automated backup window so that daily backups do not interfere with read replica promotion.</p> </li> <li> <p>This command doesn't apply to Aurora MySQL, Aurora PostgreSQL, or RDS Custom.</p> </li> </ul> </note>",
@@ -1971,6 +1972,14 @@
       "refs": {
       }
     },
+    "DataFilter": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$DataFilter": "<p>Data filtering options for the integration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/zero-etl.filtering.html\">Data filtering for Aurora zero-ETL integrations with Amazon Redshift</a>. </p> <p>Valid for: Integrations with Aurora MySQL source DB clusters only</p>",
+        "Integration$DataFilter": "<p>Data filters for the integration. These filters determine which tables from the source database are sent to the target Amazon Redshift data warehouse. </p>",
+        "ModifyIntegrationMessage$DataFilter": "<p>A new data filter for the integration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Zero_ETL_Filtering.html\">Data filtering for Aurora zero-ETL integrations with Amazon Redshift</a>.</p>"
+      }
+    },
     "DatabaseArn": {
       "base": null,
       "refs": {
@@ -3161,6 +3170,14 @@
       "refs": {
       }
     },
+    "IntegrationDescription": {
+      "base": null,
+      "refs": {
+        "CreateIntegrationMessage$Description": "<p>A description of the integration.</p>",
+        "Integration$Description": "<p>A description of the integration.</p>",
+        "ModifyIntegrationMessage$Description": "<p>A new description for the integration.</p>"
+      }
+    },
     "IntegrationError": {
       "base": "<p>An error associated with a zero-ETL integration with Amazon Redshift.</p>",
       "refs": {
@@ -3177,7 +3194,8 @@
       "base": null,
       "refs": {
         "DeleteIntegrationMessage$IntegrationIdentifier": "<p>The unique identifier of the integration.</p>",
-        "DescribeIntegrationsMessage$IntegrationIdentifier": "<p>The unique identifier of the integration.</p>"
+        "DescribeIntegrationsMessage$IntegrationIdentifier": "<p>The unique identifier of the integration.</p>",
+        "ModifyIntegrationMessage$IntegrationIdentifier": "<p>The unique identifier of the integration to modify.</p>"
       }
     },
     "IntegrationList": {
@@ -3190,7 +3208,8 @@
       "base": null,
       "refs": {
         "CreateIntegrationMessage$IntegrationName": "<p>The name of the integration.</p>",
-        "Integration$IntegrationName": "<p>The name of the integration.</p>"
+        "Integration$IntegrationName": "<p>The name of the integration.</p>",
+        "ModifyIntegrationMessage$IntegrationName": "<p>A new name for the integration.</p>"
       }
     },
     "IntegrationNotFoundFault": {
@@ -3689,6 +3708,11 @@
       }
     },
     "ModifyGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyIntegrationMessage": {
       "base": null,
       "refs": {
       }

@@ -1199,7 +1199,7 @@ func (c *TimestreamQuery) PrepareQueryRequest(input *PrepareQueryInput) (req *re
 //
 // A synchronous operation that allows you to submit a query with parameters
 // to be stored by Timestream for later running. Timestream only supports using
-// this operation with the PrepareQueryRequest$ValidateOnly set to true.
+// this operation with ValidateOnly set to true.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5502,7 +5502,7 @@ type Type struct {
 	RowColumnInfo []*ColumnInfo `type:"list"`
 
 	// Indicates if the column is of type string, integer, Boolean, double, timestamp,
-	// date, time.
+	// date, time. For more information, see Supported data types (https://docs.aws.amazon.com/timestream/latest/developerguide/supported-data-types.html).
 	ScalarType *string `type:"string" enum:"ScalarType"`
 
 	// Indicates if the column is a timeseries data type.

@@ -24640,7 +24640,7 @@ type GetObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure" payload:"LegalHold"`
 
 	// The current legal hold status for the specified object.
-	LegalHold *ObjectLockLegalHold `type:"structure"`
+	LegalHold *ObjectLockLegalHold `locationName:"LegalHold" type:"structure"`
 }
 
 // String returns the string representation.
@@ -25399,7 +25399,7 @@ type GetObjectRetentionOutput struct {
 	_ struct{} `type:"structure" payload:"Retention"`
 
 	// The container element for an object's retention settings.
-	Retention *ObjectLockRetention `type:"structure"`
+	Retention *ObjectLockRetention `locationName:"Retention" type:"structure"`
 }
 
 // String returns the string representation.
