@@ -2613,6 +2613,15 @@
       "input":{"shape":"DescribeLockedSnapshotsRequest"},
       "output":{"shape":"DescribeLockedSnapshotsResult"}
     },
+    "DescribeMacHosts":{
+      "name":"DescribeMacHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeMacHostsRequest"},
+      "output":{"shape":"DescribeMacHostsResult"}
+    },
     "DescribeManagedPrefixLists":{
       "name":"DescribeManagedPrefixLists",
       "http":{
@@ -17008,6 +17017,39 @@
         "Snapshots":{
           "shape":"LockedSnapshotsInfoList",
           "locationName":"snapshotSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeMacHostsRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "HostIds":{
+          "shape":"RequestHostIdList",
+          "locationName":"HostId"
+        },
+        "MaxResults":{"shape":"DescribeMacHostsRequestMaxResults"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeMacHostsRequestMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":5
+    },
+    "DescribeMacHostsResult":{
+      "type":"structure",
+      "members":{
+        "MacHosts":{
+          "shape":"MacHostList",
+          "locationName":"macHostSet"
         },
         "NextToken":{
           "shape":"String",
@@ -32002,6 +32044,33 @@
       ]
     },
     "Long":{"type":"long"},
+    "MacHost":{
+      "type":"structure",
+      "members":{
+        "HostId":{
+          "shape":"DedicatedHostId",
+          "locationName":"hostId"
+        },
+        "MacOSLatestSupportedVersions":{
+          "shape":"MacOSVersionStringList",
+          "locationName":"macOSLatestSupportedVersionSet"
+        }
+      }
+    },
+    "MacHostList":{
+      "type":"list",
+      "member":{
+        "shape":"MacHost",
+        "locationName":"item"
+      }
+    },
+    "MacOSVersionStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "MaintenanceDetails":{
       "type":"structure",
       "members":{

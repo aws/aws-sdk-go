@@ -1,3 +1,16 @@
+Release v1.51.3 (2024-03-19)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service documentation
+  * Documentation update, March 2024. Corrects some formatting.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds the new DescribeMacHosts API operation for getting information about EC2 Mac Dedicated Hosts. Users can now see the latest macOS versions that their underlying Apple Mac can support without needing to be updated.
+* `service/finspace`: Updates service API and documentation
+* `service/logs`: Updates service API and documentation
+  * Update LogSamples field in Anomaly model to be a list of LogEvent
+* `service/managedblockchain-query`: Updates service API, documentation, and paginators
+
 Release v1.51.2 (2024-03-18)
 ===
 

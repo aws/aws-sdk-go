@@ -895,7 +895,12 @@
       "max":100,
       "min":1
     },
-    "AvailabilityZoneId":{"type":"string"},
+    "AvailabilityZoneId":{
+      "type":"string",
+      "max":12,
+      "min":8,
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
     "AvailabilityZoneIds":{
       "type":"list",
       "member":{"shape":"AvailabilityZoneId"}
@@ -939,7 +944,8 @@
     "ChangesetId":{
       "type":"string",
       "max":26,
-      "min":1
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]+$"
     },
     "ChangesetStatus":{
       "type":"string",
@@ -1182,6 +1188,7 @@
         "changesetId":{"shape":"ChangesetId"},
         "segmentConfigurations":{"shape":"KxDataviewSegmentConfigurationList"},
         "autoUpdate":{"shape":"booleanValue"},
+        "readWrite":{"shape":"booleanValue"},
         "description":{"shape":"Description"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
@@ -1202,6 +1209,7 @@
         "segmentConfigurations":{"shape":"KxDataviewSegmentConfigurationList"},
         "description":{"shape":"Description"},
         "autoUpdate":{"shape":"booleanValue"},
+        "readWrite":{"shape":"booleanValue"},
         "createdTimestamp":{"shape":"Timestamp"},
         "lastModifiedTimestamp":{"shape":"Timestamp"},
         "status":{"shape":"KxDataviewStatus"}
@@ -1969,6 +1977,7 @@
         "activeVersions":{"shape":"KxDataviewActiveVersionList"},
         "description":{"shape":"Description"},
         "autoUpdate":{"shape":"booleanValue"},
+        "readWrite":{"shape":"booleanValue"},
         "environmentId":{"shape":"EnvironmentId"},
         "createdTimestamp":{"shape":"Timestamp"},
         "lastModifiedTimestamp":{"shape":"Timestamp"},
@@ -2313,13 +2322,13 @@
     },
     "KxCommandLineArgumentKey":{
       "type":"string",
-      "max":50,
+      "max":1024,
       "min":1,
       "pattern":"^(?![Aa][Ww][Ss])(s|([a-zA-Z][a-zA-Z0-9_]+))|(AWS_ZIP_DEFAULT)"
     },
     "KxCommandLineArgumentValue":{
       "type":"string",
-      "max":50,
+      "max":1024,
       "min":1,
       "pattern":"^[a-zA-Z0-9_:./,]+$"
     },
@@ -2407,6 +2416,7 @@
         "status":{"shape":"KxDataviewStatus"},
         "description":{"shape":"Description"},
         "autoUpdate":{"shape":"booleanValue"},
+        "readWrite":{"shape":"booleanValue"},
         "createdTimestamp":{"shape":"Timestamp"},
         "lastModifiedTimestamp":{"shape":"Timestamp"},
         "statusReason":{"shape":"KxDataviewStatusReason"}
@@ -2426,7 +2436,8 @@
       ],
       "members":{
         "dbPaths":{"shape":"SegmentConfigurationDbPathList"},
-        "volumeName":{"shape":"KxVolumeName"}
+        "volumeName":{"shape":"KxVolumeName"},
+        "onDemand":{"shape":"booleanValue"}
       }
     },
     "KxDataviewSegmentConfigurationList":{
@@ -2522,7 +2533,6 @@
     },
     "KxNAS1Size":{
       "type":"integer",
-      "max":33600,
       "min":1200
     },
     "KxNAS1Type":{
@@ -3160,7 +3170,7 @@
       "type":"string",
       "max":1093,
       "min":9,
-      "pattern":"^s3:\\/\\/[a-z0-9][a-z0-9-]{1,61}[a-z0-9]\\/([^\\/]+\\/)*[^\\/]*$"
+      "pattern":"^s3:\\/\\/[a-z0-9][a-z0-9-.]{1,61}[a-z0-9]\\/([^\\/]+\\/)*[^\\/]*$"
     },
     "SamlMetadataDocument":{
       "type":"string",
@@ -3498,6 +3508,7 @@
         "activeVersions":{"shape":"KxDataviewActiveVersionList"},
         "status":{"shape":"KxDataviewStatus"},
         "autoUpdate":{"shape":"booleanValue"},
+        "readWrite":{"shape":"booleanValue"},
         "description":{"shape":"Description"},
         "createdTimestamp":{"shape":"Timestamp"},
         "lastModifiedTimestamp":{"shape":"Timestamp"}

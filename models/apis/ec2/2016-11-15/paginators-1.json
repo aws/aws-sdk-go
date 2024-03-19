@@ -342,6 +342,12 @@
       "output_token": "NextToken",
       "result_key": "LocalGateways"
     },
+    "DescribeMacHosts": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "MacHosts"
+    },
     "DescribeManagedPrefixLists": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
