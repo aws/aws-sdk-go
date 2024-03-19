@@ -83,6 +83,13 @@ type ManagedBlockchainQueryAPI interface {
 	ListAssetContractsPages(*managedblockchainquery.ListAssetContractsInput, func(*managedblockchainquery.ListAssetContractsOutput, bool) bool) error
 	ListAssetContractsPagesWithContext(aws.Context, *managedblockchainquery.ListAssetContractsInput, func(*managedblockchainquery.ListAssetContractsOutput, bool) bool, ...request.Option) error
 
+	ListFilteredTransactionEvents(*managedblockchainquery.ListFilteredTransactionEventsInput) (*managedblockchainquery.ListFilteredTransactionEventsOutput, error)
+	ListFilteredTransactionEventsWithContext(aws.Context, *managedblockchainquery.ListFilteredTransactionEventsInput, ...request.Option) (*managedblockchainquery.ListFilteredTransactionEventsOutput, error)
+	ListFilteredTransactionEventsRequest(*managedblockchainquery.ListFilteredTransactionEventsInput) (*request.Request, *managedblockchainquery.ListFilteredTransactionEventsOutput)
+
+	ListFilteredTransactionEventsPages(*managedblockchainquery.ListFilteredTransactionEventsInput, func(*managedblockchainquery.ListFilteredTransactionEventsOutput, bool) bool) error
+	ListFilteredTransactionEventsPagesWithContext(aws.Context, *managedblockchainquery.ListFilteredTransactionEventsInput, func(*managedblockchainquery.ListFilteredTransactionEventsOutput, bool) bool, ...request.Option) error
+
 	ListTokenBalances(*managedblockchainquery.ListTokenBalancesInput) (*managedblockchainquery.ListTokenBalancesOutput, error)
 	ListTokenBalancesWithContext(aws.Context, *managedblockchainquery.ListTokenBalancesInput, ...request.Option) (*managedblockchainquery.ListTokenBalancesOutput, error)
 	ListTokenBalancesRequest(*managedblockchainquery.ListTokenBalancesInput) (*request.Request, *managedblockchainquery.ListTokenBalancesOutput)

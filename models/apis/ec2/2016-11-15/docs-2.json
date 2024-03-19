@@ -294,6 +294,7 @@
     "DescribeLocalGatewayVirtualInterfaces": "<p>Describes the specified local gateway virtual interfaces.</p>",
     "DescribeLocalGateways": "<p>Describes one or more local gateways. By default, all local gateways are described. Alternatively, you can filter the results.</p>",
     "DescribeLockedSnapshots": "<p>Describes the lock status for a snapshot.</p>",
+    "DescribeMacHosts": "<p>Describes the specified EC2 Mac Dedicated Host or all of your EC2 Mac Dedicated Hosts.</p>",
     "DescribeManagedPrefixLists": "<p>Describes your managed prefix lists and any Amazon Web Services-managed prefix lists.</p> <p>To view the entries for your prefix list, use <a>GetManagedPrefixListEntries</a>.</p>",
     "DescribeMovingAddresses": "<note> <p>This action is deprecated.</p> </note> <p>Describes your Elastic IP addresses that are being moved from or being restored to the EC2-Classic platform. This request does not return information about any other Elastic IP addresses in your account.</p>",
     "DescribeNatGateways": "<p>Describes one or more of your NAT gateways.</p>",
@@ -5164,6 +5165,7 @@
       "refs": {
         "DedicatedHostIdList$member": null,
         "LaunchTemplatePlacementRequest$HostId": "<p>The ID of the Dedicated Host for the instance.</p>",
+        "MacHost$HostId": "<p> The EC2 Mac Dedicated Host ID. </p>",
         "ModifyInstancePlacementRequest$HostId": "<p>The ID of the Dedicated Host with which to associate the instance.</p>",
         "RequestHostIdList$member": null,
         "RequestHostIdSet$member": null
@@ -6960,6 +6962,22 @@
       }
     },
     "DescribeLockedSnapshotsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMacHostsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeMacHostsRequestMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeMacHostsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
+      }
+    },
+    "DescribeMacHostsResult": {
       "base": null,
       "refs": {
       }
@@ -9433,6 +9451,7 @@
         "DescribeLocalGatewayVirtualInterfacesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>local-address</code> - The local address.</p> </li> <li> <p> <code>local-bgp-asn</code> - The Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the local gateway.</p> </li> <li> <p> <code>local-gateway-id</code> - The ID of the local gateway.</p> </li> <li> <p> <code>local-gateway-virtual-interface-id</code> - The ID of the virtual interface.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the local gateway virtual interface.</p> </li> <li> <p> <code>peer-address</code> - The peer address.</p> </li> <li> <p> <code>peer-bgp-asn</code> - The peer BGP ASN.</p> </li> <li> <p> <code>vlan</code> - The ID of the VLAN.</p> </li> </ul>",
         "DescribeLocalGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>local-gateway-id</code> - The ID of a local gateway.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the local gateway.</p> </li> <li> <p> <code>state</code> - The state of the association.</p> </li> </ul>",
         "DescribeLockedSnapshotsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>lock-state</code> - The state of the snapshot lock (<code>compliance-cooloff</code> | <code>governance</code> | <code>compliance</code> | <code>expired</code>).</p> </li> </ul>",
+        "DescribeMacHostsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone of the EC2 Mac Dedicated Host.</p> </li> <li> <p> <code>instance-type</code> - The instance type size that the EC2 Mac Dedicated Host is configured to support.</p> </li> </ul>",
         "DescribeManagedPrefixListsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>owner-id</code> - The ID of the prefix list owner.</p> </li> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>prefix-list-name</code> - The name of the prefix list.</p> </li> </ul>",
         "DescribeMovingAddressesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>moving-status</code> - The status of the Elastic IP address (<code>MovingToVpc</code> | <code>RestoringToClassic</code>).</p> </li> </ul>",
         "DescribeNatGatewaysRequest$Filter": "<p>The filters.</p> <ul> <li> <p> <code>nat-gateway-id</code> - The ID of the NAT gateway.</p> </li> <li> <p> <code>state</code> - The state of the NAT gateway (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet in which the NAT gateway resides.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the NAT gateway resides.</p> </li> </ul>",
@@ -14283,6 +14302,24 @@
         "VpnGateway$AmazonSideAsn": "<p>The private Autonomous System Number (ASN) for the Amazon side of a BGP session.</p>"
       }
     },
+    "MacHost": {
+      "base": "<p> Information about the EC2 Mac Dedicated Host. </p>",
+      "refs": {
+        "MacHostList$member": null
+      }
+    },
+    "MacHostList": {
+      "base": null,
+      "refs": {
+        "DescribeMacHostsResult$MacHosts": "<p> Information about the EC2 Mac Dedicated Hosts. </p>"
+      }
+    },
+    "MacOSVersionStringList": {
+      "base": null,
+      "refs": {
+        "MacHost$MacOSLatestSupportedVersions": "<p> The latest macOS versions that the EC2 Mac Dedicated Host can launch without being upgraded. </p>"
+      }
+    },
     "MaintenanceDetails": {
       "base": "<p>Details for Site-to-Site VPN tunnel endpoint maintenance events.</p>",
       "refs": {
@@ -17413,6 +17450,7 @@
       "base": null,
       "refs": {
         "DescribeHostsRequest$HostIds": "<p>The IDs of the Dedicated Hosts. The IDs are used for targeted instance launches.</p>",
+        "DescribeMacHostsRequest$HostIds": "<p> The IDs of the EC2 Mac Dedicated Hosts. </p>",
         "ModifyHostsRequest$HostIds": "<p>The IDs of the Dedicated Hosts to modify.</p>",
         "ReleaseHostsRequest$HostIds": "<p>The IDs of the Dedicated Hosts to release.</p>"
       }
@@ -19744,6 +19782,8 @@
         "DescribeLocalGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeLockedSnapshotsRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
         "DescribeLockedSnapshotsResult$NextToken": "<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>",
+        "DescribeMacHostsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "DescribeMacHostsResult$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeMovingAddressesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeMovingAddressesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeNatGatewaysRequest$NextToken": "<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>",
@@ -20453,6 +20493,7 @@
         "LockSnapshotResult$SnapshotId": "<p>The ID of the snapshot</p>",
         "LockedSnapshotsInfo$OwnerId": "<p>The account ID of the Amazon Web Services account that owns the snapshot.</p>",
         "LockedSnapshotsInfo$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "MacOSVersionStringList$member": null,
         "MaintenanceDetails$PendingMaintenance": "<p>Verify existence of a pending maintenance.</p>",
         "ManagedPrefixList$AddressFamily": "<p>The IP address version.</p>",
         "ManagedPrefixList$StateMessage": "<p>The state message.</p>",

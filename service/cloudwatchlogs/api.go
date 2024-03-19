@@ -295,7 +295,7 @@ func (c *CloudWatchLogs) CreateDeliveryRequest(input *CreateDeliveryInput) (req 
 // in the table at Enabling logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // A delivery destination can represent a log group in CloudWatch Logs, an Amazon
-// S3 bucket, or a delivery stream in Kinesis Data Firehose.
+// S3 bucket, or a delivery stream in Firehose.
 //
 // To configure logs delivery between a supported Amazon Web Services service
 // and a destination, you must do the following:
@@ -2371,9 +2371,9 @@ func (c *CloudWatchLogs) DescribeDeliveriesRequest(input *DescribeDeliveriesInpu
 //
 // A delivery source represents an Amazon Web Services resource that sends logs
 // to an logs delivery destination. The destination can be CloudWatch Logs,
-// Amazon S3, or Kinesis Data Firehose. Only some Amazon Web Services services
-// support being configured as a delivery source. These services are listed
-// in Enable logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
+// Amazon S3, or Firehose. Only some Amazon Web Services services support being
+// configured as a delivery source. These services are listed in Enable logging
+// from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4256,9 +4256,9 @@ func (c *CloudWatchLogs) GetDeliveryRequest(input *GetDeliveryInput) (req *reque
 //
 // A delivery source represents an Amazon Web Services resource that sends logs
 // to an logs delivery destination. The destination can be CloudWatch Logs,
-// Amazon S3, or Kinesis Data Firehose. Only some Amazon Web Services services
-// support being configured as a delivery source. These services are listed
-// in Enable logging from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
+// Amazon S3, or Firehose. Only some Amazon Web Services services support being
+// configured as a delivery source. These services are listed in Enable logging
+// from Amazon Web Services services. (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)
 //
 // You need to specify the delivery id in this operation. You can find the IDs
 // of the deliveries in your account with the DescribeDeliveries (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeDeliveries.html)
@@ -5693,24 +5693,24 @@ func (c *CloudWatchLogs) PutAccountPolicyRequest(input *PutAccountPolicyInput) (
 // CloudWatch Logs to other Amazon Web Services services. Account-level subscription
 // filter policies apply to both existing log groups and log groups that are
 // created later in this account. Supported destinations are Kinesis Data Streams,
-// Kinesis Data Firehose, and Lambda. When log events are sent to the receiving
-// service, they are Base64 encoded and compressed with the GZIP format.
+// Firehose, and Lambda. When log events are sent to the receiving service,
+// they are Base64 encoded and compressed with the GZIP format.
 //
 // The following destinations are supported for subscription filters:
 //
 //   - An Kinesis Data Streams data stream in the same account as the subscription
 //     policy, for same-account delivery.
 //
-//   - An Kinesis Data Firehose data stream in the same account as the subscription
-//     policy, for same-account delivery.
+//   - An Firehose data stream in the same account as the subscription policy,
+//     for same-account delivery.
 //
 //   - A Lambda function in the same account as the subscription policy, for
 //     same-account delivery.
 //
 //   - A logical destination in a different account created with PutDestination
 //     (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html),
-//     for cross-account delivery. Kinesis Data Streams and Kinesis Data Firehose
-//     are supported as logical destinations.
+//     for cross-account delivery. Kinesis Data Streams and Firehose are supported
+//     as logical destinations.
 //
 // Each account can have one account-level subscription filter policy. If you
 // are updating an existing filter, you must specify the correct name in PolicyName.
@@ -5923,8 +5923,8 @@ func (c *CloudWatchLogs) PutDeliveryDestinationRequest(input *PutDeliveryDestina
 //
 // Creates or updates a logical delivery destination. A delivery destination
 // is an Amazon Web Services resource that represents an Amazon Web Services
-// service that logs can be sent to. CloudWatch Logs, Amazon S3, and Kinesis
-// Data Firehose are supported as logs delivery destinations.
+// service that logs can be sent to. CloudWatch Logs, Amazon S3, and Firehose
+// are supported as logs delivery destinations.
 //
 // To configure logs delivery between a supported Amazon Web Services service
 // and a destination, you must do the following:
@@ -6166,7 +6166,7 @@ func (c *CloudWatchLogs) PutDeliverySourceRequest(input *PutDeliverySourceInput)
 //
 // Creates or updates a logical delivery source. A delivery source represents
 // an Amazon Web Services resource that sends logs to an logs delivery destination.
-// The destination can be CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
+// The destination can be CloudWatch Logs, Amazon S3, or Firehose.
 //
 // To configure logs delivery between a delivery destination and an Amazon Web
 // Services service that is supported as a delivery source, you must do the
@@ -7046,7 +7046,7 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //
 //   - A logical destination created with PutDestination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html)
 //     that belongs to a different account, for cross-account delivery. We currently
-//     support Kinesis Data Streams and Kinesis Data Firehose as logical destinations.
+//     support Kinesis Data Streams and Firehose as logical destinations.
 //
 //   - An Amazon Kinesis Data Firehose delivery stream that belongs to the
 //     same account as the subscription filter, for same-account delivery.
@@ -8536,7 +8536,7 @@ type Anomaly struct {
 	// anomaly.
 	//
 	// LogSamples is a required field
-	LogSamples []*string `locationName:"logSamples" type:"list" required:"true"`
+	LogSamples []*LogEvent `locationName:"logSamples" type:"list" required:"true"`
 
 	// The ID of the pattern used to help identify this anomaly.
 	//
@@ -8658,7 +8658,7 @@ func (s *Anomaly) SetLogGroupArnList(v []*string) *Anomaly {
 }
 
 // SetLogSamples sets the LogSamples field's value.
-func (s *Anomaly) SetLogSamples(v []*string) *Anomaly {
+func (s *Anomaly) SetLogSamples(v []*LogEvent) *Anomaly {
 	s.LogSamples = v
 	return s
 }
@@ -10944,7 +10944,7 @@ type Delivery struct {
 	DeliveryDestinationArn *string `locationName:"deliveryDestinationArn" type:"string"`
 
 	// Displays whether the delivery destination associated with this delivery is
-	// CloudWatch Logs, Amazon S3, or Kinesis Data Firehose.
+	// CloudWatch Logs, Amazon S3, or Firehose.
 	DeliveryDestinationType *string `locationName:"deliveryDestinationType" type:"string" enum:"DeliveryDestinationType"`
 
 	// The name of the delivery source that is associated with this delivery.
@@ -11014,7 +11014,7 @@ func (s *Delivery) SetTags(v map[string]*string) *Delivery {
 // This structure contains information about one delivery destination in your
 // account. A delivery destination is an Amazon Web Services resource that represents
 // an Amazon Web Services service that logs can be sent to. CloudWatch Logs,
-// Amazon S3, are supported as Kinesis Data Firehose delivery destinations.
+// Amazon S3, are supported as Firehose delivery destinations.
 //
 // To configure logs delivery between a supported Amazon Web Services service
 // and a destination, you must do the following:
@@ -11049,7 +11049,7 @@ type DeliveryDestination struct {
 	DeliveryDestinationConfiguration *DeliveryDestinationConfiguration `locationName:"deliveryDestinationConfiguration" type:"structure"`
 
 	// Displays whether this delivery destination is CloudWatch Logs, Amazon S3,
-	// or Kinesis Data Firehose.
+	// or Firehose.
 	DeliveryDestinationType *string `locationName:"deliveryDestinationType" type:"string" enum:"DeliveryDestinationType"`
 
 	// The name of this delivery destination.
@@ -11122,7 +11122,7 @@ type DeliveryDestinationConfiguration struct {
 
 	// The ARN of the Amazon Web Services destination that this delivery destination
 	// represents. That Amazon Web Services destination can be a log group in CloudWatch
-	// Logs, an Amazon S3 bucket, or a delivery stream in Kinesis Data Firehose.
+	// Logs, an Amazon S3 bucket, or a delivery stream in Firehose.
 	//
 	// DestinationResourceArn is a required field
 	DestinationResourceArn *string `locationName:"destinationResourceArn" type:"string" required:"true"`
@@ -11168,7 +11168,7 @@ func (s *DeliveryDestinationConfiguration) SetDestinationResourceArn(v string) *
 // This structure contains information about one delivery source in your account.
 // A delivery source is an Amazon Web Services resource that sends logs to an
 // Amazon Web Services destination. The destination can be CloudWatch Logs,
-// Amazon S3, or Kinesis Data Firehose.
+// Amazon S3, or Firehose.
 //
 // Only some Amazon Web Services services support being configured as a delivery
 // source. These services are listed as Supported [V2 Permissions] in the table
@@ -15693,6 +15693,48 @@ func (s *LiveTailSessionUpdate) MarshalEvent(pm protocol.PayloadMarshaler) (msg 
 	return msg, err
 }
 
+// This structure contains the information for one sample log event that is
+// associated with an anomaly found by a log anomaly detector.
+type LogEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The message content of the log event.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
+	// The time stamp of the log event.
+	Timestamp *int64 `locationName:"timestamp" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogEvent) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *LogEvent) SetMessage(v string) *LogEvent {
+	s.Message = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *LogEvent) SetTimestamp(v int64) *LogEvent {
+	s.Timestamp = &v
+	return s
+}
+
 // Represents a log group.
 type LogGroup struct {
 	_ struct{} `type:"structure"`
@@ -16556,8 +16598,8 @@ type PutAccountPolicyInput struct {
 	//    data terms. This Audit action must contain a FindingsDestination object.
 	//    You can optionally use that FindingsDestination object to list one or
 	//    more destinations to send audit findings to. If you specify destinations
-	//    such as log groups, Kinesis Data Firehose streams, and S3 buckets, they
-	//    must already exist.
+	//    such as log groups, Firehose streams, and S3 buckets, they must already
+	//    exist.
 	//
 	//    * The second block must include both a DataIdentifer array and an Operation
 	//    property with an Deidentify action. The DataIdentifer array must exactly
@@ -16585,12 +16627,12 @@ type PutAccountPolicyInput struct {
 	//    * DestinationArn The ARN of the destination to deliver log events to.
 	//    Supported destinations are: An Kinesis Data Streams data stream in the
 	//    same account as the subscription policy, for same-account delivery. An
-	//    Kinesis Data Firehose data stream in the same account as the subscription
-	//    policy, for same-account delivery. A Lambda function in the same account
-	//    as the subscription policy, for same-account delivery. A logical destination
-	//    in a different account created with PutDestination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html),
-	//    for cross-account delivery. Kinesis Data Streams and Kinesis Data Firehose
-	//    are supported as logical destinations.
+	//    Firehose data stream in the same account as the subscription policy, for
+	//    same-account delivery. A Lambda function in the same account as the subscription
+	//    policy, for same-account delivery. A logical destination in a different
+	//    account created with PutDestination (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestination.html),
+	//    for cross-account delivery. Kinesis Data Streams and Firehose are supported
+	//    as logical destinations.
 	//
 	//    * RoleArn The ARN of an IAM role that grants CloudWatch Logs permissions
 	//    to deliver ingested log events to the destination stream. You don't need
@@ -16754,8 +16796,8 @@ type PutDataProtectionPolicyInput struct {
 	//    data terms. This Audit action must contain a FindingsDestination object.
 	//    You can optionally use that FindingsDestination object to list one or
 	//    more destinations to send audit findings to. If you specify destinations
-	//    such as log groups, Kinesis Data Firehose streams, and S3 buckets, they
-	//    must already exist.
+	//    such as log groups, Firehose streams, and S3 buckets, they must already
+	//    exist.
 	//
 	//    * The second block must include both a DataIdentifer array and an Operation
 	//    property with an Deidentify action. The DataIdentifer array must exactly
@@ -17102,8 +17144,14 @@ func (s *PutDeliveryDestinationPolicyOutput) SetPolicy(v *Policy) *PutDeliveryDe
 type PutDeliverySourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines the type of log that the source is sending. For Amazon CodeWhisperer,
-	// the valid value is EVENT_LOGS.
+	// Defines the type of log that the source is sending.
+	//
+	//    * For Amazon CodeWhisperer, the valid value is EVENT_LOGS.
+	//
+	//    * For IAM Identity Centerr, the valid value is ERROR_LOGS.
+	//
+	//    * For Amazon WorkMail, the valid values are ACCESS_CONTROL_LOGS, AUTHENTICATION_LOGS,
+	//    WORKMAIL_AVAILABILITY_PROVIDER_LOGS, and WORKMAIL_MAILBOX_ACCESS_LOGS.
 	//
 	// LogType is a required field
 	LogType *string `locationName:"logType" min:"1" type:"string" required:"true"`
@@ -18537,10 +18585,10 @@ type RejectedLogEventsInfo struct {
 	// The expired log events.
 	ExpiredLogEventEndIndex *int64 `locationName:"expiredLogEventEndIndex" type:"integer"`
 
-	// The log events that are too new.
+	// The index of the first log event that is too new. This field is inclusive.
 	TooNewLogEventStartIndex *int64 `locationName:"tooNewLogEventStartIndex" type:"integer"`
 
-	// The log events that are dated too far in the past.
+	// The index of the last log event that is too old. This field is exclusive.
 	TooOldLogEventEndIndex *int64 `locationName:"tooOldLogEventEndIndex" type:"integer"`
 }
 

@@ -2338,8 +2338,11 @@
       "event":true
     },
     "LogEvent":{
-      "type":"string",
-      "min":1
+      "type":"structure",
+      "members":{
+        "timestamp":{"shape":"Timestamp"},
+        "message":{"shape":"EventMessage"}
+      }
     },
     "LogEventIndex":{"type":"integer"},
     "LogGroup":{

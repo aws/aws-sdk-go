@@ -6030,7 +6030,7 @@ type CreateKxClusterInput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `locationName:"autoScalingConfiguration" type:"structure"`
 
 	// The availability zone identifiers for the requested regions.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The number of availability zones you want to assign per cluster. This can
 	// be one of the following
@@ -6174,6 +6174,9 @@ func (s CreateKxClusterInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateKxClusterInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateKxClusterInput"}
+	if s.AvailabilityZoneId != nil && len(*s.AvailabilityZoneId) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneId", 8))
+	}
 	if s.AzMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("AzMode"))
 	}
@@ -6417,7 +6420,7 @@ type CreateKxClusterOutput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `locationName:"autoScalingConfiguration" type:"structure"`
 
 	// The availability zone identifiers for the requested regions.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The number of availability zones you want to assign per cluster. This can
 	// be one of the following
@@ -6910,14 +6913,11 @@ type CreateKxDataviewInput struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
-	// The number of availability zones you want to assign per cluster. This can
-	// be one of the following
-	//
-	//    * SINGLE – Assigns one availability zone per cluster.
-	//
-	//    * MULTI – Assigns all the availability zones per cluster.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	//
 	// AzMode is a required field
 	AzMode *string `locationName:"azMode" type:"string" required:"true" enum:"KxAzMode"`
@@ -6946,6 +6946,24 @@ type CreateKxDataviewInput struct {
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"environmentId" min:"1" type:"string" required:"true"`
+
+	// The option to specify whether you want to make the dataview writable to perform
+	// database maintenance. The following are some considerations related to writable
+	// dataviews.
+	//
+	//    * You cannot create partial writable dataviews. When you create writeable
+	//    dataviews you must provide the entire database path.
+	//
+	//    * You cannot perform updates on a writeable dataview. Hence, autoUpdate
+	//    must be set as False if readWrite is True for a dataview.
+	//
+	//    * You must also use a unique volume for creating a writeable dataview.
+	//    So, if you choose a volume that is already in use by another dataview,
+	//    the dataview creation fails.
+	//
+	//    * Once you create a dataview as writeable, you cannot change it to read-only.
+	//    So, you cannot update the readWrite parameter later.
+	ReadWrite *bool `locationName:"readWrite" type:"boolean"`
 
 	// The configuration that contains the database path of the data that you want
 	// to place on each selected volume. Each segment must have a unique database
@@ -6980,6 +6998,9 @@ func (s CreateKxDataviewInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateKxDataviewInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateKxDataviewInput"}
+	if s.AvailabilityZoneId != nil && len(*s.AvailabilityZoneId) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneId", 8))
+	}
 	if s.AzMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("AzMode"))
 	}
@@ -7084,6 +7105,12 @@ func (s *CreateKxDataviewInput) SetEnvironmentId(v string) *CreateKxDataviewInpu
 	return s
 }
 
+// SetReadWrite sets the ReadWrite field's value.
+func (s *CreateKxDataviewInput) SetReadWrite(v bool) *CreateKxDataviewInput {
+	s.ReadWrite = &v
+	return s
+}
+
 // SetSegmentConfigurations sets the SegmentConfigurations field's value.
 func (s *CreateKxDataviewInput) SetSegmentConfigurations(v []*KxDataviewSegmentConfiguration) *CreateKxDataviewInput {
 	s.SegmentConfigurations = v
@@ -7105,14 +7132,11 @@ type CreateKxDataviewOutput struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
-	// The number of availability zones you want to assign per cluster. This can
-	// be one of the following
-	//
-	//    * SINGLE – Assigns one availability zone per cluster.
-	//
-	//    * MULTI – Assigns all the availability zones per cluster.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// A unique identifier for the changeset.
@@ -7140,6 +7164,9 @@ type CreateKxDataviewOutput struct {
 	// as epoch time in milliseconds. For example, the value for Monday, November
 	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
+
+	// Returns True if the dataview is created as writeable and False otherwise.
+	ReadWrite *bool `locationName:"readWrite" type:"boolean"`
 
 	// The configuration that contains the database path of the data that you want
 	// to place on each selected volume. Each segment must have a unique database
@@ -7233,6 +7260,12 @@ func (s *CreateKxDataviewOutput) SetEnvironmentId(v string) *CreateKxDataviewOut
 // SetLastModifiedTimestamp sets the LastModifiedTimestamp field's value.
 func (s *CreateKxDataviewOutput) SetLastModifiedTimestamp(v time.Time) *CreateKxDataviewOutput {
 	s.LastModifiedTimestamp = &v
+	return s
+}
+
+// SetReadWrite sets the ReadWrite field's value.
+func (s *CreateKxDataviewOutput) SetReadWrite(v bool) *CreateKxDataviewOutput {
+	s.ReadWrite = &v
 	return s
 }
 
@@ -7442,7 +7475,7 @@ type CreateKxScalingGroupInput struct {
 	// The identifier of the availability zones.
 	//
 	// AvailabilityZoneId is a required field
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string" required:"true"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string" required:"true"`
 
 	// A token that ensures idempotency. This token expires in 10 minutes.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
@@ -7455,6 +7488,26 @@ type CreateKxScalingGroupInput struct {
 
 	// The memory and CPU capabilities of the scaling group host on which FinSpace
 	// Managed kdb clusters will be placed.
+	//
+	// You can add one of the following values:
+	//
+	//    * kx.sg.4xlarge – The host type with a configuration of 108 GiB memory
+	//    and 16 vCPUs.
+	//
+	//    * kx.sg.8xlarge – The host type with a configuration of 216 GiB memory
+	//    and 32 vCPUs.
+	//
+	//    * kx.sg.16xlarge – The host type with a configuration of 432 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg.32xlarge – The host type with a configuration of 864 GiB memory
+	//    and 128 vCPUs.
+	//
+	//    * kx.sg1.16xlarge – The host type with a configuration of 1949 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg1.24xlarge – The host type with a configuration of 2948 GiB memory
+	//    and 96 vCPUs.
 	//
 	// HostType is a required field
 	HostType *string `locationName:"hostType" min:"1" type:"string" required:"true"`
@@ -7492,6 +7545,9 @@ func (s *CreateKxScalingGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateKxScalingGroupInput"}
 	if s.AvailabilityZoneId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AvailabilityZoneId"))
+	}
+	if s.AvailabilityZoneId != nil && len(*s.AvailabilityZoneId) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneId", 8))
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
@@ -7564,7 +7620,7 @@ type CreateKxScalingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The timestamp at which the scaling group was created in FinSpace. The value
 	// is determined as epoch time in milliseconds. For example, the value for Monday,
@@ -7843,8 +7899,9 @@ type CreateKxVolumeInput struct {
 	// AvailabilityZoneIds is a required field
 	AvailabilityZoneIds []*string `locationName:"availabilityZoneIds" type:"list" required:"true"`
 
-	// The number of availability zones you want to assign per cluster. Currently,
-	// FinSpace only support SINGLE for volumes.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	//
 	// AzMode is a required field
 	AzMode *string `locationName:"azMode" type:"string" required:"true" enum:"KxAzMode"`
@@ -8004,8 +8061,9 @@ type CreateKxVolumeOutput struct {
 	// The identifier of the availability zones.
 	AvailabilityZoneIds []*string `locationName:"availabilityZoneIds" type:"list"`
 
-	// The number of availability zones you want to assign per cluster. Currently,
-	// FinSpace only support SINGLE for volumes.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// The timestamp at which the volume was created in FinSpace. The value is determined
@@ -9619,7 +9677,7 @@ type GetKxClusterOutput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `locationName:"autoScalingConfiguration" type:"structure"`
 
 	// The availability zone identifiers for the requested regions.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The number of availability zones you want to assign per cluster. This can
 	// be one of the following
@@ -10310,14 +10368,11 @@ type GetKxDataviewOutput struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
-	// The number of availability zones you want to assign per cluster. This can
-	// be one of the following
-	//
-	//    * SINGLE – Assigns one availability zone per cluster.
-	//
-	//    * MULTI – Assigns all the availability zones per cluster.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// A unique identifier of the changeset that you want to use to ingest data.
@@ -10345,6 +10400,9 @@ type GetKxDataviewOutput struct {
 	// as epoch time in milliseconds. For example, the value for Monday, November
 	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
+
+	// Returns True if the dataview is created as writeable and False otherwise.
+	ReadWrite *bool `locationName:"readWrite" type:"boolean"`
 
 	// The configuration that contains the database path of the data that you want
 	// to place on each selected volume. Each segment must have a unique database
@@ -10447,6 +10505,12 @@ func (s *GetKxDataviewOutput) SetEnvironmentId(v string) *GetKxDataviewOutput {
 // SetLastModifiedTimestamp sets the LastModifiedTimestamp field's value.
 func (s *GetKxDataviewOutput) SetLastModifiedTimestamp(v time.Time) *GetKxDataviewOutput {
 	s.LastModifiedTimestamp = &v
+	return s
+}
+
+// SetReadWrite sets the ReadWrite field's value.
+func (s *GetKxDataviewOutput) SetReadWrite(v bool) *GetKxDataviewOutput {
+	s.ReadWrite = &v
 	return s
 }
 
@@ -10765,7 +10829,7 @@ type GetKxScalingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The list of Managed kdb clusters that are currently active in the given scaling
 	// group.
@@ -10778,6 +10842,26 @@ type GetKxScalingGroupOutput struct {
 
 	// The memory and CPU capabilities of the scaling group host on which FinSpace
 	// Managed kdb clusters will be placed.
+	//
+	// It can have one of the following values:
+	//
+	//    * kx.sg.4xlarge – The host type with a configuration of 108 GiB memory
+	//    and 16 vCPUs.
+	//
+	//    * kx.sg.8xlarge – The host type with a configuration of 216 GiB memory
+	//    and 32 vCPUs.
+	//
+	//    * kx.sg.16xlarge – The host type with a configuration of 432 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg.32xlarge – The host type with a configuration of 864 GiB memory
+	//    and 128 vCPUs.
+	//
+	//    * kx.sg1.16xlarge – The host type with a configuration of 1949 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg1.24xlarge – The host type with a configuration of 2948 GiB memory
+	//    and 96 vCPUs.
 	HostType *string `locationName:"hostType" min:"1" type:"string"`
 
 	// The last time that the scaling group was updated in FinSpace. The value is
@@ -11088,8 +11172,9 @@ type GetKxVolumeOutput struct {
 	// The identifier of the availability zones.
 	AvailabilityZoneIds []*string `locationName:"availabilityZoneIds" type:"list"`
 
-	// The number of availability zones you want to assign per cluster. Currently,
-	// FinSpace only support SINGLE for volumes.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// The timestamp at which the volume was created in FinSpace. The value is determined
@@ -11662,7 +11747,7 @@ type KxCluster struct {
 	_ struct{} `type:"structure"`
 
 	// The availability zone identifiers for the requested regions.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The number of availability zones assigned per cluster. This can be one of
 	// the following:
@@ -12392,14 +12477,11 @@ type KxDataviewListEntry struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
-	// The number of availability zones you want to assign per cluster. This can
-	// be one of the following
-	//
-	//    * SINGLE – Assigns one availability zone per cluster.
-	//
-	//    * MULTI – Assigns all the availability zones per cluster.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// A unique identifier for the changeset.
@@ -12426,6 +12508,9 @@ type KxDataviewListEntry struct {
 	// determined as epoch time in milliseconds. For example, the value for Monday,
 	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
+
+	// Returns True if the dataview is created as writeable and False otherwise.
+	ReadWrite *bool `locationName:"readWrite" type:"boolean"`
 
 	// The configuration that contains the database path of the data that you want
 	// to place on each selected volume. Each segment must have a unique database
@@ -12525,6 +12610,12 @@ func (s *KxDataviewListEntry) SetLastModifiedTimestamp(v time.Time) *KxDataviewL
 	return s
 }
 
+// SetReadWrite sets the ReadWrite field's value.
+func (s *KxDataviewListEntry) SetReadWrite(v bool) *KxDataviewListEntry {
+	s.ReadWrite = &v
+	return s
+}
+
 // SetSegmentConfigurations sets the SegmentConfigurations field's value.
 func (s *KxDataviewListEntry) SetSegmentConfigurations(v []*KxDataviewSegmentConfiguration) *KxDataviewListEntry {
 	s.SegmentConfigurations = v
@@ -12556,6 +12647,12 @@ type KxDataviewSegmentConfiguration struct {
 	//
 	// DbPaths is a required field
 	DbPaths []*string `locationName:"dbPaths" min:"1" type:"list" required:"true"`
+
+	// Enables on-demand caching on the selected database path when a particular
+	// file or a column of the database is accessed. When on demand caching is True,
+	// dataviews perform minimal loading of files on the filesystem as needed. When
+	// it is set to False, everything is cached. The default value is False.
+	OnDemand *bool `locationName:"onDemand" type:"boolean"`
 
 	// The name of the volume where you want to add data.
 	//
@@ -12606,6 +12703,12 @@ func (s *KxDataviewSegmentConfiguration) Validate() error {
 // SetDbPaths sets the DbPaths field's value.
 func (s *KxDataviewSegmentConfiguration) SetDbPaths(v []*string) *KxDataviewSegmentConfiguration {
 	s.DbPaths = v
+	return s
+}
+
+// SetOnDemand sets the OnDemand field's value.
+func (s *KxDataviewSegmentConfiguration) SetOnDemand(v bool) *KxDataviewSegmentConfiguration {
+	s.OnDemand = &v
 	return s
 }
 
@@ -12936,7 +13039,7 @@ type KxNode struct {
 
 	// The identifier of the availability zones where subnets for the environment
 	// are created.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The time when a particular node is started. The value is determined as epoch
 	// time in milliseconds. For example, the value for Monday, November 1, 2021
@@ -13060,7 +13163,7 @@ type KxScalingGroup struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
 	// The list of clusters currently active in a given scaling group.
 	Clusters []*string `locationName:"clusters" type:"list"`
@@ -13072,6 +13175,26 @@ type KxScalingGroup struct {
 
 	// The memory and CPU capabilities of the scaling group host on which FinSpace
 	// Managed kdb clusters will be placed.
+	//
+	// You can add one of the following values:
+	//
+	//    * kx.sg.4xlarge – The host type with a configuration of 108 GiB memory
+	//    and 16 vCPUs.
+	//
+	//    * kx.sg.8xlarge – The host type with a configuration of 216 GiB memory
+	//    and 32 vCPUs.
+	//
+	//    * kx.sg.16xlarge – The host type with a configuration of 432 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg.32xlarge – The host type with a configuration of 864 GiB memory
+	//    and 128 vCPUs.
+	//
+	//    * kx.sg1.16xlarge – The host type with a configuration of 1949 GiB memory
+	//    and 64 vCPUs.
+	//
+	//    * kx.sg1.24xlarge – The host type with a configuration of 2948 GiB memory
+	//    and 96 vCPUs.
 	HostType *string `locationName:"hostType" min:"1" type:"string"`
 
 	// The last time that the scaling group was updated in FinSpace. The value is
@@ -13344,8 +13467,9 @@ type KxVolume struct {
 	// The identifier of the availability zones.
 	AvailabilityZoneIds []*string `locationName:"availabilityZoneIds" type:"list"`
 
-	// The number of availability zones assigned to the volume. Currently, only
-	// SINGLE is supported.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// The timestamp at which the volume was created in FinSpace. The value is determined
@@ -16375,14 +16499,11 @@ type UpdateKxDataviewOutput struct {
 	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
 
 	// The identifier of the availability zones.
-	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" min:"8" type:"string"`
 
-	// The number of availability zones you want to assign per cluster. This can
-	// be one of the following
-	//
-	//    * SINGLE – Assigns one availability zone per cluster.
-	//
-	//    * MULTI – Assigns all the availability zones per cluster.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// A unique identifier for the changeset.
@@ -16410,6 +16531,9 @@ type UpdateKxDataviewOutput struct {
 	// as epoch time in milliseconds. For example, the value for Monday, November
 	// 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
 	LastModifiedTimestamp *time.Time `locationName:"lastModifiedTimestamp" type:"timestamp"`
+
+	// Returns True if the dataview is created as writeable and False otherwise.
+	ReadWrite *bool `locationName:"readWrite" type:"boolean"`
 
 	// The configuration that contains the database path of the data that you want
 	// to place on each selected volume. Each segment must have a unique database
@@ -16509,6 +16633,12 @@ func (s *UpdateKxDataviewOutput) SetEnvironmentId(v string) *UpdateKxDataviewOut
 // SetLastModifiedTimestamp sets the LastModifiedTimestamp field's value.
 func (s *UpdateKxDataviewOutput) SetLastModifiedTimestamp(v time.Time) *UpdateKxDataviewOutput {
 	s.LastModifiedTimestamp = &v
+	return s
+}
+
+// SetReadWrite sets the ReadWrite field's value.
+func (s *UpdateKxDataviewOutput) SetReadWrite(v bool) *UpdateKxDataviewOutput {
+	s.ReadWrite = &v
 	return s
 }
 
@@ -17313,8 +17443,9 @@ type UpdateKxVolumeOutput struct {
 	// The identifier of the availability zones.
 	AvailabilityZoneIds []*string `locationName:"availabilityZoneIds" type:"list"`
 
-	// The number of availability zones you want to assign per cluster. Currently,
-	// FinSpace only support SINGLE for volumes.
+	// The number of availability zones you want to assign per volume. Currently,
+	// FinSpace only supports SINGLE for volumes. This places dataview in a single
+	// AZ.
 	AzMode *string `locationName:"azMode" type:"string" enum:"KxAzMode"`
 
 	// The timestamp at which the volume was created in FinSpace. The value is determined

@@ -570,6 +570,159 @@ func (c *ManagedBlockchainQuery) ListAssetContractsPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opListFilteredTransactionEvents = "ListFilteredTransactionEvents"
+
+// ListFilteredTransactionEventsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFilteredTransactionEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFilteredTransactionEvents for more information on using the ListFilteredTransactionEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListFilteredTransactionEventsRequest method.
+//	req, resp := client.ListFilteredTransactionEventsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListFilteredTransactionEvents
+func (c *ManagedBlockchainQuery) ListFilteredTransactionEventsRequest(input *ListFilteredTransactionEventsInput) (req *request.Request, output *ListFilteredTransactionEventsOutput) {
+	op := &request.Operation{
+		Name:       opListFilteredTransactionEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-filtered-transaction-events",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFilteredTransactionEventsInput{}
+	}
+
+	output = &ListFilteredTransactionEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFilteredTransactionEvents API operation for Amazon Managed Blockchain Query.
+//
+// Lists all the transaction events for an address on the blockchain.
+//
+// This operation is only supported on the Bitcoin networks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain Query's
+// API operation ListFilteredTransactionEvents for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request or operation couldn't be performed because a service is throttling
+//     requests. The most common source of throttling errors is when you create
+//     resources that exceed your service limit for this resource type. Request
+//     a limit increase or delete unused resources, if possible.
+//
+//   - ValidationException
+//     The resource passed is invalid.
+//
+//   - AccessDeniedException
+//     The Amazon Web Services account doesn’t have access to this resource.
+//
+//   - InternalServerException
+//     The request processing has failed because of an internal error in the service.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded for this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-query-2023-05-04/ListFilteredTransactionEvents
+func (c *ManagedBlockchainQuery) ListFilteredTransactionEvents(input *ListFilteredTransactionEventsInput) (*ListFilteredTransactionEventsOutput, error) {
+	req, out := c.ListFilteredTransactionEventsRequest(input)
+	return out, req.Send()
+}
+
+// ListFilteredTransactionEventsWithContext is the same as ListFilteredTransactionEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFilteredTransactionEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchainQuery) ListFilteredTransactionEventsWithContext(ctx aws.Context, input *ListFilteredTransactionEventsInput, opts ...request.Option) (*ListFilteredTransactionEventsOutput, error) {
+	req, out := c.ListFilteredTransactionEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFilteredTransactionEventsPages iterates over the pages of a ListFilteredTransactionEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFilteredTransactionEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListFilteredTransactionEvents operation.
+//	pageNum := 0
+//	err := client.ListFilteredTransactionEventsPages(params,
+//	    func(page *managedblockchainquery.ListFilteredTransactionEventsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ManagedBlockchainQuery) ListFilteredTransactionEventsPages(input *ListFilteredTransactionEventsInput, fn func(*ListFilteredTransactionEventsOutput, bool) bool) error {
+	return c.ListFilteredTransactionEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFilteredTransactionEventsPagesWithContext same as ListFilteredTransactionEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchainQuery) ListFilteredTransactionEventsPagesWithContext(ctx aws.Context, input *ListFilteredTransactionEventsInput, fn func(*ListFilteredTransactionEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFilteredTransactionEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFilteredTransactionEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFilteredTransactionEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTokenBalances = "ListTokenBalances"
 
 // ListTokenBalancesRequest generates a "aws/request.Request" representing the
@@ -780,8 +933,7 @@ func (c *ManagedBlockchainQuery) ListTransactionEventsRequest(input *ListTransac
 
 // ListTransactionEvents API operation for Amazon Managed Blockchain Query.
 //
-// An array of TransactionEvent objects. Each object contains details about
-// the transaction event.
+// # Lists all the transaction events for a transaction
 //
 // This action will return transaction details for all transactions that are
 // confirmed on the blockchain, even if they have not reached finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
@@ -935,8 +1087,7 @@ func (c *ManagedBlockchainQuery) ListTransactionsRequest(input *ListTransactions
 
 // ListTransactions API operation for Amazon Managed Blockchain Query.
 //
-// Lists all of the transactions on a given wallet address or to a specific
-// contract.
+// Lists all the transaction events for a transaction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1103,6 +1254,56 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This is the container for the unique public address on the blockchain.
+type AddressIdentifierFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The container for the recipient address of the transaction.
+	//
+	// TransactionEventToAddress is a required field
+	TransactionEventToAddress []*string `locationName:"transactionEventToAddress" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddressIdentifierFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddressIdentifierFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddressIdentifierFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddressIdentifierFilter"}
+	if s.TransactionEventToAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionEventToAddress"))
+	}
+	if s.TransactionEventToAddress != nil && len(s.TransactionEventToAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionEventToAddress", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransactionEventToAddress sets the TransactionEventToAddress field's value.
+func (s *AddressIdentifierFilter) SetTransactionEventToAddress(v []*string) *AddressIdentifierFilter {
+	s.TransactionEventToAddress = v
+	return s
+}
+
 // This container contains information about an contract.
 type AssetContract struct {
 	_ struct{} `type:"structure"`
@@ -1182,7 +1383,7 @@ type BatchGetTokenBalanceErrorItem struct {
 	// ErrorType is a required field
 	ErrorType *string `locationName:"errorType" type:"string" required:"true" enum:"ErrorType"`
 
-	// The container for the identifier of the owner.
+	// The container for the owner identifier.
 	OwnerIdentifier *OwnerIdentifier `locationName:"ownerIdentifier" type:"structure"`
 
 	// The container for the identifier for the token including the unique token
@@ -1309,7 +1510,7 @@ type BatchGetTokenBalanceInputItem struct {
 	// The container for time.
 	AtBlockchainInstant *BlockchainInstant `locationName:"atBlockchainInstant" type:"structure"`
 
-	// The container for the identifier of the owner.
+	// The container for the owner identifier.
 	//
 	// OwnerIdentifier is a required field
 	OwnerIdentifier *OwnerIdentifier `locationName:"ownerIdentifier" type:"structure" required:"true"`
@@ -1447,7 +1648,7 @@ type BatchGetTokenBalanceOutputItem struct {
 	// The container for time.
 	LastUpdatedTime *BlockchainInstant `locationName:"lastUpdatedTime" type:"structure"`
 
-	// The container for the identifier of the owner.
+	// The container for the owner identifier.
 	OwnerIdentifier *OwnerIdentifier `locationName:"ownerIdentifier" type:"structure"`
 
 	// The container for the identifier for the token including the unique token
@@ -1994,7 +2195,7 @@ type GetTokenBalanceOutput struct {
 	// The container for time.
 	LastUpdatedTime *BlockchainInstant `locationName:"lastUpdatedTime" type:"structure"`
 
-	// The container for the identifier of the owner.
+	// The container for the owner identifier.
 	OwnerIdentifier *OwnerIdentifier `locationName:"ownerIdentifier" type:"structure"`
 
 	// The container for the identifier for the token including the unique token
@@ -2061,8 +2262,7 @@ type GetTransactionInput struct {
 	// Network is a required field
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
 
-	// The hash of the transaction. It is generated whenever a transaction is verified
-	// and added to the blockchain.
+	// The hash of a transaction. It is generated when a transaction is created.
 	//
 	// TransactionHash is a required field
 	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
@@ -2155,7 +2355,7 @@ type InternalServerException struct {
 	// The container for the exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 
-	// The container of the retryAfterSeconds value.
+	// Specifies the retryAfterSeconds value.
 	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
@@ -2225,7 +2425,7 @@ type ListAssetContractsInput struct {
 
 	// The maximum number of contracts to list.
 	//
-	// Default:100
+	// Default: 100
 	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
@@ -2338,12 +2538,247 @@ func (s *ListAssetContractsOutput) SetNextToken(v string) *ListAssetContractsOut
 	return s
 }
 
+type ListFilteredTransactionEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// This is the unique public address on the blockchain for which the transaction
+	// events are being requested.
+	//
+	// AddressIdentifierFilter is a required field
+	AddressIdentifierFilter *AddressIdentifierFilter `locationName:"addressIdentifierFilter" type:"structure" required:"true"`
+
+	// The container for the ConfirmationStatusFilter that filters for the finality
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality)
+	// of the results.
+	ConfirmationStatusFilter *ConfirmationStatusFilter `locationName:"confirmationStatusFilter" type:"structure"`
+
+	// The maximum number of transaction events to list.
+	//
+	// Default: 100
+	//
+	// Even if additional results can be retrieved, the request can return less
+	// results than maxResults or an empty array of results.
+	//
+	// To retrieve the next set of results, make another request with the returned
+	// nextToken value. The value of nextToken is null when there are no more results
+	// to return
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The blockchain network where the transaction occurred.
+	//
+	// Valid Values: BITCOIN_MAINNET | BITCOIN_TESTNET
+	//
+	// Network is a required field
+	Network *string `locationName:"network" type:"string" required:"true"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The order by which the results will be sorted.
+	Sort *ListFilteredTransactionEventsSort `locationName:"sort" type:"structure"`
+
+	// This container specifies the time frame for the transaction events returned
+	// in the response.
+	TimeFilter *TimeFilter `locationName:"timeFilter" type:"structure"`
+
+	// This container specifies filtering attributes related to BITCOIN_VOUT event
+	// types
+	VoutFilter *VoutFilter `locationName:"voutFilter" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFilteredTransactionEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFilteredTransactionEventsInput"}
+	if s.AddressIdentifierFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddressIdentifierFilter"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Network == nil {
+		invalidParams.Add(request.NewErrParamRequired("Network"))
+	}
+	if s.AddressIdentifierFilter != nil {
+		if err := s.AddressIdentifierFilter.Validate(); err != nil {
+			invalidParams.AddNested("AddressIdentifierFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConfirmationStatusFilter != nil {
+		if err := s.ConfirmationStatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("ConfirmationStatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VoutFilter != nil {
+		if err := s.VoutFilter.Validate(); err != nil {
+			invalidParams.AddNested("VoutFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddressIdentifierFilter sets the AddressIdentifierFilter field's value.
+func (s *ListFilteredTransactionEventsInput) SetAddressIdentifierFilter(v *AddressIdentifierFilter) *ListFilteredTransactionEventsInput {
+	s.AddressIdentifierFilter = v
+	return s
+}
+
+// SetConfirmationStatusFilter sets the ConfirmationStatusFilter field's value.
+func (s *ListFilteredTransactionEventsInput) SetConfirmationStatusFilter(v *ConfirmationStatusFilter) *ListFilteredTransactionEventsInput {
+	s.ConfirmationStatusFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFilteredTransactionEventsInput) SetMaxResults(v int64) *ListFilteredTransactionEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNetwork sets the Network field's value.
+func (s *ListFilteredTransactionEventsInput) SetNetwork(v string) *ListFilteredTransactionEventsInput {
+	s.Network = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFilteredTransactionEventsInput) SetNextToken(v string) *ListFilteredTransactionEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *ListFilteredTransactionEventsInput) SetSort(v *ListFilteredTransactionEventsSort) *ListFilteredTransactionEventsInput {
+	s.Sort = v
+	return s
+}
+
+// SetTimeFilter sets the TimeFilter field's value.
+func (s *ListFilteredTransactionEventsInput) SetTimeFilter(v *TimeFilter) *ListFilteredTransactionEventsInput {
+	s.TimeFilter = v
+	return s
+}
+
+// SetVoutFilter sets the VoutFilter field's value.
+func (s *ListFilteredTransactionEventsInput) SetVoutFilter(v *VoutFilter) *ListFilteredTransactionEventsInput {
+	s.VoutFilter = v
+	return s
+}
+
+type ListFilteredTransactionEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction events returned by the request.
+	//
+	// Events is a required field
+	Events []*TransactionEvent `locationName:"events" type:"list" required:"true"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *ListFilteredTransactionEventsOutput) SetEvents(v []*TransactionEvent) *ListFilteredTransactionEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFilteredTransactionEventsOutput) SetNextToken(v string) *ListFilteredTransactionEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Lists all the transaction events for an address on the blockchain.
+//
+// This operation is only supported on the Bitcoin blockchain networks.
+type ListFilteredTransactionEventsSort struct {
+	_ struct{} `type:"structure"`
+
+	// Container on how the results will be sorted by?
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ListFilteredTransactionEventsSortBy"`
+
+	// The container for the sort order for ListFilteredTransactionEvents. The SortOrder
+	// field only accepts the values ASCENDING and DESCENDING. Not providing SortOrder
+	// will default to ASCENDING.
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsSort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFilteredTransactionEventsSort) GoString() string {
+	return s.String()
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListFilteredTransactionEventsSort) SetSortBy(v string) *ListFilteredTransactionEventsSort {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListFilteredTransactionEventsSort) SetSortOrder(v string) *ListFilteredTransactionEventsSort {
+	s.SortOrder = &v
+	return s
+}
+
 type ListTokenBalancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of token balances to return.
 	//
-	// Default:100
+	// Default: 100
 	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
@@ -2488,7 +2923,7 @@ type ListTransactionEventsInput struct {
 
 	// The maximum number of transaction events to list.
 	//
-	// Default:100
+	// Default: 100
 	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
@@ -2506,11 +2941,14 @@ type ListTransactionEventsInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The hash of the transaction. It is generated whenever a transaction is verified
-	// and added to the blockchain.
+	// The hash of a transaction. It is generated when a transaction is created.
+	TransactionHash *string `locationName:"transactionHash" type:"string"`
+
+	// The identifier of a Bitcoin transaction. It is generated when a transaction
+	// is created.
 	//
-	// TransactionHash is a required field
-	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
+	// transactionId is only supported on the Bitcoin networks.
+	TransactionId *string `locationName:"transactionId" type:"string"`
 }
 
 // String returns the string representation.
@@ -2540,9 +2978,6 @@ func (s *ListTransactionEventsInput) Validate() error {
 	if s.Network == nil {
 		invalidParams.Add(request.NewErrParamRequired("Network"))
 	}
-	if s.TransactionHash == nil {
-		invalidParams.Add(request.NewErrParamRequired("TransactionHash"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2571,6 +3006,12 @@ func (s *ListTransactionEventsInput) SetNextToken(v string) *ListTransactionEven
 // SetTransactionHash sets the TransactionHash field's value.
 func (s *ListTransactionEventsInput) SetTransactionHash(v string) *ListTransactionEventsInput {
 	s.TransactionHash = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *ListTransactionEventsInput) SetTransactionId(v string) *ListTransactionEventsInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -2627,7 +3068,7 @@ type ListTransactionsInput struct {
 
 	// This filter is used to include transactions in the response that haven't
 	// reached finality (https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality).
-	// Transactions that have reached finiality are always part of the response.
+	// Transactions that have reached finality are always part of the response.
 	ConfirmationStatusFilter *ConfirmationStatusFilter `locationName:"confirmationStatusFilter" type:"structure"`
 
 	// The container for time.
@@ -2635,7 +3076,7 @@ type ListTransactionsInput struct {
 
 	// The maximum number of transactions to list.
 	//
-	// Default:100
+	// Default: 100
 	//
 	// Even if additional results can be retrieved, the request can return less
 	// results than maxResults or an empty array of results.
@@ -2653,8 +3094,7 @@ type ListTransactionsInput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The order by which the results will be sorted. If ASCENNDING is selected,
-	// the results will be ordered by fromTime.
+	// The order by which the results will be sorted.
 	Sort *ListTransactionsSort `locationName:"sort" type:"structure"`
 
 	// The container for time.
@@ -2883,7 +3323,7 @@ func (s *OwnerFilter) SetAddress(v string) *OwnerFilter {
 	return s
 }
 
-// The container for the identifier of the owner.
+// The container for the owner identifier.
 type OwnerIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -3169,6 +3609,47 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// This container is used to specify a time frame.
+type TimeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The container for time.
+	From *BlockchainInstant `locationName:"from" type:"structure"`
+
+	// The container for time.
+	To *BlockchainInstant `locationName:"to" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeFilter) GoString() string {
+	return s.String()
+}
+
+// SetFrom sets the From field's value.
+func (s *TimeFilter) SetFrom(v *BlockchainInstant) *TimeFilter {
+	s.From = v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *TimeFilter) SetTo(v *BlockchainInstant) *TimeFilter {
+	s.To = v
+	return s
 }
 
 // The balance of the token.
@@ -3460,14 +3941,13 @@ type Transaction struct {
 	// The transaction fee.
 	TransactionFee *string `locationName:"transactionFee" type:"string"`
 
-	// The hash of the transaction. It is generated whenever a transaction is verified
-	// and added to the blockchain.
+	// The hash of a transaction. It is generated when a transaction is created.
 	//
 	// TransactionHash is a required field
 	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
 
-	// The unique identifier of the transaction. It is generated whenever a transaction
-	// is verified and added to the blockchain.
+	// The identifier of a Bitcoin transaction. It is generated when a transaction
+	// is created.
 	TransactionId *string `locationName:"transactionId" type:"string"`
 
 	// The index of the transaction within a blockchain.
@@ -3623,7 +4103,13 @@ func (s *Transaction) SetTransactionTimestamp(v time.Time) *Transaction {
 type TransactionEvent struct {
 	_ struct{} `type:"structure"`
 
-	// The blockchain address. for the contract
+	// The container for time.
+	BlockchainInstant *BlockchainInstant `locationName:"blockchainInstant" type:"structure"`
+
+	// This container specifies whether the transaction has reached Finality.
+	ConfirmationStatus *string `locationName:"confirmationStatus" type:"string" enum:"ConfirmationStatus"`
+
+	// The blockchain address for the contract
 	ContractAddress *string `locationName:"contractAddress" type:"string"`
 
 	// The type of transaction event.
@@ -3640,6 +4126,22 @@ type TransactionEvent struct {
 	// Network is a required field
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
 
+	// The position of the spent transaction output in the output list of the creating
+	// transaction.
+	//
+	// This is only returned for BITCOIN_VIN event types.
+	SpentVoutIndex *int64 `locationName:"spentVoutIndex" type:"integer"`
+
+	// The transactionHash that created the spent transaction output.
+	//
+	// This is only returned for BITCOIN_VIN event types.
+	SpentVoutTransactionHash *string `locationName:"spentVoutTransactionHash" type:"string"`
+
+	// The transactionId that created the spent transaction output.
+	//
+	// This is only returned for BITCOIN_VIN event types.
+	SpentVoutTransactionId *string `locationName:"spentVoutTransactionId" type:"string"`
+
 	// The wallet address receiving the transaction. It can either be a public key
 	// or a contract.
 	To *string `locationName:"to" type:"string"`
@@ -3647,21 +4149,26 @@ type TransactionEvent struct {
 	// The unique identifier for the token involved in the transaction.
 	TokenId *string `locationName:"tokenId" type:"string"`
 
-	// The hash of the transaction. It is generated whenever a transaction is verified
-	// and added to the blockchain.
+	// The hash of a transaction. It is generated when a transaction is created.
 	//
 	// TransactionHash is a required field
 	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
 
-	// The unique identifier of the transaction. It is generated whenever a transaction
-	// is verified and added to the blockchain.
+	// The identifier of a Bitcoin transaction. It is generated when a transaction
+	// is created.
 	TransactionId *string `locationName:"transactionId" type:"string"`
 
 	// The value that was transacted.
 	Value *string `locationName:"value" type:"string"`
 
-	// The position of the vout in the transaction output list.
+	// The position of the transaction output in the transaction output list.
 	VoutIndex *int64 `locationName:"voutIndex" type:"integer"`
+
+	// Specifies if the transaction output is spent or unspent. This is only returned
+	// for BITCOIN_VOUT event types.
+	//
+	// This is only returned for BITCOIN_VOUT event types.
+	VoutSpent *bool `locationName:"voutSpent" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -3680,6 +4187,18 @@ func (s TransactionEvent) String() string {
 // value will be replaced with "sensitive".
 func (s TransactionEvent) GoString() string {
 	return s.String()
+}
+
+// SetBlockchainInstant sets the BlockchainInstant field's value.
+func (s *TransactionEvent) SetBlockchainInstant(v *BlockchainInstant) *TransactionEvent {
+	s.BlockchainInstant = v
+	return s
+}
+
+// SetConfirmationStatus sets the ConfirmationStatus field's value.
+func (s *TransactionEvent) SetConfirmationStatus(v string) *TransactionEvent {
+	s.ConfirmationStatus = &v
+	return s
 }
 
 // SetContractAddress sets the ContractAddress field's value.
@@ -3703,6 +4222,24 @@ func (s *TransactionEvent) SetFrom(v string) *TransactionEvent {
 // SetNetwork sets the Network field's value.
 func (s *TransactionEvent) SetNetwork(v string) *TransactionEvent {
 	s.Network = &v
+	return s
+}
+
+// SetSpentVoutIndex sets the SpentVoutIndex field's value.
+func (s *TransactionEvent) SetSpentVoutIndex(v int64) *TransactionEvent {
+	s.SpentVoutIndex = &v
+	return s
+}
+
+// SetSpentVoutTransactionHash sets the SpentVoutTransactionHash field's value.
+func (s *TransactionEvent) SetSpentVoutTransactionHash(v string) *TransactionEvent {
+	s.SpentVoutTransactionHash = &v
+	return s
+}
+
+// SetSpentVoutTransactionId sets the SpentVoutTransactionId field's value.
+func (s *TransactionEvent) SetSpentVoutTransactionId(v string) *TransactionEvent {
+	s.SpentVoutTransactionId = &v
 	return s
 }
 
@@ -3742,6 +4279,12 @@ func (s *TransactionEvent) SetVoutIndex(v int64) *TransactionEvent {
 	return s
 }
 
+// SetVoutSpent sets the VoutSpent field's value.
+func (s *TransactionEvent) SetVoutSpent(v bool) *TransactionEvent {
+	s.VoutSpent = &v
+	return s
+}
+
 // The container of the transaction output.
 type TransactionOutputItem struct {
 	_ struct{} `type:"structure"`
@@ -3754,8 +4297,7 @@ type TransactionOutputItem struct {
 	// Network is a required field
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
 
-	// The hash of the transaction. It is generated whenever a transaction is verified
-	// and added to the blockchain.
+	// The hash of a transaction. It is generated when a transaction is created.
 	//
 	// TransactionHash is a required field
 	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
@@ -3926,6 +4468,54 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+// This container specifies filtering attributes related to BITCOIN_VOUT event
+// types
+type VoutFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies if the transaction output is spent or unspent.
+	//
+	// VoutSpent is a required field
+	VoutSpent *bool `locationName:"voutSpent" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoutFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VoutFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VoutFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VoutFilter"}
+	if s.VoutSpent == nil {
+		invalidParams.Add(request.NewErrParamRequired("VoutSpent"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVoutSpent sets the VoutSpent field's value.
+func (s *VoutFilter) SetVoutSpent(v bool) *VoutFilter {
+	s.VoutSpent = &v
+	return s
+}
+
 const (
 	// ConfirmationStatusFinal is a ConfirmationStatus enum value
 	ConfirmationStatusFinal = "FINAL"
@@ -3971,6 +4561,18 @@ func ExecutionStatus_Values() []string {
 	return []string{
 		ExecutionStatusFailed,
 		ExecutionStatusSucceeded,
+	}
+}
+
+const (
+	// ListFilteredTransactionEventsSortByBlockchainInstant is a ListFilteredTransactionEventsSortBy enum value
+	ListFilteredTransactionEventsSortByBlockchainInstant = "blockchainInstant"
+)
+
+// ListFilteredTransactionEventsSortBy_Values returns all elements of the ListFilteredTransactionEventsSortBy enum
+func ListFilteredTransactionEventsSortBy_Values() []string {
+	return []string{
+		ListFilteredTransactionEventsSortByBlockchainInstant,
 	}
 }
 
