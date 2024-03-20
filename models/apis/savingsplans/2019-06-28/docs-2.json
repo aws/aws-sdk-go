@@ -1,14 +1,15 @@
 {
   "version": "2.0",
-  "service": "<p>Savings Plans are a pricing model that offer significant savings on AWS usage (for example, on Amazon EC2 instances). You commit to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years, and receive a lower price for that usage. For more information, see the <a href=\"https://docs.aws.amazon.com/savingsplans/latest/userguide/\">AWS Savings Plans User Guide</a>.</p>",
+  "service": "<p>Savings Plans are a pricing model that offer significant savings on Amazon Web Services usage (for example, on Amazon EC2 instances). You commit to a consistent amount of usage per hour, in the specified currency, for a term of one or three years, and receive a lower price for that usage. For more information, see the <a href=\"https://docs.aws.amazon.com/savingsplans/latest/userguide/\">Amazon Web Services Savings Plans User Guide</a>.</p>",
   "operations": {
     "CreateSavingsPlan": "<p>Creates a Savings Plan.</p>",
     "DeleteQueuedSavingsPlan": "<p>Deletes the queued purchase for the specified Savings Plan.</p>",
-    "DescribeSavingsPlanRates": "<p>Describes the specified Savings Plans rates.</p>",
+    "DescribeSavingsPlanRates": "<p>Describes the rates for the specified Savings Plan.</p>",
     "DescribeSavingsPlans": "<p>Describes the specified Savings Plans.</p>",
-    "DescribeSavingsPlansOfferingRates": "<p>Describes the specified Savings Plans offering rates.</p>",
-    "DescribeSavingsPlansOfferings": "<p>Describes the specified Savings Plans offerings.</p>",
+    "DescribeSavingsPlansOfferingRates": "<p>Describes the offering rates for the specified Savings Plans.</p>",
+    "DescribeSavingsPlansOfferings": "<p>Describes the offerings for the specified Savings Plans.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "ReturnSavingsPlan": "<p>Returns the specified Savings Plan.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>"
   },
@@ -16,9 +17,9 @@
     "Amount": {
       "base": null,
       "refs": {
-        "CreateSavingsPlanRequest$commitment": "<p>The hourly commitment, in USD. This is a value between 0.001 and 1 million. You cannot specify more than five digits after the decimal point.</p>",
-        "CreateSavingsPlanRequest$upfrontPaymentAmount": "<p>The up-front payment amount. This is a whole number between 50 and 99 percent of the total value of the Savings Plan. This parameter is supported only if the payment option is <code>Partial Upfront</code>.</p>",
-        "SavingsPlan$commitment": "<p>The hourly commitment, in USD.</p>",
+        "CreateSavingsPlanRequest$commitment": "<p>The hourly commitment, in the same currency of the <code>savingsPlanOfferingId</code>. This is a value between 0.001 and 1 million. You cannot specify more than five digits after the decimal point.</p>",
+        "CreateSavingsPlanRequest$upfrontPaymentAmount": "<p>The up-front payment amount. This is a whole number between 50 and 99 percent of the total value of the Savings Plan. This parameter is only supported if the payment option is <code>Partial Upfront</code>.</p>",
+        "SavingsPlan$commitment": "<p>The hourly commitment amount in the specified currency.</p>",
         "SavingsPlan$upfrontPaymentAmount": "<p>The up-front payment amount.</p>",
         "SavingsPlan$recurringPaymentAmount": "<p>The recurring payment amount.</p>",
         "SavingsPlanRate$rate": "<p>The rate.</p>"
@@ -27,7 +28,8 @@
     "ClientToken": {
       "base": null,
       "refs": {
-        "CreateSavingsPlanRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+        "CreateSavingsPlanRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "ReturnSavingsPlanRequest$clientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
     },
     "CreateSavingsPlanRequest": {
@@ -59,7 +61,7 @@
     "DateTime": {
       "base": null,
       "refs": {
-        "CreateSavingsPlanRequest$purchaseTime": "<p>The time at which to purchase the Savings Plan, in UTC format (YYYY-MM-DDTHH:MM:SSZ).</p>"
+        "CreateSavingsPlanRequest$purchaseTime": "<p>The purchase time of the Savings Plan in UTC format (YYYY-MM-DDTHH:MM:SSZ).</p>"
       }
     },
     "DeleteQueuedSavingsPlanRequest": {
@@ -115,7 +117,7 @@
     "DurationsList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlansOfferingsRequest$durations": "<p>The durations, in seconds.</p>"
+        "DescribeSavingsPlansOfferingsRequest$durations": "<p>The duration, in seconds.</p>"
       }
     },
     "EC2InstanceFamily": {
@@ -181,7 +183,7 @@
       "base": null,
       "refs": {
         "DescribeSavingsPlanRatesRequest$nextToken": "<p>The token for the next page of results.</p>",
-        "DescribeSavingsPlanRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
+        "DescribeSavingsPlanRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeSavingsPlansOfferingRatesRequest$nextToken": "<p>The token for the next page of results.</p>",
         "DescribeSavingsPlansOfferingRatesResponse$nextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeSavingsPlansOfferingsRequest$nextToken": "<p>The token for the next page of results.</p>",
@@ -199,11 +201,21 @@
     "Region": {
       "base": null,
       "refs": {
-        "SavingsPlan$region": "<p>The AWS Region.</p>"
+        "SavingsPlan$region": "<p>The Amazon Web Services Region.</p>"
       }
     },
     "ResourceNotFoundException": {
       "base": "<p>The specified resource was not found.</p>",
+      "refs": {
+      }
+    },
+    "ReturnSavingsPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ReturnSavingsPlanResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -244,7 +256,7 @@
       }
     },
     "SavingsPlanFilter": {
-      "base": "<p>Information about a filter.</p>",
+      "base": "<p>Information about a Savings Plan filter.</p>",
       "refs": {
         "SavingsPlanFilterList$member": null
       }
@@ -262,6 +274,8 @@
         "DeleteQueuedSavingsPlanRequest$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "DescribeSavingsPlanRatesRequest$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "DescribeSavingsPlanRatesResponse$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
+        "ReturnSavingsPlanRequest$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
+        "ReturnSavingsPlanResponse$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "SavingsPlan$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "SavingsPlanIdList$member": null
       }
@@ -291,7 +305,7 @@
       }
     },
     "SavingsPlanOfferingFilterElement": {
-      "base": "<p>Information about a filter.</p>",
+      "base": "<p>Information about a Savings Plan offering filter.</p>",
       "refs": {
         "SavingsPlanOfferingFiltersList$member": null
       }
@@ -310,7 +324,7 @@
       }
     },
     "SavingsPlanOfferingProperty": {
-      "base": "<p>Information about a property.</p>",
+      "base": "<p>Information about a Savings Plan offering property.</p>",
       "refs": {
         "SavingsPlanOfferingPropertyList$member": null
       }
@@ -334,7 +348,7 @@
       }
     },
     "SavingsPlanOfferingRateFilterElement": {
-      "base": "<p>Information about a filter.</p>",
+      "base": "<p>Information about a Savings Plan offering rate filter.</p>",
       "refs": {
         "SavingsPlanOfferingRateFiltersList$member": null
       }
@@ -346,7 +360,7 @@
       }
     },
     "SavingsPlanOfferingRateProperty": {
-      "base": "<p>Information about a property.</p>",
+      "base": "<p>Information about a Savings Plan offering rate property.</p>",
       "refs": {
         "SavingsPlanOfferingRatePropertyList$member": null
       }
@@ -372,14 +386,14 @@
     "SavingsPlanOperation": {
       "base": null,
       "refs": {
-        "SavingsPlanOffering$operation": "<p>The specific AWS operation for the line item in the billing report.</p>",
+        "SavingsPlanOffering$operation": "<p>The specific Amazon Web Services operation for the line item in the billing report.</p>",
         "SavingsPlanOperationList$member": null
       }
     },
     "SavingsPlanOperationList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlansOfferingsRequest$operations": "<p>The specific AWS operation for the line item in the billing report.</p>"
+        "DescribeSavingsPlansOfferingsRequest$operations": "<p>The specific Amazon Web Services operation for the line item in the billing report.</p>"
       }
     },
     "SavingsPlanPaymentOption": {
@@ -410,7 +424,7 @@
     "SavingsPlanProductTypeList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlansOfferingRatesRequest$products": "<p>The AWS products.</p>",
+        "DescribeSavingsPlansOfferingRatesRequest$products": "<p>The Amazon Web Services products.</p>",
         "SavingsPlan$productTypes": "<p>The product types.</p>",
         "SavingsPlanOffering$productTypes": "<p>The product type.</p>"
       }
@@ -422,7 +436,7 @@
       }
     },
     "SavingsPlanRateFilter": {
-      "base": "<p>Information about a filter.</p>",
+      "base": "<p>Information about a Savings Plan rate filter.</p>",
       "refs": {
         "SavingsPlanRateFilterList$member": null
       }
@@ -448,21 +462,21 @@
     "SavingsPlanRateList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlanRatesResponse$searchResults": "<p>Information about the Savings Plans rates.</p>"
+        "DescribeSavingsPlanRatesResponse$searchResults": "<p>Information about the Savings Plan rates.</p>"
       }
     },
     "SavingsPlanRateOperation": {
       "base": null,
       "refs": {
-        "SavingsPlanOfferingRate$operation": "<p>The specific AWS operation for the line item in the billing report.</p>",
-        "SavingsPlanRate$operation": "<p>The specific AWS operation for the line item in the billing report.</p>",
+        "SavingsPlanOfferingRate$operation": "<p>The specific Amazon Web Services operation for the line item in the billing report.</p>",
+        "SavingsPlanRate$operation": "<p>The specific Amazon Web Services operation for the line item in the billing report.</p>",
         "SavingsPlanRateOperationList$member": null
       }
     },
     "SavingsPlanRateOperationList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlansOfferingRatesRequest$operations": "<p>The specific AWS operation for the line item in the billing report.</p>"
+        "DescribeSavingsPlansOfferingRatesRequest$operations": "<p>The specific Amazon Web Services operation for the line item in the billing report.</p>"
       }
     },
     "SavingsPlanRatePricePerUnit": {
@@ -472,7 +486,7 @@
       }
     },
     "SavingsPlanRateProperty": {
-      "base": "<p>Information about a property.</p>",
+      "base": "<p>Information about a Savings Plan rate property.</p>",
       "refs": {
         "SavingsPlanRatePropertyList$member": null
       }
@@ -540,14 +554,14 @@
     "SavingsPlanState": {
       "base": null,
       "refs": {
-        "SavingsPlan$state": "<p>The state.</p>",
+        "SavingsPlan$state": "<p>The current state.</p>",
         "SavingsPlanStateList$member": null
       }
     },
     "SavingsPlanStateList": {
       "base": null,
       "refs": {
-        "DescribeSavingsPlansRequest$states": "<p>The states.</p>"
+        "DescribeSavingsPlansRequest$states": "<p>The current states of the Savings Plans.</p>"
       }
     },
     "SavingsPlanType": {
@@ -563,7 +577,7 @@
       "base": null,
       "refs": {
         "DescribeSavingsPlansOfferingRatesRequest$savingsPlanTypes": "<p>The plan types.</p>",
-        "DescribeSavingsPlansOfferingsRequest$planTypes": "<p>The plan type.</p>"
+        "DescribeSavingsPlansOfferingsRequest$planTypes": "<p>The plan types.</p>"
       }
     },
     "SavingsPlanUsageType": {
@@ -607,6 +621,7 @@
         "SavingsPlan$description": "<p>The description.</p>",
         "SavingsPlan$start": "<p>The start time.</p>",
         "SavingsPlan$end": "<p>The end time.</p>",
+        "SavingsPlan$returnableUntil": "<p>The time until when a return for the Savings Plan can be requested. If the Savings Plan is not returnable, the field reflects the Savings Plan start time.</p>",
         "ServiceQuotaExceededException$message": null,
         "ValidationException$message": null
       }

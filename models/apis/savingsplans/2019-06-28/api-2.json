@@ -109,6 +109,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ReturnSavingsPlan":{
+      "name":"ReturnSavingsPlan",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ReturnSavingsPlan"
+      },
+      "input":{"shape":"ReturnSavingsPlanRequest"},
+      "output":{"shape":"ReturnSavingsPlanResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -348,6 +363,23 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ReturnSavingsPlanRequest":{
+      "type":"structure",
+      "required":["savingsPlanId"],
+      "members":{
+        "savingsPlanId":{"shape":"SavingsPlanId"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ReturnSavingsPlanResponse":{
+      "type":"structure",
+      "members":{
+        "savingsPlanId":{"shape":"SavingsPlanId"}
+      }
+    },
     "SavingsPlan":{
       "type":"structure",
       "members":{
@@ -368,7 +400,8 @@
         "upfrontPaymentAmount":{"shape":"Amount"},
         "recurringPaymentAmount":{"shape":"Amount"},
         "termDurationInSeconds":{"shape":"TermDurationInSeconds"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "returnableUntil":{"shape":"String"}
       }
     },
     "SavingsPlanArn":{
@@ -669,7 +702,9 @@
         "active",
         "retired",
         "queued",
-        "queued-deleted"
+        "queued-deleted",
+        "pending-return",
+        "returned"
       ]
     },
     "SavingsPlanStateList":{

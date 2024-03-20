@@ -88,6 +88,10 @@ type SavingsPlansAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *savingsplans.ListTagsForResourceInput, ...request.Option) (*savingsplans.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*savingsplans.ListTagsForResourceInput) (*request.Request, *savingsplans.ListTagsForResourceOutput)
 
+	ReturnSavingsPlan(*savingsplans.ReturnSavingsPlanInput) (*savingsplans.ReturnSavingsPlanOutput, error)
+	ReturnSavingsPlanWithContext(aws.Context, *savingsplans.ReturnSavingsPlanInput, ...request.Option) (*savingsplans.ReturnSavingsPlanOutput, error)
+	ReturnSavingsPlanRequest(*savingsplans.ReturnSavingsPlanInput) (*request.Request, *savingsplans.ReturnSavingsPlanOutput)
+
 	TagResource(*savingsplans.TagResourceInput) (*savingsplans.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *savingsplans.TagResourceInput, ...request.Option) (*savingsplans.TagResourceOutput, error)
 	TagResourceRequest(*savingsplans.TagResourceInput) (*request.Request, *savingsplans.TagResourceOutput)
