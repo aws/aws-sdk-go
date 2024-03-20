@@ -17909,16 +17909,18 @@ type WebhookFilter struct {
 	// Pattern is a required field
 	Pattern *string `locationName:"pattern" type:"string" required:"true"`
 
-	// The type of webhook filter. There are six webhook filter types: EVENT, ACTOR_ACCOUNT_ID,
-	// HEAD_REF, BASE_REF, FILE_PATH, and COMMIT_MESSAGE.
+	// The type of webhook filter. There are eight webhook filter types: EVENT,
+	// ACTOR_ACCOUNT_ID, HEAD_REF, BASE_REF, FILE_PATH, COMMIT_MESSAGE, TAG_NAME,
+	// and RELEASE_NAME.
 	//
 	//    * EVENT A webhook event triggers a build when the provided pattern matches
-	//    one of six event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED,
-	//    PULL_REQUEST_CLOSED, PULL_REQUEST_REOPENED, and PULL_REQUEST_MERGED. The
-	//    EVENT patterns are specified as a comma-separated string. For example,
-	//    PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED filters all push, pull
-	//    request created, and pull request updated events. The PULL_REQUEST_REOPENED
-	//    works with GitHub and GitHub Enterprise only.
+	//    one of eight event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED,
+	//    PULL_REQUEST_CLOSED, PULL_REQUEST_REOPENED, PULL_REQUEST_MERGED, RELEASED,
+	//    and PRERELEASED. The EVENT patterns are specified as a comma-separated
+	//    string. For example, PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED
+	//    filters all push, pull request created, and pull request updated events.
+	//    The PULL_REQUEST_REOPENED works with GitHub and GitHub Enterprise only.
+	//    The RELEASED and PRERELEASED work with GitHub only.
 	//
 	//    * ACTOR_ACCOUNT_ID A webhook event triggers a build when a GitHub, GitHub
 	//    Enterprise, or Bitbucket account ID matches the regular expression pattern.
@@ -17942,6 +17944,14 @@ type WebhookFilter struct {
 	//    matches the regular expression pattern. Works with GitHub and Bitbucket
 	//    events push and pull requests events. Also works with GitHub Enterprise
 	//    push events, but does not work with GitHub Enterprise pull request events.
+	//
+	//    * TAG_NAME A webhook triggers a build when the tag name of the release
+	//    matches the regular expression pattern. Works with RELEASED and PRERELEASED
+	//    events only.
+	//
+	//    * RELEASE_NAME A webhook triggers a build when the release name matches
+	//    the regular expression pattern. Works with RELEASED and PRERELEASED events
+	//    only.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"WebhookFilterType"`

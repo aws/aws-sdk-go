@@ -2263,9 +2263,13 @@ type GetTransactionInput struct {
 	Network *string `locationName:"network" type:"string" required:"true" enum:"QueryNetwork"`
 
 	// The hash of a transaction. It is generated when a transaction is created.
+	TransactionHash *string `locationName:"transactionHash" type:"string"`
+
+	// The identifier of a Bitcoin transaction. It is generated when a transaction
+	// is created.
 	//
-	// TransactionHash is a required field
-	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
+	// transactionId is only supported on the Bitcoin networks.
+	TransactionId *string `locationName:"transactionId" type:"string"`
 }
 
 // String returns the string representation.
@@ -2292,9 +2296,6 @@ func (s *GetTransactionInput) Validate() error {
 	if s.Network == nil {
 		invalidParams.Add(request.NewErrParamRequired("Network"))
 	}
-	if s.TransactionHash == nil {
-		invalidParams.Add(request.NewErrParamRequired("TransactionHash"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2311,6 +2312,12 @@ func (s *GetTransactionInput) SetNetwork(v string) *GetTransactionInput {
 // SetTransactionHash sets the TransactionHash field's value.
 func (s *GetTransactionInput) SetTransactionHash(v string) *GetTransactionInput {
 	s.TransactionHash = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *GetTransactionInput) SetTransactionId(v string) *GetTransactionInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -4302,6 +4309,10 @@ type TransactionOutputItem struct {
 	// TransactionHash is a required field
 	TransactionHash *string `locationName:"transactionHash" type:"string" required:"true"`
 
+	// The identifier of a Bitcoin transaction. It is generated when a transaction
+	// is created.
+	TransactionId *string `locationName:"transactionId" type:"string"`
+
 	// The time when the transaction occurred.
 	//
 	// TransactionTimestamp is a required field
@@ -4341,6 +4352,12 @@ func (s *TransactionOutputItem) SetNetwork(v string) *TransactionOutputItem {
 // SetTransactionHash sets the TransactionHash field's value.
 func (s *TransactionOutputItem) SetTransactionHash(v string) *TransactionOutputItem {
 	s.TransactionHash = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *TransactionOutputItem) SetTransactionId(v string) *TransactionOutputItem {
+	s.TransactionId = &v
 	return s
 }
 

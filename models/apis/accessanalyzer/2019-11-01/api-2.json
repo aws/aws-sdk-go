@@ -983,7 +983,9 @@
         "s3Bucket":{"shape":"S3BucketConfiguration"},
         "snsTopic":{"shape":"SnsTopicConfiguration"},
         "sqsQueue":{"shape":"SqsQueueConfiguration"},
-        "s3ExpressDirectoryBucket":{"shape":"S3ExpressDirectoryBucketConfiguration"}
+        "s3ExpressDirectoryBucket":{"shape":"S3ExpressDirectoryBucketConfiguration"},
+        "dynamodbStream":{"shape":"DynamodbStreamConfiguration"},
+        "dynamodbTable":{"shape":"DynamodbTableConfiguration"}
       },
       "union":true
     },
@@ -1129,6 +1131,20 @@
         }
       }
     },
+    "DynamodbStreamConfiguration":{
+      "type":"structure",
+      "members":{
+        "streamPolicy":{"shape":"DynamodbStreamPolicy"}
+      }
+    },
+    "DynamodbStreamPolicy":{"type":"string"},
+    "DynamodbTableConfiguration":{
+      "type":"structure",
+      "members":{
+        "tablePolicy":{"shape":"DynamodbTablePolicy"}
+      }
+    },
+    "DynamodbTablePolicy":{"type":"string"},
     "EbsGroup":{"type":"string"},
     "EbsGroupList":{
       "type":"list",
@@ -2219,7 +2235,9 @@
         "AWS::RDS::DBSnapshot",
         "AWS::RDS::DBClusterSnapshot",
         "AWS::SNS::Topic",
-        "AWS::S3Express::DirectoryBucket"
+        "AWS::S3Express::DirectoryBucket",
+        "AWS::DynamoDB::Table",
+        "AWS::DynamoDB::Stream"
       ]
     },
     "RetiringPrincipal":{"type":"string"},
@@ -2673,7 +2691,8 @@
         "AWS::S3::AccessPoint",
         "AWS::S3::MultiRegionAccessPoint",
         "AWS::S3ObjectLambda::AccessPoint",
-        "AWS::IAM::AssumeRolePolicyDocument"
+        "AWS::IAM::AssumeRolePolicyDocument",
+        "AWS::DynamoDB::Table"
       ]
     },
     "ValidatePolicyResponse":{

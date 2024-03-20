@@ -28241,7 +28241,20 @@ type AssociateInstanceStorageConfigInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// A valid resource type.
+	// A valid resource type. To enable streaming for real-time analysis of contacts
+	// (https://docs.aws.amazon.com/connect/latest/adminguide/enable-contact-analysis-segment-streams.html),
+	// use the following types:
+	//
+	//    * For chat contacts, use REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS.
+	//
+	//    * For voice contacts, use REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS.
+	//
+	// REAL_TIME_CONTACT_ANALYSIS_SEGMENTS is deprecated, but it is still supported
+	// and will apply only to VOICE channel contacts. Use REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS
+	// for voice contacts moving forward.
+	//
+	// If you have previously associated a stream with REAL_TIME_CONTACT_ANALYSIS_SEGMENTS,
+	// no action is needed to update the stream to REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"InstanceStorageResourceType"`
@@ -78632,6 +78645,12 @@ const (
 
 	// InstanceStorageResourceTypeScreenRecordings is a InstanceStorageResourceType enum value
 	InstanceStorageResourceTypeScreenRecordings = "SCREEN_RECORDINGS"
+
+	// InstanceStorageResourceTypeRealTimeContactAnalysisChatSegments is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeRealTimeContactAnalysisChatSegments = "REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS"
+
+	// InstanceStorageResourceTypeRealTimeContactAnalysisVoiceSegments is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeRealTimeContactAnalysisVoiceSegments = "REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS"
 )
 
 // InstanceStorageResourceType_Values returns all elements of the InstanceStorageResourceType enum
@@ -78647,6 +78666,8 @@ func InstanceStorageResourceType_Values() []string {
 		InstanceStorageResourceTypeAttachments,
 		InstanceStorageResourceTypeContactEvaluations,
 		InstanceStorageResourceTypeScreenRecordings,
+		InstanceStorageResourceTypeRealTimeContactAnalysisChatSegments,
+		InstanceStorageResourceTypeRealTimeContactAnalysisVoiceSegments,
 	}
 }
 

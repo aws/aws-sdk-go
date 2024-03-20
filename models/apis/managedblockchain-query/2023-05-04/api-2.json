@@ -429,12 +429,10 @@
     },
     "GetTransactionInput":{
       "type":"structure",
-      "required":[
-        "transactionHash",
-        "network"
-      ],
+      "required":["network"],
       "members":{
         "transactionHash":{"shape":"QueryTransactionHash"},
+        "transactionId":{"shape":"QueryTransactionId"},
         "network":{"shape":"QueryNetwork"}
       }
     },
@@ -888,6 +886,7 @@
       ],
       "members":{
         "transactionHash":{"shape":"QueryTransactionHash"},
+        "transactionId":{"shape":"QueryTransactionId"},
         "network":{"shape":"QueryNetwork"},
         "transactionTimestamp":{"shape":"Timestamp"},
         "confirmationStatus":{"shape":"ConfirmationStatus"}

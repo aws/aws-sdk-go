@@ -5188,6 +5188,12 @@ func (s *CloudTrailProperties) SetTrailProperties(v []*TrailProperties) *CloudTr
 type Configuration struct {
 	_ struct{} `type:"structure"`
 
+	// The access control configuration is for a DynamoDB stream.
+	DynamodbStream *DynamodbStreamConfiguration `locationName:"dynamodbStream" type:"structure"`
+
+	// The access control configuration is for a DynamoDB table or index.
+	DynamodbTable *DynamodbTableConfiguration `locationName:"dynamodbTable" type:"structure"`
+
 	// The access control configuration is for an Amazon EBS volume snapshot.
 	EbsSnapshot *EbsSnapshotConfiguration `locationName:"ebsSnapshot" type:"structure"`
 
@@ -5261,6 +5267,18 @@ func (s *Configuration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDynamodbStream sets the DynamodbStream field's value.
+func (s *Configuration) SetDynamodbStream(v *DynamodbStreamConfiguration) *Configuration {
+	s.DynamodbStream = v
+	return s
+}
+
+// SetDynamodbTable sets the DynamodbTable field's value.
+func (s *Configuration) SetDynamodbTable(v *DynamodbTableConfiguration) *Configuration {
+	s.DynamodbTable = v
+	return s
 }
 
 // SetEbsSnapshot sets the EbsSnapshot field's value.
@@ -6053,6 +6071,98 @@ func (s DeleteArchiveRuleOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteArchiveRuleOutput) GoString() string {
 	return s.String()
+}
+
+// The proposed access control configuration for a DynamoDB stream. You can
+// propose a configuration for a new DynamoDB stream or an existing DynamoDB
+// stream that you own by specifying the policy for the DynamoDB stream. For
+// more information, see PutResourcePolicy (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutResourcePolicy.html).
+//
+//   - If the configuration is for an existing DynamoDB stream and you do not
+//     specify the DynamoDB policy, then the access preview uses the existing
+//     DynamoDB policy for the stream.
+//
+//   - If the access preview is for a new resource and you do not specify the
+//     policy, then the access preview assumes a DynamoDB stream without a policy.
+//
+//   - To propose deletion of an existing DynamoDB stream policy, you can specify
+//     an empty string for the DynamoDB policy.
+type DynamodbStreamConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed resource policy defining who can access or manage the DynamoDB
+	// stream.
+	StreamPolicy *string `locationName:"streamPolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamodbStreamConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamodbStreamConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetStreamPolicy sets the StreamPolicy field's value.
+func (s *DynamodbStreamConfiguration) SetStreamPolicy(v string) *DynamodbStreamConfiguration {
+	s.StreamPolicy = &v
+	return s
+}
+
+// The proposed access control configuration for a DynamoDB table or index.
+// You can propose a configuration for a new DynamoDB table or index or an existing
+// DynamoDB table or index that you own by specifying the policy for the DynamoDB
+// table or index. For more information, see PutResourcePolicy (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutResourcePolicy.html).
+//
+//   - If the configuration is for an existing DynamoDB table or index and
+//     you do not specify the DynamoDB policy, then the access preview uses the
+//     existing DynamoDB policy for the table or index.
+//
+//   - If the access preview is for a new resource and you do not specify the
+//     policy, then the access preview assumes a DynamoDB table without a policy.
+//
+//   - To propose deletion of an existing DynamoDB table or index policy, you
+//     can specify an empty string for the DynamoDB policy.
+type DynamodbTableConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed resource policy defining who can access or manage the DynamoDB
+	// table.
+	TablePolicy *string `locationName:"tablePolicy" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamodbTableConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DynamodbTableConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTablePolicy sets the TablePolicy field's value.
+func (s *DynamodbTableConfiguration) SetTablePolicy(v string) *DynamodbTableConfiguration {
+	s.TablePolicy = &v
+	return s
 }
 
 // The proposed access control configuration for an Amazon EBS volume snapshot.
@@ -13040,6 +13150,12 @@ const (
 
 	// ResourceTypeAwsS3expressDirectoryBucket is a ResourceType enum value
 	ResourceTypeAwsS3expressDirectoryBucket = "AWS::S3Express::DirectoryBucket"
+
+	// ResourceTypeAwsDynamoDbTable is a ResourceType enum value
+	ResourceTypeAwsDynamoDbTable = "AWS::DynamoDB::Table"
+
+	// ResourceTypeAwsDynamoDbStream is a ResourceType enum value
+	ResourceTypeAwsDynamoDbStream = "AWS::DynamoDB::Stream"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -13059,6 +13175,8 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsRdsDbclusterSnapshot,
 		ResourceTypeAwsSnsTopic,
 		ResourceTypeAwsS3expressDirectoryBucket,
+		ResourceTypeAwsDynamoDbTable,
+		ResourceTypeAwsDynamoDbStream,
 	}
 }
 
@@ -13125,6 +13243,9 @@ const (
 
 	// ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument is a ValidatePolicyResourceType enum value
 	ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument = "AWS::IAM::AssumeRolePolicyDocument"
+
+	// ValidatePolicyResourceTypeAwsDynamoDbTable is a ValidatePolicyResourceType enum value
+	ValidatePolicyResourceTypeAwsDynamoDbTable = "AWS::DynamoDB::Table"
 )
 
 // ValidatePolicyResourceType_Values returns all elements of the ValidatePolicyResourceType enum
@@ -13135,6 +13256,7 @@ func ValidatePolicyResourceType_Values() []string {
 		ValidatePolicyResourceTypeAwsS3MultiRegionAccessPoint,
 		ValidatePolicyResourceTypeAwsS3objectLambdaAccessPoint,
 		ValidatePolicyResourceTypeAwsIamAssumeRolePolicyDocument,
+		ValidatePolicyResourceTypeAwsDynamoDbTable,
 	}
 }
 

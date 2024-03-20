@@ -1,3 +1,16 @@
+Release v1.51.4 (2024-03-20)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/codebuild`: Updates service documentation
+  * This release adds support for new webhook events (RELEASED and PRERELEASED) and filter types (TAG_NAME and RELEASE_NAME).
+* `service/connect`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release introduces 3 new APIs ('GetResourcePolicy', 'PutResourcePolicy' and 'DeleteResourcePolicy') and modifies the existing 'CreateTable' API for the resource-based policy support. It also modifies several APIs to accept a 'TableArn' for the 'TableName' parameter.
+* `service/managedblockchain-query`: Updates service API and documentation
+* `service/savingsplans`: Updates service API and documentation
+
 Release v1.51.3 (2024-03-19)
 ===
 
