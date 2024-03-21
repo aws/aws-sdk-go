@@ -1,3 +1,9 @@
+Release v1.51.5 (2024-03-21)
+===
+
+### Service Client Updates
+* `service/codeartifact`: Updates service API, documentation, and paginators
+
 Release v1.51.4 (2024-03-20)
 ===
 

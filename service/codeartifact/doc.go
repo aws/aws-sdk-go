@@ -11,10 +11,7 @@
 // and another repository, which effectively merges their contents from the
 // point of view of a package manager client.
 //
-// # CodeArtifact Components
-//
-// Use the information in this guide to help you work with the following CodeArtifact
-// components:
+// CodeArtifact concepts
 //
 //   - Repository: A CodeArtifact repository contains a set of package versions
 //     (https://docs.aws.amazon.com/codeartifact/latest/ug/welcome.html#welcome-concepts-package-version),
@@ -22,7 +19,7 @@
 //     so a single repository can contain packages of any supported type. Each
 //     repository exposes endpoints for fetching and publishing packages using
 //     tools like the npm CLI, the Maven CLI ( mvn ), Python CLIs ( pip and twine),
-//     and NuGet CLIs (nuget and dotnet).
+//     NuGet CLIs (nuget and dotnet), and the Swift package manager ( swift ).
 //
 //   - Domain: Repositories are aggregated into a higher-level entity known
 //     as a domain. All package assets and metadata are stored in the domain,
@@ -43,11 +40,22 @@
 //     npm (https://docs.aws.amazon.com/codeartifact/latest/ug/using-npm.html),
 //     PyPI (https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html),
 //     Maven (https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven),
-//     and NuGet (https://docs.aws.amazon.com/codeartifact/latest/ug/using-nuget)
+//     NuGet (https://docs.aws.amazon.com/codeartifact/latest/ug/using-nuget),
+//     Swift (https://docs.aws.amazon.com/codeartifact/latest/ug/using-swift),
+//     and generic (https://docs.aws.amazon.com/codeartifact/latest/ug/using-generic)
 //     package formats. In CodeArtifact, a package consists of: A name (for example,
 //     webpack is the name of a popular npm package) An optional namespace (for
 //     example, @types in @types/node) A set of versions (for example, 1.0.0,
 //     1.0.1, 1.0.2, etc.) Package-level metadata (for example, npm tags)
+//
+//   - Package group: A group of packages that match a specified definition.
+//     Package groups can be used to apply configuration to multiple packages
+//     that match a defined pattern using package format, package namespace,
+//     and package name. You can use package groups to more conveniently configure
+//     package origin controls for multiple packages. Package origin controls
+//     are used to block or allow ingestion or publishing of new package versions,
+//     which protects users from malicious actions known as dependency substitution
+//     attacks.
 //
 //   - Package version: A version of a package, such as @types/node 12.6.9.
 //     The version number format and semantics vary for different package formats.
@@ -65,7 +73,7 @@
 //   - Asset: An individual file stored in CodeArtifact associated with a package
 //     version, such as an npm .tgz file or Maven POM and JAR files.
 //
-// CodeArtifact supports these operations:
+// CodeArtifact supported API operations
 //
 //   - AssociateExternalConnection: Adds an existing external connection to
 //     a repository.
@@ -73,7 +81,9 @@
 //   - CopyPackageVersions: Copies package versions from one repository to
 //     another repository in the same domain.
 //
-//   - CreateDomain: Creates a domain
+//   - CreateDomain: Creates a domain.
+//
+//   - CreatePackageGroup: Creates a package group.
 //
 //   - CreateRepository: Creates a CodeArtifact repository in a domain.
 //
@@ -84,6 +94,9 @@
 //     on a domain.
 //
 //   - DeletePackage: Deletes a package and all associated package versions.
+//
+//   - DeletePackageGroup: Deletes a package group. Does not delete packages
+//     or package versions that are associated with a package group.
 //
 //   - DeletePackageVersions: Deletes versions of a package. After a package
 //     has been deleted, it can be republished, but its assets and metadata cannot
@@ -100,6 +113,9 @@
 //   - DescribePackage: Returns a PackageDescription (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDescription.html)
 //     object that contains details about a package.
 //
+//   - DescribePackageGroup: Returns a PackageGroup (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageGroup.html)
+//     object that contains details about a package group.
+//
 //   - DescribePackageVersion: Returns a PackageVersionDescription (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html)
 //     object that contains details about a package version.
 //
@@ -112,6 +128,9 @@
 //
 //   - DisassociateExternalConnection: Removes an existing external connection
 //     from a repository.
+//
+//   - GetAssociatedPackageGroup: Returns the most closely associated package
+//     group to the specified package.
 //
 //   - GetAuthorizationToken: Generates a temporary authorization token for
 //     accessing repositories in the domain. The token expires the authorization
@@ -129,15 +148,24 @@
 //
 //   - GetRepositoryEndpoint: Returns the endpoint of a repository for a specific
 //     package format. A repository has one endpoint for each package format:
-//     maven npm nuget pypi
+//     generic maven npm nuget pypi swift
 //
 //   - GetRepositoryPermissionsPolicy: Returns the resource policy that is
 //     set on a repository.
+//
+//   - ListAllowedRepositoriesForGroup: Lists the allowed repositories for
+//     a package group that has origin configuration set to ALLOW_SPECIFIC_REPOSITORIES.
+//
+//   - ListAssociatedPackages: Returns a list of packages associated with the
+//     requested package group.
 //
 //   - ListDomains: Returns a list of DomainSummary objects. Each returned
 //     DomainSummary object contains information about a domain.
 //
 //   - ListPackages: Lists the packages in a repository.
+//
+//   - ListPackageGroups: Returns a list of package groups in the requested
+//     domain.
 //
 //   - ListPackageVersionAssets: Lists the assets for a given package version.
 //
@@ -152,6 +180,9 @@
 //
 //   - ListRepositoriesInDomain: Returns a list of the repositories in a domain.
 //
+//   - ListSubPackageGroups: Returns a list of direct children of the specified
+//     package group.
+//
 //   - PublishPackageVersion: Creates a new package version containing one
 //     or more assets.
 //
@@ -163,6 +194,12 @@
 //
 //   - PutRepositoryPermissionsPolicy: Sets the resource policy on a repository
 //     that specifies permissions to access it.
+//
+//   - UpdatePackageGroup: Updates a package group. This API cannot be used
+//     to update a package group's origin configuration or pattern.
+//
+//   - UpdatePackageGroupOriginConfiguration: Updates the package origin configuration
+//     for a package group.
 //
 //   - UpdatePackageVersionsStatus: Updates the status of one or more versions
 //     of a package.
