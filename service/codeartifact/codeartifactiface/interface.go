@@ -72,6 +72,10 @@ type CodeArtifactAPI interface {
 	CreateDomainWithContext(aws.Context, *codeartifact.CreateDomainInput, ...request.Option) (*codeartifact.CreateDomainOutput, error)
 	CreateDomainRequest(*codeartifact.CreateDomainInput) (*request.Request, *codeartifact.CreateDomainOutput)
 
+	CreatePackageGroup(*codeartifact.CreatePackageGroupInput) (*codeartifact.CreatePackageGroupOutput, error)
+	CreatePackageGroupWithContext(aws.Context, *codeartifact.CreatePackageGroupInput, ...request.Option) (*codeartifact.CreatePackageGroupOutput, error)
+	CreatePackageGroupRequest(*codeartifact.CreatePackageGroupInput) (*request.Request, *codeartifact.CreatePackageGroupOutput)
+
 	CreateRepository(*codeartifact.CreateRepositoryInput) (*codeartifact.CreateRepositoryOutput, error)
 	CreateRepositoryWithContext(aws.Context, *codeartifact.CreateRepositoryInput, ...request.Option) (*codeartifact.CreateRepositoryOutput, error)
 	CreateRepositoryRequest(*codeartifact.CreateRepositoryInput) (*request.Request, *codeartifact.CreateRepositoryOutput)
@@ -87,6 +91,10 @@ type CodeArtifactAPI interface {
 	DeletePackage(*codeartifact.DeletePackageInput) (*codeartifact.DeletePackageOutput, error)
 	DeletePackageWithContext(aws.Context, *codeartifact.DeletePackageInput, ...request.Option) (*codeartifact.DeletePackageOutput, error)
 	DeletePackageRequest(*codeartifact.DeletePackageInput) (*request.Request, *codeartifact.DeletePackageOutput)
+
+	DeletePackageGroup(*codeartifact.DeletePackageGroupInput) (*codeartifact.DeletePackageGroupOutput, error)
+	DeletePackageGroupWithContext(aws.Context, *codeartifact.DeletePackageGroupInput, ...request.Option) (*codeartifact.DeletePackageGroupOutput, error)
+	DeletePackageGroupRequest(*codeartifact.DeletePackageGroupInput) (*request.Request, *codeartifact.DeletePackageGroupOutput)
 
 	DeletePackageVersions(*codeartifact.DeletePackageVersionsInput) (*codeartifact.DeletePackageVersionsOutput, error)
 	DeletePackageVersionsWithContext(aws.Context, *codeartifact.DeletePackageVersionsInput, ...request.Option) (*codeartifact.DeletePackageVersionsOutput, error)
@@ -108,6 +116,10 @@ type CodeArtifactAPI interface {
 	DescribePackageWithContext(aws.Context, *codeartifact.DescribePackageInput, ...request.Option) (*codeartifact.DescribePackageOutput, error)
 	DescribePackageRequest(*codeartifact.DescribePackageInput) (*request.Request, *codeartifact.DescribePackageOutput)
 
+	DescribePackageGroup(*codeartifact.DescribePackageGroupInput) (*codeartifact.DescribePackageGroupOutput, error)
+	DescribePackageGroupWithContext(aws.Context, *codeartifact.DescribePackageGroupInput, ...request.Option) (*codeartifact.DescribePackageGroupOutput, error)
+	DescribePackageGroupRequest(*codeartifact.DescribePackageGroupInput) (*request.Request, *codeartifact.DescribePackageGroupOutput)
+
 	DescribePackageVersion(*codeartifact.DescribePackageVersionInput) (*codeartifact.DescribePackageVersionOutput, error)
 	DescribePackageVersionWithContext(aws.Context, *codeartifact.DescribePackageVersionInput, ...request.Option) (*codeartifact.DescribePackageVersionOutput, error)
 	DescribePackageVersionRequest(*codeartifact.DescribePackageVersionInput) (*request.Request, *codeartifact.DescribePackageVersionOutput)
@@ -123,6 +135,10 @@ type CodeArtifactAPI interface {
 	DisposePackageVersions(*codeartifact.DisposePackageVersionsInput) (*codeartifact.DisposePackageVersionsOutput, error)
 	DisposePackageVersionsWithContext(aws.Context, *codeartifact.DisposePackageVersionsInput, ...request.Option) (*codeartifact.DisposePackageVersionsOutput, error)
 	DisposePackageVersionsRequest(*codeartifact.DisposePackageVersionsInput) (*request.Request, *codeartifact.DisposePackageVersionsOutput)
+
+	GetAssociatedPackageGroup(*codeartifact.GetAssociatedPackageGroupInput) (*codeartifact.GetAssociatedPackageGroupOutput, error)
+	GetAssociatedPackageGroupWithContext(aws.Context, *codeartifact.GetAssociatedPackageGroupInput, ...request.Option) (*codeartifact.GetAssociatedPackageGroupOutput, error)
+	GetAssociatedPackageGroupRequest(*codeartifact.GetAssociatedPackageGroupInput) (*request.Request, *codeartifact.GetAssociatedPackageGroupOutput)
 
 	GetAuthorizationToken(*codeartifact.GetAuthorizationTokenInput) (*codeartifact.GetAuthorizationTokenOutput, error)
 	GetAuthorizationTokenWithContext(aws.Context, *codeartifact.GetAuthorizationTokenInput, ...request.Option) (*codeartifact.GetAuthorizationTokenOutput, error)
@@ -148,12 +164,33 @@ type CodeArtifactAPI interface {
 	GetRepositoryPermissionsPolicyWithContext(aws.Context, *codeartifact.GetRepositoryPermissionsPolicyInput, ...request.Option) (*codeartifact.GetRepositoryPermissionsPolicyOutput, error)
 	GetRepositoryPermissionsPolicyRequest(*codeartifact.GetRepositoryPermissionsPolicyInput) (*request.Request, *codeartifact.GetRepositoryPermissionsPolicyOutput)
 
+	ListAllowedRepositoriesForGroup(*codeartifact.ListAllowedRepositoriesForGroupInput) (*codeartifact.ListAllowedRepositoriesForGroupOutput, error)
+	ListAllowedRepositoriesForGroupWithContext(aws.Context, *codeartifact.ListAllowedRepositoriesForGroupInput, ...request.Option) (*codeartifact.ListAllowedRepositoriesForGroupOutput, error)
+	ListAllowedRepositoriesForGroupRequest(*codeartifact.ListAllowedRepositoriesForGroupInput) (*request.Request, *codeartifact.ListAllowedRepositoriesForGroupOutput)
+
+	ListAllowedRepositoriesForGroupPages(*codeartifact.ListAllowedRepositoriesForGroupInput, func(*codeartifact.ListAllowedRepositoriesForGroupOutput, bool) bool) error
+	ListAllowedRepositoriesForGroupPagesWithContext(aws.Context, *codeartifact.ListAllowedRepositoriesForGroupInput, func(*codeartifact.ListAllowedRepositoriesForGroupOutput, bool) bool, ...request.Option) error
+
+	ListAssociatedPackages(*codeartifact.ListAssociatedPackagesInput) (*codeartifact.ListAssociatedPackagesOutput, error)
+	ListAssociatedPackagesWithContext(aws.Context, *codeartifact.ListAssociatedPackagesInput, ...request.Option) (*codeartifact.ListAssociatedPackagesOutput, error)
+	ListAssociatedPackagesRequest(*codeartifact.ListAssociatedPackagesInput) (*request.Request, *codeartifact.ListAssociatedPackagesOutput)
+
+	ListAssociatedPackagesPages(*codeartifact.ListAssociatedPackagesInput, func(*codeartifact.ListAssociatedPackagesOutput, bool) bool) error
+	ListAssociatedPackagesPagesWithContext(aws.Context, *codeartifact.ListAssociatedPackagesInput, func(*codeartifact.ListAssociatedPackagesOutput, bool) bool, ...request.Option) error
+
 	ListDomains(*codeartifact.ListDomainsInput) (*codeartifact.ListDomainsOutput, error)
 	ListDomainsWithContext(aws.Context, *codeartifact.ListDomainsInput, ...request.Option) (*codeartifact.ListDomainsOutput, error)
 	ListDomainsRequest(*codeartifact.ListDomainsInput) (*request.Request, *codeartifact.ListDomainsOutput)
 
 	ListDomainsPages(*codeartifact.ListDomainsInput, func(*codeartifact.ListDomainsOutput, bool) bool) error
 	ListDomainsPagesWithContext(aws.Context, *codeartifact.ListDomainsInput, func(*codeartifact.ListDomainsOutput, bool) bool, ...request.Option) error
+
+	ListPackageGroups(*codeartifact.ListPackageGroupsInput) (*codeartifact.ListPackageGroupsOutput, error)
+	ListPackageGroupsWithContext(aws.Context, *codeartifact.ListPackageGroupsInput, ...request.Option) (*codeartifact.ListPackageGroupsOutput, error)
+	ListPackageGroupsRequest(*codeartifact.ListPackageGroupsInput) (*request.Request, *codeartifact.ListPackageGroupsOutput)
+
+	ListPackageGroupsPages(*codeartifact.ListPackageGroupsInput, func(*codeartifact.ListPackageGroupsOutput, bool) bool) error
+	ListPackageGroupsPagesWithContext(aws.Context, *codeartifact.ListPackageGroupsInput, func(*codeartifact.ListPackageGroupsOutput, bool) bool, ...request.Option) error
 
 	ListPackageVersionAssets(*codeartifact.ListPackageVersionAssetsInput) (*codeartifact.ListPackageVersionAssetsOutput, error)
 	ListPackageVersionAssetsWithContext(aws.Context, *codeartifact.ListPackageVersionAssetsInput, ...request.Option) (*codeartifact.ListPackageVersionAssetsOutput, error)
@@ -194,6 +231,13 @@ type CodeArtifactAPI interface {
 	ListRepositoriesInDomainPages(*codeartifact.ListRepositoriesInDomainInput, func(*codeartifact.ListRepositoriesInDomainOutput, bool) bool) error
 	ListRepositoriesInDomainPagesWithContext(aws.Context, *codeartifact.ListRepositoriesInDomainInput, func(*codeartifact.ListRepositoriesInDomainOutput, bool) bool, ...request.Option) error
 
+	ListSubPackageGroups(*codeartifact.ListSubPackageGroupsInput) (*codeartifact.ListSubPackageGroupsOutput, error)
+	ListSubPackageGroupsWithContext(aws.Context, *codeartifact.ListSubPackageGroupsInput, ...request.Option) (*codeartifact.ListSubPackageGroupsOutput, error)
+	ListSubPackageGroupsRequest(*codeartifact.ListSubPackageGroupsInput) (*request.Request, *codeartifact.ListSubPackageGroupsOutput)
+
+	ListSubPackageGroupsPages(*codeartifact.ListSubPackageGroupsInput, func(*codeartifact.ListSubPackageGroupsOutput, bool) bool) error
+	ListSubPackageGroupsPagesWithContext(aws.Context, *codeartifact.ListSubPackageGroupsInput, func(*codeartifact.ListSubPackageGroupsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*codeartifact.ListTagsForResourceInput) (*codeartifact.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *codeartifact.ListTagsForResourceInput, ...request.Option) (*codeartifact.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*codeartifact.ListTagsForResourceInput) (*request.Request, *codeartifact.ListTagsForResourceOutput)
@@ -221,6 +265,14 @@ type CodeArtifactAPI interface {
 	UntagResource(*codeartifact.UntagResourceInput) (*codeartifact.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *codeartifact.UntagResourceInput, ...request.Option) (*codeartifact.UntagResourceOutput, error)
 	UntagResourceRequest(*codeartifact.UntagResourceInput) (*request.Request, *codeartifact.UntagResourceOutput)
+
+	UpdatePackageGroup(*codeartifact.UpdatePackageGroupInput) (*codeartifact.UpdatePackageGroupOutput, error)
+	UpdatePackageGroupWithContext(aws.Context, *codeartifact.UpdatePackageGroupInput, ...request.Option) (*codeartifact.UpdatePackageGroupOutput, error)
+	UpdatePackageGroupRequest(*codeartifact.UpdatePackageGroupInput) (*request.Request, *codeartifact.UpdatePackageGroupOutput)
+
+	UpdatePackageGroupOriginConfiguration(*codeartifact.UpdatePackageGroupOriginConfigurationInput) (*codeartifact.UpdatePackageGroupOriginConfigurationOutput, error)
+	UpdatePackageGroupOriginConfigurationWithContext(aws.Context, *codeartifact.UpdatePackageGroupOriginConfigurationInput, ...request.Option) (*codeartifact.UpdatePackageGroupOriginConfigurationOutput, error)
+	UpdatePackageGroupOriginConfigurationRequest(*codeartifact.UpdatePackageGroupOriginConfigurationInput) (*request.Request, *codeartifact.UpdatePackageGroupOriginConfigurationOutput)
 
 	UpdatePackageVersionsStatus(*codeartifact.UpdatePackageVersionsStatusInput) (*codeartifact.UpdatePackageVersionsStatusOutput, error)
 	UpdatePackageVersionsStatusWithContext(aws.Context, *codeartifact.UpdatePackageVersionsStatusInput, ...request.Option) (*codeartifact.UpdatePackageVersionsStatusOutput, error)
