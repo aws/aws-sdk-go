@@ -2182,9 +2182,9 @@ func (c *Kendra) DeleteIndexRequest(input *DeleteIndexInput) (req *request.Reque
 
 // DeleteIndex API operation for AWSKendraFrontendService.
 //
-// Deletes an existing Amazon Kendra index. An exception is not thrown if the
-// index is already being deleted. While the index is being deleted, the Status
-// field returned by a call to the DescribeIndex API is set to DELETING.
+// Deletes an Amazon Kendra index. An exception is not thrown if the index is
+// already being deleted. While the index is being deleted, the Status field
+// returned by a call to the DescribeIndex API is set to DELETING.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2511,7 +2511,7 @@ func (c *Kendra) DeleteThesaurusRequest(input *DeleteThesaurusInput) (req *reque
 
 // DeleteThesaurus API operation for AWSKendraFrontendService.
 //
-// Deletes an existing Amazon Kendra thesaurus.
+// Deletes an Amazon Kendra thesaurus.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3104,7 +3104,7 @@ func (c *Kendra) DescribeIndexRequest(input *DescribeIndexInput) (req *request.R
 
 // DescribeIndex API operation for AWSKendraFrontendService.
 //
-// Gets information about an existing Amazon Kendra index.
+// Gets information about an Amazon Kendra index.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3510,7 +3510,7 @@ func (c *Kendra) DescribeThesaurusRequest(input *DescribeThesaurusInput) (req *r
 
 // DescribeThesaurus API operation for AWSKendraFrontendService.
 //
-// Gets information about an existing Amazon Kendra thesaurus.
+// Gets information about an Amazon Kendra thesaurus.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7028,7 +7028,7 @@ func (c *Kendra) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *req
 
 // UpdateDataSource API operation for AWSKendraFrontendService.
 //
-// Updates an existing Amazon Kendra data source connector.
+// Updates an Amazon Kendra data source connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7340,7 +7340,7 @@ func (c *Kendra) UpdateIndexRequest(input *UpdateIndexInput) (req *request.Reque
 
 // UpdateIndex API operation for AWSKendraFrontendService.
 //
-// Updates an existing Amazon Kendra index.
+// Updates an Amazon Kendra index.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12846,6 +12846,8 @@ type CreateIndexInput struct {
 
 	// Gets users and groups from IAM Identity Center identity source. To configure
 	// this, see UserGroupResolutionConfiguration (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	// This is useful for user context filtering, where search results are filtered
+	// based on the user or their group access to documents.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration.
@@ -13511,10 +13513,38 @@ type DataSourceConfiguration struct {
 
 	// Provides the configuration information to connect to Amazon FSx as your data
 	// source.
+	//
+	// Amazon Kendra now supports an upgraded Amazon FSx Windows connector.
+	//
+	// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+	// object instead of the FsxConfiguration object to configure your connector.
+	//
+	// Connectors configured using the older console and API architecture will continue
+	// to function as configured. However, you won't be able to edit or update them.
+	// If you want to edit or update your connector configuration, you must create
+	// a new connector.
+	//
+	// We recommended migrating your connector workflow to the upgraded version.
+	// Support for connectors configured using the older architecture is scheduled
+	// to end by June 2024.
 	FsxConfiguration *FsxConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to GitHub as your data
 	// source.
+	//
+	// Amazon Kendra now supports an upgraded GitHub connector.
+	//
+	// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+	// object instead of the GitHubConfiguration object to configure your connector.
+	//
+	// Connectors configured using the older console and API architecture will continue
+	// to function as configured. However, you won’t be able to edit or update
+	// them. If you want to edit or update your connector configuration, you must
+	// create a new connector.
+	//
+	// We recommended migrating your connector workflow to the upgraded version.
+	// Support for connectors configured using the older architecture is scheduled
+	// to end by June 2024.
 	GitHubConfiguration *GitHubConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to Google Drive as your
@@ -13533,6 +13563,21 @@ type DataSourceConfiguration struct {
 
 	// Provides the configuration information to connect to an Amazon S3 bucket
 	// as your data source.
+	//
+	// Amazon Kendra now supports an upgraded Amazon S3 connector.
+	//
+	// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+	// object instead of the S3DataSourceConfiguration object to configure your
+	// connector.
+	//
+	// Connectors configured using the older console and API architecture will continue
+	// to function as configured. However, you won't be able to edit or update them.
+	// If you want to edit or update your connector configuration, you must create
+	// a new connector.
+	//
+	// We recommended migrating your connector workflow to the upgraded version.
+	// Support for connectors configured using the older architecture is scheduled
+	// to end by June 2024.
 	S3Configuration *S3DataSourceConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to Salesforce as your data
@@ -13548,6 +13593,20 @@ type DataSourceConfiguration struct {
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to Slack as your data source.
+	//
+	// Amazon Kendra now supports an upgraded Slack connector.
+	//
+	// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+	// object instead of the SlackConfiguration object to configure your connector.
+	//
+	// Connectors configured using the older console and API architecture will continue
+	// to function as configured. However, you won't be able to edit or update them.
+	// If you want to edit or update your connector configuration, you must create
+	// a new connector.
+	//
+	// We recommended migrating your connector workflow to the upgraded version.
+	// Support for connectors configured using the older architecture is scheduled
+	// to end by June 2024.
 	SlackConfiguration *SlackConfiguration `type:"structure"`
 
 	// Provides a template for the configuration information to connect to your
@@ -16252,10 +16311,10 @@ type DescribeIndexOutput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission
-	// to write to your Amazon Cloudwatch logs.
+	// to write to your Amazon CloudWatch logs.
 	RoleArn *string `type:"string"`
 
-	// The identifier of the KMScustomer master key (CMK) that is used to encrypt
+	// The identifier of the KMS customer master key (CMK) that is used to encrypt
 	// your data. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
@@ -16264,14 +16323,15 @@ type DescribeIndexOutput struct {
 	// a message that explains why.
 	Status *string `type:"string" enum:"IndexStatus"`
 
-	// The Unix when the index was last updated.
+	// The Unix timestamp when the index was last updated.
 	UpdatedAt *time.Time `type:"timestamp"`
 
 	// The user context policy for the Amazon Kendra index.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Whether you have enabled the configuration for fetching access levels of
-	// groups and users from an IAM Identity Center identity source.
+	// Whether you have enabled IAM Identity Center identity source for your users
+	// and groups. This is useful for user context filtering, where search results
+	// are filtered based on the user or their group access to documents.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration for the Amazon Kendra index.
@@ -19725,6 +19785,20 @@ func (s *FeaturedResultsSetSummary) SetStatus(v string) *FeaturedResultsSetSumma
 
 // Provides the configuration information to connect to Amazon FSx as your data
 // source.
+//
+// Amazon Kendra now supports an upgraded Amazon FSx Windows connector.
+//
+// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+// object instead of the FsxConfiguration object to configure your connector.
+//
+// Connectors configured using the older console and API architecture will continue
+// to function as configured. However, you won't be able to edit or update them.
+// If you want to edit or update your connector configuration, you must create
+// a new connector.
+//
+// We recommended migrating your connector workflow to the upgraded version.
+// Support for connectors configured using the older architecture is scheduled
+// to end by June 2024.
 type FsxConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20228,6 +20302,20 @@ func (s *GetSnapshotsOutput) SetSnapshotsDataHeader(v []*string) *GetSnapshotsOu
 
 // Provides the configuration information to connect to GitHub as your data
 // source.
+//
+// Amazon Kendra now supports an upgraded GitHub connector.
+//
+// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+// object instead of the GitHubConfiguration object to configure your connector.
+//
+// Connectors configured using the older console and API architecture will continue
+// to function as configured. However, you won’t be able to edit or update
+// them. If you want to edit or update your connector configuration, you must
+// create a new connector.
+//
+// We recommended migrating your connector workflow to the upgraded version.
+// Support for connectors configured using the older architecture is scheduled
+// to end by June 2024.
 type GitHubConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -23848,7 +23936,7 @@ type OnPremiseConfiguration struct {
 	// HostUrl is a required field
 	HostUrl *string `min:"1" type:"string" required:"true"`
 
-	// The name of the organization of the GitHub Enterprise Server (in-premise)
+	// The name of the organization of the GitHub Enterprise Server (on-premises)
 	// account you want to connect to. You can find your organization name by logging
 	// into GitHub desktop and selecting Your organizations under your profile picture
 	// dropdown.
@@ -24622,7 +24710,10 @@ type QueryInput struct {
 
 	// The input query text for the search. Amazon Kendra truncates queries at 30
 	// token words, which excludes punctuation and stop words. Truncation still
-	// applies if you use Boolean or more advanced, complex queries.
+	// applies if you use Boolean or more advanced, complex queries. For example,
+	// Timeoff AND October AND Category:HR is counted as 3 tokens: timeoff, october,
+	// hr. For more information, see Searching with advanced query syntax (https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax)
+	// in the Amazon Kendra Developer Guide.
 	QueryText *string `type:"string"`
 
 	// An array of document fields/attributes to include in the response. You can
@@ -24993,7 +25084,9 @@ type QueryResultItem struct {
 	// in DocumentExcerpt.
 	Format *string `type:"string" enum:"QueryResultFormat"`
 
-	// The identifier for the query result.
+	// The unique identifier for the query result item id (Id) and the query result
+	// item document id (DocumentId) combined. The value of this field changes with
+	// every request, even when you have the same documents.
 	Id *string `min:"1" type:"string"`
 
 	// Indicates the confidence level of Amazon Kendra providing a relevant result
@@ -25443,8 +25536,7 @@ type Relevance struct {
 
 	// Indicates that this field determines how "fresh" a document is. For example,
 	// if document 1 was created on November 5, and document 2 was created on October
-	// 31, document 1 is "fresher" than document 2. You can only set the Freshness
-	// field on one DATE type field. Only applies to DATE fields.
+	// 31, document 1 is "fresher" than document 2. Only applies to DATE fields.
 	Freshness *bool `type:"boolean"`
 
 	// The relative importance of the field in the search. Larger numbers provide
@@ -25461,11 +25553,11 @@ type Relevance struct {
 	// in a task tracking application, a priority 1 task is more important than
 	// a priority 5 task.
 	//
-	// Only applies to LONG and DOUBLE fields.
+	// Only applies to LONG fields.
 	RankOrder *string `type:"string" enum:"Order"`
 
 	// A list of values that should be given a different boost when they appear
-	// in the result list. For example, if you are boosting a field called "department,"
+	// in the result list. For example, if you are boosting a field called "department",
 	// query terms that match the department field are boosted in the result. However,
 	// you can add entries from the department field to boost documents with those
 	// values higher.
@@ -25909,7 +26001,10 @@ type RetrieveInput struct {
 	// The input query text to retrieve relevant passages for the search. Amazon
 	// Kendra truncates queries at 30 token words, which excludes punctuation and
 	// stop words. Truncation still applies if you use Boolean or more advanced,
-	// complex queries.
+	// complex queries. For example, Timeoff AND October AND Category:HR is counted
+	// as 3 tokens: timeoff, october, hr. For more information, see Searching with
+	// advanced query syntax (https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax)
+	// in the Amazon Kendra Developer Guide.
 	//
 	// QueryText is a required field
 	QueryText *string `type:"string" required:"true"`
@@ -26164,6 +26259,21 @@ func (s *RetrieveResultItem) SetScoreAttributes(v *ScoreAttributes) *RetrieveRes
 }
 
 // Provides the configuration information to connect to an Amazon S3 bucket.
+//
+// Amazon Kendra now supports an upgraded Amazon S3 connector.
+//
+// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+// object instead of the S3DataSourceConfiguration object to configure your
+// connector.
+//
+// Connectors configured using the older console and API architecture will continue
+// to function as configured. However, you won't be able to edit or update them.
+// If you want to edit or update your connector configuration, you must create
+// a new connector.
+//
+// We recommended migrating your connector workflow to the upgraded version.
+// Support for connectors configured using the older architecture is scheduled
+// to end by June 2024.
 type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -26182,37 +26292,62 @@ type S3DataSourceConfiguration struct {
 	// Each metadata file contains metadata about a single document.
 	DocumentsMetadataConfiguration *DocumentsMetadataConfiguration `type:"structure"`
 
-	// A list of glob patterns for documents that should not be indexed. If a document
-	// that matches an inclusion prefix or inclusion pattern also matches an exclusion
-	// pattern, the document is not indexed.
+	// A list of glob patterns (patterns that can expand a wildcard pattern into
+	// a list of path names that match the given pattern) for certain file names
+	// and file types to exclude from your index. If a document matches both an
+	// inclusion and exclusion prefix or pattern, the exclusion prefix takes precendence
+	// and the document is not indexed. Examples of glob patterns include:
 	//
-	// Some examples (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
-	// are:
+	//    * /myapp/config/*—All files inside config directory.
 	//
-	//    * *.png , *.jpg will exclude all PNG and JPEG image files in a directory
-	//    (files with the extensions .png and .jpg).
+	//    * **/*.png—All .png files in all directories.
 	//
-	//    * *internal* will exclude all files in a directory that contain 'internal'
-	//    in the file name, such as 'internal', 'internal_only', 'company_internal'.
+	//    * **/*.{png, ico, md}—All .png, .ico or .md files in all directories.
 	//
-	//    * **/*internal* will exclude all internal-related files in a directory
-	//    and its subdirectories.
+	//    * /myapp/src/**/*.ts—All .ts files inside src directory (and all its
+	//    subdirectories).
+	//
+	//    * **/!(*.module).ts—All .ts files but not .module.ts
+	//
+	//    * *.png , *.jpg—All PNG and JPEG image files in a directory (files with
+	//    the extensions .png and .jpg).
+	//
+	//    * *internal*—All files in a directory that contain 'internal' in the
+	//    file name, such as 'internal', 'internal_only', 'company_internal'.
+	//
+	//    * **/*internal*—All internal-related files in a directory and its subdirectories.
+	//
+	// For more examples, see Use of Exclude and Include Filters (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
+	// in the Amazon Web Services CLI Command Reference.
 	ExclusionPatterns []*string `type:"list"`
 
-	// A list of glob patterns for documents that should be indexed. If a document
-	// that matches an inclusion pattern also matches an exclusion pattern, the
-	// document is not indexed.
+	// A list of glob patterns (patterns that can expand a wildcard pattern into
+	// a list of path names that match the given pattern) for certain file names
+	// and file types to include in your index. If a document matches both an inclusion
+	// and exclusion prefix or pattern, the exclusion prefix takes precendence and
+	// the document is not indexed. Examples of glob patterns include:
 	//
-	// Some examples (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
-	// are:
+	//    * /myapp/config/*—All files inside config directory.
 	//
-	//    * *.txt will include all text files in a directory (files with the extension
-	//    .txt).
+	//    * **/*.png—All .png files in all directories.
 	//
-	//    * **/*.txt will include all text files in a directory and its subdirectories.
+	//    * **/*.{png, ico, md}—All .png, .ico or .md files in all directories.
 	//
-	//    * *tax* will include all files in a directory that contain 'tax' in the
-	//    file name, such as 'tax', 'taxes', 'income_tax'.
+	//    * /myapp/src/**/*.ts—All .ts files inside src directory (and all its
+	//    subdirectories).
+	//
+	//    * **/!(*.module).ts—All .ts files but not .module.ts
+	//
+	//    * *.png , *.jpg—All PNG and JPEG image files in a directory (files with
+	//    the extensions .png and .jpg).
+	//
+	//    * *internal*—All files in a directory that contain 'internal' in the
+	//    file name, such as 'internal', 'internal_only', 'company_internal'.
+	//
+	//    * **/*internal*—All internal-related files in a directory and its subdirectories.
+	//
+	// For more examples, see Use of Exclude and Include Filters (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
+	// in the Amazon Web Services CLI Command Reference.
 	InclusionPatterns []*string `type:"list"`
 
 	// A list of S3 prefixes for the documents that should be included in the index.
@@ -28209,6 +28344,20 @@ func (s *SiteMapsConfiguration) SetSiteMaps(v []*string) *SiteMapsConfiguration 
 }
 
 // Provides the configuration information to connect to Slack as your data source.
+//
+// Amazon Kendra now supports an upgraded Slack connector.
+//
+// You must now use the TemplateConfiguration (https://docs.aws.amazon.com/kendra/latest/APIReference/API_TemplateConfiguration.html)
+// object instead of the SlackConfiguration object to configure your connector.
+//
+// Connectors configured using the older console and API architecture will continue
+// to function as configured. However, you won’t be able to edit or update
+// them. If you want to edit or update your connector configuration, you must
+// create a new connector.
+//
+// We recommended migrating your connector workflow to the upgraded version.
+// Support for connectors configured using the older architecture is scheduled
+// to end by June 2024.
 type SlackConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -30692,7 +30841,7 @@ type UpdateIndexInput struct {
 	// Id is a required field
 	Id *string `min:"36" type:"string" required:"true"`
 
-	// The name of the index you want to update.
+	// A new name for the index.
 	Name *string `min:"1" type:"string"`
 
 	// An Identity and Access Management (IAM) role that gives Amazon Kendra permission
@@ -30702,9 +30851,10 @@ type UpdateIndexInput struct {
 	// The user context policy.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Enables fetching access levels of groups and users from an IAM Identity Center
-	// identity source. To configure this, see UserGroupResolutionConfiguration
-	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	// Gets users and groups from IAM Identity Center identity source. To configure
+	// this, see UserGroupResolutionConfiguration (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	// This is useful for user context filtering, where search results are filtered
+	// based on the user or their group access to documents.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration.

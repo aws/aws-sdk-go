@@ -1329,8 +1329,9 @@ func (c *RolesAnywhere) ImportCrlRequest(input *ImportCrlInput) (req *request.Re
 // ImportCrl API operation for IAM Roles Anywhere.
 //
 // Imports the certificate revocation list (CRL). A CRL is a list of certificates
-// that have been revoked by the issuing certificate Authority (CA). IAM Roles
-// Anywhere validates against the CRL before issuing credentials.
+// that have been revoked by the issuing certificate Authority (CA).In order
+// to be properly imported, a CRL must be in PEM format. IAM Roles Anywhere
+// validates against the CRL before issuing credentials.
 //
 // Required permissions: rolesanywhere:ImportCrl.
 //
@@ -2717,7 +2718,9 @@ func (s *AccessDeniedException) RequestID() string {
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of seconds the vended session credentials are valid for.
+	// Used to determine how long sessions vended using this profile are valid for.
+	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
+	// page for more details.
 	DurationSeconds *int64 `locationName:"durationSeconds" min:"900" type:"integer"`
 
 	// Specifies whether the profile is enabled.
@@ -5169,7 +5172,9 @@ type ProfileDetail struct {
 	// The Amazon Web Services account that created the profile.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
-	// The number of seconds the vended session credentials are valid for.
+	// Used to determine how long sessions vended using this profile are valid for.
+	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
+	// page for more details.
 	DurationSeconds *int64 `locationName:"durationSeconds" type:"integer"`
 
 	// Indicates whether the profile is enabled.
@@ -6399,7 +6404,9 @@ func (s *UpdateCrlOutput) SetCrl(v *CrlDetail) *UpdateCrlOutput {
 type UpdateProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of seconds the vended session credentials are valid for.
+	// Used to determine how long sessions vended using this profile are valid for.
+	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
+	// page for more details.
 	DurationSeconds *int64 `locationName:"durationSeconds" min:"900" type:"integer"`
 
 	// A list of managed policy ARNs that apply to the vended session credentials.

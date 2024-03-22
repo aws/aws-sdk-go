@@ -461,7 +461,7 @@
     "CreateProfileRequestDurationSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":3600,
+      "max":43200,
       "min":900
     },
     "CreateTrustAnchorRequest":{
@@ -1085,7 +1085,7 @@
     "UpdateProfileRequestDurationSecondsInteger":{
       "type":"integer",
       "box":true,
-      "max":3600,
+      "max":43200,
       "min":900
     },
     "UpdateProfileRequestSessionPolicyString":{

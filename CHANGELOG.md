@@ -1,3 +1,15 @@
+Release v1.51.6 (2024-03-22)
+===
+
+### Service Client Updates
+* `service/firehose`: Updates service documentation
+  * Updates Amazon Firehose documentation for message regarding Enforcing Tags IAM Policy.
+* `service/kendra`: Updates service documentation
+  * Documentation update, March 2024. Corrects some docs for Amazon Kendra.
+* `service/pricing`: Updates service API and documentation
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.51.5 (2024-03-21)
 ===
 
