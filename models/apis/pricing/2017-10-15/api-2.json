@@ -61,7 +61,8 @@
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalErrorException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetProducts":{
@@ -96,6 +97,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalErrorException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ExpiredNextTokenException"}
       ]
     }
@@ -332,6 +334,13 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
     },
     "Service":{
       "type":"structure",

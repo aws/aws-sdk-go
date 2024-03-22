@@ -197,6 +197,11 @@
         "PriceList$RegionCode": "<p>This is used to filter the Price List by Amazon Web Services Region. For example, to get the price list only for the <code>US East (N. Virginia)</code> Region, use <code>us-east-1</code>. If nothing is specified, you retrieve price lists for all applicable Regions. The available <code>RegionCode</code> list can be retrieved from <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html\"> <code>GetAttributeValues</code> </a> API. </p>"
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p>The requested resource can't be found.</p>",
+      "refs": {
+      }
+    },
     "Service": {
       "base": "<p>The metadata for a service, such as the service code and available attribute names.</p>",
       "refs": {
@@ -262,6 +267,7 @@
         "InvalidNextTokenException$Message": null,
         "InvalidParameterException$Message": null,
         "NotFoundException$Message": null,
+        "ResourceNotFoundException$Message": null,
         "ThrottlingException$Message": null
       }
     }

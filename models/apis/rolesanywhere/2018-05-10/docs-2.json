@@ -17,7 +17,7 @@
     "GetProfile": "<p>Gets a profile.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetProfile</code>. </p>",
     "GetSubject": "<p>Gets a <i>subject</i>, which associates a certificate identity with authentication attempts. The subject stores auditing information such as the status of the last authentication attempt, the certificate data used in the attempt, and the last time the associated identity attempted authentication. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetSubject</code>. </p>",
     "GetTrustAnchor": "<p>Gets a trust anchor.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:GetTrustAnchor</code>. </p>",
-    "ImportCrl": "<p>Imports the certificate revocation list (CRL). A CRL is a list of certificates that have been revoked by the issuing certificate Authority (CA). IAM Roles Anywhere validates against the CRL before issuing credentials. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:ImportCrl</code>. </p>",
+    "ImportCrl": "<p>Imports the certificate revocation list (CRL). A CRL is a list of certificates that have been revoked by the issuing certificate Authority (CA).In order to be properly imported, a CRL must be in PEM format. IAM Roles Anywhere validates against the CRL before issuing credentials. </p> <p> <b>Required permissions: </b> <code>rolesanywhere:ImportCrl</code>. </p>",
     "ListCrls": "<p>Lists all certificate revocation lists (CRL) in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListCrls</code>. </p>",
     "ListProfiles": "<p>Lists all profiles in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListProfiles</code>. </p>",
     "ListSubjects": "<p>Lists the subjects in the authenticated account and Amazon Web Services Region.</p> <p> <b>Required permissions: </b> <code>rolesanywhere:ListSubjects</code>. </p>",
@@ -79,7 +79,7 @@
     "CreateProfileRequestDurationSecondsInteger": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+        "CreateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
       }
     },
     "CreateTrustAnchorRequest": {
@@ -162,7 +162,7 @@
       "base": null,
       "refs": {
         "ListRequest$pageSize": "<p>The number of resources in the paginated list. </p>",
-        "ProfileDetail$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+        "ProfileDetail$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
       }
     },
     "ListCrlsResponse": {
@@ -588,7 +588,7 @@
     "UpdateProfileRequestDurationSecondsInteger": {
       "base": null,
       "refs": {
-        "UpdateProfileRequest$durationSeconds": "<p> The number of seconds the vended session credentials are valid for. </p>"
+        "UpdateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
       }
     },
     "UpdateProfileRequestSessionPolicyString": {
