@@ -111,6 +111,12 @@ func (b baseError) OrigErrs() []error {
 	return b.errs
 }
 
+// Unwrap implements go error wrapping interface. This makes baseError 
+// compatible with the errors package in go stdlib.
+func (b baseError) Unwrap() []error {
+	return b.OrigErrs()
+}
+
 // So that the Error interface type can be included as an anonymous field
 // in the requestError struct and not conflict with the error.Error() method.
 type awsError Error
@@ -174,6 +180,12 @@ func (r requestError) OrigErrs() []error {
 	return []error{r.OrigErr()}
 }
 
+// Unwrap implements go error wrapping interface. This makes requestError 
+// compatible with the errors package in go stdlib.
+func (r requestError) Unwrap() []error {
+	return r.OrigErrs()
+}
+
 type unmarshalError struct {
 	awsError
 	bytes []byte
@@ -195,6 +207,12 @@ func (e unmarshalError) String() string {
 // Bytes returns the bytes that failed to unmarshal.
 func (e unmarshalError) Bytes() []byte {
 	return e.bytes
+}
+
+// Unwrap implements go error wrapping interface. This makes requestError 
+// compatible with the errors package in go stdlib.
+func (e unmarshalError) Unwrap() error {
+	return r.OrigErr()
 }
 
 // An error list that satisfies the golang interface
