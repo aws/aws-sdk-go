@@ -209,7 +209,7 @@ func (e unmarshalError) Bytes() []byte {
 	return e.bytes
 }
 
-// Unwrap implements go error wrapping interface. This makes requestError 
+// Unwrap implements go error wrapping interface. This makes unmarshalError 
 // compatible with the errors package in go stdlib.
 func (e unmarshalError) Unwrap() error {
 	return r.OrigErr()
