@@ -681,7 +681,8 @@
       "enum":[
         "OAUTH",
         "BASIC_AUTH",
-        "PERSONAL_ACCESS_TOKEN"
+        "PERSONAL_ACCESS_TOKEN",
+        "CODECONNECTIONS"
       ]
     },
     "BatchDeleteBuildsInput":{
@@ -2446,7 +2447,9 @@
       "enum":[
         "GITHUB",
         "BITBUCKET",
-        "GITHUB_ENTERPRISE"
+        "GITHUB_ENTERPRISE",
+        "GITLAB",
+        "GITLAB_SELF_MANAGED"
       ]
     },
     "SharedResourceSortByType":{
@@ -2473,14 +2476,18 @@
     },
     "SourceAuthType":{
       "type":"string",
-      "enum":["OAUTH"]
+      "enum":[
+        "OAUTH",
+        "CODECONNECTIONS"
+      ]
     },
     "SourceCredentialsInfo":{
       "type":"structure",
       "members":{
         "arn":{"shape":"NonEmptyString"},
         "serverType":{"shape":"ServerType"},
-        "authType":{"shape":"AuthType"}
+        "authType":{"shape":"AuthType"},
+        "resource":{"shape":"String"}
       }
     },
     "SourceCredentialsInfos":{
@@ -2493,6 +2500,8 @@
         "CODECOMMIT",
         "CODEPIPELINE",
         "GITHUB",
+        "GITLAB",
+        "GITLAB_SELF_MANAGED",
         "S3",
         "BITBUCKET",
         "GITHUB_ENTERPRISE",

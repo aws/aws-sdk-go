@@ -17981,6 +17981,14 @@ type H265Settings struct {
 	// next GOP. Note: Maximum GOP stretch = GOP size + Min-I-interval - 1
 	MinIInterval *int64 `locationName:"minIInterval" type:"integer"`
 
+	// If you are setting up the picture as a tile, you must set this to "disabled".
+	// In all other configurations, you typically enter "enabled".
+	MvOverPictureBoundaries *string `locationName:"mvOverPictureBoundaries" type:"string" enum:"H265MvOverPictureBoundaries"`
+
+	// If you are setting up the picture as a tile, you must set this to "disabled".
+	// In other configurations, you typically enter "enabled".
+	MvTemporalPredictor *string `locationName:"mvTemporalPredictor" type:"string" enum:"H265MvTemporalPredictor"`
+
 	// Pixel Aspect Ratio denominator.
 	ParDenominator *int64 `locationName:"parDenominator" min:"1" type:"integer"`
 
@@ -18024,6 +18032,23 @@ type H265Settings struct {
 	// H.265 Tier.
 	Tier *string `locationName:"tier" type:"string" enum:"H265Tier"`
 
+	// Set this field to set up the picture as a tile. You must also set tileWidth.The
+	// tile height must result in 22 or fewer rows in the frame. The tile widthmust
+	// result in 20 or fewer columns in the frame. And finally, the product of thecolumn
+	// count and row count must be 64 of less.If the tile width and height are specified,
+	// MediaLive will override the videocodec slices field with a value that MediaLive
+	// calculates
+	TileHeight *int64 `locationName:"tileHeight" min:"64" type:"integer"`
+
+	// Set to "padded" to force MediaLive to add padding to the frame, to obtain
+	// a frame that is a whole multiple of the tile size.If you are setting up the
+	// picture as a tile, you must enter "padded".In all other configurations, you
+	// typically enter "none".
+	TilePadding *string `locationName:"tilePadding" type:"string" enum:"H265TilePadding"`
+
+	// Set this field to set up the picture as a tile. See tileHeight for more information.
+	TileWidth *int64 `locationName:"tileWidth" min:"256" type:"integer"`
+
 	// Timecode burn-in settings
 	TimecodeBurninSettings *TimecodeBurninSettings `locationName:"timecodeBurninSettings" type:"structure"`
 
@@ -18031,6 +18056,12 @@ type H265Settings struct {
 	// 'disabled': Do not include timecodes- 'picTimingSei': Pass through picture
 	// timing SEI messages from the source specified in Timecode Config
 	TimecodeInsertion *string `locationName:"timecodeInsertion" type:"string" enum:"H265TimecodeInsertionBehavior"`
+
+	// Select the tree block size used for encoding. If you enter "auto", the encoder
+	// will pick the best size. If you are setting up the picture as a tile, you
+	// must set this to 32x32. In all other configurations, you typically enter
+	// "auto".
+	TreeblockSize *string `locationName:"treeblockSize" type:"string" enum:"H265TreeblockSize"`
 }
 
 // String returns the string representation.
@@ -18086,6 +18117,12 @@ func (s *H265Settings) Validate() error {
 	}
 	if s.Slices != nil && *s.Slices < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Slices", 1))
+	}
+	if s.TileHeight != nil && *s.TileHeight < 64 {
+		invalidParams.Add(request.NewErrParamMinValue("TileHeight", 64))
+	}
+	if s.TileWidth != nil && *s.TileWidth < 256 {
+		invalidParams.Add(request.NewErrParamMinValue("TileWidth", 256))
 	}
 	if s.TimecodeBurninSettings != nil {
 		if err := s.TimecodeBurninSettings.Validate(); err != nil {
@@ -18213,6 +18250,18 @@ func (s *H265Settings) SetMinIInterval(v int64) *H265Settings {
 	return s
 }
 
+// SetMvOverPictureBoundaries sets the MvOverPictureBoundaries field's value.
+func (s *H265Settings) SetMvOverPictureBoundaries(v string) *H265Settings {
+	s.MvOverPictureBoundaries = &v
+	return s
+}
+
+// SetMvTemporalPredictor sets the MvTemporalPredictor field's value.
+func (s *H265Settings) SetMvTemporalPredictor(v string) *H265Settings {
+	s.MvTemporalPredictor = &v
+	return s
+}
+
 // SetParDenominator sets the ParDenominator field's value.
 func (s *H265Settings) SetParDenominator(v int64) *H265Settings {
 	s.ParDenominator = &v
@@ -18267,6 +18316,24 @@ func (s *H265Settings) SetTier(v string) *H265Settings {
 	return s
 }
 
+// SetTileHeight sets the TileHeight field's value.
+func (s *H265Settings) SetTileHeight(v int64) *H265Settings {
+	s.TileHeight = &v
+	return s
+}
+
+// SetTilePadding sets the TilePadding field's value.
+func (s *H265Settings) SetTilePadding(v string) *H265Settings {
+	s.TilePadding = &v
+	return s
+}
+
+// SetTileWidth sets the TileWidth field's value.
+func (s *H265Settings) SetTileWidth(v int64) *H265Settings {
+	s.TileWidth = &v
+	return s
+}
+
 // SetTimecodeBurninSettings sets the TimecodeBurninSettings field's value.
 func (s *H265Settings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *H265Settings {
 	s.TimecodeBurninSettings = v
@@ -18276,6 +18343,12 @@ func (s *H265Settings) SetTimecodeBurninSettings(v *TimecodeBurninSettings) *H26
 // SetTimecodeInsertion sets the TimecodeInsertion field's value.
 func (s *H265Settings) SetTimecodeInsertion(v string) *H265Settings {
 	s.TimecodeInsertion = &v
+	return s
+}
+
+// SetTreeblockSize sets the TreeblockSize field's value.
+func (s *H265Settings) SetTreeblockSize(v string) *H265Settings {
+	s.TreeblockSize = &v
 	return s
 }
 
@@ -36805,6 +36878,40 @@ func H265LookAheadRateControl_Values() []string {
 	}
 }
 
+// H265 Mv Over Picture Boundaries
+const (
+	// H265MvOverPictureBoundariesDisabled is a H265MvOverPictureBoundaries enum value
+	H265MvOverPictureBoundariesDisabled = "DISABLED"
+
+	// H265MvOverPictureBoundariesEnabled is a H265MvOverPictureBoundaries enum value
+	H265MvOverPictureBoundariesEnabled = "ENABLED"
+)
+
+// H265MvOverPictureBoundaries_Values returns all elements of the H265MvOverPictureBoundaries enum
+func H265MvOverPictureBoundaries_Values() []string {
+	return []string{
+		H265MvOverPictureBoundariesDisabled,
+		H265MvOverPictureBoundariesEnabled,
+	}
+}
+
+// H265 Mv Temporal Predictor
+const (
+	// H265MvTemporalPredictorDisabled is a H265MvTemporalPredictor enum value
+	H265MvTemporalPredictorDisabled = "DISABLED"
+
+	// H265MvTemporalPredictorEnabled is a H265MvTemporalPredictor enum value
+	H265MvTemporalPredictorEnabled = "ENABLED"
+)
+
+// H265MvTemporalPredictor_Values returns all elements of the H265MvTemporalPredictor enum
+func H265MvTemporalPredictor_Values() []string {
+	return []string{
+		H265MvTemporalPredictorDisabled,
+		H265MvTemporalPredictorEnabled,
+	}
+}
+
 // H265 Profile
 const (
 	// H265ProfileMain is a H265Profile enum value
@@ -36894,6 +37001,23 @@ func H265Tier_Values() []string {
 	}
 }
 
+// H265 Tile Padding
+const (
+	// H265TilePaddingNone is a H265TilePadding enum value
+	H265TilePaddingNone = "NONE"
+
+	// H265TilePaddingPadded is a H265TilePadding enum value
+	H265TilePaddingPadded = "PADDED"
+)
+
+// H265TilePadding_Values returns all elements of the H265TilePadding enum
+func H265TilePadding_Values() []string {
+	return []string{
+		H265TilePaddingNone,
+		H265TilePaddingPadded,
+	}
+}
+
 // H265 Timecode Insertion Behavior
 const (
 	// H265TimecodeInsertionBehaviorDisabled is a H265TimecodeInsertionBehavior enum value
@@ -36908,6 +37032,23 @@ func H265TimecodeInsertionBehavior_Values() []string {
 	return []string{
 		H265TimecodeInsertionBehaviorDisabled,
 		H265TimecodeInsertionBehaviorPicTimingSei,
+	}
+}
+
+// H265 Treeblock Size
+const (
+	// H265TreeblockSizeAuto is a H265TreeblockSize enum value
+	H265TreeblockSizeAuto = "AUTO"
+
+	// H265TreeblockSizeTreeSize32x32 is a H265TreeblockSize enum value
+	H265TreeblockSizeTreeSize32x32 = "TREE_SIZE_32X32"
+)
+
+// H265TreeblockSize_Values returns all elements of the H265TreeblockSize enum
+func H265TreeblockSize_Values() []string {
+	return []string{
+		H265TreeblockSizeAuto,
+		H265TreeblockSizeTreeSize32x32,
 	}
 }
 

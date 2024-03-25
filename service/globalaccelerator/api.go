@@ -570,18 +570,28 @@ func (c *GlobalAccelerator) CreateCrossAccountAttachmentRequest(input *CreateCro
 // CreateCrossAccountAttachment API operation for AWS Global Accelerator.
 //
 // Create a cross-account attachment in Global Accelerator. You create a cross-account
-// attachment to specify the principals who have permission to add to accelerators
-// in their own account the resources in your account that you also list in
-// the attachment.
+// attachment to specify the principals who have permission to work with resources
+// in accelerators in their own account. You specify, in the same attachment,
+// the resources that are shared.
 //
 // A principal can be an Amazon Web Services account number or the Amazon Resource
 // Name (ARN) for an accelerator. For account numbers that are listed as principals,
-// to add a resource listed in the attachment to an accelerator, you must sign
-// in to an account specified as a principal. Then you can add the resources
-// that are listed to any of your accelerators. If an accelerator ARN is listed
+// to work with a resource listed in the attachment, you must sign in to an
+// account specified as a principal. Then, you can work with resources that
+// are listed, with any of your accelerators. If an accelerator ARN is listed
 // in the cross-account attachment as a principal, anyone with permission to
-// make updates to the accelerator can add as endpoints resources that are listed
-// in the attachment.
+// make updates to the accelerator can work with resources that are listed in
+// the attachment.
+//
+// Specify each principal and resource separately. To specify two CIDR address
+// pools, list them individually under Resources, and so on. For a command line
+// operation, for example, you might use a statement like the following:
+//
+// "Resources": [{"Cidr": "169.254.60.0/24"},{"Cidr": "169.254.59.0/24"}]
+//
+// For more information, see Working with cross-account attachments and resources
+// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html)
+// in the Global Accelerator Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1283,21 +1293,11 @@ func (c *GlobalAccelerator) DeleteCrossAccountAttachmentRequest(input *DeleteCro
 // Delete a cross-account attachment. When you delete an attachment, Global
 // Accelerator revokes the permission to use the resources in the attachment
 // from all principals in the list of principals. Global Accelerator revokes
-// the permission for specific resources by doing the following:
+// the permission for specific resources.
 //
-//   - If the principal is an account ID, Global Accelerator reviews every
-//     accelerator in the account and removes cross-account endpoints from all
-//     accelerators.
-//
-//   - If the principal is an accelerator, Global Accelerator reviews just
-//     that accelerator and removes cross-account endpoints from it.
-//
-// If there are overlapping permissions provided by multiple cross-account attachments,
-// Global Accelerator only removes endpoints if there are no current cross-account
-// attachments that provide access permission. For example, if you delete a
-// cross-account attachment that lists an accelerator as a principal, but another
-// cross-account attachment includes the account ID that owns that accelerator,
-// endpoints will not be removed from the accelerator.
+// For more information, see Working with cross-account attachments and resources
+// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html)
+// in the Global Accelerator Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3250,7 +3250,11 @@ func (c *GlobalAccelerator) ListCrossAccountResourceAccountsRequest(input *ListC
 
 // ListCrossAccountResourceAccounts API operation for AWS Global Accelerator.
 //
-// List the accounts that have cross-account endpoints.
+// List the accounts that have cross-account resources.
+//
+// For more information, see Working with cross-account attachments and resources
+// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html)
+// in the Global Accelerator Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3338,7 +3342,7 @@ func (c *GlobalAccelerator) ListCrossAccountResourcesRequest(input *ListCrossAcc
 
 // ListCrossAccountResources API operation for AWS Global Accelerator.
 //
-// List the cross-account endpoints available to add to an accelerator.
+// List the cross-account resources available to work with.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5282,22 +5286,11 @@ func (c *GlobalAccelerator) UpdateCrossAccountAttachmentRequest(input *UpdateCro
 //
 // Update a cross-account attachment to add or remove principals or resources.
 // When you update an attachment to remove a principal (account ID or accelerator)
-// or a resource, Global Accelerator revokes the permission for specific resources
-// by doing the following:
+// or a resource, Global Accelerator revokes the permission for specific resources.
 //
-//   - If the principal is an account ID, Global Accelerator reviews every
-//     accelerator in the account and removes cross-account endpoints from all
-//     accelerators.
-//
-//   - If the principal is an accelerator, Global Accelerator reviews just
-//     that accelerator and removes cross-account endpoints from it.
-//
-// If there are overlapping permissions provided by multiple cross-account attachments,
-// Global Accelerator only removes endpoints if there are no current cross-account
-// attachments that provide access permission. For example, if you delete a
-// cross-account attachment that lists an accelerator as a principal, but another
-// cross-account attachment includes the account ID that owns that accelerator,
-// endpoints will not be removed from the accelerator.
+// For more information, see Working with cross-account attachments and resources
+// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html)
+// in the Global Accelerator Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6566,6 +6559,9 @@ type AdvertiseByoipCidrInput struct {
 	// The address range, in CIDR notation. This must be the exact range that you
 	// provisioned. You can't advertise only a portion of the provisioned range.
 	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
+	//
 	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
 }
@@ -6900,8 +6896,8 @@ func (s *AssociatedListenerFoundException) RequestID() string {
 }
 
 // A cross-account attachment in Global Accelerator. A cross-account attachment
-// specifies the principals who have permission to add to accelerators in their
-// own account the resources in your account that you also list in the attachment.
+// specifies the principals who have permission to work with resources in your
+// account, which you also list in the attachment.
 type Attachment struct {
 	_ struct{} `type:"structure"`
 
@@ -7091,6 +7087,9 @@ type ByoipCidr struct {
 	_ struct{} `type:"structure"`
 
 	// The address range, in CIDR notation.
+	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
 	Cidr *string `type:"string"`
 
 	// A history of status changes for an IP address range that you bring to Global
@@ -7552,17 +7551,18 @@ type CreateCrossAccountAttachmentInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The principals to list in the cross-account attachment. A principal can be
-	// an Amazon Web Services account number or the Amazon Resource Name (ARN) for
-	// an accelerator.
+	// The principals to include in the cross-account attachment. A principal can
+	// be an Amazon Web Services account number or the Amazon Resource Name (ARN)
+	// for an accelerator.
 	Principals []*string `type:"list"`
 
-	// The Amazon Resource Names (ARNs) for the resources to list in the cross-account
+	// The Amazon Resource Names (ARNs) for the resources to include in the cross-account
 	// attachment. A resource can be any supported Amazon Web Services resource
-	// type for Global Accelerator.
+	// type for Global Accelerator or a CIDR range for a bring your own IP address
+	// (BYOIP) address pool.
 	Resources []*Resource `type:"list"`
 
-	// Create tags for cross-account attachment.
+	// Add tags for a cross-account attachment.
 	//
 	// For more information, see Tagging in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
 	// in the Global Accelerator Developer Guide.
@@ -7592,16 +7592,6 @@ func (s *CreateCrossAccountAttachmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCrossAccountAttachmentInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-	if s.Resources != nil {
-		for i, v := range s.Resources {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Resources", i), err.(request.ErrInvalidParams))
-			}
-		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -8460,16 +8450,29 @@ func (s *CreateListenerOutput) SetListener(v *Listener) *CreateListenerOutput {
 	return s
 }
 
-// An endpoint (Amazon Web Services resource) that is listed in a cross-account
-// attachment and can be added to an accelerator by specified principals, that
-// are also listed in the attachment.
+// An endpoint (Amazon Web Services resource) or an IP address range, in CIDR
+// format, that is listed in a cross-account attachment. A cross-account resource
+// can be added to an accelerator by specified principals, which are also listed
+// in the attachment.
+//
+// For more information, see Working with cross-account attachments and resources
+// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/cross-account-resources.html)
+// in the Global Accelerator Developer Guide.
 type CrossAccountResource struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
-	// the endpoints (resources) that can be added to accelerators and principals
-	// that have permission to add the endpoints to accelerators.
+	// the resources (endpoints or CIDR range) that can be added to accelerators
+	// and principals that have permission to add them.
 	AttachmentArn *string `type:"string"`
+
+	// An IP address range, in CIDR format, that is specified as an Amazon Web Services
+	// resource. The address must be provisioned and advertised in Global Accelerator
+	// by following the bring your own IP address (BYOIP) process for Global Accelerator.
+	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
+	Cidr *string `type:"string"`
 
 	// The endpoint ID for the endpoint that is listed in a cross-account attachment
 	// and can be added to an accelerator by specified principals.
@@ -8497,6 +8500,12 @@ func (s CrossAccountResource) GoString() string {
 // SetAttachmentArn sets the AttachmentArn field's value.
 func (s *CrossAccountResource) SetAttachmentArn(v string) *CrossAccountResource {
 	s.AttachmentArn = &v
+	return s
+}
+
+// SetCidr sets the Cidr field's value.
+func (s *CrossAccountResource) SetCidr(v string) *CrossAccountResource {
+	s.Cidr = &v
 	return s
 }
 
@@ -8843,7 +8852,7 @@ type CustomRoutingEndpointConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
 	// the endpoints (resources) that can be added to accelerators and principals
-	// that have permission to add the endpoints to accelerators.
+	// that have permission to add the endpoints.
 	AttachmentArn *string `type:"string"`
 
 	// An ID for the endpoint. For custom routing accelerators, this is the virtual
@@ -9632,6 +9641,9 @@ type DeprovisionByoipCidrInput struct {
 
 	// The address range, in CIDR notation. The prefix must be the same prefix that
 	// you specified when you provisioned the address range.
+	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
 	//
 	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
@@ -10572,7 +10584,7 @@ type EndpointConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of the cross-account attachment that specifies
 	// the endpoints (resources) that can be added to accelerators and principals
-	// that have permission to add the endpoints to accelerators.
+	// that have permission to add the endpoints.
 	AttachmentArn *string `type:"string"`
 
 	// Indicates whether client IP address preservation is enabled for an endpoint.
@@ -10599,7 +10611,7 @@ type EndpointConfiguration struct {
 	// ID. For Amazon EC2 instances, this is the EC2 instance ID. A resource must
 	// be valid and active when you add it as an endpoint.
 	//
-	// An Application Load Balancer can be either internal or internet-facing.
+	// For cross-account endpoints, this must be the ARN of the resource.
 	EndpointId *string `type:"string"`
 
 	// The weight associated with the endpoint. When you add weights to endpoints,
@@ -11896,7 +11908,7 @@ type ListCrossAccountResourceAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The account IDs of principals (resource owners) in a cross-account attachment
-	// who can add endpoints (resources) listed in the same attachment.
+	// who can work with resources listed in the same attachment.
 	ResourceOwnerAwsAccountIds []*string `type:"list"`
 }
 
@@ -11930,7 +11942,7 @@ type ListCrossAccountResourcesInput struct {
 	// The Amazon Resource Name (ARN) of an accelerator in a cross-account attachment.
 	AcceleratorArn *string `type:"string"`
 
-	// The number of cross-account endpoints objects that you want to return with
+	// The number of cross-account resource objects that you want to return with
 	// this call. The default value is 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
@@ -12008,7 +12020,7 @@ func (s *ListCrossAccountResourcesInput) SetResourceOwnerAwsAccountId(v string) 
 type ListCrossAccountResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoints attached to an accelerator in a cross-account attachment.
+	// The cross-account resources used with an accelerator.
 	CrossAccountResources []*CrossAccountResource `type:"list"`
 
 	// The token for the next set of results. You receive this token from a previous
@@ -13265,7 +13277,11 @@ type ProvisionByoipCidrInput struct {
 
 	// The public IPv4 address range, in CIDR notation. The most specific IP prefix
 	// that you can specify is /24. The address range cannot overlap with another
-	// address range that you've brought to this or another Region.
+	// address range that you've brought to this Amazon Web Services Region or another
+	// Region.
+	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
 	//
 	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
@@ -13538,17 +13554,29 @@ func (s RemoveEndpointsOutput) GoString() string {
 	return s.String()
 }
 
-// An Amazon Web Services resource that is supported by Global Accelerator and
-// can be added as an endpoint for an accelerator.
+// A resource is one of the following: the ARN for an Amazon Web Services resource
+// that is supported by Global Accelerator to be added as an endpoint, or a
+// CIDR range that specifies a bring your own IP (BYOIP) address pool.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint ID for the endpoint (Amazon Web Services resource).
+	// An IP address range, in CIDR format, that is specified as resource. The address
+	// must be provisioned and advertised in Global Accelerator by following the
+	// bring your own IP address (BYOIP) process for Global Accelerator
 	//
-	// EndpointId is a required field
-	EndpointId *string `type:"string" required:"true"`
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
+	Cidr *string `type:"string"`
 
-	// The Amazon Web Services Region where a resource is located.
+	// The endpoint ID for the endpoint that is specified as a Amazon Web Services
+	// resource.
+	//
+	// An endpoint ID for the cross-account feature is the ARN of an Amazon Web
+	// Services resource, such as a Network Load Balancer, that Global Accelerator
+	// supports as an endpoint for an accelerator.
+	EndpointId *string `type:"string"`
+
+	// The Amazon Web Services Region where a shared endpoint resource is located.
 	Region *string `type:"string"`
 }
 
@@ -13570,17 +13598,10 @@ func (s Resource) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *Resource) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "Resource"}
-	if s.EndpointId == nil {
-		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
+// SetCidr sets the Cidr field's value.
+func (s *Resource) SetCidr(v string) *Resource {
+	s.Cidr = &v
+	return s
 }
 
 // SetEndpointId sets the EndpointId field's value.
@@ -14179,15 +14200,15 @@ type UpdateCrossAccountAttachmentInput struct {
 
 	// The principals to add to the cross-account attachment. A principal is an
 	// account or the Amazon Resource Name (ARN) of an accelerator that the attachment
-	// gives permission to add the resources from another account, listed in the
-	// attachment.
+	// gives permission to work with resources from another account. The resources
+	// are also listed in the attachment.
 	//
 	// To add more than one principal, separate the account numbers or accelerator
 	// ARNs, or both, with commas.
 	AddPrincipals []*string `type:"list"`
 
 	// The resources to add to the cross-account attachment. A resource listed in
-	// a cross-account attachment can be added to an accelerator by the principals
+	// a cross-account attachment can be used with an accelerator by the principals
 	// that are listed in the attachment.
 	//
 	// To add more than one resource, separate the resource ARNs with commas.
@@ -14202,17 +14223,17 @@ type UpdateCrossAccountAttachmentInput struct {
 	Name *string `type:"string"`
 
 	// The principals to remove from the cross-account attachment. A principal is
-	// an account or the Amazon Resource Name (ARN) of an accelerator that is given
-	// permission to add the resources from another account, listed in the cross-account
-	// attachment.
+	// an account or the Amazon Resource Name (ARN) of an accelerator that the attachment
+	// gives permission to work with resources from another account. The resources
+	// are also listed in the attachment.
 	//
 	// To remove more than one principal, separate the account numbers or accelerator
 	// ARNs, or both, with commas.
 	RemovePrincipals []*string `type:"list"`
 
 	// The resources to remove from the cross-account attachment. A resource listed
-	// in a cross-account attachment can be added to an accelerator fy principals
-	// that are listed in the cross-account attachment.
+	// in a cross-account attachment can be used with an accelerator by the principals
+	// that are listed in the attachment.
 	//
 	// To remove more than one resource, separate the resource ARNs with commas.
 	RemoveResources []*Resource `type:"list"`
@@ -14241,26 +14262,6 @@ func (s *UpdateCrossAccountAttachmentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateCrossAccountAttachmentInput"}
 	if s.AttachmentArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AttachmentArn"))
-	}
-	if s.AddResources != nil {
-		for i, v := range s.AddResources {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddResources", i), err.(request.ErrInvalidParams))
-			}
-		}
-	}
-	if s.RemoveResources != nil {
-		for i, v := range s.RemoveResources {
-			if v == nil {
-				continue
-			}
-			if err := v.Validate(); err != nil {
-				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RemoveResources", i), err.(request.ErrInvalidParams))
-			}
-		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15005,6 +15006,9 @@ type WithdrawByoipCidrInput struct {
 
 	// The address range, in CIDR notation.
 	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the Global Accelerator Developer Guide.
+	//
 	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
 }
@@ -15049,7 +15053,7 @@ func (s *WithdrawByoipCidrInput) SetCidr(v string) *WithdrawByoipCidrInput {
 type WithdrawByoipCidrOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the address pool.
+	// Information about the BYOIP address pool.
 	ByoipCidr *ByoipCidr `type:"structure"`
 }
 

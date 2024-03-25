@@ -269,13 +269,9 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // Amazon ECS runs another copy of the task in the specified cluster. To update
 // an existing service, see the UpdateService action.
 //
-// Starting April 15, 2023, Amazon Web Services will not onboard new customers
-// to Amazon Elastic Inference (EI), and will help current customers migrate
-// their workloads to options that offer better price and performance. After
-// April 15, 2023, new customers will not be able to launch instances with Amazon
-// EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However,
-// customers who have used Amazon EI at least once during the past 30-day period
-// are considered current customers and will be able to continue using the service.
+// The following change began on March 21, 2024. When the task definition revision
+// is not specified, Amazon ECS resolves the task definition revision before
+// it authorizes the task definition.
 //
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind one or more load balancers. The load
@@ -366,7 +362,15 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // When the service scheduler launches new tasks, it determines task placement.
 // For information about task placement and task placement strategies, see Amazon
 // ECS task placement (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement.html)
-// in the Amazon Elastic Container Service Developer Guide.
+// in the Amazon Elastic Container Service Developer Guide
+//
+// Starting April 15, 2023, Amazon Web Services will not onboard new customers
+// to Amazon Elastic Inference (EI), and will help current customers migrate
+// their workloads to options that offer better price and performance. After
+// April 15, 2023, new customers will not be able to launch instances with Amazon
+// EI accelerators in Amazon SageMaker, Amazon ECS, or Amazon EC2. However,
+// customers who have used Amazon EI at least once during the past 30-day period
+// are considered current customers and will be able to continue using the service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -479,6 +483,10 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 // a service uses the EXTERNAL deployment controller type. For more information,
 // see Amazon ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
+//
+// The following change began on March 21, 2024. When the task definition revision
+// is not specified, Amazon ECS resolves the task definition revision before
+// it authorizes the task definition.
 //
 // For information about the maximum number of task sets and otther quotas,
 // see Amazon ECS service quotas (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
@@ -4594,6 +4602,10 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //
 // Starts a new task using the specified task definition.
 //
+// The following change began on March 21, 2024. When the task definition revision
+// is not specified, Amazon ECS resolves the task definition revision before
+// it authorizes the task definition.
+//
 // You can allow Amazon ECS to place tasks for you, or you can customize how
 // Amazon ECS places tasks using placement constraints and placement strategies.
 // For more information, see Scheduling Tasks (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduling_tasks.html)
@@ -4757,6 +4769,10 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 //
 // Starts a new task from the specified task definition on the specified container
 // instance or instances.
+//
+// The following change began on March 21, 2024. When the task definition revision
+// is not specified, Amazon ECS resolves the task definition revision before
+// it authorizes the task definition.
 //
 // Starting April 15, 2023, Amazon Web Services will not onboard new customers
 // to Amazon Elastic Inference (EI), and will help current customers migrate
@@ -6003,6 +6019,10 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //
 // Modifies the parameters of a service.
 //
+// The following change began on March 21, 2024. When the task definition revision
+// is not specified, Amazon ECS resolves the task definition revision before
+// it authorizes the task definition.
+//
 // For services using the rolling update (ECS) you can update the desired count,
 // deployment configuration, network configuration, load balancers, service
 // registries, enable ECS managed tags option, propagate tags option, task placement
@@ -6625,9 +6645,8 @@ type Attachment struct {
 	// For Service Connect services, this includes portName, clientAliases, discoveryName,
 	// and ingressPortOverride.
 	//
-	// For elastic block storage, this includes roleArn, encrypted, filesystemType,
-	// iops, kmsKeyId, sizeInGiB, snapshotId, tagSpecifications, throughput, and
-	// volumeType.
+	// For Elastic Block Storage, this includes roleArn, deleteOnTermination, volumeName,
+	// volumeId, and statusReason (only when the attachment fails to create or attach).
 	Details []*KeyValuePair `locationName:"details" type:"list"`
 
 	// The unique identifier for the attachment.
@@ -10587,7 +10606,7 @@ type CreateServiceInput struct {
 	// Fargate Spot infrastructure is available for use but a capacity provider
 	// strategy must be used. For more information, see Fargate capacity providers
 	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/fargate-capacity-providers.html)
-	// in the Amazon ECS User Guide for Fargate.
+	// in the Amazon ECS Developer Guide.
 	//
 	// The EC2 launch type runs your tasks on Amazon EC2 instances registered to
 	// your cluster.
@@ -10677,6 +10696,10 @@ type CreateServiceInput struct {
 	// to the task during task creation. To add tags to a task after task creation,
 	// use the TagResource (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)
 	// API action.
+	//
+	// You must set this to a value other than NONE when you use Cost Explorer.
+	// For more information, see Amazon ECS usage reports (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/usage-reports.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	//
 	// The default is NONE.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
@@ -14128,9 +14151,12 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 // in a container definition, they take precedence over the variables contained
 // within an environment file. If multiple environment files are specified that
 // contain the same variable, they're processed from the top down. We recommend
-// that you use unique variable names. For more information, see Specifying
-// environment variables (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html)
+// that you use unique variable names. For more information, see Use a file
+// to pass environment variables to a container (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/use-environment-file.html)
 // in the Amazon Elastic Container Service Developer Guide.
+//
+// Environment variable files are objects in Amazon S3 and all Amazon S3 security
+// considerations apply.
 //
 // You must use the following platforms for the Fargate launch type:
 //
@@ -14148,7 +14174,8 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 type EnvironmentFile struct {
 	_ struct{} `type:"structure"`
 
-	// The file type to use. The only supported value is s3.
+	// The file type to use. Environment files are objects in Amazon S3. The only
+	// supported value is s3.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EnvironmentFileType"`
@@ -14222,7 +14249,7 @@ type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
 	// The total amount, in GiB, of ephemeral storage to set for the task. The minimum
-	// supported value is 21 GiB and the maximum supported value is 200 GiB.
+	// supported value is 20 GiB and the maximum supported value is 200 GiB.
 	//
 	// SizeInGiB is a required field
 	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer" required:"true"`
@@ -14973,6 +15000,9 @@ func (s *GetTaskProtectionOutput) SetProtectedTasks(v []*ProtectedTask) *GetTask
 // The health check is designed to make sure that your containers survive agent
 // restarts, upgrades, or temporary unavailability.
 //
+// Amazon ECS performs health checks on containers with the default that launched
+// the container instance or the task.
+//
 // The following describes the possible healthStatus values for a container:
 //
 //   - HEALTHY-The container health check has passed successfully.
@@ -15504,8 +15534,8 @@ func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Linux capabilities for the container that are added to or dropped from
-// the default configuration provided by Docker. For more information about
+// The Linux capabilities to add or remove from the default Docker configuration
+// for a container defined in the task definition. For more information about
 // the default capabilities and the non-default available capabilities, see
 // Runtime privilege and Linux capabilities (https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
 // in the Docker run reference. For more detailed information about these Linux

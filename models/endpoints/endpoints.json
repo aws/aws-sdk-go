@@ -24732,6 +24732,11 @@
           }
         }
       },
+      "models-v2-lex" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "models.lex" : {
         "defaults" : {
           "credentialScope" : {
@@ -25382,6 +25387,11 @@
             "deprecated" : true,
             "hostname" : "route53resolver.us-gov-west-1.amazonaws.com"
           }
+        }
+      },
+      "runtime-v2-lex" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
         }
       },
       "runtime.lex" : {
