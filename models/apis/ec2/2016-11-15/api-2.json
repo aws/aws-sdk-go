@@ -3937,6 +3937,15 @@
       "input":{"shape":"GetImageBlockPublicAccessStateRequest"},
       "output":{"shape":"GetImageBlockPublicAccessStateResult"}
     },
+    "GetInstanceMetadataDefaults":{
+      "name":"GetInstanceMetadataDefaults",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetInstanceMetadataDefaultsRequest"},
+      "output":{"shape":"GetInstanceMetadataDefaultsResult"}
+    },
     "GetInstanceTypesFromInstanceRequirements":{
       "name":"GetInstanceTypesFromInstanceRequirements",
       "http":{
@@ -4481,6 +4490,15 @@
       },
       "input":{"shape":"ModifyInstanceMaintenanceOptionsRequest"},
       "output":{"shape":"ModifyInstanceMaintenanceOptionsResult"}
+    },
+    "ModifyInstanceMetadataDefaults":{
+      "name":"ModifyInstanceMetadataDefaults",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceMetadataDefaultsRequest"},
+      "output":{"shape":"ModifyInstanceMetadataDefaultsResult"}
     },
     "ModifyInstanceMetadataOptions":{
       "name":"ModifyInstanceMetadataOptions",
@@ -8086,6 +8104,7 @@
       ]
     },
     "BoxedDouble":{"type":"double"},
+    "BoxedInteger":{"type":"integer"},
     "BundleId":{"type":"string"},
     "BundleIdStringList":{
       "type":"list",
@@ -13054,6 +13073,22 @@
         "shape":"DedicatedHostId",
         "locationName":"item"
       }
+    },
+    "DefaultInstanceMetadataEndpointState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled",
+        "no-preference"
+      ]
+    },
+    "DefaultInstanceMetadataTagsState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled",
+        "no-preference"
+      ]
     },
     "DefaultNetworkCardIndex":{"type":"integer"},
     "DefaultRouteTableAssociationValue":{
@@ -23599,6 +23634,21 @@
         }
       }
     },
+    "GetInstanceMetadataDefaultsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetInstanceMetadataDefaultsResult":{
+      "type":"structure",
+      "members":{
+        "AccountLevel":{
+          "shape":"InstanceMetadataDefaultsResponse",
+          "locationName":"accountLevel"
+        }
+      }
+    },
     "GetInstanceTypesFromInstanceRequirementsRequest":{
       "type":"structure",
       "required":[
@@ -26930,6 +26980,27 @@
         "open",
         "targeted"
       ]
+    },
+    "InstanceMetadataDefaultsResponse":{
+      "type":"structure",
+      "members":{
+        "HttpTokens":{
+          "shape":"HttpTokensState",
+          "locationName":"httpTokens"
+        },
+        "HttpPutResponseHopLimit":{
+          "shape":"BoxedInteger",
+          "locationName":"httpPutResponseHopLimit"
+        },
+        "HttpEndpoint":{
+          "shape":"InstanceMetadataEndpointState",
+          "locationName":"httpEndpoint"
+        },
+        "InstanceMetadataTags":{
+          "shape":"InstanceMetadataTagsState",
+          "locationName":"instanceMetadataTags"
+        }
+      }
     },
     "InstanceMetadataEndpointState":{
       "type":"string",
@@ -32273,6 +32344,14 @@
       }
     },
     "MemorySize":{"type":"long"},
+    "MetadataDefaultHttpTokensState":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required",
+        "no-preference"
+      ]
+    },
     "MetricPoint":{
       "type":"structure",
       "members":{
@@ -32802,6 +32881,25 @@
         "AutoRecovery":{
           "shape":"InstanceAutoRecoveryState",
           "locationName":"autoRecovery"
+        }
+      }
+    },
+    "ModifyInstanceMetadataDefaultsRequest":{
+      "type":"structure",
+      "members":{
+        "HttpTokens":{"shape":"MetadataDefaultHttpTokensState"},
+        "HttpPutResponseHopLimit":{"shape":"BoxedInteger"},
+        "HttpEndpoint":{"shape":"DefaultInstanceMetadataEndpointState"},
+        "InstanceMetadataTags":{"shape":"DefaultInstanceMetadataTagsState"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyInstanceMetadataDefaultsResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },

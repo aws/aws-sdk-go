@@ -1283,6 +1283,7 @@
       "type":"structure",
       "members":{
         "EndpointId":{"shape":"GenericString"},
+        "Cidr":{"shape":"GenericString"},
         "AttachmentArn":{"shape":"GenericString"}
       }
     },
@@ -2198,9 +2199,9 @@
     },
     "Resource":{
       "type":"structure",
-      "required":["EndpointId"],
       "members":{
         "EndpointId":{"shape":"GenericString"},
+        "Cidr":{"shape":"GenericString"},
         "Region":{"shape":"GenericString"}
       }
     },

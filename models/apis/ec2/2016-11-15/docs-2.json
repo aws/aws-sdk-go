@@ -442,6 +442,7 @@
     "GetGroupsForCapacityReservation": "<p>Lists the resource groups to which a Capacity Reservation has been added.</p>",
     "GetHostReservationPurchasePreview": "<p>Preview a reservation purchase with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation.</p> <p>This is a preview of the <a>PurchaseHostReservation</a> action and does not result in the offering being purchased.</p>",
     "GetImageBlockPublicAccessState": "<p>Gets the current state of <i>block public access for AMIs</i> at the account level in the specified Amazon Web Services Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/sharingamis-intro.html#block-public-access-to-amis\">Block public access to your AMIs</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "GetInstanceMetadataDefaults": "<p>Gets the default instance metadata service (IMDS) settings that are set at the account level in the specified Amazon Web Services&#x2028; Region.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#instance-metadata-options-order-of-precedence\">Order of precedence for instance metadata options</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetInstanceTypesFromInstanceRequirements": "<p>Returns a list of instance types with the specified instance attributes. You can use the response to preview the instance types without launching instances. Note that the response does not consider capacity.</p> <p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html#spotfleet-get-instance-types-from-instance-requirements\">Preview instance types with specified attributes</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>, and <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html\">Creating an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "GetInstanceUefiData": "<p>A binary representation of the UEFI variable store. Only non-volatile variables are stored. This is a base64 encoded and zlib compressed binary value that must be properly encoded.</p> <p>When you use <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html\">register-image</a> to create an AMI, you can create an exact copy of your variable store by passing the UEFI data in the <code>UefiData</code> parameter. You can modify the UEFI data by using the <a href=\"https://github.com/awslabs/python-uefivars\">python-uefivars tool</a> on GitHub. You can use the tool to convert the UEFI data into a human-readable format (JSON), which you can inspect and modify, and then convert back into the binary format to use with register-image.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\">UEFI Secure Boot</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetIpamAddressHistory": "<p>Retrieve historical information about a CIDR within an IPAM scope. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html\">View the history of IP addresses</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>",
@@ -503,6 +504,7 @@
     "ModifyInstanceEventStartTime": "<p>Modifies the start time for a scheduled Amazon EC2 instance event.</p>",
     "ModifyInstanceEventWindow": "<p>Modifies the specified event window.</p> <p>You can define either a set of time ranges or a cron expression when modifying the event window, but not both.</p> <p>To modify the targets associated with the event window, use the <a>AssociateInstanceEventWindow</a> and <a>DisassociateInstanceEventWindow</a> API.</p> <p>If Amazon Web Services has already scheduled an event, modifying an event window won't change the time of the scheduled event.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyInstanceMaintenanceOptions": "<p>Modifies the recovery behavior of your instance to disable simplified automatic recovery or set the recovery behavior to default. The default configuration will not enable simplified automatic recovery for an unsupported instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html#instance-configuration-recovery\">Simplified automatic recovery</a>.</p>",
+    "ModifyInstanceMetadataDefaults": "<p>Modifies the default instance metadata service (IMDS) settings at the account level in the specified Amazon Web Services&#x2028; Region.</p> <note> <p>To remove a parameter's account-level default setting, specify <code>no-preference</code>. At instance launch, the value will come from the AMI, or from the launch parameter if specified. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#instance-metadata-options-order-of-precedence\">Order of precedence for instance metadata options</a> in the <i>Amazon EC2 User Guide</i>.</p> </note>",
     "ModifyInstanceMetadataOptions": "<p>Modify the instance metadata parameters on a running or stopped instance. When you modify the parameters on a stopped instance, they are applied when the instance is started. When you modify the parameters on a running instance, the API responds with a state of “pending”. After the parameter modifications are successfully applied to the instance, the state of the modifications changes from “pending” to “applied” in subsequent describe-instances API calls. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html\">Instance metadata and user data</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyInstancePlacement": "<p>Modifies the placement attributes for a specified instance. You can do the following:</p> <ul> <li> <p>Modify the affinity between an instance and a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html\">Dedicated Host</a>. When affinity is set to <code>host</code> and the instance is not associated with a specific Dedicated Host, the next time the instance is started, it is automatically associated with the host on which it lands. If the instance is restarted or rebooted, this relationship persists.</p> </li> <li> <p>Change the Dedicated Host with which an instance is associated.</p> </li> <li> <p>Change the instance tenancy of an instance.</p> </li> <li> <p>Move an instance to or from a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">placement group</a>.</p> </li> </ul> <p>At least one attribute for affinity, host ID, tenancy, or placement group name must be specified in the request. Affinity and tenancy can be modified in the same request.</p> <p>To modify the host ID, tenancy, placement group, or partition for an instance, the instance must be in the <code>stopped</code> state.</p>",
     "ModifyIpam": "<p>Modify the configurations of an IPAM. </p>",
@@ -2490,6 +2492,7 @@
         "GetFlowLogsIntegrationTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetGroupsForCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetImageBlockPublicAccessStateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetInstanceMetadataDefaultsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetInstanceTypesFromInstanceRequirementsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetInstanceUefiDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetIpamAddressHistoryRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2624,6 +2627,8 @@
         "ModifyInstanceEventStartTimeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstanceEventWindowRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstanceMaintenanceOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyInstanceMetadataDefaultsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyInstanceMetadataDefaultsResult$Return": "<p>If the request succeeds, the response returns <code>true</code>. If the request fails, no response is returned, and instead an error message is returned.</p>",
         "ModifyInstanceMetadataOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyInstancePlacementResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyIpamPoolRequest$DryRun": "<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2924,6 +2929,13 @@
       "refs": {
         "IpamDiscoveredResourceCidr$IpUsage": "<p>The percentage of IP address space in use. To convert the decimal to a percentage, multiply the decimal by 100. Note the following:</p> <ul> <li> <p>For resources that are VPCs, this is the percentage of IP address space in the VPC that's taken up by subnet CIDRs. </p> </li> <li> <p>For resources that are subnets, if the subnet has an IPv4 CIDR provisioned to it, this is the percentage of IPv4 address space in the subnet that's in use. If the subnet has an IPv6 CIDR provisioned to it, the percentage of IPv6 address space in use is not represented. The percentage of IPv6 address space in use cannot currently be calculated. </p> </li> <li> <p>For resources that are public IPv4 pools, this is the percentage of IP address space in the pool that's been allocated to Elastic IP addresses (EIPs). </p> </li> </ul>",
         "IpamResourceCidr$IpUsage": "<p>The percentage of IP address space in use. To convert the decimal to a percentage, multiply the decimal by 100. Note the following:</p> <ul> <li> <p>For resources that are VPCs, this is the percentage of IP address space in the VPC that's taken up by subnet CIDRs. </p> </li> <li> <p>For resources that are subnets, if the subnet has an IPv4 CIDR provisioned to it, this is the percentage of IPv4 address space in the subnet that's in use. If the subnet has an IPv6 CIDR provisioned to it, the percentage of IPv6 address space in use is not represented. The percentage of IPv6 address space in use cannot currently be calculated. </p> </li> <li> <p>For resources that are public IPv4 pools, this is the percentage of IP address space in the pool that's been allocated to Elastic IP addresses (EIPs). </p> </li> </ul>"
+      }
+    },
+    "BoxedInteger": {
+      "base": null,
+      "refs": {
+        "InstanceMetadataDefaultsResponse$HttpPutResponseHopLimit": "<p>The maximum number of hops that the metadata token can travel.</p>",
+        "ModifyInstanceMetadataDefaultsRequest$HttpPutResponseHopLimit": "<p>The maximum number of hops that the metadata token can travel.</p> <p>Minimum: <code>1</code> </p> <p>Maximum: <code>64</code> </p>"
       }
     },
     "BundleId": {
@@ -5177,6 +5189,18 @@
         "InstanceEventWindowAssociationRequest$DedicatedHostIds": "<p>The IDs of the Dedicated Hosts to associate with the event window.</p>",
         "InstanceEventWindowAssociationTarget$DedicatedHostIds": "<p>The IDs of the Dedicated Hosts associated with the event window.</p>",
         "InstanceEventWindowDisassociationRequest$DedicatedHostIds": "<p>The IDs of the Dedicated Hosts to disassociate from the event window.</p>"
+      }
+    },
+    "DefaultInstanceMetadataEndpointState": {
+      "base": null,
+      "refs": {
+        "ModifyInstanceMetadataDefaultsRequest$HttpEndpoint": "<p>Enables or disables the IMDS endpoint on an instance. When disabled, the instance metadata can't be accessed.</p>"
+      }
+    },
+    "DefaultInstanceMetadataTagsState": {
+      "base": null,
+      "refs": {
+        "ModifyInstanceMetadataDefaultsRequest$InstanceMetadataTags": "<p>Enables or disables access to an instance's tags from the instance metadata. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags using the instance metadata</a> in the <i>Amazon EC2 User Guide</i>.</p>"
       }
     },
     "DefaultNetworkCardIndex": {
@@ -10102,6 +10126,16 @@
       "refs": {
       }
     },
+    "GetInstanceMetadataDefaultsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInstanceMetadataDefaultsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetInstanceTypesFromInstanceRequirementsRequest": {
       "base": null,
       "refs": {
@@ -10714,9 +10748,10 @@
     "HttpTokensState": {
       "base": null,
       "refs": {
-        "InstanceMetadataOptionsRequest$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code>, the default is <code>required</code>.</p>",
-        "InstanceMetadataOptionsResponse$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul>",
-        "ModifyInstanceMetadataOptionsRequest$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code>, the default is <code>required</code>.</p>"
+        "InstanceMetadataDefaultsResponse$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> – IMDSv2 is optional, which means that you can use either IMDSv2 or IMDSv1.</p> </li> <li> <p> <code>required</code> – IMDSv2 is required, which means that IMDSv1 is disabled, and you must use IMDSv2.</p> </li> </ul>",
+        "InstanceMetadataOptionsRequest$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional, which means that you can use either IMDSv2 or IMDSv1.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required, which means that IMDSv1 is disabled, and you must use IMDSv2.</p> </li> </ul> <p>Default:</p> <ul> <li> <p>If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code> and the account level default is set to <code>no-preference</code>, the default is <code>required</code>.</p> </li> <li> <p>If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code>, but the account level default is set to <code>V1 or V2</code>, the default is <code>optional</code>.</p> </li> </ul> <p>The default value can also be affected by other combinations of parameters. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#instance-metadata-options-order-of-precedence\">Order of precedence for instance metadata options</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+        "InstanceMetadataOptionsResponse$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional, which means that you can use either IMDSv2 or IMDSv1.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required, which means that IMDSv1 is disabled, and you must use IMDSv2.</p> </li> </ul>",
+        "ModifyInstanceMetadataOptionsRequest$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> - IMDSv2 is optional. You can choose whether to send a session token in your instance metadata retrieval requests. If you retrieve IAM role credentials without a session token, you receive the IMDSv1 role credentials. If you retrieve IAM role credentials using a valid session token, you receive the IMDSv2 role credentials.</p> </li> <li> <p> <code>required</code> - IMDSv2 is required. You must send a session token in your instance metadata retrieval requests. With this option, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default:</p> <ul> <li> <p>If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code> and the account level default is set to <code>no-preference</code>, the default is <code>required</code>.</p> </li> <li> <p>If the value of <code>ImdsSupport</code> for the Amazon Machine Image (AMI) for your instance is <code>v2.0</code>, but the account level default is set to <code>V1 or V2</code>, the default is <code>optional</code>.</p> </li> </ul> <p>The default value can also be affected by other combinations of parameters. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html#instance-metadata-options-order-of-precedence\">Order of precedence for instance metadata options</a> in the <i>Amazon EC2 User Guide</i>.</p>"
       }
     },
     "HypervisorType": {
@@ -11653,9 +11688,16 @@
         "CreateCapacityReservationRequest$InstanceMatchCriteria": "<p>Indicates the type of instance launches that the Capacity Reservation accepts. The options include:</p> <ul> <li> <p> <code>open</code> - The Capacity Reservation automatically matches all instances that have matching attributes (instance type, platform, and Availability Zone). Instances that have matching attributes run in the Capacity Reservation automatically without specifying any additional parameters.</p> </li> <li> <p> <code>targeted</code> - The Capacity Reservation only accepts instances that have matching attributes (instance type, platform, and Availability Zone), and explicitly target the Capacity Reservation. This ensures that only permitted instances can use the reserved capacity. </p> </li> </ul> <p>Default: <code>open</code> </p>"
       }
     },
+    "InstanceMetadataDefaultsResponse": {
+      "base": "<p>The default instance metadata service (IMDS) settings that were set at the account level in the specified Amazon Web Services&#x2028; Region.</p>",
+      "refs": {
+        "GetInstanceMetadataDefaultsResult$AccountLevel": "<p>The account-level default IMDS settings.</p>"
+      }
+    },
     "InstanceMetadataEndpointState": {
       "base": null,
       "refs": {
+        "InstanceMetadataDefaultsResponse$HttpEndpoint": "<p>Indicates whether the IMDS endpoint for an instance is enabled or disabled. When disabled, the instance metadata can't be accessed.</p>",
         "InstanceMetadataOptionsRequest$HttpEndpoint": "<p>Enables or disables the HTTP metadata endpoint on your instances.</p> <p>If you specify a value of <code>disabled</code>, you cannot access your instance metadata.</p> <p>Default: <code>enabled</code> </p>",
         "InstanceMetadataOptionsResponse$HttpEndpoint": "<p>Indicates whether the HTTP metadata endpoint on your instances is enabled or disabled.</p> <p>If the value is <code>disabled</code>, you cannot access your instance metadata.</p>",
         "ModifyInstanceMetadataOptionsRequest$HttpEndpoint": "<p>Enables or disables the HTTP metadata endpoint on your instances. If this parameter is not specified, the existing state is maintained.</p> <p>If you specify a value of <code>disabled</code>, you cannot access your instance metadata.</p>"
@@ -11691,6 +11733,7 @@
     "InstanceMetadataTagsState": {
       "base": null,
       "refs": {
+        "InstanceMetadataDefaultsResponse$InstanceMetadataTags": "<p>Indicates whether access to instance tags from the instance metadata is enabled or disabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags using the instance metadata</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "InstanceMetadataOptionsRequest$InstanceMetadataTags": "<p>Set to <code>enabled</code> to allow access to instance tags from the instance metadata. Set to <code>disabled</code> to turn off access to instance tags from the instance metadata. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags using the instance metadata</a>.</p> <p>Default: <code>disabled</code> </p>",
         "InstanceMetadataOptionsResponse$InstanceMetadataTags": "<p>Indicates whether access to instance tags from the instance metadata is enabled or disabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags using the instance metadata</a>.</p>",
         "ModifyInstanceMetadataOptionsRequest$InstanceMetadataTags": "<p>Set to <code>enabled</code> to allow access to instance tags from the instance metadata. Set to <code>disabled</code> to turn off access to instance tags from the instance metadata. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS\">Work with instance tags using the instance metadata</a>.</p>"
@@ -12157,8 +12200,8 @@
         "InstanceCapacity$AvailableCapacity": "<p>The number of instances that can be launched onto the Dedicated Host based on the host's available capacity.</p>",
         "InstanceCapacity$TotalCapacity": "<p>The total number of instances that can be launched onto the Dedicated Host if there are no instances running on it.</p>",
         "InstanceCount$InstanceCount": "<p>The number of listed Reserved Instances in the state specified by the <code>state</code>.</p>",
-        "InstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p> <p>Default: 1</p> <p>Possible values: Integers from 1 to 64</p>",
-        "InstanceMetadataOptionsResponse$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p> <p>Default: <code>1</code> </p> <p>Possible values: Integers from <code>1</code> to <code>64</code> </p>",
+        "InstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The maximum number of hops that the metadata token can travel.</p> <p>Possible values: Integers from 1 to 64</p>",
+        "InstanceMetadataOptionsResponse$HttpPutResponseHopLimit": "<p>The maximum number of hops that the metadata token can travel.</p> <p>Possible values: Integers from <code>1</code> to <code>64</code> </p>",
         "InstanceNetworkInterfaceAttachment$DeviceIndex": "<p>The index of the device on the instance for the network interface attachment.</p>",
         "InstanceNetworkInterfaceAttachment$NetworkCardIndex": "<p>The index of the network card.</p>",
         "InstanceNetworkInterfaceSpecification$DeviceIndex": "<p>The position of the network interface in the attachment order. A primary network interface has a device index of 0.</p> <p>If you specify a network interface when launching an instance, you must specify the device index.</p>",
@@ -14502,6 +14545,12 @@
         "MemoryInfo$SizeInMiB": "<p>The size of the memory, in MiB.</p>"
       }
     },
+    "MetadataDefaultHttpTokensState": {
+      "base": null,
+      "refs": {
+        "ModifyInstanceMetadataDefaultsRequest$HttpTokens": "<p>Indicates whether IMDSv2 is required.</p> <ul> <li> <p> <code>optional</code> – IMDSv2 is optional, which means that you can use either IMDSv2 or IMDSv1.</p> </li> <li> <p> <code>required</code> – IMDSv2 is required, which means that IMDSv1 is disabled, and you must use IMDSv2.</p> </li> </ul>"
+      }
+    },
     "MetricPoint": {
       "base": "<p>Indicates whether the network was healthy or degraded at a particular point. The value is aggregated from the <code>startDate</code> to the <code>endDate</code>. Currently only <code>five_minutes</code> is supported.</p>",
       "refs": {
@@ -14792,6 +14841,16 @@
       }
     },
     "ModifyInstanceMaintenanceOptionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyInstanceMetadataDefaultsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyInstanceMetadataDefaultsResult": {
       "base": null,
       "refs": {
       }
@@ -20157,7 +20216,7 @@
         "Image$UsageOperation": "<p>The operation of the Amazon EC2 instance and the billing code that is associated with the AMI. <code>usageOperation</code> corresponds to the <a href=\"https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation\">lineitem/Operation</a> column on your Amazon Web Services Cost and Usage Report and in the <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html\">Amazon Web Services Price List API</a>. You can view these fields on the <b>Instances</b> or <b>AMIs</b> pages in the Amazon EC2 console, or in the responses that are returned by the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImages.html\">DescribeImages</a> command in the Amazon EC2 API, or the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html\">describe-images</a> command in the CLI.</p>",
         "Image$RamdiskId": "<p>The RAM disk associated with the image, if any. Only applicable for machine images.</p>",
         "Image$Description": "<p>The description of the AMI that was provided during image creation.</p>",
-        "Image$ImageOwnerAlias": "<p>The Amazon Web Services account alias (for example, <code>amazon</code>, <code>self</code>) or the Amazon Web Services account ID of the AMI owner.</p>",
+        "Image$ImageOwnerAlias": "<p>The owner alias (<code>amazon</code> | <code>aws-marketplace</code>).</p>",
         "Image$Name": "<p>The name of the AMI that was provided during image creation.</p>",
         "Image$RootDeviceName": "<p>The device name of the root device volume (for example, <code>/dev/sda1</code>).</p>",
         "Image$SriovNetSupport": "<p>Specifies whether enhanced networking with the Intel 82599 Virtual Function interface is enabled.</p>",
@@ -22474,7 +22533,7 @@
         "GetTransitGatewayRouteTableAssociationsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "GetTransitGatewayRouteTablePropagationsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "SearchTransitGatewayMulticastGroupsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
-        "SearchTransitGatewayRoutesRequest$MaxResults": "<p>The maximum number of routes to return.</p>"
+        "SearchTransitGatewayRoutesRequest$MaxResults": "<p>The maximum number of routes to return. If a value is not provided, the default is 1000.</p>"
       }
     },
     "TransitGatewayMulitcastDomainAssociationState": {

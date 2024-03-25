@@ -1,3 +1,20 @@
+Release v1.51.7 (2024-03-25)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Supporting GitLab and GitLab Self Managed as source types in AWS CodeBuild.
+* `service/ec2`: Updates service API and documentation
+  * Added support for ModifyInstanceMetadataDefaults and GetInstanceMetadataDefaults to set Instance Metadata Service account defaults
+* `service/ecs`: Updates service documentation
+  * Documentation only update for Amazon ECS.
+* `service/emr-containers`: Updates service API
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Exposing TileMedia H265 options
+* `service/sagemaker`: Updates service API
+  * Introduced support for the following new instance types on SageMaker Studio for JupyterLab and CodeEditor applications: m6i, m6id, m7i, c6i, c6id, c7i, r6i, r6id, r7i, and p5
+
 Release v1.51.6 (2024-03-22)
 ===
 

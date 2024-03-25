@@ -7447,6 +7447,30 @@
         "TimecodeBurninSettings": {
           "shape": "TimecodeBurninSettings",
           "locationName": "timecodeBurninSettings"
+        },
+        "MvOverPictureBoundaries": {
+          "shape": "H265MvOverPictureBoundaries",
+          "locationName": "mvOverPictureBoundaries"
+        },
+        "MvTemporalPredictor": {
+          "shape": "H265MvTemporalPredictor",
+          "locationName": "mvTemporalPredictor"
+        },
+        "TileHeight": {
+          "shape": "__integerMin64Max2160",
+          "locationName": "tileHeight"
+        },
+        "TilePadding": {
+          "shape": "H265TilePadding",
+          "locationName": "tilePadding"
+        },
+        "TileWidth": {
+          "shape": "__integerMin256Max3840",
+          "locationName": "tileWidth"
+        },
+        "TreeblockSize": {
+          "shape": "H265TreeblockSize",
+          "locationName": "treeblockSize"
         }
       },
       "required": [
@@ -15148,6 +15172,44 @@
       "member": {
         "shape": "ChannelPipelineIdToRestart"
       }
+    },
+    "H265MvOverPictureBoundaries": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "H265MvTemporalPredictor": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "H265TilePadding": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "PADDED"
+      ]
+    },
+    "H265TreeblockSize": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "TREE_SIZE_32X32"
+      ]
+    },
+    "__integerMin256Max3840": {
+      "type": "integer",
+      "min": 256,
+      "max": 3840
+    },
+    "__integerMin64Max2160": {
+      "type": "integer",
+      "min": 64,
+      "max": 2160
     }
   }
 }
