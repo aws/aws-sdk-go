@@ -232,6 +232,12 @@
         "textResponsePart":{"shape":"TextResponsePart"}
       }
     },
+    "GenerationConfiguration":{
+      "type":"structure",
+      "members":{
+        "promptTemplate":{"shape":"PromptTemplate"}
+      }
+    },
     "InferenceConfiguration":{
       "type":"structure",
       "members":{
@@ -397,6 +403,7 @@
         "modelArn"
       ],
       "members":{
+        "generationConfiguration":{"shape":"GenerationConfiguration"},
         "knowledgeBaseId":{"shape":"KnowledgeBaseId"},
         "modelArn":{"shape":"BedrockModelArn"},
         "retrievalConfiguration":{"shape":"KnowledgeBaseRetrievalConfiguration"}
@@ -415,7 +422,7 @@
     "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger":{
       "type":"integer",
       "box":true,
-      "max":25,
+      "max":100,
       "min":1
     },
     "LambdaArn":{"type":"string"},
@@ -556,6 +563,12 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
+    },
+    "PromptTemplate":{
+      "type":"structure",
+      "members":{
+        "textPromptTemplate":{"shape":"TextPromptTemplate"}
+      }
     },
     "PromptText":{
       "type":"string",
@@ -823,6 +836,12 @@
       "box":true,
       "max":1,
       "min":0
+    },
+    "TextPromptTemplate":{
+      "type":"string",
+      "max":4000,
+      "min":1,
+      "sensitive":true
     },
     "TextResponsePart":{
       "type":"structure",

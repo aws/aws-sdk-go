@@ -104,6 +104,10 @@ type FinspaceAPI interface {
 	DeleteKxClusterWithContext(aws.Context, *finspace.DeleteKxClusterInput, ...request.Option) (*finspace.DeleteKxClusterOutput, error)
 	DeleteKxClusterRequest(*finspace.DeleteKxClusterInput) (*request.Request, *finspace.DeleteKxClusterOutput)
 
+	DeleteKxClusterNode(*finspace.DeleteKxClusterNodeInput) (*finspace.DeleteKxClusterNodeOutput, error)
+	DeleteKxClusterNodeWithContext(aws.Context, *finspace.DeleteKxClusterNodeInput, ...request.Option) (*finspace.DeleteKxClusterNodeOutput, error)
+	DeleteKxClusterNodeRequest(*finspace.DeleteKxClusterNodeInput) (*request.Request, *finspace.DeleteKxClusterNodeOutput)
+
 	DeleteKxDatabase(*finspace.DeleteKxDatabaseInput) (*finspace.DeleteKxDatabaseOutput, error)
 	DeleteKxDatabaseWithContext(aws.Context, *finspace.DeleteKxDatabaseInput, ...request.Option) (*finspace.DeleteKxDatabaseOutput, error)
 	DeleteKxDatabaseRequest(*finspace.DeleteKxDatabaseInput) (*request.Request, *finspace.DeleteKxDatabaseOutput)

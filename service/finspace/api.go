@@ -1131,6 +1131,99 @@ func (c *Finspace) DeleteKxClusterWithContext(ctx aws.Context, input *DeleteKxCl
 	return out, req.Send()
 }
 
+const opDeleteKxClusterNode = "DeleteKxClusterNode"
+
+// DeleteKxClusterNodeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteKxClusterNode operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteKxClusterNode for more information on using the DeleteKxClusterNode
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteKxClusterNodeRequest method.
+//	req, resp := client.DeleteKxClusterNodeRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxClusterNode
+func (c *Finspace) DeleteKxClusterNodeRequest(input *DeleteKxClusterNodeInput) (req *request.Request, output *DeleteKxClusterNodeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteKxClusterNode,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/kx/environments/{environmentId}/clusters/{clusterName}/nodes/{nodeId}",
+	}
+
+	if input == nil {
+		input = &DeleteKxClusterNodeInput{}
+	}
+
+	output = &DeleteKxClusterNodeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteKxClusterNode API operation for FinSpace User Environment Management service.
+//
+// Deletes the specified nodes from a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace User Environment Management service's
+// API operation DeleteKxClusterNode for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request processing has failed because of an unknown error, exception
+//     or failure.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by an AWS service.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12/DeleteKxClusterNode
+func (c *Finspace) DeleteKxClusterNode(input *DeleteKxClusterNodeInput) (*DeleteKxClusterNodeOutput, error) {
+	req, out := c.DeleteKxClusterNodeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteKxClusterNodeWithContext is the same as DeleteKxClusterNode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteKxClusterNode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Finspace) DeleteKxClusterNodeWithContext(ctx aws.Context, input *DeleteKxClusterNodeInput, opts ...request.Option) (*DeleteKxClusterNodeOutput, error) {
+	req, out := c.DeleteKxClusterNodeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteKxDatabase = "DeleteKxDatabase"
 
 // DeleteKxDatabaseRequest generates a "aws/request.Request" representing the
@@ -5774,7 +5867,7 @@ type CreateKxChangesetInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of change request objects that are run in order. A change request
-	// object consists of changeType , s3Path, and dbPath. A changeType can has
+	// object consists of changeType , s3Path, and dbPath. A changeType can have
 	// the following values:
 	//
 	//    * PUT – Adds or updates files in a database.
@@ -8413,6 +8506,111 @@ func (s *DeleteKxClusterInput) SetClusterName(v string) *DeleteKxClusterInput {
 func (s *DeleteKxClusterInput) SetEnvironmentId(v string) *DeleteKxClusterInput {
 	s.EnvironmentId = &v
 	return s
+}
+
+type DeleteKxClusterNodeInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the cluster, for which you want to delete the nodes.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"clusterName" min:"3" type:"string" required:"true"`
+
+	// A unique identifier for the kdb environment.
+	//
+	// EnvironmentId is a required field
+	EnvironmentId *string `location:"uri" locationName:"environmentId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the node that you want to delete.
+	//
+	// NodeId is a required field
+	NodeId *string `location:"uri" locationName:"nodeId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteKxClusterNodeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteKxClusterNodeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteKxClusterNodeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteKxClusterNodeInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 3))
+	}
+	if s.EnvironmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentId"))
+	}
+	if s.EnvironmentId != nil && len(*s.EnvironmentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentId", 1))
+	}
+	if s.NodeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("NodeId"))
+	}
+	if s.NodeId != nil && len(*s.NodeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NodeId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *DeleteKxClusterNodeInput) SetClusterName(v string) *DeleteKxClusterNodeInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DeleteKxClusterNodeInput) SetEnvironmentId(v string) *DeleteKxClusterNodeInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetNodeId sets the NodeId field's value.
+func (s *DeleteKxClusterNodeInput) SetNodeId(v string) *DeleteKxClusterNodeInput {
+	s.NodeId = &v
+	return s
+}
+
+type DeleteKxClusterNodeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteKxClusterNodeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteKxClusterNodeOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteKxClusterOutput struct {
@@ -12983,7 +13181,10 @@ func (s *KxEnvironment) SetUpdateTimestamp(v time.Time) *KxEnvironment {
 type KxNAS1Configuration struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the network attached storage.
+	// The size of the network attached storage. For storage type SSD_1000 and SSD_250
+	// you can select the minimum size as 1200 GB or increments of 2400 GB. For
+	// storage type HDD_12 you can select the minimum size as 6000 GB or increments
+	// of 6000 GB.
 	Size *int64 `locationName:"size" min:"1200" type:"integer"`
 
 	// The type of the network attached storage.
@@ -13048,6 +13249,13 @@ type KxNode struct {
 
 	// A unique identifier for the node.
 	NodeId *string `locationName:"nodeId" min:"1" type:"string"`
+
+	// Specifies the status of the cluster nodes.
+	//
+	//    * RUNNING – The node is actively serving.
+	//
+	//    * PROVISIONING – The node is being prepared.
+	Status *string `locationName:"status" type:"string" enum:"KxNodeStatus"`
 }
 
 // String returns the string representation.
@@ -13083,6 +13291,12 @@ func (s *KxNode) SetLaunchTime(v time.Time) *KxNode {
 // SetNodeId sets the NodeId field's value.
 func (s *KxNode) SetNodeId(v string) *KxNode {
 	s.NodeId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *KxNode) SetStatus(v string) *KxNode {
+	s.Status = &v
 	return s
 }
 
@@ -18157,6 +18371,22 @@ func KxNAS1Type_Values() []string {
 		KxNAS1TypeSsd1000,
 		KxNAS1TypeSsd250,
 		KxNAS1TypeHdd12,
+	}
+}
+
+const (
+	// KxNodeStatusRunning is a KxNodeStatus enum value
+	KxNodeStatusRunning = "RUNNING"
+
+	// KxNodeStatusProvisioning is a KxNodeStatus enum value
+	KxNodeStatusProvisioning = "PROVISIONING"
+)
+
+// KxNodeStatus_Values returns all elements of the KxNodeStatus enum
+func KxNodeStatus_Values() []string {
+	return []string{
+		KxNodeStatusRunning,
+		KxNodeStatusProvisioning,
 	}
 }
 

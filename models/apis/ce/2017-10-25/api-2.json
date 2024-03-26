@@ -387,6 +387,19 @@
         {"shape":"UnresolvableUsageUnitException"}
       ]
     },
+    "ListCostAllocationTagBackfillHistory":{
+      "name":"ListCostAllocationTagBackfillHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCostAllocationTagBackfillHistoryRequest"},
+      "output":{"shape":"ListCostAllocationTagBackfillHistoryResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListCostAllocationTags":{
       "name":"ListCostAllocationTags",
       "http":{
@@ -449,6 +462,19 @@
       "output":{"shape":"ProvideAnomalyFeedbackResponse"},
       "errors":[
         {"shape":"LimitExceededException"}
+      ]
+    },
+    "StartCostAllocationTagBackfill":{
+      "name":"StartCostAllocationTagBackfill",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartCostAllocationTagBackfillRequest"},
+      "output":{"shape":"StartCostAllocationTagBackfillResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"BackfillLimitExceededException"}
       ]
     },
     "StartSavingsPlansPurchaseRecommendationGeneration":{
@@ -690,6 +716,13 @@
       "key":{"shape":"AttributeType"},
       "value":{"shape":"AttributeValue"}
     },
+    "BackfillLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "BillExpirationException":{
       "type":"structure",
       "members":{
@@ -719,6 +752,30 @@
         "LastUpdatedDate":{"shape":"ZonedDateTime"},
         "LastUsedDate":{"shape":"ZonedDateTime"}
       }
+    },
+    "CostAllocationTagBackfillRequest":{
+      "type":"structure",
+      "members":{
+        "BackfillFrom":{"shape":"ZonedDateTime"},
+        "RequestedAt":{"shape":"ZonedDateTime"},
+        "CompletedAt":{"shape":"ZonedDateTime"},
+        "BackfillStatus":{"shape":"CostAllocationTagBackfillStatus"},
+        "LastUpdatedAt":{"shape":"ZonedDateTime"}
+      }
+    },
+    "CostAllocationTagBackfillRequestList":{
+      "type":"list",
+      "member":{"shape":"CostAllocationTagBackfillRequest"},
+      "max":1000,
+      "min":0
+    },
+    "CostAllocationTagBackfillStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "PROCESSING",
+        "FAILED"
+      ]
     },
     "CostAllocationTagKeyList":{
       "type":"list",
@@ -1927,6 +1984,23 @@
       },
       "exception":true
     },
+    "ListCostAllocationTagBackfillHistoryRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextPageToken"},
+        "MaxResults":{
+          "shape":"CostAllocationTagsMaxResults",
+          "box":true
+        }
+      }
+    },
+    "ListCostAllocationTagBackfillHistoryResponse":{
+      "type":"structure",
+      "members":{
+        "BackfillRequests":{"shape":"CostAllocationTagBackfillRequestList"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
+    },
     "ListCostAllocationTagsRequest":{
       "type":"structure",
       "members":{
@@ -2749,6 +2823,19 @@
         "ASCENDING",
         "DESCENDING"
       ]
+    },
+    "StartCostAllocationTagBackfillRequest":{
+      "type":"structure",
+      "required":["BackfillFrom"],
+      "members":{
+        "BackfillFrom":{"shape":"ZonedDateTime"}
+      }
+    },
+    "StartCostAllocationTagBackfillResponse":{
+      "type":"structure",
+      "members":{
+        "BackfillRequest":{"shape":"CostAllocationTagBackfillRequest"}
+      }
     },
     "StartSavingsPlansPurchaseRecommendationGenerationRequest":{
       "type":"structure",
