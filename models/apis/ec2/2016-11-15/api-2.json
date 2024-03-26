@@ -35401,10 +35401,7 @@
     "NewDhcpConfiguration":{
       "type":"structure",
       "members":{
-        "Key":{
-          "shape":"String",
-          "locationName":"key"
-        },
+        "Key":{"shape":"String"},
         "Values":{
           "shape":"ValueStringList",
           "locationName":"Value"

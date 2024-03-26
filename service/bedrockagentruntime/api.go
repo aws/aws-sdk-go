@@ -519,10 +519,6 @@ func (c *BedrockAgentRuntime) RetrieveAndGenerateRequest(input *RetrieveAndGener
 // The response cites up to five sources but only selects the ones that are
 // relevant to the query.
 //
-// The numberOfResults field is currently unsupported for RetrieveAndGenerate.
-// Don't include it in the vectorSearchConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_KnowledgeBaseVectorSearchConfiguration.html)
-// object.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -927,6 +923,14 @@ func (s *BadGatewayException) RequestID() string {
 
 // An object containing a segment of the generated response that is based on
 // a source in the knowledge base, alongside information about the source.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the citations field
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the citations field
 type Citation struct {
 	_ struct{} `type:"structure"`
 
@@ -1242,6 +1246,14 @@ func (s *FinalResponse) SetText(v string) *FinalResponse {
 
 // Contains metadata about a part of the generated response that is accompanied
 // by a citation.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the generatedResponsePart field
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the generatedResponsePart field
 type GeneratedResponsePart struct {
 	_ struct{} `type:"structure"`
 
@@ -1275,6 +1287,59 @@ func (s GeneratedResponsePart) GoString() string {
 // SetTextResponsePart sets the TextResponsePart field's value.
 func (s *GeneratedResponsePart) SetTextResponsePart(v *TextResponsePart) *GeneratedResponsePart {
 	s.TextResponsePart = v
+	return s
+}
+
+// Contains configurations for response generation based on the knowledge base
+// query results.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+type GenerationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the template for the prompt that's sent to the model for response
+	// generation.
+	PromptTemplate *PromptTemplate `locationName:"promptTemplate" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerationConfiguration"}
+	if s.PromptTemplate != nil {
+		if err := s.PromptTemplate.Validate(); err != nil {
+			invalidParams.AddNested("PromptTemplate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPromptTemplate sets the PromptTemplate field's value.
+func (s *GenerationConfiguration) SetPromptTemplate(v *PromptTemplate) *GenerationConfiguration {
+	s.PromptTemplate = v
 	return s
 }
 
@@ -1551,7 +1616,8 @@ type InvokeAgentInput struct {
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" min:"2" type:"string" required:"true"`
 
-	// Contains parameters that specify various attributes of the session.
+	// Contains parameters that specify various attributes of the session. For more
+	// information, see Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
@@ -1780,6 +1846,11 @@ func (s *KnowledgeBaseLookupOutput_) SetRetrievedReferences(v []*RetrievedRefere
 }
 
 // Contains the query made to the knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//     – in the retrievalQuery field
 type KnowledgeBaseQuery struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -1826,17 +1897,21 @@ func (s *KnowledgeBaseQuery) SetText(v string) *KnowledgeBaseQuery {
 	return s
 }
 
-// Contains details about how the results should be returned.
+// Contains configurations for the knowledge base query and retrieval process.
+// For more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
 //
 // This data type is used in the following API operations:
 //
-//   - Retrieve request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//     – in the retrievalConfiguration field
 //
-//   - RetrieveAndGenerate request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the retrievalConfiguration field
 type KnowledgeBaseRetrievalConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Contains details about how the results from the vector search should be returned.
+	// For more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
 	//
 	// VectorSearchConfiguration is a required field
 	VectorSearchConfiguration *KnowledgeBaseVectorSearchConfiguration `locationName:"vectorSearchConfiguration" type:"structure" required:"true"`
@@ -1885,6 +1960,11 @@ func (s *KnowledgeBaseRetrievalConfiguration) SetVectorSearchConfiguration(v *Kn
 }
 
 // Details about a result from querying the knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the retrievalResults field
 type KnowledgeBaseRetrievalResult struct {
 	_ struct{} `type:"structure"`
 
@@ -1945,8 +2025,20 @@ func (s *KnowledgeBaseRetrievalResult) SetScore(v float64) *KnowledgeBaseRetriev
 }
 
 // Contains details about the resource being queried.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//     – in the knowledgeBaseConfiguration field
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the knowledgeBaseConfiguration field
 type KnowledgeBaseRetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	// Contains configurations for response generation based on the knowwledge base
+	// query results.
+	GenerationConfiguration *GenerationConfiguration `locationName:"generationConfiguration" type:"structure"`
 
 	// The unique identifier of the knowledge base that is queried and the foundation
 	// model used for generation.
@@ -1994,6 +2086,11 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) Validate() error {
 	if s.ModelArn != nil && len(*s.ModelArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelArn", 20))
 	}
+	if s.GenerationConfiguration != nil {
+		if err := s.GenerationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GenerationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetrievalConfiguration != nil {
 		if err := s.RetrievalConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("RetrievalConfiguration", err.(request.ErrInvalidParams))
@@ -2004,6 +2101,12 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGenerationConfiguration sets the GenerationConfiguration field's value.
+func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetGenerationConfiguration(v *GenerationConfiguration) *KnowledgeBaseRetrieveAndGenerateConfiguration {
+	s.GenerationConfiguration = v
+	return s
 }
 
 // SetKnowledgeBaseId sets the KnowledgeBaseId field's value.
@@ -2024,14 +2127,20 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetRetrievalConfiguratio
 	return s
 }
 
-// Configurations for how to carry out the search.
+// Configurations for how to perform the search query and return results. For
+// more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//     – in the vectorSearchConfiguration field
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the vectorSearchConfiguration field
 type KnowledgeBaseVectorSearchConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The number of results to return.
-	//
-	// The numberOfResults field is currently unsupported for RetrieveAndGenerate.
-	// Don't include it in this field if you are sending a RetrieveAndGenerate request.
+	// The number of source chunks to retrieve.
 	NumberOfResults *int64 `locationName:"numberOfResults" min:"1" type:"integer"`
 
 	// By default, Amazon Bedrock decides a search strategy for you. If you're using
@@ -2792,6 +2901,70 @@ func (s *PreProcessingTrace) SetModelInvocationOutput(v *PreProcessingModelInvoc
 	return s
 }
 
+// Contains the template for the prompt that's sent to the model for response
+// generation. For more information, see Knowledge base prompt templates (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html#kb-test-config-sysprompt).
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+type PromptTemplate struct {
+	_ struct{} `type:"structure"`
+
+	// The template for the prompt that's sent to the model for response generation.
+	// You can include prompt placeholders, which become replaced before the prompt
+	// is sent to the model to provide instructions and context to the model. In
+	// addition, you can include XML tags to delineate meaningful sections of the
+	// prompt template.
+	//
+	// For more information, see the following resources:
+	//
+	//    * Knowledge base prompt templates (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html#kb-test-config-sysprompt)
+	//
+	//    * Use XML tags with Anthropic Claude models (https://docs.anthropic.com/claude/docs/use-xml-tags)
+	//
+	// TextPromptTemplate is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PromptTemplate's
+	// String and GoString methods.
+	TextPromptTemplate *string `locationName:"textPromptTemplate" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptTemplate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PromptTemplate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PromptTemplate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PromptTemplate"}
+	if s.TextPromptTemplate != nil && len(*s.TextPromptTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextPromptTemplate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTextPromptTemplate sets the TextPromptTemplate field's value.
+func (s *PromptTemplate) SetTextPromptTemplate(v string) *PromptTemplate {
+	s.TextPromptTemplate = &v
+	return s
+}
+
 // Contains the reasoning, based on the input, that the agent uses to justify
 // carrying out an action group or getting information from a knowledge base.
 type Rationale struct {
@@ -3184,6 +3357,17 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 }
 
 // Contains the cited text from the data source.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the content field
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the content field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the content field
 type RetrievalResultContent struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -3218,6 +3402,17 @@ func (s *RetrievalResultContent) SetText(v string) *RetrievalResultContent {
 }
 
 // Contains information about the location of the data source.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the location field
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the location field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the locatino field
 type RetrievalResultLocation struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -3261,6 +3456,17 @@ func (s *RetrievalResultLocation) SetType(v string) *RetrievalResultLocation {
 }
 
 // Contains the S3 location of the data source.
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the s3Location field
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the s3Location field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the s3Location field
 type RetrievalResultS3Location struct {
 	_ struct{} `type:"structure"`
 
@@ -3293,6 +3499,11 @@ func (s *RetrievalResultS3Location) SetUri(v string) *RetrievalResultS3Location 
 }
 
 // Contains details about the resource being queried.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the retrieveAndGenerateConfiguration field
 type RetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3356,7 +3567,7 @@ func (s *RetrieveAndGenerateConfiguration) SetType(v string) *RetrieveAndGenerat
 type RetrieveAndGenerateInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the query made to the knowledge base.
+	// Contains the query to be made to the knowledge base.
 	//
 	// Input is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveAndGenerateInput's
@@ -3365,8 +3576,8 @@ type RetrieveAndGenerateInput struct {
 	// Input is a required field
 	Input *RetrieveAndGenerateInput_ `locationName:"input" type:"structure" required:"true" sensitive:"true"`
 
-	// Contains details about the resource being queried and the foundation model
-	// used for generation.
+	// Contains configurations for the knowledge base query and retrieval process.
+	// For more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
 	RetrieveAndGenerateConfiguration *RetrieveAndGenerateConfiguration `locationName:"retrieveAndGenerateConfiguration" type:"structure"`
 
 	// Contains details about the session with the knowledge base.
@@ -3451,6 +3662,11 @@ func (s *RetrieveAndGenerateInput) SetSessionId(v string) *RetrieveAndGenerateIn
 }
 
 // Contains the query made to the knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the input field
 type RetrieveAndGenerateInput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -3557,6 +3773,11 @@ func (s *RetrieveAndGenerateOutput) SetSessionId(v string) *RetrieveAndGenerateO
 }
 
 // Contains the response generated from querying the knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the output field
 type RetrieveAndGenerateOutput_ struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -3591,6 +3812,11 @@ func (s *RetrieveAndGenerateOutput_) SetText(v string) *RetrieveAndGenerateOutpu
 }
 
 // Contains configuration about the session with the knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the sessionConfiguration field
 type RetrieveAndGenerateSessionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3653,10 +3879,11 @@ type RetrieveInput struct {
 	// retrieve the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// Contains details about how the results should be returned.
+	// Contains configurations for the knowledge base query and retrieval process.
+	// For more information, see Query configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
 	RetrievalConfiguration *KnowledgeBaseRetrievalConfiguration `locationName:"retrievalConfiguration" type:"structure"`
 
-	// The query to send the knowledge base.
+	// Contains the query to send the knowledge base.
 	//
 	// RetrievalQuery is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by RetrieveInput's
@@ -3788,7 +4015,15 @@ func (s *RetrieveOutput) SetRetrievalResults(v []*KnowledgeBaseRetrievalResult) 
 	return s
 }
 
-// Contains metadata about a sources cited for the generated response.
+// Contains metadata about a source cited for the generated response.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the retrievedReferences field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the retrievedReferences field
 type RetrievedReference struct {
 	_ struct{} `type:"structure"`
 
@@ -3936,7 +4171,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 // for an action group or pass them when making an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
 // request. Use session state attributes to control and provide conversational
 // context for your agent and to help customize your agent's behavior. For more
-// information, see Session context (https://docs.aws.amazon.com/bedrock/latest/userguide/sessionstate.html).
+// information, see Control session context (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-session-state.html).
 type SessionState struct {
 	_ struct{} `type:"structure"`
 
@@ -3983,6 +4218,14 @@ func (s *SessionState) SetSessionAttributes(v map[string]*string) *SessionState 
 
 // Contains information about where the text with a citation begins and ends
 // in the generated output.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the span field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the span field
 type Span struct {
 	_ struct{} `type:"structure"`
 
@@ -4025,6 +4268,14 @@ func (s *Span) SetStart(v int64) *Span {
 
 // Contains the part of the generated text that contains a citation, alongside
 // where it begins and ends.
+//
+// This data type is used in the following API operations:
+//
+//   - RetrieveAndGenerate response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax)
+//     – in the textResponsePart field
+//
+//   - Retrieve response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax)
+//     – in the textResponsePart field
 type TextResponsePart struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 

@@ -219,6 +219,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteKxClusterNode":{
+      "name":"DeleteKxClusterNode",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/kx/environments/{environmentId}/clusters/{clusterName}/nodes/{nodeId}"
+      },
+      "input":{"shape":"DeleteKxClusterNodeRequest"},
+      "output":{"shape":"DeleteKxClusterNodeResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteKxDatabase":{
       "name":"DeleteKxDatabase",
       "http":{
@@ -1414,6 +1430,36 @@
       "members":{
       }
     },
+    "DeleteKxClusterNodeRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "nodeId",
+        "environmentId"
+      ],
+      "members":{
+        "environmentId":{
+          "shape":"KxEnvironmentId",
+          "location":"uri",
+          "locationName":"environmentId"
+        },
+        "clusterName":{
+          "shape":"KxClusterName",
+          "location":"uri",
+          "locationName":"clusterName"
+        },
+        "nodeId":{
+          "shape":"KxClusterNodeIdString",
+          "location":"uri",
+          "locationName":"nodeId"
+        }
+      }
+    },
+    "DeleteKxClusterNodeResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteKxClusterRequest":{
       "type":"structure",
       "required":[
@@ -2548,8 +2594,16 @@
       "members":{
         "nodeId":{"shape":"KxClusterNodeIdString"},
         "availabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "launchTime":{"shape":"Timestamp"}
+        "launchTime":{"shape":"Timestamp"},
+        "status":{"shape":"KxNodeStatus"}
       }
+    },
+    "KxNodeStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "PROVISIONING"
+      ]
     },
     "KxNodeSummaries":{
       "type":"list",

@@ -1,3 +1,15 @@
+Release v1.51.8 (2024-03-26)
+===
+
+### Service Client Updates
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/ce`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/ecs`: Updates service documentation
+  * This is a documentation update for Amazon ECS.
+* `service/finspace`: Updates service API and documentation
+
 Release v1.51.7 (2024-03-25)
 ===
 

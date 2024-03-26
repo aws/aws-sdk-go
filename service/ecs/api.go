@@ -269,9 +269,9 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // Amazon ECS runs another copy of the task in the specified cluster. To update
 // an existing service, see the UpdateService action.
 //
-// The following change began on March 21, 2024. When the task definition revision
-// is not specified, Amazon ECS resolves the task definition revision before
-// it authorizes the task definition.
+// On March 21, 2024, a change was made to resolve the task definition revision
+// before authorization. When a task definition revision is not specified, authorization
+// will occur using the latest revision of a task definition.
 //
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind one or more load balancers. The load
@@ -484,9 +484,9 @@ func (c *ECS) CreateTaskSetRequest(input *CreateTaskSetInput) (req *request.Requ
 // see Amazon ECS deployment types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// The following change began on March 21, 2024. When the task definition revision
-// is not specified, Amazon ECS resolves the task definition revision before
-// it authorizes the task definition.
+// On March 21, 2024, a change was made to resolve the task definition revision
+// before authorization. When a task definition revision is not specified, authorization
+// will occur using the latest revision of a task definition.
 //
 // For information about the maximum number of task sets and otther quotas,
 // see Amazon ECS service quotas (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
@@ -4602,9 +4602,9 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //
 // Starts a new task using the specified task definition.
 //
-// The following change began on March 21, 2024. When the task definition revision
-// is not specified, Amazon ECS resolves the task definition revision before
-// it authorizes the task definition.
+// On March 21, 2024, a change was made to resolve the task definition revision
+// before authorization. When a task definition revision is not specified, authorization
+// will occur using the latest revision of a task definition.
 //
 // You can allow Amazon ECS to place tasks for you, or you can customize how
 // Amazon ECS places tasks using placement constraints and placement strategies.
@@ -4770,9 +4770,9 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 // Starts a new task from the specified task definition on the specified container
 // instance or instances.
 //
-// The following change began on March 21, 2024. When the task definition revision
-// is not specified, Amazon ECS resolves the task definition revision before
-// it authorizes the task definition.
+// On March 21, 2024, a change was made to resolve the task definition revision
+// before authorization. When a task definition revision is not specified, authorization
+// will occur using the latest revision of a task definition.
 //
 // Starting April 15, 2023, Amazon Web Services will not onboard new customers
 // to Amazon Elastic Inference (EI), and will help current customers migrate
@@ -6019,9 +6019,9 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //
 // Modifies the parameters of a service.
 //
-// The following change began on March 21, 2024. When the task definition revision
-// is not specified, Amazon ECS resolves the task definition revision before
-// it authorizes the task definition.
+// On March 21, 2024, a change was made to resolve the task definition revision
+// before authorization. When a task definition revision is not specified, authorization
+// will occur using the latest revision of a task definition.
 //
 // For services using the rolling update (ECS) you can update the desired count,
 // deployment configuration, network configuration, load balancers, service

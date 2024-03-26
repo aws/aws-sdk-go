@@ -2552,6 +2552,145 @@ func (c *CostExplorer) GetUsageForecastWithContext(ctx aws.Context, input *GetUs
 	return out, req.Send()
 }
 
+const opListCostAllocationTagBackfillHistory = "ListCostAllocationTagBackfillHistory"
+
+// ListCostAllocationTagBackfillHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the ListCostAllocationTagBackfillHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCostAllocationTagBackfillHistory for more information on using the ListCostAllocationTagBackfillHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCostAllocationTagBackfillHistoryRequest method.
+//	req, resp := client.ListCostAllocationTagBackfillHistoryRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostAllocationTagBackfillHistory
+func (c *CostExplorer) ListCostAllocationTagBackfillHistoryRequest(input *ListCostAllocationTagBackfillHistoryInput) (req *request.Request, output *ListCostAllocationTagBackfillHistoryOutput) {
+	op := &request.Operation{
+		Name:       opListCostAllocationTagBackfillHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCostAllocationTagBackfillHistoryInput{}
+	}
+
+	output = &ListCostAllocationTagBackfillHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCostAllocationTagBackfillHistory API operation for AWS Cost Explorer Service.
+//
+// Retrieves a list of your historical cost allocation tag backfill requests.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation ListCostAllocationTagBackfillHistory for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - InvalidNextTokenException
+//     The pagination token is invalid. Try again without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostAllocationTagBackfillHistory
+func (c *CostExplorer) ListCostAllocationTagBackfillHistory(input *ListCostAllocationTagBackfillHistoryInput) (*ListCostAllocationTagBackfillHistoryOutput, error) {
+	req, out := c.ListCostAllocationTagBackfillHistoryRequest(input)
+	return out, req.Send()
+}
+
+// ListCostAllocationTagBackfillHistoryWithContext is the same as ListCostAllocationTagBackfillHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCostAllocationTagBackfillHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListCostAllocationTagBackfillHistoryWithContext(ctx aws.Context, input *ListCostAllocationTagBackfillHistoryInput, opts ...request.Option) (*ListCostAllocationTagBackfillHistoryOutput, error) {
+	req, out := c.ListCostAllocationTagBackfillHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCostAllocationTagBackfillHistoryPages iterates over the pages of a ListCostAllocationTagBackfillHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCostAllocationTagBackfillHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCostAllocationTagBackfillHistory operation.
+//	pageNum := 0
+//	err := client.ListCostAllocationTagBackfillHistoryPages(params,
+//	    func(page *costexplorer.ListCostAllocationTagBackfillHistoryOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *CostExplorer) ListCostAllocationTagBackfillHistoryPages(input *ListCostAllocationTagBackfillHistoryInput, fn func(*ListCostAllocationTagBackfillHistoryOutput, bool) bool) error {
+	return c.ListCostAllocationTagBackfillHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCostAllocationTagBackfillHistoryPagesWithContext same as ListCostAllocationTagBackfillHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListCostAllocationTagBackfillHistoryPagesWithContext(ctx aws.Context, input *ListCostAllocationTagBackfillHistoryInput, fn func(*ListCostAllocationTagBackfillHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCostAllocationTagBackfillHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCostAllocationTagBackfillHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCostAllocationTagBackfillHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCostAllocationTags = "ListCostAllocationTags"
 
 // ListCostAllocationTagsRequest generates a "aws/request.Request" representing the
@@ -3075,6 +3214,93 @@ func (c *CostExplorer) ProvideAnomalyFeedback(input *ProvideAnomalyFeedbackInput
 // for more information on using Contexts.
 func (c *CostExplorer) ProvideAnomalyFeedbackWithContext(ctx aws.Context, input *ProvideAnomalyFeedbackInput, opts ...request.Option) (*ProvideAnomalyFeedbackOutput, error) {
 	req, out := c.ProvideAnomalyFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartCostAllocationTagBackfill = "StartCostAllocationTagBackfill"
+
+// StartCostAllocationTagBackfillRequest generates a "aws/request.Request" representing the
+// client's request for the StartCostAllocationTagBackfill operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCostAllocationTagBackfill for more information on using the StartCostAllocationTagBackfill
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCostAllocationTagBackfillRequest method.
+//	req, resp := client.StartCostAllocationTagBackfillRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCostAllocationTagBackfill
+func (c *CostExplorer) StartCostAllocationTagBackfillRequest(input *StartCostAllocationTagBackfillInput) (req *request.Request, output *StartCostAllocationTagBackfillOutput) {
+	op := &request.Operation{
+		Name:       opStartCostAllocationTagBackfill,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartCostAllocationTagBackfillInput{}
+	}
+
+	output = &StartCostAllocationTagBackfillOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCostAllocationTagBackfill API operation for AWS Cost Explorer Service.
+//
+// Request a cost allocation tag backfill. This will backfill the activation
+// status (either active or inactive) for all tag keys from para:BackfillFrom
+// up to the when this request is made.
+//
+// You can request a backfill once every 24 hours.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation StartCostAllocationTagBackfill for usage and error information.
+//
+// Returned Error Types:
+//
+//   - LimitExceededException
+//     You made too many calls in a short period of time. Try again later.
+//
+//   - BackfillLimitExceededException
+//     A request to backfill is already in progress. Once the previous request is
+//     complete, you can create another request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/StartCostAllocationTagBackfill
+func (c *CostExplorer) StartCostAllocationTagBackfill(input *StartCostAllocationTagBackfillInput) (*StartCostAllocationTagBackfillOutput, error) {
+	req, out := c.StartCostAllocationTagBackfillRequest(input)
+	return out, req.Send()
+}
+
+// StartCostAllocationTagBackfillWithContext is the same as StartCostAllocationTagBackfill with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCostAllocationTagBackfill for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) StartCostAllocationTagBackfillWithContext(ctx aws.Context, input *StartCostAllocationTagBackfillInput, opts ...request.Option) (*StartCostAllocationTagBackfillOutput, error) {
+	req, out := c.StartCostAllocationTagBackfillRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4291,6 +4517,71 @@ func (s *AnomalySubscription) SetThresholdExpression(v *Expression) *AnomalySubs
 	return s
 }
 
+// A request to backfill is already in progress. Once the previous request is
+// complete, you can create another request.
+type BackfillLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackfillLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BackfillLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorBackfillLimitExceededException(v protocol.ResponseMetadata) error {
+	return &BackfillLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BackfillLimitExceededException) Code() string {
+	return "BackfillLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *BackfillLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BackfillLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *BackfillLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BackfillLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BackfillLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The requested report expired. Update the date interval and try again.
 type BillExpirationException struct {
 	_            struct{}                  `type:"structure"`
@@ -4431,6 +4722,75 @@ func (s *CostAllocationTag) SetTagKey(v string) *CostAllocationTag {
 // SetType sets the Type field's value.
 func (s *CostAllocationTag) SetType(v string) *CostAllocationTag {
 	s.Type = &v
+	return s
+}
+
+// The cost allocation tag backfill request structure that contains metadata
+// and details of a certain backfill.
+type CostAllocationTagBackfillRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The date the backfill starts from.
+	BackfillFrom *string `min:"20" type:"string"`
+
+	// The status of the cost allocation tag backfill request.
+	BackfillStatus *string `type:"string" enum:"CostAllocationTagBackfillStatus"`
+
+	// The backfill completion time.
+	CompletedAt *string `min:"20" type:"string"`
+
+	// The time when the backfill status was last updated.
+	LastUpdatedAt *string `min:"20" type:"string"`
+
+	// The time when the backfill was requested.
+	RequestedAt *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CostAllocationTagBackfillRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CostAllocationTagBackfillRequest) GoString() string {
+	return s.String()
+}
+
+// SetBackfillFrom sets the BackfillFrom field's value.
+func (s *CostAllocationTagBackfillRequest) SetBackfillFrom(v string) *CostAllocationTagBackfillRequest {
+	s.BackfillFrom = &v
+	return s
+}
+
+// SetBackfillStatus sets the BackfillStatus field's value.
+func (s *CostAllocationTagBackfillRequest) SetBackfillStatus(v string) *CostAllocationTagBackfillRequest {
+	s.BackfillStatus = &v
+	return s
+}
+
+// SetCompletedAt sets the CompletedAt field's value.
+func (s *CostAllocationTagBackfillRequest) SetCompletedAt(v string) *CostAllocationTagBackfillRequest {
+	s.CompletedAt = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *CostAllocationTagBackfillRequest) SetLastUpdatedAt(v string) *CostAllocationTagBackfillRequest {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetRequestedAt sets the RequestedAt field's value.
+func (s *CostAllocationTagBackfillRequest) SetRequestedAt(v string) *CostAllocationTagBackfillRequest {
+	s.RequestedAt = &v
 	return s
 }
 
@@ -12127,6 +12487,103 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListCostAllocationTagBackfillHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that are returned for this request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCostAllocationTagBackfillHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCostAllocationTagBackfillHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCostAllocationTagBackfillHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCostAllocationTagBackfillHistoryInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCostAllocationTagBackfillHistoryInput) SetMaxResults(v int64) *ListCostAllocationTagBackfillHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCostAllocationTagBackfillHistoryInput) SetNextToken(v string) *ListCostAllocationTagBackfillHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCostAllocationTagBackfillHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of historical cost allocation tag backfill requests.
+	BackfillRequests []*CostAllocationTagBackfillRequest `type:"list"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCostAllocationTagBackfillHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCostAllocationTagBackfillHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetBackfillRequests sets the BackfillRequests field's value.
+func (s *ListCostAllocationTagBackfillHistoryOutput) SetBackfillRequests(v []*CostAllocationTagBackfillRequest) *ListCostAllocationTagBackfillHistoryOutput {
+	s.BackfillRequests = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCostAllocationTagBackfillHistoryOutput) SetNextToken(v string) *ListCostAllocationTagBackfillHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCostAllocationTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15885,6 +16342,88 @@ func (s *SortDefinition) SetSortOrder(v string) *SortDefinition {
 	return s
 }
 
+type StartCostAllocationTagBackfillInput struct {
+	_ struct{} `type:"structure"`
+
+	// The date you want the backfill to start from. The date can only be a first
+	// day of the month (a billing start date). Dates can't precede the previous
+	// twelve months, or in the future.
+	//
+	// BackfillFrom is a required field
+	BackfillFrom *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCostAllocationTagBackfillInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCostAllocationTagBackfillInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCostAllocationTagBackfillInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCostAllocationTagBackfillInput"}
+	if s.BackfillFrom == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackfillFrom"))
+	}
+	if s.BackfillFrom != nil && len(*s.BackfillFrom) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("BackfillFrom", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackfillFrom sets the BackfillFrom field's value.
+func (s *StartCostAllocationTagBackfillInput) SetBackfillFrom(v string) *StartCostAllocationTagBackfillInput {
+	s.BackfillFrom = &v
+	return s
+}
+
+type StartCostAllocationTagBackfillOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object containing detailed metadata of your new backfill request.
+	BackfillRequest *CostAllocationTagBackfillRequest `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCostAllocationTagBackfillOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCostAllocationTagBackfillOutput) GoString() string {
+	return s.String()
+}
+
+// SetBackfillRequest sets the BackfillRequest field's value.
+func (s *StartCostAllocationTagBackfillOutput) SetBackfillRequest(v *CostAllocationTagBackfillRequest) *StartCostAllocationTagBackfillOutput {
+	s.BackfillRequest = v
+	return s
+}
+
 type StartSavingsPlansPurchaseRecommendationGenerationInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -17485,6 +18024,26 @@ func Context_Values() []string {
 		ContextCostAndUsage,
 		ContextReservations,
 		ContextSavingsPlans,
+	}
+}
+
+const (
+	// CostAllocationTagBackfillStatusSucceeded is a CostAllocationTagBackfillStatus enum value
+	CostAllocationTagBackfillStatusSucceeded = "SUCCEEDED"
+
+	// CostAllocationTagBackfillStatusProcessing is a CostAllocationTagBackfillStatus enum value
+	CostAllocationTagBackfillStatusProcessing = "PROCESSING"
+
+	// CostAllocationTagBackfillStatusFailed is a CostAllocationTagBackfillStatus enum value
+	CostAllocationTagBackfillStatusFailed = "FAILED"
+)
+
+// CostAllocationTagBackfillStatus_Values returns all elements of the CostAllocationTagBackfillStatus enum
+func CostAllocationTagBackfillStatus_Values() []string {
+	return []string{
+		CostAllocationTagBackfillStatusSucceeded,
+		CostAllocationTagBackfillStatusProcessing,
+		CostAllocationTagBackfillStatusFailed,
 	}
 }
 

@@ -8,6 +8,13 @@ import (
 
 const (
 
+	// ErrCodeBackfillLimitExceededException for service response error code
+	// "BackfillLimitExceededException".
+	//
+	// A request to backfill is already in progress. Once the previous request is
+	// complete, you can create another request.
+	ErrCodeBackfillLimitExceededException = "BackfillLimitExceededException"
+
 	// ErrCodeBillExpirationException for service response error code
 	// "BillExpirationException".
 	//
@@ -86,6 +93,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BackfillLimitExceededException": newErrorBackfillLimitExceededException,
 	"BillExpirationException":        newErrorBillExpirationException,
 	"DataUnavailableException":       newErrorDataUnavailableException,
 	"GenerationExistsException":      newErrorGenerationExistsException,

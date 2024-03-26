@@ -15973,7 +15973,7 @@
       }
     },
     "NewDhcpConfiguration": {
-      "base": null,
+      "base": "<p>Describes a DHCP configuration option.</p>",
       "refs": {
         "NewDhcpConfigurationList$member": null
       }
@@ -20701,7 +20701,7 @@
         "NetworkInterfacePrivateIpAddress$PrivateDnsName": "<p>The private DNS name.</p>",
         "NetworkInterfacePrivateIpAddress$PrivateIpAddress": "<p>The private IPv4 address.</p>",
         "NetworkNodesList$member": null,
-        "NewDhcpConfiguration$Key": null,
+        "NewDhcpConfiguration$Key": "<p>The name of a DHCP option.</p>",
         "OidcOptions$Issuer": "<p>The OIDC issuer.</p>",
         "OidcOptions$AuthorizationEndpoint": "<p>The OIDC authorization endpoint.</p>",
         "OidcOptions$TokenEndpoint": "<p>The OIDC token endpoint.</p>",
@@ -22533,7 +22533,7 @@
         "GetTransitGatewayRouteTableAssociationsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "GetTransitGatewayRouteTablePropagationsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "SearchTransitGatewayMulticastGroupsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
-        "SearchTransitGatewayRoutesRequest$MaxResults": "<p>The maximum number of routes to return. If a value is not provided, the default is 1000.</p>"
+        "SearchTransitGatewayRoutesRequest$MaxResults": "<p>The maximum number of routes to return.</p>"
       }
     },
     "TransitGatewayMulitcastDomainAssociationState": {
@@ -23364,7 +23364,7 @@
         "ModifyVpcEndpointServicePermissionsRequest$RemoveAllowedPrincipals": "<p>The Amazon Resource Names (ARN) of the principals. Permissions are revoked for principals in this list.</p>",
         "NetworkInsightsAnalysis$AdditionalAccounts": "<p>The member accounts that contain resources that the path can traverse.</p>",
         "NetworkInsightsAnalysis$SuggestedAccounts": "<p>Potential intermediate accounts.</p>",
-        "NewDhcpConfiguration$Values": null,
+        "NewDhcpConfiguration$Values": "<p>The values for the DHCP option.</p>",
         "PacketHeaderStatement$SourceAddresses": "<p>The source addresses.</p>",
         "PacketHeaderStatement$DestinationAddresses": "<p>The destination addresses.</p>",
         "PacketHeaderStatement$SourcePorts": "<p>The source ports.</p>",
