@@ -1,3 +1,16 @@
+Release v1.51.9 (2024-03-27)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This feature allows AWS Batch to support configuration of imagePullSecrets and allowPrivilegeEscalation for jobs running on EKS
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/elasticache`: Updates service API and documentation
+  * Added minimum capacity to  Amazon ElastiCache Serverless. This feature allows customer to ensure minimum capacity even without current load
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+
 Release v1.51.8 (2024-03-26)
 ===
 

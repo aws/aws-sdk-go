@@ -1,363 +1,363 @@
 {
   "version": "2.0",
-  "service": "<p>An example service, deployed with the Octane Service creator, which will echo the string</p>",
+  "service": "<p>Describes the API operations for creating and managing Amazon Bedrock agents.</p>",
   "operations": {
-    "AssociateAgentKnowledgeBase": "<p>Associate a Knowledge Base to an existing Amazon Bedrock Agent</p>",
-    "CreateAgent": "<p>Creates an Amazon Bedrock Agent</p>",
-    "CreateAgentActionGroup": "<p>Creates an Action Group for existing Amazon Bedrock Agent</p>",
-    "CreateAgentAlias": "<p>Creates an Alias for an existing Amazon Bedrock Agent</p>",
-    "CreateDataSource": "<p>Create a new data source</p>",
-    "CreateKnowledgeBase": "<p>Create a new knowledge base</p>",
-    "DeleteAgent": "<p>Deletes an Agent for existing Amazon Bedrock Agent</p>",
-    "DeleteAgentActionGroup": "<p>Deletes an Action Group for existing Amazon Bedrock Agent.</p>",
-    "DeleteAgentAlias": "<p>Deletes an Alias for a Amazon Bedrock Agent</p>",
-    "DeleteAgentVersion": "<p>Deletes an Agent version for existing Amazon Bedrock Agent</p>",
-    "DeleteDataSource": "<p>Delete an existing data source</p>",
-    "DeleteKnowledgeBase": "<p>Delete an existing knowledge base</p>",
-    "DisassociateAgentKnowledgeBase": "<p>Disassociate an existing Knowledge Base from an Amazon Bedrock Agent</p>",
-    "GetAgent": "<p>Gets an Agent for existing Amazon Bedrock Agent</p>",
-    "GetAgentActionGroup": "<p>Gets an Action Group for existing Amazon Bedrock Agent Version</p>",
-    "GetAgentAlias": "<p>Describes an Alias for a Amazon Bedrock Agent</p>",
-    "GetAgentKnowledgeBase": "<p>Gets a knowledge base associated to an existing Amazon Bedrock Agent Version</p>",
-    "GetAgentVersion": "<p>Gets an Agent version for existing Amazon Bedrock Agent</p>",
-    "GetDataSource": "<p>Get an existing data source</p>",
-    "GetIngestionJob": "<p>Get an ingestion job</p>",
-    "GetKnowledgeBase": "<p>Get an existing knowledge base</p>",
-    "ListAgentActionGroups": "<p>Lists an Action Group for existing Amazon Bedrock Agent Version</p>",
-    "ListAgentAliases": "<p>Lists all the Aliases for an Amazon Bedrock Agent</p>",
-    "ListAgentKnowledgeBases": "<p>List of Knowledge Bases associated to an existing Amazon Bedrock Agent Version</p>",
-    "ListAgentVersions": "<p>Lists Agent Versions</p>",
-    "ListAgents": "<p>Lists Agents</p>",
-    "ListDataSources": "<p>List data sources</p>",
-    "ListIngestionJobs": "<p>List ingestion jobs</p>",
-    "ListKnowledgeBases": "<p>List Knowledge Bases</p>",
-    "ListTagsForResource": "<p>List tags for a resource</p>",
-    "PrepareAgent": "<p>Prepares an existing Amazon Bedrock Agent to receive runtime requests</p>",
-    "StartIngestionJob": "<p>Start a new ingestion job</p>",
-    "TagResource": "<p>Tag a resource</p>",
-    "UntagResource": "<p>Untag a resource</p>",
-    "UpdateAgent": "<p>Updates an existing Amazon Bedrock Agent</p>",
-    "UpdateAgentActionGroup": "<p>Updates an existing Action Group for Amazon Bedrock Agent</p>",
-    "UpdateAgentAlias": "<p>Updates an existing Alias for an Amazon Bedrock Agent</p>",
-    "UpdateAgentKnowledgeBase": "<p>Updates an existing Knowledge Base associated to an Amazon Bedrock Agent</p>",
-    "UpdateDataSource": "<p>Update an existing data source</p>",
-    "UpdateKnowledgeBase": "<p>Update an existing knowledge base</p>"
+    "AssociateAgentKnowledgeBase": "<p>Associates a knowledge base with an agent. If a knowledge base is associated and its <code>indexState</code> is set to <code>Enabled</code>, the agent queries the knowledge base for information to augment its response to the user.</p>",
+    "CreateAgent": "<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The ARN of the role with permissions to create an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The ARN of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
+    "CreateAgentActionGroup": "<p>Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them.</p> <p>To allow your agent to request the user for additional information when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+    "CreateAgentAlias": "<p>Creates an alias of an agent that can be used to deploy the agent.</p>",
+    "CreateDataSource": "<p>Sets up a data source to be added to a knowledge base.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source.</p> </important>",
+    "CreateKnowledgeBase": "<p>Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html\">Set up your data for ingestion</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the ARN with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>",
+    "DeleteAgent": "<p>Deletes an agent.</p>",
+    "DeleteAgentActionGroup": "<p>Deletes an action group in an agent.</p>",
+    "DeleteAgentAlias": "<p>Deletes an alias of an agent.</p>",
+    "DeleteAgentVersion": "<p>Deletes a version of an agent.</p>",
+    "DeleteDataSource": "<p>Deletes a data source from a knowledge base.</p>",
+    "DeleteKnowledgeBase": "<p>Deletes a knowledge base. Before deleting a knowledge base, you should disassociate the knowledge base from any agents that it is associated with by making a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_DisassociateAgentKnowledgeBase.html\">DisassociateAgentKnowledgeBase</a> request.</p>",
+    "DisassociateAgentKnowledgeBase": "<p>Disassociates a knowledge base from an agent.</p>",
+    "GetAgent": "<p>Gets information about an agent.</p>",
+    "GetAgentActionGroup": "<p>Gets information about an action group for an agent.</p>",
+    "GetAgentAlias": "<p>Gets information about an alias of an agent.</p>",
+    "GetAgentKnowledgeBase": "<p>Gets information about a knowledge base associated with an agent.</p>",
+    "GetAgentVersion": "<p>Gets details about a version of an agent.</p>",
+    "GetDataSource": "<p>Gets information about a data source.</p>",
+    "GetIngestionJob": "<p>Gets information about a ingestion job, in which a data source is added to a knowledge base.</p>",
+    "GetKnowledgeBase": "<p>Gets information about a knoweldge base.</p>",
+    "ListAgentActionGroups": "<p>Lists the action groups for an agent and information about each one.</p>",
+    "ListAgentAliases": "<p>Lists the aliases of an agent and information about each one.</p>",
+    "ListAgentKnowledgeBases": "<p>Lists knowledge bases associated with an agent and information about each one.</p>",
+    "ListAgentVersions": "<p>Lists the versions of an agent and information about each version.</p>",
+    "ListAgents": "<p>Lists the agents belonging to an account and information about each agent.</p>",
+    "ListDataSources": "<p>Lists the data sources in a knowledge base and information about each one.</p>",
+    "ListIngestionJobs": "<p>Lists the ingestion jobs for a data source and information about each of them.</p>",
+    "ListKnowledgeBases": "<p>Lists the knowledge bases in an account and information about each of them.</p>",
+    "ListTagsForResource": "<p>List all the tags for the resource you specify.</p>",
+    "PrepareAgent": "<p>Creates a <code>DRAFT</code> version of the agent that can be used for internal testing.</p>",
+    "StartIngestionJob": "<p>Begins an ingestion job, in which a data source is added to a knowledge base.</p>",
+    "TagResource": "<p>Associate tags with a resource. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html\">Tagging resources</a> in the Amazon Bedrock User Guide.</p>",
+    "UntagResource": "<p>Remove tags from a resource.</p>",
+    "UpdateAgent": "<p>Updates the configuration of an agent.</p>",
+    "UpdateAgentActionGroup": "<p>Updates the configuration for an action group for an agent.</p>",
+    "UpdateAgentAlias": "<p>Updates configurations for an alias of an agent.</p>",
+    "UpdateAgentKnowledgeBase": "<p>Updates the configuration for a knowledge base that has been associated with an agent.</p>",
+    "UpdateDataSource": "<p>Updates configurations for a data source.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source. Specify the existing <code>chunkingConfiguration</code>.</p> </important>",
+    "UpdateKnowledgeBase": "<p>Updates the configuration of a knowledge base with the fields that you specify. Because all fields will be overwritten, you must include the same values for fields that you want to keep the same.</p> <p>You can change the following fields:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>description</code> </p> </li> <li> <p> <code>roleArn</code> </p> </li> </ul> <p>You can't change the <code>knowledgeBaseConfiguration</code> or <code>storageConfiguration</code> fields, so you must specify the same configurations as when you created the knowledge base. You can send a <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBase.html\">GetKnowledgeBase</a> request and copy the same configurations.</p>"
   },
   "shapes": {
     "APISchema": {
-      "base": "<p>Contains information about the API Schema for the Action Group</p>",
+      "base": "<p>Contains details about the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>. You can either include the schema directly in the <code>payload</code> field or you can upload it to an S3 bucket and specify the S3 bucket location in the <code>s3</code> field.</p>",
       "refs": {
-        "AgentActionGroup$apiSchema": null,
-        "CreateAgentActionGroupRequest$apiSchema": null,
-        "UpdateAgentActionGroupRequest$apiSchema": null
+        "AgentActionGroup$apiSchema": "<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>",
+        "CreateAgentActionGroupRequest$apiSchema": "<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>",
+        "UpdateAgentActionGroupRequest$apiSchema": "<p>Contains either details about the S3 object containing the OpenAPI schema for the action group or the JSON or YAML-formatted payload defining the schema. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
       }
     },
     "AccessDeniedException": {
-      "base": "<p>This exception is thrown when a request is denied per access permissions</p>",
+      "base": "<p>The request is denied because of missing access permissions.</p>",
       "refs": {
       }
     },
     "ActionGroupExecutor": {
-      "base": "<p>Type of Executors for an Action Group</p>",
+      "base": "<p>Contains details about the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
       "refs": {
-        "AgentActionGroup$actionGroupExecutor": null,
-        "CreateAgentActionGroupRequest$actionGroupExecutor": null,
-        "UpdateAgentActionGroupRequest$actionGroupExecutor": null
+        "AgentActionGroup$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "CreateAgentActionGroupRequest$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "UpdateAgentActionGroupRequest$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
       }
     },
     "ActionGroupSignature": {
-      "base": "<p>Action Group Signature for a BuiltIn Action</p>",
+      "base": null,
       "refs": {
-        "AgentActionGroup$parentActionSignature": null,
-        "CreateAgentActionGroupRequest$parentActionGroupSignature": null,
-        "UpdateAgentActionGroupRequest$parentActionGroupSignature": null
+        "AgentActionGroup$parentActionSignature": "<p>If this field is set as <code>AMAZON.UserInput</code>, the agent can request the user for additional information when trying to complete a task. The <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields must be blank for this action group.</p> <p>During orchestration, if the agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+        "CreateAgentActionGroupRequest$parentActionGroupSignature": "<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
+        "UpdateAgentActionGroupRequest$parentActionGroupSignature": "<p>To allow your agent to request the user for additional information when trying to complete a task, set this field to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group.</p> <p>During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>"
       }
     },
     "ActionGroupState": {
-      "base": "<p>State of the action group</p>",
+      "base": null,
       "refs": {
-        "ActionGroupSummary$actionGroupState": null,
-        "AgentActionGroup$actionGroupState": null,
-        "CreateAgentActionGroupRequest$actionGroupState": null,
-        "UpdateAgentActionGroupRequest$actionGroupState": null
+        "ActionGroupSummary$actionGroupState": "<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "AgentActionGroup$actionGroupState": "<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "CreateAgentActionGroupRequest$actionGroupState": "<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "UpdateAgentActionGroupRequest$actionGroupState": "<p>Specifies whether the action group is available for the agent to invoke or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
       }
     },
     "ActionGroupSummaries": {
-      "base": "<p>List of ActionGroup Summaries</p>",
+      "base": null,
       "refs": {
-        "ListAgentActionGroupsResponse$actionGroupSummaries": null
+        "ListAgentActionGroupsResponse$actionGroupSummaries": "<p>A list of objects, each of which contains information about an action group.</p>"
       }
     },
     "ActionGroupSummary": {
-      "base": "<p>ActionGroup Summary</p>",
+      "base": "<p>Contains details about an action group.</p>",
       "refs": {
         "ActionGroupSummaries$member": null
       }
     },
     "Agent": {
-      "base": "<p>Contains the information of an agent</p>",
+      "base": "<p>Contains details about an agent.</p>",
       "refs": {
-        "CreateAgentResponse$agent": null,
-        "GetAgentResponse$agent": null,
-        "UpdateAgentResponse$agent": null
+        "CreateAgentResponse$agent": "<p>Contains details about the agent created.</p>",
+        "GetAgentResponse$agent": "<p>Contains details about the agent.</p>",
+        "UpdateAgentResponse$agent": "<p>Contains details about the agent that was updated.</p>"
       }
     },
     "AgentActionGroup": {
-      "base": "<p>Contains the information of an Agent Action Group</p>",
+      "base": "<p>Contains details about an action group.</p>",
       "refs": {
-        "CreateAgentActionGroupResponse$agentActionGroup": null,
-        "GetAgentActionGroupResponse$agentActionGroup": null,
-        "UpdateAgentActionGroupResponse$agentActionGroup": null
+        "CreateAgentActionGroupResponse$agentActionGroup": "<p>Contains details about the action group that was created.</p>",
+        "GetAgentActionGroupResponse$agentActionGroup": "<p>Contains details about the action group.</p>",
+        "UpdateAgentActionGroupResponse$agentActionGroup": "<p>Contains details about the action group that was updated.</p>"
       }
     },
     "AgentAlias": {
-      "base": "<p>Contains the information of an agent alias</p>",
+      "base": "<p>Contains details about an alias of an agent.</p>",
       "refs": {
-        "CreateAgentAliasResponse$agentAlias": null,
-        "GetAgentAliasResponse$agentAlias": null,
-        "UpdateAgentAliasResponse$agentAlias": null
+        "CreateAgentAliasResponse$agentAlias": "<p>Contains details about the alias that was created.</p>",
+        "GetAgentAliasResponse$agentAlias": "<p>Contains information about the alias.</p>",
+        "UpdateAgentAliasResponse$agentAlias": "<p>Contains details about the alias that was updated.</p>"
       }
     },
     "AgentAliasArn": {
-      "base": "<p>Arn representation of the Agent Alias.</p>",
+      "base": null,
       "refs": {
-        "AgentAlias$agentAliasArn": null
+        "AgentAlias$agentAliasArn": "<p>The ARN of the alias of the agent.</p>"
       }
     },
     "AgentAliasHistoryEvent": {
-      "base": "<p>History event for an alias for an Agent.</p>",
+      "base": "<p>Contains details about the history of the alias.</p>",
       "refs": {
         "AgentAliasHistoryEvents$member": null
       }
     },
     "AgentAliasHistoryEvents": {
-      "base": "<p>The list of history events for an alias for an Agent.</p>",
+      "base": null,
       "refs": {
-        "AgentAlias$agentAliasHistoryEvents": null
+        "AgentAlias$agentAliasHistoryEvents": "<p>Contains details about the history of the alias.</p>"
       }
     },
     "AgentAliasId": {
-      "base": "<p>Id for an Agent Alias generated at the server side.</p>",
+      "base": null,
       "refs": {
-        "AgentAlias$agentAliasId": null,
-        "AgentAliasSummary$agentAliasId": null,
-        "DeleteAgentAliasRequest$agentAliasId": "<p>Id generated at the server side when an Agent Alias is created</p>",
-        "DeleteAgentAliasResponse$agentAliasId": null,
-        "GetAgentAliasRequest$agentAliasId": "<p>Id generated at the server side when an Agent Alias is created</p>",
-        "UpdateAgentAliasRequest$agentAliasId": "<p>Id generated at the server side when an Agent Alias is created</p>"
+        "AgentAlias$agentAliasId": "<p>The unique identifier of the alias of the agent.</p>",
+        "AgentAliasSummary$agentAliasId": "<p>Contains details about </p>",
+        "DeleteAgentAliasRequest$agentAliasId": "<p>The unique identifier of the alias to delete.</p>",
+        "DeleteAgentAliasResponse$agentAliasId": "<p>The unique identifier of the alias that was deleted.</p>",
+        "GetAgentAliasRequest$agentAliasId": "<p>The unique identifier of the alias for which to get information.</p>",
+        "UpdateAgentAliasRequest$agentAliasId": "<p>The unique identifier of the alias.</p>"
       }
     },
     "AgentAliasRoutingConfiguration": {
-      "base": "<p>Routing configuration for an Agent alias.</p>",
+      "base": null,
       "refs": {
-        "AgentAlias$routingConfiguration": null,
-        "AgentAliasHistoryEvent$routingConfiguration": null,
-        "AgentAliasSummary$routingConfiguration": null,
-        "CreateAgentAliasRequest$routingConfiguration": null,
-        "UpdateAgentAliasRequest$routingConfiguration": null
+        "AgentAlias$routingConfiguration": "<p>Contains details about the routing configuration of the alias.</p>",
+        "AgentAliasHistoryEvent$routingConfiguration": "<p>Contains details about the version of the agent with which the alias is associated.</p>",
+        "AgentAliasSummary$routingConfiguration": "<p>Contains details about the version of the agent with which the alias is associated.</p>",
+        "CreateAgentAliasRequest$routingConfiguration": "<p>Contains details about the routing configuration of the alias.</p>",
+        "UpdateAgentAliasRequest$routingConfiguration": "<p>Contains details about the routing configuration of the alias.</p>"
       }
     },
     "AgentAliasRoutingConfigurationListItem": {
-      "base": "<p>Details about the routing configuration for an Agent alias.</p>",
+      "base": "<p>Contains details about the routing configuration of the alias.</p>",
       "refs": {
         "AgentAliasRoutingConfiguration$member": null
       }
     },
     "AgentAliasStatus": {
-      "base": "<p>The statuses an Agent Alias can be in.</p>",
+      "base": null,
       "refs": {
-        "AgentAlias$agentAliasStatus": null,
-        "AgentAliasSummary$agentAliasStatus": null,
-        "DeleteAgentAliasResponse$agentAliasStatus": null
+        "AgentAlias$agentAliasStatus": "<p>The status of the alias of the agent and whether it is ready for use. The following statuses are possible:</p> <ul> <li> <p>CREATING – The agent alias is being created.</p> </li> <li> <p>PREPARED – The agent alias is finished being created or updated and is ready to be invoked.</p> </li> <li> <p>FAILED – The agent alias API operation failed.</p> </li> <li> <p>UPDATING – The agent alias is being updated.</p> </li> <li> <p>DELETING – The agent alias is being deleted.</p> </li> </ul>",
+        "AgentAliasSummary$agentAliasStatus": "<p>The status of the alias.</p>",
+        "DeleteAgentAliasResponse$agentAliasStatus": "<p>The status of the alias.</p>"
       }
     },
     "AgentAliasSummaries": {
-      "base": "<p>The list of summaries of all the aliases for an Agent.</p>",
+      "base": null,
       "refs": {
-        "ListAgentAliasesResponse$agentAliasSummaries": null
+        "ListAgentAliasesResponse$agentAliasSummaries": "<p>A list of objects, each of which contains information about an alias of the agent.</p>"
       }
     },
     "AgentAliasSummary": {
-      "base": "<p>Summary of an alias for an Agent.</p>",
+      "base": "<p>Contains details about an alias of an agent.</p>",
       "refs": {
         "AgentAliasSummaries$member": null
       }
     },
     "AgentArn": {
-      "base": "<p>Arn representation of the Agent.</p>",
+      "base": null,
       "refs": {
-        "Agent$agentArn": null,
-        "AgentVersion$agentArn": null
+        "Agent$agentArn": "<p>The ARN of the agent.</p>",
+        "AgentVersion$agentArn": "<p>The ARN of the agent that the version belongs to.</p>"
       }
     },
     "AgentKnowledgeBase": {
-      "base": "<p>Contains the information of an Agent Knowledge Base.</p>",
+      "base": "<p>Contains details about a knowledge base that is associated with an agent.</p>",
       "refs": {
-        "AssociateAgentKnowledgeBaseResponse$agentKnowledgeBase": null,
-        "GetAgentKnowledgeBaseResponse$agentKnowledgeBase": null,
-        "UpdateAgentKnowledgeBaseResponse$agentKnowledgeBase": null
+        "AssociateAgentKnowledgeBaseResponse$agentKnowledgeBase": "<p>Contains details about the knowledge base that has been associated with the agent.</p>",
+        "GetAgentKnowledgeBaseResponse$agentKnowledgeBase": "<p>Contains details about a knowledge base attached to an agent.</p>",
+        "UpdateAgentKnowledgeBaseResponse$agentKnowledgeBase": "<p>Contains details about the knowledge base that has been associated with an agent.</p>"
       }
     },
     "AgentKnowledgeBaseSummaries": {
-      "base": "<p>List of Agent Knowledge Base Summaries</p>",
+      "base": null,
       "refs": {
-        "ListAgentKnowledgeBasesResponse$agentKnowledgeBaseSummaries": null
+        "ListAgentKnowledgeBasesResponse$agentKnowledgeBaseSummaries": "<p>A list of objects, each of which contains information about a knowledge base associated with the agent.</p>"
       }
     },
     "AgentKnowledgeBaseSummary": {
-      "base": "<p>Agent Knowledge Base Summary</p>",
+      "base": "<p>Contains details about a knowledge base associated with an agent.</p>",
       "refs": {
         "AgentKnowledgeBaseSummaries$member": null
       }
     },
     "AgentRoleArn": {
-      "base": "<p>ARN of a IAM role.</p>",
+      "base": null,
       "refs": {
-        "Agent$agentResourceRoleArn": null,
-        "AgentVersion$agentResourceRoleArn": null,
-        "CreateAgentRequest$agentResourceRoleArn": null,
-        "UpdateAgentRequest$agentResourceRoleArn": null
+        "Agent$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to call API operations on the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
+        "AgentVersion$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to invoke API operations on the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
+        "CreateAgentRequest$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to create the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
+        "UpdateAgentRequest$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to update the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>"
       }
     },
     "AgentStatus": {
-      "base": "<p>Schema Type for Action APIs.</p>",
+      "base": null,
       "refs": {
-        "Agent$agentStatus": null,
-        "AgentSummary$agentStatus": null,
-        "AgentVersion$agentStatus": null,
-        "AgentVersionSummary$agentStatus": null,
-        "DeleteAgentResponse$agentStatus": null,
-        "DeleteAgentVersionResponse$agentStatus": null,
-        "PrepareAgentResponse$agentStatus": null
+        "Agent$agentStatus": "<p>The status of the agent and whether it is ready for use. The following statuses are possible:</p> <ul> <li> <p>CREATING – The agent is being created.</p> </li> <li> <p>PREPARING – The agent is being prepared.</p> </li> <li> <p>PREPARED – The agent is prepared and ready to be invoked.</p> </li> <li> <p>NOT_PREPARED – The agent has been created but not yet prepared.</p> </li> <li> <p>FAILED – The agent API operation failed.</p> </li> <li> <p>UPDATING – The agent is being updated.</p> </li> <li> <p>DELETING – The agent is being deleted.</p> </li> </ul>",
+        "AgentSummary$agentStatus": "<p>The status of the agent.</p>",
+        "AgentVersion$agentStatus": "<p>The status of the agent that the version belongs to.</p>",
+        "AgentVersionSummary$agentStatus": "<p>The status of the agent to which the version belongs.</p>",
+        "DeleteAgentResponse$agentStatus": "<p>The status of the agent.</p>",
+        "DeleteAgentVersionResponse$agentStatus": "<p>The status of the agent version.</p>",
+        "PrepareAgentResponse$agentStatus": "<p>The status of the <code>DRAFT</code> version and whether it is ready for use.</p>"
       }
     },
     "AgentSummaries": {
-      "base": "<p>List of AgentSummary.</p>",
+      "base": null,
       "refs": {
-        "ListAgentsResponse$agentSummaries": null
+        "ListAgentsResponse$agentSummaries": "<p>A list of objects, each of which contains information about an agent.</p>"
       }
     },
     "AgentSummary": {
-      "base": "<p>Summary of Agent.</p>",
+      "base": "<p>Contains details about an agent.</p>",
       "refs": {
         "AgentSummaries$member": null
       }
     },
     "AgentVersion": {
-      "base": "<p>Contains the information of an agent version.</p>",
+      "base": "<p>Contains details about a version of an agent.</p>",
       "refs": {
-        "GetAgentVersionResponse$agentVersion": null
+        "GetAgentVersionResponse$agentVersion": "<p>Contains details about the version of the agent.</p>"
       }
     },
     "AgentVersionSummaries": {
-      "base": "<p>List of AgentVersionSummary.</p>",
+      "base": null,
       "refs": {
-        "ListAgentVersionsResponse$agentVersionSummaries": null
+        "ListAgentVersionsResponse$agentVersionSummaries": "<p>A list of objects, each of which contains information about a version of the agent.</p>"
       }
     },
     "AgentVersionSummary": {
-      "base": "<p>Summary of agent version.</p>",
+      "base": "<p>Contains details about a version of an agent.</p>",
       "refs": {
         "AgentVersionSummaries$member": null
       }
     },
     "AssociateAgentKnowledgeBaseRequest": {
-      "base": "<p>Associate Agent Knowledge Base Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "AssociateAgentKnowledgeBaseResponse": {
-      "base": "<p>Associate Agent Knowledge Base Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "BasePromptTemplate": {
-      "base": "<p>Base Prompt Template.</p>",
+      "base": null,
       "refs": {
-        "PromptConfiguration$basePromptTemplate": null
+        "PromptConfiguration$basePromptTemplate": "<p>Defines the prompt template with which to replace the default prompt template. You can use placeholder variables in the base prompt template to customize the prompt. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html\">Prompt template placeholder variables</a>.</p>"
       }
     },
     "BedrockEmbeddingModelArn": {
-      "base": "<p>Arn of a Bedrock model.</p>",
+      "base": null,
       "refs": {
-        "VectorKnowledgeBaseConfiguration$embeddingModelArn": null
+        "VectorKnowledgeBaseConfiguration$embeddingModelArn": "<p>The ARN of the model used to create vector embeddings for the knowledge base.</p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
-        "DeleteAgentActionGroupRequest$skipResourceInUseCheck": "<p>Skips checking if resource is in use when set to true. Defaults to false</p>",
-        "DeleteAgentRequest$skipResourceInUseCheck": "<p>Skips checking if resource is in use when set to true. Defaults to false</p>",
-        "DeleteAgentVersionRequest$skipResourceInUseCheck": "<p>Skips checking if resource is in use when set to true. Defaults to false</p>"
+        "DeleteAgentActionGroupRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+        "DeleteAgentRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+        "DeleteAgentVersionRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>"
       }
     },
     "ChunkingConfiguration": {
-      "base": "<p>Configures chunking strategy</p>",
+      "base": "<p>Details about how to chunk the documents in the data source. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried.</p>",
       "refs": {
-        "VectorIngestionConfiguration$chunkingConfiguration": null
+        "VectorIngestionConfiguration$chunkingConfiguration": "<p>Details about how to chunk the documents in the data source. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried.</p>"
       }
     },
     "ChunkingStrategy": {
-      "base": "<p>The type of chunking strategy</p>",
+      "base": null,
       "refs": {
-        "ChunkingConfiguration$chunkingStrategy": null
+        "ChunkingConfiguration$chunkingStrategy": "<p>Knowledge base can split your source data into chunks. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried. You have the following options for chunking your data. If you opt for <code>NONE</code>, then you may want to pre-process your files by splitting them up such that each file corresponds to a chunk.</p> <ul> <li> <p> <code>FIXED_SIZE</code> – Amazon Bedrock splits your source data into chunks of the approximate size that you set in the <code>fixedSizeChunkingConfiguration</code>.</p> </li> <li> <p> <code>NONE</code> – Amazon Bedrock treats each file as one chunk. If you choose this option, you may want to pre-process your documents by splitting them into separate files.</p> </li> </ul>"
       }
     },
     "ClientToken": {
-      "base": "<p>Client specified token used for idempotency checks</p>",
+      "base": null,
       "refs": {
-        "Agent$clientToken": null,
-        "AgentActionGroup$clientToken": null,
-        "AgentAlias$clientToken": null,
-        "CreateAgentActionGroupRequest$clientToken": null,
-        "CreateAgentAliasRequest$clientToken": null,
-        "CreateAgentRequest$clientToken": null,
-        "CreateDataSourceRequest$clientToken": null,
-        "CreateKnowledgeBaseRequest$clientToken": null,
-        "StartIngestionJobRequest$clientToken": null
+        "Agent$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "AgentActionGroup$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "AgentAlias$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateAgentActionGroupRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateAgentAliasRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateAgentRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateDataSourceRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "CreateKnowledgeBaseRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>",
+        "StartIngestionJobRequest$clientToken": "<p>A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request, but does not return an error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring idempotency</a>.</p>"
       }
     },
     "ColumnName": {
-      "base": "<p>Name of the column</p>",
+      "base": null,
       "refs": {
-        "RdsFieldMapping$primaryKeyField": null,
-        "RdsFieldMapping$vectorField": null,
-        "RdsFieldMapping$textField": null,
-        "RdsFieldMapping$metadataField": null
+        "RdsFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
+        "RdsFieldMapping$primaryKeyField": "<p>The name of the field in which Amazon Bedrock stores the ID for each entry.</p>",
+        "RdsFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
+        "RdsFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p>This exception is thrown when there is a conflict performing an operation</p>",
+      "base": "<p>There was a conflict performing an operation.</p>",
       "refs": {
       }
     },
     "CreateAgentActionGroupRequest": {
-      "base": "<p>Create Action Group Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAgentActionGroupResponse": {
-      "base": "<p>Create Action Group Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAgentAliasRequest": {
-      "base": "<p>Create Agent Alias Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAgentAliasResponse": {
-      "base": "<p>Create Agent Alias Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAgentRequest": {
-      "base": "<p>Create Agent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "CreateAgentResponse": {
-      "base": "<p>Create Agent Response</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -382,127 +382,127 @@
       }
     },
     "CreationMode": {
-      "base": "<p>Creation Mode for Prompt Configuration.</p>",
+      "base": null,
       "refs": {
-        "PromptConfiguration$promptCreationMode": null,
-        "PromptConfiguration$parserMode": null
+        "PromptConfiguration$parserMode": "<p>Specifies whether to override the default parser Lambda function when parsing the raw foundation model output in the part of the agent sequence defined by the <code>promptType</code>. If you set the field as <code>OVERRIDEN</code>, the <code>overrideLambda</code> field in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> must be specified with the ARN of a Lambda function.</p>",
+        "PromptConfiguration$promptCreationMode": "<p>Specifies whether to override the default prompt template for this <code>promptType</code>. Set this value to <code>OVERRIDDEN</code> to use the prompt that you provide in the <code>basePromptTemplate</code>. If you leave it as <code>DEFAULT</code>, the agent uses a default prompt template.</p>"
       }
     },
     "DataSource": {
-      "base": "<p>Contains the information of a data source.</p>",
+      "base": "<p>Contains details about a data source.</p>",
       "refs": {
-        "CreateDataSourceResponse$dataSource": null,
-        "GetDataSourceResponse$dataSource": null,
-        "UpdateDataSourceResponse$dataSource": null
+        "CreateDataSourceResponse$dataSource": "<p>Contains details about the data source.</p>",
+        "GetDataSourceResponse$dataSource": "<p>Contains details about the data source.</p>",
+        "UpdateDataSourceResponse$dataSource": "<p>Contains details about the data source.</p>"
       }
     },
     "DataSourceConfiguration": {
-      "base": "<p>Specifies a raw data source location to ingest.</p>",
+      "base": "<p>Contains details about how a data source is stored.</p>",
       "refs": {
-        "CreateDataSourceRequest$dataSourceConfiguration": null,
-        "DataSource$dataSourceConfiguration": null,
-        "UpdateDataSourceRequest$dataSourceConfiguration": null
+        "CreateDataSourceRequest$dataSourceConfiguration": "<p>Contains metadata about where the data source is stored.</p>",
+        "DataSource$dataSourceConfiguration": "<p>Contains details about how the data source is stored.</p>",
+        "UpdateDataSourceRequest$dataSourceConfiguration": "<p>Contains details about the storage configuration of the data source.</p>"
       }
     },
     "DataSourceStatus": {
-      "base": "<p>The status of a data source.</p>",
+      "base": null,
       "refs": {
-        "DataSource$status": null,
-        "DataSourceSummary$status": null,
-        "DeleteDataSourceResponse$status": null
+        "DataSource$status": "<p>The status of the data source. The following statuses are possible:</p> <ul> <li> <p>Available – The data source has been created and is ready for ingestion into the knowledge base.</p> </li> <li> <p>Deleting – The data source is being deleted.</p> </li> </ul>",
+        "DataSourceSummary$status": "<p>The status of the data source.</p>",
+        "DeleteDataSourceResponse$status": "<p>The status of the data source.</p>"
       }
     },
     "DataSourceSummaries": {
-      "base": "<p>list of data source summaries</p>",
+      "base": null,
       "refs": {
-        "ListDataSourcesResponse$dataSourceSummaries": null
+        "ListDataSourcesResponse$dataSourceSummaries": "<p>A list of objects, each of which contains information about a data source.</p>"
       }
     },
     "DataSourceSummary": {
-      "base": "<p>Summary information of a data source.</p>",
+      "base": "<p>Contains details about a data source.</p>",
       "refs": {
         "DataSourceSummaries$member": null
       }
     },
     "DataSourceType": {
-      "base": "<p>The type of the data source location.</p>",
+      "base": null,
       "refs": {
-        "DataSourceConfiguration$type": null
+        "DataSourceConfiguration$type": "<p>The type of storage for the data source.</p>"
       }
     },
     "DateTimestamp": {
-      "base": "<p>Time Stamp.</p>",
+      "base": null,
       "refs": {
-        "ActionGroupSummary$updatedAt": null,
-        "Agent$createdAt": null,
-        "Agent$updatedAt": null,
-        "Agent$preparedAt": null,
-        "AgentActionGroup$createdAt": null,
-        "AgentActionGroup$updatedAt": null,
-        "AgentAlias$createdAt": null,
-        "AgentAlias$updatedAt": null,
-        "AgentAliasHistoryEvent$endDate": null,
-        "AgentAliasHistoryEvent$startDate": null,
-        "AgentAliasSummary$createdAt": null,
-        "AgentAliasSummary$updatedAt": null,
-        "AgentKnowledgeBase$createdAt": null,
-        "AgentKnowledgeBase$updatedAt": null,
-        "AgentKnowledgeBaseSummary$updatedAt": null,
-        "AgentSummary$updatedAt": null,
-        "AgentVersion$createdAt": null,
-        "AgentVersion$updatedAt": null,
-        "AgentVersionSummary$createdAt": null,
-        "AgentVersionSummary$updatedAt": null,
-        "DataSource$createdAt": null,
-        "DataSource$updatedAt": null,
-        "DataSourceSummary$updatedAt": null,
-        "IngestionJob$startedAt": null,
-        "IngestionJob$updatedAt": null,
-        "IngestionJobSummary$startedAt": null,
-        "IngestionJobSummary$updatedAt": null,
-        "KnowledgeBase$createdAt": null,
-        "KnowledgeBase$updatedAt": null,
-        "KnowledgeBaseSummary$updatedAt": null,
-        "PrepareAgentResponse$preparedAt": null
+        "ActionGroupSummary$updatedAt": "<p>The time at which the action group was last updated.</p>",
+        "Agent$createdAt": "<p>The time at which the agent was created.</p>",
+        "Agent$preparedAt": "<p>The time at which the agent was last prepared.</p>",
+        "Agent$updatedAt": "<p>The time at which the agent was last updated.</p>",
+        "AgentActionGroup$createdAt": "<p>The time at which the action group was created.</p>",
+        "AgentActionGroup$updatedAt": "<p>The time at which the action group was last updated.</p>",
+        "AgentAlias$createdAt": "<p>The time at which the alias of the agent was created.</p>",
+        "AgentAlias$updatedAt": "<p>The time at which the alias was last updated.</p>",
+        "AgentAliasHistoryEvent$endDate": "<p>The date that the alias stopped being associated to the version in the <code>routingConfiguration</code> object</p>",
+        "AgentAliasHistoryEvent$startDate": "<p>The date that the alias began being associated to the version in the <code>routingConfiguration</code> object.</p>",
+        "AgentAliasSummary$createdAt": "<p>The time at which the alias of the agent was created.</p>",
+        "AgentAliasSummary$updatedAt": "<p>The time at which the alias was last updated.</p>",
+        "AgentKnowledgeBase$createdAt": "<p>The time at which the association between the agent and the knowledge base was created.</p>",
+        "AgentKnowledgeBase$updatedAt": "<p>The time at which the association between the agent and the knowledge base was last updated.</p>",
+        "AgentKnowledgeBaseSummary$updatedAt": "<p>The time at which the knowledge base associated with an agent was last updated.</p>",
+        "AgentSummary$updatedAt": "<p>The time at which the agent was last updated.</p>",
+        "AgentVersion$createdAt": "<p>The time at which the version was created.</p>",
+        "AgentVersion$updatedAt": "<p>The time at which the version was last updated.</p>",
+        "AgentVersionSummary$createdAt": "<p>The time at which the version was created.</p>",
+        "AgentVersionSummary$updatedAt": "<p>The time at which the version was last updated.</p>",
+        "DataSource$createdAt": "<p>The time at which the data source was created.</p>",
+        "DataSource$updatedAt": "<p>The time at which the data source was last updated.</p>",
+        "DataSourceSummary$updatedAt": "<p>The time at which the data source was last updated.</p>",
+        "IngestionJob$startedAt": "<p>The time at which the ingestion job started.</p>",
+        "IngestionJob$updatedAt": "<p>The time at which the ingestion job was last updated.</p>",
+        "IngestionJobSummary$startedAt": "<p>The time at which the ingestion job was started.</p>",
+        "IngestionJobSummary$updatedAt": "<p>The time at which the ingestion job was last updated.</p>",
+        "KnowledgeBase$createdAt": "<p>The time at which the knowledge base was created.</p>",
+        "KnowledgeBase$updatedAt": "<p>The time at which the knowledge base was last updated.</p>",
+        "KnowledgeBaseSummary$updatedAt": "<p>The time at which the knowledge base was last updated.</p>",
+        "PrepareAgentResponse$preparedAt": "<p>The time at which the <code>DRAFT</code> version of the agent was last prepared.</p>"
       }
     },
     "DeleteAgentActionGroupRequest": {
-      "base": "<p>Delete Action Group Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentActionGroupResponse": {
-      "base": "<p>Delete Action Group Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentAliasRequest": {
-      "base": "<p>Delete Agent Alias Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentAliasResponse": {
-      "base": "<p>Delete Agent Alias Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentRequest": {
-      "base": "<p>Delete Agent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentResponse": {
-      "base": "<p>Delete Agent Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentVersionRequest": {
-      "base": "<p>Delete Agent Version Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "DeleteAgentVersionResponse": {
-      "base": "<p>Delete Agent Version Response</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -527,154 +527,154 @@
       }
     },
     "Description": {
-      "base": "<p>Description of the Resource.</p>",
+      "base": null,
       "refs": {
-        "ActionGroupSummary$description": null,
-        "Agent$description": null,
-        "AgentActionGroup$description": null,
-        "AgentAlias$description": null,
-        "AgentAliasSummary$description": null,
-        "AgentKnowledgeBase$description": null,
-        "AgentKnowledgeBaseSummary$description": null,
-        "AgentSummary$description": null,
-        "AgentVersion$description": null,
-        "AgentVersionSummary$description": null,
-        "AssociateAgentKnowledgeBaseRequest$description": null,
-        "CreateAgentActionGroupRequest$description": null,
-        "CreateAgentAliasRequest$description": null,
-        "CreateAgentRequest$description": null,
-        "CreateDataSourceRequest$description": null,
-        "CreateKnowledgeBaseRequest$description": null,
-        "DataSource$description": null,
-        "DataSourceSummary$description": null,
-        "IngestionJob$description": null,
-        "IngestionJobSummary$description": null,
-        "KnowledgeBase$description": null,
-        "KnowledgeBaseSummary$description": null,
-        "StartIngestionJobRequest$description": null,
-        "UpdateAgentActionGroupRequest$description": null,
-        "UpdateAgentAliasRequest$description": null,
-        "UpdateAgentKnowledgeBaseRequest$description": null,
-        "UpdateAgentRequest$description": null,
-        "UpdateDataSourceRequest$description": null,
-        "UpdateKnowledgeBaseRequest$description": null
+        "ActionGroupSummary$description": "<p>The description of the action group.</p>",
+        "Agent$description": "<p>The description of the agent.</p>",
+        "AgentActionGroup$description": "<p>The description of the action group.</p>",
+        "AgentAlias$description": "<p>The description of the alias of the agent.</p>",
+        "AgentAliasSummary$description": "<p>The description of the alias.</p>",
+        "AgentKnowledgeBase$description": "<p>The description of the association between the agent and the knowledge base.</p>",
+        "AgentKnowledgeBaseSummary$description": "<p>The description of the knowledge base associated with an agent.</p>",
+        "AgentSummary$description": "<p>The description of the agent.</p>",
+        "AgentVersion$description": "<p>The description of the version.</p>",
+        "AgentVersionSummary$description": "<p>The description of the version of the agent.</p>",
+        "AssociateAgentKnowledgeBaseRequest$description": "<p>A description of what the agent should use the knowledge base for.</p>",
+        "CreateAgentActionGroupRequest$description": "<p>A description of the action group.</p>",
+        "CreateAgentAliasRequest$description": "<p>A description of the alias of the agent.</p>",
+        "CreateAgentRequest$description": "<p>A description of the agent.</p>",
+        "CreateDataSourceRequest$description": "<p>A description of the data source.</p>",
+        "CreateKnowledgeBaseRequest$description": "<p>A description of the knowledge base.</p>",
+        "DataSource$description": "<p>The description of the data source.</p>",
+        "DataSourceSummary$description": "<p>The description of the data source.</p>",
+        "IngestionJob$description": "<p>The description of the ingestion job.</p>",
+        "IngestionJobSummary$description": "<p>The description of the ingestion job.</p>",
+        "KnowledgeBase$description": "<p>The description of the knowledge base.</p>",
+        "KnowledgeBaseSummary$description": "<p>The description of the knowledge base.</p>",
+        "StartIngestionJobRequest$description": "<p>A description of the ingestion job.</p>",
+        "UpdateAgentActionGroupRequest$description": "<p>Specifies a new name for the action group.</p>",
+        "UpdateAgentAliasRequest$description": "<p>Specifies a new description for the alias.</p>",
+        "UpdateAgentKnowledgeBaseRequest$description": "<p>Specifies a new description for the knowledge base associated with an agent.</p>",
+        "UpdateAgentRequest$description": "<p>Specifies a new description of the agent.</p>",
+        "UpdateDataSourceRequest$description": "<p>Specifies a new description for the data source.</p>",
+        "UpdateKnowledgeBaseRequest$description": "<p>Specifies a new description for the knowledge base.</p>"
       }
     },
     "DisassociateAgentKnowledgeBaseRequest": {
-      "base": "<p>Disassociate Agent Knowledge Base Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "DisassociateAgentKnowledgeBaseResponse": {
-      "base": "<p>Disassociate Agent Knowledge Base Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "DraftVersion": {
-      "base": "<p>Draft Agent Version.</p>",
+      "base": null,
       "refs": {
-        "Agent$agentVersion": null,
-        "AssociateAgentKnowledgeBaseRequest$agentVersion": "<p>Draft Version of the Agent.</p>",
-        "CreateAgentActionGroupRequest$agentVersion": "<p>Draft Version of the Agent.</p>",
-        "DeleteAgentActionGroupRequest$agentVersion": "<p>Draft Version of the Agent.</p>",
-        "DisassociateAgentKnowledgeBaseRequest$agentVersion": "<p>Draft Version of the Agent.</p>",
-        "UpdateAgentActionGroupRequest$agentVersion": "<p>Draft Version of the Agent.</p>",
-        "UpdateAgentKnowledgeBaseRequest$agentVersion": "<p>Draft Version of the Agent.</p>"
+        "Agent$agentVersion": "<p>The version of the agent.</p>",
+        "AssociateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent with which you want to associate the knowledge base.</p>",
+        "CreateAgentActionGroupRequest$agentVersion": "<p>The version of the agent for which to create the action group.</p>",
+        "DeleteAgentActionGroupRequest$agentVersion": "<p>The version of the agent that the action group belongs to.</p>",
+        "DisassociateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent from which to disassociate the knowledge base.</p>",
+        "UpdateAgentActionGroupRequest$agentVersion": "<p>The unique identifier of the agent version for which to update the action group.</p>",
+        "UpdateAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent associated with the knowledge base that you want to update.</p>"
       }
     },
     "FailureReason": {
-      "base": "<p>Failure Reason for Error.</p>",
+      "base": null,
       "refs": {
         "FailureReasons$member": null
       }
     },
     "FailureReasons": {
-      "base": "<p>Failure Reasons for Error.</p>",
+      "base": null,
       "refs": {
-        "Agent$failureReasons": null,
-        "AgentVersion$failureReasons": null,
-        "IngestionJob$failureReasons": null,
-        "KnowledgeBase$failureReasons": null
+        "Agent$failureReasons": "<p>Contains reasons that the agent-related API that you invoked failed.</p>",
+        "AgentVersion$failureReasons": "<p>A list of reasons that the API operation on the version failed.</p>",
+        "IngestionJob$failureReasons": "<p>A list of reasons that the ingestion job failed.</p>",
+        "KnowledgeBase$failureReasons": "<p>A list of reasons that the API operation on the knowledge base failed.</p>"
       }
     },
     "FieldName": {
-      "base": "<p>Name of the field</p>",
+      "base": null,
       "refs": {
-        "OpenSearchServerlessFieldMapping$vectorField": null,
-        "OpenSearchServerlessFieldMapping$textField": null,
-        "OpenSearchServerlessFieldMapping$metadataField": null,
-        "PineconeFieldMapping$textField": null,
-        "PineconeFieldMapping$metadataField": null,
-        "RedisEnterpriseCloudFieldMapping$vectorField": null,
-        "RedisEnterpriseCloudFieldMapping$textField": null,
-        "RedisEnterpriseCloudFieldMapping$metadataField": null
+        "OpenSearchServerlessFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
+        "OpenSearchServerlessFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
+        "OpenSearchServerlessFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>",
+        "PineconeFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
+        "PineconeFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
+        "RedisEnterpriseCloudFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
+        "RedisEnterpriseCloudFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
+        "RedisEnterpriseCloudFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>"
       }
     },
     "FixedSizeChunkingConfiguration": {
-      "base": "<p>Configures fixed size chunking strategy</p>",
+      "base": "<p>Configurations for when you choose fixed-size chunking. If you set the <code>chunkingStrategy</code> as <code>NONE</code>, exclude this field.</p>",
       "refs": {
-        "ChunkingConfiguration$fixedSizeChunkingConfiguration": null
+        "ChunkingConfiguration$fixedSizeChunkingConfiguration": "<p>Configurations for when you choose fixed-size chunking. If you set the <code>chunkingStrategy</code> as <code>NONE</code>, exclude this field.</p>"
       }
     },
     "FixedSizeChunkingConfigurationMaxTokensInteger": {
       "base": null,
       "refs": {
-        "FixedSizeChunkingConfiguration$maxTokens": "<p>The maximum number of tokens per chunk.</p>"
+        "FixedSizeChunkingConfiguration$maxTokens": "<p>The maximum number of tokens to include in a chunk.</p>"
       }
     },
     "FixedSizeChunkingConfigurationOverlapPercentageInteger": {
       "base": null,
       "refs": {
-        "FixedSizeChunkingConfiguration$overlapPercentage": "<p>The overlap percentage between adjacent chunks.</p>"
+        "FixedSizeChunkingConfiguration$overlapPercentage": "<p>The percentage of overlap between adjacent chunks of a data source.</p>"
       }
     },
     "GetAgentActionGroupRequest": {
-      "base": "<p>Get Action Group Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentActionGroupResponse": {
-      "base": "<p>Get Action Group Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentAliasRequest": {
-      "base": "<p>Get Agent Alias Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentAliasResponse": {
-      "base": "<p>Get Agent Alias Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentKnowledgeBaseRequest": {
-      "base": "<p>Get Agent Knowledge Base Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentKnowledgeBaseResponse": {
-      "base": "<p>Get Agent Knowledge Base Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentRequest": {
-      "base": "<p>Get Agent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentResponse": {
-      "base": "<p>Get Agent Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentVersionRequest": {
-      "base": "<p>Get Agent Version Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "GetAgentVersionResponse": {
-      "base": "<p>Get Agent Version Response</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -709,322 +709,322 @@
       }
     },
     "Id": {
-      "base": "<p>Identifier for a resource.</p>",
+      "base": null,
       "refs": {
-        "ActionGroupSummary$actionGroupId": null,
-        "Agent$agentId": null,
-        "AgentActionGroup$agentId": null,
-        "AgentActionGroup$actionGroupId": null,
-        "AgentAlias$agentId": null,
-        "AgentKnowledgeBase$agentId": null,
-        "AgentKnowledgeBase$knowledgeBaseId": null,
-        "AgentKnowledgeBaseSummary$knowledgeBaseId": null,
-        "AgentSummary$agentId": null,
-        "AgentVersion$agentId": null,
-        "AssociateAgentKnowledgeBaseRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "AssociateAgentKnowledgeBaseRequest$knowledgeBaseId": null,
-        "CreateAgentActionGroupRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "CreateAgentAliasRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "CreateDataSourceRequest$knowledgeBaseId": null,
-        "DataSource$knowledgeBaseId": null,
-        "DataSource$dataSourceId": null,
-        "DataSourceSummary$knowledgeBaseId": null,
-        "DataSourceSummary$dataSourceId": null,
-        "DeleteAgentActionGroupRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "DeleteAgentActionGroupRequest$actionGroupId": "<p>Id generated at the server side when an Agent ActionGroup is created</p>",
-        "DeleteAgentAliasRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "DeleteAgentAliasResponse$agentId": null,
-        "DeleteAgentRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "DeleteAgentResponse$agentId": null,
-        "DeleteAgentVersionRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "DeleteAgentVersionResponse$agentId": null,
-        "DeleteDataSourceRequest$knowledgeBaseId": null,
-        "DeleteDataSourceRequest$dataSourceId": null,
-        "DeleteDataSourceResponse$knowledgeBaseId": null,
-        "DeleteDataSourceResponse$dataSourceId": null,
-        "DeleteKnowledgeBaseRequest$knowledgeBaseId": null,
-        "DeleteKnowledgeBaseResponse$knowledgeBaseId": null,
-        "DisassociateAgentKnowledgeBaseRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "DisassociateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>Id generated at the server side when a Knowledge Base is associated to an Agent</p>",
-        "GetAgentActionGroupRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "GetAgentActionGroupRequest$actionGroupId": "<p>Id generated at the server side when an Agent Action Group is created</p>",
-        "GetAgentAliasRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "GetAgentKnowledgeBaseRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "GetAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>Id generated at the server side when a Knowledge Base is associated</p>",
-        "GetAgentRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "GetAgentVersionRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "GetDataSourceRequest$knowledgeBaseId": null,
-        "GetDataSourceRequest$dataSourceId": null,
-        "GetIngestionJobRequest$knowledgeBaseId": null,
-        "GetIngestionJobRequest$dataSourceId": null,
-        "GetIngestionJobRequest$ingestionJobId": null,
-        "GetKnowledgeBaseRequest$knowledgeBaseId": null,
-        "IngestionJob$knowledgeBaseId": null,
-        "IngestionJob$dataSourceId": null,
-        "IngestionJob$ingestionJobId": null,
-        "IngestionJobSummary$knowledgeBaseId": null,
-        "IngestionJobSummary$dataSourceId": null,
-        "IngestionJobSummary$ingestionJobId": null,
-        "KnowledgeBase$knowledgeBaseId": null,
-        "KnowledgeBaseSummary$knowledgeBaseId": null,
-        "ListAgentActionGroupsRequest$agentId": "<p>Id generated at the server side when an Agent is Listed</p>",
-        "ListAgentAliasesRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "ListAgentKnowledgeBasesRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "ListAgentVersionsRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "ListDataSourcesRequest$knowledgeBaseId": null,
-        "ListIngestionJobsRequest$knowledgeBaseId": null,
-        "ListIngestionJobsRequest$dataSourceId": null,
-        "PrepareAgentRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "PrepareAgentResponse$agentId": null,
-        "StartIngestionJobRequest$knowledgeBaseId": null,
-        "StartIngestionJobRequest$dataSourceId": null,
-        "UpdateAgentActionGroupRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "UpdateAgentActionGroupRequest$actionGroupId": "<p>Id generated at the server side when an Action Group is created under Agent</p>",
-        "UpdateAgentAliasRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "UpdateAgentKnowledgeBaseRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "UpdateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>Id generated at the server side when a Knowledge Base is associated to an Agent</p>",
-        "UpdateAgentRequest$agentId": "<p>Id generated at the server side when an Agent is created</p>",
-        "UpdateDataSourceRequest$knowledgeBaseId": null,
-        "UpdateDataSourceRequest$dataSourceId": null,
-        "UpdateKnowledgeBaseRequest$knowledgeBaseId": null
+        "ActionGroupSummary$actionGroupId": "<p>The unique identifier of the action group.</p>",
+        "Agent$agentId": "<p>The unique identifier of the agent.</p>",
+        "AgentActionGroup$actionGroupId": "<p>The unique identifier of the action group.</p>",
+        "AgentActionGroup$agentId": "<p>The unique identifier of the agent to which the action group belongs.</p>",
+        "AgentAlias$agentId": "<p>The unique identifier of the agent.</p>",
+        "AgentKnowledgeBase$agentId": "<p>The unique identifier of the agent with which the knowledge base is associated.</p>",
+        "AgentKnowledgeBase$knowledgeBaseId": "<p>The unique identifier of the association between the agent and the knowledge base.</p>",
+        "AgentKnowledgeBaseSummary$knowledgeBaseId": "<p>The unique identifier of the knowledge base associated with an agent.</p>",
+        "AgentSummary$agentId": "<p>The unique identifier of the agent.</p>",
+        "AgentVersion$agentId": "<p>The unique identifier of the agent that the version belongs to.</p>",
+        "AssociateAgentKnowledgeBaseRequest$agentId": "<p>The unique identifier of the agent with which you want to associate the knowledge base.</p>",
+        "AssociateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to associate with the agent.</p>",
+        "CreateAgentActionGroupRequest$agentId": "<p>The unique identifier of the agent for which to create the action group.</p>",
+        "CreateAgentAliasRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "CreateDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which to add the data source.</p>",
+        "DataSource$dataSourceId": "<p>The unique identifier of the data source.</p>",
+        "DataSource$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source belongs.</p>",
+        "DataSourceSummary$dataSourceId": "<p>The unique identifier of the data source.</p>",
+        "DataSourceSummary$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source belongs.</p>",
+        "DeleteAgentActionGroupRequest$actionGroupId": "<p>The unique identifier of the action group to delete.</p>",
+        "DeleteAgentActionGroupRequest$agentId": "<p>The unique identifier of the agent that the action group belongs to.</p>",
+        "DeleteAgentAliasRequest$agentId": "<p>The unique identifier of the agent that the alias belongs to.</p>",
+        "DeleteAgentAliasResponse$agentId": "<p>The unique identifier of the agent that the alias belongs to.</p>",
+        "DeleteAgentRequest$agentId": "<p>The unique identifier of the agent to delete.</p>",
+        "DeleteAgentResponse$agentId": "<p>The unique identifier of the agent that was deleted.</p>",
+        "DeleteAgentVersionRequest$agentId": "<p>The unique identifier of the agent that the version belongs to.</p>",
+        "DeleteAgentVersionResponse$agentId": "<p>The unique identifier of the agent that the version belongs to.</p>",
+        "DeleteDataSourceRequest$dataSourceId": "<p>The unique identifier of the data source to delete.</p>",
+        "DeleteDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base from which to delete the data source.</p>",
+        "DeleteDataSourceResponse$dataSourceId": "<p>The unique identifier of the data source that was deleted.</p>",
+        "DeleteDataSourceResponse$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source that was deleted belonged.</p>",
+        "DeleteKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to delete.</p>",
+        "DeleteKnowledgeBaseResponse$knowledgeBaseId": "<p>The unique identifier of the knowledge base that was deleted.</p>",
+        "DisassociateAgentKnowledgeBaseRequest$agentId": "<p>The unique identifier of the agent from which to disassociate the knowledge base.</p>",
+        "DisassociateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to disassociate.</p>",
+        "GetAgentActionGroupRequest$actionGroupId": "<p>The unique identifier of the action group for which to get information.</p>",
+        "GetAgentActionGroupRequest$agentId": "<p>The unique identifier of the agent that the action group belongs to.</p>",
+        "GetAgentAliasRequest$agentId": "<p>The unique identifier of the agent to which the alias to get information belongs.</p>",
+        "GetAgentKnowledgeBaseRequest$agentId": "<p>The unique identifier of the agent with which the knowledge base is associated.</p>",
+        "GetAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base associated with the agent.</p>",
+        "GetAgentRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "GetAgentVersionRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "GetDataSourceRequest$dataSourceId": "<p>The unique identifier of the data source.</p>",
+        "GetDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base that the data source was added to.</p>",
+        "GetIngestionJobRequest$dataSourceId": "<p>The unique identifier of the data source in the ingestion job.</p>",
+        "GetIngestionJobRequest$ingestionJobId": "<p>The unique identifier of the ingestion job.</p>",
+        "GetIngestionJobRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base for which the ingestion job applies.</p>",
+        "GetKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base for which to get information.</p>",
+        "IngestionJob$dataSourceId": "<p>The unique identifier of the ingested data source.</p>",
+        "IngestionJob$ingestionJobId": "<p>The unique identifier of the ingestion job.</p>",
+        "IngestionJob$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source is being added.</p>",
+        "IngestionJobSummary$dataSourceId": "<p>The unique identifier of the data source in the ingestion job.</p>",
+        "IngestionJobSummary$ingestionJobId": "<p>The unique identifier of the ingestion job.</p>",
+        "IngestionJobSummary$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source is added.</p>",
+        "KnowledgeBase$knowledgeBaseId": "<p>The unique identifier of the knowledge base.</p>",
+        "KnowledgeBaseSummary$knowledgeBaseId": "<p>The unique identifier of the knowledge base.</p>",
+        "ListAgentActionGroupsRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "ListAgentAliasesRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "ListAgentKnowledgeBasesRequest$agentId": "<p>The unique identifier of the agent for which to return information about knowledge bases associated with it.</p>",
+        "ListAgentVersionsRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "ListDataSourcesRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base for which to return a list of information.</p>",
+        "ListIngestionJobsRequest$dataSourceId": "<p>The unique identifier of the data source for which to return ingestion jobs.</p>",
+        "ListIngestionJobsRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base for which to return ingestion jobs.</p>",
+        "PrepareAgentRequest$agentId": "<p>The unique identifier of the agent for which to create a <code>DRAFT</code> version.</p>",
+        "PrepareAgentResponse$agentId": "<p>The unique identifier of the agent for which the <code>DRAFT</code> version was created.</p>",
+        "StartIngestionJobRequest$dataSourceId": "<p>The unique identifier of the data source to ingest.</p>",
+        "StartIngestionJobRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which to add the data source.</p>",
+        "UpdateAgentActionGroupRequest$actionGroupId": "<p>The unique identifier of the action group.</p>",
+        "UpdateAgentActionGroupRequest$agentId": "<p>The unique identifier of the agent for which to update the action group.</p>",
+        "UpdateAgentAliasRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "UpdateAgentKnowledgeBaseRequest$agentId": "<p>The unique identifier of the agent associated with the knowledge base that you want to update.</p>",
+        "UpdateAgentKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base that has been associated with an agent.</p>",
+        "UpdateAgentRequest$agentId": "<p>The unique identifier of the agent.</p>",
+        "UpdateDataSourceRequest$dataSourceId": "<p>The unique identifier of the data source.</p>",
+        "UpdateDataSourceRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to which the data source belongs.</p>",
+        "UpdateKnowledgeBaseRequest$knowledgeBaseId": "<p>The unique identifier of the knowledge base to update.</p>"
       }
     },
     "InferenceConfiguration": {
-      "base": "<p>Configuration for inference in prompt configuration</p>",
+      "base": "<p>Contains inference parameters to use when the agent invokes a foundation model in the part of the agent sequence defined by the <code>promptType</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>",
       "refs": {
-        "PromptConfiguration$inferenceConfiguration": null
+        "PromptConfiguration$inferenceConfiguration": "<p>Contains inference parameters to use when the agent invokes a foundation model in the part of the agent sequence defined by the <code>promptType</code>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters for foundation models</a>.</p>"
       }
     },
     "IngestionJob": {
-      "base": "<p>Contains the information of an ingestion job.</p>",
+      "base": "<p>Contains details about an ingestion job, which converts a data source to embeddings for a vector store in knowledge base.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_StartIngestionJob.html#API_agent_StartIngestionJob_ResponseSyntax\">StartIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax\">GetIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJob.html#API_agent_ListIngestionJob_ResponseSyntax\">ListIngestionJob response</a> </p> </li> </ul>",
       "refs": {
-        "GetIngestionJobResponse$ingestionJob": null,
-        "StartIngestionJobResponse$ingestionJob": null
+        "GetIngestionJobResponse$ingestionJob": "<p>Contains details about the ingestion job.</p>",
+        "StartIngestionJobResponse$ingestionJob": "<p>An object containing information about the ingestion job.</p>"
       }
     },
     "IngestionJobFilter": {
-      "base": "<p>Filters the response returned by ListIngestionJobs operation.</p>",
+      "base": "<p>Defines a filter by which to filter the results.</p>",
       "refs": {
         "IngestionJobFilters$member": null
       }
     },
     "IngestionJobFilterAttribute": {
-      "base": "<p>The name of the field to filter ingestion jobs.</p>",
+      "base": null,
       "refs": {
-        "IngestionJobFilter$attribute": null
+        "IngestionJobFilter$attribute": "<p>The attribute by which to filter the results.</p>"
       }
     },
     "IngestionJobFilterOperator": {
-      "base": "<p>The operator used to filter ingestion jobs.</p>",
+      "base": null,
       "refs": {
-        "IngestionJobFilter$operator": null
+        "IngestionJobFilter$operator": "<p>The operation to carry out between the attribute and the values.</p>"
       }
     },
     "IngestionJobFilterValue": {
-      "base": "<p>The value used to filter ingestion jobs.</p>",
+      "base": null,
       "refs": {
         "IngestionJobFilterValues$member": null
       }
     },
     "IngestionJobFilterValues": {
-      "base": "<p>The list of values used to filter ingestion jobs.</p>",
+      "base": null,
       "refs": {
-        "IngestionJobFilter$values": null
+        "IngestionJobFilter$values": "<p>A list of values for the attribute.</p>"
       }
     },
     "IngestionJobFilters": {
-      "base": "<p>List of IngestionJobFilters</p>",
+      "base": null,
       "refs": {
-        "ListIngestionJobsRequest$filters": null
+        "ListIngestionJobsRequest$filters": "<p>Contains a definition of a filter for which to filter the results.</p>"
       }
     },
     "IngestionJobSortBy": {
-      "base": "<p>Sorts the response returned by ListIngestionJobs operation.</p>",
+      "base": "<p>Parameters by which to sort the results.</p>",
       "refs": {
-        "ListIngestionJobsRequest$sortBy": null
+        "ListIngestionJobsRequest$sortBy": "<p>Contains details about how to sort the results.</p>"
       }
     },
     "IngestionJobSortByAttribute": {
-      "base": "<p>The name of the field to sort ingestion jobs.</p>",
+      "base": null,
       "refs": {
-        "IngestionJobSortBy$attribute": null
+        "IngestionJobSortBy$attribute": "<p>The attribute by which to sort the results.</p>"
       }
     },
     "IngestionJobStatistics": {
-      "base": "<p>The document level statistics of an ingestion job</p>",
+      "base": "<p>Contains the statistics for the ingestion job.</p>",
       "refs": {
-        "IngestionJob$statistics": null,
-        "IngestionJobSummary$statistics": null
+        "IngestionJob$statistics": "<p>Contains statistics about the ingestion job.</p>",
+        "IngestionJobSummary$statistics": "<p>Contains statistics for the ingestion job.</p>"
       }
     },
     "IngestionJobStatus": {
-      "base": "<p>The status of an ingestion job.</p>",
+      "base": null,
       "refs": {
-        "IngestionJob$status": null,
-        "IngestionJobSummary$status": null
+        "IngestionJob$status": "<p>The status of the ingestion job.</p>",
+        "IngestionJobSummary$status": "<p>The status of the ingestion job.</p>"
       }
     },
     "IngestionJobSummaries": {
-      "base": "<p>List of IngestionJobSummaries</p>",
+      "base": null,
       "refs": {
-        "ListIngestionJobsResponse$ingestionJobSummaries": null
+        "ListIngestionJobsResponse$ingestionJobSummaries": "<p>A list of objects, each of which contains information about an ingestion job.</p>"
       }
     },
     "IngestionJobSummary": {
-      "base": "<p>Summary information of an ingestion job.</p>",
+      "base": "<p>Contains details about an ingestion job.</p>",
       "refs": {
         "IngestionJobSummaries$member": null
       }
     },
     "Instruction": {
-      "base": "<p>Instruction for the agent.</p>",
+      "base": null,
       "refs": {
-        "Agent$instruction": null,
-        "AgentVersion$instruction": null,
-        "CreateAgentRequest$instruction": null,
-        "UpdateAgentRequest$instruction": null
+        "Agent$instruction": "<p>Instructions that tell the agent what it should do and how it should interact with users.</p>",
+        "AgentVersion$instruction": "<p>The instructions provided to the agent.</p>",
+        "CreateAgentRequest$instruction": "<p>Instructions that tell the agent what it should do and how it should interact with users.</p>",
+        "UpdateAgentRequest$instruction": "<p>Specifies new instructions that tell the agent what it should do and how it should interact with users.</p>"
       }
     },
     "InternalServerException": {
-      "base": "<p>This exception is thrown if there was an unexpected error during processing of request</p>",
+      "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
       }
     },
     "KmsKeyArn": {
-      "base": "<p>A KMS key ARN</p>",
+      "base": null,
       "refs": {
-        "Agent$customerEncryptionKeyArn": null,
-        "AgentVersion$customerEncryptionKeyArn": null,
-        "CreateAgentRequest$customerEncryptionKeyArn": null,
-        "ServerSideEncryptionConfiguration$kmsKeyArn": null,
-        "UpdateAgentRequest$customerEncryptionKeyArn": null
+        "Agent$customerEncryptionKeyArn": "<p>The ARN of the KMS key that encrypts the agent.</p>",
+        "AgentVersion$customerEncryptionKeyArn": "<p>The ARN of the KMS key that encrypts the agent.</p>",
+        "CreateAgentRequest$customerEncryptionKeyArn": "<p>The ARN of the KMS key with which to encrypt the agent.</p>",
+        "ServerSideEncryptionConfiguration$kmsKeyArn": "<p>The ARN of the KMS key used to encrypt the resource.</p>",
+        "UpdateAgentRequest$customerEncryptionKeyArn": "<p>The ARN of the KMS key with which to encrypt the agent.</p>"
       }
     },
     "KnowledgeBase": {
-      "base": "<p>Contains the information of a knowledge base.</p>",
+      "base": "<p>Contains information about a knowledge base.</p>",
       "refs": {
-        "CreateKnowledgeBaseResponse$knowledgeBase": null,
-        "GetKnowledgeBaseResponse$knowledgeBase": null,
-        "UpdateKnowledgeBaseResponse$knowledgeBase": null
+        "CreateKnowledgeBaseResponse$knowledgeBase": "<p>Contains details about the knowledge base.</p>",
+        "GetKnowledgeBaseResponse$knowledgeBase": "<p>Contains details about the knowledge base.</p>",
+        "UpdateKnowledgeBaseResponse$knowledgeBase": "<p>Contains details about the knowledge base.</p>"
       }
     },
     "KnowledgeBaseArn": {
-      "base": "<p>ARN of a KnowledgeBase</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBase$knowledgeBaseArn": null
+        "KnowledgeBase$knowledgeBaseArn": "<p>The ARN of the knowledge base.</p>"
       }
     },
     "KnowledgeBaseConfiguration": {
-      "base": "<p>Configures a bedrock knowledge base.</p>",
+      "base": "<p>Contains details about the embeddings configuration of the knowledge base.</p>",
       "refs": {
-        "CreateKnowledgeBaseRequest$knowledgeBaseConfiguration": null,
-        "KnowledgeBase$knowledgeBaseConfiguration": null,
-        "UpdateKnowledgeBaseRequest$knowledgeBaseConfiguration": null
+        "CreateKnowledgeBaseRequest$knowledgeBaseConfiguration": "<p>Contains details about the embeddings model used for the knowledge base.</p>",
+        "KnowledgeBase$knowledgeBaseConfiguration": "<p>Contains details about the embeddings configuration of the knowledge base.</p>",
+        "UpdateKnowledgeBaseRequest$knowledgeBaseConfiguration": "<p>Specifies the configuration for the embeddings model used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
       }
     },
     "KnowledgeBaseRoleArn": {
-      "base": "<p>ARN of a IAM role.</p>",
+      "base": null,
       "refs": {
-        "CreateKnowledgeBaseRequest$roleArn": null,
-        "KnowledgeBase$roleArn": null,
-        "UpdateKnowledgeBaseRequest$roleArn": null
+        "CreateKnowledgeBaseRequest$roleArn": "<p>The ARN of the IAM role with permissions to create the knowledge base.</p>",
+        "KnowledgeBase$roleArn": "<p>The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with <code>AmazonBedrockExecutionRoleForKnowledgeBase_</code>.</p>",
+        "UpdateKnowledgeBaseRequest$roleArn": "<p>Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions to modify the knowledge base.</p>"
       }
     },
     "KnowledgeBaseState": {
-      "base": "<p>State of the knowledge base; whether it is enabled or disabled</p>",
+      "base": null,
       "refs": {
-        "AgentKnowledgeBase$knowledgeBaseState": null,
-        "AgentKnowledgeBaseSummary$knowledgeBaseState": null,
-        "AssociateAgentKnowledgeBaseRequest$knowledgeBaseState": null,
-        "UpdateAgentKnowledgeBaseRequest$knowledgeBaseState": null
+        "AgentKnowledgeBase$knowledgeBaseState": "<p>Specifies whether to use the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "AgentKnowledgeBaseSummary$knowledgeBaseState": "<p>Specifies whether the agent uses the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "AssociateAgentKnowledgeBaseRequest$knowledgeBaseState": "<p>Specifies whether to use the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>",
+        "UpdateAgentKnowledgeBaseRequest$knowledgeBaseState": "<p>Specifies whether the agent uses the knowledge base or not when sending an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html\">InvokeAgent</a> request.</p>"
       }
     },
     "KnowledgeBaseStatus": {
-      "base": "<p>The status of a knowledge base.</p>",
+      "base": null,
       "refs": {
-        "DeleteKnowledgeBaseResponse$status": null,
-        "KnowledgeBase$status": null,
-        "KnowledgeBaseSummary$status": null
+        "DeleteKnowledgeBaseResponse$status": "<p>The status of the knowledge base and whether it has been successfully deleted.</p>",
+        "KnowledgeBase$status": "<p>The status of the knowledge base. The following statuses are possible:</p> <ul> <li> <p>CREATING – The knowledge base is being created.</p> </li> <li> <p>ACTIVE – The knowledge base is ready to be queried.</p> </li> <li> <p>DELETING – The knowledge base is being deleted.</p> </li> <li> <p>UPDATING – The knowledge base is being updated.</p> </li> <li> <p>FAILED – The knowledge base API operation failed.</p> </li> </ul>",
+        "KnowledgeBaseSummary$status": "<p>The status of the knowledge base.</p>"
       }
     },
     "KnowledgeBaseStorageType": {
-      "base": "<p>The storage type of a knowledge base.</p>",
+      "base": null,
       "refs": {
-        "StorageConfiguration$type": null
+        "StorageConfiguration$type": "<p>The vector store service in which the knowledge base is stored.</p>"
       }
     },
     "KnowledgeBaseSummaries": {
-      "base": "<p>List of KnowledgeBaseSummaries</p>",
+      "base": null,
       "refs": {
-        "ListKnowledgeBasesResponse$knowledgeBaseSummaries": null
+        "ListKnowledgeBasesResponse$knowledgeBaseSummaries": "<p>A list of objects, each of which contains information about a knowledge base.</p>"
       }
     },
     "KnowledgeBaseSummary": {
-      "base": "<p>Summary information of a knowledge base.</p>",
+      "base": "<p>Contains details about a knowledge base.</p>",
       "refs": {
         "KnowledgeBaseSummaries$member": null
       }
     },
     "KnowledgeBaseType": {
-      "base": "<p>The type of a knowledge base.</p>",
+      "base": null,
       "refs": {
-        "KnowledgeBaseConfiguration$type": null
+        "KnowledgeBaseConfiguration$type": "<p>The type of data that the data source is converted into for the knowledge base.</p>"
       }
     },
     "LambdaArn": {
-      "base": "<p>ARN of a Lambda.</p>",
+      "base": null,
       "refs": {
-        "ActionGroupExecutor$lambda": null,
-        "PromptOverrideConfiguration$overrideLambda": null
+        "ActionGroupExecutor$lambda": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>.</p>"
       }
     },
     "ListAgentActionGroupsRequest": {
-      "base": "<p>List Action Groups Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentActionGroupsResponse": {
-      "base": "<p>List Action Groups Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentAliasesRequest": {
-      "base": "<p>List Agent Aliases Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentAliasesResponse": {
-      "base": "<p>List Agent Aliases Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentKnowledgeBasesRequest": {
-      "base": "<p>List Agent Knowledge Bases Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentKnowledgeBasesResponse": {
-      "base": "<p>List Agent Knowledge Bases Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentVersionsRequest": {
-      "base": "<p>List Agent Versions Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentVersionsResponse": {
-      "base": "<p>List Agent Versions Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentsRequest": {
-      "base": "<p>List Agent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "ListAgentsResponse": {
-      "base": "<p>List Agent Response</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -1069,83 +1069,83 @@
       }
     },
     "MaxResults": {
-      "base": "<p>Max Results.</p>",
+      "base": null,
       "refs": {
-        "ListAgentActionGroupsRequest$maxResults": null,
-        "ListAgentAliasesRequest$maxResults": null,
-        "ListAgentKnowledgeBasesRequest$maxResults": null,
-        "ListAgentVersionsRequest$maxResults": null,
-        "ListAgentsRequest$maxResults": null,
-        "ListDataSourcesRequest$maxResults": null,
-        "ListIngestionJobsRequest$maxResults": null,
-        "ListKnowledgeBasesRequest$maxResults": null
+        "ListAgentActionGroupsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListAgentAliasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListAgentKnowledgeBasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListAgentVersionsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListAgentsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListDataSourcesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListIngestionJobsRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>",
+        "ListKnowledgeBasesRequest$maxResults": "<p>The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the <code>nextToken</code> field when making another request to return the next batch of results.</p>"
       }
     },
     "MaximumLength": {
-      "base": "<p>Maximum length of output</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$maximumLength": null
+        "InferenceConfiguration$maximumLength": "<p>The maximum number of tokens to allow in the generated response.</p>"
       }
     },
     "ModelIdentifier": {
-      "base": "<p>ARN or name of a Bedrock model.</p>",
+      "base": null,
       "refs": {
-        "Agent$foundationModel": null,
-        "AgentVersion$foundationModel": null,
-        "CreateAgentRequest$foundationModel": null,
-        "UpdateAgentRequest$foundationModel": null
+        "Agent$foundationModel": "<p>The foundation model used for orchestration by the agent.</p>",
+        "AgentVersion$foundationModel": "<p>The foundation model that the version invokes.</p>",
+        "CreateAgentRequest$foundationModel": "<p>The foundation model to be used for orchestration by the agent you create.</p>",
+        "UpdateAgentRequest$foundationModel": "<p>Specifies a new foundation model to be used for orchestration by the agent.</p>"
       }
     },
     "Name": {
-      "base": "<p>Name for a resource.</p>",
+      "base": null,
       "refs": {
-        "ActionGroupSummary$actionGroupName": null,
-        "Agent$agentName": null,
-        "AgentActionGroup$actionGroupName": null,
-        "AgentAlias$agentAliasName": null,
-        "AgentAliasSummary$agentAliasName": null,
-        "AgentSummary$agentName": null,
-        "AgentVersion$agentName": null,
-        "AgentVersionSummary$agentName": null,
-        "CreateAgentActionGroupRequest$actionGroupName": null,
-        "CreateAgentAliasRequest$agentAliasName": null,
-        "CreateAgentRequest$agentName": null,
-        "CreateDataSourceRequest$name": null,
-        "CreateKnowledgeBaseRequest$name": null,
-        "DataSource$name": null,
-        "DataSourceSummary$name": null,
-        "KnowledgeBase$name": null,
-        "KnowledgeBaseSummary$name": null,
-        "UpdateAgentActionGroupRequest$actionGroupName": null,
-        "UpdateAgentAliasRequest$agentAliasName": null,
-        "UpdateAgentRequest$agentName": null,
-        "UpdateDataSourceRequest$name": null,
-        "UpdateKnowledgeBaseRequest$name": null
+        "ActionGroupSummary$actionGroupName": "<p>The name of the action group.</p>",
+        "Agent$agentName": "<p>The name of the agent.</p>",
+        "AgentActionGroup$actionGroupName": "<p>The name of the action group.</p>",
+        "AgentAlias$agentAliasName": "<p>The name of the alias of the agent.</p>",
+        "AgentAliasSummary$agentAliasName": "<p>The name of the alias.</p>",
+        "AgentSummary$agentName": "<p>The name of the agent.</p>",
+        "AgentVersion$agentName": "<p>The name of the agent that the version belongs to.</p>",
+        "AgentVersionSummary$agentName": "<p>The name of the agent to which the version belongs.</p>",
+        "CreateAgentActionGroupRequest$actionGroupName": "<p>The name to give the action group.</p>",
+        "CreateAgentAliasRequest$agentAliasName": "<p>The name of the alias.</p>",
+        "CreateAgentRequest$agentName": "<p>A name for the agent that you create.</p>",
+        "CreateDataSourceRequest$name": "<p>The name of the data source.</p>",
+        "CreateKnowledgeBaseRequest$name": "<p>A name for the knowledge base.</p>",
+        "DataSource$name": "<p>The name of the data source.</p>",
+        "DataSourceSummary$name": "<p>The name of the data source.</p>",
+        "KnowledgeBase$name": "<p>The name of the knowledge base.</p>",
+        "KnowledgeBaseSummary$name": "<p>The name of the knowledge base.</p>",
+        "UpdateAgentActionGroupRequest$actionGroupName": "<p>Specifies a new name for the action group.</p>",
+        "UpdateAgentAliasRequest$agentAliasName": "<p>Specifies a new name for the alias.</p>",
+        "UpdateAgentRequest$agentName": "<p>Specifies a new name for the agent.</p>",
+        "UpdateDataSourceRequest$name": "<p>Specifies a new name for the data source.</p>",
+        "UpdateKnowledgeBaseRequest$name": "<p>Specifies a new name for the knowledge base.</p>"
       }
     },
     "NextToken": {
-      "base": "<p>Opaque continuation token of previous paginated response.</p>",
+      "base": null,
       "refs": {
-        "ListAgentActionGroupsRequest$nextToken": null,
-        "ListAgentActionGroupsResponse$nextToken": null,
-        "ListAgentAliasesRequest$nextToken": null,
-        "ListAgentAliasesResponse$nextToken": null,
-        "ListAgentKnowledgeBasesRequest$nextToken": null,
-        "ListAgentKnowledgeBasesResponse$nextToken": null,
-        "ListAgentVersionsRequest$nextToken": null,
-        "ListAgentVersionsResponse$nextToken": null,
-        "ListAgentsRequest$nextToken": null,
-        "ListAgentsResponse$nextToken": null,
-        "ListDataSourcesRequest$nextToken": null,
-        "ListDataSourcesResponse$nextToken": null,
-        "ListIngestionJobsRequest$nextToken": null,
-        "ListIngestionJobsResponse$nextToken": null,
-        "ListKnowledgeBasesRequest$nextToken": null,
-        "ListKnowledgeBasesResponse$nextToken": null
+        "ListAgentActionGroupsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListAgentActionGroupsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListAgentAliasesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListAgentAliasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListAgentKnowledgeBasesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListAgentKnowledgeBasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListAgentVersionsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListAgentVersionsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListAgentsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListAgentsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListDataSourcesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListDataSourcesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListIngestionJobsRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListIngestionJobsResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>",
+        "ListKnowledgeBasesRequest$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, enter the token returned in the <code>nextToken</code> field in the response in this field to return the next batch of results.</p>",
+        "ListKnowledgeBasesResponse$nextToken": "<p>If the total number of results is greater than the <code>maxResults</code> value provided in the request, use this token when making another request in the <code>nextToken</code> field to return the next batch of results.</p>"
       }
     },
     "NonBlankString": {
-      "base": "<p>Non Blank String</p>",
+      "base": null,
       "refs": {
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
@@ -1154,274 +1154,276 @@
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
         "ValidationException$message": null,
-        "ValidationExceptionField$name": null,
-        "ValidationExceptionField$message": null
+        "ValidationExceptionField$message": "<p>A message describing why this field failed validation.</p>",
+        "ValidationExceptionField$name": "<p>The name of the field.</p>"
       }
     },
     "NumericalVersion": {
-      "base": "<p>Numerical Agent Version.</p>",
+      "base": null,
       "refs": {
-        "AgentVersion$version": null,
-        "DeleteAgentVersionRequest$agentVersion": null,
-        "DeleteAgentVersionResponse$agentVersion": null,
-        "GetAgentVersionRequest$agentVersion": null
+        "AgentVersion$version": "<p>The version number.</p>",
+        "DeleteAgentVersionRequest$agentVersion": "<p>The version of the agent to delete.</p>",
+        "DeleteAgentVersionResponse$agentVersion": "<p>The version that was deleted.</p>",
+        "GetAgentVersionRequest$agentVersion": "<p>The version of the agent.</p>"
       }
     },
     "OpenSearchServerlessCollectionArn": {
-      "base": "<p>Arn of an OpenSearch Serverless collection.</p>",
+      "base": null,
       "refs": {
-        "OpenSearchServerlessConfiguration$collectionArn": null
+        "OpenSearchServerlessConfiguration$collectionArn": "<p>The ARN of the OpenSearch Service vector store.</p>"
       }
     },
     "OpenSearchServerlessConfiguration": {
-      "base": "<p>Contains the configurations to use OpenSearch Serverless to store knowledge base data.</p>",
+      "base": "<p>Contains details about the storage configuration of the knowledge base in Amazon OpenSearch Service. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector index in Amazon OpenSearch Service</a>.</p>",
       "refs": {
-        "StorageConfiguration$opensearchServerlessConfiguration": null
+        "StorageConfiguration$opensearchServerlessConfiguration": "<p>Contains the storage configuration of the knowledge base in Amazon OpenSearch Service.</p>"
       }
     },
     "OpenSearchServerlessFieldMapping": {
-      "base": "<p>A mapping of Bedrock Knowledge Base fields to OpenSearch Serverless field names</p>",
+      "base": "<p>Contains the names of the fields to which to map information about the vector store.</p>",
       "refs": {
-        "OpenSearchServerlessConfiguration$fieldMapping": null
+        "OpenSearchServerlessConfiguration$fieldMapping": "<p>Contains the names of the fields to which to map information about the vector store.</p>"
       }
     },
     "OpenSearchServerlessIndexName": {
-      "base": "<p>Arn of an OpenSearch Serverless index.</p>",
+      "base": null,
       "refs": {
-        "OpenSearchServerlessConfiguration$vectorIndexName": null
+        "OpenSearchServerlessConfiguration$vectorIndexName": "<p>The name of the vector store.</p>"
       }
     },
     "Payload": {
-      "base": "<p>String OpenAPI Payload</p>",
+      "base": null,
       "refs": {
-        "APISchema$payload": null
+        "APISchema$payload": "<p>The JSON or YAML-formatted payload defining the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
       }
     },
     "PineconeConfiguration": {
-      "base": "<p>Contains the configurations to use Pinecone to store knowledge base data.</p>",
+      "base": "<p>Contains details about the storage configuration of the knowledge base in Pinecone. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector index in Pinecone</a>.</p>",
       "refs": {
-        "StorageConfiguration$pineconeConfiguration": null
+        "StorageConfiguration$pineconeConfiguration": "<p>Contains the storage configuration of the knowledge base in Pinecone.</p>"
       }
     },
     "PineconeConnectionString": {
-      "base": "<p>Pinecone connection string</p>",
+      "base": null,
       "refs": {
-        "PineconeConfiguration$connectionString": null
+        "PineconeConfiguration$connectionString": "<p>The endpoint URL for your index management page.</p>"
       }
     },
     "PineconeFieldMapping": {
-      "base": "<p>A mapping of Bedrock Knowledge Base fields to Pinecone field names</p>",
+      "base": "<p>Contains the names of the fields to which to map information about the vector store.</p>",
       "refs": {
-        "PineconeConfiguration$fieldMapping": null
+        "PineconeConfiguration$fieldMapping": "<p>Contains the names of the fields to which to map information about the vector store.</p>"
       }
     },
     "PineconeNamespace": {
-      "base": "<p>Pinecone namespace</p>",
+      "base": null,
       "refs": {
-        "PineconeConfiguration$namespace": null
+        "PineconeConfiguration$namespace": "<p>The namespace to be used to write new data to your database.</p>"
       }
     },
     "PrepareAgentRequest": {
-      "base": "<p>PrepareAgent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "PrepareAgentResponse": {
-      "base": "<p>PrepareAgent Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "PrimitiveLong": {
       "base": null,
       "refs": {
-        "IngestionJobStatistics$numberOfDocumentsScanned": "<p>Number of scanned documents</p>",
-        "IngestionJobStatistics$numberOfNewDocumentsIndexed": "<p>Number of indexed documents</p>",
-        "IngestionJobStatistics$numberOfModifiedDocumentsIndexed": "<p>Number of modified documents indexed</p>",
-        "IngestionJobStatistics$numberOfDocumentsDeleted": "<p>Number of deleted documents</p>",
-        "IngestionJobStatistics$numberOfDocumentsFailed": "<p>Number of failed documents</p>"
+        "IngestionJobStatistics$numberOfDocumentsDeleted": "<p>The number of source documents that was deleted.</p>",
+        "IngestionJobStatistics$numberOfDocumentsFailed": "<p>The number of source documents that failed to be ingested.</p>",
+        "IngestionJobStatistics$numberOfDocumentsScanned": "<p>The total number of source documents that were scanned. Includes new, updated, and unchanged documents.</p>",
+        "IngestionJobStatistics$numberOfMetadataDocumentsModified": "<p>The number of metadata files that were updated or deleted.</p>",
+        "IngestionJobStatistics$numberOfMetadataDocumentsScanned": "<p>The total number of metadata files that were scanned. Includes new, updated, and unchanged files.</p>",
+        "IngestionJobStatistics$numberOfModifiedDocumentsIndexed": "<p>The number of modified source documents in the data source that were successfully indexed.</p>",
+        "IngestionJobStatistics$numberOfNewDocumentsIndexed": "<p>The number of new source documents in the data source that were successfully indexed.</p>"
       }
     },
     "PromptConfiguration": {
-      "base": "<p>BasePromptConfiguration per Prompt Type.</p>",
+      "base": "<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
       "refs": {
         "PromptConfigurations$member": null
       }
     },
     "PromptConfigurations": {
-      "base": "<p>List of BasePromptConfiguration</p>",
+      "base": null,
       "refs": {
-        "PromptOverrideConfiguration$promptConfigurations": null
+        "PromptOverrideConfiguration$promptConfigurations": "<p>Contains configurations to override a prompt template in one part of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
       }
     },
     "PromptOverrideConfiguration": {
-      "base": "<p>Configuration for prompt override.</p>",
+      "base": "<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
       "refs": {
-        "Agent$promptOverrideConfiguration": null,
-        "AgentVersion$promptOverrideConfiguration": null,
-        "CreateAgentRequest$promptOverrideConfiguration": null,
-        "UpdateAgentRequest$promptOverrideConfiguration": null
+        "Agent$promptOverrideConfiguration": "<p>Contains configurations to override prompt templates in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
+        "AgentVersion$promptOverrideConfiguration": "<p>Contains configurations to override prompt templates in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
+        "CreateAgentRequest$promptOverrideConfiguration": "<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>",
+        "UpdateAgentRequest$promptOverrideConfiguration": "<p>Contains configurations to override prompts in different parts of an agent sequence. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p>"
       }
     },
     "PromptState": {
-      "base": "<p>Prompt State.</p>",
+      "base": null,
       "refs": {
-        "PromptConfiguration$promptState": null
+        "PromptConfiguration$promptState": "<p>Specifies whether to allow the agent to carry out the step specified in the <code>promptType</code>. If you set this value to <code>DISABLED</code>, the agent skips that step. The default state for each <code>promptType</code> is as follows.</p> <ul> <li> <p> <code>PRE_PROCESSING</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>ORCHESTRATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>KNOWLEDGE_BASE_RESPONSE_GENERATION</code> – <code>ENABLED</code> </p> </li> <li> <p> <code>POST_PROCESSING</code> – <code>DISABLED</code> </p> </li> </ul>"
       }
     },
     "PromptType": {
-      "base": "<p>Prompt Type.</p>",
+      "base": null,
       "refs": {
-        "PromptConfiguration$promptType": null
+        "PromptConfiguration$promptType": "<p>The step in the agent sequence that this prompt configuration applies to.</p>"
       }
     },
     "RdsArn": {
-      "base": "<p>Arn of a RDS Resource.</p>",
+      "base": null,
       "refs": {
-        "RdsConfiguration$resourceArn": null
+        "RdsConfiguration$resourceArn": "<p>The ARN of the vector store.</p>"
       }
     },
     "RdsConfiguration": {
-      "base": "<p>Contains the configurations to use RDS to store knowledge base data.</p>",
+      "base": "<p>Contains details about the storage configuration of the knowledge base in Amazon RDS. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector index in Amazon RDS</a>.</p>",
       "refs": {
-        "StorageConfiguration$rdsConfiguration": null
+        "StorageConfiguration$rdsConfiguration": "<p>Contains details about the storage configuration of the knowledge base in Amazon RDS. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector index in Amazon RDS</a>.</p>"
       }
     },
     "RdsDatabaseName": {
-      "base": "<p>Name of the database within RDS</p>",
+      "base": null,
       "refs": {
-        "RdsConfiguration$databaseName": null
+        "RdsConfiguration$databaseName": "<p>The name of your Amazon RDS database.</p>"
       }
     },
     "RdsFieldMapping": {
-      "base": "<p>A mapping of Bedrock Knowledge Base fields to RDS column names</p>",
+      "base": "<p>Contains the names of the fields to which to map information about the vector store.</p>",
       "refs": {
-        "RdsConfiguration$fieldMapping": null
+        "RdsConfiguration$fieldMapping": "<p>Contains the names of the fields to which to map information about the vector store.</p>"
       }
     },
     "RdsTableName": {
-      "base": "<p>Name of the table within RDS</p>",
+      "base": null,
       "refs": {
-        "RdsConfiguration$tableName": null
+        "RdsConfiguration$tableName": "<p>The name of the table in the database.</p>"
       }
     },
     "RecommendedAction": {
-      "base": "<p>The recommended action users can take to resolve an error in failureReasons.</p>",
+      "base": null,
       "refs": {
         "RecommendedActions$member": null
       }
     },
     "RecommendedActions": {
-      "base": "<p>The recommended actions users can take to resolve an error in failureReasons.</p>",
+      "base": null,
       "refs": {
-        "Agent$recommendedActions": null,
-        "AgentVersion$recommendedActions": null
+        "Agent$recommendedActions": "<p>Contains recommended actions to take for the agent-related API that you invoked to succeed.</p>",
+        "AgentVersion$recommendedActions": "<p>A list of recommended actions to take for the failed API operation on the version to succeed.</p>"
       }
     },
     "RedisEnterpriseCloudConfiguration": {
-      "base": "<p>Contains the configurations to use Redis Enterprise Cloud to store knowledge base data.</p>",
+      "base": "<p>Contains details about the storage configuration of the knowledge base in Redis Enterprise Cloud. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector index in Redis Enterprise Cloud</a>.</p>",
       "refs": {
-        "StorageConfiguration$redisEnterpriseCloudConfiguration": null
+        "StorageConfiguration$redisEnterpriseCloudConfiguration": "<p>Contains the storage configuration of the knowledge base in Redis Enterprise Cloud.</p>"
       }
     },
     "RedisEnterpriseCloudEndpoint": {
-      "base": "<p>Redis enterprise cloud endpoint</p>",
+      "base": null,
       "refs": {
-        "RedisEnterpriseCloudConfiguration$endpoint": null
+        "RedisEnterpriseCloudConfiguration$endpoint": "<p>The endpoint URL of the Redis Enterprise Cloud database.</p>"
       }
     },
     "RedisEnterpriseCloudFieldMapping": {
-      "base": "<p>A mapping of Bedrock Knowledge Base fields to Redis Cloud field names</p>",
+      "base": "<p>Contains the names of the fields to which to map information about the vector store.</p>",
       "refs": {
-        "RedisEnterpriseCloudConfiguration$fieldMapping": null
+        "RedisEnterpriseCloudConfiguration$fieldMapping": "<p>Contains the names of the fields to which to map information about the vector store.</p>"
       }
     },
     "RedisEnterpriseCloudIndexName": {
-      "base": "<p>Name of a redis enterprise cloud index</p>",
+      "base": null,
       "refs": {
-        "RedisEnterpriseCloudConfiguration$vectorIndexName": null
+        "RedisEnterpriseCloudConfiguration$vectorIndexName": "<p>The name of the vector index.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>This exception is thrown when a resource referenced by the operation does not exist</p>",
+      "base": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>",
       "refs": {
       }
     },
     "S3BucketArn": {
-      "base": "<p>A S3 bucket ARN</p>",
+      "base": null,
       "refs": {
-        "S3DataSourceConfiguration$bucketArn": null
+        "S3DataSourceConfiguration$bucketArn": "<p>The ARN of the bucket that contains the data source.</p>"
       }
     },
     "S3BucketName": {
-      "base": "<p>A bucket in S3.</p>",
+      "base": null,
       "refs": {
-        "S3Identifier$s3BucketName": null
+        "S3Identifier$s3BucketName": "<p>The name of the S3 bucket.</p>"
       }
     },
     "S3DataSourceConfiguration": {
-      "base": "<p>Configures an S3 data source location.</p>",
+      "base": "<p>Contains information about the S3 configuration of the data source.</p>",
       "refs": {
-        "DataSourceConfiguration$s3Configuration": null
+        "DataSourceConfiguration$s3Configuration": "<p>Contains details about the configuration of the S3 object containing the data source.</p>"
       }
     },
     "S3Identifier": {
-      "base": "<p>The identifier for the S3 resource.</p>",
+      "base": "<p>Contains information about the S3 object containing the resource.</p>",
       "refs": {
-        "APISchema$s3": null
+        "APISchema$s3": "<p>Contains details about the S3 object containing the OpenAPI schema for the action group. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html\">Action group OpenAPI schemas</a>.</p>"
       }
     },
     "S3ObjectKey": {
-      "base": "<p>A object key in S3.</p>",
+      "base": null,
       "refs": {
-        "S3Identifier$s3ObjectKey": null
+        "S3Identifier$s3ObjectKey": "<p>The S3 object key containing the resource.</p>"
       }
     },
     "S3Prefix": {
-      "base": "<p>Prefix for s3 object.</p>",
+      "base": null,
       "refs": {
         "S3Prefixes$member": null
       }
     },
     "S3Prefixes": {
-      "base": "<p>A list of S3 prefixes.</p>",
+      "base": null,
       "refs": {
-        "S3DataSourceConfiguration$inclusionPrefixes": null
+        "S3DataSourceConfiguration$inclusionPrefixes": "<p>A list of S3 prefixes that define the object containing the data sources. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html\">Organizing objects using prefixes</a>.</p>"
       }
     },
     "SecretArn": {
-      "base": "<p>Arn of a SecretsManager Secret.</p>",
+      "base": null,
       "refs": {
-        "PineconeConfiguration$credentialsSecretArn": null,
-        "RdsConfiguration$credentialsSecretArn": null,
-        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": null
+        "PineconeConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>",
+        "RdsConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>",
+        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
       }
     },
     "ServerSideEncryptionConfiguration": {
-      "base": "<p>Server-side encryption configuration.</p>",
+      "base": "<p>Contains the configuration for server-side encryption.</p>",
       "refs": {
-        "CreateDataSourceRequest$serverSideEncryptionConfiguration": null,
-        "DataSource$serverSideEncryptionConfiguration": null,
-        "UpdateDataSourceRequest$serverSideEncryptionConfiguration": null
+        "CreateDataSourceRequest$serverSideEncryptionConfiguration": "<p>Contains details about the server-side encryption for the data source.</p>",
+        "DataSource$serverSideEncryptionConfiguration": "<p>Contains details about the configuration of the server-side encryption.</p>",
+        "UpdateDataSourceRequest$serverSideEncryptionConfiguration": "<p>Contains details about server-side encryption of the data source.</p>"
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>This exception is thrown when a request is made beyond the service quota</p>",
+      "base": "<p>The number of requests exceeds the service quota. Resubmit your request later.</p>",
       "refs": {
       }
     },
     "SessionTTL": {
-      "base": "<p>Max Session Time.</p>",
+      "base": null,
       "refs": {
-        "Agent$idleSessionTTLInSeconds": null,
-        "AgentVersion$idleSessionTTLInSeconds": null,
-        "CreateAgentRequest$idleSessionTTLInSeconds": null,
-        "UpdateAgentRequest$idleSessionTTLInSeconds": null
+        "Agent$idleSessionTTLInSeconds": "<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>",
+        "AgentVersion$idleSessionTTLInSeconds": "<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>",
+        "CreateAgentRequest$idleSessionTTLInSeconds": "<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>",
+        "UpdateAgentRequest$idleSessionTTLInSeconds": "<p>The number of seconds for which Amazon Bedrock keeps information about a user's conversation with the agent.</p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Bedrock deletes any data provided before the timeout.</p>"
       }
     },
     "SortOrder": {
-      "base": "<p>Order to sort results by.</p>",
+      "base": null,
       "refs": {
-        "IngestionJobSortBy$order": null
+        "IngestionJobSortBy$order": "<p>The order by which to sort the results.</p>"
       }
     },
     "StartIngestionJobRequest": {
@@ -1435,17 +1437,17 @@
       }
     },
     "StopSequences": {
-      "base": "<p>List of stop sequences</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$stopSequences": null
+        "InferenceConfiguration$stopSequences": "<p>A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.</p>"
       }
     },
     "StorageConfiguration": {
-      "base": "<p>Configures the physical storage of ingested data in a knowledge base.</p>",
+      "base": "<p>Contains the storage configuration of the knowledge base.</p>",
       "refs": {
-        "CreateKnowledgeBaseRequest$storageConfiguration": null,
-        "KnowledgeBase$storageConfiguration": null,
-        "UpdateKnowledgeBaseRequest$storageConfiguration": null
+        "CreateKnowledgeBaseRequest$storageConfiguration": "<p>Contains details about the configuration of the vector database used for the knowledge base.</p>",
+        "KnowledgeBase$storageConfiguration": "<p>Contains details about the storage configuration of the knowledge base.</p>",
+        "UpdateKnowledgeBaseRequest$storageConfiguration": "<p>Specifies the configuration for the vector store used for the knowledge base. You must use the same configuration as when the knowledge base was created.</p>"
       }
     },
     "String": {
@@ -1455,16 +1457,16 @@
       }
     },
     "TagKey": {
-      "base": "<p>Key of a tag</p>",
+      "base": null,
       "refs": {
         "TagKeyList$member": null,
         "TagsMap$key": null
       }
     },
     "TagKeyList": {
-      "base": "<p>List of Tag Keys</p>",
+      "base": null,
       "refs": {
-        "UntagResourceRequest$tagKeys": null
+        "UntagResourceRequest$tagKeys": "<p>A list of keys of the tags to remove from the resource.</p>"
       }
     },
     "TagResourceRequest": {
@@ -1478,50 +1480,50 @@
       }
     },
     "TagValue": {
-      "base": "<p>Value of a tag</p>",
+      "base": null,
       "refs": {
         "TagsMap$value": null
       }
     },
     "TaggableResourcesArn": {
-      "base": "<p>ARN of Taggable resources: [Agent, AgentAlias, Knowledge-Base]</p>",
+      "base": null,
       "refs": {
-        "ListTagsForResourceRequest$resourceArn": null,
-        "TagResourceRequest$resourceArn": null,
-        "UntagResourceRequest$resourceArn": null
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource for which to list tags.</p>",
+        "TagResourceRequest$resourceArn": "<p>The ARN of the resource to tag.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource from which to remove tags.</p>"
       }
     },
     "TagsMap": {
-      "base": "<p>A map of tag keys and values</p>",
+      "base": null,
       "refs": {
-        "CreateAgentAliasRequest$tags": null,
-        "CreateAgentRequest$tags": null,
-        "CreateKnowledgeBaseRequest$tags": null,
-        "ListTagsForResourceResponse$tags": null,
-        "TagResourceRequest$tags": null
+        "CreateAgentAliasRequest$tags": "<p>Any tags that you want to attach to the alias of the agent.</p>",
+        "CreateAgentRequest$tags": "<p>Any tags that you want to attach to the agent.</p>",
+        "CreateKnowledgeBaseRequest$tags": "<p>Specify the key-value pairs for the tags that you want to attach to your knowledge base in this object.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The key-value pairs for the tags associated with the resource.</p>",
+        "TagResourceRequest$tags": "<p>An object containing key-value pairs that define the tags to attach to the resource.</p>"
       }
     },
     "Temperature": {
-      "base": "<p>Controls randomness, higher values increase diversity</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$temperature": null
+        "InferenceConfiguration$temperature": "<p>The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.</p>"
       }
     },
     "ThrottlingException": {
-      "base": "<p>This exception is thrown when the number of requests exceeds the limit</p>",
+      "base": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
       "refs": {
       }
     },
     "TopK": {
-      "base": "<p>Sample from the k most likely next tokens</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$topK": null
+        "InferenceConfiguration$topK": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>topK</code> is the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topK</code> to 50, the model selects the next token from among the top 50 most likely choices.</p>"
       }
     },
     "TopP": {
-      "base": "<p>Cumulative probability cutoff for token selection</p>",
+      "base": null,
       "refs": {
-        "InferenceConfiguration$topP": null
+        "InferenceConfiguration$topP": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1535,42 +1537,42 @@
       }
     },
     "UpdateAgentActionGroupRequest": {
-      "base": "<p>Update Action Group Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentActionGroupResponse": {
-      "base": "<p>Update Action Group Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentAliasRequest": {
-      "base": "<p>Update Agent Alias Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentAliasResponse": {
-      "base": "<p>Update Agent Alias Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentKnowledgeBaseRequest": {
-      "base": "<p>Update Agent Knowledge Base Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentKnowledgeBaseResponse": {
-      "base": "<p>Update Agent Knowledge Base Response</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentRequest": {
-      "base": "<p>Update Agent Request</p>",
+      "base": null,
       "refs": {
       }
     },
     "UpdateAgentResponse": {
-      "base": "<p>Update Agent Response</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -1595,49 +1597,49 @@
       }
     },
     "ValidationException": {
-      "base": "<p>This exception is thrown when the request's input validation fails</p>",
+      "base": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
       "refs": {
       }
     },
     "ValidationExceptionField": {
-      "base": "<p>Stores information about a field passed inside a request that resulted in an exception</p>",
+      "base": "<p>Stores information about a field passed inside a request that resulted in an validation error.</p>",
       "refs": {
         "ValidationExceptionFieldList$member": null
       }
     },
     "ValidationExceptionFieldList": {
-      "base": "<p>list of ValidationExceptionField</p>",
+      "base": null,
       "refs": {
-        "ValidationException$fieldList": null
+        "ValidationException$fieldList": "<p>A list of objects containing fields that caused validation errors and their corresponding validation error messages.</p>"
       }
     },
     "VectorIngestionConfiguration": {
-      "base": "<p>Configures ingestion for a vector knowledge base</p>",
+      "base": "<p>Contains details about how to ingest the documents in a data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$vectorIngestionConfiguration": null,
-        "DataSource$vectorIngestionConfiguration": null,
-        "UpdateDataSourceRequest$vectorIngestionConfiguration": null
+        "CreateDataSourceRequest$vectorIngestionConfiguration": "<p>Contains details about how to ingest the documents in the data source.</p>",
+        "DataSource$vectorIngestionConfiguration": "<p>Contains details about how to ingest the documents in the data source.</p>",
+        "UpdateDataSourceRequest$vectorIngestionConfiguration": "<p>Contains details about how to ingest the documents in the data source.</p>"
       }
     },
     "VectorKnowledgeBaseConfiguration": {
-      "base": "<p>Configurations for a vector knowledge base.</p>",
+      "base": "<p>Contains details about the model used to create vector embeddings for the knowledge base.</p>",
       "refs": {
-        "KnowledgeBaseConfiguration$vectorKnowledgeBaseConfiguration": null
+        "KnowledgeBaseConfiguration$vectorKnowledgeBaseConfiguration": "<p>Contains details about the embeddings model that'sused to convert the data source.</p>"
       }
     },
     "Version": {
-      "base": "<p>Agent Version.</p>",
+      "base": null,
       "refs": {
-        "AgentActionGroup$agentVersion": null,
-        "AgentAliasRoutingConfigurationListItem$agentVersion": null,
-        "AgentKnowledgeBase$agentVersion": null,
-        "AgentSummary$latestAgentVersion": null,
-        "AgentVersionSummary$agentVersion": null,
-        "GetAgentActionGroupRequest$agentVersion": "<p>Version number generated when a version is created</p>",
-        "GetAgentKnowledgeBaseRequest$agentVersion": "<p>Version number generated when a version is created</p>",
-        "ListAgentActionGroupsRequest$agentVersion": "<p>Id generated at the server side when an Agent is Listed</p>",
-        "ListAgentKnowledgeBasesRequest$agentVersion": "<p>Version number generated when a version is created</p>",
-        "PrepareAgentResponse$agentVersion": null
+        "AgentActionGroup$agentVersion": "<p>The version of the agent to which the action group belongs.</p>",
+        "AgentAliasRoutingConfigurationListItem$agentVersion": "<p>The version of the agent with which the alias is associated.</p>",
+        "AgentKnowledgeBase$agentVersion": "<p>The version of the agent with which the knowledge base is associated.</p>",
+        "AgentSummary$latestAgentVersion": "<p>The latest version of the agent.</p>",
+        "AgentVersionSummary$agentVersion": "<p>The version of the agent.</p>",
+        "GetAgentActionGroupRequest$agentVersion": "<p>The version of the agent that the action group belongs to.</p>",
+        "GetAgentKnowledgeBaseRequest$agentVersion": "<p>The version of the agent with which the knowledge base is associated.</p>",
+        "ListAgentActionGroupsRequest$agentVersion": "<p>The version of the agent.</p>",
+        "ListAgentKnowledgeBasesRequest$agentVersion": "<p>The version of the agent for which to return information about knowledge bases associated with it.</p>",
+        "PrepareAgentResponse$agentVersion": "<p>The version of the agent.</p>"
       }
     }
   }

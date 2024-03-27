@@ -10456,11 +10456,6 @@ func (s *CacheUsageLimits) Validate() error {
 			invalidParams.AddNested("DataStorage", err.(request.ErrInvalidParams))
 		}
 	}
-	if s.ECPUPerSecond != nil {
-		if err := s.ECPUPerSecond.Validate(); err != nil {
-			invalidParams.AddNested("ECPUPerSecond", err.(request.ErrInvalidParams))
-		}
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13556,9 +13551,10 @@ type DataStorage struct {
 	_ struct{} `type:"structure"`
 
 	// The upper limit for data storage the cache is set to use.
-	//
-	// Maximum is a required field
-	Maximum *int64 `type:"integer" required:"true"`
+	Maximum *int64 `type:"integer"`
+
+	// The lower limit for data storage the cache is set to use.
+	Minimum *int64 `type:"integer"`
 
 	// The unit that the storage is measured in, in GB.
 	//
@@ -13587,9 +13583,6 @@ func (s DataStorage) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataStorage) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataStorage"}
-	if s.Maximum == nil {
-		invalidParams.Add(request.NewErrParamRequired("Maximum"))
-	}
 	if s.Unit == nil {
 		invalidParams.Add(request.NewErrParamRequired("Unit"))
 	}
@@ -13603,6 +13596,12 @@ func (s *DataStorage) Validate() error {
 // SetMaximum sets the Maximum field's value.
 func (s *DataStorage) SetMaximum(v int64) *DataStorage {
 	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *DataStorage) SetMinimum(v int64) *DataStorage {
+	s.Minimum = &v
 	return s
 }
 
@@ -17582,9 +17581,11 @@ type ECPUPerSecond struct {
 
 	// The configuration for the maximum number of ECPUs the cache can consume per
 	// second.
-	//
-	// Maximum is a required field
-	Maximum *int64 `type:"integer" required:"true"`
+	Maximum *int64 `type:"integer"`
+
+	// The configuration for the minimum number of ECPUs the cache should be able
+	// consume per second.
+	Minimum *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -17605,22 +17606,15 @@ func (s ECPUPerSecond) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ECPUPerSecond) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ECPUPerSecond"}
-	if s.Maximum == nil {
-		invalidParams.Add(request.NewErrParamRequired("Maximum"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetMaximum sets the Maximum field's value.
 func (s *ECPUPerSecond) SetMaximum(v int64) *ECPUPerSecond {
 	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *ECPUPerSecond) SetMinimum(v int64) *ECPUPerSecond {
+	s.Minimum = &v
 	return s
 }
 

@@ -1086,6 +1086,7 @@
         "runAsUser":{"shape":"Long"},
         "runAsGroup":{"shape":"Long"},
         "privileged":{"shape":"Boolean"},
+        "allowPrivilegeEscalation":{"shape":"Boolean"},
         "readOnlyRootFilesystem":{"shape":"Boolean"},
         "runAsNonRoot":{"shape":"Boolean"}
       }
@@ -1141,6 +1142,7 @@
         "serviceAccountName":{"shape":"String"},
         "hostNetwork":{"shape":"Boolean"},
         "dnsPolicy":{"shape":"String"},
+        "imagePullSecrets":{"shape":"ImagePullSecrets"},
         "containers":{"shape":"EksContainers"},
         "initContainers":{"shape":"EksContainers"},
         "volumes":{"shape":"EksVolumes"},
@@ -1154,6 +1156,7 @@
         "serviceAccountName":{"shape":"String"},
         "hostNetwork":{"shape":"Boolean"},
         "dnsPolicy":{"shape":"String"},
+        "imagePullSecrets":{"shape":"ImagePullSecrets"},
         "containers":{"shape":"EksContainerDetails"},
         "initContainers":{"shape":"EksContainerDetails"},
         "volumes":{"shape":"EksVolumes"},
@@ -1266,6 +1269,17 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "ImagePullSecret":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"}
+      }
+    },
+    "ImagePullSecrets":{
+      "type":"list",
+      "member":{"shape":"ImagePullSecret"}
     },
     "ImageType":{
       "type":"string",

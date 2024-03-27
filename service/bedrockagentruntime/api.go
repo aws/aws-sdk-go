@@ -516,8 +516,7 @@ func (c *BedrockAgentRuntime) RetrieveAndGenerateRequest(input *RetrieveAndGener
 // RetrieveAndGenerate API operation for Agents for Amazon Bedrock Runtime.
 //
 // Queries a knowledge base and generates responses based on the retrieved results.
-// The response cites up to five sources but only selects the ones that are
-// relevant to the query.
+// The response only cites sources that are relevant to the query.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2140,6 +2139,15 @@ func (s *KnowledgeBaseRetrieveAndGenerateConfiguration) SetRetrievalConfiguratio
 type KnowledgeBaseVectorSearchConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the filters to use on the metadata in the knowledge base data sources
+	// before returning results. For more information, see Query configurations
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+	//
+	// Filter is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by KnowledgeBaseVectorSearchConfiguration's
+	// String and GoString methods.
+	Filter *RetrievalFilter `locationName:"filter" type:"structure" sensitive:"true"`
+
 	// The number of source chunks to retrieve.
 	NumberOfResults *int64 `locationName:"numberOfResults" min:"1" type:"integer"`
 
@@ -2176,11 +2184,22 @@ func (s *KnowledgeBaseVectorSearchConfiguration) Validate() error {
 	if s.NumberOfResults != nil && *s.NumberOfResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("NumberOfResults", 1))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *KnowledgeBaseVectorSearchConfiguration) SetFilter(v *RetrievalFilter) *KnowledgeBaseVectorSearchConfiguration {
+	s.Filter = v
+	return s
 }
 
 // SetNumberOfResults sets the NumberOfResults field's value.
@@ -2907,6 +2926,7 @@ func (s *PreProcessingTrace) SetModelInvocationOutput(v *PreProcessingModelInvoc
 // This data type is used in the following API operations:
 //
 //   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the filter field
 type PromptTemplate struct {
 	_ struct{} `type:"structure"`
 
@@ -3354,6 +3374,95 @@ func (e *ResponseStreamUnknownEvent) UnmarshalEvent(
 ) error {
 	e.Message = msg.Clone()
 	return nil
+}
+
+// Specifies the filters to use on the metadata attributes in the knowledge
+// base data sources before returning results. For more information, see Query
+// configurations (https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html).
+//
+// This data type is used in the following API operations:
+//
+//   - Retrieve request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax)
+//     – in the filter field
+//
+//   - RetrieveAndGenerate request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax)
+//     – in the filter field
+type RetrievalFilter struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// Knowledge base data sources whose metadata attributes fulfill all the filter
+	// conditions inside this list are returned.
+	AndAll []*RetrievalFilter `locationName:"andAll" min:"2" type:"list"`
+
+	// Knowledge base data sources whose metadata attributes fulfill at least one
+	// of the filter conditions inside this list are returned.
+	OrAll []*RetrievalFilter `locationName:"orAll" min:"2" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetrievalFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetrievalFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetrievalFilter"}
+	if s.AndAll != nil && len(s.AndAll) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("AndAll", 2))
+	}
+	if s.OrAll != nil && len(s.OrAll) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("OrAll", 2))
+	}
+	if s.AndAll != nil {
+		for i, v := range s.AndAll {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AndAll", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OrAll != nil {
+		for i, v := range s.OrAll {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OrAll", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAndAll sets the AndAll field's value.
+func (s *RetrievalFilter) SetAndAll(v []*RetrievalFilter) *RetrievalFilter {
+	s.AndAll = v
+	return s
+}
+
+// SetOrAll sets the OrAll field's value.
+func (s *RetrievalFilter) SetOrAll(v []*RetrievalFilter) *RetrievalFilter {
+	s.OrAll = v
+	return s
 }
 
 // Contains the cited text from the data source.

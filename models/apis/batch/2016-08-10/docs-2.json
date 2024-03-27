@@ -91,6 +91,7 @@
         "ContainerProperties$readonlyRootFilesystem": "<p>When this parameter is true, the container is given read-only access to its root file system. This parameter maps to <code>ReadonlyRootfs</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--read-only</code> option to <code>docker run</code>.</p>",
         "ContainerProperties$privileged": "<p>When this parameter is true, the container is given elevated permissions on the host container instance (similar to the <code>root</code> user). This parameter maps to <code>Privileged</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--privileged</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>. The default value is false.</p> <note> <p>This parameter isn't applicable to jobs that are running on Fargate resources and shouldn't be provided, or specified as false.</p> </note>",
         "EksContainerSecurityContext$privileged": "<p>When this parameter is <code>true</code>, the container is given elevated permissions on the host container instance. The level of permissions are similar to the <code>root</code> user permissions. The default value is <code>false</code>. This parameter maps to <code>privileged</code> policy in the <a href=\"https://kubernetes.io/docs/concepts/security/pod-security-policy/#privileged\">Privileged pod security policies</a> in the <i>Kubernetes documentation</i>.</p>",
+        "EksContainerSecurityContext$allowPrivilegeEscalation": "<p>Whether or not a container or a Kubernetes pod is allowed to gain more privileges than its parent process. The default value is <code>false</code>.</p>",
         "EksContainerSecurityContext$readOnlyRootFilesystem": "<p>When this parameter is <code>true</code>, the container is given read-only access to its root file system. The default value is <code>false</code>. This parameter maps to <code>ReadOnlyRootFilesystem</code> policy in the <a href=\"https://kubernetes.io/docs/concepts/security/pod-security-policy/#volumes-and-file-systems\">Volumes and file systems pod security policies</a> in the <i>Kubernetes documentation</i>.</p>",
         "EksContainerSecurityContext$runAsNonRoot": "<p>When this parameter is specified, the container is run as a user with a <code>uid</code> other than 0. If this parameter isn't specified, so such rule is enforced. This parameter maps to <code>RunAsUser</code> and <code>MustRunAsNonRoot</code> policy in the <a href=\"https://kubernetes.io/docs/concepts/security/pod-security-policy/#users-and-groups\">Users and groups pod security policies</a> in the <i>Kubernetes documentation</i>.</p>",
         "EksContainerVolumeMount$readOnly": "<p>If this value is <code>true</code>, the container has read-only access to the volume. Otherwise, the container can write to the volume. The default value is <code>false</code>.</p>",
@@ -723,6 +724,19 @@
       "base": null,
       "refs": {
         "Ec2Configuration$imageIdOverride": "<p>The AMI ID used for instances launched in the compute environment that match the image type. This setting overrides the <code>imageId</code> set in the <code>computeResource</code> object.</p> <note> <p>The AMI that you choose for a compute environment must match the architecture of the instance types that you intend to use for that compute environment. For example, if your compute environment uses A1 instance types, the compute resource AMI that you choose must support ARM instances. Amazon ECS vends both x86 and ARM versions of the Amazon ECS-optimized Amazon Linux 2 AMI. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#ecs-optimized-ami-linux-variants.html\">Amazon ECS-optimized Amazon Linux 2 AMI</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> </note>"
+      }
+    },
+    "ImagePullSecret": {
+      "base": "<p>References a Kubernetes configuration resource that holds a list of secrets. These secrets help to gain access to pull an image from a private registry.</p>",
+      "refs": {
+        "ImagePullSecrets$member": null
+      }
+    },
+    "ImagePullSecrets": {
+      "base": null,
+      "refs": {
+        "EksPodProperties$imagePullSecrets": "<p>References a Kubernetes secret resource. This object must start and end with an alphanumeric character, is required to be lowercase, can include periods (.) and hyphens (-), and can't contain more than 253 characters.</p> <p> <code>ImagePullSecret$name</code> is required when this object is used.</p>",
+        "EksPodPropertiesDetail$imagePullSecrets": "<p>Displays the reference pointer to the Kubernetes secret resource.</p>"
       }
     },
     "ImageType": {
@@ -1444,6 +1458,7 @@
         "EvaluateOnExit$onExitCode": "<p>Contains a glob pattern to match against the decimal representation of the <code>ExitCode</code> returned for a job. The pattern can be up to 512 characters long. It can contain only numbers, and can end with an asterisk (*) so that only the start of the string needs to be an exact match.</p> <p>The string can contain up to 512 characters.</p>",
         "FargatePlatformConfiguration$platformVersion": "<p>The Fargate platform version where the jobs are running. A platform version is specified only for jobs that are running on Fargate resources. If one isn't specified, the <code>LATEST</code> platform version is used by default. This uses a recent, approved version of the Fargate platform for compute resources. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html\">Fargate platform versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "Host$sourcePath": "<p>The path on the host container instance that's presented to the container. If this parameter is empty, then the Docker daemon has assigned a host path for you. If this parameter contains a file location, then the data volume persists at the specified location on the host container instance until you delete it manually. If the source path location doesn't exist on the host container instance, the Docker daemon creates it. If the location does exist, the contents of the source path folder are exported.</p> <note> <p>This parameter isn't applicable to jobs that run on Fargate resources. Don't provide this for these jobs.</p> </note>",
+        "ImagePullSecret$name": "<p>Provides a unique identifier for the <code>ImagePullSecret</code>. This object is required when <code>EksPodProperties$imagePullSecrets</code> is used.</p>",
         "JobDefinition$jobDefinitionName": "<p>The name of the job definition.</p>",
         "JobDefinition$jobDefinitionArn": "<p>The Amazon Resource Name (ARN) for the job definition.</p>",
         "JobDefinition$status": "<p>The status of the job definition.</p>",

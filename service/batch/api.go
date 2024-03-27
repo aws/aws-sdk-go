@@ -8052,6 +8052,10 @@ func (s *EksContainerResourceRequirements) SetRequests(v map[string]*string) *Ek
 type EksContainerSecurityContext struct {
 	_ struct{} `type:"structure"`
 
+	// Whether or not a container or a Kubernetes pod is allowed to gain more privileges
+	// than its parent process. The default value is false.
+	AllowPrivilegeEscalation *bool `locationName:"allowPrivilegeEscalation" type:"boolean"`
+
 	// When this parameter is true, the container is given elevated permissions
 	// on the host container instance. The level of permissions are similar to the
 	// root user permissions. The default value is false. This parameter maps to
@@ -8103,6 +8107,12 @@ func (s EksContainerSecurityContext) String() string {
 // value will be replaced with "sensitive".
 func (s EksContainerSecurityContext) GoString() string {
 	return s.String()
+}
+
+// SetAllowPrivilegeEscalation sets the AllowPrivilegeEscalation field's value.
+func (s *EksContainerSecurityContext) SetAllowPrivilegeEscalation(v bool) *EksContainerSecurityContext {
+	s.AllowPrivilegeEscalation = &v
+	return s
 }
 
 // SetPrivileged sets the Privileged field's value.
@@ -8362,6 +8372,13 @@ type EksPodProperties struct {
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
 
+	// References a Kubernetes secret resource. This object must start and end with
+	// an alphanumeric character, is required to be lowercase, can include periods
+	// (.) and hyphens (-), and can't contain more than 253 characters.
+	//
+	// ImagePullSecret$name is required when this object is used.
+	ImagePullSecrets []*ImagePullSecret `locationName:"imagePullSecrets" type:"list"`
+
 	// These containers run before application containers, always runs to completion,
 	// and must complete successfully before the next container starts. These containers
 	// are registered with the Amazon EKS Connector agent and persists the registration
@@ -8424,6 +8441,16 @@ func (s *EksPodProperties) Validate() error {
 			}
 		}
 	}
+	if s.ImagePullSecrets != nil {
+		for i, v := range s.ImagePullSecrets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ImagePullSecrets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.InitContainers != nil {
 		for i, v := range s.InitContainers {
 			if v == nil {
@@ -8466,6 +8493,12 @@ func (s *EksPodProperties) SetDnsPolicy(v string) *EksPodProperties {
 // SetHostNetwork sets the HostNetwork field's value.
 func (s *EksPodProperties) SetHostNetwork(v bool) *EksPodProperties {
 	s.HostNetwork = &v
+	return s
+}
+
+// SetImagePullSecrets sets the ImagePullSecrets field's value.
+func (s *EksPodProperties) SetImagePullSecrets(v []*ImagePullSecret) *EksPodProperties {
+	s.ImagePullSecrets = v
 	return s
 }
 
@@ -8530,6 +8563,9 @@ type EksPodPropertiesDetail struct {
 	// and Pod networking (https://kubernetes.io/docs/concepts/workloads/pods/#pod-networking)
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
+
+	// Displays the reference pointer to the Kubernetes secret resource.
+	ImagePullSecrets []*ImagePullSecret `locationName:"imagePullSecrets" type:"list"`
 
 	// The container registered with the Amazon EKS Connector agent and persists
 	// the registration information in the Kubernetes backend data store.
@@ -8596,6 +8632,12 @@ func (s *EksPodPropertiesDetail) SetDnsPolicy(v string) *EksPodPropertiesDetail 
 // SetHostNetwork sets the HostNetwork field's value.
 func (s *EksPodPropertiesDetail) SetHostNetwork(v bool) *EksPodPropertiesDetail {
 	s.HostNetwork = &v
+	return s
+}
+
+// SetImagePullSecrets sets the ImagePullSecrets field's value.
+func (s *EksPodPropertiesDetail) SetImagePullSecrets(v []*ImagePullSecret) *EksPodPropertiesDetail {
+	s.ImagePullSecrets = v
 	return s
 }
 
@@ -9319,6 +9361,55 @@ func (s Host) GoString() string {
 // SetSourcePath sets the SourcePath field's value.
 func (s *Host) SetSourcePath(v string) *Host {
 	s.SourcePath = &v
+	return s
+}
+
+// References a Kubernetes configuration resource that holds a list of secrets.
+// These secrets help to gain access to pull an image from a private registry.
+type ImagePullSecret struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a unique identifier for the ImagePullSecret. This object is required
+	// when EksPodProperties$imagePullSecrets is used.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImagePullSecret) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImagePullSecret) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImagePullSecret) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImagePullSecret"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ImagePullSecret) SetName(v string) *ImagePullSecret {
+	s.Name = &v
 	return s
 }
 

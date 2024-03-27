@@ -746,8 +746,8 @@
     "APISchema":{
       "type":"structure",
       "members":{
-        "s3":{"shape":"S3Identifier"},
-        "payload":{"shape":"Payload"}
+        "payload":{"shape":"Payload"},
+        "s3":{"shape":"S3Identifier"}
       },
       "union":true
     },
@@ -805,100 +805,100 @@
     "Agent":{
       "type":"structure",
       "required":[
+        "agentArn",
         "agentId",
         "agentName",
-        "agentArn",
-        "agentVersion",
-        "agentStatus",
-        "idleSessionTTLInSeconds",
         "agentResourceRoleArn",
+        "agentStatus",
+        "agentVersion",
         "createdAt",
+        "idleSessionTTLInSeconds",
         "updatedAt"
       ],
       "members":{
+        "agentArn":{"shape":"AgentArn"},
         "agentId":{"shape":"Id"},
         "agentName":{"shape":"Name"},
-        "agentArn":{"shape":"AgentArn"},
+        "agentResourceRoleArn":{"shape":"AgentRoleArn"},
+        "agentStatus":{"shape":"AgentStatus"},
         "agentVersion":{"shape":"DraftVersion"},
         "clientToken":{"shape":"ClientToken"},
-        "instruction":{"shape":"Instruction"},
-        "agentStatus":{"shape":"AgentStatus"},
-        "foundationModel":{"shape":"ModelIdentifier"},
-        "description":{"shape":"Description"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
-        "agentResourceRoleArn":{"shape":"AgentRoleArn"},
-        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
         "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "preparedAt":{"shape":"DateTimestamp"},
+        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "description":{"shape":"Description"},
         "failureReasons":{"shape":"FailureReasons"},
+        "foundationModel":{"shape":"ModelIdentifier"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "instruction":{"shape":"Instruction"},
+        "preparedAt":{"shape":"DateTimestamp"},
+        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"},
         "recommendedActions":{"shape":"RecommendedActions"},
-        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"}
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AgentActionGroup":{
       "type":"structure",
       "required":[
-        "agentId",
-        "agentVersion",
         "actionGroupId",
         "actionGroupName",
+        "actionGroupState",
+        "agentId",
+        "agentVersion",
         "createdAt",
-        "updatedAt",
-        "actionGroupState"
+        "updatedAt"
       ],
       "members":{
-        "agentId":{"shape":"Id"},
-        "agentVersion":{"shape":"Version"},
+        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
         "actionGroupId":{"shape":"Id"},
         "actionGroupName":{"shape":"Name"},
-        "clientToken":{"shape":"ClientToken"},
-        "description":{"shape":"Description"},
-        "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "parentActionSignature":{"shape":"ActionGroupSignature"},
-        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
+        "actionGroupState":{"shape":"ActionGroupState"},
+        "agentId":{"shape":"Id"},
+        "agentVersion":{"shape":"Version"},
         "apiSchema":{"shape":"APISchema"},
-        "actionGroupState":{"shape":"ActionGroupState"}
+        "clientToken":{"shape":"ClientToken"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "description":{"shape":"Description"},
+        "parentActionSignature":{"shape":"ActionGroupSignature"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AgentAlias":{
       "type":"structure",
       "required":[
-        "agentId",
+        "agentAliasArn",
         "agentAliasId",
         "agentAliasName",
-        "agentAliasArn",
-        "routingConfiguration",
+        "agentAliasStatus",
+        "agentId",
         "createdAt",
-        "updatedAt",
-        "agentAliasStatus"
+        "routingConfiguration",
+        "updatedAt"
       ],
       "members":{
-        "agentId":{"shape":"Id"},
+        "agentAliasArn":{"shape":"AgentAliasArn"},
+        "agentAliasHistoryEvents":{"shape":"AgentAliasHistoryEvents"},
         "agentAliasId":{"shape":"AgentAliasId"},
         "agentAliasName":{"shape":"Name"},
-        "agentAliasArn":{"shape":"AgentAliasArn"},
+        "agentAliasStatus":{"shape":"AgentAliasStatus"},
+        "agentId":{"shape":"Id"},
         "clientToken":{"shape":"ClientToken"},
+        "createdAt":{"shape":"DateTimestamp"},
         "description":{"shape":"Description"},
         "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
-        "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "agentAliasHistoryEvents":{"shape":"AgentAliasHistoryEvents"},
-        "agentAliasStatus":{"shape":"AgentAliasStatus"}
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AgentAliasArn":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}"
+      "pattern":"^arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent-alias/[0-9a-zA-Z]{10}/[0-9a-zA-Z]{10}$"
     },
     "AgentAliasHistoryEvent":{
       "type":"structure",
       "members":{
-        "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
         "endDate":{"shape":"DateTimestamp"},
+        "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
         "startDate":{"shape":"DateTimestamp"}
       }
     },
@@ -912,7 +912,7 @@
       "type":"string",
       "max":10,
       "min":10,
-      "pattern":"(\\bTSTALIASID\\b|[0-9a-zA-Z]+)"
+      "pattern":"^(\\bTSTALIASID\\b|[0-9a-zA-Z]+)$"
     },
     "AgentAliasRoutingConfiguration":{
       "type":"list",
@@ -955,10 +955,10 @@
       "members":{
         "agentAliasId":{"shape":"AgentAliasId"},
         "agentAliasName":{"shape":"Name"},
-        "description":{"shape":"Description"},
-        "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
         "agentAliasStatus":{"shape":"AgentAliasStatus"},
         "createdAt":{"shape":"DateTimestamp"},
+        "description":{"shape":"Description"},
+        "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
     },
@@ -966,27 +966,27 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent/[0-9a-zA-Z]{10}"
+      "pattern":"^arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:agent/[0-9a-zA-Z]{10}$"
     },
     "AgentKnowledgeBase":{
       "type":"structure",
       "required":[
         "agentId",
         "agentVersion",
-        "knowledgeBaseId",
-        "description",
         "createdAt",
-        "updatedAt",
-        "knowledgeBaseState"
+        "description",
+        "knowledgeBaseId",
+        "knowledgeBaseState",
+        "updatedAt"
       ],
       "members":{
         "agentId":{"shape":"Id"},
         "agentVersion":{"shape":"Version"},
-        "knowledgeBaseId":{"shape":"Id"},
-        "description":{"shape":"Description"},
         "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "knowledgeBaseState":{"shape":"KnowledgeBaseState"}
+        "description":{"shape":"Description"},
+        "knowledgeBaseId":{"shape":"Id"},
+        "knowledgeBaseState":{"shape":"KnowledgeBaseState"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AgentKnowledgeBaseSummaries":{
@@ -1003,8 +1003,8 @@
         "updatedAt"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
         "description":{"shape":"Description"},
+        "knowledgeBaseId":{"shape":"Id"},
         "knowledgeBaseState":{"shape":"KnowledgeBaseState"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
@@ -1013,7 +1013,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/(service-role/)?AmazonBedrockExecutionRoleForAgents.+"
+      "pattern":"^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/(service-role/)?AmazonBedrockExecutionRoleForAgents_.+$"
     },
     "AgentStatus":{
       "type":"string",
@@ -1047,40 +1047,40 @@
         "agentName":{"shape":"Name"},
         "agentStatus":{"shape":"AgentStatus"},
         "description":{"shape":"Description"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "latestAgentVersion":{"shape":"Version"}
+        "latestAgentVersion":{"shape":"Version"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AgentVersion":{
       "type":"structure",
       "required":[
+        "agentArn",
         "agentId",
         "agentName",
-        "agentArn",
-        "version",
-        "agentStatus",
-        "idleSessionTTLInSeconds",
         "agentResourceRoleArn",
+        "agentStatus",
         "createdAt",
-        "updatedAt"
+        "idleSessionTTLInSeconds",
+        "updatedAt",
+        "version"
       ],
       "members":{
+        "agentArn":{"shape":"AgentArn"},
         "agentId":{"shape":"Id"},
         "agentName":{"shape":"Name"},
-        "agentArn":{"shape":"AgentArn"},
-        "version":{"shape":"NumericalVersion"},
-        "instruction":{"shape":"Instruction"},
-        "agentStatus":{"shape":"AgentStatus"},
-        "foundationModel":{"shape":"ModelIdentifier"},
-        "description":{"shape":"Description"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "agentResourceRoleArn":{"shape":"AgentRoleArn"},
-        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "agentStatus":{"shape":"AgentStatus"},
         "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
+        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "description":{"shape":"Description"},
         "failureReasons":{"shape":"FailureReasons"},
+        "foundationModel":{"shape":"ModelIdentifier"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "instruction":{"shape":"Instruction"},
+        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"},
         "recommendedActions":{"shape":"RecommendedActions"},
-        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"}
+        "updatedAt":{"shape":"DateTimestamp"},
+        "version":{"shape":"NumericalVersion"}
       }
     },
     "AgentVersionSummaries":{
@@ -1103,8 +1103,8 @@
         "agentStatus":{"shape":"AgentStatus"},
         "agentVersion":{"shape":"Version"},
         "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "AssociateAgentKnowledgeBaseRequest":{
@@ -1112,8 +1112,8 @@
       "required":[
         "agentId",
         "agentVersion",
-        "knowledgeBaseId",
-        "description"
+        "description",
+        "knowledgeBaseId"
       ],
       "members":{
         "agentId":{
@@ -1126,8 +1126,8 @@
           "location":"uri",
           "locationName":"agentVersion"
         },
-        "knowledgeBaseId":{"shape":"Id"},
         "description":{"shape":"Description"},
+        "knowledgeBaseId":{"shape":"Id"},
         "knowledgeBaseState":{"shape":"KnowledgeBaseState"}
       }
     },
@@ -1147,7 +1147,7 @@
       "type":"string",
       "max":1011,
       "min":20,
-      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))"
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))$"
     },
     "Boolean":{
       "type":"boolean",
@@ -1172,13 +1172,13 @@
       "type":"string",
       "max":256,
       "min":33,
-      "pattern":"[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
     "ColumnName":{
       "type":"string",
       "max":63,
       "min":0,
-      "pattern":"[a-zA-Z0-9_\\-]+"
+      "pattern":"^[a-zA-Z0-9_\\-]+$"
     },
     "ConflictException":{
       "type":"structure",
@@ -1194,11 +1194,14 @@
     "CreateAgentActionGroupRequest":{
       "type":"structure",
       "required":[
+        "actionGroupName",
         "agentId",
-        "agentVersion",
-        "actionGroupName"
+        "agentVersion"
       ],
       "members":{
+        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
+        "actionGroupName":{"shape":"Name"},
+        "actionGroupState":{"shape":"ActionGroupState"},
         "agentId":{
           "shape":"Id",
           "location":"uri",
@@ -1209,16 +1212,13 @@
           "location":"uri",
           "locationName":"agentVersion"
         },
-        "actionGroupName":{"shape":"Name"},
+        "apiSchema":{"shape":"APISchema"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
         },
         "description":{"shape":"Description"},
-        "parentActionGroupSignature":{"shape":"ActionGroupSignature"},
-        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
-        "apiSchema":{"shape":"APISchema"},
-        "actionGroupState":{"shape":"ActionGroupState"}
+        "parentActionGroupSignature":{"shape":"ActionGroupSignature"}
       }
     },
     "CreateAgentActionGroupResponse":{
@@ -1231,16 +1231,16 @@
     "CreateAgentAliasRequest":{
       "type":"structure",
       "required":[
-        "agentId",
-        "agentAliasName"
+        "agentAliasName",
+        "agentId"
       ],
       "members":{
+        "agentAliasName":{"shape":"Name"},
         "agentId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"agentId"
         },
-        "agentAliasName":{"shape":"Name"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1265,18 +1265,18 @@
       ],
       "members":{
         "agentName":{"shape":"Name"},
+        "agentResourceRoleArn":{"shape":"AgentRoleArn"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "instruction":{"shape":"Instruction"},
-        "foundationModel":{"shape":"ModelIdentifier"},
-        "description":{"shape":"Description"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
-        "agentResourceRoleArn":{"shape":"AgentRoleArn"},
         "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
-        "tags":{"shape":"TagsMap"},
-        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"}
+        "description":{"shape":"Description"},
+        "foundationModel":{"shape":"ModelIdentifier"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "instruction":{"shape":"Instruction"},
+        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"},
+        "tags":{"shape":"TagsMap"}
       }
     },
     "CreateAgentResponse":{
@@ -1289,23 +1289,23 @@
     "CreateDataSourceRequest":{
       "type":"structure",
       "required":[
+        "dataSourceConfiguration",
         "knowledgeBaseId",
-        "name",
-        "dataSourceConfiguration"
+        "name"
       ],
       "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
+        "description":{"shape":"Description"},
         "knowledgeBaseId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"knowledgeBaseId"
         },
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true
-        },
         "name":{"shape":"Name"},
-        "description":{"shape":"Description"},
-        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "vectorIngestionConfiguration":{"shape":"VectorIngestionConfiguration"}
       }
@@ -1320,9 +1320,9 @@
     "CreateKnowledgeBaseRequest":{
       "type":"structure",
       "required":[
+        "knowledgeBaseConfiguration",
         "name",
         "roleArn",
-        "knowledgeBaseConfiguration",
         "storageConfiguration"
       ],
       "members":{
@@ -1330,10 +1330,10 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "roleArn":{"shape":"KnowledgeBaseRoleArn"},
         "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseConfiguration"},
+        "name":{"shape":"Name"},
+        "roleArn":{"shape":"KnowledgeBaseRoleArn"},
         "storageConfiguration":{"shape":"StorageConfiguration"},
         "tags":{"shape":"TagsMap"}
       }
@@ -1355,33 +1355,33 @@
     "DataSource":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
+        "createdAt",
+        "dataSourceConfiguration",
         "dataSourceId",
+        "knowledgeBaseId",
         "name",
         "status",
-        "dataSourceConfiguration",
-        "createdAt",
         "updatedAt"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
-        "dataSourceId":{"shape":"Id"},
-        "name":{"shape":"Name"},
-        "status":{"shape":"DataSourceStatus"},
-        "description":{"shape":"Description"},
-        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
-        "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
-        "vectorIngestionConfiguration":{"shape":"VectorIngestionConfiguration"},
         "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"}
+        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
+        "dataSourceId":{"shape":"Id"},
+        "description":{"shape":"Description"},
+        "knowledgeBaseId":{"shape":"Id"},
+        "name":{"shape":"Name"},
+        "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
+        "status":{"shape":"DataSourceStatus"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "vectorIngestionConfiguration":{"shape":"VectorIngestionConfiguration"}
       }
     },
     "DataSourceConfiguration":{
       "type":"structure",
       "required":["type"],
       "members":{
-        "type":{"shape":"DataSourceType"},
-        "s3Configuration":{"shape":"S3DataSourceConfiguration"}
+        "s3Configuration":{"shape":"S3DataSourceConfiguration"},
+        "type":{"shape":"DataSourceType"}
       }
     },
     "DataSourceStatus":{
@@ -1398,18 +1398,18 @@
     "DataSourceSummary":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
         "dataSourceId",
+        "knowledgeBaseId",
         "name",
         "status",
         "updatedAt"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
         "dataSourceId":{"shape":"Id"},
+        "description":{"shape":"Description"},
+        "knowledgeBaseId":{"shape":"Id"},
         "name":{"shape":"Name"},
         "status":{"shape":"DataSourceStatus"},
-        "description":{"shape":"Description"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
     },
@@ -1424,11 +1424,16 @@
     "DeleteAgentActionGroupRequest":{
       "type":"structure",
       "required":[
+        "actionGroupId",
         "agentId",
-        "agentVersion",
-        "actionGroupId"
+        "agentVersion"
       ],
       "members":{
+        "actionGroupId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
         "agentId":{
           "shape":"Id",
           "location":"uri",
@@ -1438,11 +1443,6 @@
           "shape":"DraftVersion",
           "location":"uri",
           "locationName":"agentVersion"
-        },
-        "actionGroupId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"actionGroupId"
         },
         "skipResourceInUseCheck":{
           "shape":"Boolean",
@@ -1459,33 +1459,33 @@
     "DeleteAgentAliasRequest":{
       "type":"structure",
       "required":[
-        "agentId",
-        "agentAliasId"
+        "agentAliasId",
+        "agentId"
       ],
       "members":{
-        "agentId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"agentId"
-        },
         "agentAliasId":{
           "shape":"AgentAliasId",
           "location":"uri",
           "locationName":"agentAliasId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"agentId"
         }
       }
     },
     "DeleteAgentAliasResponse":{
       "type":"structure",
       "required":[
-        "agentId",
         "agentAliasId",
-        "agentAliasStatus"
+        "agentAliasStatus",
+        "agentId"
       ],
       "members":{
-        "agentId":{"shape":"Id"},
         "agentAliasId":{"shape":"AgentAliasId"},
-        "agentAliasStatus":{"shape":"AgentAliasStatus"}
+        "agentAliasStatus":{"shape":"AgentAliasStatus"},
+        "agentId":{"shape":"Id"}
       }
     },
     "DeleteAgentRequest":{
@@ -1543,44 +1543,44 @@
       "type":"structure",
       "required":[
         "agentId",
-        "agentVersion",
-        "agentStatus"
+        "agentStatus",
+        "agentVersion"
       ],
       "members":{
         "agentId":{"shape":"Id"},
-        "agentVersion":{"shape":"NumericalVersion"},
-        "agentStatus":{"shape":"AgentStatus"}
+        "agentStatus":{"shape":"AgentStatus"},
+        "agentVersion":{"shape":"NumericalVersion"}
       }
     },
     "DeleteDataSourceRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
-        "dataSourceId"
+        "dataSourceId",
+        "knowledgeBaseId"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
-        },
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"dataSourceId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
         }
       }
     },
     "DeleteDataSourceResponse":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
         "dataSourceId",
+        "knowledgeBaseId",
         "status"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
         "dataSourceId":{"shape":"Id"},
+        "knowledgeBaseId":{"shape":"Id"},
         "status":{"shape":"DataSourceStatus"}
       }
     },
@@ -1645,7 +1645,7 @@
       "type":"string",
       "max":5,
       "min":5,
-      "pattern":"DRAFT"
+      "pattern":"^DRAFT$"
     },
     "FailureReason":{
       "type":"string",
@@ -1662,7 +1662,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "FixedSizeChunkingConfiguration":{
       "type":"structure",
@@ -1689,11 +1689,16 @@
     "GetAgentActionGroupRequest":{
       "type":"structure",
       "required":[
+        "actionGroupId",
         "agentId",
-        "agentVersion",
-        "actionGroupId"
+        "agentVersion"
       ],
       "members":{
+        "actionGroupId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
         "agentId":{
           "shape":"Id",
           "location":"uri",
@@ -1703,11 +1708,6 @@
           "shape":"Version",
           "location":"uri",
           "locationName":"agentVersion"
-        },
-        "actionGroupId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"actionGroupId"
         }
       }
     },
@@ -1721,19 +1721,19 @@
     "GetAgentAliasRequest":{
       "type":"structure",
       "required":[
-        "agentId",
-        "agentAliasId"
+        "agentAliasId",
+        "agentId"
       ],
       "members":{
-        "agentId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"agentId"
-        },
         "agentAliasId":{
           "shape":"AgentAliasId",
           "location":"uri",
           "locationName":"agentAliasId"
+        },
+        "agentId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"agentId"
         }
       }
     },
@@ -1823,19 +1823,19 @@
     "GetDataSourceRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
-        "dataSourceId"
+        "dataSourceId",
+        "knowledgeBaseId"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
-        },
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"dataSourceId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
         }
       }
     },
@@ -1849,16 +1849,11 @@
     "GetIngestionJobRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
         "dataSourceId",
-        "ingestionJobId"
+        "ingestionJobId",
+        "knowledgeBaseId"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
-        },
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
@@ -1868,6 +1863,11 @@
           "shape":"Id",
           "location":"uri",
           "locationName":"ingestionJobId"
+        },
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
         }
       }
     },
@@ -1898,37 +1898,37 @@
     },
     "Id":{
       "type":"string",
-      "pattern":"[0-9a-zA-Z]{10}"
+      "pattern":"^[0-9a-zA-Z]{10}$"
     },
     "InferenceConfiguration":{
       "type":"structure",
       "members":{
-        "temperature":{"shape":"Temperature"},
-        "topP":{"shape":"TopP"},
-        "topK":{"shape":"TopK"},
         "maximumLength":{"shape":"MaximumLength"},
-        "stopSequences":{"shape":"StopSequences"}
+        "stopSequences":{"shape":"StopSequences"},
+        "temperature":{"shape":"Temperature"},
+        "topK":{"shape":"TopK"},
+        "topP":{"shape":"TopP"}
       }
     },
     "IngestionJob":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
         "dataSourceId",
         "ingestionJobId",
-        "status",
+        "knowledgeBaseId",
         "startedAt",
+        "status",
         "updatedAt"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
         "dataSourceId":{"shape":"Id"},
-        "ingestionJobId":{"shape":"Id"},
         "description":{"shape":"Description"},
-        "status":{"shape":"IngestionJobStatus"},
-        "statistics":{"shape":"IngestionJobStatistics"},
         "failureReasons":{"shape":"FailureReasons"},
+        "ingestionJobId":{"shape":"Id"},
+        "knowledgeBaseId":{"shape":"Id"},
         "startedAt":{"shape":"DateTimestamp"},
+        "statistics":{"shape":"IngestionJobStatistics"},
+        "status":{"shape":"IngestionJobStatus"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
     },
@@ -1957,7 +1957,7 @@
       "type":"string",
       "max":100,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "IngestionJobFilterValues":{
       "type":"list",
@@ -1992,11 +1992,13 @@
     "IngestionJobStatistics":{
       "type":"structure",
       "members":{
-        "numberOfDocumentsScanned":{"shape":"PrimitiveLong"},
-        "numberOfNewDocumentsIndexed":{"shape":"PrimitiveLong"},
-        "numberOfModifiedDocumentsIndexed":{"shape":"PrimitiveLong"},
         "numberOfDocumentsDeleted":{"shape":"PrimitiveLong"},
-        "numberOfDocumentsFailed":{"shape":"PrimitiveLong"}
+        "numberOfDocumentsFailed":{"shape":"PrimitiveLong"},
+        "numberOfDocumentsScanned":{"shape":"PrimitiveLong"},
+        "numberOfMetadataDocumentsModified":{"shape":"PrimitiveLong"},
+        "numberOfMetadataDocumentsScanned":{"shape":"PrimitiveLong"},
+        "numberOfModifiedDocumentsIndexed":{"shape":"PrimitiveLong"},
+        "numberOfNewDocumentsIndexed":{"shape":"PrimitiveLong"}
       }
     },
     "IngestionJobStatus":{
@@ -2015,22 +2017,22 @@
     "IngestionJobSummary":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
         "dataSourceId",
         "ingestionJobId",
-        "status",
+        "knowledgeBaseId",
         "startedAt",
+        "status",
         "updatedAt"
       ],
       "members":{
-        "knowledgeBaseId":{"shape":"Id"},
         "dataSourceId":{"shape":"Id"},
-        "ingestionJobId":{"shape":"Id"},
         "description":{"shape":"Description"},
-        "status":{"shape":"IngestionJobStatus"},
+        "ingestionJobId":{"shape":"Id"},
+        "knowledgeBaseId":{"shape":"Id"},
         "startedAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "statistics":{"shape":"IngestionJobStatistics"}
+        "statistics":{"shape":"IngestionJobStatistics"},
+        "status":{"shape":"IngestionJobStatus"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "Instruction":{
@@ -2052,40 +2054,40 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}"
+      "pattern":"^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$"
     },
     "KnowledgeBase":{
       "type":"structure",
       "required":[
+        "createdAt",
+        "knowledgeBaseArn",
+        "knowledgeBaseConfiguration",
         "knowledgeBaseId",
         "name",
-        "knowledgeBaseArn",
         "roleArn",
-        "knowledgeBaseConfiguration",
-        "storageConfiguration",
         "status",
-        "createdAt",
+        "storageConfiguration",
         "updatedAt"
       ],
       "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "description":{"shape":"Description"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "knowledgeBaseArn":{"shape":"KnowledgeBaseArn"},
+        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseConfiguration"},
         "knowledgeBaseId":{"shape":"Id"},
         "name":{"shape":"Name"},
-        "knowledgeBaseArn":{"shape":"KnowledgeBaseArn"},
-        "description":{"shape":"Description"},
         "roleArn":{"shape":"KnowledgeBaseRoleArn"},
-        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseConfiguration"},
-        "storageConfiguration":{"shape":"StorageConfiguration"},
         "status":{"shape":"KnowledgeBaseStatus"},
-        "createdAt":{"shape":"DateTimestamp"},
-        "updatedAt":{"shape":"DateTimestamp"},
-        "failureReasons":{"shape":"FailureReasons"}
+        "storageConfiguration":{"shape":"StorageConfiguration"},
+        "updatedAt":{"shape":"DateTimestamp"}
       }
     },
     "KnowledgeBaseArn":{
       "type":"string",
       "max":128,
       "min":0,
-      "pattern":"arn:aws(|-cn|-us-gov):bedrock:[a-zA-Z0-9-]*:[0-9]{12}:knowledge-base/[0-9a-zA-Z]+"
+      "pattern":"^arn:aws(|-cn|-us-gov):bedrock:[a-zA-Z0-9-]*:[0-9]{12}:knowledge-base/[0-9a-zA-Z]+$"
     },
     "KnowledgeBaseConfiguration":{
       "type":"structure",
@@ -2099,7 +2101,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/(service-role/)?AmazonBedrockExecutionRoleForKnowledgeBase.+"
+      "pattern":"^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+$"
     },
     "KnowledgeBaseState":{
       "type":"string",
@@ -2140,9 +2142,9 @@
         "updatedAt"
       ],
       "members":{
+        "description":{"shape":"Description"},
         "knowledgeBaseId":{"shape":"Id"},
         "name":{"shape":"Name"},
-        "description":{"shape":"Description"},
         "status":{"shape":"KnowledgeBaseStatus"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
@@ -2155,7 +2157,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+      "pattern":"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
     },
     "ListAgentActionGroupsRequest":{
       "type":"structure",
@@ -2296,24 +2298,24 @@
     "ListIngestionJobsRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
-        "dataSourceId"
+        "dataSourceId",
+        "knowledgeBaseId"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
-        },
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"dataSourceId"
         },
         "filters":{"shape":"IngestionJobFilters"},
-        "sortBy":{"shape":"IngestionJobSortBy"},
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
         "maxResults":{"shape":"MaxResults"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "sortBy":{"shape":"IngestionJobSortBy"}
       }
     },
     "ListIngestionJobsResponse":{
@@ -2372,63 +2374,63 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)"
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)$"
     },
     "Name":{
       "type":"string",
-      "pattern":"([0-9a-zA-Z][_-]?){1,100}"
+      "pattern":"^([0-9a-zA-Z][_-]?){1,100}$"
     },
     "NextToken":{
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"\\S*"
+      "pattern":"^\\S*$"
     },
     "NonBlankString":{
       "type":"string",
-      "pattern":"[\\s\\S]+"
+      "pattern":"^[\\s\\S]+$"
     },
     "NumericalVersion":{
       "type":"string",
-      "pattern":"[0-9]{1,5}"
+      "pattern":"^[0-9]{1,5}$"
     },
     "OpenSearchServerlessCollectionArn":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws:aoss:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:collection/[a-z0-9-]{3,32}"
+      "pattern":"^arn:aws:aoss:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:collection/[a-z0-9-]{3,32}$"
     },
     "OpenSearchServerlessConfiguration":{
       "type":"structure",
       "required":[
         "collectionArn",
-        "vectorIndexName",
-        "fieldMapping"
+        "fieldMapping",
+        "vectorIndexName"
       ],
       "members":{
         "collectionArn":{"shape":"OpenSearchServerlessCollectionArn"},
-        "vectorIndexName":{"shape":"OpenSearchServerlessIndexName"},
-        "fieldMapping":{"shape":"OpenSearchServerlessFieldMapping"}
+        "fieldMapping":{"shape":"OpenSearchServerlessFieldMapping"},
+        "vectorIndexName":{"shape":"OpenSearchServerlessIndexName"}
       }
     },
     "OpenSearchServerlessFieldMapping":{
       "type":"structure",
       "required":[
-        "vectorField",
+        "metadataField",
         "textField",
-        "metadataField"
+        "vectorField"
       ],
       "members":{
-        "vectorField":{"shape":"FieldName"},
+        "metadataField":{"shape":"FieldName"},
         "textField":{"shape":"FieldName"},
-        "metadataField":{"shape":"FieldName"}
+        "vectorField":{"shape":"FieldName"}
       }
     },
     "OpenSearchServerlessIndexName":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "Payload":{
       "type":"string",
@@ -2444,32 +2446,32 @@
       "members":{
         "connectionString":{"shape":"PineconeConnectionString"},
         "credentialsSecretArn":{"shape":"SecretArn"},
-        "namespace":{"shape":"PineconeNamespace"},
-        "fieldMapping":{"shape":"PineconeFieldMapping"}
+        "fieldMapping":{"shape":"PineconeFieldMapping"},
+        "namespace":{"shape":"PineconeNamespace"}
       }
     },
     "PineconeConnectionString":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "PineconeFieldMapping":{
       "type":"structure",
       "required":[
-        "textField",
-        "metadataField"
+        "metadataField",
+        "textField"
       ],
       "members":{
-        "textField":{"shape":"FieldName"},
-        "metadataField":{"shape":"FieldName"}
+        "metadataField":{"shape":"FieldName"},
+        "textField":{"shape":"FieldName"}
       }
     },
     "PineconeNamespace":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "PrepareAgentRequest":{
       "type":"structure",
@@ -2501,12 +2503,12 @@
     "PromptConfiguration":{
       "type":"structure",
       "members":{
-        "promptType":{"shape":"PromptType"},
-        "promptCreationMode":{"shape":"CreationMode"},
-        "promptState":{"shape":"PromptState"},
         "basePromptTemplate":{"shape":"BasePromptTemplate"},
         "inferenceConfiguration":{"shape":"InferenceConfiguration"},
-        "parserMode":{"shape":"CreationMode"}
+        "parserMode":{"shape":"CreationMode"},
+        "promptCreationMode":{"shape":"CreationMode"},
+        "promptState":{"shape":"PromptState"},
+        "promptType":{"shape":"PromptType"}
       }
     },
     "PromptConfigurations":{
@@ -2519,8 +2521,8 @@
       "type":"structure",
       "required":["promptConfigurations"],
       "members":{
-        "promptConfigurations":{"shape":"PromptConfigurations"},
-        "overrideLambda":{"shape":"LambdaArn"}
+        "overrideLambda":{"shape":"LambdaArn"},
+        "promptConfigurations":{"shape":"PromptConfigurations"}
       },
       "sensitive":true
     },
@@ -2542,51 +2544,51 @@
     },
     "RdsArn":{
       "type":"string",
-      "pattern":"arn:aws(|-cn|-us-gov):rds:[a-zA-Z0-9-]*:[0-9]{12}:cluster:[a-zA-Z0-9-]{1,63}"
+      "pattern":"^arn:aws(|-cn|-us-gov):rds:[a-zA-Z0-9-]*:[0-9]{12}:cluster:[a-zA-Z0-9-]{1,63}$"
     },
     "RdsConfiguration":{
       "type":"structure",
       "required":[
-        "resourceArn",
         "credentialsSecretArn",
         "databaseName",
-        "tableName",
-        "fieldMapping"
+        "fieldMapping",
+        "resourceArn",
+        "tableName"
       ],
       "members":{
-        "resourceArn":{"shape":"RdsArn"},
         "credentialsSecretArn":{"shape":"SecretArn"},
         "databaseName":{"shape":"RdsDatabaseName"},
-        "tableName":{"shape":"RdsTableName"},
-        "fieldMapping":{"shape":"RdsFieldMapping"}
+        "fieldMapping":{"shape":"RdsFieldMapping"},
+        "resourceArn":{"shape":"RdsArn"},
+        "tableName":{"shape":"RdsTableName"}
       }
     },
     "RdsDatabaseName":{
       "type":"string",
       "max":63,
       "min":0,
-      "pattern":"[a-zA-Z0-9_\\-]+"
+      "pattern":"^[a-zA-Z0-9_\\-]+$"
     },
     "RdsFieldMapping":{
       "type":"structure",
       "required":[
+        "metadataField",
         "primaryKeyField",
-        "vectorField",
         "textField",
-        "metadataField"
+        "vectorField"
       ],
       "members":{
+        "metadataField":{"shape":"ColumnName"},
         "primaryKeyField":{"shape":"ColumnName"},
-        "vectorField":{"shape":"ColumnName"},
         "textField":{"shape":"ColumnName"},
-        "metadataField":{"shape":"ColumnName"}
+        "vectorField":{"shape":"ColumnName"}
       }
     },
     "RdsTableName":{
       "type":"string",
       "max":63,
       "min":0,
-      "pattern":"[a-zA-Z0-9_\\.\\-]+"
+      "pattern":"^[a-zA-Z0-9_\\.\\-]+$"
     },
     "RecommendedAction":{
       "type":"string",
@@ -2602,42 +2604,42 @@
     "RedisEnterpriseCloudConfiguration":{
       "type":"structure",
       "required":[
-        "endpoint",
-        "vectorIndexName",
         "credentialsSecretArn",
-        "fieldMapping"
+        "endpoint",
+        "fieldMapping",
+        "vectorIndexName"
       ],
       "members":{
-        "endpoint":{"shape":"RedisEnterpriseCloudEndpoint"},
-        "vectorIndexName":{"shape":"RedisEnterpriseCloudIndexName"},
         "credentialsSecretArn":{"shape":"SecretArn"},
-        "fieldMapping":{"shape":"RedisEnterpriseCloudFieldMapping"}
+        "endpoint":{"shape":"RedisEnterpriseCloudEndpoint"},
+        "fieldMapping":{"shape":"RedisEnterpriseCloudFieldMapping"},
+        "vectorIndexName":{"shape":"RedisEnterpriseCloudIndexName"}
       }
     },
     "RedisEnterpriseCloudEndpoint":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "RedisEnterpriseCloudFieldMapping":{
       "type":"structure",
       "required":[
-        "vectorField",
+        "metadataField",
         "textField",
-        "metadataField"
+        "vectorField"
       ],
       "members":{
-        "vectorField":{"shape":"FieldName"},
+        "metadataField":{"shape":"FieldName"},
         "textField":{"shape":"FieldName"},
-        "metadataField":{"shape":"FieldName"}
+        "vectorField":{"shape":"FieldName"}
       }
     },
     "RedisEnterpriseCloudIndexName":{
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":".*"
+      "pattern":"^.*$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -2654,13 +2656,13 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"arn:aws(|-cn|-us-gov):s3:::[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]"
+      "pattern":"^arn:aws(|-cn|-us-gov):s3:::[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"
     },
     "S3BucketName":{
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
+      "pattern":"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
     },
     "S3DataSourceConfiguration":{
       "type":"structure",
@@ -2681,7 +2683,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*"
+      "pattern":"^[\\.\\-\\!\\*\\_\\'\\(\\)a-zA-Z0-9][\\.\\-\\!\\*\\_\\'\\(\\)\\/a-zA-Z0-9]*$"
     },
     "S3Prefix":{
       "type":"string",
@@ -2696,7 +2698,7 @@
     },
     "SecretArn":{
       "type":"string",
-      "pattern":"arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}"
+      "pattern":"^arn:aws(|-cn|-us-gov):secretsmanager:[a-z0-9-]{1,20}:([0-9]{12}|):secret:[a-zA-Z0-9!/_+=.@-]{1,512}$"
     },
     "ServerSideEncryptionConfiguration":{
       "type":"structure",
@@ -2731,25 +2733,25 @@
     "StartIngestionJobRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
-        "dataSourceId"
+        "dataSourceId",
+        "knowledgeBaseId"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
         },
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"dataSourceId"
         },
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true
-        },
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        }
       }
     },
     "StartIngestionJobResponse":{
@@ -2769,11 +2771,11 @@
       "type":"structure",
       "required":["type"],
       "members":{
-        "type":{"shape":"KnowledgeBaseStorageType"},
         "opensearchServerlessConfiguration":{"shape":"OpenSearchServerlessConfiguration"},
         "pineconeConfiguration":{"shape":"PineconeConfiguration"},
+        "rdsConfiguration":{"shape":"RdsConfiguration"},
         "redisEnterpriseCloudConfiguration":{"shape":"RedisEnterpriseCloudConfiguration"},
-        "rdsConfiguration":{"shape":"RdsConfiguration"}
+        "type":{"shape":"KnowledgeBaseStorageType"}
       }
     },
     "String":{"type":"string"},
@@ -2781,7 +2783,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"[a-zA-Z0-9\\s._:/=+@-]*"
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
     },
     "TagKeyList":{
       "type":"list",
@@ -2813,13 +2815,13 @@
       "type":"string",
       "max":256,
       "min":0,
-      "pattern":"[a-zA-Z0-9\\s._:/=+@-]*"
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
     },
     "TaggableResourcesArn":{
       "type":"string",
       "max":1011,
       "min":20,
-      "pattern":".*(^arn:aws:bedrock:[a-zA-Z0-9-]+:/d{12}:(agent|agent-alias|knowledge-base)/[A-Z0-9]{10}(?:/[A-Z0-9]{10})?$).*"
+      "pattern":"(^arn:aws:bedrock:[a-zA-Z0-9-]+:/d{12}:(agent|agent-alias|knowledge-base)/[A-Z0-9]{10}(?:/[A-Z0-9]{10})?$)"
     },
     "TagsMap":{
       "type":"map",
@@ -2882,12 +2884,20 @@
     "UpdateAgentActionGroupRequest":{
       "type":"structure",
       "required":[
-        "agentId",
-        "agentVersion",
         "actionGroupId",
-        "actionGroupName"
+        "actionGroupName",
+        "agentId",
+        "agentVersion"
       ],
       "members":{
+        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
+        "actionGroupId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"actionGroupId"
+        },
+        "actionGroupName":{"shape":"Name"},
+        "actionGroupState":{"shape":"ActionGroupState"},
         "agentId":{
           "shape":"Id",
           "location":"uri",
@@ -2898,17 +2908,9 @@
           "location":"uri",
           "locationName":"agentVersion"
         },
-        "actionGroupId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"actionGroupId"
-        },
-        "actionGroupName":{"shape":"Name"},
+        "apiSchema":{"shape":"APISchema"},
         "description":{"shape":"Description"},
-        "parentActionGroupSignature":{"shape":"ActionGroupSignature"},
-        "actionGroupExecutor":{"shape":"ActionGroupExecutor"},
-        "actionGroupState":{"shape":"ActionGroupState"},
-        "apiSchema":{"shape":"APISchema"}
+        "parentActionGroupSignature":{"shape":"ActionGroupSignature"}
       }
     },
     "UpdateAgentActionGroupResponse":{
@@ -2921,22 +2923,22 @@
     "UpdateAgentAliasRequest":{
       "type":"structure",
       "required":[
-        "agentId",
         "agentAliasId",
-        "agentAliasName"
+        "agentAliasName",
+        "agentId"
       ],
       "members":{
-        "agentId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"agentId"
-        },
         "agentAliasId":{
           "shape":"AgentAliasId",
           "location":"uri",
           "locationName":"agentAliasId"
         },
         "agentAliasName":{"shape":"Name"},
+        "agentId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"agentId"
+        },
         "description":{"shape":"Description"},
         "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"}
       }
@@ -2966,12 +2968,12 @@
           "location":"uri",
           "locationName":"agentVersion"
         },
+        "description":{"shape":"Description"},
         "knowledgeBaseId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"knowledgeBaseId"
         },
-        "description":{"shape":"Description"},
         "knowledgeBaseState":{"shape":"KnowledgeBaseState"}
       }
     },
@@ -2987,7 +2989,8 @@
       "required":[
         "agentId",
         "agentName",
-        "agentResourceRoleArn"
+        "agentResourceRoleArn",
+        "foundationModel"
       ],
       "members":{
         "agentId":{
@@ -2996,12 +2999,12 @@
           "locationName":"agentId"
         },
         "agentName":{"shape":"Name"},
-        "instruction":{"shape":"Instruction"},
-        "foundationModel":{"shape":"ModelIdentifier"},
-        "description":{"shape":"Description"},
-        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "agentResourceRoleArn":{"shape":"AgentRoleArn"},
         "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "description":{"shape":"Description"},
+        "foundationModel":{"shape":"ModelIdentifier"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "instruction":{"shape":"Instruction"},
         "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"}
       }
     },
@@ -3015,25 +3018,25 @@
     "UpdateDataSourceRequest":{
       "type":"structure",
       "required":[
-        "knowledgeBaseId",
+        "dataSourceConfiguration",
         "dataSourceId",
-        "name",
-        "dataSourceConfiguration"
+        "knowledgeBaseId",
+        "name"
       ],
       "members":{
-        "knowledgeBaseId":{
-          "shape":"Id",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
-        },
+        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "dataSourceId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"dataSourceId"
         },
-        "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
+        "knowledgeBaseId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"knowledgeBaseId"
+        },
+        "name":{"shape":"Name"},
         "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
         "vectorIngestionConfiguration":{"shape":"VectorIngestionConfiguration"}
       }
@@ -3048,22 +3051,22 @@
     "UpdateKnowledgeBaseRequest":{
       "type":"structure",
       "required":[
+        "knowledgeBaseConfiguration",
         "knowledgeBaseId",
         "name",
         "roleArn",
-        "knowledgeBaseConfiguration",
         "storageConfiguration"
       ],
       "members":{
+        "description":{"shape":"Description"},
+        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseConfiguration"},
         "knowledgeBaseId":{
           "shape":"Id",
           "location":"uri",
           "locationName":"knowledgeBaseId"
         },
         "name":{"shape":"Name"},
-        "description":{"shape":"Description"},
         "roleArn":{"shape":"KnowledgeBaseRoleArn"},
-        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseConfiguration"},
         "storageConfiguration":{"shape":"StorageConfiguration"}
       }
     },
@@ -3077,8 +3080,8 @@
     "ValidationException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"NonBlankString"},
-        "fieldList":{"shape":"ValidationExceptionFieldList"}
+        "fieldList":{"shape":"ValidationExceptionFieldList"},
+        "message":{"shape":"NonBlankString"}
       },
       "error":{
         "httpStatusCode":400,
@@ -3089,12 +3092,12 @@
     "ValidationExceptionField":{
       "type":"structure",
       "required":[
-        "name",
-        "message"
+        "message",
+        "name"
       ],
       "members":{
-        "name":{"shape":"NonBlankString"},
-        "message":{"shape":"NonBlankString"}
+        "message":{"shape":"NonBlankString"},
+        "name":{"shape":"NonBlankString"}
       }
     },
     "ValidationExceptionFieldList":{
@@ -3118,7 +3121,7 @@
       "type":"string",
       "max":5,
       "min":1,
-      "pattern":"(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})"
+      "pattern":"^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$"
     }
   }
 }
