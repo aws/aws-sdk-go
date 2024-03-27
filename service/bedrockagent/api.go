@@ -56,7 +56,9 @@ func (c *BedrockAgent) AssociateAgentKnowledgeBaseRequest(input *AssociateAgentK
 
 // AssociateAgentKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Associate a Knowledge Base to an existing Amazon Bedrock Agent
+// Associates a knowledge base with an agent. If a knowledge base is associated
+// and its indexState is set to Enabled, the agent queries the knowledge base
+// for information to augment its response to the user.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -68,27 +70,26 @@ func (c *BedrockAgent) AssociateAgentKnowledgeBaseRequest(input *AssociateAgentK
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/AssociateAgentKnowledgeBase
 func (c *BedrockAgent) AssociateAgentKnowledgeBase(input *AssociateAgentKnowledgeBaseInput) (*AssociateAgentKnowledgeBaseOutput, error) {
@@ -155,7 +156,23 @@ func (c *BedrockAgent) CreateAgentRequest(input *CreateAgentInput) (req *request
 
 // CreateAgent API operation for Agents for Amazon Bedrock.
 //
-// # Creates an Amazon Bedrock Agent
+// Creates an agent that orchestrates interactions between foundation models,
+// data sources, software applications, user conversations, and APIs to carry
+// out tasks to help customers.
+//
+//   - Specify the following fields for security purposes. agentResourceRoleArn
+//     – The ARN of the role with permissions to create an agent. (Optional)
+//     customerEncryptionKeyArn – The ARN of a KMS key to encrypt the creation
+//     of the agent. (Optional) idleSessionTTLinSeconds – Specify the number
+//     of seconds for which the agent should maintain session information. After
+//     this time expires, the subsequent InvokeAgent request begins a new session.
+//
+//   - To override the default prompt behavior for agent orchestration and
+//     to use advanced prompts, include a promptOverrideConfiguration object.
+//     For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
+//
+//   - If you agent fails to be created, the response returns a list of failureReasons
+//     alongside a list of recommendedActions for you to troubleshoot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -167,23 +184,22 @@ func (c *BedrockAgent) CreateAgentRequest(input *CreateAgentInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateAgent
 func (c *BedrockAgent) CreateAgent(input *CreateAgentInput) (*CreateAgentOutput, error) {
@@ -250,7 +266,18 @@ func (c *BedrockAgent) CreateAgentActionGroupRequest(input *CreateAgentActionGro
 
 // CreateAgentActionGroup API operation for Agents for Amazon Bedrock.
 //
-// # Creates an Action Group for existing Amazon Bedrock Agent
+// Creates an action group for an agent. An action group represents the actions
+// that an agent can carry out for the customer by defining the APIs that an
+// agent can call and the logic for calling them.
+//
+// To allow your agent to request the user for additional information when trying
+// to complete a task, add an action group with the parentActionGroupSignature
+// field set to AMAZON.UserInput. You must leave the description, apiSchema,
+// and actionGroupExecutor fields blank for this action group. During orchestration,
+// if your agent determines that it needs to invoke an API in an action group,
+// but doesn't have enough information to complete the API request, it will
+// invoke this action group instead and return an Observation (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
+// reprompting the user for more information.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -262,27 +289,26 @@ func (c *BedrockAgent) CreateAgentActionGroupRequest(input *CreateAgentActionGro
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateAgentActionGroup
 func (c *BedrockAgent) CreateAgentActionGroup(input *CreateAgentActionGroupInput) (*CreateAgentActionGroupOutput, error) {
@@ -349,7 +375,7 @@ func (c *BedrockAgent) CreateAgentAliasRequest(input *CreateAgentAliasInput) (re
 
 // CreateAgentAlias API operation for Agents for Amazon Bedrock.
 //
-// # Creates an Alias for an existing Amazon Bedrock Agent
+// Creates an alias of an agent that can be used to deploy the agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -361,27 +387,26 @@ func (c *BedrockAgent) CreateAgentAliasRequest(input *CreateAgentAliasInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateAgentAlias
 func (c *BedrockAgent) CreateAgentAlias(input *CreateAgentAliasInput) (*CreateAgentAliasOutput, error) {
@@ -448,7 +473,9 @@ func (c *BedrockAgent) CreateDataSourceRequest(input *CreateDataSourceInput) (re
 
 // CreateDataSource API operation for Agents for Amazon Bedrock.
 //
-// # Create a new data source
+// Sets up a data source to be added to a knowledge base.
+//
+// You can't change the chunkingConfiguration after you create the data source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -460,27 +487,26 @@ func (c *BedrockAgent) CreateDataSourceRequest(input *CreateDataSourceInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateDataSource
 func (c *BedrockAgent) CreateDataSource(input *CreateDataSourceInput) (*CreateDataSourceOutput, error) {
@@ -547,7 +573,34 @@ func (c *BedrockAgent) CreateKnowledgeBaseRequest(input *CreateKnowledgeBaseInpu
 
 // CreateKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Create a new knowledge base
+// Creates a knowledge base that contains data sources from which information
+// can be queried and used by LLMs. To create a knowledge base, you must first
+// set up your data sources and configure a supported vector store. For more
+// information, see Set up your data for ingestion (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html).
+//
+// If you prefer to let Amazon Bedrock create and manage a vector store for
+// you in Amazon OpenSearch Service, use the console. For more information,
+// see Create a knowledge base (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create).
+//
+//   - Provide the name and an optional description.
+//
+//   - Provide the ARN with permissions to create a knowledge base in the roleArn
+//     field.
+//
+//   - Provide the embedding model to use in the embeddingModelArn field in
+//     the knowledgeBaseConfiguration object.
+//
+//   - Provide the configuration for your vector store in the storageConfiguration
+//     object. For an Amazon OpenSearch Service database, use the opensearchServerlessConfiguration
+//     object. For more information, see Create a vector store in Amazon OpenSearch
+//     Service (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html).
+//     For an Amazon Aurora database, use the RdsConfiguration object. For more
+//     information, see Create a vector store in Amazon Aurora (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html).
+//     For a Pinecone database, use the pineconeConfiguration object. For more
+//     information, see Create a vector store in Pinecone (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html).
+//     For a Redis Enterprise Cloud database, use the redisEnterpriseCloudConfiguration
+//     object. For more information, see Create a vector store in Redis Enterprise
+//     Cloud (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -559,23 +612,22 @@ func (c *BedrockAgent) CreateKnowledgeBaseRequest(input *CreateKnowledgeBaseInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/CreateKnowledgeBase
 func (c *BedrockAgent) CreateKnowledgeBase(input *CreateKnowledgeBaseInput) (*CreateKnowledgeBaseOutput, error) {
@@ -642,7 +694,7 @@ func (c *BedrockAgent) DeleteAgentRequest(input *DeleteAgentInput) (req *request
 
 // DeleteAgent API operation for Agents for Amazon Bedrock.
 //
-// # Deletes an Agent for existing Amazon Bedrock Agent
+// Deletes an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -654,24 +706,23 @@ func (c *BedrockAgent) DeleteAgentRequest(input *DeleteAgentInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteAgent
 func (c *BedrockAgent) DeleteAgent(input *DeleteAgentInput) (*DeleteAgentOutput, error) {
@@ -739,7 +790,7 @@ func (c *BedrockAgent) DeleteAgentActionGroupRequest(input *DeleteAgentActionGro
 
 // DeleteAgentActionGroup API operation for Agents for Amazon Bedrock.
 //
-// Deletes an Action Group for existing Amazon Bedrock Agent.
+// Deletes an action group in an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -751,24 +802,23 @@ func (c *BedrockAgent) DeleteAgentActionGroupRequest(input *DeleteAgentActionGro
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteAgentActionGroup
 func (c *BedrockAgent) DeleteAgentActionGroup(input *DeleteAgentActionGroupInput) (*DeleteAgentActionGroupOutput, error) {
@@ -835,7 +885,7 @@ func (c *BedrockAgent) DeleteAgentAliasRequest(input *DeleteAgentAliasInput) (re
 
 // DeleteAgentAlias API operation for Agents for Amazon Bedrock.
 //
-// # Deletes an Alias for a Amazon Bedrock Agent
+// Deletes an alias of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -847,21 +897,20 @@ func (c *BedrockAgent) DeleteAgentAliasRequest(input *DeleteAgentAliasInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteAgentAlias
 func (c *BedrockAgent) DeleteAgentAlias(input *DeleteAgentAliasInput) (*DeleteAgentAliasOutput, error) {
@@ -928,7 +977,7 @@ func (c *BedrockAgent) DeleteAgentVersionRequest(input *DeleteAgentVersionInput)
 
 // DeleteAgentVersion API operation for Agents for Amazon Bedrock.
 //
-// # Deletes an Agent version for existing Amazon Bedrock Agent
+// Deletes a version of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -940,24 +989,23 @@ func (c *BedrockAgent) DeleteAgentVersionRequest(input *DeleteAgentVersionInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteAgentVersion
 func (c *BedrockAgent) DeleteAgentVersion(input *DeleteAgentVersionInput) (*DeleteAgentVersionOutput, error) {
@@ -1024,7 +1072,7 @@ func (c *BedrockAgent) DeleteDataSourceRequest(input *DeleteDataSourceInput) (re
 
 // DeleteDataSource API operation for Agents for Amazon Bedrock.
 //
-// # Delete an existing data source
+// Deletes a data source from a knowledge base.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1036,24 +1084,23 @@ func (c *BedrockAgent) DeleteDataSourceRequest(input *DeleteDataSourceInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteDataSource
 func (c *BedrockAgent) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
@@ -1120,7 +1167,10 @@ func (c *BedrockAgent) DeleteKnowledgeBaseRequest(input *DeleteKnowledgeBaseInpu
 
 // DeleteKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Delete an existing knowledge base
+// Deletes a knowledge base. Before deleting a knowledge base, you should disassociate
+// the knowledge base from any agents that it is associated with by making a
+// DisassociateAgentKnowledgeBase (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_DisassociateAgentKnowledgeBase.html)
+// request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1132,24 +1182,23 @@ func (c *BedrockAgent) DeleteKnowledgeBaseRequest(input *DeleteKnowledgeBaseInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteKnowledgeBase
 func (c *BedrockAgent) DeleteKnowledgeBase(input *DeleteKnowledgeBaseInput) (*DeleteKnowledgeBaseOutput, error) {
@@ -1217,7 +1266,7 @@ func (c *BedrockAgent) DisassociateAgentKnowledgeBaseRequest(input *Disassociate
 
 // DisassociateAgentKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Disassociate an existing Knowledge Base from an Amazon Bedrock Agent
+// Disassociates a knowledge base from an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1229,24 +1278,23 @@ func (c *BedrockAgent) DisassociateAgentKnowledgeBaseRequest(input *Disassociate
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DisassociateAgentKnowledgeBase
 func (c *BedrockAgent) DisassociateAgentKnowledgeBase(input *DisassociateAgentKnowledgeBaseInput) (*DisassociateAgentKnowledgeBaseOutput, error) {
@@ -1313,7 +1361,7 @@ func (c *BedrockAgent) GetAgentRequest(input *GetAgentInput) (req *request.Reque
 
 // GetAgent API operation for Agents for Amazon Bedrock.
 //
-// # Gets an Agent for existing Amazon Bedrock Agent
+// Gets information about an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1325,21 +1373,20 @@ func (c *BedrockAgent) GetAgentRequest(input *GetAgentInput) (req *request.Reque
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgent
 func (c *BedrockAgent) GetAgent(input *GetAgentInput) (*GetAgentOutput, error) {
@@ -1406,7 +1453,7 @@ func (c *BedrockAgent) GetAgentActionGroupRequest(input *GetAgentActionGroupInpu
 
 // GetAgentActionGroup API operation for Agents for Amazon Bedrock.
 //
-// # Gets an Action Group for existing Amazon Bedrock Agent Version
+// Gets information about an action group for an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1418,21 +1465,20 @@ func (c *BedrockAgent) GetAgentActionGroupRequest(input *GetAgentActionGroupInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentActionGroup
 func (c *BedrockAgent) GetAgentActionGroup(input *GetAgentActionGroupInput) (*GetAgentActionGroupOutput, error) {
@@ -1499,7 +1545,7 @@ func (c *BedrockAgent) GetAgentAliasRequest(input *GetAgentAliasInput) (req *req
 
 // GetAgentAlias API operation for Agents for Amazon Bedrock.
 //
-// # Describes an Alias for a Amazon Bedrock Agent
+// Gets information about an alias of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1511,21 +1557,20 @@ func (c *BedrockAgent) GetAgentAliasRequest(input *GetAgentAliasInput) (req *req
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentAlias
 func (c *BedrockAgent) GetAgentAlias(input *GetAgentAliasInput) (*GetAgentAliasOutput, error) {
@@ -1592,7 +1637,7 @@ func (c *BedrockAgent) GetAgentKnowledgeBaseRequest(input *GetAgentKnowledgeBase
 
 // GetAgentKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Gets a knowledge base associated to an existing Amazon Bedrock Agent Version
+// Gets information about a knowledge base associated with an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1604,21 +1649,20 @@ func (c *BedrockAgent) GetAgentKnowledgeBaseRequest(input *GetAgentKnowledgeBase
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentKnowledgeBase
 func (c *BedrockAgent) GetAgentKnowledgeBase(input *GetAgentKnowledgeBaseInput) (*GetAgentKnowledgeBaseOutput, error) {
@@ -1685,7 +1729,7 @@ func (c *BedrockAgent) GetAgentVersionRequest(input *GetAgentVersionInput) (req 
 
 // GetAgentVersion API operation for Agents for Amazon Bedrock.
 //
-// # Gets an Agent version for existing Amazon Bedrock Agent
+// Gets details about a version of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1697,21 +1741,20 @@ func (c *BedrockAgent) GetAgentVersionRequest(input *GetAgentVersionInput) (req 
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentVersion
 func (c *BedrockAgent) GetAgentVersion(input *GetAgentVersionInput) (*GetAgentVersionOutput, error) {
@@ -1778,7 +1821,7 @@ func (c *BedrockAgent) GetDataSourceRequest(input *GetDataSourceInput) (req *req
 
 // GetDataSource API operation for Agents for Amazon Bedrock.
 //
-// # Get an existing data source
+// Gets information about a data source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1790,21 +1833,20 @@ func (c *BedrockAgent) GetDataSourceRequest(input *GetDataSourceInput) (req *req
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetDataSource
 func (c *BedrockAgent) GetDataSource(input *GetDataSourceInput) (*GetDataSourceOutput, error) {
@@ -1871,7 +1913,8 @@ func (c *BedrockAgent) GetIngestionJobRequest(input *GetIngestionJobInput) (req 
 
 // GetIngestionJob API operation for Agents for Amazon Bedrock.
 //
-// # Get an ingestion job
+// Gets information about a ingestion job, in which a data source is added to
+// a knowledge base.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1883,21 +1926,20 @@ func (c *BedrockAgent) GetIngestionJobRequest(input *GetIngestionJobInput) (req 
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetIngestionJob
 func (c *BedrockAgent) GetIngestionJob(input *GetIngestionJobInput) (*GetIngestionJobOutput, error) {
@@ -1964,7 +2006,7 @@ func (c *BedrockAgent) GetKnowledgeBaseRequest(input *GetKnowledgeBaseInput) (re
 
 // GetKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Get an existing knowledge base
+// Gets information about a knoweldge base.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1976,21 +2018,20 @@ func (c *BedrockAgent) GetKnowledgeBaseRequest(input *GetKnowledgeBaseInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetKnowledgeBase
 func (c *BedrockAgent) GetKnowledgeBase(input *GetKnowledgeBaseInput) (*GetKnowledgeBaseOutput, error) {
@@ -2063,7 +2104,7 @@ func (c *BedrockAgent) ListAgentActionGroupsRequest(input *ListAgentActionGroups
 
 // ListAgentActionGroups API operation for Agents for Amazon Bedrock.
 //
-// # Lists an Action Group for existing Amazon Bedrock Agent Version
+// Lists the action groups for an agent and information about each one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2075,21 +2116,20 @@ func (c *BedrockAgent) ListAgentActionGroupsRequest(input *ListAgentActionGroups
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentActionGroups
 func (c *BedrockAgent) ListAgentActionGroups(input *ListAgentActionGroupsInput) (*ListAgentActionGroupsOutput, error) {
@@ -2213,7 +2253,7 @@ func (c *BedrockAgent) ListAgentAliasesRequest(input *ListAgentAliasesInput) (re
 
 // ListAgentAliases API operation for Agents for Amazon Bedrock.
 //
-// # Lists all the Aliases for an Amazon Bedrock Agent
+// Lists the aliases of an agent and information about each one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2225,21 +2265,20 @@ func (c *BedrockAgent) ListAgentAliasesRequest(input *ListAgentAliasesInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentAliases
 func (c *BedrockAgent) ListAgentAliases(input *ListAgentAliasesInput) (*ListAgentAliasesOutput, error) {
@@ -2363,7 +2402,8 @@ func (c *BedrockAgent) ListAgentKnowledgeBasesRequest(input *ListAgentKnowledgeB
 
 // ListAgentKnowledgeBases API operation for Agents for Amazon Bedrock.
 //
-// # List of Knowledge Bases associated to an existing Amazon Bedrock Agent Version
+// Lists knowledge bases associated with an agent and information about each
+// one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2375,21 +2415,20 @@ func (c *BedrockAgent) ListAgentKnowledgeBasesRequest(input *ListAgentKnowledgeB
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentKnowledgeBases
 func (c *BedrockAgent) ListAgentKnowledgeBases(input *ListAgentKnowledgeBasesInput) (*ListAgentKnowledgeBasesOutput, error) {
@@ -2513,7 +2552,7 @@ func (c *BedrockAgent) ListAgentVersionsRequest(input *ListAgentVersionsInput) (
 
 // ListAgentVersions API operation for Agents for Amazon Bedrock.
 //
-// # Lists Agent Versions
+// Lists the versions of an agent and information about each version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2525,21 +2564,20 @@ func (c *BedrockAgent) ListAgentVersionsRequest(input *ListAgentVersionsInput) (
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentVersions
 func (c *BedrockAgent) ListAgentVersions(input *ListAgentVersionsInput) (*ListAgentVersionsOutput, error) {
@@ -2663,7 +2701,7 @@ func (c *BedrockAgent) ListAgentsRequest(input *ListAgentsInput) (req *request.R
 
 // ListAgents API operation for Agents for Amazon Bedrock.
 //
-// # Lists Agents
+// Lists the agents belonging to an account and information about each agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2675,17 +2713,16 @@ func (c *BedrockAgent) ListAgentsRequest(input *ListAgentsInput) (req *request.R
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgents
 func (c *BedrockAgent) ListAgents(input *ListAgentsInput) (*ListAgentsOutput, error) {
@@ -2809,7 +2846,7 @@ func (c *BedrockAgent) ListDataSourcesRequest(input *ListDataSourcesInput) (req 
 
 // ListDataSources API operation for Agents for Amazon Bedrock.
 //
-// # List data sources
+// Lists the data sources in a knowledge base and information about each one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2821,21 +2858,20 @@ func (c *BedrockAgent) ListDataSourcesRequest(input *ListDataSourcesInput) (req 
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListDataSources
 func (c *BedrockAgent) ListDataSources(input *ListDataSourcesInput) (*ListDataSourcesOutput, error) {
@@ -2959,7 +2995,8 @@ func (c *BedrockAgent) ListIngestionJobsRequest(input *ListIngestionJobsInput) (
 
 // ListIngestionJobs API operation for Agents for Amazon Bedrock.
 //
-// # List ingestion jobs
+// Lists the ingestion jobs for a data source and information about each of
+// them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2971,21 +3008,20 @@ func (c *BedrockAgent) ListIngestionJobsRequest(input *ListIngestionJobsInput) (
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListIngestionJobs
 func (c *BedrockAgent) ListIngestionJobs(input *ListIngestionJobsInput) (*ListIngestionJobsOutput, error) {
@@ -3109,7 +3145,7 @@ func (c *BedrockAgent) ListKnowledgeBasesRequest(input *ListKnowledgeBasesInput)
 
 // ListKnowledgeBases API operation for Agents for Amazon Bedrock.
 //
-// # List Knowledge Bases
+// Lists the knowledge bases in an account and information about each of them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3121,17 +3157,16 @@ func (c *BedrockAgent) ListKnowledgeBasesRequest(input *ListKnowledgeBasesInput)
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListKnowledgeBases
 func (c *BedrockAgent) ListKnowledgeBases(input *ListKnowledgeBasesInput) (*ListKnowledgeBasesOutput, error) {
@@ -3249,7 +3284,7 @@ func (c *BedrockAgent) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for Agents for Amazon Bedrock.
 //
-// # List tags for a resource
+// List all the tags for the resource you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3261,21 +3296,20 @@ func (c *BedrockAgent) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListTagsForResource
 func (c *BedrockAgent) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3342,7 +3376,7 @@ func (c *BedrockAgent) PrepareAgentRequest(input *PrepareAgentInput) (req *reque
 
 // PrepareAgent API operation for Agents for Amazon Bedrock.
 //
-// # Prepares an existing Amazon Bedrock Agent to receive runtime requests
+// Creates a DRAFT version of the agent that can be used for internal testing.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3354,27 +3388,26 @@ func (c *BedrockAgent) PrepareAgentRequest(input *PrepareAgentInput) (req *reque
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/PrepareAgent
 func (c *BedrockAgent) PrepareAgent(input *PrepareAgentInput) (*PrepareAgentOutput, error) {
@@ -3441,7 +3474,7 @@ func (c *BedrockAgent) StartIngestionJobRequest(input *StartIngestionJobInput) (
 
 // StartIngestionJob API operation for Agents for Amazon Bedrock.
 //
-// # Start a new ingestion job
+// Begins an ingestion job, in which a data source is added to a knowledge base.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3453,27 +3486,26 @@ func (c *BedrockAgent) StartIngestionJobRequest(input *StartIngestionJobInput) (
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/StartIngestionJob
 func (c *BedrockAgent) StartIngestionJob(input *StartIngestionJobInput) (*StartIngestionJobOutput, error) {
@@ -3541,7 +3573,9 @@ func (c *BedrockAgent) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for Agents for Amazon Bedrock.
 //
-// # Tag a resource
+// Associate tags with a resource. For more information, see Tagging resources
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3553,24 +3587,23 @@ func (c *BedrockAgent) TagResourceRequest(input *TagResourceInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/TagResource
 func (c *BedrockAgent) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3638,7 +3671,7 @@ func (c *BedrockAgent) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for Agents for Amazon Bedrock.
 //
-// # Untag a resource
+// Remove tags from a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3650,21 +3683,20 @@ func (c *BedrockAgent) UntagResourceRequest(input *UntagResourceInput) (req *req
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UntagResource
 func (c *BedrockAgent) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3731,7 +3763,7 @@ func (c *BedrockAgent) UpdateAgentRequest(input *UpdateAgentInput) (req *request
 
 // UpdateAgent API operation for Agents for Amazon Bedrock.
 //
-// # Updates an existing Amazon Bedrock Agent
+// Updates the configuration of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3743,27 +3775,26 @@ func (c *BedrockAgent) UpdateAgentRequest(input *UpdateAgentInput) (req *request
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateAgent
 func (c *BedrockAgent) UpdateAgent(input *UpdateAgentInput) (*UpdateAgentOutput, error) {
@@ -3830,7 +3861,7 @@ func (c *BedrockAgent) UpdateAgentActionGroupRequest(input *UpdateAgentActionGro
 
 // UpdateAgentActionGroup API operation for Agents for Amazon Bedrock.
 //
-// # Updates an existing Action Group for Amazon Bedrock Agent
+// Updates the configuration for an action group for an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3842,27 +3873,26 @@ func (c *BedrockAgent) UpdateAgentActionGroupRequest(input *UpdateAgentActionGro
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateAgentActionGroup
 func (c *BedrockAgent) UpdateAgentActionGroup(input *UpdateAgentActionGroupInput) (*UpdateAgentActionGroupOutput, error) {
@@ -3929,7 +3959,7 @@ func (c *BedrockAgent) UpdateAgentAliasRequest(input *UpdateAgentAliasInput) (re
 
 // UpdateAgentAlias API operation for Agents for Amazon Bedrock.
 //
-// # Updates an existing Alias for an Amazon Bedrock Agent
+// Updates configurations for an alias of an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3941,27 +3971,26 @@ func (c *BedrockAgent) UpdateAgentAliasRequest(input *UpdateAgentAliasInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 //   - ServiceQuotaExceededException
-//     This exception is thrown when a request is made beyond the service quota
+//     The number of requests exceeds the service quota. Resubmit your request later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateAgentAlias
 func (c *BedrockAgent) UpdateAgentAlias(input *UpdateAgentAliasInput) (*UpdateAgentAliasOutput, error) {
@@ -4028,7 +4057,8 @@ func (c *BedrockAgent) UpdateAgentKnowledgeBaseRequest(input *UpdateAgentKnowled
 
 // UpdateAgentKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Updates an existing Knowledge Base associated to an Amazon Bedrock Agent
+// Updates the configuration for a knowledge base that has been associated with
+// an agent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4040,24 +4070,23 @@ func (c *BedrockAgent) UpdateAgentKnowledgeBaseRequest(input *UpdateAgentKnowled
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateAgentKnowledgeBase
 func (c *BedrockAgent) UpdateAgentKnowledgeBase(input *UpdateAgentKnowledgeBaseInput) (*UpdateAgentKnowledgeBaseOutput, error) {
@@ -4124,7 +4153,10 @@ func (c *BedrockAgent) UpdateDataSourceRequest(input *UpdateDataSourceInput) (re
 
 // UpdateDataSource API operation for Agents for Amazon Bedrock.
 //
-// # Update an existing data source
+// Updates configurations for a data source.
+//
+// You can't change the chunkingConfiguration after you create the data source.
+// Specify the existing chunkingConfiguration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4136,24 +4168,23 @@ func (c *BedrockAgent) UpdateDataSourceRequest(input *UpdateDataSourceInput) (re
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateDataSource
 func (c *BedrockAgent) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDataSourceOutput, error) {
@@ -4220,7 +4251,22 @@ func (c *BedrockAgent) UpdateKnowledgeBaseRequest(input *UpdateKnowledgeBaseInpu
 
 // UpdateKnowledgeBase API operation for Agents for Amazon Bedrock.
 //
-// # Update an existing knowledge base
+// Updates the configuration of a knowledge base with the fields that you specify.
+// Because all fields will be overwritten, you must include the same values
+// for fields that you want to keep the same.
+//
+// You can change the following fields:
+//
+//   - name
+//
+//   - description
+//
+//   - roleArn
+//
+// You can't change the knowledgeBaseConfiguration or storageConfiguration fields,
+// so you must specify the same configurations as when you created the knowledge
+// base. You can send a GetKnowledgeBase (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBase.html)
+// request and copy the same configurations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4232,24 +4278,23 @@ func (c *BedrockAgent) UpdateKnowledgeBaseRequest(input *UpdateKnowledgeBaseInpu
 // Returned Error Types:
 //
 //   - ThrottlingException
-//     This exception is thrown when the number of requests exceeds the limit
+//     The number of requests exceeds the limit. Resubmit your request later.
 //
 //   - AccessDeniedException
-//     This exception is thrown when a request is denied per access permissions
+//     The request is denied because of missing access permissions.
 //
 //   - ValidationException
-//     This exception is thrown when the request's input validation fails
+//     Input validation failed. Check your request parameters and retry the request.
 //
 //   - InternalServerException
-//     This exception is thrown if there was an unexpected error during processing
-//     of request
+//     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     This exception is thrown when a resource referenced by the operation does
-//     not exist
+//     The specified resource ARN was not found. Check the ARN and try your request
+//     again.
 //
 //   - ConflictException
-//     This exception is thrown when there is a conflict performing an operation
+//     There was a conflict performing an operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UpdateKnowledgeBase
 func (c *BedrockAgent) UpdateKnowledgeBase(input *UpdateKnowledgeBaseInput) (*UpdateKnowledgeBaseOutput, error) {
@@ -4273,18 +4318,23 @@ func (c *BedrockAgent) UpdateKnowledgeBaseWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// Contains information about the API Schema for the Action Group
+// Contains details about the OpenAPI schema for the action group. For more
+// information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
+// You can either include the schema directly in the payload field or you can
+// upload it to an S3 bucket and specify the S3 bucket location in the s3 field.
 type APISchema struct {
 	_ struct{} `type:"structure"`
 
-	// String OpenAPI Payload
+	// The JSON or YAML-formatted payload defining the OpenAPI schema for the action
+	// group. For more information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
 	//
 	// Payload is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by APISchema's
 	// String and GoString methods.
 	Payload *string `locationName:"payload" type:"string" sensitive:"true"`
 
-	// The identifier for the S3 resource.
+	// Contains details about the S3 object containing the OpenAPI schema for the
+	// action group. For more information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
 	S3 *S3Identifier `locationName:"s3" type:"structure"`
 }
 
@@ -4333,12 +4383,11 @@ func (s *APISchema) SetS3(v *S3Identifier) *APISchema {
 	return s
 }
 
-// This exception is thrown when a request is denied per access permissions
+// The request is denied because of missing access permissions.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -4398,11 +4447,13 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Type of Executors for an Action Group
+// Contains details about the Lambda function containing the business logic
+// that is carried out upon invoking the action.
 type ActionGroupExecutor struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of a Lambda.
+	// The ARN of the Lambda function containing the business logic that is carried
+	// out upon invoking the action.
 	Lambda *string `locationName:"lambda" type:"string"`
 }
 
@@ -4430,29 +4481,31 @@ func (s *ActionGroupExecutor) SetLambda(v string) *ActionGroupExecutor {
 	return s
 }
 
-// ActionGroup Summary
+// Contains details about an action group.
 type ActionGroupSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the action group.
 	//
 	// ActionGroupId is a required field
 	ActionGroupId *string `locationName:"actionGroupId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the action group.
 	//
 	// ActionGroupName is a required field
 	ActionGroupName *string `locationName:"actionGroupName" type:"string" required:"true"`
 
-	// State of the action group
+	// Specifies whether the action group is available for the agent to invoke or
+	// not when sending an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	//
 	// ActionGroupState is a required field
 	ActionGroupState *string `locationName:"actionGroupState" type:"string" required:"true" enum:"ActionGroupState"`
 
-	// Description of the Resource.
+	// The description of the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Time Stamp.
+	// The time at which the action group was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -4506,86 +4559,113 @@ func (s *ActionGroupSummary) SetUpdatedAt(v time.Time) *ActionGroupSummary {
 	return s
 }
 
-// Contains the information of an agent
+// Contains details about an agent.
 type Agent struct {
 	_ struct{} `type:"structure"`
 
-	// Arn representation of the Agent.
+	// The ARN of the agent.
 	//
 	// AgentArn is a required field
 	AgentArn *string `locationName:"agentArn" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the agent.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to call API operations on the agent.
+	// The ARN must begin with AmazonBedrockExecutionRoleForAgents_.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent and whether it is ready for use. The following statuses
+	// are possible:
+	//
+	//    * CREATING – The agent is being created.
+	//
+	//    * PREPARING – The agent is being prepared.
+	//
+	//    * PREPARED – The agent is prepared and ready to be invoked.
+	//
+	//    * NOT_PREPARED – The agent has been created but not yet prepared.
+	//
+	//    * FAILED – The agent API operation failed.
+	//
+	//    * UPDATING – The agent is being updated.
+	//
+	//    * DELETING – The agent is being deleted.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Draft Agent Version.
+	// The version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string"`
 
-	// Time Stamp.
+	// The time at which the agent was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// A KMS key ARN
+	// The ARN of the KMS key that encrypts the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
-	// Description of the Resource.
+	// The description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Failure Reasons for Error.
+	// Contains reasons that the agent-related API that you invoked failed.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
-	// ARN or name of a Bedrock model.
+	// The foundation model used for orchestration by the agent.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
-	// Max Session Time.
+	// The number of seconds for which Amazon Bedrock keeps information about a
+	// user's conversation with the agent.
+	//
+	// A user interaction remains active for the amount of time specified. If no
+	// conversation occurs during this time, the session expires and Amazon Bedrock
+	// deletes any data provided before the timeout.
 	//
 	// IdleSessionTTLInSeconds is a required field
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer" required:"true"`
 
-	// Instruction for the agent.
+	// Instructions that tell the agent what it should do and how it should interact
+	// with users.
 	//
 	// Instruction is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Agent's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
-	// Time Stamp.
+	// The time at which the agent was last prepared.
 	PreparedAt *time.Time `locationName:"preparedAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Configuration for prompt override.
+	// Contains configurations to override prompt templates in different parts of
+	// an agent sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
 	// PromptOverrideConfiguration is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Agent's
 	// String and GoString methods.
 	PromptOverrideConfiguration *PromptOverrideConfiguration `locationName:"promptOverrideConfiguration" type:"structure" sensitive:"true"`
 
-	// The recommended actions users can take to resolve an error in failureReasons.
+	// Contains recommended actions to take for the agent-related API that you invoked
+	// to succeed.
 	RecommendedActions []*string `locationName:"recommendedActions" type:"list"`
 
-	// Time Stamp.
+	// The time at which the agent was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -4717,56 +4797,72 @@ func (s *Agent) SetUpdatedAt(v time.Time) *Agent {
 	return s
 }
 
-// Contains the information of an Agent Action Group
+// Contains details about an action group.
 type AgentActionGroup struct {
 	_ struct{} `type:"structure"`
 
-	// Type of Executors for an Action Group
+	// The ARN of the Lambda function containing the business logic that is carried
+	// out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the action group.
 	//
 	// ActionGroupId is a required field
 	ActionGroupId *string `locationName:"actionGroupId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the action group.
 	//
 	// ActionGroupName is a required field
 	ActionGroupName *string `locationName:"actionGroupName" type:"string" required:"true"`
 
-	// State of the action group
+	// Specifies whether the action group is available for the agent to invoke or
+	// not when sending an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	//
 	// ActionGroupState is a required field
 	ActionGroupState *string `locationName:"actionGroupState" type:"string" required:"true" enum:"ActionGroupState"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent to which the action group belongs.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Agent Version.
+	// The version of the agent to which the action group belongs.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Contains information about the API Schema for the Action Group
+	// Contains either details about the S3 object containing the OpenAPI schema
+	// for the action group or the JSON or YAML-formatted payload defining the schema.
+	// For more information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
 	ApiSchema *APISchema `locationName:"apiSchema" type:"structure"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string"`
 
-	// Time Stamp.
+	// The time at which the action group was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Action Group Signature for a BuiltIn Action
+	// If this field is set as AMAZON.UserInput, the agent can request the user
+	// for additional information when trying to complete a task. The description,
+	// apiSchema, and actionGroupExecutor fields must be blank for this action group.
+	//
+	// During orchestration, if the agent determines that it needs to invoke an
+	// API in an action group, but doesn't have enough information to complete the
+	// API request, it will invoke this action group instead and return an Observation
+	// (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
+	// reprompting the user for more information.
 	ParentActionSignature *string `locationName:"parentActionSignature" type:"string" enum:"ActionGroupSignature"`
 
-	// Time Stamp.
+	// The time at which the action group was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -4862,55 +4958,70 @@ func (s *AgentActionGroup) SetUpdatedAt(v time.Time) *AgentActionGroup {
 	return s
 }
 
-// Contains the information of an agent alias
+// Contains details about an alias of an agent.
 type AgentAlias struct {
 	_ struct{} `type:"structure"`
 
-	// Arn representation of the Agent Alias.
+	// The ARN of the alias of the agent.
 	//
 	// AgentAliasArn is a required field
 	AgentAliasArn *string `locationName:"agentAliasArn" type:"string" required:"true"`
 
-	// The list of history events for an alias for an Agent.
+	// Contains details about the history of the alias.
 	AgentAliasHistoryEvents []*AgentAliasHistoryEvent `locationName:"agentAliasHistoryEvents" type:"list"`
 
-	// Id for an Agent Alias generated at the server side.
+	// The unique identifier of the alias of the agent.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the alias of the agent.
 	//
 	// AgentAliasName is a required field
 	AgentAliasName *string `locationName:"agentAliasName" type:"string" required:"true"`
 
-	// The statuses an Agent Alias can be in.
+	// The status of the alias of the agent and whether it is ready for use. The
+	// following statuses are possible:
+	//
+	//    * CREATING – The agent alias is being created.
+	//
+	//    * PREPARED – The agent alias is finished being created or updated and
+	//    is ready to be invoked.
+	//
+	//    * FAILED – The agent alias API operation failed.
+	//
+	//    * UPDATING – The agent alias is being updated.
+	//
+	//    * DELETING – The agent alias is being deleted.
 	//
 	// AgentAliasStatus is a required field
 	AgentAliasStatus *string `locationName:"agentAliasStatus" type:"string" required:"true" enum:"AgentAliasStatus"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string"`
 
-	// Time Stamp.
+	// The time at which the alias of the agent was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the alias of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Routing configuration for an Agent alias.
+	// Contains details about the routing configuration of the alias.
 	//
 	// RoutingConfiguration is a required field
 	RoutingConfiguration []*AgentAliasRoutingConfigurationListItem `locationName:"routingConfiguration" type:"list" required:"true"`
 
-	// Time Stamp.
+	// The time at which the alias was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5000,17 +5111,19 @@ func (s *AgentAlias) SetUpdatedAt(v time.Time) *AgentAlias {
 	return s
 }
 
-// History event for an alias for an Agent.
+// Contains details about the history of the alias.
 type AgentAliasHistoryEvent struct {
 	_ struct{} `type:"structure"`
 
-	// Time Stamp.
+	// The date that the alias stopped being associated to the version in the routingConfiguration
+	// object
 	EndDate *time.Time `locationName:"endDate" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Routing configuration for an Agent alias.
+	// Contains details about the version of the agent with which the alias is associated.
 	RoutingConfiguration []*AgentAliasRoutingConfigurationListItem `locationName:"routingConfiguration" type:"list"`
 
-	// Time Stamp.
+	// The date that the alias began being associated to the version in the routingConfiguration
+	// object.
 	StartDate *time.Time `locationName:"startDate" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -5050,11 +5163,11 @@ func (s *AgentAliasHistoryEvent) SetStartDate(v time.Time) *AgentAliasHistoryEve
 	return s
 }
 
-// Details about the routing configuration for an Agent alias.
+// Contains details about the routing configuration of the alias.
 type AgentAliasRoutingConfigurationListItem struct {
 	_ struct{} `type:"structure"`
 
-	// Agent Version.
+	// The version of the agent with which the alias is associated.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
@@ -5100,37 +5213,37 @@ func (s *AgentAliasRoutingConfigurationListItem) SetAgentVersion(v string) *Agen
 	return s
 }
 
-// Summary of an alias for an Agent.
+// Contains details about an alias of an agent.
 type AgentAliasSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Id for an Agent Alias generated at the server side.
+	// Contains details about
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the alias.
 	//
 	// AgentAliasName is a required field
 	AgentAliasName *string `locationName:"agentAliasName" type:"string" required:"true"`
 
-	// The statuses an Agent Alias can be in.
+	// The status of the alias.
 	//
 	// AgentAliasStatus is a required field
 	AgentAliasStatus *string `locationName:"agentAliasStatus" type:"string" required:"true" enum:"AgentAliasStatus"`
 
-	// Time Stamp.
+	// The time at which the alias of the agent was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the alias.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Routing configuration for an Agent alias.
+	// Contains details about the version of the agent with which the alias is associated.
 	RoutingConfiguration []*AgentAliasRoutingConfigurationListItem `locationName:"routingConfiguration" type:"list"`
 
-	// Time Stamp.
+	// The time at which the alias was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5196,41 +5309,46 @@ func (s *AgentAliasSummary) SetUpdatedAt(v time.Time) *AgentAliasSummary {
 	return s
 }
 
-// Contains the information of an Agent Knowledge Base.
+// Contains details about a knowledge base that is associated with an agent.
 type AgentKnowledgeBase struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent with which the knowledge base is associated.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Agent Version.
+	// The version of the agent with which the knowledge base is associated.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Time Stamp.
+	// The time at which the association between the agent and the knowledge base
+	// was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the association between the agent and the knowledge base.
 	//
 	// Description is a required field
 	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the association between the agent and the knowledge
+	// base.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// State of the knowledge base; whether it is enabled or disabled
+	// Specifies whether to use the knowledge base or not when sending an InvokeAgent
+	// (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	//
 	// KnowledgeBaseState is a required field
 	KnowledgeBaseState *string `locationName:"knowledgeBaseState" type:"string" required:"true" enum:"KnowledgeBaseState"`
 
-	// Time Stamp.
+	// The time at which the association between the agent and the knowledge base
+	// was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5296,24 +5414,26 @@ func (s *AgentKnowledgeBase) SetUpdatedAt(v time.Time) *AgentKnowledgeBase {
 	return s
 }
 
-// Agent Knowledge Base Summary
+// Contains details about a knowledge base associated with an agent.
 type AgentKnowledgeBaseSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Description of the Resource.
+	// The description of the knowledge base associated with an agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base associated with an agent.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// State of the knowledge base; whether it is enabled or disabled
+	// Specifies whether the agent uses the knowledge base or not when sending an
+	// InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	//
 	// KnowledgeBaseState is a required field
 	KnowledgeBaseState *string `locationName:"knowledgeBaseState" type:"string" required:"true" enum:"KnowledgeBaseState"`
 
-	// Time Stamp.
+	// The time at which the knowledge base associated with an agent was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5361,32 +5481,32 @@ func (s *AgentKnowledgeBaseSummary) SetUpdatedAt(v time.Time) *AgentKnowledgeBas
 	return s
 }
 
-// Summary of Agent.
+// Contains details about an agent.
 type AgentSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the agent.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Description of the Resource.
+	// The description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Agent Version.
+	// The latest version of the agent.
 	LatestAgentVersion *string `locationName:"latestAgentVersion" min:"1" type:"string"`
 
-	// Time Stamp.
+	// The time at which the agent was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5446,80 +5566,88 @@ func (s *AgentSummary) SetUpdatedAt(v time.Time) *AgentSummary {
 	return s
 }
 
-// Contains the information of an agent version.
+// Contains details about a version of an agent.
 type AgentVersion struct {
 	_ struct{} `type:"structure"`
 
-	// Arn representation of the Agent.
+	// The ARN of the agent that the version belongs to.
 	//
 	// AgentArn is a required field
 	AgentArn *string `locationName:"agentArn" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent that the version belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the agent that the version belongs to.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to invoke API operations on the
+	// agent. The ARN must begin with AmazonBedrockExecutionRoleForAgents_.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent that the version belongs to.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Time Stamp.
+	// The time at which the version was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// A KMS key ARN
+	// The ARN of the KMS key that encrypts the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
-	// Description of the Resource.
+	// The description of the version.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Failure Reasons for Error.
+	// A list of reasons that the API operation on the version failed.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
-	// ARN or name of a Bedrock model.
+	// The foundation model that the version invokes.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
-	// Max Session Time.
+	// The number of seconds for which Amazon Bedrock keeps information about a
+	// user's conversation with the agent.
+	//
+	// A user interaction remains active for the amount of time specified. If no
+	// conversation occurs during this time, the session expires and Amazon Bedrock
+	// deletes any data provided before the timeout.
 	//
 	// IdleSessionTTLInSeconds is a required field
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer" required:"true"`
 
-	// Instruction for the agent.
+	// The instructions provided to the agent.
 	//
 	// Instruction is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AgentVersion's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
-	// Configuration for prompt override.
+	// Contains configurations to override prompt templates in different parts of
+	// an agent sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
 	// PromptOverrideConfiguration is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by AgentVersion's
 	// String and GoString methods.
 	PromptOverrideConfiguration *PromptOverrideConfiguration `locationName:"promptOverrideConfiguration" type:"structure" sensitive:"true"`
 
-	// The recommended actions users can take to resolve an error in failureReasons.
+	// A list of recommended actions to take for the failed API operation on the
+	// version to succeed.
 	RecommendedActions []*string `locationName:"recommendedActions" type:"list"`
 
-	// Time Stamp.
+	// The time at which the version was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Numerical Agent Version.
+	// The version number.
 	//
 	// Version is a required field
 	Version *string `locationName:"version" type:"string" required:"true"`
@@ -5639,34 +5767,34 @@ func (s *AgentVersion) SetVersion(v string) *AgentVersion {
 	return s
 }
 
-// Summary of agent version.
+// Contains details about a version of an agent.
 type AgentVersionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Name for a resource.
+	// The name of the agent to which the version belongs.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent to which the version belongs.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Agent Version.
+	// The version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Time Stamp.
+	// The time at which the version was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the version of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Time Stamp.
+	// The time at which the version was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -5726,31 +5854,33 @@ func (s *AgentVersionSummary) SetUpdatedAt(v time.Time) *AgentVersionSummary {
 	return s
 }
 
-// Associate Agent Knowledge Base Request
 type AssociateAgentKnowledgeBaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent with which you want to associate the knowledge
+	// base.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The version of the agent with which you want to associate the knowledge base.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// A description of what the agent should use the knowledge base for.
 	//
 	// Description is a required field
 	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to associate with the agent.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// State of the knowledge base; whether it is enabled or disabled
+	// Specifies whether to use the knowledge base or not when sending an InvokeAgent
+	// (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	KnowledgeBaseState *string `locationName:"knowledgeBaseState" type:"string" enum:"KnowledgeBaseState"`
 }
 
@@ -5833,11 +5963,11 @@ func (s *AssociateAgentKnowledgeBaseInput) SetKnowledgeBaseState(v string) *Asso
 	return s
 }
 
-// Associate Agent Knowledge Base Response
 type AssociateAgentKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Knowledge Base.
+	// Contains details about the knowledge base that has been associated with the
+	// agent.
 	//
 	// AgentKnowledgeBase is a required field
 	AgentKnowledgeBase *AgentKnowledgeBase `locationName:"agentKnowledgeBase" type:"structure" required:"true"`
@@ -5867,16 +5997,30 @@ func (s *AssociateAgentKnowledgeBaseOutput) SetAgentKnowledgeBase(v *AgentKnowle
 	return s
 }
 
-// Configures chunking strategy
+// Details about how to chunk the documents in the data source. A chunk refers
+// to an excerpt from a data source that is returned when the knowledge base
+// that it belongs to is queried.
 type ChunkingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of chunking strategy
+	// Knowledge base can split your source data into chunks. A chunk refers to
+	// an excerpt from a data source that is returned when the knowledge base that
+	// it belongs to is queried. You have the following options for chunking your
+	// data. If you opt for NONE, then you may want to pre-process your files by
+	// splitting them up such that each file corresponds to a chunk.
+	//
+	//    * FIXED_SIZE – Amazon Bedrock splits your source data into chunks of
+	//    the approximate size that you set in the fixedSizeChunkingConfiguration.
+	//
+	//    * NONE – Amazon Bedrock treats each file as one chunk. If you choose
+	//    this option, you may want to pre-process your documents by splitting them
+	//    into separate files.
 	//
 	// ChunkingStrategy is a required field
 	ChunkingStrategy *string `locationName:"chunkingStrategy" type:"string" required:"true" enum:"ChunkingStrategy"`
 
-	// Configures fixed size chunking strategy
+	// Configurations for when you choose fixed-size chunking. If you set the chunkingStrategy
+	// as NONE, exclude this field.
 	FixedSizeChunkingConfiguration *FixedSizeChunkingConfiguration `locationName:"fixedSizeChunkingConfiguration" type:"structure"`
 }
 
@@ -5928,12 +6072,11 @@ func (s *ChunkingConfiguration) SetFixedSizeChunkingConfiguration(v *FixedSizeCh
 	return s
 }
 
-// This exception is thrown when there is a conflict performing an operation
+// There was a conflict performing an operation.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -5993,41 +6136,57 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Create Action Group Request
 type CreateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Type of Executors for an Action Group
+	// The ARN of the Lambda function containing the business logic that is carried
+	// out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
-	// Name for a resource.
+	// The name to give the action group.
 	//
 	// ActionGroupName is a required field
 	ActionGroupName *string `locationName:"actionGroupName" type:"string" required:"true"`
 
-	// State of the action group
+	// Specifies whether the action group is available for the agent to invoke or
+	// not when sending an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	ActionGroupState *string `locationName:"actionGroupState" type:"string" enum:"ActionGroupState"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent for which to create the action group.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The version of the agent for which to create the action group.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Contains information about the API Schema for the Action Group
+	// Contains either details about the S3 object containing the OpenAPI schema
+	// for the action group or the JSON or YAML-formatted payload defining the schema.
+	// For more information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
 	ApiSchema *APISchema `locationName:"apiSchema" type:"structure"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// Description of the Resource.
+	// A description of the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Action Group Signature for a BuiltIn Action
+	// To allow your agent to request the user for additional information when trying
+	// to complete a task, set this field to AMAZON.UserInput. You must leave the
+	// description, apiSchema, and actionGroupExecutor fields blank for this action
+	// group.
+	//
+	// During orchestration, if your agent determines that it needs to invoke an
+	// API in an action group, but doesn't have enough information to complete the
+	// API request, it will invoke this action group instead and return an Observation
+	// (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
+	// reprompting the user for more information.
 	ParentActionGroupSignature *string `locationName:"parentActionGroupSignature" type:"string" enum:"ActionGroupSignature"`
 }
 
@@ -6139,11 +6298,10 @@ func (s *CreateAgentActionGroupInput) SetParentActionGroupSignature(v string) *C
 	return s
 }
 
-// Create Action Group Response
 type CreateAgentActionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Action Group
+	// Contains details about the action group that was created.
 	//
 	// AgentActionGroup is a required field
 	AgentActionGroup *AgentActionGroup `locationName:"agentActionGroup" type:"structure" required:"true"`
@@ -6173,30 +6331,32 @@ func (s *CreateAgentActionGroupOutput) SetAgentActionGroup(v *AgentActionGroup) 
 	return s
 }
 
-// Create Agent Alias Request
 type CreateAgentAliasInput struct {
 	_ struct{} `type:"structure"`
 
-	// Name for a resource.
+	// The name of the alias.
 	//
 	// AgentAliasName is a required field
 	AgentAliasName *string `locationName:"agentAliasName" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// Description of the Resource.
+	// A description of the alias of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Routing configuration for an Agent alias.
+	// Contains details about the routing configuration of the alias.
 	RoutingConfiguration []*AgentAliasRoutingConfigurationListItem `locationName:"routingConfiguration" type:"list"`
 
-	// A map of tag keys and values
+	// Any tags that you want to attach to the alias of the agent.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6289,11 +6449,10 @@ func (s *CreateAgentAliasInput) SetTags(v map[string]*string) *CreateAgentAliasI
 	return s
 }
 
-// Create Agent Alias Response
 type CreateAgentAliasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent alias
+	// Contains details about the alias that was created.
 	//
 	// AgentAlias is a required field
 	AgentAlias *AgentAlias `locationName:"agentAlias" type:"structure" required:"true"`
@@ -6323,50 +6482,60 @@ func (s *CreateAgentAliasOutput) SetAgentAlias(v *AgentAlias) *CreateAgentAliasO
 	return s
 }
 
-// Create Agent Request
 type CreateAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Name for a resource.
+	// A name for the agent that you create.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to create the agent. The ARN must
+	// begin with AmazonBedrockExecutionRoleForAgents_.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// A KMS key ARN
+	// The ARN of the KMS key with which to encrypt the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
-	// Description of the Resource.
+	// A description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// ARN or name of a Bedrock model.
+	// The foundation model to be used for orchestration by the agent you create.
 	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
 
-	// Max Session Time.
+	// The number of seconds for which Amazon Bedrock keeps information about a
+	// user's conversation with the agent.
+	//
+	// A user interaction remains active for the amount of time specified. If no
+	// conversation occurs during this time, the session expires and Amazon Bedrock
+	// deletes any data provided before the timeout.
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
 
-	// Instruction for the agent.
+	// Instructions that tell the agent what it should do and how it should interact
+	// with users.
 	//
 	// Instruction is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAgentInput's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
-	// Configuration for prompt override.
+	// Contains configurations to override prompts in different parts of an agent
+	// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
 	// PromptOverrideConfiguration is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAgentInput's
 	// String and GoString methods.
 	PromptOverrideConfiguration *PromptOverrideConfiguration `locationName:"promptOverrideConfiguration" type:"structure" sensitive:"true"`
 
-	// A map of tag keys and values
+	// Any tags that you want to attach to the agent.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6487,11 +6656,10 @@ func (s *CreateAgentInput) SetTags(v map[string]*string) *CreateAgentInput {
 	return s
 }
 
-// Create Agent Response
 type CreateAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent
+	// Contains details about the agent created.
 	//
 	// Agent is a required field
 	Agent *Agent `locationName:"agent" type:"structure" required:"true"`
@@ -6524,31 +6692,34 @@ func (s *CreateAgentOutput) SetAgent(v *Agent) *CreateAgentOutput {
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// Specifies a raw data source location to ingest.
+	// Contains metadata about where the data source is stored.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
 
-	// Description of the Resource.
+	// A description of the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which to add the data source.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the data source.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Server-side encryption configuration.
+	// Contains details about the server-side encryption for the data source.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
-	// Configures ingestion for a vector knowledge base
+	// Contains details about how to ingest the documents in the data source.
 	VectorIngestionConfiguration *VectorIngestionConfiguration `locationName:"vectorIngestionConfiguration" type:"structure"`
 }
 
@@ -6658,7 +6829,7 @@ func (s *CreateDataSourceInput) SetVectorIngestionConfiguration(v *VectorIngesti
 type CreateDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a data source.
+	// Contains details about the data source.
 	//
 	// DataSource is a required field
 	DataSource *DataSource `locationName:"dataSource" type:"structure" required:"true"`
@@ -6691,33 +6862,38 @@ func (s *CreateDataSourceOutput) SetDataSource(v *DataSource) *CreateDataSourceO
 type CreateKnowledgeBaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// Description of the Resource.
+	// A description of the knowledge base.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Configures a bedrock knowledge base.
+	// Contains details about the embeddings model used for the knowledge base.
 	//
 	// KnowledgeBaseConfiguration is a required field
 	KnowledgeBaseConfiguration *KnowledgeBaseConfiguration `locationName:"knowledgeBaseConfiguration" type:"structure" required:"true"`
 
-	// Name for a resource.
+	// A name for the knowledge base.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to create the knowledge base.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	// Configures the physical storage of ingested data in a knowledge base.
+	// Contains details about the configuration of the vector database used for
+	// the knowledge base.
 	//
 	// StorageConfiguration is a required field
 	StorageConfiguration *StorageConfiguration `locationName:"storageConfiguration" type:"structure" required:"true"`
 
-	// A map of tag keys and values
+	// Specify the key-value pairs for the tags that you want to attach to your
+	// knowledge base in this object.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -6822,7 +6998,7 @@ func (s *CreateKnowledgeBaseInput) SetTags(v map[string]*string) *CreateKnowledg
 type CreateKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a knowledge base.
+	// Contains details about the knowledge base.
 	//
 	// KnowledgeBase is a required field
 	KnowledgeBase *KnowledgeBase `locationName:"knowledgeBase" type:"structure" required:"true"`
@@ -6852,52 +7028,57 @@ func (s *CreateKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *CreateKn
 	return s
 }
 
-// Contains the information of a data source.
+// Contains details about a data source.
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
-	// Time Stamp.
+	// The time at which the data source was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Specifies a raw data source location to ingest.
+	// Contains details about how the data source is stored.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// The description of the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source belongs.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the data source.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Server-side encryption configuration.
+	// Contains details about the configuration of the server-side encryption.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
-	// The status of a data source.
+	// The status of the data source. The following statuses are possible:
+	//
+	//    * Available – The data source has been created and is ready for ingestion
+	//    into the knowledge base.
+	//
+	//    * Deleting – The data source is being deleted.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"DataSourceStatus"`
 
-	// Time Stamp.
+	// The time at which the data source was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Configures ingestion for a vector knowledge base
+	// Contains details about how to ingest the documents in the data source.
 	VectorIngestionConfiguration *VectorIngestionConfiguration `locationName:"vectorIngestionConfiguration" type:"structure"`
 }
 
@@ -6979,14 +7160,15 @@ func (s *DataSource) SetVectorIngestionConfiguration(v *VectorIngestionConfigura
 	return s
 }
 
-// Specifies a raw data source location to ingest.
+// Contains details about how a data source is stored.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Configures an S3 data source location.
+	// Contains details about the configuration of the S3 object containing the
+	// data source.
 	S3Configuration *S3DataSourceConfiguration `locationName:"s3Configuration" type:"structure"`
 
-	// The type of the data source location.
+	// The type of storage for the data source.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"DataSourceType"`
@@ -7040,34 +7222,34 @@ func (s *DataSourceConfiguration) SetType(v string) *DataSourceConfiguration {
 	return s
 }
 
-// Summary information of a data source.
+// Contains details about a data source.
 type DataSourceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// The description of the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source belongs.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the data source.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The status of a data source.
+	// The status of the data source.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"DataSourceStatus"`
 
-	// Time Stamp.
+	// The time at which the data source was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -7127,26 +7309,27 @@ func (s *DataSourceSummary) SetUpdatedAt(v time.Time) *DataSourceSummary {
 	return s
 }
 
-// Delete Action Group Request
 type DeleteAgentActionGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent ActionGroup is created
+	// The unique identifier of the action group to delete.
 	//
 	// ActionGroupId is a required field
 	ActionGroupId *string `location:"uri" locationName:"actionGroupId" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent that the action group belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The version of the agent that the action group belongs to.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Skips checking if resource is in use when set to true. Defaults to false
+	// By default, this value is false and deletion is stopped if the resource is
+	// in use. If you set it to true, the resource will be deleted even if the resource
+	// is in use.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -7220,7 +7403,6 @@ func (s *DeleteAgentActionGroupInput) SetSkipResourceInUseCheck(v bool) *DeleteA
 	return s
 }
 
-// Delete Action Group Response
 type DeleteAgentActionGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7243,16 +7425,15 @@ func (s DeleteAgentActionGroupOutput) GoString() string {
 	return s.String()
 }
 
-// Delete Agent Alias Request
 type DeleteAgentAliasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent Alias is created
+	// The unique identifier of the alias to delete.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `location:"uri" locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent that the alias belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
@@ -7310,21 +7491,20 @@ func (s *DeleteAgentAliasInput) SetAgentId(v string) *DeleteAgentAliasInput {
 	return s
 }
 
-// Delete Agent Alias Response
 type DeleteAgentAliasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Id for an Agent Alias generated at the server side.
+	// The unique identifier of the alias that was deleted.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// The statuses an Agent Alias can be in.
+	// The status of the alias.
 	//
 	// AgentAliasStatus is a required field
 	AgentAliasStatus *string `locationName:"agentAliasStatus" type:"string" required:"true" enum:"AgentAliasStatus"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent that the alias belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
@@ -7366,16 +7546,17 @@ func (s *DeleteAgentAliasOutput) SetAgentId(v string) *DeleteAgentAliasOutput {
 	return s
 }
 
-// Delete Agent Request
 type DeleteAgentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent to delete.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Skips checking if resource is in use when set to true. Defaults to false
+	// By default, this value is false and deletion is stopped if the resource is
+	// in use. If you set it to true, the resource will be deleted even if the resource
+	// is in use.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -7425,16 +7606,15 @@ func (s *DeleteAgentInput) SetSkipResourceInUseCheck(v bool) *DeleteAgentInput {
 	return s
 }
 
-// Delete Agent Response
 type DeleteAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent that was deleted.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
@@ -7470,21 +7650,22 @@ func (s *DeleteAgentOutput) SetAgentStatus(v string) *DeleteAgentOutput {
 	return s
 }
 
-// Delete Agent Version Request
 type DeleteAgentVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent that the version belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Numerical Agent Version.
+	// The version of the agent to delete.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" type:"string" required:"true"`
 
-	// Skips checking if resource is in use when set to true. Defaults to false
+	// By default, this value is false and deletion is stopped if the resource is
+	// in use. If you set it to true, the resource will be deleted even if the resource
+	// is in use.
 	SkipResourceInUseCheck *bool `location:"querystring" locationName:"skipResourceInUseCheck" type:"boolean"`
 }
 
@@ -7546,21 +7727,20 @@ func (s *DeleteAgentVersionInput) SetSkipResourceInUseCheck(v bool) *DeleteAgent
 	return s
 }
 
-// Delete Agent Version Response
 type DeleteAgentVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent that the version belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the agent version.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Numerical Agent Version.
+	// The version that was deleted.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" type:"string" required:"true"`
@@ -7605,12 +7785,13 @@ func (s *DeleteAgentVersionOutput) SetAgentVersion(v string) *DeleteAgentVersion
 type DeleteDataSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source to delete.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base from which to delete the data
+	// source.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -7671,17 +7852,18 @@ func (s *DeleteDataSourceInput) SetKnowledgeBaseId(v string) *DeleteDataSourceIn
 type DeleteDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source that was deleted.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source that
+	// was deleted belonged.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// The status of a data source.
+	// The status of the data source.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"DataSourceStatus"`
@@ -7726,7 +7908,7 @@ func (s *DeleteDataSourceOutput) SetStatus(v string) *DeleteDataSourceOutput {
 type DeleteKnowledgeBaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to delete.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -7775,12 +7957,12 @@ func (s *DeleteKnowledgeBaseInput) SetKnowledgeBaseId(v string) *DeleteKnowledge
 type DeleteKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base that was deleted.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// The status of a knowledge base.
+	// The status of the knowledge base and whether it has been successfully deleted.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"KnowledgeBaseStatus"`
@@ -7816,22 +7998,21 @@ func (s *DeleteKnowledgeBaseOutput) SetStatus(v string) *DeleteKnowledgeBaseOutp
 	return s
 }
 
-// Disassociate Agent Knowledge Base Request
 type DisassociateAgentKnowledgeBaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent from which to disassociate the knowledge
+	// base.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The version of the agent from which to disassociate the knowledge base.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Id generated at the server side when a Knowledge Base is associated to an
-	// Agent
+	// The unique identifier of the knowledge base to disassociate.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -7901,7 +8082,6 @@ func (s *DisassociateAgentKnowledgeBaseInput) SetKnowledgeBaseId(v string) *Disa
 	return s
 }
 
-// Disassociate Agent Knowledge Base Response
 type DisassociateAgentKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7924,16 +8104,17 @@ func (s DisassociateAgentKnowledgeBaseOutput) GoString() string {
 	return s.String()
 }
 
-// Configures fixed size chunking strategy
+// Configurations for when you choose fixed-size chunking. If you set the chunkingStrategy
+// as NONE, exclude this field.
 type FixedSizeChunkingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of tokens per chunk.
+	// The maximum number of tokens to include in a chunk.
 	//
 	// MaxTokens is a required field
 	MaxTokens *int64 `locationName:"maxTokens" min:"1" type:"integer" required:"true"`
 
-	// The overlap percentage between adjacent chunks.
+	// The percentage of overlap between adjacent chunks of a data source.
 	//
 	// OverlapPercentage is a required field
 	OverlapPercentage *int64 `locationName:"overlapPercentage" min:"1" type:"integer" required:"true"`
@@ -7991,21 +8172,20 @@ func (s *FixedSizeChunkingConfiguration) SetOverlapPercentage(v int64) *FixedSiz
 	return s
 }
 
-// Get Action Group Request
 type GetAgentActionGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent Action Group is created
+	// The unique identifier of the action group for which to get information.
 	//
 	// ActionGroupId is a required field
 	ActionGroupId *string `location:"uri" locationName:"actionGroupId" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent that the action group belongs to.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Version number generated when a version is created
+	// The version of the agent that the action group belongs to.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"1" type:"string" required:"true"`
@@ -8075,11 +8255,10 @@ func (s *GetAgentActionGroupInput) SetAgentVersion(v string) *GetAgentActionGrou
 	return s
 }
 
-// Get Action Group Response
 type GetAgentActionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Action Group
+	// Contains details about the action group.
 	//
 	// AgentActionGroup is a required field
 	AgentActionGroup *AgentActionGroup `locationName:"agentActionGroup" type:"structure" required:"true"`
@@ -8109,16 +8288,16 @@ func (s *GetAgentActionGroupOutput) SetAgentActionGroup(v *AgentActionGroup) *Ge
 	return s
 }
 
-// Get Agent Alias Request
 type GetAgentAliasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent Alias is created
+	// The unique identifier of the alias for which to get information.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `location:"uri" locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent to which the alias to get information
+	// belongs.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
@@ -8176,11 +8355,10 @@ func (s *GetAgentAliasInput) SetAgentId(v string) *GetAgentAliasInput {
 	return s
 }
 
-// Get Agent Alias Response
 type GetAgentAliasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent alias
+	// Contains information about the alias.
 	//
 	// AgentAlias is a required field
 	AgentAlias *AgentAlias `locationName:"agentAlias" type:"structure" required:"true"`
@@ -8210,11 +8388,10 @@ func (s *GetAgentAliasOutput) SetAgentAlias(v *AgentAlias) *GetAgentAliasOutput 
 	return s
 }
 
-// Get Agent Request
 type GetAgentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
@@ -8260,21 +8437,20 @@ func (s *GetAgentInput) SetAgentId(v string) *GetAgentInput {
 	return s
 }
 
-// Get Agent Knowledge Base Request
 type GetAgentKnowledgeBaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent with which the knowledge base is associated.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Version number generated when a version is created
+	// The version of the agent with which the knowledge base is associated.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Id generated at the server side when a Knowledge Base is associated
+	// The unique identifier of the knowledge base associated with the agent.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -8344,11 +8520,10 @@ func (s *GetAgentKnowledgeBaseInput) SetKnowledgeBaseId(v string) *GetAgentKnowl
 	return s
 }
 
-// Get Agent Knowledge Base Response
 type GetAgentKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Knowledge Base.
+	// Contains details about a knowledge base attached to an agent.
 	//
 	// AgentKnowledgeBase is a required field
 	AgentKnowledgeBase *AgentKnowledgeBase `locationName:"agentKnowledgeBase" type:"structure" required:"true"`
@@ -8378,11 +8553,10 @@ func (s *GetAgentKnowledgeBaseOutput) SetAgentKnowledgeBase(v *AgentKnowledgeBas
 	return s
 }
 
-// Get Agent Response
 type GetAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent
+	// Contains details about the agent.
 	//
 	// Agent is a required field
 	Agent *Agent `locationName:"agent" type:"structure" required:"true"`
@@ -8412,16 +8586,15 @@ func (s *GetAgentOutput) SetAgent(v *Agent) *GetAgentOutput {
 	return s
 }
 
-// Get Agent Version Request
 type GetAgentVersionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Numerical Agent Version.
+	// The version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" type:"string" required:"true"`
@@ -8479,11 +8652,10 @@ func (s *GetAgentVersionInput) SetAgentVersion(v string) *GetAgentVersionInput {
 	return s
 }
 
-// Get Agent Version Response
 type GetAgentVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent version.
+	// Contains details about the version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *AgentVersion `locationName:"agentVersion" type:"structure" required:"true"`
@@ -8516,12 +8688,13 @@ func (s *GetAgentVersionOutput) SetAgentVersion(v *AgentVersion) *GetAgentVersio
 type GetDataSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base that the data source was added
+	// to.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -8582,7 +8755,7 @@ func (s *GetDataSourceInput) SetKnowledgeBaseId(v string) *GetDataSourceInput {
 type GetDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a data source.
+	// Contains details about the data source.
 	//
 	// DataSource is a required field
 	DataSource *DataSource `locationName:"dataSource" type:"structure" required:"true"`
@@ -8615,17 +8788,17 @@ func (s *GetDataSourceOutput) SetDataSource(v *DataSource) *GetDataSourceOutput 
 type GetIngestionJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source in the ingestion job.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the ingestion job.
 	//
 	// IngestionJobId is a required field
 	IngestionJobId *string `location:"uri" locationName:"ingestionJobId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base for which the ingestion job applies.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -8698,7 +8871,7 @@ func (s *GetIngestionJobInput) SetKnowledgeBaseId(v string) *GetIngestionJobInpu
 type GetIngestionJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an ingestion job.
+	// Contains details about the ingestion job.
 	//
 	// IngestionJob is a required field
 	IngestionJob *IngestionJob `locationName:"ingestionJob" type:"structure" required:"true"`
@@ -8731,7 +8904,7 @@ func (s *GetIngestionJobOutput) SetIngestionJob(v *IngestionJob) *GetIngestionJo
 type GetKnowledgeBaseInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base for which to get information.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -8780,7 +8953,7 @@ func (s *GetKnowledgeBaseInput) SetKnowledgeBaseId(v string) *GetKnowledgeBaseIn
 type GetKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a knowledge base.
+	// Contains details about the knowledge base.
 	//
 	// KnowledgeBase is a required field
 	KnowledgeBase *KnowledgeBase `locationName:"knowledgeBase" type:"structure" required:"true"`
@@ -8810,23 +8983,38 @@ func (s *GetKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *GetKnowledg
 	return s
 }
 
-// Configuration for inference in prompt configuration
+// Contains inference parameters to use when the agent invokes a foundation
+// model in the part of the agent sequence defined by the promptType. For more
+// information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 type InferenceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum length of output
+	// The maximum number of tokens to allow in the generated response.
 	MaximumLength *int64 `locationName:"maximumLength" type:"integer"`
 
-	// List of stop sequences
+	// A list of stop sequences. A stop sequence is a sequence of characters that
+	// causes the model to stop generating the response.
 	StopSequences []*string `locationName:"stopSequences" type:"list"`
 
-	// Controls randomness, higher values increase diversity
+	// The likelihood of the model selecting higher-probability options while generating
+	// a response. A lower value makes the model more likely to choose higher-probability
+	// options, while a higher value makes the model more likely to choose lower-probability
+	// options.
 	Temperature *float64 `locationName:"temperature" type:"float"`
 
-	// Sample from the k most likely next tokens
+	// While generating a response, the model determines the probability of the
+	// following token at each point of generation. The value that you set for topK
+	// is the number of most-likely candidates from which the model chooses the
+	// next token in the sequence. For example, if you set topK to 50, the model
+	// selects the next token from among the top 50 most likely choices.
 	TopK *int64 `locationName:"topK" type:"integer"`
 
-	// Cumulative probability cutoff for token selection
+	// While generating a response, the model determines the probability of the
+	// following token at each point of generation. The value that you set for Top
+	// P determines the number of most-likely candidates from which the model chooses
+	// the next token in the sequence. For example, if you set topP to 80, the model
+	// only selects the next token from the top 80% of the probability distribution
+	// of next tokens.
 	TopP *float64 `locationName:"topP" type:"float"`
 }
 
@@ -8878,45 +9066,55 @@ func (s *InferenceConfiguration) SetTopP(v float64) *InferenceConfiguration {
 	return s
 }
 
-// Contains the information of an ingestion job.
+// Contains details about an ingestion job, which converts a data source to
+// embeddings for a vector store in knowledge base.
+//
+// This data type is used in the following API operations:
+//
+//   - StartIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_StartIngestionJob.html#API_agent_StartIngestionJob_ResponseSyntax)
+//
+//   - GetIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax)
+//
+//   - ListIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJob.html#API_agent_ListIngestionJob_ResponseSyntax)
 type IngestionJob struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the ingested data source.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// The description of the ingestion job.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Failure Reasons for Error.
+	// A list of reasons that the ingestion job failed.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
-	// Identifier for a resource.
+	// The unique identifier of the ingestion job.
 	//
 	// IngestionJobId is a required field
 	IngestionJobId *string `locationName:"ingestionJobId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source is being
+	// added.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Time Stamp.
+	// The time at which the ingestion job started.
 	//
 	// StartedAt is a required field
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The document level statistics of an ingestion job
+	// Contains statistics about the ingestion job.
 	Statistics *IngestionJobStatistics `locationName:"statistics" type:"structure"`
 
-	// The status of an ingestion job.
+	// The status of the ingestion job.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"IngestionJobStatus"`
 
-	// Time Stamp.
+	// The time at which the ingestion job was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -8994,21 +9192,21 @@ func (s *IngestionJob) SetUpdatedAt(v time.Time) *IngestionJob {
 	return s
 }
 
-// Filters the response returned by ListIngestionJobs operation.
+// Defines a filter by which to filter the results.
 type IngestionJobFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the field to filter ingestion jobs.
+	// The attribute by which to filter the results.
 	//
 	// Attribute is a required field
 	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"IngestionJobFilterAttribute"`
 
-	// The operator used to filter ingestion jobs.
+	// The operation to carry out between the attribute and the values.
 	//
 	// Operator is a required field
 	Operator *string `locationName:"operator" type:"string" required:"true" enum:"IngestionJobFilterOperator"`
 
-	// The list of values used to filter ingestion jobs.
+	// A list of values for the attribute.
 	//
 	// Values is a required field
 	Values []*string `locationName:"values" type:"list" required:"true"`
@@ -9069,16 +9267,16 @@ func (s *IngestionJobFilter) SetValues(v []*string) *IngestionJobFilter {
 	return s
 }
 
-// Sorts the response returned by ListIngestionJobs operation.
+// Parameters by which to sort the results.
 type IngestionJobSortBy struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the field to sort ingestion jobs.
+	// The attribute by which to sort the results.
 	//
 	// Attribute is a required field
 	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"IngestionJobSortByAttribute"`
 
-	// Order to sort results by.
+	// The order by which to sort the results.
 	//
 	// Order is a required field
 	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
@@ -9130,23 +9328,33 @@ func (s *IngestionJobSortBy) SetOrder(v string) *IngestionJobSortBy {
 	return s
 }
 
-// The document level statistics of an ingestion job
+// Contains the statistics for the ingestion job.
 type IngestionJobStatistics struct {
 	_ struct{} `type:"structure"`
 
-	// Number of deleted documents
+	// The number of source documents that was deleted.
 	NumberOfDocumentsDeleted *int64 `locationName:"numberOfDocumentsDeleted" type:"long"`
 
-	// Number of failed documents
+	// The number of source documents that failed to be ingested.
 	NumberOfDocumentsFailed *int64 `locationName:"numberOfDocumentsFailed" type:"long"`
 
-	// Number of scanned documents
+	// The total number of source documents that were scanned. Includes new, updated,
+	// and unchanged documents.
 	NumberOfDocumentsScanned *int64 `locationName:"numberOfDocumentsScanned" type:"long"`
 
-	// Number of modified documents indexed
+	// The number of metadata files that were updated or deleted.
+	NumberOfMetadataDocumentsModified *int64 `locationName:"numberOfMetadataDocumentsModified" type:"long"`
+
+	// The total number of metadata files that were scanned. Includes new, updated,
+	// and unchanged files.
+	NumberOfMetadataDocumentsScanned *int64 `locationName:"numberOfMetadataDocumentsScanned" type:"long"`
+
+	// The number of modified source documents in the data source that were successfully
+	// indexed.
 	NumberOfModifiedDocumentsIndexed *int64 `locationName:"numberOfModifiedDocumentsIndexed" type:"long"`
 
-	// Number of indexed documents
+	// The number of new source documents in the data source that were successfully
+	// indexed.
 	NumberOfNewDocumentsIndexed *int64 `locationName:"numberOfNewDocumentsIndexed" type:"long"`
 }
 
@@ -9186,6 +9394,18 @@ func (s *IngestionJobStatistics) SetNumberOfDocumentsScanned(v int64) *Ingestion
 	return s
 }
 
+// SetNumberOfMetadataDocumentsModified sets the NumberOfMetadataDocumentsModified field's value.
+func (s *IngestionJobStatistics) SetNumberOfMetadataDocumentsModified(v int64) *IngestionJobStatistics {
+	s.NumberOfMetadataDocumentsModified = &v
+	return s
+}
+
+// SetNumberOfMetadataDocumentsScanned sets the NumberOfMetadataDocumentsScanned field's value.
+func (s *IngestionJobStatistics) SetNumberOfMetadataDocumentsScanned(v int64) *IngestionJobStatistics {
+	s.NumberOfMetadataDocumentsScanned = &v
+	return s
+}
+
 // SetNumberOfModifiedDocumentsIndexed sets the NumberOfModifiedDocumentsIndexed field's value.
 func (s *IngestionJobStatistics) SetNumberOfModifiedDocumentsIndexed(v int64) *IngestionJobStatistics {
 	s.NumberOfModifiedDocumentsIndexed = &v
@@ -9198,42 +9418,42 @@ func (s *IngestionJobStatistics) SetNumberOfNewDocumentsIndexed(v int64) *Ingest
 	return s
 }
 
-// Summary information of an ingestion job.
+// Contains details about an ingestion job.
 type IngestionJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source in the ingestion job.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// The description of the ingestion job.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the ingestion job.
 	//
 	// IngestionJobId is a required field
 	IngestionJobId *string `locationName:"ingestionJobId" type:"string" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source is added.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Time Stamp.
+	// The time at which the ingestion job was started.
 	//
 	// StartedAt is a required field
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The document level statistics of an ingestion job
+	// Contains statistics for the ingestion job.
 	Statistics *IngestionJobStatistics `locationName:"statistics" type:"structure"`
 
-	// The status of an ingestion job.
+	// The status of the ingestion job.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"IngestionJobStatus"`
 
-	// Time Stamp.
+	// The time at which the ingestion job was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -9305,13 +9525,11 @@ func (s *IngestionJobSummary) SetUpdatedAt(v time.Time) *IngestionJobSummary {
 	return s
 }
 
-// This exception is thrown if there was an unexpected error during processing
-// of request
+// An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -9371,57 +9589,68 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains the information of a knowledge base.
+// Contains information about a knowledge base.
 type KnowledgeBase struct {
 	_ struct{} `type:"structure"`
 
-	// Time Stamp.
+	// The time at which the knowledge base was created.
 	//
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Description of the Resource.
+	// The description of the knowledge base.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Failure Reasons for Error.
+	// A list of reasons that the API operation on the knowledge base failed.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
-	// ARN of a KnowledgeBase
+	// The ARN of the knowledge base.
 	//
 	// KnowledgeBaseArn is a required field
 	KnowledgeBaseArn *string `locationName:"knowledgeBaseArn" type:"string" required:"true"`
 
-	// Configures a bedrock knowledge base.
+	// Contains details about the embeddings configuration of the knowledge base.
 	//
 	// KnowledgeBaseConfiguration is a required field
 	KnowledgeBaseConfiguration *KnowledgeBaseConfiguration `locationName:"knowledgeBaseConfiguration" type:"structure" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the knowledge base.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to invoke API operations on the
+	// knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	// The status of a knowledge base.
+	// The status of the knowledge base. The following statuses are possible:
+	//
+	//    * CREATING – The knowledge base is being created.
+	//
+	//    * ACTIVE – The knowledge base is ready to be queried.
+	//
+	//    * DELETING – The knowledge base is being deleted.
+	//
+	//    * UPDATING – The knowledge base is being updated.
+	//
+	//    * FAILED – The knowledge base API operation failed.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"KnowledgeBaseStatus"`
 
-	// Configures the physical storage of ingested data in a knowledge base.
+	// Contains details about the storage configuration of the knowledge base.
 	//
 	// StorageConfiguration is a required field
 	StorageConfiguration *StorageConfiguration `locationName:"storageConfiguration" type:"structure" required:"true"`
 
-	// Time Stamp.
+	// The time at which the knowledge base was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -9511,16 +9740,18 @@ func (s *KnowledgeBase) SetUpdatedAt(v time.Time) *KnowledgeBase {
 	return s
 }
 
-// Configures a bedrock knowledge base.
+// Contains details about the embeddings configuration of the knowledge base.
 type KnowledgeBaseConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of a knowledge base.
+	// The type of data that the data source is converted into for the knowledge
+	// base.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"KnowledgeBaseType"`
 
-	// Configurations for a vector knowledge base.
+	// Contains details about the embeddings model that'sused to convert the data
+	// source.
 	VectorKnowledgeBaseConfiguration *VectorKnowledgeBaseConfiguration `locationName:"vectorKnowledgeBaseConfiguration" type:"structure"`
 }
 
@@ -9572,29 +9803,29 @@ func (s *KnowledgeBaseConfiguration) SetVectorKnowledgeBaseConfiguration(v *Vect
 	return s
 }
 
-// Summary information of a knowledge base.
+// Contains details about a knowledge base.
 type KnowledgeBaseSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Description of the Resource.
+	// The description of the knowledge base.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// The name of the knowledge base.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The status of a knowledge base.
+	// The status of the knowledge base.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"KnowledgeBaseStatus"`
 
-	// Time Stamp.
+	// The time at which the knowledge base was last updated.
 	//
 	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -9648,24 +9879,28 @@ func (s *KnowledgeBaseSummary) SetUpdatedAt(v time.Time) *KnowledgeBaseSummary {
 	return s
 }
 
-// List Action Groups Request
 type ListAgentActionGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is Listed
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is Listed
+	// The version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -9739,16 +9974,17 @@ func (s *ListAgentActionGroupsInput) SetNextToken(v string) *ListAgentActionGrou
 	return s
 }
 
-// List Action Groups Response
 type ListAgentActionGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of ActionGroup Summaries
+	// A list of objects, each of which contains information about an action group.
 	//
 	// ActionGroupSummaries is a required field
 	ActionGroupSummaries []*ActionGroupSummary `locationName:"actionGroupSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -9782,19 +10018,23 @@ func (s *ListAgentActionGroupsOutput) SetNextToken(v string) *ListAgentActionGro
 	return s
 }
 
-// List Agent Aliases Request
 type ListAgentAliasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -9856,16 +10096,18 @@ func (s *ListAgentAliasesInput) SetNextToken(v string) *ListAgentAliasesInput {
 	return s
 }
 
-// List Agent Aliases Response
 type ListAgentAliasesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of summaries of all the aliases for an Agent.
+	// A list of objects, each of which contains information about an alias of the
+	// agent.
 	//
 	// AgentAliasSummaries is a required field
 	AgentAliasSummaries []*AgentAliasSummary `locationName:"agentAliasSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -9899,24 +10141,30 @@ func (s *ListAgentAliasesOutput) SetNextToken(v string) *ListAgentAliasesOutput 
 	return s
 }
 
-// List Agent Knowledge Bases Request
 type ListAgentKnowledgeBasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent for which to return information about
+	// knowledge bases associated with it.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Version number generated when a version is created
+	// The version of the agent for which to return information about knowledge
+	// bases associated with it.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -9990,16 +10238,18 @@ func (s *ListAgentKnowledgeBasesInput) SetNextToken(v string) *ListAgentKnowledg
 	return s
 }
 
-// List Agent Knowledge Bases Response
 type ListAgentKnowledgeBasesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of Agent Knowledge Base Summaries
+	// A list of objects, each of which contains information about a knowledge base
+	// associated with the agent.
 	//
 	// AgentKnowledgeBaseSummaries is a required field
 	AgentKnowledgeBaseSummaries []*AgentKnowledgeBaseSummary `locationName:"agentKnowledgeBaseSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10033,19 +10283,23 @@ func (s *ListAgentKnowledgeBasesOutput) SetNextToken(v string) *ListAgentKnowled
 	return s
 }
 
-// List Agent Versions Request
 type ListAgentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10107,16 +10361,18 @@ func (s *ListAgentVersionsInput) SetNextToken(v string) *ListAgentVersionsInput 
 	return s
 }
 
-// List Agent Versions Response
 type ListAgentVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of AgentVersionSummary.
+	// A list of objects, each of which contains information about a version of
+	// the agent.
 	//
 	// AgentVersionSummaries is a required field
 	AgentVersionSummaries []*AgentVersionSummary `locationName:"agentVersionSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10150,14 +10406,18 @@ func (s *ListAgentVersionsOutput) SetNextToken(v string) *ListAgentVersionsOutpu
 	return s
 }
 
-// List Agent Request
 type ListAgentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10207,16 +10467,17 @@ func (s *ListAgentsInput) SetNextToken(v string) *ListAgentsInput {
 	return s
 }
 
-// List Agent Response
 type ListAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of AgentSummary.
+	// A list of objects, each of which contains information about an agent.
 	//
 	// AgentSummaries is a required field
 	AgentSummaries []*AgentSummary `locationName:"agentSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10253,15 +10514,21 @@ func (s *ListAgentsOutput) SetNextToken(v string) *ListAgentsOutput {
 type ListDataSourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base for which to return a list of
+	// information.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10326,12 +10593,14 @@ func (s *ListDataSourcesInput) SetNextToken(v string) *ListDataSourcesInput {
 type ListDataSourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// list of data source summaries
+	// A list of objects, each of which contains information about a data source.
 	//
 	// DataSourceSummaries is a required field
 	DataSourceSummaries []*DataSourceSummary `locationName:"dataSourceSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10368,26 +10637,32 @@ func (s *ListDataSourcesOutput) SetNextToken(v string) *ListDataSourcesOutput {
 type ListIngestionJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source for which to return ingestion jobs.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// List of IngestionJobFilters
+	// Contains a definition of a filter for which to filter the results.
 	Filters []*IngestionJobFilter `locationName:"filters" min:"1" type:"list"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base for which to return ingestion
+	// jobs.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// Sorts the response returned by ListIngestionJobs operation.
+	// Contains details about how to sort the results.
 	SortBy *IngestionJobSortBy `locationName:"sortBy" type:"structure"`
 }
 
@@ -10494,12 +10769,15 @@ func (s *ListIngestionJobsInput) SetSortBy(v *IngestionJobSortBy) *ListIngestion
 type ListIngestionJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of IngestionJobSummaries
+	// A list of objects, each of which contains information about an ingestion
+	// job.
 	//
 	// IngestionJobSummaries is a required field
 	IngestionJobSummaries []*IngestionJobSummary `locationName:"ingestionJobSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10536,10 +10814,15 @@ func (s *ListIngestionJobsOutput) SetNextToken(v string) *ListIngestionJobsOutpu
 type ListKnowledgeBasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Max Results.
+	// The maximum number of results to return in the response. If the total number
+	// of results is greater than this value, use the token returned in the response
+	// in the nextToken field when making another request to return the next batch
+	// of results.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, enter the token returned in the nextToken field in the response
+	// in this field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10592,12 +10875,14 @@ func (s *ListKnowledgeBasesInput) SetNextToken(v string) *ListKnowledgeBasesInpu
 type ListKnowledgeBasesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of KnowledgeBaseSummaries
+	// A list of objects, each of which contains information about a knowledge base.
 	//
 	// KnowledgeBaseSummaries is a required field
 	KnowledgeBaseSummaries []*KnowledgeBaseSummary `locationName:"knowledgeBaseSummaries" type:"list" required:"true"`
 
-	// Opaque continuation token of previous paginated response.
+	// If the total number of results is greater than the maxResults value provided
+	// in the request, use this token when making another request in the nextToken
+	// field to return the next batch of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10634,7 +10919,7 @@ func (s *ListKnowledgeBasesOutput) SetNextToken(v string) *ListKnowledgeBasesOut
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// ARN of Taggable resources: [Agent, AgentAlias, Knowledge-Base]
+	// The ARN of the resource for which to list tags.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -10683,7 +10968,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A map of tag keys and values
+	// The key-value pairs for the tags associated with the resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -10711,23 +10996,24 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Contains the configurations to use OpenSearch Serverless to store knowledge
-// base data.
+// Contains details about the storage configuration of the knowledge base in
+// Amazon OpenSearch Service. For more information, see Create a vector index
+// in Amazon OpenSearch Service (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html).
 type OpenSearchServerlessConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Arn of an OpenSearch Serverless collection.
+	// The ARN of the OpenSearch Service vector store.
 	//
 	// CollectionArn is a required field
 	CollectionArn *string `locationName:"collectionArn" type:"string" required:"true"`
 
-	// A mapping of Bedrock Knowledge Base fields to OpenSearch Serverless field
-	// names
+	// Contains the names of the fields to which to map information about the vector
+	// store.
 	//
 	// FieldMapping is a required field
 	FieldMapping *OpenSearchServerlessFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
 
-	// Arn of an OpenSearch Serverless index.
+	// The name of the vector store.
 	//
 	// VectorIndexName is a required field
 	VectorIndexName *string `locationName:"vectorIndexName" type:"string" required:"true"`
@@ -10793,22 +11079,25 @@ func (s *OpenSearchServerlessConfiguration) SetVectorIndexName(v string) *OpenSe
 	return s
 }
 
-// A mapping of Bedrock Knowledge Base fields to OpenSearch Serverless field
-// names
+// Contains the names of the fields to which to map information about the vector
+// store.
 type OpenSearchServerlessFieldMapping struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores metadata about the vector
+	// store.
 	//
 	// MetadataField is a required field
 	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores the raw text from your
+	// data. The text is split according to the chunking strategy you choose.
 	//
 	// TextField is a required field
 	TextField *string `locationName:"textField" type:"string" required:"true"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores the vector embeddings
+	// for your data sources.
 	//
 	// VectorField is a required field
 	VectorField *string `locationName:"vectorField" type:"string" required:"true"`
@@ -10869,26 +11158,29 @@ func (s *OpenSearchServerlessFieldMapping) SetVectorField(v string) *OpenSearchS
 	return s
 }
 
-// Contains the configurations to use Pinecone to store knowledge base data.
+// Contains details about the storage configuration of the knowledge base in
+// Pinecone. For more information, see Create a vector index in Pinecone (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html).
 type PineconeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Pinecone connection string
+	// The endpoint URL for your index management page.
 	//
 	// ConnectionString is a required field
 	ConnectionString *string `locationName:"connectionString" type:"string" required:"true"`
 
-	// Arn of a SecretsManager Secret.
+	// The ARN of the secret that you created in Secrets Manager that is linked
+	// to your Pinecone API key.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
 
-	// A mapping of Bedrock Knowledge Base fields to Pinecone field names
+	// Contains the names of the fields to which to map information about the vector
+	// store.
 	//
 	// FieldMapping is a required field
 	FieldMapping *PineconeFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
 
-	// Pinecone namespace
+	// The namespace to be used to write new data to your database.
 	Namespace *string `locationName:"namespace" type:"string"`
 }
 
@@ -10958,16 +11250,19 @@ func (s *PineconeConfiguration) SetNamespace(v string) *PineconeConfiguration {
 	return s
 }
 
-// A mapping of Bedrock Knowledge Base fields to Pinecone field names
+// Contains the names of the fields to which to map information about the vector
+// store.
 type PineconeFieldMapping struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores metadata about the vector
+	// store.
 	//
 	// MetadataField is a required field
 	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores the raw text from your
+	// data. The text is split according to the chunking strategy you choose.
 	//
 	// TextField is a required field
 	TextField *string `locationName:"textField" type:"string" required:"true"`
@@ -11019,11 +11314,10 @@ func (s *PineconeFieldMapping) SetTextField(v string) *PineconeFieldMapping {
 	return s
 }
 
-// PrepareAgent Request
 type PrepareAgentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent for which to create a DRAFT version.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
@@ -11069,26 +11363,25 @@ func (s *PrepareAgentInput) SetAgentId(v string) *PrepareAgentInput {
 	return s
 }
 
-// PrepareAgent Response
 type PrepareAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier for a resource.
+	// The unique identifier of the agent for which the DRAFT version was created.
 	//
 	// AgentId is a required field
 	AgentId *string `locationName:"agentId" type:"string" required:"true"`
 
-	// Schema Type for Action APIs.
+	// The status of the DRAFT version and whether it is ready for use.
 	//
 	// AgentStatus is a required field
 	AgentStatus *string `locationName:"agentStatus" type:"string" required:"true" enum:"AgentStatus"`
 
-	// Agent Version.
+	// The version of the agent.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
 
-	// Time Stamp.
+	// The time at which the DRAFT version of the agent was last prepared.
 	//
 	// PreparedAt is a required field
 	PreparedAt *time.Time `locationName:"preparedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -11136,26 +11429,48 @@ func (s *PrepareAgentOutput) SetPreparedAt(v time.Time) *PrepareAgentOutput {
 	return s
 }
 
-// BasePromptConfiguration per Prompt Type.
+// Contains configurations to override a prompt template in one part of an agent
+// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 type PromptConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Base Prompt Template.
+	// Defines the prompt template with which to replace the default prompt template.
+	// You can use placeholder variables in the base prompt template to customize
+	// the prompt. For more information, see Prompt template placeholder variables
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-placeholders.html).
 	BasePromptTemplate *string `locationName:"basePromptTemplate" min:"1" type:"string"`
 
-	// Configuration for inference in prompt configuration
+	// Contains inference parameters to use when the agent invokes a foundation
+	// model in the part of the agent sequence defined by the promptType. For more
+	// information, see Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	InferenceConfiguration *InferenceConfiguration `locationName:"inferenceConfiguration" type:"structure"`
 
-	// Creation Mode for Prompt Configuration.
+	// Specifies whether to override the default parser Lambda function when parsing
+	// the raw foundation model output in the part of the agent sequence defined
+	// by the promptType. If you set the field as OVERRIDEN, the overrideLambda
+	// field in the PromptOverrideConfiguration (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html)
+	// must be specified with the ARN of a Lambda function.
 	ParserMode *string `locationName:"parserMode" type:"string" enum:"CreationMode"`
 
-	// Creation Mode for Prompt Configuration.
+	// Specifies whether to override the default prompt template for this promptType.
+	// Set this value to OVERRIDDEN to use the prompt that you provide in the basePromptTemplate.
+	// If you leave it as DEFAULT, the agent uses a default prompt template.
 	PromptCreationMode *string `locationName:"promptCreationMode" type:"string" enum:"CreationMode"`
 
-	// Prompt State.
+	// Specifies whether to allow the agent to carry out the step specified in the
+	// promptType. If you set this value to DISABLED, the agent skips that step.
+	// The default state for each promptType is as follows.
+	//
+	//    * PRE_PROCESSING – ENABLED
+	//
+	//    * ORCHESTRATION – ENABLED
+	//
+	//    * KNOWLEDGE_BASE_RESPONSE_GENERATION – ENABLED
+	//
+	//    * POST_PROCESSING – DISABLED
 	PromptState *string `locationName:"promptState" type:"string" enum:"PromptState"`
 
-	// Prompt Type.
+	// The step in the agent sequence that this prompt configuration applies to.
 	PromptType *string `locationName:"promptType" type:"string" enum:"PromptType"`
 }
 
@@ -11226,14 +11541,19 @@ func (s *PromptConfiguration) SetPromptType(v string) *PromptConfiguration {
 	return s
 }
 
-// Configuration for prompt override.
+// Contains configurations to override prompts in different parts of an agent
+// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 type PromptOverrideConfiguration struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
-	// ARN of a Lambda.
+	// The ARN of the Lambda function to use when parsing the raw foundation model
+	// output in parts of the agent sequence. If you specify this field, at least
+	// one of the promptConfigurations must contain a parserMode value that is set
+	// to OVERRIDDEN.
 	OverrideLambda *string `locationName:"overrideLambda" type:"string"`
 
-	// List of BasePromptConfiguration
+	// Contains configurations to override a prompt template in one part of an agent
+	// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
 	// PromptConfigurations is a required field
 	PromptConfigurations []*PromptConfiguration `locationName:"promptConfigurations" type:"list" required:"true"`
@@ -11292,31 +11612,35 @@ func (s *PromptOverrideConfiguration) SetPromptConfigurations(v []*PromptConfigu
 	return s
 }
 
-// Contains the configurations to use RDS to store knowledge base data.
+// Contains details about the storage configuration of the knowledge base in
+// Amazon RDS. For more information, see Create a vector index in Amazon RDS
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html).
 type RdsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Arn of a SecretsManager Secret.
+	// The ARN of the secret that you created in Secrets Manager that is linked
+	// to your Amazon RDS database.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
 
-	// Name of the database within RDS
+	// The name of your Amazon RDS database.
 	//
 	// DatabaseName is a required field
 	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
 
-	// A mapping of Bedrock Knowledge Base fields to RDS column names
+	// Contains the names of the fields to which to map information about the vector
+	// store.
 	//
 	// FieldMapping is a required field
 	FieldMapping *RdsFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
 
-	// Arn of a RDS Resource.
+	// The ARN of the vector store.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
-	// Name of the table within RDS
+	// The name of the table in the database.
 	//
 	// TableName is a required field
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
@@ -11400,26 +11724,30 @@ func (s *RdsConfiguration) SetTableName(v string) *RdsConfiguration {
 	return s
 }
 
-// A mapping of Bedrock Knowledge Base fields to RDS column names
+// Contains the names of the fields to which to map information about the vector
+// store.
 type RdsFieldMapping struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the column
+	// The name of the field in which Amazon Bedrock stores metadata about the vector
+	// store.
 	//
 	// MetadataField is a required field
 	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
 
-	// Name of the column
+	// The name of the field in which Amazon Bedrock stores the ID for each entry.
 	//
 	// PrimaryKeyField is a required field
 	PrimaryKeyField *string `locationName:"primaryKeyField" type:"string" required:"true"`
 
-	// Name of the column
+	// The name of the field in which Amazon Bedrock stores the raw text from your
+	// data. The text is split according to the chunking strategy you choose.
 	//
 	// TextField is a required field
 	TextField *string `locationName:"textField" type:"string" required:"true"`
 
-	// Name of the column
+	// The name of the field in which Amazon Bedrock stores the vector embeddings
+	// for your data sources.
 	//
 	// VectorField is a required field
 	VectorField *string `locationName:"vectorField" type:"string" required:"true"`
@@ -11489,27 +11817,30 @@ func (s *RdsFieldMapping) SetVectorField(v string) *RdsFieldMapping {
 	return s
 }
 
-// Contains the configurations to use Redis Enterprise Cloud to store knowledge
-// base data.
+// Contains details about the storage configuration of the knowledge base in
+// Redis Enterprise Cloud. For more information, see Create a vector index in
+// Redis Enterprise Cloud (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html).
 type RedisEnterpriseCloudConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Arn of a SecretsManager Secret.
+	// The ARN of the secret that you created in Secrets Manager that is linked
+	// to your Redis Enterprise Cloud database.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
 
-	// Redis enterprise cloud endpoint
+	// The endpoint URL of the Redis Enterprise Cloud database.
 	//
 	// Endpoint is a required field
 	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
 
-	// A mapping of Bedrock Knowledge Base fields to Redis Cloud field names
+	// Contains the names of the fields to which to map information about the vector
+	// store.
 	//
 	// FieldMapping is a required field
 	FieldMapping *RedisEnterpriseCloudFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
 
-	// Name of a redis enterprise cloud index
+	// The name of the vector index.
 	//
 	// VectorIndexName is a required field
 	VectorIndexName *string `locationName:"vectorIndexName" type:"string" required:"true"`
@@ -11584,21 +11915,25 @@ func (s *RedisEnterpriseCloudConfiguration) SetVectorIndexName(v string) *RedisE
 	return s
 }
 
-// A mapping of Bedrock Knowledge Base fields to Redis Cloud field names
+// Contains the names of the fields to which to map information about the vector
+// store.
 type RedisEnterpriseCloudFieldMapping struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores metadata about the vector
+	// store.
 	//
 	// MetadataField is a required field
 	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores the raw text from your
+	// data. The text is split according to the chunking strategy you choose.
 	//
 	// TextField is a required field
 	TextField *string `locationName:"textField" type:"string" required:"true"`
 
-	// Name of the field
+	// The name of the field in which Amazon Bedrock stores the vector embeddings
+	// for your data sources.
 	//
 	// VectorField is a required field
 	VectorField *string `locationName:"vectorField" type:"string" required:"true"`
@@ -11659,13 +11994,12 @@ func (s *RedisEnterpriseCloudFieldMapping) SetVectorField(v string) *RedisEnterp
 	return s
 }
 
-// This exception is thrown when a resource referenced by the operation does
-// not exist
+// The specified resource ARN was not found. Check the ARN and try your request
+// again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -11725,16 +12059,17 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configures an S3 data source location.
+// Contains information about the S3 configuration of the data source.
 type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A S3 bucket ARN
+	// The ARN of the bucket that contains the data source.
 	//
 	// BucketArn is a required field
 	BucketArn *string `locationName:"bucketArn" min:"1" type:"string" required:"true"`
 
-	// A list of S3 prefixes.
+	// A list of S3 prefixes that define the object containing the data sources.
+	// For more information, see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
 	InclusionPrefixes []*string `locationName:"inclusionPrefixes" min:"1" type:"list"`
 }
 
@@ -11787,14 +12122,14 @@ func (s *S3DataSourceConfiguration) SetInclusionPrefixes(v []*string) *S3DataSou
 	return s
 }
 
-// The identifier for the S3 resource.
+// Contains information about the S3 object containing the resource.
 type S3Identifier struct {
 	_ struct{} `type:"structure"`
 
-	// A bucket in S3.
+	// The name of the S3 bucket.
 	S3BucketName *string `locationName:"s3BucketName" min:"3" type:"string"`
 
-	// A object key in S3.
+	// The S3 object key containing the resource.
 	S3ObjectKey *string `locationName:"s3ObjectKey" min:"1" type:"string"`
 }
 
@@ -11844,11 +12179,11 @@ func (s *S3Identifier) SetS3ObjectKey(v string) *S3Identifier {
 	return s
 }
 
-// Server-side encryption configuration.
+// Contains the configuration for server-side encryption.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A KMS key ARN
+	// The ARN of the KMS key used to encrypt the resource.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -11889,12 +12224,11 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyArn(v string) *ServerSideEn
 	return s
 }
 
-// This exception is thrown when a request is made beyond the service quota
+// The number of requests exceeds the service quota. Resubmit your request later.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -11957,18 +12291,21 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type StartIngestionJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Client specified token used for idempotency checks
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source to ingest.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// A description of the ingestion job.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which to add the data source.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
@@ -12047,7 +12384,7 @@ func (s *StartIngestionJobInput) SetKnowledgeBaseId(v string) *StartIngestionJob
 type StartIngestionJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an ingestion job.
+	// An object containing information about the ingestion job.
 	//
 	// IngestionJob is a required field
 	IngestionJob *IngestionJob `locationName:"ingestionJob" type:"structure" required:"true"`
@@ -12077,25 +12414,27 @@ func (s *StartIngestionJobOutput) SetIngestionJob(v *IngestionJob) *StartIngesti
 	return s
 }
 
-// Configures the physical storage of ingested data in a knowledge base.
+// Contains the storage configuration of the knowledge base.
 type StorageConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the configurations to use OpenSearch Serverless to store knowledge
-	// base data.
+	// Contains the storage configuration of the knowledge base in Amazon OpenSearch
+	// Service.
 	OpensearchServerlessConfiguration *OpenSearchServerlessConfiguration `locationName:"opensearchServerlessConfiguration" type:"structure"`
 
-	// Contains the configurations to use Pinecone to store knowledge base data.
+	// Contains the storage configuration of the knowledge base in Pinecone.
 	PineconeConfiguration *PineconeConfiguration `locationName:"pineconeConfiguration" type:"structure"`
 
-	// Contains the configurations to use RDS to store knowledge base data.
+	// Contains details about the storage configuration of the knowledge base in
+	// Amazon RDS. For more information, see Create a vector index in Amazon RDS
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html).
 	RdsConfiguration *RdsConfiguration `locationName:"rdsConfiguration" type:"structure"`
 
-	// Contains the configurations to use Redis Enterprise Cloud to store knowledge
-	// base data.
+	// Contains the storage configuration of the knowledge base in Redis Enterprise
+	// Cloud.
 	RedisEnterpriseCloudConfiguration *RedisEnterpriseCloudConfiguration `locationName:"redisEnterpriseCloudConfiguration" type:"structure"`
 
-	// The storage type of a knowledge base.
+	// The vector store service in which the knowledge base is stored.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"KnowledgeBaseStorageType"`
@@ -12185,12 +12524,13 @@ func (s *StorageConfiguration) SetType(v string) *StorageConfiguration {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of Taggable resources: [Agent, AgentAlias, Knowledge-Base]
+	// The ARN of the resource to tag.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 
-	// A map of tag keys and values
+	// An object containing key-value pairs that define the tags to attach to the
+	// resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -12267,12 +12607,11 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// This exception is thrown when the number of requests exceeds the limit
+// The number of requests exceeds the limit. Resubmit your request later.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -12335,12 +12674,12 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// ARN of Taggable resources: [Agent, AgentAlias, Knowledge-Base]
+	// The ARN of the resource from which to remove tags.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 
-	// List of Tag Keys
+	// A list of keys of the tags to remove from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -12417,43 +12756,57 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Update Action Group Request
 type UpdateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Type of Executors for an Action Group
+	// The ARN of the Lambda function containing the business logic that is carried
+	// out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
-	// Id generated at the server side when an Action Group is created under Agent
+	// The unique identifier of the action group.
 	//
 	// ActionGroupId is a required field
 	ActionGroupId *string `location:"uri" locationName:"actionGroupId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// Specifies a new name for the action group.
 	//
 	// ActionGroupName is a required field
 	ActionGroupName *string `locationName:"actionGroupName" type:"string" required:"true"`
 
-	// State of the action group
+	// Specifies whether the action group is available for the agent to invoke or
+	// not when sending an InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	ActionGroupState *string `locationName:"actionGroupState" type:"string" enum:"ActionGroupState"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent for which to update the action group.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The unique identifier of the agent version for which to update the action
+	// group.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Contains information about the API Schema for the Action Group
+	// Contains either details about the S3 object containing the OpenAPI schema
+	// for the action group or the JSON or YAML-formatted payload defining the schema.
+	// For more information, see Action group OpenAPI schemas (https://docs.aws.amazon.com/bedrock/latest/userguide/agents-api-schema.html).
 	ApiSchema *APISchema `locationName:"apiSchema" type:"structure"`
 
-	// Description of the Resource.
+	// Specifies a new name for the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Action Group Signature for a BuiltIn Action
+	// To allow your agent to request the user for additional information when trying
+	// to complete a task, set this field to AMAZON.UserInput. You must leave the
+	// description, apiSchema, and actionGroupExecutor fields blank for this action
+	// group.
+	//
+	// During orchestration, if your agent determines that it needs to invoke an
+	// API in an action group, but doesn't have enough information to complete the
+	// API request, it will invoke this action group instead and return an Observation
+	// (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html)
+	// reprompting the user for more information.
 	ParentActionGroupSignature *string `locationName:"parentActionGroupSignature" type:"string" enum:"ActionGroupSignature"`
 }
 
@@ -12568,11 +12921,10 @@ func (s *UpdateAgentActionGroupInput) SetParentActionGroupSignature(v string) *U
 	return s
 }
 
-// Update Action Group Response
 type UpdateAgentActionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Action Group
+	// Contains details about the action group that was updated.
 	//
 	// AgentActionGroup is a required field
 	AgentActionGroup *AgentActionGroup `locationName:"agentActionGroup" type:"structure" required:"true"`
@@ -12602,29 +12954,28 @@ func (s *UpdateAgentActionGroupOutput) SetAgentActionGroup(v *AgentActionGroup) 
 	return s
 }
 
-// Update Agent Alias Request
 type UpdateAgentAliasInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent Alias is created
+	// The unique identifier of the alias.
 	//
 	// AgentAliasId is a required field
 	AgentAliasId *string `location:"uri" locationName:"agentAliasId" min:"10" type:"string" required:"true"`
 
-	// Name for a resource.
+	// Specifies a new name for the alias.
 	//
 	// AgentAliasName is a required field
 	AgentAliasName *string `locationName:"agentAliasName" type:"string" required:"true"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// Specifies a new description for the alias.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Routing configuration for an Agent alias.
+	// Contains details about the routing configuration of the alias.
 	RoutingConfiguration []*AgentAliasRoutingConfigurationListItem `locationName:"routingConfiguration" type:"list"`
 }
 
@@ -12714,11 +13065,10 @@ func (s *UpdateAgentAliasInput) SetRoutingConfiguration(v []*AgentAliasRoutingCo
 	return s
 }
 
-// Update Agent Alias Response
 type UpdateAgentAliasOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent alias
+	// Contains details about the alias that was updated.
 	//
 	// AgentAlias is a required field
 	AgentAlias *AgentAlias `locationName:"agentAlias" type:"structure" required:"true"`
@@ -12748,45 +13098,54 @@ func (s *UpdateAgentAliasOutput) SetAgentAlias(v *AgentAlias) *UpdateAgentAliasO
 	return s
 }
 
-// Update Agent Request
 type UpdateAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// Specifies a new name for the agent.
 	//
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// The ARN of the IAM role with permissions to update the agent. The ARN must
+	// begin with AmazonBedrockExecutionRoleForAgents_.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
 
-	// A KMS key ARN
+	// The ARN of the KMS key with which to encrypt the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
-	// Description of the Resource.
+	// Specifies a new description of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// ARN or name of a Bedrock model.
-	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string"`
+	// Specifies a new foundation model to be used for orchestration by the agent.
+	//
+	// FoundationModel is a required field
+	FoundationModel *string `locationName:"foundationModel" min:"1" type:"string" required:"true"`
 
-	// Max Session Time.
+	// The number of seconds for which Amazon Bedrock keeps information about a
+	// user's conversation with the agent.
+	//
+	// A user interaction remains active for the amount of time specified. If no
+	// conversation occurs during this time, the session expires and Amazon Bedrock
+	// deletes any data provided before the timeout.
 	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
 
-	// Instruction for the agent.
+	// Specifies new instructions that tell the agent what it should do and how
+	// it should interact with users.
 	//
 	// Instruction is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateAgentInput's
 	// String and GoString methods.
 	Instruction *string `locationName:"instruction" min:"40" type:"string" sensitive:"true"`
 
-	// Configuration for prompt override.
+	// Contains configurations to override prompts in different parts of an agent
+	// sequence. For more information, see Advanced prompts (https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html).
 	//
 	// PromptOverrideConfiguration is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateAgentInput's
@@ -12832,6 +13191,9 @@ func (s *UpdateAgentInput) Validate() error {
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.FoundationModel == nil {
+		invalidParams.Add(request.NewErrParamRequired("FoundationModel"))
 	}
 	if s.FoundationModel != nil && len(*s.FoundationModel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FoundationModel", 1))
@@ -12908,30 +13270,33 @@ func (s *UpdateAgentInput) SetPromptOverrideConfiguration(v *PromptOverrideConfi
 	return s
 }
 
-// Update Agent Knowledge Base Request
 type UpdateAgentKnowledgeBaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// Id generated at the server side when an Agent is created
+	// The unique identifier of the agent associated with the knowledge base that
+	// you want to update.
 	//
 	// AgentId is a required field
 	AgentId *string `location:"uri" locationName:"agentId" type:"string" required:"true"`
 
-	// Draft Version of the Agent.
+	// The version of the agent associated with the knowledge base that you want
+	// to update.
 	//
 	// AgentVersion is a required field
 	AgentVersion *string `location:"uri" locationName:"agentVersion" min:"5" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// Specifies a new description for the knowledge base associated with an agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Id generated at the server side when a Knowledge Base is associated to an
-	// Agent
+	// The unique identifier of the knowledge base that has been associated with
+	// an agent.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// State of the knowledge base; whether it is enabled or disabled
+	// Specifies whether the agent uses the knowledge base or not when sending an
+	// InvokeAgent (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)
+	// request.
 	KnowledgeBaseState *string `locationName:"knowledgeBaseState" type:"string" enum:"KnowledgeBaseState"`
 }
 
@@ -13014,11 +13379,11 @@ func (s *UpdateAgentKnowledgeBaseInput) SetKnowledgeBaseState(v string) *UpdateA
 	return s
 }
 
-// Update Agent Knowledge Base Response
 type UpdateAgentKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an Agent Knowledge Base.
+	// Contains details about the knowledge base that has been associated with an
+	// agent.
 	//
 	// AgentKnowledgeBase is a required field
 	AgentKnowledgeBase *AgentKnowledgeBase `locationName:"agentKnowledgeBase" type:"structure" required:"true"`
@@ -13048,11 +13413,10 @@ func (s *UpdateAgentKnowledgeBaseOutput) SetAgentKnowledgeBase(v *AgentKnowledge
 	return s
 }
 
-// Update Agent Response
 type UpdateAgentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of an agent
+	// Contains details about the agent that was updated.
 	//
 	// Agent is a required field
 	Agent *Agent `locationName:"agent" type:"structure" required:"true"`
@@ -13085,33 +13449,33 @@ func (s *UpdateAgentOutput) SetAgent(v *Agent) *UpdateAgentOutput {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a raw data source location to ingest.
+	// Contains details about the storage configuration of the data source.
 	//
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `locationName:"dataSourceConfiguration" type:"structure" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the data source.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"dataSourceId" type:"string" required:"true"`
 
-	// Description of the Resource.
+	// Specifies a new description for the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to which the data source belongs.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// Specifies a new name for the data source.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// Server-side encryption configuration.
+	// Contains details about server-side encryption of the data source.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `locationName:"serverSideEncryptionConfiguration" type:"structure"`
 
-	// Configures ingestion for a vector knowledge base
+	// Contains details about how to ingest the documents in the data source.
 	VectorIngestionConfiguration *VectorIngestionConfiguration `locationName:"vectorIngestionConfiguration" type:"structure"`
 }
 
@@ -13224,7 +13588,7 @@ func (s *UpdateDataSourceInput) SetVectorIngestionConfiguration(v *VectorIngesti
 type UpdateDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a data source.
+	// Contains details about the data source.
 	//
 	// DataSource is a required field
 	DataSource *DataSource `locationName:"dataSource" type:"structure" required:"true"`
@@ -13257,30 +13621,34 @@ func (s *UpdateDataSourceOutput) SetDataSource(v *DataSource) *UpdateDataSourceO
 type UpdateKnowledgeBaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// Description of the Resource.
+	// Specifies a new description for the knowledge base.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// Configures a bedrock knowledge base.
+	// Specifies the configuration for the embeddings model used for the knowledge
+	// base. You must use the same configuration as when the knowledge base was
+	// created.
 	//
 	// KnowledgeBaseConfiguration is a required field
 	KnowledgeBaseConfiguration *KnowledgeBaseConfiguration `locationName:"knowledgeBaseConfiguration" type:"structure" required:"true"`
 
-	// Identifier for a resource.
+	// The unique identifier of the knowledge base to update.
 	//
 	// KnowledgeBaseId is a required field
 	KnowledgeBaseId *string `location:"uri" locationName:"knowledgeBaseId" type:"string" required:"true"`
 
-	// Name for a resource.
+	// Specifies a new name for the knowledge base.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// ARN of a IAM role.
+	// Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions
+	// to modify the knowledge base.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	// Configures the physical storage of ingested data in a knowledge base.
+	// Specifies the configuration for the vector store used for the knowledge base.
+	// You must use the same configuration as when the knowledge base was created.
 	//
 	// StorageConfiguration is a required field
 	StorageConfiguration *StorageConfiguration `locationName:"storageConfiguration" type:"structure" required:"true"`
@@ -13384,7 +13752,7 @@ func (s *UpdateKnowledgeBaseInput) SetStorageConfiguration(v *StorageConfigurati
 type UpdateKnowledgeBaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the information of a knowledge base.
+	// Contains details about the knowledge base.
 	//
 	// KnowledgeBase is a required field
 	KnowledgeBase *KnowledgeBase `locationName:"knowledgeBase" type:"structure" required:"true"`
@@ -13414,15 +13782,15 @@ func (s *UpdateKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBase) *UpdateKn
 	return s
 }
 
-// This exception is thrown when the request's input validation fails
+// Input validation failed. Check your request parameters and retry the request.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// list of ValidationExceptionField
+	// A list of objects containing fields that caused validation errors and their
+	// corresponding validation error messages.
 	FieldList []*ValidationExceptionField `locationName:"fieldList" type:"list"`
 
-	// Non Blank String
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -13483,16 +13851,16 @@ func (s *ValidationException) RequestID() string {
 }
 
 // Stores information about a field passed inside a request that resulted in
-// an exception
+// an validation error.
 type ValidationExceptionField struct {
 	_ struct{} `type:"structure"`
 
-	// Non Blank String
+	// A message describing why this field failed validation.
 	//
 	// Message is a required field
 	Message *string `locationName:"message" type:"string" required:"true"`
 
-	// Non Blank String
+	// The name of the field.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -13528,11 +13896,13 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
-// Configures ingestion for a vector knowledge base
+// Contains details about how to ingest the documents in a data source.
 type VectorIngestionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Configures chunking strategy
+	// Details about how to chunk the documents in the data source. A chunk refers
+	// to an excerpt from a data source that is returned when the knowledge base
+	// that it belongs to is queried.
 	ChunkingConfiguration *ChunkingConfiguration `locationName:"chunkingConfiguration" type:"structure"`
 }
 
@@ -13575,11 +13945,12 @@ func (s *VectorIngestionConfiguration) SetChunkingConfiguration(v *ChunkingConfi
 	return s
 }
 
-// Configurations for a vector knowledge base.
+// Contains details about the model used to create vector embeddings for the
+// knowledge base.
 type VectorKnowledgeBaseConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Arn of a Bedrock model.
+	// The ARN of the model used to create vector embeddings for the knowledge base.
 	//
 	// EmbeddingModelArn is a required field
 	EmbeddingModelArn *string `locationName:"embeddingModelArn" min:"20" type:"string" required:"true"`
@@ -13625,7 +13996,6 @@ func (s *VectorKnowledgeBaseConfiguration) SetEmbeddingModelArn(v string) *Vecto
 	return s
 }
 
-// Action Group Signature for a BuiltIn Action
 const (
 	// ActionGroupSignatureAmazonUserInput is a ActionGroupSignature enum value
 	ActionGroupSignatureAmazonUserInput = "AMAZON.UserInput"
@@ -13638,7 +14008,6 @@ func ActionGroupSignature_Values() []string {
 	}
 }
 
-// State of the action group
 const (
 	// ActionGroupStateEnabled is a ActionGroupState enum value
 	ActionGroupStateEnabled = "ENABLED"
@@ -13655,7 +14024,6 @@ func ActionGroupState_Values() []string {
 	}
 }
 
-// The statuses an Agent Alias can be in.
 const (
 	// AgentAliasStatusCreating is a AgentAliasStatus enum value
 	AgentAliasStatusCreating = "CREATING"
@@ -13684,7 +14052,6 @@ func AgentAliasStatus_Values() []string {
 	}
 }
 
-// Schema Type for Action APIs.
 const (
 	// AgentStatusCreating is a AgentStatus enum value
 	AgentStatusCreating = "CREATING"
@@ -13725,7 +14092,6 @@ func AgentStatus_Values() []string {
 	}
 }
 
-// The type of chunking strategy
 const (
 	// ChunkingStrategyFixedSize is a ChunkingStrategy enum value
 	ChunkingStrategyFixedSize = "FIXED_SIZE"
@@ -13742,7 +14108,6 @@ func ChunkingStrategy_Values() []string {
 	}
 }
 
-// Creation Mode for Prompt Configuration.
 const (
 	// CreationModeDefault is a CreationMode enum value
 	CreationModeDefault = "DEFAULT"
@@ -13759,7 +14124,6 @@ func CreationMode_Values() []string {
 	}
 }
 
-// The status of a data source.
 const (
 	// DataSourceStatusAvailable is a DataSourceStatus enum value
 	DataSourceStatusAvailable = "AVAILABLE"
@@ -13776,7 +14140,6 @@ func DataSourceStatus_Values() []string {
 	}
 }
 
-// The type of the data source location.
 const (
 	// DataSourceTypeS3 is a DataSourceType enum value
 	DataSourceTypeS3 = "S3"
@@ -13789,7 +14152,6 @@ func DataSourceType_Values() []string {
 	}
 }
 
-// The name of the field to filter ingestion jobs.
 const (
 	// IngestionJobFilterAttributeStatus is a IngestionJobFilterAttribute enum value
 	IngestionJobFilterAttributeStatus = "STATUS"
@@ -13802,7 +14164,6 @@ func IngestionJobFilterAttribute_Values() []string {
 	}
 }
 
-// The operator used to filter ingestion jobs.
 const (
 	// IngestionJobFilterOperatorEq is a IngestionJobFilterOperator enum value
 	IngestionJobFilterOperatorEq = "EQ"
@@ -13815,7 +14176,6 @@ func IngestionJobFilterOperator_Values() []string {
 	}
 }
 
-// The name of the field to sort ingestion jobs.
 const (
 	// IngestionJobSortByAttributeStatus is a IngestionJobSortByAttribute enum value
 	IngestionJobSortByAttributeStatus = "STATUS"
@@ -13832,7 +14192,6 @@ func IngestionJobSortByAttribute_Values() []string {
 	}
 }
 
-// The status of an ingestion job.
 const (
 	// IngestionJobStatusStarting is a IngestionJobStatus enum value
 	IngestionJobStatusStarting = "STARTING"
@@ -13857,7 +14216,6 @@ func IngestionJobStatus_Values() []string {
 	}
 }
 
-// State of the knowledge base; whether it is enabled or disabled
 const (
 	// KnowledgeBaseStateEnabled is a KnowledgeBaseState enum value
 	KnowledgeBaseStateEnabled = "ENABLED"
@@ -13874,7 +14232,6 @@ func KnowledgeBaseState_Values() []string {
 	}
 }
 
-// The status of a knowledge base.
 const (
 	// KnowledgeBaseStatusCreating is a KnowledgeBaseStatus enum value
 	KnowledgeBaseStatusCreating = "CREATING"
@@ -13903,7 +14260,6 @@ func KnowledgeBaseStatus_Values() []string {
 	}
 }
 
-// The storage type of a knowledge base.
 const (
 	// KnowledgeBaseStorageTypeOpensearchServerless is a KnowledgeBaseStorageType enum value
 	KnowledgeBaseStorageTypeOpensearchServerless = "OPENSEARCH_SERVERLESS"
@@ -13928,7 +14284,6 @@ func KnowledgeBaseStorageType_Values() []string {
 	}
 }
 
-// The type of a knowledge base.
 const (
 	// KnowledgeBaseTypeVector is a KnowledgeBaseType enum value
 	KnowledgeBaseTypeVector = "VECTOR"
@@ -13941,7 +14296,6 @@ func KnowledgeBaseType_Values() []string {
 	}
 }
 
-// Prompt State.
 const (
 	// PromptStateEnabled is a PromptState enum value
 	PromptStateEnabled = "ENABLED"
@@ -13958,7 +14312,6 @@ func PromptState_Values() []string {
 	}
 }
 
-// Prompt Type.
 const (
 	// PromptTypePreProcessing is a PromptType enum value
 	PromptTypePreProcessing = "PRE_PROCESSING"
@@ -13983,7 +14336,6 @@ func PromptType_Values() []string {
 	}
 }
 
-// Order to sort results by.
 const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"

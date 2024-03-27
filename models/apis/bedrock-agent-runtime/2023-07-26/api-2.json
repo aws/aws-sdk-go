@@ -1,934 +1,1370 @@
 {
-  "version":"2.0",
-  "metadata":{
-    "apiVersion":"2023-07-26",
-    "endpointPrefix":"bedrock-agent-runtime",
-    "jsonVersion":"1.1",
-    "protocol":"rest-json",
-    "serviceFullName":"Agents for Amazon Bedrock Runtime",
-    "serviceId":"Bedrock Agent Runtime",
-    "signatureVersion":"v4",
-    "signingName":"bedrock",
-    "uid":"bedrock-agent-runtime-2023-07-26"
+  "metadata": {
+    "apiVersion": "2023-07-26",
+    "endpointPrefix": "bedrock-agent-runtime",
+    "jsonVersion": "1.1",
+    "protocol": "rest-json",
+    "serviceFullName": "Agents for Amazon Bedrock Runtime",
+    "serviceId": "Bedrock Agent Runtime",
+    "signatureVersion": "v4",
+    "signingName": "bedrock",
+    "uid": "bedrock-agent-runtime-2023-07-26"
   },
-  "operations":{
-    "InvokeAgent":{
-      "name":"InvokeAgent",
-      "http":{
-        "method":"POST",
-        "requestUri":"/agents/{agentId}/agentAliases/{agentAliasId}/sessions/{sessionId}/text",
-        "responseCode":200
+  "operations": {
+    "InvokeAgent": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/agents/{agentId}/agentAliases/{agentAliasId}/sessions/{sessionId}/text",
+        "responseCode": 200
       },
-      "input":{"shape":"InvokeAgentRequest"},
-      "output":{"shape":"InvokeAgentResponse"},
-      "errors":[
-        {"shape":"ConflictException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"DependencyFailedException"},
-        {"shape":"BadGatewayException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ServiceQuotaExceededException"}
-      ]
+      "input": {
+        "shape": "InvokeAgentRequest"
+      },
+      "name": "InvokeAgent",
+      "output": {
+        "shape": "InvokeAgentResponse"
+      }
     },
-    "Retrieve":{
-      "name":"Retrieve",
-      "http":{
-        "method":"POST",
-        "requestUri":"/knowledgebases/{knowledgeBaseId}/retrieve",
-        "responseCode":200
+    "Retrieve": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/knowledgebases/{knowledgeBaseId}/retrieve",
+        "responseCode": 200
       },
-      "input":{"shape":"RetrieveRequest"},
-      "output":{"shape":"RetrieveResponse"},
-      "errors":[
-        {"shape":"ConflictException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"DependencyFailedException"},
-        {"shape":"BadGatewayException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ServiceQuotaExceededException"}
-      ]
+      "input": {
+        "shape": "RetrieveRequest"
+      },
+      "name": "Retrieve",
+      "output": {
+        "shape": "RetrieveResponse"
+      }
     },
-    "RetrieveAndGenerate":{
-      "name":"RetrieveAndGenerate",
-      "http":{
-        "method":"POST",
-        "requestUri":"/retrieveAndGenerate",
-        "responseCode":200
+    "RetrieveAndGenerate": {
+      "errors": [
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "DependencyFailedException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/retrieveAndGenerate",
+        "responseCode": 200
       },
-      "input":{"shape":"RetrieveAndGenerateRequest"},
-      "output":{"shape":"RetrieveAndGenerateResponse"},
-      "errors":[
-        {"shape":"ConflictException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"},
-        {"shape":"InternalServerException"},
-        {"shape":"DependencyFailedException"},
-        {"shape":"BadGatewayException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ServiceQuotaExceededException"}
-      ]
+      "input": {
+        "shape": "RetrieveAndGenerateRequest"
+      },
+      "name": "RetrieveAndGenerate",
+      "output": {
+        "shape": "RetrieveAndGenerateResponse"
+      }
     }
   },
-  "shapes":{
-    "AccessDeniedException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+  "shapes": {
+    "AccessDeniedException": {
+      "error": {
+        "httpStatusCode": 403,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":403,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "ActionGroupInvocationInput":{
-      "type":"structure",
-      "members":{
-        "actionGroupName":{"shape":"ActionGroupName"},
-        "apiPath":{"shape":"ApiPath"},
-        "parameters":{"shape":"Parameters"},
-        "requestBody":{"shape":"RequestBody"},
-        "verb":{"shape":"Verb"}
+    "ActionGroupInvocationInput": {
+      "members": {
+        "actionGroupName": {
+          "shape": "ActionGroupName"
+        },
+        "apiPath": {
+          "shape": "ApiPath"
+        },
+        "parameters": {
+          "shape": "Parameters"
+        },
+        "requestBody": {
+          "shape": "RequestBody"
+        },
+        "verb": {
+          "shape": "Verb"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionGroupInvocationOutput": {
+      "members": {
+        "text": {
+          "shape": "ActionGroupOutputString"
+        }
+      },
+      "type": "structure"
+    },
+    "ActionGroupName": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "ActionGroupOutputString": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "AgentAliasId": {
+      "max": 10,
+      "min": 0,
+      "pattern": "^[0-9a-zA-Z]+$",
+      "type": "string"
+    },
+    "AgentId": {
+      "max": 10,
+      "min": 0,
+      "pattern": "^[0-9a-zA-Z]+$",
+      "type": "string"
+    },
+    "ApiPath": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "Attribution": {
+      "members": {
+        "citations": {
+          "shape": "Citations"
+        }
+      },
+      "type": "structure"
+    },
+    "BadGatewayException": {
+      "error": {
+        "httpStatusCode": 502
+      },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        },
+        "resourceName": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "BedrockModelArn": {
+      "max": 1011,
+      "min": 20,
+      "pattern": "^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))$",
+      "type": "string"
+    },
+    "Boolean": {
+      "box": true,
+      "type": "boolean"
+    },
+    "Citation": {
+      "members": {
+        "generatedResponsePart": {
+          "shape": "GeneratedResponsePart"
+        },
+        "retrievedReferences": {
+          "shape": "RetrievedReferences"
+        }
+      },
+      "type": "structure"
+    },
+    "Citations": {
+      "member": {
+        "shape": "Citation"
+      },
+      "type": "list"
+    },
+    "ConflictException": {
+      "error": {
+        "httpStatusCode": 409,
+        "senderFault": true
+      },
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "ContentMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "Parameters"
       }
     },
-    "ActionGroupInvocationOutput":{
-      "type":"structure",
-      "members":{
-        "text":{"shape":"ActionGroupOutputString"}
-      }
-    },
-    "ActionGroupName":{
-      "type":"string",
-      "sensitive":true
-    },
-    "ActionGroupOutputString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "AgentAliasId":{
-      "type":"string",
-      "max":10,
-      "min":0,
-      "pattern":"^[0-9a-zA-Z]+$"
-    },
-    "AgentId":{
-      "type":"string",
-      "max":10,
-      "min":0,
-      "pattern":"^[0-9a-zA-Z]+$"
-    },
-    "ApiPath":{
-      "type":"string",
-      "sensitive":true
-    },
-    "Attribution":{
-      "type":"structure",
-      "members":{
-        "citations":{"shape":"Citations"}
-      }
-    },
-    "BadGatewayException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"},
-        "resourceName":{"shape":"NonBlankString"}
-      },
-      "error":{"httpStatusCode":502},
-      "exception":true,
-      "fault":true
-    },
-    "BedrockModelArn":{
-      "type":"string",
-      "max":1011,
-      "min":20,
-      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}))$"
-    },
-    "Boolean":{
-      "type":"boolean",
-      "box":true
-    },
-    "Citation":{
-      "type":"structure",
-      "members":{
-        "generatedResponsePart":{"shape":"GeneratedResponsePart"},
-        "retrievedReferences":{"shape":"RetrievedReferences"}
-      }
-    },
-    "Citations":{
-      "type":"list",
-      "member":{"shape":"Citation"}
-    },
-    "ConflictException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
-      },
-      "error":{
-        "httpStatusCode":409,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ContentMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"Parameters"}
-    },
-    "CreationMode":{
-      "type":"string",
-      "enum":[
+    "CreationMode": {
+      "enum": [
         "DEFAULT",
         "OVERRIDDEN"
-      ]
+      ],
+      "type": "string"
     },
-    "DependencyFailedException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"},
-        "resourceName":{"shape":"NonBlankString"}
+    "DependencyFailedException": {
+      "error": {
+        "httpStatusCode": 424,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":424,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        },
+        "resourceName": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "Double":{
-      "type":"double",
-      "box":true
+    "Double": {
+      "box": true,
+      "type": "double"
     },
-    "FailureReasonString":{
-      "type":"string",
-      "sensitive":true
+    "FailureReasonString": {
+      "sensitive": true,
+      "type": "string"
     },
-    "FailureTrace":{
-      "type":"structure",
-      "members":{
-        "failureReason":{"shape":"FailureReasonString"},
-        "traceId":{"shape":"TraceId"}
+    "FailureTrace": {
+      "members": {
+        "failureReason": {
+          "shape": "FailureReasonString"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
       },
-      "sensitive":true
+      "sensitive": true,
+      "type": "structure"
     },
-    "FinalResponse":{
-      "type":"structure",
-      "members":{
-        "text":{"shape":"FinalResponseString"}
-      }
+    "FilterKey": {
+      "max": 100,
+      "min": 1,
+      "type": "string"
     },
-    "FinalResponseString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "GeneratedResponsePart":{
-      "type":"structure",
-      "members":{
-        "textResponsePart":{"shape":"TextResponsePart"}
-      }
-    },
-    "GenerationConfiguration":{
-      "type":"structure",
-      "members":{
-        "promptTemplate":{"shape":"PromptTemplate"}
-      }
-    },
-    "InferenceConfiguration":{
-      "type":"structure",
-      "members":{
-        "maximumLength":{"shape":"MaximumLength"},
-        "stopSequences":{"shape":"StopSequences"},
-        "temperature":{"shape":"Temperature"},
-        "topK":{"shape":"TopK"},
-        "topP":{"shape":"TopP"}
-      }
-    },
-    "InputText":{
-      "type":"string",
-      "max":25000000,
-      "min":0,
-      "sensitive":true
-    },
-    "InternalServerException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "FinalResponse": {
+      "members": {
+        "text": {
+          "shape": "FinalResponseString"
+        }
       },
-      "error":{"httpStatusCode":500},
-      "exception":true,
-      "fault":true
+      "type": "structure"
     },
-    "InvocationInput":{
-      "type":"structure",
-      "members":{
-        "actionGroupInvocationInput":{"shape":"ActionGroupInvocationInput"},
-        "invocationType":{"shape":"InvocationType"},
-        "knowledgeBaseLookupInput":{"shape":"KnowledgeBaseLookupInput"},
-        "traceId":{"shape":"TraceId"}
+    "FinalResponseString": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "GeneratedResponsePart": {
+      "members": {
+        "textResponsePart": {
+          "shape": "TextResponsePart"
+        }
       },
-      "sensitive":true
+      "type": "structure"
     },
-    "InvocationType":{
-      "type":"string",
-      "enum":[
+    "GenerationConfiguration": {
+      "members": {
+        "promptTemplate": {
+          "shape": "PromptTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "InferenceConfiguration": {
+      "members": {
+        "maximumLength": {
+          "shape": "MaximumLength"
+        },
+        "stopSequences": {
+          "shape": "StopSequences"
+        },
+        "temperature": {
+          "shape": "Temperature"
+        },
+        "topK": {
+          "shape": "TopK"
+        },
+        "topP": {
+          "shape": "TopP"
+        }
+      },
+      "type": "structure"
+    },
+    "InputText": {
+      "max": 25000000,
+      "min": 0,
+      "sensitive": true,
+      "type": "string"
+    },
+    "InternalServerException": {
+      "error": {
+        "httpStatusCode": 500
+      },
+      "exception": true,
+      "fault": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "InvocationInput": {
+      "members": {
+        "actionGroupInvocationInput": {
+          "shape": "ActionGroupInvocationInput"
+        },
+        "invocationType": {
+          "shape": "InvocationType"
+        },
+        "knowledgeBaseLookupInput": {
+          "shape": "KnowledgeBaseLookupInput"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "InvocationType": {
+      "enum": [
         "ACTION_GROUP",
         "KNOWLEDGE_BASE",
         "FINISH"
-      ]
+      ],
+      "type": "string"
     },
-    "InvokeAgentRequest":{
-      "type":"structure",
-      "required":[
+    "InvokeAgentRequest": {
+      "members": {
+        "agentAliasId": {
+          "location": "uri",
+          "locationName": "agentAliasId",
+          "shape": "AgentAliasId"
+        },
+        "agentId": {
+          "location": "uri",
+          "locationName": "agentId",
+          "shape": "AgentId"
+        },
+        "enableTrace": {
+          "shape": "Boolean"
+        },
+        "endSession": {
+          "shape": "Boolean"
+        },
+        "inputText": {
+          "shape": "InputText"
+        },
+        "sessionId": {
+          "location": "uri",
+          "locationName": "sessionId",
+          "shape": "SessionId"
+        },
+        "sessionState": {
+          "shape": "SessionState"
+        }
+      },
+      "required": [
         "agentAliasId",
         "agentId",
         "inputText",
         "sessionId"
       ],
-      "members":{
-        "agentAliasId":{
-          "shape":"AgentAliasId",
-          "location":"uri",
-          "locationName":"agentAliasId"
-        },
-        "agentId":{
-          "shape":"AgentId",
-          "location":"uri",
-          "locationName":"agentId"
-        },
-        "enableTrace":{"shape":"Boolean"},
-        "endSession":{"shape":"Boolean"},
-        "inputText":{"shape":"InputText"},
-        "sessionId":{
-          "shape":"SessionId",
-          "location":"uri",
-          "locationName":"sessionId"
-        },
-        "sessionState":{"shape":"SessionState"}
-      }
+      "type": "structure"
     },
-    "InvokeAgentResponse":{
-      "type":"structure",
-      "required":[
+    "InvokeAgentResponse": {
+      "members": {
+        "completion": {
+          "shape": "ResponseStream"
+        },
+        "contentType": {
+          "location": "header",
+          "locationName": "x-amzn-bedrock-agent-content-type",
+          "shape": "MimeType"
+        },
+        "sessionId": {
+          "location": "header",
+          "locationName": "x-amz-bedrock-agent-session-id",
+          "shape": "SessionId"
+        }
+      },
+      "payload": "completion",
+      "required": [
         "completion",
         "contentType",
         "sessionId"
       ],
-      "members":{
-        "completion":{"shape":"ResponseStream"},
-        "contentType":{
-          "shape":"MimeType",
-          "location":"header",
-          "locationName":"x-amzn-bedrock-agent-content-type"
+      "type": "structure"
+    },
+    "KmsKeyArn": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$",
+      "type": "string"
+    },
+    "KnowledgeBaseId": {
+      "max": 10,
+      "min": 0,
+      "pattern": "^[0-9a-zA-Z]+$",
+      "type": "string"
+    },
+    "KnowledgeBaseLookupInput": {
+      "members": {
+        "knowledgeBaseId": {
+          "shape": "TraceKnowledgeBaseId"
         },
-        "sessionId":{
-          "shape":"SessionId",
-          "location":"header",
-          "locationName":"x-amz-bedrock-agent-session-id"
+        "text": {
+          "shape": "KnowledgeBaseLookupInputString"
         }
       },
-      "payload":"completion"
+      "type": "structure"
     },
-    "KmsKeyArn":{
-      "type":"string",
-      "max":2048,
-      "min":1,
-      "pattern":"^arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}$"
+    "KnowledgeBaseLookupInputString": {
+      "sensitive": true,
+      "type": "string"
     },
-    "KnowledgeBaseId":{
-      "type":"string",
-      "max":10,
-      "min":0,
-      "pattern":"^[0-9a-zA-Z]+$"
-    },
-    "KnowledgeBaseLookupInput":{
-      "type":"structure",
-      "members":{
-        "knowledgeBaseId":{"shape":"TraceKnowledgeBaseId"},
-        "text":{"shape":"KnowledgeBaseLookupInputString"}
-      }
-    },
-    "KnowledgeBaseLookupInputString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "KnowledgeBaseLookupOutput":{
-      "type":"structure",
-      "members":{
-        "retrievedReferences":{"shape":"RetrievedReferences"}
-      }
-    },
-    "KnowledgeBaseQuery":{
-      "type":"structure",
-      "required":["text"],
-      "members":{
-        "text":{"shape":"KnowledgeBaseQueryTextString"}
+    "KnowledgeBaseLookupOutput": {
+      "members": {
+        "retrievedReferences": {
+          "shape": "RetrievedReferences"
+        }
       },
-      "sensitive":true
+      "type": "structure"
     },
-    "KnowledgeBaseQueryTextString":{
-      "type":"string",
-      "max":1000,
-      "min":0
+    "KnowledgeBaseQuery": {
+      "members": {
+        "text": {
+          "shape": "KnowledgeBaseQueryTextString"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "sensitive": true,
+      "type": "structure"
     },
-    "KnowledgeBaseRetrievalConfiguration":{
-      "type":"structure",
-      "required":["vectorSearchConfiguration"],
-      "members":{
-        "vectorSearchConfiguration":{"shape":"KnowledgeBaseVectorSearchConfiguration"}
-      }
+    "KnowledgeBaseQueryTextString": {
+      "max": 1000,
+      "min": 0,
+      "type": "string"
     },
-    "KnowledgeBaseRetrievalResult":{
-      "type":"structure",
-      "required":["content"],
-      "members":{
-        "content":{"shape":"RetrievalResultContent"},
-        "location":{"shape":"RetrievalResultLocation"},
-        "score":{"shape":"Double"}
-      }
+    "KnowledgeBaseRetrievalConfiguration": {
+      "members": {
+        "vectorSearchConfiguration": {
+          "shape": "KnowledgeBaseVectorSearchConfiguration"
+        }
+      },
+      "required": [
+        "vectorSearchConfiguration"
+      ],
+      "type": "structure"
     },
-    "KnowledgeBaseRetrievalResults":{
-      "type":"list",
-      "member":{"shape":"KnowledgeBaseRetrievalResult"},
-      "sensitive":true
+    "KnowledgeBaseRetrievalResult": {
+      "members": {
+        "content": {
+          "shape": "RetrievalResultContent"
+        },
+        "location": {
+          "shape": "RetrievalResultLocation"
+        },
+        "score": {
+          "shape": "Double"
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "type": "structure"
     },
-    "KnowledgeBaseRetrieveAndGenerateConfiguration":{
-      "type":"structure",
-      "required":[
+    "KnowledgeBaseRetrievalResults": {
+      "member": {
+        "shape": "KnowledgeBaseRetrievalResult"
+      },
+      "sensitive": true,
+      "type": "list"
+    },
+    "KnowledgeBaseRetrieveAndGenerateConfiguration": {
+      "members": {
+        "generationConfiguration": {
+          "shape": "GenerationConfiguration"
+        },
+        "knowledgeBaseId": {
+          "shape": "KnowledgeBaseId"
+        },
+        "modelArn": {
+          "shape": "BedrockModelArn"
+        },
+        "retrievalConfiguration": {
+          "shape": "KnowledgeBaseRetrievalConfiguration"
+        }
+      },
+      "required": [
         "knowledgeBaseId",
         "modelArn"
       ],
-      "members":{
-        "generationConfiguration":{"shape":"GenerationConfiguration"},
-        "knowledgeBaseId":{"shape":"KnowledgeBaseId"},
-        "modelArn":{"shape":"BedrockModelArn"},
-        "retrievalConfiguration":{"shape":"KnowledgeBaseRetrievalConfiguration"}
-      }
+      "type": "structure"
     },
-    "KnowledgeBaseVectorSearchConfiguration":{
-      "type":"structure",
-      "members":{
-        "numberOfResults":{
-          "shape":"KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger",
-          "box":true
+    "KnowledgeBaseVectorSearchConfiguration": {
+      "members": {
+        "filter": {
+          "shape": "RetrievalFilter"
         },
-        "overrideSearchType":{"shape":"SearchType"}
+        "numberOfResults": {
+          "box": true,
+          "shape": "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger"
+        },
+        "overrideSearchType": {
+          "shape": "SearchType"
+        }
+      },
+      "type": "structure"
+    },
+    "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger": {
+      "box": true,
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
+    "LambdaArn": {
+      "type": "string"
+    },
+    "MaximumLength": {
+      "box": true,
+      "max": 4096,
+      "min": 0,
+      "type": "integer"
+    },
+    "MimeType": {
+      "type": "string"
+    },
+    "ModelInvocationInput": {
+      "members": {
+        "inferenceConfiguration": {
+          "shape": "InferenceConfiguration"
+        },
+        "overrideLambda": {
+          "shape": "LambdaArn"
+        },
+        "parserMode": {
+          "shape": "CreationMode"
+        },
+        "promptCreationMode": {
+          "shape": "CreationMode"
+        },
+        "text": {
+          "shape": "PromptText"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        },
+        "type": {
+          "shape": "PromptType"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "NextToken": {
+      "max": 2048,
+      "min": 1,
+      "pattern": "^\\S*$",
+      "type": "string"
+    },
+    "NonBlankString": {
+      "pattern": "^[\\s\\S]*$",
+      "type": "string"
+    },
+    "Observation": {
+      "members": {
+        "actionGroupInvocationOutput": {
+          "shape": "ActionGroupInvocationOutput"
+        },
+        "finalResponse": {
+          "shape": "FinalResponse"
+        },
+        "knowledgeBaseLookupOutput": {
+          "shape": "KnowledgeBaseLookupOutput"
+        },
+        "repromptResponse": {
+          "shape": "RepromptResponse"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        },
+        "type": {
+          "shape": "Type"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "OrchestrationTrace": {
+      "members": {
+        "invocationInput": {
+          "shape": "InvocationInput"
+        },
+        "modelInvocationInput": {
+          "shape": "ModelInvocationInput"
+        },
+        "observation": {
+          "shape": "Observation"
+        },
+        "rationale": {
+          "shape": "Rationale"
+        }
+      },
+      "sensitive": true,
+      "type": "structure",
+      "union": true
+    },
+    "OutputString": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "Parameter": {
+      "members": {
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "String"
+        },
+        "value": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "Parameters": {
+      "member": {
+        "shape": "Parameter"
+      },
+      "type": "list"
+    },
+    "PartBody": {
+      "max": 1000000,
+      "min": 0,
+      "sensitive": true,
+      "type": "blob"
+    },
+    "PayloadPart": {
+      "event": true,
+      "members": {
+        "attribution": {
+          "shape": "Attribution"
+        },
+        "bytes": {
+          "shape": "PartBody"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "PostProcessingModelInvocationOutput": {
+      "members": {
+        "parsedResponse": {
+          "shape": "PostProcessingParsedResponse"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "PostProcessingParsedResponse": {
+      "members": {
+        "text": {
+          "shape": "OutputString"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "PostProcessingTrace": {
+      "members": {
+        "modelInvocationInput": {
+          "shape": "ModelInvocationInput"
+        },
+        "modelInvocationOutput": {
+          "shape": "PostProcessingModelInvocationOutput"
+        }
+      },
+      "sensitive": true,
+      "type": "structure",
+      "union": true
+    },
+    "PreProcessingModelInvocationOutput": {
+      "members": {
+        "parsedResponse": {
+          "shape": "PreProcessingParsedResponse"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "PreProcessingParsedResponse": {
+      "members": {
+        "isValid": {
+          "shape": "Boolean"
+        },
+        "rationale": {
+          "shape": "RationaleString"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "PreProcessingTrace": {
+      "members": {
+        "modelInvocationInput": {
+          "shape": "ModelInvocationInput"
+        },
+        "modelInvocationOutput": {
+          "shape": "PreProcessingModelInvocationOutput"
+        }
+      },
+      "sensitive": true,
+      "type": "structure",
+      "union": true
+    },
+    "PromptSessionAttributesMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "String"
       }
     },
-    "KnowledgeBaseVectorSearchConfigurationNumberOfResultsInteger":{
-      "type":"integer",
-      "box":true,
-      "max":100,
-      "min":1
-    },
-    "LambdaArn":{"type":"string"},
-    "MaximumLength":{
-      "type":"integer",
-      "box":true,
-      "max":4096,
-      "min":0
-    },
-    "MimeType":{"type":"string"},
-    "ModelInvocationInput":{
-      "type":"structure",
-      "members":{
-        "inferenceConfiguration":{"shape":"InferenceConfiguration"},
-        "overrideLambda":{"shape":"LambdaArn"},
-        "parserMode":{"shape":"CreationMode"},
-        "promptCreationMode":{"shape":"CreationMode"},
-        "text":{"shape":"PromptText"},
-        "traceId":{"shape":"TraceId"},
-        "type":{"shape":"PromptType"}
+    "PromptTemplate": {
+      "members": {
+        "textPromptTemplate": {
+          "shape": "TextPromptTemplate"
+        }
       },
-      "sensitive":true
+      "type": "structure"
     },
-    "NextToken":{
-      "type":"string",
-      "max":2048,
-      "min":1,
-      "pattern":"^\\S*$"
+    "PromptText": {
+      "sensitive": true,
+      "type": "string"
     },
-    "NonBlankString":{
-      "type":"string",
-      "pattern":"^[\\s\\S]*$"
-    },
-    "Observation":{
-      "type":"structure",
-      "members":{
-        "actionGroupInvocationOutput":{"shape":"ActionGroupInvocationOutput"},
-        "finalResponse":{"shape":"FinalResponse"},
-        "knowledgeBaseLookupOutput":{"shape":"KnowledgeBaseLookupOutput"},
-        "repromptResponse":{"shape":"RepromptResponse"},
-        "traceId":{"shape":"TraceId"},
-        "type":{"shape":"Type"}
-      },
-      "sensitive":true
-    },
-    "OrchestrationTrace":{
-      "type":"structure",
-      "members":{
-        "invocationInput":{"shape":"InvocationInput"},
-        "modelInvocationInput":{"shape":"ModelInvocationInput"},
-        "observation":{"shape":"Observation"},
-        "rationale":{"shape":"Rationale"}
-      },
-      "sensitive":true,
-      "union":true
-    },
-    "OutputString":{
-      "type":"string",
-      "sensitive":true
-    },
-    "Parameter":{
-      "type":"structure",
-      "members":{
-        "name":{"shape":"String"},
-        "type":{"shape":"String"},
-        "value":{"shape":"String"}
-      }
-    },
-    "Parameters":{
-      "type":"list",
-      "member":{"shape":"Parameter"}
-    },
-    "PartBody":{
-      "type":"blob",
-      "max":1000000,
-      "min":0,
-      "sensitive":true
-    },
-    "PayloadPart":{
-      "type":"structure",
-      "members":{
-        "attribution":{"shape":"Attribution"},
-        "bytes":{"shape":"PartBody"}
-      },
-      "event":true,
-      "sensitive":true
-    },
-    "PostProcessingModelInvocationOutput":{
-      "type":"structure",
-      "members":{
-        "parsedResponse":{"shape":"PostProcessingParsedResponse"},
-        "traceId":{"shape":"TraceId"}
-      },
-      "sensitive":true
-    },
-    "PostProcessingParsedResponse":{
-      "type":"structure",
-      "members":{
-        "text":{"shape":"OutputString"}
-      },
-      "sensitive":true
-    },
-    "PostProcessingTrace":{
-      "type":"structure",
-      "members":{
-        "modelInvocationInput":{"shape":"ModelInvocationInput"},
-        "modelInvocationOutput":{"shape":"PostProcessingModelInvocationOutput"}
-      },
-      "sensitive":true,
-      "union":true
-    },
-    "PreProcessingModelInvocationOutput":{
-      "type":"structure",
-      "members":{
-        "parsedResponse":{"shape":"PreProcessingParsedResponse"},
-        "traceId":{"shape":"TraceId"}
-      },
-      "sensitive":true
-    },
-    "PreProcessingParsedResponse":{
-      "type":"structure",
-      "members":{
-        "isValid":{"shape":"Boolean"},
-        "rationale":{"shape":"RationaleString"}
-      },
-      "sensitive":true
-    },
-    "PreProcessingTrace":{
-      "type":"structure",
-      "members":{
-        "modelInvocationInput":{"shape":"ModelInvocationInput"},
-        "modelInvocationOutput":{"shape":"PreProcessingModelInvocationOutput"}
-      },
-      "sensitive":true,
-      "union":true
-    },
-    "PromptSessionAttributesMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
-    },
-    "PromptTemplate":{
-      "type":"structure",
-      "members":{
-        "textPromptTemplate":{"shape":"TextPromptTemplate"}
-      }
-    },
-    "PromptText":{
-      "type":"string",
-      "sensitive":true
-    },
-    "PromptType":{
-      "type":"string",
-      "enum":[
+    "PromptType": {
+      "enum": [
         "PRE_PROCESSING",
         "ORCHESTRATION",
         "KNOWLEDGE_BASE_RESPONSE_GENERATION",
         "POST_PROCESSING"
-      ]
+      ],
+      "type": "string"
     },
-    "Rationale":{
-      "type":"structure",
-      "members":{
-        "text":{"shape":"RationaleString"},
-        "traceId":{"shape":"TraceId"}
+    "Rationale": {
+      "members": {
+        "text": {
+          "shape": "RationaleString"
+        },
+        "traceId": {
+          "shape": "TraceId"
+        }
       },
-      "sensitive":true
+      "sensitive": true,
+      "type": "structure"
     },
-    "RationaleString":{
-      "type":"string",
-      "sensitive":true
+    "RationaleString": {
+      "sensitive": true,
+      "type": "string"
     },
-    "RepromptResponse":{
-      "type":"structure",
-      "members":{
-        "source":{"shape":"Source"},
-        "text":{"shape":"String"}
+    "RepromptResponse": {
+      "members": {
+        "source": {
+          "shape": "Source"
+        },
+        "text": {
+          "shape": "String"
+        }
       },
-      "sensitive":true
+      "sensitive": true,
+      "type": "structure"
     },
-    "RequestBody":{
-      "type":"structure",
-      "members":{
-        "content":{"shape":"ContentMap"}
-      }
-    },
-    "ResourceNotFoundException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "RequestBody": {
+      "members": {
+        "content": {
+          "shape": "ContentMap"
+        }
       },
-      "error":{
-        "httpStatusCode":404,
-        "senderFault":true
+      "type": "structure"
+    },
+    "ResourceNotFoundException": {
+      "error": {
+        "httpStatusCode": 404,
+        "senderFault": true
       },
-      "exception":true
-    },
-    "ResponseStream":{
-      "type":"structure",
-      "members":{
-        "accessDeniedException":{"shape":"AccessDeniedException"},
-        "badGatewayException":{"shape":"BadGatewayException"},
-        "chunk":{"shape":"PayloadPart"},
-        "conflictException":{"shape":"ConflictException"},
-        "dependencyFailedException":{"shape":"DependencyFailedException"},
-        "internalServerException":{"shape":"InternalServerException"},
-        "resourceNotFoundException":{"shape":"ResourceNotFoundException"},
-        "serviceQuotaExceededException":{"shape":"ServiceQuotaExceededException"},
-        "throttlingException":{"shape":"ThrottlingException"},
-        "trace":{"shape":"TracePart"},
-        "validationException":{"shape":"ValidationException"}
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "eventstream":true
+      "type": "structure"
     },
-    "RetrievalResultContent":{
-      "type":"structure",
-      "required":["text"],
-      "members":{
-        "text":{"shape":"String"}
+    "ResponseStream": {
+      "eventstream": true,
+      "members": {
+        "accessDeniedException": {
+          "shape": "AccessDeniedException"
+        },
+        "badGatewayException": {
+          "shape": "BadGatewayException"
+        },
+        "chunk": {
+          "shape": "PayloadPart"
+        },
+        "conflictException": {
+          "shape": "ConflictException"
+        },
+        "dependencyFailedException": {
+          "shape": "DependencyFailedException"
+        },
+        "internalServerException": {
+          "shape": "InternalServerException"
+        },
+        "resourceNotFoundException": {
+          "shape": "ResourceNotFoundException"
+        },
+        "serviceQuotaExceededException": {
+          "shape": "ServiceQuotaExceededException"
+        },
+        "throttlingException": {
+          "shape": "ThrottlingException"
+        },
+        "trace": {
+          "shape": "TracePart"
+        },
+        "validationException": {
+          "shape": "ValidationException"
+        }
       },
-      "sensitive":true
+      "type": "structure"
     },
-    "RetrievalResultLocation":{
-      "type":"structure",
-      "required":["type"],
-      "members":{
-        "s3Location":{"shape":"RetrievalResultS3Location"},
-        "type":{"shape":"RetrievalResultLocationType"}
+    "RetrievalFilter": {
+      "members": {
+        "andAll": {
+          "shape": "RetrievalFilterList"
+        },
+        "orAll": {
+          "shape": "RetrievalFilterList"
+        }
       },
-      "sensitive":true
+      "sensitive": true,
+      "type": "structure",
+      "union": true
     },
-    "RetrievalResultLocationType":{
-      "type":"string",
-      "enum":["S3"]
-    },
-    "RetrievalResultS3Location":{
-      "type":"structure",
-      "members":{
-        "uri":{"shape":"String"}
-      }
-    },
-    "RetrieveAndGenerateConfiguration":{
-      "type":"structure",
-      "required":["type"],
-      "members":{
-        "knowledgeBaseConfiguration":{"shape":"KnowledgeBaseRetrieveAndGenerateConfiguration"},
-        "type":{"shape":"RetrieveAndGenerateType"}
-      }
-    },
-    "RetrieveAndGenerateInput":{
-      "type":"structure",
-      "required":["text"],
-      "members":{
-        "text":{"shape":"RetrieveAndGenerateInputTextString"}
+    "RetrievalFilterList": {
+      "max": 5,
+      "member": {
+        "shape": "RetrievalFilter"
       },
-      "sensitive":true
+      "min": 2,
+      "type": "list"
     },
-    "RetrieveAndGenerateInputTextString":{
-      "type":"string",
-      "max":1000,
-      "min":0
-    },
-    "RetrieveAndGenerateOutput":{
-      "type":"structure",
-      "required":["text"],
-      "members":{
-        "text":{"shape":"String"}
+    "RetrievalResultContent": {
+      "members": {
+        "text": {
+          "shape": "String"
+        }
       },
-      "sensitive":true
+      "required": [
+        "text"
+      ],
+      "sensitive": true,
+      "type": "structure"
     },
-    "RetrieveAndGenerateRequest":{
-      "type":"structure",
-      "required":["input"],
-      "members":{
-        "input":{"shape":"RetrieveAndGenerateInput"},
-        "retrieveAndGenerateConfiguration":{"shape":"RetrieveAndGenerateConfiguration"},
-        "sessionConfiguration":{"shape":"RetrieveAndGenerateSessionConfiguration"},
-        "sessionId":{"shape":"SessionId"}
-      }
+    "RetrievalResultLocation": {
+      "members": {
+        "s3Location": {
+          "shape": "RetrievalResultS3Location"
+        },
+        "type": {
+          "shape": "RetrievalResultLocationType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "sensitive": true,
+      "type": "structure"
     },
-    "RetrieveAndGenerateResponse":{
-      "type":"structure",
-      "required":[
+    "RetrievalResultLocationType": {
+      "enum": [
+        "S3"
+      ],
+      "type": "string"
+    },
+    "RetrievalResultMetadataKey": {
+      "max": 100,
+      "min": 1,
+      "type": "string"
+    },
+    "RetrievalResultS3Location": {
+      "members": {
+        "uri": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "RetrieveAndGenerateConfiguration": {
+      "members": {
+        "knowledgeBaseConfiguration": {
+          "shape": "KnowledgeBaseRetrieveAndGenerateConfiguration"
+        },
+        "type": {
+          "shape": "RetrieveAndGenerateType"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "structure"
+    },
+    "RetrieveAndGenerateInput": {
+      "members": {
+        "text": {
+          "shape": "RetrieveAndGenerateInputTextString"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "sensitive": true,
+      "type": "structure"
+    },
+    "RetrieveAndGenerateInputTextString": {
+      "max": 1000,
+      "min": 0,
+      "type": "string"
+    },
+    "RetrieveAndGenerateOutput": {
+      "members": {
+        "text": {
+          "shape": "String"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "sensitive": true,
+      "type": "structure"
+    },
+    "RetrieveAndGenerateRequest": {
+      "members": {
+        "input": {
+          "shape": "RetrieveAndGenerateInput"
+        },
+        "retrieveAndGenerateConfiguration": {
+          "shape": "RetrieveAndGenerateConfiguration"
+        },
+        "sessionConfiguration": {
+          "shape": "RetrieveAndGenerateSessionConfiguration"
+        },
+        "sessionId": {
+          "shape": "SessionId"
+        }
+      },
+      "required": [
+        "input"
+      ],
+      "type": "structure"
+    },
+    "RetrieveAndGenerateResponse": {
+      "members": {
+        "citations": {
+          "shape": "Citations"
+        },
+        "output": {
+          "shape": "RetrieveAndGenerateOutput"
+        },
+        "sessionId": {
+          "shape": "SessionId"
+        }
+      },
+      "required": [
         "output",
         "sessionId"
       ],
-      "members":{
-        "citations":{"shape":"Citations"},
-        "output":{"shape":"RetrieveAndGenerateOutput"},
-        "sessionId":{"shape":"SessionId"}
-      }
+      "type": "structure"
     },
-    "RetrieveAndGenerateSessionConfiguration":{
-      "type":"structure",
-      "required":["kmsKeyArn"],
-      "members":{
-        "kmsKeyArn":{"shape":"KmsKeyArn"}
-      }
+    "RetrieveAndGenerateSessionConfiguration": {
+      "members": {
+        "kmsKeyArn": {
+          "shape": "KmsKeyArn"
+        }
+      },
+      "required": [
+        "kmsKeyArn"
+      ],
+      "type": "structure"
     },
-    "RetrieveAndGenerateType":{
-      "type":"string",
-      "enum":["KNOWLEDGE_BASE"]
+    "RetrieveAndGenerateType": {
+      "enum": [
+        "KNOWLEDGE_BASE"
+      ],
+      "type": "string"
     },
-    "RetrieveRequest":{
-      "type":"structure",
-      "required":[
+    "RetrieveRequest": {
+      "members": {
+        "knowledgeBaseId": {
+          "location": "uri",
+          "locationName": "knowledgeBaseId",
+          "shape": "KnowledgeBaseId"
+        },
+        "nextToken": {
+          "shape": "NextToken"
+        },
+        "retrievalConfiguration": {
+          "shape": "KnowledgeBaseRetrievalConfiguration"
+        },
+        "retrievalQuery": {
+          "shape": "KnowledgeBaseQuery"
+        }
+      },
+      "required": [
         "knowledgeBaseId",
         "retrievalQuery"
       ],
-      "members":{
-        "knowledgeBaseId":{
-          "shape":"KnowledgeBaseId",
-          "location":"uri",
-          "locationName":"knowledgeBaseId"
+      "type": "structure"
+    },
+    "RetrieveResponse": {
+      "members": {
+        "nextToken": {
+          "shape": "NextToken"
         },
-        "nextToken":{"shape":"NextToken"},
-        "retrievalConfiguration":{"shape":"KnowledgeBaseRetrievalConfiguration"},
-        "retrievalQuery":{"shape":"KnowledgeBaseQuery"}
-      }
+        "retrievalResults": {
+          "shape": "KnowledgeBaseRetrievalResults"
+        }
+      },
+      "required": [
+        "retrievalResults"
+      ],
+      "type": "structure"
     },
-    "RetrieveResponse":{
-      "type":"structure",
-      "required":["retrievalResults"],
-      "members":{
-        "nextToken":{"shape":"NextToken"},
-        "retrievalResults":{"shape":"KnowledgeBaseRetrievalResults"}
-      }
+    "RetrievedReference": {
+      "members": {
+        "content": {
+          "shape": "RetrievalResultContent"
+        },
+        "location": {
+          "shape": "RetrievalResultLocation"
+        }
+      },
+      "type": "structure"
     },
-    "RetrievedReference":{
-      "type":"structure",
-      "members":{
-        "content":{"shape":"RetrievalResultContent"},
-        "location":{"shape":"RetrievalResultLocation"}
-      }
+    "RetrievedReferences": {
+      "member": {
+        "shape": "RetrievedReference"
+      },
+      "type": "list"
     },
-    "RetrievedReferences":{
-      "type":"list",
-      "member":{"shape":"RetrievedReference"}
-    },
-    "SearchType":{
-      "type":"string",
-      "enum":[
+    "SearchType": {
+      "enum": [
         "HYBRID",
         "SEMANTIC"
-      ]
+      ],
+      "type": "string"
     },
-    "ServiceQuotaExceededException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ServiceQuotaExceededException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "SessionAttributesMap":{
-      "type":"map",
-      "key":{"shape":"String"},
-      "value":{"shape":"String"}
-    },
-    "SessionId":{
-      "type":"string",
-      "max":100,
-      "min":2,
-      "pattern":"^[0-9a-zA-Z._:-]+$"
-    },
-    "SessionState":{
-      "type":"structure",
-      "members":{
-        "promptSessionAttributes":{"shape":"PromptSessionAttributesMap"},
-        "sessionAttributes":{"shape":"SessionAttributesMap"}
+    "SessionAttributesMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "String"
       }
     },
-    "Source":{
-      "type":"string",
-      "enum":[
+    "SessionId": {
+      "max": 100,
+      "min": 2,
+      "pattern": "^[0-9a-zA-Z._:-]+$",
+      "type": "string"
+    },
+    "SessionState": {
+      "members": {
+        "promptSessionAttributes": {
+          "shape": "PromptSessionAttributesMap"
+        },
+        "sessionAttributes": {
+          "shape": "SessionAttributesMap"
+        }
+      },
+      "type": "structure"
+    },
+    "Source": {
+      "enum": [
         "ACTION_GROUP",
         "KNOWLEDGE_BASE",
         "PARSER"
       ],
-      "sensitive":true
+      "sensitive": true,
+      "type": "string"
     },
-    "Span":{
-      "type":"structure",
-      "members":{
-        "end":{"shape":"SpanEndInteger"},
-        "start":{"shape":"SpanStartInteger"}
-      }
-    },
-    "SpanEndInteger":{
-      "type":"integer",
-      "box":true,
-      "min":0
-    },
-    "SpanStartInteger":{
-      "type":"integer",
-      "box":true,
-      "min":0
-    },
-    "StopSequences":{
-      "type":"list",
-      "member":{"shape":"String"},
-      "max":4,
-      "min":0
-    },
-    "String":{"type":"string"},
-    "Temperature":{
-      "type":"float",
-      "box":true,
-      "max":1,
-      "min":0
-    },
-    "TextPromptTemplate":{
-      "type":"string",
-      "max":4000,
-      "min":1,
-      "sensitive":true
-    },
-    "TextResponsePart":{
-      "type":"structure",
-      "members":{
-        "span":{"shape":"Span"},
-        "text":{"shape":"String"}
+    "Span": {
+      "members": {
+        "end": {
+          "shape": "SpanEndInteger"
+        },
+        "start": {
+          "shape": "SpanStartInteger"
+        }
       },
-      "sensitive":true
+      "type": "structure"
     },
-    "ThrottlingException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "SpanEndInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "SpanStartInteger": {
+      "box": true,
+      "min": 0,
+      "type": "integer"
+    },
+    "StopSequences": {
+      "max": 4,
+      "member": {
+        "shape": "String"
       },
-      "error":{
-        "httpStatusCode":429,
-        "senderFault":true
+      "min": 0,
+      "type": "list"
+    },
+    "String": {
+      "type": "string"
+    },
+    "Temperature": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "float"
+    },
+    "TextPromptTemplate": {
+      "max": 4000,
+      "min": 1,
+      "sensitive": true,
+      "type": "string"
+    },
+    "TextResponsePart": {
+      "members": {
+        "span": {
+          "shape": "Span"
+        },
+        "text": {
+          "shape": "String"
+        }
       },
-      "exception":true
+      "sensitive": true,
+      "type": "structure"
     },
-    "TopK":{
-      "type":"integer",
-      "box":true,
-      "max":500,
-      "min":0
-    },
-    "TopP":{
-      "type":"float",
-      "box":true,
-      "max":1,
-      "min":0
-    },
-    "Trace":{
-      "type":"structure",
-      "members":{
-        "failureTrace":{"shape":"FailureTrace"},
-        "orchestrationTrace":{"shape":"OrchestrationTrace"},
-        "postProcessingTrace":{"shape":"PostProcessingTrace"},
-        "preProcessingTrace":{"shape":"PreProcessingTrace"}
+    "ThrottlingException": {
+      "error": {
+        "httpStatusCode": 429,
+        "senderFault": true
       },
-      "sensitive":true,
-      "union":true
-    },
-    "TraceId":{
-      "type":"string",
-      "max":16,
-      "min":2
-    },
-    "TraceKnowledgeBaseId":{
-      "type":"string",
-      "sensitive":true
-    },
-    "TracePart":{
-      "type":"structure",
-      "members":{
-        "agentAliasId":{"shape":"AgentAliasId"},
-        "agentId":{"shape":"AgentId"},
-        "sessionId":{"shape":"SessionId"},
-        "trace":{"shape":"Trace"}
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "event":true,
-      "sensitive":true
+      "type": "structure"
     },
-    "Type":{
-      "type":"string",
-      "enum":[
+    "TopK": {
+      "box": true,
+      "max": 500,
+      "min": 0,
+      "type": "integer"
+    },
+    "TopP": {
+      "box": true,
+      "max": 1,
+      "min": 0,
+      "type": "float"
+    },
+    "Trace": {
+      "members": {
+        "failureTrace": {
+          "shape": "FailureTrace"
+        },
+        "orchestrationTrace": {
+          "shape": "OrchestrationTrace"
+        },
+        "postProcessingTrace": {
+          "shape": "PostProcessingTrace"
+        },
+        "preProcessingTrace": {
+          "shape": "PreProcessingTrace"
+        }
+      },
+      "sensitive": true,
+      "type": "structure",
+      "union": true
+    },
+    "TraceId": {
+      "max": 16,
+      "min": 2,
+      "type": "string"
+    },
+    "TraceKnowledgeBaseId": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "TracePart": {
+      "event": true,
+      "members": {
+        "agentAliasId": {
+          "shape": "AgentAliasId"
+        },
+        "agentId": {
+          "shape": "AgentId"
+        },
+        "sessionId": {
+          "shape": "SessionId"
+        },
+        "trace": {
+          "shape": "Trace"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
+    "Type": {
+      "enum": [
         "ACTION_GROUP",
         "KNOWLEDGE_BASE",
         "FINISH",
         "ASK_USER",
         "REPROMPT"
-      ]
+      ],
+      "type": "string"
     },
-    "ValidationException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"NonBlankString"}
+    "ValidationException": {
+      "error": {
+        "httpStatusCode": 400,
+        "senderFault": true
       },
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "exception": true,
+      "members": {
+        "message": {
+          "shape": "NonBlankString"
+        }
       },
-      "exception":true
+      "type": "structure"
     },
-    "Verb":{
-      "type":"string",
-      "sensitive":true
+    "Verb": {
+      "sensitive": true,
+      "type": "string"
     }
-  }
+  },
+  "version": "2.0"
 }

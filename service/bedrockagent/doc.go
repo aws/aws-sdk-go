@@ -3,8 +3,7 @@
 // Package bedrockagent provides the client and types for making API
 // requests to Agents for Amazon Bedrock.
 //
-// An example service, deployed with the Octane Service creator, which will
-// echo the string
+// Describes the API operations for creating and managing Amazon Bedrock agents.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05 for more information on this service.
 //

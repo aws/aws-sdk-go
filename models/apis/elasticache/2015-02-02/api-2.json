@@ -2467,12 +2467,10 @@
     },
     "DataStorage":{
       "type":"structure",
-      "required":[
-        "Maximum",
-        "Unit"
-      ],
+      "required":["Unit"],
       "members":{
         "Maximum":{"shape":"IntegerOptional"},
+        "Minimum":{"shape":"IntegerOptional"},
         "Unit":{"shape":"DataStorageUnit"}
       }
     },
@@ -2971,9 +2969,9 @@
     },
     "ECPUPerSecond":{
       "type":"structure",
-      "required":["Maximum"],
       "members":{
-        "Maximum":{"shape":"IntegerOptional"}
+        "Maximum":{"shape":"IntegerOptional"},
+        "Minimum":{"shape":"IntegerOptional"}
       }
     },
     "Endpoint":{
