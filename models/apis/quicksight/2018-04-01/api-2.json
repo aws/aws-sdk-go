@@ -9426,6 +9426,8 @@
       "members":{
         "AwsAccountId":{"shape":"AwsAccountId"},
         "IpRestrictionRuleMap":{"shape":"IpRestrictionRuleMap"},
+        "VpcIdRestrictionRuleMap":{"shape":"VpcIdRestrictionRuleMap"},
+        "VpcEndpointIdRestrictionRuleMap":{"shape":"VpcEndpointIdRestrictionRuleMap"},
         "Enabled":{"shape":"NullableBoolean"},
         "RequestId":{"shape":"String"},
         "Status":{
@@ -17341,7 +17343,7 @@
     },
     "SqlQuery":{
       "type":"string",
-      "max":65536,
+      "max":168000,
       "min":1
     },
     "SqlServerParameters":{
@@ -19750,6 +19752,8 @@
           "locationName":"AwsAccountId"
         },
         "IpRestrictionRuleMap":{"shape":"IpRestrictionRuleMap"},
+        "VpcIdRestrictionRuleMap":{"shape":"VpcIdRestrictionRuleMap"},
+        "VpcEndpointIdRestrictionRuleMap":{"shape":"VpcEndpointIdRestrictionRuleMap"},
         "Enabled":{"shape":"NullableBoolean"}
       }
     },
@@ -20589,6 +20593,38 @@
       "members":{
         "VpcConnectionArn":{"shape":"Arn"}
       }
+    },
+    "VpcEndpointId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^vpce-[0-9a-z]*$"
+    },
+    "VpcEndpointIdRestrictionRuleDescription":{
+      "type":"string",
+      "max":150,
+      "min":0
+    },
+    "VpcEndpointIdRestrictionRuleMap":{
+      "type":"map",
+      "key":{"shape":"VpcEndpointId"},
+      "value":{"shape":"VpcEndpointIdRestrictionRuleDescription"}
+    },
+    "VpcId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^vpc-[0-9a-z]*$"
+    },
+    "VpcIdRestrictionRuleDescription":{
+      "type":"string",
+      "max":150,
+      "min":0
+    },
+    "VpcIdRestrictionRuleMap":{
+      "type":"map",
+      "key":{"shape":"VpcId"},
+      "value":{"shape":"VpcIdRestrictionRuleDescription"}
     },
     "Warehouse":{
       "type":"string",

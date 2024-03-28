@@ -1,3 +1,17 @@
+Release v1.51.10 (2024-03-28)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Amazon EC2 C7gd, M7gd and R7gd metal instances with up to 3.8 TB of local NVMe-based SSD block-level storage have up to 45% improved real-time NVMe storage performance than comparable Graviton2-based instances.
+* `service/eks`: Updates service API
+* `service/guardduty`: Updates service API and documentation
+  * Add EC2 support for GuardDuty Runtime Monitoring auto management.
+* `service/oam`: Updates service API
+* `service/quicksight`: Updates service API and documentation
+  * Amazon QuickSight: Adds support for setting up VPC Endpoint restrictions for accessing QuickSight Website.
+
 Release v1.51.9 (2024-03-27)
 ===
 

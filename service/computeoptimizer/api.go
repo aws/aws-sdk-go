@@ -3518,11 +3518,18 @@ func (s *CurrentPerformanceRiskRatings) SetVeryLow(v int64) *CurrentPerformanceR
 type CustomizableMetricParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The headroom threshold value in percentage used for the specified metric
-	// parameter.
+	// The headroom value in percentage used for the specified metric parameter.
+	//
+	// The following lists the valid values for CPU and memory utilization.
+	//
+	//    * CPU utilization: PERCENT_30 | PERCENT_20 | PERCENT_0
+	//
+	//    * Memory utilization: PERCENT_30 | PERCENT_20 | PERCENT_10
 	Headroom *string `locationName:"headroom" type:"string" enum:"CustomizableMetricHeadroom"`
 
 	// The threshold value used for the specified metric parameter.
+	//
+	// You can only specify the threshold value for CPU utilization.
 	Threshold *string `locationName:"threshold" type:"string" enum:"CustomizableMetricThreshold"`
 }
 
@@ -4993,7 +5000,7 @@ type EffectiveRecommendationPreferences struct {
 	// for a resource.
 	SavingsEstimationMode *InstanceSavingsEstimationMode `locationName:"savingsEstimationMode" type:"structure"`
 
-	// The resource’s CPU utilization threshold preferences, such as threshold
+	// The resource’s CPU and memory utilization preferences, such as threshold
 	// and headroom, that are used to generate rightsizing recommendations.
 	//
 	// This preference is only available for the Amazon EC2 instance resource type.
@@ -7429,7 +7436,7 @@ type GetEffectiveRecommendationPreferencesOutput struct {
 	// actions.
 	PreferredResources []*EffectivePreferredResource `locationName:"preferredResources" type:"list"`
 
-	// The resource’s CPU utilization threshold preferences, such as threshold
+	// The resource’s CPU and memory utilization preferences, such as threshold
 	// and headroom, that were used to generate rightsizing recommendations. It
 	// considers all applicable preferences that you set at the resource, account,
 	// and organization level.
@@ -10798,15 +10805,24 @@ type PutRecommendationPreferencesInput struct {
 	// level only for standalone instances.
 	Scope *Scope `locationName:"scope" type:"structure"`
 
-	// The preference to control the resource’s CPU utilization thresholds - threshold
-	// and headroom. When this preference isn't specified, we use the following
-	// default values:
+	// The preference to control the resource’s CPU utilization threshold, CPU
+	// utilization headroom, and memory utilization headroom. When this preference
+	// isn't specified, we use the following default values.
+	//
+	// CPU utilization:
 	//
 	//    * P99_5 for threshold
 	//
-	//    * PERCENT_17 for headroom
+	//    * PERCENT_20 for headroom
 	//
-	// You can only set this preference for the Amazon EC2 instance resource type.
+	// Memory utilization:
+	//
+	//    * PERCENT_20 for headroom
+	//
+	//    * You can only set CPU and memory utilization preferences for the Amazon
+	//    EC2 instance resource type.
+	//
+	//    * The threshold setting isn’t available for memory utilization.
 	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
 }
 
@@ -11160,8 +11176,9 @@ type RecommendationPreferencesDetail struct {
 	// in the Compute Optimizer User Guide.
 	Scope *Scope `locationName:"scope" type:"structure"`
 
-	// The preference to control the resource’s CPU utilization thresholds - threshold
-	// and headroom. If the preference isn’t set, this object is null.
+	// The preference to control the resource’s CPU utilization threshold, CPU
+	// utilization headroom, and memory utilization headroom. If the preference
+	// isn’t set, this object is null.
 	//
 	// This preference is only available for the Amazon EC2 instance resource type.
 	UtilizationPreferences []*UtilizationPreference `locationName:"utilizationPreferences" type:"list"`
@@ -12308,8 +12325,6 @@ type UtilizationPreference struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the resource utilization metric name to customize.
-	//
-	// Compute Optimizer only supports CpuUtilization.
 	MetricName *string `locationName:"metricName" type:"string" enum:"CustomizableMetricName"`
 
 	// The parameters to set when customizing the resource utilization thresholds.
@@ -12735,6 +12750,9 @@ const (
 	// CustomizableMetricHeadroomPercent20 is a CustomizableMetricHeadroom enum value
 	CustomizableMetricHeadroomPercent20 = "PERCENT_20"
 
+	// CustomizableMetricHeadroomPercent10 is a CustomizableMetricHeadroom enum value
+	CustomizableMetricHeadroomPercent10 = "PERCENT_10"
+
 	// CustomizableMetricHeadroomPercent0 is a CustomizableMetricHeadroom enum value
 	CustomizableMetricHeadroomPercent0 = "PERCENT_0"
 )
@@ -12744,6 +12762,7 @@ func CustomizableMetricHeadroom_Values() []string {
 	return []string{
 		CustomizableMetricHeadroomPercent30,
 		CustomizableMetricHeadroomPercent20,
+		CustomizableMetricHeadroomPercent10,
 		CustomizableMetricHeadroomPercent0,
 	}
 }
@@ -12751,12 +12770,16 @@ func CustomizableMetricHeadroom_Values() []string {
 const (
 	// CustomizableMetricNameCpuUtilization is a CustomizableMetricName enum value
 	CustomizableMetricNameCpuUtilization = "CpuUtilization"
+
+	// CustomizableMetricNameMemoryUtilization is a CustomizableMetricName enum value
+	CustomizableMetricNameMemoryUtilization = "MemoryUtilization"
 )
 
 // CustomizableMetricName_Values returns all elements of the CustomizableMetricName enum
 func CustomizableMetricName_Values() []string {
 	return []string{
 		CustomizableMetricNameCpuUtilization,
+		CustomizableMetricNameMemoryUtilization,
 	}
 }
 

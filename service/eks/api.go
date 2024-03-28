@@ -19826,6 +19826,12 @@ const (
 
 	// NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive is a NodegroupIssueCode enum value
 	NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive = "AutoScalingGroupInstanceRefreshActive"
+
+	// NodegroupIssueCodeKubernetesLabelInvalid is a NodegroupIssueCode enum value
+	NodegroupIssueCodeKubernetesLabelInvalid = "KubernetesLabelInvalid"
+
+	// NodegroupIssueCodeEc2launchTemplateVersionMaxLimitExceeded is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2launchTemplateVersionMaxLimitExceeded = "Ec2LaunchTemplateVersionMaxLimitExceeded"
 )
 
 // NodegroupIssueCode_Values returns all elements of the NodegroupIssueCode enum
@@ -19864,6 +19870,8 @@ func NodegroupIssueCode_Values() []string {
 		NodegroupIssueCodeLimitExceeded,
 		NodegroupIssueCodeUnknown,
 		NodegroupIssueCodeAutoScalingGroupInstanceRefreshActive,
+		NodegroupIssueCodeKubernetesLabelInvalid,
+		NodegroupIssueCodeEc2launchTemplateVersionMaxLimitExceeded,
 	}
 }
 

@@ -616,12 +616,16 @@
       "enum":[
         "PERCENT_30",
         "PERCENT_20",
+        "PERCENT_10",
         "PERCENT_0"
       ]
     },
     "CustomizableMetricName":{
       "type":"string",
-      "enum":["CpuUtilization"]
+      "enum":[
+        "CpuUtilization",
+        "MemoryUtilization"
+      ]
     },
     "CustomizableMetricParameters":{
       "type":"structure",

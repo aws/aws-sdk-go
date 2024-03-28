@@ -3942,6 +3942,9 @@ const (
 
 	// ResourceTypeAwsApplicationInsightsApplication is a ResourceType enum value
 	ResourceTypeAwsApplicationInsightsApplication = "AWS::ApplicationInsights::Application"
+
+	// ResourceTypeAwsInternetMonitorMonitor is a ResourceType enum value
+	ResourceTypeAwsInternetMonitorMonitor = "AWS::InternetMonitor::Monitor"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -3951,5 +3954,6 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsLogsLogGroup,
 		ResourceTypeAwsXrayTrace,
 		ResourceTypeAwsApplicationInsightsApplication,
+		ResourceTypeAwsInternetMonitorMonitor,
 	}
 }
