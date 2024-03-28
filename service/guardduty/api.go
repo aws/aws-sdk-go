@@ -606,17 +606,19 @@ func (c *GuardDuty) CreateMembersRequest(input *CreateMembersInput) (req *reques
 // For more information about the existing auto-enable settings for your organization,
 // see DescribeOrganizationConfiguration (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DescribeOrganizationConfiguration.html).
 //
-// If you are adding accounts by invitation, before using InviteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html),
-// use CreateMembers after GuardDuty has been enabled in potential member accounts.
-//
-// If you disassociate a member from a GuardDuty delegated administrator, the
-// member account details obtained from this API, including the associated email
-// addresses, will be retained. This is done so that the delegated administrator
-// can invoke the InviteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html)
+// If you disassociate a member account that was added by invitation, the member
+// account details obtained from this API, including the associated email addresses,
+// will be retained. This is done so that the delegated administrator can invoke
+// the InviteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html)
 // API without the need to invoke the CreateMembers API again. To remove the
 // details associated with a member account, the delegated administrator must
 // invoke the DeleteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html)
 // API.
+//
+// When the member accounts added through Organizations are later disassociated,
+// you (administrator) can't invite them by calling the InviteMembers API. You
+// can create an association with these member accounts again only by calling
+// the CreateMembers API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2290,6 +2292,20 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 // to ALL, you'll receive an error if you attempt to disassociate a member account
 // before removing them from your organization.
 //
+// If you disassociate a member account that was added by invitation, the member
+// account details obtained from this API, including the associated email addresses,
+// will be retained. This is done so that the delegated administrator can invoke
+// the InviteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html)
+// API without the need to invoke the CreateMembers API again. To remove the
+// details associated with a member account, the delegated administrator must
+// invoke the DeleteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html)
+// API.
+//
+// When the member accounts added through Organizations are later disassociated,
+// you (administrator) can't invite them by calling the InviteMembers API. You
+// can create an association with these member accounts again only by calling
+// the CreateMembers API.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3893,6 +3909,20 @@ func (c *GuardDuty) InviteMembersRequest(input *InviteMembersInput) (req *reques
 // (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html)
 // again. To remove the details associated with a member account, you must also
 // invoke DeleteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html).
+//
+// If you disassociate a member account that was added by invitation, the member
+// account details obtained from this API, including the associated email addresses,
+// will be retained. This is done so that the delegated administrator can invoke
+// the InviteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html)
+// API without the need to invoke the CreateMembers API again. To remove the
+// details associated with a member account, the delegated administrator must
+// invoke the DeleteMembers (https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html)
+// API.
+//
+// When the member accounts added through Organizations are later disassociated,
+// you (administrator) can't invite them by calling the InviteMembers API. You
+// can create an association with these member accounts again only by calling
+// the CreateMembers API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8544,11 +8574,6 @@ func (s *Country) SetCountryName(v string) *Country {
 	return s
 }
 
-// This API is also used when you use GuardDuty Runtime Monitoring for your
-// Amazon EC2 instances (currently in preview release) and is subject to change.
-// The use of this API is subject to Section 2 of the Amazon Web Services Service
-// Terms (http://aws.amazon.com/service-terms/) ("Betas and Previews").
-//
 // Contains information about the Amazon EC2 instance runtime coverage details.
 type CoverageEc2InstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -8964,12 +8989,6 @@ func (s *CoverageResource) SetUpdatedAt(v time.Time) *CoverageResource {
 type CoverageResourceDetails struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This API is also used when you use GuardDuty Runtime Monitoring for your
-	// Amazon EC2 instances (currently in preview release) and is subject to change.
-	// The use of this API is subject to Section 2 of the Amazon Web Services Service
-	// Terms (http://aws.amazon.com/service-terms/) ("Betas and Previews").
-	//
 	// Information about the Amazon EC2 instance assessed for runtime coverage.
 	Ec2InstanceDetails *CoverageEc2InstanceDetails `locationName:"ec2InstanceDetails" type:"structure"`
 
@@ -12466,8 +12485,9 @@ type DnsRequestAction struct {
 	// The domain information for the DNS query.
 	Domain *string `locationName:"domain" type:"string"`
 
-	// The second and top level domain involved in the activity that prompted GuardDuty
-	// to generate this finding.
+	// The second and top level domain involved in the activity that potentially
+	// prompted GuardDuty to generate this finding. For a list of top-level and
+	// second-level domains, see public suffix list (https://publicsuffix.org/).
 	DomainWithSuffix *string `locationName:"domainWithSuffix" type:"string"`
 
 	// The network connection protocol observed in the activity that prompted GuardDuty
@@ -21254,6 +21274,9 @@ type RuntimeContext struct {
 	// the address family AF_INET is used for IP version of 4 protocol.
 	AddressFamily *string `locationName:"addressFamily" type:"string"`
 
+	// Example of the command line involved in the suspicious activity.
+	CommandLineExample *string `locationName:"commandLineExample" type:"string"`
+
 	// Represents the type of mounted fileSystem.
 	FileSystemType *string `locationName:"fileSystemType" type:"string"`
 
@@ -21307,6 +21330,9 @@ type RuntimeContext struct {
 	// The path to the script that was executed.
 	ScriptPath *string `locationName:"scriptPath" type:"string"`
 
+	// Name of the security service that has been potentially disabled.
+	ServiceName *string `locationName:"serviceName" type:"string"`
+
 	// The path to the modified shell history file.
 	ShellHistoryFilePath *string `locationName:"shellHistoryFilePath" type:"string"`
 
@@ -21316,6 +21342,16 @@ type RuntimeContext struct {
 	// Information about the process that had its memory overwritten by the current
 	// process.
 	TargetProcess *ProcessDetails `locationName:"targetProcess" type:"structure"`
+
+	// The suspicious file path for which the threat intelligence details were found.
+	ThreatFilePath *string `locationName:"threatFilePath" type:"string"`
+
+	// Category that the tool belongs to. Some of the examples are Backdoor Tool,
+	// Pentest Tool, Network Scanner, and Network Sniffer.
+	ToolCategory *string `locationName:"toolCategory" type:"string"`
+
+	// Name of the potentially suspicious tool.
+	ToolName *string `locationName:"toolName" type:"string"`
 }
 
 // String returns the string representation.
@@ -21339,6 +21375,12 @@ func (s RuntimeContext) GoString() string {
 // SetAddressFamily sets the AddressFamily field's value.
 func (s *RuntimeContext) SetAddressFamily(v string) *RuntimeContext {
 	s.AddressFamily = &v
+	return s
+}
+
+// SetCommandLineExample sets the CommandLineExample field's value.
+func (s *RuntimeContext) SetCommandLineExample(v string) *RuntimeContext {
+	s.CommandLineExample = &v
 	return s
 }
 
@@ -21438,6 +21480,12 @@ func (s *RuntimeContext) SetScriptPath(v string) *RuntimeContext {
 	return s
 }
 
+// SetServiceName sets the ServiceName field's value.
+func (s *RuntimeContext) SetServiceName(v string) *RuntimeContext {
+	s.ServiceName = &v
+	return s
+}
+
 // SetShellHistoryFilePath sets the ShellHistoryFilePath field's value.
 func (s *RuntimeContext) SetShellHistoryFilePath(v string) *RuntimeContext {
 	s.ShellHistoryFilePath = &v
@@ -21453,6 +21501,24 @@ func (s *RuntimeContext) SetSocketPath(v string) *RuntimeContext {
 // SetTargetProcess sets the TargetProcess field's value.
 func (s *RuntimeContext) SetTargetProcess(v *ProcessDetails) *RuntimeContext {
 	s.TargetProcess = v
+	return s
+}
+
+// SetThreatFilePath sets the ThreatFilePath field's value.
+func (s *RuntimeContext) SetThreatFilePath(v string) *RuntimeContext {
+	s.ThreatFilePath = &v
+	return s
+}
+
+// SetToolCategory sets the ToolCategory field's value.
+func (s *RuntimeContext) SetToolCategory(v string) *RuntimeContext {
+	s.ToolCategory = &v
+	return s
+}
+
+// SetToolName sets the ToolName field's value.
+func (s *RuntimeContext) SetToolName(v string) *RuntimeContext {
+	s.ToolName = &v
 	return s
 }
 
@@ -23159,6 +23225,9 @@ func (s *ThreatDetectedByName) SetUniqueThreatNameCount(v int64) *ThreatDetected
 type ThreatIntelligenceDetail struct {
 	_ struct{} `type:"structure"`
 
+	// SHA256 of the file that generated the finding.
+	ThreatFileSha256 *string `locationName:"threatFileSha256" type:"string"`
+
 	// The name of the threat intelligence list that triggered the finding.
 	ThreatListName *string `locationName:"threatListName" type:"string"`
 
@@ -23183,6 +23252,12 @@ func (s ThreatIntelligenceDetail) String() string {
 // value will be replaced with "sensitive".
 func (s ThreatIntelligenceDetail) GoString() string {
 	return s.String()
+}
+
+// SetThreatFileSha256 sets the ThreatFileSha256 field's value.
+func (s *ThreatIntelligenceDetail) SetThreatFileSha256(v string) *ThreatIntelligenceDetail {
+	s.ThreatFileSha256 = &v
+	return s
 }
 
 // SetThreatListName sets the ThreatListName field's value.
@@ -25652,6 +25727,9 @@ const (
 
 	// FeatureAdditionalConfigurationEcsFargateAgentManagement is a FeatureAdditionalConfiguration enum value
 	FeatureAdditionalConfigurationEcsFargateAgentManagement = "ECS_FARGATE_AGENT_MANAGEMENT"
+
+	// FeatureAdditionalConfigurationEc2AgentManagement is a FeatureAdditionalConfiguration enum value
+	FeatureAdditionalConfigurationEc2AgentManagement = "EC2_AGENT_MANAGEMENT"
 )
 
 // FeatureAdditionalConfiguration_Values returns all elements of the FeatureAdditionalConfiguration enum
@@ -25659,6 +25737,7 @@ func FeatureAdditionalConfiguration_Values() []string {
 	return []string{
 		FeatureAdditionalConfigurationEksAddonManagement,
 		FeatureAdditionalConfigurationEcsFargateAgentManagement,
+		FeatureAdditionalConfigurationEc2AgentManagement,
 	}
 }
 
@@ -25940,6 +26019,9 @@ const (
 
 	// OrgFeatureAdditionalConfigurationEcsFargateAgentManagement is a OrgFeatureAdditionalConfiguration enum value
 	OrgFeatureAdditionalConfigurationEcsFargateAgentManagement = "ECS_FARGATE_AGENT_MANAGEMENT"
+
+	// OrgFeatureAdditionalConfigurationEc2AgentManagement is a OrgFeatureAdditionalConfiguration enum value
+	OrgFeatureAdditionalConfigurationEc2AgentManagement = "EC2_AGENT_MANAGEMENT"
 )
 
 // OrgFeatureAdditionalConfiguration_Values returns all elements of the OrgFeatureAdditionalConfiguration enum
@@ -25947,6 +26029,7 @@ func OrgFeatureAdditionalConfiguration_Values() []string {
 	return []string{
 		OrgFeatureAdditionalConfigurationEksAddonManagement,
 		OrgFeatureAdditionalConfigurationEcsFargateAgentManagement,
+		OrgFeatureAdditionalConfigurationEc2AgentManagement,
 	}
 }
 

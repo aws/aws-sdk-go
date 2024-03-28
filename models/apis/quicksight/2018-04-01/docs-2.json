@@ -158,7 +158,7 @@
     "UpdateGroup": "<p>Changes a group description. </p>",
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
     "UpdateIdentityPropagationConfig": "<p>Adds or updates services and authorized targets to configure what the Amazon QuickSight IAM Identity Center application can access.</p> <p>This operation is only supported for Amazon QuickSight accounts using IAM Identity Center</p>",
-    "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
+    "UpdateIpRestriction": "<p>Updates the content and status of IP rules. Traffic from a source is allowed when the source satisfies either the <code>IpRestrictionRule</code>, <code>VpcIdRestrictionRule</code>, or <code>VpcEndpointIdRestrictionRule</code>. To use this operation, you must provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdatePublicSharingSettings": "<p>Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off the public sharing settings of an Amazon QuickSight dashboard.</p> <p>To use this operation, turn on session capacity pricing for your Amazon QuickSight account.</p> <p>Before you can turn on public sharing on your account, make sure to give public sharing permissions to an administrative user in the Identity and Access Management (IAM) console. For more information on using IAM with Amazon QuickSight, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/security_iam_service-with-iam.html\">Using Amazon QuickSight with IAM</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "UpdateRefreshSchedule": "<p>Updates a refresh schedule for a dataset.</p>",
     "UpdateRoleCustomPermission": "<p>Updates the custom permissions that are associated with a role.</p>",
@@ -674,7 +674,7 @@
     "ArnList": {
       "base": null,
       "refs": {
-        "GenerateEmbedUrlForAnonymousUserRequest$AuthorizedResourceArns": "<p>The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session.</p> <p>If you choose <code>Dashboard</code> embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view.</p> <p>Currently, you can pass up to 25 dashboard ARNs in each API call.</p>"
+        "GenerateEmbedUrlForAnonymousUserRequest$AuthorizedResourceArns": "<p>The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session.</p> <p>If you choose <code>Dashboard</code> embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view.</p> <p>If you want to make changes to the theme of your embedded content, pass a list of theme ARNs that the anonymous users need access to.</p> <p>Currently, you can pass up to 25 theme ARNs in each API call.</p>"
       }
     },
     "AssetBundleCloudFormationOverridePropertyConfiguration": {
@@ -3557,7 +3557,7 @@
       }
     },
     "DatasetParameter": {
-      "base": "<p>A dataset parameter.</p>",
+      "base": "<p>A parameter that is created in a dataset. The parameter can be a string, integer, decimal, or datetime data type.</p>",
       "refs": {
         "DatasetParameterList$member": null
       }
@@ -3591,7 +3591,7 @@
       }
     },
     "DatasetParameterValueType": {
-      "base": null,
+      "base": "<p>The value type of the parameter. The value type is used to validate the parameter before it is evaluated.</p>",
       "refs": {
         "DateTimeDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>",
         "DecimalDatasetParameter$ValueType": "<p>The value type of the dataset parameter. Valid values are <code>single value</code> or <code>multi value</code>.</p>",
@@ -13168,6 +13168,44 @@
         "CreateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>",
         "DataSource$VpcConnectionProperties": "<p>The VPC connection information. You need to use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>",
         "UpdateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.</p>"
+      }
+    },
+    "VpcEndpointId": {
+      "base": null,
+      "refs": {
+        "VpcEndpointIdRestrictionRuleMap$key": null
+      }
+    },
+    "VpcEndpointIdRestrictionRuleDescription": {
+      "base": null,
+      "refs": {
+        "VpcEndpointIdRestrictionRuleMap$value": null
+      }
+    },
+    "VpcEndpointIdRestrictionRuleMap": {
+      "base": null,
+      "refs": {
+        "DescribeIpRestrictionResponse$VpcEndpointIdRestrictionRuleMap": "<p>A map of allowed VPC endpoint IDs and their rule descriptions.</p>",
+        "UpdateIpRestrictionRequest$VpcEndpointIdRestrictionRuleMap": "<p>A map of allowed VPC endpoint IDs and their corresponding rule descriptions.</p>"
+      }
+    },
+    "VpcId": {
+      "base": null,
+      "refs": {
+        "VpcIdRestrictionRuleMap$key": null
+      }
+    },
+    "VpcIdRestrictionRuleDescription": {
+      "base": null,
+      "refs": {
+        "VpcIdRestrictionRuleMap$value": null
+      }
+    },
+    "VpcIdRestrictionRuleMap": {
+      "base": null,
+      "refs": {
+        "DescribeIpRestrictionResponse$VpcIdRestrictionRuleMap": "<p>A map of allowed VPC IDs and their rule descriptions.</p>",
+        "UpdateIpRestrictionRequest$VpcIdRestrictionRuleMap": "<p>A map of VPC IDs and their corresponding rules. When you configure this parameter, traffic from all VPC endpoints that are present in the specified VPC is allowed.</p>"
       }
     },
     "Warehouse": {

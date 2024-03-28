@@ -18137,8 +18137,10 @@ func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput)
 
 // UpdateIpRestriction API operation for Amazon QuickSight.
 //
-// Updates the content and status of IP rules. To use this operation, you must
-// provide the entire map of rules. You can use the DescribeIpRestriction operation
+// Updates the content and status of IP rules. Traffic from a source is allowed
+// when the source satisfies either the IpRestrictionRule, VpcIdRestrictionRule,
+// or VpcEndpointIdRestrictionRule. To use this operation, you must provide
+// the entire map of rules. You can use the DescribeIpRestriction operation
 // to get the current rule map.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -41125,7 +41127,8 @@ func (s *DatasetMetadata) SetNamedEntities(v []*TopicNamedEntity) *DatasetMetada
 	return s
 }
 
-// A dataset parameter.
+// A parameter that is created in a dataset. The parameter can be a string,
+// integer, decimal, or datetime data type.
 type DatasetParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -50267,6 +50270,12 @@ type DescribeIpRestrictionOutput struct {
 
 	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
+
+	// A map of allowed VPC endpoint IDs and their rule descriptions.
+	VpcEndpointIdRestrictionRuleMap map[string]*string `type:"map"`
+
+	// A map of allowed VPC IDs and their rule descriptions.
+	VpcIdRestrictionRuleMap map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -50314,6 +50323,18 @@ func (s *DescribeIpRestrictionOutput) SetRequestId(v string) *DescribeIpRestrict
 // SetStatus sets the Status field's value.
 func (s *DescribeIpRestrictionOutput) SetStatus(v int64) *DescribeIpRestrictionOutput {
 	s.Status = &v
+	return s
+}
+
+// SetVpcEndpointIdRestrictionRuleMap sets the VpcEndpointIdRestrictionRuleMap field's value.
+func (s *DescribeIpRestrictionOutput) SetVpcEndpointIdRestrictionRuleMap(v map[string]*string) *DescribeIpRestrictionOutput {
+	s.VpcEndpointIdRestrictionRuleMap = v
+	return s
+}
+
+// SetVpcIdRestrictionRuleMap sets the VpcIdRestrictionRuleMap field's value.
+func (s *DescribeIpRestrictionOutput) SetVpcIdRestrictionRuleMap(v map[string]*string) *DescribeIpRestrictionOutput {
+	s.VpcIdRestrictionRuleMap = v
 	return s
 }
 
@@ -58926,7 +58947,10 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	// If you choose Dashboard embedding experience, pass the list of dashboard
 	// ARNs in the account that you want the user to be able to view.
 	//
-	// Currently, you can pass up to 25 dashboard ARNs in each API call.
+	// If you want to make changes to the theme of your embedded content, pass a
+	// list of theme ARNs that the anonymous users need access to.
+	//
+	// Currently, you can pass up to 25 theme ARNs in each API call.
 	//
 	// AuthorizedResourceArns is a required field
 	AuthorizedResourceArns []*string `type:"list" required:"true"`
@@ -100612,6 +100636,13 @@ type UpdateIpRestrictionInput struct {
 
 	// A map that describes the updated IP rules with CIDR ranges and descriptions.
 	IpRestrictionRuleMap map[string]*string `type:"map"`
+
+	// A map of allowed VPC endpoint IDs and their corresponding rule descriptions.
+	VpcEndpointIdRestrictionRuleMap map[string]*string `type:"map"`
+
+	// A map of VPC IDs and their corresponding rules. When you configure this parameter,
+	// traffic from all VPC endpoints that are present in the specified VPC is allowed.
+	VpcIdRestrictionRuleMap map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -100663,6 +100694,18 @@ func (s *UpdateIpRestrictionInput) SetEnabled(v bool) *UpdateIpRestrictionInput 
 // SetIpRestrictionRuleMap sets the IpRestrictionRuleMap field's value.
 func (s *UpdateIpRestrictionInput) SetIpRestrictionRuleMap(v map[string]*string) *UpdateIpRestrictionInput {
 	s.IpRestrictionRuleMap = v
+	return s
+}
+
+// SetVpcEndpointIdRestrictionRuleMap sets the VpcEndpointIdRestrictionRuleMap field's value.
+func (s *UpdateIpRestrictionInput) SetVpcEndpointIdRestrictionRuleMap(v map[string]*string) *UpdateIpRestrictionInput {
+	s.VpcEndpointIdRestrictionRuleMap = v
+	return s
+}
+
+// SetVpcIdRestrictionRuleMap sets the VpcIdRestrictionRuleMap field's value.
+func (s *UpdateIpRestrictionInput) SetVpcIdRestrictionRuleMap(v map[string]*string) *UpdateIpRestrictionInput {
+	s.VpcIdRestrictionRuleMap = v
 	return s
 }
 
@@ -107467,6 +107510,8 @@ func DataSourceType_Values() []string {
 	}
 }
 
+// The value type of the parameter. The value type is used to validate the parameter
+// before it is evaluated.
 const (
 	// DatasetParameterValueTypeMultiValued is a DatasetParameterValueType enum value
 	DatasetParameterValueTypeMultiValued = "MULTI_VALUED"

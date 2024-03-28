@@ -3201,7 +3201,8 @@
       "type":"string",
       "enum":[
         "EKS_ADDON_MANAGEMENT",
-        "ECS_FARGATE_AGENT_MANAGEMENT"
+        "ECS_FARGATE_AGENT_MANAGEMENT",
+        "EC2_AGENT_MANAGEMENT"
       ]
     },
     "FeatureStatus":{
@@ -5406,7 +5407,8 @@
       "type":"string",
       "enum":[
         "EKS_ADDON_MANAGEMENT",
-        "ECS_FARGATE_AGENT_MANAGEMENT"
+        "ECS_FARGATE_AGENT_MANAGEMENT",
+        "EC2_AGENT_MANAGEMENT"
       ]
     },
     "OrgFeatureStatus":{
@@ -6202,6 +6204,26 @@
         "MemoryRegions":{
           "shape":"MemoryRegionsList",
           "locationName":"memoryRegions"
+        },
+        "ToolName":{
+          "shape":"String",
+          "locationName":"toolName"
+        },
+        "ToolCategory":{
+          "shape":"String",
+          "locationName":"toolCategory"
+        },
+        "ServiceName":{
+          "shape":"String",
+          "locationName":"serviceName"
+        },
+        "CommandLineExample":{
+          "shape":"String",
+          "locationName":"commandLineExample"
+        },
+        "ThreatFilePath":{
+          "shape":"String",
+          "locationName":"threatFilePath"
         }
       }
     },
@@ -6872,6 +6894,10 @@
         "ThreatNames":{
           "shape":"ThreatNames",
           "locationName":"threatNames"
+        },
+        "ThreatFileSha256":{
+          "shape":"String",
+          "locationName":"threatFileSha256"
         }
       }
     },
