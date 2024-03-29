@@ -2145,6 +2145,15 @@
         "ClusterNodeDetails$ThreadsPerCore": "<p>The number of threads per CPU core you specified under <code>CreateCluster</code>.</p>"
       }
     },
+    "CodeEditorAppImageConfig": {
+      "base": "<p>The configuration for the file system and kernels in a SageMaker image running as a Code Editor app. The <code>FileSystemConfig</code> object is not supported.</p>",
+      "refs": {
+        "AppImageConfigDetails$CodeEditorAppImageConfig": "<p>The configuration for the file system and the runtime, such as the environment variables and entry point.</p>",
+        "CreateAppImageConfigRequest$CodeEditorAppImageConfig": "<p>The <code>CodeEditorAppImageConfig</code>. You can only specify one image kernel in the AppImageConfig API. This kernel is shown to users before the image starts. After the image runs, all kernels are visible in Code Editor.</p>",
+        "DescribeAppImageConfigResponse$CodeEditorAppImageConfig": "<p>The configuration of the Code Editor app.</p>",
+        "UpdateAppImageConfigRequest$CodeEditorAppImageConfig": "<p>The Code Editor app running on the image.</p>"
+      }
+    },
     "CodeEditorAppSettings": {
       "base": "<p>The Code Editor application settings.</p> <p>For more information about Code Editor, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/code-editor.html\">Get started with Code Editor in Amazon SageMaker</a>.</p>",
       "refs": {
@@ -2391,6 +2400,7 @@
     "ContainerConfig": {
       "base": "<p>The configuration used to run the application image container.</p>",
       "refs": {
+        "CodeEditorAppImageConfig$ContainerConfig": null,
         "JupyterLabAppImageConfig$ContainerConfig": null
       }
     },
@@ -3239,6 +3249,7 @@
     "CustomImages": {
       "base": null,
       "refs": {
+        "CodeEditorAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a Code Editor app.</p>",
         "JupyterLabAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a JupyterLab app.</p>",
         "KernelGatewayAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a KernelGateway app.</p>",
         "RSessionAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a RSession app.</p>"
@@ -5988,6 +5999,7 @@
     "FileSystemConfig": {
       "base": "<p>The Amazon Elastic File System storage configuration for a SageMaker image.</p>",
       "refs": {
+        "CodeEditorAppImageConfig$FileSystemConfig": null,
         "JupyterLabAppImageConfig$FileSystemConfig": null,
         "KernelGatewayImageConfig$FileSystemConfig": "<p>The Amazon Elastic File System storage configuration for a SageMaker image.</p>"
       }

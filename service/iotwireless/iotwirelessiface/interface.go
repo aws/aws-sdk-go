@@ -232,6 +232,14 @@ type IoTWirelessAPI interface {
 	GetLogLevelsByResourceTypesWithContext(aws.Context, *iotwireless.GetLogLevelsByResourceTypesInput, ...request.Option) (*iotwireless.GetLogLevelsByResourceTypesOutput, error)
 	GetLogLevelsByResourceTypesRequest(*iotwireless.GetLogLevelsByResourceTypesInput) (*request.Request, *iotwireless.GetLogLevelsByResourceTypesOutput)
 
+	GetMetricConfiguration(*iotwireless.GetMetricConfigurationInput) (*iotwireless.GetMetricConfigurationOutput, error)
+	GetMetricConfigurationWithContext(aws.Context, *iotwireless.GetMetricConfigurationInput, ...request.Option) (*iotwireless.GetMetricConfigurationOutput, error)
+	GetMetricConfigurationRequest(*iotwireless.GetMetricConfigurationInput) (*request.Request, *iotwireless.GetMetricConfigurationOutput)
+
+	GetMetrics(*iotwireless.GetMetricsInput) (*iotwireless.GetMetricsOutput, error)
+	GetMetricsWithContext(aws.Context, *iotwireless.GetMetricsInput, ...request.Option) (*iotwireless.GetMetricsOutput, error)
+	GetMetricsRequest(*iotwireless.GetMetricsInput) (*request.Request, *iotwireless.GetMetricsOutput)
+
 	GetMulticastGroup(*iotwireless.GetMulticastGroupInput) (*iotwireless.GetMulticastGroupOutput, error)
 	GetMulticastGroupWithContext(aws.Context, *iotwireless.GetMulticastGroupInput, ...request.Option) (*iotwireless.GetMulticastGroupOutput, error)
 	GetMulticastGroupRequest(*iotwireless.GetMulticastGroupInput) (*request.Request, *iotwireless.GetMulticastGroupOutput)
@@ -492,6 +500,10 @@ type IoTWirelessAPI interface {
 	UpdateLogLevelsByResourceTypes(*iotwireless.UpdateLogLevelsByResourceTypesInput) (*iotwireless.UpdateLogLevelsByResourceTypesOutput, error)
 	UpdateLogLevelsByResourceTypesWithContext(aws.Context, *iotwireless.UpdateLogLevelsByResourceTypesInput, ...request.Option) (*iotwireless.UpdateLogLevelsByResourceTypesOutput, error)
 	UpdateLogLevelsByResourceTypesRequest(*iotwireless.UpdateLogLevelsByResourceTypesInput) (*request.Request, *iotwireless.UpdateLogLevelsByResourceTypesOutput)
+
+	UpdateMetricConfiguration(*iotwireless.UpdateMetricConfigurationInput) (*iotwireless.UpdateMetricConfigurationOutput, error)
+	UpdateMetricConfigurationWithContext(aws.Context, *iotwireless.UpdateMetricConfigurationInput, ...request.Option) (*iotwireless.UpdateMetricConfigurationOutput, error)
+	UpdateMetricConfigurationRequest(*iotwireless.UpdateMetricConfigurationInput) (*request.Request, *iotwireless.UpdateMetricConfigurationOutput)
 
 	UpdateMulticastGroup(*iotwireless.UpdateMulticastGroupInput) (*iotwireless.UpdateMulticastGroupOutput, error)
 	UpdateMulticastGroupWithContext(aws.Context, *iotwireless.UpdateMulticastGroupInput, ...request.Option) (*iotwireless.UpdateMulticastGroupOutput, error)

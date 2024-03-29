@@ -3942,7 +3942,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
-        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"},
+        "CodeEditorAppImageConfig":{"shape":"CodeEditorAppImageConfig"}
       }
     },
     "AppImageConfigList":{
@@ -5859,10 +5860,18 @@
       "max":2,
       "min":1
     },
+    "CodeEditorAppImageConfig":{
+      "type":"structure",
+      "members":{
+        "FileSystemConfig":{"shape":"FileSystemConfig"},
+        "ContainerConfig":{"shape":"ContainerConfig"}
+      }
+    },
     "CodeEditorAppSettings":{
       "type":"structure",
       "members":{
         "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "CustomImages":{"shape":"CustomImages"},
         "LifecycleConfigArns":{"shape":"LifecycleConfigArns"}
       }
     },
@@ -6345,7 +6354,8 @@
         "AppImageConfigName":{"shape":"AppImageConfigName"},
         "Tags":{"shape":"TagList"},
         "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
-        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"},
+        "CodeEditorAppImageConfig":{"shape":"CodeEditorAppImageConfig"}
       }
     },
     "CreateAppImageConfigResponse":{
@@ -8615,7 +8625,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
-        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"},
+        "CodeEditorAppImageConfig":{"shape":"CodeEditorAppImageConfig"}
       }
     },
     "DescribeAppRequest":{
@@ -13773,7 +13784,7 @@
     "KmsKeyId":{
       "type":"string",
       "max":2048,
-      "pattern":".*"
+      "pattern":"^[a-zA-Z0-9:/_-]*$"
     },
     "LabelAttributeName":{
       "type":"string",
@@ -22256,7 +22267,8 @@
       "members":{
         "AppImageConfigName":{"shape":"AppImageConfigName"},
         "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"},
-        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"}
+        "JupyterLabAppImageConfig":{"shape":"JupyterLabAppImageConfig"},
+        "CodeEditorAppImageConfig":{"shape":"CodeEditorAppImageConfig"}
       }
     },
     "UpdateAppImageConfigResponse":{

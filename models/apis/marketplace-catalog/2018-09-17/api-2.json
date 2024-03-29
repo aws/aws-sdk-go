@@ -1681,6 +1681,9 @@
         "ReleaseDate": {
           "shape": "OfferReleaseDateFilter"
         },
+        "ResaleAuthorizationId": {
+          "shape": "OfferResaleAuthorizationIdFilter"
+        },
         "State": {
           "shape": "OfferStateFilter"
         },
@@ -1775,6 +1778,28 @@
       },
       "type": "structure"
     },
+    "OfferResaleAuthorizationIdFilter": {
+      "members": {
+        "ValueList": {
+          "shape": "OfferResaleAuthorizationIdFilterValueList"
+        }
+      },
+      "type": "structure"
+    },
+    "OfferResaleAuthorizationIdFilterValueList": {
+      "max": 10,
+      "member": {
+        "shape": "OfferResaleAuthorizationIdString"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "OfferResaleAuthorizationIdString": {
+      "max": 255,
+      "min": 1,
+      "pattern": "^[a-zA-Z0-9][.a-zA-Z0-9/-]+[a-zA-Z0-9]$",
+      "type": "string"
+    },
     "OfferSort": {
       "members": {
         "SortBy": {
@@ -1791,6 +1816,7 @@
         "EntityId",
         "Name",
         "ProductId",
+        "ResaleAuthorizationId",
         "ReleaseDate",
         "AvailabilityEndDate",
         "BuyerAccounts",
@@ -1839,6 +1865,9 @@
         },
         "ReleaseDate": {
           "shape": "DateTimeISO8601"
+        },
+        "ResaleAuthorizationId": {
+          "shape": "OfferResaleAuthorizationIdString"
         },
         "State": {
           "shape": "OfferStateString"

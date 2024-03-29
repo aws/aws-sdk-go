@@ -5241,6 +5241,12 @@ type OfferFilters struct {
 	// Allows filtering on the ReleaseDate of an offer.
 	ReleaseDate *OfferReleaseDateFilter `type:"structure"`
 
+	// Allows filtering on the ResaleAuthorizationId of an offer.
+	//
+	// Not all offers have a ResaleAuthorizationId. The response will only include
+	// offers for which you have permissions.
+	ResaleAuthorizationId *OfferResaleAuthorizationIdFilter `type:"structure"`
+
 	// Allows filtering on the State of an offer.
 	State *OfferStateFilter `type:"structure"`
 
@@ -5304,6 +5310,11 @@ func (s *OfferFilters) Validate() error {
 			invalidParams.AddNested("ReleaseDate", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResaleAuthorizationId != nil {
+		if err := s.ResaleAuthorizationId.Validate(); err != nil {
+			invalidParams.AddNested("ResaleAuthorizationId", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.State != nil {
 		if err := s.State.Validate(); err != nil {
 			invalidParams.AddNested("State", err.(request.ErrInvalidParams))
@@ -5360,6 +5371,12 @@ func (s *OfferFilters) SetProductId(v *OfferProductIdFilter) *OfferFilters {
 // SetReleaseDate sets the ReleaseDate field's value.
 func (s *OfferFilters) SetReleaseDate(v *OfferReleaseDateFilter) *OfferFilters {
 	s.ReleaseDate = v
+	return s
+}
+
+// SetResaleAuthorizationId sets the ResaleAuthorizationId field's value.
+func (s *OfferFilters) SetResaleAuthorizationId(v *OfferResaleAuthorizationIdFilter) *OfferFilters {
+	s.ResaleAuthorizationId = v
 	return s
 }
 
@@ -5685,6 +5702,54 @@ func (s *OfferReleaseDateFilterDateRange) SetBeforeValue(v string) *OfferRelease
 	return s
 }
 
+// Allows filtering on the ResaleAuthorizationId of an offer.
+//
+// Not all offers have a ResaleAuthorizationId. The response will only include
+// offers for which you have permissions.
+type OfferResaleAuthorizationIdFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Allows filtering on the ResaleAuthorizationId of an offer with list input.
+	ValueList []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferResaleAuthorizationIdFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OfferResaleAuthorizationIdFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OfferResaleAuthorizationIdFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OfferResaleAuthorizationIdFilter"}
+	if s.ValueList != nil && len(s.ValueList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetValueList sets the ValueList field's value.
+func (s *OfferResaleAuthorizationIdFilter) SetValueList(v []*string) *OfferResaleAuthorizationIdFilter {
+	s.ValueList = v
+	return s
+}
+
 // Allows to sort offers.
 type OfferSort struct {
 	_ struct{} `type:"structure"`
@@ -5790,6 +5855,9 @@ type OfferSummary struct {
 	// The release date of the offer.
 	ReleaseDate *string `min:"20" type:"string"`
 
+	// The ResaleAuthorizationId of the offer.
+	ResaleAuthorizationId *string `min:"1" type:"string"`
+
 	// The status of the offer.
 	State *string `type:"string" enum:"OfferStateString"`
 
@@ -5842,6 +5910,12 @@ func (s *OfferSummary) SetProductId(v string) *OfferSummary {
 // SetReleaseDate sets the ReleaseDate field's value.
 func (s *OfferSummary) SetReleaseDate(v string) *OfferSummary {
 	s.ReleaseDate = &v
+	return s
+}
+
+// SetResaleAuthorizationId sets the ResaleAuthorizationId field's value.
+func (s *OfferSummary) SetResaleAuthorizationId(v string) *OfferSummary {
+	s.ResaleAuthorizationId = &v
 	return s
 }
 
@@ -8789,6 +8863,9 @@ const (
 	// OfferSortByProductId is a OfferSortBy enum value
 	OfferSortByProductId = "ProductId"
 
+	// OfferSortByResaleAuthorizationId is a OfferSortBy enum value
+	OfferSortByResaleAuthorizationId = "ResaleAuthorizationId"
+
 	// OfferSortByReleaseDate is a OfferSortBy enum value
 	OfferSortByReleaseDate = "ReleaseDate"
 
@@ -8814,6 +8891,7 @@ func OfferSortBy_Values() []string {
 		OfferSortByEntityId,
 		OfferSortByName,
 		OfferSortByProductId,
+		OfferSortByResaleAuthorizationId,
 		OfferSortByReleaseDate,
 		OfferSortByAvailabilityEndDate,
 		OfferSortByBuyerAccounts,

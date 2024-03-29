@@ -23,6 +23,15 @@
       "refs": {
       }
     },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "GetHealthEventInput$LinkedAccountId": "<p>TBD </p>",
+        "GetMonitorInput$LinkedAccountId": "<p>TBD </p>",
+        "ListHealthEventsInput$LinkedAccountId": "<p>TBD </p>",
+        "StartQueryInput$LinkedAccountId": "<p>TBD </p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
@@ -40,6 +49,12 @@
     "BadRequestException": {
       "base": "<p>A bad request was received.</p>",
       "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "ListMonitorsInput$IncludeLinkedAccounts": "<p>TBD </p>"
       }
     },
     "ConflictException": {

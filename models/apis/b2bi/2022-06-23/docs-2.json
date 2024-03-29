@@ -850,7 +850,7 @@
     "X12Version": {
       "base": null,
       "refs": {
-        "X12Details$version": "<p>Returns the version to use for the specified X12 transaction set. Supported versions are <code>4010</code>, <code>4030</code>, and <code>5010</code>.</p>"
+        "X12Details$version": "<p>Returns the version to use for the specified X12 transaction set. <pre><code> &lt;/p&gt; </code></pre>"
       }
     }
   }

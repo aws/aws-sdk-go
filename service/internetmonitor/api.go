@@ -2172,6 +2172,9 @@ type GetHealthEventInput struct {
 	// EventId is a required field
 	EventId *string `location:"uri" locationName:"EventId" min:"1" type:"string" required:"true"`
 
+	// TBD
+	LinkedAccountId *string `location:"querystring" locationName:"LinkedAccountId" min:"12" type:"string"`
+
 	// The name of the monitor.
 	//
 	// MonitorName is a required field
@@ -2205,6 +2208,9 @@ func (s *GetHealthEventInput) Validate() error {
 	if s.EventId != nil && len(*s.EventId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventId", 1))
 	}
+	if s.LinkedAccountId != nil && len(*s.LinkedAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("LinkedAccountId", 12))
+	}
 	if s.MonitorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
 	}
@@ -2221,6 +2227,12 @@ func (s *GetHealthEventInput) Validate() error {
 // SetEventId sets the EventId field's value.
 func (s *GetHealthEventInput) SetEventId(v string) *GetHealthEventInput {
 	s.EventId = &v
+	return s
+}
+
+// SetLinkedAccountId sets the LinkedAccountId field's value.
+func (s *GetHealthEventInput) SetLinkedAccountId(v string) *GetHealthEventInput {
+	s.LinkedAccountId = &v
 	return s
 }
 
@@ -2375,6 +2387,9 @@ func (s *GetHealthEventOutput) SetStatus(v string) *GetHealthEventOutput {
 type GetMonitorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// TBD
+	LinkedAccountId *string `location:"querystring" locationName:"LinkedAccountId" min:"12" type:"string"`
+
 	// The name of the monitor.
 	//
 	// MonitorName is a required field
@@ -2402,6 +2417,9 @@ func (s GetMonitorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetMonitorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetMonitorInput"}
+	if s.LinkedAccountId != nil && len(*s.LinkedAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("LinkedAccountId", 12))
+	}
 	if s.MonitorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
 	}
@@ -2413,6 +2431,12 @@ func (s *GetMonitorInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLinkedAccountId sets the LinkedAccountId field's value.
+func (s *GetMonitorInput) SetLinkedAccountId(v string) *GetMonitorInput {
+	s.LinkedAccountId = &v
+	return s
 }
 
 // SetMonitorName sets the MonitorName field's value.
@@ -3576,6 +3600,9 @@ type ListHealthEventsInput struct {
 	// The status of a health event.
 	EventStatus *string `location:"querystring" locationName:"EventStatus" type:"string" enum:"HealthEventStatus"`
 
+	// TBD
+	LinkedAccountId *string `location:"querystring" locationName:"LinkedAccountId" min:"12" type:"string"`
+
 	// The number of health event objects that you want to return with this call.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -3613,6 +3640,9 @@ func (s ListHealthEventsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListHealthEventsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListHealthEventsInput"}
+	if s.LinkedAccountId != nil && len(*s.LinkedAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("LinkedAccountId", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -3638,6 +3668,12 @@ func (s *ListHealthEventsInput) SetEndTime(v time.Time) *ListHealthEventsInput {
 // SetEventStatus sets the EventStatus field's value.
 func (s *ListHealthEventsInput) SetEventStatus(v string) *ListHealthEventsInput {
 	s.EventStatus = &v
+	return s
+}
+
+// SetLinkedAccountId sets the LinkedAccountId field's value.
+func (s *ListHealthEventsInput) SetLinkedAccountId(v string) *ListHealthEventsInput {
+	s.LinkedAccountId = &v
 	return s
 }
 
@@ -3711,6 +3747,9 @@ func (s *ListHealthEventsOutput) SetNextToken(v string) *ListHealthEventsOutput 
 type ListMonitorsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// TBD
+	IncludeLinkedAccounts *bool `location:"querystring" locationName:"IncludeLinkedAccounts" type:"boolean"`
+
 	// The number of monitor objects that you want to return with this call.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -3754,6 +3793,12 @@ func (s *ListMonitorsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIncludeLinkedAccounts sets the IncludeLinkedAccounts field's value.
+func (s *ListMonitorsInput) SetIncludeLinkedAccounts(v bool) *ListMonitorsInput {
+	s.IncludeLinkedAccounts = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -4566,6 +4611,9 @@ type StartQueryInput struct {
 	// in the Amazon CloudWatch Internet Monitor User Guide.
 	FilterParameters []*FilterParameter `type:"list"`
 
+	// TBD
+	LinkedAccountId *string `min:"12" type:"string"`
+
 	// The name of the monitor to query.
 	//
 	// MonitorName is a required field
@@ -4623,6 +4671,9 @@ func (s *StartQueryInput) Validate() error {
 	if s.EndTime == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndTime"))
 	}
+	if s.LinkedAccountId != nil && len(*s.LinkedAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("LinkedAccountId", 12))
+	}
 	if s.MonitorName == nil {
 		invalidParams.Add(request.NewErrParamRequired("MonitorName"))
 	}
@@ -4651,6 +4702,12 @@ func (s *StartQueryInput) SetEndTime(v time.Time) *StartQueryInput {
 // SetFilterParameters sets the FilterParameters field's value.
 func (s *StartQueryInput) SetFilterParameters(v []*FilterParameter) *StartQueryInput {
 	s.FilterParameters = v
+	return s
+}
+
+// SetLinkedAccountId sets the LinkedAccountId field's value.
+func (s *StartQueryInput) SetLinkedAccountId(v string) *StartQueryInput {
+	s.LinkedAccountId = &v
 	return s
 }
 

@@ -1,3 +1,17 @@
+Release v1.51.11 (2024-03-29)
+===
+
+### Service Client Updates
+* `service/b2bi`: Updates service API and documentation
+* `service/codebuild`: Updates service API
+  * Add new fleet status code for Reserved Capacity.
+* `service/codeconnections`: Adds new service
+* `service/internetmonitor`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for custom images for the CodeEditor App on SageMaker Studio
+
 Release v1.51.10 (2024-03-28)
 ===
 
