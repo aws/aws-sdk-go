@@ -867,6 +867,25 @@
         "OfferReleaseDateFilter$DateRange": "<p>Allows filtering on the <code>ReleaseDate</code> of an offer with date range as input.</p>"
       }
     },
+    "OfferResaleAuthorizationIdFilter": {
+      "base": "<p>Allows filtering on the <code>ResaleAuthorizationId</code> of an offer.</p> <note> <p>Not all offers have a <code>ResaleAuthorizationId</code>. The response will only include offers for which you have permissions.</p> </note>",
+      "refs": {
+        "OfferFilters$ResaleAuthorizationId": "<p>Allows filtering on the <code>ResaleAuthorizationId</code> of an offer.</p> <note> <p>Not all offers have a <code>ResaleAuthorizationId</code>. The response will only include offers for which you have permissions.</p> </note>"
+      }
+    },
+    "OfferResaleAuthorizationIdFilterValueList": {
+      "base": null,
+      "refs": {
+        "OfferResaleAuthorizationIdFilter$ValueList": "<p>Allows filtering on the <code>ResaleAuthorizationId</code> of an offer with list input.</p>"
+      }
+    },
+    "OfferResaleAuthorizationIdString": {
+      "base": null,
+      "refs": {
+        "OfferResaleAuthorizationIdFilterValueList$member": null,
+        "OfferSummary$ResaleAuthorizationId": "<p>The ResaleAuthorizationId of the offer.</p>"
+      }
+    },
     "OfferSort": {
       "base": "<p>Allows to sort offers.</p>",
       "refs": {

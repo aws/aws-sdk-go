@@ -20,6 +20,10 @@
 // a FUOTA task and schedule a session to update the firmware of individual
 // devices or an entire group of devices in a multicast group.
 //
+// To connect to the AWS IoT Wireless Service, use the Service endpoints as
+// described in IoT Wireless Service endpoints (https://docs.aws.amazon.com/general/latest/gr/iot-lorawan.html#iot-wireless_region)
+// in the AWS General Reference.
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22 for more information on this service.
 //
 // See iotwireless package documentation for more information.

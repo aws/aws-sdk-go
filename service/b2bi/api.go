@@ -8191,8 +8191,6 @@ type X12Details struct {
 	// set. Transaction sets are maintained by the X12 Accredited Standards Committee.
 	TransactionSet *string `locationName:"transactionSet" type:"string" enum:"X12TransactionSet"`
 
-	// Returns the version to use for the specified X12 transaction set. Supported
-	// versions are 4010, 4030, and 5010.
 	Version *string `locationName:"version" type:"string" enum:"X12Version"`
 }
 
@@ -8319,11 +8317,47 @@ const (
 	// X12TransactionSetX12210 is a X12TransactionSet enum value
 	X12TransactionSetX12210 = "X12_210"
 
+	// X12TransactionSetX12211 is a X12TransactionSet enum value
+	X12TransactionSetX12211 = "X12_211"
+
 	// X12TransactionSetX12214 is a X12TransactionSet enum value
 	X12TransactionSetX12214 = "X12_214"
 
 	// X12TransactionSetX12215 is a X12TransactionSet enum value
 	X12TransactionSetX12215 = "X12_215"
+
+	// X12TransactionSetX12259 is a X12TransactionSet enum value
+	X12TransactionSetX12259 = "X12_259"
+
+	// X12TransactionSetX12260 is a X12TransactionSet enum value
+	X12TransactionSetX12260 = "X12_260"
+
+	// X12TransactionSetX12266 is a X12TransactionSet enum value
+	X12TransactionSetX12266 = "X12_266"
+
+	// X12TransactionSetX12269 is a X12TransactionSet enum value
+	X12TransactionSetX12269 = "X12_269"
+
+	// X12TransactionSetX12270 is a X12TransactionSet enum value
+	X12TransactionSetX12270 = "X12_270"
+
+	// X12TransactionSetX12271 is a X12TransactionSet enum value
+	X12TransactionSetX12271 = "X12_271"
+
+	// X12TransactionSetX12274 is a X12TransactionSet enum value
+	X12TransactionSetX12274 = "X12_274"
+
+	// X12TransactionSetX12275 is a X12TransactionSet enum value
+	X12TransactionSetX12275 = "X12_275"
+
+	// X12TransactionSetX12276 is a X12TransactionSet enum value
+	X12TransactionSetX12276 = "X12_276"
+
+	// X12TransactionSetX12277 is a X12TransactionSet enum value
+	X12TransactionSetX12277 = "X12_277"
+
+	// X12TransactionSetX12278 is a X12TransactionSet enum value
+	X12TransactionSetX12278 = "X12_278"
 
 	// X12TransactionSetX12310 is a X12TransactionSet enum value
 	X12TransactionSetX12310 = "X12_310"
@@ -8340,6 +8374,18 @@ const (
 	// X12TransactionSetX12410 is a X12TransactionSet enum value
 	X12TransactionSetX12410 = "X12_410"
 
+	// X12TransactionSetX12417 is a X12TransactionSet enum value
+	X12TransactionSetX12417 = "X12_417"
+
+	// X12TransactionSetX12421 is a X12TransactionSet enum value
+	X12TransactionSetX12421 = "X12_421"
+
+	// X12TransactionSetX12426 is a X12TransactionSet enum value
+	X12TransactionSetX12426 = "X12_426"
+
+	// X12TransactionSetX12810 is a X12TransactionSet enum value
+	X12TransactionSetX12810 = "X12_810"
+
 	// X12TransactionSetX12820 is a X12TransactionSet enum value
 	X12TransactionSetX12820 = "X12_820"
 
@@ -8349,8 +8395,26 @@ const (
 	// X12TransactionSetX12830 is a X12TransactionSet enum value
 	X12TransactionSetX12830 = "X12_830"
 
+	// X12TransactionSetX12832 is a X12TransactionSet enum value
+	X12TransactionSetX12832 = "X12_832"
+
+	// X12TransactionSetX12834 is a X12TransactionSet enum value
+	X12TransactionSetX12834 = "X12_834"
+
+	// X12TransactionSetX12835 is a X12TransactionSet enum value
+	X12TransactionSetX12835 = "X12_835"
+
+	// X12TransactionSetX12837 is a X12TransactionSet enum value
+	X12TransactionSetX12837 = "X12_837"
+
+	// X12TransactionSetX12844 is a X12TransactionSet enum value
+	X12TransactionSetX12844 = "X12_844"
+
 	// X12TransactionSetX12846 is a X12TransactionSet enum value
 	X12TransactionSetX12846 = "X12_846"
+
+	// X12TransactionSetX12849 is a X12TransactionSet enum value
+	X12TransactionSetX12849 = "X12_849"
 
 	// X12TransactionSetX12850 is a X12TransactionSet enum value
 	X12TransactionSetX12850 = "X12_850"
@@ -8373,14 +8437,29 @@ const (
 	// X12TransactionSetX12864 is a X12TransactionSet enum value
 	X12TransactionSetX12864 = "X12_864"
 
+	// X12TransactionSetX12865 is a X12TransactionSet enum value
+	X12TransactionSetX12865 = "X12_865"
+
+	// X12TransactionSetX12869 is a X12TransactionSet enum value
+	X12TransactionSetX12869 = "X12_869"
+
+	// X12TransactionSetX12870 is a X12TransactionSet enum value
+	X12TransactionSetX12870 = "X12_870"
+
 	// X12TransactionSetX12940 is a X12TransactionSet enum value
 	X12TransactionSetX12940 = "X12_940"
+
+	// X12TransactionSetX12945 is a X12TransactionSet enum value
+	X12TransactionSetX12945 = "X12_945"
 
 	// X12TransactionSetX12990 is a X12TransactionSet enum value
 	X12TransactionSetX12990 = "X12_990"
 
 	// X12TransactionSetX12997 is a X12TransactionSet enum value
 	X12TransactionSetX12997 = "X12_997"
+
+	// X12TransactionSetX12999 is a X12TransactionSet enum value
+	X12TransactionSetX12999 = "X12_999"
 )
 
 // X12TransactionSet_Values returns all elements of the X12TransactionSet enum
@@ -8390,17 +8469,39 @@ func X12TransactionSet_Values() []string {
 		X12TransactionSetX12180,
 		X12TransactionSetX12204,
 		X12TransactionSetX12210,
+		X12TransactionSetX12211,
 		X12TransactionSetX12214,
 		X12TransactionSetX12215,
+		X12TransactionSetX12259,
+		X12TransactionSetX12260,
+		X12TransactionSetX12266,
+		X12TransactionSetX12269,
+		X12TransactionSetX12270,
+		X12TransactionSetX12271,
+		X12TransactionSetX12274,
+		X12TransactionSetX12275,
+		X12TransactionSetX12276,
+		X12TransactionSetX12277,
+		X12TransactionSetX12278,
 		X12TransactionSetX12310,
 		X12TransactionSetX12315,
 		X12TransactionSetX12322,
 		X12TransactionSetX12404,
 		X12TransactionSetX12410,
+		X12TransactionSetX12417,
+		X12TransactionSetX12421,
+		X12TransactionSetX12426,
+		X12TransactionSetX12810,
 		X12TransactionSetX12820,
 		X12TransactionSetX12824,
 		X12TransactionSetX12830,
+		X12TransactionSetX12832,
+		X12TransactionSetX12834,
+		X12TransactionSetX12835,
+		X12TransactionSetX12837,
+		X12TransactionSetX12844,
 		X12TransactionSetX12846,
+		X12TransactionSetX12849,
 		X12TransactionSetX12850,
 		X12TransactionSetX12852,
 		X12TransactionSetX12855,
@@ -8408,9 +8509,14 @@ func X12TransactionSet_Values() []string {
 		X12TransactionSetX12860,
 		X12TransactionSetX12861,
 		X12TransactionSetX12864,
+		X12TransactionSetX12865,
+		X12TransactionSetX12869,
+		X12TransactionSetX12870,
 		X12TransactionSetX12940,
+		X12TransactionSetX12945,
 		X12TransactionSetX12990,
 		X12TransactionSetX12997,
+		X12TransactionSetX12999,
 	}
 }
 

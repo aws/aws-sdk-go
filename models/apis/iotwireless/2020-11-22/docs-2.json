@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Wireless provides bi-directional communication between internet-connected wireless devices and the AWS Cloud. To onboard both LoRaWAN and Sidewalk devices to AWS IoT, use the IoT Wireless API. These wireless devices use the Low Power Wide Area Networking (LPWAN) communication protocol to communicate with AWS IoT.</p> <p>Using the API, you can perform create, read, update, and delete operations for your wireless devices, gateways, destinations, and profiles. After onboarding your devices, you can use the API operations to set log levels and monitor your devices with CloudWatch.</p> <p>You can also use the API operations to create multicast groups and schedule a multicast session for sending a downlink message to devices in the group. By using Firmware Updates Over-The-Air (FUOTA) API operations, you can create a FUOTA task and schedule a session to update the firmware of individual devices or an entire group of devices in a multicast group.</p>",
+  "service": "<p>AWS IoT Wireless provides bi-directional communication between internet-connected wireless devices and the AWS Cloud. To onboard both LoRaWAN and Sidewalk devices to AWS IoT, use the IoT Wireless API. These wireless devices use the Low Power Wide Area Networking (LPWAN) communication protocol to communicate with AWS IoT.</p> <p>Using the API, you can perform create, read, update, and delete operations for your wireless devices, gateways, destinations, and profiles. After onboarding your devices, you can use the API operations to set log levels and monitor your devices with CloudWatch.</p> <p>You can also use the API operations to create multicast groups and schedule a multicast session for sending a downlink message to devices in the group. By using Firmware Updates Over-The-Air (FUOTA) API operations, you can create a FUOTA task and schedule a session to update the firmware of individual devices or an entire group of devices in a multicast group.</p> <p>To connect to the AWS IoT Wireless Service, use the Service endpoints as described in <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot-lorawan.html#iot-wireless_region\">IoT Wireless Service endpoints</a> in the <i>AWS General Reference</i>.</p>",
   "operations": {
     "AssociateAwsAccountWithPartnerAccount": "<p>Associates a partner account with your AWS account.</p>",
     "AssociateMulticastGroupWithFuotaTask": "<p>Associate a multicast group with a FUOTA task.</p>",
@@ -45,6 +45,8 @@
     "GetEventConfigurationByResourceTypes": "<p>Get the event configuration based on resource types.</p>",
     "GetFuotaTask": "<p>Gets information about a FUOTA task.</p>",
     "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
+    "GetMetricConfiguration": "<p>Get the metric configuration status for this account.</p>",
+    "GetMetrics": "<p>Get metrics.</p>",
     "GetMulticastGroup": "<p>Gets information about a multicast group.</p>",
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
     "GetNetworkAnalyzerConfiguration": "<p>Get network analyzer configuration.</p>",
@@ -102,6 +104,7 @@
     "UpdateEventConfigurationByResourceTypes": "<p>Update the event configuration based on resource types.</p>",
     "UpdateFuotaTask": "<p>Updates properties of a FUOTA task.</p>",
     "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
+    "UpdateMetricConfiguration": "<p>Update the metric configuration.</p>",
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
     "UpdateNetworkAnalyzerConfiguration": "<p>Update network analyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
@@ -155,6 +158,13 @@
         "LoRaWANServiceProfile$AddGwMetadata": "<p>The AddGWMetaData value.</p>"
       }
     },
+    "AggregationPeriod": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$AggregationPeriod": "<p>The aggregation period of the metric.</p>",
+        "SummaryMetricQueryResult$AggregationPeriod": "<p>The aggregation period of the metric.</p>"
+      }
+    },
     "AmazonId": {
       "base": "<p>The Sidewalk Amazon ID.</p>",
       "refs": {
@@ -182,7 +192,7 @@
     "AppEui": {
       "base": null,
       "refs": {
-        "OtaaV1_0_x$AppEui": "<p>The AppEUI value.</p>"
+        "OtaaV1_0_x$AppEui": "<p>The AppEUI value. You specify this value when using LoRaWAN versions v1.0.2 or v1.0.3.</p>"
       }
     },
     "AppKey": {
@@ -312,6 +322,12 @@
       "refs": {
         "CreateWirelessGatewayTaskDefinitionRequest$AutoCreateTasks": "<p>Whether to automatically create tasks using this task definition for all gateways with the specified current version. If <code>false</code>, the task must me created by calling <code>CreateWirelessGatewayTask</code>.</p>",
         "GetWirelessGatewayTaskDefinitionResponse$AutoCreateTasks": "<p>Whether to automatically create tasks using this task definition for all gateways with the specified current version. If <code>false</code>, the task must me created by calling <code>CreateWirelessGatewayTask</code>.</p>"
+      }
+    },
+    "Avg": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$Avg": "<p>The average of the values of the all data points collected during the period.</p>"
       }
     },
     "BCCH": {
@@ -1001,6 +1017,31 @@
         "DakCertificateMetadata$DeviceTypeId": "<p>The device type ID that's used for prototyping applications.</p>"
       }
     },
+    "Dimension": {
+      "base": "<p>The required list of dimensions for the metric.</p>",
+      "refs": {
+        "Dimensions$member": null
+      }
+    },
+    "DimensionName": {
+      "base": null,
+      "refs": {
+        "Dimension$name": "<p>The name of the dimension.</p>"
+      }
+    },
+    "DimensionValue": {
+      "base": null,
+      "refs": {
+        "Dimension$value": "<p>The dimension's value.</p>"
+      }
+    },
+    "Dimensions": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$Dimensions": "<p>The dimensions of the metric.</p>",
+        "SummaryMetricQueryResult$Dimensions": "<p>The dimensions of the metric.</p>"
+      }
+    },
     "DisassociateAwsAccountFromPartnerAccountRequest": {
       "base": null,
       "refs": {
@@ -1502,6 +1543,26 @@
       "refs": {
       }
     },
+    "GetMetricConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetricConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetricsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMulticastGroupRequest": {
       "base": null,
       "refs": {
@@ -1910,7 +1971,7 @@
       "base": null,
       "refs": {
         "JoinEuiRange$member": null,
-        "OtaaV1_0_x$JoinEui": "<p>The JoinEUI value.</p>",
+        "OtaaV1_0_x$JoinEui": "<p>The JoinEUI value. You specify this value instead of the AppEUI when using LoRaWAN version v1.0.4.</p>",
         "OtaaV1_1$JoinEui": "<p>The JoinEUI value.</p>"
       }
     },
@@ -2375,6 +2436,12 @@
         "LoRaWANDeviceProfile$MacVersion": "<p>The MAC version (such as OTAA 1.1 or OTAA 1.0.3) to use with this device profile.</p>"
       }
     },
+    "Max": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$Max": "<p>The maximum of the values of the all data points collected during the period.</p>"
+      }
+    },
     "MaxAllowedSignature": {
       "base": null,
       "refs": {
@@ -2459,6 +2526,82 @@
       "base": "<p>Sidewalk device message type. Default value is <code>CUSTOM_COMMAND_ID_NOTIFY</code>.</p>",
       "refs": {
         "SidewalkSendDataToDevice$MessageType": null
+      }
+    },
+    "MetricName": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$MetricName": "<p>The name of the metric.</p>",
+        "SummaryMetricQueryResult$MetricName": "<p>The name of the metric.</p>"
+      }
+    },
+    "MetricQueryEndTimestamp": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$EndTimestamp": "<p>The end timestamp for summary metric query.</p>",
+        "SummaryMetricQueryResult$EndTimestamp": "<p>The end timestamp for summary metric query.</p>"
+      }
+    },
+    "MetricQueryError": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQueryResult$Error": "<p>The error message for the summary metric query.</p>"
+      }
+    },
+    "MetricQueryId": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$QueryId": "<p>The id of the query.</p>",
+        "SummaryMetricQueryResult$QueryId": "<p>The id of the query.</p>"
+      }
+    },
+    "MetricQueryStartTimestamp": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQuery$StartTimestamp": "<p>The start timestamp for summary metric query.</p>",
+        "SummaryMetricQueryResult$StartTimestamp": "<p>The start timestamp for summary metric query.</p>"
+      }
+    },
+    "MetricQueryStatus": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQueryResult$QueryStatus": "<p>The status of the metric query.</p>"
+      }
+    },
+    "MetricQueryTimestamp": {
+      "base": null,
+      "refs": {
+        "MetricQueryTimestamps$member": null
+      }
+    },
+    "MetricQueryTimestamps": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQueryResult$Timestamps": "<p>The timestamp of each aggregation result.</p>"
+      }
+    },
+    "MetricQueryValue": {
+      "base": "<p>The aggregated values of the metric.</p>",
+      "refs": {
+        "MetricQueryValues$member": null
+      }
+    },
+    "MetricQueryValues": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQueryResult$Values": "<p>The list of aggregated metrics.</p>"
+      }
+    },
+    "MetricUnit": {
+      "base": null,
+      "refs": {
+        "SummaryMetricQueryResult$Unit": "<p>The units of measurement to be used for interpreting the aggregation result.</p>"
+      }
+    },
+    "Min": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$Min": "<p>The minimum of the values of the all data points collected during the period.</p>"
       }
     },
     "MinGwDiversity": {
@@ -2730,6 +2873,12 @@
       "base": "<p>OTAA device object for v1.1</p>",
       "refs": {
         "LoRaWANDevice$OtaaV1_1": "<p>OTAA device object for v1.1 for create APIs</p>"
+      }
+    },
+    "P90": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$P90": "<p>The 90th percentile of the values of the all data points collected during the period.</p>"
       }
     },
     "PCI": {
@@ -3508,6 +3657,12 @@
         "WirelessDeviceImportTask$StatusReason": "<p>The reason that provides additional information about the import task status.</p>"
       }
     },
+    "Std": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$Std": "<p>The standard deviation of the values of the all data points collected during the period.</p>"
+      }
+    },
     "SubBand": {
       "base": "<p>A subset of supported frequency channels in a certain RFRegion.</p>",
       "refs": {
@@ -3518,6 +3673,49 @@
       "base": "<p>A list of integer indicating which sub bands are supported by LoRa gateway.</p>",
       "refs": {
         "LoRaWANGateway$SubBands": null
+      }
+    },
+    "Sum": {
+      "base": null,
+      "refs": {
+        "MetricQueryValue$Sum": "<p>The sum of the values of the all data points collected during the period.</p>"
+      }
+    },
+    "SummaryMetricConfiguration": {
+      "base": "<p>The configuration of summary metric.</p>",
+      "refs": {
+        "GetMetricConfigurationResponse$SummaryMetric": "<p>The account's configuration status for summary metric aggregation.</p>",
+        "UpdateMetricConfigurationRequest$SummaryMetric": "<p>The value to be used to set summary metric configuration.</p>"
+      }
+    },
+    "SummaryMetricConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "SummaryMetricConfiguration$Status": "<p>The configuration of summary metric.</p>"
+      }
+    },
+    "SummaryMetricQueries": {
+      "base": null,
+      "refs": {
+        "GetMetricsRequest$SummaryMetricQueries": "<p>The list of queries to retrieve summary metrics.</p>"
+      }
+    },
+    "SummaryMetricQuery": {
+      "base": "<p>The metric query object.</p>",
+      "refs": {
+        "SummaryMetricQueries$member": null
+      }
+    },
+    "SummaryMetricQueryResult": {
+      "base": "<p>The result of metrics aggregation operation.</p>",
+      "refs": {
+        "SummaryMetricQueryResults$member": null
+      }
+    },
+    "SummaryMetricQueryResults": {
+      "base": null,
+      "refs": {
+        "GetMetricsResponse$SummaryMetricQueryResults": "<p>The list of retrieved metrics.</p>"
       }
     },
     "SupportedRfRegion": {
@@ -3822,6 +4020,16 @@
       }
     },
     "UpdateLogLevelsByResourceTypesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMetricConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMetricConfigurationResponse": {
       "base": null,
       "refs": {
       }

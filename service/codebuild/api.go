@@ -18507,6 +18507,9 @@ const (
 	// FleetStatusCodeRotating is a FleetStatusCode enum value
 	FleetStatusCodeRotating = "ROTATING"
 
+	// FleetStatusCodePendingDeletion is a FleetStatusCode enum value
+	FleetStatusCodePendingDeletion = "PENDING_DELETION"
+
 	// FleetStatusCodeDeleting is a FleetStatusCode enum value
 	FleetStatusCodeDeleting = "DELETING"
 
@@ -18526,6 +18529,7 @@ func FleetStatusCode_Values() []string {
 		FleetStatusCodeCreating,
 		FleetStatusCodeUpdating,
 		FleetStatusCodeRotating,
+		FleetStatusCodePendingDeletion,
 		FleetStatusCodeDeleting,
 		FleetStatusCodeCreateFailed,
 		FleetStatusCodeUpdateRollbackFailed,

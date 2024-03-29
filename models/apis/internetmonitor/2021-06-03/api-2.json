@@ -265,6 +265,11 @@
       },
       "exception":true
     },
+    "AccountId":{
+      "type":"string",
+      "max":12,
+      "min":12
+    },
     "Arn":{
       "type":"string",
       "max":2048,
@@ -289,6 +294,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
     },
     "ConflictException":{
       "type":"structure",
@@ -381,6 +390,11 @@
           "shape":"HealthEventName",
           "location":"uri",
           "locationName":"EventId"
+        },
+        "LinkedAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"LinkedAccountId"
         }
       }
     },
@@ -417,6 +431,11 @@
           "shape":"ResourceName",
           "location":"uri",
           "locationName":"MonitorName"
+        },
+        "LinkedAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"LinkedAccountId"
         }
       }
     },
@@ -684,6 +703,11 @@
           "shape":"HealthEventStatus",
           "location":"querystring",
           "locationName":"EventStatus"
+        },
+        "LinkedAccountId":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"LinkedAccountId"
         }
       }
     },
@@ -712,6 +736,11 @@
           "shape":"String",
           "location":"querystring",
           "locationName":"MonitorStatus"
+        },
+        "IncludeLinkedAccounts":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"IncludeLinkedAccounts"
         }
       }
     },
@@ -983,7 +1012,8 @@
         "StartTime":{"shape":"SyntheticTimestamp_date_time"},
         "EndTime":{"shape":"SyntheticTimestamp_date_time"},
         "QueryType":{"shape":"QueryType"},
-        "FilterParameters":{"shape":"FilterParameters"}
+        "FilterParameters":{"shape":"FilterParameters"},
+        "LinkedAccountId":{"shape":"AccountId"}
       }
     },
     "StartQueryOutput":{

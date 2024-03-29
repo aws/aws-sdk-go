@@ -4017,6 +4017,194 @@ func (c *IoTWireless) GetLogLevelsByResourceTypesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opGetMetricConfiguration = "GetMetricConfiguration"
+
+// GetMetricConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetMetricConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetricConfiguration for more information on using the GetMetricConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMetricConfigurationRequest method.
+//	req, resp := client.GetMetricConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetricConfiguration
+func (c *IoTWireless) GetMetricConfigurationRequest(input *GetMetricConfigurationInput) (req *request.Request, output *GetMetricConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetMetricConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/metric-configuration",
+	}
+
+	if input == nil {
+		input = &GetMetricConfigurationInput{}
+	}
+
+	output = &GetMetricConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetricConfiguration API operation for AWS IoT Wireless.
+//
+// Get the metric configuration status for this account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetMetricConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetricConfiguration
+func (c *IoTWireless) GetMetricConfiguration(input *GetMetricConfigurationInput) (*GetMetricConfigurationOutput, error) {
+	req, out := c.GetMetricConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetMetricConfigurationWithContext is the same as GetMetricConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetricConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetMetricConfigurationWithContext(ctx aws.Context, input *GetMetricConfigurationInput, opts ...request.Option) (*GetMetricConfigurationOutput, error) {
+	req, out := c.GetMetricConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMetrics = "GetMetrics"
+
+// GetMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetrics for more information on using the GetMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMetricsRequest method.
+//	req, resp := client.GetMetricsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetrics
+func (c *IoTWireless) GetMetricsRequest(input *GetMetricsInput) (req *request.Request, output *GetMetricsOutput) {
+	op := &request.Operation{
+		Name:       opGetMetrics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/metrics",
+	}
+
+	if input == nil {
+		input = &GetMetricsInput{}
+	}
+
+	output = &GetMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetrics API operation for AWS IoT Wireless.
+//
+// Get metrics.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetMetrics for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMetrics
+func (c *IoTWireless) GetMetrics(input *GetMetricsInput) (*GetMetricsOutput, error) {
+	req, out := c.GetMetricsRequest(input)
+	return out, req.Send()
+}
+
+// GetMetricsWithContext is the same as GetMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetMetricsWithContext(ctx aws.Context, input *GetMetricsInput, opts ...request.Option) (*GetMetricsOutput, error) {
+	req, out := c.GetMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMulticastGroup = "GetMulticastGroup"
 
 // GetMulticastGroupRequest generates a "aws/request.Request" representing the
@@ -9901,6 +10089,101 @@ func (c *IoTWireless) UpdateLogLevelsByResourceTypesWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opUpdateMetricConfiguration = "UpdateMetricConfiguration"
+
+// UpdateMetricConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMetricConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMetricConfiguration for more information on using the UpdateMetricConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateMetricConfigurationRequest method.
+//	req, resp := client.UpdateMetricConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMetricConfiguration
+func (c *IoTWireless) UpdateMetricConfigurationRequest(input *UpdateMetricConfigurationInput) (req *request.Request, output *UpdateMetricConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMetricConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/metric-configuration",
+	}
+
+	if input == nil {
+		input = &UpdateMetricConfigurationInput{}
+	}
+
+	output = &UpdateMetricConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMetricConfiguration API operation for AWS IoT Wireless.
+//
+// Update the metric configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateMetricConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The input did not meet the specified constraints.
+//
+//   - ResourceNotFoundException
+//     Resource does not exist.
+//
+//   - AccessDeniedException
+//     User does not have permission to perform this action.
+//
+//   - ConflictException
+//     Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     An unexpected error occurred while processing a request.
+//
+//   - ThrottlingException
+//     The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMetricConfiguration
+func (c *IoTWireless) UpdateMetricConfiguration(input *UpdateMetricConfigurationInput) (*UpdateMetricConfigurationOutput, error) {
+	req, out := c.UpdateMetricConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMetricConfigurationWithContext is the same as UpdateMetricConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMetricConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateMetricConfigurationWithContext(ctx aws.Context, input *UpdateMetricConfigurationInput, opts ...request.Option) (*UpdateMetricConfigurationOutput, error) {
+	req, out := c.UpdateMetricConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMulticastGroup = "UpdateMulticastGroup"
 
 // UpdateMulticastGroupRequest generates a "aws/request.Request" representing the
@@ -15199,6 +15482,47 @@ func (s *DeviceRegistrationStateResourceTypeEventConfiguration) SetSidewalk(v *S
 	return s
 }
 
+// The required list of dimensions for the metric.
+type Dimension struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the dimension.
+	Name *string `locationName:"name" type:"string" enum:"DimensionName"`
+
+	// The dimension's value.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Dimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Dimension) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Dimension) SetName(v string) *Dimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Dimension) SetValue(v string) *Dimension {
+	s.Value = &v
+	return s
+}
+
 type DisassociateAwsAccountFromPartnerAccountInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -16761,6 +17085,121 @@ func (s *GetLogLevelsByResourceTypesOutput) SetWirelessDeviceLogOptions(v []*Wir
 // SetWirelessGatewayLogOptions sets the WirelessGatewayLogOptions field's value.
 func (s *GetLogLevelsByResourceTypesOutput) SetWirelessGatewayLogOptions(v []*WirelessGatewayLogOption) *GetLogLevelsByResourceTypesOutput {
 	s.WirelessGatewayLogOptions = v
+	return s
+}
+
+type GetMetricConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetMetricConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The account's configuration status for summary metric aggregation.
+	SummaryMetric *SummaryMetricConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSummaryMetric sets the SummaryMetric field's value.
+func (s *GetMetricConfigurationOutput) SetSummaryMetric(v *SummaryMetricConfiguration) *GetMetricConfigurationOutput {
+	s.SummaryMetric = v
+	return s
+}
+
+type GetMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of queries to retrieve summary metrics.
+	SummaryMetricQueries []*SummaryMetricQuery `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricsInput) GoString() string {
+	return s.String()
+}
+
+// SetSummaryMetricQueries sets the SummaryMetricQueries field's value.
+func (s *GetMetricsInput) SetSummaryMetricQueries(v []*SummaryMetricQuery) *GetMetricsInput {
+	s.SummaryMetricQueries = v
+	return s
+}
+
+type GetMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of retrieved metrics.
+	SummaryMetricQueryResults []*SummaryMetricQueryResult `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetSummaryMetricQueryResults sets the SummaryMetricQueryResults field's value.
+func (s *GetMetricsOutput) SetSummaryMetricQueryResults(v []*SummaryMetricQueryResult) *GetMetricsOutput {
+	s.SummaryMetricQueryResults = v
 	return s
 }
 
@@ -23695,6 +24134,85 @@ func (s *MessageDeliveryStatusResourceTypeEventConfiguration) SetSidewalk(v *Sid
 	return s
 }
 
+// The aggregated values of the metric.
+type MetricQueryValue struct {
+	_ struct{} `type:"structure"`
+
+	// The average of the values of the all data points collected during the period.
+	Avg *float64 `type:"double"`
+
+	// The maximum of the values of the all data points collected during the period.
+	Max *float64 `type:"double"`
+
+	// The minimum of the values of the all data points collected during the period.
+	Min *float64 `type:"double"`
+
+	// The 90th percentile of the values of the all data points collected during
+	// the period.
+	P90 *float64 `type:"double"`
+
+	// The standard deviation of the values of the all data points collected during
+	// the period.
+	Std *float64 `type:"double"`
+
+	// The sum of the values of the all data points collected during the period.
+	Sum *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricQueryValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricQueryValue) GoString() string {
+	return s.String()
+}
+
+// SetAvg sets the Avg field's value.
+func (s *MetricQueryValue) SetAvg(v float64) *MetricQueryValue {
+	s.Avg = &v
+	return s
+}
+
+// SetMax sets the Max field's value.
+func (s *MetricQueryValue) SetMax(v float64) *MetricQueryValue {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *MetricQueryValue) SetMin(v float64) *MetricQueryValue {
+	s.Min = &v
+	return s
+}
+
+// SetP90 sets the P90 field's value.
+func (s *MetricQueryValue) SetP90(v float64) *MetricQueryValue {
+	s.P90 = &v
+	return s
+}
+
+// SetStd sets the Std field's value.
+func (s *MetricQueryValue) SetStd(v float64) *MetricQueryValue {
+	s.Std = &v
+	return s
+}
+
+// SetSum sets the Sum field's value.
+func (s *MetricQueryValue) SetSum(v float64) *MetricQueryValue {
+	s.Sum = &v
+	return s
+}
+
 // A multicast group.
 type MulticastGroup struct {
 	_ struct{} `type:"structure"`
@@ -23869,7 +24387,8 @@ func (s *NetworkAnalyzerConfigurations) SetName(v string) *NetworkAnalyzerConfig
 type OtaaV10X struct {
 	_ struct{} `type:"structure"`
 
-	// The AppEUI value.
+	// The AppEUI value. You specify this value when using LoRaWAN versions v1.0.2
+	// or v1.0.3.
 	AppEui *string `type:"string"`
 
 	// The AppKey value.
@@ -23878,7 +24397,8 @@ type OtaaV10X struct {
 	// The GenAppKey value.
 	GenAppKey *string `type:"string"`
 
-	// The JoinEUI value.
+	// The JoinEUI value. You specify this value instead of the AppEUI when using
+	// LoRaWAN version v1.0.4.
 	JoinEui *string `type:"string"`
 }
 
@@ -26697,6 +27217,237 @@ func (s *StartWirelessDeviceImportTaskOutput) SetId(v string) *StartWirelessDevi
 	return s
 }
 
+// The configuration of summary metric.
+type SummaryMetricConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of summary metric.
+	Status *string `type:"string" enum:"SummaryMetricConfigurationStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *SummaryMetricConfiguration) SetStatus(v string) *SummaryMetricConfiguration {
+	s.Status = &v
+	return s
+}
+
+// The metric query object.
+type SummaryMetricQuery struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation period of the metric.
+	AggregationPeriod *string `type:"string" enum:"AggregationPeriod"`
+
+	// The dimensions of the metric.
+	Dimensions []*Dimension `type:"list"`
+
+	// The end timestamp for summary metric query.
+	EndTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the metric.
+	MetricName *string `type:"string" enum:"MetricName"`
+
+	// The id of the query.
+	QueryId *string `type:"string"`
+
+	// The start timestamp for summary metric query.
+	StartTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricQuery) GoString() string {
+	return s.String()
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *SummaryMetricQuery) SetAggregationPeriod(v string) *SummaryMetricQuery {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *SummaryMetricQuery) SetDimensions(v []*Dimension) *SummaryMetricQuery {
+	s.Dimensions = v
+	return s
+}
+
+// SetEndTimestamp sets the EndTimestamp field's value.
+func (s *SummaryMetricQuery) SetEndTimestamp(v time.Time) *SummaryMetricQuery {
+	s.EndTimestamp = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *SummaryMetricQuery) SetMetricName(v string) *SummaryMetricQuery {
+	s.MetricName = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *SummaryMetricQuery) SetQueryId(v string) *SummaryMetricQuery {
+	s.QueryId = &v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *SummaryMetricQuery) SetStartTimestamp(v time.Time) *SummaryMetricQuery {
+	s.StartTimestamp = &v
+	return s
+}
+
+// The result of metrics aggregation operation.
+type SummaryMetricQueryResult struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation period of the metric.
+	AggregationPeriod *string `type:"string" enum:"AggregationPeriod"`
+
+	// The dimensions of the metric.
+	Dimensions []*Dimension `type:"list"`
+
+	// The end timestamp for summary metric query.
+	EndTimestamp *time.Time `type:"timestamp"`
+
+	// The error message for the summary metric query.
+	Error *string `type:"string"`
+
+	// The name of the metric.
+	MetricName *string `type:"string" enum:"MetricName"`
+
+	// The id of the query.
+	QueryId *string `type:"string"`
+
+	// The status of the metric query.
+	QueryStatus *string `type:"string" enum:"MetricQueryStatus"`
+
+	// The start timestamp for summary metric query.
+	StartTimestamp *time.Time `type:"timestamp"`
+
+	// The timestamp of each aggregation result.
+	Timestamps []*time.Time `type:"list"`
+
+	// The units of measurement to be used for interpreting the aggregation result.
+	Unit *string `type:"string"`
+
+	// The list of aggregated metrics.
+	Values []*MetricQueryValue `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricQueryResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SummaryMetricQueryResult) GoString() string {
+	return s.String()
+}
+
+// SetAggregationPeriod sets the AggregationPeriod field's value.
+func (s *SummaryMetricQueryResult) SetAggregationPeriod(v string) *SummaryMetricQueryResult {
+	s.AggregationPeriod = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *SummaryMetricQueryResult) SetDimensions(v []*Dimension) *SummaryMetricQueryResult {
+	s.Dimensions = v
+	return s
+}
+
+// SetEndTimestamp sets the EndTimestamp field's value.
+func (s *SummaryMetricQueryResult) SetEndTimestamp(v time.Time) *SummaryMetricQueryResult {
+	s.EndTimestamp = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *SummaryMetricQueryResult) SetError(v string) *SummaryMetricQueryResult {
+	s.Error = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *SummaryMetricQueryResult) SetMetricName(v string) *SummaryMetricQueryResult {
+	s.MetricName = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *SummaryMetricQueryResult) SetQueryId(v string) *SummaryMetricQueryResult {
+	s.QueryId = &v
+	return s
+}
+
+// SetQueryStatus sets the QueryStatus field's value.
+func (s *SummaryMetricQueryResult) SetQueryStatus(v string) *SummaryMetricQueryResult {
+	s.QueryStatus = &v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *SummaryMetricQueryResult) SetStartTimestamp(v time.Time) *SummaryMetricQueryResult {
+	s.StartTimestamp = &v
+	return s
+}
+
+// SetTimestamps sets the Timestamps field's value.
+func (s *SummaryMetricQueryResult) SetTimestamps(v []*time.Time) *SummaryMetricQueryResult {
+	s.Timestamps = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *SummaryMetricQueryResult) SetUnit(v string) *SummaryMetricQueryResult {
+	s.Unit = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SummaryMetricQueryResult) SetValues(v []*MetricQueryValue) *SummaryMetricQueryResult {
+	s.Values = v
+	return s
+}
+
 // A simple label consisting of a customer-defined key-value pair
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -28128,6 +28879,59 @@ func (s UpdateLogLevelsByResourceTypesOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateLogLevelsByResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateMetricConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The value to be used to set summary metric configuration.
+	SummaryMetric *SummaryMetricConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// SetSummaryMetric sets the SummaryMetric field's value.
+func (s *UpdateMetricConfigurationInput) SetSummaryMetric(v *SummaryMetricConfiguration) *UpdateMetricConfigurationInput {
+	s.SummaryMetric = v
+	return s
+}
+
+type UpdateMetricConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMetricConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -30398,6 +31202,26 @@ func (s *WirelessMetadata) SetSidewalk(v *SidewalkSendDataToDevice) *WirelessMet
 }
 
 const (
+	// AggregationPeriodOneHour is a AggregationPeriod enum value
+	AggregationPeriodOneHour = "OneHour"
+
+	// AggregationPeriodOneDay is a AggregationPeriod enum value
+	AggregationPeriodOneDay = "OneDay"
+
+	// AggregationPeriodOneWeek is a AggregationPeriod enum value
+	AggregationPeriodOneWeek = "OneWeek"
+)
+
+// AggregationPeriod_Values returns all elements of the AggregationPeriod enum
+func AggregationPeriod_Values() []string {
+	return []string{
+		AggregationPeriodOneHour,
+		AggregationPeriodOneDay,
+		AggregationPeriodOneWeek,
+	}
+}
+
+const (
 	// ApplicationConfigTypeSemtechGeolocation is a ApplicationConfigType enum value
 	ApplicationConfigTypeSemtechGeolocation = "SemtechGeolocation"
 )
@@ -30484,6 +31308,22 @@ func DeviceState_Values() []string {
 		DeviceStateRegisteredNotSeen,
 		DeviceStateRegisteredReachable,
 		DeviceStateRegisteredUnreachable,
+	}
+}
+
+const (
+	// DimensionNameDeviceId is a DimensionName enum value
+	DimensionNameDeviceId = "DeviceId"
+
+	// DimensionNameGatewayId is a DimensionName enum value
+	DimensionNameGatewayId = "GatewayId"
+)
+
+// DimensionName_Values returns all elements of the DimensionName enum
+func DimensionName_Values() []string {
+	return []string{
+		DimensionNameDeviceId,
+		DimensionNameGatewayId,
 	}
 }
 
@@ -30807,6 +31647,150 @@ func MessageType_Values() []string {
 	}
 }
 
+const (
+	// MetricNameDeviceRssi is a MetricName enum value
+	MetricNameDeviceRssi = "DeviceRSSI"
+
+	// MetricNameDeviceSnr is a MetricName enum value
+	MetricNameDeviceSnr = "DeviceSNR"
+
+	// MetricNameDeviceUplinkCount is a MetricName enum value
+	MetricNameDeviceUplinkCount = "DeviceUplinkCount"
+
+	// MetricNameDeviceDownlinkCount is a MetricName enum value
+	MetricNameDeviceDownlinkCount = "DeviceDownlinkCount"
+
+	// MetricNameDeviceUplinkLostCount is a MetricName enum value
+	MetricNameDeviceUplinkLostCount = "DeviceUplinkLostCount"
+
+	// MetricNameDeviceUplinkLostRate is a MetricName enum value
+	MetricNameDeviceUplinkLostRate = "DeviceUplinkLostRate"
+
+	// MetricNameDeviceJoinRequestCount is a MetricName enum value
+	MetricNameDeviceJoinRequestCount = "DeviceJoinRequestCount"
+
+	// MetricNameDeviceJoinAcceptCount is a MetricName enum value
+	MetricNameDeviceJoinAcceptCount = "DeviceJoinAcceptCount"
+
+	// MetricNameDeviceRoamingUplinkCount is a MetricName enum value
+	MetricNameDeviceRoamingUplinkCount = "DeviceRoamingUplinkCount"
+
+	// MetricNameDeviceRoamingDownlinkCount is a MetricName enum value
+	MetricNameDeviceRoamingDownlinkCount = "DeviceRoamingDownlinkCount"
+
+	// MetricNameGatewayUpTime is a MetricName enum value
+	MetricNameGatewayUpTime = "GatewayUpTime"
+
+	// MetricNameGatewayDownTime is a MetricName enum value
+	MetricNameGatewayDownTime = "GatewayDownTime"
+
+	// MetricNameGatewayRssi is a MetricName enum value
+	MetricNameGatewayRssi = "GatewayRSSI"
+
+	// MetricNameGatewaySnr is a MetricName enum value
+	MetricNameGatewaySnr = "GatewaySNR"
+
+	// MetricNameGatewayUplinkCount is a MetricName enum value
+	MetricNameGatewayUplinkCount = "GatewayUplinkCount"
+
+	// MetricNameGatewayDownlinkCount is a MetricName enum value
+	MetricNameGatewayDownlinkCount = "GatewayDownlinkCount"
+
+	// MetricNameGatewayJoinRequestCount is a MetricName enum value
+	MetricNameGatewayJoinRequestCount = "GatewayJoinRequestCount"
+
+	// MetricNameGatewayJoinAcceptCount is a MetricName enum value
+	MetricNameGatewayJoinAcceptCount = "GatewayJoinAcceptCount"
+
+	// MetricNameAwsAccountUplinkCount is a MetricName enum value
+	MetricNameAwsAccountUplinkCount = "AwsAccountUplinkCount"
+
+	// MetricNameAwsAccountDownlinkCount is a MetricName enum value
+	MetricNameAwsAccountDownlinkCount = "AwsAccountDownlinkCount"
+
+	// MetricNameAwsAccountUplinkLostCount is a MetricName enum value
+	MetricNameAwsAccountUplinkLostCount = "AwsAccountUplinkLostCount"
+
+	// MetricNameAwsAccountUplinkLostRate is a MetricName enum value
+	MetricNameAwsAccountUplinkLostRate = "AwsAccountUplinkLostRate"
+
+	// MetricNameAwsAccountJoinRequestCount is a MetricName enum value
+	MetricNameAwsAccountJoinRequestCount = "AwsAccountJoinRequestCount"
+
+	// MetricNameAwsAccountJoinAcceptCount is a MetricName enum value
+	MetricNameAwsAccountJoinAcceptCount = "AwsAccountJoinAcceptCount"
+
+	// MetricNameAwsAccountRoamingUplinkCount is a MetricName enum value
+	MetricNameAwsAccountRoamingUplinkCount = "AwsAccountRoamingUplinkCount"
+
+	// MetricNameAwsAccountRoamingDownlinkCount is a MetricName enum value
+	MetricNameAwsAccountRoamingDownlinkCount = "AwsAccountRoamingDownlinkCount"
+
+	// MetricNameAwsAccountDeviceCount is a MetricName enum value
+	MetricNameAwsAccountDeviceCount = "AwsAccountDeviceCount"
+
+	// MetricNameAwsAccountGatewayCount is a MetricName enum value
+	MetricNameAwsAccountGatewayCount = "AwsAccountGatewayCount"
+
+	// MetricNameAwsAccountActiveDeviceCount is a MetricName enum value
+	MetricNameAwsAccountActiveDeviceCount = "AwsAccountActiveDeviceCount"
+
+	// MetricNameAwsAccountActiveGatewayCount is a MetricName enum value
+	MetricNameAwsAccountActiveGatewayCount = "AwsAccountActiveGatewayCount"
+)
+
+// MetricName_Values returns all elements of the MetricName enum
+func MetricName_Values() []string {
+	return []string{
+		MetricNameDeviceRssi,
+		MetricNameDeviceSnr,
+		MetricNameDeviceUplinkCount,
+		MetricNameDeviceDownlinkCount,
+		MetricNameDeviceUplinkLostCount,
+		MetricNameDeviceUplinkLostRate,
+		MetricNameDeviceJoinRequestCount,
+		MetricNameDeviceJoinAcceptCount,
+		MetricNameDeviceRoamingUplinkCount,
+		MetricNameDeviceRoamingDownlinkCount,
+		MetricNameGatewayUpTime,
+		MetricNameGatewayDownTime,
+		MetricNameGatewayRssi,
+		MetricNameGatewaySnr,
+		MetricNameGatewayUplinkCount,
+		MetricNameGatewayDownlinkCount,
+		MetricNameGatewayJoinRequestCount,
+		MetricNameGatewayJoinAcceptCount,
+		MetricNameAwsAccountUplinkCount,
+		MetricNameAwsAccountDownlinkCount,
+		MetricNameAwsAccountUplinkLostCount,
+		MetricNameAwsAccountUplinkLostRate,
+		MetricNameAwsAccountJoinRequestCount,
+		MetricNameAwsAccountJoinAcceptCount,
+		MetricNameAwsAccountRoamingUplinkCount,
+		MetricNameAwsAccountRoamingDownlinkCount,
+		MetricNameAwsAccountDeviceCount,
+		MetricNameAwsAccountGatewayCount,
+		MetricNameAwsAccountActiveDeviceCount,
+		MetricNameAwsAccountActiveGatewayCount,
+	}
+}
+
+const (
+	// MetricQueryStatusSucceeded is a MetricQueryStatus enum value
+	MetricQueryStatusSucceeded = "Succeeded"
+
+	// MetricQueryStatusFailed is a MetricQueryStatus enum value
+	MetricQueryStatusFailed = "Failed"
+)
+
+// MetricQueryStatus_Values returns all elements of the MetricQueryStatus enum
+func MetricQueryStatus_Values() []string {
+	return []string{
+		MetricQueryStatusSucceeded,
+		MetricQueryStatusFailed,
+	}
+}
+
 // FrameInfo of your multicast group resources for the trace content. Use FrameInfo
 // to debug the multicast communication between your multicast groups and the
 // network server.
@@ -30964,6 +31948,22 @@ func SigningAlg_Values() []string {
 	return []string{
 		SigningAlgEd25519,
 		SigningAlgP256r1,
+	}
+}
+
+const (
+	// SummaryMetricConfigurationStatusEnabled is a SummaryMetricConfigurationStatus enum value
+	SummaryMetricConfigurationStatusEnabled = "Enabled"
+
+	// SummaryMetricConfigurationStatusDisabled is a SummaryMetricConfigurationStatus enum value
+	SummaryMetricConfigurationStatusDisabled = "Disabled"
+)
+
+// SummaryMetricConfigurationStatus_Values returns all elements of the SummaryMetricConfigurationStatus enum
+func SummaryMetricConfigurationStatus_Values() []string {
+	return []string{
+		SummaryMetricConfigurationStatusEnabled,
+		SummaryMetricConfigurationStatusDisabled,
 	}
 }
 
