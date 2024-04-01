@@ -4,6 +4,7 @@
   "operations": {
     "AcceptPredictions": "<p>Accepts automatically generated business-friendly metadata for your Amazon DataZone assets.</p>",
     "AcceptSubscriptionRequest": "<p>Accepts a subscription request to a specific asset. </p>",
+    "CancelMetadataGenerationRun": "<p>Cancels the metadata generation run.</p>",
     "CancelSubscription": "<p>Cancels the subscription to the specified asset.</p>",
     "CreateAsset": "<p>Creates an asset in Amazon DataZone catalog.</p>",
     "CreateAssetRevision": "<p>Creates a revision of the asset.</p>",
@@ -16,7 +17,7 @@
     "CreateGlossary": "<p>Creates an Amazon DataZone business glossary.</p>",
     "CreateGlossaryTerm": "<p>Creates a business glossary term.</p>",
     "CreateGroupProfile": "<p>Creates a group profile in Amazon DataZone.</p>",
-    "CreateListingChangeSet": "<p/>",
+    "CreateListingChangeSet": "<p>Publishes a listing (a record of an asset at a given time) or removes a listing from the catalog. </p>",
     "CreateProject": "<p>Creates an Amazon DataZone project.</p>",
     "CreateProjectMembership": "<p>Creates a project membership in Amazon DataZone.</p>",
     "CreateSubscriptionGrant": "<p>Creates a subsscription grant in Amazon DataZone.</p>",
@@ -33,7 +34,7 @@
     "DeleteFormType": "<p>Delets and metadata form type in Amazon DataZone.</p>",
     "DeleteGlossary": "<p>Deletes a business glossary in Amazon DataZone.</p>",
     "DeleteGlossaryTerm": "<p>Deletes a business glossary term in Amazon DataZone.</p>",
-    "DeleteListing": "<p/>",
+    "DeleteListing": "<p>Deletes a listing (a record of an asset at a given time).</p>",
     "DeleteProject": "<p>Deletes a project in Amazon DataZone. </p>",
     "DeleteProjectMembership": "<p>Deletes project membership in Amazon DataZone.</p>",
     "DeleteSubscriptionGrant": "<p>Deletes and subscription grant in Amazon DataZone.</p>",
@@ -53,7 +54,8 @@
     "GetGlossaryTerm": "<p>Gets a business glossary term in Amazon DataZone.</p>",
     "GetGroupProfile": "<p>Gets a group profile in Amazon DataZone.</p>",
     "GetIamPortalLoginUrl": "<p>Gets the data portal URL for the specified Amazon DataZone domain.</p>",
-    "GetListing": "<p/>",
+    "GetListing": "<p>Gets a listing (a record of an asset at a given time).</p>",
+    "GetMetadataGenerationRun": "<p>Gets a metadata generation run in Amazon DataZone.</p>",
     "GetProject": "<p>Gets a project in Amazon DataZone.</p>",
     "GetSubscription": "<p>Gets a subscription in Amazon DataZone.</p>",
     "GetSubscriptionGrant": "<p>Gets the subscription grant in Amazon DataZone.</p>",
@@ -69,6 +71,7 @@
     "ListEnvironmentBlueprints": "<p>Lists blueprints in an Amazon DataZone environment.</p>",
     "ListEnvironmentProfiles": "<p>Lists Amazon DataZone environment profiles.</p>",
     "ListEnvironments": "<p>Lists Amazon DataZone environments.</p>",
+    "ListMetadataGenerationRuns": "<p>Lists all metadata generation runs.</p>",
     "ListNotifications": "<p>Lists all Amazon DataZone notifications.</p>",
     "ListProjectMemberships": "<p>Lists all members of the specified project.</p>",
     "ListProjects": "<p>Lists Amazon DataZone projects.</p>",
@@ -83,10 +86,11 @@
     "RevokeSubscription": "<p>Revokes a specified subscription in Amazon DataZone.</p>",
     "Search": "<p>Searches for assets in Amazon DataZone.</p>",
     "SearchGroupProfiles": "<p>Searches group profiles in Amazon DataZone.</p>",
-    "SearchListings": "<p>Searches listings in Amazon DataZone.</p>",
+    "SearchListings": "<p>Searches listings (records of an asset at a given time) in Amazon DataZone.</p>",
     "SearchTypes": "<p>Searches for types in Amazon DataZone.</p>",
     "SearchUserProfiles": "<p>Searches user profiles in Amazon DataZone.</p>",
     "StartDataSourceRun": "<p>Start the run of the specified data source in Amazon DataZone.</p>",
+    "StartMetadataGenerationRun": "<p>Starts the metadata generation run.</p>",
     "TagResource": "<p>Tags a resource in Amazon DataZone.</p>",
     "UntagResource": "<p>Untags a resource in Amazon DataZone.</p>",
     "UpdateDataSource": "<p>Updates the specified data source in Amazon DataZone.</p>",
@@ -112,7 +116,7 @@
     "AcceptChoices": {
       "base": null,
       "refs": {
-        "AcceptPredictionsInput$acceptChoices": "<p/>"
+        "AcceptPredictionsInput$acceptChoices": "<p>Specifies the prediction (aka, the automatically generated piece of metadata) and the target (for example, a column name) that can be accepted.</p>"
       }
     },
     "AcceptPredictionsInput": {
@@ -184,7 +188,7 @@
     "AssetId": {
       "base": null,
       "refs": {
-        "AcceptPredictionsOutput$assetId": "<p/>",
+        "AcceptPredictionsOutput$assetId": "<p>The ID of the asset.</p>",
         "AssetListing$assetId": "<p>The identifier of an asset published in an Amazon DataZone catalog. </p>",
         "AssetListingItem$entityId": "<p>The identifier of the inventory asset.</p>",
         "AssetRevision$id": "<p>The identifier of the inventory asset revision.</p>",
@@ -192,7 +196,7 @@
         "CreateAssetOutput$id": "<p>The unique identifier of the created asset.</p>",
         "CreateAssetRevisionOutput$id": "<p>The unique identifier of the asset revision.</p>",
         "GetAssetOutput$id": "<p>The ID of the asset.</p>",
-        "RejectPredictionsOutput$assetId": "<p/>",
+        "RejectPredictionsOutput$assetId": "<p>The ID of the asset.</p>",
         "SubscribedAsset$assetId": "<p>The identifier of the asset for which the subscription grant is created.</p>",
         "SubscribedAssetListing$entityId": "<p>The identifier of the published asset for which the subscription grant is created.</p>",
         "UpdateSubscriptionGrantStatusInput$assetIdentifier": "<p>The identifier of the asset the subscription grant status of which is to be updated.</p>"
@@ -201,7 +205,7 @@
     "AssetIdentifier": {
       "base": null,
       "refs": {
-        "AcceptPredictionsInput$identifier": "<p/>",
+        "AcceptPredictionsInput$identifier": "<p>The identifier of the asset.</p>",
         "AssetItem$identifier": "<p>the identifier of the Amazon DataZone inventory asset.</p>",
         "CreateAssetRevisionInput$identifier": "<p>The identifier of the asset.</p>",
         "DeleteAssetInput$identifier": "<p>The identifier of the asset that is deleted.</p>",
@@ -231,9 +235,9 @@
     "AssetListingDetails": {
       "base": "<p>The details of an asset published in an Amazon DataZone catalog. </p>",
       "refs": {
-        "CreateAssetOutput$listing": "<p/>",
-        "CreateAssetRevisionOutput$listing": "<p/>",
-        "GetAssetOutput$listing": "<p/>"
+        "CreateAssetOutput$listing": "<p>The details of an asset published in an Amazon DataZone catalog.</p>",
+        "CreateAssetRevisionOutput$listing": "<p>The details of an asset published in an Amazon DataZone catalog. </p>",
+        "GetAssetOutput$listing": "<p>The listing of the asset.</p>"
       }
     },
     "AssetListingItem": {
@@ -273,7 +277,7 @@
       }
     },
     "AssetTargetNameMap": {
-      "base": "<p/>",
+      "base": "<p>The name map for assets.</p>",
       "refs": {
         "AssetTargetNames$member": null
       }
@@ -377,8 +381,8 @@
         "CustomParameter$isEditable": "<p>Specifies whether the parameter is editable.</p>",
         "CustomParameter$isOptional": "<p>Specifies whether the custom parameter is optional.</p>",
         "DeleteDataSourceOutput$publishOnImport": "<p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>",
-        "DeleteDomainInput$skipDeletionCheck": "<p>Optional flag to delete all child entities within the domain</p>",
-        "DeleteProjectInput$skipDeletionCheck": "<p>Optional flag to asynchronously delete child entities within the project</p>",
+        "DeleteDomainInput$skipDeletionCheck": "<p>Specifies the optional flag to delete all child entities within the domain.</p>",
+        "DeleteProjectInput$skipDeletionCheck": "<p>Specifies the optional flag to delete all child entities within the project.</p>",
         "Deployment$isDeploymentComplete": "<p>Specifies whether the last deployment of the environment is complete.</p>",
         "FormEntryInput$required": "<p>Specifies whether a form entry is required.</p>",
         "FormEntryOutput$required": "<p>Specifies whether a form entry is required.</p>",
@@ -388,7 +392,7 @@
         "RecommendationConfiguration$enableBusinessNameGeneration": "<p>Specifies whether automatic business name generation is to be enabled or not as part of the recommendation configuration.</p>",
         "RevokeSubscriptionInput$retainPermissions": "<p>Specifies whether permissions are retained when the subscription is revoked.</p>",
         "RevokeSubscriptionOutput$retainPermissions": "<p>Specifies whether permissions are retained when the subscription is revoked.</p>",
-        "SearchTypesInput$managed": "<p/>",
+        "SearchTypesInput$managed": "<p>Specifies whether the search is managed.</p>",
         "SubscriptionSummary$retainPermissions": "<p>The retain permissions included in the subscription.</p>",
         "UpdateDataSourceInput$publishOnImport": "<p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>",
         "UpdateDataSourceOutput$publishOnImport": "<p>The publish on import setting to be updated as part of the <code>UpdateDataSource</code> action.</p>"
@@ -398,6 +402,16 @@
       "base": "<p>The configuration of the business name generation.</p>",
       "refs": {
         "PredictionConfiguration$businessNameGeneration": "<p>The business name generation mechanism.</p>"
+      }
+    },
+    "CancelMetadataGenerationRunInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelMetadataGenerationRunOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelSubscriptionInput": {
@@ -413,7 +427,7 @@
     "ChangeAction": {
       "base": null,
       "refs": {
-        "CreateListingChangeSetInput$action": "<p/>"
+        "CreateListingChangeSetInput$action": "<p>Specifies whether to publish or unpublish a listing.</p>"
       }
     },
     "ClientToken": {
@@ -424,8 +438,9 @@
         "CreateAssetRevisionInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "CreateGlossaryInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "CreateGlossaryTermInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
-        "CreateListingChangeSetInput$clientToken": "<p/>",
+        "CreateListingChangeSetInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "RejectPredictionsInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
+        "StartMetadataGenerationRunInput$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>",
         "UpdateGlossaryInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>"
       }
     },
@@ -627,7 +642,7 @@
     "CreateSubscriptionRequestOutputSubscribedListingsList": {
       "base": null,
       "refs": {
-        "CreateSubscriptionRequestOutput$subscribedListings": "<p/>"
+        "CreateSubscriptionRequestOutput$subscribedListings": "<p>The published asset for which the subscription grant is to be created.</p>"
       }
     },
     "CreateSubscriptionRequestOutputSubscribedPrincipalsList": {
@@ -686,15 +701,18 @@
         "GetFormTypeOutput$createdAt": "<p>The timestamp of when this metadata form type was created.</p>",
         "GetGlossaryOutput$createdAt": "<p>The timestamp of when this business glossary was created.</p>",
         "GetGlossaryTermOutput$createdAt": "<p>The timestamp of when the business glossary term was created.</p>",
-        "GetListingOutput$createdAt": "<p/>",
+        "GetListingOutput$createdAt": "<p>The timestamp of when the listing was created.</p>",
+        "GetMetadataGenerationRunOutput$createdAt": "<p>The timestamp of when the metadata generation run was start.</p>",
         "GetSubscriptionGrantOutput$createdAt": "<p>The timestamp of when the subscription grant is created.</p>",
         "GetSubscriptionOutput$createdAt": "<p>The timestamp of when the subscription was created.</p>",
         "GetSubscriptionRequestDetailsOutput$createdAt": "<p>The timestamp of when the specified subscription request was created.</p>",
         "GetSubscriptionTargetOutput$createdAt": "<p>The timestamp of when the subscription target was created.</p>",
         "GlossaryItem$createdAt": "<p>The timestamp of when the glossary was created.</p>",
         "GlossaryTermItem$createdAt": "<p>The timestamp of when a business glossary term was created.</p>",
+        "MetadataGenerationRunItem$createdAt": "<p>The timestamp at which the metadata generation run was created.</p>",
         "RejectSubscriptionRequestOutput$createdAt": "<p>The timestamp of when the subscription request was rejected.</p>",
         "RevokeSubscriptionOutput$createdAt": "<p>The timestamp of when the subscription was revoked.</p>",
+        "StartMetadataGenerationRunOutput$createdAt": "<p>The timestamp at which the metadata generation run was started.</p>",
         "SubscriptionGrantSummary$createdAt": "<p>The timestamp of when a subscription grant was created.</p>",
         "SubscriptionRequestSummary$createdAt": "<p>The timestamp of when a subscription request was created.</p>",
         "SubscriptionSummary$createdAt": "<p>The timestamp of when the subscription was created.</p>",
@@ -733,6 +751,7 @@
         "GetGlossaryOutput$createdBy": "<p>The Amazon DataZone user who created this business glossary.</p>",
         "GetGlossaryTermOutput$createdBy": "<p>The Amazon DataZone user who created the business glossary.</p>",
         "GetListingOutput$createdBy": "<p>The Amazon DataZone user who created the listing.</p>",
+        "GetMetadataGenerationRunOutput$createdBy": "<p>The Amazon DataZone user who started the metadata generation run.</p>",
         "GetProjectOutput$createdBy": "<p>The Amazon DataZone user who created the project.</p>",
         "GetSubscriptionGrantOutput$createdBy": "<p>The Amazon DataZone user who created the subscription grant.</p>",
         "GetSubscriptionOutput$createdBy": "<p>The Amazon DataZone user who created the subscription.</p>",
@@ -740,9 +759,11 @@
         "GetSubscriptionTargetOutput$createdBy": "<p>The Amazon DataZone user who created the subscription target.</p>",
         "GlossaryItem$createdBy": "<p>The Amazon DataZone user who created the glossary.</p>",
         "GlossaryTermItem$createdBy": "<p>The Amazon DataZone user who created the business glossary.</p>",
+        "MetadataGenerationRunItem$createdBy": "<p>The user who created the metadata generation run.</p>",
         "ProjectSummary$createdBy": "<p>The Amazon DataZone user who created the project.</p>",
         "RejectSubscriptionRequestOutput$createdBy": "<p>The timestamp of when the subscription request was rejected.</p>",
         "RevokeSubscriptionOutput$createdBy": "<p>The identifier of the user who revoked the subscription.</p>",
+        "StartMetadataGenerationRunOutput$createdBy": "<p>The ID of the user who started the metadata generation run.</p>",
         "SubscriptionGrantSummary$createdBy": "<p>The datazone user who created the subscription grant.</p>",
         "SubscriptionRequestSummary$createdBy": "<p>The Amazon DataZone user who created the subscription request.</p>",
         "SubscriptionSummary$createdBy": "<p>The Amazon DataZone user who created the subscription.</p>",
@@ -1251,7 +1272,7 @@
         "GetEnvironmentOutput$description": "<p>The description of the environment.</p>",
         "GetEnvironmentProfileOutput$description": "<p>The description of the environment profile.</p>",
         "GetFormTypeOutput$description": "<p>The description of the metadata form type.</p>",
-        "GetListingOutput$description": "<p/>",
+        "GetListingOutput$description": "<p>The description of the listing.</p>",
         "GetProjectOutput$description": "<p>The description of the project.</p>",
         "ProjectSummary$description": "<p>The description of a project.</p>",
         "SubscribedListing$description": "<p>The description of the published asset for which the subscription grant is created.</p>",
@@ -1287,13 +1308,14 @@
       "base": null,
       "refs": {
         "AcceptPredictionsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
-        "AcceptPredictionsOutput$domainId": "<p/>",
+        "AcceptPredictionsOutput$domainId": "<p>The identifier of the Amazon DataZone domain.</p>",
         "AcceptSubscriptionRequestInput$domainIdentifier": "<p>The Amazon DataZone domain where the specified subscription request is being accepted.</p>",
         "AcceptSubscriptionRequestOutput$domainId": "<p>The unique identifier of the Amazon DataZone domain where the specified subscription request was accepted.</p>",
         "AssetItem$domainId": "<p>The identifier of the Amazon DataZone domain in which the inventory asset exists.</p>",
         "AssetRevision$domainId": "<p>The Amazon DataZone user who created the inventory asset.</p>",
         "AssetTypeItem$domainId": "<p>The identifier of the Amazon DataZone domain where the asset type exists.</p>",
         "AssetTypeItem$originDomainId": "<p>The identifier of the Amazon DataZone domain where the asset type was originally created.</p>",
+        "CancelMetadataGenerationRunInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the metadata generation run is to be cancelled.</p>",
         "CancelSubscriptionInput$domainIdentifier": "<p>The unique identifier of the Amazon DataZone domain where the subscription request is being cancelled.</p>",
         "CancelSubscriptionOutput$domainId": "<p>The unique identifier of the Amazon DataZone domain where the subscription is being cancelled.</p>",
         "CreateAssetInput$domainIdentifier": "<p>Amazon DataZone domain where the asset is created.</p>",
@@ -1319,7 +1341,7 @@
         "CreateGlossaryTermOutput$domainId": "<p>The ID of the Amazon DataZone domain in which this business glossary term is created.</p>",
         "CreateGroupProfileInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which the group profile is created.</p>",
         "CreateGroupProfileOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the group profile is created.</p>",
-        "CreateListingChangeSetInput$domainIdentifier": "<p/>",
+        "CreateListingChangeSetInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain.</p>",
         "CreateProjectInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which this project is created.</p>",
         "CreateProjectMembershipInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which project membership is created.</p>",
         "CreateProjectOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the project was created.</p>",
@@ -1345,7 +1367,7 @@
         "DeleteFormTypeInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the metadata form type is deleted.</p>",
         "DeleteGlossaryInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the business glossary is deleted.</p>",
         "DeleteGlossaryTermInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the business glossary term is deleted.</p>",
-        "DeleteListingInput$domainIdentifier": "<p/>",
+        "DeleteListingInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain.</p>",
         "DeleteProjectInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the project is deleted.</p>",
         "DeleteProjectMembershipInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where project membership is deleted.</p>",
         "DeleteSubscriptionGrantInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where the subscription grant is deleted.</p>",
@@ -1386,8 +1408,10 @@
         "GetGroupProfileInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which the group profile exists.</p>",
         "GetGroupProfileOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the group profile exists.</p>",
         "GetIamPortalLoginUrlInput$domainIdentifier": "<p>the ID of the Amazon DataZone domain the data portal of which you want to get.</p>",
-        "GetListingInput$domainIdentifier": "<p/>",
-        "GetListingOutput$domainId": "<p/>",
+        "GetListingInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain.</p>",
+        "GetListingOutput$domainId": "<p>The ID of the Amazon DataZone domain.</p>",
+        "GetMetadataGenerationRunInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain the metadata generation run of which you want to get.</p>",
+        "GetMetadataGenerationRunOutput$domainId": "<p>The ID of the Amazon DataZone domain the metadata generation run of which you want to get.</p>",
         "GetProjectInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the project exists.</p>",
         "GetProjectOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the project exists.</p>",
         "GetSubscriptionGrantInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription grant exists.</p>",
@@ -1411,6 +1435,7 @@
         "ListEnvironmentBlueprintsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentProfilesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListEnvironmentsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "ListMetadataGenerationRunsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where you want to list metadata generation runs.</p>",
         "ListNotificationsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListProjectMembershipsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which you want to list project memberships.</p>",
         "ListProjectsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
@@ -1418,12 +1443,13 @@
         "ListSubscriptionRequestsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListSubscriptionTargetsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain where you want to list subscription targets.</p>",
         "ListSubscriptionsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "MetadataGenerationRunItem$domainId": "<p>The ID of the Amazon DataZone domain in which the metadata generation run was created.</p>",
         "NotificationOutput$domainIdentifier": "<p>The identifier of a Amazon DataZone domain in which the notification exists.</p>",
         "ProjectSummary$domainId": "<p>The identifier of a Amazon DataZone domain where the project exists.</p>",
         "PutEnvironmentBlueprintConfigurationInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "PutEnvironmentBlueprintConfigurationOutput$domainId": "<p>The identifier of the Amazon DataZone domain.</p>",
         "RejectPredictionsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
-        "RejectPredictionsOutput$domainId": "<p/>",
+        "RejectPredictionsOutput$domainId": "<p>The ID of the Amazon DataZone domain.</p>",
         "RejectSubscriptionRequestInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which the subscription request was rejected.</p>",
         "RejectSubscriptionRequestOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which the subscription request was rejected.</p>",
         "RevokeSubscriptionInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain where you want to revoke a subscription.</p>",
@@ -1435,6 +1461,8 @@
         "SearchUserProfilesInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which you want to search user profiles.</p>",
         "StartDataSourceRunInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain in which to start a data source run.</p>",
         "StartDataSourceRunOutput$domainId": "<p>The identifier of the Amazon DataZone domain in which to start a data source run.</p>",
+        "StartMetadataGenerationRunInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain where you want to start a metadata generation run.</p>",
+        "StartMetadataGenerationRunOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the metadata generation run was started.</p>",
         "SubscriptionGrantSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which a subscription grant exists.</p>",
         "SubscriptionRequestSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which a subscription request exists.</p>",
         "SubscriptionSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which a subscription exists.</p>",
@@ -1494,6 +1522,12 @@
         "DomainSummaries$member": null
       }
     },
+    "EditedValue": {
+      "base": null,
+      "refs": {
+        "AcceptChoice$editedValue": "<p>The edit of the prediction.</p>"
+      }
+    },
     "EnableSetting": {
       "base": null,
       "refs": {
@@ -1518,13 +1552,13 @@
     "EntityId": {
       "base": null,
       "refs": {
-        "CreateListingChangeSetInput$entityIdentifier": "<p/>"
+        "CreateListingChangeSetInput$entityIdentifier": "<p>The ID of the asset.</p>"
       }
     },
     "EntityType": {
       "base": null,
       "refs": {
-        "CreateListingChangeSetInput$entityType": "<p/>"
+        "CreateListingChangeSetInput$entityType": "<p>The type of an entity.</p>"
       }
     },
     "EnvironmentActionList": {
@@ -1729,10 +1763,10 @@
       "base": null,
       "refs": {
         "AssetItem$externalIdentifier": "<p>The external identifier of the Amazon DataZone inventory asset.</p>",
-        "CreateAssetInput$externalIdentifier": "<p/>",
-        "CreateAssetOutput$externalIdentifier": "<p/>",
-        "CreateAssetRevisionOutput$externalIdentifier": "<p/>",
-        "GetAssetOutput$externalIdentifier": "<p/>"
+        "CreateAssetInput$externalIdentifier": "<p>The external identifier of the asset.</p>",
+        "CreateAssetOutput$externalIdentifier": "<p>The external identifier of the asset.</p>",
+        "CreateAssetRevisionOutput$externalIdentifier": "<p>The external identifier of the asset.</p>",
+        "GetAssetOutput$externalIdentifier": "<p>The external ID of the asset.</p>"
       }
     },
     "FailureCause": {
@@ -1745,10 +1779,10 @@
     "FailureReasons": {
       "base": null,
       "refs": {
-        "CreateProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>",
-        "GetProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>",
-        "ProjectSummary$failureReasons": "<p>Reasons for failed project deletion</p>",
-        "UpdateProjectOutput$failureReasons": "<p>Reasons for failed project deletion</p>"
+        "CreateProjectOutput$failureReasons": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>",
+        "GetProjectOutput$failureReasons": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>",
+        "ProjectSummary$failureReasons": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>",
+        "UpdateProjectOutput$failureReasons": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>"
       }
     },
     "Filter": {
@@ -2085,6 +2119,16 @@
       }
     },
     "GetListingOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataGenerationRunInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMetadataGenerationRunOutput": {
       "base": null,
       "refs": {
       }
@@ -2554,6 +2598,16 @@
       "refs": {
       }
     },
+    "ListMetadataGenerationRunsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMetadataGenerationRunsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListNotificationsInput": {
       "base": null,
       "refs": {
@@ -2639,10 +2693,10 @@
       "refs": {
         "AssetListingDetails$listingId": "<p>The identifier of an asset published in an Amazon DataZone catalog. </p>",
         "AssetListingItem$listingId": "<p>The identifier of the listing (asset published in Amazon DataZone catalog).</p>",
-        "CreateListingChangeSetOutput$listingId": "<p/>",
-        "DeleteListingInput$identifier": "<p/>",
-        "GetListingInput$identifier": "<p/>",
-        "GetListingOutput$id": "<p/>",
+        "CreateListingChangeSetOutput$listingId": "<p>The ID of the listing (a record of an asset at a given time).</p>",
+        "DeleteListingInput$identifier": "<p>The ID of the listing to be deleted.</p>",
+        "GetListingInput$identifier": "<p>The ID of the listing.</p>",
+        "GetListingOutput$id": "<p>The ID of the listing.</p>",
         "ListSubscriptionGrantsInput$subscribedListingId": "<p>The identifier of the subscribed listing.</p>",
         "ListSubscriptionRequestsInput$subscribedListingId": "<p>The identifier of the subscribed listing.</p>",
         "ListSubscriptionsInput$subscribedListingId": "<p>The identifier of the subscribed listing for the subscriptions that you want to list.</p>",
@@ -2655,13 +2709,13 @@
     "ListingItem": {
       "base": "<p>The details of a listing (aka asset published in a Amazon DataZone catalog).</p>",
       "refs": {
-        "GetListingOutput$item": "<p/>"
+        "GetListingOutput$item": "<p>The details of a listing.</p>"
       }
     },
     "ListingName": {
       "base": null,
       "refs": {
-        "GetListingOutput$name": "<p/>",
+        "GetListingOutput$name": "<p>The name of the listing.</p>",
         "SubscribedListing$name": "<p>The name of the published asset for which the subscription grant is created.</p>"
       }
     },
@@ -2681,8 +2735,8 @@
       "base": null,
       "refs": {
         "AssetListingDetails$listingStatus": "<p>The status of an asset published in an Amazon DataZone catalog. </p>",
-        "CreateListingChangeSetOutput$status": "<p/>",
-        "GetListingOutput$status": "<p/>"
+        "CreateListingChangeSetOutput$status": "<p>Specifies the status of the listing.</p>",
+        "GetListingOutput$status": "<p>The status of the listing.</p>"
       }
     },
     "LongDescription": {
@@ -2707,6 +2761,7 @@
         "ListEnvironmentBlueprintsInput$maxResults": "<p>The maximum number of blueprints to return in a single call to <code>ListEnvironmentBlueprints</code>. When the number of blueprints to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentBlueprints</code> to list the next set of blueprints.</p>",
         "ListEnvironmentProfilesInput$maxResults": "<p>The maximum number of environment profiles to return in a single call to <code>ListEnvironmentProfiles</code>. When the number of environment profiles to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironmentProfiles</code> to list the next set of environment profiles.</p>",
         "ListEnvironmentsInput$maxResults": "<p>The maximum number of environments to return in a single call to <code>ListEnvironments</code>. When the number of environments to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
+        "ListMetadataGenerationRunsInput$maxResults": "<p>The maximum number of metadata generation runs to return in a single call to ListMetadataGenerationRuns. When the number of metadata generation runs to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
         "ListNotificationsInput$maxResults": "<p>The maximum number of notifications to return in a single call to <code>ListNotifications</code>. When the number of notifications to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListNotifications</code> to list the next set of notifications.</p>",
         "ListProjectMembershipsInput$maxResults": "<p>The maximum number of memberships to return in a single call to <code>ListProjectMemberships</code>. When the number of memberships to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListProjectMemberships</code> to list the next set of memberships.</p>",
         "ListProjectsInput$maxResults": "<p>The maximum number of projects to return in a single call to <code>ListProjects</code>. When the number of projects to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListProjects</code> to list the next set of projects.</p>",
@@ -2746,6 +2801,61 @@
         "NotificationOutput$message": "<p>The message included in the notification.</p>"
       }
     },
+    "MetadataGenerationRunIdentifier": {
+      "base": null,
+      "refs": {
+        "CancelMetadataGenerationRunInput$identifier": "<p>The ID of the metadata generation run.</p>",
+        "GetMetadataGenerationRunInput$identifier": "<p>The identifier of the metadata generation run.</p>",
+        "GetMetadataGenerationRunOutput$id": "<p>The ID of the metadata generation run.</p>",
+        "MetadataGenerationRunItem$id": "<p>The ID of the metadata generation run.</p>",
+        "StartMetadataGenerationRunOutput$id": "<p>The ID of the metadata generation run.</p>"
+      }
+    },
+    "MetadataGenerationRunItem": {
+      "base": "<p>The metadata generation run.</p>",
+      "refs": {
+        "MetadataGenerationRuns$member": null
+      }
+    },
+    "MetadataGenerationRunStatus": {
+      "base": null,
+      "refs": {
+        "GetMetadataGenerationRunOutput$status": "<p>The status of the metadata generation run.</p>",
+        "ListMetadataGenerationRunsInput$status": "<p>The status of the metadata generation runs.</p>",
+        "MetadataGenerationRunItem$status": "<p>The status of the metadata generation run.</p>",
+        "StartMetadataGenerationRunOutput$status": "<p>The status of the metadata generation run.</p>"
+      }
+    },
+    "MetadataGenerationRunTarget": {
+      "base": "<p>The asset for which metadata was generated.</p>",
+      "refs": {
+        "GetMetadataGenerationRunOutput$target": "<p>The asset for which you're generating metadata.</p>",
+        "MetadataGenerationRunItem$target": "<p>The asset for which metadata was generated.</p>",
+        "StartMetadataGenerationRunInput$target": "<p>The asset for which you want to start a metadata generation run.</p>"
+      }
+    },
+    "MetadataGenerationRunType": {
+      "base": null,
+      "refs": {
+        "GetMetadataGenerationRunOutput$type": "<p>The type of metadata generation run.</p>",
+        "ListMetadataGenerationRunsInput$type": "<p>The type of the metadata generation runs.</p>",
+        "MetadataGenerationRunItem$type": "<p>The type of the metadata generation run.</p>",
+        "StartMetadataGenerationRunInput$type": "<p>The type of the metadata generation run.</p>",
+        "StartMetadataGenerationRunOutput$type": "<p>The type of the metadata generation run.</p>"
+      }
+    },
+    "MetadataGenerationRuns": {
+      "base": null,
+      "refs": {
+        "ListMetadataGenerationRunsOutput$items": "<p>The results of the ListMetadataGenerationRuns action.</p>"
+      }
+    },
+    "MetadataGenerationTargetType": {
+      "base": null,
+      "refs": {
+        "MetadataGenerationRunTarget$type": "<p>The type of the asset for which metadata was generated.</p>"
+      }
+    },
     "MetadataMap": {
       "base": null,
       "refs": {
@@ -2753,7 +2863,7 @@
       }
     },
     "Model": {
-      "base": "<p/>",
+      "base": "<p>The model of the API.</p>",
       "refs": {
         "CreateFormTypeInput$model": "<p>The model of this Amazon DataZone metadata form type.</p>",
         "FormTypeData$model": "<p>The model of the form type.</p>",
@@ -2839,6 +2949,8 @@
         "ListEnvironmentProfilesOutput$nextToken": "<p>When the number of environment profiles is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environment profiles, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironmentProfiles</code> to list the next set of environment profiles.</p>",
         "ListEnvironmentsInput$nextToken": "<p>When the number of environments is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environments, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
         "ListEnvironmentsOutput$nextToken": "<p>When the number of environments is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of environments, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListEnvironments</code> to list the next set of environments.</p>",
+        "ListMetadataGenerationRunsInput$nextToken": "<p>When the number of metadata generation runs is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of metadata generation runs, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
+        "ListMetadataGenerationRunsOutput$nextToken": "<p>When the number of metadata generation runs is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of metadata generation runs, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListMetadataGenerationRuns to list the next set of revisions.</p>",
         "ListNotificationsInput$nextToken": "<p>When the number of notifications is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notifications, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotifications</code> to list the next set of notifications.</p>",
         "ListNotificationsOutput$nextToken": "<p>When the number of notifications is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of notifications, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListNotifications</code> to list the next set of notifications.</p>",
         "ListProjectMembershipsInput$nextToken": "<p>When the number of memberships is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of memberships, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListProjectMemberships</code> to list the next set of memberships.</p>",
@@ -2881,7 +2993,7 @@
       }
     },
     "ProjectDeletionError": {
-      "base": "<p>Error that occurred during project deletion</p>",
+      "base": "<p>Specifies the error message that is returned if the operation cannot be successfully completed.</p>",
       "refs": {
         "FailureReasons$member": null
       }
@@ -2933,6 +3045,7 @@
         "GetFormTypeOutput$originProjectId": "<p>The ID of the project in which this metadata form type was originally created.</p>",
         "GetFormTypeOutput$owningProjectId": "<p>The ID of the project that owns this metadata form type.</p>",
         "GetGlossaryOutput$owningProjectId": "<p>The ID of the project that owns this business glossary.</p>",
+        "GetMetadataGenerationRunOutput$owningProjectId": "<p>The ID of the project that owns the assets for which you're running metadata generation.</p>",
         "GetProjectInput$identifier": "<p>The ID of the project.</p>",
         "GetProjectOutput$id": "<p>&gt;The ID of the project.</p>",
         "GetSubscriptionTargetOutput$projectId": "<p>The ID of the project associated with the subscription target.</p>",
@@ -2944,9 +3057,12 @@
         "ListSubscriptionRequestsInput$owningProjectId": "<p>The identifier of the project for the subscription requests.</p>",
         "ListSubscriptionsInput$approverProjectId": "<p>The identifier of the project for the subscription's approver.</p>",
         "ListSubscriptionsInput$owningProjectId": "<p>The identifier of the owning project.</p>",
+        "MetadataGenerationRunItem$owningProjectId": "<p>The ID of the project that owns the asset for which the metadata generation was ran.</p>",
         "ProjectSummary$id": "<p>The identifier of a project.</p>",
         "SearchInput$owningProjectIdentifier": "<p>The identifier of the owning project specified for the search.</p>",
         "StartDataSourceRunOutput$projectId": "<p>The identifier of the project.</p>",
+        "StartMetadataGenerationRunInput$owningProjectIdentifier": "<p>The ID of the project that owns the asset for which you want to start a metadata generation run.</p>",
+        "StartMetadataGenerationRunOutput$owningProjectId": "<p>The ID of the project that owns the asset for which the metadata generation run was started.</p>",
         "SubscribedListing$ownerProjectId": "<p>The identifier of the project of the published asset for which the subscription grant is created.</p>",
         "SubscribedProject$id": "<p>The identifier of the project that has the subscription grant.</p>",
         "SubscribedProjectInput$identifier": "<p>The identifier of the project that is to be given a subscription grant.</p>",
@@ -2978,7 +3094,7 @@
         "CreateProjectInput$name": "<p>The name of the Amazon DataZone project.</p>",
         "CreateProjectOutput$name": "<p>The name of the project.</p>",
         "GetProjectOutput$name": "<p>The name of the project.</p>",
-        "ListProjectsInput$name": "<p/>",
+        "ListProjectsInput$name": "<p>The name of the project.</p>",
         "ProjectSummary$name": "<p>The name of a project.</p>",
         "SubscribedProject$name": "<p>The name of the project that has the subscription grant.</p>",
         "UpdateProjectInput$name": "<p>The name to be updated as part of the <code>UpdateProject</code> action.</p>",
@@ -2988,10 +3104,10 @@
     "ProjectStatus": {
       "base": null,
       "refs": {
-        "CreateProjectOutput$projectStatus": "<p>Status of the project</p>",
-        "GetProjectOutput$projectStatus": "<p>Status of the project</p>",
-        "ProjectSummary$projectStatus": "<p>Status of the project</p>",
-        "UpdateProjectOutput$projectStatus": "<p>Status of the project</p>"
+        "CreateProjectOutput$projectStatus": "<p>The status of the Amazon DataZone project that was created.</p>",
+        "GetProjectOutput$projectStatus": "<p>The status of the project.</p>",
+        "ProjectSummary$projectStatus": "<p>The status of the project.</p>",
+        "UpdateProjectOutput$projectStatus": "<p>The status of the project.</p>"
       }
     },
     "ProjectSummaries": {
@@ -3031,7 +3147,7 @@
       "refs": {
         "CreateDataSourceInput$recommendation": "<p>Specifies whether the business name generation is to be enabled for this data source.</p>",
         "CreateDataSourceOutput$recommendation": "<p>Specifies whether the business name generation is to be enabled for this data source.</p>",
-        "GetDataSourceOutput$recommendation": "<p/>",
+        "GetDataSourceOutput$recommendation": "<p>The recommendation configuration of the data source.</p>",
         "UpdateDataSourceInput$recommendation": "<p>The recommendation to be updated as part of the <code>UpdateDataSource</code> action.</p>",
         "UpdateDataSourceOutput$recommendation": "<p>The recommendation to be updated as part of the <code>UpdateDataSource</code> action.</p>"
       }
@@ -3147,7 +3263,7 @@
     "RejectChoices": {
       "base": null,
       "refs": {
-        "RejectPredictionsInput$rejectChoices": "<p/>"
+        "RejectPredictionsInput$rejectChoices": "<p>Specifies the prediction (aka, the automatically generated piece of metadata) and the target (for example, a column name) that can be rejected.</p>"
       }
     },
     "RejectPredictionsInput": {
@@ -3163,7 +3279,7 @@
     "RejectRule": {
       "base": "<p>Specifies the rule and the threshold under which a prediction can be rejected.</p>",
       "refs": {
-        "RejectPredictionsInput$rejectRule": "<p/>"
+        "RejectPredictionsInput$rejectRule": "<p>Specifies the rule (or the conditions) under which a prediction can be rejected.</p>"
       }
     },
     "RejectRuleBehavior": {
@@ -3256,8 +3372,8 @@
     "Revision": {
       "base": null,
       "refs": {
-        "AcceptPredictionsInput$revision": "<p/>",
-        "AcceptPredictionsOutput$revision": "<p/>",
+        "AcceptPredictionsInput$revision": "<p>The revision that is to be made to the asset.</p>",
+        "AcceptPredictionsOutput$revision": "<p>The revision that is to be made to the asset.</p>",
         "AssetItem$typeRevision": "<p>The revision of the inventory asset type.</p>",
         "AssetListing$assetRevision": "<p>The revision of an asset published in an Amazon DataZone catalog. </p>",
         "AssetListingItem$entityRevision": "<p>The revision of the inventory asset.</p>",
@@ -3272,8 +3388,8 @@
         "CreateAssetRevisionOutput$typeRevision": "<p>The revision type of the asset.</p>",
         "CreateAssetTypeOutput$revision": "<p>The revision of the custom asset type.</p>",
         "CreateFormTypeOutput$revision": "<p>The revision of this Amazon DataZone metadata form type.</p>",
-        "CreateListingChangeSetInput$entityRevision": "<p/>",
-        "CreateListingChangeSetOutput$listingRevision": "<p/>",
+        "CreateListingChangeSetInput$entityRevision": "<p>The revision of an asset.</p>",
+        "CreateListingChangeSetOutput$listingRevision": "<p>The revision of a listing.</p>",
         "FormEntryInput$typeRevision": "<p>The type revision of the form entry.</p>",
         "FormEntryOutput$typeRevision": "<p>The type revision of the form entry.</p>",
         "FormInput$typeRevision": "<p>The revision of the metadata form type.</p>",
@@ -3286,13 +3402,14 @@
         "GetAssetTypeOutput$revision": "<p>The revision of the asset type.</p>",
         "GetFormTypeInput$revision": "<p>The revision of this metadata form type.</p>",
         "GetFormTypeOutput$revision": "<p>The revision of the metadata form type.</p>",
-        "GetListingInput$listingRevision": "<p/>",
-        "GetListingOutput$listingRevision": "<p/>",
+        "GetListingInput$listingRevision": "<p>The revision of the listing.</p>",
+        "GetListingOutput$listingRevision": "<p>The revision of a listing.</p>",
         "Import$revision": "<p>The revision of the import.</p>",
         "ListingRevision$revision": "<p>The details of a revision of an asset published in a Amazon DataZone catalog.</p>",
         "ListingRevisionInput$revision": "<p>The details of a revision to be made to an asset published in a Amazon DataZone catalog.</p>",
-        "RejectPredictionsInput$revision": "<p/>",
-        "RejectPredictionsOutput$assetRevision": "<p/>",
+        "MetadataGenerationRunTarget$revision": "<p>The revision of the asset for which metadata was generated.</p>",
+        "RejectPredictionsInput$revision": "<p>The revision that is to be made to the asset.</p>",
+        "RejectPredictionsOutput$assetRevision": "<p>The revision that is to be made to the asset.</p>",
         "SubscribedAsset$assetRevision": "<p>The revision of the asset for which the subscription grant is created.</p>",
         "SubscribedAssetListing$entityRevision": "<p>The revision of the published asset for which the subscription grant is created.</p>",
         "SubscribedListing$revision": "<p>The revision of the published asset for which the subscription grant is created.</p>"
@@ -3365,9 +3482,9 @@
     "SearchInList": {
       "base": null,
       "refs": {
-        "SearchInput$searchIn": "<p/>",
-        "SearchListingsInput$searchIn": "<p/>",
-        "SearchTypesInput$searchIn": "<p/>"
+        "SearchInput$searchIn": "<p>The details of the search.</p>",
+        "SearchListingsInput$searchIn": "<p>The details of the search.</p>",
+        "SearchTypesInput$searchIn": "<p>The details of the search.</p>"
       }
     },
     "SearchInput": {
@@ -3504,7 +3621,7 @@
     "Smithy": {
       "base": null,
       "refs": {
-        "Model$smithy": "<p/>"
+        "Model$smithy": "<p>Indicates the smithy model of the API.</p>"
       }
     },
     "SortFieldProject": {
@@ -3545,6 +3662,16 @@
       }
     },
     "StartDataSourceRunOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMetadataGenerationRunInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMetadataGenerationRunOutput": {
       "base": null,
       "refs": {
       }
@@ -3626,20 +3753,21 @@
         "IamUserProfileDetails$arn": "<p>The ARN of an IAM user profile in Amazon DataZone.</p>",
         "ListDataSourcesInput$environmentIdentifier": "<p>The identifier of the environment in which to list the data sources.</p>",
         "ListDataSourcesInput$projectIdentifier": "<p>The identifier of the project in which to list data sources.</p>",
-        "ListEnvironmentsInput$name": "<p/>",
+        "ListEnvironmentsInput$name": "<p>The name of the environment.</p>",
         "ListEnvironmentsInput$provider": "<p>The provider of the environment.</p>",
         "ListProjectsInput$groupIdentifier": "<p>The identifier of a group.</p>",
         "ListProjectsInput$userIdentifier": "<p>The identifier of the Amazon DataZone user.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource whose tags you want to list.</p>",
         "Member$groupIdentifier": "<p>The ID of the group of a project member.</p>",
         "Member$userIdentifier": "<p>The user ID of a project member.</p>",
+        "MetadataGenerationRunTarget$identifier": "<p>The ID of the metadata generation run's target.</p>",
         "MetadataMap$key": null,
         "MetadataMap$value": null,
         "NotificationResource$id": "<p>The ID of the resource mentioned in a notification.</p>",
         "NotificationResource$name": "<p>The name of the resource mentioned in a notification.</p>",
         "NotificationSubjects$member": null,
-        "ProjectDeletionError$code": "<p>Project Deletion Error Code</p>",
-        "ProjectDeletionError$message": "<p>Project Deletion Error Message</p>",
+        "ProjectDeletionError$code": "<p>The code of the project deletion error.</p>",
+        "ProjectDeletionError$message": "<p>The message of the project deletion error.</p>",
         "RegionalParameter$key": null,
         "RegionalParameter$value": null,
         "RejectChoice$predictionTarget": "<p>Specifies the target (for example, a column name) where a prediction can be rejected.</p>",
@@ -3701,7 +3829,7 @@
         "DeleteSubscriptionGrantOutput$assets": "<p>The assets for which the subsctiption grant that is deleted gave access.</p>",
         "GetSubscriptionGrantOutput$assets": "<p>The assets for which the subscription grant is created.</p>",
         "SubscriptionGrantSummary$assets": "<p>The assets included in the subscription grant.</p>",
-        "UpdateSubscriptionGrantStatusOutput$assets": "<p/>"
+        "UpdateSubscriptionGrantStatusOutput$assets": "<p>The details of the asset for which the subscription grant is created.</p>"
       }
     },
     "SubscribedListing": {
@@ -3710,7 +3838,7 @@
         "AcceptSubscriptionRequestOutputSubscribedListingsList$member": null,
         "CancelSubscriptionOutput$subscribedListing": "<p>The asset to which a subscription is being cancelled.</p>",
         "CreateSubscriptionRequestOutputSubscribedListingsList$member": null,
-        "GetSubscriptionOutput$subscribedListing": "<p/>",
+        "GetSubscriptionOutput$subscribedListing": "<p>The details of the published asset for which the subscription grant is created.</p>",
         "GetSubscriptionRequestDetailsOutputSubscribedListingsList$member": null,
         "RejectSubscriptionRequestOutputSubscribedListingsList$member": null,
         "RevokeSubscriptionOutput$subscribedListing": "<p>The subscribed listing of the revoked subscription.</p>",
@@ -3728,7 +3856,7 @@
     "SubscribedListingInputs": {
       "base": null,
       "refs": {
-        "CreateSubscriptionRequestInput$subscribedListings": "<p/>"
+        "CreateSubscriptionRequestInput$subscribedListings": "<p>The published asset for which the subscription grant is to be created.</p>"
       }
     },
     "SubscribedListingItem": {

@@ -1,3 +1,16 @@
+Release v1.51.12 (2024-04-01)
+===
+
+### Service Client Updates
+* `service/datazone`: Updates service API, documentation, and paginators
+* `service/deadline`: Updates service API, documentation, waiters, paginators, and examples
+* `service/elasticmapreduce`: Updates service documentation
+  * This release fixes a broken link in the documentation.
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to upgrade the TLS version of the distribution.
+* `service/monitoring`: Updates service API and documentation
+  * This release adds support for CloudWatch Anomaly Detection on cross-account metrics. SingleMetricAnomalyDetector and MetricDataQuery inputs to Anomaly Detection APIs now take an optional AccountId field.
+
 Release v1.51.11 (2024-03-29)
 ===
 

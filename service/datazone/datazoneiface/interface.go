@@ -68,6 +68,10 @@ type DataZoneAPI interface {
 	AcceptSubscriptionRequestWithContext(aws.Context, *datazone.AcceptSubscriptionRequestInput, ...request.Option) (*datazone.AcceptSubscriptionRequestOutput, error)
 	AcceptSubscriptionRequestRequest(*datazone.AcceptSubscriptionRequestInput) (*request.Request, *datazone.AcceptSubscriptionRequestOutput)
 
+	CancelMetadataGenerationRun(*datazone.CancelMetadataGenerationRunInput) (*datazone.CancelMetadataGenerationRunOutput, error)
+	CancelMetadataGenerationRunWithContext(aws.Context, *datazone.CancelMetadataGenerationRunInput, ...request.Option) (*datazone.CancelMetadataGenerationRunOutput, error)
+	CancelMetadataGenerationRunRequest(*datazone.CancelMetadataGenerationRunInput) (*request.Request, *datazone.CancelMetadataGenerationRunOutput)
+
 	CancelSubscription(*datazone.CancelSubscriptionInput) (*datazone.CancelSubscriptionOutput, error)
 	CancelSubscriptionWithContext(aws.Context, *datazone.CancelSubscriptionInput, ...request.Option) (*datazone.CancelSubscriptionOutput, error)
 	CancelSubscriptionRequest(*datazone.CancelSubscriptionInput) (*request.Request, *datazone.CancelSubscriptionOutput)
@@ -268,6 +272,10 @@ type DataZoneAPI interface {
 	GetListingWithContext(aws.Context, *datazone.GetListingInput, ...request.Option) (*datazone.GetListingOutput, error)
 	GetListingRequest(*datazone.GetListingInput) (*request.Request, *datazone.GetListingOutput)
 
+	GetMetadataGenerationRun(*datazone.GetMetadataGenerationRunInput) (*datazone.GetMetadataGenerationRunOutput, error)
+	GetMetadataGenerationRunWithContext(aws.Context, *datazone.GetMetadataGenerationRunInput, ...request.Option) (*datazone.GetMetadataGenerationRunOutput, error)
+	GetMetadataGenerationRunRequest(*datazone.GetMetadataGenerationRunInput) (*request.Request, *datazone.GetMetadataGenerationRunOutput)
+
 	GetProject(*datazone.GetProjectInput) (*datazone.GetProjectOutput, error)
 	GetProjectWithContext(aws.Context, *datazone.GetProjectInput, ...request.Option) (*datazone.GetProjectOutput, error)
 	GetProjectRequest(*datazone.GetProjectInput) (*request.Request, *datazone.GetProjectOutput)
@@ -354,6 +362,13 @@ type DataZoneAPI interface {
 
 	ListEnvironmentsPages(*datazone.ListEnvironmentsInput, func(*datazone.ListEnvironmentsOutput, bool) bool) error
 	ListEnvironmentsPagesWithContext(aws.Context, *datazone.ListEnvironmentsInput, func(*datazone.ListEnvironmentsOutput, bool) bool, ...request.Option) error
+
+	ListMetadataGenerationRuns(*datazone.ListMetadataGenerationRunsInput) (*datazone.ListMetadataGenerationRunsOutput, error)
+	ListMetadataGenerationRunsWithContext(aws.Context, *datazone.ListMetadataGenerationRunsInput, ...request.Option) (*datazone.ListMetadataGenerationRunsOutput, error)
+	ListMetadataGenerationRunsRequest(*datazone.ListMetadataGenerationRunsInput) (*request.Request, *datazone.ListMetadataGenerationRunsOutput)
+
+	ListMetadataGenerationRunsPages(*datazone.ListMetadataGenerationRunsInput, func(*datazone.ListMetadataGenerationRunsOutput, bool) bool) error
+	ListMetadataGenerationRunsPagesWithContext(aws.Context, *datazone.ListMetadataGenerationRunsInput, func(*datazone.ListMetadataGenerationRunsOutput, bool) bool, ...request.Option) error
 
 	ListNotifications(*datazone.ListNotificationsInput) (*datazone.ListNotificationsOutput, error)
 	ListNotificationsWithContext(aws.Context, *datazone.ListNotificationsInput, ...request.Option) (*datazone.ListNotificationsOutput, error)
@@ -462,6 +477,10 @@ type DataZoneAPI interface {
 	StartDataSourceRun(*datazone.StartDataSourceRunInput) (*datazone.StartDataSourceRunOutput, error)
 	StartDataSourceRunWithContext(aws.Context, *datazone.StartDataSourceRunInput, ...request.Option) (*datazone.StartDataSourceRunOutput, error)
 	StartDataSourceRunRequest(*datazone.StartDataSourceRunInput) (*request.Request, *datazone.StartDataSourceRunOutput)
+
+	StartMetadataGenerationRun(*datazone.StartMetadataGenerationRunInput) (*datazone.StartMetadataGenerationRunOutput, error)
+	StartMetadataGenerationRunWithContext(aws.Context, *datazone.StartMetadataGenerationRunInput, ...request.Option) (*datazone.StartMetadataGenerationRunOutput, error)
+	StartMetadataGenerationRunRequest(*datazone.StartMetadataGenerationRunInput) (*request.Request, *datazone.StartMetadataGenerationRunOutput)
 
 	TagResource(*datazone.TagResourceInput) (*datazone.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *datazone.TagResourceInput, ...request.Option) (*datazone.TagResourceOutput, error)

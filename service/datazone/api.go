@@ -210,6 +210,105 @@ func (c *DataZone) AcceptSubscriptionRequestWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opCancelMetadataGenerationRun = "CancelMetadataGenerationRun"
+
+// CancelMetadataGenerationRunRequest generates a "aws/request.Request" representing the
+// client's request for the CancelMetadataGenerationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelMetadataGenerationRun for more information on using the CancelMetadataGenerationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelMetadataGenerationRunRequest method.
+//	req, resp := client.CancelMetadataGenerationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CancelMetadataGenerationRun
+func (c *DataZone) CancelMetadataGenerationRunRequest(input *CancelMetadataGenerationRunInput) (req *request.Request, output *CancelMetadataGenerationRunOutput) {
+	op := &request.Operation{
+		Name:       opCancelMetadataGenerationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelMetadataGenerationRunInput{}
+	}
+
+	output = &CancelMetadataGenerationRunOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelMetadataGenerationRun API operation for Amazon DataZone.
+//
+// Cancels the metadata generation run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation CancelMetadataGenerationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ConflictException
+//     There is a conflict while performing this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/CancelMetadataGenerationRun
+func (c *DataZone) CancelMetadataGenerationRun(input *CancelMetadataGenerationRunInput) (*CancelMetadataGenerationRunOutput, error) {
+	req, out := c.CancelMetadataGenerationRunRequest(input)
+	return out, req.Send()
+}
+
+// CancelMetadataGenerationRunWithContext is the same as CancelMetadataGenerationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelMetadataGenerationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) CancelMetadataGenerationRunWithContext(ctx aws.Context, input *CancelMetadataGenerationRunInput, opts ...request.Option) (*CancelMetadataGenerationRunOutput, error) {
+	req, out := c.CancelMetadataGenerationRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelSubscription = "CancelSubscription"
 
 // CancelSubscriptionRequest generates a "aws/request.Request" representing the
@@ -1440,6 +1539,9 @@ func (c *DataZone) CreateListingChangeSetRequest(input *CreateListingChangeSetIn
 }
 
 // CreateListingChangeSet API operation for Amazon DataZone.
+//
+// Publishes a listing (a record of an asset at a given time) or removes a listing
+// from the catalog.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3102,6 +3204,8 @@ func (c *DataZone) DeleteListingRequest(input *DeleteListingInput) (req *request
 }
 
 // DeleteListing API operation for Amazon DataZone.
+//
+// Deletes a listing (a record of an asset at a given time).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5038,6 +5142,8 @@ func (c *DataZone) GetListingRequest(input *GetListingInput) (req *request.Reque
 
 // GetListing API operation for Amazon DataZone.
 //
+// Gets a listing (a record of an asset at a given time).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5083,6 +5189,101 @@ func (c *DataZone) GetListing(input *GetListingInput) (*GetListingOutput, error)
 // for more information on using Contexts.
 func (c *DataZone) GetListingWithContext(ctx aws.Context, input *GetListingInput, opts ...request.Option) (*GetListingOutput, error) {
 	req, out := c.GetListingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMetadataGenerationRun = "GetMetadataGenerationRun"
+
+// GetMetadataGenerationRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetMetadataGenerationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetadataGenerationRun for more information on using the GetMetadataGenerationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetMetadataGenerationRunRequest method.
+//	req, resp := client.GetMetadataGenerationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetMetadataGenerationRun
+func (c *DataZone) GetMetadataGenerationRunRequest(input *GetMetadataGenerationRunInput) (req *request.Request, output *GetMetadataGenerationRunOutput) {
+	op := &request.Operation{
+		Name:       opGetMetadataGenerationRun,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetMetadataGenerationRunInput{}
+	}
+
+	output = &GetMetadataGenerationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetadataGenerationRun API operation for Amazon DataZone.
+//
+// Gets a metadata generation run in Amazon DataZone.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation GetMetadataGenerationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetMetadataGenerationRun
+func (c *DataZone) GetMetadataGenerationRun(input *GetMetadataGenerationRunInput) (*GetMetadataGenerationRunOutput, error) {
+	req, out := c.GetMetadataGenerationRunRequest(input)
+	return out, req.Send()
+}
+
+// GetMetadataGenerationRunWithContext is the same as GetMetadataGenerationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetadataGenerationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) GetMetadataGenerationRunWithContext(ctx aws.Context, input *GetMetadataGenerationRunInput, opts ...request.Option) (*GetMetadataGenerationRunOutput, error) {
+	req, out := c.GetMetadataGenerationRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7044,6 +7245,158 @@ func (c *DataZone) ListEnvironmentsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListMetadataGenerationRuns = "ListMetadataGenerationRuns"
+
+// ListMetadataGenerationRunsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMetadataGenerationRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMetadataGenerationRuns for more information on using the ListMetadataGenerationRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListMetadataGenerationRunsRequest method.
+//	req, resp := client.ListMetadataGenerationRunsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListMetadataGenerationRuns
+func (c *DataZone) ListMetadataGenerationRunsRequest(input *ListMetadataGenerationRunsInput) (req *request.Request, output *ListMetadataGenerationRunsOutput) {
+	op := &request.Operation{
+		Name:       opListMetadataGenerationRuns,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/metadata-generation-runs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMetadataGenerationRunsInput{}
+	}
+
+	output = &ListMetadataGenerationRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMetadataGenerationRuns API operation for Amazon DataZone.
+//
+// Lists all metadata generation runs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation ListMetadataGenerationRuns for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListMetadataGenerationRuns
+func (c *DataZone) ListMetadataGenerationRuns(input *ListMetadataGenerationRunsInput) (*ListMetadataGenerationRunsOutput, error) {
+	req, out := c.ListMetadataGenerationRunsRequest(input)
+	return out, req.Send()
+}
+
+// ListMetadataGenerationRunsWithContext is the same as ListMetadataGenerationRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMetadataGenerationRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListMetadataGenerationRunsWithContext(ctx aws.Context, input *ListMetadataGenerationRunsInput, opts ...request.Option) (*ListMetadataGenerationRunsOutput, error) {
+	req, out := c.ListMetadataGenerationRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMetadataGenerationRunsPages iterates over the pages of a ListMetadataGenerationRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMetadataGenerationRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListMetadataGenerationRuns operation.
+//	pageNum := 0
+//	err := client.ListMetadataGenerationRunsPages(params,
+//	    func(page *datazone.ListMetadataGenerationRunsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataZone) ListMetadataGenerationRunsPages(input *ListMetadataGenerationRunsInput, fn func(*ListMetadataGenerationRunsOutput, bool) bool) error {
+	return c.ListMetadataGenerationRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMetadataGenerationRunsPagesWithContext same as ListMetadataGenerationRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListMetadataGenerationRunsPagesWithContext(ctx aws.Context, input *ListMetadataGenerationRunsInput, fn func(*ListMetadataGenerationRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMetadataGenerationRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMetadataGenerationRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMetadataGenerationRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListNotifications = "ListNotifications"
 
 // ListNotificationsRequest generates a "aws/request.Request" representing the
@@ -8366,6 +8719,9 @@ func (c *DataZone) RejectPredictionsRequest(input *RejectPredictionsInput) (req 
 //   - ThrottlingException
 //     The request was denied due to request throttling.
 //
+//   - ConflictException
+//     There is a conflict while performing this action.
+//
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by the Amazon Web Services
 //     service.
@@ -8941,7 +9297,7 @@ func (c *DataZone) SearchListingsRequest(input *SearchListingsInput) (req *reque
 
 // SearchListings API operation for Amazon DataZone.
 //
-// Searches listings in Amazon DataZone.
+// Searches listings (records of an asset at a given time) in Amazon DataZone.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9438,6 +9794,107 @@ func (c *DataZone) StartDataSourceRun(input *StartDataSourceRunInput) (*StartDat
 // for more information on using Contexts.
 func (c *DataZone) StartDataSourceRunWithContext(ctx aws.Context, input *StartDataSourceRunInput, opts ...request.Option) (*StartDataSourceRunOutput, error) {
 	req, out := c.StartDataSourceRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMetadataGenerationRun = "StartMetadataGenerationRun"
+
+// StartMetadataGenerationRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartMetadataGenerationRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMetadataGenerationRun for more information on using the StartMetadataGenerationRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMetadataGenerationRunRequest method.
+//	req, resp := client.StartMetadataGenerationRunRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/StartMetadataGenerationRun
+func (c *DataZone) StartMetadataGenerationRunRequest(input *StartMetadataGenerationRunInput) (req *request.Request, output *StartMetadataGenerationRunOutput) {
+	op := &request.Operation{
+		Name:       opStartMetadataGenerationRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/metadata-generation-runs",
+	}
+
+	if input == nil {
+		input = &StartMetadataGenerationRunInput{}
+	}
+
+	output = &StartMetadataGenerationRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMetadataGenerationRun API operation for Amazon DataZone.
+//
+// Starts the metadata generation run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation StartMetadataGenerationRun for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     The request has exceeded the specified service quota.
+//
+//   - ConflictException
+//     There is a conflict while performing this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/StartMetadataGenerationRun
+func (c *DataZone) StartMetadataGenerationRun(input *StartMetadataGenerationRunInput) (*StartMetadataGenerationRunOutput, error) {
+	req, out := c.StartMetadataGenerationRunRequest(input)
+	return out, req.Send()
+}
+
+// StartMetadataGenerationRunWithContext is the same as StartMetadataGenerationRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMetadataGenerationRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) StartMetadataGenerationRunWithContext(ctx aws.Context, input *StartMetadataGenerationRunInput, opts ...request.Option) (*StartMetadataGenerationRunOutput, error) {
+	req, out := c.StartMetadataGenerationRunRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10818,13 +11275,22 @@ func (c *DataZone) UpdateUserProfileWithContext(ctx aws.Context, input *UpdateUs
 type AcceptChoice struct {
 	_ struct{} `type:"structure"`
 
+	// The edit of the prediction.
+	//
+	// EditedValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AcceptChoice's
+	// String and GoString methods.
+	EditedValue *string `locationName:"editedValue" min:"1" type:"string" sensitive:"true"`
+
 	// Specifies the prediction (aka, the automatically generated piece of metadata)
 	// that can be accepted.
 	PredictionChoice *int64 `locationName:"predictionChoice" type:"integer"`
 
 	// Specifies the target (for example, a column name) where a prediction can
 	// be accepted.
-	PredictionTarget *string `locationName:"predictionTarget" type:"string"`
+	//
+	// PredictionTarget is a required field
+	PredictionTarget *string `locationName:"predictionTarget" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -10845,6 +11311,28 @@ func (s AcceptChoice) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptChoice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptChoice"}
+	if s.EditedValue != nil && len(*s.EditedValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EditedValue", 1))
+	}
+	if s.PredictionTarget == nil {
+		invalidParams.Add(request.NewErrParamRequired("PredictionTarget"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEditedValue sets the EditedValue field's value.
+func (s *AcceptChoice) SetEditedValue(v string) *AcceptChoice {
+	s.EditedValue = &v
+	return s
+}
+
 // SetPredictionChoice sets the PredictionChoice field's value.
 func (s *AcceptChoice) SetPredictionChoice(v int64) *AcceptChoice {
 	s.PredictionChoice = &v
@@ -10860,6 +11348,8 @@ func (s *AcceptChoice) SetPredictionTarget(v string) *AcceptChoice {
 type AcceptPredictionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the prediction (aka, the automatically generated piece of metadata)
+	// and the target (for example, a column name) that can be accepted.
 	AcceptChoices []*AcceptChoice `locationName:"acceptChoices" type:"list"`
 
 	// Specifies the rule (or the conditions) under which a prediction can be accepted.
@@ -10874,9 +11364,12 @@ type AcceptPredictionsInput struct {
 	// DomainIdentifier is a required field
 	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
 
+	// The identifier of the asset.
+	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
+	// The revision that is to be made to the asset.
 	Revision *string `location:"querystring" locationName:"revision" min:"1" type:"string"`
 }
 
@@ -10918,6 +11411,16 @@ func (s *AcceptPredictionsInput) Validate() error {
 	}
 	if s.Revision != nil && len(*s.Revision) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Revision", 1))
+	}
+	if s.AcceptChoices != nil {
+		for i, v := range s.AcceptChoices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AcceptChoices", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10965,12 +11468,18 @@ func (s *AcceptPredictionsInput) SetRevision(v string) *AcceptPredictionsInput {
 type AcceptPredictionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the asset.
+	//
 	// AssetId is a required field
 	AssetId *string `locationName:"assetId" type:"string" required:"true"`
 
+	// The identifier of the Amazon DataZone domain.
+	//
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// The revision that is to be made to the asset.
+	//
 	// Revision is a required field
 	Revision *string `locationName:"revision" min:"1" type:"string" required:"true"`
 }
@@ -11962,6 +12471,7 @@ func (s *AssetRevision) SetRevision(v string) *AssetRevision {
 	return s
 }
 
+// The name map for assets.
 type AssetTargetNameMap struct {
 	_ struct{} `type:"structure"`
 
@@ -12198,6 +12708,95 @@ func (s BusinessNameGenerationConfiguration) GoString() string {
 func (s *BusinessNameGenerationConfiguration) SetEnabled(v bool) *BusinessNameGenerationConfiguration {
 	s.Enabled = &v
 	return s
+}
+
+type CancelMetadataGenerationRunInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain in which the metadata generation run
+	// is to be cancelled.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the metadata generation run.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMetadataGenerationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMetadataGenerationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelMetadataGenerationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelMetadataGenerationRunInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *CancelMetadataGenerationRunInput) SetDomainIdentifier(v string) *CancelMetadataGenerationRunInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *CancelMetadataGenerationRunInput) SetIdentifier(v string) *CancelMetadataGenerationRunInput {
+	s.Identifier = &v
+	return s
+}
+
+type CancelMetadataGenerationRunOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMetadataGenerationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMetadataGenerationRunOutput) GoString() string {
+	return s.String()
 }
 
 type CancelSubscriptionInput struct {
@@ -12622,6 +13221,8 @@ type CreateAssetInput struct {
 	// DomainIdentifier is a required field
 	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
 
+	// The external identifier of the asset.
+	//
 	// ExternalIdentifier is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAssetInput's
 	// String and GoString methods.
@@ -12822,6 +13423,8 @@ type CreateAssetOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// The external identifier of the asset.
+	//
 	// ExternalIdentifier is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAssetOutput's
 	// String and GoString methods.
@@ -13203,6 +13806,8 @@ type CreateAssetRevisionOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// The external identifier of the asset.
+	//
 	// ExternalIdentifier is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateAssetRevisionOutput's
 	// String and GoString methods.
@@ -15842,19 +16447,30 @@ func (s *CreateGroupProfileOutput) SetStatus(v string) *CreateGroupProfileOutput
 type CreateListingChangeSetInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to publish or unpublish a listing.
+	//
 	// Action is a required field
 	Action *string `locationName:"action" type:"string" required:"true" enum:"ChangeAction"`
 
+	// A unique, case-sensitive identifier that is provided to ensure the idempotency
+	// of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The ID of the Amazon DataZone domain.
+	//
 	// DomainIdentifier is a required field
 	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
 
+	// The ID of the asset.
+	//
 	// EntityIdentifier is a required field
 	EntityIdentifier *string `locationName:"entityIdentifier" type:"string" required:"true"`
 
+	// The revision of an asset.
 	EntityRevision *string `locationName:"entityRevision" min:"1" type:"string"`
 
+	// The type of an entity.
+	//
 	// EntityType is a required field
 	EntityType *string `locationName:"entityType" type:"string" required:"true" enum:"EntityType"`
 }
@@ -15947,12 +16563,18 @@ func (s *CreateListingChangeSetInput) SetEntityType(v string) *CreateListingChan
 type CreateListingChangeSetOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the listing (a record of an asset at a given time).
+	//
 	// ListingId is a required field
 	ListingId *string `locationName:"listingId" type:"string" required:"true"`
 
+	// The revision of a listing.
+	//
 	// ListingRevision is a required field
 	ListingRevision *string `locationName:"listingRevision" min:"1" type:"string" required:"true"`
 
+	// Specifies the status of the listing.
+	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ListingStatus"`
 }
@@ -16227,7 +16849,8 @@ type CreateProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
-	// Reasons for failed project deletion
+	// Specifies the error message that is returned if the operation cannot be successfully
+	// completed.
 	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
 
 	// The glossary terms that can be used in the project.
@@ -16250,7 +16873,7 @@ type CreateProjectOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Status of the project
+	// The status of the Amazon DataZone project that was created.
 	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
@@ -16616,6 +17239,8 @@ type CreateSubscriptionRequestInput struct {
 	// RequestReason is a required field
 	RequestReason *string `locationName:"requestReason" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The published asset for which the subscription grant is to be created.
+	//
 	// SubscribedListings is a required field
 	SubscribedListings []*SubscribedListingInput_ `locationName:"subscribedListings" min:"1" type:"list" required:"true"`
 
@@ -16765,6 +17390,8 @@ type CreateSubscriptionRequestOutput struct {
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"SubscriptionRequestStatus"`
 
+	// The published asset for which the subscription grant is to be created.
+	//
 	// SubscribedListings is a required field
 	SubscribedListings []*SubscribedListing `locationName:"subscribedListings" min:"1" type:"list" required:"true"`
 
@@ -18720,7 +19347,7 @@ type DeleteDomainInput struct {
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
-	// Optional flag to delete all child entities within the domain
+	// Specifies the optional flag to delete all child entities within the domain.
 	SkipDeletionCheck *bool `location:"querystring" locationName:"skipDeletionCheck" type:"boolean"`
 }
 
@@ -19343,9 +19970,13 @@ func (s DeleteGlossaryTermOutput) GoString() string {
 type DeleteListingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the Amazon DataZone domain.
+	//
 	// DomainIdentifier is a required field
 	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
 
+	// The ID of the listing to be deleted.
+	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 }
@@ -19437,7 +20068,7 @@ type DeleteProjectInput struct {
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
-	// Optional flag to asynchronously delete child entities within the project
+	// Specifies the optional flag to delete all child entities within the project.
 	SkipDeletionCheck *bool `location:"querystring" locationName:"skipDeletionCheck" type:"boolean"`
 }
 
@@ -21687,6 +22318,8 @@ type GetAssetOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// The external ID of the asset.
+	//
 	// ExternalIdentifier is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetAssetOutput's
 	// String and GoString methods.
@@ -21711,7 +22344,7 @@ type GetAssetOutput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The details of an asset published in an Amazon DataZone catalog.
+	// The listing of the asset.
 	Listing *AssetListingDetails `locationName:"listing" type:"structure"`
 
 	// The name of the asset.
@@ -22229,7 +22862,7 @@ type GetDataSourceOutput struct {
 	// are to be also automatically published to the catalog.
 	PublishOnImport *bool `locationName:"publishOnImport" type:"boolean"`
 
-	// The recommendation to be updated as part of the UpdateDataSource action.
+	// The recommendation configuration of the data source.
 	Recommendation *RecommendationConfiguration `locationName:"recommendation" type:"structure"`
 
 	// The schedule of the data source runs.
@@ -24537,12 +25170,17 @@ func (s *GetIamPortalLoginUrlOutput) SetUserProfileId(v string) *GetIamPortalLog
 type GetListingInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the Amazon DataZone domain.
+	//
 	// DomainIdentifier is a required field
 	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
 
+	// The ID of the listing.
+	//
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
+	// The revision of the listing.
 	ListingRevision *string `location:"querystring" locationName:"listingRevision" min:"1" type:"string"`
 }
 
@@ -24610,30 +25248,41 @@ func (s *GetListingInput) SetListingRevision(v string) *GetListingInput {
 type GetListingOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The timestamp of when the listing was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The Amazon DataZone user who created the listing.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
+	// The description of the listing.
+	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetListingOutput's
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The ID of the Amazon DataZone domain.
+	//
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
+	// The ID of the listing.
+	//
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The details of a listing (aka asset published in a Amazon DataZone catalog).
+	// The details of a listing.
 	Item *ListingItem `locationName:"item" type:"structure"`
 
+	// The revision of a listing.
+	//
 	// ListingRevision is a required field
 	ListingRevision *string `locationName:"listingRevision" min:"1" type:"string" required:"true"`
 
+	// The name of the listing.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// The status of the listing.
 	Status *string `locationName:"status" type:"string" enum:"ListingStatus"`
 
 	// The timestamp of when the listing was updated.
@@ -24727,6 +25376,175 @@ func (s *GetListingOutput) SetUpdatedBy(v string) *GetListingOutput {
 	return s
 }
 
+type GetMetadataGenerationRunInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain the metadata generation run of which
+	// you want to get.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The identifier of the metadata generation run.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetadataGenerationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetadataGenerationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMetadataGenerationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMetadataGenerationRunInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *GetMetadataGenerationRunInput) SetDomainIdentifier(v string) *GetMetadataGenerationRunInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetMetadataGenerationRunInput) SetIdentifier(v string) *GetMetadataGenerationRunInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetMetadataGenerationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the metadata generation run was start.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The Amazon DataZone user who started the metadata generation run.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The ID of the Amazon DataZone domain the metadata generation run of which
+	// you want to get.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The ID of the metadata generation run.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The ID of the project that owns the assets for which you're running metadata
+	// generation.
+	//
+	// OwningProjectId is a required field
+	OwningProjectId *string `locationName:"owningProjectId" type:"string" required:"true"`
+
+	// The status of the metadata generation run.
+	Status *string `locationName:"status" type:"string" enum:"MetadataGenerationRunStatus"`
+
+	// The asset for which you're generating metadata.
+	Target *MetadataGenerationRunTarget `locationName:"target" type:"structure"`
+
+	// The type of metadata generation run.
+	Type *string `locationName:"type" type:"string" enum:"MetadataGenerationRunType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetadataGenerationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMetadataGenerationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetMetadataGenerationRunOutput) SetCreatedAt(v time.Time) *GetMetadataGenerationRunOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *GetMetadataGenerationRunOutput) SetCreatedBy(v string) *GetMetadataGenerationRunOutput {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *GetMetadataGenerationRunOutput) SetDomainId(v string) *GetMetadataGenerationRunOutput {
+	s.DomainId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetMetadataGenerationRunOutput) SetId(v string) *GetMetadataGenerationRunOutput {
+	s.Id = &v
+	return s
+}
+
+// SetOwningProjectId sets the OwningProjectId field's value.
+func (s *GetMetadataGenerationRunOutput) SetOwningProjectId(v string) *GetMetadataGenerationRunOutput {
+	s.OwningProjectId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetMetadataGenerationRunOutput) SetStatus(v string) *GetMetadataGenerationRunOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *GetMetadataGenerationRunOutput) SetTarget(v *MetadataGenerationRunTarget) *GetMetadataGenerationRunOutput {
+	s.Target = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetMetadataGenerationRunOutput) SetType(v string) *GetMetadataGenerationRunOutput {
+	s.Type = &v
+	return s
+}
+
 type GetProjectInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -24816,7 +25634,8 @@ type GetProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
-	// Reasons for failed project deletion
+	// Specifies the error message that is returned if the operation cannot be successfully
+	// completed.
 	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
 
 	// The business glossary terms that can be used in the project.
@@ -24839,7 +25658,7 @@ type GetProjectOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Status of the project
+	// The status of the project.
 	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
@@ -27938,6 +28757,7 @@ type ListEnvironmentsInput struct {
 	// subsequent call to ListEnvironments to list the next set of environments.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The name of the environment.
 	Name *string `location:"querystring" locationName:"name" type:"string"`
 
 	// When the number of environments is greater than the default value for the
@@ -28110,6 +28930,152 @@ func (s *ListEnvironmentsOutput) SetItems(v []*EnvironmentSummary) *ListEnvironm
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetadataGenerationRunsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain where you want to list metadata generation
+	// runs.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The maximum number of metadata generation runs to return in a single call
+	// to ListMetadataGenerationRuns. When the number of metadata generation runs
+	// to be listed is greater than the value of MaxResults, the response contains
+	// a NextToken value that you can use in a subsequent call to ListMetadataGenerationRuns
+	// to list the next set of revisions.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// When the number of metadata generation runs is greater than the default value
+	// for the MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of metadata generation runs, the response includes
+	// a pagination token named NextToken. You can specify this NextToken value
+	// in a subsequent call to ListMetadataGenerationRuns to list the next set of
+	// revisions.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The status of the metadata generation runs.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"MetadataGenerationRunStatus"`
+
+	// The type of the metadata generation runs.
+	Type *string `location:"querystring" locationName:"type" type:"string" enum:"MetadataGenerationRunType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetadataGenerationRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetadataGenerationRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMetadataGenerationRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMetadataGenerationRunsInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *ListMetadataGenerationRunsInput) SetDomainIdentifier(v string) *ListMetadataGenerationRunsInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMetadataGenerationRunsInput) SetMaxResults(v int64) *ListMetadataGenerationRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetadataGenerationRunsInput) SetNextToken(v string) *ListMetadataGenerationRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListMetadataGenerationRunsInput) SetStatus(v string) *ListMetadataGenerationRunsInput {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListMetadataGenerationRunsInput) SetType(v string) *ListMetadataGenerationRunsInput {
+	s.Type = &v
+	return s
+}
+
+type ListMetadataGenerationRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The results of the ListMetadataGenerationRuns action.
+	Items []*MetadataGenerationRunItem `locationName:"items" type:"list"`
+
+	// When the number of metadata generation runs is greater than the default value
+	// for the MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of metadata generation runs, the response includes
+	// a pagination token named NextToken. You can specify this NextToken value
+	// in a subsequent call to ListMetadataGenerationRuns to list the next set of
+	// revisions.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetadataGenerationRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMetadataGenerationRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListMetadataGenerationRunsOutput) SetItems(v []*MetadataGenerationRunItem) *ListMetadataGenerationRunsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetadataGenerationRunsOutput) SetNextToken(v string) *ListMetadataGenerationRunsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -28467,6 +29433,8 @@ type ListProjectsInput struct {
 	// call to ListProjects to list the next set of projects.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The name of the project.
+	//
 	// Name is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ListProjectsInput's
 	// String and GoString methods.
@@ -29633,9 +30601,187 @@ func (s *MemberDetails) SetUser(v *UserDetails) *MemberDetails {
 	return s
 }
 
+// The metadata generation run.
+type MetadataGenerationRunItem struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the metadata generation run was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The user who created the metadata generation run.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The ID of the Amazon DataZone domain in which the metadata generation run
+	// was created.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The ID of the metadata generation run.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The ID of the project that owns the asset for which the metadata generation
+	// was ran.
+	//
+	// OwningProjectId is a required field
+	OwningProjectId *string `locationName:"owningProjectId" type:"string" required:"true"`
+
+	// The status of the metadata generation run.
+	Status *string `locationName:"status" type:"string" enum:"MetadataGenerationRunStatus"`
+
+	// The asset for which metadata was generated.
+	Target *MetadataGenerationRunTarget `locationName:"target" type:"structure"`
+
+	// The type of the metadata generation run.
+	Type *string `locationName:"type" type:"string" enum:"MetadataGenerationRunType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataGenerationRunItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataGenerationRunItem) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *MetadataGenerationRunItem) SetCreatedAt(v time.Time) *MetadataGenerationRunItem {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *MetadataGenerationRunItem) SetCreatedBy(v string) *MetadataGenerationRunItem {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *MetadataGenerationRunItem) SetDomainId(v string) *MetadataGenerationRunItem {
+	s.DomainId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *MetadataGenerationRunItem) SetId(v string) *MetadataGenerationRunItem {
+	s.Id = &v
+	return s
+}
+
+// SetOwningProjectId sets the OwningProjectId field's value.
+func (s *MetadataGenerationRunItem) SetOwningProjectId(v string) *MetadataGenerationRunItem {
+	s.OwningProjectId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MetadataGenerationRunItem) SetStatus(v string) *MetadataGenerationRunItem {
+	s.Status = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *MetadataGenerationRunItem) SetTarget(v *MetadataGenerationRunTarget) *MetadataGenerationRunItem {
+	s.Target = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MetadataGenerationRunItem) SetType(v string) *MetadataGenerationRunItem {
+	s.Type = &v
+	return s
+}
+
+// The asset for which metadata was generated.
+type MetadataGenerationRunTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the metadata generation run's target.
+	//
+	// Identifier is a required field
+	Identifier *string `locationName:"identifier" type:"string" required:"true"`
+
+	// The revision of the asset for which metadata was generated.
+	Revision *string `locationName:"revision" min:"1" type:"string"`
+
+	// The type of the asset for which metadata was generated.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"MetadataGenerationTargetType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataGenerationRunTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataGenerationRunTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetadataGenerationRunTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetadataGenerationRunTarget"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Revision != nil && len(*s.Revision) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Revision", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *MetadataGenerationRunTarget) SetIdentifier(v string) *MetadataGenerationRunTarget {
+	s.Identifier = &v
+	return s
+}
+
+// SetRevision sets the Revision field's value.
+func (s *MetadataGenerationRunTarget) SetRevision(v string) *MetadataGenerationRunTarget {
+	s.Revision = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MetadataGenerationRunTarget) SetType(v string) *MetadataGenerationRunTarget {
+	s.Type = &v
+	return s
+}
+
+// The model of the API.
 type Model struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
+	// Indicates the smithy model of the API.
 	Smithy *string `locationName:"smithy" min:"1" type:"string"`
 }
 
@@ -29914,14 +31060,15 @@ func (s *PredictionConfiguration) SetBusinessNameGeneration(v *BusinessNameGener
 	return s
 }
 
-// Error that occurred during project deletion
+// Specifies the error message that is returned if the operation cannot be successfully
+// completed.
 type ProjectDeletionError struct {
 	_ struct{} `type:"structure"`
 
-	// Project Deletion Error Code
+	// The code of the project deletion error.
 	Code *string `locationName:"code" type:"string"`
 
-	// Project Deletion Error Message
+	// The message of the project deletion error.
 	Message *string `locationName:"message" type:"string"`
 }
 
@@ -30024,7 +31171,8 @@ type ProjectSummary struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
-	// Reasons for failed project deletion
+	// Specifies the error message that is returned if the operation cannot be successfully
+	// completed.
 	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
 
 	// The identifier of a project.
@@ -30041,7 +31189,7 @@ type ProjectSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Status of the project
+	// The status of the project.
 	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 
 	// The timestamp of when the project was updated.
@@ -30804,7 +31952,9 @@ type RejectChoice struct {
 
 	// Specifies the target (for example, a column name) where a prediction can
 	// be rejected.
-	PredictionTarget *string `locationName:"predictionTarget" type:"string"`
+	//
+	// PredictionTarget is a required field
+	PredictionTarget *string `locationName:"predictionTarget" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -30823,6 +31973,19 @@ func (s RejectChoice) String() string {
 // value will be replaced with "sensitive".
 func (s RejectChoice) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectChoice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectChoice"}
+	if s.PredictionTarget == nil {
+		invalidParams.Add(request.NewErrParamRequired("PredictionTarget"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetPredictionChoices sets the PredictionChoices field's value.
@@ -30854,11 +32017,14 @@ type RejectPredictionsInput struct {
 	// Identifier is a required field
 	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
 
+	// Specifies the prediction (aka, the automatically generated piece of metadata)
+	// and the target (for example, a column name) that can be rejected.
 	RejectChoices []*RejectChoice `locationName:"rejectChoices" type:"list"`
 
-	// Specifies the rule and the threshold under which a prediction can be rejected.
+	// Specifies the rule (or the conditions) under which a prediction can be rejected.
 	RejectRule *RejectRule `locationName:"rejectRule" type:"structure"`
 
+	// The revision that is to be made to the asset.
 	Revision *string `location:"querystring" locationName:"revision" min:"1" type:"string"`
 }
 
@@ -30900,6 +32066,16 @@ func (s *RejectPredictionsInput) Validate() error {
 	}
 	if s.Revision != nil && len(*s.Revision) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Revision", 1))
+	}
+	if s.RejectChoices != nil {
+		for i, v := range s.RejectChoices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RejectChoices", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -30947,12 +32123,18 @@ func (s *RejectPredictionsInput) SetRevision(v string) *RejectPredictionsInput {
 type RejectPredictionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the asset.
+	//
 	// AssetId is a required field
 	AssetId *string `locationName:"assetId" type:"string" required:"true"`
 
+	// The revision that is to be made to the asset.
+	//
 	// AssetRevision is a required field
 	AssetRevision *string `locationName:"assetRevision" min:"1" type:"string" required:"true"`
 
+	// The ID of the Amazon DataZone domain.
+	//
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 }
@@ -32053,6 +33235,7 @@ type SearchInput struct {
 	// The identifier of the owning project specified for the search.
 	OwningProjectIdentifier *string `locationName:"owningProjectIdentifier" type:"string"`
 
+	// The details of the search.
 	SearchIn []*SearchInItem `locationName:"searchIn" min:"1" type:"list"`
 
 	// The scope of the search.
@@ -32282,6 +33465,7 @@ type SearchListingsInput struct {
 	// to list the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
+	// The details of the search.
 	SearchIn []*SearchInItem `locationName:"searchIn" min:"1" type:"list"`
 
 	// Specifies the text for which to search.
@@ -32611,6 +33795,8 @@ type SearchTypesInput struct {
 	// The filters for the SearchTypes action.
 	Filters *FilterClause `locationName:"filters" type:"structure"`
 
+	// Specifies whether the search is managed.
+	//
 	// Managed is a required field
 	Managed *bool `locationName:"managed" type:"boolean" required:"true"`
 
@@ -32627,6 +33813,7 @@ type SearchTypesInput struct {
 	// to list the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
+	// The details of the search.
 	SearchIn []*SearchInItem `locationName:"searchIn" min:"1" type:"list"`
 
 	// Specifies the scope of the search for types.
@@ -33411,6 +34598,208 @@ func (s *StartDataSourceRunOutput) SetType(v string) *StartDataSourceRunOutput {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *StartDataSourceRunOutput) SetUpdatedAt(v time.Time) *StartDataSourceRunOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+type StartMetadataGenerationRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure idempotency of the request.
+	// This field is automatically populated if not provided.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the Amazon DataZone domain where you want to start a metadata generation
+	// run.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the project that owns the asset for which you want to start a metadata
+	// generation run.
+	//
+	// OwningProjectIdentifier is a required field
+	OwningProjectIdentifier *string `locationName:"owningProjectIdentifier" type:"string" required:"true"`
+
+	// The asset for which you want to start a metadata generation run.
+	//
+	// Target is a required field
+	Target *MetadataGenerationRunTarget `locationName:"target" type:"structure" required:"true"`
+
+	// The type of the metadata generation run.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"MetadataGenerationRunType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMetadataGenerationRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMetadataGenerationRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMetadataGenerationRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMetadataGenerationRunInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.OwningProjectIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OwningProjectIdentifier"))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartMetadataGenerationRunInput) SetClientToken(v string) *StartMetadataGenerationRunInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *StartMetadataGenerationRunInput) SetDomainIdentifier(v string) *StartMetadataGenerationRunInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetOwningProjectIdentifier sets the OwningProjectIdentifier field's value.
+func (s *StartMetadataGenerationRunInput) SetOwningProjectIdentifier(v string) *StartMetadataGenerationRunInput {
+	s.OwningProjectIdentifier = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartMetadataGenerationRunInput) SetTarget(v *MetadataGenerationRunTarget) *StartMetadataGenerationRunInput {
+	s.Target = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StartMetadataGenerationRunInput) SetType(v string) *StartMetadataGenerationRunInput {
+	s.Type = &v
+	return s
+}
+
+type StartMetadataGenerationRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp at which the metadata generation run was started.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The ID of the user who started the metadata generation run.
+	CreatedBy *string `locationName:"createdBy" type:"string"`
+
+	// The ID of the Amazon DataZone domain in which the metadata generation run
+	// was started.
+	//
+	// DomainId is a required field
+	DomainId *string `locationName:"domainId" type:"string" required:"true"`
+
+	// The ID of the metadata generation run.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The ID of the project that owns the asset for which the metadata generation
+	// run was started.
+	OwningProjectId *string `locationName:"owningProjectId" type:"string"`
+
+	// The status of the metadata generation run.
+	Status *string `locationName:"status" type:"string" enum:"MetadataGenerationRunStatus"`
+
+	// The type of the metadata generation run.
+	Type *string `locationName:"type" type:"string" enum:"MetadataGenerationRunType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMetadataGenerationRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMetadataGenerationRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *StartMetadataGenerationRunOutput) SetCreatedAt(v time.Time) *StartMetadataGenerationRunOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *StartMetadataGenerationRunOutput) SetCreatedBy(v string) *StartMetadataGenerationRunOutput {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *StartMetadataGenerationRunOutput) SetDomainId(v string) *StartMetadataGenerationRunOutput {
+	s.DomainId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartMetadataGenerationRunOutput) SetId(v string) *StartMetadataGenerationRunOutput {
+	s.Id = &v
+	return s
+}
+
+// SetOwningProjectId sets the OwningProjectId field's value.
+func (s *StartMetadataGenerationRunOutput) SetOwningProjectId(v string) *StartMetadataGenerationRunOutput {
+	s.OwningProjectId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartMetadataGenerationRunOutput) SetStatus(v string) *StartMetadataGenerationRunOutput {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StartMetadataGenerationRunOutput) SetType(v string) *StartMetadataGenerationRunOutput {
+	s.Type = &v
 	return s
 }
 
@@ -36931,7 +38320,8 @@ type UpdateProjectOutput struct {
 	// DomainId is a required field
 	DomainId *string `locationName:"domainId" type:"string" required:"true"`
 
-	// Reasons for failed project deletion
+	// Specifies the error message that is returned if the operation cannot be successfully
+	// completed.
 	FailureReasons []*ProjectDeletionError `locationName:"failureReasons" type:"list"`
 
 	// The glossary terms of the project that are to be updated.
@@ -36954,7 +38344,7 @@ type UpdateProjectOutput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Status of the project
+	// The status of the project.
 	ProjectStatus *string `locationName:"projectStatus" type:"string" enum:"ProjectStatus"`
 }
 
@@ -37158,6 +38548,7 @@ func (s *UpdateSubscriptionGrantStatusInput) SetTargetName(v string) *UpdateSubs
 type UpdateSubscriptionGrantStatusOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The details of the asset for which the subscription grant is created.
 	Assets []*SubscribedAsset `locationName:"assets" type:"list"`
 
 	// The timestamp of when the subscription grant status was created.
@@ -38778,6 +40169,58 @@ func ListingStatus_Values() []string {
 		ListingStatusCreating,
 		ListingStatusActive,
 		ListingStatusInactive,
+	}
+}
+
+const (
+	// MetadataGenerationRunStatusSubmitted is a MetadataGenerationRunStatus enum value
+	MetadataGenerationRunStatusSubmitted = "SUBMITTED"
+
+	// MetadataGenerationRunStatusInProgress is a MetadataGenerationRunStatus enum value
+	MetadataGenerationRunStatusInProgress = "IN_PROGRESS"
+
+	// MetadataGenerationRunStatusCanceled is a MetadataGenerationRunStatus enum value
+	MetadataGenerationRunStatusCanceled = "CANCELED"
+
+	// MetadataGenerationRunStatusSucceeded is a MetadataGenerationRunStatus enum value
+	MetadataGenerationRunStatusSucceeded = "SUCCEEDED"
+
+	// MetadataGenerationRunStatusFailed is a MetadataGenerationRunStatus enum value
+	MetadataGenerationRunStatusFailed = "FAILED"
+)
+
+// MetadataGenerationRunStatus_Values returns all elements of the MetadataGenerationRunStatus enum
+func MetadataGenerationRunStatus_Values() []string {
+	return []string{
+		MetadataGenerationRunStatusSubmitted,
+		MetadataGenerationRunStatusInProgress,
+		MetadataGenerationRunStatusCanceled,
+		MetadataGenerationRunStatusSucceeded,
+		MetadataGenerationRunStatusFailed,
+	}
+}
+
+const (
+	// MetadataGenerationRunTypeBusinessDescriptions is a MetadataGenerationRunType enum value
+	MetadataGenerationRunTypeBusinessDescriptions = "BUSINESS_DESCRIPTIONS"
+)
+
+// MetadataGenerationRunType_Values returns all elements of the MetadataGenerationRunType enum
+func MetadataGenerationRunType_Values() []string {
+	return []string{
+		MetadataGenerationRunTypeBusinessDescriptions,
+	}
+}
+
+const (
+	// MetadataGenerationTargetTypeAsset is a MetadataGenerationTargetType enum value
+	MetadataGenerationTargetTypeAsset = "ASSET"
+)
+
+// MetadataGenerationTargetType_Values returns all elements of the MetadataGenerationTargetType enum
+func MetadataGenerationTargetType_Values() []string {
+	return []string{
+		MetadataGenerationTargetTypeAsset,
 	}
 }
 
