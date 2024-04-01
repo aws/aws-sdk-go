@@ -23300,6 +23300,12 @@ type CreateDistributionInput struct {
 	// An array of objects that describe the per-path cache behavior for the distribution.
 	CacheBehaviors []*CacheBehaviorPerPath `locationName:"cacheBehaviors" type:"list"`
 
+	// The name of the SSL/TLS certificate that you want to attach to the distribution.
+	//
+	// Use the GetCertificates (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetCertificates.html)
+	// action to get a list of certificate names that you can specify.
+	CertificateName *string `locationName:"certificateName" type:"string"`
+
 	// An object that describes the default cache behavior for the distribution.
 	//
 	// DefaultCacheBehavior is a required field
@@ -23329,6 +23335,9 @@ type CreateDistributionInput struct {
 	//
 	// Use the TagResource action to tag a resource after it's created.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The minimum TLS protocol version for the SSL/TLS certificate.
+	ViewerMinimumTlsProtocolVersion *string `locationName:"viewerMinimumTlsProtocolVersion" type:"string" enum:"ViewerMinimumTlsProtocolVersionEnum"`
 }
 
 // String returns the string representation.
@@ -23389,6 +23398,12 @@ func (s *CreateDistributionInput) SetCacheBehaviors(v []*CacheBehaviorPerPath) *
 	return s
 }
 
+// SetCertificateName sets the CertificateName field's value.
+func (s *CreateDistributionInput) SetCertificateName(v string) *CreateDistributionInput {
+	s.CertificateName = &v
+	return s
+}
+
 // SetDefaultCacheBehavior sets the DefaultCacheBehavior field's value.
 func (s *CreateDistributionInput) SetDefaultCacheBehavior(v *CacheBehavior) *CreateDistributionInput {
 	s.DefaultCacheBehavior = v
@@ -23416,6 +23431,12 @@ func (s *CreateDistributionInput) SetOrigin(v *InputOrigin) *CreateDistributionI
 // SetTags sets the Tags field's value.
 func (s *CreateDistributionInput) SetTags(v []*Tag) *CreateDistributionInput {
 	s.Tags = v
+	return s
+}
+
+// SetViewerMinimumTlsProtocolVersion sets the ViewerMinimumTlsProtocolVersion field's value.
+func (s *CreateDistributionInput) SetViewerMinimumTlsProtocolVersion(v string) *CreateDistributionInput {
+	s.ViewerMinimumTlsProtocolVersion = &v
 	return s
 }
 
@@ -36131,6 +36152,12 @@ type InputOrigin struct {
 
 	// The AWS Region name of the origin resource.
 	RegionName *string `locationName:"regionName" type:"string" enum:"RegionName"`
+
+	// The amount of time, in seconds, that the distribution waits for a response
+	// after forwarding a request to the origin. The minimum timeout is 1 second,
+	// the maximum is 60 seconds, and the default (if you don't specify otherwise)
+	// is 30 seconds.
+	ResponseTimeout *int64 `locationName:"responseTimeout" type:"integer"`
 }
 
 // String returns the string representation.
@@ -36166,6 +36193,12 @@ func (s *InputOrigin) SetProtocolPolicy(v string) *InputOrigin {
 // SetRegionName sets the RegionName field's value.
 func (s *InputOrigin) SetRegionName(v string) *InputOrigin {
 	s.RegionName = &v
+	return s
+}
+
+// SetResponseTimeout sets the ResponseTimeout field's value.
+func (s *InputOrigin) SetResponseTimeout(v int64) *InputOrigin {
+	s.ResponseTimeout = &v
 	return s
 }
 
@@ -37885,6 +37918,10 @@ type LightsailDistribution struct {
 	// The tag keys and optional values for the resource. For more information about
 	// tags in Lightsail, see the Amazon Lightsail Developer Guide (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-tags).
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The minimum TLS protocol version that the distribution can use to communicate
+	// with viewers.
+	ViewerMinimumTlsProtocolVersion *string `locationName:"viewerMinimumTlsProtocolVersion" type:"string"`
 }
 
 // String returns the string representation.
@@ -38022,6 +38059,12 @@ func (s *LightsailDistribution) SetSupportCode(v string) *LightsailDistribution 
 // SetTags sets the Tags field's value.
 func (s *LightsailDistribution) SetTags(v []*Tag) *LightsailDistribution {
 	s.Tags = v
+	return s
+}
+
+// SetViewerMinimumTlsProtocolVersion sets the ViewerMinimumTlsProtocolVersion field's value.
+func (s *LightsailDistribution) SetViewerMinimumTlsProtocolVersion(v string) *LightsailDistribution {
+	s.ViewerMinimumTlsProtocolVersion = &v
 	return s
 }
 
@@ -39588,6 +39631,12 @@ type Origin struct {
 
 	// The resource type of the origin resource (Instance).
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// The amount of time, in seconds, that the distribution waits for a response
+	// after forwarding a request to the origin. The minimum timeout is 1 second,
+	// the maximum is 60 seconds, and the default (if you don't specify otherwise)
+	// is 30 seconds.
+	ResponseTimeout *int64 `locationName:"responseTimeout" type:"integer"`
 }
 
 // String returns the string representation.
@@ -39629,6 +39678,12 @@ func (s *Origin) SetRegionName(v string) *Origin {
 // SetResourceType sets the ResourceType field's value.
 func (s *Origin) SetResourceType(v string) *Origin {
 	s.ResourceType = &v
+	return s
+}
+
+// SetResponseTimeout sets the ResponseTimeout field's value.
+func (s *Origin) SetResponseTimeout(v int64) *Origin {
+	s.ResponseTimeout = &v
 	return s
 }
 
@@ -44859,6 +44914,14 @@ type UpdateDistributionInput struct {
 	// An array of objects that describe the per-path cache behavior for the distribution.
 	CacheBehaviors []*CacheBehaviorPerPath `locationName:"cacheBehaviors" type:"list"`
 
+	// The name of the SSL/TLS certificate that you want to attach to the distribution.
+	//
+	// Only certificates with a status of ISSUED can be attached to a distribution.
+	//
+	// Use the GetCertificates (https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetCertificates.html)
+	// action to get a list of certificate names that you can specify.
+	CertificateName *string `locationName:"certificateName" type:"string"`
+
 	// An object that describes the default cache behavior for the distribution.
 	DefaultCacheBehavior *CacheBehavior `locationName:"defaultCacheBehavior" type:"structure"`
 
@@ -44878,6 +44941,17 @@ type UpdateDistributionInput struct {
 	//
 	// The distribution pulls, caches, and serves content from the origin.
 	Origin *InputOrigin `locationName:"origin" type:"structure"`
+
+	// Indicates whether the default SSL/TLS certificate is attached to the distribution.
+	// The default value is true. When true, the distribution uses the default domain
+	// name such as d111111abcdef8.cloudfront.net.
+	//
+	// Set this value to false to attach a new certificate to the distribution.
+	UseDefaultCertificate *bool `locationName:"useDefaultCertificate" type:"boolean"`
+
+	// Use this parameter to update the minimum TLS protocol version for the SSL/TLS
+	// certificate that's attached to the distribution.
+	ViewerMinimumTlsProtocolVersion *string `locationName:"viewerMinimumTlsProtocolVersion" type:"string" enum:"ViewerMinimumTlsProtocolVersionEnum"`
 }
 
 // String returns the string representation.
@@ -44923,6 +44997,12 @@ func (s *UpdateDistributionInput) SetCacheBehaviors(v []*CacheBehaviorPerPath) *
 	return s
 }
 
+// SetCertificateName sets the CertificateName field's value.
+func (s *UpdateDistributionInput) SetCertificateName(v string) *UpdateDistributionInput {
+	s.CertificateName = &v
+	return s
+}
+
 // SetDefaultCacheBehavior sets the DefaultCacheBehavior field's value.
 func (s *UpdateDistributionInput) SetDefaultCacheBehavior(v *CacheBehavior) *UpdateDistributionInput {
 	s.DefaultCacheBehavior = v
@@ -44944,6 +45024,18 @@ func (s *UpdateDistributionInput) SetIsEnabled(v bool) *UpdateDistributionInput 
 // SetOrigin sets the Origin field's value.
 func (s *UpdateDistributionInput) SetOrigin(v *InputOrigin) *UpdateDistributionInput {
 	s.Origin = v
+	return s
+}
+
+// SetUseDefaultCertificate sets the UseDefaultCertificate field's value.
+func (s *UpdateDistributionInput) SetUseDefaultCertificate(v bool) *UpdateDistributionInput {
+	s.UseDefaultCertificate = &v
+	return s
+}
+
+// SetViewerMinimumTlsProtocolVersion sets the ViewerMinimumTlsProtocolVersion field's value.
+func (s *UpdateDistributionInput) SetViewerMinimumTlsProtocolVersion(v string) *UpdateDistributionInput {
+	s.ViewerMinimumTlsProtocolVersion = &v
 	return s
 }
 
@@ -48186,5 +48278,29 @@ func TreatMissingData_Values() []string {
 		TreatMissingDataNotBreaching,
 		TreatMissingDataIgnore,
 		TreatMissingDataMissing,
+	}
+}
+
+const (
+	// ViewerMinimumTlsProtocolVersionEnumTlsv112016 is a ViewerMinimumTlsProtocolVersionEnum enum value
+	ViewerMinimumTlsProtocolVersionEnumTlsv112016 = "TLSv1.1_2016"
+
+	// ViewerMinimumTlsProtocolVersionEnumTlsv122018 is a ViewerMinimumTlsProtocolVersionEnum enum value
+	ViewerMinimumTlsProtocolVersionEnumTlsv122018 = "TLSv1.2_2018"
+
+	// ViewerMinimumTlsProtocolVersionEnumTlsv122019 is a ViewerMinimumTlsProtocolVersionEnum enum value
+	ViewerMinimumTlsProtocolVersionEnumTlsv122019 = "TLSv1.2_2019"
+
+	// ViewerMinimumTlsProtocolVersionEnumTlsv122021 is a ViewerMinimumTlsProtocolVersionEnum enum value
+	ViewerMinimumTlsProtocolVersionEnumTlsv122021 = "TLSv1.2_2021"
+)
+
+// ViewerMinimumTlsProtocolVersionEnum_Values returns all elements of the ViewerMinimumTlsProtocolVersionEnum enum
+func ViewerMinimumTlsProtocolVersionEnum_Values() []string {
+	return []string{
+		ViewerMinimumTlsProtocolVersionEnumTlsv112016,
+		ViewerMinimumTlsProtocolVersionEnumTlsv122018,
+		ViewerMinimumTlsProtocolVersionEnumTlsv122019,
+		ViewerMinimumTlsProtocolVersionEnumTlsv122021,
 	}
 }

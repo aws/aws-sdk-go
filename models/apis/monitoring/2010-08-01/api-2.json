@@ -2308,6 +2308,7 @@
     "SingleMetricAnomalyDetector":{
       "type":"structure",
       "members":{
+        "AccountId":{"shape":"AccountId"},
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"Dimensions"},

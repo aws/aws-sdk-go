@@ -2882,6 +2882,11 @@ func (c *CloudWatch) PutAnomalyDetectorRequest(input *PutAnomalyDetectorInput) (
 // Creates an anomaly detection model for a CloudWatch metric. You can use the
 // model to display a band of expected normal values when the metric is graphed.
 //
+// If you have enabled unified cross-account observability, and this account
+// is a monitoring account, the metric can be in the same account or a source
+// account. You can specify the account ID in the object you specify in the
+// SingleMetricAnomalyDetector parameter.
+//
 // For more information, see CloudWatch Anomaly Detection (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Anomaly_Detection.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2990,8 +2995,15 @@ func (c *CloudWatch) PutCompositeAlarmRequest(input *PutCompositeAlarmInput) (re
 // into ALARM state only when more than one of the underlying metric alarms
 // are in ALARM state.
 //
-// Currently, the only alarm actions that can be taken by composite alarms are
-// notifying SNS topics.
+// Composite alarms can take the following actions:
+//
+//   - Notify Amazon SNS topics.
+//
+//   - Invoke Lambda functions.
+//
+//   - Create OpsItems in Systems Manager Ops Center.
+//
+//   - Create incidents in Systems Manager Incident Manager.
 //
 // It is possible to create a loop or cycle of composite alarms, where composite
 // alarm A depends on composite alarm B, and composite alarm B also depends
@@ -3516,7 +3528,7 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 //
 // You can publish either individual data points in the Value field, or arrays
 // of values and the number of times each value occurred during the period by
-// using the Values and Counts fields in the MetricDatum structure. Using the
+// using the Values and Counts fields in the MetricData structure. Using the
 // Values and Counts method enables you to publish up to 150 values per metric
 // with one PutMetricData request, and supports retrieving percentile statistics
 // on this data.
@@ -4270,6 +4282,10 @@ func (s *AlarmHistoryItem) SetTimestamp(v time.Time) *AlarmHistoryItem {
 // An anomaly detection model associated with a particular CloudWatch metric,
 // statistic, or metric math expression. You can use the model to display a
 // band of expected, normal values when the metric is graphed.
+//
+// If you have enabled unified cross-account observability, and this account
+// is a monitoring account, the metric can be in the same account or a source
+// account.
 type AnomalyDetector struct {
 	_ struct{} `type:"structure"`
 
@@ -6921,6 +6937,8 @@ type GetMetricDataInput struct {
 	// the newest data first and paginates when the MaxDatapoints limit is reached.
 	// TimestampAscending returns the oldest data first and paginates when the MaxDatapoints
 	// limit is reached.
+	//
+	// If you omit this parameter, the default of TimestampDescending is used.
 	ScanBy *string `type:"string" enum:"ScanBy"`
 
 	// The time stamp indicating the earliest data to be returned.
@@ -10310,7 +10328,7 @@ type PutAnomalyDetectorInput struct {
 	//
 	//    * Stat
 	//
-	//    * the MetricMatchAnomalyDetector parameters of PutAnomalyDetectorInput
+	//    * the MetricMathAnomalyDetector parameters of PutAnomalyDetectorInput
 	//
 	// Instead, specify the single metric anomaly detector attributes as part of
 	// the property SingleMetricAnomalyDetector.
@@ -10474,7 +10492,23 @@ type PutCompositeAlarmInput struct {
 	// The actions to execute when this alarm transitions to the ALARM state from
 	// any other state. Each action is specified as an Amazon Resource Name (ARN).
 	//
-	// Valid Values: arn:aws:sns:region:account-id:sns-topic-name | arn:aws:ssm:region:account-id:opsitem:severity
+	// Valid Values: ]
+	//
+	// Amazon SNS actions:
+	//
+	// arn:aws:sns:region:account-id:sns-topic-name
+	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
+	//
+	// Systems Manager actions:
+	//
+	// arn:aws:ssm:region:account-id:opsitem:severity
 	AlarmActions []*string `type:"list"`
 
 	// The description for the composite alarm.
@@ -10544,21 +10578,51 @@ type PutCompositeAlarmInput struct {
 	// state from any other state. Each action is specified as an Amazon Resource
 	// Name (ARN).
 	//
-	// Valid Values: arn:aws:sns:region:account-id:sns-topic-name
+	// Valid Values: ]
+	//
+	// Amazon SNS actions:
+	//
+	// arn:aws:sns:region:account-id:sns-topic-name
+	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
 	InsufficientDataActions []*string `type:"list"`
 
 	// The actions to execute when this alarm transitions to an OK state from any
 	// other state. Each action is specified as an Amazon Resource Name (ARN).
 	//
-	// Valid Values: arn:aws:sns:region:account-id:sns-topic-name
+	// Valid Values: ]
+	//
+	// Amazon SNS actions:
+	//
+	// arn:aws:sns:region:account-id:sns-topic-name
+	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
 	OKActions []*string `type:"list"`
 
-	// A list of key-value pairs to associate with the composite alarm. You can
-	// associate as many as 50 tags with an alarm.
+	// A list of key-value pairs to associate with the alarm. You can associate
+	// as many as 50 tags with an alarm. To be able to associate tags with the alarm
+	// when you create the alarm, you must have the cloudwatch:TagResource permission.
 	//
 	// Tags can help you organize and categorize your resources. You can also use
-	// them to scope user permissions, by granting a user permission to access or
+	// them to scope user permissions by granting a user permission to access or
 	// change only resources with certain tag values.
+	//
+	// If you are using this operation to update an existing alarm, any tags you
+	// specify in this parameter are ignored. To change the tags of an existing
+	// alarm, use TagResource (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)
+	// or UntagResource (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -11062,9 +11126,17 @@ type PutMetricAlarmInput struct {
 	//
 	//    * arn:aws:autoscaling:region:account-id:scalingPolicy:policy-id:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
 	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
+	//
 	// SNS notification action:
 	//
-	//    * arn:aws:sns:region:account-id:sns-topic-name:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
+	//    * arn:aws:sns:region:account-id:sns-topic-name
 	//
 	// SSM integration actions:
 	//
@@ -11182,9 +11254,17 @@ type PutMetricAlarmInput struct {
 	//
 	//    * arn:aws:autoscaling:region:account-id:scalingPolicy:policy-id:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
 	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
+	//
 	// SNS notification action:
 	//
-	//    * arn:aws:sns:region:account-id:sns-topic-name:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
+	//    * arn:aws:sns:region:account-id:sns-topic-name
 	//
 	// SSM integration actions:
 	//
@@ -11248,9 +11328,17 @@ type PutMetricAlarmInput struct {
 	//
 	//    * arn:aws:autoscaling:region:account-id:scalingPolicy:policy-id:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
 	//
+	// Lambda actions:
+	//
+	//    * Invoke the latest version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name
+	//
+	//    * Invoke a specific version of a Lambda function: arn:aws:lambda:region:account-id:function:function-name:version-number
+	//
+	//    * Invoke a function by using an alias Lambda function: arn:aws:lambda:region:account-id:function:function-name:alias-name
+	//
 	// SNS notification action:
 	//
-	//    * arn:aws:sns:region:account-id:sns-topic-name:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
+	//    * arn:aws:sns:region:account-id:sns-topic-name
 	//
 	// SSM integration actions:
 	//
@@ -12137,9 +12225,16 @@ func (s SetAlarmStateOutput) GoString() string {
 }
 
 // Designates the CloudWatch metric and statistic that provides the time series
-// the anomaly detector uses as input.
+// the anomaly detector uses as input. If you have enabled unified cross-account
+// observability, and this account is a monitoring account, the metric can be
+// in the same account or a source account.
 type SingleMetricAnomalyDetector struct {
 	_ struct{} `type:"structure"`
+
+	// If the CloudWatch metric that provides the time series that the anomaly detector
+	// uses as input is in another account, specify that account ID here. If you
+	// omit this parameter, the current account is used.
+	AccountId *string `min:"1" type:"string"`
 
 	// The metric dimensions to create the anomaly detection model for.
 	Dimensions []*Dimension `type:"list"`
@@ -12175,6 +12270,9 @@ func (s SingleMetricAnomalyDetector) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SingleMetricAnomalyDetector) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SingleMetricAnomalyDetector"}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.MetricName != nil && len(*s.MetricName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
 	}
@@ -12196,6 +12294,12 @@ func (s *SingleMetricAnomalyDetector) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *SingleMetricAnomalyDetector) SetAccountId(v string) *SingleMetricAnomalyDetector {
+	s.AccountId = &v
+	return s
 }
 
 // SetDimensions sets the Dimensions field's value.

@@ -52,6 +52,25 @@
       ],
       "idempotent":true
     },
+    "CancelMetadataGenerationRun":{
+      "name":"CancelMetadataGenerationRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}/cancel",
+        "responseCode":200
+      },
+      "input":{"shape":"CancelMetadataGenerationRunInput"},
+      "output":{"shape":"CancelMetadataGenerationRunOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "CancelSubscription":{
       "name":"CancelSubscription",
       "http":{
@@ -1008,6 +1027,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "GetMetadataGenerationRun":{
+      "name":"GetMetadataGenerationRun",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/metadata-generation-runs/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMetadataGenerationRunInput"},
+      "output":{"shape":"GetMetadataGenerationRunOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetProject":{
       "name":"GetProject",
       "http":{
@@ -1284,6 +1321,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "ListMetadataGenerationRuns":{
+      "name":"ListMetadataGenerationRuns",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/metadata-generation-runs",
+        "responseCode":200
+      },
+      "input":{"shape":"ListMetadataGenerationRunsInput"},
+      "output":{"shape":"ListMetadataGenerationRunsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "ListNotifications":{
       "name":"ListNotifications",
       "http":{
@@ -1461,6 +1516,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"UnauthorizedException"}
       ],
@@ -1602,6 +1658,27 @@
       },
       "input":{"shape":"StartDataSourceRunInput"},
       "output":{"shape":"StartDataSourceRunOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ],
+      "idempotent":true
+    },
+    "StartMetadataGenerationRun":{
+      "name":"StartMetadataGenerationRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/domains/{domainIdentifier}/metadata-generation-runs",
+        "responseCode":200
+      },
+      "input":{"shape":"StartMetadataGenerationRunInput"},
+      "output":{"shape":"StartMetadataGenerationRunOutput"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -1892,7 +1969,9 @@
   "shapes":{
     "AcceptChoice":{
       "type":"structure",
+      "required":["predictionTarget"],
       "members":{
+        "editedValue":{"shape":"EditedValue"},
         "predictionChoice":{"shape":"Integer"},
         "predictionTarget":{"shape":"String"}
       }
@@ -2164,7 +2243,7 @@
     },
     "AssetTypeIdentifier":{
       "type":"string",
-      "max":385,
+      "max":513,
       "min":1,
       "pattern":"^(?!\\.)[\\w\\.]*\\w$"
     },
@@ -2230,6 +2309,30 @@
       "type":"structure",
       "members":{
         "enabled":{"shape":"Boolean"}
+      }
+    },
+    "CancelMetadataGenerationRunInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "identifier":{
+          "shape":"MetadataGenerationRunIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "CancelMetadataGenerationRunOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "CancelSubscriptionInput":{
@@ -4002,6 +4105,12 @@
         "status":{"shape":"DomainStatus"}
       }
     },
+    "EditedValue":{
+      "type":"string",
+      "max":5000,
+      "min":1,
+      "sensitive":true
+    },
     "EnableSetting":{
       "type":"string",
       "enum":[
@@ -4312,7 +4421,7 @@
     },
     "FormInputContentString":{
       "type":"string",
-      "max":75000,
+      "max":150000,
       "min":0
     },
     "FormInputList":{
@@ -5030,6 +5139,43 @@
         "status":{"shape":"ListingStatus"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"}
+      }
+    },
+    "GetMetadataGenerationRunInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "identifier":{
+          "shape":"MetadataGenerationRunIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "GetMetadataGenerationRunOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "id",
+        "owningProjectId"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "domainId":{"shape":"DomainId"},
+        "id":{"shape":"MetadataGenerationRunIdentifier"},
+        "owningProjectId":{"shape":"ProjectId"},
+        "status":{"shape":"MetadataGenerationRunStatus"},
+        "target":{"shape":"MetadataGenerationRunTarget"},
+        "type":{"shape":"MetadataGenerationRunType"}
       }
     },
     "GetProjectInput":{
@@ -5968,6 +6114,44 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListMetadataGenerationRunsInput":{
+      "type":"structure",
+      "required":["domainIdentifier"],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "status":{
+          "shape":"MetadataGenerationRunStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "type":{
+          "shape":"MetadataGenerationRunType",
+          "location":"querystring",
+          "locationName":"type"
+        }
+      }
+    },
+    "ListMetadataGenerationRunsOutput":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"MetadataGenerationRuns"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListNotificationsInput":{
       "type":"structure",
       "required":[
@@ -6446,6 +6630,62 @@
       "min":0,
       "sensitive":true
     },
+    "MetadataGenerationRunIdentifier":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
+    "MetadataGenerationRunItem":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "id",
+        "owningProjectId"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "domainId":{"shape":"DomainId"},
+        "id":{"shape":"MetadataGenerationRunIdentifier"},
+        "owningProjectId":{"shape":"ProjectId"},
+        "status":{"shape":"MetadataGenerationRunStatus"},
+        "target":{"shape":"MetadataGenerationRunTarget"},
+        "type":{"shape":"MetadataGenerationRunType"}
+      }
+    },
+    "MetadataGenerationRunStatus":{
+      "type":"string",
+      "enum":[
+        "SUBMITTED",
+        "IN_PROGRESS",
+        "CANCELED",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "MetadataGenerationRunTarget":{
+      "type":"structure",
+      "required":[
+        "identifier",
+        "type"
+      ],
+      "members":{
+        "identifier":{"shape":"String"},
+        "revision":{"shape":"Revision"},
+        "type":{"shape":"MetadataGenerationTargetType"}
+      }
+    },
+    "MetadataGenerationRunType":{
+      "type":"string",
+      "enum":["BUSINESS_DESCRIPTIONS"]
+    },
+    "MetadataGenerationRuns":{
+      "type":"list",
+      "member":{"shape":"MetadataGenerationRunItem"}
+    },
+    "MetadataGenerationTargetType":{
+      "type":"string",
+      "enum":["ASSET"]
+    },
     "MetadataMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -6782,6 +7022,7 @@
     },
     "RejectChoice":{
       "type":"structure",
+      "required":["predictionTarget"],
       "members":{
         "predictionChoices":{"shape":"PredictionChoices"},
         "predictionTarget":{"shape":"String"}
@@ -7353,6 +7594,45 @@
         "stoppedAt":{"shape":"DateTime"},
         "type":{"shape":"DataSourceRunType"},
         "updatedAt":{"shape":"DateTime"}
+      }
+    },
+    "StartMetadataGenerationRunInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "owningProjectIdentifier",
+        "target",
+        "type"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "owningProjectIdentifier":{"shape":"ProjectId"},
+        "target":{"shape":"MetadataGenerationRunTarget"},
+        "type":{"shape":"MetadataGenerationRunType"}
+      }
+    },
+    "StartMetadataGenerationRunOutput":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "id"
+      ],
+      "members":{
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "domainId":{"shape":"DomainId"},
+        "id":{"shape":"MetadataGenerationRunIdentifier"},
+        "owningProjectId":{"shape":"ProjectId"},
+        "status":{"shape":"MetadataGenerationRunStatus"},
+        "type":{"shape":"MetadataGenerationRunType"}
       }
     },
     "String":{"type":"string"},

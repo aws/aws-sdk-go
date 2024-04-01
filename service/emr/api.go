@@ -4916,7 +4916,7 @@ func (c *EMR) SetUnhealthyNodeReplacementRequest(input *SetUnhealthyNodeReplacem
 // on the cluster to stop scheduling tasks with these nodes, moves the data,
 // and then terminates the nodes.
 //
-// For more information, see graceful node replacement (https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_UnhealthyNodeReplacement.html)
+// For more information, see graceful node replacement (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-node-replacement.html)
 // in the Amazon EMR Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6849,7 +6849,8 @@ type Cluster struct {
 	// is the private DNS name. On a public subnet, this is the public DNS name.
 	MasterPublicDnsName *string `type:"string"`
 
-	// The name of the cluster.
+	// The name of the cluster. This parameter can't contain the characters <, >,
+	// $, |, or ` (backtick).
 	Name *string `type:"string"`
 
 	// An approximation of the cost of the cluster, represented in m1.small/hours.
@@ -12807,8 +12808,8 @@ type JobFlowInstancesConfig struct {
 	InstanceGroups []*InstanceGroupConfig `type:"list"`
 
 	// Specifies whether the cluster should remain available after completing all
-	// steps. Defaults to true. For more information about configuring cluster termination,
-	// see Control Cluster Termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html)
+	// steps. Defaults to false. For more information about configuring cluster
+	// termination, see Control Cluster Termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html)
 	// in the EMR Management Guide.
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 

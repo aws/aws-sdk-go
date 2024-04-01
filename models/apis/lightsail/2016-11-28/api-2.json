@@ -3999,7 +3999,9 @@
         "cacheBehaviors":{"shape":"CacheBehaviorList"},
         "bundleId":{"shape":"string"},
         "ipAddressType":{"shape":"IpAddressType"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "certificateName":{"shape":"ResourceName"},
+        "viewerMinimumTlsProtocolVersion":{"shape":"ViewerMinimumTlsProtocolVersionEnum"}
       }
     },
     "CreateDistributionResult":{
@@ -6058,7 +6060,8 @@
       "members":{
         "name":{"shape":"ResourceName"},
         "regionName":{"shape":"RegionName"},
-        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"}
+        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"},
+        "responseTimeout":{"shape":"integer"}
       }
     },
     "Instance":{
@@ -6396,7 +6399,8 @@
         "cacheBehaviors":{"shape":"CacheBehaviorList"},
         "ableToUpdateBundle":{"shape":"boolean"},
         "ipAddressType":{"shape":"IpAddressType"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "viewerMinimumTlsProtocolVersion":{"shape":"string"}
       }
     },
     "LoadBalancer":{
@@ -6955,7 +6959,8 @@
         "name":{"shape":"ResourceName"},
         "resourceType":{"shape":"ResourceType"},
         "regionName":{"shape":"RegionName"},
-        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"}
+        "protocolPolicy":{"shape":"OriginProtocolPolicyEnum"},
+        "responseTimeout":{"shape":"integer"}
       }
     },
     "OriginProtocolPolicyEnum":{
@@ -8036,7 +8041,10 @@
         "defaultCacheBehavior":{"shape":"CacheBehavior"},
         "cacheBehaviorSettings":{"shape":"CacheSettings"},
         "cacheBehaviors":{"shape":"CacheBehaviorList"},
-        "isEnabled":{"shape":"boolean"}
+        "isEnabled":{"shape":"boolean"},
+        "viewerMinimumTlsProtocolVersion":{"shape":"ViewerMinimumTlsProtocolVersionEnum"},
+        "certificateName":{"shape":"ResourceName"},
+        "useDefaultCertificate":{"shape":"boolean"}
       }
     },
     "UpdateDistributionResult":{
@@ -8137,6 +8145,15 @@
       "members":{
         "operations":{"shape":"OperationList"}
       }
+    },
+    "ViewerMinimumTlsProtocolVersionEnum":{
+      "type":"string",
+      "enum":[
+        "TLSv1.1_2016",
+        "TLSv1.2_2018",
+        "TLSv1.2_2019",
+        "TLSv1.2_2021"
+      ]
     },
     "boolean":{"type":"boolean"},
     "double":{"type":"double"},
