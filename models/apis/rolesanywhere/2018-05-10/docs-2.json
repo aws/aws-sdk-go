@@ -79,7 +79,7 @@
     "CreateProfileRequestDurationSecondsInteger": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
+        "CreateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. In requests, if this value is not provided, the default value will be 3600. </p>"
       }
     },
     "CreateTrustAnchorRequest": {
@@ -162,7 +162,7 @@
       "base": null,
       "refs": {
         "ListRequest$pageSize": "<p>The number of resources in the paginated list. </p>",
-        "ProfileDetail$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
+        "ProfileDetail$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. In requests, if this value is not provided, the default value will be 3600. </p>"
       }
     },
     "ListCrlsResponse": {
@@ -588,7 +588,7 @@
     "UpdateProfileRequestDurationSecondsInteger": {
       "base": null,
       "refs": {
-        "UpdateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. </p>"
+        "UpdateProfileRequest$durationSeconds": "<p> Used to determine how long sessions vended using this profile are valid for. See the <code>Expiration</code> section of the <a href=\"https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object\">CreateSession API documentation</a> page for more details. In requests, if this value is not provided, the default value will be 3600. </p>"
       }
     },
     "UpdateProfileRequestSessionPolicyString": {

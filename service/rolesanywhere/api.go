@@ -2720,7 +2720,8 @@ type CreateProfileInput struct {
 
 	// Used to determine how long sessions vended using this profile are valid for.
 	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
-	// page for more details.
+	// page for more details. In requests, if this value is not provided, the default
+	// value will be 3600.
 	DurationSeconds *int64 `locationName:"durationSeconds" min:"900" type:"integer"`
 
 	// Specifies whether the profile is enabled.
@@ -5174,7 +5175,8 @@ type ProfileDetail struct {
 
 	// Used to determine how long sessions vended using this profile are valid for.
 	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
-	// page for more details.
+	// page for more details. In requests, if this value is not provided, the default
+	// value will be 3600.
 	DurationSeconds *int64 `locationName:"durationSeconds" type:"integer"`
 
 	// Indicates whether the profile is enabled.
@@ -6406,7 +6408,8 @@ type UpdateProfileInput struct {
 
 	// Used to determine how long sessions vended using this profile are valid for.
 	// See the Expiration section of the CreateSession API documentation (https://docs.aws.amazon.com/rolesanywhere/latest/userguide/authentication-create-session.html#credentials-object)
-	// page for more details.
+	// page for more details. In requests, if this value is not provided, the default
+	// value will be 3600.
 	DurationSeconds *int64 `locationName:"durationSeconds" min:"900" type:"integer"`
 
 	// A list of managed policy ARNs that apply to the vended session credentials.

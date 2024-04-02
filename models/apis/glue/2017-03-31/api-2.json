@@ -8442,7 +8442,9 @@
         "IsRegisteredWithLakeFormation":{"shape":"Boolean"},
         "CellFilters":{"shape":"ColumnRowFilterList"},
         "QueryAuthorizationId":{"shape":"HashString"},
+        "IsMultiDialectView":{"shape":"Boolean"},
         "ResourceArn":{"shape":"ArnString"},
+        "IsProtected":{"shape":"Boolean"},
         "Permissions":{"shape":"PermissionList"}
       }
     },
@@ -12307,7 +12309,9 @@
         "TargetTable":{"shape":"TableIdentifier"},
         "CatalogId":{"shape":"CatalogIdString"},
         "VersionId":{"shape":"VersionString"},
-        "FederatedTable":{"shape":"FederatedTable"}
+        "FederatedTable":{"shape":"FederatedTable"},
+        "ViewDefinition":{"shape":"ViewDefinition"},
+        "IsMultiDialectView":{"shape":"NullableBoolean"}
       }
     },
     "TableError":{
@@ -13356,6 +13360,15 @@
       "min":1,
       "pattern":"[1-9][0-9]*|[1-9][0-9]*-[1-9][0-9]*"
     },
+    "ViewDefinition":{
+      "type":"structure",
+      "members":{
+        "IsProtected":{"shape":"NullableBoolean"},
+        "Definer":{"shape":"ArnString"},
+        "SubObjects":{"shape":"ViewSubObjectsList"},
+        "Representations":{"shape":"ViewRepresentationList"}
+      }
+    },
     "ViewDialect":{
       "type":"string",
       "enum":[
@@ -13368,6 +13381,28 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "ViewRepresentation":{
+      "type":"structure",
+      "members":{
+        "Dialect":{"shape":"ViewDialect"},
+        "DialectVersion":{"shape":"ViewDialectVersionString"},
+        "ViewOriginalText":{"shape":"ViewTextString"},
+        "ViewExpandedText":{"shape":"ViewTextString"},
+        "IsStale":{"shape":"NullableBoolean"}
+      }
+    },
+    "ViewRepresentationList":{
+      "type":"list",
+      "member":{"shape":"ViewRepresentation"},
+      "max":1000,
+      "min":1
+    },
+    "ViewSubObjectsList":{
+      "type":"list",
+      "member":{"shape":"ArnString"},
+      "max":10,
+      "min":0
     },
     "ViewTextString":{
       "type":"string",

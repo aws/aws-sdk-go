@@ -822,7 +822,7 @@
     "RoleArnList":{
       "type":"list",
       "member":{"shape":"RoleArn"},
-      "max":50,
+      "max":250,
       "min":0
     },
     "ScalarCrlRequest":{

@@ -3,29 +3,68 @@
 // Package securityhub provides the client and types for making API
 // requests to AWS SecurityHub.
 //
-// Security Hub provides you with a comprehensive view of the security state
-// of your Amazon Web Services environment and resources. It also provides you
-// with the readiness status of your environment based on controls from supported
-// security standards. Security Hub collects security data from Amazon Web Services
-// accounts, services, and integrated third-party products and helps you analyze
-// security trends in your environment to identify the highest priority security
-// issues. For more information about Security Hub, see the Security Hub User
-// Guide (https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html).
+// Security Hub provides you with a comprehensive view of your security state
+// in Amazon Web Services and helps you assess your Amazon Web Services environment
+// against security industry standards and best practices.
 //
-// When you use operations in the Security Hub API, the requests are executed
-// only in the Amazon Web Services Region that is currently active or in the
-// specific Amazon Web Services Region that you specify in your request. Any
-// configuration or settings change that results from the operation is applied
-// only to that Region. To make the same change in other Regions, run the same
-// command for each Region in which you want to apply the change.
+// Security Hub collects security data across Amazon Web Services accounts,
+// Amazon Web Services, and supported third-party products and helps you analyze
+// your security trends and identify the highest priority security issues.
 //
-// For example, if your Region is set to us-west-2, when you use CreateMembers
-// to add a member account to Security Hub, the association of the member account
-// with the administrator account is created only in the us-west-2 Region. Security
-// Hub must be enabled for the member account in the same Region that the invitation
-// was sent from.
+// To help you manage the security state of your organization, Security Hub
+// supports multiple security standards. These include the Amazon Web Services
+// Foundational Security Best Practices (FSBP) standard developed by Amazon
+// Web Services, and external compliance frameworks such as the Center for Internet
+// Security (CIS), the Payment Card Industry Data Security Standard (PCI DSS),
+// and the National Institute of Standards and Technology (NIST). Each standard
+// includes several security controls, each of which represents a security best
+// practice. Security Hub runs checks against security controls and generates
+// control findings to help you assess your compliance against security best
+// practices.
 //
-// The following throttling limits apply to using Security Hub API operations.
+// In addition to generating control findings, Security Hub also receives findings
+// from other Amazon Web Services, such as Amazon GuardDuty and Amazon Inspector,
+// and supported third-party products. This gives you a single pane of glass
+// into a variety of security-related issues. You can also send Security Hub
+// findings to other Amazon Web Services and supported third-party products.
+//
+// Security Hub offers automation features that help you triage and remediate
+// security issues. For example, you can use automation rules to automatically
+// update critical findings when a security check fails. You can also leverage
+// the integration with Amazon EventBridge to trigger automatic responses to
+// specific findings.
+//
+// This guide, the Security Hub API Reference, provides information about the
+// Security Hub API. This includes supported resources, HTTP methods, parameters,
+// and schemas. If you're new to Security Hub, you might find it helpful to
+// also review the Security Hub User Guide (https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html).
+// The user guide explains key concepts and provides procedures that demonstrate
+// how to use Security Hub features. It also provides information about topics
+// such as integrating Security Hub with other Amazon Web Services.
+//
+// In addition to interacting with Security Hub by making calls to the Security
+// Hub API, you can use a current version of an Amazon Web Services command
+// line tool or SDK. Amazon Web Services provides tools and SDKs that consist
+// of libraries and sample code for various languages and platforms, such as
+// PowerShell, Java, Go, Python, C++, and .NET. These tools and SDKs provide
+// convenient, programmatic access to Security Hub and other Amazon Web Services
+// . They also handle tasks such as signing requests, managing errors, and retrying
+// requests automatically. For information about installing and using the Amazon
+// Web Services tools and SDKs, see Tools to Build on Amazon Web Services (http://aws.amazon.com/developer/tools/).
+//
+// With the exception of operations that are related to central configuration,
+// Security Hub API requests are executed only in the Amazon Web Services Region
+// that is currently active or in the specific Amazon Web Services Region that
+// you specify in your request. Any configuration or settings change that results
+// from the operation is applied only to that Region. To make the same change
+// in other Regions, call the same API operation in each Region in which you
+// want to apply the change. When you use central configuration, API requests
+// for enabling Security Hub, standards, and controls are executed in the home
+// Region and all linked Regions. For a list of central configuration operations,
+// see the Central configuration terms and concepts (https://docs.aws.amazon.com/securityhub/latest/userguide/central-configuration-intro.html#central-configuration-concepts)
+// section of the Security Hub User Guide.
+//
+// The following throttling limits apply to Security Hub API operations.
 //
 //   - BatchEnableStandards - RateLimit of 1 request per second. BurstLimit
 //     of 1 request per second.
