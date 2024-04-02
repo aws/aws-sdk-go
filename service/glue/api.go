@@ -51490,6 +51490,16 @@ type GetUnfilteredTableMetadataOutput struct {
 	// A list of column row filters.
 	CellFilters []*ColumnRowFilter `type:"list"`
 
+	// Specifies whether the view supports the SQL dialects of one or more different
+	// query engines and can therefore be read by those engines.
+	IsMultiDialectView *bool `type:"boolean"`
+
+	// A flag that instructs the engine not to push user-provided operations into
+	// the logical plan of the view during query planning. However, if set this
+	// flag does not guarantee that the engine will comply. Refer to the engine's
+	// documentation to understand the guarantees provided, if any.
+	IsProtected *bool `type:"boolean"`
+
 	// A Boolean value that indicates whether the partition location is registered
 	// with Lake Formation.
 	IsRegisteredWithLakeFormation *bool `type:"boolean"`
@@ -51536,6 +51546,18 @@ func (s *GetUnfilteredTableMetadataOutput) SetAuthorizedColumns(v []*string) *Ge
 // SetCellFilters sets the CellFilters field's value.
 func (s *GetUnfilteredTableMetadataOutput) SetCellFilters(v []*ColumnRowFilter) *GetUnfilteredTableMetadataOutput {
 	s.CellFilters = v
+	return s
+}
+
+// SetIsMultiDialectView sets the IsMultiDialectView field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetIsMultiDialectView(v bool) *GetUnfilteredTableMetadataOutput {
+	s.IsMultiDialectView = &v
+	return s
+}
+
+// SetIsProtected sets the IsProtected field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetIsProtected(v bool) *GetUnfilteredTableMetadataOutput {
+	s.IsProtected = &v
 	return s
 }
 
@@ -71768,6 +71790,10 @@ type TableData struct {
 	// Catalog.
 	FederatedTable *FederatedTable `type:"structure"`
 
+	// Specifies whether the view supports the SQL dialects of one or more different
+	// query engines and can therefore be read by those engines.
+	IsMultiDialectView *bool `type:"boolean"`
+
 	// Indicates whether the table has been registered with Lake Formation.
 	IsRegisteredWithLakeFormation *bool `type:"boolean"`
 
@@ -71828,6 +71854,10 @@ type TableData struct {
 
 	// The ID of the table version.
 	VersionId *string `min:"1" type:"string"`
+
+	// A structure that contains all the information that defines the view, including
+	// the dialect or dialects for the view, and the query.
+	ViewDefinition *ViewDefinition `type:"structure"`
 
 	// Included for Apache Hive compatibility. Not used in the normal course of
 	// Glue operations.
@@ -71890,6 +71920,12 @@ func (s *TableData) SetDescription(v string) *TableData {
 // SetFederatedTable sets the FederatedTable field's value.
 func (s *TableData) SetFederatedTable(v *FederatedTable) *TableData {
 	s.FederatedTable = v
+	return s
+}
+
+// SetIsMultiDialectView sets the IsMultiDialectView field's value.
+func (s *TableData) SetIsMultiDialectView(v bool) *TableData {
+	s.IsMultiDialectView = &v
 	return s
 }
 
@@ -71968,6 +72004,12 @@ func (s *TableData) SetUpdateTime(v time.Time) *TableData {
 // SetVersionId sets the VersionId field's value.
 func (s *TableData) SetVersionId(v string) *TableData {
 	s.VersionId = &v
+	return s
+}
+
+// SetViewDefinition sets the ViewDefinition field's value.
+func (s *TableData) SetViewDefinition(v *ViewDefinition) *TableData {
+	s.ViewDefinition = v
 	return s
 }
 
@@ -77516,6 +77558,145 @@ func (s *VersionMismatchException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *VersionMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A structure containing details for representations.
+type ViewDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The definer of a view in SQL.
+	Definer *string `min:"20" type:"string"`
+
+	// You can set this flag as true to instruct the engine not to push user-provided
+	// operations into the logical plan of the view during query planning. However,
+	// setting this flag does not guarantee that the engine will comply. Refer to
+	// the engine's documentation to understand the guarantees provided, if any.
+	IsProtected *bool `type:"boolean"`
+
+	// A list of representations.
+	Representations []*ViewRepresentation `min:"1" type:"list"`
+
+	// A list of table Amazon Resource Names (ARNs).
+	SubObjects []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewDefinition) GoString() string {
+	return s.String()
+}
+
+// SetDefiner sets the Definer field's value.
+func (s *ViewDefinition) SetDefiner(v string) *ViewDefinition {
+	s.Definer = &v
+	return s
+}
+
+// SetIsProtected sets the IsProtected field's value.
+func (s *ViewDefinition) SetIsProtected(v bool) *ViewDefinition {
+	s.IsProtected = &v
+	return s
+}
+
+// SetRepresentations sets the Representations field's value.
+func (s *ViewDefinition) SetRepresentations(v []*ViewRepresentation) *ViewDefinition {
+	s.Representations = v
+	return s
+}
+
+// SetSubObjects sets the SubObjects field's value.
+func (s *ViewDefinition) SetSubObjects(v []*string) *ViewDefinition {
+	s.SubObjects = v
+	return s
+}
+
+// A structure that contains the dialect of the view, and the query that defines
+// the view.
+type ViewRepresentation struct {
+	_ struct{} `type:"structure"`
+
+	// The dialect of the query engine.
+	Dialect *string `type:"string" enum:"ViewDialect"`
+
+	// The version of the dialect of the query engine. For example, 3.0.0.
+	DialectVersion *string `min:"1" type:"string"`
+
+	// Dialects marked as stale are no longer valid and must be updated before they
+	// can be queried in their respective query engines.
+	IsStale *bool `type:"boolean"`
+
+	// The expanded SQL for the view. This SQL is used by engines while processing
+	// a query on a view. Engines may perform operations during view creation to
+	// transform ViewOriginalText to ViewExpandedText. For example:
+	//
+	//    * Fully qualify identifiers: SELECT * from table1 → SELECT * from db1.table1
+	ViewExpandedText *string `type:"string"`
+
+	// The SELECT query provided by the customer during CREATE VIEW DDL. This SQL
+	// is not used during a query on a view (ViewExpandedText is used instead).
+	// ViewOriginalText is used for cases like SHOW CREATE VIEW where users want
+	// to see the original DDL command that created the view.
+	ViewOriginalText *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewRepresentation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ViewRepresentation) GoString() string {
+	return s.String()
+}
+
+// SetDialect sets the Dialect field's value.
+func (s *ViewRepresentation) SetDialect(v string) *ViewRepresentation {
+	s.Dialect = &v
+	return s
+}
+
+// SetDialectVersion sets the DialectVersion field's value.
+func (s *ViewRepresentation) SetDialectVersion(v string) *ViewRepresentation {
+	s.DialectVersion = &v
+	return s
+}
+
+// SetIsStale sets the IsStale field's value.
+func (s *ViewRepresentation) SetIsStale(v bool) *ViewRepresentation {
+	s.IsStale = &v
+	return s
+}
+
+// SetViewExpandedText sets the ViewExpandedText field's value.
+func (s *ViewRepresentation) SetViewExpandedText(v string) *ViewRepresentation {
+	s.ViewExpandedText = &v
+	return s
+}
+
+// SetViewOriginalText sets the ViewOriginalText field's value.
+func (s *ViewRepresentation) SetViewOriginalText(v string) *ViewRepresentation {
+	s.ViewOriginalText = &v
+	return s
 }
 
 // A workflow is a collection of multiple dependent Glue jobs and crawlers that

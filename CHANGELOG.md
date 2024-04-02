@@ -1,3 +1,15 @@
+Release v1.51.13 (2024-04-02)
+===
+
+### Service Client Updates
+* `service/ecs`: Updates service documentation
+  * Documentation only update for Amazon ECS.
+* `service/glue`: Updates service API and documentation
+  * Adding View related fields to responses of read-only Table APIs.
+* `service/ivschat`: Updates service documentation
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/securityhub`: Updates service documentation
+
 Release v1.51.12 (2024-04-01)
 ===
 
