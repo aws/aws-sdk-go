@@ -1052,9 +1052,9 @@
     "ImageConfig": {
       "base": "<p>Configuration values that override the container image Dockerfile settings. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">Container image settings</a>.</p>",
       "refs": {
-        "CreateFunctionRequest$ImageConfig": "<p>Container image <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings\">configuration values</a> that override the values in the container image Dockerfile.</p>",
+        "CreateFunctionRequest$ImageConfig": "<p>Container image <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">configuration values</a> that override the values in the container image Dockerfile.</p>",
         "ImageConfigResponse$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>",
-        "UpdateFunctionConfigurationRequest$ImageConfig": "<p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html\">Container image configuration values</a> that override the values in the container image Docker file.</p>"
+        "UpdateFunctionConfigurationRequest$ImageConfig": "<p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">Container image configuration values</a> that override the values in the container image Docker file.</p>"
       }
     },
     "ImageConfigError": {

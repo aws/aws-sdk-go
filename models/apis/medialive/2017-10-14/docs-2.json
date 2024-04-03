@@ -2789,7 +2789,8 @@
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
         "MultiplexOutputSettings$Destination": "Destination is a Multiplex.",
         "RtmpOutputSettings$Destination": "The RTMP endpoint excluding the stream name (eg. rtmp://host/appname). For connection to Akamai, a username and password must be supplied. URI fields accept format identifiers.",
-        "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002)."
+        "UdpOutputSettings$Destination": "Destination address and port number for RTP or UDP packets. Can be unicast or multicast RTP or UDP (eg. rtp://239.10.10.10:5001 or udp://10.100.100.100:5002).",
+        "CmafIngestGroupSettings$Destination": "A HTTP destination for the tracks"
       }
     },
     "OutputLockingSettings": {
@@ -3955,6 +3956,7 @@
     "__integerMin0Max2000": {
       "base": null,
       "refs": {
+        "CmafIngestGroupSettings$SendDelayMs": "Number of milliseconds to delay the output from the second pipeline."
       }
     },
     "__integerMin0Max255": {
@@ -4074,7 +4076,8 @@
         "StaticImageActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
         "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay.",
         "StaticImageOutputActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
-        "StaticImageOutputActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay."
+        "StaticImageOutputActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay.",
+        "CmafIngestGroupSettings$SegmentLength": "The nominal duration of segments. The units are specified in SegmentLengthUnits. The segments will end on the next keyframe after the specified duration, so the actual segment length might be longer, and it might be a fraction of the units."
       }
     },
     "__integerMin100": {
@@ -4944,7 +4947,8 @@
         "ValidationError$ElementPath": "Path to the source of the error.",
         "ValidationError$ErrorMessage": "The error message.",
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
-        "__listOf__string$member": null
+        "__listOf__string$member": null,
+        "CmafIngestOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type."
       }
     },
     "__stringMax1000": {
@@ -5149,6 +5153,67 @@
       "base": null,
       "refs": {
         "H265Settings$TileHeight": "Set this field to set up the picture as a tile. You must also set tileWidth.\nThe tile height must result in 22 or fewer rows in the frame. The tile width\nmust result in 20 or fewer columns in the frame. And finally, the product of the\ncolumn count and row count must be 64 of less.\nIf the tile width and height are specified, MediaLive will override the video\ncodec slices field with a value that MediaLive calculates"
+      }
+    },
+    "CmafIngestGroupSettings": {
+      "base": "Cmaf Ingest Group Settings",
+      "refs": {
+        "OutputGroupSettings$CmafIngestGroupSettings": null
+      }
+    },
+    "CmafIngestOutputSettings": {
+      "base": "Cmaf Ingest Output Settings",
+      "refs": {
+        "OutputSettings$CmafIngestOutputSettings": null
+      }
+    },
+    "CmafIngestSegmentLengthUnits": {
+      "base": "Cmaf Ingest Segment Length Units",
+      "refs": {
+        "CmafIngestGroupSettings$SegmentLengthUnits": "Time unit for segment length parameter."
+      }
+    },
+    "CmafNielsenId3Behavior": {
+      "base": "Cmaf Nielsen Id3 Behavior",
+      "refs": {
+        "CmafIngestGroupSettings$NielsenId3Behavior": "If set to passthrough, Nielsen inaudible tones for media tracking will be detected in the input audio and an equivalent ID3 tag will be inserted in the output."
+      }
+    },
+    "DashRoleAudio": {
+      "base": "Dash Role Audio",
+      "refs": {
+        "__listOfDashRoleAudio$member": null
+      }
+    },
+    "DashRoleCaption": {
+      "base": "Dash Role Caption",
+      "refs": {
+        "__listOfDashRoleCaption$member": null
+      }
+    },
+    "DvbDashAccessibility": {
+      "base": "Dvb Dash Accessibility",
+      "refs": {
+        "AudioDescription$DvbDashAccessibility": "Identifies DVB DASH accessibility signaling in this audio output. Used in Microsoft Smooth Streaming outputs to signal accessibility information to packagers.",
+        "CaptionDescription$DvbDashAccessibility": "Identifies DVB DASH accessibility signaling in this captions output. Used in Microsoft Smooth Streaming outputs to signal accessibility information to packagers."
+      }
+    },
+    "__listOfDashRoleAudio": {
+      "base": null,
+      "refs": {
+        "AudioDescription$AudioDashRoles": "Identifies the DASH roles to assign to this audio output. Applies only when the audio output is configured for DVB DASH accessibility signaling."
+      }
+    },
+    "__listOfDashRoleCaption": {
+      "base": null,
+      "refs": {
+        "CaptionDescription$CaptionDashRoles": "Identifies the DASH roles to assign to this captions output. Applies only when the captions output is configured for DVB DASH accessibility signaling."
+      }
+    },
+    "Scte35Type": {
+      "base": "Scte35 Type",
+      "refs": {
+        "CmafIngestGroupSettings$Scte35Type": "Type of scte35 track to add. none or scte35WithoutSegmentation"
       }
     }
   },

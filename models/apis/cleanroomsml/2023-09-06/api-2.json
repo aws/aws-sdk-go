@@ -529,32 +529,6 @@
       "type":"list",
       "member":{"shape":"AudienceModelSummary"}
     },
-    "AudienceModelMetric":{
-      "type":"structure",
-      "required":[
-        "forTopKItemPredictions",
-        "type",
-        "value"
-      ],
-      "members":{
-        "forTopKItemPredictions":{"shape":"Integer"},
-        "type":{"shape":"AudienceModelMetricType"},
-        "value":{"shape":"Double"}
-      }
-    },
-    "AudienceModelMetricType":{
-      "type":"string",
-      "enum":[
-        "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN",
-        "MEAN_RECIPROCAL_RANK",
-        "PRECISION",
-        "RECALL"
-      ]
-    },
-    "AudienceModelMetrics":{
-      "type":"list",
-      "member":{"shape":"AudienceModelMetric"}
-    },
     "AudienceModelStatus":{
       "type":"string",
       "enum":[
@@ -591,6 +565,7 @@
       "type":"structure",
       "required":["relevanceMetrics"],
       "members":{
+        "recallMetric":{"shape":"Double"},
         "relevanceMetrics":{"shape":"RelevanceMetrics"}
       }
     },
@@ -975,7 +950,6 @@
         "createTime":{"shape":"SyntheticTimestamp_date_time"},
         "description":{"shape":"ResourceDescription"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "metrics":{"shape":"AudienceModelMetrics"},
         "name":{"shape":"NameString"},
         "status":{"shape":"AudienceModelStatus"},
         "statusDetails":{"shape":"StatusDetails"},
@@ -1118,10 +1092,6 @@
       "max":2048,
       "min":20,
       "pattern":"^arn:aws[-a-z]*:iam::[0-9]{12}:role/.+$"
-    },
-    "Integer":{
-      "type":"integer",
-      "box":true
     },
     "KmsKeyArn":{
       "type":"string",
@@ -1461,8 +1431,7 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"^(?!aws:).{1,128}$"
+      "min":1
     },
     "TagKeys":{
       "type":"list",

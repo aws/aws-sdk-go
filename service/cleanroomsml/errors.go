@@ -17,7 +17,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// A resource with that name already exists in this region.
+	// You can't complete this action because another resource depends on this resource.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeResourceNotFoundException for service response error code

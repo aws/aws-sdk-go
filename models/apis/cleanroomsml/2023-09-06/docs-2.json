@@ -4,7 +4,7 @@
   "operations": {
     "CreateAudienceModel": "<p>Defines the information necessary to create an audience model. An audience model is a machine learning model that Clean Rooms ML trains to measure similarity between users. Clean Rooms ML manages training and storing the audience model. The audience model can be used in multiple calls to the <a>StartAudienceGenerationJob</a> API.</p>",
     "CreateConfiguredAudienceModel": "<p>Defines the information necessary to create a configured audience model.</p>",
-    "CreateTrainingDataset": "<p>Defines the information necessary to create a training dataset, or seed audience. In Clean Rooms ML, the <code>TrainingDataset</code> is metadata that points to a Glue table, which is read only during <code>AudienceModel</code> creation.</p>",
+    "CreateTrainingDataset": "<p>Defines the information necessary to create a training dataset. In Clean Rooms ML, the <code>TrainingDataset</code> is metadata that points to a Glue table, which is read only during <code>AudienceModel</code> creation.</p>",
     "DeleteAudienceGenerationJob": "<p>Deletes the specified audience generation job, and removes all data associated with the job.</p>",
     "DeleteAudienceModel": "<p>Specifies an audience model that you want to delete. You can't delete an audience model if there are any configured audience models that depend on the audience model.</p>",
     "DeleteConfiguredAudienceModel": "<p>Deletes the specified configured audience model. You can't delete a configured audience model if there are any lookalike models that use the configured audience model. If you delete a configured audience model, it will be removed from any collaborations that it is associated to.</p>",
@@ -80,7 +80,7 @@
       }
     },
     "AudienceGenerationJobDataSource": {
-      "base": "<p>Defines the Amazon S3 bucket where the training data for the configured audience is stored.</p>",
+      "base": "<p>Defines the Amazon S3 bucket where the seed audience for the generating audience is stored.</p>",
       "refs": {
         "GetAudienceGenerationJobResponse$seedAudience": "<p>The seed audience that was used for this audience generation job. This field will be null if the account calling the API is the account that started this audience generation job. </p>",
         "StartAudienceGenerationJobRequest$seedAudience": "<p>The seed audience that is used to generate the audience.</p>"
@@ -125,24 +125,6 @@
         "ListAudienceModelsResponse$audienceModels": "<p>The audience models that match the request.</p>"
       }
     },
-    "AudienceModelMetric": {
-      "base": "<p>The audience model metrics.</p>",
-      "refs": {
-        "AudienceModelMetrics$member": null
-      }
-    },
-    "AudienceModelMetricType": {
-      "base": null,
-      "refs": {
-        "AudienceModelMetric$type": "<p>The audience model metric.</p>"
-      }
-    },
-    "AudienceModelMetrics": {
-      "base": null,
-      "refs": {
-        "GetAudienceModelResponse$metrics": "<p>Accuracy metrics for the model.</p>"
-      }
-    },
     "AudienceModelStatus": {
       "base": null,
       "refs": {
@@ -159,7 +141,7 @@
     "AudienceQualityMetrics": {
       "base": "<p>Metrics that describe the quality of the generated audience.</p>",
       "refs": {
-        "GetAudienceGenerationJobResponse$metrics": "<p>The relevance scores for different audience sizes. </p>"
+        "GetAudienceGenerationJobResponse$metrics": "<p>The relevance scores for different audience sizes and the recall score of the generated audience. </p>"
       }
     },
     "AudienceSize": {
@@ -278,7 +260,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p>A resource with that name already exists in this region.</p>",
+      "base": "<p>You can't complete this action because another resource depends on this resource.</p>",
       "refs": {
       }
     },
@@ -383,7 +365,7 @@
     "Double": {
       "base": null,
       "refs": {
-        "AudienceModelMetric$value": "<p>The value of the audience model metric</p>",
+        "AudienceQualityMetrics$recallMetric": "<p>The recall score of the generated audience. Recall is the percentage of the most similar users (by default, the most similar 20%) from a sample of the training data that are included in the seed audience by the audience generation job. Values range from 0-1, larger values indicate a better audience. A recall value approximately equal to the maximum bin size indicates that the audience model is equivalent to random selection. </p>",
         "RelevanceMetric$score": "<p>The relevance score of the generated audience.</p>"
       }
     },
@@ -470,12 +452,6 @@
         "ConfiguredAudienceModelOutputConfig$roleArn": "<p>The ARN of the IAM role that can write the Amazon S3 bucket.</p>",
         "CreateTrainingDatasetRequest$roleArn": "<p>The ARN of the IAM role that Clean Rooms ML can assume to read the data referred to in the <code>dataSource</code> field of each dataset.</p> <p>Passing a role across AWS accounts is not allowed. If you pass a role that isn't in your account, you get an <code>AccessDeniedException</code> error.</p>",
         "GetTrainingDatasetResponse$roleArn": "<p>The IAM role used to read the training data.</p>"
-      }
-    },
-    "Integer": {
-      "base": null,
-      "refs": {
-        "AudienceModelMetric$forTopKItemPredictions": "<p>The number of users that were used to generate these model metrics.</p>"
       }
     },
     "KmsKeyArn": {
@@ -566,7 +542,7 @@
     "MinMatchingSeedSize": {
       "base": null,
       "refs": {
-        "CreateConfiguredAudienceModelRequest$minMatchingSeedSize": "<p>The minimum number of users from the seed audience that must match with users in the training data of the audience model.</p>",
+        "CreateConfiguredAudienceModelRequest$minMatchingSeedSize": "<p>The minimum number of users from the seed audience that must match with users in the training data of the audience model. The default value is 500.</p>",
         "GetConfiguredAudienceModelResponse$minMatchingSeedSize": "<p>The minimum number of users from the seed audience that must match with users in the training data of the audience model.</p>",
         "UpdateConfiguredAudienceModelRequest$minMatchingSeedSize": "<p>The minimum number of users from the seed audience that must match with users in the training data of the audience model.</p>"
       }
@@ -670,7 +646,7 @@
       "base": "<p>Provides information about an Amazon S3 bucket and path.</p>",
       "refs": {
         "AudienceDestination$s3Destination": "<p>The Amazon S3 bucket and path for the configured audience.</p>",
-        "AudienceGenerationJobDataSource$dataSource": "<p>The Amazon S3 bucket where the training data for the configured audience is stored.</p>"
+        "AudienceGenerationJobDataSource$dataSource": "<p>Defines the Amazon S3 bucket where the seed audience for the generating audience is stored. A valid data source is a JSON line file in the following format:</p> <p> <code>{\"user_id\": \"111111\"}</code> </p> <p> <code>{\"user_id\": \"222222\"}</code> </p> <p> <code>...</code> </p>"
       }
     },
     "S3Path": {
@@ -769,16 +745,16 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "CreateAudienceModelRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
-        "CreateConfiguredAudienceModelRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
+        "CreateAudienceModelRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
+        "CreateConfiguredAudienceModelRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
         "CreateTrainingDatasetRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
         "GetAudienceGenerationJobResponse$tags": "<p>The tags that are associated to this audience generation job.</p>",
         "GetAudienceModelResponse$tags": "<p>The tags that are assigned to the audience model.</p>",
         "GetConfiguredAudienceModelResponse$tags": "<p>The tags that are associated to this configured audience model.</p>",
         "GetTrainingDatasetResponse$tags": "<p>The tags that are assigned to this training dataset.</p>",
         "ListTagsForResourceResponse$tags": "<p>The tags that are associated with the resource.</p>",
-        "StartAudienceGenerationJobRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
-        "TagResourceRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>"
+        "StartAudienceGenerationJobRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>",
+        "TagResourceRequest$tags": "<p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>"
       }
     },
     "TagOnCreatePolicy": {

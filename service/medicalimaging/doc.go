@@ -3,24 +3,21 @@
 // Package medicalimaging provides the client and types for making API
 // requests to AWS Health Imaging.
 //
-// This is the AWS HealthImaging API Reference. AWS HealthImaging is a HIPAA-eligible
-// service that helps health care providers and their medical imaging ISV partners
-// store, transform, and apply machine learning to medical images. For an introduction
-// to the service, see the AWS HealthImaging Developer Guide (https://docs.aws.amazon.com/healthimaging/latest/devguide/what-is.html).
+// This is the AWS HealthImaging API Reference. AWS HealthImaging is a HIPAA
+// eligible service that empowers healthcare providers, life science organizations,
+// and their software partners to store, analyze, and share medical images in
+// the cloud at petabyte scale. For an introduction to the service, see the
+// AWS HealthImaging Developer Guide (https://docs.aws.amazon.com/healthimaging/latest/devguide/what-is.html).
 //
 // We recommend using one of the AWS Software Development Kits (SDKs) for your
 // programming language, as they take care of request authentication, serialization,
 // and connection management. For more information, see Tools to build on AWS
 // (http://aws.amazon.com/developer/tools).
 //
-// For information about using HealthImaging API actions in one of the language-specific
-// AWS SDKs, refer to the See Also link at the end of each section that describes
-// an API action or data type.
-//
 // The following sections list AWS HealthImaging API actions categorized according
 // to functionality. Links are provided to actions within this Reference, along
 // with links back to corresponding sections in the AWS HealthImaging Developer
-// Guide where you can view console procedures and CLI/SDK code examples.
+// Guide where you can view tested code examples.
 //
 // Data store actions
 //
@@ -78,16 +75,13 @@
 // Tagging actions
 //
 //   - TagResource (https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_TagResource.html)
-//     – See Tagging a data store (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-data-store.html)
-//     and Tagging an image set (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-image-set.html).
+//     – See Tagging a resource (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-resource.html).
 //
 //   - ListTagsForResource (https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_ListTagsForResource.html)
-//     – See Tagging a data store (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-data-store.html)
-//     and Tagging an image set (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-image-set.html).
+//     – See Listing tags for a resource (https://docs.aws.amazon.com/healthimaging/latest/devguide/list-tag-resource.html).
 //
 //   - UntagResource (https://docs.aws.amazon.com/healthimaging/latest/APIReference/API_UntagResource.html)
-//     – See Tagging a data store (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-data-store.html)
-//     and Tagging an image set (https://docs.aws.amazon.com/healthimaging/latest/devguide/tag-list-untag-image-set.html).
+//     – See Untagging a resource (https://docs.aws.amazon.com/healthimaging/latest/devguide/untag-resource.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/medical-imaging-2023-07-19 for more information on this service.
 //

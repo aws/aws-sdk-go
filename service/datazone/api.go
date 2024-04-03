@@ -3751,6 +3751,102 @@ func (c *DataZone) DeleteSubscriptionTargetWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteTimeSeriesDataPoints = "DeleteTimeSeriesDataPoints"
+
+// DeleteTimeSeriesDataPointsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTimeSeriesDataPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTimeSeriesDataPoints for more information on using the DeleteTimeSeriesDataPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTimeSeriesDataPointsRequest method.
+//	req, resp := client.DeleteTimeSeriesDataPointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteTimeSeriesDataPoints
+func (c *DataZone) DeleteTimeSeriesDataPointsRequest(input *DeleteTimeSeriesDataPointsInput) (req *request.Request, output *DeleteTimeSeriesDataPointsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTimeSeriesDataPoints,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+	}
+
+	if input == nil {
+		input = &DeleteTimeSeriesDataPointsInput{}
+	}
+
+	output = &DeleteTimeSeriesDataPointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTimeSeriesDataPoints API operation for Amazon DataZone.
+//
+// Deletes the specified time series form for the specified asset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation DeleteTimeSeriesDataPoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/DeleteTimeSeriesDataPoints
+func (c *DataZone) DeleteTimeSeriesDataPoints(input *DeleteTimeSeriesDataPointsInput) (*DeleteTimeSeriesDataPointsOutput, error) {
+	req, out := c.DeleteTimeSeriesDataPointsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTimeSeriesDataPointsWithContext is the same as DeleteTimeSeriesDataPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTimeSeriesDataPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) DeleteTimeSeriesDataPointsWithContext(ctx aws.Context, input *DeleteTimeSeriesDataPointsInput, opts ...request.Option) (*DeleteTimeSeriesDataPointsOutput, error) {
+	req, out := c.DeleteTimeSeriesDataPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAsset = "GetAsset"
 
 // GetAssetRequest generates a "aws/request.Request" representing the
@@ -5759,6 +5855,101 @@ func (c *DataZone) GetSubscriptionTarget(input *GetSubscriptionTargetInput) (*Ge
 // for more information on using Contexts.
 func (c *DataZone) GetSubscriptionTargetWithContext(ctx aws.Context, input *GetSubscriptionTargetInput, opts ...request.Option) (*GetSubscriptionTargetOutput, error) {
 	req, out := c.GetSubscriptionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTimeSeriesDataPoint = "GetTimeSeriesDataPoint"
+
+// GetTimeSeriesDataPointRequest generates a "aws/request.Request" representing the
+// client's request for the GetTimeSeriesDataPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTimeSeriesDataPoint for more information on using the GetTimeSeriesDataPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetTimeSeriesDataPointRequest method.
+//	req, resp := client.GetTimeSeriesDataPointRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetTimeSeriesDataPoint
+func (c *DataZone) GetTimeSeriesDataPointRequest(input *GetTimeSeriesDataPointInput) (req *request.Request, output *GetTimeSeriesDataPointOutput) {
+	op := &request.Operation{
+		Name:       opGetTimeSeriesDataPoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetTimeSeriesDataPointInput{}
+	}
+
+	output = &GetTimeSeriesDataPointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTimeSeriesDataPoint API operation for Amazon DataZone.
+//
+// Gets the existing data point for the asset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation GetTimeSeriesDataPoint for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/GetTimeSeriesDataPoint
+func (c *DataZone) GetTimeSeriesDataPoint(input *GetTimeSeriesDataPointInput) (*GetTimeSeriesDataPointOutput, error) {
+	req, out := c.GetTimeSeriesDataPointRequest(input)
+	return out, req.Send()
+}
+
+// GetTimeSeriesDataPointWithContext is the same as GetTimeSeriesDataPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTimeSeriesDataPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) GetTimeSeriesDataPointWithContext(ctx aws.Context, input *GetTimeSeriesDataPointInput, opts ...request.Option) (*GetTimeSeriesDataPointOutput, error) {
+	req, out := c.GetTimeSeriesDataPointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8548,6 +8739,259 @@ func (c *DataZone) ListTagsForResource(input *ListTagsForResourceInput) (*ListTa
 // for more information on using Contexts.
 func (c *DataZone) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListTimeSeriesDataPoints = "ListTimeSeriesDataPoints"
+
+// ListTimeSeriesDataPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTimeSeriesDataPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTimeSeriesDataPoints for more information on using the ListTimeSeriesDataPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTimeSeriesDataPointsRequest method.
+//	req, resp := client.ListTimeSeriesDataPointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListTimeSeriesDataPoints
+func (c *DataZone) ListTimeSeriesDataPointsRequest(input *ListTimeSeriesDataPointsInput) (req *request.Request, output *ListTimeSeriesDataPointsOutput) {
+	op := &request.Operation{
+		Name:       opListTimeSeriesDataPoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTimeSeriesDataPointsInput{}
+	}
+
+	output = &ListTimeSeriesDataPointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTimeSeriesDataPoints API operation for Amazon DataZone.
+//
+// Lists time series data points.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation ListTimeSeriesDataPoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/ListTimeSeriesDataPoints
+func (c *DataZone) ListTimeSeriesDataPoints(input *ListTimeSeriesDataPointsInput) (*ListTimeSeriesDataPointsOutput, error) {
+	req, out := c.ListTimeSeriesDataPointsRequest(input)
+	return out, req.Send()
+}
+
+// ListTimeSeriesDataPointsWithContext is the same as ListTimeSeriesDataPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTimeSeriesDataPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListTimeSeriesDataPointsWithContext(ctx aws.Context, input *ListTimeSeriesDataPointsInput, opts ...request.Option) (*ListTimeSeriesDataPointsOutput, error) {
+	req, out := c.ListTimeSeriesDataPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTimeSeriesDataPointsPages iterates over the pages of a ListTimeSeriesDataPoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTimeSeriesDataPoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListTimeSeriesDataPoints operation.
+//	pageNum := 0
+//	err := client.ListTimeSeriesDataPointsPages(params,
+//	    func(page *datazone.ListTimeSeriesDataPointsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *DataZone) ListTimeSeriesDataPointsPages(input *ListTimeSeriesDataPointsInput, fn func(*ListTimeSeriesDataPointsOutput, bool) bool) error {
+	return c.ListTimeSeriesDataPointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTimeSeriesDataPointsPagesWithContext same as ListTimeSeriesDataPointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) ListTimeSeriesDataPointsPagesWithContext(ctx aws.Context, input *ListTimeSeriesDataPointsInput, fn func(*ListTimeSeriesDataPointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTimeSeriesDataPointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTimeSeriesDataPointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTimeSeriesDataPointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opPostTimeSeriesDataPoints = "PostTimeSeriesDataPoints"
+
+// PostTimeSeriesDataPointsRequest generates a "aws/request.Request" representing the
+// client's request for the PostTimeSeriesDataPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PostTimeSeriesDataPoints for more information on using the PostTimeSeriesDataPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PostTimeSeriesDataPointsRequest method.
+//	req, resp := client.PostTimeSeriesDataPointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostTimeSeriesDataPoints
+func (c *DataZone) PostTimeSeriesDataPointsRequest(input *PostTimeSeriesDataPointsInput) (req *request.Request, output *PostTimeSeriesDataPointsOutput) {
+	op := &request.Operation{
+		Name:       opPostTimeSeriesDataPoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+	}
+
+	if input == nil {
+		input = &PostTimeSeriesDataPointsInput{}
+	}
+
+	output = &PostTimeSeriesDataPointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PostTimeSeriesDataPoints API operation for Amazon DataZone.
+//
+// Posts time series data points to Amazon DataZone for the specified asset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DataZone's
+// API operation PostTimeSeriesDataPoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     The request has failed because of an unknown error, exception or failure.
+//
+//   - ResourceNotFoundException
+//     The specified resource cannot be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     The request has exceeded the specified service quota.
+//
+//   - ConflictException
+//     There is a conflict while performing this action.
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by the Amazon Web Services
+//     service.
+//
+//   - UnauthorizedException
+//     You do not have permission to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datazone-2018-05-10/PostTimeSeriesDataPoints
+func (c *DataZone) PostTimeSeriesDataPoints(input *PostTimeSeriesDataPointsInput) (*PostTimeSeriesDataPointsOutput, error) {
+	req, out := c.PostTimeSeriesDataPointsRequest(input)
+	return out, req.Send()
+}
+
+// PostTimeSeriesDataPointsWithContext is the same as PostTimeSeriesDataPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PostTimeSeriesDataPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataZone) PostTimeSeriesDataPointsWithContext(ctx aws.Context, input *PostTimeSeriesDataPointsInput, opts ...request.Option) (*PostTimeSeriesDataPointsOutput, error) {
+	req, out := c.PostTimeSeriesDataPointsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12054,6 +12498,10 @@ type AssetItemAdditionalAttributes struct {
 	// The forms included in the additional attributes of an inventory asset.
 	FormsOutput []*FormOutput_ `locationName:"formsOutput" type:"list"`
 
+	// The latest time series data points forms included in the additional attributes
+	// of an asset.
+	LatestTimeSeriesDataPointFormsOutput []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointFormsOutput" type:"list"`
+
 	// The read-only forms included in the additional attributes of an inventory
 	// asset.
 	ReadOnlyFormsOutput []*FormOutput_ `locationName:"readOnlyFormsOutput" type:"list"`
@@ -12080,6 +12528,12 @@ func (s AssetItemAdditionalAttributes) GoString() string {
 // SetFormsOutput sets the FormsOutput field's value.
 func (s *AssetItemAdditionalAttributes) SetFormsOutput(v []*FormOutput_) *AssetItemAdditionalAttributes {
 	s.FormsOutput = v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointFormsOutput sets the LatestTimeSeriesDataPointFormsOutput field's value.
+func (s *AssetItemAdditionalAttributes) SetLatestTimeSeriesDataPointFormsOutput(v []*TimeSeriesDataPointSummaryFormOutput_) *AssetItemAdditionalAttributes {
+	s.LatestTimeSeriesDataPointFormsOutput = v
 	return s
 }
 
@@ -12111,6 +12565,10 @@ type AssetListing struct {
 
 	// The glossary terms attached to an asset published in an Amazon DataZone catalog.
 	GlossaryTerms []*DetailedGlossaryTerm `locationName:"glossaryTerms" type:"list"`
+
+	// The latest time series data points forms included in the additional attributes
+	// of an asset.
+	LatestTimeSeriesDataPointForms []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointForms" type:"list"`
 
 	// The identifier of the project where an asset published in an Amazon DataZone
 	// catalog exists.
@@ -12168,6 +12626,12 @@ func (s *AssetListing) SetForms(v string) *AssetListing {
 // SetGlossaryTerms sets the GlossaryTerms field's value.
 func (s *AssetListing) SetGlossaryTerms(v []*DetailedGlossaryTerm) *AssetListing {
 	s.GlossaryTerms = v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointForms sets the LatestTimeSeriesDataPointForms field's value.
+func (s *AssetListing) SetLatestTimeSeriesDataPointForms(v []*TimeSeriesDataPointSummaryFormOutput_) *AssetListing {
+	s.LatestTimeSeriesDataPointForms = v
 	return s
 }
 
@@ -12377,6 +12841,10 @@ type AssetListingItemAdditionalAttributes struct {
 
 	// The metadata forms that form additional attributes of the metadata asset.
 	Forms *string `locationName:"forms" type:"string"`
+
+	// The latest time series data points forms included in the additional attributes
+	// of an asset.
+	LatestTimeSeriesDataPointForms []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointForms" type:"list"`
 }
 
 // String returns the string representation.
@@ -12400,6 +12868,12 @@ func (s AssetListingItemAdditionalAttributes) GoString() string {
 // SetForms sets the Forms field's value.
 func (s *AssetListingItemAdditionalAttributes) SetForms(v string) *AssetListingItemAdditionalAttributes {
 	s.Forms = &v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointForms sets the LatestTimeSeriesDataPointForms field's value.
+func (s *AssetListingItemAdditionalAttributes) SetLatestTimeSeriesDataPointForms(v []*TimeSeriesDataPointSummaryFormOutput_) *AssetListingItemAdditionalAttributes {
+	s.LatestTimeSeriesDataPointForms = v
 	return s
 }
 
@@ -13449,6 +13923,10 @@ type CreateAssetOutput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
+	// The latest data point that was imported into the time series form for the
+	// asset.
+	LatestTimeSeriesDataPointFormsOutput []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointFormsOutput" type:"list"`
+
 	// The details of an asset published in an Amazon DataZone catalog.
 	Listing *AssetListingDetails `locationName:"listing" type:"structure"`
 
@@ -13564,6 +14042,12 @@ func (s *CreateAssetOutput) SetGlossaryTerms(v []*string) *CreateAssetOutput {
 // SetId sets the Id field's value.
 func (s *CreateAssetOutput) SetId(v string) *CreateAssetOutput {
 	s.Id = &v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointFormsOutput sets the LatestTimeSeriesDataPointFormsOutput field's value.
+func (s *CreateAssetOutput) SetLatestTimeSeriesDataPointFormsOutput(v []*TimeSeriesDataPointSummaryFormOutput_) *CreateAssetOutput {
+	s.LatestTimeSeriesDataPointFormsOutput = v
 	return s
 }
 
@@ -13832,6 +14316,10 @@ type CreateAssetRevisionOutput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
+	// The latest data point that was imported into the time series form for the
+	// asset.
+	LatestTimeSeriesDataPointFormsOutput []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointFormsOutput" type:"list"`
+
 	// The details of an asset published in an Amazon DataZone catalog.
 	Listing *AssetListingDetails `locationName:"listing" type:"structure"`
 
@@ -13948,6 +14436,12 @@ func (s *CreateAssetRevisionOutput) SetGlossaryTerms(v []*string) *CreateAssetRe
 // SetId sets the Id field's value.
 func (s *CreateAssetRevisionOutput) SetId(v string) *CreateAssetRevisionOutput {
 	s.Id = &v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointFormsOutput sets the LatestTimeSeriesDataPointFormsOutput field's value.
+func (s *CreateAssetRevisionOutput) SetLatestTimeSeriesDataPointFormsOutput(v []*TimeSeriesDataPointSummaryFormOutput_) *CreateAssetRevisionOutput {
+	s.LatestTimeSeriesDataPointFormsOutput = v
 	return s
 }
 
@@ -20654,6 +21148,142 @@ func (s DeleteSubscriptionTargetOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteTimeSeriesDataPointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A unique, case-sensitive identifier to ensure idempotency of the request.
+	// This field is automatically populated if not provided.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the Amazon DataZone domain that houses the asset for which you
+	// want to delete a time series form.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the asset for which you want to delete a time series form.
+	//
+	// EntityIdentifier is a required field
+	EntityIdentifier *string `location:"uri" locationName:"entityIdentifier" type:"string" required:"true"`
+
+	// The type of the asset for which you want to delete a time series form.
+	//
+	// EntityType is a required field
+	EntityType *string `location:"uri" locationName:"entityType" type:"string" required:"true" enum:"TimeSeriesEntityType"`
+
+	// The name of the time series form that you want to delete.
+	//
+	// FormName is a required field
+	FormName *string `location:"querystring" locationName:"formName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesDataPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesDataPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTimeSeriesDataPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTimeSeriesDataPointsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.EntityIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIdentifier"))
+	}
+	if s.EntityIdentifier != nil && len(*s.EntityIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdentifier", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
+	}
+	if s.EntityType != nil && len(*s.EntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityType", 1))
+	}
+	if s.FormName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormName"))
+	}
+	if s.FormName != nil && len(*s.FormName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FormName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteTimeSeriesDataPointsInput) SetClientToken(v string) *DeleteTimeSeriesDataPointsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *DeleteTimeSeriesDataPointsInput) SetDomainIdentifier(v string) *DeleteTimeSeriesDataPointsInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEntityIdentifier sets the EntityIdentifier field's value.
+func (s *DeleteTimeSeriesDataPointsInput) SetEntityIdentifier(v string) *DeleteTimeSeriesDataPointsInput {
+	s.EntityIdentifier = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *DeleteTimeSeriesDataPointsInput) SetEntityType(v string) *DeleteTimeSeriesDataPointsInput {
+	s.EntityType = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *DeleteTimeSeriesDataPointsInput) SetFormName(v string) *DeleteTimeSeriesDataPointsInput {
+	s.FormName = &v
+	return s
+}
+
+type DeleteTimeSeriesDataPointsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesDataPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesDataPointsOutput) GoString() string {
+	return s.String()
+}
+
 // The details of the last deployment of the environment.
 type Deployment struct {
 	_ struct{} `type:"structure"`
@@ -22344,6 +22974,10 @@ type GetAssetOutput struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
+	// The latest data point that was imported into the time series form for the
+	// asset.
+	LatestTimeSeriesDataPointFormsOutput []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"latestTimeSeriesDataPointFormsOutput" type:"list"`
+
 	// The listing of the asset.
 	Listing *AssetListingDetails `locationName:"listing" type:"structure"`
 
@@ -22455,6 +23089,12 @@ func (s *GetAssetOutput) SetGlossaryTerms(v []*string) *GetAssetOutput {
 // SetId sets the Id field's value.
 func (s *GetAssetOutput) SetId(v string) *GetAssetOutput {
 	s.Id = &v
+	return s
+}
+
+// SetLatestTimeSeriesDataPointFormsOutput sets the LatestTimeSeriesDataPointFormsOutput field's value.
+func (s *GetAssetOutput) SetLatestTimeSeriesDataPointFormsOutput(v []*TimeSeriesDataPointSummaryFormOutput_) *GetAssetOutput {
+	s.LatestTimeSeriesDataPointFormsOutput = v
 	return s
 }
 
@@ -26640,6 +27280,194 @@ func (s *GetSubscriptionTargetOutput) SetUpdatedBy(v string) *GetSubscriptionTar
 	return s
 }
 
+type GetTimeSeriesDataPointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain that houses the asset for which you
+	// want to get the data point.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the asset for which you want to get the data point.
+	//
+	// EntityIdentifier is a required field
+	EntityIdentifier *string `location:"uri" locationName:"entityIdentifier" type:"string" required:"true"`
+
+	// The type of the asset for which you want to get the data point.
+	//
+	// EntityType is a required field
+	EntityType *string `location:"uri" locationName:"entityType" type:"string" required:"true" enum:"TimeSeriesEntityType"`
+
+	// The name of the time series form that houses the data point that you want
+	// to get.
+	//
+	// FormName is a required field
+	FormName *string `location:"querystring" locationName:"formName" min:"1" type:"string" required:"true"`
+
+	// The ID of the data point that you want to get.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTimeSeriesDataPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTimeSeriesDataPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTimeSeriesDataPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTimeSeriesDataPointInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.EntityIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIdentifier"))
+	}
+	if s.EntityIdentifier != nil && len(*s.EntityIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdentifier", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
+	}
+	if s.EntityType != nil && len(*s.EntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityType", 1))
+	}
+	if s.FormName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormName"))
+	}
+	if s.FormName != nil && len(*s.FormName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FormName", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *GetTimeSeriesDataPointInput) SetDomainIdentifier(v string) *GetTimeSeriesDataPointInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEntityIdentifier sets the EntityIdentifier field's value.
+func (s *GetTimeSeriesDataPointInput) SetEntityIdentifier(v string) *GetTimeSeriesDataPointInput {
+	s.EntityIdentifier = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *GetTimeSeriesDataPointInput) SetEntityType(v string) *GetTimeSeriesDataPointInput {
+	s.EntityType = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *GetTimeSeriesDataPointInput) SetFormName(v string) *GetTimeSeriesDataPointInput {
+	s.FormName = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetTimeSeriesDataPointInput) SetIdentifier(v string) *GetTimeSeriesDataPointInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetTimeSeriesDataPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon DataZone domain that houses the asset data point that
+	// you want to get.
+	DomainId *string `locationName:"domainId" type:"string"`
+
+	// The ID of the asset for which you want to get the data point.
+	EntityId *string `locationName:"entityId" type:"string"`
+
+	// The type of the asset for which you want to get the data point.
+	EntityType *string `locationName:"entityType" type:"string" enum:"TimeSeriesEntityType"`
+
+	// The time series form that houses the data point that you want to get.
+	Form *TimeSeriesDataPointFormOutput_ `locationName:"form" type:"structure"`
+
+	// The name of the time series form that houses the data point that you want
+	// to get.
+	FormName *string `locationName:"formName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTimeSeriesDataPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTimeSeriesDataPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *GetTimeSeriesDataPointOutput) SetDomainId(v string) *GetTimeSeriesDataPointOutput {
+	s.DomainId = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *GetTimeSeriesDataPointOutput) SetEntityId(v string) *GetTimeSeriesDataPointOutput {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *GetTimeSeriesDataPointOutput) SetEntityType(v string) *GetTimeSeriesDataPointOutput {
+	s.EntityType = &v
+	return s
+}
+
+// SetForm sets the Form field's value.
+func (s *GetTimeSeriesDataPointOutput) SetForm(v *TimeSeriesDataPointFormOutput_) *GetTimeSeriesDataPointOutput {
+	s.Form = v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *GetTimeSeriesDataPointOutput) SetFormName(v string) *GetTimeSeriesDataPointOutput {
+	s.FormName = &v
+	return s
+}
+
 type GetUserProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -27074,6 +27902,10 @@ func (s *GlossaryTermItem) SetUpdatedBy(v string) *GlossaryTermItem {
 type GlueRunConfigurationInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether to automatically import data quality metrics as part of
+	// the data source run.
+	AutoImportDataQualityResult *bool `locationName:"autoImportDataQualityResult" type:"boolean"`
+
 	// The data access role included in the configuration details of the Amazon
 	// Web Services Glue data source.
 	DataAccessRole *string `locationName:"dataAccessRole" type:"string"`
@@ -27126,6 +27958,12 @@ func (s *GlueRunConfigurationInput_) Validate() error {
 	return nil
 }
 
+// SetAutoImportDataQualityResult sets the AutoImportDataQualityResult field's value.
+func (s *GlueRunConfigurationInput_) SetAutoImportDataQualityResult(v bool) *GlueRunConfigurationInput_ {
+	s.AutoImportDataQualityResult = &v
+	return s
+}
+
 // SetDataAccessRole sets the DataAccessRole field's value.
 func (s *GlueRunConfigurationInput_) SetDataAccessRole(v string) *GlueRunConfigurationInput_ {
 	s.DataAccessRole = &v
@@ -27145,6 +27983,10 @@ type GlueRunConfigurationOutput_ struct {
 	// The Amazon Web Services account ID included in the configuration details
 	// of the Amazon Web Services Glue data source.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
+
+	// Specifies whether to automatically import data quality metrics as part of
+	// the data source run.
+	AutoImportDataQualityResult *bool `locationName:"autoImportDataQualityResult" type:"boolean"`
 
 	// The data access role included in the configuration details of the Amazon
 	// Web Services Glue data source.
@@ -27182,6 +28024,12 @@ func (s GlueRunConfigurationOutput_) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *GlueRunConfigurationOutput_) SetAccountId(v string) *GlueRunConfigurationOutput_ {
 	s.AccountId = &v
+	return s
+}
+
+// SetAutoImportDataQualityResult sets the AutoImportDataQualityResult field's value.
+func (s *GlueRunConfigurationOutput_) SetAutoImportDataQualityResult(v bool) *GlueRunConfigurationOutput_ {
+	s.AutoImportDataQualityResult = &v
 	return s
 }
 
@@ -30376,6 +31224,201 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListTimeSeriesDataPointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon DataZone domain that houses the assets for which you
+	// want to list time series data points.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The timestamp at which the data points that you wanted to list ended.
+	EndedAt *time.Time `location:"querystring" locationName:"endedAt" type:"timestamp"`
+
+	// The ID of the asset for which you want to list data points.
+	//
+	// EntityIdentifier is a required field
+	EntityIdentifier *string `location:"uri" locationName:"entityIdentifier" type:"string" required:"true"`
+
+	// The type of the asset for which you want to list data points.
+	//
+	// EntityType is a required field
+	EntityType *string `location:"uri" locationName:"entityType" type:"string" required:"true" enum:"TimeSeriesEntityType"`
+
+	// The name of the time series data points form.
+	//
+	// FormName is a required field
+	FormName *string `location:"querystring" locationName:"formName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of data points to return in a single call to ListTimeSeriesDataPoints.
+	// When the number of data points to be listed is greater than the value of
+	// MaxResults, the response contains a NextToken value that you can use in a
+	// subsequent call to ListTimeSeriesDataPoints to list the next set of data
+	// points.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// When the number of data points is greater than the default value for the
+	// MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of data points, the response includes a pagination
+	// token named NextToken. You can specify this NextToken value in a subsequent
+	// call to ListTimeSeriesDataPoints to list the next set of data points.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The timestamp at which the data points that you want to list started.
+	StartedAt *time.Time `location:"querystring" locationName:"startedAt" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesDataPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesDataPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTimeSeriesDataPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTimeSeriesDataPointsInput"}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.EntityIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIdentifier"))
+	}
+	if s.EntityIdentifier != nil && len(*s.EntityIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdentifier", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
+	}
+	if s.EntityType != nil && len(*s.EntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityType", 1))
+	}
+	if s.FormName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormName"))
+	}
+	if s.FormName != nil && len(*s.FormName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FormName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *ListTimeSeriesDataPointsInput) SetDomainIdentifier(v string) *ListTimeSeriesDataPointsInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEndedAt sets the EndedAt field's value.
+func (s *ListTimeSeriesDataPointsInput) SetEndedAt(v time.Time) *ListTimeSeriesDataPointsInput {
+	s.EndedAt = &v
+	return s
+}
+
+// SetEntityIdentifier sets the EntityIdentifier field's value.
+func (s *ListTimeSeriesDataPointsInput) SetEntityIdentifier(v string) *ListTimeSeriesDataPointsInput {
+	s.EntityIdentifier = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *ListTimeSeriesDataPointsInput) SetEntityType(v string) *ListTimeSeriesDataPointsInput {
+	s.EntityType = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *ListTimeSeriesDataPointsInput) SetFormName(v string) *ListTimeSeriesDataPointsInput {
+	s.FormName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTimeSeriesDataPointsInput) SetMaxResults(v int64) *ListTimeSeriesDataPointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTimeSeriesDataPointsInput) SetNextToken(v string) *ListTimeSeriesDataPointsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *ListTimeSeriesDataPointsInput) SetStartedAt(v time.Time) *ListTimeSeriesDataPointsInput {
+	s.StartedAt = &v
+	return s
+}
+
+type ListTimeSeriesDataPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The results of the ListTimeSeriesDataPoints action.
+	Items []*TimeSeriesDataPointSummaryFormOutput_ `locationName:"items" type:"list"`
+
+	// When the number of data points is greater than the default value for the
+	// MaxResults parameter, or if you explicitly specify a value for MaxResults
+	// that is less than the number of data points, the response includes a pagination
+	// token named NextToken. You can specify this NextToken value in a subsequent
+	// call to ListTimeSeriesDataPoints to list the next set of data points.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesDataPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesDataPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListTimeSeriesDataPointsOutput) SetItems(v []*TimeSeriesDataPointSummaryFormOutput_) *ListTimeSeriesDataPointsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTimeSeriesDataPointsOutput) SetNextToken(v string) *ListTimeSeriesDataPointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // The details of a listing (aka asset published in a Amazon DataZone catalog).
 type ListingItem struct {
 	_ struct{} `type:"structure"`
@@ -31025,6 +32068,186 @@ func (s *NotificationResource) SetName(v string) *NotificationResource {
 // SetType sets the Type field's value.
 func (s *NotificationResource) SetType(v string) *NotificationResource {
 	s.Type = &v
+	return s
+}
+
+type PostTimeSeriesDataPointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that is provided to ensure the idempotency
+	// of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the Amazon DataZone domain in which you want to post time series
+	// data points.
+	//
+	// DomainIdentifier is a required field
+	DomainIdentifier *string `location:"uri" locationName:"domainIdentifier" type:"string" required:"true"`
+
+	// The ID of the asset for which you want to post time series data points.
+	//
+	// EntityIdentifier is a required field
+	EntityIdentifier *string `location:"uri" locationName:"entityIdentifier" type:"string" required:"true"`
+
+	// The type of the asset for which you want to post data points.
+	//
+	// EntityType is a required field
+	EntityType *string `location:"uri" locationName:"entityType" type:"string" required:"true" enum:"TimeSeriesEntityType"`
+
+	// The forms that contain the data points that you want to post.
+	//
+	// Forms is a required field
+	Forms []*TimeSeriesDataPointFormInput_ `locationName:"forms" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostTimeSeriesDataPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostTimeSeriesDataPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PostTimeSeriesDataPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PostTimeSeriesDataPointsInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainIdentifier"))
+	}
+	if s.DomainIdentifier != nil && len(*s.DomainIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainIdentifier", 1))
+	}
+	if s.EntityIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIdentifier"))
+	}
+	if s.EntityIdentifier != nil && len(*s.EntityIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIdentifier", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
+	}
+	if s.EntityType != nil && len(*s.EntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityType", 1))
+	}
+	if s.Forms == nil {
+		invalidParams.Add(request.NewErrParamRequired("Forms"))
+	}
+	if s.Forms != nil {
+		for i, v := range s.Forms {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Forms", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PostTimeSeriesDataPointsInput) SetClientToken(v string) *PostTimeSeriesDataPointsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainIdentifier sets the DomainIdentifier field's value.
+func (s *PostTimeSeriesDataPointsInput) SetDomainIdentifier(v string) *PostTimeSeriesDataPointsInput {
+	s.DomainIdentifier = &v
+	return s
+}
+
+// SetEntityIdentifier sets the EntityIdentifier field's value.
+func (s *PostTimeSeriesDataPointsInput) SetEntityIdentifier(v string) *PostTimeSeriesDataPointsInput {
+	s.EntityIdentifier = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *PostTimeSeriesDataPointsInput) SetEntityType(v string) *PostTimeSeriesDataPointsInput {
+	s.EntityType = &v
+	return s
+}
+
+// SetForms sets the Forms field's value.
+func (s *PostTimeSeriesDataPointsInput) SetForms(v []*TimeSeriesDataPointFormInput_) *PostTimeSeriesDataPointsInput {
+	s.Forms = v
+	return s
+}
+
+type PostTimeSeriesDataPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon DataZone domain in which you want to post time series
+	// data points.
+	DomainId *string `locationName:"domainId" type:"string"`
+
+	// The ID of the asset for which you want to post time series data points.
+	EntityId *string `locationName:"entityId" type:"string"`
+
+	// The type of the asset for which you want to post data points.
+	EntityType *string `locationName:"entityType" type:"string" enum:"TimeSeriesEntityType"`
+
+	// The forms that contain the data points that you have posted.
+	Forms []*TimeSeriesDataPointFormOutput_ `locationName:"forms" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostTimeSeriesDataPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostTimeSeriesDataPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *PostTimeSeriesDataPointsOutput) SetDomainId(v string) *PostTimeSeriesDataPointsOutput {
+	s.DomainId = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *PostTimeSeriesDataPointsOutput) SetEntityId(v string) *PostTimeSeriesDataPointsOutput {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *PostTimeSeriesDataPointsOutput) SetEntityType(v string) *PostTimeSeriesDataPointsOutput {
+	s.EntityType = &v
+	return s
+}
+
+// SetForms sets the Forms field's value.
+func (s *PostTimeSeriesDataPointsOutput) SetForms(v []*TimeSeriesDataPointFormOutput_) *PostTimeSeriesDataPointsOutput {
+	s.Forms = v
 	return s
 }
 
@@ -36187,6 +37410,274 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The time series data points form.
+type TimeSeriesDataPointFormInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the time series data points form.
+	Content *string `locationName:"content" type:"string"`
+
+	// The name of the time series data points form.
+	//
+	// FormName is a required field
+	FormName *string `locationName:"formName" min:"1" type:"string" required:"true"`
+
+	// The timestamp of the time series data points form.
+	//
+	// Timestamp is a required field
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
+
+	// The ID of the type of the time series data points form.
+	//
+	// TypeIdentifier is a required field
+	TypeIdentifier *string `locationName:"typeIdentifier" min:"1" type:"string" required:"true"`
+
+	// The revision type of the time series data points form.
+	TypeRevision *string `locationName:"typeRevision" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointFormInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointFormInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimeSeriesDataPointFormInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimeSeriesDataPointFormInput_"}
+	if s.FormName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormName"))
+	}
+	if s.FormName != nil && len(*s.FormName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FormName", 1))
+	}
+	if s.Timestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("Timestamp"))
+	}
+	if s.TypeIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("TypeIdentifier"))
+	}
+	if s.TypeIdentifier != nil && len(*s.TypeIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TypeIdentifier", 1))
+	}
+	if s.TypeRevision != nil && len(*s.TypeRevision) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TypeRevision", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *TimeSeriesDataPointFormInput_) SetContent(v string) *TimeSeriesDataPointFormInput_ {
+	s.Content = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *TimeSeriesDataPointFormInput_) SetFormName(v string) *TimeSeriesDataPointFormInput_ {
+	s.FormName = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimeSeriesDataPointFormInput_) SetTimestamp(v time.Time) *TimeSeriesDataPointFormInput_ {
+	s.Timestamp = &v
+	return s
+}
+
+// SetTypeIdentifier sets the TypeIdentifier field's value.
+func (s *TimeSeriesDataPointFormInput_) SetTypeIdentifier(v string) *TimeSeriesDataPointFormInput_ {
+	s.TypeIdentifier = &v
+	return s
+}
+
+// SetTypeRevision sets the TypeRevision field's value.
+func (s *TimeSeriesDataPointFormInput_) SetTypeRevision(v string) *TimeSeriesDataPointFormInput_ {
+	s.TypeRevision = &v
+	return s
+}
+
+// The time series data points form.
+type TimeSeriesDataPointFormOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the time series data points form.
+	Content *string `locationName:"content" type:"string"`
+
+	// The name of the time series data points form.
+	//
+	// FormName is a required field
+	FormName *string `locationName:"formName" min:"1" type:"string" required:"true"`
+
+	// The ID of the time series data points form.
+	Id *string `locationName:"id" type:"string"`
+
+	// The timestamp of the time series data points form.
+	//
+	// Timestamp is a required field
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
+
+	// The ID of the type of the time series data points form.
+	//
+	// TypeIdentifier is a required field
+	TypeIdentifier *string `locationName:"typeIdentifier" min:"1" type:"string" required:"true"`
+
+	// The revision type of the time series data points form.
+	TypeRevision *string `locationName:"typeRevision" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointFormOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointFormOutput_) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetContent(v string) *TimeSeriesDataPointFormOutput_ {
+	s.Content = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetFormName(v string) *TimeSeriesDataPointFormOutput_ {
+	s.FormName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetId(v string) *TimeSeriesDataPointFormOutput_ {
+	s.Id = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetTimestamp(v time.Time) *TimeSeriesDataPointFormOutput_ {
+	s.Timestamp = &v
+	return s
+}
+
+// SetTypeIdentifier sets the TypeIdentifier field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetTypeIdentifier(v string) *TimeSeriesDataPointFormOutput_ {
+	s.TypeIdentifier = &v
+	return s
+}
+
+// SetTypeRevision sets the TypeRevision field's value.
+func (s *TimeSeriesDataPointFormOutput_) SetTypeRevision(v string) *TimeSeriesDataPointFormOutput_ {
+	s.TypeRevision = &v
+	return s
+}
+
+// The summary of the time series data points form.
+type TimeSeriesDataPointSummaryFormOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the summary of the time series data points form.
+	ContentSummary *string `locationName:"contentSummary" type:"string"`
+
+	// The name of the time series data points summary form.
+	//
+	// FormName is a required field
+	FormName *string `locationName:"formName" min:"1" type:"string" required:"true"`
+
+	// The ID of the time series data points summary form.
+	Id *string `locationName:"id" type:"string"`
+
+	// The timestamp of the time series data points summary form.
+	//
+	// Timestamp is a required field
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" required:"true"`
+
+	// The type ID of the time series data points summary form.
+	//
+	// TypeIdentifier is a required field
+	TypeIdentifier *string `locationName:"typeIdentifier" min:"1" type:"string" required:"true"`
+
+	// The type revision of the time series data points summary form.
+	TypeRevision *string `locationName:"typeRevision" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointSummaryFormOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesDataPointSummaryFormOutput_) GoString() string {
+	return s.String()
+}
+
+// SetContentSummary sets the ContentSummary field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetContentSummary(v string) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.ContentSummary = &v
+	return s
+}
+
+// SetFormName sets the FormName field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetFormName(v string) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.FormName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetId(v string) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.Id = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetTimestamp(v time.Time) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.Timestamp = &v
+	return s
+}
+
+// SetTypeIdentifier sets the TypeIdentifier field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetTypeIdentifier(v string) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.TypeIdentifier = &v
+	return s
+}
+
+// SetTypeRevision sets the TypeRevision field's value.
+func (s *TimeSeriesDataPointSummaryFormOutput_) SetTypeRevision(v string) *TimeSeriesDataPointSummaryFormOutput_ {
+	s.TypeRevision = &v
+	return s
+}
+
 // The topic of the notification.
 type Topic struct {
 	_ struct{} `type:"structure"`
@@ -40319,12 +41810,16 @@ func RejectRuleBehavior_Values() []string {
 const (
 	// SearchOutputAdditionalAttributeForms is a SearchOutputAdditionalAttribute enum value
 	SearchOutputAdditionalAttributeForms = "FORMS"
+
+	// SearchOutputAdditionalAttributeTimeSeriesDataPointForms is a SearchOutputAdditionalAttribute enum value
+	SearchOutputAdditionalAttributeTimeSeriesDataPointForms = "TIME_SERIES_DATA_POINT_FORMS"
 )
 
 // SearchOutputAdditionalAttribute_Values returns all elements of the SearchOutputAdditionalAttribute enum
 func SearchOutputAdditionalAttribute_Values() []string {
 	return []string{
 		SearchOutputAdditionalAttributeForms,
+		SearchOutputAdditionalAttributeTimeSeriesDataPointForms,
 	}
 }
 
@@ -40501,6 +41996,22 @@ func TaskStatus_Values() []string {
 	return []string{
 		TaskStatusActive,
 		TaskStatusInactive,
+	}
+}
+
+const (
+	// TimeSeriesEntityTypeAsset is a TimeSeriesEntityType enum value
+	TimeSeriesEntityTypeAsset = "ASSET"
+
+	// TimeSeriesEntityTypeListing is a TimeSeriesEntityType enum value
+	TimeSeriesEntityTypeListing = "LISTING"
+)
+
+// TimeSeriesEntityType_Values returns all elements of the TimeSeriesEntityType enum
+func TimeSeriesEntityType_Values() []string {
+	return []string{
+		TimeSeriesEntityTypeAsset,
+		TimeSeriesEntityTypeListing,
 	}
 }
 

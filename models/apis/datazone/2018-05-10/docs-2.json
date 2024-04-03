@@ -40,6 +40,7 @@
     "DeleteSubscriptionGrant": "<p>Deletes and subscription grant in Amazon DataZone.</p>",
     "DeleteSubscriptionRequest": "<p>Deletes a subscription request in Amazon DataZone.</p>",
     "DeleteSubscriptionTarget": "<p>Deletes a subscription target in Amazon DataZone.</p>",
+    "DeleteTimeSeriesDataPoints": "<p>Deletes the specified time series form for the specified asset. </p>",
     "GetAsset": "<p>Gets an Amazon DataZone asset.</p>",
     "GetAssetType": "<p>Gets an Amazon DataZone asset type.</p>",
     "GetDataSource": "<p>Gets an Amazon DataZone data source.</p>",
@@ -61,6 +62,7 @@
     "GetSubscriptionGrant": "<p>Gets the subscription grant in Amazon DataZone.</p>",
     "GetSubscriptionRequestDetails": "<p>Gets the details of the specified subscription request.</p>",
     "GetSubscriptionTarget": "<p>Gets the subscription target in Amazon DataZone.</p>",
+    "GetTimeSeriesDataPoint": "<p>Gets the existing data point for the asset.</p>",
     "GetUserProfile": "<p>Gets a user profile in Amazon DataZone.</p>",
     "ListAssetRevisions": "<p>Lists the revisions for the asset.</p>",
     "ListDataSourceRunActivities": "<p>Lists data source run activities.</p>",
@@ -80,6 +82,8 @@
     "ListSubscriptionTargets": "<p>Lists subscription targets in Amazon DataZone.</p>",
     "ListSubscriptions": "<p>Lists subscriptions in Amazon DataZone.</p>",
     "ListTagsForResource": "<p>Lists tags for the specified resource in Amazon DataZone.</p>",
+    "ListTimeSeriesDataPoints": "<p>Lists time series data points.</p>",
+    "PostTimeSeriesDataPoints": "<p>Posts time series data points to Amazon DataZone for the specified asset.</p>",
     "PutEnvironmentBlueprintConfiguration": "<p>Writes the configuration for the specified environment blueprint in Amazon DataZone.</p>",
     "RejectPredictions": "<p>Rejects automatically generated business-friendly metadata for your Amazon DataZone assets.</p>",
     "RejectSubscriptionRequest": "<p>Rejects the specified subscription request.</p>",
@@ -388,6 +392,8 @@
         "FormEntryOutput$required": "<p>Specifies whether a form entry is required.</p>",
         "GetDataSourceOutput$publishOnImport": "<p>Specifies whether the assets that this data source creates in the inventory are to be also automatically published to the catalog.</p>",
         "GetSubscriptionOutput$retainPermissions": "<p>The retain permissions of the subscription.</p>",
+        "GlueRunConfigurationInput$autoImportDataQualityResult": "<p>Specifies whether to automatically import data quality metrics as part of the data source run.</p>",
+        "GlueRunConfigurationOutput$autoImportDataQualityResult": "<p>Specifies whether to automatically import data quality metrics as part of the data source run.</p>",
         "ListEnvironmentBlueprintsInput$managed": "<p>Specifies whether the environment blueprint is managed by Amazon DataZone.</p>",
         "RecommendationConfiguration$enableBusinessNameGeneration": "<p>Specifies whether automatic business name generation is to be enabled or not as part of the recommendation configuration.</p>",
         "RevokeSubscriptionInput$retainPermissions": "<p>Specifies whether permissions are retained when the subscription is revoked.</p>",
@@ -439,6 +445,8 @@
         "CreateGlossaryInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "CreateGlossaryTermInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "CreateListingChangeSetInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
+        "DeleteTimeSeriesDataPointsInput$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>",
+        "PostTimeSeriesDataPointsInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "RejectPredictionsInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>",
         "StartMetadataGenerationRunInput$clientToken": "<p>A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.</p>",
         "UpdateGlossaryInput$clientToken": "<p>A unique, case-sensitive identifier that is provided to ensure the idempotency of the request.</p>"
@@ -809,6 +817,13 @@
       "refs": {
         "DataSourceRunActivity$dataAssetStatus": "<p>The status of the asset included in the data source run activity.</p>",
         "ListDataSourceRunActivitiesInput$status": "<p>The status of the data source run.</p>"
+      }
+    },
+    "DataPointIdentifier": {
+      "base": null,
+      "refs": {
+        "TimeSeriesDataPointFormOutput$id": "<p>The ID of the time series data points form.</p>",
+        "TimeSeriesDataPointSummaryFormOutput$id": "<p>The ID of the time series data points summary form.</p>"
       }
     },
     "DataProductDescription": {
@@ -1184,6 +1199,16 @@
       "refs": {
       }
     },
+    "DeleteTimeSeriesDataPointsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTimeSeriesDataPointsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Deployment": {
       "base": "<p>The details of the last deployment of the environment.</p>",
       "refs": {
@@ -1374,6 +1399,7 @@
         "DeleteSubscriptionGrantOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the subscription grant is deleted.</p>",
         "DeleteSubscriptionRequestInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription request is deleted.</p>",
         "DeleteSubscriptionTargetInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription target is deleted.</p>",
+        "DeleteTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain that houses the asset for which you want to delete a time series form.</p>",
         "DomainSummary$id": "<p>The ID of the Amazon DataZone domain.</p>",
         "EnvironmentBlueprintConfigurationItem$domainId": "<p>The identifier of the Amazon DataZone domain in which an environment blueprint exists.</p>",
         "EnvironmentProfileSummary$domainId": "<p>The identifier of the Amazon DataZone domain in which the environment profile exists.</p>",
@@ -1422,6 +1448,8 @@
         "GetSubscriptionRequestDetailsOutput$domainId": "<p>The Amazon DataZone domain of the subscription request.</p>",
         "GetSubscriptionTargetInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which the subscription target exists.</p>",
         "GetSubscriptionTargetOutput$domainId": "<p>The ID of the Amazon DataZone domain in which the subscription target exists.</p>",
+        "GetTimeSeriesDataPointInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain that houses the asset for which you want to get the data point.</p>",
+        "GetTimeSeriesDataPointOutput$domainId": "<p>The ID of the Amazon DataZone domain that houses the asset data point that you want to get.</p>",
         "GetUserProfileInput$domainIdentifier": "<p>the ID of the Amazon DataZone domain the data portal of which you want to get.</p>",
         "GetUserProfileOutput$domainId": "<p>the identifier of the Amazon DataZone domain of which you want to get the user profile.</p>",
         "GlossaryItem$domainId": "<p>The identifier of the Amazon DataZone domain in which the business glossary exists.</p>",
@@ -1443,8 +1471,11 @@
         "ListSubscriptionRequestsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "ListSubscriptionTargetsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain where you want to list subscription targets.</p>",
         "ListSubscriptionsInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
+        "ListTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain that houses the assets for which you want to list time series data points.</p>",
         "MetadataGenerationRunItem$domainId": "<p>The ID of the Amazon DataZone domain in which the metadata generation run was created.</p>",
         "NotificationOutput$domainIdentifier": "<p>The identifier of a Amazon DataZone domain in which the notification exists.</p>",
+        "PostTimeSeriesDataPointsInput$domainIdentifier": "<p>The ID of the Amazon DataZone domain in which you want to post time series data points.</p>",
+        "PostTimeSeriesDataPointsOutput$domainId": "<p>The ID of the Amazon DataZone domain in which you want to post time series data points.</p>",
         "ProjectSummary$domainId": "<p>The identifier of a Amazon DataZone domain where the project exists.</p>",
         "PutEnvironmentBlueprintConfigurationInput$domainIdentifier": "<p>The identifier of the Amazon DataZone domain.</p>",
         "PutEnvironmentBlueprintConfigurationOutput$domainId": "<p>The identifier of the Amazon DataZone domain.</p>",
@@ -1552,7 +1583,18 @@
     "EntityId": {
       "base": null,
       "refs": {
-        "CreateListingChangeSetInput$entityIdentifier": "<p>The ID of the asset.</p>"
+        "GetTimeSeriesDataPointOutput$entityId": "<p>The ID of the asset for which you want to get the data point.</p>",
+        "PostTimeSeriesDataPointsOutput$entityId": "<p>The ID of the asset for which you want to post time series data points.</p>"
+      }
+    },
+    "EntityIdentifier": {
+      "base": null,
+      "refs": {
+        "CreateListingChangeSetInput$entityIdentifier": "<p>The ID of the asset.</p>",
+        "DeleteTimeSeriesDataPointsInput$entityIdentifier": "<p>The ID of the asset for which you want to delete a time series form.</p>",
+        "GetTimeSeriesDataPointInput$entityIdentifier": "<p>The ID of the asset for which you want to get the data point.</p>",
+        "ListTimeSeriesDataPointsInput$entityIdentifier": "<p>The ID of the asset for which you want to list data points.</p>",
+        "PostTimeSeriesDataPointsInput$entityIdentifier": "<p>The ID of the asset for which you want to post time series data points.</p>"
       }
     },
     "EntityType": {
@@ -1928,7 +1970,10 @@
         "DeleteFormTypeInput$formTypeIdentifier": "<p>The ID of the metadata form type that is deleted.</p>",
         "FormEntryInput$typeIdentifier": "<p>The type ID of the form entry.</p>",
         "FormInput$typeIdentifier": "<p>The ID of the metadata form type.</p>",
-        "GetFormTypeInput$formTypeIdentifier": "<p>The ID of the metadata form type.</p>"
+        "GetFormTypeInput$formTypeIdentifier": "<p>The ID of the metadata form type.</p>",
+        "TimeSeriesDataPointFormInput$typeIdentifier": "<p>The ID of the type of the time series data points form.</p>",
+        "TimeSeriesDataPointFormOutput$typeIdentifier": "<p>The ID of the type of the time series data points form.</p>",
+        "TimeSeriesDataPointSummaryFormOutput$typeIdentifier": "<p>The type ID of the time series data points summary form.</p>"
       }
     },
     "FormTypeName": {
@@ -2191,6 +2236,16 @@
       }
     },
     "GetSubscriptionTargetOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTimeSeriesDataPointInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTimeSeriesDataPointOutput": {
       "base": null,
       "refs": {
       }
@@ -2688,6 +2743,16 @@
       "refs": {
       }
     },
+    "ListTimeSeriesDataPointsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTimeSeriesDataPointsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListingId": {
       "base": null,
       "refs": {
@@ -2769,6 +2834,7 @@
         "ListSubscriptionRequestsInput$maxResults": "<p>The maximum number of subscription requests to return in a single call to <code>ListSubscriptionRequests</code>. When the number of subscription requests to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListSubscriptionRequests</code> to list the next set of subscription requests.</p>",
         "ListSubscriptionTargetsInput$maxResults": "<p>The maximum number of subscription targets to return in a single call to <code>ListSubscriptionTargets</code>. When the number of subscription targets to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListSubscriptionTargets</code> to list the next set of subscription targets. </p>",
         "ListSubscriptionsInput$maxResults": "<p>The maximum number of subscriptions to return in a single call to <code>ListSubscriptions</code>. When the number of subscriptions to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>ListSubscriptions</code> to list the next set of Subscriptions. </p>",
+        "ListTimeSeriesDataPointsInput$maxResults": "<p>The maximum number of data points to return in a single call to ListTimeSeriesDataPoints. When the number of data points to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListTimeSeriesDataPoints to list the next set of data points.</p>",
         "SearchGroupProfilesInput$maxResults": "<p>The maximum number of results to return in a single call to <code>SearchGroupProfiles</code>. When the number of results to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>SearchGroupProfiles</code> to list the next set of results. </p>",
         "SearchInput$maxResults": "<p>The maximum number of results to return in a single call to <code>Search</code>. When the number of results to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>Search</code> to list the next set of results.</p>",
         "SearchListingsInput$maxResults": "<p>The maximum number of results to return in a single call to <code>SearchListings</code>. When the number of results to be listed is greater than the value of <code>MaxResults</code>, the response contains a <code>NextToken</code> value that you can use in a subsequent call to <code>SearchListings</code> to list the next set of results. </p>",
@@ -2965,6 +3031,8 @@
         "ListSubscriptionTargetsOutput$nextToken": "<p>When the number of subscription targets is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of subscription targets, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListSubscriptionTargets</code> to list the next set of subscription targets.</p>",
         "ListSubscriptionsInput$nextToken": "<p>When the number of subscriptions is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of subscriptions, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListSubscriptions</code> to list the next set of subscriptions.</p>",
         "ListSubscriptionsOutput$nextToken": "<p>When the number of subscriptions is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of subscriptions, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>ListSubscriptions</code> to list the next set of subscriptions.</p>",
+        "ListTimeSeriesDataPointsInput$nextToken": "<p>When the number of data points is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of data points, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListTimeSeriesDataPoints to list the next set of data points.</p>",
+        "ListTimeSeriesDataPointsOutput$nextToken": "<p>When the number of data points is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of data points, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListTimeSeriesDataPoints to list the next set of data points.</p>",
         "SearchGroupProfilesInput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchGroupProfiles</code> to list the next set of results.</p>",
         "SearchGroupProfilesOutput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchGroupProfiles</code> to list the next set of results.</p>",
         "SearchInput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>Search</code> to list the next set of results.</p>",
@@ -2975,6 +3043,16 @@
         "SearchTypesOutput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchTypes</code> to list the next set of results.</p>",
         "SearchUserProfilesInput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchUserProfiles</code> to list the next set of results.</p>",
         "SearchUserProfilesOutput$nextToken": "<p>When the number of results is greater than the default value for the <code>MaxResults</code> parameter, or if you explicitly specify a value for <code>MaxResults</code> that is less than the number of results, the response includes a pagination token named <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent call to <code>SearchUserProfiles</code> to list the next set of results.</p>"
+      }
+    },
+    "PostTimeSeriesDataPointsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PostTimeSeriesDataPointsOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "PredictionChoices": {
@@ -3412,7 +3490,10 @@
         "RejectPredictionsOutput$assetRevision": "<p>The revision that is to be made to the asset.</p>",
         "SubscribedAsset$assetRevision": "<p>The revision of the asset for which the subscription grant is created.</p>",
         "SubscribedAssetListing$entityRevision": "<p>The revision of the published asset for which the subscription grant is created.</p>",
-        "SubscribedListing$revision": "<p>The revision of the published asset for which the subscription grant is created.</p>"
+        "SubscribedListing$revision": "<p>The revision of the published asset for which the subscription grant is created.</p>",
+        "TimeSeriesDataPointFormInput$typeRevision": "<p>The revision type of the time series data points form.</p>",
+        "TimeSeriesDataPointFormOutput$typeRevision": "<p>The revision type of the time series data points form.</p>",
+        "TimeSeriesDataPointSummaryFormOutput$typeRevision": "<p>The type revision of the time series data points summary form.</p>"
       }
     },
     "RevokeSubscriptionInput": {
@@ -4221,15 +4302,110 @@
       "refs": {
       }
     },
+    "TimeSeriesDataPointFormInput": {
+      "base": "<p>The time series data points form.</p>",
+      "refs": {
+        "TimeSeriesDataPointFormInputList$member": null
+      }
+    },
+    "TimeSeriesDataPointFormInputContentString": {
+      "base": null,
+      "refs": {
+        "TimeSeriesDataPointFormInput$content": "<p>The content of the time series data points form.</p>"
+      }
+    },
+    "TimeSeriesDataPointFormInputList": {
+      "base": null,
+      "refs": {
+        "PostTimeSeriesDataPointsInput$forms": "<p>The forms that contain the data points that you want to post.</p>"
+      }
+    },
+    "TimeSeriesDataPointFormOutput": {
+      "base": "<p>The time series data points form.</p>",
+      "refs": {
+        "GetTimeSeriesDataPointOutput$form": "<p>The time series form that houses the data point that you want to get.</p>",
+        "TimeSeriesDataPointFormOutputList$member": null
+      }
+    },
+    "TimeSeriesDataPointFormOutputContentString": {
+      "base": null,
+      "refs": {
+        "TimeSeriesDataPointFormOutput$content": "<p>The content of the time series data points form.</p>"
+      }
+    },
+    "TimeSeriesDataPointFormOutputList": {
+      "base": null,
+      "refs": {
+        "PostTimeSeriesDataPointsOutput$forms": "<p>The forms that contain the data points that you have posted.</p>"
+      }
+    },
+    "TimeSeriesDataPointIdentifier": {
+      "base": null,
+      "refs": {
+        "GetTimeSeriesDataPointInput$identifier": "<p>The ID of the data point that you want to get.</p>"
+      }
+    },
+    "TimeSeriesDataPointSummaryFormOutput": {
+      "base": "<p>The summary of the time series data points form.</p>",
+      "refs": {
+        "TimeSeriesDataPointSummaryFormOutputList$member": null
+      }
+    },
+    "TimeSeriesDataPointSummaryFormOutputContentSummaryString": {
+      "base": null,
+      "refs": {
+        "TimeSeriesDataPointSummaryFormOutput$contentSummary": "<p>The content of the summary of the time series data points form.</p>"
+      }
+    },
+    "TimeSeriesDataPointSummaryFormOutputList": {
+      "base": null,
+      "refs": {
+        "AssetItemAdditionalAttributes$latestTimeSeriesDataPointFormsOutput": "<p>The latest time series data points forms included in the additional attributes of an asset.</p>",
+        "AssetListing$latestTimeSeriesDataPointForms": "<p>The latest time series data points forms included in the additional attributes of an asset.</p>",
+        "AssetListingItemAdditionalAttributes$latestTimeSeriesDataPointForms": "<p>The latest time series data points forms included in the additional attributes of an asset.</p>",
+        "CreateAssetOutput$latestTimeSeriesDataPointFormsOutput": "<p>The latest data point that was imported into the time series form for the asset. </p>",
+        "CreateAssetRevisionOutput$latestTimeSeriesDataPointFormsOutput": "<p>The latest data point that was imported into the time series form for the asset. </p>",
+        "GetAssetOutput$latestTimeSeriesDataPointFormsOutput": "<p>The latest data point that was imported into the time series form for the asset. </p>",
+        "ListTimeSeriesDataPointsOutput$items": "<p>The results of the ListTimeSeriesDataPoints action. </p>"
+      }
+    },
+    "TimeSeriesEntityType": {
+      "base": null,
+      "refs": {
+        "DeleteTimeSeriesDataPointsInput$entityType": "<p>The type of the asset for which you want to delete a time series form.</p>",
+        "GetTimeSeriesDataPointInput$entityType": "<p>The type of the asset for which you want to get the data point.</p>",
+        "GetTimeSeriesDataPointOutput$entityType": "<p>The type of the asset for which you want to get the data point.</p>",
+        "ListTimeSeriesDataPointsInput$entityType": "<p>The type of the asset for which you want to list data points.</p>",
+        "PostTimeSeriesDataPointsInput$entityType": "<p>The type of the asset for which you want to post data points.</p>",
+        "PostTimeSeriesDataPointsOutput$entityType": "<p>The type of the asset for which you want to post data points.</p>"
+      }
+    },
+    "TimeSeriesFormName": {
+      "base": null,
+      "refs": {
+        "DeleteTimeSeriesDataPointsInput$formName": "<p>The name of the time series form that you want to delete.</p>",
+        "GetTimeSeriesDataPointInput$formName": "<p>The name of the time series form that houses the data point that you want to get.</p>",
+        "GetTimeSeriesDataPointOutput$formName": "<p>The name of the time series form that houses the data point that you want to get.</p>",
+        "ListTimeSeriesDataPointsInput$formName": "<p>The name of the time series data points form.</p>",
+        "TimeSeriesDataPointFormInput$formName": "<p>The name of the time series data points form.</p>",
+        "TimeSeriesDataPointFormOutput$formName": "<p>The name of the time series data points form.</p>",
+        "TimeSeriesDataPointSummaryFormOutput$formName": "<p>The name of the time series data points summary form.</p>"
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
         "ListNotificationsInput$afterTimestamp": "<p>The time after which you want to list notifications.</p>",
         "ListNotificationsInput$beforeTimestamp": "<p>The time before which you want to list notifications.</p>",
+        "ListTimeSeriesDataPointsInput$endedAt": "<p>The timestamp at which the data points that you wanted to list ended.</p>",
+        "ListTimeSeriesDataPointsInput$startedAt": "<p>The timestamp at which the data points that you want to list started.</p>",
         "NotificationOutput$creationTimestamp": "<p>The timestamp of when a notification was created.</p>",
         "NotificationOutput$lastUpdatedTimestamp": "<p>The timestamp of when the notification was last updated.</p>",
         "SubscribedAsset$failureTimestamp": "<p>The failure timestamp included in the details of the asset for which the subscription grant is created.</p>",
-        "SubscribedAsset$grantedTimestamp": "<p>The timestamp of when the subscription grant to the asset is created.</p>"
+        "SubscribedAsset$grantedTimestamp": "<p>The timestamp of when the subscription grant to the asset is created.</p>",
+        "TimeSeriesDataPointFormInput$timestamp": "<p>The timestamp of the time series data points form.</p>",
+        "TimeSeriesDataPointFormOutput$timestamp": "<p>The timestamp of the time series data points form.</p>",
+        "TimeSeriesDataPointSummaryFormOutput$timestamp": "<p>The timestamp of the time series data points summary form.</p>"
       }
     },
     "Timezone": {

@@ -102,6 +102,12 @@
       "limit_key": "maxResults",
       "result_key": "items"
     },
+    "ListTimeSeriesDataPoints": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "items"
+    },
     "Search": {
       "input_token": "nextToken",
       "output_token": "nextToken",

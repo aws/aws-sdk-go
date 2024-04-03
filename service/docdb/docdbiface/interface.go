@@ -311,6 +311,10 @@ type DocDBAPI interface {
 	StopDBClusterWithContext(aws.Context, *docdb.StopDBClusterInput, ...request.Option) (*docdb.StopDBClusterOutput, error)
 	StopDBClusterRequest(*docdb.StopDBClusterInput) (*request.Request, *docdb.StopDBClusterOutput)
 
+	SwitchoverGlobalCluster(*docdb.SwitchoverGlobalClusterInput) (*docdb.SwitchoverGlobalClusterOutput, error)
+	SwitchoverGlobalClusterWithContext(aws.Context, *docdb.SwitchoverGlobalClusterInput, ...request.Option) (*docdb.SwitchoverGlobalClusterOutput, error)
+	SwitchoverGlobalClusterRequest(*docdb.SwitchoverGlobalClusterInput) (*request.Request, *docdb.SwitchoverGlobalClusterOutput)
+
 	WaitUntilDBInstanceAvailable(*docdb.DescribeDBInstancesInput) error
 	WaitUntilDBInstanceAvailableWithContext(aws.Context, *docdb.DescribeDBInstancesInput, ...request.WaiterOption) error
 

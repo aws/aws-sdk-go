@@ -445,6 +445,12 @@ func (c *MedicalImaging) GetDICOMImportJobRequest(input *GetDICOMImportJobInput)
 //
 // Get the import job properties to learn more about the job or job progress.
 //
+// The jobStatus refers to the execution of the import job. Therefore, an import
+// job can return a jobStatus as COMPLETED even if validation issues are discovered
+// during the import process. If a jobStatus returns as COMPLETED, we still
+// recommend you review the output manifests written to S3, as they provide
+// details on the success or failure of individual P10 object imports.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3045,6 +3051,34 @@ type DICOMTags struct {
 	// String and GoString methods.
 	DICOMPatientSex *string `type:"string" sensitive:"true"`
 
+	// The DICOM provided identifier for the series Body Part Examined.
+	//
+	// DICOMSeriesBodyPart is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DICOMTags's
+	// String and GoString methods.
+	DICOMSeriesBodyPart *string `type:"string" sensitive:"true"`
+
+	// The DICOM provided identifier for the Series Instance UID.
+	//
+	// DICOMSeriesInstanceUID is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DICOMTags's
+	// String and GoString methods.
+	DICOMSeriesInstanceUID *string `type:"string" sensitive:"true"`
+
+	// The DICOM provided identifier for the series Modality.
+	//
+	// DICOMSeriesModality is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DICOMTags's
+	// String and GoString methods.
+	DICOMSeriesModality *string `type:"string" sensitive:"true"`
+
+	// The DICOM provided identifier for the Series Number.
+	//
+	// DICOMSeriesNumber is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DICOMTags's
+	// String and GoString methods.
+	DICOMSeriesNumber *int64 `type:"integer" sensitive:"true"`
+
 	// The study date.
 	//
 	// DICOMStudyDate is a sensitive parameter and its value will be
@@ -3052,21 +3086,21 @@ type DICOMTags struct {
 	// String and GoString methods.
 	DICOMStudyDate *string `type:"string" sensitive:"true"`
 
-	// The description of the study.
+	// The DICOM provided Study Description.
 	//
 	// DICOMStudyDescription is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DICOMTags's
 	// String and GoString methods.
 	DICOMStudyDescription *string `type:"string" sensitive:"true"`
 
-	// The DICOM provided studyId.
+	// The DICOM provided identifier for the Study ID.
 	//
 	// DICOMStudyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DICOMTags's
 	// String and GoString methods.
 	DICOMStudyId *string `type:"string" sensitive:"true"`
 
-	// The DICOM provided identifier for studyInstanceUid.>
+	// The DICOM provided identifier for the Study Instance UID.
 	//
 	// DICOMStudyInstanceUID is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DICOMTags's
@@ -3138,6 +3172,30 @@ func (s *DICOMTags) SetDICOMPatientName(v string) *DICOMTags {
 // SetDICOMPatientSex sets the DICOMPatientSex field's value.
 func (s *DICOMTags) SetDICOMPatientSex(v string) *DICOMTags {
 	s.DICOMPatientSex = &v
+	return s
+}
+
+// SetDICOMSeriesBodyPart sets the DICOMSeriesBodyPart field's value.
+func (s *DICOMTags) SetDICOMSeriesBodyPart(v string) *DICOMTags {
+	s.DICOMSeriesBodyPart = &v
+	return s
+}
+
+// SetDICOMSeriesInstanceUID sets the DICOMSeriesInstanceUID field's value.
+func (s *DICOMTags) SetDICOMSeriesInstanceUID(v string) *DICOMTags {
+	s.DICOMSeriesInstanceUID = &v
+	return s
+}
+
+// SetDICOMSeriesModality sets the DICOMSeriesModality field's value.
+func (s *DICOMTags) SetDICOMSeriesModality(v string) *DICOMTags {
+	s.DICOMSeriesModality = &v
+	return s
+}
+
+// SetDICOMSeriesNumber sets the DICOMSeriesNumber field's value.
+func (s *DICOMTags) SetDICOMSeriesNumber(v int64) *DICOMTags {
+	s.DICOMSeriesNumber = &v
 	return s
 }
 
@@ -5137,6 +5195,13 @@ type SearchByAttributeValue struct {
 	// String and GoString methods.
 	DICOMPatientId *string `type:"string" sensitive:"true"`
 
+	// The Series Instance UID input for search.
+	//
+	// DICOMSeriesInstanceUID is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SearchByAttributeValue's
+	// String and GoString methods.
+	DICOMSeriesInstanceUID *string `type:"string" sensitive:"true"`
+
 	// The aggregated structure containing DICOM study date and study time for search.
 	DICOMStudyDateAndTime *DICOMStudyDateAndTime `type:"structure"`
 
@@ -5153,6 +5218,9 @@ type SearchByAttributeValue struct {
 	// replaced with "sensitive" in string returned by SearchByAttributeValue's
 	// String and GoString methods.
 	DICOMStudyInstanceUID *string `type:"string" sensitive:"true"`
+
+	// The timestamp input for search.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -5206,6 +5274,12 @@ func (s *SearchByAttributeValue) SetDICOMPatientId(v string) *SearchByAttributeV
 	return s
 }
 
+// SetDICOMSeriesInstanceUID sets the DICOMSeriesInstanceUID field's value.
+func (s *SearchByAttributeValue) SetDICOMSeriesInstanceUID(v string) *SearchByAttributeValue {
+	s.DICOMSeriesInstanceUID = &v
+	return s
+}
+
 // SetDICOMStudyDateAndTime sets the DICOMStudyDateAndTime field's value.
 func (s *SearchByAttributeValue) SetDICOMStudyDateAndTime(v *DICOMStudyDateAndTime) *SearchByAttributeValue {
 	s.DICOMStudyDateAndTime = v
@@ -5224,12 +5298,21 @@ func (s *SearchByAttributeValue) SetDICOMStudyInstanceUID(v string) *SearchByAtt
 	return s
 }
 
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *SearchByAttributeValue) SetUpdatedAt(v time.Time) *SearchByAttributeValue {
+	s.UpdatedAt = &v
+	return s
+}
+
 // The search criteria.
 type SearchCriteria struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The filters for the search criteria.
 	Filters []*SearchFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The sort input for search criteria.
+	Sort *Sort `locationName:"sort" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5266,6 +5349,11 @@ func (s *SearchCriteria) Validate() error {
 			}
 		}
 	}
+	if s.Sort != nil {
+		if err := s.Sort.Validate(); err != nil {
+			invalidParams.AddNested("Sort", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5276,6 +5364,12 @@ func (s *SearchCriteria) Validate() error {
 // SetFilters sets the Filters field's value.
 func (s *SearchCriteria) SetFilters(v []*SearchFilter) *SearchCriteria {
 	s.Filters = v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *SearchCriteria) SetSort(v *Sort) *SearchCriteria {
+	s.Sort = v
 	return s
 }
 
@@ -5456,6 +5550,9 @@ type SearchImageSetsOutput struct {
 
 	// The token for pagination results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The sort order for image set search results.
+	Sort *Sort `locationName:"sort" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5485,6 +5582,12 @@ func (s *SearchImageSetsOutput) SetImageSetsMetadataSummaries(v []*ImageSetsMeta
 // SetNextToken sets the NextToken field's value.
 func (s *SearchImageSetsOutput) SetNextToken(v string) *SearchImageSetsOutput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *SearchImageSetsOutput) SetSort(v *Sort) *SearchImageSetsOutput {
+	s.Sort = v
 	return s
 }
 
@@ -5550,6 +5653,67 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Sort search results.
+type Sort struct {
+	_ struct{} `type:"structure"`
+
+	// The sort field for search criteria.
+	//
+	// SortField is a required field
+	SortField *string `locationName:"sortField" type:"string" required:"true" enum:"SortField"`
+
+	// The sort order for search criteria.
+	//
+	// SortOrder is a required field
+	SortOrder *string `locationName:"sortOrder" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Sort) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Sort) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Sort) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Sort"}
+	if s.SortField == nil {
+		invalidParams.Add(request.NewErrParamRequired("SortField"))
+	}
+	if s.SortOrder == nil {
+		invalidParams.Add(request.NewErrParamRequired("SortOrder"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSortField sets the SortField field's value.
+func (s *Sort) SetSortField(v string) *Sort {
+	s.SortField = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *Sort) SetSortOrder(v string) *Sort {
+	s.SortOrder = &v
+	return s
 }
 
 type StartDICOMImportJobInput struct {
@@ -6379,5 +6543,41 @@ func Operator_Values() []string {
 	return []string{
 		OperatorEqual,
 		OperatorBetween,
+	}
+}
+
+const (
+	// SortFieldUpdatedAt is a SortField enum value
+	SortFieldUpdatedAt = "updatedAt"
+
+	// SortFieldCreatedAt is a SortField enum value
+	SortFieldCreatedAt = "createdAt"
+
+	// SortFieldDicomstudyDateAndTime is a SortField enum value
+	SortFieldDicomstudyDateAndTime = "DICOMStudyDateAndTime"
+)
+
+// SortField_Values returns all elements of the SortField enum
+func SortField_Values() []string {
+	return []string{
+		SortFieldUpdatedAt,
+		SortFieldCreatedAt,
+		SortFieldDicomstudyDateAndTime,
+	}
+}
+
+const (
+	// SortOrderAsc is a SortOrder enum value
+	SortOrderAsc = "ASC"
+
+	// SortOrderDesc is a SortOrder enum value
+	SortOrderDesc = "DESC"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAsc,
+		SortOrderDesc,
 	}
 }

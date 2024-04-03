@@ -26,7 +26,7 @@
     "DescribeExecution": "<p>You can use <code>DescribeExecution</code> to check the details of the execution of the specified workflow.</p> <note> <p>This API call only returns details for in-progress workflows.</p> <p> If you provide an ID for an execution that is not in progress, or if the execution doesn't match the specified workflow ID, you receive a <code>ResourceNotFound</code> exception.</p> </note>",
     "DescribeHostKey": "<p>Returns the details of the host key that's specified by the <code>HostKeyId</code> and <code>ServerId</code>.</p>",
     "DescribeProfile": "<p>Returns the details of the profile that's specified by the <code>ProfileId</code>.</p>",
-    "DescribeSecurityPolicy": "<p>Describes the security policy that is attached to your file transfer protocol-enabled server. The response contains a description of the security policy's properties. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies</a>.</p>",
+    "DescribeSecurityPolicy": "<p>Describes the security policy that is attached to your server or SFTP connector. The response contains a description of the security policy's properties. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies for servers</a> or <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html\">Working with security policies for SFTP connectors</a>.</p>",
     "DescribeServer": "<p>Describes a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p> <p>The response contains a description of a server's properties. When you set <code>EndpointType</code> to VPC, the response will contain the <code>EndpointDetails</code>.</p>",
     "DescribeUser": "<p>Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its <code>ServerId</code> property.</p> <p>The response from this call returns the properties of the user associated with the <code>ServerId</code> value that was specified.</p>",
     "DescribeWorkflow": "<p>Describes the specified workflow.</p>",
@@ -40,7 +40,7 @@
     "ListExecutions": "<p>Lists all in-progress executions for the specified workflow.</p> <note> <p>If the specified workflow ID cannot be found, <code>ListExecutions</code> returns a <code>ResourceNotFound</code> exception.</p> </note>",
     "ListHostKeys": "<p>Returns a list of host keys for the server that's specified by the <code>ServerId</code> parameter.</p>",
     "ListProfiles": "<p>Returns a list of the profiles for your system. If you want to limit the results to a certain number, supply a value for the <code>MaxResults</code> parameter. If you ran the command previously and received a value for <code>NextToken</code>, you can supply that value to continue listing profiles from where you left off.</p>",
-    "ListSecurityPolicies": "<p>Lists the security policies that are attached to your file transfer protocol-enabled servers.</p>",
+    "ListSecurityPolicies": "<p>Lists the security policies that are attached to your servers and SFTP connectors. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies for servers</a> or <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html\">Working with security policies for SFTP connectors</a>.</p>",
     "ListServers": "<p>Lists the file transfer protocol-enabled servers that are associated with your Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Lists all of the tags associated with the Amazon Resource Name (ARN) that you specify. The resource can be a user, server, or role.</p>",
     "ListUsers": "<p>Lists the users for a file transfer protocol-enabled server that you specify by passing the <code>ServerId</code> parameter.</p>",
@@ -277,6 +277,14 @@
         "TestConnectionResponse$ConnectorId": "<p>Returns the identifier of the connector object that you are testing.</p>",
         "UpdateConnectorRequest$ConnectorId": "<p>The unique identifier for the connector.</p>",
         "UpdateConnectorResponse$ConnectorId": "<p>Returns the identifier of the connector object that you are updating.</p>"
+      }
+    },
+    "ConnectorSecurityPolicyName": {
+      "base": null,
+      "refs": {
+        "CreateConnectorRequest$SecurityPolicyName": "<p>Specifies the name of the security policy for the connector.</p>",
+        "DescribedConnector$SecurityPolicyName": "<p>The text name of the security policy for the specified connector.</p>",
+        "UpdateConnectorRequest$SecurityPolicyName": "<p>Specifies the name of the security policy for the connector.</p>"
       }
     },
     "CopyStepDetails": {
@@ -602,7 +610,7 @@
       }
     },
     "DescribedSecurityPolicy": {
-      "base": "<p>Describes the properties of a security policy that was specified. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies</a>.</p>",
+      "base": "<p>Describes the properties of a security policy that you specify. For more information about security policies, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html\">Working with security policies for servers</a> or <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html\">Working with security policies for SFTP connectors</a>.</p>",
       "refs": {
         "DescribeSecurityPolicyResponse$SecurityPolicy": "<p>An array containing the properties of the security policy.</p>"
       }
@@ -797,7 +805,7 @@
     "Fips": {
       "base": null,
       "refs": {
-        "DescribedSecurityPolicy$Fips": "<p>Specifies whether this policy enables Federal Information Processing Standards (FIPS).</p>"
+        "DescribedSecurityPolicy$Fips": "<p>Specifies whether this policy enables Federal Information Processing Standards (FIPS). This parameter applies to both server and connector security policies.</p>"
       }
     },
     "Function": {
@@ -1611,12 +1619,12 @@
     "SecurityPolicyName": {
       "base": null,
       "refs": {
-        "CreateServerRequest$SecurityPolicyName": "<p>Specifies the name of the security policy that is attached to the server.</p>",
-        "DescribeSecurityPolicyRequest$SecurityPolicyName": "<p>Specifies the name of the security policy that is attached to the server.</p>",
-        "DescribedSecurityPolicy$SecurityPolicyName": "<p>Specifies the name of the security policy that is attached to the server.</p>",
-        "DescribedServer$SecurityPolicyName": "<p>Specifies the name of the security policy that is attached to the server.</p>",
+        "CreateServerRequest$SecurityPolicyName": "<p>Specifies the name of the security policy for the server.</p>",
+        "DescribeSecurityPolicyRequest$SecurityPolicyName": "<p>Specify the text name of the security policy for which you want the details.</p>",
+        "DescribedSecurityPolicy$SecurityPolicyName": "<p>The text name of the specified security policy.</p>",
+        "DescribedServer$SecurityPolicyName": "<p>Specifies the name of the security policy for the server.</p>",
         "SecurityPolicyNames$member": null,
-        "UpdateServerRequest$SecurityPolicyName": "<p>Specifies the name of the security policy that is attached to the server.</p>"
+        "UpdateServerRequest$SecurityPolicyName": "<p>Specifies the name of the security policy for the server.</p>"
       }
     },
     "SecurityPolicyNames": {
@@ -1634,10 +1642,29 @@
     "SecurityPolicyOptions": {
       "base": null,
       "refs": {
-        "DescribedSecurityPolicy$SshCiphers": "<p>Specifies the enabled Secure Shell (SSH) cipher encryption algorithms in the security policy that is attached to the server.</p>",
-        "DescribedSecurityPolicy$SshKexs": "<p>Specifies the enabled SSH key exchange (KEX) encryption algorithms in the security policy that is attached to the server.</p>",
-        "DescribedSecurityPolicy$SshMacs": "<p>Specifies the enabled SSH message authentication code (MAC) encryption algorithms in the security policy that is attached to the server.</p>",
-        "DescribedSecurityPolicy$TlsCiphers": "<p>Specifies the enabled Transport Layer Security (TLS) cipher encryption algorithms in the security policy that is attached to the server.</p>"
+        "DescribedSecurityPolicy$SshCiphers": "<p>Lists the enabled Secure Shell (SSH) cipher encryption algorithms in the security policy that is attached to the server or connector. This parameter applies to both server and connector security policies.</p>",
+        "DescribedSecurityPolicy$SshKexs": "<p>Lists the enabled SSH key exchange (KEX) encryption algorithms in the security policy that is attached to the server or connector. This parameter applies to both server and connector security policies.</p>",
+        "DescribedSecurityPolicy$SshMacs": "<p>Lists the enabled SSH message authentication code (MAC) encryption algorithms in the security policy that is attached to the server or connector. This parameter applies to both server and connector security policies.</p>",
+        "DescribedSecurityPolicy$TlsCiphers": "<p>Lists the enabled Transport Layer Security (TLS) cipher encryption algorithms in the security policy that is attached to the server.</p> <note> <p>This parameter only applies to security policies for servers.</p> </note>",
+        "DescribedSecurityPolicy$SshHostKeyAlgorithms": "<p>Lists the host key algorithms for the security policy.</p> <note> <p>This parameter only applies to security policies for connectors.</p> </note>"
+      }
+    },
+    "SecurityPolicyProtocol": {
+      "base": null,
+      "refs": {
+        "SecurityPolicyProtocols$member": null
+      }
+    },
+    "SecurityPolicyProtocols": {
+      "base": null,
+      "refs": {
+        "DescribedSecurityPolicy$Protocols": "<p>Lists the file transfer protocols that the security policy applies to.</p>"
+      }
+    },
+    "SecurityPolicyResourceType": {
+      "base": null,
+      "refs": {
+        "DescribedSecurityPolicy$Type": "<p>The resource type to which the security policy applies, either server or connector.</p>"
       }
     },
     "SendWorkflowStepStateRequest": {

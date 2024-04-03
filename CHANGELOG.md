@@ -1,3 +1,22 @@
+Release v1.51.14 (2024-04-03)
+===
+
+### Service Client Updates
+* `service/cleanroomsml`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * This release would return a new field - PolicyAction in cloudformation's existed DescribeChangeSetResponse, showing actions we are going to apply on the physical resource (e.g., Delete, Retain) according to the user's template
+* `service/datazone`: Updates service API, documentation, and paginators
+* `service/docdb`: Updates service API and documentation
+  * This release adds Global Cluster Switchover capability which enables you to change your global cluster's primary AWS Region, the region that serves writes, while preserving the replication between all regions in the global cluster.
+* `service/groundstation`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Add Ruby 3.3 (ruby3.3) support to AWS Lambda
+* `service/medialive`: Updates service API and documentation
+  * Cmaf Ingest outputs are now supported in Media Live
+* `service/medical-imaging`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Add ability to specify Security Policies for SFTP Connectors
+
 Release v1.51.13 (2024-04-02)
 ===
 

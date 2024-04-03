@@ -2331,10 +2331,11 @@ func (c *Transfer) DescribeSecurityPolicyRequest(input *DescribeSecurityPolicyIn
 
 // DescribeSecurityPolicy API operation for AWS Transfer Family.
 //
-// Describes the security policy that is attached to your file transfer protocol-enabled
-// server. The response contains a description of the security policy's properties.
+// Describes the security policy that is attached to your server or SFTP connector.
+// The response contains a description of the security policy's properties.
 // For more information about security policies, see Working with security policies
-// (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html).
+// for servers (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html)
+// or Working with security policies for SFTP connectors (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4006,8 +4007,10 @@ func (c *Transfer) ListSecurityPoliciesRequest(input *ListSecurityPoliciesInput)
 
 // ListSecurityPolicies API operation for AWS Transfer Family.
 //
-// Lists the security policies that are attached to your file transfer protocol-enabled
-// servers.
+// Lists the security policies that are attached to your servers and SFTP connectors.
+// For more information about security policies, see Working with security policies
+// for servers (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html)
+// or Working with security policies for SFTP connectors (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7250,6 +7253,9 @@ type CreateConnectorInput struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// Specifies the name of the security policy for the connector.
+	SecurityPolicyName *string `type:"string"`
+
 	// A structure that contains the parameters for an SFTP connector object.
 	SftpConfig *SftpConnectorConfig `type:"structure"`
 
@@ -7341,6 +7347,12 @@ func (s *CreateConnectorInput) SetAs2Config(v *As2ConnectorConfig) *CreateConnec
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *CreateConnectorInput) SetLoggingRole(v string) *CreateConnectorInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSecurityPolicyName sets the SecurityPolicyName field's value.
+func (s *CreateConnectorInput) SetSecurityPolicyName(v string) *CreateConnectorInput {
+	s.SecurityPolicyName = &v
 	return s
 }
 
@@ -7751,7 +7763,7 @@ type CreateServerInput struct {
 	// Type to FILE if you want a mapping to have a file target.
 	S3StorageOptions *S3StorageOptions `type:"structure"`
 
-	// Specifies the name of the security policy that is attached to the server.
+	// Specifies the name of the security policy for the server.
 	SecurityPolicyName *string `type:"string"`
 
 	// Specifies the log groups to which your server logs are sent.
@@ -10209,7 +10221,7 @@ func (s *DescribeProfileOutput) SetProfile(v *DescribedProfile) *DescribeProfile
 type DescribeSecurityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the name of the security policy that is attached to the server.
+	// Specify the text name of the security policy for which you want the details.
 	//
 	// SecurityPolicyName is a required field
 	SecurityPolicyName *string `type:"string" required:"true"`
@@ -11062,6 +11074,9 @@ type DescribedConnector struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// The text name of the security policy for the specified connector.
+	SecurityPolicyName *string `type:"string"`
+
 	// The list of egress IP addresses of this connector. These IP addresses are
 	// assigned automatically when you create the connector.
 	ServiceManagedEgressIpAddresses []*string `type:"list"`
@@ -11121,6 +11136,12 @@ func (s *DescribedConnector) SetConnectorId(v string) *DescribedConnector {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *DescribedConnector) SetLoggingRole(v string) *DescribedConnector {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSecurityPolicyName sets the SecurityPolicyName field's value.
+func (s *DescribedConnector) SetSecurityPolicyName(v string) *DescribedConnector {
+	s.SecurityPolicyName = &v
 	return s
 }
 
@@ -11437,35 +11458,54 @@ func (s *DescribedProfile) SetTags(v []*Tag) *DescribedProfile {
 	return s
 }
 
-// Describes the properties of a security policy that was specified. For more
-// information about security policies, see Working with security policies (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html).
+// Describes the properties of a security policy that you specify. For more
+// information about security policies, see Working with security policies for
+// servers (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html)
+// or Working with security policies for SFTP connectors (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies-connectors.html).
 type DescribedSecurityPolicy struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether this policy enables Federal Information Processing Standards
-	// (FIPS).
+	// (FIPS). This parameter applies to both server and connector security policies.
 	Fips *bool `type:"boolean"`
 
-	// Specifies the name of the security policy that is attached to the server.
+	// Lists the file transfer protocols that the security policy applies to.
+	Protocols []*string `min:"1" type:"list" enum:"SecurityPolicyProtocol"`
+
+	// The text name of the specified security policy.
 	//
 	// SecurityPolicyName is a required field
 	SecurityPolicyName *string `type:"string" required:"true"`
 
-	// Specifies the enabled Secure Shell (SSH) cipher encryption algorithms in
-	// the security policy that is attached to the server.
+	// Lists the enabled Secure Shell (SSH) cipher encryption algorithms in the
+	// security policy that is attached to the server or connector. This parameter
+	// applies to both server and connector security policies.
 	SshCiphers []*string `type:"list"`
 
-	// Specifies the enabled SSH key exchange (KEX) encryption algorithms in the
-	// security policy that is attached to the server.
+	// Lists the host key algorithms for the security policy.
+	//
+	// This parameter only applies to security policies for connectors.
+	SshHostKeyAlgorithms []*string `type:"list"`
+
+	// Lists the enabled SSH key exchange (KEX) encryption algorithms in the security
+	// policy that is attached to the server or connector. This parameter applies
+	// to both server and connector security policies.
 	SshKexs []*string `type:"list"`
 
-	// Specifies the enabled SSH message authentication code (MAC) encryption algorithms
-	// in the security policy that is attached to the server.
+	// Lists the enabled SSH message authentication code (MAC) encryption algorithms
+	// in the security policy that is attached to the server or connector. This
+	// parameter applies to both server and connector security policies.
 	SshMacs []*string `type:"list"`
 
-	// Specifies the enabled Transport Layer Security (TLS) cipher encryption algorithms
+	// Lists the enabled Transport Layer Security (TLS) cipher encryption algorithms
 	// in the security policy that is attached to the server.
+	//
+	// This parameter only applies to security policies for servers.
 	TlsCiphers []*string `type:"list"`
+
+	// The resource type to which the security policy applies, either server or
+	// connector.
+	Type *string `type:"string" enum:"SecurityPolicyResourceType"`
 }
 
 // String returns the string representation.
@@ -11492,6 +11532,12 @@ func (s *DescribedSecurityPolicy) SetFips(v bool) *DescribedSecurityPolicy {
 	return s
 }
 
+// SetProtocols sets the Protocols field's value.
+func (s *DescribedSecurityPolicy) SetProtocols(v []*string) *DescribedSecurityPolicy {
+	s.Protocols = v
+	return s
+}
+
 // SetSecurityPolicyName sets the SecurityPolicyName field's value.
 func (s *DescribedSecurityPolicy) SetSecurityPolicyName(v string) *DescribedSecurityPolicy {
 	s.SecurityPolicyName = &v
@@ -11501,6 +11547,12 @@ func (s *DescribedSecurityPolicy) SetSecurityPolicyName(v string) *DescribedSecu
 // SetSshCiphers sets the SshCiphers field's value.
 func (s *DescribedSecurityPolicy) SetSshCiphers(v []*string) *DescribedSecurityPolicy {
 	s.SshCiphers = v
+	return s
+}
+
+// SetSshHostKeyAlgorithms sets the SshHostKeyAlgorithms field's value.
+func (s *DescribedSecurityPolicy) SetSshHostKeyAlgorithms(v []*string) *DescribedSecurityPolicy {
+	s.SshHostKeyAlgorithms = v
 	return s
 }
 
@@ -11519,6 +11571,12 @@ func (s *DescribedSecurityPolicy) SetSshMacs(v []*string) *DescribedSecurityPoli
 // SetTlsCiphers sets the TlsCiphers field's value.
 func (s *DescribedSecurityPolicy) SetTlsCiphers(v []*string) *DescribedSecurityPolicy {
 	s.TlsCiphers = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribedSecurityPolicy) SetType(v string) *DescribedSecurityPolicy {
+	s.Type = &v
 	return s
 }
 
@@ -11676,7 +11734,7 @@ type DescribedServer struct {
 	// Type to FILE if you want a mapping to have a file target.
 	S3StorageOptions *S3StorageOptions `type:"structure"`
 
-	// Specifies the name of the security policy that is attached to the server.
+	// Specifies the name of the security policy for the server.
 	SecurityPolicyName *string `type:"string"`
 
 	// Specifies the unique system-assigned identifier for a server that you instantiate.
@@ -18304,6 +18362,9 @@ type UpdateConnectorInput struct {
 	// events. When set, you can view connector activity in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
+	// Specifies the name of the security policy for the connector.
+	SecurityPolicyName *string `type:"string"`
+
 	// A structure that contains the parameters for an SFTP connector object.
 	SftpConfig *SftpConnectorConfig `type:"structure"`
 
@@ -18382,6 +18443,12 @@ func (s *UpdateConnectorInput) SetConnectorId(v string) *UpdateConnectorInput {
 // SetLoggingRole sets the LoggingRole field's value.
 func (s *UpdateConnectorInput) SetLoggingRole(v string) *UpdateConnectorInput {
 	s.LoggingRole = &v
+	return s
+}
+
+// SetSecurityPolicyName sets the SecurityPolicyName field's value.
+func (s *UpdateConnectorInput) SetSecurityPolicyName(v string) *UpdateConnectorInput {
+	s.SecurityPolicyName = &v
 	return s
 }
 
@@ -18835,7 +18902,7 @@ type UpdateServerInput struct {
 	// Type to FILE if you want a mapping to have a file target.
 	S3StorageOptions *S3StorageOptions `type:"structure"`
 
-	// Specifies the name of the security policy that is attached to the server.
+	// Specifies the name of the security policy for the server.
 	SecurityPolicyName *string `type:"string"`
 
 	// A system-assigned unique identifier for a server instance that the Transfer
@@ -20115,6 +20182,38 @@ func Protocol_Values() []string {
 		ProtocolFtp,
 		ProtocolFtps,
 		ProtocolAs2,
+	}
+}
+
+const (
+	// SecurityPolicyProtocolSftp is a SecurityPolicyProtocol enum value
+	SecurityPolicyProtocolSftp = "SFTP"
+
+	// SecurityPolicyProtocolFtps is a SecurityPolicyProtocol enum value
+	SecurityPolicyProtocolFtps = "FTPS"
+)
+
+// SecurityPolicyProtocol_Values returns all elements of the SecurityPolicyProtocol enum
+func SecurityPolicyProtocol_Values() []string {
+	return []string{
+		SecurityPolicyProtocolSftp,
+		SecurityPolicyProtocolFtps,
+	}
+}
+
+const (
+	// SecurityPolicyResourceTypeServer is a SecurityPolicyResourceType enum value
+	SecurityPolicyResourceTypeServer = "SERVER"
+
+	// SecurityPolicyResourceTypeConnector is a SecurityPolicyResourceType enum value
+	SecurityPolicyResourceTypeConnector = "CONNECTOR"
+)
+
+// SecurityPolicyResourceType_Values returns all elements of the SecurityPolicyResourceType enum
+func SecurityPolicyResourceType_Values() []string {
+	return []string{
+		SecurityPolicyResourceTypeServer,
+		SecurityPolicyResourceTypeConnector,
 	}
 }
 

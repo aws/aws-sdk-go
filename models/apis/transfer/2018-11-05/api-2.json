@@ -1085,6 +1085,12 @@
       "min":19,
       "pattern":"c-([0-9a-f]{17})"
     },
+    "ConnectorSecurityPolicyName":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"TransferSFTPConnectorSecurityPolicy-[A-Za-z0-9-]+"
+    },
     "CopyStepDetails":{
       "type":"structure",
       "members":{
@@ -1162,7 +1168,8 @@
         "AccessRole":{"shape":"Role"},
         "LoggingRole":{"shape":"Role"},
         "Tags":{"shape":"Tags"},
-        "SftpConfig":{"shape":"SftpConnectorConfig"}
+        "SftpConfig":{"shape":"SftpConnectorConfig"},
+        "SecurityPolicyName":{"shape":"ConnectorSecurityPolicyName"}
       }
     },
     "CreateConnectorResponse":{
@@ -1657,7 +1664,8 @@
         "LoggingRole":{"shape":"Role"},
         "Tags":{"shape":"Tags"},
         "SftpConfig":{"shape":"SftpConnectorConfig"},
-        "ServiceManagedEgressIpAddresses":{"shape":"ServiceManagedEgressIpAddresses"}
+        "ServiceManagedEgressIpAddresses":{"shape":"ServiceManagedEgressIpAddresses"},
+        "SecurityPolicyName":{"shape":"ConnectorSecurityPolicyName"}
       }
     },
     "DescribedExecution":{
@@ -1707,7 +1715,10 @@
         "SshCiphers":{"shape":"SecurityPolicyOptions"},
         "SshKexs":{"shape":"SecurityPolicyOptions"},
         "SshMacs":{"shape":"SecurityPolicyOptions"},
-        "TlsCiphers":{"shape":"SecurityPolicyOptions"}
+        "TlsCiphers":{"shape":"SecurityPolicyOptions"},
+        "SshHostKeyAlgorithms":{"shape":"SecurityPolicyOptions"},
+        "Type":{"shape":"SecurityPolicyResourceType"},
+        "Protocols":{"shape":"SecurityPolicyProtocols"}
       }
     },
     "DescribedServer":{
@@ -2785,7 +2796,7 @@
       "type":"string",
       "max":100,
       "min":0,
-      "pattern":"TransferSecurityPolicy-.+"
+      "pattern":"Transfer[A-Za-z0-9]*SecurityPolicy-[A-Za-z0-9-]+"
     },
     "SecurityPolicyNames":{
       "type":"list",
@@ -2799,6 +2810,26 @@
     "SecurityPolicyOptions":{
       "type":"list",
       "member":{"shape":"SecurityPolicyOption"}
+    },
+    "SecurityPolicyProtocol":{
+      "type":"string",
+      "enum":[
+        "SFTP",
+        "FTPS"
+      ]
+    },
+    "SecurityPolicyProtocols":{
+      "type":"list",
+      "member":{"shape":"SecurityPolicyProtocol"},
+      "max":5,
+      "min":1
+    },
+    "SecurityPolicyResourceType":{
+      "type":"string",
+      "enum":[
+        "SERVER",
+        "CONNECTOR"
+      ]
     },
     "SendWorkflowStepStateRequest":{
       "type":"structure",
@@ -3211,7 +3242,8 @@
         "As2Config":{"shape":"As2ConnectorConfig"},
         "AccessRole":{"shape":"Role"},
         "LoggingRole":{"shape":"Role"},
-        "SftpConfig":{"shape":"SftpConnectorConfig"}
+        "SftpConfig":{"shape":"SftpConnectorConfig"},
+        "SecurityPolicyName":{"shape":"ConnectorSecurityPolicyName"}
       }
     },
     "UpdateConnectorResponse":{

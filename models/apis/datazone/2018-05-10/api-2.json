@@ -751,6 +751,25 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "DeleteTimeSeriesDataPoints":{
+      "name":"DeleteTimeSeriesDataPoints",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteTimeSeriesDataPointsInput"},
+      "output":{"shape":"DeleteTimeSeriesDataPointsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ],
+      "idempotent":true
+    },
     "GetAsset":{
       "name":"GetAsset",
       "http":{
@@ -1135,6 +1154,24 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "GetTimeSeriesDataPoint":{
+      "name":"GetTimeSeriesDataPoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points/{identifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetTimeSeriesDataPointInput"},
+      "output":{"shape":"GetTimeSeriesDataPointOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetUserProfile":{
       "name":"GetUserProfile",
       "http":{
@@ -1481,6 +1518,45 @@
         {"shape":"ValidationException"},
         {"shape":"UnauthorizedException"}
       ]
+    },
+    "ListTimeSeriesDataPoints":{
+      "name":"ListTimeSeriesDataPoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTimeSeriesDataPointsInput"},
+      "output":{"shape":"ListTimeSeriesDataPointsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "PostTimeSeriesDataPoints":{
+      "name":"PostTimeSeriesDataPoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/domains/{domainIdentifier}/entities/{entityType}/{entityIdentifier}/time-series-data-points",
+        "responseCode":201
+      },
+      "input":{"shape":"PostTimeSeriesDataPointsInput"},
+      "output":{"shape":"PostTimeSeriesDataPointsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"UnauthorizedException"}
+      ],
+      "idempotent":true
     },
     "PutEnvironmentBlueprintConfiguration":{
       "name":"PutEnvironmentBlueprintConfiguration",
@@ -2156,6 +2232,7 @@
       "type":"structure",
       "members":{
         "formsOutput":{"shape":"FormOutputList"},
+        "latestTimeSeriesDataPointFormsOutput":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
         "readOnlyFormsOutput":{"shape":"FormOutputList"}
       }
     },
@@ -2168,6 +2245,7 @@
         "createdAt":{"shape":"CreatedAt"},
         "forms":{"shape":"Forms"},
         "glossaryTerms":{"shape":"DetailedGlossaryTerms"},
+        "latestTimeSeriesDataPointForms":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
         "owningProjectId":{"shape":"ProjectId"}
       }
     },
@@ -2203,7 +2281,8 @@
     "AssetListingItemAdditionalAttributes":{
       "type":"structure",
       "members":{
-        "forms":{"shape":"Forms"}
+        "forms":{"shape":"Forms"},
+        "latestTimeSeriesDataPointForms":{"shape":"TimeSeriesDataPointSummaryFormOutputList"}
       }
     },
     "AssetName":{
@@ -2494,6 +2573,7 @@
         "formsOutput":{"shape":"FormOutputList"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"AssetId"},
+        "latestTimeSeriesDataPointFormsOutput":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
         "listing":{"shape":"AssetListingDetails"},
         "name":{"shape":"AssetName"},
         "owningProjectId":{"shape":"ProjectId"},
@@ -2557,6 +2637,7 @@
         "formsOutput":{"shape":"FormOutputList"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"AssetId"},
+        "latestTimeSeriesDataPointFormsOutput":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
         "listing":{"shape":"AssetListingDetails"},
         "name":{"shape":"AssetName"},
         "owningProjectId":{"shape":"ProjectId"},
@@ -2982,7 +3063,7 @@
           "location":"uri",
           "locationName":"domainIdentifier"
         },
-        "entityIdentifier":{"shape":"EntityId"},
+        "entityIdentifier":{"shape":"EntityIdentifier"},
         "entityRevision":{"shape":"Revision"},
         "entityType":{"shape":"EntityType"}
       }
@@ -3323,6 +3404,10 @@
         "SKIPPED_NO_ACCESS",
         "UNCHANGED"
       ]
+    },
+    "DataPointIdentifier":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{0,36}$"
     },
     "DataProductDescription":{
       "type":"string",
@@ -3987,6 +4072,48 @@
         }
       }
     },
+    "DeleteTimeSeriesDataPointsInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "entityIdentifier",
+        "entityType",
+        "formName"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "entityIdentifier":{
+          "shape":"EntityIdentifier",
+          "location":"uri",
+          "locationName":"entityIdentifier"
+        },
+        "entityType":{
+          "shape":"TimeSeriesEntityType",
+          "location":"uri",
+          "locationName":"entityType"
+        },
+        "formName":{
+          "shape":"TimeSeriesFormName",
+          "location":"querystring",
+          "locationName":"formName"
+        }
+      }
+    },
+    "DeleteTimeSeriesDataPointsOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Deployment":{
       "type":"structure",
       "members":{
@@ -4123,7 +4250,14 @@
       "member":{"shape":"RegionName"},
       "min":0
     },
-    "EntityId":{"type":"string"},
+    "EntityId":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
+    "EntityIdentifier":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
     "EntityType":{
       "type":"string",
       "enum":["ASSET"]
@@ -4557,6 +4691,7 @@
         "formsOutput":{"shape":"FormOutputList"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"AssetId"},
+        "latestTimeSeriesDataPointFormsOutput":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
         "listing":{"shape":"AssetListingDetails"},
         "name":{"shape":"AssetName"},
         "owningProjectId":{"shape":"ProjectId"},
@@ -5427,6 +5562,53 @@
         "updatedBy":{"shape":"UpdatedBy"}
       }
     },
+    "GetTimeSeriesDataPointInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "entityIdentifier",
+        "entityType",
+        "formName",
+        "identifier"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "entityIdentifier":{
+          "shape":"EntityIdentifier",
+          "location":"uri",
+          "locationName":"entityIdentifier"
+        },
+        "entityType":{
+          "shape":"TimeSeriesEntityType",
+          "location":"uri",
+          "locationName":"entityType"
+        },
+        "formName":{
+          "shape":"TimeSeriesFormName",
+          "location":"querystring",
+          "locationName":"formName"
+        },
+        "identifier":{
+          "shape":"TimeSeriesDataPointIdentifier",
+          "location":"uri",
+          "locationName":"identifier"
+        }
+      }
+    },
+    "GetTimeSeriesDataPointOutput":{
+      "type":"structure",
+      "members":{
+        "domainId":{"shape":"DomainId"},
+        "entityId":{"shape":"EntityId"},
+        "entityType":{"shape":"TimeSeriesEntityType"},
+        "form":{"shape":"TimeSeriesDataPointFormOutput"},
+        "formName":{"shape":"TimeSeriesFormName"}
+      }
+    },
     "GetUserProfileInput":{
       "type":"structure",
       "required":[
@@ -5557,6 +5739,7 @@
       "type":"structure",
       "required":["relationalFilterConfigurations"],
       "members":{
+        "autoImportDataQualityResult":{"shape":"Boolean"},
         "dataAccessRole":{"shape":"GlueRunConfigurationInputDataAccessRoleString"},
         "relationalFilterConfigurations":{"shape":"RelationalFilterConfigurations"}
       }
@@ -5570,6 +5753,7 @@
       "required":["relationalFilterConfigurations"],
       "members":{
         "accountId":{"shape":"GlueRunConfigurationOutputAccountIdString"},
+        "autoImportDataQualityResult":{"shape":"Boolean"},
         "dataAccessRole":{"shape":"GlueRunConfigurationOutputDataAccessRoleString"},
         "region":{"shape":"GlueRunConfigurationOutputRegionString"},
         "relationalFilterConfigurations":{"shape":"RelationalFilterConfigurations"}
@@ -6544,6 +6728,64 @@
         "tags":{"shape":"Tags"}
       }
     },
+    "ListTimeSeriesDataPointsInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "entityIdentifier",
+        "entityType",
+        "formName"
+      ],
+      "members":{
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "endedAt":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"endedAt"
+        },
+        "entityIdentifier":{
+          "shape":"EntityIdentifier",
+          "location":"uri",
+          "locationName":"entityIdentifier"
+        },
+        "entityType":{
+          "shape":"TimeSeriesEntityType",
+          "location":"uri",
+          "locationName":"entityType"
+        },
+        "formName":{
+          "shape":"TimeSeriesFormName",
+          "location":"querystring",
+          "locationName":"formName"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "startedAt":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"startedAt"
+        }
+      }
+    },
+    "ListTimeSeriesDataPointsOutput":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"TimeSeriesDataPointSummaryFormOutputList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListingId":{
       "type":"string",
       "pattern":"^[a-zA-Z0-9_-]{1,36}$"
@@ -6777,6 +7019,46 @@
       "type":"string",
       "max":8192,
       "min":1
+    },
+    "PostTimeSeriesDataPointsInput":{
+      "type":"structure",
+      "required":[
+        "domainIdentifier",
+        "entityIdentifier",
+        "entityType",
+        "forms"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "domainIdentifier":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainIdentifier"
+        },
+        "entityIdentifier":{
+          "shape":"EntityIdentifier",
+          "location":"uri",
+          "locationName":"entityIdentifier"
+        },
+        "entityType":{
+          "shape":"TimeSeriesEntityType",
+          "location":"uri",
+          "locationName":"entityType"
+        },
+        "forms":{"shape":"TimeSeriesDataPointFormInputList"}
+      }
+    },
+    "PostTimeSeriesDataPointsOutput":{
+      "type":"structure",
+      "members":{
+        "domainId":{"shape":"DomainId"},
+        "entityId":{"shape":"EntityId"},
+        "entityType":{"shape":"TimeSeriesEntityType"},
+        "forms":{"shape":"TimeSeriesDataPointFormOutputList"}
+      }
     },
     "PredictionChoices":{
       "type":"list",
@@ -7391,7 +7673,10 @@
     },
     "SearchOutputAdditionalAttribute":{
       "type":"string",
-      "enum":["FORMS"]
+      "enum":[
+        "FORMS",
+        "TIME_SERIES_DATA_POINT_FORMS"
+      ]
     },
     "SearchOutputAdditionalAttributes":{
       "type":"list",
@@ -8047,6 +8332,96 @@
       },
       "exception":true,
       "retryable":{"throttling":false}
+    },
+    "TimeSeriesDataPointFormInput":{
+      "type":"structure",
+      "required":[
+        "formName",
+        "timestamp",
+        "typeIdentifier"
+      ],
+      "members":{
+        "content":{"shape":"TimeSeriesDataPointFormInputContentString"},
+        "formName":{"shape":"TimeSeriesFormName"},
+        "timestamp":{"shape":"Timestamp"},
+        "typeIdentifier":{"shape":"FormTypeIdentifier"},
+        "typeRevision":{"shape":"Revision"}
+      }
+    },
+    "TimeSeriesDataPointFormInputContentString":{
+      "type":"string",
+      "max":500000,
+      "min":0
+    },
+    "TimeSeriesDataPointFormInputList":{
+      "type":"list",
+      "member":{"shape":"TimeSeriesDataPointFormInput"}
+    },
+    "TimeSeriesDataPointFormOutput":{
+      "type":"structure",
+      "required":[
+        "formName",
+        "timestamp",
+        "typeIdentifier"
+      ],
+      "members":{
+        "content":{"shape":"TimeSeriesDataPointFormOutputContentString"},
+        "formName":{"shape":"TimeSeriesFormName"},
+        "id":{"shape":"DataPointIdentifier"},
+        "timestamp":{"shape":"Timestamp"},
+        "typeIdentifier":{"shape":"FormTypeIdentifier"},
+        "typeRevision":{"shape":"Revision"}
+      }
+    },
+    "TimeSeriesDataPointFormOutputContentString":{
+      "type":"string",
+      "max":500000,
+      "min":0
+    },
+    "TimeSeriesDataPointFormOutputList":{
+      "type":"list",
+      "member":{"shape":"TimeSeriesDataPointFormOutput"}
+    },
+    "TimeSeriesDataPointIdentifier":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9_-]{1,36}$"
+    },
+    "TimeSeriesDataPointSummaryFormOutput":{
+      "type":"structure",
+      "required":[
+        "formName",
+        "timestamp",
+        "typeIdentifier"
+      ],
+      "members":{
+        "contentSummary":{"shape":"TimeSeriesDataPointSummaryFormOutputContentSummaryString"},
+        "formName":{"shape":"TimeSeriesFormName"},
+        "id":{"shape":"DataPointIdentifier"},
+        "timestamp":{"shape":"Timestamp"},
+        "typeIdentifier":{"shape":"FormTypeIdentifier"},
+        "typeRevision":{"shape":"Revision"}
+      }
+    },
+    "TimeSeriesDataPointSummaryFormOutputContentSummaryString":{
+      "type":"string",
+      "max":20000,
+      "min":0
+    },
+    "TimeSeriesDataPointSummaryFormOutputList":{
+      "type":"list",
+      "member":{"shape":"TimeSeriesDataPointSummaryFormOutput"}
+    },
+    "TimeSeriesEntityType":{
+      "type":"string",
+      "enum":[
+        "ASSET",
+        "LISTING"
+      ]
+    },
+    "TimeSeriesFormName":{
+      "type":"string",
+      "max":128,
+      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "Timezone":{

@@ -3355,6 +3355,17 @@
         "Value":{"shape":"Value"}
       }
     },
+    "PolicyAction":{
+      "type":"string",
+      "enum":[
+        "Delete",
+        "Retain",
+        "Snapshot",
+        "ReplaceAndDelete",
+        "ReplaceAndRetain",
+        "ReplaceAndSnapshot"
+      ]
+    },
     "PrivateTypeArn":{
       "type":"string",
       "max":1024,
@@ -3589,6 +3600,7 @@
     "ResourceChange":{
       "type":"structure",
       "members":{
+        "PolicyAction":{"shape":"PolicyAction"},
         "Action":{"shape":"ChangeAction"},
         "LogicalResourceId":{"shape":"LogicalResourceId"},
         "PhysicalResourceId":{"shape":"PhysicalResourceId"},
