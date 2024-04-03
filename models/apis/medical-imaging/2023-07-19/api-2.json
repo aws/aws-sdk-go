@@ -593,6 +593,32 @@
       "min":0,
       "sensitive":true
     },
+    "DICOMSeriesBodyPart":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "sensitive":true
+    },
+    "DICOMSeriesInstanceUID":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "pattern":"(?:[1-9][0-9]*|0)(\\.(?:[1-9][0-9]*|0))*",
+      "sensitive":true
+    },
+    "DICOMSeriesModality":{
+      "type":"string",
+      "max":16,
+      "min":0,
+      "sensitive":true
+    },
+    "DICOMSeriesNumber":{
+      "type":"integer",
+      "box":true,
+      "max":2147483647,
+      "min":-2147483648,
+      "sensitive":true
+    },
     "DICOMStudyDate":{
       "type":"string",
       "max":18,
@@ -645,6 +671,10 @@
         "DICOMNumberOfStudyRelatedSeries":{"shape":"DICOMNumberOfStudyRelatedSeries"},
         "DICOMNumberOfStudyRelatedInstances":{"shape":"DICOMNumberOfStudyRelatedInstances"},
         "DICOMAccessionNumber":{"shape":"DICOMAccessionNumber"},
+        "DICOMSeriesInstanceUID":{"shape":"DICOMSeriesInstanceUID"},
+        "DICOMSeriesModality":{"shape":"DICOMSeriesModality"},
+        "DICOMSeriesBodyPart":{"shape":"DICOMSeriesBodyPart"},
+        "DICOMSeriesNumber":{"shape":"DICOMSeriesNumber"},
         "DICOMStudyDate":{"shape":"DICOMStudyDate"},
         "DICOMStudyTime":{"shape":"DICOMStudyTime"}
       }
@@ -1255,7 +1285,9 @@
         "DICOMAccessionNumber":{"shape":"DICOMAccessionNumber"},
         "DICOMStudyId":{"shape":"DICOMStudyId"},
         "DICOMStudyInstanceUID":{"shape":"DICOMStudyInstanceUID"},
+        "DICOMSeriesInstanceUID":{"shape":"DICOMSeriesInstanceUID"},
         "createdAt":{"shape":"Date"},
+        "updatedAt":{"shape":"Date"},
         "DICOMStudyDateAndTime":{"shape":"DICOMStudyDateAndTime"}
       },
       "union":true
@@ -1263,7 +1295,8 @@
     "SearchCriteria":{
       "type":"structure",
       "members":{
-        "filters":{"shape":"SearchCriteriaFiltersList"}
+        "filters":{"shape":"SearchCriteriaFiltersList"},
+        "sort":{"shape":"Sort"}
       },
       "sensitive":true
     },
@@ -1324,6 +1357,7 @@
       "required":["imageSetsMetadataSummaries"],
       "members":{
         "imageSetsMetadataSummaries":{"shape":"ImageSetsMetadataSummaries"},
+        "sort":{"shape":"Sort"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1338,6 +1372,32 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Sort":{
+      "type":"structure",
+      "required":[
+        "sortOrder",
+        "sortField"
+      ],
+      "members":{
+        "sortOrder":{"shape":"SortOrder"},
+        "sortField":{"shape":"SortField"}
+      }
+    },
+    "SortField":{
+      "type":"string",
+      "enum":[
+        "updatedAt",
+        "createdAt",
+        "DICOMStudyDateAndTime"
+      ]
+    },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
     },
     "StartDICOMImportJobRequest":{
       "type":"structure",

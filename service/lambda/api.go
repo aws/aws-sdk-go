@@ -9264,7 +9264,7 @@ type CreateFunctionInput struct {
 	// (https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).
 	Handler *string `type:"string"`
 
-	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings)
+	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms)
 	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
@@ -21951,7 +21951,7 @@ type UpdateFunctionConfigurationInput struct {
 	// (https://docs.aws.amazon.com/lambda/latest/dg/foundation-progmodel.html).
 	Handler *string `type:"string"`
 
-	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html)
+	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms)
 	// that override the values in the container image Docker file.
 	ImageConfig *ImageConfig `type:"structure"`
 
@@ -23195,6 +23195,9 @@ const (
 	// RuntimeRuby32 is a Runtime enum value
 	RuntimeRuby32 = "ruby3.2"
 
+	// RuntimeRuby33 is a Runtime enum value
+	RuntimeRuby33 = "ruby3.3"
+
 	// RuntimePython311 is a Runtime enum value
 	RuntimePython311 = "python3.11"
 
@@ -23246,6 +23249,7 @@ func Runtime_Values() []string {
 		RuntimePython310,
 		RuntimeJava17,
 		RuntimeRuby32,
+		RuntimeRuby33,
 		RuntimePython311,
 		RuntimeNodejs20X,
 		RuntimeProvidedAl2023,

@@ -212,6 +212,10 @@ type DataZoneAPI interface {
 	DeleteSubscriptionTargetWithContext(aws.Context, *datazone.DeleteSubscriptionTargetInput, ...request.Option) (*datazone.DeleteSubscriptionTargetOutput, error)
 	DeleteSubscriptionTargetRequest(*datazone.DeleteSubscriptionTargetInput) (*request.Request, *datazone.DeleteSubscriptionTargetOutput)
 
+	DeleteTimeSeriesDataPoints(*datazone.DeleteTimeSeriesDataPointsInput) (*datazone.DeleteTimeSeriesDataPointsOutput, error)
+	DeleteTimeSeriesDataPointsWithContext(aws.Context, *datazone.DeleteTimeSeriesDataPointsInput, ...request.Option) (*datazone.DeleteTimeSeriesDataPointsOutput, error)
+	DeleteTimeSeriesDataPointsRequest(*datazone.DeleteTimeSeriesDataPointsInput) (*request.Request, *datazone.DeleteTimeSeriesDataPointsOutput)
+
 	GetAsset(*datazone.GetAssetInput) (*datazone.GetAssetOutput, error)
 	GetAssetWithContext(aws.Context, *datazone.GetAssetInput, ...request.Option) (*datazone.GetAssetOutput, error)
 	GetAssetRequest(*datazone.GetAssetInput) (*request.Request, *datazone.GetAssetOutput)
@@ -295,6 +299,10 @@ type DataZoneAPI interface {
 	GetSubscriptionTarget(*datazone.GetSubscriptionTargetInput) (*datazone.GetSubscriptionTargetOutput, error)
 	GetSubscriptionTargetWithContext(aws.Context, *datazone.GetSubscriptionTargetInput, ...request.Option) (*datazone.GetSubscriptionTargetOutput, error)
 	GetSubscriptionTargetRequest(*datazone.GetSubscriptionTargetInput) (*request.Request, *datazone.GetSubscriptionTargetOutput)
+
+	GetTimeSeriesDataPoint(*datazone.GetTimeSeriesDataPointInput) (*datazone.GetTimeSeriesDataPointOutput, error)
+	GetTimeSeriesDataPointWithContext(aws.Context, *datazone.GetTimeSeriesDataPointInput, ...request.Option) (*datazone.GetTimeSeriesDataPointOutput, error)
+	GetTimeSeriesDataPointRequest(*datazone.GetTimeSeriesDataPointInput) (*request.Request, *datazone.GetTimeSeriesDataPointOutput)
 
 	GetUserProfile(*datazone.GetUserProfileInput) (*datazone.GetUserProfileOutput, error)
 	GetUserProfileWithContext(aws.Context, *datazone.GetUserProfileInput, ...request.Option) (*datazone.GetUserProfileOutput, error)
@@ -422,6 +430,17 @@ type DataZoneAPI interface {
 	ListTagsForResource(*datazone.ListTagsForResourceInput) (*datazone.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *datazone.ListTagsForResourceInput, ...request.Option) (*datazone.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*datazone.ListTagsForResourceInput) (*request.Request, *datazone.ListTagsForResourceOutput)
+
+	ListTimeSeriesDataPoints(*datazone.ListTimeSeriesDataPointsInput) (*datazone.ListTimeSeriesDataPointsOutput, error)
+	ListTimeSeriesDataPointsWithContext(aws.Context, *datazone.ListTimeSeriesDataPointsInput, ...request.Option) (*datazone.ListTimeSeriesDataPointsOutput, error)
+	ListTimeSeriesDataPointsRequest(*datazone.ListTimeSeriesDataPointsInput) (*request.Request, *datazone.ListTimeSeriesDataPointsOutput)
+
+	ListTimeSeriesDataPointsPages(*datazone.ListTimeSeriesDataPointsInput, func(*datazone.ListTimeSeriesDataPointsOutput, bool) bool) error
+	ListTimeSeriesDataPointsPagesWithContext(aws.Context, *datazone.ListTimeSeriesDataPointsInput, func(*datazone.ListTimeSeriesDataPointsOutput, bool) bool, ...request.Option) error
+
+	PostTimeSeriesDataPoints(*datazone.PostTimeSeriesDataPointsInput) (*datazone.PostTimeSeriesDataPointsOutput, error)
+	PostTimeSeriesDataPointsWithContext(aws.Context, *datazone.PostTimeSeriesDataPointsInput, ...request.Option) (*datazone.PostTimeSeriesDataPointsOutput, error)
+	PostTimeSeriesDataPointsRequest(*datazone.PostTimeSeriesDataPointsInput) (*request.Request, *datazone.PostTimeSeriesDataPointsOutput)
 
 	PutEnvironmentBlueprintConfiguration(*datazone.PutEnvironmentBlueprintConfigurationInput) (*datazone.PutEnvironmentBlueprintConfigurationOutput, error)
 	PutEnvironmentBlueprintConfigurationWithContext(aws.Context, *datazone.PutEnvironmentBlueprintConfigurationInput, ...request.Option) (*datazone.PutEnvironmentBlueprintConfigurationOutput, error)

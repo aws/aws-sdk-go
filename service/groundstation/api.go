@@ -4420,6 +4420,20 @@ type ContactData struct {
 
 	// Tags assigned to a contact.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Projected time in UTC your satellite will set below the receive mask (https://docs.aws.amazon.com/ground-station/latest/ug/site-masks.html).
+	// This time is based on the satellite's current active ephemeris for future
+	// contacts and the ephemeris that was active during contact execution for completed
+	// contacts. This field is not present for contacts with a SCHEDULING or SCHEDULED
+	// status.
+	VisibilityEndTime *time.Time `locationName:"visibilityEndTime" type:"timestamp"`
+
+	// Projected time in UTC your satellite will rise above the receive mask (https://docs.aws.amazon.com/ground-station/latest/ug/site-masks.html).
+	// This time is based on the satellite's current active ephemeris for future
+	// contacts and the ephemeris that was active during contact execution for completed
+	// contacts. This field is not present for contacts with a SCHEDULING or SCHEDULED
+	// status.
+	VisibilityStartTime *time.Time `locationName:"visibilityStartTime" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -4515,6 +4529,18 @@ func (s *ContactData) SetStartTime(v time.Time) *ContactData {
 // SetTags sets the Tags field's value.
 func (s *ContactData) SetTags(v map[string]*string) *ContactData {
 	s.Tags = v
+	return s
+}
+
+// SetVisibilityEndTime sets the VisibilityEndTime field's value.
+func (s *ContactData) SetVisibilityEndTime(v time.Time) *ContactData {
+	s.VisibilityEndTime = &v
+	return s
+}
+
+// SetVisibilityStartTime sets the VisibilityStartTime field's value.
+func (s *ContactData) SetVisibilityStartTime(v time.Time) *ContactData {
+	s.VisibilityStartTime = &v
 	return s
 }
 
@@ -4942,12 +4968,12 @@ func (s *CreateEphemerisOutput) SetEphemerisId(v string) *CreateEphemerisOutput 
 type CreateMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amount of time after a contact ends that you’d like to receive a CloudWatch
-	// event indicating the pass has finished.
+	// Amount of time after a contact ends that you’d like to receive a Ground
+	// Station Contact State Change event indicating the pass has finished.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" type:"integer"`
 
-	// Amount of time prior to contact start you’d like to receive a CloudWatch
-	// event indicating an upcoming pass.
+	// Amount of time prior to contact start you’d like to receive a Ground Station
+	// Contact State Change event indicating an upcoming pass.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" type:"integer"`
 
 	// A list of lists of ARNs. Each list of ARNs is an edge, with a from Config
@@ -6012,6 +6038,18 @@ type DescribeContactOutput struct {
 
 	// Tags assigned to a contact.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Projected time in UTC your satellite will set below the receive mask (https://docs.aws.amazon.com/ground-station/latest/ug/site-masks.html).
+	// This time is based on the satellite's current active ephemeris for future
+	// contacts and the ephemeris that was active during contact execution for completed
+	// contacts.
+	VisibilityEndTime *time.Time `locationName:"visibilityEndTime" type:"timestamp"`
+
+	// Projected time in UTC your satellite will rise above the receive mask (https://docs.aws.amazon.com/ground-station/latest/ug/site-masks.html).
+	// This time is based on the satellite's current active ephemeris for future
+	// contacts and the ephemeris that was active during contact execution for completed
+	// contacts.
+	VisibilityStartTime *time.Time `locationName:"visibilityStartTime" type:"timestamp"`
 }
 
 // String returns the string representation.
@@ -6113,6 +6151,18 @@ func (s *DescribeContactOutput) SetStartTime(v time.Time) *DescribeContactOutput
 // SetTags sets the Tags field's value.
 func (s *DescribeContactOutput) SetTags(v map[string]*string) *DescribeContactOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVisibilityEndTime sets the VisibilityEndTime field's value.
+func (s *DescribeContactOutput) SetVisibilityEndTime(v time.Time) *DescribeContactOutput {
+	s.VisibilityEndTime = &v
+	return s
+}
+
+// SetVisibilityStartTime sets the VisibilityStartTime field's value.
+func (s *DescribeContactOutput) SetVisibilityStartTime(v time.Time) *DescribeContactOutput {
+	s.VisibilityStartTime = &v
 	return s
 }
 
@@ -10966,12 +11016,12 @@ func (s *UpdateEphemerisOutput) SetEphemerisId(v string) *UpdateEphemerisOutput 
 type UpdateMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amount of time after a contact ends that you’d like to receive a CloudWatch
-	// event indicating the pass has finished.
+	// Amount of time after a contact ends that you’d like to receive a Ground
+	// Station Contact State Change event indicating the pass has finished.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" type:"integer"`
 
-	// Amount of time after a contact ends that you’d like to receive a CloudWatch
-	// event indicating the pass has finished.
+	// Amount of time after a contact ends that you’d like to receive a Ground
+	// Station Contact State Change event indicating the pass has finished.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" type:"integer"`
 
 	// A list of lists of ARNs. Each list of ARNs is an edge, with a from Config

@@ -7381,6 +7381,10 @@ func (s *AudioCodecSettings) SetWavSettings(v *WavSettings) *AudioCodecSettings 
 type AudioDescription struct {
 	_ struct{} `type:"structure"`
 
+	// Identifies the DASH roles to assign to this audio output. Applies only when
+	// the audio output is configured for DVB DASH accessibility signaling.
+	AudioDashRoles []*string `locationName:"audioDashRoles" type:"list" enum:"DashRoleAudio"`
+
 	// Advanced audio normalization settings.
 	AudioNormalizationSettings *AudioNormalizationSettings `locationName:"audioNormalizationSettings" type:"structure"`
 
@@ -7407,6 +7411,11 @@ type AudioDescription struct {
 
 	// Audio codec settings.
 	CodecSettings *AudioCodecSettings `locationName:"codecSettings" type:"structure"`
+
+	// Identifies DVB DASH accessibility signaling in this audio output. Used in
+	// Microsoft Smooth Streaming outputs to signal accessibility information to
+	// packagers.
+	DvbDashAccessibility *string `locationName:"dvbDashAccessibility" type:"string" enum:"DvbDashAccessibility"`
 
 	// RFC 5646 language code representing the language of the audio output track.
 	// Only used if languageControlMode is useConfigured, or there is no ISO 639
@@ -7487,6 +7496,12 @@ func (s *AudioDescription) Validate() error {
 	return nil
 }
 
+// SetAudioDashRoles sets the AudioDashRoles field's value.
+func (s *AudioDescription) SetAudioDashRoles(v []*string) *AudioDescription {
+	s.AudioDashRoles = v
+	return s
+}
+
 // SetAudioNormalizationSettings sets the AudioNormalizationSettings field's value.
 func (s *AudioDescription) SetAudioNormalizationSettings(v *AudioNormalizationSettings) *AudioDescription {
 	s.AudioNormalizationSettings = v
@@ -7520,6 +7535,12 @@ func (s *AudioDescription) SetAudioWatermarkingSettings(v *AudioWatermarkSetting
 // SetCodecSettings sets the CodecSettings field's value.
 func (s *AudioDescription) SetCodecSettings(v *AudioCodecSettings) *AudioDescription {
 	s.CodecSettings = v
+	return s
+}
+
+// SetDvbDashAccessibility sets the DvbDashAccessibility field's value.
+func (s *AudioDescription) SetDvbDashAccessibility(v string) *AudioDescription {
+	s.DvbDashAccessibility = &v
 	return s
 }
 
@@ -9768,6 +9789,10 @@ type CaptionDescription struct {
 	// is added to HLS output group and MediaPackage output group.
 	Accessibility *string `locationName:"accessibility" type:"string" enum:"AccessibilityType"`
 
+	// Identifies the DASH roles to assign to this captions output. Applies only
+	// when the captions output is configured for DVB DASH accessibility signaling.
+	CaptionDashRoles []*string `locationName:"captionDashRoles" type:"list" enum:"DashRoleCaption"`
+
 	// Specifies which input caption selector to use as a caption source when generating
 	// output captions. This field should match a captionSelector name.
 	//
@@ -9777,6 +9802,11 @@ type CaptionDescription struct {
 	// Additional settings for captions destination that depend on the destination
 	// type.
 	DestinationSettings *CaptionDestinationSettings `locationName:"destinationSettings" type:"structure"`
+
+	// Identifies DVB DASH accessibility signaling in this captions output. Used
+	// in Microsoft Smooth Streaming outputs to signal accessibility information
+	// to packagers.
+	DvbDashAccessibility *string `locationName:"dvbDashAccessibility" type:"string" enum:"DvbDashAccessibility"`
 
 	// ISO 639-2 three-digit code: http://www.loc.gov/standards/iso639-2/
 	LanguageCode *string `locationName:"languageCode" type:"string"`
@@ -9837,6 +9867,12 @@ func (s *CaptionDescription) SetAccessibility(v string) *CaptionDescription {
 	return s
 }
 
+// SetCaptionDashRoles sets the CaptionDashRoles field's value.
+func (s *CaptionDescription) SetCaptionDashRoles(v []*string) *CaptionDescription {
+	s.CaptionDashRoles = v
+	return s
+}
+
 // SetCaptionSelectorName sets the CaptionSelectorName field's value.
 func (s *CaptionDescription) SetCaptionSelectorName(v string) *CaptionDescription {
 	s.CaptionSelectorName = &v
@@ -9846,6 +9882,12 @@ func (s *CaptionDescription) SetCaptionSelectorName(v string) *CaptionDescriptio
 // SetDestinationSettings sets the DestinationSettings field's value.
 func (s *CaptionDescription) SetDestinationSettings(v *CaptionDestinationSettings) *CaptionDescription {
 	s.DestinationSettings = v
+	return s
+}
+
+// SetDvbDashAccessibility sets the DvbDashAccessibility field's value.
+func (s *CaptionDescription) SetDvbDashAccessibility(v string) *CaptionDescription {
+	s.DvbDashAccessibility = &v
 	return s
 }
 
@@ -10898,6 +10940,139 @@ func (s ClaimDeviceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ClaimDeviceOutput) GoString() string {
 	return s.String()
+}
+
+// Cmaf Ingest Group Settings
+type CmafIngestGroupSettings struct {
+	_ struct{} `type:"structure"`
+
+	// A HTTP destination for the tracks
+	//
+	// Destination is a required field
+	Destination *OutputLocationRef `locationName:"destination" type:"structure" required:"true"`
+
+	// If set to passthrough, Nielsen inaudible tones for media tracking will be
+	// detected in the input audio and an equivalent ID3 tag will be inserted in
+	// the output.
+	NielsenId3Behavior *string `locationName:"nielsenId3Behavior" type:"string" enum:"CmafNielsenId3Behavior"`
+
+	// Type of scte35 track to add. none or scte35WithoutSegmentation
+	Scte35Type *string `locationName:"scte35Type" type:"string" enum:"Scte35Type"`
+
+	// The nominal duration of segments. The units are specified in SegmentLengthUnits.
+	// The segments will end on the next keyframe after the specified duration,
+	// so the actual segment length might be longer, and it might be a fraction
+	// of the units.
+	SegmentLength *int64 `locationName:"segmentLength" min:"1" type:"integer"`
+
+	// Time unit for segment length parameter.
+	SegmentLengthUnits *string `locationName:"segmentLengthUnits" type:"string" enum:"CmafIngestSegmentLengthUnits"`
+
+	// Number of milliseconds to delay the output from the second pipeline.
+	SendDelayMs *int64 `locationName:"sendDelayMs" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafIngestGroupSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafIngestGroupSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CmafIngestGroupSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CmafIngestGroupSettings"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.SegmentLength != nil && *s.SegmentLength < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SegmentLength", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *CmafIngestGroupSettings) SetDestination(v *OutputLocationRef) *CmafIngestGroupSettings {
+	s.Destination = v
+	return s
+}
+
+// SetNielsenId3Behavior sets the NielsenId3Behavior field's value.
+func (s *CmafIngestGroupSettings) SetNielsenId3Behavior(v string) *CmafIngestGroupSettings {
+	s.NielsenId3Behavior = &v
+	return s
+}
+
+// SetScte35Type sets the Scte35Type field's value.
+func (s *CmafIngestGroupSettings) SetScte35Type(v string) *CmafIngestGroupSettings {
+	s.Scte35Type = &v
+	return s
+}
+
+// SetSegmentLength sets the SegmentLength field's value.
+func (s *CmafIngestGroupSettings) SetSegmentLength(v int64) *CmafIngestGroupSettings {
+	s.SegmentLength = &v
+	return s
+}
+
+// SetSegmentLengthUnits sets the SegmentLengthUnits field's value.
+func (s *CmafIngestGroupSettings) SetSegmentLengthUnits(v string) *CmafIngestGroupSettings {
+	s.SegmentLengthUnits = &v
+	return s
+}
+
+// SetSendDelayMs sets the SendDelayMs field's value.
+func (s *CmafIngestGroupSettings) SetSendDelayMs(v int64) *CmafIngestGroupSettings {
+	s.SendDelayMs = &v
+	return s
+}
+
+// Cmaf Ingest Output Settings
+type CmafIngestOutputSettings struct {
+	_ struct{} `type:"structure"`
+
+	// String concatenated to the end of the destination filename. Required for
+	// multiple outputs of the same type.
+	NameModifier *string `locationName:"nameModifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafIngestOutputSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafIngestOutputSettings) GoString() string {
+	return s.String()
+}
+
+// SetNameModifier sets the NameModifier field's value.
+func (s *CmafIngestOutputSettings) SetNameModifier(v string) *CmafIngestOutputSettings {
+	s.NameModifier = &v
+	return s
 }
 
 // Property of ColorCorrectionSettings. Used for custom color space conversion.
@@ -26969,6 +27144,9 @@ type OutputGroupSettings struct {
 	// Archive Group Settings
 	ArchiveGroupSettings *ArchiveGroupSettings `locationName:"archiveGroupSettings" type:"structure"`
 
+	// Cmaf Ingest Group Settings
+	CmafIngestGroupSettings *CmafIngestGroupSettings `locationName:"cmafIngestGroupSettings" type:"structure"`
+
 	// Frame Capture Group Settings
 	FrameCaptureGroupSettings *FrameCaptureGroupSettings `locationName:"frameCaptureGroupSettings" type:"structure"`
 
@@ -27017,6 +27195,11 @@ func (s *OutputGroupSettings) Validate() error {
 			invalidParams.AddNested("ArchiveGroupSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CmafIngestGroupSettings != nil {
+		if err := s.CmafIngestGroupSettings.Validate(); err != nil {
+			invalidParams.AddNested("CmafIngestGroupSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FrameCaptureGroupSettings != nil {
 		if err := s.FrameCaptureGroupSettings.Validate(); err != nil {
 			invalidParams.AddNested("FrameCaptureGroupSettings", err.(request.ErrInvalidParams))
@@ -27052,6 +27235,12 @@ func (s *OutputGroupSettings) Validate() error {
 // SetArchiveGroupSettings sets the ArchiveGroupSettings field's value.
 func (s *OutputGroupSettings) SetArchiveGroupSettings(v *ArchiveGroupSettings) *OutputGroupSettings {
 	s.ArchiveGroupSettings = v
+	return s
+}
+
+// SetCmafIngestGroupSettings sets the CmafIngestGroupSettings field's value.
+func (s *OutputGroupSettings) SetCmafIngestGroupSettings(v *CmafIngestGroupSettings) *OutputGroupSettings {
+	s.CmafIngestGroupSettings = v
 	return s
 }
 
@@ -27176,6 +27365,9 @@ type OutputSettings struct {
 	// Archive Output Settings
 	ArchiveOutputSettings *ArchiveOutputSettings `locationName:"archiveOutputSettings" type:"structure"`
 
+	// Cmaf Ingest Output Settings
+	CmafIngestOutputSettings *CmafIngestOutputSettings `locationName:"cmafIngestOutputSettings" type:"structure"`
+
 	// Frame Capture Output Settings
 	FrameCaptureOutputSettings *FrameCaptureOutputSettings `locationName:"frameCaptureOutputSettings" type:"structure"`
 
@@ -27254,6 +27446,12 @@ func (s *OutputSettings) Validate() error {
 // SetArchiveOutputSettings sets the ArchiveOutputSettings field's value.
 func (s *OutputSettings) SetArchiveOutputSettings(v *ArchiveOutputSettings) *OutputSettings {
 	s.ArchiveOutputSettings = v
+	return s
+}
+
+// SetCmafIngestOutputSettings sets the CmafIngestOutputSettings field's value.
+func (s *OutputSettings) SetCmafIngestOutputSettings(v *CmafIngestOutputSettings) *OutputSettings {
+	s.CmafIngestOutputSettings = v
 	return s
 }
 
@@ -35196,6 +35394,40 @@ func ChannelState_Values() []string {
 	}
 }
 
+// Cmaf Ingest Segment Length Units
+const (
+	// CmafIngestSegmentLengthUnitsMilliseconds is a CmafIngestSegmentLengthUnits enum value
+	CmafIngestSegmentLengthUnitsMilliseconds = "MILLISECONDS"
+
+	// CmafIngestSegmentLengthUnitsSeconds is a CmafIngestSegmentLengthUnits enum value
+	CmafIngestSegmentLengthUnitsSeconds = "SECONDS"
+)
+
+// CmafIngestSegmentLengthUnits_Values returns all elements of the CmafIngestSegmentLengthUnits enum
+func CmafIngestSegmentLengthUnits_Values() []string {
+	return []string{
+		CmafIngestSegmentLengthUnitsMilliseconds,
+		CmafIngestSegmentLengthUnitsSeconds,
+	}
+}
+
+// Cmaf Nielsen Id3 Behavior
+const (
+	// CmafNielsenId3BehaviorNoPassthrough is a CmafNielsenId3Behavior enum value
+	CmafNielsenId3BehaviorNoPassthrough = "NO_PASSTHROUGH"
+
+	// CmafNielsenId3BehaviorPassthrough is a CmafNielsenId3Behavior enum value
+	CmafNielsenId3BehaviorPassthrough = "PASSTHROUGH"
+)
+
+// CmafNielsenId3Behavior_Values returns all elements of the CmafNielsenId3Behavior enum
+func CmafNielsenId3Behavior_Values() []string {
+	return []string{
+		CmafNielsenId3BehaviorNoPassthrough,
+		CmafNielsenId3BehaviorPassthrough,
+	}
+}
+
 // Property of colorCorrections. When you are using 3D LUT files to perform
 // color conversion on video, these are the supported color spaces.
 const (
@@ -35231,6 +35463,112 @@ const (
 func ContentType_Values() []string {
 	return []string{
 		ContentTypeImageJpeg,
+	}
+}
+
+// Dash Role Audio
+const (
+	// DashRoleAudioAlternate is a DashRoleAudio enum value
+	DashRoleAudioAlternate = "ALTERNATE"
+
+	// DashRoleAudioCommentary is a DashRoleAudio enum value
+	DashRoleAudioCommentary = "COMMENTARY"
+
+	// DashRoleAudioDescription is a DashRoleAudio enum value
+	DashRoleAudioDescription = "DESCRIPTION"
+
+	// DashRoleAudioDub is a DashRoleAudio enum value
+	DashRoleAudioDub = "DUB"
+
+	// DashRoleAudioEmergency is a DashRoleAudio enum value
+	DashRoleAudioEmergency = "EMERGENCY"
+
+	// DashRoleAudioEnhancedAudioIntelligibility is a DashRoleAudio enum value
+	DashRoleAudioEnhancedAudioIntelligibility = "ENHANCED-AUDIO-INTELLIGIBILITY"
+
+	// DashRoleAudioKaraoke is a DashRoleAudio enum value
+	DashRoleAudioKaraoke = "KARAOKE"
+
+	// DashRoleAudioMain is a DashRoleAudio enum value
+	DashRoleAudioMain = "MAIN"
+
+	// DashRoleAudioSupplementary is a DashRoleAudio enum value
+	DashRoleAudioSupplementary = "SUPPLEMENTARY"
+)
+
+// DashRoleAudio_Values returns all elements of the DashRoleAudio enum
+func DashRoleAudio_Values() []string {
+	return []string{
+		DashRoleAudioAlternate,
+		DashRoleAudioCommentary,
+		DashRoleAudioDescription,
+		DashRoleAudioDub,
+		DashRoleAudioEmergency,
+		DashRoleAudioEnhancedAudioIntelligibility,
+		DashRoleAudioKaraoke,
+		DashRoleAudioMain,
+		DashRoleAudioSupplementary,
+	}
+}
+
+// Dash Role Caption
+const (
+	// DashRoleCaptionAlternate is a DashRoleCaption enum value
+	DashRoleCaptionAlternate = "ALTERNATE"
+
+	// DashRoleCaptionCaption is a DashRoleCaption enum value
+	DashRoleCaptionCaption = "CAPTION"
+
+	// DashRoleCaptionCommentary is a DashRoleCaption enum value
+	DashRoleCaptionCommentary = "COMMENTARY"
+
+	// DashRoleCaptionDescription is a DashRoleCaption enum value
+	DashRoleCaptionDescription = "DESCRIPTION"
+
+	// DashRoleCaptionDub is a DashRoleCaption enum value
+	DashRoleCaptionDub = "DUB"
+
+	// DashRoleCaptionEasyreader is a DashRoleCaption enum value
+	DashRoleCaptionEasyreader = "EASYREADER"
+
+	// DashRoleCaptionEmergency is a DashRoleCaption enum value
+	DashRoleCaptionEmergency = "EMERGENCY"
+
+	// DashRoleCaptionForcedSubtitle is a DashRoleCaption enum value
+	DashRoleCaptionForcedSubtitle = "FORCED-SUBTITLE"
+
+	// DashRoleCaptionKaraoke is a DashRoleCaption enum value
+	DashRoleCaptionKaraoke = "KARAOKE"
+
+	// DashRoleCaptionMain is a DashRoleCaption enum value
+	DashRoleCaptionMain = "MAIN"
+
+	// DashRoleCaptionMetadata is a DashRoleCaption enum value
+	DashRoleCaptionMetadata = "METADATA"
+
+	// DashRoleCaptionSubtitle is a DashRoleCaption enum value
+	DashRoleCaptionSubtitle = "SUBTITLE"
+
+	// DashRoleCaptionSupplementary is a DashRoleCaption enum value
+	DashRoleCaptionSupplementary = "SUPPLEMENTARY"
+)
+
+// DashRoleCaption_Values returns all elements of the DashRoleCaption enum
+func DashRoleCaption_Values() []string {
+	return []string{
+		DashRoleCaptionAlternate,
+		DashRoleCaptionCaption,
+		DashRoleCaptionCommentary,
+		DashRoleCaptionDescription,
+		DashRoleCaptionDub,
+		DashRoleCaptionEasyreader,
+		DashRoleCaptionEmergency,
+		DashRoleCaptionForcedSubtitle,
+		DashRoleCaptionKaraoke,
+		DashRoleCaptionMain,
+		DashRoleCaptionMetadata,
+		DashRoleCaptionSubtitle,
+		DashRoleCaptionSupplementary,
 	}
 }
 
@@ -35318,6 +35656,43 @@ func DolbyEProgramSelection_Values() []string {
 		DolbyEProgramSelectionProgram6,
 		DolbyEProgramSelectionProgram7,
 		DolbyEProgramSelectionProgram8,
+	}
+}
+
+// Dvb Dash Accessibility
+const (
+	// DvbDashAccessibilityDvbdash1VisuallyImpaired is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash1VisuallyImpaired = "DVBDASH_1_VISUALLY_IMPAIRED"
+
+	// DvbDashAccessibilityDvbdash2HardOfHearing is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash2HardOfHearing = "DVBDASH_2_HARD_OF_HEARING"
+
+	// DvbDashAccessibilityDvbdash3SupplementalCommentary is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash3SupplementalCommentary = "DVBDASH_3_SUPPLEMENTAL_COMMENTARY"
+
+	// DvbDashAccessibilityDvbdash4DirectorsCommentary is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash4DirectorsCommentary = "DVBDASH_4_DIRECTORS_COMMENTARY"
+
+	// DvbDashAccessibilityDvbdash5EducationalNotes is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash5EducationalNotes = "DVBDASH_5_EDUCATIONAL_NOTES"
+
+	// DvbDashAccessibilityDvbdash6MainProgram is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash6MainProgram = "DVBDASH_6_MAIN_PROGRAM"
+
+	// DvbDashAccessibilityDvbdash7CleanFeed is a DvbDashAccessibility enum value
+	DvbDashAccessibilityDvbdash7CleanFeed = "DVBDASH_7_CLEAN_FEED"
+)
+
+// DvbDashAccessibility_Values returns all elements of the DvbDashAccessibility enum
+func DvbDashAccessibility_Values() []string {
+	return []string{
+		DvbDashAccessibilityDvbdash1VisuallyImpaired,
+		DvbDashAccessibilityDvbdash2HardOfHearing,
+		DvbDashAccessibilityDvbdash3SupplementalCommentary,
+		DvbDashAccessibilityDvbdash4DirectorsCommentary,
+		DvbDashAccessibilityDvbdash5EducationalNotes,
+		DvbDashAccessibilityDvbdash6MainProgram,
+		DvbDashAccessibilityDvbdash7CleanFeed,
 	}
 }
 
@@ -39713,6 +40088,23 @@ func Scte35SpliceInsertWebDeliveryAllowedBehavior_Values() []string {
 	return []string{
 		Scte35SpliceInsertWebDeliveryAllowedBehaviorFollow,
 		Scte35SpliceInsertWebDeliveryAllowedBehaviorIgnore,
+	}
+}
+
+// Scte35 Type
+const (
+	// Scte35TypeNone is a Scte35Type enum value
+	Scte35TypeNone = "NONE"
+
+	// Scte35TypeScte35WithoutSegmentation is a Scte35Type enum value
+	Scte35TypeScte35WithoutSegmentation = "SCTE_35_WITHOUT_SEGMENTATION"
+)
+
+// Scte35Type_Values returns all elements of the Scte35Type enum
+func Scte35Type_Values() []string {
+	return []string{
+		Scte35TypeNone,
+		Scte35TypeScte35WithoutSegmentation,
 	}
 }
 

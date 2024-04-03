@@ -54,7 +54,8 @@
     "RestoreDBClusterFromSnapshot": "<p>Creates a new cluster from a snapshot or cluster snapshot.</p> <p>If a snapshot is specified, the target cluster is created from the source DB snapshot with a default configuration and default security group.</p> <p>If a cluster snapshot is specified, the target cluster is created from the source cluster restore point with the same configuration as the original source DB cluster, except that the new cluster is created with the default security group.</p>",
     "RestoreDBClusterToPointInTime": "<p>Restores a cluster to an arbitrary point in time. Users can restore to any point in time before <code>LatestRestorableTime</code> for up to <code>BackupRetentionPeriod</code> days. The target cluster is created from the source cluster with the same configuration as the original cluster, except that the new cluster is created with the default security group. </p>",
     "StartDBCluster": "<p>Restarts the stopped cluster that is specified by <code>DBClusterIdentifier</code>. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>",
-    "StopDBCluster": "<p>Stops the running cluster that is specified by <code>DBClusterIdentifier</code>. The cluster must be in the <i>available</i> state. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>"
+    "StopDBCluster": "<p>Stops the running cluster that is specified by <code>DBClusterIdentifier</code>. The cluster must be in the <i>available</i> state. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>",
+    "SwitchoverGlobalCluster": "<p>Switches over the specified secondary Amazon DocumentDB cluster to be the new primary Amazon DocumentDB cluster in the global database cluster.</p>"
   },
   "shapes": {
     "AddSourceIdentifierToSubscriptionMessage": {
@@ -887,7 +888,8 @@
         "DeleteGlobalClusterResult$GlobalCluster": null,
         "GlobalClusterList$member": null,
         "ModifyGlobalClusterResult$GlobalCluster": null,
-        "RemoveFromGlobalClusterResult$GlobalCluster": null
+        "RemoveFromGlobalClusterResult$GlobalCluster": null,
+        "SwitchoverGlobalClusterResult$GlobalCluster": null
       }
     },
     "GlobalClusterAlreadyExistsFault": {
@@ -905,7 +907,8 @@
         "GlobalCluster$GlobalClusterIdentifier": "<p>Contains a user-supplied global cluster identifier. This identifier is the unique key that identifies a global cluster. </p>",
         "ModifyGlobalClusterMessage$GlobalClusterIdentifier": "<p>The identifier for the global cluster being modified. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing global cluster.</p> </li> </ul>",
         "ModifyGlobalClusterMessage$NewGlobalClusterIdentifier": "<p>The new identifier for a global cluster when you modify a global cluster. This value is stored as a lowercase string.</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> <p>The first character must be a letter</p> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
-        "RemoveFromGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier to detach from the Amazon DocumentDB global cluster. </p>"
+        "RemoveFromGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier to detach from the Amazon DocumentDB global cluster. </p>",
+        "SwitchoverGlobalClusterMessage$GlobalClusterIdentifier": "<p>The identifier of the Amazon DocumentDB global database cluster to switch over. The identifier is the unique key assigned by the user when the cluster is created. In other words, it's the name of the global cluster. This parameter isn’t case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing global cluster (Amazon DocumentDB global database).</p> </li> <li> <p>Minimum length of 1. Maximum length of 255.</p> </li> </ul> <p>Pattern: <code>[A-Za-z][0-9A-Za-z-:._]*</code> </p>"
       }
     },
     "GlobalClusterList": {
@@ -1682,6 +1685,7 @@
         "Subnet$SubnetIdentifier": "<p>Specifies the identifier of the subnet.</p>",
         "Subnet$SubnetStatus": "<p>Specifies the status of the subnet.</p>",
         "SubnetIdentifierList$member": null,
+        "SwitchoverGlobalClusterMessage$TargetDbClusterIdentifier": "<p>The identifier of the secondary Amazon DocumentDB cluster to promote to the new primary for the global database cluster. Use the Amazon Resource Name (ARN) for the identifier so that Amazon DocumentDB can locate the cluster in its Amazon Web Services region.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing secondary cluster.</p> </li> <li> <p>Minimum length of 1. Maximum length of 255.</p> </li> </ul> <p>Pattern: <code>[A-Za-z][0-9A-Za-z-:._]*</code> </p>",
         "Tag$Key": "<p>The required name of the tag. The string value can be from 1 to 128 Unicode characters in length and can't be prefixed with \"<code>aws:</code>\" or \"<code>rds:</code>\". The string can contain only the set of Unicode letters, digits, white space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
         "Tag$Value": "<p>The optional value of the tag. The string value can be from 1 to 256 Unicode characters in length and can't be prefixed with \"<code>aws:</code>\" or \"<code>rds:</code>\". The string can contain only the set of Unicode letters, digits, white space, '_', '.', '/', '=', '+', '-' (Java regex: \"^([\\\\p{L}\\\\p{Z}\\\\p{N}_.:/=+\\\\-]*)$\").</p>",
         "UpgradeTarget$Engine": "<p>The name of the upgrade target database engine.</p>",
@@ -1728,6 +1732,16 @@
     },
     "SubscriptionNotFoundFault": {
       "base": "<p>The subscription name does not exist. </p>",
+      "refs": {
+      }
+    },
+    "SwitchoverGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SwitchoverGlobalClusterResult": {
+      "base": null,
       "refs": {
       }
     },

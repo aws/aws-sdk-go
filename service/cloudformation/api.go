@@ -148,7 +148,7 @@ func (c *CloudFormation) ActivateTypeRequest(input *ActivateTypeInput) (req *req
 // Once you have activated a public third-party extension in your account and
 // Region, use SetTypeConfiguration (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html)
 // to specify configuration properties for the extension. For more information,
-// see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+// see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 // in the CloudFormation User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -234,7 +234,7 @@ func (c *CloudFormation) BatchDescribeTypeConfigurationsRequest(input *BatchDesc
 // Returns configuration data for the specified CloudFormation extensions, from
 // the CloudFormation registry for the account and Region.
 //
-// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 // in the CloudFormation User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6954,7 +6954,7 @@ func (c *CloudFormation) RegisterTypeRequest(input *RegisterTypeInput) (req *req
 // Once you have registered a private extension in your account and Region,
 // use SetTypeConfiguration (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html)
 // to specify configuration properties for the extension. For more information,
-// see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+// see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 // in the CloudFormation User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7209,7 +7209,7 @@ func (c *CloudFormation) SetTypeConfigurationRequest(input *SetTypeConfiguration
 //
 // To view the current configuration data for an extension, refer to the ConfigurationSchema
 // element of DescribeType (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html).
-// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 // in the CloudFormation User Guide.
 //
 // It's strongly recommended that you use dynamic references to restrict sensitive
@@ -14289,7 +14289,7 @@ type DescribeTypeOutput struct {
 	//
 	// To set the configuration data for an extension, use SetTypeConfiguration
 	// (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html).
-	// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+	// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 	// in the CloudFormation User Guide.
 	ConfigurationSchema *string `min:"1" type:"string"`
 
@@ -19950,6 +19950,23 @@ type ResourceChange struct {
 	// don't have physical IDs because they haven't been created.
 	PhysicalResourceId *string `type:"string"`
 
+	// The action that will be taken on the physical resource when the change set
+	// is executed.
+	//
+	//    * Delete The resource will be deleted.
+	//
+	//    * Retain The resource will be retained.
+	//
+	//    * Snapshot The resource will have a snapshot taken.
+	//
+	//    * ReplaceAndDelete The resource will be replaced and then deleted.
+	//
+	//    * ReplaceAndRetain The resource will be replaced and then retained.
+	//
+	//    * ReplaceAndSnapshot The resource will be replaced and then have a snapshot
+	//    taken.
+	PolicyAction *string `type:"string" enum:"PolicyAction"`
+
 	// For the Modify action, indicates whether CloudFormation will replace the
 	// resource by creating a new one and deleting the old one. This value depends
 	// on the value of the RequiresRecreation property in the ResourceTargetDefinition
@@ -20023,6 +20040,12 @@ func (s *ResourceChange) SetModuleInfo(v *ModuleInfo) *ResourceChange {
 // SetPhysicalResourceId sets the PhysicalResourceId field's value.
 func (s *ResourceChange) SetPhysicalResourceId(v string) *ResourceChange {
 	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetPolicyAction sets the PolicyAction field's value.
+func (s *ResourceChange) SetPolicyAction(v string) *ResourceChange {
+	s.PolicyAction = &v
 	return s
 }
 
@@ -25439,7 +25462,7 @@ func (s *TestTypeOutput) SetTypeVersionArn(v string) *TestTypeOutput {
 // Detailed information concerning the specification of a CloudFormation extension
 // in a given account and Region.
 //
-// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration)
+// For more information, see Configuring extensions at the account level (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-private.html#registry-set-configuration)
 // in the CloudFormation User Guide.
 type TypeConfigurationDetails struct {
 	_ struct{} `type:"structure"`
@@ -28384,6 +28407,38 @@ func PermissionModels_Values() []string {
 	return []string{
 		PermissionModelsServiceManaged,
 		PermissionModelsSelfManaged,
+	}
+}
+
+const (
+	// PolicyActionDelete is a PolicyAction enum value
+	PolicyActionDelete = "Delete"
+
+	// PolicyActionRetain is a PolicyAction enum value
+	PolicyActionRetain = "Retain"
+
+	// PolicyActionSnapshot is a PolicyAction enum value
+	PolicyActionSnapshot = "Snapshot"
+
+	// PolicyActionReplaceAndDelete is a PolicyAction enum value
+	PolicyActionReplaceAndDelete = "ReplaceAndDelete"
+
+	// PolicyActionReplaceAndRetain is a PolicyAction enum value
+	PolicyActionReplaceAndRetain = "ReplaceAndRetain"
+
+	// PolicyActionReplaceAndSnapshot is a PolicyAction enum value
+	PolicyActionReplaceAndSnapshot = "ReplaceAndSnapshot"
+)
+
+// PolicyAction_Values returns all elements of the PolicyAction enum
+func PolicyAction_Values() []string {
+	return []string{
+		PolicyActionDelete,
+		PolicyActionRetain,
+		PolicyActionSnapshot,
+		PolicyActionReplaceAndDelete,
+		PolicyActionReplaceAndRetain,
+		PolicyActionReplaceAndSnapshot,
 	}
 }
 

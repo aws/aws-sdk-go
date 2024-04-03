@@ -5603,6 +5603,95 @@ func (c *DocDB) StopDBClusterWithContext(ctx aws.Context, input *StopDBClusterIn
 	return out, req.Send()
 }
 
+const opSwitchoverGlobalCluster = "SwitchoverGlobalCluster"
+
+// SwitchoverGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the SwitchoverGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SwitchoverGlobalCluster for more information on using the SwitchoverGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SwitchoverGlobalClusterRequest method.
+//	req, resp := client.SwitchoverGlobalClusterRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/SwitchoverGlobalCluster
+func (c *DocDB) SwitchoverGlobalClusterRequest(input *SwitchoverGlobalClusterInput) (req *request.Request, output *SwitchoverGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opSwitchoverGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SwitchoverGlobalClusterInput{}
+	}
+
+	output = &SwitchoverGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SwitchoverGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Switches over the specified secondary Amazon DocumentDB cluster to be the
+// new primary Amazon DocumentDB cluster in the global database cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation SwitchoverGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//
+//   - ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//     The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+//   - ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//     The requested operation can't be performed while the cluster is in this state.
+//
+//   - ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//     DBClusterIdentifier doesn't refer to an existing cluster.
+//
+//   - ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//     The cluster isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/SwitchoverGlobalCluster
+func (c *DocDB) SwitchoverGlobalCluster(input *SwitchoverGlobalClusterInput) (*SwitchoverGlobalClusterOutput, error) {
+	req, out := c.SwitchoverGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// SwitchoverGlobalClusterWithContext is the same as SwitchoverGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SwitchoverGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) SwitchoverGlobalClusterWithContext(ctx aws.Context, input *SwitchoverGlobalClusterInput, opts ...request.Option) (*SwitchoverGlobalClusterOutput, error) {
+	req, out := c.SwitchoverGlobalClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents the input to AddSourceIdentifierToSubscription.
 type AddSourceIdentifierToSubscriptionInput struct {
 	_ struct{} `type:"structure"`
@@ -15740,6 +15829,123 @@ func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
 // SetSubnetStatus sets the SubnetStatus field's value.
 func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 	s.SubnetStatus = &v
+	return s
+}
+
+type SwitchoverGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon DocumentDB global database cluster to switch
+	// over. The identifier is the unique key assigned by the user when the cluster
+	// is created. In other words, it's the name of the global cluster. This parameter
+	// isn’t case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing global cluster (Amazon DocumentDB
+	//    global database).
+	//
+	//    * Minimum length of 1. Maximum length of 255.
+	//
+	// Pattern: [A-Za-z][0-9A-Za-z-:._]*
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the secondary Amazon DocumentDB cluster to promote to the
+	// new primary for the global database cluster. Use the Amazon Resource Name
+	// (ARN) for the identifier so that Amazon DocumentDB can locate the cluster
+	// in its Amazon Web Services region.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing secondary cluster.
+	//
+	//    * Minimum length of 1. Maximum length of 255.
+	//
+	// Pattern: [A-Za-z][0-9A-Za-z-:._]*
+	//
+	// TargetDbClusterIdentifier is a required field
+	TargetDbClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SwitchoverGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SwitchoverGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+	if s.TargetDbClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDbClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *SwitchoverGlobalClusterInput) SetGlobalClusterIdentifier(v string) *SwitchoverGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetTargetDbClusterIdentifier sets the TargetDbClusterIdentifier field's value.
+func (s *SwitchoverGlobalClusterInput) SetTargetDbClusterIdentifier(v string) *SwitchoverGlobalClusterInput {
+	s.TargetDbClusterIdentifier = &v
+	return s
+}
+
+type SwitchoverGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Amazon DocumentDB global cluster.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SwitchoverGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *SwitchoverGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *SwitchoverGlobalClusterOutput {
+	s.GlobalCluster = v
 	return s
 }
 

@@ -819,7 +819,9 @@
         "region":{"shape":"String"},
         "satelliteArn":{"shape":"satelliteArn"},
         "startTime":{"shape":"Timestamp"},
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "visibilityEndTime":{"shape":"Timestamp"},
+        "visibilityStartTime":{"shape":"Timestamp"}
       }
     },
     "ContactIdResponse":{
@@ -1097,7 +1099,9 @@
         "region":{"shape":"String"},
         "satelliteArn":{"shape":"satelliteArn"},
         "startTime":{"shape":"Timestamp"},
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "visibilityEndTime":{"shape":"Timestamp"},
+        "visibilityStartTime":{"shape":"Timestamp"}
       }
     },
     "DescribeEphemerisRequest":{
