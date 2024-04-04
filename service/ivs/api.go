@@ -4038,6 +4038,10 @@ type Channel struct {
 	// and enables recording. Default: "" (empty string, recording is disabled).
 	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
+	// Specifies the endpoint and optional passphrase for streaming with the SRT
+	// protocol.
+	Srt *Srt `locationName:"srt" type:"structure"`
+
 	// Tags attached to the resource. Array of 1-50 maps, each of the form string:string
 	// (key:value). See Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// for more information, including restrictions that apply to tags and "Tag
@@ -4127,6 +4131,12 @@ func (s *Channel) SetPreset(v string) *Channel {
 // SetRecordingConfigurationArn sets the RecordingConfigurationArn field's value.
 func (s *Channel) SetRecordingConfigurationArn(v string) *Channel {
 	s.RecordingConfigurationArn = &v
+	return s
+}
+
+// SetSrt sets the Srt field's value.
+func (s *Channel) SetSrt(v *Srt) *Channel {
+	s.Srt = v
 	return s
 }
 
@@ -4409,7 +4419,7 @@ type CreateChannelInput struct {
 	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
-	// Whether the channel allows insecure RTMP ingest. Default: false.
+	// Whether the channel allows insecure RTMP and SRT ingest. Default: false.
 	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
@@ -7799,6 +7809,52 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies information needed to stream using the SRT protocol.
+type Srt struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint to be used when streaming with IVS using the SRT protocol.
+	Endpoint *string `locationName:"endpoint" type:"string"`
+
+	// Auto-generated passphrase to enable encryption. This field is applicable
+	// only if the end user has not enabled the insecureIngest option for the channel.
+	//
+	// Passphrase is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Srt's
+	// String and GoString methods.
+	Passphrase *string `locationName:"passphrase" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Srt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Srt) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *Srt) SetEndpoint(v string) *Srt {
+	s.Endpoint = &v
+	return s
+}
+
+// SetPassphrase sets the Passphrase field's value.
+func (s *Srt) SetPassphrase(v string) *Srt {
+	s.Passphrase = &v
+	return s
+}
+
 type StartViewerSessionRevocationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8916,7 +8972,7 @@ type UpdateChannelInput struct {
 	// Whether the channel is private (enabled for playback authorization).
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
-	// Whether the channel allows insecure RTMP ingest. Default: false.
+	// Whether the channel allows insecure RTMP and SRT ingest. Default: false.
 	InsecureIngest *bool `locationName:"insecureIngest" type:"boolean"`
 
 	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to

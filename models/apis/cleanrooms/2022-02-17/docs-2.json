@@ -4,6 +4,7 @@
   "operations": {
     "BatchGetCollaborationAnalysisTemplate": "<p>Retrieves multiple analysis templates within a collaboration by their Amazon Resource Names (ARNs).</p>",
     "BatchGetSchema": "<p>Retrieves multiple schemas by their identifiers.</p>",
+    "BatchGetSchemaAnalysisRule": "<p>Retrieves multiple analysis rule schemas.</p>",
     "CreateAnalysisTemplate": "<p>Creates a new analysis template.</p>",
     "CreateCollaboration": "<p>Creates a new collaboration.</p>",
     "CreateConfiguredAudienceModelAssociation": "<p>Provides the details necessary to create a configured audience model association.</p>",
@@ -184,7 +185,8 @@
     "AnalysisRule": {
       "base": "<p>A specification about how data from the configured table can be used in a query.</p>",
       "refs": {
-        "GetSchemaAnalysisRuleOutput$analysisRule": "<p>A specification about how data from the configured table can be used.</p>"
+        "GetSchemaAnalysisRuleOutput$analysisRule": "<p>A specification about how data from the configured table can be used.</p>",
+        "SchemaAnalysisRuleList$member": null
       }
     },
     "AnalysisRuleAggregation": {
@@ -227,13 +229,13 @@
     "AnalysisRuleCustomAllowedAnalysesList": {
       "base": null,
       "refs": {
-        "AnalysisRuleCustom$allowedAnalyses": "<p>The analysis templates that are allowed by the custom analysis rule.</p>"
+        "AnalysisRuleCustom$allowedAnalyses": "<p>The ARN of the analysis templates that are allowed by the custom analysis rule.</p>"
       }
     },
     "AnalysisRuleCustomAllowedAnalysisProvidersList": {
       "base": null,
       "refs": {
-        "AnalysisRuleCustom$allowedAnalysisProviders": "<p>The Amazon Web Services accounts that are allowed to query by the custom analysis rule. Required when <code>allowedAnalyses</code> is <code>ANY_QUERY</code>.</p>"
+        "AnalysisRuleCustom$allowedAnalysisProviders": "<p>The IDs of the Amazon Web Services accounts that are allowed to query by the custom analysis rule. Required when <code>allowedAnalyses</code> is <code>ANY_QUERY</code>.</p>"
       }
     },
     "AnalysisRuleList": {
@@ -266,7 +268,10 @@
       "refs": {
         "AnalysisRule$type": "<p>The type of analysis rule.</p>",
         "AnalysisRuleTypeList$member": null,
-        "GetSchemaAnalysisRuleInput$type": "<p>The type of the schema analysis rule to retrieve. Schema analysis rules are uniquely identified by a combination of the collaboration, the schema name, and their type.</p>"
+        "BatchGetSchemaAnalysisRuleError$type": "<p>The analysis rule type.</p>",
+        "GetSchemaAnalysisRuleInput$type": "<p>The type of the schema analysis rule to retrieve. Schema analysis rules are uniquely identified by a combination of the collaboration, the schema name, and their type.</p>",
+        "SchemaAnalysisRuleRequest$type": "<p>The type of analysis rule schema that you are requesting.</p>",
+        "SchemaStatusDetail$analysisRuleType": "<p>The analysis rule type for which the schema status has been evaluated.</p>"
       }
     },
     "AnalysisRuleTypeList": {
@@ -372,6 +377,28 @@
       }
     },
     "BatchGetCollaborationAnalysisTemplateOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetSchemaAnalysisRuleError": {
+      "base": "<p>An error that describes why a schema could not be fetched.</p>",
+      "refs": {
+        "BatchGetSchemaAnalysisRuleErrorList$member": null
+      }
+    },
+    "BatchGetSchemaAnalysisRuleErrorList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaAnalysisRuleOutput$errors": "<p>Error reasons for schemas that could not be retrieved. One error is returned for every schema that could not be retrieved.</p>"
+      }
+    },
+    "BatchGetSchemaAnalysisRuleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetSchemaAnalysisRuleOutput": {
       "base": null,
       "refs": {
       }
@@ -508,6 +535,7 @@
       "refs": {
         "AnalysisRule$collaborationId": "<p>The unique ID for the associated collaboration.</p>",
         "BatchGetCollaborationAnalysisTemplateInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the analysis templates belong to. Currently accepts collaboration ID.</p>",
+        "BatchGetSchemaAnalysisRuleInput$collaborationIdentifier": "<p>The unique identifier of the collaboration that contains the schema analysis rule.</p>",
         "BatchGetSchemaInput$collaborationIdentifier": "<p>A unique identifier for the collaboration that the schemas belong to. Currently accepts collaboration ID.</p>",
         "CreateMembershipInput$collaborationIdentifier": "<p>The unique ID for the associated collaboration.</p>",
         "DeleteCollaborationInput$collaborationIdentifier": "<p>The identifier for the collaboration.</p>",
@@ -2108,10 +2136,76 @@
         "SchemaList$member": null
       }
     },
+    "SchemaAnalysisRuleList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaAnalysisRuleOutput$analysisRules": "<p>The retrieved list of analysis rules.</p>"
+      }
+    },
+    "SchemaAnalysisRuleRequest": {
+      "base": "<p>Defines the information that's necessary to retrieve an analysis rule schema. Schema analysis rules are uniquely identiﬁed by a combination of the schema name and the analysis rule type for a given collaboration.</p>",
+      "refs": {
+        "SchemaAnalysisRuleRequestList$member": null
+      }
+    },
+    "SchemaAnalysisRuleRequestList": {
+      "base": null,
+      "refs": {
+        "BatchGetSchemaAnalysisRuleInput$schemaAnalysisRuleRequests": "<p>The information that's necessary to retrieve a schema analysis rule.</p>"
+      }
+    },
+    "SchemaConfiguration": {
+      "base": null,
+      "refs": {
+        "SchemaConfigurationList$member": null
+      }
+    },
+    "SchemaConfigurationList": {
+      "base": null,
+      "refs": {
+        "SchemaStatusDetail$configurations": "<p>The configuration details of the schema analysis rule for the given type.</p>"
+      }
+    },
     "SchemaList": {
       "base": null,
       "refs": {
         "BatchGetSchemaOutput$schemas": "<p>The retrieved list of schemas.</p>"
+      }
+    },
+    "SchemaStatus": {
+      "base": null,
+      "refs": {
+        "SchemaStatusDetail$status": "<p>The status of the schema.</p>"
+      }
+    },
+    "SchemaStatusDetail": {
+      "base": "<p>Information about the schema status.</p> <p>A status of <code>READY</code> means that based on the schema analysis rule, queries of the given analysis rule type are properly configured to run queries on this schema.</p>",
+      "refs": {
+        "SchemaStatusDetailList$member": null
+      }
+    },
+    "SchemaStatusDetailList": {
+      "base": null,
+      "refs": {
+        "Schema$schemaStatusDetails": "<p>Details about the status of the schema. Currently, only one entry is present.</p>"
+      }
+    },
+    "SchemaStatusReason": {
+      "base": "<p>A reason why the schema status is set to its current value.</p>",
+      "refs": {
+        "SchemaStatusReasonList$member": null
+      }
+    },
+    "SchemaStatusReasonCode": {
+      "base": null,
+      "refs": {
+        "SchemaStatusReason$code": "<p>The schema status reason code.</p>"
+      }
+    },
+    "SchemaStatusReasonList": {
+      "base": null,
+      "refs": {
+        "SchemaStatusDetail$reasons": "<p>The reasons why the schema status is set to its current state.</p>"
       }
     },
     "SchemaSummary": {
@@ -2155,6 +2249,8 @@
         "AccessDeniedException$message": null,
         "BatchGetCollaborationAnalysisTemplateError$code": "<p>An error code for the error.</p>",
         "BatchGetCollaborationAnalysisTemplateError$message": "<p>A description of why the call failed.</p>",
+        "BatchGetSchemaAnalysisRuleError$code": "<p>An error code for the error.</p>",
+        "BatchGetSchemaAnalysisRuleError$message": "<p>A description of why the call failed.</p>",
         "BatchGetSchemaError$code": "<p>An error code for the error. </p>",
         "BatchGetSchemaError$message": "<p>An error message for the error.</p>",
         "ConflictException$message": null,
@@ -2166,6 +2262,7 @@
         "ProtectedQueryS3Output$location": "<p>The S3 location of the result.</p>",
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p>The Id of the missing resource.</p>",
+        "SchemaStatusReason$message": "<p>An explanation of the schema status reason code.</p>",
         "ServiceQuotaExceededException$message": null,
         "ServiceQuotaExceededException$quotaName": "<p>The name of the quota.</p>",
         "ThrottlingException$message": null,
@@ -2178,6 +2275,7 @@
       "base": null,
       "refs": {
         "AnalysisRule$name": "<p>The name for the analysis rule.</p>",
+        "BatchGetSchemaAnalysisRuleError$name": "<p>An error name for the error.</p>",
         "BatchGetSchemaError$name": "<p>An error name for the error.</p>",
         "ConfiguredTableAssociation$name": "<p>The name of the configured table association, in lowercase. The table is identified by this name when running protected queries against the underlying data.</p>",
         "ConfiguredTableAssociationSummary$name": "<p>The name of the configured table association. The table is identified by this name when running Protected Queries against the underlying data.</p>",
@@ -2187,6 +2285,7 @@
         "GetSchemaInput$name": "<p>The name of the relation to retrieve the schema for.</p>",
         "QueryTables$member": null,
         "Schema$name": "<p>A name for the schema. The schema relation is referred to by this name when queried by a protected query.</p>",
+        "SchemaAnalysisRuleRequest$name": "<p>The name of the analysis rule schema that you are requesting.</p>",
         "SchemaSummary$name": "<p>The name for the schema object.</p>",
         "TableAliasList$member": null
       }
@@ -2194,7 +2293,7 @@
     "TableAliasList": {
       "base": null,
       "refs": {
-        "BatchGetSchemaInput$names": "<p>The names for the schema objects to retrieve.&gt;</p>"
+        "BatchGetSchemaInput$names": "<p>The names for the schema objects to retrieve.</p>"
       }
     },
     "TableDescription": {

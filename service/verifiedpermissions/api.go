@@ -4256,8 +4256,7 @@ func (s *BatchIsAuthorizedInput) SetRequests(v []*BatchIsAuthorizedInputItem) *B
 type BatchIsAuthorizedInputItem struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the requested action to be authorized. For example, is the principal
-	// authorized to perform this action on the resource?
+	// Specifies the requested action to be authorized. For example, PhotoFlash::ReadPhoto.
 	Action *ActionIdentifier `locationName:"action" type:"structure"`
 
 	// Specifies additional context that can be used to make more granular authorization
@@ -4267,7 +4266,8 @@ type BatchIsAuthorizedInputItem struct {
 	// Specifies the principal for which the authorization decision is to be made.
 	Principal *EntityIdentifier `locationName:"principal" type:"structure"`
 
-	// Specifies the resource for which the authorization decision is to be made.
+	// Specifies the resource that you want an authorization decision for. For example,
+	// PhotoFlash::Photo.
 	Resource *EntityIdentifier `locationName:"resource" type:"structure"`
 }
 
@@ -4398,9 +4398,9 @@ type BatchIsAuthorizedOutputItem struct {
 	// DeterminingPolicies is a required field
 	DeterminingPolicies []*DeterminingPolicyItem `locationName:"determiningPolicies" type:"list" required:"true"`
 
-	// Errors that occurred while making an authorization decision, for example,
-	// a policy references an Entity or entity Attribute that does not exist in
-	// the slice.
+	// Errors that occurred while making an authorization decision. For example,
+	// a policy might reference an entity or attribute that doesn't exist in the
+	// request.
 	//
 	// Errors is a required field
 	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
@@ -4453,6 +4453,147 @@ func (s *BatchIsAuthorizedOutputItem) SetRequest(v *BatchIsAuthorizedInputItem) 
 	return s
 }
 
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
+//
+// This data type is part of a CognitoUserPoolConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfiguration.html)
+// structure and is a request parameter in CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
+type CognitoGroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the schema entity type that's mapped to the user pool group.
+	// Defaults to AWS::CognitoGroup.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CognitoGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CognitoGroupConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CognitoGroupConfiguration"}
+	if s.GroupEntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupEntityType"))
+	}
+	if s.GroupEntityType != nil && len(*s.GroupEntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupEntityType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *CognitoGroupConfiguration) SetGroupEntityType(v string) *CognitoGroupConfiguration {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
+//
+// This data type is part of an CognitoUserPoolConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationItem.html)
+// structure and is a response parameter to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
+type CognitoGroupConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the schema entity type that's mapped to the user pool group.
+	// Defaults to AWS::CognitoGroup.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CognitoGroupConfigurationDetail's
+	// String and GoString methods.
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *CognitoGroupConfigurationDetail) SetGroupEntityType(v string) *CognitoGroupConfigurationDetail {
+	s.GroupEntityType = &v
+	return s
+}
+
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
+//
+// This data type is part of an CognitoUserPoolConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationDetail.html)
+// structure and is a response parameter to ListIdentitySources (http://forums.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
+type CognitoGroupConfigurationItem struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the schema entity type that's mapped to the user pool group.
+	// Defaults to AWS::CognitoGroup.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CognitoGroupConfigurationItem's
+	// String and GoString methods.
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfigurationItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CognitoGroupConfigurationItem) GoString() string {
+	return s.String()
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *CognitoGroupConfigurationItem) SetGroupEntityType(v string) *CognitoGroupConfigurationItem {
+	s.GroupEntityType = &v
+	return s
+}
+
 // The configuration for an identity source that represents a connection to
 // an Amazon Cognito user pool used as an identity provider for Verified Permissions.
 //
@@ -4460,7 +4601,8 @@ func (s *BatchIsAuthorizedOutputItem) SetRequest(v *BatchIsAuthorizedInputItem) 
 // structure that is used as a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4469,6 +4611,10 @@ type CognitoUserPoolConfiguration struct {
 	//
 	// Example: "ClientIds": ["&ExampleCogClientId;"]
 	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
+	GroupConfiguration *CognitoGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
 
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the Amazon Cognito user pool that contains the identities to be authorized.
@@ -4506,6 +4652,11 @@ func (s *CognitoUserPoolConfiguration) Validate() error {
 	if s.UserPoolArn != nil && len(*s.UserPoolArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserPoolArn", 1))
 	}
+	if s.GroupConfiguration != nil {
+		if err := s.GroupConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GroupConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4516,6 +4667,12 @@ func (s *CognitoUserPoolConfiguration) Validate() error {
 // SetClientIds sets the ClientIds field's value.
 func (s *CognitoUserPoolConfiguration) SetClientIds(v []*string) *CognitoUserPoolConfiguration {
 	s.ClientIds = v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *CognitoUserPoolConfiguration) SetGroupConfiguration(v *CognitoGroupConfiguration) *CognitoUserPoolConfiguration {
+	s.GroupConfiguration = v
 	return s
 }
 
@@ -4533,7 +4690,8 @@ func (s *CognitoUserPoolConfiguration) SetUserPoolArn(v string) *CognitoUserPool
 // structure that is part of the response to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfigurationDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -4544,6 +4702,10 @@ type CognitoUserPoolConfigurationDetail struct {
 	//
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
+	GroupConfiguration *CognitoGroupConfigurationDetail `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
 	// contains the identities to be authorized.
@@ -4586,6 +4748,12 @@ func (s *CognitoUserPoolConfigurationDetail) SetClientIds(v []*string) *CognitoU
 	return s
 }
 
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *CognitoUserPoolConfigurationDetail) SetGroupConfiguration(v *CognitoGroupConfigurationDetail) *CognitoUserPoolConfigurationDetail {
+	s.GroupConfiguration = v
+	return s
+}
+
 // SetIssuer sets the Issuer field's value.
 func (s *CognitoUserPoolConfigurationDetail) SetIssuer(v string) *CognitoUserPoolConfigurationDetail {
 	s.Issuer = &v
@@ -4605,7 +4773,8 @@ func (s *CognitoUserPoolConfigurationDetail) SetUserPoolArn(v string) *CognitoUs
 // structure that is part of the response to ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
@@ -4616,6 +4785,10 @@ type CognitoUserPoolConfigurationItem struct {
 	//
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
+
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
+	GroupConfiguration *CognitoGroupConfigurationItem `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
 	// contains the identities to be authorized.
@@ -4658,6 +4831,12 @@ func (s *CognitoUserPoolConfigurationItem) SetClientIds(v []*string) *CognitoUse
 	return s
 }
 
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *CognitoUserPoolConfigurationItem) SetGroupConfiguration(v *CognitoGroupConfigurationItem) *CognitoUserPoolConfigurationItem {
+	s.GroupConfiguration = v
+	return s
+}
+
 // SetIssuer sets the Issuer field's value.
 func (s *CognitoUserPoolConfigurationItem) SetIssuer(v string) *CognitoUserPoolConfigurationItem {
 	s.Issuer = &v
@@ -4675,7 +4854,7 @@ func (s *CognitoUserPoolConfigurationItem) SetUserPoolArn(v string) *CognitoUser
 // At this time, the only valid member of this structure is a Amazon Cognito
 // user pool configuration.
 //
-// You must specify a userPoolArn, and optionally, a ClientId.
+// Specifies a userPoolArn, a groupConfiguration, and a ClientId.
 //
 // This data type is used as a request parameter for the CreateIdentitySource
 // (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
@@ -4689,7 +4868,8 @@ type Configuration struct {
 	// of a Amazon Cognito user pool and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
-	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
+	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfiguration `locationName:"cognitoUserPoolConfiguration" type:"structure"`
 }
 
@@ -4742,10 +4922,12 @@ type ConfigurationDetail struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool and one or more application client IDs.
+	// of a Amazon Cognito user pool, the policy store entity that you want to assign
+	// to user groups, and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
-	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
+	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationDetail `locationName:"cognitoUserPoolConfiguration" type:"structure"`
 }
 
@@ -4783,10 +4965,12 @@ type ConfigurationItem struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool and one or more application client IDs.
+	// of a Amazon Cognito user pool, the policy store entity that you want to assign
+	// to user groups, and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
-	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}}
+	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+	// "MyCorp::Group"}}}
 	CognitoUserPoolConfiguration *CognitoUserPoolConfigurationItem `locationName:"cognitoUserPoolConfiguration" type:"structure"`
 }
 
@@ -7942,6 +8126,9 @@ type IsAuthorizedWithTokenOutput struct {
 	//
 	// Errors is a required field
 	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+
+	// The identifier of the principal in the ID or access token.
+	Principal *EntityIdentifier `locationName:"principal" type:"structure"`
 }
 
 // String returns the string representation.
@@ -7977,6 +8164,12 @@ func (s *IsAuthorizedWithTokenOutput) SetDeterminingPolicies(v []*DeterminingPol
 // SetErrors sets the Errors field's value.
 func (s *IsAuthorizedWithTokenOutput) SetErrors(v []*EvaluationErrorItem) *IsAuthorizedWithTokenOutput {
 	s.Errors = v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *IsAuthorizedWithTokenOutput) SetPrincipal(v *EntityIdentifier) *IsAuthorizedWithTokenOutput {
+	s.Principal = v
 	return s
 }
 
@@ -9885,6 +10078,61 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The user group entities from an Amazon Cognito user pool identity source.
+type UpdateCognitoGroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the schema entity type that's mapped to the user pool group.
+	// Defaults to AWS::CognitoGroup.
+	//
+	// GroupEntityType is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateCognitoGroupConfiguration's
+	// String and GoString methods.
+	//
+	// GroupEntityType is a required field
+	GroupEntityType *string `locationName:"groupEntityType" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCognitoGroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCognitoGroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCognitoGroupConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCognitoGroupConfiguration"}
+	if s.GroupEntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupEntityType"))
+	}
+	if s.GroupEntityType != nil && len(*s.GroupEntityType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupEntityType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupEntityType sets the GroupEntityType field's value.
+func (s *UpdateCognitoGroupConfiguration) SetGroupEntityType(v string) *UpdateCognitoGroupConfiguration {
+	s.GroupEntityType = &v
+	return s
+}
+
 // Contains configuration details of a Amazon Cognito user pool for use with
 // an identity source.
 type UpdateCognitoUserPoolConfiguration struct {
@@ -9893,6 +10141,10 @@ type UpdateCognitoUserPoolConfiguration struct {
 	// The client ID of an app client that is configured for the specified Amazon
 	// Cognito user pool.
 	ClientIds []*string `locationName:"clientIds" type:"list"`
+
+	// The configuration of the user groups from an Amazon Cognito user pool identity
+	// source.
+	GroupConfiguration *UpdateCognitoGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
 
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the Amazon Cognito user pool associated with this identity source.
@@ -9928,6 +10180,11 @@ func (s *UpdateCognitoUserPoolConfiguration) Validate() error {
 	if s.UserPoolArn != nil && len(*s.UserPoolArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserPoolArn", 1))
 	}
+	if s.GroupConfiguration != nil {
+		if err := s.GroupConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GroupConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9938,6 +10195,12 @@ func (s *UpdateCognitoUserPoolConfiguration) Validate() error {
 // SetClientIds sets the ClientIds field's value.
 func (s *UpdateCognitoUserPoolConfiguration) SetClientIds(v []*string) *UpdateCognitoUserPoolConfiguration {
 	s.ClientIds = v
+	return s
+}
+
+// SetGroupConfiguration sets the GroupConfiguration field's value.
+func (s *UpdateCognitoUserPoolConfiguration) SetGroupConfiguration(v *UpdateCognitoGroupConfiguration) *UpdateCognitoUserPoolConfiguration {
+	s.GroupConfiguration = v
 	return s
 }
 

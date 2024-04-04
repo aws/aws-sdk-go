@@ -8460,6 +8460,75 @@ const (
 
 	// X12TransactionSetX12999 is a X12TransactionSet enum value
 	X12TransactionSetX12999 = "X12_999"
+
+	// X12TransactionSetX12270X279 is a X12TransactionSet enum value
+	X12TransactionSetX12270X279 = "X12_270_X279"
+
+	// X12TransactionSetX12271X279 is a X12TransactionSet enum value
+	X12TransactionSetX12271X279 = "X12_271_X279"
+
+	// X12TransactionSetX12275X210 is a X12TransactionSet enum value
+	X12TransactionSetX12275X210 = "X12_275_X210"
+
+	// X12TransactionSetX12275X211 is a X12TransactionSet enum value
+	X12TransactionSetX12275X211 = "X12_275_X211"
+
+	// X12TransactionSetX12276X212 is a X12TransactionSet enum value
+	X12TransactionSetX12276X212 = "X12_276_X212"
+
+	// X12TransactionSetX12277X212 is a X12TransactionSet enum value
+	X12TransactionSetX12277X212 = "X12_277_X212"
+
+	// X12TransactionSetX12277X214 is a X12TransactionSet enum value
+	X12TransactionSetX12277X214 = "X12_277_X214"
+
+	// X12TransactionSetX12277X364 is a X12TransactionSet enum value
+	X12TransactionSetX12277X364 = "X12_277_X364"
+
+	// X12TransactionSetX12278X217 is a X12TransactionSet enum value
+	X12TransactionSetX12278X217 = "X12_278_X217"
+
+	// X12TransactionSetX12820X218 is a X12TransactionSet enum value
+	X12TransactionSetX12820X218 = "X12_820_X218"
+
+	// X12TransactionSetX12820X306 is a X12TransactionSet enum value
+	X12TransactionSetX12820X306 = "X12_820_X306"
+
+	// X12TransactionSetX12824X186 is a X12TransactionSet enum value
+	X12TransactionSetX12824X186 = "X12_824_X186"
+
+	// X12TransactionSetX12834X220 is a X12TransactionSet enum value
+	X12TransactionSetX12834X220 = "X12_834_X220"
+
+	// X12TransactionSetX12834X307 is a X12TransactionSet enum value
+	X12TransactionSetX12834X307 = "X12_834_X307"
+
+	// X12TransactionSetX12834X318 is a X12TransactionSet enum value
+	X12TransactionSetX12834X318 = "X12_834_X318"
+
+	// X12TransactionSetX12835X221 is a X12TransactionSet enum value
+	X12TransactionSetX12835X221 = "X12_835_X221"
+
+	// X12TransactionSetX12837X222 is a X12TransactionSet enum value
+	X12TransactionSetX12837X222 = "X12_837_X222"
+
+	// X12TransactionSetX12837X223 is a X12TransactionSet enum value
+	X12TransactionSetX12837X223 = "X12_837_X223"
+
+	// X12TransactionSetX12837X224 is a X12TransactionSet enum value
+	X12TransactionSetX12837X224 = "X12_837_X224"
+
+	// X12TransactionSetX12837X291 is a X12TransactionSet enum value
+	X12TransactionSetX12837X291 = "X12_837_X291"
+
+	// X12TransactionSetX12837X292 is a X12TransactionSet enum value
+	X12TransactionSetX12837X292 = "X12_837_X292"
+
+	// X12TransactionSetX12837X298 is a X12TransactionSet enum value
+	X12TransactionSetX12837X298 = "X12_837_X298"
+
+	// X12TransactionSetX12999X231 is a X12TransactionSet enum value
+	X12TransactionSetX12999X231 = "X12_999_X231"
 )
 
 // X12TransactionSet_Values returns all elements of the X12TransactionSet enum
@@ -8517,6 +8586,29 @@ func X12TransactionSet_Values() []string {
 		X12TransactionSetX12990,
 		X12TransactionSetX12997,
 		X12TransactionSetX12999,
+		X12TransactionSetX12270X279,
+		X12TransactionSetX12271X279,
+		X12TransactionSetX12275X210,
+		X12TransactionSetX12275X211,
+		X12TransactionSetX12276X212,
+		X12TransactionSetX12277X212,
+		X12TransactionSetX12277X214,
+		X12TransactionSetX12277X364,
+		X12TransactionSetX12278X217,
+		X12TransactionSetX12820X218,
+		X12TransactionSetX12820X306,
+		X12TransactionSetX12824X186,
+		X12TransactionSetX12834X220,
+		X12TransactionSetX12834X307,
+		X12TransactionSetX12834X318,
+		X12TransactionSetX12835X221,
+		X12TransactionSetX12837X222,
+		X12TransactionSetX12837X223,
+		X12TransactionSetX12837X224,
+		X12TransactionSetX12837X291,
+		X12TransactionSetX12837X292,
+		X12TransactionSetX12837X298,
+		X12TransactionSetX12999X231,
 	}
 }
 
@@ -8529,6 +8621,9 @@ const (
 
 	// X12VersionVersion5010 is a X12Version enum value
 	X12VersionVersion5010 = "VERSION_5010"
+
+	// X12VersionVersion5010Hipaa is a X12Version enum value
+	X12VersionVersion5010Hipaa = "VERSION_5010_HIPAA"
 )
 
 // X12Version_Values returns all elements of the X12Version enum
@@ -8537,5 +8632,6 @@ func X12Version_Values() []string {
 		X12VersionVersion4010,
 		X12VersionVersion4030,
 		X12VersionVersion5010,
+		X12VersionVersion5010Hipaa,
 	}
 }

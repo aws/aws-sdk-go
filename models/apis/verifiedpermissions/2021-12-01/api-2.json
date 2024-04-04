@@ -562,12 +562,32 @@
       "max":1000,
       "min":0
     },
+    "CognitoGroupConfiguration":{
+      "type":"structure",
+      "required":["groupEntityType"],
+      "members":{
+        "groupEntityType":{"shape":"GroupEntityType"}
+      }
+    },
+    "CognitoGroupConfigurationDetail":{
+      "type":"structure",
+      "members":{
+        "groupEntityType":{"shape":"GroupEntityType"}
+      }
+    },
+    "CognitoGroupConfigurationItem":{
+      "type":"structure",
+      "members":{
+        "groupEntityType":{"shape":"GroupEntityType"}
+      }
+    },
     "CognitoUserPoolConfiguration":{
       "type":"structure",
       "required":["userPoolArn"],
       "members":{
         "userPoolArn":{"shape":"UserPoolArn"},
-        "clientIds":{"shape":"ClientIds"}
+        "clientIds":{"shape":"ClientIds"},
+        "groupConfiguration":{"shape":"CognitoGroupConfiguration"}
       }
     },
     "CognitoUserPoolConfigurationDetail":{
@@ -580,7 +600,8 @@
       "members":{
         "userPoolArn":{"shape":"UserPoolArn"},
         "clientIds":{"shape":"ClientIds"},
-        "issuer":{"shape":"Issuer"}
+        "issuer":{"shape":"Issuer"},
+        "groupConfiguration":{"shape":"CognitoGroupConfigurationDetail"}
       }
     },
     "CognitoUserPoolConfigurationItem":{
@@ -593,7 +614,8 @@
       "members":{
         "userPoolArn":{"shape":"UserPoolArn"},
         "clientIds":{"shape":"ClientIds"},
-        "issuer":{"shape":"Issuer"}
+        "issuer":{"shape":"Issuer"},
+        "groupConfiguration":{"shape":"CognitoGroupConfigurationItem"}
       }
     },
     "Configuration":{
@@ -1061,6 +1083,13 @@
         "namespaces":{"shape":"NamespaceList"}
       }
     },
+    "GroupEntityType":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"([_a-zA-Z][_a-zA-Z0-9]*::)*[_a-zA-Z][_a-zA-Z0-9]*",
+      "sensitive":true
+    },
     "IdempotencyToken":{
       "type":"string",
       "max":64,
@@ -1224,7 +1253,8 @@
       "members":{
         "decision":{"shape":"Decision"},
         "determiningPolicies":{"shape":"DeterminingPolicyList"},
-        "errors":{"shape":"EvaluationErrorList"}
+        "errors":{"shape":"EvaluationErrorList"},
+        "principal":{"shape":"EntityIdentifier"}
       }
     },
     "Issuer":{
@@ -1246,7 +1276,6 @@
     "ListIdentitySourcesMaxResults":{
       "type":"integer",
       "box":true,
-      "max":200,
       "min":1
     },
     "ListIdentitySourcesOutput":{
@@ -1315,7 +1344,6 @@
     "MaxResults":{
       "type":"integer",
       "box":true,
-      "max":50,
       "min":1
     },
     "Namespace":{
@@ -1682,12 +1710,20 @@
       "pattern":"[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+",
       "sensitive":true
     },
+    "UpdateCognitoGroupConfiguration":{
+      "type":"structure",
+      "required":["groupEntityType"],
+      "members":{
+        "groupEntityType":{"shape":"GroupEntityType"}
+      }
+    },
     "UpdateCognitoUserPoolConfiguration":{
       "type":"structure",
       "required":["userPoolArn"],
       "members":{
         "userPoolArn":{"shape":"UserPoolArn"},
-        "clientIds":{"shape":"ClientIds"}
+        "clientIds":{"shape":"ClientIds"},
+        "groupConfiguration":{"shape":"UpdateCognitoGroupConfiguration"}
       }
     },
     "UpdateConfiguration":{

@@ -68,6 +68,10 @@ type CleanRoomsAPI interface {
 	BatchGetSchemaWithContext(aws.Context, *cleanrooms.BatchGetSchemaInput, ...request.Option) (*cleanrooms.BatchGetSchemaOutput, error)
 	BatchGetSchemaRequest(*cleanrooms.BatchGetSchemaInput) (*request.Request, *cleanrooms.BatchGetSchemaOutput)
 
+	BatchGetSchemaAnalysisRule(*cleanrooms.BatchGetSchemaAnalysisRuleInput) (*cleanrooms.BatchGetSchemaAnalysisRuleOutput, error)
+	BatchGetSchemaAnalysisRuleWithContext(aws.Context, *cleanrooms.BatchGetSchemaAnalysisRuleInput, ...request.Option) (*cleanrooms.BatchGetSchemaAnalysisRuleOutput, error)
+	BatchGetSchemaAnalysisRuleRequest(*cleanrooms.BatchGetSchemaAnalysisRuleInput) (*request.Request, *cleanrooms.BatchGetSchemaAnalysisRuleOutput)
+
 	CreateAnalysisTemplate(*cleanrooms.CreateAnalysisTemplateInput) (*cleanrooms.CreateAnalysisTemplateOutput, error)
 	CreateAnalysisTemplateWithContext(aws.Context, *cleanrooms.CreateAnalysisTemplateInput, ...request.Option) (*cleanrooms.CreateAnalysisTemplateOutput, error)
 	CreateAnalysisTemplateRequest(*cleanrooms.CreateAnalysisTemplateInput) (*request.Request, *cleanrooms.CreateAnalysisTemplateOutput)

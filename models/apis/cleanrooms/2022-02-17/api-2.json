@@ -46,6 +46,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "BatchGetSchemaAnalysisRule":{
+      "name":"BatchGetSchemaAnalysisRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/collaborations/{collaborationIdentifier}/batch-schema-analysis-rule",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetSchemaAnalysisRuleInput"},
+      "output":{"shape":"BatchGetSchemaAnalysisRuleOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateAnalysisTemplate":{
       "name":"CreateAnalysisTemplate",
       "http":{
@@ -1464,6 +1481,53 @@
       "members":{
         "collaborationAnalysisTemplates":{"shape":"CollaborationAnalysisTemplateList"},
         "errors":{"shape":"BatchGetCollaborationAnalysisTemplateErrorList"}
+      }
+    },
+    "BatchGetSchemaAnalysisRuleError":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type",
+        "code",
+        "message"
+      ],
+      "members":{
+        "name":{"shape":"TableAlias"},
+        "type":{"shape":"AnalysisRuleType"},
+        "code":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetSchemaAnalysisRuleErrorList":{
+      "type":"list",
+      "member":{"shape":"BatchGetSchemaAnalysisRuleError"},
+      "max":25,
+      "min":0
+    },
+    "BatchGetSchemaAnalysisRuleInput":{
+      "type":"structure",
+      "required":[
+        "collaborationIdentifier",
+        "schemaAnalysisRuleRequests"
+      ],
+      "members":{
+        "collaborationIdentifier":{
+          "shape":"CollaborationIdentifier",
+          "location":"uri",
+          "locationName":"collaborationIdentifier"
+        },
+        "schemaAnalysisRuleRequests":{"shape":"SchemaAnalysisRuleRequestList"}
+      }
+    },
+    "BatchGetSchemaAnalysisRuleOutput":{
+      "type":"structure",
+      "required":[
+        "analysisRules",
+        "errors"
+      ],
+      "members":{
+        "analysisRules":{"shape":"SchemaAnalysisRuleList"},
+        "errors":{"shape":"BatchGetSchemaAnalysisRuleErrorList"}
       }
     },
     "BatchGetSchemaError":{
@@ -4268,19 +4332,30 @@
     "ScalarFunctions":{
       "type":"string",
       "enum":[
-        "TRUNC",
         "ABS",
+        "CAST",
         "CEILING",
+        "COALESCE",
+        "CONVERT",
+        "CURRENT_DATE",
+        "DATEADD",
+        "EXTRACT",
         "FLOOR",
+        "GETDATE",
         "LN",
         "LOG",
-        "ROUND",
-        "SQRT",
-        "CAST",
         "LOWER",
+        "ROUND",
         "RTRIM",
-        "UPPER",
-        "COALESCE"
+        "SQRT",
+        "SUBSTRING",
+        "TO_CHAR",
+        "TO_DATE",
+        "TO_NUMBER",
+        "TO_TIMESTAMP",
+        "TRIM",
+        "TRUNC",
+        "UPPER"
       ]
     },
     "ScalarFunctionsList":{
@@ -4300,7 +4375,8 @@
         "description",
         "createTime",
         "updateTime",
-        "type"
+        "type",
+        "schemaStatusDetails"
       ],
       "members":{
         "columns":{"shape":"ColumnList"},
@@ -4314,14 +4390,91 @@
         "description":{"shape":"TableDescription"},
         "createTime":{"shape":"Timestamp"},
         "updateTime":{"shape":"Timestamp"},
-        "type":{"shape":"SchemaType"}
+        "type":{"shape":"SchemaType"},
+        "schemaStatusDetails":{"shape":"SchemaStatusDetailList"}
       }
+    },
+    "SchemaAnalysisRuleList":{
+      "type":"list",
+      "member":{"shape":"AnalysisRule"},
+      "max":25,
+      "min":0
+    },
+    "SchemaAnalysisRuleRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"TableAlias"},
+        "type":{"shape":"AnalysisRuleType"}
+      }
+    },
+    "SchemaAnalysisRuleRequestList":{
+      "type":"list",
+      "member":{"shape":"SchemaAnalysisRuleRequest"},
+      "max":25,
+      "min":1
+    },
+    "SchemaConfiguration":{
+      "type":"string",
+      "enum":["DIFFERENTIAL_PRIVACY"]
+    },
+    "SchemaConfigurationList":{
+      "type":"list",
+      "member":{"shape":"SchemaConfiguration"}
     },
     "SchemaList":{
       "type":"list",
       "member":{"shape":"Schema"},
       "max":25,
       "min":0
+    },
+    "SchemaStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "NOT_READY"
+      ]
+    },
+    "SchemaStatusDetail":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"SchemaStatus"},
+        "reasons":{"shape":"SchemaStatusReasonList"},
+        "analysisRuleType":{"shape":"AnalysisRuleType"},
+        "configurations":{"shape":"SchemaConfigurationList"}
+      }
+    },
+    "SchemaStatusDetailList":{
+      "type":"list",
+      "member":{"shape":"SchemaStatusDetail"}
+    },
+    "SchemaStatusReason":{
+      "type":"structure",
+      "required":[
+        "code",
+        "message"
+      ],
+      "members":{
+        "code":{"shape":"SchemaStatusReasonCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "SchemaStatusReasonCode":{
+      "type":"string",
+      "enum":[
+        "ANALYSIS_RULE_MISSING",
+        "ANALYSIS_TEMPLATES_NOT_CONFIGURED",
+        "ANALYSIS_PROVIDERS_NOT_CONFIGURED",
+        "DIFFERENTIAL_PRIVACY_POLICY_NOT_CONFIGURED"
+      ]
+    },
+    "SchemaStatusReasonList":{
+      "type":"list",
+      "member":{"shape":"SchemaStatusReason"}
     },
     "SchemaSummary":{
       "type":"structure",
