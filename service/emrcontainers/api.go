@@ -339,6 +339,9 @@ func (c *EMRContainers) CreateVirtualClusterRequest(input *CreateVirtualClusterI
 //   - InternalServerException
 //     This is an internal server exception.
 //
+//   - EKSRequestThrottledException
+//     The request exceeded the Amazon EKS API operation limits.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateVirtualCluster
 func (c *EMRContainers) CreateVirtualCluster(input *CreateVirtualClusterInput) (*CreateVirtualClusterOutput, error) {
 	req, out := c.CreateVirtualClusterRequest(input)
@@ -3712,6 +3715,70 @@ func (s *DescribeVirtualClusterOutput) SetVirtualCluster(v *VirtualCluster) *Des
 	return s
 }
 
+// The request exceeded the Amazon EKS API operation limits.
+type EKSRequestThrottledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EKSRequestThrottledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EKSRequestThrottledException) GoString() string {
+	return s.String()
+}
+
+func newErrorEKSRequestThrottledException(v protocol.ResponseMetadata) error {
+	return &EKSRequestThrottledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EKSRequestThrottledException) Code() string {
+	return "EKSRequestThrottledException"
+}
+
+// Message returns the exception's message.
+func (s *EKSRequestThrottledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EKSRequestThrottledException) OrigErr() error {
+	return nil
+}
+
+func (s *EKSRequestThrottledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EKSRequestThrottledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EKSRequestThrottledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The information about the Amazon EKS cluster.
 type EksInfo struct {
 	_ struct{} `type:"structure"`
@@ -5186,6 +5253,11 @@ type ListVirtualClustersInput struct {
 	// The date and time before which the virtual clusters are created.
 	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
+	// Optional Boolean that specifies whether the operation should return the virtual
+	// clusters that have the access entry integration enabled or disabled. If not
+	// specified, the operation returns all applicable virtual clusters.
+	EksAccessEntryIntegrated *bool `location:"querystring" locationName:"eksAccessEntryIntegrated" type:"boolean"`
+
 	// The maximum number of virtual clusters that can be listed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
@@ -5251,6 +5323,12 @@ func (s *ListVirtualClustersInput) SetCreatedAfter(v time.Time) *ListVirtualClus
 // SetCreatedBefore sets the CreatedBefore field's value.
 func (s *ListVirtualClustersInput) SetCreatedBefore(v time.Time) *ListVirtualClustersInput {
 	s.CreatedBefore = &v
+	return s
+}
+
+// SetEksAccessEntryIntegrated sets the EksAccessEntryIntegrated field's value.
+func (s *ListVirtualClustersInput) SetEksAccessEntryIntegrated(v bool) *ListVirtualClustersInput {
+	s.EksAccessEntryIntegrated = &v
 	return s
 }
 

@@ -681,6 +681,7 @@
         "playbackUrl":{"shape":"PlaybackURL"},
         "preset":{"shape":"TranscodePreset"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
+        "srt":{"shape":"Srt"},
         "tags":{"shape":"Tags"},
         "type":{"shape":"ChannelType"}
       }
@@ -1456,6 +1457,18 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Srt":{
+      "type":"structure",
+      "members":{
+        "endpoint":{"shape":"SrtEndpoint"},
+        "passphrase":{"shape":"SrtPassphrase"}
+      }
+    },
+    "SrtEndpoint":{"type":"string"},
+    "SrtPassphrase":{
+      "type":"string",
+      "sensitive":true
     },
     "StartViewerSessionRevocationRequest":{
       "type":"structure",

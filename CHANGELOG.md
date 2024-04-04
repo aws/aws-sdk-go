@@ -1,3 +1,15 @@
+Release v1.51.15 (2024-04-04)
+===
+
+### Service Client Updates
+* `service/b2bi`: Updates service API
+* `service/cleanrooms`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * Amazon EC2 G6 instances powered by NVIDIA L4 Tensor Core GPUs can be used for a wide range of graphics-intensive and machine learning use cases. Gr6 instances also feature NVIDIA L4 GPUs and can be used for graphics workloads with higher memory requirements.
+* `service/emr-containers`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.51.14 (2024-04-03)
 ===
 
