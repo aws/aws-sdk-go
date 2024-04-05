@@ -29,6 +29,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "BatchIsAuthorizedWithToken":{
+      "name":"BatchIsAuthorizedWithToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchIsAuthorizedWithTokenInput"},
+      "output":{"shape":"BatchIsAuthorizedWithTokenOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateIdentitySource":{
       "name":"CreateIdentitySource",
       "http":{
@@ -539,6 +555,60 @@
     "BatchIsAuthorizedOutputList":{
       "type":"list",
       "member":{"shape":"BatchIsAuthorizedOutputItem"}
+    },
+    "BatchIsAuthorizedWithTokenInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "requests"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "identityToken":{"shape":"Token"},
+        "accessToken":{"shape":"Token"},
+        "entities":{"shape":"EntitiesDefinition"},
+        "requests":{"shape":"BatchIsAuthorizedWithTokenInputList"}
+      }
+    },
+    "BatchIsAuthorizedWithTokenInputItem":{
+      "type":"structure",
+      "members":{
+        "action":{"shape":"ActionIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "context":{"shape":"ContextDefinition"}
+      }
+    },
+    "BatchIsAuthorizedWithTokenInputList":{
+      "type":"list",
+      "member":{"shape":"BatchIsAuthorizedWithTokenInputItem"},
+      "min":1
+    },
+    "BatchIsAuthorizedWithTokenOutput":{
+      "type":"structure",
+      "required":["results"],
+      "members":{
+        "principal":{"shape":"EntityIdentifier"},
+        "results":{"shape":"BatchIsAuthorizedWithTokenOutputList"}
+      }
+    },
+    "BatchIsAuthorizedWithTokenOutputItem":{
+      "type":"structure",
+      "required":[
+        "request",
+        "decision",
+        "determiningPolicies",
+        "errors"
+      ],
+      "members":{
+        "request":{"shape":"BatchIsAuthorizedWithTokenInputItem"},
+        "decision":{"shape":"Decision"},
+        "determiningPolicies":{"shape":"DeterminingPolicyList"},
+        "errors":{"shape":"EvaluationErrorList"}
+      }
+    },
+    "BatchIsAuthorizedWithTokenOutputList":{
+      "type":"list",
+      "member":{"shape":"BatchIsAuthorizedWithTokenOutputItem"}
     },
     "Boolean":{
       "type":"boolean",

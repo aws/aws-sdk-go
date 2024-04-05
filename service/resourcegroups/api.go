@@ -2173,9 +2173,9 @@ type CreateGroupInput struct {
 	// The name of the group, which is the identifier of the group in other operations.
 	// You can't change the name of a resource group after you create it. A resource
 	// group name can consist of letters, numbers, hyphens, periods, and underscores.
-	// The name cannot start with AWS or aws; these are reserved. A resource group
-	// name must be unique within each Amazon Web Services Region in your Amazon
-	// Web Services account.
+	// The name cannot start with AWS, aws, or any other possible capitalization;
+	// these are reserved. A resource group name must be unique within each Amazon
+	// Web Services Region in your Amazon Web Services account.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -3730,9 +3730,9 @@ type ListGroupResourcesOutput struct {
 	// should repeat this until the NextToken response element comes back as null.
 	NextToken *string `type:"string"`
 
-	// A list of QueryError objects. Each error is an object that contains ErrorCode
-	// and Message structures. Possible values for ErrorCode are CLOUDFORMATION_STACK_INACTIVE
-	// and CLOUDFORMATION_STACK_NOT_EXISTING.
+	// A list of QueryError objects. Each error contains an ErrorCode and Message.
+	// Possible values for ErrorCode are CLOUDFORMATION_STACK_INACTIVE, CLOUDFORMATION_STACK_NOT_EXISTING,
+	// CLOUDFORMATION_STACK_UNASSUMABLE_ROLE and RESOURCE_TYPE_NOT_SUPPORTED.
 	QueryErrors []*QueryError `type:"list"`
 
 	//
@@ -3795,13 +3795,16 @@ type ListGroupsInput struct {
 	// Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups
 	// operation.
 	//
-	//    * resource-type - Filter the results to include only those of the specified
-	//    resource types. Specify up to five resource types in the format AWS::ServiceCode::ResourceType
-	//    . For example, AWS::EC2::Instance, or AWS::S3::Bucket.
+	//    * resource-type - Filter the results to include only those resource groups
+	//    that have the specified resource type in their ResourceTypeFilter. For
+	//    example, AWS::EC2::Instance would return any resource group with a ResourceTypeFilter
+	//    that includes AWS::EC2::Instance.
 	//
 	//    * configuration-type - Filter the results to include only those groups
 	//    that have the specified configuration types attached. The current supported
-	//    values are: AWS::EC2::CapacityReservationPool AWS::EC2::HostManagement
+	//    values are: AWS::AppRegistry::Application AWS::AppRegistry::ApplicationResourceGroups
+	//    AWS::CloudFormation::Stack AWS::EC2::CapacityReservationPool AWS::EC2::HostManagement
+	//    AWS::NetworkFirewall::RuleGroup
 	Filters []*GroupFilter `type:"list"`
 
 	// The total number of results that you want included on each page of the response.
@@ -4195,22 +4198,14 @@ func (s PutGroupConfigurationOutput) GoString() string {
 	return s.String()
 }
 
-// A two-part error structure that can occur in ListGroupResources or SearchResources
-// operations on CloudFront stack-based queries. The error occurs if the CloudFront
-// stack on which the query is based either does not exist, or has a status
-// that renders the stack inactive. A QueryError occurrence does not necessarily
-// mean that Resource Groups could not complete the operation, but the resulting
-// group might have no member resources.
+// A two-part error structure that can occur in ListGroupResources or SearchResources.
 type QueryError struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the error code that was raised.
 	ErrorCode *string `type:"string" enum:"QueryErrorCode"`
 
-	// A message that explains the ErrorCode value. Messages might state that the
-	// specified CloudFront stack does not exist (or no longer exists). For CLOUDFORMATION_STACK_INACTIVE,
-	// the message typically states that the CloudFront stack has a status that
-	// is not (or no longer) active, such as CREATE_FAILED.
+	// A message that explains the ErrorCode.
 	Message *string `type:"string"`
 }
 
@@ -4615,14 +4610,15 @@ type SearchResourcesOutput struct {
 	// should repeat this until the NextToken response element comes back as null.
 	NextToken *string `type:"string"`
 
-	// A list of QueryError objects. Each error is an object that contains ErrorCode
-	// and Message structures.
+	// A list of QueryError objects. Each error contains an ErrorCode and Message.
 	//
 	// Possible values for ErrorCode:
 	//
 	//    * CLOUDFORMATION_STACK_INACTIVE
 	//
 	//    * CLOUDFORMATION_STACK_NOT_EXISTING
+	//
+	//    * CLOUDFORMATION_STACK_UNASSUMABLE_ROLE
 	QueryErrors []*QueryError `type:"list"`
 
 	// The ARNs and resource types of resources that are members of the group that
@@ -5484,6 +5480,9 @@ const (
 
 	// QueryErrorCodeCloudformationStackUnassumableRole is a QueryErrorCode enum value
 	QueryErrorCodeCloudformationStackUnassumableRole = "CLOUDFORMATION_STACK_UNASSUMABLE_ROLE"
+
+	// QueryErrorCodeResourceTypeNotSupported is a QueryErrorCode enum value
+	QueryErrorCodeResourceTypeNotSupported = "RESOURCE_TYPE_NOT_SUPPORTED"
 )
 
 // QueryErrorCode_Values returns all elements of the QueryErrorCode enum
@@ -5492,6 +5491,7 @@ func QueryErrorCode_Values() []string {
 		QueryErrorCodeCloudformationStackInactive,
 		QueryErrorCodeCloudformationStackNotExisting,
 		QueryErrorCodeCloudformationStackUnassumableRole,
+		QueryErrorCodeResourceTypeNotSupported,
 	}
 }
 

@@ -64,6 +64,10 @@ type VerifiedPermissionsAPI interface {
 	BatchIsAuthorizedWithContext(aws.Context, *verifiedpermissions.BatchIsAuthorizedInput, ...request.Option) (*verifiedpermissions.BatchIsAuthorizedOutput, error)
 	BatchIsAuthorizedRequest(*verifiedpermissions.BatchIsAuthorizedInput) (*request.Request, *verifiedpermissions.BatchIsAuthorizedOutput)
 
+	BatchIsAuthorizedWithToken(*verifiedpermissions.BatchIsAuthorizedWithTokenInput) (*verifiedpermissions.BatchIsAuthorizedWithTokenOutput, error)
+	BatchIsAuthorizedWithTokenWithContext(aws.Context, *verifiedpermissions.BatchIsAuthorizedWithTokenInput, ...request.Option) (*verifiedpermissions.BatchIsAuthorizedWithTokenOutput, error)
+	BatchIsAuthorizedWithTokenRequest(*verifiedpermissions.BatchIsAuthorizedWithTokenInput) (*request.Request, *verifiedpermissions.BatchIsAuthorizedWithTokenOutput)
+
 	CreateIdentitySource(*verifiedpermissions.CreateIdentitySourceInput) (*verifiedpermissions.CreateIdentitySourceOutput, error)
 	CreateIdentitySourceWithContext(aws.Context, *verifiedpermissions.CreateIdentitySourceInput, ...request.Option) (*verifiedpermissions.CreateIdentitySourceOutput, error)
 	CreateIdentitySourceRequest(*verifiedpermissions.CreateIdentitySourceInput) (*request.Request, *verifiedpermissions.CreateIdentitySourceOutput)
