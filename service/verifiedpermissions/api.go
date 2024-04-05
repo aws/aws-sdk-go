@@ -167,6 +167,159 @@ func (c *VerifiedPermissions) BatchIsAuthorizedWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opBatchIsAuthorizedWithToken = "BatchIsAuthorizedWithToken"
+
+// BatchIsAuthorizedWithTokenRequest generates a "aws/request.Request" representing the
+// client's request for the BatchIsAuthorizedWithToken operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchIsAuthorizedWithToken for more information on using the BatchIsAuthorizedWithToken
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchIsAuthorizedWithTokenRequest method.
+//	req, resp := client.BatchIsAuthorizedWithTokenRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorizedWithToken
+func (c *VerifiedPermissions) BatchIsAuthorizedWithTokenRequest(input *BatchIsAuthorizedWithTokenInput) (req *request.Request, output *BatchIsAuthorizedWithTokenOutput) {
+	op := &request.Operation{
+		Name:       opBatchIsAuthorizedWithToken,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchIsAuthorizedWithTokenInput{}
+	}
+
+	output = &BatchIsAuthorizedWithTokenOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchIsAuthorizedWithToken API operation for Amazon Verified Permissions.
+//
+// Makes a series of decisions about multiple authorization requests for one
+// token. The principal in this request comes from an external identity source
+// in the form of an identity or access token, formatted as a JSON web token
+// (JWT) (https://wikipedia.org/wiki/JSON_Web_Token). The information in the
+// parameters can also define additional context that Verified Permissions can
+// include in the evaluations.
+//
+// The request is evaluated against all policies in the specified policy store
+// that match the entities that you provide in the entities declaration and
+// in the token. The result of the decisions is a series of Allow or Deny responses,
+// along with the IDs of the policies that produced each decision.
+//
+// The entities of a BatchIsAuthorizedWithToken API request can contain up to
+// 100 resources and up to 99 user groups. The requests of a BatchIsAuthorizedWithToken
+// API request can contain up to 30 requests.
+//
+// The BatchIsAuthorizedWithToken operation doesn't have its own IAM permission.
+// To authorize this operation for Amazon Web Services principals, include the
+// permission verifiedpermissions:IsAuthorizedWithToken in their IAM policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Verified Permissions's
+// API operation BatchIsAuthorizedWithToken for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The request failed because one or more input parameters don't satisfy their
+//     constraint requirements. The output is provided as a list of fields and a
+//     reason for each field that isn't valid.
+//
+//     The possible reasons include the following:
+//
+//   - UnrecognizedEntityType The policy includes an entity type that isn't
+//     found in the schema.
+//
+//   - UnrecognizedActionId The policy includes an action id that isn't found
+//     in the schema.
+//
+//   - InvalidActionApplication The policy includes an action that, according
+//     to the schema, doesn't support the specified principal and resource.
+//
+//   - UnexpectedType The policy included an operand that isn't a valid type
+//     for the specified operation.
+//
+//   - IncompatibleTypes The types of elements included in a set, or the types
+//     of expressions used in an if...then...else clause aren't compatible in
+//     this context.
+//
+//   - MissingAttribute The policy attempts to access a record or entity attribute
+//     that isn't specified in the schema. Test for the existence of the attribute
+//     first before attempting to access its value. For more information, see
+//     the has (presence of attribute test) operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
+//     in the Cedar Policy Language Guide.
+//
+//   - UnsafeOptionalAttributeAccess The policy attempts to access a record
+//     or entity attribute that is optional and isn't guaranteed to be present.
+//     Test for the existence of the attribute first before attempting to access
+//     its value. For more information, see the has (presence of attribute test)
+//     operator (https://docs.cedarpolicy.com/policies/syntax-operators.html#has-presence-of-attribute-test)
+//     in the Cedar Policy Language Guide.
+//
+//   - ImpossiblePolicy Cedar has determined that a policy condition always
+//     evaluates to false. If the policy is always false, it can never apply
+//     to any query, and so it can never affect an authorization decision.
+//
+//   - WrongNumberArguments The policy references an extension type with the
+//     wrong number of arguments.
+//
+//   - FunctionArgumentValidationError Cedar couldn't parse the argument passed
+//     to an extension type. For example, a string that is to be parsed as an
+//     IPv4 address can contain only digits and the period character.
+//
+//   - AccessDeniedException
+//     You don't have sufficient access to perform this action.
+//
+//   - ResourceNotFoundException
+//     The request failed because it references a resource that doesn't exist.
+//
+//   - ThrottlingException
+//     The request failed because it exceeded a throttling quota.
+//
+//   - InternalServerException
+//     The request failed because of an internal error. Try your request again later
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/verifiedpermissions-2021-12-01/BatchIsAuthorizedWithToken
+func (c *VerifiedPermissions) BatchIsAuthorizedWithToken(input *BatchIsAuthorizedWithTokenInput) (*BatchIsAuthorizedWithTokenOutput, error) {
+	req, out := c.BatchIsAuthorizedWithTokenRequest(input)
+	return out, req.Send()
+}
+
+// BatchIsAuthorizedWithTokenWithContext is the same as BatchIsAuthorizedWithToken with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchIsAuthorizedWithToken for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *VerifiedPermissions) BatchIsAuthorizedWithTokenWithContext(ctx aws.Context, input *BatchIsAuthorizedWithTokenInput, opts ...request.Option) (*BatchIsAuthorizedWithTokenOutput, error) {
+	req, out := c.BatchIsAuthorizedWithTokenRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIdentitySource = "CreateIdentitySource"
 
 // CreateIdentitySourceRequest generates a "aws/request.Request" representing the
@@ -2233,14 +2386,6 @@ func (c *VerifiedPermissions) IsAuthorizedWithTokenRequest(input *IsAuthorizedWi
 // in the evaluation. The request is evaluated against all matching policies
 // in the specified policy store. The result of the decision is either Allow
 // or Deny, along with a list of the policies that resulted in the decision.
-//
-// If you specify the identityToken parameter, then this operation derives the
-// principal from that token. You must not also include that principal in the
-// entities parameter or the operation fails and reports a conflict between
-// the two entity sources.
-//
-// If you provide only an accessToken, then you can include the entity as part
-// of the entities parameter to provide additional attributes.
 //
 // At this time, Verified Permissions accepts tokens from only Amazon Cognito.
 //
@@ -4453,8 +4598,350 @@ func (s *BatchIsAuthorizedOutputItem) SetRequest(v *BatchIsAuthorizedInputItem) 
 	return s
 }
 
-// The type of entity that a policy store maps to groups from an Amazon Cognito
-// user pool identity source.
+type BatchIsAuthorizedWithTokenInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies an access token for the principal that you want to authorize in
+	// each request. This token is provided to you by the identity provider (IdP)
+	// associated with the specified identity source. You must specify either an
+	// accessToken, an identityToken, or both.
+	//
+	// Must be an access token. Verified Permissions returns an error if the token_use
+	// claim in the submitted token isn't access.
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchIsAuthorizedWithTokenInput's
+	// String and GoString methods.
+	AccessToken *string `locationName:"accessToken" min:"1" type:"string" sensitive:"true"`
+
+	// Specifies the list of resources and their associated attributes that Verified
+	// Permissions can examine when evaluating the policies.
+	//
+	// You can't include principals in this parameter, only resource and action
+	// entities. This parameter can't include any entities of a type that matches
+	// the user or group entity types that you defined in your identity source.
+	//
+	//    * The BatchIsAuthorizedWithToken operation takes principal attributes
+	//    from only the identityToken or accessToken passed to the operation.
+	//
+	//    * For action entities, you can include only their Identifier and EntityType.
+	Entities *EntitiesDefinition `locationName:"entities" type:"structure"`
+
+	// Specifies an identity (ID) token for the principal that you want to authorize
+	// in each request. This token is provided to you by the identity provider (IdP)
+	// associated with the specified identity source. You must specify either an
+	// accessToken, an identityToken, or both.
+	//
+	// Must be an ID token. Verified Permissions returns an error if the token_use
+	// claim in the submitted token isn't id.
+	//
+	// IdentityToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by BatchIsAuthorizedWithTokenInput's
+	// String and GoString methods.
+	IdentityToken *string `locationName:"identityToken" min:"1" type:"string" sensitive:"true"`
+
+	// Specifies the ID of the policy store. Policies in this policy store will
+	// be used to make an authorization decision for the input.
+	//
+	// PolicyStoreId is a required field
+	PolicyStoreId *string `locationName:"policyStoreId" min:"1" type:"string" required:"true"`
+
+	// An array of up to 30 requests that you want Verified Permissions to evaluate.
+	//
+	// Requests is a required field
+	Requests []*BatchIsAuthorizedWithTokenInputItem `locationName:"requests" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchIsAuthorizedWithTokenInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchIsAuthorizedWithTokenInput"}
+	if s.AccessToken != nil && len(*s.AccessToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessToken", 1))
+	}
+	if s.IdentityToken != nil && len(*s.IdentityToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityToken", 1))
+	}
+	if s.PolicyStoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyStoreId"))
+	}
+	if s.PolicyStoreId != nil && len(*s.PolicyStoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyStoreId", 1))
+	}
+	if s.Requests == nil {
+		invalidParams.Add(request.NewErrParamRequired("Requests"))
+	}
+	if s.Requests != nil && len(s.Requests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Requests", 1))
+	}
+	if s.Entities != nil {
+		if err := s.Entities.Validate(); err != nil {
+			invalidParams.AddNested("Entities", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Requests != nil {
+		for i, v := range s.Requests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Requests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessToken sets the AccessToken field's value.
+func (s *BatchIsAuthorizedWithTokenInput) SetAccessToken(v string) *BatchIsAuthorizedWithTokenInput {
+	s.AccessToken = &v
+	return s
+}
+
+// SetEntities sets the Entities field's value.
+func (s *BatchIsAuthorizedWithTokenInput) SetEntities(v *EntitiesDefinition) *BatchIsAuthorizedWithTokenInput {
+	s.Entities = v
+	return s
+}
+
+// SetIdentityToken sets the IdentityToken field's value.
+func (s *BatchIsAuthorizedWithTokenInput) SetIdentityToken(v string) *BatchIsAuthorizedWithTokenInput {
+	s.IdentityToken = &v
+	return s
+}
+
+// SetPolicyStoreId sets the PolicyStoreId field's value.
+func (s *BatchIsAuthorizedWithTokenInput) SetPolicyStoreId(v string) *BatchIsAuthorizedWithTokenInput {
+	s.PolicyStoreId = &v
+	return s
+}
+
+// SetRequests sets the Requests field's value.
+func (s *BatchIsAuthorizedWithTokenInput) SetRequests(v []*BatchIsAuthorizedWithTokenInputItem) *BatchIsAuthorizedWithTokenInput {
+	s.Requests = v
+	return s
+}
+
+// An authorization request that you include in a BatchIsAuthorizedWithToken
+// API request.
+type BatchIsAuthorizedWithTokenInputItem struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the requested action to be authorized. For example, PhotoFlash::ReadPhoto.
+	Action *ActionIdentifier `locationName:"action" type:"structure"`
+
+	// Specifies additional context that can be used to make more granular authorization
+	// decisions.
+	Context *ContextDefinition `locationName:"context" type:"structure"`
+
+	// Specifies the resource that you want an authorization decision for. For example,
+	// PhotoFlash::Photo.
+	Resource *EntityIdentifier `locationName:"resource" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenInputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenInputItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchIsAuthorizedWithTokenInputItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchIsAuthorizedWithTokenInputItem"}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Context != nil {
+		if err := s.Context.Validate(); err != nil {
+			invalidParams.AddNested("Context", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *BatchIsAuthorizedWithTokenInputItem) SetAction(v *ActionIdentifier) *BatchIsAuthorizedWithTokenInputItem {
+	s.Action = v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *BatchIsAuthorizedWithTokenInputItem) SetContext(v *ContextDefinition) *BatchIsAuthorizedWithTokenInputItem {
+	s.Context = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *BatchIsAuthorizedWithTokenInputItem) SetResource(v *EntityIdentifier) *BatchIsAuthorizedWithTokenInputItem {
+	s.Resource = v
+	return s
+}
+
+type BatchIsAuthorizedWithTokenOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the principal in the ID or access token.
+	Principal *EntityIdentifier `locationName:"principal" type:"structure"`
+
+	// A series of Allow or Deny decisions for each request, and the policies that
+	// produced them.
+	//
+	// Results is a required field
+	Results []*BatchIsAuthorizedWithTokenOutputItem `locationName:"results" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenOutput) GoString() string {
+	return s.String()
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *BatchIsAuthorizedWithTokenOutput) SetPrincipal(v *EntityIdentifier) *BatchIsAuthorizedWithTokenOutput {
+	s.Principal = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *BatchIsAuthorizedWithTokenOutput) SetResults(v []*BatchIsAuthorizedWithTokenOutputItem) *BatchIsAuthorizedWithTokenOutput {
+	s.Results = v
+	return s
+}
+
+// The decision, based on policy evaluation, from an individual authorization
+// request in a BatchIsAuthorizedWithToken API request.
+type BatchIsAuthorizedWithTokenOutputItem struct {
+	_ struct{} `type:"structure"`
+
+	// An authorization decision that indicates if the authorization request should
+	// be allowed or denied.
+	//
+	// Decision is a required field
+	Decision *string `locationName:"decision" type:"string" required:"true" enum:"Decision"`
+
+	// The list of determining policies used to make the authorization decision.
+	// For example, if there are two matching policies, where one is a forbid and
+	// the other is a permit, then the forbid policy will be the determining policy.
+	// In the case of multiple matching permit policies then there would be multiple
+	// determining policies. In the case that no policies match, and hence the response
+	// is DENY, there would be no determining policies.
+	//
+	// DeterminingPolicies is a required field
+	DeterminingPolicies []*DeterminingPolicyItem `locationName:"determiningPolicies" type:"list" required:"true"`
+
+	// Errors that occurred while making an authorization decision. For example,
+	// a policy might reference an entity or attribute that doesn't exist in the
+	// request.
+	//
+	// Errors is a required field
+	Errors []*EvaluationErrorItem `locationName:"errors" type:"list" required:"true"`
+
+	// The authorization request that initiated the decision.
+	//
+	// Request is a required field
+	Request *BatchIsAuthorizedWithTokenInputItem `locationName:"request" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenOutputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchIsAuthorizedWithTokenOutputItem) GoString() string {
+	return s.String()
+}
+
+// SetDecision sets the Decision field's value.
+func (s *BatchIsAuthorizedWithTokenOutputItem) SetDecision(v string) *BatchIsAuthorizedWithTokenOutputItem {
+	s.Decision = &v
+	return s
+}
+
+// SetDeterminingPolicies sets the DeterminingPolicies field's value.
+func (s *BatchIsAuthorizedWithTokenOutputItem) SetDeterminingPolicies(v []*DeterminingPolicyItem) *BatchIsAuthorizedWithTokenOutputItem {
+	s.DeterminingPolicies = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchIsAuthorizedWithTokenOutputItem) SetErrors(v []*EvaluationErrorItem) *BatchIsAuthorizedWithTokenOutputItem {
+	s.Errors = v
+	return s
+}
+
+// SetRequest sets the Request field's value.
+func (s *BatchIsAuthorizedWithTokenOutputItem) SetRequest(v *BatchIsAuthorizedWithTokenInputItem) *BatchIsAuthorizedWithTokenOutputItem {
+	s.Request = v
+	return s
+}
+
+// A list of user groups and entities from an Amazon Cognito user pool identity
+// source.
 //
 // This data type is part of a CognitoUserPoolConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfiguration.html)
 // structure and is a request parameter in CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
@@ -4512,8 +4999,8 @@ func (s *CognitoGroupConfiguration) SetGroupEntityType(v string) *CognitoGroupCo
 	return s
 }
 
-// The type of entity that a policy store maps to groups from an Amazon Cognito
-// user pool identity source.
+// A list of user groups and entities from an Amazon Cognito user pool identity
+// source.
 //
 // This data type is part of an CognitoUserPoolConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationItem.html)
 // structure and is a response parameter to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
@@ -4553,8 +5040,8 @@ func (s *CognitoGroupConfigurationDetail) SetGroupEntityType(v string) *CognitoG
 	return s
 }
 
-// The type of entity that a policy store maps to groups from an Amazon Cognito
-// user pool identity source.
+// A list of user groups and entities from an Amazon Cognito user pool identity
+// source.
 //
 // This data type is part of an CognitoUserPoolConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationDetail.html)
 // structure and is a response parameter to ListIdentitySources (http://forums.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
@@ -4601,8 +5088,7 @@ func (s *CognitoGroupConfigurationItem) SetGroupEntityType(v string) *CognitoGro
 // structure that is used as a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
-// "MyCorp::Group"}}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
 type CognitoUserPoolConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4612,8 +5098,8 @@ type CognitoUserPoolConfiguration struct {
 	// Example: "ClientIds": ["&ExampleCogClientId;"]
 	ClientIds []*string `locationName:"clientIds" type:"list"`
 
-	// The type of entity that a policy store maps to groups from an Amazon Cognito
-	// user pool identity source.
+	// The configuration of the user groups from an Amazon Cognito user pool identity
+	// source.
 	GroupConfiguration *CognitoGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
 
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
@@ -4690,8 +5176,7 @@ func (s *CognitoUserPoolConfiguration) SetUserPoolArn(v string) *CognitoUserPool
 // structure that is part of the response to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
-// "MyCorp::Group"}}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
 type CognitoUserPoolConfigurationDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -4703,8 +5188,8 @@ type CognitoUserPoolConfigurationDetail struct {
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
 
-	// The type of entity that a policy store maps to groups from an Amazon Cognito
-	// user pool identity source.
+	// The configuration of the user groups from an Amazon Cognito user pool identity
+	// source.
 	GroupConfiguration *CognitoGroupConfigurationDetail `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
@@ -4773,8 +5258,7 @@ func (s *CognitoUserPoolConfigurationDetail) SetUserPoolArn(v string) *CognitoUs
 // structure that is part of the response to ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
-// "MyCorp::Group"}}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
 type CognitoUserPoolConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
@@ -4786,8 +5270,8 @@ type CognitoUserPoolConfigurationItem struct {
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
 
-	// The type of entity that a policy store maps to groups from an Amazon Cognito
-	// user pool identity source.
+	// The configuration of the user groups from an Amazon Cognito user pool identity
+	// source.
 	GroupConfiguration *CognitoGroupConfigurationItem `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
@@ -4854,7 +5338,7 @@ func (s *CognitoUserPoolConfigurationItem) SetUserPoolArn(v string) *CognitoUser
 // At this time, the only valid member of this structure is a Amazon Cognito
 // user pool configuration.
 //
-// Specifies a userPoolArn, a groupConfiguration, and a ClientId.
+// You must specify a userPoolArn, and optionally, a ClientId.
 //
 // This data type is used as a request parameter for the CreateIdentitySource
 // (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
@@ -4922,8 +5406,7 @@ type ConfigurationDetail struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool, the policy store entity that you want to assign
-	// to user groups, and one or more application client IDs.
+	// of a Amazon Cognito user pool and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
@@ -4965,8 +5448,7 @@ type ConfigurationItem struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool, the policy store entity that you want to assign
-	// to user groups, and one or more application client IDs.
+	// of a Amazon Cognito user pool and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
@@ -7966,8 +8448,9 @@ type IsAuthorizedWithTokenInput struct {
 	// Specifies the list of resources and their associated attributes that Verified
 	// Permissions can examine when evaluating the policies.
 	//
-	// You can include only resource and action entities in this parameter; you
-	// can't include principals.
+	// You can't include principals in this parameter, only resource and action
+	// entities. This parameter can't include any entities of a type that matches
+	// the user or group entity types that you defined in your identity source.
 	//
 	//    * The IsAuthorizedWithToken operation takes principal attributes from
 	//    only the identityToken or accessToken passed to the operation.
@@ -10078,7 +10561,8 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The user group entities from an Amazon Cognito user pool identity source.
+// A list of user groups and entities from an Amazon Cognito user pool identity
+// source.
 type UpdateCognitoGroupConfiguration struct {
 	_ struct{} `type:"structure"`
 

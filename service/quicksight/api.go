@@ -20179,8 +20179,9 @@ func (s *AggregationSortConfiguration) SetSortDirection(v string) *AggregationSo
 	return s
 }
 
-// The configuration for applying a filter to all sheets. You can apply this
-// filter to all visuals on every sheet.
+// An empty object that represents that the AllSheets option is the chosen value
+// for the FilterScopeConfiguration parameter. This structure applies the filter
+// to all visuals on all sheets of an Analysis, Dashboard, or Template.
 //
 // This is a union type structure. For this structure to be valid, only one
 // of the attributes can be defined.
@@ -31516,6 +31517,9 @@ type CreateAccountSubscriptionInput struct {
 	// selected edition of the new Amazon QuickSight account.
 	FirstName *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) for the IAM Identity Center instance.
+	IAMIdentityCenterInstanceArn *string `type:"string"`
+
 	// The last name of the author of the Amazon QuickSight account to use for future
 	// communications. This field is required if ENTERPPRISE_AND_Q is the selected
 	// edition of the new Amazon QuickSight account.
@@ -31656,6 +31660,12 @@ func (s *CreateAccountSubscriptionInput) SetEmailAddress(v string) *CreateAccoun
 // SetFirstName sets the FirstName field's value.
 func (s *CreateAccountSubscriptionInput) SetFirstName(v string) *CreateAccountSubscriptionInput {
 	s.FirstName = &v
+	return s
+}
+
+// SetIAMIdentityCenterInstanceArn sets the IAMIdentityCenterInstanceArn field's value.
+func (s *CreateAccountSubscriptionInput) SetIAMIdentityCenterInstanceArn(v string) *CreateAccountSubscriptionInput {
+	s.IAMIdentityCenterInstanceArn = &v
 	return s
 }
 
@@ -55991,7 +56001,10 @@ func (s *FilterRelativeDateTimeControl) SetTitle(v string) *FilterRelativeDateTi
 type FilterScopeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration for applying a filter to all sheets.
+	// The configuration that applies a filter to all sheets. When you choose AllSheets
+	// as the value for a FilterScopeConfiguration, this filter is applied to all
+	// visuals of all sheets in an Analysis, Dashboard, or Template. The AllSheetsFilterScopeConfiguration
+	// is chosen.
 	AllSheets *AllSheetsFilterScopeConfiguration `type:"structure"`
 
 	// The configuration for applying a filter to specific sheets.

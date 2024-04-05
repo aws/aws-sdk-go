@@ -1,3 +1,12 @@
+Release v1.51.16 (2024-04-05)
+===
+
+### Service Client Updates
+* `service/quicksight`: Updates service API and documentation
+  * Adding IAMIdentityCenterInstanceArn parameter to CreateAccountSubscription
+* `service/resource-groups`: Updates service API and documentation
+* `service/verifiedpermissions`: Updates service API and documentation
+
 Release v1.51.15 (2024-04-04)
 ===
 

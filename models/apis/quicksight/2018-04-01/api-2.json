@@ -5491,7 +5491,8 @@
         "FirstName":{"shape":"String"},
         "LastName":{"shape":"String"},
         "EmailAddress":{"shape":"String"},
-        "ContactNumber":{"shape":"String"}
+        "ContactNumber":{"shape":"String"},
+        "IAMIdentityCenterInstanceArn":{"shape":"String"}
       }
     },
     "CreateAccountSubscriptionResponse":{

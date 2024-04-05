@@ -291,9 +291,9 @@
       }
     },
     "AllSheetsFilterScopeConfiguration": {
-      "base": "<p>The configuration for applying a filter to all sheets. You can apply this filter to all visuals on every sheet.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
+      "base": "<p>An empty object that represents that the <code>AllSheets</code> option is the chosen value for the <code>FilterScopeConfiguration</code> parameter. This structure applies the filter to all visuals on all sheets of an Analysis, Dashboard, or Template.</p> <p>This is a union type structure. For this structure to be valid, only one of the attributes can be defined.</p>",
       "refs": {
-        "FilterScopeConfiguration$AllSheets": "<p>The configuration for applying a filter to all sheets.</p>"
+        "FilterScopeConfiguration$AllSheets": "<p>The configuration that applies a filter to all sheets. When you choose <code>AllSheets</code> as the value for a <code>FilterScopeConfiguration</code>, this filter is applied to all visuals of all sheets in an Analysis, Dashboard, or Template. The <code>AllSheetsFilterScopeConfiguration</code> is chosen.</p>"
       }
     },
     "AmazonElasticsearchParameters": {
@@ -10658,6 +10658,7 @@
         "CreateAccountSubscriptionRequest$LastName": "<p>The last name of the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
         "CreateAccountSubscriptionRequest$EmailAddress": "<p>The email address of the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
         "CreateAccountSubscriptionRequest$ContactNumber": "<p>A 10-digit phone number for the author of the Amazon QuickSight account to use for future communications. This field is required if <code>ENTERPPRISE_AND_Q</code> is the selected edition of the new Amazon QuickSight account.</p>",
+        "CreateAccountSubscriptionRequest$IAMIdentityCenterInstanceArn": "<p>The Amazon Resource Name (ARN) for the IAM Identity Center instance.</p>",
         "CreateAccountSubscriptionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateAnalysisResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
