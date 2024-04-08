@@ -6426,6 +6426,8 @@ func (c *Mgn) UpdateLaunchConfigurationRequest(input *UpdateLaunchConfigurationI
 //
 // Updates multiple LaunchConfigurations by Source Server ID.
 //
+// bootMode valid values are LEGACY_BIOS | UEFI
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -23455,6 +23457,9 @@ const (
 	// ActionCategoryObservability is a ActionCategory enum value
 	ActionCategoryObservability = "OBSERVABILITY"
 
+	// ActionCategoryRefactoring is a ActionCategory enum value
+	ActionCategoryRefactoring = "REFACTORING"
+
 	// ActionCategorySecurity is a ActionCategory enum value
 	ActionCategorySecurity = "SECURITY"
 
@@ -23479,6 +23484,7 @@ func ActionCategory_Values() []string {
 		ActionCategoryLicenseAndSubscription,
 		ActionCategoryValidation,
 		ActionCategoryObservability,
+		ActionCategoryRefactoring,
 		ActionCategorySecurity,
 		ActionCategoryNetworking,
 		ActionCategoryConfiguration,
@@ -23533,6 +23539,9 @@ const (
 
 	// BootModeUefi is a BootMode enum value
 	BootModeUefi = "UEFI"
+
+	// BootModeUseSource is a BootMode enum value
+	BootModeUseSource = "USE_SOURCE"
 )
 
 // BootMode_Values returns all elements of the BootMode enum
@@ -23540,6 +23549,7 @@ func BootMode_Values() []string {
 	return []string{
 		BootModeLegacyBios,
 		BootModeUefi,
+		BootModeUseSource,
 	}
 }
 

@@ -27,14 +27,14 @@
         "CreateProbeOutput$addressFamily": "<p>Indicates whether the IP address is <code>IPV4</code> or <code>IPV6</code>.</p>",
         "GetProbeOutput$addressFamily": "<p>Indicates whether the IP address is <code>IPV4</code> or <code>IPV6</code>.</p>",
         "Probe$addressFamily": "<p>The IPv4 or IPv6 address for the probe.</p>",
-        "UpdateProbeOutput$addressFamily": "<p>The updated IP address family. This will be either <code>IPV4</code> or <code>IPV6</code>.</p>"
+        "UpdateProbeOutput$addressFamily": "<p>The updated IP address family. This must be either <code>IPV4</code> or <code>IPV6</code>.</p>"
       }
     },
     "AggregationPeriod": {
       "base": null,
       "refs": {
         "CreateMonitorInput$aggregationPeriod": "<p>The time, in seconds, that metrics are aggregated and sent to Amazon CloudWatch. Valid values are either <code>30</code> or <code>60</code>. </p>",
-        "CreateMonitorOutput$aggregationPeriod": "<p>The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch. This will be either <code>30</code> or <code>60</code>. </p>",
+        "CreateMonitorOutput$aggregationPeriod": "<p>The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch. This must be either <code>30</code> or <code>60</code>. </p>",
         "GetMonitorOutput$aggregationPeriod": "<p>The aggregation period for the specified monitor.</p>",
         "MonitorSummary$aggregationPeriod": "<p>The time, in seconds, that metrics are collected and sent to Amazon CloudWatch. Valid values are either <code>30</code> or <code>60</code>.</p>",
         "UpdateMonitorInput$aggregationPeriod": "<p>The aggregation time, in seconds, to change to. This must be either <code>30</code> or <code>60</code>. </p>",
@@ -119,11 +119,11 @@
     "Destination": {
       "base": null,
       "refs": {
-        "CreateMonitorProbeInput$destination": "<p>The destination IP address. This will be either <code>IPV4</code> or <code>IPV6</code>.</p>",
-        "CreateProbeOutput$destination": "<p>The destination IP address for the monitor. This will be either an IPv4 or IPv6 address.</p>",
-        "GetProbeOutput$destination": "<p>The destination IP address for the monitor. This will be either an IPv4 or IPv6 address.</p>",
+        "CreateMonitorProbeInput$destination": "<p>The destination IP address. This must be either <code>IPV4</code> or <code>IPV6</code>.</p>",
+        "CreateProbeOutput$destination": "<p>The destination IP address for the monitor. This must be either an IPv4 or IPv6 address.</p>",
+        "GetProbeOutput$destination": "<p>The destination IP address for the monitor. This must be either an IPv4 or IPv6 address.</p>",
         "Probe$destination": "<p>The destination for the probe. This should be either an <code>IPV4</code> or <code>IPV6</code>.</p>",
-        "ProbeInput$destination": "<p>The destination IP address. This will be either <code>IPV4</code> or <code>IPV6</code>.</p>",
+        "ProbeInput$destination": "<p>The destination IP address. This must be either <code>IPV4</code> or <code>IPV6</code>.</p>",
         "UpdateProbeInput$destination": "<p>The updated IP address for the probe destination. This must be either an IPv4 or IPv6 address.</p>",
         "UpdateProbeOutput$destination": "<p>The updated destination IP address for the probe.</p>"
       }
@@ -227,11 +227,11 @@
     "PacketSize": {
       "base": null,
       "refs": {
-        "CreateMonitorProbeInput$packetSize": "<p>The size of the packets sent between the source and destination. This will be a number between <code>56</code> and <code>8500</code>.</p>",
-        "CreateProbeOutput$packetSize": "<p>The size of the packets sent between the source and destination. This will be a number between <code>56</code> and <code>8500</code>.</p>",
-        "GetProbeOutput$packetSize": "<p>The size of the packets sent between the source and destination. This will be a number between <code>56</code> and <code>8500</code>.</p>",
+        "CreateMonitorProbeInput$packetSize": "<p>The size of the packets sent between the source and destination. This must be a number between <code>56</code> and <code>8500</code>.</p>",
+        "CreateProbeOutput$packetSize": "<p>The size of the packets sent between the source and destination. This must be a number between <code>56</code> and <code>8500</code>.</p>",
+        "GetProbeOutput$packetSize": "<p>The size of the packets sent between the source and destination. This must be a number between <code>56</code> and <code>8500</code>.</p>",
         "Probe$packetSize": "<p>The size of the packets traveling between the <code>source</code> and <code>destination</code>. This must be a number between <code>56</code> and </p>",
-        "ProbeInput$packetSize": "<p>The size of the packets sent between the source and destination. This will be a number between <code>56</code> and <code>8500</code>.</p>",
+        "ProbeInput$packetSize": "<p>The size of the packets sent between the source and destination. This must be a number between <code>56</code> and <code>8500</code>.</p>",
         "UpdateProbeInput$packetSize": "<p>he updated packets size for network traffic between the source and destination. This must be a number between <code>56</code> and <code>8500</code>.</p>",
         "UpdateProbeOutput$packetSize": "<p>The updated packet size for the probe. </p>"
       }
@@ -251,7 +251,7 @@
         "Probe$destinationPort": "<p>The destination port for the probe. This is required only if the <code>protocol</code> is <code>TCP</code> and must be a number between <code>1</code> and <code>65536</code>.</p>",
         "ProbeInput$destinationPort": "<p>The port associated with the <code>destination</code>. This is required only if the <code>protocol</code> is <code>TCP</code> and must be a number between <code>1</code> and <code>65536</code>.</p>",
         "UpdateProbeInput$destinationPort": "<p>The updated port for the probe destination. This is required only if the <code>protocol</code> is <code>TCP</code> and must be a number between <code>1</code> and <code>65536</code>.</p>",
-        "UpdateProbeOutput$destinationPort": "<p>The updated destination port. This will be a number between <code>1</code> and <code>65536</code>.</p>"
+        "UpdateProbeOutput$destinationPort": "<p>The updated destination port. This must be a number between <code>1</code> and <code>65536</code>.</p>"
       }
     },
     "Probe": {
@@ -297,11 +297,11 @@
     "Protocol": {
       "base": null,
       "refs": {
-        "CreateMonitorProbeInput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This will be either <code>TCP</code> or <code>ICMP</code>.</p>",
-        "CreateProbeOutput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This will be either <code>TCP</code> or <code>ICMP</code>.</p>",
-        "GetProbeOutput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This will be either <code>TCP</code> or <code>ICMP</code>.</p>",
+        "CreateMonitorProbeInput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This must be either <code>TCP</code> or <code>ICMP</code>.</p>",
+        "CreateProbeOutput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This must be either <code>TCP</code> or <code>ICMP</code>.</p>",
+        "GetProbeOutput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This must be either <code>TCP</code> or <code>ICMP</code>.</p>",
         "Probe$protocol": "<p>The network protocol for the destination. This can be either <code>TCP</code> or <code>ICMP</code>. If the protocol is <code>TCP</code>, then <code>port</code> is also required.</p>",
-        "ProbeInput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This will be either <code>TCP</code> or <code>ICMP</code>.</p>",
+        "ProbeInput$protocol": "<p>The protocol used for the network traffic between the <code>source</code> and <code>destination</code>. This must be either <code>TCP</code> or <code>ICMP</code>.</p>",
         "UpdateProbeInput$protocol": "<p>The updated network protocol for the destination. This can be either <code>TCP</code> or <code>ICMP</code>. If the protocol is <code>TCP</code>, then <code>port</code> is also required.</p>",
         "UpdateProbeOutput$protocol": "<p>The updated protocol for the probe.</p>"
       }
@@ -309,7 +309,7 @@
     "ResourceName": {
       "base": null,
       "refs": {
-        "CreateMonitorInput$monitorName": "<p>The name identifying the monitor. It can contain only letters, underscores (_), or dashes (-), and can be up to 255 characters.</p>",
+        "CreateMonitorInput$monitorName": "<p>The name identifying the monitor. It can contain only letters, underscores (_), or dashes (-), and can be up to 200 characters.</p>",
         "CreateMonitorOutput$monitorName": "<p>The name of the monitor.</p>",
         "CreateProbeInput$monitorName": "<p>The name of the monitor to associated with the probe. To get a list of available monitors, use <code>ListMonitors</code>.</p>",
         "DeleteMonitorInput$monitorName": "<p>The name of the monitor to delete. Use the <code>ListMonitors</code> action to get a list of your current monitors. </p>",
