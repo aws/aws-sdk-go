@@ -1347,7 +1347,7 @@ type CreateMonitorInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The name identifying the monitor. It can contain only letters, underscores
-	// (_), or dashes (-), and can be up to 255 characters.
+	// (_), or dashes (-), and can be up to 200 characters.
 	//
 	// MonitorName is a required field
 	MonitorName *string `locationName:"monitorName" min:"1" type:"string" required:"true"`
@@ -1440,7 +1440,7 @@ type CreateMonitorOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch.
-	// This will be either 30 or 60.
+	// This must be either 30 or 60.
 	AggregationPeriod *int64 `locationName:"aggregationPeriod" min:"30" type:"long"`
 
 	// The ARN of the monitor.
@@ -1514,7 +1514,7 @@ func (s *CreateMonitorOutput) SetTags(v map[string]*string) *CreateMonitorOutput
 type CreateMonitorProbeInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The destination IP address. This will be either IPV4 or IPV6.
+	// The destination IP address. This must be either IPV4 or IPV6.
 	//
 	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
@@ -1523,7 +1523,7 @@ type CreateMonitorProbeInput_ struct {
 	// is TCP and must be a number between 1 and 65536.
 	DestinationPort *int64 `locationName:"destinationPort" type:"integer"`
 
-	// The size of the packets sent between the source and destination. This will
+	// The size of the packets sent between the source and destination. This must
 	// be a number between 56 and 8500.
 	PacketSize *int64 `locationName:"packetSize" min:"56" type:"integer"`
 
@@ -1531,7 +1531,7 @@ type CreateMonitorProbeInput_ struct {
 	ProbeTags map[string]*string `locationName:"probeTags" type:"map"`
 
 	// The protocol used for the network traffic between the source and destination.
-	// This will be either TCP or ICMP.
+	// This must be either TCP or ICMP.
 	//
 	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"Protocol"`
@@ -1721,7 +1721,7 @@ type CreateProbeOutput struct {
 	// The time and date that the probe was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The destination IP address for the monitor. This will be either an IPv4 or
+	// The destination IP address for the monitor. This must be either an IPv4 or
 	// IPv6 address.
 	//
 	// Destination is a required field
@@ -1734,7 +1734,7 @@ type CreateProbeOutput struct {
 	// The time and date when the probe was last modified.
 	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
 
-	// The size of the packets sent between the source and destination. This will
+	// The size of the packets sent between the source and destination. This must
 	// be a number between 56 and 8500.
 	PacketSize *int64 `locationName:"packetSize" min:"56" type:"integer"`
 
@@ -1745,7 +1745,7 @@ type CreateProbeOutput struct {
 	ProbeId *string `locationName:"probeId" type:"string"`
 
 	// The protocol used for the network traffic between the source and destination.
-	// This will be either TCP or ICMP.
+	// This must be either TCP or ICMP.
 	//
 	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"Protocol"`
@@ -2256,7 +2256,7 @@ type GetProbeOutput struct {
 	// The time and date that the probe was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The destination IP address for the monitor. This will be either an IPv4 or
+	// The destination IP address for the monitor. This must be either an IPv4 or
 	// IPv6 address.
 	//
 	// Destination is a required field
@@ -2269,7 +2269,7 @@ type GetProbeOutput struct {
 	// The time and date that the probe was last modified.
 	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
 
-	// The size of the packets sent between the source and destination. This will
+	// The size of the packets sent between the source and destination. This must
 	// be a number between 56 and 8500.
 	PacketSize *int64 `locationName:"packetSize" min:"56" type:"integer"`
 
@@ -2280,7 +2280,7 @@ type GetProbeOutput struct {
 	ProbeId *string `locationName:"probeId" type:"string"`
 
 	// The protocol used for the network traffic between the source and destination.
-	// This will be either TCP or ICMP.
+	// This must be either TCP or ICMP.
 	//
 	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"Protocol"`
@@ -2876,7 +2876,7 @@ func (s *Probe) SetVpcId(v string) *Probe {
 type ProbeInput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The destination IP address. This will be either IPV4 or IPV6.
+	// The destination IP address. This must be either IPV4 or IPV6.
 	//
 	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
@@ -2885,12 +2885,12 @@ type ProbeInput_ struct {
 	// is TCP and must be a number between 1 and 65536.
 	DestinationPort *int64 `locationName:"destinationPort" type:"integer"`
 
-	// The size of the packets sent between the source and destination. This will
+	// The size of the packets sent between the source and destination. This must
 	// be a number between 56 and 8500.
 	PacketSize *int64 `locationName:"packetSize" min:"56" type:"integer"`
 
 	// The protocol used for the network traffic between the source and destination.
-	// This will be either TCP or ICMP.
+	// This must be either TCP or ICMP.
 	//
 	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true" enum:"Protocol"`
@@ -3613,7 +3613,7 @@ func (s *UpdateProbeInput) SetState(v string) *UpdateProbeInput {
 type UpdateProbeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The updated IP address family. This will be either IPV4 or IPV6.
+	// The updated IP address family. This must be either IPV4 or IPV6.
 	AddressFamily *string `locationName:"addressFamily" type:"string" enum:"AddressFamily"`
 
 	// The time and date that the probe was created.
@@ -3624,7 +3624,7 @@ type UpdateProbeOutput struct {
 	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
 
-	// The updated destination port. This will be a number between 1 and 65536.
+	// The updated destination port. This must be a number between 1 and 65536.
 	DestinationPort *int64 `locationName:"destinationPort" type:"integer"`
 
 	// The time and date that the probe was last updated.

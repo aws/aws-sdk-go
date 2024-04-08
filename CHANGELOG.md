@@ -1,3 +1,11 @@
+Release v1.51.17 (2024-04-08)
+===
+
+### Service Client Updates
+* `service/controlcatalog`: Adds new service
+* `service/mgn`: Updates service API and documentation
+* `service/networkmonitor`: Updates service API and documentation
+
 Release v1.51.16 (2024-04-05)
 ===
 

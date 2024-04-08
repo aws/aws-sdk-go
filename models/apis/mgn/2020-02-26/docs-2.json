@@ -65,7 +65,7 @@
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
     "UpdateApplication": "<p>Update application.</p>",
     "UpdateConnector": "<p>Update Connector.</p>",
-    "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
+    "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p> <note> <p>bootMode valid values are <code>LEGACY_BIOS | UEFI</code> </p> </note>",
     "UpdateLaunchConfigurationTemplate": "<p>Updates an existing Launch Configuration Template by ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
