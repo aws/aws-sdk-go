@@ -5385,6 +5385,26 @@ type BurninDestinationSettings struct {
 	// input captions, if present.
 	FontColor *string `locationName:"fontColor" type:"string" enum:"BurninSubtitleFontColor"`
 
+	// Specify a bold TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a regular, an italic, and a bold italic font file.
+	FontFileBold *string `locationName:"fontFileBold" type:"string"`
+
+	// Specify a bold italic TrueType font file to use when rendering your output
+	// captions.Enter an S3, HTTP, or HTTPS URL.When you do, you must also separately
+	// specify a regular, a bold, and an italic font file.
+	FontFileBoldItalic *string `locationName:"fontFileBoldItalic" type:"string"`
+
+	// Specify an italic TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a regular, a bold, and a bold italic font file.
+	FontFileItalic *string `locationName:"fontFileItalic" type:"string"`
+
+	// Specify a regular TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a bold, an italic, and a bold italic font file.
+	FontFileRegular *string `locationName:"fontFileRegular" type:"string"`
+
 	// Specify the opacity of the burned-in captions. 255 is opaque; 0 is transparent.
 	FontOpacity *int64 `locationName:"fontOpacity" type:"integer"`
 
@@ -5440,14 +5460,16 @@ type BurninDestinationSettings struct {
 	// y-offset data from your input captions, if present.
 	ShadowYOffset *int64 `locationName:"shadowYOffset" type:"integer"`
 
-	// Set Style passthrough to ENABLED to use the available style, color, and position
-	// information from your input captions. MediaConvert uses default settings
-	// for any missing style and position information in your input captions. Set
-	// Style passthrough to DISABLED, or leave blank, to ignore the style and position
-	// information from your input captions and use default settings: white text
-	// with black outlining, bottom-center positioning, and automatic sizing. Whether
-	// you set Style passthrough to enabled or not, you can also choose to manually
-	// override any of the individual style and position settings.
+	// To use the available style, color, and position information from your input
+	// captions: Set Style passthrough to Enabled. Note that MediaConvert uses default
+	// settings for any missing style or position information in your input captions
+	// To ignore the style and position information from your input captions and
+	// use default settings: Leave blank or keep the default value, Disabled. Default
+	// settings include white text with black outlining, bottom-center positioning,
+	// and automatic sizing. Whether you set Style passthrough to enabled or not,
+	// you can also choose to manually override any of the individual style and
+	// position settings. You can also override any fonts by manually specifying
+	// custom font files.
 	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"BurnInSubtitleStylePassthrough"`
 
 	// Specify whether the text spacing in your captions is set by the captions
@@ -5542,6 +5564,30 @@ func (s *BurninDestinationSettings) SetFallbackFont(v string) *BurninDestination
 // SetFontColor sets the FontColor field's value.
 func (s *BurninDestinationSettings) SetFontColor(v string) *BurninDestinationSettings {
 	s.FontColor = &v
+	return s
+}
+
+// SetFontFileBold sets the FontFileBold field's value.
+func (s *BurninDestinationSettings) SetFontFileBold(v string) *BurninDestinationSettings {
+	s.FontFileBold = &v
+	return s
+}
+
+// SetFontFileBoldItalic sets the FontFileBoldItalic field's value.
+func (s *BurninDestinationSettings) SetFontFileBoldItalic(v string) *BurninDestinationSettings {
+	s.FontFileBoldItalic = &v
+	return s
+}
+
+// SetFontFileItalic sets the FontFileItalic field's value.
+func (s *BurninDestinationSettings) SetFontFileItalic(v string) *BurninDestinationSettings {
+	s.FontFileItalic = &v
+	return s
+}
+
+// SetFontFileRegular sets the FontFileRegular field's value.
+func (s *BurninDestinationSettings) SetFontFileRegular(v string) *BurninDestinationSettings {
+	s.FontFileRegular = &v
 	return s
 }
 
@@ -10112,6 +10158,26 @@ type DvbSubDestinationSettings struct {
 	// identical.
 	FontColor *string `locationName:"fontColor" type:"string" enum:"DvbSubtitleFontColor"`
 
+	// Specify a bold TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a regular, an italic, and a bold italic font file.
+	FontFileBold *string `locationName:"fontFileBold" type:"string"`
+
+	// Specify a bold italic TrueType font file to use when rendering your output
+	// captions.Enter an S3, HTTP, or HTTPS URL.When you do, you must also separately
+	// specify a regular, a bold, and an italic font file.
+	FontFileBoldItalic *string `locationName:"fontFileBoldItalic" type:"string"`
+
+	// Specify an italic TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a regular, a bold, and a bold italic font file.
+	FontFileItalic *string `locationName:"fontFileItalic" type:"string"`
+
+	// Specify a regular TrueType font file to use when rendering your output captions.
+	// Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify
+	// a bold, an italic, and a bold italic font file.
+	FontFileRegular *string `locationName:"fontFileRegular" type:"string"`
+
 	// Specify the opacity of the burned-in captions. 255 is opaque; 0 is transparent.Within
 	// your job settings, all of your DVB-Sub settings must be identical.
 	FontOpacity *int64 `locationName:"fontOpacity" type:"integer"`
@@ -10182,14 +10248,16 @@ type DvbSubDestinationSettings struct {
 	// all of your DVB-Sub settings must be identical.
 	ShadowYOffset *int64 `locationName:"shadowYOffset" type:"integer"`
 
-	// Set Style passthrough to ENABLED to use the available style, color, and position
-	// information from your input captions. MediaConvert uses default settings
-	// for any missing style and position information in your input captions. Set
-	// Style passthrough to DISABLED, or leave blank, to ignore the style and position
-	// information from your input captions and use default settings: white text
-	// with black outlining, bottom-center positioning, and automatic sizing. Whether
-	// you set Style passthrough to enabled or not, you can also choose to manually
-	// override any of the individual style and position settings.
+	// To use the available style, color, and position information from your input
+	// captions: Set Style passthrough to Enabled. Note that MediaConvert uses default
+	// settings for any missing style or position information in your input captions
+	// To ignore the style and position information from your input captions and
+	// use default settings: Leave blank or keep the default value, Disabled. Default
+	// settings include white text with black outlining, bottom-center positioning,
+	// and automatic sizing. Whether you set Style passthrough to enabled or not,
+	// you can also choose to manually override any of the individual style and
+	// position settings. You can also override any fonts by manually specifying
+	// custom font files.
 	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"DvbSubtitleStylePassthrough"`
 
 	// Specify whether your DVB subtitles are standard or for hearing impaired.
@@ -10322,6 +10390,30 @@ func (s *DvbSubDestinationSettings) SetFallbackFont(v string) *DvbSubDestination
 // SetFontColor sets the FontColor field's value.
 func (s *DvbSubDestinationSettings) SetFontColor(v string) *DvbSubDestinationSettings {
 	s.FontColor = &v
+	return s
+}
+
+// SetFontFileBold sets the FontFileBold field's value.
+func (s *DvbSubDestinationSettings) SetFontFileBold(v string) *DvbSubDestinationSettings {
+	s.FontFileBold = &v
+	return s
+}
+
+// SetFontFileBoldItalic sets the FontFileBoldItalic field's value.
+func (s *DvbSubDestinationSettings) SetFontFileBoldItalic(v string) *DvbSubDestinationSettings {
+	s.FontFileBoldItalic = &v
+	return s
+}
+
+// SetFontFileItalic sets the FontFileItalic field's value.
+func (s *DvbSubDestinationSettings) SetFontFileItalic(v string) *DvbSubDestinationSettings {
+	s.FontFileItalic = &v
+	return s
+}
+
+// SetFontFileRegular sets the FontFileRegular field's value.
+func (s *DvbSubDestinationSettings) SetFontFileRegular(v string) *DvbSubDestinationSettings {
+	s.FontFileRegular = &v
 	return s
 }
 
@@ -16825,6 +16917,7 @@ type JobSettings struct {
 
 	// Use 3D LUTs to specify custom color mapping behavior when you convert from
 	// one color space into another. You can include up to 8 different 3D LUTs.
+	// For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/3d-luts.html
 	ColorConversion3DLUTSettings []*ColorConversion3DLUTSetting `locationName:"colorConversion3DLUTSettings" type:"list"`
 
 	// Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion,
@@ -17235,6 +17328,7 @@ type JobTemplateSettings struct {
 
 	// Use 3D LUTs to specify custom color mapping behavior when you convert from
 	// one color space into another. You can include up to 8 different 3D LUTs.
+	// For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/3d-luts.html
 	ColorConversion3DLUTSettings []*ColorConversion3DLUTSetting `locationName:"colorConversion3DLUTSettings" type:"list"`
 
 	// Settings for Event Signaling And Messaging (ESAM). If you don't do ad insertion,
@@ -18475,6 +18569,16 @@ type M2tsSettings struct {
 	// Default is 480.
 	PmtPid *int64 `locationName:"pmtPid" min:"32" type:"integer"`
 
+	// Specify whether MediaConvert automatically attempts to prevent decoder buffer
+	// underflows in your transport stream output. Use if you are seeing decoder
+	// buffer underflows in your output and are unable to increase your transport
+	// stream's bitrate. For most workflows: We recommend that you keep the default
+	// value, Disabled. To prevent decoder buffer underflows in your output, when
+	// possible: Choose Enabled. Note that if MediaConvert prevents a decoder buffer
+	// underflow in your output, output video quality is reduced and your job will
+	// take longer to complete.
+	PreventBufferUnderflow *string `locationName:"preventBufferUnderflow" type:"string" enum:"M2tsPreventBufferUnderflow"`
+
 	// Specify the packet identifier (PID) of the private metadata stream. Default
 	// is 503.
 	PrivateMetadataPid *int64 `locationName:"privateMetadataPid" min:"32" type:"integer"`
@@ -18788,6 +18892,12 @@ func (s *M2tsSettings) SetPmtInterval(v int64) *M2tsSettings {
 // SetPmtPid sets the PmtPid field's value.
 func (s *M2tsSettings) SetPmtPid(v int64) *M2tsSettings {
 	s.PmtPid = &v
+	return s
+}
+
+// SetPreventBufferUnderflow sets the PreventBufferUnderflow field's value.
+func (s *M2tsSettings) SetPreventBufferUnderflow(v string) *M2tsSettings {
+	s.PreventBufferUnderflow = &v
 	return s
 }
 
@@ -29223,14 +29333,16 @@ func BillingTagsSource_Values() []string {
 	}
 }
 
-// Set Style passthrough to ENABLED to use the available style, color, and position
-// information from your input captions. MediaConvert uses default settings
-// for any missing style and position information in your input captions. Set
-// Style passthrough to DISABLED, or leave blank, to ignore the style and position
-// information from your input captions and use default settings: white text
-// with black outlining, bottom-center positioning, and automatic sizing. Whether
-// you set Style passthrough to enabled or not, you can also choose to manually
-// override any of the individual style and position settings.
+// To use the available style, color, and position information from your input
+// captions: Set Style passthrough to Enabled. Note that MediaConvert uses default
+// settings for any missing style or position information in your input captions
+// To ignore the style and position information from your input captions and
+// use default settings: Leave blank or keep the default value, Disabled. Default
+// settings include white text with black outlining, bottom-center positioning,
+// and automatic sizing. Whether you set Style passthrough to enabled or not,
+// you can also choose to manually override any of the individual style and
+// position settings. You can also override any fonts by manually specifying
+// custom font files.
 const (
 	// BurnInSubtitleStylePassthroughEnabled is a BurnInSubtitleStylePassthrough enum value
 	BurnInSubtitleStylePassthroughEnabled = "ENABLED"
@@ -31261,14 +31373,16 @@ func DvbSubtitleShadowColor_Values() []string {
 	}
 }
 
-// Set Style passthrough to ENABLED to use the available style, color, and position
-// information from your input captions. MediaConvert uses default settings
-// for any missing style and position information in your input captions. Set
-// Style passthrough to DISABLED, or leave blank, to ignore the style and position
-// information from your input captions and use default settings: white text
-// with black outlining, bottom-center positioning, and automatic sizing. Whether
-// you set Style passthrough to enabled or not, you can also choose to manually
-// override any of the individual style and position settings.
+// To use the available style, color, and position information from your input
+// captions: Set Style passthrough to Enabled. Note that MediaConvert uses default
+// settings for any missing style or position information in your input captions
+// To ignore the style and position information from your input captions and
+// use default settings: Leave blank or keep the default value, Disabled. Default
+// settings include white text with black outlining, bottom-center positioning,
+// and automatic sizing. Whether you set Style passthrough to enabled or not,
+// you can also choose to manually override any of the individual style and
+// position settings. You can also override any fonts by manually specifying
+// custom font files.
 const (
 	// DvbSubtitleStylePassthroughEnabled is a DvbSubtitleStylePassthrough enum value
 	DvbSubtitleStylePassthroughEnabled = "ENABLED"
@@ -35434,6 +35548,30 @@ func M2tsPcrControl_Values() []string {
 	return []string{
 		M2tsPcrControlPcrEveryPesPacket,
 		M2tsPcrControlConfiguredPcrPeriod,
+	}
+}
+
+// Specify whether MediaConvert automatically attempts to prevent decoder buffer
+// underflows in your transport stream output. Use if you are seeing decoder
+// buffer underflows in your output and are unable to increase your transport
+// stream's bitrate. For most workflows: We recommend that you keep the default
+// value, Disabled. To prevent decoder buffer underflows in your output, when
+// possible: Choose Enabled. Note that if MediaConvert prevents a decoder buffer
+// underflow in your output, output video quality is reduced and your job will
+// take longer to complete.
+const (
+	// M2tsPreventBufferUnderflowDisabled is a M2tsPreventBufferUnderflow enum value
+	M2tsPreventBufferUnderflowDisabled = "DISABLED"
+
+	// M2tsPreventBufferUnderflowEnabled is a M2tsPreventBufferUnderflow enum value
+	M2tsPreventBufferUnderflowEnabled = "ENABLED"
+)
+
+// M2tsPreventBufferUnderflow_Values returns all elements of the M2tsPreventBufferUnderflow enum
+func M2tsPreventBufferUnderflow_Values() []string {
+	return []string{
+		M2tsPreventBufferUnderflowDisabled,
+		M2tsPreventBufferUnderflowEnabled,
 	}
 }
 

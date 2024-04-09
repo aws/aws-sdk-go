@@ -1,3 +1,16 @@
+Release v1.51.18 (2024-04-09)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * Add new webhook filter types for GitHub webhooks
+* `service/mediaconvert`: Updates service API and documentation
+  * This release includes support for bringing your own fonts to use for burn-in or DVB-Sub captioning workflows.
+* `service/pinpoint`: Updates service API and documentation
+  * The OrchestrationSendingRoleArn has been added to the email channel and is used to send emails from campaigns or journeys.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for specifying the CA certificate to use for the new db instance when restoring from db snapshot, restoring from s3, restoring to point in time, and creating a db instance read replica.
+
 Release v1.51.17 (2024-04-08)
 ===
 

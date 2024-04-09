@@ -7000,6 +7000,9 @@
         },
         "RoleArn": {
           "shape": "__string"
+        },
+        "OrchestrationSendingRoleArn": {
+          "shape": "__string"
         }
       },
       "required": [
@@ -7050,6 +7053,9 @@
           "shape": "__string"
         },
         "RoleArn": {
+          "shape": "__string"
+        },
+        "OrchestrationSendingRoleArn": {
           "shape": "__string"
         },
         "Version": {

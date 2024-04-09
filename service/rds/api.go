@@ -2281,6 +2281,9 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //     You attempted to create more tenant databases than are permitted in your
 //     Amazon Web Services account.
 //
+//   - ErrCodeCertificateNotFoundFault "CertificateNotFound"
+//     CertificateIdentifier doesn't refer to an existing certificate.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstanceReadReplica
 func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, error) {
 	req, out := c.CreateDBInstanceReadReplicaRequest(input)
@@ -16200,6 +16203,9 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //   - ErrCodeDBClusterSnapshotNotFoundFault "DBClusterSnapshotNotFoundFault"
 //     DBClusterSnapshotIdentifier doesn't refer to an existing DB cluster snapshot.
 //
+//   - ErrCodeCertificateNotFoundFault "CertificateNotFound"
+//     CertificateIdentifier doesn't refer to an existing certificate.
+//
 //   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
 //     You attempted to create more tenant databases than are permitted in your
 //     Amazon Web Services account.
@@ -16352,6 +16358,9 @@ func (c *RDS) RestoreDBInstanceFromS3Request(input *RestoreDBInstanceFromS3Input
 //   - ErrCodeNetworkTypeNotSupported "NetworkTypeNotSupported"
 //     The network type is invalid for the DB instance. Valid nework type values
 //     are IPV4 and DUAL.
+//
+//   - ErrCodeCertificateNotFoundFault "CertificateNotFound"
+//     CertificateIdentifier doesn't refer to an existing certificate.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromS3
 func (c *RDS) RestoreDBInstanceFromS3(input *RestoreDBInstanceFromS3Input) (*RestoreDBInstanceFromS3Output, error) {
@@ -16525,6 +16534,9 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 //   - ErrCodeTenantDatabaseQuotaExceededFault "TenantDatabaseQuotaExceeded"
 //     You attempted to create more tenant databases than are permitted in your
 //     Amazon Web Services account.
+//
+//   - ErrCodeCertificateNotFoundFault "CertificateNotFound"
+//     CertificateIdentifier doesn't refer to an existing certificate.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceToPointInTime
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
@@ -22228,6 +22240,7 @@ type CreateDBClusterInput struct {
 	// The DB engine mode of the DB cluster, either provisioned or serverless.
 	//
 	// The serverless engine mode only applies for Aurora Serverless v1 DB clusters.
+	// Aurora Serverless v2 DB clusters use the provisioned engine mode.
 	//
 	// For information about limitations and requirements for Serverless DB clusters,
 	// see the following sections in the Amazon Aurora User Guide:
@@ -24939,6 +24952,17 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
+	// The CA certificate identifier to use for the read replica's server certificate.
+	//
+	// This setting doesn't apply to RDS Custom DB instances.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CACertificateIdentifier *string `type:"string"`
+
 	// Specifies whether to copy all tags from the read replica to snapshots of
 	// the read replica. By default, tags aren't copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -25508,6 +25532,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetAutoMinorVersionUpgrade(v bool) *C
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetAvailabilityZone(v string) *CreateDBInstanceReadReplicaInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetCACertificateIdentifier(v string) *CreateDBInstanceReadReplicaInput {
+	s.CACertificateIdentifier = &v
 	return s
 }
 
@@ -57262,6 +57292,17 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// in the Amazon RDS User Guide.
 	BackupTarget *string `type:"string"`
 
+	// The CA certificate identifier to use for the DB instance's server certificate.
+	//
+	// This setting doesn't apply to RDS Custom DB instances.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CACertificateIdentifier *string `type:"string"`
+
 	// Specifies whether to copy all tags from the restored DB instance to snapshots
 	// of the DB instance.
 	//
@@ -57707,6 +57748,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetBackupTarget(v string) *Restor
 	return s
 }
 
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetCACertificateIdentifier(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceFromDBSnapshotInput {
 	s.CopyTagsToSnapshot = &v
@@ -57994,6 +58041,17 @@ type RestoreDBInstanceFromS3Input struct {
 	// parameter to a positive number enables backups. For more information, see
 	// CreateDBInstance.
 	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The CA certificate identifier to use for the DB instance's server certificate.
+	//
+	// This setting doesn't apply to RDS Custom DB instances.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CACertificateIdentifier *string `type:"string"`
 
 	// Specifies whether to copy all tags from the DB instance to snapshots of the
 	// DB instance. By default, tags are not copied.
@@ -58466,6 +58524,12 @@ func (s *RestoreDBInstanceFromS3Input) SetBackupRetentionPeriod(v int64) *Restor
 	return s
 }
 
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *RestoreDBInstanceFromS3Input) SetCACertificateIdentifier(v string) *RestoreDBInstanceFromS3Input {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *RestoreDBInstanceFromS3Input) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceFromS3Input {
 	s.CopyTagsToSnapshot = &v
@@ -58816,6 +58880,17 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
 	// in the Amazon RDS User Guide.
 	BackupTarget *string `type:"string"`
+
+	// The CA certificate identifier to use for the DB instance's server certificate.
+	//
+	// This setting doesn't apply to RDS Custom DB instances.
+	//
+	// For more information, see Using SSL/TLS to encrypt a connection to a DB instance
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon RDS User Guide and Using SSL/TLS to encrypt a connection to
+	// a DB cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
+	// in the Amazon Aurora User Guide.
+	CACertificateIdentifier *string `type:"string"`
 
 	// Specifies whether to copy all tags from the restored DB instance to snapshots
 	// of the DB instance. By default, tags are not copied.
@@ -59272,6 +59347,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetAvailabilityZone(v string) *Res
 // SetBackupTarget sets the BackupTarget field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetBackupTarget(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.BackupTarget = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetCACertificateIdentifier(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.CACertificateIdentifier = &v
 	return s
 }
 

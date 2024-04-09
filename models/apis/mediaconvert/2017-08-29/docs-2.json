@@ -508,9 +508,9 @@
       }
     },
     "BurnInSubtitleStylePassthrough": {
-      "base": "Set Style passthrough to ENABLED to use the available style, color, and position information from your input captions. MediaConvert uses default settings for any missing style and position information in your input captions. Set Style passthrough to DISABLED, or leave blank, to ignore the style and position information from your input captions and use default settings: white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings.",
+      "base": "To use the available style, color, and position information from your input captions: Set Style passthrough to Enabled. Note that MediaConvert uses default settings for any missing style or position information in your input captions To ignore the style and position information from your input captions and use default settings: Leave blank or keep the default value, Disabled. Default settings include white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings. You can also override any fonts by manually specifying custom font files.",
       "refs": {
-        "BurninDestinationSettings$StylePassthrough": "Set Style passthrough to ENABLED to use the available style, color, and position information from your input captions. MediaConvert uses default settings for any missing style and position information in your input captions. Set Style passthrough to DISABLED, or leave blank, to ignore the style and position information from your input captions and use default settings: white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings."
+        "BurninDestinationSettings$StylePassthrough": "To use the available style, color, and position information from your input captions: Set Style passthrough to Enabled. Note that MediaConvert uses default settings for any missing style or position information in your input captions To ignore the style and position information from your input captions and use default settings: Leave blank or keep the default value, Disabled. Default settings include white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings. You can also override any fonts by manually specifying custom font files."
       }
     },
     "BurninDestinationSettings": {
@@ -1276,9 +1276,9 @@
       }
     },
     "DvbSubtitleStylePassthrough": {
-      "base": "Set Style passthrough to ENABLED to use the available style, color, and position information from your input captions. MediaConvert uses default settings for any missing style and position information in your input captions. Set Style passthrough to DISABLED, or leave blank, to ignore the style and position information from your input captions and use default settings: white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings.",
+      "base": "To use the available style, color, and position information from your input captions: Set Style passthrough to Enabled. Note that MediaConvert uses default settings for any missing style or position information in your input captions To ignore the style and position information from your input captions and use default settings: Leave blank or keep the default value, Disabled. Default settings include white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings. You can also override any fonts by manually specifying custom font files.",
       "refs": {
-        "DvbSubDestinationSettings$StylePassthrough": "Set Style passthrough to ENABLED to use the available style, color, and position information from your input captions. MediaConvert uses default settings for any missing style and position information in your input captions. Set Style passthrough to DISABLED, or leave blank, to ignore the style and position information from your input captions and use default settings: white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings."
+        "DvbSubDestinationSettings$StylePassthrough": "To use the available style, color, and position information from your input captions: Set Style passthrough to Enabled. Note that MediaConvert uses default settings for any missing style or position information in your input captions To ignore the style and position information from your input captions and use default settings: Leave blank or keep the default value, Disabled. Default settings include white text with black outlining, bottom-center positioning, and automatic sizing. Whether you set Style passthrough to enabled or not, you can also choose to manually override any of the individual style and position settings. You can also override any fonts by manually specifying custom font files."
       }
     },
     "DvbSubtitleTeletextSpacing": {
@@ -2530,6 +2530,12 @@
       "base": "When set to PCR_EVERY_PES_PACKET, a Program Clock Reference value is inserted for every Packetized Elementary Stream (PES) header. This is effective only when the PCR PID is the same as the video or audio elementary stream.",
       "refs": {
         "M2tsSettings$PcrControl": "When set to PCR_EVERY_PES_PACKET, a Program Clock Reference value is inserted for every Packetized Elementary Stream (PES) header. This is effective only when the PCR PID is the same as the video or audio elementary stream."
+      }
+    },
+    "M2tsPreventBufferUnderflow": {
+      "base": "Specify whether MediaConvert automatically attempts to prevent decoder buffer underflows in your transport stream output. Use if you are seeing decoder buffer underflows in your output and are unable to increase your transport stream's bitrate. For most workflows: We recommend that you keep the default value, Disabled. To prevent decoder buffer underflows in your output, when possible: Choose Enabled. Note that if MediaConvert prevents a decoder buffer underflow in your output, output video quality is reduced and your job will take longer to complete.",
+      "refs": {
+        "M2tsSettings$PreventBufferUnderflow": "Specify whether MediaConvert automatically attempts to prevent decoder buffer underflows in your transport stream output. Use if you are seeing decoder buffer underflows in your output and are unable to increase your transport stream's bitrate. For most workflows: We recommend that you keep the default value, Disabled. To prevent decoder buffer underflows in your output, when possible: Choose Enabled. Note that if MediaConvert prevents a decoder buffer underflow in your output, output video quality is reduced and your job will take longer to complete."
       }
     },
     "M2tsRateMode": {
@@ -5015,8 +5021,8 @@
     "__listOfColorConversion3DLUTSetting": {
       "base": null,
       "refs": {
-        "JobSettings$ColorConversion3DLUTSettings": "Use 3D LUTs to specify custom color mapping behavior when you convert from one color space into another. You can include up to 8 different 3D LUTs.",
-        "JobTemplateSettings$ColorConversion3DLUTSettings": "Use 3D LUTs to specify custom color mapping behavior when you convert from one color space into another. You can include up to 8 different 3D LUTs."
+        "JobSettings$ColorConversion3DLUTSettings": "Use 3D LUTs to specify custom color mapping behavior when you convert from one color space into another. You can include up to 8 different 3D LUTs. For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/3d-luts.html",
+        "JobTemplateSettings$ColorConversion3DLUTSettings": "Use 3D LUTs to specify custom color mapping behavior when you convert from one color space into another. You can include up to 8 different 3D LUTs. For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/3d-luts.html"
       }
     },
     "__listOfDashAdditionalManifest": {
@@ -5291,6 +5297,7 @@
       "refs": {
         "AssociateCertificateRequest$Arn": "The ARN of the ACM certificate that you want to associate with your MediaConvert resource.",
         "AudioDescription$AudioSourceName": "Specifies which audio data to use from each input. In the simplest case, specify an \"Audio Selector\":#inputs-audio_selector by name based on its order within each input. For example if you specify \"Audio Selector 3\", then the third audio selector will be used from each input. If an input does not have an \"Audio Selector 3\", then the audio selector marked as \"default\" in that input will be used. If there is no audio selector marked as \"default\", silence will be inserted for the duration of that input. Alternatively, an \"Audio Selector Group\":#inputs-audio_selector_group name may be specified, with similar default/silence behavior. If no audio_source_name is specified, then \"Audio Selector 1\" will be chosen automatically.",
+        "BurninDestinationSettings$FontFileBoldItalic": "Specify a bold italic TrueType font file to use when rendering your output captions.\nEnter an S3, HTTP, or HTTPS URL.\nWhen you do, you must also separately specify a regular, a bold, and an italic font file.",
         "CancelJobRequest$Id": "The Job ID of the job to be cancelled.",
         "CaptionDescription$LanguageDescription": "Specify a label for this set of output captions. For example, \"English\", \"Director commentary\", or \"track_2\". For streaming outputs, MediaConvert passes this information into destination manifests for display on the end-viewer's player device. For outputs in other output groups, the service ignores this setting.",
         "CaptionDescriptionPreset$LanguageDescription": "Specify a label for this set of output captions. For example, \"English\", \"Director commentary\", or \"track_2\". For streaming outputs, MediaConvert passes this information into destination manifests for display on the end-viewer's player device. For outputs in other output groups, the service ignores this setting.",
@@ -5701,6 +5708,18 @@
         "AudioSelector$ExternalAudioFileInput": "Specifies audio data from an external file source.",
         "Input$FileInput": "Specify the source file for your transcoding job. You can use multiple inputs in a single job. The service concatenates these inputs, in the order that you specify them in the job, to create the outputs. If your input format is IMF, specify your input by providing the path to your CPL. For example, \"s3://bucket/vf/cpl.xml\". If the CPL is in an incomplete IMP, make sure to use *Supplemental IMPs* to specify any supplemental IMPs that contain assets referenced by the CPL.",
         "VideoOverlayInput$FileInput": "Specify the input file S3, HTTP, or HTTPS URI for your video overlay. For consistency in color and formatting in your output video image, we recommend that you specify a video with similar characteristics as the underlying input video."
+      }
+    },
+    "__stringPatternS3TtfHttpsTtf": {
+      "base": null,
+      "refs": {
+        "BurninDestinationSettings$FontFileBold": "Specify a bold TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a regular, an italic, and a bold italic font file.",
+        "BurninDestinationSettings$FontFileItalic": "Specify an italic TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a regular, a bold, and a bold italic font file.",
+        "BurninDestinationSettings$FontFileRegular": "Specify a regular TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a bold, an italic, and a bold italic font file.",
+        "DvbSubDestinationSettings$FontFileBold": "Specify a bold TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a regular, an italic, and a bold italic font file.",
+        "DvbSubDestinationSettings$FontFileBoldItalic": "Specify a bold italic TrueType font file to use when rendering your output captions.\nEnter an S3, HTTP, or HTTPS URL.\nWhen you do, you must also separately specify a regular, a bold, and an italic font file.",
+        "DvbSubDestinationSettings$FontFileItalic": "Specify an italic TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a regular, a bold, and a bold italic font file.",
+        "DvbSubDestinationSettings$FontFileRegular": "Specify a regular TrueType font file to use when rendering your output captions. Enter an S3, HTTP, or HTTPS URL. When you do, you must also separately specify a bold, an italic, and a bold italic font file."
       }
     },
     "__stringPatternSNManifestConfirmConditionNotificationNS": {
