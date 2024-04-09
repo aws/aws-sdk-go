@@ -13457,12 +13457,11 @@ type ProjectSource struct {
 	//    account. Use the CodeBuild console to start creating a build project.
 	//    When you use the console to connect (or reconnect) with GitLab, on the
 	//    Connections Authorize application page, choose Authorize. Then on the
-	//    CodeStar Connections Create GitLab connection page, choose Connect to
-	//    GitLab. (After you have connected to your GitLab account, you do not need
-	//    to finish creating the build project. You can leave the CodeBuild console.)
-	//    To instruct CodeBuild to override the default connection and use this
-	//    connection instead, set the auth object's type value to CODECONNECTIONS
-	//    in the source object.
+	//    CodeConnections Create GitLab connection page, choose Connect to GitLab.
+	//    (After you have connected to your GitLab account, you do not need to finish
+	//    creating the build project. You can leave the CodeBuild console.) To instruct
+	//    CodeBuild to override the default connection and use this connection instead,
+	//    set the auth object's type value to CODECONNECTIONS in the source object.
 	//
 	//    * For source code in a Bitbucket repository, the HTTPS clone URL to the
 	//    repository that contains the source and the buildspec file. You must connect
@@ -17935,18 +17934,19 @@ type WebhookFilter struct {
 	// Pattern is a required field
 	Pattern *string `locationName:"pattern" type:"string" required:"true"`
 
-	// The type of webhook filter. There are eight webhook filter types: EVENT,
-	// ACTOR_ACCOUNT_ID, HEAD_REF, BASE_REF, FILE_PATH, COMMIT_MESSAGE, TAG_NAME,
-	// and RELEASE_NAME.
+	// The type of webhook filter. There are nine webhook filter types: EVENT, ACTOR_ACCOUNT_ID,
+	// HEAD_REF, BASE_REF, FILE_PATH, COMMIT_MESSAGE, TAG_NAME, RELEASE_NAME, and
+	// WORKFLOW_NAME.
 	//
 	//    * EVENT A webhook event triggers a build when the provided pattern matches
-	//    one of eight event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED,
+	//    one of nine event types: PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED,
 	//    PULL_REQUEST_CLOSED, PULL_REQUEST_REOPENED, PULL_REQUEST_MERGED, RELEASED,
-	//    and PRERELEASED. The EVENT patterns are specified as a comma-separated
-	//    string. For example, PUSH, PULL_REQUEST_CREATED, PULL_REQUEST_UPDATED
-	//    filters all push, pull request created, and pull request updated events.
-	//    The PULL_REQUEST_REOPENED works with GitHub and GitHub Enterprise only.
-	//    The RELEASED and PRERELEASED work with GitHub only.
+	//    PRERELEASED, and WORKFLOW_JOB_QUEUED. The EVENT patterns are specified
+	//    as a comma-separated string. For example, PUSH, PULL_REQUEST_CREATED,
+	//    PULL_REQUEST_UPDATED filters all push, pull request created, and pull
+	//    request updated events. The PULL_REQUEST_REOPENED works with GitHub and
+	//    GitHub Enterprise only. The RELEASED, PRERELEASED, and WORKFLOW_JOB_QUEUED
+	//    work with GitHub only.
 	//
 	//    * ACTOR_ACCOUNT_ID A webhook event triggers a build when a GitHub, GitHub
 	//    Enterprise, or Bitbucket account ID matches the regular expression pattern.
@@ -17977,6 +17977,10 @@ type WebhookFilter struct {
 	//
 	//    * RELEASE_NAME A webhook triggers a build when the release name matches
 	//    the regular expression pattern. Works with RELEASED and PRERELEASED events
+	//    only.
+	//
+	//    * WORKFLOW_NAME A webhook triggers a build when the workflow name matches
+	//    the regular expression pattern. Works with WORKFLOW_JOB_QUEUED events
 	//    only.
 	//
 	// Type is a required field
@@ -19060,6 +19064,15 @@ const (
 
 	// WebhookFilterTypeCommitMessage is a WebhookFilterType enum value
 	WebhookFilterTypeCommitMessage = "COMMIT_MESSAGE"
+
+	// WebhookFilterTypeWorkflowName is a WebhookFilterType enum value
+	WebhookFilterTypeWorkflowName = "WORKFLOW_NAME"
+
+	// WebhookFilterTypeTagName is a WebhookFilterType enum value
+	WebhookFilterTypeTagName = "TAG_NAME"
+
+	// WebhookFilterTypeReleaseName is a WebhookFilterType enum value
+	WebhookFilterTypeReleaseName = "RELEASE_NAME"
 )
 
 // WebhookFilterType_Values returns all elements of the WebhookFilterType enum
@@ -19071,5 +19084,8 @@ func WebhookFilterType_Values() []string {
 		WebhookFilterTypeActorAccountId,
 		WebhookFilterTypeFilePath,
 		WebhookFilterTypeCommitMessage,
+		WebhookFilterTypeWorkflowName,
+		WebhookFilterTypeTagName,
+		WebhookFilterTypeReleaseName,
 	}
 }

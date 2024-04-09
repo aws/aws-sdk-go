@@ -20677,6 +20677,10 @@ type EmailChannelRequest struct {
 	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
+	// The ARN of an IAM role for Amazon Pinpoint to use to send email from your
+	// campaigns or journeys through Amazon SES.
+	OrchestrationSendingRoleArn *string `type:"string"`
+
 	// The ARN of the AWS Identity and Access Management (IAM) role that you want
 	// Amazon Pinpoint to use when it submits email-related event data for the channel.
 	RoleArn *string `type:"string"`
@@ -20740,6 +20744,12 @@ func (s *EmailChannelRequest) SetIdentity(v string) *EmailChannelRequest {
 	return s
 }
 
+// SetOrchestrationSendingRoleArn sets the OrchestrationSendingRoleArn field's value.
+func (s *EmailChannelRequest) SetOrchestrationSendingRoleArn(v string) *EmailChannelRequest {
+	s.OrchestrationSendingRoleArn = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *EmailChannelRequest) SetRoleArn(v string) *EmailChannelRequest {
 	s.RoleArn = &v
@@ -20791,6 +20801,10 @@ type EmailChannelResponse struct {
 
 	// The maximum number of emails that can be sent through the channel each second.
 	MessagesPerSecond *int64 `type:"integer"`
+
+	// The ARN of an IAM role for Amazon Pinpoint to use to send email from your
+	// campaigns or journeys through Amazon SES.
+	OrchestrationSendingRoleArn *string `type:"string"`
 
 	// The type of messaging or notification platform for the channel. For the email
 	// channel, this value is EMAIL.
@@ -20893,6 +20907,12 @@ func (s *EmailChannelResponse) SetLastModifiedDate(v string) *EmailChannelRespon
 // SetMessagesPerSecond sets the MessagesPerSecond field's value.
 func (s *EmailChannelResponse) SetMessagesPerSecond(v int64) *EmailChannelResponse {
 	s.MessagesPerSecond = &v
+	return s
+}
+
+// SetOrchestrationSendingRoleArn sets the OrchestrationSendingRoleArn field's value.
+func (s *EmailChannelResponse) SetOrchestrationSendingRoleArn(v string) *EmailChannelResponse {
+	s.OrchestrationSendingRoleArn = &v
 	return s
 }
 
@@ -21811,8 +21831,6 @@ type EndpointMessageResult struct {
 	//
 	//    * THROTTLED - Amazon Pinpoint throttled the operation to send the message
 	//    to the endpoint.
-	//
-	//    * TIMEOUT - The message couldn't be sent within the timeout period.
 	//
 	//    * UNKNOWN_FAILURE - An unknown error occurred.
 	//
@@ -32728,8 +32746,6 @@ type MessageResult struct {
 	//
 	//    * THROTTLED - Amazon Pinpoint throttled the operation to send the message
 	//    to the endpoint address.
-	//
-	//    * TIMEOUT - The message couldn't be sent within the timeout period.
 	//
 	//    * UNKNOWN_FAILURE - An unknown error occurred.
 	//

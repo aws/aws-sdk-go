@@ -962,6 +962,8 @@ func ExampleRDS_CreateDBInstanceReadReplica_shared00() {
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
 				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
+			case rds.ErrCodeCertificateNotFoundFault:
+				fmt.Println(rds.ErrCodeCertificateNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -4220,6 +4222,8 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			case rds.ErrCodeDBClusterSnapshotNotFoundFault:
 				fmt.Println(rds.ErrCodeDBClusterSnapshotNotFoundFault, aerr.Error())
+			case rds.ErrCodeCertificateNotFoundFault:
+				fmt.Println(rds.ErrCodeCertificateNotFoundFault, aerr.Error())
 			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
 				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
 			default:
@@ -4299,6 +4303,8 @@ func ExampleRDS_RestoreDBInstanceToPointInTime_shared00() {
 				fmt.Println(rds.ErrCodeNetworkTypeNotSupported, aerr.Error())
 			case rds.ErrCodeTenantDatabaseQuotaExceededFault:
 				fmt.Println(rds.ErrCodeTenantDatabaseQuotaExceededFault, aerr.Error())
+			case rds.ErrCodeCertificateNotFoundFault:
+				fmt.Println(rds.ErrCodeCertificateNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -437,7 +437,8 @@
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"DomainNotFoundFault"},
         {"shape":"NetworkTypeNotSupported"},
-        {"shape":"TenantDatabaseQuotaExceededFault"}
+        {"shape":"TenantDatabaseQuotaExceededFault"},
+        {"shape":"CertificateNotFoundFault"}
       ]
     },
     "CreateDBParameterGroup":{
@@ -2551,6 +2552,7 @@
         {"shape":"BackupPolicyNotFoundFault"},
         {"shape":"NetworkTypeNotSupported"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"CertificateNotFoundFault"},
         {"shape":"TenantDatabaseQuotaExceededFault"}
       ]
     },
@@ -2583,7 +2585,8 @@
         {"shape":"AuthorizationNotFoundFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
         {"shape":"BackupPolicyNotFoundFault"},
-        {"shape":"NetworkTypeNotSupported"}
+        {"shape":"NetworkTypeNotSupported"},
+        {"shape":"CertificateNotFoundFault"}
       ]
     },
     "RestoreDBInstanceToPointInTime":{
@@ -2621,7 +2624,8 @@
         {"shape":"DBParameterGroupNotFoundFault"},
         {"shape":"DBInstanceAutomatedBackupNotFoundFault"},
         {"shape":"NetworkTypeNotSupported"},
-        {"shape":"TenantDatabaseQuotaExceededFault"}
+        {"shape":"TenantDatabaseQuotaExceededFault"},
+        {"shape":"CertificateNotFoundFault"}
       ]
     },
     "RevokeDBSecurityGroupIngress":{
@@ -3752,7 +3756,8 @@
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "SourceDBClusterIdentifier":{"shape":"String"},
         "DedicatedLogVolume":{"shape":"BooleanOptional"},
-        "UpgradeStorageConfig":{"shape":"BooleanOptional"}
+        "UpgradeStorageConfig":{"shape":"BooleanOptional"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{
@@ -9248,7 +9253,8 @@
         "StorageThroughput":{"shape":"IntegerOptional"},
         "DBClusterSnapshotIdentifier":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -9317,7 +9323,8 @@
         "StorageThroughput":{"shape":"IntegerOptional"},
         "ManageMasterUserPassword":{"shape":"BooleanOptional"},
         "MasterUserSecretKmsKeyId":{"shape":"String"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromS3Result":{
@@ -9373,7 +9380,8 @@
         "NetworkType":{"shape":"String"},
         "StorageThroughput":{"shape":"IntegerOptional"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
-        "DedicatedLogVolume":{"shape":"BooleanOptional"}
+        "DedicatedLogVolume":{"shape":"BooleanOptional"},
+        "CACertificateIdentifier":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

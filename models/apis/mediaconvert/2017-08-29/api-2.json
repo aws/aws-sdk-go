@@ -2066,6 +2066,22 @@
           "shape": "BurninSubtitleFontColor",
           "locationName": "fontColor"
         },
+        "FontFileBold": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileBold"
+        },
+        "FontFileBoldItalic": {
+          "shape": "__string",
+          "locationName": "fontFileBoldItalic"
+        },
+        "FontFileItalic": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileItalic"
+        },
+        "FontFileRegular": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileRegular"
+        },
         "FontOpacity": {
           "shape": "__integerMin0Max255",
           "locationName": "fontOpacity"
@@ -3879,6 +3895,22 @@
         "FontColor": {
           "shape": "DvbSubtitleFontColor",
           "locationName": "fontColor"
+        },
+        "FontFileBold": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileBold"
+        },
+        "FontFileBoldItalic": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileBoldItalic"
+        },
+        "FontFileItalic": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileItalic"
+        },
+        "FontFileRegular": {
+          "shape": "__stringPatternS3TtfHttpsTtf",
+          "locationName": "fontFileRegular"
         },
         "FontOpacity": {
           "shape": "__integerMin0Max255",
@@ -7454,6 +7486,13 @@
         "CONFIGURED_PCR_PERIOD"
       ]
     },
+    "M2tsPreventBufferUnderflow": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "M2tsRateMode": {
       "type": "string",
       "enum": [
@@ -7605,6 +7644,10 @@
         "PmtPid": {
           "shape": "__integerMin32Max8182",
           "locationName": "pmtPid"
+        },
+        "PreventBufferUnderflow": {
+          "shape": "M2tsPreventBufferUnderflow",
+          "locationName": "preventBufferUnderflow"
         },
         "PrivateMetadataPid": {
           "shape": "__integerMin32Max8182",
@@ -12188,6 +12231,10 @@
     "__stringPatternS3Https": {
       "type": "string",
       "pattern": "^s3://([^\\/]+\\/+)+((([^\\/]*)))|^https?://[^\\/].*[^&]$"
+    },
+    "__stringPatternS3TtfHttpsTtf": {
+      "type": "string",
+      "pattern": "^((s3://(.*?)\\.(ttf))|(https?://(.*?)\\.(ttf)(\\?([^&=]+=[^&]+&)*[^&=]+=[^&]+)?))$"
     },
     "__stringPatternSNManifestConfirmConditionNotificationNS": {
       "type": "string",
