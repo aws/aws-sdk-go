@@ -14,11 +14,12 @@
 // recommendations to help contact center agents resolve customer issues quickly
 // and accurately.
 //
-// Amazon Q automatically detects customer intent during calls and chats using
-// conversational analytics and natural language understanding (NLU). It then
-// provides agents with immediate, real-time generative responses and suggested
-// actions, and links to relevant documents and articles. Agents can also query
-// Amazon Q directly using natural language or keywords to answer customer requests.
+// Amazon Q in Connect automatically detects customer intent during calls and
+// chats using conversational analytics and natural language understanding (NLU).
+// It then provides agents with immediate, real-time generative responses and
+// suggested actions, and links to relevant documents and articles. Agents can
+// also query Amazon Q in Connect directly using natural language or keywords
+// to answer customer requests.
 //
 // Use the Amazon Q in Connect APIs to create an assistant and a knowledge base,
 // for example, or manage content by uploading custom files.

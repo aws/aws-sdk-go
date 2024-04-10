@@ -1761,7 +1761,8 @@
         "ModerationLabel":{"shape":"ModerationLabel"},
         "StartTimestampMillis":{"shape":"ULong"},
         "EndTimestampMillis":{"shape":"ULong"},
-        "DurationMillis":{"shape":"ULong"}
+        "DurationMillis":{"shape":"ULong"},
+        "ContentTypes":{"shape":"ContentTypes"}
       }
     },
     "ContentModerationDetections":{

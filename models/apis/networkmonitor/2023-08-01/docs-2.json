@@ -1,19 +1,19 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon CloudWatch Network Monitor is an Amazon Web Services active network monitoring service that identifies if a network issues exists within the Amazon Web Services network or your own company network. Within Network Monitor you'll choose the source VPCs and subnets from the Amazon Web Services network in which you operate and then you'll choose the destination IP addresses from your on-premises network. From these sources and destinations, Network Monitor creates a monitor containing all the possible source and destination combinations, each of which is called a probe, within a single monitor. These probes then monitor network traffic to help you identify where network issues might be affecting your traffic.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/what-is-network-monitor.html\">Using Amazon CloudWatch Network Monitor</a> in the <i>Amazon CloudWatch User Guide</i>.</p>",
+  "service": "<p>Amazon CloudWatch Network Monitor is an Amazon Web Services active network monitoring service that identifies if a network issues exists within the Amazon Web Services network or your own company network. Within Network Monitor you'll choose the source VPCs and subnets from the Amazon Web Services network in which you operate and then you'll choose the destination IP addresses from your on-premises network. From these sources and destinations, Network Monitor creates a monitor containing all the possible source and destination combinations, each of which is called a probe, within a single monitor. These probes then monitor network traffic to help you identify where network issues might be affecting your traffic.</p> <p>Before you begin, ensure the Amazon Web Services CLI is configured in the Amazon Web Services Account where you will create the Network Monitor resource. Network Monitor doesn’t support creation on cross-account resources, but you can create a Network Monitor in any subnet belonging to a VPC owned by your Account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/what-is-network-monitor.html\">Using Amazon CloudWatch Network Monitor</a> in the <i>Amazon CloudWatch User Guide</i>.</p>",
   "operations": {
-    "CreateMonitor": "<p>Creates a monitor between a source subnet and destination IP address. Within a monitor you'll create one or more probes that monitor network traffic between your source Amazon Web Services VPC subnets and your destination IP addresses. Each probe then aggregates and sends metrics to Amazon CloudWatch.</p>",
-    "CreateProbe": "<p>Create a probe within a monitor. Once you create a probe, and it begins monitoring your network traffic, you'll incur billing charges for that probe. </p>",
-    "DeleteMonitor": "<p>Deletes a specified monitor.</p>",
-    "DeleteProbe": "<p>Deletes the specified monitor. Once a probe is deleted you'll no longer incur any billing fees for that probe.</p>",
-    "GetMonitor": "<p>Returns details about a specific monitor.</p>",
-    "GetProbe": "<p>Returns the details about a probe. You'll need both the <code>monitorName</code> and <code>probeId</code>. </p>",
+    "CreateMonitor": "<p>Creates a monitor between a source subnet and destination IP address. Within a monitor you'll create one or more probes that monitor network traffic between your source Amazon Web Services VPC subnets and your destination IP addresses. Each probe then aggregates and sends metrics to Amazon CloudWatch.</p> <p>You can also create a monitor with probes using this command. For each probe, you define the following:</p> <ul> <li> <p> <code>source</code>—The subnet IDs where the probes will be created.</p> </li> <li> <p> <code>destination</code>— The target destination IP address for the probe.</p> </li> <li> <p> <code>destinationPort</code>—Required only if the protocol is <code>TCP</code>.</p> </li> <li> <p> <code>protocol</code>—The communication protocol between the source and destination. This will be either <code>TCP</code> or <code>ICMP</code>.</p> </li> <li> <p> <code>packetSize</code>—The size of the packets. This must be a number between <code>56</code> and <code>8500</code>.</p> </li> <li> <p>(Optional) <code>tags</code> —Key-value pairs created and assigned to the probe.</p> </li> </ul>",
+    "CreateProbe": "<p>Create a probe within a monitor. Once you create a probe, and it begins monitoring your network traffic, you'll incur billing charges for that probe. This action requires the <code>monitorName</code> parameter. Run <code>ListMonitors</code> to get a list of monitor names. Note the name of the <code>monitorName</code> you want to create the probe for.</p>",
+    "DeleteMonitor": "<p>Deletes a specified monitor.</p> <p>This action requires the <code>monitorName</code> parameter. Run <code>ListMonitors</code> to get a list of monitor names. </p>",
+    "DeleteProbe": "<p>Deletes the specified probe. Once a probe is deleted you'll no longer incur any billing fees for that probe.</p> <p>This action requires both the <code>monitorName</code> and <code>probeId</code> parameters. Run <code>ListMonitors</code> to get a list of monitor names. Run <code>GetMonitor</code> to get a list of probes and probe IDs. You can only delete a single probe at a time using this action. </p>",
+    "GetMonitor": "<p>Returns details about a specific monitor. </p> <p>This action requires the <code>monitorName</code> parameter. Run <code>ListMonitors</code> to get a list of monitor names. </p>",
+    "GetProbe": "<p>Returns the details about a probe. This action requires both the <code>monitorName</code> and <code>probeId</code> parameters. Run <code>ListMonitors</code> to get a list of monitor names. Run <code>GetMonitor</code> to get a list of probes and probe IDs. </p>",
     "ListMonitors": "<p>Returns a list of all of your monitors.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to this resource.</p>",
     "TagResource": "<p>Adds key-value pairs to a monitor or probe.</p>",
     "UntagResource": "<p>Removes a key-value pair from a monitor or probe.</p>",
-    "UpdateMonitor": "<p>Updates the <code>aggregationPeriod</code> for a monitor. Monitors support an <code>aggregationPeriod</code> of either <code>30</code> or <code>60</code> seconds.</p>",
-    "UpdateProbe": "<p>Updates a monitor probe. This action requires both the <code>monitorName</code> and <code>probeId</code> parameters. Run <code>ListMonitors</code> to get a list of monitor names. Run <code>GetMonitor</code> to get a list of probes and probe IDs. </p>"
+    "UpdateMonitor": "<p>Updates the <code>aggregationPeriod</code> for a monitor. Monitors support an <code>aggregationPeriod</code> of either <code>30</code> or <code>60</code> seconds. This action requires the <code>monitorName</code> and <code>probeId</code> parameter. Run <code>ListMonitors</code> to get a list of monitor names. </p>",
+    "UpdateProbe": "<p>Updates a monitor probe. This action requires both the <code>monitorName</code> and <code>probeId</code> parameters. Run <code>ListMonitors</code> to get a list of monitor names. Run <code>GetMonitor</code> to get a list of probes and probe IDs. </p> <p>You can update the following para create a monitor with probes using this command. For each probe, you define the following:</p> <ul> <li> <p> <code>state</code>—The state of the probe.</p> </li> <li> <p> <code>destination</code>— The target destination IP address for the probe.</p> </li> <li> <p> <code>destinationPort</code>—Required only if the protocol is <code>TCP</code>.</p> </li> <li> <p> <code>protocol</code>—The communication protocol between the source and destination. This will be either <code>TCP</code> or <code>ICMP</code>.</p> </li> <li> <p> <code>packetSize</code>—The size of the packets. This must be a number between <code>56</code> and <code>8500</code>.</p> </li> <li> <p>(Optional) <code>tags</code> —Key-value pairs created and assigned to the probe.</p> </li> </ul>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -33,8 +33,8 @@
     "AggregationPeriod": {
       "base": null,
       "refs": {
-        "CreateMonitorInput$aggregationPeriod": "<p>The time, in seconds, that metrics are aggregated and sent to Amazon CloudWatch. Valid values are either <code>30</code> or <code>60</code>. </p>",
-        "CreateMonitorOutput$aggregationPeriod": "<p>The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch. This must be either <code>30</code> or <code>60</code>. </p>",
+        "CreateMonitorInput$aggregationPeriod": "<p>The time, in seconds, that metrics are aggregated and sent to Amazon CloudWatch. Valid values are either <code>30</code> or <code>60</code>. <code>60</code> is the default if no period is chosen.</p>",
+        "CreateMonitorOutput$aggregationPeriod": "<p>The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch. This will be either <code>30</code> or <code>60</code>. </p>",
         "GetMonitorOutput$aggregationPeriod": "<p>The aggregation period for the specified monitor.</p>",
         "MonitorSummary$aggregationPeriod": "<p>The time, in seconds, that metrics are collected and sent to Amazon CloudWatch. Valid values are either <code>30</code> or <code>60</code>.</p>",
         "UpdateMonitorInput$aggregationPeriod": "<p>The aggregation time, in seconds, to change to. This must be either <code>30</code> or <code>60</code>. </p>",
@@ -213,7 +213,7 @@
       "base": null,
       "refs": {
         "CreateMonitorOutput$state": "<p>The state of the monitor.</p>",
-        "GetMonitorOutput$state": "<p>Returns a list of the state of each monitor. </p>",
+        "GetMonitorOutput$state": "<p>Lists the status of the <code>state</code> of each monitor. </p>",
         "MonitorSummary$state": "<p>The state of the monitor.</p>",
         "UpdateMonitorOutput$state": "<p>The state of the updated monitor.</p>"
       }
@@ -255,7 +255,7 @@
       }
     },
     "Probe": {
-      "base": "<p>Describes information about a monitor probe.</p>",
+      "base": "<p>Describes information about a network monitor probe.</p>",
       "refs": {
         "ProbeList$member": null
       }
@@ -264,11 +264,11 @@
       "base": null,
       "refs": {
         "CreateProbeOutput$probeId": "<p>The ID of the probe for which details are returned.</p>",
-        "DeleteProbeInput$probeId": "<p>The ID of the probe to delete. Run <code>GetMonitor</code> to get a lst of all probes and probe IDs associated with the monitor.</p>",
+        "DeleteProbeInput$probeId": "<p>The ID of the probe to delete. </p>",
         "GetProbeInput$probeId": "<p>The ID of the probe to get information about. Run <code>GetMonitor</code> action to get a list of probes and probe IDs for the monitor.</p>",
         "GetProbeOutput$probeId": "<p>The ID of the probe for which details are returned.</p>",
         "Probe$probeId": "<p>The ID of the probe.</p>",
-        "UpdateProbeInput$probeId": "<p>Run <code>GetMonitor</code> to get a list of probes and probe IDs.</p>",
+        "UpdateProbeInput$probeId": "<p>The ID of the probe to update.</p>",
         "UpdateProbeOutput$probeId": "<p>The updated ID of the probe.</p>"
       }
     },
@@ -311,14 +311,14 @@
       "refs": {
         "CreateMonitorInput$monitorName": "<p>The name identifying the monitor. It can contain only letters, underscores (_), or dashes (-), and can be up to 200 characters.</p>",
         "CreateMonitorOutput$monitorName": "<p>The name of the monitor.</p>",
-        "CreateProbeInput$monitorName": "<p>The name of the monitor to associated with the probe. To get a list of available monitors, use <code>ListMonitors</code>.</p>",
-        "DeleteMonitorInput$monitorName": "<p>The name of the monitor to delete. Use the <code>ListMonitors</code> action to get a list of your current monitors. </p>",
-        "DeleteProbeInput$monitorName": "<p>The name of the monitor to delete. For a list of the available monitors, use the <code>ListMonitors</code> action.</p>",
+        "CreateProbeInput$monitorName": "<p>The name of the monitor to associated with the probe. </p>",
+        "DeleteMonitorInput$monitorName": "<p>The name of the monitor to delete. </p>",
+        "DeleteProbeInput$monitorName": "<p>The name of the monitor to delete. </p>",
         "GetMonitorInput$monitorName": "<p>The name of the monitor that details are returned for.</p>",
-        "GetMonitorOutput$monitorName": "<p>The name of the monitor. To get a list of the current monitors and their names, use the <code>ListMonitors</code> action.</p>",
+        "GetMonitorOutput$monitorName": "<p>The name of the monitor. </p>",
         "GetProbeInput$monitorName": "<p>The name of the monitor associated with the probe. Run <code>ListMonitors</code> to get a list of monitor names.</p>",
         "MonitorSummary$monitorName": "<p>The name of the monitor.</p>",
-        "UpdateMonitorInput$monitorName": "<p>The name of the monitor to update. Run <code>ListMonitors</code> to get a list of monitor names.</p>",
+        "UpdateMonitorInput$monitorName": "<p>The name of the monitor to update. </p>",
         "UpdateMonitorOutput$monitorName": "<p>The name of the monitor that was updated.</p>",
         "UpdateProbeInput$monitorName": "<p>The name of the monitor that the probe was updated for.</p>"
       }

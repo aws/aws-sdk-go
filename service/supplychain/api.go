@@ -4,6 +4,7 @@ package supplychain
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -206,6 +207,103 @@ func (c *SupplyChain) GetBillOfMaterialsImportJob(input *GetBillOfMaterialsImpor
 // for more information on using Contexts.
 func (c *SupplyChain) GetBillOfMaterialsImportJobWithContext(ctx aws.Context, input *GetBillOfMaterialsImportJobInput, opts ...request.Option) (*GetBillOfMaterialsImportJobOutput, error) {
 	req, out := c.GetBillOfMaterialsImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendDataIntegrationEvent = "SendDataIntegrationEvent"
+
+// SendDataIntegrationEventRequest generates a "aws/request.Request" representing the
+// client's request for the SendDataIntegrationEvent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendDataIntegrationEvent for more information on using the SendDataIntegrationEvent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendDataIntegrationEventRequest method.
+//	req, resp := client.SendDataIntegrationEventRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/supplychain-2024-01-01/SendDataIntegrationEvent
+func (c *SupplyChain) SendDataIntegrationEventRequest(input *SendDataIntegrationEventInput) (req *request.Request, output *SendDataIntegrationEventOutput) {
+	op := &request.Operation{
+		Name:       opSendDataIntegrationEvent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/api-data/data-integration/instance/{instanceId}/data-integration-events",
+	}
+
+	if input == nil {
+		input = &SendDataIntegrationEventInput{}
+	}
+
+	output = &SendDataIntegrationEventOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendDataIntegrationEvent API operation for AWS Supply Chain.
+//
+// Send transactional data events with real-time data for analysis or monitoring.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Supply Chain's
+// API operation SendDataIntegrationEvent for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceQuotaExceededException
+//     Request would cause a service quota to be exceeded.
+//
+//   - ResourceNotFoundException
+//     Request references a resource which does not exist.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+//   - AccessDeniedException
+//     You do not have the required privileges to perform this action.
+//
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an AWS service.
+//
+//   - InternalServerException
+//     Unexpected error during processing of request.
+//
+//   - ConflictException
+//     Updating or deleting a resource can cause an inconsistent state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/supplychain-2024-01-01/SendDataIntegrationEvent
+func (c *SupplyChain) SendDataIntegrationEvent(input *SendDataIntegrationEventInput) (*SendDataIntegrationEventOutput, error) {
+	req, out := c.SendDataIntegrationEventRequest(input)
+	return out, req.Send()
+}
+
+// SendDataIntegrationEventWithContext is the same as SendDataIntegrationEvent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendDataIntegrationEvent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SupplyChain) SendDataIntegrationEventWithContext(ctx aws.Context, input *SendDataIntegrationEventInput, opts ...request.Option) (*SendDataIntegrationEventOutput, error) {
+	req, out := c.SendDataIntegrationEventRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -759,6 +857,164 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The request parameters for SendDataIntegrationEvent.
+type SendDataIntegrationEventInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotent client token.
+	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
+
+	// The data payload of the event.
+	//
+	// Data is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SendDataIntegrationEventInput's
+	// String and GoString methods.
+	//
+	// Data is a required field
+	Data *string `locationName:"data" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Event identifier (for example, orderId for InboundOrder) used for data sharing
+	// or partitioning.
+	//
+	// EventGroupId is a required field
+	EventGroupId *string `locationName:"eventGroupId" min:"1" type:"string" required:"true"`
+
+	// The event timestamp (in epoch seconds).
+	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The data event type.
+	//
+	// EventType is a required field
+	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"DataIntegrationEventType"`
+
+	// The AWS Supply Chain instance identifier.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"instanceId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataIntegrationEventInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataIntegrationEventInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendDataIntegrationEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendDataIntegrationEventInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Data != nil && len(*s.Data) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Data", 1))
+	}
+	if s.EventGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventGroupId"))
+	}
+	if s.EventGroupId != nil && len(*s.EventGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventGroupId", 1))
+	}
+	if s.EventType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventType"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SendDataIntegrationEventInput) SetClientToken(v string) *SendDataIntegrationEventInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *SendDataIntegrationEventInput) SetData(v string) *SendDataIntegrationEventInput {
+	s.Data = &v
+	return s
+}
+
+// SetEventGroupId sets the EventGroupId field's value.
+func (s *SendDataIntegrationEventInput) SetEventGroupId(v string) *SendDataIntegrationEventInput {
+	s.EventGroupId = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *SendDataIntegrationEventInput) SetEventTimestamp(v time.Time) *SendDataIntegrationEventInput {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *SendDataIntegrationEventInput) SetEventType(v string) *SendDataIntegrationEventInput {
+	s.EventType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SendDataIntegrationEventInput) SetInstanceId(v string) *SendDataIntegrationEventInput {
+	s.InstanceId = &v
+	return s
+}
+
+// The response parameters for SendDataIntegrationEvent.
+type SendDataIntegrationEventOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique event identifier.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataIntegrationEventOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataIntegrationEventOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventId sets the EventId field's value.
+func (s *SendDataIntegrationEventOutput) SetEventId(v string) *SendDataIntegrationEventOutput {
+	s.EventId = &v
+	return s
+}
+
 // Request would cause a service quota to be exceeded.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -977,5 +1233,73 @@ func ConfigurationJobStatus_Values() []string {
 		ConfigurationJobStatusInProgress,
 		ConfigurationJobStatusQueued,
 		ConfigurationJobStatusSuccess,
+	}
+}
+
+const (
+	// DataIntegrationEventTypeScnDataForecast is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataForecast = "scn.data.forecast"
+
+	// DataIntegrationEventTypeScnDataInventorylevel is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataInventorylevel = "scn.data.inventorylevel"
+
+	// DataIntegrationEventTypeScnDataInboundorder is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataInboundorder = "scn.data.inboundorder"
+
+	// DataIntegrationEventTypeScnDataInboundorderline is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataInboundorderline = "scn.data.inboundorderline"
+
+	// DataIntegrationEventTypeScnDataInboundorderlineschedule is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataInboundorderlineschedule = "scn.data.inboundorderlineschedule"
+
+	// DataIntegrationEventTypeScnDataOutboundorderline is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataOutboundorderline = "scn.data.outboundorderline"
+
+	// DataIntegrationEventTypeScnDataOutboundshipment is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataOutboundshipment = "scn.data.outboundshipment"
+
+	// DataIntegrationEventTypeScnDataProcessheader is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataProcessheader = "scn.data.processheader"
+
+	// DataIntegrationEventTypeScnDataProcessoperation is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataProcessoperation = "scn.data.processoperation"
+
+	// DataIntegrationEventTypeScnDataProcessproduct is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataProcessproduct = "scn.data.processproduct"
+
+	// DataIntegrationEventTypeScnDataReservation is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataReservation = "scn.data.reservation"
+
+	// DataIntegrationEventTypeScnDataShipment is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataShipment = "scn.data.shipment"
+
+	// DataIntegrationEventTypeScnDataShipmentstop is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataShipmentstop = "scn.data.shipmentstop"
+
+	// DataIntegrationEventTypeScnDataShipmentstoporder is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataShipmentstoporder = "scn.data.shipmentstoporder"
+
+	// DataIntegrationEventTypeScnDataSupplyplan is a DataIntegrationEventType enum value
+	DataIntegrationEventTypeScnDataSupplyplan = "scn.data.supplyplan"
+)
+
+// DataIntegrationEventType_Values returns all elements of the DataIntegrationEventType enum
+func DataIntegrationEventType_Values() []string {
+	return []string{
+		DataIntegrationEventTypeScnDataForecast,
+		DataIntegrationEventTypeScnDataInventorylevel,
+		DataIntegrationEventTypeScnDataInboundorder,
+		DataIntegrationEventTypeScnDataInboundorderline,
+		DataIntegrationEventTypeScnDataInboundorderlineschedule,
+		DataIntegrationEventTypeScnDataOutboundorderline,
+		DataIntegrationEventTypeScnDataOutboundshipment,
+		DataIntegrationEventTypeScnDataProcessheader,
+		DataIntegrationEventTypeScnDataProcessoperation,
+		DataIntegrationEventTypeScnDataProcessproduct,
+		DataIntegrationEventTypeScnDataReservation,
+		DataIntegrationEventTypeScnDataShipment,
+		DataIntegrationEventTypeScnDataShipmentstop,
+		DataIntegrationEventTypeScnDataShipmentstoporder,
+		DataIntegrationEventTypeScnDataSupplyplan,
 	}
 }

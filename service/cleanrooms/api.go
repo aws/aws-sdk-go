@@ -7561,6 +7561,9 @@ type AnalysisTemplate struct {
 	//
 	// UpdateTime is a required field
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+
+	// Information about the validations performed on the analysis template.
+	Validations []*AnalysisTemplateValidationStatusDetail `locationName:"validations" type:"list"`
 }
 
 // String returns the string representation.
@@ -7662,6 +7665,12 @@ func (s *AnalysisTemplate) SetSource(v *AnalysisSource) *AnalysisTemplate {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *AnalysisTemplate) SetUpdateTime(v time.Time) *AnalysisTemplate {
 	s.UpdateTime = &v
+	return s
+}
+
+// SetValidations sets the Validations field's value.
+func (s *AnalysisTemplate) SetValidations(v []*AnalysisTemplateValidationStatusDetail) *AnalysisTemplate {
+	s.Validations = v
 	return s
 }
 
@@ -7794,6 +7803,103 @@ func (s *AnalysisTemplateSummary) SetName(v string) *AnalysisTemplateSummary {
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *AnalysisTemplateSummary) SetUpdateTime(v time.Time) *AnalysisTemplateSummary {
 	s.UpdateTime = &v
+	return s
+}
+
+// The status details of the analysis template validation. Clean Rooms Differential
+// Privacy uses a general-purpose query structure to support complex SQL queries
+// and validates whether an analysis template fits that general-purpose query
+// structure. Validation is performed when analysis templates are created and
+// fetched. Because analysis templates are immutable by design, we recommend
+// that you create analysis templates after you associate the configured tables
+// with their analysis rule to your collaboration.
+//
+// For more information, see https://docs.aws.amazon.com/clean-rooms/latest/userguide/analysis-rules-custom.html#custom-diff-privacy
+// (https://docs.aws.amazon.com/clean-rooms/latest/userguide/analysis-rules-custom.html#custom-diff-privacy).
+type AnalysisTemplateValidationStatusDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The reasons for the validation results.
+	Reasons []*AnalysisTemplateValidationStatusReason `locationName:"reasons" type:"list"`
+
+	// The status of the validation.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AnalysisTemplateValidationStatus"`
+
+	// The type of validation that was performed.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"AnalysisTemplateValidationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateValidationStatusDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateValidationStatusDetail) GoString() string {
+	return s.String()
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *AnalysisTemplateValidationStatusDetail) SetReasons(v []*AnalysisTemplateValidationStatusReason) *AnalysisTemplateValidationStatusDetail {
+	s.Reasons = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AnalysisTemplateValidationStatusDetail) SetStatus(v string) *AnalysisTemplateValidationStatusDetail {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AnalysisTemplateValidationStatusDetail) SetType(v string) *AnalysisTemplateValidationStatusDetail {
+	s.Type = &v
+	return s
+}
+
+// The reasons for the validation results.
+type AnalysisTemplateValidationStatusReason struct {
+	_ struct{} `type:"structure"`
+
+	// The validation message.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateValidationStatusReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalysisTemplateValidationStatusReason) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *AnalysisTemplateValidationStatusReason) SetMessage(v string) *AnalysisTemplateValidationStatusReason {
+	s.Message = &v
 	return s
 }
 
@@ -8557,6 +8663,9 @@ type CollaborationAnalysisTemplate struct {
 	//
 	// UpdateTime is a required field
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" required:"true"`
+
+	// The validations that were performed.
+	Validations []*AnalysisTemplateValidationStatusDetail `locationName:"validations" type:"list"`
 }
 
 // String returns the string representation.
@@ -8652,6 +8761,12 @@ func (s *CollaborationAnalysisTemplate) SetSource(v *AnalysisSource) *Collaborat
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *CollaborationAnalysisTemplate) SetUpdateTime(v time.Time) *CollaborationAnalysisTemplate {
 	s.UpdateTime = &v
+	return s
+}
+
+// SetValidations sets the Validations field's value.
+func (s *CollaborationAnalysisTemplate) SetValidations(v []*AnalysisTemplateValidationStatusDetail) *CollaborationAnalysisTemplate {
+	s.Validations = v
 	return s
 }
 
@@ -21392,6 +21507,38 @@ func AnalysisRuleType_Values() []string {
 		AnalysisRuleTypeAggregation,
 		AnalysisRuleTypeList,
 		AnalysisRuleTypeCustom,
+	}
+}
+
+const (
+	// AnalysisTemplateValidationStatusValid is a AnalysisTemplateValidationStatus enum value
+	AnalysisTemplateValidationStatusValid = "VALID"
+
+	// AnalysisTemplateValidationStatusInvalid is a AnalysisTemplateValidationStatus enum value
+	AnalysisTemplateValidationStatusInvalid = "INVALID"
+
+	// AnalysisTemplateValidationStatusUnableToValidate is a AnalysisTemplateValidationStatus enum value
+	AnalysisTemplateValidationStatusUnableToValidate = "UNABLE_TO_VALIDATE"
+)
+
+// AnalysisTemplateValidationStatus_Values returns all elements of the AnalysisTemplateValidationStatus enum
+func AnalysisTemplateValidationStatus_Values() []string {
+	return []string{
+		AnalysisTemplateValidationStatusValid,
+		AnalysisTemplateValidationStatusInvalid,
+		AnalysisTemplateValidationStatusUnableToValidate,
+	}
+}
+
+const (
+	// AnalysisTemplateValidationTypeDifferentialPrivacy is a AnalysisTemplateValidationType enum value
+	AnalysisTemplateValidationTypeDifferentialPrivacy = "DIFFERENTIAL_PRIVACY"
+)
+
+// AnalysisTemplateValidationType_Values returns all elements of the AnalysisTemplateValidationType enum
+func AnalysisTemplateValidationType_Values() []string {
+	return []string{
+		AnalysisTemplateValidationTypeDifferentialPrivacy,
 	}
 }
 

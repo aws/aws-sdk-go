@@ -1190,11 +1190,17 @@ func (c *WorkSpacesThinClient) ListTagsForResourceRequest(input *ListTagsForReso
 //   - ValidationException
 //     The input fails to satisfy the specified constraints.
 //
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
 //   - ResourceNotFoundException
 //     The resource specified in the request was not found.
 //
-//   - InternalServiceException
-//     Request processing failed due to some unknown error, exception, or failure.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-thin-client-2023-08-22/ListTagsForResource
 func (c *WorkSpacesThinClient) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1278,11 +1284,22 @@ func (c *WorkSpacesThinClient) TagResourceRequest(input *TagResourceInput) (req 
 //   - ValidationException
 //     The input fails to satisfy the specified constraints.
 //
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
 //   - ResourceNotFoundException
 //     The resource specified in the request was not found.
 //
-//   - InternalServiceException
-//     Request processing failed due to some unknown error, exception, or failure.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-thin-client-2023-08-22/TagResource
 func (c *WorkSpacesThinClient) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1366,11 +1383,22 @@ func (c *WorkSpacesThinClient) UntagResourceRequest(input *UntagResourceInput) (
 //   - ValidationException
 //     The input fails to satisfy the specified constraints.
 //
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
 //   - ResourceNotFoundException
 //     The resource specified in the request was not found.
 //
-//   - InternalServiceException
-//     Request processing failed due to some unknown error, exception, or failure.
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
+//
+//   - InternalServerException
+//     The server encountered an internal error and is unable to complete the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-thin-client-2023-08-22/UntagResource
 func (c *WorkSpacesThinClient) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2376,7 +2404,7 @@ type Device struct {
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Device's
 	// String and GoString methods.
-	Tags *EmbeddedTag `locationName:"tags" type:"structure" sensitive:"true"`
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 
 	// The timestamp of when the device was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
@@ -2515,7 +2543,7 @@ func (s *Device) SetStatus(v string) *Device {
 }
 
 // SetTags sets the Tags field's value.
-func (s *Device) SetTags(v *EmbeddedTag) *Device {
+func (s *Device) SetTags(v map[string]*string) *Device {
 	s.Tags = v
 	return s
 }
@@ -2576,13 +2604,6 @@ type DeviceSummary struct {
 
 	// The status of the device.
 	Status *string `locationName:"status" type:"string" enum:"DeviceStatus"`
-
-	// The tag keys and optional values for the resource.
-	//
-	// Tags is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by DeviceSummary's
-	// String and GoString methods.
-	Tags *EmbeddedTag `locationName:"tags" type:"structure" sensitive:"true"`
 
 	// The timestamp of when the device was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
@@ -2690,56 +2711,9 @@ func (s *DeviceSummary) SetStatus(v string) *DeviceSummary {
 	return s
 }
 
-// SetTags sets the Tags field's value.
-func (s *DeviceSummary) SetTags(v *EmbeddedTag) *DeviceSummary {
-	s.Tags = v
-	return s
-}
-
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DeviceSummary) SetUpdatedAt(v time.Time) *DeviceSummary {
 	s.UpdatedAt = &v
-	return s
-}
-
-// The resource and internal ID of a resource to tag.
-type EmbeddedTag struct {
-	_ struct{} `type:"structure" sensitive:"true"`
-
-	// The internal ID of a resource to tag.
-	InternalId *string `locationName:"internalId" type:"string"`
-
-	// The Amazon Resource Name (ARN) of a resource to tag.
-	ResourceArn *string `locationName:"resourceArn" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EmbeddedTag) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s EmbeddedTag) GoString() string {
-	return s.String()
-}
-
-// SetInternalId sets the InternalId field's value.
-func (s *EmbeddedTag) SetInternalId(v string) *EmbeddedTag {
-	s.InternalId = &v
-	return s
-}
-
-// SetResourceArn sets the ResourceArn field's value.
-func (s *EmbeddedTag) SetResourceArn(v string) *EmbeddedTag {
-	s.ResourceArn = &v
 	return s
 }
 
@@ -2816,7 +2790,7 @@ type Environment struct {
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Environment's
 	// String and GoString methods.
-	Tags *EmbeddedTag `locationName:"tags" type:"structure" sensitive:"true"`
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
 
 	// The timestamp of when the device was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
@@ -2943,7 +2917,7 @@ func (s *Environment) SetSoftwareSetUpdateSchedule(v string) *Environment {
 }
 
 // SetTags sets the Tags field's value.
-func (s *Environment) SetTags(v *EmbeddedTag) *Environment {
+func (s *Environment) SetTags(v map[string]*string) *Environment {
 	s.Tags = v
 	return s
 }
@@ -3007,13 +2981,6 @@ type EnvironmentSummary struct {
 	// An option to define if software updates should be applied within a maintenance
 	// window.
 	SoftwareSetUpdateSchedule *string `locationName:"softwareSetUpdateSchedule" type:"string" enum:"SoftwareSetUpdateSchedule"`
-
-	// The tag keys and optional values for the resource.
-	//
-	// Tags is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by EnvironmentSummary's
-	// String and GoString methods.
-	Tags *EmbeddedTag `locationName:"tags" type:"structure" sensitive:"true"`
 
 	// The timestamp of when the device was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
@@ -3112,12 +3079,6 @@ func (s *EnvironmentSummary) SetSoftwareSetUpdateMode(v string) *EnvironmentSumm
 // SetSoftwareSetUpdateSchedule sets the SoftwareSetUpdateSchedule field's value.
 func (s *EnvironmentSummary) SetSoftwareSetUpdateSchedule(v string) *EnvironmentSummary {
 	s.SoftwareSetUpdateSchedule = &v
-	return s
-}
-
-// SetTags sets the Tags field's value.
-func (s *EnvironmentSummary) SetTags(v *EmbeddedTag) *EnvironmentSummary {
-	s.Tags = v
 	return s
 }
 
@@ -3431,73 +3392,6 @@ func (s *InternalServerException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
-	return s.RespMetadata.RequestID
-}
-
-// Request processing failed due to some unknown error, exception, or failure.
-type InternalServiceException struct {
-	_            struct{}                  `type:"structure"`
-	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
-
-	Message_ *string `locationName:"message" type:"string"`
-
-	// The number of seconds to wait before retrying the next request.
-	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InternalServiceException) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InternalServiceException) GoString() string {
-	return s.String()
-}
-
-func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
-	return &InternalServiceException{
-		RespMetadata: v,
-	}
-}
-
-// Code returns the exception type name.
-func (s *InternalServiceException) Code() string {
-	return "InternalServiceException"
-}
-
-// Message returns the exception's message.
-func (s *InternalServiceException) Message() string {
-	if s.Message_ != nil {
-		return *s.Message_
-	}
-	return ""
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s *InternalServiceException) OrigErr() error {
-	return nil
-}
-
-func (s *InternalServiceException) Error() string {
-	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
-}
-
-// Status code returns the HTTP status code for the request's response error.
-func (s *InternalServiceException) StatusCode() int {
-	return s.RespMetadata.StatusCode
-}
-
-// RequestID returns the service's response RequestID for request.
-func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -4208,6 +4102,13 @@ type SoftwareSet struct {
 	// The timestamp of the end of support for the software set.
 	SupportedUntil *time.Time `locationName:"supportedUntil" type:"timestamp"`
 
+	// The tag keys and optional values for the resource.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SoftwareSet's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
 	// An option to define if the software set has been validated.
 	ValidationStatus *string `locationName:"validationStatus" type:"string" enum:"SoftwareSetValidationStatus"`
 
@@ -4260,6 +4161,12 @@ func (s *SoftwareSet) SetSoftware(v []*Software) *SoftwareSet {
 // SetSupportedUntil sets the SupportedUntil field's value.
 func (s *SoftwareSet) SetSupportedUntil(v time.Time) *SoftwareSet {
 	s.SupportedUntil = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SoftwareSet) SetTags(v map[string]*string) *SoftwareSet {
+	s.Tags = v
 	return s
 }
 

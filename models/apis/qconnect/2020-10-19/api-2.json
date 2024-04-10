@@ -112,6 +112,7 @@
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
       "idempotent":true
@@ -671,6 +672,21 @@
         {"shape":"PreconditionFailedException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateSession":{
+      "name":"UpdateSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/assistants/{assistantId}/sessions/{sessionId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateSessionRequest"},
+      "output":{"shape":"UpdateSessionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -684,6 +700,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AndConditions":{
+      "type":"list",
+      "member":{"shape":"TagCondition"}
     },
     "AppIntegrationsConfiguration":{
       "type":"structure",
@@ -1179,6 +1199,7 @@
         },
         "description":{"shape":"Description"},
         "name":{"shape":"Name"},
+        "tagFilter":{"shape":"TagFilter"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -2110,6 +2131,18 @@
       "max":100,
       "min":1
     },
+    "OrCondition":{
+      "type":"structure",
+      "members":{
+        "andConditions":{"shape":"AndConditions"},
+        "tagCondition":{"shape":"TagCondition"}
+      },
+      "union":true
+    },
+    "OrConditions":{
+      "type":"list",
+      "member":{"shape":"OrCondition"}
+    },
     "Order":{
       "type":"string",
       "enum":[
@@ -2814,6 +2847,7 @@
         "name":{"shape":"Name"},
         "sessionArn":{"shape":"Arn"},
         "sessionId":{"shape":"Uuid"},
+        "tagFilter":{"shape":"TagFilter"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -2937,6 +2971,23 @@
     "SyntheticTimestamp_epoch_seconds":{
       "type":"timestamp",
       "timestampFormat":"unixTimestamp"
+    },
+    "TagCondition":{
+      "type":"structure",
+      "required":["key"],
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagFilter":{
+      "type":"structure",
+      "members":{
+        "andConditions":{"shape":"AndConditions"},
+        "orConditions":{"shape":"OrConditions"},
+        "tagCondition":{"shape":"TagCondition"}
+      },
+      "union":true
     },
     "TagKey":{
       "type":"string",
@@ -3123,6 +3174,33 @@
       "type":"structure",
       "members":{
         "quickResponse":{"shape":"QuickResponseData"}
+      }
+    },
+    "UpdateSessionRequest":{
+      "type":"structure",
+      "required":[
+        "assistantId",
+        "sessionId"
+      ],
+      "members":{
+        "assistantId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"assistantId"
+        },
+        "description":{"shape":"Description"},
+        "sessionId":{
+          "shape":"UuidOrArn",
+          "location":"uri",
+          "locationName":"sessionId"
+        },
+        "tagFilter":{"shape":"TagFilter"}
+      }
+    },
+    "UpdateSessionResponse":{
+      "type":"structure",
+      "members":{
+        "session":{"shape":"SessionData"}
       }
     },
     "UploadId":{

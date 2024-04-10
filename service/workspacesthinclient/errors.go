@@ -28,12 +28,6 @@ const (
 	// The server encountered an internal error and is unable to complete the request.
 	ErrCodeInternalServerException = "InternalServerException"
 
-	// ErrCodeInternalServiceException for service response error code
-	// "InternalServiceException".
-	//
-	// Request processing failed due to some unknown error, exception, or failure.
-	ErrCodeInternalServiceException = "InternalServiceException"
-
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -63,7 +57,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
-	"InternalServiceException":      newErrorInternalServiceException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
 	"ThrottlingException":           newErrorThrottlingException,

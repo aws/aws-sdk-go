@@ -3,7 +3,8 @@
   "service": "<p> AWS Supply Chain is a cloud-based application that works with your enterprise resource planning (ERP) and supply chain management systems. Using AWS Supply Chain, you can connect and extract your inventory, supply, and demand related data from existing ERP or supply chain systems into a single data model. </p> <p>The AWS Supply Chain API supports configuration data import for Supply Planning.</p> <p> All AWS Supply chain API operations are Amazon-authenticated and certificate-signed. They not only require the use of the AWS SDK, but also allow for the exclusive use of AWS Identity and Access Management users and roles to help facilitate access, trust, and permission policies. </p>",
   "operations": {
     "CreateBillOfMaterialsImportJob": "<p>CreateBillOfMaterialsImportJob creates an import job for the Product Bill Of Materials (BOM) entity. For information on the product_bom entity, see the AWS Supply Chain User Guide.</p> <p>The CSV file must be located in an Amazon S3 location accessible to AWS Supply Chain. It is recommended to use the same Amazon S3 bucket created during your AWS Supply Chain instance creation.</p>",
-    "GetBillOfMaterialsImportJob": "<p>Get status and details of a BillOfMaterialsImportJob.</p>"
+    "GetBillOfMaterialsImportJob": "<p>Get status and details of a BillOfMaterialsImportJob.</p>",
+    "SendDataIntegrationEvent": "<p>Send transactional data events with real-time data for analysis or monitoring.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -20,7 +21,8 @@
     "ClientToken": {
       "base": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
       "refs": {
-        "CreateBillOfMaterialsImportJobRequest$clientToken": "<p>An idempotency token.</p>"
+        "CreateBillOfMaterialsImportJobRequest$clientToken": "<p>An idempotency token.</p>",
+        "SendDataIntegrationEventRequest$clientToken": "<p>The idempotent client token.</p>"
       }
     },
     "ConfigurationJobStatus": {
@@ -51,6 +53,24 @@
       "refs": {
       }
     },
+    "DataIntegrationEventData": {
+      "base": null,
+      "refs": {
+        "SendDataIntegrationEventRequest$data": "<p>The data payload of the event.</p>"
+      }
+    },
+    "DataIntegrationEventGroupId": {
+      "base": null,
+      "refs": {
+        "SendDataIntegrationEventRequest$eventGroupId": "<p>Event identifier (for example, orderId for InboundOrder) used for data sharing or partitioning.</p>"
+      }
+    },
+    "DataIntegrationEventType": {
+      "base": null,
+      "refs": {
+        "SendDataIntegrationEventRequest$eventType": "<p>The data event type.</p>"
+      }
+    },
     "GetBillOfMaterialsImportJobRequest": {
       "base": "<p>The request parameters for GetBillOfMaterialsImportJob.</p>",
       "refs": {
@@ -68,6 +88,16 @@
     },
     "ResourceNotFoundException": {
       "base": "<p>Request references a resource which does not exist.</p>",
+      "refs": {
+      }
+    },
+    "SendDataIntegrationEventRequest": {
+      "base": "<p>The request parameters for SendDataIntegrationEvent.</p>",
+      "refs": {
+      }
+    },
+    "SendDataIntegrationEventResponse": {
+      "base": "<p>The response parameters for SendDataIntegrationEvent.</p>",
       "refs": {
       }
     },
@@ -89,6 +119,12 @@
         "ValidationException$message": null
       }
     },
+    "SyntheticTimestamp_epoch_seconds": {
+      "base": null,
+      "refs": {
+        "SendDataIntegrationEventRequest$eventTimestamp": "<p>The event timestamp (in epoch seconds).</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>Request was denied due to request throttling.</p>",
       "refs": {
@@ -102,7 +138,9 @@
         "CreateBillOfMaterialsImportJobRequest$instanceId": "<p>The AWS Supply Chain instance identifier.</p>",
         "CreateBillOfMaterialsImportJobResponse$jobId": "<p>The new BillOfMaterialsImportJob identifier.</p>",
         "GetBillOfMaterialsImportJobRequest$instanceId": "<p>The AWS Supply Chain instance identifier.</p>",
-        "GetBillOfMaterialsImportJobRequest$jobId": "<p>The BillOfMaterialsImportJob identifier.</p>"
+        "GetBillOfMaterialsImportJobRequest$jobId": "<p>The BillOfMaterialsImportJob identifier.</p>",
+        "SendDataIntegrationEventRequest$instanceId": "<p>The AWS Supply Chain instance identifier.</p>",
+        "SendDataIntegrationEventResponse$eventId": "<p>The unique event identifier.</p>"
       }
     },
     "ValidationException": {

@@ -50,6 +50,26 @@
         {"shape":"InternalServerException"},
         {"shape":"ConflictException"}
       ]
+    },
+    "SendDataIntegrationEvent":{
+      "name":"SendDataIntegrationEvent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/api-data/data-integration/instance/{instanceId}/data-integration-events",
+        "responseCode":200
+      },
+      "input":{"shape":"SendDataIntegrationEventRequest"},
+      "output":{"shape":"SendDataIntegrationEventResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -137,6 +157,37 @@
         "jobId":{"shape":"UUID"}
       }
     },
+    "DataIntegrationEventData":{
+      "type":"string",
+      "max":1048576,
+      "min":1,
+      "sensitive":true
+    },
+    "DataIntegrationEventGroupId":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "DataIntegrationEventType":{
+      "type":"string",
+      "enum":[
+        "scn.data.forecast",
+        "scn.data.inventorylevel",
+        "scn.data.inboundorder",
+        "scn.data.inboundorderline",
+        "scn.data.inboundorderlineschedule",
+        "scn.data.outboundorderline",
+        "scn.data.outboundshipment",
+        "scn.data.processheader",
+        "scn.data.processoperation",
+        "scn.data.processproduct",
+        "scn.data.reservation",
+        "scn.data.shipment",
+        "scn.data.shipmentstop",
+        "scn.data.shipmentstoporder",
+        "scn.data.supplyplan"
+      ]
+    },
     "GetBillOfMaterialsImportJobRequest":{
       "type":"structure",
       "required":[
@@ -184,6 +235,37 @@
       },
       "exception":true
     },
+    "SendDataIntegrationEventRequest":{
+      "type":"structure",
+      "required":[
+        "instanceId",
+        "eventType",
+        "data",
+        "eventGroupId"
+      ],
+      "members":{
+        "instanceId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"instanceId"
+        },
+        "eventType":{"shape":"DataIntegrationEventType"},
+        "data":{"shape":"DataIntegrationEventData"},
+        "eventGroupId":{"shape":"DataIntegrationEventGroupId"},
+        "eventTimestamp":{"shape":"SyntheticTimestamp_epoch_seconds"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendDataIntegrationEventResponse":{
+      "type":"structure",
+      "required":["eventId"],
+      "members":{
+        "eventId":{"shape":"UUID"}
+      }
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -196,6 +278,10 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "SyntheticTimestamp_epoch_seconds":{
+      "type":"timestamp",
+      "timestampFormat":"unixTimestamp"
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{

@@ -61,6 +61,23 @@ func (c *NetworkMonitor) CreateMonitorRequest(input *CreateMonitorInput) (req *r
 // your source Amazon Web Services VPC subnets and your destination IP addresses.
 // Each probe then aggregates and sends metrics to Amazon CloudWatch.
 //
+// You can also create a monitor with probes using this command. For each probe,
+// you define the following:
+//
+//   - source—The subnet IDs where the probes will be created.
+//
+//   - destination— The target destination IP address for the probe.
+//
+//   - destinationPort—Required only if the protocol is TCP.
+//
+//   - protocol—The communication protocol between the source and destination.
+//     This will be either TCP or ICMP.
+//
+//   - packetSize—The size of the packets. This must be a number between
+//     56 and 8500.
+//
+//   - (Optional) tags —Key-value pairs created and assigned to the probe.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -155,7 +172,9 @@ func (c *NetworkMonitor) CreateProbeRequest(input *CreateProbeInput) (req *reque
 // CreateProbe API operation for Amazon CloudWatch Network Monitor.
 //
 // Create a probe within a monitor. Once you create a probe, and it begins monitoring
-// your network traffic, you'll incur billing charges for that probe.
+// your network traffic, you'll incur billing charges for that probe. This action
+// requires the monitorName parameter. Run ListMonitors to get a list of monitor
+// names. Note the name of the monitorName you want to create the probe for.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -253,6 +272,9 @@ func (c *NetworkMonitor) DeleteMonitorRequest(input *DeleteMonitorInput) (req *r
 //
 // Deletes a specified monitor.
 //
+// This action requires the monitorName parameter. Run ListMonitors to get a
+// list of monitor names.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -344,8 +366,12 @@ func (c *NetworkMonitor) DeleteProbeRequest(input *DeleteProbeInput) (req *reque
 
 // DeleteProbe API operation for Amazon CloudWatch Network Monitor.
 //
-// Deletes the specified monitor. Once a probe is deleted you'll no longer incur
+// Deletes the specified probe. Once a probe is deleted you'll no longer incur
 // any billing fees for that probe.
+//
+// This action requires both the monitorName and probeId parameters. Run ListMonitors
+// to get a list of monitor names. Run GetMonitor to get a list of probes and
+// probe IDs. You can only delete a single probe at a time using this action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -442,6 +468,9 @@ func (c *NetworkMonitor) GetMonitorRequest(input *GetMonitorInput) (req *request
 //
 // Returns details about a specific monitor.
 //
+// This action requires the monitorName parameter. Run ListMonitors to get a
+// list of monitor names.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -532,7 +561,9 @@ func (c *NetworkMonitor) GetProbeRequest(input *GetProbeInput) (req *request.Req
 
 // GetProbe API operation for Amazon CloudWatch Network Monitor.
 //
-// Returns the details about a probe. You'll need both the monitorName and probeId.
+// Returns the details about a probe. This action requires both the monitorName
+// and probeId parameters. Run ListMonitors to get a list of monitor names.
+// Run GetMonitor to get a list of probes and probe IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1058,7 +1089,8 @@ func (c *NetworkMonitor) UpdateMonitorRequest(input *UpdateMonitorInput) (req *r
 // UpdateMonitor API operation for Amazon CloudWatch Network Monitor.
 //
 // Updates the aggregationPeriod for a monitor. Monitors support an aggregationPeriod
-// of either 30 or 60 seconds.
+// of either 30 or 60 seconds. This action requires the monitorName and probeId
+// parameter. Run ListMonitors to get a list of monitor names.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1156,6 +1188,23 @@ func (c *NetworkMonitor) UpdateProbeRequest(input *UpdateProbeInput) (req *reque
 // Updates a monitor probe. This action requires both the monitorName and probeId
 // parameters. Run ListMonitors to get a list of monitor names. Run GetMonitor
 // to get a list of probes and probe IDs.
+//
+// You can update the following para create a monitor with probes using this
+// command. For each probe, you define the following:
+//
+//   - state—The state of the probe.
+//
+//   - destination— The target destination IP address for the probe.
+//
+//   - destinationPort—Required only if the protocol is TCP.
+//
+//   - protocol—The communication protocol between the source and destination.
+//     This will be either TCP or ICMP.
+//
+//   - packetSize—The size of the packets. This must be a number between
+//     56 and 8500.
+//
+//   - (Optional) tags —Key-value pairs created and assigned to the probe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1339,7 +1388,7 @@ type CreateMonitorInput struct {
 	_ struct{} `type:"structure"`
 
 	// The time, in seconds, that metrics are aggregated and sent to Amazon CloudWatch.
-	// Valid values are either 30 or 60.
+	// Valid values are either 30 or 60. 60 is the default if no period is chosen.
 	AggregationPeriod *int64 `locationName:"aggregationPeriod" min:"30" type:"long"`
 
 	// Unique, case-sensitive identifier to ensure the idempotency of the request.
@@ -1440,7 +1489,7 @@ type CreateMonitorOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of seconds that metrics are aggregated by and sent to Amazon CloudWatch.
-	// This must be either 30 or 60.
+	// This will be either 30 or 60.
 	AggregationPeriod *int64 `locationName:"aggregationPeriod" min:"30" type:"long"`
 
 	// The ARN of the monitor.
@@ -1631,8 +1680,7 @@ type CreateProbeInput struct {
 	// Only returned if a client token was provided in the request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The name of the monitor to associated with the probe. To get a list of available
-	// monitors, use ListMonitors.
+	// The name of the monitor to associated with the probe.
 	//
 	// MonitorName is a required field
 	MonitorName *string `location:"uri" locationName:"monitorName" min:"1" type:"string" required:"true"`
@@ -1864,8 +1912,7 @@ func (s *CreateProbeOutput) SetVpcId(v string) *CreateProbeOutput {
 type DeleteMonitorInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the monitor to delete. Use the ListMonitors action to get a list
-	// of your current monitors.
+	// The name of the monitor to delete.
 	//
 	// MonitorName is a required field
 	MonitorName *string `location:"uri" locationName:"monitorName" min:"1" type:"string" required:"true"`
@@ -1936,14 +1983,12 @@ func (s DeleteMonitorOutput) GoString() string {
 type DeleteProbeInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The name of the monitor to delete. For a list of the available monitors,
-	// use the ListMonitors action.
+	// The name of the monitor to delete.
 	//
 	// MonitorName is a required field
 	MonitorName *string `location:"uri" locationName:"monitorName" min:"1" type:"string" required:"true"`
 
-	// The ID of the probe to delete. Run GetMonitor to get a lst of all probes
-	// and probe IDs associated with the monitor.
+	// The ID of the probe to delete.
 	//
 	// ProbeId is a required field
 	ProbeId *string `location:"uri" locationName:"probeId" type:"string" required:"true"`
@@ -2095,8 +2140,7 @@ type GetMonitorOutput struct {
 	// MonitorArn is a required field
 	MonitorArn *string `locationName:"monitorArn" min:"20" type:"string" required:"true"`
 
-	// The name of the monitor. To get a list of the current monitors and their
-	// names, use the ListMonitors action.
+	// The name of the monitor.
 	//
 	// MonitorName is a required field
 	MonitorName *string `locationName:"monitorName" min:"1" type:"string" required:"true"`
@@ -2104,7 +2148,7 @@ type GetMonitorOutput struct {
 	// The details about each probe associated with that monitor.
 	Probes []*Probe `locationName:"probes" type:"list"`
 
-	// Returns a list of the state of each monitor.
+	// Lists the status of the state of each monitor.
 	//
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"MonitorState"`
@@ -2723,7 +2767,7 @@ func (s *MonitorSummary) SetTags(v map[string]*string) *MonitorSummary {
 	return s
 }
 
-// Describes information about a monitor probe.
+// Describes information about a network monitor probe.
 type Probe struct {
 	_ struct{} `type:"structure"`
 
@@ -3357,8 +3401,7 @@ type UpdateMonitorInput struct {
 	// AggregationPeriod is a required field
 	AggregationPeriod *int64 `locationName:"aggregationPeriod" min:"30" type:"long" required:"true"`
 
-	// The name of the monitor to update. Run ListMonitors to get a list of monitor
-	// names.
+	// The name of the monitor to update.
 	//
 	// MonitorName is a required field
 	MonitorName *string `location:"uri" locationName:"monitorName" min:"1" type:"string" required:"true"`
@@ -3509,7 +3552,7 @@ type UpdateProbeInput struct {
 	// This must be a number between 56 and 8500.
 	PacketSize *int64 `locationName:"packetSize" min:"56" type:"integer"`
 
-	// Run GetMonitor to get a list of probes and probe IDs.
+	// The ID of the probe to update.
 	//
 	// ProbeId is a required field
 	ProbeId *string `location:"uri" locationName:"probeId" type:"string" required:"true"`

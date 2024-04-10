@@ -67,6 +67,10 @@ type SupplyChainAPI interface {
 	GetBillOfMaterialsImportJob(*supplychain.GetBillOfMaterialsImportJobInput) (*supplychain.GetBillOfMaterialsImportJobOutput, error)
 	GetBillOfMaterialsImportJobWithContext(aws.Context, *supplychain.GetBillOfMaterialsImportJobInput, ...request.Option) (*supplychain.GetBillOfMaterialsImportJobOutput, error)
 	GetBillOfMaterialsImportJobRequest(*supplychain.GetBillOfMaterialsImportJobInput) (*request.Request, *supplychain.GetBillOfMaterialsImportJobOutput)
+
+	SendDataIntegrationEvent(*supplychain.SendDataIntegrationEventInput) (*supplychain.SendDataIntegrationEventOutput, error)
+	SendDataIntegrationEventWithContext(aws.Context, *supplychain.SendDataIntegrationEventInput, ...request.Option) (*supplychain.SendDataIntegrationEventOutput, error)
+	SendDataIntegrationEventRequest(*supplychain.SendDataIntegrationEventInput) (*request.Request, *supplychain.SendDataIntegrationEventOutput)
 }
 
 var _ SupplyChainAPI = (*supplychain.SupplyChain)(nil)
