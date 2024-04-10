@@ -359,6 +359,43 @@
         "AnalysisSource$text": "<p>The query text.</p>"
       }
     },
+    "AnalysisTemplateValidationStatus": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplateValidationStatusDetail$status": "<p>The status of the validation.</p>"
+      }
+    },
+    "AnalysisTemplateValidationStatusDetail": {
+      "base": "<p>The status details of the analysis template validation. Clean Rooms Differential Privacy uses a general-purpose query structure to support complex SQL queries and validates whether an analysis template fits that general-purpose query structure. Validation is performed when analysis templates are created and fetched. Because analysis templates are immutable by design, we recommend that you create analysis templates after you associate the configured tables with their analysis rule to your collaboration.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/clean-rooms/latest/userguide/analysis-rules-custom.html#custom-diff-privacy\">https://docs.aws.amazon.com/clean-rooms/latest/userguide/analysis-rules-custom.html#custom-diff-privacy</a>.</p>",
+      "refs": {
+        "AnalysisTemplateValidationStatusDetailList$member": null
+      }
+    },
+    "AnalysisTemplateValidationStatusDetailList": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplate$validations": "<p>Information about the validations performed on the analysis template.</p>",
+        "CollaborationAnalysisTemplate$validations": "<p>The validations that were performed.</p>"
+      }
+    },
+    "AnalysisTemplateValidationStatusReason": {
+      "base": "<p>The reasons for the validation results.</p>",
+      "refs": {
+        "AnalysisTemplateValidationStatusReasonList$member": null
+      }
+    },
+    "AnalysisTemplateValidationStatusReasonList": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplateValidationStatusDetail$reasons": "<p>The reasons for the validation results.</p>"
+      }
+    },
+    "AnalysisTemplateValidationType": {
+      "base": null,
+      "refs": {
+        "AnalysisTemplateValidationStatusDetail$type": "<p>The type of validation that was performed.</p>"
+      }
+    },
     "BatchGetCollaborationAnalysisTemplateError": {
       "base": "<p>Details of errors thrown by the call to retrieve multiple analysis templates within a collaboration by their identifiers.</p>",
       "refs": {
@@ -2247,6 +2284,7 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "AnalysisTemplateValidationStatusReason$message": "<p>The validation message.</p>",
         "BatchGetCollaborationAnalysisTemplateError$code": "<p>An error code for the error.</p>",
         "BatchGetCollaborationAnalysisTemplateError$message": "<p>A description of why the call failed.</p>",
         "BatchGetSchemaAnalysisRuleError$code": "<p>An error code for the error.</p>",

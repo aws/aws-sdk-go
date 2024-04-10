@@ -1376,7 +1376,8 @@
         "schema":{"shape":"AnalysisSchema"},
         "format":{"shape":"AnalysisFormat"},
         "source":{"shape":"AnalysisSource"},
-        "analysisParameters":{"shape":"AnalysisParameterList"}
+        "analysisParameters":{"shape":"AnalysisParameterList"},
+        "validations":{"shape":"AnalysisTemplateValidationStatusDetailList"}
       }
     },
     "AnalysisTemplateArn":{
@@ -1437,6 +1438,45 @@
       "type":"string",
       "max":90000,
       "min":0
+    },
+    "AnalysisTemplateValidationStatus":{
+      "type":"string",
+      "enum":[
+        "VALID",
+        "INVALID",
+        "UNABLE_TO_VALIDATE"
+      ]
+    },
+    "AnalysisTemplateValidationStatusDetail":{
+      "type":"structure",
+      "required":[
+        "type",
+        "status"
+      ],
+      "members":{
+        "type":{"shape":"AnalysisTemplateValidationType"},
+        "status":{"shape":"AnalysisTemplateValidationStatus"},
+        "reasons":{"shape":"AnalysisTemplateValidationStatusReasonList"}
+      }
+    },
+    "AnalysisTemplateValidationStatusDetailList":{
+      "type":"list",
+      "member":{"shape":"AnalysisTemplateValidationStatusDetail"}
+    },
+    "AnalysisTemplateValidationStatusReason":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      }
+    },
+    "AnalysisTemplateValidationStatusReasonList":{
+      "type":"list",
+      "member":{"shape":"AnalysisTemplateValidationStatusReason"}
+    },
+    "AnalysisTemplateValidationType":{
+      "type":"string",
+      "enum":["DIFFERENTIAL_PRIVACY"]
     },
     "BatchGetCollaborationAnalysisTemplateError":{
       "type":"structure",
@@ -1642,7 +1682,8 @@
         "schema":{"shape":"AnalysisSchema"},
         "format":{"shape":"AnalysisFormat"},
         "source":{"shape":"AnalysisSource"},
-        "analysisParameters":{"shape":"AnalysisParameterList"}
+        "analysisParameters":{"shape":"AnalysisParameterList"},
+        "validations":{"shape":"AnalysisTemplateValidationStatusDetailList"}
       }
     },
     "CollaborationAnalysisTemplateList":{

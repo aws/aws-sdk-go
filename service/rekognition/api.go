@@ -11427,6 +11427,10 @@ func (s *ConnectedHomeSettingsForUpdate) SetMinConfidence(v float64) *ConnectedH
 type ContentModerationDetection struct {
 	_ struct{} `type:"structure"`
 
+	// A list of predicted results for the type of content an image contains. For
+	// example, the image content might be from animation, sports, or a video game.
+	ContentTypes []*ContentType `type:"list"`
+
 	// The time duration of a segment in milliseconds, I.e. time elapsed from StartTimestampMillis
 	// to EndTimestampMillis.
 	DurationMillis *int64 `type:"long"`
@@ -11464,6 +11468,12 @@ func (s ContentModerationDetection) String() string {
 // value will be replaced with "sensitive".
 func (s ContentModerationDetection) GoString() string {
 	return s.String()
+}
+
+// SetContentTypes sets the ContentTypes field's value.
+func (s *ContentModerationDetection) SetContentTypes(v []*ContentType) *ContentModerationDetection {
+	s.ContentTypes = v
+	return s
 }
 
 // SetDurationMillis sets the DurationMillis field's value.
@@ -12072,7 +12082,11 @@ func (s *CreateFaceLivenessSessionInput) SetSettings(v *CreateFaceLivenessSessio
 type CreateFaceLivenessSessionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique 128-bit UUID identifying a Face Liveness session.
+	// A unique 128-bit UUID identifying a Face Liveness session. A new sessionID
+	// must be used for every Face Liveness check. If a given sessionID is used
+	// for subsequent Face Liveness checks, the checks will fail. Additionally,
+	// a SessionId expires 3 minutes after it's sent, making all Liveness data associated
+	// with the session (e.g., sessionID, reference image, audit images, etc.) unavailable.
 	//
 	// SessionId is a required field
 	SessionId *string `min:"36" type:"string" required:"true"`

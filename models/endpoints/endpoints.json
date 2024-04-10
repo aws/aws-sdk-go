@@ -2641,6 +2641,7 @@
         "endpoints" : {
           "ap-northeast-1" : { },
           "ap-southeast-1" : { },
+          "ap-southeast-2" : { },
           "bedrock-ap-northeast-1" : {
             "credentialScope" : {
               "region" : "ap-northeast-1"
@@ -2652,6 +2653,12 @@
               "region" : "ap-southeast-1"
             },
             "hostname" : "bedrock.ap-southeast-1.amazonaws.com"
+          },
+          "bedrock-ap-southeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-2"
+            },
+            "hostname" : "bedrock.ap-southeast-2.amazonaws.com"
           },
           "bedrock-eu-central-1" : {
             "credentialScope" : {
@@ -2688,6 +2695,12 @@
               "region" : "ap-southeast-1"
             },
             "hostname" : "bedrock-runtime.ap-southeast-1.amazonaws.com"
+          },
+          "bedrock-runtime-ap-southeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-2"
+            },
+            "hostname" : "bedrock-runtime.ap-southeast-2.amazonaws.com"
           },
           "bedrock-runtime-eu-central-1" : {
             "credentialScope" : {

@@ -34476,8 +34476,6 @@ type CreateSecurityProfileInput struct {
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
 
-	// This API is in preview release for Amazon Connect and is subject to change.
-	//
 	// A list of third-party applications that the security profile will give access
 	// to.
 	Applications []*Application `type:"list"`
@@ -54918,8 +54916,6 @@ func (s *ListSecurityProfileApplicationsInput) SetSecurityProfileId(v string) *L
 type ListSecurityProfileApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// This API is in preview release for Amazon Connect and is subject to change.
-	//
 	// A list of the third-party application's metadata.
 	Applications []*Application `type:"list"`
 
@@ -62395,6 +62391,9 @@ type RuleAction struct {
 	// | OnContactEvaluationSubmit | OnMetricDataUpdate
 	SendNotificationAction *SendNotificationActionDefinition `type:"structure"`
 
+	// Information about the submit automated evaluation action.
+	SubmitAutoEvaluationAction *SubmitAutoEvaluationActionDefinition `type:"structure"`
+
 	// Information about the task action. This field is required if TriggerEventSource
 	// is one of the following values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate
 	// | OnSalesforceCaseCreate
@@ -62443,6 +62442,11 @@ func (s *RuleAction) Validate() error {
 	if s.SendNotificationAction != nil {
 		if err := s.SendNotificationAction.Validate(); err != nil {
 			invalidParams.AddNested("SendNotificationAction", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SubmitAutoEvaluationAction != nil {
+		if err := s.SubmitAutoEvaluationAction.Validate(); err != nil {
+			invalidParams.AddNested("SubmitAutoEvaluationAction", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TaskAction != nil {
@@ -62495,6 +62499,12 @@ func (s *RuleAction) SetEventBridgeAction(v *EventBridgeActionDefinition) *RuleA
 // SetSendNotificationAction sets the SendNotificationAction field's value.
 func (s *RuleAction) SetSendNotificationAction(v *SendNotificationActionDefinition) *RuleAction {
 	s.SendNotificationAction = v
+	return s
+}
+
+// SetSubmitAutoEvaluationAction sets the SubmitAutoEvaluationAction field's value.
+func (s *RuleAction) SetSubmitAutoEvaluationAction(v *SubmitAutoEvaluationActionDefinition) *RuleAction {
+	s.SubmitAutoEvaluationAction = v
 	return s
 }
 
@@ -67778,6 +67788,56 @@ func (s *StringReference) SetName(v string) *StringReference {
 // SetValue sets the Value field's value.
 func (s *StringReference) SetValue(v string) *StringReference {
 	s.Value = &v
+	return s
+}
+
+// Information about the submit automated evaluation action.
+type SubmitAutoEvaluationActionDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the auto-evaluation enabled form.
+	//
+	// EvaluationFormId is a required field
+	EvaluationFormId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitAutoEvaluationActionDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubmitAutoEvaluationActionDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubmitAutoEvaluationActionDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubmitAutoEvaluationActionDefinition"}
+	if s.EvaluationFormId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationFormId"))
+	}
+	if s.EvaluationFormId != nil && len(*s.EvaluationFormId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EvaluationFormId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvaluationFormId sets the EvaluationFormId field's value.
+func (s *SubmitAutoEvaluationActionDefinition) SetEvaluationFormId(v string) *SubmitAutoEvaluationActionDefinition {
+	s.EvaluationFormId = &v
 	return s
 }
 
@@ -74017,8 +74077,6 @@ type UpdateSecurityProfileInput struct {
 	// in Amazon Connect.
 	AllowedAccessControlTags map[string]*string `type:"map"`
 
-	// This API is in preview release for Amazon Connect and is subject to change.
-	//
 	// A list of the third-party application's metadata.
 	Applications []*Application `type:"list"`
 
@@ -77698,6 +77756,9 @@ const (
 
 	// ActionTypeEndAssociatedTasks is a ActionType enum value
 	ActionTypeEndAssociatedTasks = "END_ASSOCIATED_TASKS"
+
+	// ActionTypeSubmitAutoEvaluation is a ActionType enum value
+	ActionTypeSubmitAutoEvaluation = "SUBMIT_AUTO_EVALUATION"
 )
 
 // ActionType_Values returns all elements of the ActionType enum
@@ -77710,6 +77771,7 @@ func ActionType_Values() []string {
 		ActionTypeCreateCase,
 		ActionTypeUpdateCase,
 		ActionTypeEndAssociatedTasks,
+		ActionTypeSubmitAutoEvaluation,
 	}
 }
 

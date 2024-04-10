@@ -186,15 +186,6 @@
         "UpdateDeviceResponse$device": "<p>Describes a device.</p>"
       }
     },
-    "EmbeddedTag": {
-      "base": "<p>The resource and internal ID of a resource to tag.</p>",
-      "refs": {
-        "Device$tags": "<p>The tag keys and optional values for the resource.</p>",
-        "DeviceSummary$tags": "<p>The tag keys and optional values for the resource.</p>",
-        "Environment$tags": "<p>The tag keys and optional values for the resource.</p>",
-        "EnvironmentSummary$tags": "<p>The tag keys and optional values for the resource.</p>"
-      }
-    },
     "Environment": {
       "base": "<p>Describes an environment.</p>",
       "refs": {
@@ -248,7 +239,6 @@
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
         "InternalServerException$message": null,
-        "InternalServiceException$message": null,
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
@@ -307,11 +297,6 @@
     },
     "InternalServerException": {
       "base": "<p>The server encountered an internal error and is unable to complete the request.</p>",
-      "refs": {
-      }
-    },
-    "InternalServiceException": {
-      "base": "<p>Request processing failed due to some unknown error, exception, or failure.</p>",
       "refs": {
       }
     },
@@ -436,7 +421,6 @@
       "base": null,
       "refs": {
         "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the next request.</p>",
-        "InternalServiceException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the next request.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the next request.</p>"
       }
     },
@@ -553,8 +537,6 @@
         "Device$pendingSoftwareSetVersion": "<p>The version of the software set that is pending to be installed on the device.</p>",
         "DeviceSummary$serialNumber": "<p>The hardware serial number of the device.</p>",
         "DeviceSummary$model": "<p>The model number of the device.</p>",
-        "EmbeddedTag$resourceArn": "<p>The Amazon Resource Name (ARN) of a resource to tag.</p>",
-        "EmbeddedTag$internalId": "<p>The internal ID of a resource to tag.</p>",
         "Environment$pendingSoftwareSetVersion": "<p>The version of the software set that is pending to be installed.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which you want to retrieve tags.</p>",
         "Software$name": "<p>The name of the software component.</p>",
@@ -588,7 +570,10 @@
       "base": null,
       "refs": {
         "CreateEnvironmentRequest$tags": "<p>A map of the key-value pairs of the tag or tags to assign to the resource.</p>",
+        "Device$tags": "<p>The tag keys and optional values for the resource.</p>",
+        "Environment$tags": "<p>The tag keys and optional values for the resource.</p>",
         "ListTagsForResourceResponse$tags": "<p>A map of the key-value pairs for the tag or tags assigned to the specified resource.</p>",
+        "SoftwareSet$tags": "<p>The tag keys and optional values for the resource.</p>",
         "TagResourceRequest$tags": "<p>A map of the key-value pairs of the tag or tags to assign to the resource.</p>"
       }
     },

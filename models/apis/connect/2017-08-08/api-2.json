@@ -3985,7 +3985,8 @@
         "SEND_NOTIFICATION",
         "CREATE_CASE",
         "UPDATE_CASE",
-        "END_ASSOCIATED_TASKS"
+        "END_ASSOCIATED_TASKS",
+        "SUBMIT_AUTO_EVALUATION"
       ]
     },
     "ActivateEvaluationFormRequest":{
@@ -7746,6 +7747,11 @@
       "type":"string",
       "max":1024,
       "min":0
+    },
+    "EvaluationFormId":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "EvaluationFormItem":{
       "type":"structure",
@@ -12647,7 +12653,8 @@
         "SendNotificationAction":{"shape":"SendNotificationActionDefinition"},
         "CreateCaseAction":{"shape":"CreateCaseActionDefinition"},
         "UpdateCaseAction":{"shape":"UpdateCaseActionDefinition"},
-        "EndAssociatedTasksAction":{"shape":"EndAssociatedTasksActionDefinition"}
+        "EndAssociatedTasksAction":{"shape":"EndAssociatedTasksActionDefinition"},
+        "SubmitAutoEvaluationAction":{"shape":"SubmitAutoEvaluationActionDefinition"}
       }
     },
     "RuleActions":{
@@ -13677,6 +13684,13 @@
       "type":"string",
       "max":200,
       "min":1
+    },
+    "SubmitAutoEvaluationActionDefinition":{
+      "type":"structure",
+      "required":["EvaluationFormId"],
+      "members":{
+        "EvaluationFormId":{"shape":"EvaluationFormId"}
+      }
     },
     "SubmitContactEvaluationRequest":{
       "type":"structure",

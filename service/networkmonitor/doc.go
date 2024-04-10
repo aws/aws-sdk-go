@@ -14,6 +14,12 @@
 // probes then monitor network traffic to help you identify where network issues
 // might be affecting your traffic.
 //
+// Before you begin, ensure the Amazon Web Services CLI is configured in the
+// Amazon Web Services Account where you will create the Network Monitor resource.
+// Network Monitor doesn’t support creation on cross-account resources, but
+// you can create a Network Monitor in any subnet belonging to a VPC owned by
+// your Account.
+//
 // For more information, see Using Amazon CloudWatch Network Monitor (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/what-is-network-monitor.html)
 // in the Amazon CloudWatch User Guide.
 //

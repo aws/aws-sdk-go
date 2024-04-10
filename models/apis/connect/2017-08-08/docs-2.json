@@ -665,9 +665,9 @@
     "Applications": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$Applications": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A list of third-party applications that the security profile will give access to.</p>",
-        "ListSecurityProfileApplicationsResponse$Applications": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A list of the third-party application's metadata.</p>",
-        "UpdateSecurityProfileRequest$Applications": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>A list of the third-party application's metadata.</p>"
+        "CreateSecurityProfileRequest$Applications": "<p>A list of third-party applications that the security profile will give access to.</p>",
+        "ListSecurityProfileApplicationsResponse$Applications": "<p>A list of the third-party application's metadata.</p>",
+        "UpdateSecurityProfileRequest$Applications": "<p>A list of the third-party application's metadata.</p>"
       }
     },
     "ApproximateTotalCount": {
@@ -2686,6 +2686,12 @@
         "EvaluationForm$Description": "<p>The description of the evaluation form.</p>",
         "EvaluationFormContent$Description": "<p>The description of the evaluation form.</p>",
         "UpdateEvaluationFormRequest$Description": "<p>The description of the evaluation form.</p>"
+      }
+    },
+    "EvaluationFormId": {
+      "base": null,
+      "refs": {
+        "SubmitAutoEvaluationActionDefinition$EvaluationFormId": "<p>The identifier of the auto-evaluation enabled form.</p>"
       }
     },
     "EvaluationFormItem": {
@@ -7182,6 +7188,12 @@
       "base": null,
       "refs": {
         "SendNotificationActionDefinition$Subject": "<p>The subject of the email if the delivery method is <code>EMAIL</code>. Supports variable injection. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-lens-variable-injection.html\">JSONPath reference</a> in the <i>Amazon Connect Administrators Guide</i>.</p>"
+      }
+    },
+    "SubmitAutoEvaluationActionDefinition": {
+      "base": "<p>Information about the submit automated evaluation action.</p>",
+      "refs": {
+        "RuleAction$SubmitAutoEvaluationAction": "<p>Information about the submit automated evaluation action.</p>"
       }
     },
     "SubmitContactEvaluationRequest": {

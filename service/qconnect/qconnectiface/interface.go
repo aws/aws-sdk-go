@@ -257,6 +257,10 @@ type QConnectAPI interface {
 	UpdateQuickResponse(*qconnect.UpdateQuickResponseInput) (*qconnect.UpdateQuickResponseOutput, error)
 	UpdateQuickResponseWithContext(aws.Context, *qconnect.UpdateQuickResponseInput, ...request.Option) (*qconnect.UpdateQuickResponseOutput, error)
 	UpdateQuickResponseRequest(*qconnect.UpdateQuickResponseInput) (*request.Request, *qconnect.UpdateQuickResponseOutput)
+
+	UpdateSession(*qconnect.UpdateSessionInput) (*qconnect.UpdateSessionOutput, error)
+	UpdateSessionWithContext(aws.Context, *qconnect.UpdateSessionInput, ...request.Option) (*qconnect.UpdateSessionOutput, error)
+	UpdateSessionRequest(*qconnect.UpdateSessionInput) (*request.Request, *qconnect.UpdateSessionOutput)
 }
 
 var _ QConnectAPI = (*qconnect.QConnect)(nil)

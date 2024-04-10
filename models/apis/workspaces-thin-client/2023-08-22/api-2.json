@@ -208,8 +208,10 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
       "endpoint":{"hostPrefix":"api."}
     },
@@ -224,8 +226,11 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
       ],
       "endpoint":{"hostPrefix":"api."}
     },
@@ -240,8 +245,11 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServiceException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
       ],
       "endpoint":{"hostPrefix":"api."},
       "idempotent":true
@@ -497,7 +505,7 @@
         "updatedAt":{"shape":"Timestamp"},
         "arn":{"shape":"Arn"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "tags":{"shape":"EmbeddedTag"}
+        "tags":{"shape":"TagsMap"}
       }
     },
     "DeviceId":{
@@ -547,17 +555,8 @@
         "lastPostureAt":{"shape":"Timestamp"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
-        "arn":{"shape":"Arn"},
-        "tags":{"shape":"EmbeddedTag"}
+        "arn":{"shape":"Arn"}
       }
-    },
-    "EmbeddedTag":{
-      "type":"structure",
-      "members":{
-        "resourceArn":{"shape":"String"},
-        "internalId":{"shape":"String"}
-      },
-      "sensitive":true
     },
     "Environment":{
       "type":"structure",
@@ -580,7 +579,7 @@
         "updatedAt":{"shape":"Timestamp"},
         "arn":{"shape":"Arn"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "tags":{"shape":"EmbeddedTag"}
+        "tags":{"shape":"TagsMap"}
       }
     },
     "EnvironmentId":{
@@ -620,8 +619,7 @@
         "pendingSoftwareSetId":{"shape":"SoftwareSetId"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
-        "arn":{"shape":"Arn"},
-        "tags":{"shape":"EmbeddedTag"}
+        "arn":{"shape":"Arn"}
       }
     },
     "ExceptionMessage":{"type":"string"},
@@ -688,20 +686,6 @@
       "box":true
     },
     "InternalServerException":{
-      "type":"structure",
-      "members":{
-        "message":{"shape":"ExceptionMessage"},
-        "retryAfterSeconds":{
-          "shape":"RetryAfterSeconds",
-          "location":"header",
-          "locationName":"Retry-After"
-        }
-      },
-      "error":{"httpStatusCode":500},
-      "exception":true,
-      "fault":true
-    },
-    "InternalServiceException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ExceptionMessage"},
@@ -897,7 +881,8 @@
         "supportedUntil":{"shape":"Timestamp"},
         "validationStatus":{"shape":"SoftwareSetValidationStatus"},
         "software":{"shape":"SoftwareList"},
-        "arn":{"shape":"Arn"}
+        "arn":{"shape":"Arn"},
+        "tags":{"shape":"TagsMap"}
       }
     },
     "SoftwareSetId":{

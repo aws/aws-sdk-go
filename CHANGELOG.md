@@ -1,3 +1,16 @@
+Release v1.51.19 (2024-04-10)
+===
+
+### Service Client Updates
+* `service/cleanrooms`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/networkmonitor`: Updates service documentation
+* `service/qconnect`: Updates service API and documentation
+* `service/rekognition`: Updates service API and documentation
+  * Added support for ContentType to content moderation detections.
+* `service/supplychain`: Updates service API, documentation, and examples
+* `service/workspaces-thin-client`: Updates service API and documentation
+
 Release v1.51.18 (2024-04-09)
 ===
 
