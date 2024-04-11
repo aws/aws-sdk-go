@@ -220,7 +220,8 @@
         {"shape":"EntityAlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"ConcurrentModificationException"},
-        {"shape":"ServiceFailureException"}
+        {"shape":"ServiceFailureException"},
+        {"shape":"OpenIdIdpCommunicationErrorException"}
       ]
     },
     "CreatePolicy":{
@@ -2776,10 +2777,7 @@
     },
     "CreateOpenIDConnectProviderRequest":{
       "type":"structure",
-      "required":[
-        "Url",
-        "ThumbprintList"
-      ],
+      "required":["Url"],
       "members":{
         "Url":{"shape":"OpenIDConnectProviderUrlType"},
         "ClientIDList":{"shape":"clientIDListType"},
@@ -4675,6 +4673,18 @@
       "max":255,
       "min":1
     },
+    "OpenIdIdpCommunicationErrorException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"openIdIdpCommunicationErrorExceptionMessage"}
+      },
+      "error":{
+        "code":"OpenIdIdpCommunicationError",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "OrganizationsDecisionDetail":{
       "type":"structure",
       "members":{
@@ -6098,6 +6108,7 @@
       "min":6
     },
     "noSuchEntityMessage":{"type":"string"},
+    "openIdIdpCommunicationErrorExceptionMessage":{"type":"string"},
     "organizationsEntityPathType":{
       "type":"string",
       "max":427,

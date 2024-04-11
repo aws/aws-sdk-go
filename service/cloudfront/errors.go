@@ -45,7 +45,7 @@ const (
 	// ErrCodeCannotDeleteEntityWhileInUse for service response error code
 	// "CannotDeleteEntityWhileInUse".
 	//
-	// The Key Value Store entity cannot be deleted while it is in use.
+	// The key value store entity cannot be deleted while it is in use.
 	ErrCodeCannotDeleteEntityWhileInUse = "CannotDeleteEntityWhileInUse"
 
 	// ErrCodeContinuousDeploymentPolicyAlreadyExists for service response error code
@@ -78,26 +78,26 @@ const (
 	// ErrCodeEntityAlreadyExists for service response error code
 	// "EntityAlreadyExists".
 	//
-	// The Key Value Store entity already exists. You must provide a unique Key
-	// Value Store entity.
+	// The key value store entity already exists. You must provide a unique key
+	// value store entity.
 	ErrCodeEntityAlreadyExists = "EntityAlreadyExists"
 
 	// ErrCodeEntityLimitExceeded for service response error code
 	// "EntityLimitExceeded".
 	//
-	// The Key Value Store entity limit has been exceeded.
+	// The key value store entity limit has been exceeded.
 	ErrCodeEntityLimitExceeded = "EntityLimitExceeded"
 
 	// ErrCodeEntityNotFound for service response error code
 	// "EntityNotFound".
 	//
-	// The Key Value Store entity was not found.
+	// The key value store entity was not found.
 	ErrCodeEntityNotFound = "EntityNotFound"
 
 	// ErrCodeEntitySizeLimitExceeded for service response error code
 	// "EntitySizeLimitExceeded".
 	//
-	// The Key Value Store entity size limit was exceeded.
+	// The key value store entity size limit was exceeded.
 	ErrCodeEntitySizeLimitExceeded = "EntitySizeLimitExceeded"
 
 	// ErrCodeFieldLevelEncryptionConfigAlreadyExists for service response error code

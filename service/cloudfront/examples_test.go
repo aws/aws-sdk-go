@@ -101,6 +101,8 @@ func ExampleCloudFront_CreateKeyValueStore_shared00() {
 				fmt.Println(cloudfront.ErrCodeEntitySizeLimitExceeded, aerr.Error())
 			case cloudfront.ErrCodeInvalidArgument:
 				fmt.Println(cloudfront.ErrCodeInvalidArgument, aerr.Error())
+			case cloudfront.ErrCodeUnsupportedOperation:
+				fmt.Println(cloudfront.ErrCodeUnsupportedOperation, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -138,6 +140,8 @@ func ExampleCloudFront_DeleteKeyValueStore_shared00() {
 				fmt.Println(cloudfront.ErrCodeCannotDeleteEntityWhileInUse, aerr.Error())
 			case cloudfront.ErrCodePreconditionFailed:
 				fmt.Println(cloudfront.ErrCodePreconditionFailed, aerr.Error())
+			case cloudfront.ErrCodeUnsupportedOperation:
+				fmt.Println(cloudfront.ErrCodeUnsupportedOperation, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -170,6 +174,8 @@ func ExampleCloudFront_DescribeKeyValueStore_shared00() {
 				fmt.Println(cloudfront.ErrCodeInvalidArgument, aerr.Error())
 			case cloudfront.ErrCodeEntityNotFound:
 				fmt.Println(cloudfront.ErrCodeEntityNotFound, aerr.Error())
+			case cloudfront.ErrCodeUnsupportedOperation:
+				fmt.Println(cloudfront.ErrCodeUnsupportedOperation, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -202,6 +208,8 @@ func ExampleCloudFront_ListKeyValueStores_shared00() {
 				fmt.Println(cloudfront.ErrCodeAccessDenied, aerr.Error())
 			case cloudfront.ErrCodeInvalidArgument:
 				fmt.Println(cloudfront.ErrCodeInvalidArgument, aerr.Error())
+			case cloudfront.ErrCodeUnsupportedOperation:
+				fmt.Println(cloudfront.ErrCodeUnsupportedOperation, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -292,6 +300,8 @@ func ExampleCloudFront_UpdateKeyValueStore_shared00() {
 				fmt.Println(cloudfront.ErrCodeInvalidIfMatchVersion, aerr.Error())
 			case cloudfront.ErrCodePreconditionFailed:
 				fmt.Println(cloudfront.ErrCodePreconditionFailed, aerr.Error())
+			case cloudfront.ErrCodeUnsupportedOperation:
+				fmt.Println(cloudfront.ErrCodeUnsupportedOperation, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

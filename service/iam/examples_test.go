@@ -493,6 +493,8 @@ func ExampleIAM_CreateOpenIDConnectProvider_shared00() {
 				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
+			case iam.ErrCodeOpenIdIdpCommunicationErrorException:
+				fmt.Println(iam.ErrCodeOpenIdIdpCommunicationErrorException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

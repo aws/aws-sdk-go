@@ -10048,7 +10048,7 @@ type ImportSourceCredentialsInput struct {
 	ShouldOverwrite *bool `locationName:"shouldOverwrite" type:"boolean"`
 
 	// For GitHub or GitHub Enterprise, this is the personal access token. For Bitbucket,
-	// this is the app password.
+	// this is either the access token or the app password.
 	//
 	// Token is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by ImportSourceCredentialsInput's

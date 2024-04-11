@@ -3734,7 +3734,7 @@
     "CompleteReadSetUploadPartListItem": {
       "members": {
         "checksum": {
-          "shape": "String"
+          "shape": "CompleteReadSetUploadPartListItemChecksumString"
         },
         "partNumber": {
           "shape": "CompleteReadSetUploadPartListItemPartNumberInteger"
@@ -3749,6 +3749,12 @@
         "checksum"
       ],
       "type": "structure"
+    },
+    "CompleteReadSetUploadPartListItemChecksumString": {
+      "max": 100,
+      "min": 1,
+      "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
+      "type": "string"
     },
     "CompleteReadSetUploadPartListItemPartNumberInteger": {
       "box": true,
@@ -4122,6 +4128,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "eTagAlgorithmFamily": {
+          "shape": "ETagAlgorithmFamily"
+        },
         "fallbackLocation": {
           "shape": "S3Destination"
         },
@@ -4150,6 +4159,9 @@
         },
         "description": {
           "shape": "SequenceStoreDescription"
+        },
+        "eTagAlgorithmFamily": {
+          "shape": "ETagAlgorithmFamily"
         },
         "fallbackLocation": {
           "shape": "S3Destination"
@@ -4556,7 +4568,21 @@
       "enum": [
         "FASTQ_MD5up",
         "BAM_MD5up",
-        "CRAM_MD5up"
+        "CRAM_MD5up",
+        "FASTQ_SHA256up",
+        "BAM_SHA256up",
+        "CRAM_SHA256up",
+        "FASTQ_SHA512up",
+        "BAM_SHA512up",
+        "CRAM_SHA512up"
+      ],
+      "type": "string"
+    },
+    "ETagAlgorithmFamily": {
+      "enum": [
+        "MD5up",
+        "SHA256up",
+        "SHA512up"
       ],
       "type": "string"
     },
@@ -4681,6 +4707,9 @@
         },
         "partSize": {
           "shape": "FileInformationPartSizeLong"
+        },
+        "s3Access": {
+          "shape": "ReadSetS3Access"
         },
         "totalParts": {
           "shape": "FileInformationTotalPartsInteger"
@@ -5781,6 +5810,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "eTagAlgorithmFamily": {
+          "shape": "ETagAlgorithmFamily"
+        },
         "fallbackLocation": {
           "shape": "S3Destination"
         },
@@ -5789,6 +5821,9 @@
         },
         "name": {
           "shape": "SequenceStoreName"
+        },
+        "s3Access": {
+          "shape": "SequenceStoreS3Access"
         },
         "sseConfig": {
           "shape": "SseConfig"
@@ -7645,6 +7680,14 @@
       "streaming": true,
       "type": "blob"
     },
+    "ReadSetS3Access": {
+      "members": {
+        "s3Uri": {
+          "shape": "S3Uri"
+        }
+      },
+      "type": "structure"
+    },
     "ReadSetStatus": {
       "enum": [
         "ARCHIVED",
@@ -8307,6 +8350,12 @@
       "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
     },
+    "S3AccessPointArn": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "arn:[^:]*:s3:[^:]*:[^:]*:accesspoint/.*",
+      "type": "string"
+    },
     "S3Destination": {
       "pattern": "s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/?((.{1,1024})/)?",
       "type": "string"
@@ -8392,6 +8441,9 @@
         "description": {
           "shape": "SequenceStoreDescription"
         },
+        "eTagAlgorithmFamily": {
+          "shape": "ETagAlgorithmFamily"
+        },
         "fallbackLocation": {
           "shape": "S3Destination"
         },
@@ -8443,6 +8495,17 @@
       "min": 1,
       "pattern": "[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+",
       "type": "string"
+    },
+    "SequenceStoreS3Access": {
+      "members": {
+        "s3AccessPointArn": {
+          "shape": "S3AccessPointArn"
+        },
+        "s3Uri": {
+          "shape": "S3Uri"
+        }
+      },
+      "type": "structure"
     },
     "ServiceQuotaExceededException": {
       "error": {

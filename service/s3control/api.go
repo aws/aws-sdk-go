@@ -769,7 +769,7 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 // # Permissions
 //
 // For information about permissions required to use the Batch Operations, see
-// Granting permissions for S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html)
+// Granting permissions for S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-iam-role-policies.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -880,8 +880,8 @@ func (c *S3Control) CreateMultiRegionAccessPointRequest(input *CreateMultiRegion
 // in the Amazon S3 User Guide.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // This request is asynchronous, meaning that you might receive a response before
@@ -2438,8 +2438,8 @@ func (c *S3Control) DeleteMultiRegionAccessPointRequest(input *DeleteMultiRegion
 // Point itself.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // This request is asynchronous, meaning that you might receive a response before
@@ -2980,8 +2980,8 @@ func (c *S3Control) DescribeMultiRegionAccessPointOperationRequest(input *Descri
 //
 // Retrieves the status of an asynchronous request to manage a Multi-Region
 // Access Point. For more information about managing Multi-Region Access Points
-// and how asynchronous requests work, see Managing Multi-Region Access Points
-// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// and how asynchronous requests work, see Using Multi-Region Access Points
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MrapOperations.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to GetMultiRegionAccessPoint:
@@ -4862,7 +4862,7 @@ func (c *S3Control) GetDataAccessRequest(input *GetDataAccessInput) (req *reques
 // The IAM role that S3 Access Grants assumes must have the following permissions
 // specified in the trust policy when registering the location: sts:AssumeRole,
 // for directory users or groups sts:SetContext, and for IAM users or roles
-// sts:SourceIdentity.
+// sts:SetSourceIdentity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5046,8 +5046,8 @@ func (c *S3Control) GetMultiRegionAccessPointRequest(input *GetMultiRegionAccess
 // Point.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to GetMultiRegionAccessPoint:
@@ -5142,8 +5142,8 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyRequest(input *GetMultiRegion
 // Returns the access control policy of the specified Multi-Region Access Point.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to GetMultiRegionAccessPointPolicy:
@@ -5235,8 +5235,8 @@ func (c *S3Control) GetMultiRegionAccessPointPolicyStatusRequest(input *GetMulti
 // policy that allows public access.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to GetMultiRegionAccessPointPolicyStatus:
@@ -5340,8 +5340,6 @@ func (c *S3Control) GetMultiRegionAccessPointRoutesRequest(input *GetMultiRegion
 //   - ap-northeast-1
 //
 //   - eu-west-1
-//
-// Your Amazon S3 bucket does not need to be in these five Regions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6491,7 +6489,7 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 // ListJobs API operation for AWS S3 Control.
 //
 // Lists current S3 Batch Operations jobs as well as the jobs that have ended
-// within the last 30 days for the Amazon Web Services account making the request.
+// within the last 90 days for the Amazon Web Services account making the request.
 // For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
@@ -6661,8 +6659,8 @@ func (c *S3Control) ListMultiRegionAccessPointsRequest(input *ListMultiRegionAcc
 // that can be associated with a single account.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to ListMultiRegionAccessPoint:
@@ -8465,8 +8463,8 @@ func (c *S3Control) PutMultiRegionAccessPointPolicyRequest(input *PutMultiRegion
 // the specified Multi-Region Access Point.
 //
 // This action will always be routed to the US West (Oregon) Region. For more
-// information about the restrictions around managing Multi-Region Access Points,
-// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// information about the restrictions around working with Multi-Region Access
+// Points, see Multi-Region Access Point restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html)
 // in the Amazon S3 User Guide.
 //
 // The following actions are related to PutMultiRegionAccessPointPolicy:
@@ -8843,8 +8841,6 @@ func (c *S3Control) SubmitMultiRegionAccessPointRoutesRequest(input *SubmitMulti
 //   - ap-northeast-1
 //
 //   - eu-west-1
-//
-// Your Amazon S3 bucket does not need to be in these five Regions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11263,6 +11259,11 @@ type CreateAccessPointInput struct {
 
 	// The Amazon Web Services account ID associated with the S3 bucket associated
 	// with this access point.
+	//
+	// For same account access point when your bucket and access point belong to
+	// the same account owner, the BucketAccountId is not required. For cross-account
+	// access point when your bucket and access point are not in the same account,
+	// the BucketAccountId is required.
 	BucketAccountId *string `type:"string"`
 
 	// The name you want to assign to this access point.
@@ -18190,8 +18191,8 @@ type GetMultiRegionAccessPointInput struct {
 	// The name of the Multi-Region Access Point whose configuration information
 	// you want to receive. The name of the Multi-Region Access Point is different
 	// from the alias. For more information about the distinction between the name
-	// and the alias of an Multi-Region Access Point, see Managing Multi-Region
-	// Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// and the alias of an Multi-Region Access Point, see Rules for naming Amazon
+	// S3 Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
 	// in the Amazon S3 User Guide.
 	//
 	// Name is a required field
@@ -18299,8 +18300,8 @@ type GetMultiRegionAccessPointPolicyInput struct {
 
 	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
 	// Point is different from the alias. For more information about the distinction
-	// between the name and the alias of an Multi-Region Access Point, see Managing
-	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// between the name and the alias of an Multi-Region Access Point, see Rules
+	// for naming Amazon S3 Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
 	// in the Amazon S3 User Guide.
 	//
 	// Name is a required field
@@ -18407,8 +18408,8 @@ type GetMultiRegionAccessPointPolicyStatusInput struct {
 
 	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
 	// Point is different from the alias. For more information about the distinction
-	// between the name and the alias of an Multi-Region Access Point, see Managing
-	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// between the name and the alias of an Multi-Region Access Point, see Rules
+	// for naming Amazon S3 Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
 	// in the Amazon S3 User Guide.
 	//
 	// Name is a required field
@@ -20272,8 +20273,8 @@ type LambdaInvokeOperation struct {
 	// when invoking an Lambda function. Version 1.0 is the default. Version 2.0
 	// is required when you use Batch Operations to invoke Lambda functions that
 	// act on directory buckets, or if you need to specify UserArguments. For more
-	// information, see Using Lambda with Amazon S3 Batch Operations and Amazon
-	// S3 Express One Zone (https://aws.amazon.com/blogs/storage/using-lambda-with-s3-batch-operations-and-s3-express-one-zone/)
+	// information, see Automate object processing in Amazon S3 directory buckets
+	// with S3 Batch Operations and Lambda (https://aws.amazon.com/blogs/storage/automate-object-processing-in-amazon-s3-directory-buckets-with-s3-batch-operations-and-aws-lambda/)
 	// in the Amazon Web Services Storage Blog.
 	//
 	// Ensure that your Lambda function code expects InvocationSchemaVersion 2.0
@@ -20288,8 +20289,8 @@ type LambdaInvokeOperation struct {
 	// Key-value pairs that are passed in the payload that Batch Operations sends
 	// when invoking an Lambda function. You must specify InvocationSchemaVersion
 	// 2.0 for LambdaInvoke operations that include UserArguments. For more information,
-	// see Using Lambda with Amazon S3 Batch Operations and Amazon S3 Express One
-	// Zone (https://aws.amazon.com/blogs/storage/using-lambda-with-s3-batch-operations-and-s3-express-one-zone/)
+	// see Automate object processing in Amazon S3 directory buckets with S3 Batch
+	// Operations and Lambda (https://aws.amazon.com/blogs/storage/automate-object-processing-in-amazon-s3-directory-buckets-with-s3-batch-operations-and-aws-lambda/)
 	// in the Amazon Web Services Storage Blog.
 	UserArguments map[string]*string `min:"1" type:"map"`
 }
@@ -20589,10 +20590,14 @@ func (s *LifecycleRule) SetTransitions(v []*Transition) *LifecycleRule {
 type LifecycleRuleAndOperator struct {
 	_ struct{} `type:"structure"`
 
-	// Minimum object size to which the rule applies.
+	// The non-inclusive minimum object size for the lifecycle rule. Setting this
+	// property to 7 means the rule applies to objects with a size that is greater
+	// than 7.
 	ObjectSizeGreaterThan *int64 `type:"long"`
 
-	// Maximum object size to which the rule applies.
+	// The non-inclusive maximum object size for the lifecycle rule. Setting this
+	// property to 77 means the rule applies to objects with a size that is less
+	// than 77.
 	ObjectSizeLessThan *int64 `type:"long"`
 
 	// Prefix identifying one or more objects to which the rule applies.
@@ -22876,7 +22881,7 @@ type MultiRegionAccessPointReport struct {
 
 	// The alias for the Multi-Region Access Point. For more information about the
 	// distinction between the name and the alias of an Multi-Region Access Point,
-	// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming).
+	// see Rules for naming Amazon S3 Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming).
 	Alias *string `type:"string"`
 
 	// When the Multi-Region Access Point create request was received.
@@ -26868,7 +26873,7 @@ type S3CopyObjectOperation struct {
 	//
 	//    * Directory buckets - For example, to copy objects to a directory bucket
 	//    named destinationBucket in the Availability Zone; identified by the AZ
-	//    ID usw2-az2, set the TargetResource property to arn:aws:s3express:region:account_id:/bucket/destination_bucket_base_name--usw2-az2--x-s3.
+	//    ID usw2-az1, set the TargetResource property to arn:aws:s3express:region:account_id:/bucket/destination_bucket_base_name--usw2-az1--x-s3.
 	TargetResource *string `min:"1" type:"string"`
 
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`

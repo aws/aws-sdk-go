@@ -92,6 +92,22 @@ type MediaLiveAPI interface {
 	CreateChannelWithContext(aws.Context, *medialive.CreateChannelInput, ...request.Option) (*medialive.CreateChannelOutput, error)
 	CreateChannelRequest(*medialive.CreateChannelInput) (*request.Request, *medialive.CreateChannelOutput)
 
+	CreateCloudWatchAlarmTemplate(*medialive.CreateCloudWatchAlarmTemplateInput) (*medialive.CreateCloudWatchAlarmTemplateOutput, error)
+	CreateCloudWatchAlarmTemplateWithContext(aws.Context, *medialive.CreateCloudWatchAlarmTemplateInput, ...request.Option) (*medialive.CreateCloudWatchAlarmTemplateOutput, error)
+	CreateCloudWatchAlarmTemplateRequest(*medialive.CreateCloudWatchAlarmTemplateInput) (*request.Request, *medialive.CreateCloudWatchAlarmTemplateOutput)
+
+	CreateCloudWatchAlarmTemplateGroup(*medialive.CreateCloudWatchAlarmTemplateGroupInput) (*medialive.CreateCloudWatchAlarmTemplateGroupOutput, error)
+	CreateCloudWatchAlarmTemplateGroupWithContext(aws.Context, *medialive.CreateCloudWatchAlarmTemplateGroupInput, ...request.Option) (*medialive.CreateCloudWatchAlarmTemplateGroupOutput, error)
+	CreateCloudWatchAlarmTemplateGroupRequest(*medialive.CreateCloudWatchAlarmTemplateGroupInput) (*request.Request, *medialive.CreateCloudWatchAlarmTemplateGroupOutput)
+
+	CreateEventBridgeRuleTemplate(*medialive.CreateEventBridgeRuleTemplateInput) (*medialive.CreateEventBridgeRuleTemplateOutput, error)
+	CreateEventBridgeRuleTemplateWithContext(aws.Context, *medialive.CreateEventBridgeRuleTemplateInput, ...request.Option) (*medialive.CreateEventBridgeRuleTemplateOutput, error)
+	CreateEventBridgeRuleTemplateRequest(*medialive.CreateEventBridgeRuleTemplateInput) (*request.Request, *medialive.CreateEventBridgeRuleTemplateOutput)
+
+	CreateEventBridgeRuleTemplateGroup(*medialive.CreateEventBridgeRuleTemplateGroupInput) (*medialive.CreateEventBridgeRuleTemplateGroupOutput, error)
+	CreateEventBridgeRuleTemplateGroupWithContext(aws.Context, *medialive.CreateEventBridgeRuleTemplateGroupInput, ...request.Option) (*medialive.CreateEventBridgeRuleTemplateGroupOutput, error)
+	CreateEventBridgeRuleTemplateGroupRequest(*medialive.CreateEventBridgeRuleTemplateGroupInput) (*request.Request, *medialive.CreateEventBridgeRuleTemplateGroupOutput)
+
 	CreateInput(*medialive.CreateInputInput) (*medialive.CreateInputOutput, error)
 	CreateInputWithContext(aws.Context, *medialive.CreateInputInput, ...request.Option) (*medialive.CreateInputOutput, error)
 	CreateInputRequest(*medialive.CreateInputInput) (*request.Request, *medialive.CreateInputOutput)
@@ -112,6 +128,10 @@ type MediaLiveAPI interface {
 	CreatePartnerInputWithContext(aws.Context, *medialive.CreatePartnerInputInput, ...request.Option) (*medialive.CreatePartnerInputOutput, error)
 	CreatePartnerInputRequest(*medialive.CreatePartnerInputInput) (*request.Request, *medialive.CreatePartnerInputOutput)
 
+	CreateSignalMap(*medialive.CreateSignalMapInput) (*medialive.CreateSignalMapOutput, error)
+	CreateSignalMapWithContext(aws.Context, *medialive.CreateSignalMapInput, ...request.Option) (*medialive.CreateSignalMapOutput, error)
+	CreateSignalMapRequest(*medialive.CreateSignalMapInput) (*request.Request, *medialive.CreateSignalMapOutput)
+
 	CreateTags(*medialive.CreateTagsInput) (*medialive.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *medialive.CreateTagsInput, ...request.Option) (*medialive.CreateTagsOutput, error)
 	CreateTagsRequest(*medialive.CreateTagsInput) (*request.Request, *medialive.CreateTagsOutput)
@@ -119,6 +139,22 @@ type MediaLiveAPI interface {
 	DeleteChannel(*medialive.DeleteChannelInput) (*medialive.DeleteChannelOutput, error)
 	DeleteChannelWithContext(aws.Context, *medialive.DeleteChannelInput, ...request.Option) (*medialive.DeleteChannelOutput, error)
 	DeleteChannelRequest(*medialive.DeleteChannelInput) (*request.Request, *medialive.DeleteChannelOutput)
+
+	DeleteCloudWatchAlarmTemplate(*medialive.DeleteCloudWatchAlarmTemplateInput) (*medialive.DeleteCloudWatchAlarmTemplateOutput, error)
+	DeleteCloudWatchAlarmTemplateWithContext(aws.Context, *medialive.DeleteCloudWatchAlarmTemplateInput, ...request.Option) (*medialive.DeleteCloudWatchAlarmTemplateOutput, error)
+	DeleteCloudWatchAlarmTemplateRequest(*medialive.DeleteCloudWatchAlarmTemplateInput) (*request.Request, *medialive.DeleteCloudWatchAlarmTemplateOutput)
+
+	DeleteCloudWatchAlarmTemplateGroup(*medialive.DeleteCloudWatchAlarmTemplateGroupInput) (*medialive.DeleteCloudWatchAlarmTemplateGroupOutput, error)
+	DeleteCloudWatchAlarmTemplateGroupWithContext(aws.Context, *medialive.DeleteCloudWatchAlarmTemplateGroupInput, ...request.Option) (*medialive.DeleteCloudWatchAlarmTemplateGroupOutput, error)
+	DeleteCloudWatchAlarmTemplateGroupRequest(*medialive.DeleteCloudWatchAlarmTemplateGroupInput) (*request.Request, *medialive.DeleteCloudWatchAlarmTemplateGroupOutput)
+
+	DeleteEventBridgeRuleTemplate(*medialive.DeleteEventBridgeRuleTemplateInput) (*medialive.DeleteEventBridgeRuleTemplateOutput, error)
+	DeleteEventBridgeRuleTemplateWithContext(aws.Context, *medialive.DeleteEventBridgeRuleTemplateInput, ...request.Option) (*medialive.DeleteEventBridgeRuleTemplateOutput, error)
+	DeleteEventBridgeRuleTemplateRequest(*medialive.DeleteEventBridgeRuleTemplateInput) (*request.Request, *medialive.DeleteEventBridgeRuleTemplateOutput)
+
+	DeleteEventBridgeRuleTemplateGroup(*medialive.DeleteEventBridgeRuleTemplateGroupInput) (*medialive.DeleteEventBridgeRuleTemplateGroupOutput, error)
+	DeleteEventBridgeRuleTemplateGroupWithContext(aws.Context, *medialive.DeleteEventBridgeRuleTemplateGroupInput, ...request.Option) (*medialive.DeleteEventBridgeRuleTemplateGroupOutput, error)
+	DeleteEventBridgeRuleTemplateGroupRequest(*medialive.DeleteEventBridgeRuleTemplateGroupInput) (*request.Request, *medialive.DeleteEventBridgeRuleTemplateGroupOutput)
 
 	DeleteInput(*medialive.DeleteInputInput) (*medialive.DeleteInputOutput, error)
 	DeleteInputWithContext(aws.Context, *medialive.DeleteInputInput, ...request.Option) (*medialive.DeleteInputOutput, error)
@@ -143,6 +179,10 @@ type MediaLiveAPI interface {
 	DeleteSchedule(*medialive.DeleteScheduleInput) (*medialive.DeleteScheduleOutput, error)
 	DeleteScheduleWithContext(aws.Context, *medialive.DeleteScheduleInput, ...request.Option) (*medialive.DeleteScheduleOutput, error)
 	DeleteScheduleRequest(*medialive.DeleteScheduleInput) (*request.Request, *medialive.DeleteScheduleOutput)
+
+	DeleteSignalMap(*medialive.DeleteSignalMapInput) (*medialive.DeleteSignalMapOutput, error)
+	DeleteSignalMapWithContext(aws.Context, *medialive.DeleteSignalMapInput, ...request.Option) (*medialive.DeleteSignalMapOutput, error)
+	DeleteSignalMapRequest(*medialive.DeleteSignalMapInput) (*request.Request, *medialive.DeleteSignalMapOutput)
 
 	DeleteTags(*medialive.DeleteTagsInput) (*medialive.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *medialive.DeleteTagsInput, ...request.Option) (*medialive.DeleteTagsOutput, error)
@@ -199,12 +239,60 @@ type MediaLiveAPI interface {
 	DescribeThumbnailsWithContext(aws.Context, *medialive.DescribeThumbnailsInput, ...request.Option) (*medialive.DescribeThumbnailsOutput, error)
 	DescribeThumbnailsRequest(*medialive.DescribeThumbnailsInput) (*request.Request, *medialive.DescribeThumbnailsOutput)
 
+	GetCloudWatchAlarmTemplate(*medialive.GetCloudWatchAlarmTemplateInput) (*medialive.GetCloudWatchAlarmTemplateOutput, error)
+	GetCloudWatchAlarmTemplateWithContext(aws.Context, *medialive.GetCloudWatchAlarmTemplateInput, ...request.Option) (*medialive.GetCloudWatchAlarmTemplateOutput, error)
+	GetCloudWatchAlarmTemplateRequest(*medialive.GetCloudWatchAlarmTemplateInput) (*request.Request, *medialive.GetCloudWatchAlarmTemplateOutput)
+
+	GetCloudWatchAlarmTemplateGroup(*medialive.GetCloudWatchAlarmTemplateGroupInput) (*medialive.GetCloudWatchAlarmTemplateGroupOutput, error)
+	GetCloudWatchAlarmTemplateGroupWithContext(aws.Context, *medialive.GetCloudWatchAlarmTemplateGroupInput, ...request.Option) (*medialive.GetCloudWatchAlarmTemplateGroupOutput, error)
+	GetCloudWatchAlarmTemplateGroupRequest(*medialive.GetCloudWatchAlarmTemplateGroupInput) (*request.Request, *medialive.GetCloudWatchAlarmTemplateGroupOutput)
+
+	GetEventBridgeRuleTemplate(*medialive.GetEventBridgeRuleTemplateInput) (*medialive.GetEventBridgeRuleTemplateOutput, error)
+	GetEventBridgeRuleTemplateWithContext(aws.Context, *medialive.GetEventBridgeRuleTemplateInput, ...request.Option) (*medialive.GetEventBridgeRuleTemplateOutput, error)
+	GetEventBridgeRuleTemplateRequest(*medialive.GetEventBridgeRuleTemplateInput) (*request.Request, *medialive.GetEventBridgeRuleTemplateOutput)
+
+	GetEventBridgeRuleTemplateGroup(*medialive.GetEventBridgeRuleTemplateGroupInput) (*medialive.GetEventBridgeRuleTemplateGroupOutput, error)
+	GetEventBridgeRuleTemplateGroupWithContext(aws.Context, *medialive.GetEventBridgeRuleTemplateGroupInput, ...request.Option) (*medialive.GetEventBridgeRuleTemplateGroupOutput, error)
+	GetEventBridgeRuleTemplateGroupRequest(*medialive.GetEventBridgeRuleTemplateGroupInput) (*request.Request, *medialive.GetEventBridgeRuleTemplateGroupOutput)
+
+	GetSignalMap(*medialive.GetSignalMapInput) (*medialive.GetSignalMapOutput, error)
+	GetSignalMapWithContext(aws.Context, *medialive.GetSignalMapInput, ...request.Option) (*medialive.GetSignalMapOutput, error)
+	GetSignalMapRequest(*medialive.GetSignalMapInput) (*request.Request, *medialive.GetSignalMapOutput)
+
 	ListChannels(*medialive.ListChannelsInput) (*medialive.ListChannelsOutput, error)
 	ListChannelsWithContext(aws.Context, *medialive.ListChannelsInput, ...request.Option) (*medialive.ListChannelsOutput, error)
 	ListChannelsRequest(*medialive.ListChannelsInput) (*request.Request, *medialive.ListChannelsOutput)
 
 	ListChannelsPages(*medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool, ...request.Option) error
+
+	ListCloudWatchAlarmTemplateGroups(*medialive.ListCloudWatchAlarmTemplateGroupsInput) (*medialive.ListCloudWatchAlarmTemplateGroupsOutput, error)
+	ListCloudWatchAlarmTemplateGroupsWithContext(aws.Context, *medialive.ListCloudWatchAlarmTemplateGroupsInput, ...request.Option) (*medialive.ListCloudWatchAlarmTemplateGroupsOutput, error)
+	ListCloudWatchAlarmTemplateGroupsRequest(*medialive.ListCloudWatchAlarmTemplateGroupsInput) (*request.Request, *medialive.ListCloudWatchAlarmTemplateGroupsOutput)
+
+	ListCloudWatchAlarmTemplateGroupsPages(*medialive.ListCloudWatchAlarmTemplateGroupsInput, func(*medialive.ListCloudWatchAlarmTemplateGroupsOutput, bool) bool) error
+	ListCloudWatchAlarmTemplateGroupsPagesWithContext(aws.Context, *medialive.ListCloudWatchAlarmTemplateGroupsInput, func(*medialive.ListCloudWatchAlarmTemplateGroupsOutput, bool) bool, ...request.Option) error
+
+	ListCloudWatchAlarmTemplates(*medialive.ListCloudWatchAlarmTemplatesInput) (*medialive.ListCloudWatchAlarmTemplatesOutput, error)
+	ListCloudWatchAlarmTemplatesWithContext(aws.Context, *medialive.ListCloudWatchAlarmTemplatesInput, ...request.Option) (*medialive.ListCloudWatchAlarmTemplatesOutput, error)
+	ListCloudWatchAlarmTemplatesRequest(*medialive.ListCloudWatchAlarmTemplatesInput) (*request.Request, *medialive.ListCloudWatchAlarmTemplatesOutput)
+
+	ListCloudWatchAlarmTemplatesPages(*medialive.ListCloudWatchAlarmTemplatesInput, func(*medialive.ListCloudWatchAlarmTemplatesOutput, bool) bool) error
+	ListCloudWatchAlarmTemplatesPagesWithContext(aws.Context, *medialive.ListCloudWatchAlarmTemplatesInput, func(*medialive.ListCloudWatchAlarmTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListEventBridgeRuleTemplateGroups(*medialive.ListEventBridgeRuleTemplateGroupsInput) (*medialive.ListEventBridgeRuleTemplateGroupsOutput, error)
+	ListEventBridgeRuleTemplateGroupsWithContext(aws.Context, *medialive.ListEventBridgeRuleTemplateGroupsInput, ...request.Option) (*medialive.ListEventBridgeRuleTemplateGroupsOutput, error)
+	ListEventBridgeRuleTemplateGroupsRequest(*medialive.ListEventBridgeRuleTemplateGroupsInput) (*request.Request, *medialive.ListEventBridgeRuleTemplateGroupsOutput)
+
+	ListEventBridgeRuleTemplateGroupsPages(*medialive.ListEventBridgeRuleTemplateGroupsInput, func(*medialive.ListEventBridgeRuleTemplateGroupsOutput, bool) bool) error
+	ListEventBridgeRuleTemplateGroupsPagesWithContext(aws.Context, *medialive.ListEventBridgeRuleTemplateGroupsInput, func(*medialive.ListEventBridgeRuleTemplateGroupsOutput, bool) bool, ...request.Option) error
+
+	ListEventBridgeRuleTemplates(*medialive.ListEventBridgeRuleTemplatesInput) (*medialive.ListEventBridgeRuleTemplatesOutput, error)
+	ListEventBridgeRuleTemplatesWithContext(aws.Context, *medialive.ListEventBridgeRuleTemplatesInput, ...request.Option) (*medialive.ListEventBridgeRuleTemplatesOutput, error)
+	ListEventBridgeRuleTemplatesRequest(*medialive.ListEventBridgeRuleTemplatesInput) (*request.Request, *medialive.ListEventBridgeRuleTemplatesOutput)
+
+	ListEventBridgeRuleTemplatesPages(*medialive.ListEventBridgeRuleTemplatesInput, func(*medialive.ListEventBridgeRuleTemplatesOutput, bool) bool) error
+	ListEventBridgeRuleTemplatesPagesWithContext(aws.Context, *medialive.ListEventBridgeRuleTemplatesInput, func(*medialive.ListEventBridgeRuleTemplatesOutput, bool) bool, ...request.Option) error
 
 	ListInputDeviceTransfers(*medialive.ListInputDeviceTransfersInput) (*medialive.ListInputDeviceTransfersOutput, error)
 	ListInputDeviceTransfersWithContext(aws.Context, *medialive.ListInputDeviceTransfersInput, ...request.Option) (*medialive.ListInputDeviceTransfersOutput, error)
@@ -262,6 +350,13 @@ type MediaLiveAPI interface {
 	ListReservationsPages(*medialive.ListReservationsInput, func(*medialive.ListReservationsOutput, bool) bool) error
 	ListReservationsPagesWithContext(aws.Context, *medialive.ListReservationsInput, func(*medialive.ListReservationsOutput, bool) bool, ...request.Option) error
 
+	ListSignalMaps(*medialive.ListSignalMapsInput) (*medialive.ListSignalMapsOutput, error)
+	ListSignalMapsWithContext(aws.Context, *medialive.ListSignalMapsInput, ...request.Option) (*medialive.ListSignalMapsOutput, error)
+	ListSignalMapsRequest(*medialive.ListSignalMapsInput) (*request.Request, *medialive.ListSignalMapsOutput)
+
+	ListSignalMapsPages(*medialive.ListSignalMapsInput, func(*medialive.ListSignalMapsOutput, bool) bool) error
+	ListSignalMapsPagesWithContext(aws.Context, *medialive.ListSignalMapsInput, func(*medialive.ListSignalMapsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*medialive.ListTagsForResourceInput) (*medialive.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *medialive.ListTagsForResourceInput, ...request.Option) (*medialive.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*medialive.ListTagsForResourceInput) (*request.Request, *medialive.ListTagsForResourceOutput)
@@ -286,6 +381,10 @@ type MediaLiveAPI interface {
 	StartChannelWithContext(aws.Context, *medialive.StartChannelInput, ...request.Option) (*medialive.StartChannelOutput, error)
 	StartChannelRequest(*medialive.StartChannelInput) (*request.Request, *medialive.StartChannelOutput)
 
+	StartDeleteMonitorDeployment(*medialive.StartDeleteMonitorDeploymentInput) (*medialive.StartDeleteMonitorDeploymentOutput, error)
+	StartDeleteMonitorDeploymentWithContext(aws.Context, *medialive.StartDeleteMonitorDeploymentInput, ...request.Option) (*medialive.StartDeleteMonitorDeploymentOutput, error)
+	StartDeleteMonitorDeploymentRequest(*medialive.StartDeleteMonitorDeploymentInput) (*request.Request, *medialive.StartDeleteMonitorDeploymentOutput)
+
 	StartInputDevice(*medialive.StartInputDeviceInput) (*medialive.StartInputDeviceOutput, error)
 	StartInputDeviceWithContext(aws.Context, *medialive.StartInputDeviceInput, ...request.Option) (*medialive.StartInputDeviceOutput, error)
 	StartInputDeviceRequest(*medialive.StartInputDeviceInput) (*request.Request, *medialive.StartInputDeviceOutput)
@@ -294,9 +393,17 @@ type MediaLiveAPI interface {
 	StartInputDeviceMaintenanceWindowWithContext(aws.Context, *medialive.StartInputDeviceMaintenanceWindowInput, ...request.Option) (*medialive.StartInputDeviceMaintenanceWindowOutput, error)
 	StartInputDeviceMaintenanceWindowRequest(*medialive.StartInputDeviceMaintenanceWindowInput) (*request.Request, *medialive.StartInputDeviceMaintenanceWindowOutput)
 
+	StartMonitorDeployment(*medialive.StartMonitorDeploymentInput) (*medialive.StartMonitorDeploymentOutput, error)
+	StartMonitorDeploymentWithContext(aws.Context, *medialive.StartMonitorDeploymentInput, ...request.Option) (*medialive.StartMonitorDeploymentOutput, error)
+	StartMonitorDeploymentRequest(*medialive.StartMonitorDeploymentInput) (*request.Request, *medialive.StartMonitorDeploymentOutput)
+
 	StartMultiplex(*medialive.StartMultiplexInput) (*medialive.StartMultiplexOutput, error)
 	StartMultiplexWithContext(aws.Context, *medialive.StartMultiplexInput, ...request.Option) (*medialive.StartMultiplexOutput, error)
 	StartMultiplexRequest(*medialive.StartMultiplexInput) (*request.Request, *medialive.StartMultiplexOutput)
+
+	StartUpdateSignalMap(*medialive.StartUpdateSignalMapInput) (*medialive.StartUpdateSignalMapOutput, error)
+	StartUpdateSignalMapWithContext(aws.Context, *medialive.StartUpdateSignalMapInput, ...request.Option) (*medialive.StartUpdateSignalMapOutput, error)
+	StartUpdateSignalMapRequest(*medialive.StartUpdateSignalMapInput) (*request.Request, *medialive.StartUpdateSignalMapOutput)
 
 	StopChannel(*medialive.StopChannelInput) (*medialive.StopChannelOutput, error)
 	StopChannelWithContext(aws.Context, *medialive.StopChannelInput, ...request.Option) (*medialive.StopChannelOutput, error)
@@ -325,6 +432,22 @@ type MediaLiveAPI interface {
 	UpdateChannelClass(*medialive.UpdateChannelClassInput) (*medialive.UpdateChannelClassOutput, error)
 	UpdateChannelClassWithContext(aws.Context, *medialive.UpdateChannelClassInput, ...request.Option) (*medialive.UpdateChannelClassOutput, error)
 	UpdateChannelClassRequest(*medialive.UpdateChannelClassInput) (*request.Request, *medialive.UpdateChannelClassOutput)
+
+	UpdateCloudWatchAlarmTemplate(*medialive.UpdateCloudWatchAlarmTemplateInput) (*medialive.UpdateCloudWatchAlarmTemplateOutput, error)
+	UpdateCloudWatchAlarmTemplateWithContext(aws.Context, *medialive.UpdateCloudWatchAlarmTemplateInput, ...request.Option) (*medialive.UpdateCloudWatchAlarmTemplateOutput, error)
+	UpdateCloudWatchAlarmTemplateRequest(*medialive.UpdateCloudWatchAlarmTemplateInput) (*request.Request, *medialive.UpdateCloudWatchAlarmTemplateOutput)
+
+	UpdateCloudWatchAlarmTemplateGroup(*medialive.UpdateCloudWatchAlarmTemplateGroupInput) (*medialive.UpdateCloudWatchAlarmTemplateGroupOutput, error)
+	UpdateCloudWatchAlarmTemplateGroupWithContext(aws.Context, *medialive.UpdateCloudWatchAlarmTemplateGroupInput, ...request.Option) (*medialive.UpdateCloudWatchAlarmTemplateGroupOutput, error)
+	UpdateCloudWatchAlarmTemplateGroupRequest(*medialive.UpdateCloudWatchAlarmTemplateGroupInput) (*request.Request, *medialive.UpdateCloudWatchAlarmTemplateGroupOutput)
+
+	UpdateEventBridgeRuleTemplate(*medialive.UpdateEventBridgeRuleTemplateInput) (*medialive.UpdateEventBridgeRuleTemplateOutput, error)
+	UpdateEventBridgeRuleTemplateWithContext(aws.Context, *medialive.UpdateEventBridgeRuleTemplateInput, ...request.Option) (*medialive.UpdateEventBridgeRuleTemplateOutput, error)
+	UpdateEventBridgeRuleTemplateRequest(*medialive.UpdateEventBridgeRuleTemplateInput) (*request.Request, *medialive.UpdateEventBridgeRuleTemplateOutput)
+
+	UpdateEventBridgeRuleTemplateGroup(*medialive.UpdateEventBridgeRuleTemplateGroupInput) (*medialive.UpdateEventBridgeRuleTemplateGroupOutput, error)
+	UpdateEventBridgeRuleTemplateGroupWithContext(aws.Context, *medialive.UpdateEventBridgeRuleTemplateGroupInput, ...request.Option) (*medialive.UpdateEventBridgeRuleTemplateGroupOutput, error)
+	UpdateEventBridgeRuleTemplateGroupRequest(*medialive.UpdateEventBridgeRuleTemplateGroupInput) (*request.Request, *medialive.UpdateEventBridgeRuleTemplateGroupOutput)
 
 	UpdateInput(*medialive.UpdateInputInput) (*medialive.UpdateInputOutput, error)
 	UpdateInputWithContext(aws.Context, *medialive.UpdateInputInput, ...request.Option) (*medialive.UpdateInputOutput, error)
@@ -382,6 +505,18 @@ type MediaLiveAPI interface {
 
 	WaitUntilMultiplexStopped(*medialive.DescribeMultiplexInput) error
 	WaitUntilMultiplexStoppedWithContext(aws.Context, *medialive.DescribeMultiplexInput, ...request.WaiterOption) error
+
+	WaitUntilSignalMapCreated(*medialive.GetSignalMapInput) error
+	WaitUntilSignalMapCreatedWithContext(aws.Context, *medialive.GetSignalMapInput, ...request.WaiterOption) error
+
+	WaitUntilSignalMapMonitorDeleted(*medialive.GetSignalMapInput) error
+	WaitUntilSignalMapMonitorDeletedWithContext(aws.Context, *medialive.GetSignalMapInput, ...request.WaiterOption) error
+
+	WaitUntilSignalMapMonitorDeployed(*medialive.GetSignalMapInput) error
+	WaitUntilSignalMapMonitorDeployedWithContext(aws.Context, *medialive.GetSignalMapInput, ...request.WaiterOption) error
+
+	WaitUntilSignalMapUpdated(*medialive.GetSignalMapInput) error
+	WaitUntilSignalMapUpdatedWithContext(aws.Context, *medialive.GetSignalMapInput, ...request.WaiterOption) error
 }
 
 var _ MediaLiveAPI = (*medialive.MediaLive)(nil)

@@ -1775,7 +1775,8 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 
 // CreateInvalidation API operation for Amazon CloudFront.
 //
-// Create a new invalidation.
+// Create a new invalidation. For more information, see Invalidating files (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html)
+// in the Amazon CloudFront Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1978,8 +1979,8 @@ func (c *CloudFront) CreateKeyValueStoreRequest(input *CreateKeyValueStoreInput)
 
 // CreateKeyValueStore API operation for Amazon CloudFront.
 //
-// Specifies the Key Value Store resource to add to your account. In your account,
-// the Key Value Store names must be unique. You can also import Key Value Store
+// Specifies the key value store resource to add to your account. In your account,
+// the key value store names must be unique. You can also import key value store
 // data in JSON format from an S3 bucket by providing a valid ImportSource that
 // you own.
 //
@@ -1996,17 +1997,20 @@ func (c *CloudFront) CreateKeyValueStoreRequest(input *CreateKeyValueStoreInput)
 //     Access denied.
 //
 //   - ErrCodeEntityLimitExceeded "EntityLimitExceeded"
-//     The Key Value Store entity limit has been exceeded.
+//     The key value store entity limit has been exceeded.
 //
 //   - ErrCodeEntityAlreadyExists "EntityAlreadyExists"
-//     The Key Value Store entity already exists. You must provide a unique Key
-//     Value Store entity.
+//     The key value store entity already exists. You must provide a unique key
+//     value store entity.
 //
 //   - ErrCodeEntitySizeLimitExceeded "EntitySizeLimitExceeded"
-//     The Key Value Store entity size limit was exceeded.
+//     The key value store entity size limit was exceeded.
 //
 //   - ErrCodeInvalidArgument "InvalidArgument"
 //     An argument is invalid.
+//
+//   - ErrCodeUnsupportedOperation "UnsupportedOperation"
+//     This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateKeyValueStore
 func (c *CloudFront) CreateKeyValueStore(input *CreateKeyValueStoreInput) (*CreateKeyValueStoreOutput, error) {
@@ -3731,7 +3735,7 @@ func (c *CloudFront) DeleteKeyValueStoreRequest(input *DeleteKeyValueStoreInput)
 
 // DeleteKeyValueStore API operation for Amazon CloudFront.
 //
-// Specifies the Key Value Store to delete.
+// Specifies the key value store to delete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3749,13 +3753,16 @@ func (c *CloudFront) DeleteKeyValueStoreRequest(input *DeleteKeyValueStoreInput)
 //     The If-Match version is missing or not valid.
 //
 //   - ErrCodeEntityNotFound "EntityNotFound"
-//     The Key Value Store entity was not found.
+//     The key value store entity was not found.
 //
 //   - ErrCodeCannotDeleteEntityWhileInUse "CannotDeleteEntityWhileInUse"
-//     The Key Value Store entity cannot be deleted while it is in use.
+//     The key value store entity cannot be deleted while it is in use.
 //
 //   - ErrCodePreconditionFailed "PreconditionFailed"
 //     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeUnsupportedOperation "UnsupportedOperation"
+//     This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteKeyValueStore
 func (c *CloudFront) DeleteKeyValueStore(input *DeleteKeyValueStoreInput) (*DeleteKeyValueStoreOutput, error) {
@@ -4621,7 +4628,7 @@ func (c *CloudFront) DescribeKeyValueStoreRequest(input *DescribeKeyValueStoreIn
 
 // DescribeKeyValueStore API operation for Amazon CloudFront.
 //
-// Specifies the Key Value Store and its configuration.
+// Specifies the key value store and its configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4639,7 +4646,10 @@ func (c *CloudFront) DescribeKeyValueStoreRequest(input *DescribeKeyValueStoreIn
 //     An argument is invalid.
 //
 //   - ErrCodeEntityNotFound "EntityNotFound"
-//     The Key Value Store entity was not found.
+//     The key value store entity was not found.
+//
+//   - ErrCodeUnsupportedOperation "UnsupportedOperation"
+//     This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DescribeKeyValueStore
 func (c *CloudFront) DescribeKeyValueStore(input *DescribeKeyValueStoreInput) (*DescribeKeyValueStoreOutput, error) {
@@ -8661,7 +8671,7 @@ func (c *CloudFront) ListKeyValueStoresRequest(input *ListKeyValueStoresInput) (
 
 // ListKeyValueStores API operation for Amazon CloudFront.
 //
-// Specifies the Key Value Stores to list.
+// Specifies the key value stores to list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8677,6 +8687,9 @@ func (c *CloudFront) ListKeyValueStoresRequest(input *ListKeyValueStoresInput) (
 //
 //   - ErrCodeInvalidArgument "InvalidArgument"
 //     An argument is invalid.
+//
+//   - ErrCodeUnsupportedOperation "UnsupportedOperation"
+//     This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListKeyValueStores
 func (c *CloudFront) ListKeyValueStores(input *ListKeyValueStoresInput) (*ListKeyValueStoresOutput, error) {
@@ -11273,7 +11286,7 @@ func (c *CloudFront) UpdateKeyValueStoreRequest(input *UpdateKeyValueStoreInput)
 
 // UpdateKeyValueStore API operation for Amazon CloudFront.
 //
-// Specifies the Key Value Store to update.
+// Specifies the key value store to update.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11291,13 +11304,16 @@ func (c *CloudFront) UpdateKeyValueStoreRequest(input *UpdateKeyValueStoreInput)
 //     An argument is invalid.
 //
 //   - ErrCodeEntityNotFound "EntityNotFound"
-//     The Key Value Store entity was not found.
+//     The key value store entity was not found.
 //
 //   - ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
 //     The If-Match version is missing or not valid.
 //
 //   - ErrCodePreconditionFailed "PreconditionFailed"
 //     The precondition in one or more of the request fields evaluated to false.
+//
+//   - ErrCodeUnsupportedOperation "UnsupportedOperation"
+//     This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateKeyValueStore
 func (c *CloudFront) UpdateKeyValueStore(input *UpdateKeyValueStoreInput) (*UpdateKeyValueStoreOutput, error) {
@@ -12443,7 +12459,8 @@ func (s AssociateAliasOutput) GoString() string {
 // in the Amazon CloudFront Developer Guide.
 //
 // If you don't want to specify any cache behaviors, include only an empty CacheBehaviors
-// element. Don't include an empty CacheBehavior element because this is invalid.
+// element. For more information, see CacheBehaviors (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CacheBehaviors.html).
+// Don't include an empty CacheBehavior element because this is invalid.
 //
 // To delete all cache behaviors in an existing distribution, update the distribution
 // configuration and include only an empty CacheBehaviors element.
@@ -14212,7 +14229,8 @@ type ContinuousDeploymentSingleWeightConfig struct {
 	SessionStickinessConfig *SessionStickinessConfig `type:"structure"`
 
 	// The percentage of traffic to send to a staging distribution, expressed as
-	// a decimal number between 0 and .15.
+	// a decimal number between 0 and 0.15. For example, a value of 0.10 means 10%
+	// of traffic is sent to the staging distribution.
 	//
 	// Weight is a required field
 	Weight *float64 `type:"float" required:"true"`
@@ -15658,14 +15676,15 @@ func (s *CreateKeyGroupOutput) SetLocation(v string) *CreateKeyGroupOutput {
 type CreateKeyValueStoreInput struct {
 	_ struct{} `locationName:"CreateKeyValueStoreRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
 
-	// The comment of the Key Value Store.
+	// The comment of the key value store.
 	Comment *string `type:"string"`
 
 	// The S3 bucket that provides the source for the import. The source must be
 	// in a valid JSON format.
 	ImportSource *ImportSource `type:"structure"`
 
-	// The name of the Key Value Store. The maximum length of the name is 32 characters.
+	// The name of the key value store. The minimum length is 1 character and the
+	// maximum length is 64 characters.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -15731,13 +15750,13 @@ func (s *CreateKeyValueStoreInput) SetName(v string) *CreateKeyValueStoreInput {
 type CreateKeyValueStoreOutput struct {
 	_ struct{} `type:"structure" payload:"KeyValueStore"`
 
-	// The ETag in the resulting Key Value Store.
+	// The ETag in the resulting key value store.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// The resulting Key Value Store.
+	// The resulting key value store.
 	KeyValueStore *KeyValueStore `type:"structure"`
 
-	// The location of the resulting Key Value Store.
+	// The location of the resulting key value store.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 }
 
@@ -16201,9 +16220,9 @@ type CreateRealtimeLogConfigInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The sampling rate for this real-time log configuration. The sampling rate
-	// determines the percentage of viewer requests that are represented in the
-	// real-time log data. You must provide an integer between 1 and 100, inclusive.
+	// The sampling rate for this real-time log configuration. You can specify a
+	// whole number between 1 and 100 (inclusive) to determine the percentage of
+	// viewer requests that are represented in the real-time log data.
 	//
 	// SamplingRate is a required field
 	SamplingRate *int64 `type:"long" required:"true"`
@@ -17117,8 +17136,8 @@ type DefaultCacheBehavior struct {
 	ForwardedValues *ForwardedValues `deprecated:"true" type:"structure"`
 
 	// A list of CloudFront functions that are associated with this cache behavior.
-	// CloudFront functions must be published to the LIVE stage to associate them
-	// with a cache behavior.
+	// Your functions must be published to the LIVE stage to associate them with
+	// a cache behavior.
 	FunctionAssociations *FunctionAssociations `type:"structure"`
 
 	// A complex type that contains zero or more Lambda@Edge function associations
@@ -18114,12 +18133,12 @@ func (s DeleteKeyGroupOutput) GoString() string {
 type DeleteKeyValueStoreInput struct {
 	_ struct{} `locationName:"DeleteKeyValueStoreRequest" type:"structure"`
 
-	// The Key Value Store to delete, if a match occurs.
+	// The key value store to delete, if a match occurs.
 	//
 	// IfMatch is a required field
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
 
-	// The name of the Key Value Store.
+	// The name of the key value store.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
@@ -18842,7 +18861,7 @@ func (s *DescribeFunctionOutput) SetFunctionSummary(v *FunctionSummary) *Describ
 type DescribeKeyValueStoreInput struct {
 	_ struct{} `locationName:"DescribeKeyValueStoreRequest" type:"structure"`
 
-	// The name of the Key Value Store.
+	// The name of the key value store.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
@@ -18891,10 +18910,10 @@ func (s *DescribeKeyValueStoreInput) SetName(v string) *DescribeKeyValueStoreInp
 type DescribeKeyValueStoreOutput struct {
 	_ struct{} `type:"structure" payload:"KeyValueStore"`
 
-	// The ETag of the resulting Key Value Store.
+	// The ETag of the resulting key value store.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// The resulting Key Value Store.
+	// The resulting key value store.
 	KeyValueStore *KeyValueStore `type:"structure"`
 }
 
@@ -19156,10 +19175,9 @@ type DistributionConfig struct {
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// (Optional) Specify the maximum HTTP version(s) that you want viewers to use
-	// to communicate with CloudFront. The default value for new web distributions
-	// is http2. Viewers that don't support HTTP/2 automatically use an earlier
-	// HTTP version.
+	// (Optional) Specify the HTTP version(s) that you want viewers to use to communicate
+	// with CloudFront. The default value for new web distributions is http2. Viewers
+	// that don't support HTTP/2 automatically use an earlier HTTP version.
 	//
 	// For viewers and CloudFront to use HTTP/2, viewers must support TLSv1.2 or
 	// later, and must support Server Name Indication (SNI).
@@ -19253,9 +19271,9 @@ type DistributionConfig struct {
 
 	// A unique identifier that specifies the WAF web ACL, if any, to associate
 	// with this distribution. To specify a web ACL created using the latest version
-	// of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+	// of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
 	// To specify a web ACL created using WAF Classic, use the ACL ID, for example
-	// 473e64fd-f30b-4765-81a0-62ad96dd167a.
+	// a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
 	//
 	// WAF is a web application firewall that lets you monitor the HTTP and HTTPS
 	// requests that are forwarded to CloudFront, and lets you control access to
@@ -19819,7 +19837,9 @@ type DistributionSummary struct {
 	// Restrictions is a required field
 	Restrictions *Restrictions `type:"structure" required:"true"`
 
-	// Whether the primary distribution has a staging distribution enabled.
+	// A Boolean that indicates whether this is a staging distribution. When this
+	// value is true, this is a staging distribution. When this value is false,
+	// this is not a staging distribution.
 	//
 	// Staging is a required field
 	Staging *bool `type:"boolean" required:"true"`
@@ -21100,14 +21120,14 @@ func (s *FunctionAssociation) SetFunctionARN(v string) *FunctionAssociation {
 }
 
 // A list of CloudFront functions that are associated with a cache behavior
-// in a CloudFront distribution. CloudFront functions must be published to the
-// LIVE stage to associate them with a cache behavior.
+// in a CloudFront distribution. Your functions must be published to the LIVE
+// stage to associate them with a cache behavior.
 type FunctionAssociations struct {
 	_ struct{} `type:"structure"`
 
 	// The CloudFront functions that are associated with a cache behavior in a CloudFront
-	// distribution. CloudFront functions must be published to the LIVE stage to
-	// associate them with a cache behavior.
+	// distribution. Your functions must be published to the LIVE stage to associate
+	// them with a cache behavior.
 	Items []*FunctionAssociation `locationNameList:"FunctionAssociation" type:"list"`
 
 	// The number of CloudFront functions in the list.
@@ -21178,7 +21198,7 @@ type FunctionConfig struct {
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
-	// The configuration for the Key Value Store associations.
+	// The configuration for the key value store associations.
 	KeyValueStoreAssociations *KeyValueStoreAssociations `type:"structure"`
 
 	// The function's runtime environment version.
@@ -24143,16 +24163,16 @@ func (s *Headers) SetQuantity(v int64) *Headers {
 	return s
 }
 
-// The import source for the Key Value Store.
+// The import source for the key value store.
 type ImportSource struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the import source for the Key Value Store.
+	// The Amazon Resource Name (ARN) of the import source for the key value store.
 	//
 	// SourceARN is a required field
 	SourceARN *string `type:"string" required:"true"`
 
-	// The source type of the import source for the Key Value Store.
+	// The source type of the import source for the key value store.
 	//
 	// SourceType is a required field
 	SourceType *string `type:"string" required:"true" enum:"ImportSourceType"`
@@ -24823,38 +24843,38 @@ func (s *KeyPairIds) SetQuantity(v int64) *KeyPairIds {
 	return s
 }
 
-// The Key Value Store. Use this to separate data from function code, allowing
+// The key value store. Use this to separate data from function code, allowing
 // you to update data without having to publish a new version of a function.
-// The Key Value Store holds keys and their corresponding values.
+// The key value store holds keys and their corresponding values.
 type KeyValueStore struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Key Value Store.
+	// The Amazon Resource Name (ARN) of the key value store.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// A comment for the Key Value Store.
+	// A comment for the key value store.
 	//
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
-	// The unique Id for the Key Value Store.
+	// The unique Id for the key value store.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// The last-modified time of the Key Value Store.
+	// The last-modified time of the key value store.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
-	// The name of the Key Value Store.
+	// The name of the key value store.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The status of the Key Value Store.
+	// The status of the key value store.
 	Status *string `type:"string"`
 }
 
@@ -24912,11 +24932,11 @@ func (s *KeyValueStore) SetStatus(v string) *KeyValueStore {
 	return s
 }
 
-// The Key Value Store association.
+// The key value store association.
 type KeyValueStoreAssociation struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Key Value Store association.
+	// The Amazon Resource Name (ARN) of the key value store association.
 	//
 	// KeyValueStoreARN is a required field
 	KeyValueStoreARN *string `type:"string" required:"true"`
@@ -24959,14 +24979,14 @@ func (s *KeyValueStoreAssociation) SetKeyValueStoreARN(v string) *KeyValueStoreA
 	return s
 }
 
-// The Key Value Store associations.
+// The key value store associations.
 type KeyValueStoreAssociations struct {
 	_ struct{} `type:"structure"`
 
-	// The items of the Key Value Store association.
+	// The items of the key value store association.
 	Items []*KeyValueStoreAssociation `locationNameList:"KeyValueStoreAssociation" type:"list"`
 
-	// The quantity of Key Value Store associations.
+	// The quantity of key value store associations.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -25025,22 +25045,22 @@ func (s *KeyValueStoreAssociations) SetQuantity(v int64) *KeyValueStoreAssociati
 	return s
 }
 
-// The Key Value Store list.
+// The key value store list.
 type KeyValueStoreList struct {
 	_ struct{} `type:"structure"`
 
-	// The items of the Key Value Store list.
+	// The items of the key value store list.
 	Items []*KeyValueStore `locationNameList:"KeyValueStore" type:"list"`
 
-	// The maximum number of items in the Key Value Store list.
+	// The maximum number of items in the key value store list.
 	//
 	// MaxItems is a required field
 	MaxItems *int64 `type:"integer" required:"true"`
 
-	// The next marker associated with the Key Value Store list.
+	// The next marker associated with the key value store list.
 	NextMarker *string `type:"string"`
 
-	// The quantity of the Key Value Store list.
+	// The quantity of the key value store list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -26202,6 +26222,10 @@ type ListDistributionsByWebACLIdInput struct {
 	// If you specify "null" for the ID, the request returns a list of the distributions
 	// that aren't associated with a web ACL.
 	//
+	// For WAFV2, this is the ARN of the web ACL, such as arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
+	//
+	// For WAF Classic, this is the ID of the web ACL, such as a1b2c3d4-5678-90ab-cdef-EXAMPLE11111.
+	//
 	// WebACLId is a required field
 	WebACLId *string `location:"uri" locationName:"WebACLId" type:"string" required:"true"`
 }
@@ -26790,13 +26814,13 @@ func (s *ListKeyGroupsOutput) SetKeyGroupList(v *KeyGroupList) *ListKeyGroupsOut
 type ListKeyValueStoresInput struct {
 	_ struct{} `locationName:"ListKeyValueStoresRequest" type:"structure"`
 
-	// The marker associated with the Key Value Stores list.
+	// The marker associated with the key value stores list.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
-	// The maximum number of items in the Key Value Stores list.
+	// The maximum number of items in the key value stores list.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	// The status of the request for the Key Value Stores list.
+	// The status of the request for the key value stores list.
 	Status *string `location:"querystring" locationName:"Status" type:"string"`
 }
 
@@ -26839,7 +26863,7 @@ func (s *ListKeyValueStoresInput) SetStatus(v string) *ListKeyValueStoresInput {
 type ListKeyValueStoresOutput struct {
 	_ struct{} `type:"structure" payload:"KeyValueStoreList"`
 
-	// The resulting Key Value Stores list.
+	// The resulting key value stores list.
 	KeyValueStoreList *KeyValueStoreList `type:"structure"`
 }
 
@@ -27840,7 +27864,7 @@ type OriginAccessControlConfig struct {
 	// A description of the origin access control.
 	Description *string `type:"string"`
 
-	// A name to identify the origin access control.
+	// A name to identify the origin access control. You can specify up to 64 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -32093,7 +32117,8 @@ type ResponseHeadersPolicySecurityHeadersConfig struct {
 	// response header and the header's value.
 	//
 	// For more information about the Strict-Transport-Security HTTP response header,
-	// see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+	// see Security headers (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html#understanding-response-headers-policies-security)
+	// in the Amazon CloudFront Developer Guide and Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
 	// in the MDN Web Docs.
 	StrictTransportSecurity *ResponseHeadersPolicyStrictTransportSecurity `type:"structure"`
 
@@ -32651,6 +32676,12 @@ func (s *S3Origin) SetOriginAccessIdentity(v string) *S3Origin {
 type S3OriginConfig struct {
 	_ struct{} `type:"structure"`
 
+	//
+	// If you're using origin access control (OAC) instead of origin access identity,
+	// specify an empty OriginAccessIdentity element. For more information, see
+	// Restricting access to an Amazon Web Services (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-origin.html)
+	// in the Amazon CloudFront Developer Guide.
+	//
 	// The CloudFront origin access identity to associate with the origin. Use an
 	// origin access identity to configure the origin so that viewers can only access
 	// objects in an Amazon S3 bucket through CloudFront. The format of the value
@@ -32658,8 +32689,8 @@ type S3OriginConfig struct {
 	//
 	// origin-access-identity/cloudfront/ID-of-origin-access-identity
 	//
-	// where ID-of-origin-access-identity is the value that CloudFront returned
-	// in the ID element when you created the origin access identity.
+	// The ID-of-origin-access-identity is the value that CloudFront returned in
+	// the ID element when you created the origin access identity.
 	//
 	// If you want viewers to be able to access objects using either the CloudFront
 	// URL or the Amazon S3 URL, specify an empty OriginAccessIdentity element.
@@ -32735,7 +32766,7 @@ type SessionStickinessConfig struct {
 	// The maximum amount of time to consider requests from the viewer as being
 	// part of the same session. Allowed values are 300–3600 seconds (5–60 minutes).
 	//
-	// The value must be less than or equal to IdleTTL.
+	// The value must be greater than or equal to IdleTTL.
 	//
 	// MaximumTTL is a required field
 	MaximumTTL *int64 `type:"integer" required:"true"`
@@ -35502,17 +35533,17 @@ func (s *UpdateKeyGroupOutput) SetKeyGroup(v *KeyGroup) *UpdateKeyGroupOutput {
 type UpdateKeyValueStoreInput struct {
 	_ struct{} `locationName:"UpdateKeyValueStoreRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
 
-	// The comment of the Key Value Store to update.
+	// The comment of the key value store to update.
 	//
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
-	// The Key Value Store to update, if a match occurs.
+	// The key value store to update, if a match occurs.
 	//
 	// IfMatch is a required field
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
 
-	// The name of the Key Value Store to update.
+	// The name of the key value store to update.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
@@ -35579,10 +35610,10 @@ func (s *UpdateKeyValueStoreInput) SetName(v string) *UpdateKeyValueStoreInput {
 type UpdateKeyValueStoreOutput struct {
 	_ struct{} `type:"structure" payload:"KeyValueStore"`
 
-	// The ETag of the resulting Key Value Store.
+	// The ETag of the resulting key value store.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// The resulting Key Value Store to update.
+	// The resulting key value store to update.
 	KeyValueStore *KeyValueStore `type:"structure"`
 }
 
@@ -36912,6 +36943,12 @@ const (
 
 	// OriginAccessControlOriginTypesMediastore is a OriginAccessControlOriginTypes enum value
 	OriginAccessControlOriginTypesMediastore = "mediastore"
+
+	// OriginAccessControlOriginTypesMediapackagev2 is a OriginAccessControlOriginTypes enum value
+	OriginAccessControlOriginTypesMediapackagev2 = "mediapackagev2"
+
+	// OriginAccessControlOriginTypesLambda is a OriginAccessControlOriginTypes enum value
+	OriginAccessControlOriginTypesLambda = "lambda"
 )
 
 // OriginAccessControlOriginTypes_Values returns all elements of the OriginAccessControlOriginTypes enum
@@ -36919,6 +36956,8 @@ func OriginAccessControlOriginTypes_Values() []string {
 	return []string{
 		OriginAccessControlOriginTypesS3,
 		OriginAccessControlOriginTypesMediastore,
+		OriginAccessControlOriginTypesMediapackagev2,
+		OriginAccessControlOriginTypesLambda,
 	}
 }
 

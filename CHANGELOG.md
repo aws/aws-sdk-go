@@ -1,3 +1,27 @@
+Release v1.51.20 (2024-04-11)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * This release adds the task properties field to attempt details and the name field on EKS container detail.
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront origin access control extends support to AWS Lambda function URLs and AWS Elemental MediaPackage v2 origins.
+* `service/codebuild`: Updates service documentation
+  * Support access tokens for Bitbucket sources
+* `service/iam`: Updates service API and documentation
+  * For CreateOpenIDConnectProvider API, the ThumbprintList parameter is no longer required.
+* `service/medialive`: Updates service API, documentation, waiters, and paginators
+  * AWS Elemental MediaLive introduces workflow monitor, a new feature that enables the visualization and monitoring of your media workflows. Create signal maps of your existing workflows and monitor them by creating notification and monitoring template groups.
+* `service/monitoring`: Updates service API and documentation
+  * This release adds support for Metric Characteristics for CloudWatch Anomaly Detection. Anomaly Detector now takes Metric Characteristics object with Periodic Spikes boolean field that tells Anomaly Detection that spikes that repeat at the same time every week are part of the expected pattern.
+* `service/omics`: Updates service API and documentation
+* `service/pipes`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for Standard Edition 2 support in RDS Custom for Oracle.
+* `service/s3control`: Updates service documentation
+  * Documentation updates for Amazon S3-control.
+* `service/wafv2`: Adds new service
+
 Release v1.51.19 (2024-04-10)
 ===
 
