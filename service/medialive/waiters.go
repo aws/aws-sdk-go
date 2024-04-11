@@ -639,3 +639,247 @@ func (c *MediaLive) WaitUntilMultiplexStoppedWithContext(ctx aws.Context, input 
 
 	return w.WaitWithContext(ctx)
 }
+
+// WaitUntilSignalMapCreated uses the MediaLive API operation
+// GetSignalMap to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *MediaLive) WaitUntilSignalMapCreated(input *GetSignalMapInput) error {
+	return c.WaitUntilSignalMapCreatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilSignalMapCreatedWithContext is an extended version of WaitUntilSignalMapCreated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) WaitUntilSignalMapCreatedWithContext(ctx aws.Context, input *GetSignalMapInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilSignalMapCreated",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(5 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "CREATE_COMPLETE",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "CREATE_IN_PROGRESS",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "CREATE_FAILED",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetSignalMapInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSignalMapRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilSignalMapMonitorDeleted uses the MediaLive API operation
+// GetSignalMap to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *MediaLive) WaitUntilSignalMapMonitorDeleted(input *GetSignalMapInput) error {
+	return c.WaitUntilSignalMapMonitorDeletedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilSignalMapMonitorDeletedWithContext is an extended version of WaitUntilSignalMapMonitorDeleted.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) WaitUntilSignalMapMonitorDeletedWithContext(ctx aws.Context, input *GetSignalMapInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilSignalMapMonitorDeleted",
+		MaxAttempts: 120,
+		Delay:       request.ConstantWaiterDelay(5 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DELETE_COMPLETE",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DELETE_IN_PROGRESS",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DELETE_FAILED",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetSignalMapInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSignalMapRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilSignalMapMonitorDeployed uses the MediaLive API operation
+// GetSignalMap to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *MediaLive) WaitUntilSignalMapMonitorDeployed(input *GetSignalMapInput) error {
+	return c.WaitUntilSignalMapMonitorDeployedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilSignalMapMonitorDeployedWithContext is an extended version of WaitUntilSignalMapMonitorDeployed.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) WaitUntilSignalMapMonitorDeployedWithContext(ctx aws.Context, input *GetSignalMapInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilSignalMapMonitorDeployed",
+		MaxAttempts: 120,
+		Delay:       request.ConstantWaiterDelay(5 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DRY_RUN_DEPLOYMENT_COMPLETE",
+			},
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DEPLOYMENT_COMPLETE",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DRY_RUN_DEPLOYMENT_IN_PROGRESS",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DEPLOYMENT_IN_PROGRESS",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DRY_RUN_DEPLOYMENT_FAILED",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "MonitorDeployment.Status",
+				Expected: "DEPLOYMENT_FAILED",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetSignalMapInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSignalMapRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilSignalMapUpdated uses the MediaLive API operation
+// GetSignalMap to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *MediaLive) WaitUntilSignalMapUpdated(input *GetSignalMapInput) error {
+	return c.WaitUntilSignalMapUpdatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilSignalMapUpdatedWithContext is an extended version of WaitUntilSignalMapUpdated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) WaitUntilSignalMapUpdatedWithContext(ctx aws.Context, input *GetSignalMapInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilSignalMapUpdated",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(5 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "UPDATE_COMPLETE",
+			},
+			{
+				State:   request.RetryWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "UPDATE_IN_PROGRESS",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "UPDATE_FAILED",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "Status",
+				Expected: "UPDATE_REVERTED",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *GetSignalMapInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetSignalMapRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}

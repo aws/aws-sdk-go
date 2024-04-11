@@ -5041,7 +5041,7 @@ func (c *Omics) ListMultipartReadSetUploadsRequest(input *ListMultipartReadSetUp
 //
 // Lists multipart read set uploads and for in progress uploads. Once the upload
 // is completed, a read set is created and the upload will no longer be returned
-// in the respone.
+// in the response.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10587,7 +10587,7 @@ type CompleteReadSetUploadPartListItem struct {
 	// upload.
 	//
 	// Checksum is a required field
-	Checksum *string `locationName:"checksum" type:"string" required:"true"`
+	Checksum *string `locationName:"checksum" min:"1" type:"string" required:"true"`
 
 	// A number identifying the part in a read set upload.
 	//
@@ -10623,6 +10623,9 @@ func (s *CompleteReadSetUploadPartListItem) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CompleteReadSetUploadPartListItem"}
 	if s.Checksum == nil {
 		invalidParams.Add(request.NewErrParamRequired("Checksum"))
+	}
+	if s.Checksum != nil && len(*s.Checksum) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Checksum", 1))
 	}
 	if s.PartNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("PartNumber"))
@@ -11375,7 +11378,7 @@ type CreateMultipartReadSetUploadOutput struct {
 	// The tags to add to the read set.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// he ID for the initiated multipart upload.
+	// The ID for the initiated multipart upload.
 	//
 	// UploadId is a required field
 	UploadId *string `locationName:"uploadId" min:"10" type:"string" required:"true"`
@@ -11817,6 +11820,9 @@ type CreateSequenceStoreInput struct {
 	// A description for the store.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The ETag algorithm family to use for ingested read sets.
+	ETagAlgorithmFamily *string `locationName:"eTagAlgorithmFamily" type:"string" enum:"ETagAlgorithmFamily"`
+
 	// An S3 location that is used to store files that have failed a direct upload.
 	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
 
@@ -11889,6 +11895,12 @@ func (s *CreateSequenceStoreInput) SetDescription(v string) *CreateSequenceStore
 	return s
 }
 
+// SetETagAlgorithmFamily sets the ETagAlgorithmFamily field's value.
+func (s *CreateSequenceStoreInput) SetETagAlgorithmFamily(v string) *CreateSequenceStoreInput {
+	s.ETagAlgorithmFamily = &v
+	return s
+}
+
 // SetFallbackLocation sets the FallbackLocation field's value.
 func (s *CreateSequenceStoreInput) SetFallbackLocation(v string) *CreateSequenceStoreInput {
 	s.FallbackLocation = &v
@@ -11928,6 +11940,9 @@ type CreateSequenceStoreOutput struct {
 
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The algorithm family of the ETag.
+	ETagAlgorithmFamily *string `locationName:"eTagAlgorithmFamily" type:"string" enum:"ETagAlgorithmFamily"`
 
 	// An S3 location that is used to store files that have failed a direct upload.
 	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
@@ -11977,6 +11992,12 @@ func (s *CreateSequenceStoreOutput) SetCreationTime(v time.Time) *CreateSequence
 // SetDescription sets the Description field's value.
 func (s *CreateSequenceStoreOutput) SetDescription(v string) *CreateSequenceStoreOutput {
 	s.Description = &v
+	return s
+}
+
+// SetETagAlgorithmFamily sets the ETagAlgorithmFamily field's value.
+func (s *CreateSequenceStoreOutput) SetETagAlgorithmFamily(v string) *CreateSequenceStoreOutput {
+	s.ETagAlgorithmFamily = &v
 	return s
 }
 
@@ -13623,6 +13644,9 @@ type FileInformation struct {
 	// The file's part size.
 	PartSize *int64 `locationName:"partSize" min:"1" type:"long"`
 
+	// The S3 URI metadata of a sequence store.
+	S3Access *ReadSetS3Access `locationName:"s3Access" type:"structure"`
+
 	// The file's total parts.
 	TotalParts *int64 `locationName:"totalParts" min:"1" type:"integer"`
 }
@@ -13654,6 +13678,12 @@ func (s *FileInformation) SetContentLength(v int64) *FileInformation {
 // SetPartSize sets the PartSize field's value.
 func (s *FileInformation) SetPartSize(v int64) *FileInformation {
 	s.PartSize = &v
+	return s
+}
+
+// SetS3Access sets the S3Access field's value.
+func (s *FileInformation) SetS3Access(v *ReadSetS3Access) *FileInformation {
+	s.S3Access = v
 	return s
 }
 
@@ -16699,6 +16729,9 @@ type GetSequenceStoreOutput struct {
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The algorithm family of the ETag.
+	ETagAlgorithmFamily *string `locationName:"eTagAlgorithmFamily" type:"string" enum:"ETagAlgorithmFamily"`
+
 	// An S3 location that is used to store files that have failed a direct upload.
 	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
 
@@ -16709,6 +16742,10 @@ type GetSequenceStoreOutput struct {
 
 	// The store's name.
 	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The S3 metadata of a sequence store, including the ARN and S3 URI of the
+	// S3 bucket.
+	S3Access *SequenceStoreS3Access `locationName:"s3Access" type:"structure"`
 
 	// The store's server-side encryption (SSE) settings.
 	SseConfig *SseConfig `locationName:"sseConfig" type:"structure"`
@@ -16750,6 +16787,12 @@ func (s *GetSequenceStoreOutput) SetDescription(v string) *GetSequenceStoreOutpu
 	return s
 }
 
+// SetETagAlgorithmFamily sets the ETagAlgorithmFamily field's value.
+func (s *GetSequenceStoreOutput) SetETagAlgorithmFamily(v string) *GetSequenceStoreOutput {
+	s.ETagAlgorithmFamily = &v
+	return s
+}
+
 // SetFallbackLocation sets the FallbackLocation field's value.
 func (s *GetSequenceStoreOutput) SetFallbackLocation(v string) *GetSequenceStoreOutput {
 	s.FallbackLocation = &v
@@ -16765,6 +16808,12 @@ func (s *GetSequenceStoreOutput) SetId(v string) *GetSequenceStoreOutput {
 // SetName sets the Name field's value.
 func (s *GetSequenceStoreOutput) SetName(v string) *GetSequenceStoreOutput {
 	s.Name = &v
+	return s
+}
+
+// SetS3Access sets the S3Access field's value.
+func (s *GetSequenceStoreOutput) SetS3Access(v *SequenceStoreS3Access) *GetSequenceStoreOutput {
+	s.S3Access = v
 	return s
 }
 
@@ -21560,6 +21609,38 @@ func (s *ReadSetListItem) SetSubjectId(v string) *ReadSetListItem {
 	return s
 }
 
+// The S3 URI for each read set file.
+type ReadSetS3Access struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 URI for each read set file.
+	S3Uri *string `locationName:"s3Uri" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetS3Access) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReadSetS3Access) GoString() string {
+	return s.String()
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *ReadSetS3Access) SetS3Uri(v string) *ReadSetS3Access {
+	s.S3Uri = &v
+	return s
+}
+
 // Filter settings that select for read set upload parts of interest.
 type ReadSetUploadPartListFilter struct {
 	_ struct{} `type:"structure"`
@@ -22565,6 +22646,9 @@ type SequenceStoreDetail struct {
 	// The store's description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The algorithm family of the ETag.
+	ETagAlgorithmFamily *string `locationName:"eTagAlgorithmFamily" type:"string" enum:"ETagAlgorithmFamily"`
+
 	// An S3 location that is used to store files that have failed a direct upload.
 	FallbackLocation *string `locationName:"fallbackLocation" type:"string"`
 
@@ -22613,6 +22697,12 @@ func (s *SequenceStoreDetail) SetCreationTime(v time.Time) *SequenceStoreDetail 
 // SetDescription sets the Description field's value.
 func (s *SequenceStoreDetail) SetDescription(v string) *SequenceStoreDetail {
 	s.Description = &v
+	return s
+}
+
+// SetETagAlgorithmFamily sets the ETagAlgorithmFamily field's value.
+func (s *SequenceStoreDetail) SetETagAlgorithmFamily(v string) *SequenceStoreDetail {
+	s.ETagAlgorithmFamily = &v
 	return s
 }
 
@@ -22700,6 +22790,48 @@ func (s *SequenceStoreFilter) SetCreatedBefore(v time.Time) *SequenceStoreFilter
 // SetName sets the Name field's value.
 func (s *SequenceStoreFilter) SetName(v string) *SequenceStoreFilter {
 	s.Name = &v
+	return s
+}
+
+// The S3 access metadata of the sequence store.
+type SequenceStoreS3Access struct {
+	_ struct{} `type:"structure"`
+
+	// This is ARN of the access point associated with the S3 bucket storing read
+	// sets.
+	S3AccessPointArn *string `locationName:"s3AccessPointArn" min:"1" type:"string"`
+
+	// The S3 URI of the sequence store.
+	S3Uri *string `locationName:"s3Uri" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SequenceStoreS3Access) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SequenceStoreS3Access) GoString() string {
+	return s.String()
+}
+
+// SetS3AccessPointArn sets the S3AccessPointArn field's value.
+func (s *SequenceStoreS3Access) SetS3AccessPointArn(v string) *SequenceStoreS3Access {
+	s.S3AccessPointArn = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *SequenceStoreS3Access) SetS3Uri(v string) *SequenceStoreS3Access {
+	s.S3Uri = &v
 	return s
 }
 
@@ -24201,7 +24333,7 @@ type StartRunInput struct {
 	// The ID of a run to duplicate.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
-	// A storage capacity for the run in gigabytes.
+	// A storage capacity for the run in gibibytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// Tags for the run.
@@ -26801,6 +26933,24 @@ const (
 
 	// ETagAlgorithmCramMd5up is a ETagAlgorithm enum value
 	ETagAlgorithmCramMd5up = "CRAM_MD5up"
+
+	// ETagAlgorithmFastqSha256up is a ETagAlgorithm enum value
+	ETagAlgorithmFastqSha256up = "FASTQ_SHA256up"
+
+	// ETagAlgorithmBamSha256up is a ETagAlgorithm enum value
+	ETagAlgorithmBamSha256up = "BAM_SHA256up"
+
+	// ETagAlgorithmCramSha256up is a ETagAlgorithm enum value
+	ETagAlgorithmCramSha256up = "CRAM_SHA256up"
+
+	// ETagAlgorithmFastqSha512up is a ETagAlgorithm enum value
+	ETagAlgorithmFastqSha512up = "FASTQ_SHA512up"
+
+	// ETagAlgorithmBamSha512up is a ETagAlgorithm enum value
+	ETagAlgorithmBamSha512up = "BAM_SHA512up"
+
+	// ETagAlgorithmCramSha512up is a ETagAlgorithm enum value
+	ETagAlgorithmCramSha512up = "CRAM_SHA512up"
 )
 
 // ETagAlgorithm_Values returns all elements of the ETagAlgorithm enum
@@ -26809,6 +26959,32 @@ func ETagAlgorithm_Values() []string {
 		ETagAlgorithmFastqMd5up,
 		ETagAlgorithmBamMd5up,
 		ETagAlgorithmCramMd5up,
+		ETagAlgorithmFastqSha256up,
+		ETagAlgorithmBamSha256up,
+		ETagAlgorithmCramSha256up,
+		ETagAlgorithmFastqSha512up,
+		ETagAlgorithmBamSha512up,
+		ETagAlgorithmCramSha512up,
+	}
+}
+
+const (
+	// ETagAlgorithmFamilyMd5up is a ETagAlgorithmFamily enum value
+	ETagAlgorithmFamilyMd5up = "MD5up"
+
+	// ETagAlgorithmFamilySha256up is a ETagAlgorithmFamily enum value
+	ETagAlgorithmFamilySha256up = "SHA256up"
+
+	// ETagAlgorithmFamilySha512up is a ETagAlgorithmFamily enum value
+	ETagAlgorithmFamilySha512up = "SHA512up"
+)
+
+// ETagAlgorithmFamily_Values returns all elements of the ETagAlgorithmFamily enum
+func ETagAlgorithmFamily_Values() []string {
+	return []string{
+		ETagAlgorithmFamilyMd5up,
+		ETagAlgorithmFamilySha256up,
+		ETagAlgorithmFamilySha512up,
 	}
 }
 

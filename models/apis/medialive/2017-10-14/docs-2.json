@@ -66,7 +66,34 @@
     "UpdateMultiplex": "Updates a multiplex.",
     "UpdateMultiplexProgram": "Update a program in a multiplex.",
     "UpdateReservation": "Update reservation.",
-    "RestartChannelPipelines": "Restart pipelines in one channel that is currently running."
+    "RestartChannelPipelines": "Restart pipelines in one channel that is currently running.",
+    "CreateCloudWatchAlarmTemplate": "Creates a cloudwatch alarm template to dynamically generate cloudwatch metric alarms on targeted resource types.",
+    "CreateCloudWatchAlarmTemplateGroup": "Creates a cloudwatch alarm template group to group your cloudwatch alarm templates and to attach to signal maps for dynamically creating alarms.",
+    "CreateEventBridgeRuleTemplate": "Creates an eventbridge rule template to monitor events and send notifications to your targeted resources.",
+    "CreateEventBridgeRuleTemplateGroup": "Creates an eventbridge rule template group to group your eventbridge rule templates and to attach to signal maps for dynamically creating notification rules.",
+    "CreateSignalMap": "Initiates the creation of a new signal map. Will discover a new mediaResourceMap based on the provided discoveryEntryPointArn.",
+    "DeleteCloudWatchAlarmTemplate": "Deletes a cloudwatch alarm template.",
+    "DeleteCloudWatchAlarmTemplateGroup": "Deletes a cloudwatch alarm template group. You must detach this group from all signal maps and ensure its existing templates are moved to another group or deleted.",
+    "DeleteEventBridgeRuleTemplate": "Deletes an eventbridge rule template.",
+    "DeleteEventBridgeRuleTemplateGroup": "Deletes an eventbridge rule template group. You must detach this group from all signal maps and ensure its existing templates are moved to another group or deleted.",
+    "DeleteSignalMap": "Deletes the specified signal map.",
+    "GetCloudWatchAlarmTemplate": "Retrieves the specified cloudwatch alarm template.",
+    "GetCloudWatchAlarmTemplateGroup": "Retrieves the specified cloudwatch alarm template group.",
+    "GetEventBridgeRuleTemplate": "Retrieves the specified eventbridge rule template.",
+    "GetEventBridgeRuleTemplateGroup": "Retrieves the specified eventbridge rule template group.",
+    "GetSignalMap": "Retrieves the specified signal map.",
+    "ListCloudWatchAlarmTemplateGroups": "Lists cloudwatch alarm template groups.",
+    "ListCloudWatchAlarmTemplates": "Lists cloudwatch alarm templates.",
+    "ListEventBridgeRuleTemplateGroups": "Lists eventbridge rule template groups.",
+    "ListEventBridgeRuleTemplates": "Lists eventbridge rule templates.",
+    "ListSignalMaps": "Lists signal maps.",
+    "StartDeleteMonitorDeployment": "Initiates a deployment to delete the monitor of the specified signal map.",
+    "StartMonitorDeployment": "Initiates a deployment to deploy the latest monitor of the specified signal map.",
+    "StartUpdateSignalMap": "Initiates an update for the specified signal map. Will discover a new signal map if a changed discoveryEntryPointArn is provided.",
+    "UpdateCloudWatchAlarmTemplate": "Updates the specified cloudwatch alarm template.",
+    "UpdateCloudWatchAlarmTemplateGroup": "Updates the specified cloudwatch alarm template group.",
+    "UpdateEventBridgeRuleTemplate": "Updates the specified eventbridge rule template.",
+    "UpdateEventBridgeRuleTemplateGroup": "Updates the specified eventbridge rule template group."
   },
   "shapes": {
     "AacCodingMode": {
@@ -3704,6 +3731,13 @@
     "__boolean": {
       "base": null,
       "refs": {
+        "CreateSignalMapResponseContent$MonitorChangesPendingDeployment": "If true, there are pending monitor changes for this signal map that can be deployed.",
+        "GetSignalMapResponseContent$MonitorChangesPendingDeployment": "If true, there are pending monitor changes for this signal map that can be deployed.",
+        "StartDeleteMonitorDeploymentResponseContent$MonitorChangesPendingDeployment": "If true, there are pending monitor changes for this signal map that can be deployed.",
+        "StartMonitorDeploymentRequestContent$DryRun": null,
+        "StartMonitorDeploymentResponseContent$MonitorChangesPendingDeployment": "If true, there are pending monitor changes for this signal map that can be deployed.",
+        "StartUpdateSignalMapRequestContent$ForceRediscovery": "If true, will force a rediscovery of a signal map if an unchanged discoveryEntryPointArn is provided.",
+        "StartUpdateSignalMapResponseContent$MonitorChangesPendingDeployment": "If true, there are pending monitor changes for this signal map that can be deployed."
       }
     },
     "__double": {
@@ -3732,7 +3766,13 @@
         "Reservation$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
         "Reservation$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'",
         "WavSettings$BitDepth": "Bits per sample.",
-        "WavSettings$SampleRate": "Sample rate in Hz."
+        "WavSettings$SampleRate": "Sample rate in Hz.",
+        "CloudWatchAlarmTemplateSummary$Threshold": "The threshold value to compare with the specified statistic.",
+        "CreateCloudWatchAlarmTemplateRequestContent$Threshold": "The threshold value to compare with the specified statistic.",
+        "CreateCloudWatchAlarmTemplateResponseContent$Threshold": "The threshold value to compare with the specified statistic.",
+        "GetCloudWatchAlarmTemplateResponseContent$Threshold": "The threshold value to compare with the specified statistic.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$Threshold": "The threshold value to compare with the specified statistic.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Threshold": "The threshold value to compare with the specified statistic."
       }
     },
     "__doubleMin0": {
@@ -3838,7 +3878,9 @@
         "VideoDescription$Width": "Output video width, in pixels. Must be an even number. For most codecs, you can leave this field and height blank in order to use the height and width (resolution) from the source. Note, however, that leaving blank is not recommended. For the Frame Capture codec, height and width are required.",
         "__listOf__integer$member": null,
         "InputDeviceConfigurableAudioChannelPairConfig$Id": "The ID for one audio pair configuration, a value from 1 to 8.",
-        "InputDeviceUhdAudioChannelPairConfig$Id": "The ID for one audio pair configuration, a value from 1 to 8."
+        "InputDeviceUhdAudioChannelPairConfig$Id": "The ID for one audio pair configuration, a value from 1 to 8.",
+        "CloudWatchAlarmTemplateGroupSummary$TemplateCount": "The number of templates in a group.",
+        "EventBridgeRuleTemplateGroupSummary$TemplateCount": "The number of templates in a group."
       }
     },
     "__integerMin0": {
@@ -4077,7 +4119,19 @@
         "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay.",
         "StaticImageOutputActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
         "StaticImageOutputActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay.",
-        "CmafIngestGroupSettings$SegmentLength": "The nominal duration of segments. The units are specified in SegmentLengthUnits. The segments will end on the next keyframe after the specified duration, so the actual segment length might be longer, and it might be a fraction of the units."
+        "CmafIngestGroupSettings$SegmentLength": "The nominal duration of segments. The units are specified in SegmentLengthUnits. The segments will end on the next keyframe after the specified duration, so the actual segment length might be longer, and it might be a fraction of the units.",
+        "CloudWatchAlarmTemplateSummary$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "CloudWatchAlarmTemplateSummary$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold.",
+        "CreateCloudWatchAlarmTemplateRequestContent$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "CreateCloudWatchAlarmTemplateRequestContent$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold.",
+        "CreateCloudWatchAlarmTemplateResponseContent$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "CreateCloudWatchAlarmTemplateResponseContent$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold.",
+        "GetCloudWatchAlarmTemplateResponseContent$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "GetCloudWatchAlarmTemplateResponseContent$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$DatapointsToAlarm": "The number of datapoints within the evaluation period that must be breaching to trigger the alarm.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$EvaluationPeriods": "The number of periods over which data is compared to the specified threshold."
       }
     },
     "__integerMin100": {
@@ -4948,7 +5002,14 @@
         "ValidationError$ErrorMessage": "The error message.",
         "VideoDescription$Name": "The name of this VideoDescription. Outputs will use this name to uniquely identify this Description.  Description names should be unique within this Live Event.",
         "__listOf__string$member": null,
-        "CmafIngestOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type."
+        "CmafIngestOutputSettings$NameModifier": "String concatenated to the end of the destination filename.  Required for multiple outputs of the same type.",
+        "BadRequestExceptionResponseContent$Message": "Exception error message.",
+        "ConflictExceptionResponseContent$Message": "Exception error message.",
+        "ForbiddenExceptionResponseContent$Message": "Exception error message.",
+        "InternalServerErrorExceptionResponseContent$Message": "Exception error message.",
+        "NotFoundExceptionResponseContent$Message": "Exception error message.",
+        "TagMap$member": null,
+        "TooManyRequestsExceptionResponseContent$Message": "Exception error message."
       }
     },
     "__stringMax1000": {
@@ -5012,7 +5073,9 @@
       "refs": {
         "DvbNitSettings$NetworkName": "The network name text placed in the networkNameDescriptor inside the Network Information Table. Maximum length is 256 characters.",
         "DvbSdtSettings$ServiceName": "The service name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters.",
-        "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters."
+        "DvbSdtSettings$ServiceProviderName": "The service provider name placed in the serviceDescriptor in the Service Description Table. Maximum length is 256 characters.",
+        "MediaResource$Name": "The logical name of an AWS media resource.",
+        "MediaResourceNeighbor$Name": "The logical name of an AWS media resource."
       }
     },
     "__stringMin1Max35": {
@@ -5214,6 +5277,692 @@
       "base": "Scte35 Type",
       "refs": {
         "CmafIngestGroupSettings$Scte35Type": "Type of scte35 track to add. none or scte35WithoutSegmentation"
+      }
+    },
+    "BadRequestExceptionResponseContent": {
+      "base": "The input fails to satisfy the constraints specified by an AWS service.",
+      "refs": {
+      }
+    },
+    "CloudWatchAlarmTemplateComparisonOperator": {
+      "base": "The comparison operator used to compare the specified statistic and the threshold.",
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$ComparisonOperator": null,
+        "CreateCloudWatchAlarmTemplateRequestContent$ComparisonOperator": null,
+        "CreateCloudWatchAlarmTemplateResponseContent$ComparisonOperator": null,
+        "GetCloudWatchAlarmTemplateResponseContent$ComparisonOperator": null,
+        "UpdateCloudWatchAlarmTemplateRequestContent$ComparisonOperator": null,
+        "UpdateCloudWatchAlarmTemplateResponseContent$ComparisonOperator": null
+      }
+    },
+    "CloudWatchAlarmTemplateGroupSummary": {
+      "base": null,
+      "refs": {
+        "__listOfCloudWatchAlarmTemplateGroupSummary$member": null
+      }
+    },
+    "CloudWatchAlarmTemplateStatistic": {
+      "base": "The statistic to apply to the alarm's metric data.",
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$Statistic": null,
+        "CreateCloudWatchAlarmTemplateRequestContent$Statistic": null,
+        "CreateCloudWatchAlarmTemplateResponseContent$Statistic": null,
+        "GetCloudWatchAlarmTemplateResponseContent$Statistic": null,
+        "UpdateCloudWatchAlarmTemplateRequestContent$Statistic": null,
+        "UpdateCloudWatchAlarmTemplateResponseContent$Statistic": null
+      }
+    },
+    "CloudWatchAlarmTemplateSummary": {
+      "base": null,
+      "refs": {
+        "__listOfCloudWatchAlarmTemplateSummary$member": null
+      }
+    },
+    "CloudWatchAlarmTemplateTargetResourceType": {
+      "base": "The resource type this template should dynamically generate cloudwatch metric alarms for.",
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$TargetResourceType": null,
+        "CreateCloudWatchAlarmTemplateRequestContent$TargetResourceType": null,
+        "CreateCloudWatchAlarmTemplateResponseContent$TargetResourceType": null,
+        "GetCloudWatchAlarmTemplateResponseContent$TargetResourceType": null,
+        "UpdateCloudWatchAlarmTemplateRequestContent$TargetResourceType": null,
+        "UpdateCloudWatchAlarmTemplateResponseContent$TargetResourceType": null
+      }
+    },
+    "CloudWatchAlarmTemplateTreatMissingData": {
+      "base": "Specifies how missing data points are treated when evaluating the alarm's condition.",
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$TreatMissingData": null,
+        "CreateCloudWatchAlarmTemplateRequestContent$TreatMissingData": null,
+        "CreateCloudWatchAlarmTemplateResponseContent$TreatMissingData": null,
+        "GetCloudWatchAlarmTemplateResponseContent$TreatMissingData": null,
+        "UpdateCloudWatchAlarmTemplateRequestContent$TreatMissingData": null,
+        "UpdateCloudWatchAlarmTemplateResponseContent$TreatMissingData": null
+      }
+    },
+    "ConflictExceptionResponseContent": {
+      "base": "Updating or deleting a resource can cause an inconsistent state.",
+      "refs": {
+      }
+    },
+    "CreateCloudWatchAlarmTemplateGroupRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCloudWatchAlarmTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCloudWatchAlarmTemplateRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCloudWatchAlarmTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventBridgeRuleTemplateGroupRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventBridgeRuleTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventBridgeRuleTemplateRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventBridgeRuleTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSignalMapRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSignalMapResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EventBridgeRuleTemplateEventType": {
+      "base": "The type of event to match with the rule.",
+      "refs": {
+        "CreateEventBridgeRuleTemplateRequestContent$EventType": null,
+        "CreateEventBridgeRuleTemplateResponseContent$EventType": null,
+        "EventBridgeRuleTemplateSummary$EventType": null,
+        "GetEventBridgeRuleTemplateResponseContent$EventType": null,
+        "UpdateEventBridgeRuleTemplateRequestContent$EventType": null,
+        "UpdateEventBridgeRuleTemplateResponseContent$EventType": null
+      }
+    },
+    "EventBridgeRuleTemplateGroupSummary": {
+      "base": null,
+      "refs": {
+        "__listOfEventBridgeRuleTemplateGroupSummary$member": null
+      }
+    },
+    "EventBridgeRuleTemplateSummary": {
+      "base": null,
+      "refs": {
+        "__listOfEventBridgeRuleTemplateSummary$member": null
+      }
+    },
+    "EventBridgeRuleTemplateTarget": {
+      "base": "The target to which to send matching events.",
+      "refs": {
+        "__listOfEventBridgeRuleTemplateTarget$member": null
+      }
+    },
+    "FailedMediaResourceMap": {
+      "base": "A map representing an incomplete AWS media workflow as a graph.",
+      "refs": {
+        "CreateSignalMapResponseContent$FailedMediaResourceMap": null,
+        "GetSignalMapResponseContent$FailedMediaResourceMap": null,
+        "StartDeleteMonitorDeploymentResponseContent$FailedMediaResourceMap": null,
+        "StartMonitorDeploymentResponseContent$FailedMediaResourceMap": null,
+        "StartUpdateSignalMapResponseContent$FailedMediaResourceMap": null
+      }
+    },
+    "ForbiddenExceptionResponseContent": {
+      "base": "User does not have sufficient access to perform this action.",
+      "refs": {
+      }
+    },
+    "GetCloudWatchAlarmTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCloudWatchAlarmTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventBridgeRuleTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventBridgeRuleTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSignalMapResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InternalServerErrorExceptionResponseContent": {
+      "base": "Unexpected error during processing of request.",
+      "refs": {
+      }
+    },
+    "ListCloudWatchAlarmTemplateGroupsResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCloudWatchAlarmTemplatesResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventBridgeRuleTemplateGroupsResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventBridgeRuleTemplatesResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSignalMapsResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MediaResource": {
+      "base": "An AWS resource used in media workflows.",
+      "refs": {
+        "FailedMediaResourceMap$member": null,
+        "MediaResourceMap$member": null
+      }
+    },
+    "MediaResourceMap": {
+      "base": "A map representing an AWS media workflow as a graph.",
+      "refs": {
+        "CreateSignalMapResponseContent$MediaResourceMap": null,
+        "GetSignalMapResponseContent$MediaResourceMap": null,
+        "StartDeleteMonitorDeploymentResponseContent$MediaResourceMap": null,
+        "StartMonitorDeploymentResponseContent$MediaResourceMap": null,
+        "StartUpdateSignalMapResponseContent$MediaResourceMap": null
+      }
+    },
+    "MediaResourceNeighbor": {
+      "base": "A direct source or destination neighbor to an AWS media resource.",
+      "refs": {
+        "__listOfMediaResourceNeighbor$member": null
+      }
+    },
+    "MonitorDeployment": {
+      "base": "Represents the latest monitor deployment of a signal map.",
+      "refs": {
+        "CreateSignalMapResponseContent$MonitorDeployment": null,
+        "GetSignalMapResponseContent$MonitorDeployment": null,
+        "StartDeleteMonitorDeploymentResponseContent$MonitorDeployment": null,
+        "StartMonitorDeploymentResponseContent$MonitorDeployment": null,
+        "StartUpdateSignalMapResponseContent$MonitorDeployment": null
+      }
+    },
+    "NotFoundExceptionResponseContent": {
+      "base": "Request references a resource which does not exist.",
+      "refs": {
+      }
+    },
+    "SignalMapMonitorDeploymentStatus": {
+      "base": "A signal map's monitor deployment status.",
+      "refs": {
+        "MonitorDeployment$Status": null,
+        "SignalMapSummary$MonitorDeploymentStatus": null,
+        "SuccessfulMonitorDeployment$Status": null
+      }
+    },
+    "SignalMapStatus": {
+      "base": "A signal map's current status which is dependent on its lifecycle actions or associated jobs.",
+      "refs": {
+        "CreateSignalMapResponseContent$Status": null,
+        "GetSignalMapResponseContent$Status": null,
+        "SignalMapSummary$Status": null,
+        "StartDeleteMonitorDeploymentResponseContent$Status": null,
+        "StartMonitorDeploymentResponseContent$Status": null,
+        "StartUpdateSignalMapResponseContent$Status": null
+      }
+    },
+    "SignalMapSummary": {
+      "base": null,
+      "refs": {
+        "__listOfSignalMapSummary$member": null
+      }
+    },
+    "StartDeleteMonitorDeploymentResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMonitorDeploymentRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMonitorDeploymentResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartUpdateSignalMapRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartUpdateSignalMapResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SuccessfulMonitorDeployment": {
+      "base": "Represents the latest successful monitor deployment of a signal map.",
+      "refs": {
+        "CreateSignalMapResponseContent$LastSuccessfulMonitorDeployment": null,
+        "GetSignalMapResponseContent$LastSuccessfulMonitorDeployment": null,
+        "StartDeleteMonitorDeploymentResponseContent$LastSuccessfulMonitorDeployment": null,
+        "StartMonitorDeploymentResponseContent$LastSuccessfulMonitorDeployment": null,
+        "StartUpdateSignalMapResponseContent$LastSuccessfulMonitorDeployment": null
+      }
+    },
+    "TagMap": {
+      "base": "Represents the tags associated with a resource.",
+      "refs": {
+        "CloudWatchAlarmTemplateGroupSummary$Tags": null,
+        "CloudWatchAlarmTemplateSummary$Tags": null,
+        "CreateCloudWatchAlarmTemplateGroupRequestContent$Tags": null,
+        "CreateCloudWatchAlarmTemplateGroupResponseContent$Tags": null,
+        "CreateCloudWatchAlarmTemplateRequestContent$Tags": null,
+        "CreateCloudWatchAlarmTemplateResponseContent$Tags": null,
+        "CreateEventBridgeRuleTemplateGroupRequestContent$Tags": null,
+        "CreateEventBridgeRuleTemplateGroupResponseContent$Tags": null,
+        "CreateEventBridgeRuleTemplateRequestContent$Tags": null,
+        "CreateEventBridgeRuleTemplateResponseContent$Tags": null,
+        "CreateSignalMapRequestContent$Tags": null,
+        "CreateSignalMapResponseContent$Tags": null,
+        "EventBridgeRuleTemplateGroupSummary$Tags": null,
+        "EventBridgeRuleTemplateSummary$Tags": null,
+        "GetCloudWatchAlarmTemplateGroupResponseContent$Tags": null,
+        "GetCloudWatchAlarmTemplateResponseContent$Tags": null,
+        "GetEventBridgeRuleTemplateGroupResponseContent$Tags": null,
+        "GetEventBridgeRuleTemplateResponseContent$Tags": null,
+        "GetSignalMapResponseContent$Tags": null,
+        "SignalMapSummary$Tags": null,
+        "StartDeleteMonitorDeploymentResponseContent$Tags": null,
+        "StartMonitorDeploymentResponseContent$Tags": null,
+        "StartUpdateSignalMapResponseContent$Tags": null,
+        "UpdateCloudWatchAlarmTemplateGroupResponseContent$Tags": null,
+        "UpdateCloudWatchAlarmTemplateResponseContent$Tags": null,
+        "UpdateEventBridgeRuleTemplateGroupResponseContent$Tags": null,
+        "UpdateEventBridgeRuleTemplateResponseContent$Tags": null
+      }
+    },
+    "TooManyRequestsExceptionResponseContent": {
+      "base": "Request was denied due to request throttling.",
+      "refs": {
+      }
+    },
+    "UpdateCloudWatchAlarmTemplateGroupRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCloudWatchAlarmTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCloudWatchAlarmTemplateRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateCloudWatchAlarmTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventBridgeRuleTemplateGroupRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventBridgeRuleTemplateGroupResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventBridgeRuleTemplateRequestContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventBridgeRuleTemplateResponseContent": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "__integerMax5": {
+      "base": null,
+      "refs": {
+        "EventBridgeRuleTemplateSummary$EventTargetCount": "The number of targets configured to send matching events."
+      }
+    },
+    "__integerMin10Max86400": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$Period": "The period, in seconds, over which the specified statistic is applied.",
+        "CreateCloudWatchAlarmTemplateRequestContent$Period": "The period, in seconds, over which the specified statistic is applied.",
+        "CreateCloudWatchAlarmTemplateResponseContent$Period": "The period, in seconds, over which the specified statistic is applied.",
+        "GetCloudWatchAlarmTemplateResponseContent$Period": "The period, in seconds, over which the specified statistic is applied.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$Period": "The period, in seconds, over which the specified statistic is applied.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Period": "The period, in seconds, over which the specified statistic is applied."
+      }
+    },
+    "__listOfCloudWatchAlarmTemplateGroupSummary": {
+      "base": null,
+      "refs": {
+        "ListCloudWatchAlarmTemplateGroupsResponseContent$CloudWatchAlarmTemplateGroups": null
+      }
+    },
+    "__listOfCloudWatchAlarmTemplateSummary": {
+      "base": null,
+      "refs": {
+        "ListCloudWatchAlarmTemplatesResponseContent$CloudWatchAlarmTemplates": null
+      }
+    },
+    "__listOfEventBridgeRuleTemplateGroupSummary": {
+      "base": null,
+      "refs": {
+        "ListEventBridgeRuleTemplateGroupsResponseContent$EventBridgeRuleTemplateGroups": null
+      }
+    },
+    "__listOfEventBridgeRuleTemplateSummary": {
+      "base": null,
+      "refs": {
+        "ListEventBridgeRuleTemplatesResponseContent$EventBridgeRuleTemplates": null
+      }
+    },
+    "__listOfEventBridgeRuleTemplateTarget": {
+      "base": null,
+      "refs": {
+        "CreateEventBridgeRuleTemplateRequestContent$EventTargets": null,
+        "CreateEventBridgeRuleTemplateResponseContent$EventTargets": null,
+        "GetEventBridgeRuleTemplateResponseContent$EventTargets": null,
+        "UpdateEventBridgeRuleTemplateRequestContent$EventTargets": null,
+        "UpdateEventBridgeRuleTemplateResponseContent$EventTargets": null
+      }
+    },
+    "__listOfMediaResourceNeighbor": {
+      "base": null,
+      "refs": {
+        "MediaResource$Destinations": null,
+        "MediaResource$Sources": null
+      }
+    },
+    "__listOfSignalMapSummary": {
+      "base": null,
+      "refs": {
+        "ListSignalMapsResponseContent$SignalMaps": null
+      }
+    },
+    "__listOf__stringMin7Max11PatternAws097": {
+      "base": null,
+      "refs": {
+        "CreateSignalMapResponseContent$CloudWatchAlarmTemplateGroupIds": null,
+        "CreateSignalMapResponseContent$EventBridgeRuleTemplateGroupIds": null,
+        "GetSignalMapResponseContent$CloudWatchAlarmTemplateGroupIds": null,
+        "GetSignalMapResponseContent$EventBridgeRuleTemplateGroupIds": null,
+        "StartDeleteMonitorDeploymentResponseContent$CloudWatchAlarmTemplateGroupIds": null,
+        "StartDeleteMonitorDeploymentResponseContent$EventBridgeRuleTemplateGroupIds": null,
+        "StartMonitorDeploymentResponseContent$CloudWatchAlarmTemplateGroupIds": null,
+        "StartMonitorDeploymentResponseContent$EventBridgeRuleTemplateGroupIds": null,
+        "StartUpdateSignalMapResponseContent$CloudWatchAlarmTemplateGroupIds": null,
+        "StartUpdateSignalMapResponseContent$EventBridgeRuleTemplateGroupIds": null
+      }
+    },
+    "__listOf__stringPatternS": {
+      "base": null,
+      "refs": {
+        "CreateSignalMapRequestContent$CloudWatchAlarmTemplateGroupIdentifiers": null,
+        "CreateSignalMapRequestContent$EventBridgeRuleTemplateGroupIdentifiers": null,
+        "StartUpdateSignalMapRequestContent$CloudWatchAlarmTemplateGroupIdentifiers": null,
+        "StartUpdateSignalMapRequestContent$EventBridgeRuleTemplateGroupIdentifiers": null
+      }
+    },
+    "__stringMax64": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType.",
+        "CreateCloudWatchAlarmTemplateRequestContent$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType.",
+        "CreateCloudWatchAlarmTemplateResponseContent$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType.",
+        "GetCloudWatchAlarmTemplateResponseContent$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$MetricName": "The name of the metric associated with the alarm. Must be compatible with targetResourceType."
+      }
+    },
+    "__stringMin0Max1024": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateGroupSummary$Description": "A resource's optional description.",
+        "CloudWatchAlarmTemplateSummary$Description": "A resource's optional description.",
+        "CreateCloudWatchAlarmTemplateGroupRequestContent$Description": "A resource's optional description.",
+        "CreateCloudWatchAlarmTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "CreateCloudWatchAlarmTemplateRequestContent$Description": "A resource's optional description.",
+        "CreateCloudWatchAlarmTemplateResponseContent$Description": "A resource's optional description.",
+        "CreateEventBridgeRuleTemplateGroupRequestContent$Description": "A resource's optional description.",
+        "CreateEventBridgeRuleTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "CreateEventBridgeRuleTemplateRequestContent$Description": "A resource's optional description.",
+        "CreateEventBridgeRuleTemplateResponseContent$Description": "A resource's optional description.",
+        "CreateSignalMapRequestContent$Description": "A resource's optional description.",
+        "CreateSignalMapResponseContent$Description": "A resource's optional description.",
+        "EventBridgeRuleTemplateGroupSummary$Description": "A resource's optional description.",
+        "EventBridgeRuleTemplateSummary$Description": "A resource's optional description.",
+        "GetCloudWatchAlarmTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "GetCloudWatchAlarmTemplateResponseContent$Description": "A resource's optional description.",
+        "GetEventBridgeRuleTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "GetEventBridgeRuleTemplateResponseContent$Description": "A resource's optional description.",
+        "GetSignalMapResponseContent$Description": "A resource's optional description.",
+        "SignalMapSummary$Description": "A resource's optional description.",
+        "StartDeleteMonitorDeploymentResponseContent$Description": "A resource's optional description.",
+        "StartMonitorDeploymentResponseContent$Description": "A resource's optional description.",
+        "StartUpdateSignalMapRequestContent$Description": "A resource's optional description.",
+        "StartUpdateSignalMapResponseContent$Description": "A resource's optional description.",
+        "UpdateCloudWatchAlarmTemplateGroupRequestContent$Description": "A resource's optional description.",
+        "UpdateCloudWatchAlarmTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$Description": "A resource's optional description.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Description": "A resource's optional description.",
+        "UpdateEventBridgeRuleTemplateGroupRequestContent$Description": "A resource's optional description.",
+        "UpdateEventBridgeRuleTemplateGroupResponseContent$Description": "A resource's optional description.",
+        "UpdateEventBridgeRuleTemplateRequestContent$Description": "A resource's optional description.",
+        "UpdateEventBridgeRuleTemplateResponseContent$Description": "A resource's optional description."
+      }
+    },
+    "__stringMin1Max2048": {
+      "base": null,
+      "refs": {
+        "CreateSignalMapRequestContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "CreateSignalMapResponseContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "CreateSignalMapResponseContent$ErrorMessage": "Error message associated with a failed creation or failed update attempt of a signal map.",
+        "GetSignalMapResponseContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "GetSignalMapResponseContent$ErrorMessage": "Error message associated with a failed creation or failed update attempt of a signal map.",
+        "ListCloudWatchAlarmTemplateGroupsResponseContent$NextToken": "A token used to retrieve the next set of results in paginated list responses.",
+        "ListCloudWatchAlarmTemplatesResponseContent$NextToken": "A token used to retrieve the next set of results in paginated list responses.",
+        "ListEventBridgeRuleTemplateGroupsResponseContent$NextToken": "A token used to retrieve the next set of results in paginated list responses.",
+        "ListEventBridgeRuleTemplatesResponseContent$NextToken": "A token used to retrieve the next set of results in paginated list responses.",
+        "ListSignalMapsResponseContent$NextToken": "A token used to retrieve the next set of results in paginated list responses.",
+        "MonitorDeployment$DetailsUri": "URI associated with a signal map's monitor deployment.",
+        "MonitorDeployment$ErrorMessage": "Error message associated with a failed monitor deployment of a signal map.",
+        "StartDeleteMonitorDeploymentResponseContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "StartDeleteMonitorDeploymentResponseContent$ErrorMessage": "Error message associated with a failed creation or failed update attempt of a signal map.",
+        "StartMonitorDeploymentResponseContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "StartMonitorDeploymentResponseContent$ErrorMessage": "Error message associated with a failed creation or failed update attempt of a signal map.",
+        "StartUpdateSignalMapRequestContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "StartUpdateSignalMapResponseContent$DiscoveryEntryPointArn": "A top-level supported AWS resource ARN to discovery a signal map from.",
+        "StartUpdateSignalMapResponseContent$ErrorMessage": "Error message associated with a failed creation or failed update attempt of a signal map.",
+        "SuccessfulMonitorDeployment$DetailsUri": "URI associated with a signal map's monitor deployment."
+      }
+    },
+    "__stringMin1Max2048PatternArn": {
+      "base": null,
+      "refs": {
+        "EventBridgeRuleTemplateTarget$Arn": "Target ARNs must be either an SNS topic or CloudWatch log group.",
+        "MediaResourceNeighbor$Arn": "The ARN of a resource used in AWS media workflows."
+      }
+    },
+    "__stringMin1Max255PatternS": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateGroupSummary$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CloudWatchAlarmTemplateSummary$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateCloudWatchAlarmTemplateGroupRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateCloudWatchAlarmTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateCloudWatchAlarmTemplateRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateCloudWatchAlarmTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateEventBridgeRuleTemplateGroupRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateEventBridgeRuleTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateEventBridgeRuleTemplateRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateEventBridgeRuleTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateSignalMapRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "CreateSignalMapResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "EventBridgeRuleTemplateGroupSummary$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "EventBridgeRuleTemplateSummary$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "GetCloudWatchAlarmTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "GetCloudWatchAlarmTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "GetEventBridgeRuleTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "GetEventBridgeRuleTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "GetSignalMapResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "SignalMapSummary$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "StartDeleteMonitorDeploymentResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "StartMonitorDeploymentResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "StartUpdateSignalMapRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "StartUpdateSignalMapResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateCloudWatchAlarmTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateEventBridgeRuleTemplateGroupResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateEventBridgeRuleTemplateRequestContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region.",
+        "UpdateEventBridgeRuleTemplateResponseContent$Name": "A resource's name. Names must be unique within the scope of a resource type in a specific region."
+      }
+    },
+    "__stringMin7Max11PatternAws097": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateGroupSummary$Id": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CloudWatchAlarmTemplateSummary$GroupId": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CloudWatchAlarmTemplateSummary$Id": "A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`",
+        "CreateCloudWatchAlarmTemplateGroupResponseContent$Id": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CreateCloudWatchAlarmTemplateResponseContent$GroupId": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CreateCloudWatchAlarmTemplateResponseContent$Id": "A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`",
+        "CreateEventBridgeRuleTemplateGroupResponseContent$Id": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CreateEventBridgeRuleTemplateResponseContent$GroupId": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "CreateEventBridgeRuleTemplateResponseContent$Id": "An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`",
+        "CreateSignalMapResponseContent$Id": "A signal map's id.",
+        "EventBridgeRuleTemplateGroupSummary$Id": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "EventBridgeRuleTemplateSummary$GroupId": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "EventBridgeRuleTemplateSummary$Id": "An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`",
+        "GetCloudWatchAlarmTemplateGroupResponseContent$Id": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "GetCloudWatchAlarmTemplateResponseContent$GroupId": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "GetCloudWatchAlarmTemplateResponseContent$Id": "A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`",
+        "GetEventBridgeRuleTemplateGroupResponseContent$Id": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "GetEventBridgeRuleTemplateResponseContent$GroupId": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "GetEventBridgeRuleTemplateResponseContent$Id": "An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`",
+        "GetSignalMapResponseContent$Id": "A signal map's id.",
+        "SignalMapSummary$Id": "A signal map's id.",
+        "StartDeleteMonitorDeploymentResponseContent$Id": "A signal map's id.",
+        "StartMonitorDeploymentResponseContent$Id": "A signal map's id.",
+        "StartUpdateSignalMapResponseContent$Id": "A signal map's id.",
+        "UpdateCloudWatchAlarmTemplateGroupResponseContent$Id": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "UpdateCloudWatchAlarmTemplateResponseContent$GroupId": "A cloudwatch alarm template group's id. AWS provided template groups have ids that start with `aws-`",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Id": "A cloudwatch alarm template's id. AWS provided templates have ids that start with `aws-`",
+        "UpdateEventBridgeRuleTemplateGroupResponseContent$Id": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "UpdateEventBridgeRuleTemplateResponseContent$GroupId": "An eventbridge rule template group's id. AWS provided template groups have ids that start with `aws-`",
+        "UpdateEventBridgeRuleTemplateResponseContent$Id": "An eventbridge rule template's id. AWS provided templates have ids that start with `aws-`",
+        "__listOf__stringMin7Max11PatternAws097$member": null
+      }
+    },
+    "__stringPatternArnMedialiveCloudwatchAlarmTemplate": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateSummary$Arn": "A cloudwatch alarm template's ARN (Amazon Resource Name)",
+        "CreateCloudWatchAlarmTemplateResponseContent$Arn": "A cloudwatch alarm template's ARN (Amazon Resource Name)",
+        "GetCloudWatchAlarmTemplateResponseContent$Arn": "A cloudwatch alarm template's ARN (Amazon Resource Name)",
+        "UpdateCloudWatchAlarmTemplateResponseContent$Arn": "A cloudwatch alarm template's ARN (Amazon Resource Name)"
+      }
+    },
+    "__stringPatternArnMedialiveCloudwatchAlarmTemplateGroup": {
+      "base": null,
+      "refs": {
+        "CloudWatchAlarmTemplateGroupSummary$Arn": "A cloudwatch alarm template group's ARN (Amazon Resource Name)",
+        "CreateCloudWatchAlarmTemplateGroupResponseContent$Arn": "A cloudwatch alarm template group's ARN (Amazon Resource Name)",
+        "GetCloudWatchAlarmTemplateGroupResponseContent$Arn": "A cloudwatch alarm template group's ARN (Amazon Resource Name)",
+        "UpdateCloudWatchAlarmTemplateGroupResponseContent$Arn": "A cloudwatch alarm template group's ARN (Amazon Resource Name)"
+      }
+    },
+    "__stringPatternArnMedialiveEventbridgeRuleTemplate": {
+      "base": null,
+      "refs": {
+        "CreateEventBridgeRuleTemplateResponseContent$Arn": "An eventbridge rule template's ARN (Amazon Resource Name)",
+        "EventBridgeRuleTemplateSummary$Arn": "An eventbridge rule template's ARN (Amazon Resource Name)",
+        "GetEventBridgeRuleTemplateResponseContent$Arn": "An eventbridge rule template's ARN (Amazon Resource Name)",
+        "UpdateEventBridgeRuleTemplateResponseContent$Arn": "An eventbridge rule template's ARN (Amazon Resource Name)"
+      }
+    },
+    "__stringPatternArnMedialiveEventbridgeRuleTemplateGroup": {
+      "base": null,
+      "refs": {
+        "CreateEventBridgeRuleTemplateGroupResponseContent$Arn": "An eventbridge rule template group's ARN (Amazon Resource Name)",
+        "EventBridgeRuleTemplateGroupSummary$Arn": "An eventbridge rule template group's ARN (Amazon Resource Name)",
+        "GetEventBridgeRuleTemplateGroupResponseContent$Arn": "An eventbridge rule template group's ARN (Amazon Resource Name)",
+        "UpdateEventBridgeRuleTemplateGroupResponseContent$Arn": "An eventbridge rule template group's ARN (Amazon Resource Name)"
+      }
+    },
+    "__stringPatternArnMedialiveSignalMap": {
+      "base": null,
+      "refs": {
+        "CreateSignalMapResponseContent$Arn": "A signal map's ARN (Amazon Resource Name)",
+        "GetSignalMapResponseContent$Arn": "A signal map's ARN (Amazon Resource Name)",
+        "SignalMapSummary$Arn": "A signal map's ARN (Amazon Resource Name)",
+        "StartDeleteMonitorDeploymentResponseContent$Arn": "A signal map's ARN (Amazon Resource Name)",
+        "StartMonitorDeploymentResponseContent$Arn": "A signal map's ARN (Amazon Resource Name)",
+        "StartUpdateSignalMapResponseContent$Arn": "A signal map's ARN (Amazon Resource Name)"
+      }
+    },
+    "__stringPatternS": {
+      "base": null,
+      "refs": {
+        "CreateCloudWatchAlarmTemplateRequestContent$GroupIdentifier": "A cloudwatch alarm template group's identifier. Can be either be its id or current name.",
+        "CreateEventBridgeRuleTemplateRequestContent$GroupIdentifier": "An eventbridge rule template group's identifier. Can be either be its id or current name.",
+        "UpdateCloudWatchAlarmTemplateRequestContent$GroupIdentifier": "A cloudwatch alarm template group's identifier. Can be either be its id or current name.",
+        "UpdateEventBridgeRuleTemplateRequestContent$GroupIdentifier": "An eventbridge rule template group's identifier. Can be either be its id or current name.",
+        "__listOf__stringPatternS$member": null
       }
     }
   },

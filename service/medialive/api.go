@@ -759,6 +759,363 @@ func (c *MediaLive) CreateChannelWithContext(ctx aws.Context, input *CreateChann
 	return out, req.Send()
 }
 
+const opCreateCloudWatchAlarmTemplate = "CreateCloudWatchAlarmTemplate"
+
+// CreateCloudWatchAlarmTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCloudWatchAlarmTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCloudWatchAlarmTemplate for more information on using the CreateCloudWatchAlarmTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCloudWatchAlarmTemplateRequest method.
+//	req, resp := client.CreateCloudWatchAlarmTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplate
+func (c *MediaLive) CreateCloudWatchAlarmTemplateRequest(input *CreateCloudWatchAlarmTemplateInput) (req *request.Request, output *CreateCloudWatchAlarmTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateCloudWatchAlarmTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/cloudwatch-alarm-templates",
+	}
+
+	if input == nil {
+		input = &CreateCloudWatchAlarmTemplateInput{}
+	}
+
+	output = &CreateCloudWatchAlarmTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCloudWatchAlarmTemplate API operation for AWS Elemental MediaLive.
+//
+// Creates a cloudwatch alarm template to dynamically generate cloudwatch metric
+// alarms on targeted resource types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreateCloudWatchAlarmTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplate
+func (c *MediaLive) CreateCloudWatchAlarmTemplate(input *CreateCloudWatchAlarmTemplateInput) (*CreateCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.CreateCloudWatchAlarmTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateCloudWatchAlarmTemplateWithContext is the same as CreateCloudWatchAlarmTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCloudWatchAlarmTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreateCloudWatchAlarmTemplateWithContext(ctx aws.Context, input *CreateCloudWatchAlarmTemplateInput, opts ...request.Option) (*CreateCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.CreateCloudWatchAlarmTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCloudWatchAlarmTemplateGroup = "CreateCloudWatchAlarmTemplateGroup"
+
+// CreateCloudWatchAlarmTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCloudWatchAlarmTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCloudWatchAlarmTemplateGroup for more information on using the CreateCloudWatchAlarmTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateCloudWatchAlarmTemplateGroupRequest method.
+//	req, resp := client.CreateCloudWatchAlarmTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplateGroup
+func (c *MediaLive) CreateCloudWatchAlarmTemplateGroupRequest(input *CreateCloudWatchAlarmTemplateGroupInput) (req *request.Request, output *CreateCloudWatchAlarmTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateCloudWatchAlarmTemplateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/cloudwatch-alarm-template-groups",
+	}
+
+	if input == nil {
+		input = &CreateCloudWatchAlarmTemplateGroupInput{}
+	}
+
+	output = &CreateCloudWatchAlarmTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCloudWatchAlarmTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Creates a cloudwatch alarm template group to group your cloudwatch alarm
+// templates and to attach to signal maps for dynamically creating alarms.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreateCloudWatchAlarmTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateCloudWatchAlarmTemplateGroup
+func (c *MediaLive) CreateCloudWatchAlarmTemplateGroup(input *CreateCloudWatchAlarmTemplateGroupInput) (*CreateCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.CreateCloudWatchAlarmTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateCloudWatchAlarmTemplateGroupWithContext is the same as CreateCloudWatchAlarmTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCloudWatchAlarmTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreateCloudWatchAlarmTemplateGroupWithContext(ctx aws.Context, input *CreateCloudWatchAlarmTemplateGroupInput, opts ...request.Option) (*CreateCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.CreateCloudWatchAlarmTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEventBridgeRuleTemplate = "CreateEventBridgeRuleTemplate"
+
+// CreateEventBridgeRuleTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventBridgeRuleTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventBridgeRuleTemplate for more information on using the CreateEventBridgeRuleTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEventBridgeRuleTemplateRequest method.
+//	req, resp := client.CreateEventBridgeRuleTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplate
+func (c *MediaLive) CreateEventBridgeRuleTemplateRequest(input *CreateEventBridgeRuleTemplateInput) (req *request.Request, output *CreateEventBridgeRuleTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventBridgeRuleTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/eventbridge-rule-templates",
+	}
+
+	if input == nil {
+		input = &CreateEventBridgeRuleTemplateInput{}
+	}
+
+	output = &CreateEventBridgeRuleTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventBridgeRuleTemplate API operation for AWS Elemental MediaLive.
+//
+// Creates an eventbridge rule template to monitor events and send notifications
+// to your targeted resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreateEventBridgeRuleTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplate
+func (c *MediaLive) CreateEventBridgeRuleTemplate(input *CreateEventBridgeRuleTemplateInput) (*CreateEventBridgeRuleTemplateOutput, error) {
+	req, out := c.CreateEventBridgeRuleTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventBridgeRuleTemplateWithContext is the same as CreateEventBridgeRuleTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventBridgeRuleTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreateEventBridgeRuleTemplateWithContext(ctx aws.Context, input *CreateEventBridgeRuleTemplateInput, opts ...request.Option) (*CreateEventBridgeRuleTemplateOutput, error) {
+	req, out := c.CreateEventBridgeRuleTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEventBridgeRuleTemplateGroup = "CreateEventBridgeRuleTemplateGroup"
+
+// CreateEventBridgeRuleTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventBridgeRuleTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventBridgeRuleTemplateGroup for more information on using the CreateEventBridgeRuleTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEventBridgeRuleTemplateGroupRequest method.
+//	req, resp := client.CreateEventBridgeRuleTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplateGroup
+func (c *MediaLive) CreateEventBridgeRuleTemplateGroupRequest(input *CreateEventBridgeRuleTemplateGroupInput) (req *request.Request, output *CreateEventBridgeRuleTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventBridgeRuleTemplateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/eventbridge-rule-template-groups",
+	}
+
+	if input == nil {
+		input = &CreateEventBridgeRuleTemplateGroupInput{}
+	}
+
+	output = &CreateEventBridgeRuleTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventBridgeRuleTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Creates an eventbridge rule template group to group your eventbridge rule
+// templates and to attach to signal maps for dynamically creating notification
+// rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreateEventBridgeRuleTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateEventBridgeRuleTemplateGroup
+func (c *MediaLive) CreateEventBridgeRuleTemplateGroup(input *CreateEventBridgeRuleTemplateGroupInput) (*CreateEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.CreateEventBridgeRuleTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventBridgeRuleTemplateGroupWithContext is the same as CreateEventBridgeRuleTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventBridgeRuleTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreateEventBridgeRuleTemplateGroupWithContext(ctx aws.Context, input *CreateEventBridgeRuleTemplateGroupInput, opts ...request.Option) (*CreateEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.CreateEventBridgeRuleTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateInput = "CreateInput"
 
 // CreateInputRequest generates a "aws/request.Request" representing the
@@ -1207,6 +1564,95 @@ func (c *MediaLive) CreatePartnerInputWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateSignalMap = "CreateSignalMap"
+
+// CreateSignalMapRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSignalMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSignalMap for more information on using the CreateSignalMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSignalMapRequest method.
+//	req, resp := client.CreateSignalMapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateSignalMap
+func (c *MediaLive) CreateSignalMapRequest(input *CreateSignalMapInput) (req *request.Request, output *CreateSignalMapOutput) {
+	op := &request.Operation{
+		Name:       opCreateSignalMap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/signal-maps",
+	}
+
+	if input == nil {
+		input = &CreateSignalMapInput{}
+	}
+
+	output = &CreateSignalMapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSignalMap API operation for AWS Elemental MediaLive.
+//
+// Initiates the creation of a new signal map. Will discover a new mediaResourceMap
+// based on the provided discoveryEntryPointArn.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreateSignalMap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreateSignalMap
+func (c *MediaLive) CreateSignalMap(input *CreateSignalMapInput) (*CreateSignalMapOutput, error) {
+	req, out := c.CreateSignalMapRequest(input)
+	return out, req.Send()
+}
+
+// CreateSignalMapWithContext is the same as CreateSignalMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSignalMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreateSignalMapWithContext(ctx aws.Context, input *CreateSignalMapInput, opts ...request.Option) (*CreateSignalMapOutput, error) {
+	req, out := c.CreateSignalMapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
@@ -1379,6 +1825,366 @@ func (c *MediaLive) DeleteChannel(input *DeleteChannelInput) (*DeleteChannelOutp
 // for more information on using Contexts.
 func (c *MediaLive) DeleteChannelWithContext(ctx aws.Context, input *DeleteChannelInput, opts ...request.Option) (*DeleteChannelOutput, error) {
 	req, out := c.DeleteChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCloudWatchAlarmTemplate = "DeleteCloudWatchAlarmTemplate"
+
+// DeleteCloudWatchAlarmTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCloudWatchAlarmTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCloudWatchAlarmTemplate for more information on using the DeleteCloudWatchAlarmTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCloudWatchAlarmTemplateRequest method.
+//	req, resp := client.DeleteCloudWatchAlarmTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplate
+func (c *MediaLive) DeleteCloudWatchAlarmTemplateRequest(input *DeleteCloudWatchAlarmTemplateInput) (req *request.Request, output *DeleteCloudWatchAlarmTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCloudWatchAlarmTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/cloudwatch-alarm-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteCloudWatchAlarmTemplateInput{}
+	}
+
+	output = &DeleteCloudWatchAlarmTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCloudWatchAlarmTemplate API operation for AWS Elemental MediaLive.
+//
+// Deletes a cloudwatch alarm template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DeleteCloudWatchAlarmTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplate
+func (c *MediaLive) DeleteCloudWatchAlarmTemplate(input *DeleteCloudWatchAlarmTemplateInput) (*DeleteCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.DeleteCloudWatchAlarmTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCloudWatchAlarmTemplateWithContext is the same as DeleteCloudWatchAlarmTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCloudWatchAlarmTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DeleteCloudWatchAlarmTemplateWithContext(ctx aws.Context, input *DeleteCloudWatchAlarmTemplateInput, opts ...request.Option) (*DeleteCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.DeleteCloudWatchAlarmTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCloudWatchAlarmTemplateGroup = "DeleteCloudWatchAlarmTemplateGroup"
+
+// DeleteCloudWatchAlarmTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCloudWatchAlarmTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCloudWatchAlarmTemplateGroup for more information on using the DeleteCloudWatchAlarmTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteCloudWatchAlarmTemplateGroupRequest method.
+//	req, resp := client.DeleteCloudWatchAlarmTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplateGroup
+func (c *MediaLive) DeleteCloudWatchAlarmTemplateGroupRequest(input *DeleteCloudWatchAlarmTemplateGroupInput) (req *request.Request, output *DeleteCloudWatchAlarmTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCloudWatchAlarmTemplateGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/cloudwatch-alarm-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteCloudWatchAlarmTemplateGroupInput{}
+	}
+
+	output = &DeleteCloudWatchAlarmTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCloudWatchAlarmTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Deletes a cloudwatch alarm template group. You must detach this group from
+// all signal maps and ensure its existing templates are moved to another group
+// or deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DeleteCloudWatchAlarmTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteCloudWatchAlarmTemplateGroup
+func (c *MediaLive) DeleteCloudWatchAlarmTemplateGroup(input *DeleteCloudWatchAlarmTemplateGroupInput) (*DeleteCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.DeleteCloudWatchAlarmTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCloudWatchAlarmTemplateGroupWithContext is the same as DeleteCloudWatchAlarmTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCloudWatchAlarmTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DeleteCloudWatchAlarmTemplateGroupWithContext(ctx aws.Context, input *DeleteCloudWatchAlarmTemplateGroupInput, opts ...request.Option) (*DeleteCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.DeleteCloudWatchAlarmTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventBridgeRuleTemplate = "DeleteEventBridgeRuleTemplate"
+
+// DeleteEventBridgeRuleTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventBridgeRuleTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventBridgeRuleTemplate for more information on using the DeleteEventBridgeRuleTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEventBridgeRuleTemplateRequest method.
+//	req, resp := client.DeleteEventBridgeRuleTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplate
+func (c *MediaLive) DeleteEventBridgeRuleTemplateRequest(input *DeleteEventBridgeRuleTemplateInput) (req *request.Request, output *DeleteEventBridgeRuleTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventBridgeRuleTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/eventbridge-rule-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteEventBridgeRuleTemplateInput{}
+	}
+
+	output = &DeleteEventBridgeRuleTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventBridgeRuleTemplate API operation for AWS Elemental MediaLive.
+//
+// Deletes an eventbridge rule template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DeleteEventBridgeRuleTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplate
+func (c *MediaLive) DeleteEventBridgeRuleTemplate(input *DeleteEventBridgeRuleTemplateInput) (*DeleteEventBridgeRuleTemplateOutput, error) {
+	req, out := c.DeleteEventBridgeRuleTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventBridgeRuleTemplateWithContext is the same as DeleteEventBridgeRuleTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventBridgeRuleTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DeleteEventBridgeRuleTemplateWithContext(ctx aws.Context, input *DeleteEventBridgeRuleTemplateInput, opts ...request.Option) (*DeleteEventBridgeRuleTemplateOutput, error) {
+	req, out := c.DeleteEventBridgeRuleTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventBridgeRuleTemplateGroup = "DeleteEventBridgeRuleTemplateGroup"
+
+// DeleteEventBridgeRuleTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventBridgeRuleTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventBridgeRuleTemplateGroup for more information on using the DeleteEventBridgeRuleTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteEventBridgeRuleTemplateGroupRequest method.
+//	req, resp := client.DeleteEventBridgeRuleTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplateGroup
+func (c *MediaLive) DeleteEventBridgeRuleTemplateGroupRequest(input *DeleteEventBridgeRuleTemplateGroupInput) (req *request.Request, output *DeleteEventBridgeRuleTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventBridgeRuleTemplateGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/eventbridge-rule-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteEventBridgeRuleTemplateGroupInput{}
+	}
+
+	output = &DeleteEventBridgeRuleTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventBridgeRuleTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Deletes an eventbridge rule template group. You must detach this group from
+// all signal maps and ensure its existing templates are moved to another group
+// or deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DeleteEventBridgeRuleTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteEventBridgeRuleTemplateGroup
+func (c *MediaLive) DeleteEventBridgeRuleTemplateGroup(input *DeleteEventBridgeRuleTemplateGroupInput) (*DeleteEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.DeleteEventBridgeRuleTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventBridgeRuleTemplateGroupWithContext is the same as DeleteEventBridgeRuleTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventBridgeRuleTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DeleteEventBridgeRuleTemplateGroupWithContext(ctx aws.Context, input *DeleteEventBridgeRuleTemplateGroupInput, opts ...request.Option) (*DeleteEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.DeleteEventBridgeRuleTemplateGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1930,6 +2736,95 @@ func (c *MediaLive) DeleteSchedule(input *DeleteScheduleInput) (*DeleteScheduleO
 // for more information on using Contexts.
 func (c *MediaLive) DeleteScheduleWithContext(ctx aws.Context, input *DeleteScheduleInput, opts ...request.Option) (*DeleteScheduleOutput, error) {
 	req, out := c.DeleteScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSignalMap = "DeleteSignalMap"
+
+// DeleteSignalMapRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSignalMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSignalMap for more information on using the DeleteSignalMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteSignalMapRequest method.
+//	req, resp := client.DeleteSignalMapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteSignalMap
+func (c *MediaLive) DeleteSignalMapRequest(input *DeleteSignalMapInput) (req *request.Request, output *DeleteSignalMapOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSignalMap,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/signal-maps/{identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteSignalMapInput{}
+	}
+
+	output = &DeleteSignalMapOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSignalMap API operation for AWS Elemental MediaLive.
+//
+// Deletes the specified signal map.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation DeleteSignalMap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/DeleteSignalMap
+func (c *MediaLive) DeleteSignalMap(input *DeleteSignalMapInput) (*DeleteSignalMapOutput, error) {
+	req, out := c.DeleteSignalMapRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSignalMapWithContext is the same as DeleteSignalMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSignalMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) DeleteSignalMapWithContext(ctx aws.Context, input *DeleteSignalMapInput, opts ...request.Option) (*DeleteSignalMapOutput, error) {
+	req, out := c.DeleteSignalMapRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3157,6 +4052,436 @@ func (c *MediaLive) DescribeThumbnailsWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opGetCloudWatchAlarmTemplate = "GetCloudWatchAlarmTemplate"
+
+// GetCloudWatchAlarmTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetCloudWatchAlarmTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCloudWatchAlarmTemplate for more information on using the GetCloudWatchAlarmTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCloudWatchAlarmTemplateRequest method.
+//	req, resp := client.GetCloudWatchAlarmTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplate
+func (c *MediaLive) GetCloudWatchAlarmTemplateRequest(input *GetCloudWatchAlarmTemplateInput) (req *request.Request, output *GetCloudWatchAlarmTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetCloudWatchAlarmTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/cloudwatch-alarm-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetCloudWatchAlarmTemplateInput{}
+	}
+
+	output = &GetCloudWatchAlarmTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCloudWatchAlarmTemplate API operation for AWS Elemental MediaLive.
+//
+// Retrieves the specified cloudwatch alarm template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation GetCloudWatchAlarmTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplate
+func (c *MediaLive) GetCloudWatchAlarmTemplate(input *GetCloudWatchAlarmTemplateInput) (*GetCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.GetCloudWatchAlarmTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetCloudWatchAlarmTemplateWithContext is the same as GetCloudWatchAlarmTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCloudWatchAlarmTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) GetCloudWatchAlarmTemplateWithContext(ctx aws.Context, input *GetCloudWatchAlarmTemplateInput, opts ...request.Option) (*GetCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.GetCloudWatchAlarmTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCloudWatchAlarmTemplateGroup = "GetCloudWatchAlarmTemplateGroup"
+
+// GetCloudWatchAlarmTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetCloudWatchAlarmTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCloudWatchAlarmTemplateGroup for more information on using the GetCloudWatchAlarmTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCloudWatchAlarmTemplateGroupRequest method.
+//	req, resp := client.GetCloudWatchAlarmTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplateGroup
+func (c *MediaLive) GetCloudWatchAlarmTemplateGroupRequest(input *GetCloudWatchAlarmTemplateGroupInput) (req *request.Request, output *GetCloudWatchAlarmTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetCloudWatchAlarmTemplateGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/cloudwatch-alarm-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetCloudWatchAlarmTemplateGroupInput{}
+	}
+
+	output = &GetCloudWatchAlarmTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCloudWatchAlarmTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Retrieves the specified cloudwatch alarm template group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation GetCloudWatchAlarmTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetCloudWatchAlarmTemplateGroup
+func (c *MediaLive) GetCloudWatchAlarmTemplateGroup(input *GetCloudWatchAlarmTemplateGroupInput) (*GetCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.GetCloudWatchAlarmTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetCloudWatchAlarmTemplateGroupWithContext is the same as GetCloudWatchAlarmTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCloudWatchAlarmTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) GetCloudWatchAlarmTemplateGroupWithContext(ctx aws.Context, input *GetCloudWatchAlarmTemplateGroupInput, opts ...request.Option) (*GetCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.GetCloudWatchAlarmTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventBridgeRuleTemplate = "GetEventBridgeRuleTemplate"
+
+// GetEventBridgeRuleTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventBridgeRuleTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventBridgeRuleTemplate for more information on using the GetEventBridgeRuleTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEventBridgeRuleTemplateRequest method.
+//	req, resp := client.GetEventBridgeRuleTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplate
+func (c *MediaLive) GetEventBridgeRuleTemplateRequest(input *GetEventBridgeRuleTemplateInput) (req *request.Request, output *GetEventBridgeRuleTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetEventBridgeRuleTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/eventbridge-rule-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetEventBridgeRuleTemplateInput{}
+	}
+
+	output = &GetEventBridgeRuleTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventBridgeRuleTemplate API operation for AWS Elemental MediaLive.
+//
+// Retrieves the specified eventbridge rule template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation GetEventBridgeRuleTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplate
+func (c *MediaLive) GetEventBridgeRuleTemplate(input *GetEventBridgeRuleTemplateInput) (*GetEventBridgeRuleTemplateOutput, error) {
+	req, out := c.GetEventBridgeRuleTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetEventBridgeRuleTemplateWithContext is the same as GetEventBridgeRuleTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventBridgeRuleTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) GetEventBridgeRuleTemplateWithContext(ctx aws.Context, input *GetEventBridgeRuleTemplateInput, opts ...request.Option) (*GetEventBridgeRuleTemplateOutput, error) {
+	req, out := c.GetEventBridgeRuleTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventBridgeRuleTemplateGroup = "GetEventBridgeRuleTemplateGroup"
+
+// GetEventBridgeRuleTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventBridgeRuleTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventBridgeRuleTemplateGroup for more information on using the GetEventBridgeRuleTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEventBridgeRuleTemplateGroupRequest method.
+//	req, resp := client.GetEventBridgeRuleTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplateGroup
+func (c *MediaLive) GetEventBridgeRuleTemplateGroupRequest(input *GetEventBridgeRuleTemplateGroupInput) (req *request.Request, output *GetEventBridgeRuleTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetEventBridgeRuleTemplateGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/eventbridge-rule-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetEventBridgeRuleTemplateGroupInput{}
+	}
+
+	output = &GetEventBridgeRuleTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventBridgeRuleTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Retrieves the specified eventbridge rule template group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation GetEventBridgeRuleTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetEventBridgeRuleTemplateGroup
+func (c *MediaLive) GetEventBridgeRuleTemplateGroup(input *GetEventBridgeRuleTemplateGroupInput) (*GetEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.GetEventBridgeRuleTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetEventBridgeRuleTemplateGroupWithContext is the same as GetEventBridgeRuleTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventBridgeRuleTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) GetEventBridgeRuleTemplateGroupWithContext(ctx aws.Context, input *GetEventBridgeRuleTemplateGroupInput, opts ...request.Option) (*GetEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.GetEventBridgeRuleTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSignalMap = "GetSignalMap"
+
+// GetSignalMapRequest generates a "aws/request.Request" representing the
+// client's request for the GetSignalMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSignalMap for more information on using the GetSignalMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetSignalMapRequest method.
+//	req, resp := client.GetSignalMapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetSignalMap
+func (c *MediaLive) GetSignalMapRequest(input *GetSignalMapInput) (req *request.Request, output *GetSignalMapOutput) {
+	op := &request.Operation{
+		Name:       opGetSignalMap,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/signal-maps/{identifier}",
+	}
+
+	if input == nil {
+		input = &GetSignalMapInput{}
+	}
+
+	output = &GetSignalMapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSignalMap API operation for AWS Elemental MediaLive.
+//
+// Retrieves the specified signal map.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation GetSignalMap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/GetSignalMap
+func (c *MediaLive) GetSignalMap(input *GetSignalMapInput) (*GetSignalMapOutput, error) {
+	req, out := c.GetSignalMapRequest(input)
+	return out, req.Send()
+}
+
+// GetSignalMapWithContext is the same as GetSignalMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSignalMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) GetSignalMapWithContext(ctx aws.Context, input *GetSignalMapInput, opts ...request.Option) (*GetSignalMapOutput, error) {
+	req, out := c.GetSignalMapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListChannels = "ListChannels"
 
 // ListChannelsRequest generates a "aws/request.Request" representing the
@@ -3295,6 +4620,578 @@ func (c *MediaLive) ListChannelsPagesWithContext(ctx aws.Context, input *ListCha
 
 	for p.Next() {
 		if !fn(p.Page().(*ListChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCloudWatchAlarmTemplateGroups = "ListCloudWatchAlarmTemplateGroups"
+
+// ListCloudWatchAlarmTemplateGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCloudWatchAlarmTemplateGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCloudWatchAlarmTemplateGroups for more information on using the ListCloudWatchAlarmTemplateGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCloudWatchAlarmTemplateGroupsRequest method.
+//	req, resp := client.ListCloudWatchAlarmTemplateGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplateGroups
+func (c *MediaLive) ListCloudWatchAlarmTemplateGroupsRequest(input *ListCloudWatchAlarmTemplateGroupsInput) (req *request.Request, output *ListCloudWatchAlarmTemplateGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListCloudWatchAlarmTemplateGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/cloudwatch-alarm-template-groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCloudWatchAlarmTemplateGroupsInput{}
+	}
+
+	output = &ListCloudWatchAlarmTemplateGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCloudWatchAlarmTemplateGroups API operation for AWS Elemental MediaLive.
+//
+// Lists cloudwatch alarm template groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListCloudWatchAlarmTemplateGroups for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplateGroups
+func (c *MediaLive) ListCloudWatchAlarmTemplateGroups(input *ListCloudWatchAlarmTemplateGroupsInput) (*ListCloudWatchAlarmTemplateGroupsOutput, error) {
+	req, out := c.ListCloudWatchAlarmTemplateGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListCloudWatchAlarmTemplateGroupsWithContext is the same as ListCloudWatchAlarmTemplateGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCloudWatchAlarmTemplateGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListCloudWatchAlarmTemplateGroupsWithContext(ctx aws.Context, input *ListCloudWatchAlarmTemplateGroupsInput, opts ...request.Option) (*ListCloudWatchAlarmTemplateGroupsOutput, error) {
+	req, out := c.ListCloudWatchAlarmTemplateGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCloudWatchAlarmTemplateGroupsPages iterates over the pages of a ListCloudWatchAlarmTemplateGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCloudWatchAlarmTemplateGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCloudWatchAlarmTemplateGroups operation.
+//	pageNum := 0
+//	err := client.ListCloudWatchAlarmTemplateGroupsPages(params,
+//	    func(page *medialive.ListCloudWatchAlarmTemplateGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaLive) ListCloudWatchAlarmTemplateGroupsPages(input *ListCloudWatchAlarmTemplateGroupsInput, fn func(*ListCloudWatchAlarmTemplateGroupsOutput, bool) bool) error {
+	return c.ListCloudWatchAlarmTemplateGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCloudWatchAlarmTemplateGroupsPagesWithContext same as ListCloudWatchAlarmTemplateGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListCloudWatchAlarmTemplateGroupsPagesWithContext(ctx aws.Context, input *ListCloudWatchAlarmTemplateGroupsInput, fn func(*ListCloudWatchAlarmTemplateGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCloudWatchAlarmTemplateGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCloudWatchAlarmTemplateGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCloudWatchAlarmTemplateGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCloudWatchAlarmTemplates = "ListCloudWatchAlarmTemplates"
+
+// ListCloudWatchAlarmTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCloudWatchAlarmTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCloudWatchAlarmTemplates for more information on using the ListCloudWatchAlarmTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCloudWatchAlarmTemplatesRequest method.
+//	req, resp := client.ListCloudWatchAlarmTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplates
+func (c *MediaLive) ListCloudWatchAlarmTemplatesRequest(input *ListCloudWatchAlarmTemplatesInput) (req *request.Request, output *ListCloudWatchAlarmTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListCloudWatchAlarmTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/cloudwatch-alarm-templates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCloudWatchAlarmTemplatesInput{}
+	}
+
+	output = &ListCloudWatchAlarmTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCloudWatchAlarmTemplates API operation for AWS Elemental MediaLive.
+//
+// Lists cloudwatch alarm templates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListCloudWatchAlarmTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListCloudWatchAlarmTemplates
+func (c *MediaLive) ListCloudWatchAlarmTemplates(input *ListCloudWatchAlarmTemplatesInput) (*ListCloudWatchAlarmTemplatesOutput, error) {
+	req, out := c.ListCloudWatchAlarmTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListCloudWatchAlarmTemplatesWithContext is the same as ListCloudWatchAlarmTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCloudWatchAlarmTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListCloudWatchAlarmTemplatesWithContext(ctx aws.Context, input *ListCloudWatchAlarmTemplatesInput, opts ...request.Option) (*ListCloudWatchAlarmTemplatesOutput, error) {
+	req, out := c.ListCloudWatchAlarmTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCloudWatchAlarmTemplatesPages iterates over the pages of a ListCloudWatchAlarmTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCloudWatchAlarmTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCloudWatchAlarmTemplates operation.
+//	pageNum := 0
+//	err := client.ListCloudWatchAlarmTemplatesPages(params,
+//	    func(page *medialive.ListCloudWatchAlarmTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaLive) ListCloudWatchAlarmTemplatesPages(input *ListCloudWatchAlarmTemplatesInput, fn func(*ListCloudWatchAlarmTemplatesOutput, bool) bool) error {
+	return c.ListCloudWatchAlarmTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCloudWatchAlarmTemplatesPagesWithContext same as ListCloudWatchAlarmTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListCloudWatchAlarmTemplatesPagesWithContext(ctx aws.Context, input *ListCloudWatchAlarmTemplatesInput, fn func(*ListCloudWatchAlarmTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCloudWatchAlarmTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCloudWatchAlarmTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCloudWatchAlarmTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEventBridgeRuleTemplateGroups = "ListEventBridgeRuleTemplateGroups"
+
+// ListEventBridgeRuleTemplateGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventBridgeRuleTemplateGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventBridgeRuleTemplateGroups for more information on using the ListEventBridgeRuleTemplateGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEventBridgeRuleTemplateGroupsRequest method.
+//	req, resp := client.ListEventBridgeRuleTemplateGroupsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplateGroups
+func (c *MediaLive) ListEventBridgeRuleTemplateGroupsRequest(input *ListEventBridgeRuleTemplateGroupsInput) (req *request.Request, output *ListEventBridgeRuleTemplateGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListEventBridgeRuleTemplateGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/eventbridge-rule-template-groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventBridgeRuleTemplateGroupsInput{}
+	}
+
+	output = &ListEventBridgeRuleTemplateGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventBridgeRuleTemplateGroups API operation for AWS Elemental MediaLive.
+//
+// Lists eventbridge rule template groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListEventBridgeRuleTemplateGroups for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplateGroups
+func (c *MediaLive) ListEventBridgeRuleTemplateGroups(input *ListEventBridgeRuleTemplateGroupsInput) (*ListEventBridgeRuleTemplateGroupsOutput, error) {
+	req, out := c.ListEventBridgeRuleTemplateGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListEventBridgeRuleTemplateGroupsWithContext is the same as ListEventBridgeRuleTemplateGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventBridgeRuleTemplateGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListEventBridgeRuleTemplateGroupsWithContext(ctx aws.Context, input *ListEventBridgeRuleTemplateGroupsInput, opts ...request.Option) (*ListEventBridgeRuleTemplateGroupsOutput, error) {
+	req, out := c.ListEventBridgeRuleTemplateGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventBridgeRuleTemplateGroupsPages iterates over the pages of a ListEventBridgeRuleTemplateGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventBridgeRuleTemplateGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEventBridgeRuleTemplateGroups operation.
+//	pageNum := 0
+//	err := client.ListEventBridgeRuleTemplateGroupsPages(params,
+//	    func(page *medialive.ListEventBridgeRuleTemplateGroupsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaLive) ListEventBridgeRuleTemplateGroupsPages(input *ListEventBridgeRuleTemplateGroupsInput, fn func(*ListEventBridgeRuleTemplateGroupsOutput, bool) bool) error {
+	return c.ListEventBridgeRuleTemplateGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventBridgeRuleTemplateGroupsPagesWithContext same as ListEventBridgeRuleTemplateGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListEventBridgeRuleTemplateGroupsPagesWithContext(ctx aws.Context, input *ListEventBridgeRuleTemplateGroupsInput, fn func(*ListEventBridgeRuleTemplateGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventBridgeRuleTemplateGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventBridgeRuleTemplateGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventBridgeRuleTemplateGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEventBridgeRuleTemplates = "ListEventBridgeRuleTemplates"
+
+// ListEventBridgeRuleTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventBridgeRuleTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventBridgeRuleTemplates for more information on using the ListEventBridgeRuleTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEventBridgeRuleTemplatesRequest method.
+//	req, resp := client.ListEventBridgeRuleTemplatesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplates
+func (c *MediaLive) ListEventBridgeRuleTemplatesRequest(input *ListEventBridgeRuleTemplatesInput) (req *request.Request, output *ListEventBridgeRuleTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListEventBridgeRuleTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/eventbridge-rule-templates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventBridgeRuleTemplatesInput{}
+	}
+
+	output = &ListEventBridgeRuleTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventBridgeRuleTemplates API operation for AWS Elemental MediaLive.
+//
+// Lists eventbridge rule templates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListEventBridgeRuleTemplates for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListEventBridgeRuleTemplates
+func (c *MediaLive) ListEventBridgeRuleTemplates(input *ListEventBridgeRuleTemplatesInput) (*ListEventBridgeRuleTemplatesOutput, error) {
+	req, out := c.ListEventBridgeRuleTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListEventBridgeRuleTemplatesWithContext is the same as ListEventBridgeRuleTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventBridgeRuleTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListEventBridgeRuleTemplatesWithContext(ctx aws.Context, input *ListEventBridgeRuleTemplatesInput, opts ...request.Option) (*ListEventBridgeRuleTemplatesOutput, error) {
+	req, out := c.ListEventBridgeRuleTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventBridgeRuleTemplatesPages iterates over the pages of a ListEventBridgeRuleTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventBridgeRuleTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEventBridgeRuleTemplates operation.
+//	pageNum := 0
+//	err := client.ListEventBridgeRuleTemplatesPages(params,
+//	    func(page *medialive.ListEventBridgeRuleTemplatesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaLive) ListEventBridgeRuleTemplatesPages(input *ListEventBridgeRuleTemplatesInput, fn func(*ListEventBridgeRuleTemplatesOutput, bool) bool) error {
+	return c.ListEventBridgeRuleTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventBridgeRuleTemplatesPagesWithContext same as ListEventBridgeRuleTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListEventBridgeRuleTemplatesPagesWithContext(ctx aws.Context, input *ListEventBridgeRuleTemplatesInput, fn func(*ListEventBridgeRuleTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventBridgeRuleTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventBridgeRuleTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventBridgeRuleTemplatesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4468,6 +6365,149 @@ func (c *MediaLive) ListReservationsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListSignalMaps = "ListSignalMaps"
+
+// ListSignalMapsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSignalMaps operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSignalMaps for more information on using the ListSignalMaps
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSignalMapsRequest method.
+//	req, resp := client.ListSignalMapsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListSignalMaps
+func (c *MediaLive) ListSignalMapsRequest(input *ListSignalMapsInput) (req *request.Request, output *ListSignalMapsOutput) {
+	op := &request.Operation{
+		Name:       opListSignalMaps,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/signal-maps",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSignalMapsInput{}
+	}
+
+	output = &ListSignalMapsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSignalMaps API operation for AWS Elemental MediaLive.
+//
+// Lists signal maps.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListSignalMaps for usage and error information.
+//
+// Returned Error Types:
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListSignalMaps
+func (c *MediaLive) ListSignalMaps(input *ListSignalMapsInput) (*ListSignalMapsOutput, error) {
+	req, out := c.ListSignalMapsRequest(input)
+	return out, req.Send()
+}
+
+// ListSignalMapsWithContext is the same as ListSignalMaps with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSignalMaps for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListSignalMapsWithContext(ctx aws.Context, input *ListSignalMapsInput, opts ...request.Option) (*ListSignalMapsOutput, error) {
+	req, out := c.ListSignalMapsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSignalMapsPages iterates over the pages of a ListSignalMaps operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSignalMaps method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSignalMaps operation.
+//	pageNum := 0
+//	err := client.ListSignalMapsPages(params,
+//	    func(page *medialive.ListSignalMapsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *MediaLive) ListSignalMapsPages(input *ListSignalMapsInput, fn func(*ListSignalMapsOutput, bool) bool) error {
+	return c.ListSignalMapsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSignalMapsPagesWithContext same as ListSignalMapsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListSignalMapsPagesWithContext(ctx aws.Context, input *ListSignalMapsInput, fn func(*ListSignalMapsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSignalMapsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSignalMapsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSignalMapsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -5018,6 +7058,94 @@ func (c *MediaLive) StartChannelWithContext(ctx aws.Context, input *StartChannel
 	return out, req.Send()
 }
 
+const opStartDeleteMonitorDeployment = "StartDeleteMonitorDeployment"
+
+// StartDeleteMonitorDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the StartDeleteMonitorDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDeleteMonitorDeployment for more information on using the StartDeleteMonitorDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDeleteMonitorDeploymentRequest method.
+//	req, resp := client.StartDeleteMonitorDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartDeleteMonitorDeployment
+func (c *MediaLive) StartDeleteMonitorDeploymentRequest(input *StartDeleteMonitorDeploymentInput) (req *request.Request, output *StartDeleteMonitorDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opStartDeleteMonitorDeployment,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prod/signal-maps/{identifier}/monitor-deployment",
+	}
+
+	if input == nil {
+		input = &StartDeleteMonitorDeploymentInput{}
+	}
+
+	output = &StartDeleteMonitorDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDeleteMonitorDeployment API operation for AWS Elemental MediaLive.
+//
+// Initiates a deployment to delete the monitor of the specified signal map.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StartDeleteMonitorDeployment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartDeleteMonitorDeployment
+func (c *MediaLive) StartDeleteMonitorDeployment(input *StartDeleteMonitorDeploymentInput) (*StartDeleteMonitorDeploymentOutput, error) {
+	req, out := c.StartDeleteMonitorDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// StartDeleteMonitorDeploymentWithContext is the same as StartDeleteMonitorDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDeleteMonitorDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StartDeleteMonitorDeploymentWithContext(ctx aws.Context, input *StartDeleteMonitorDeploymentInput, opts ...request.Option) (*StartDeleteMonitorDeploymentOutput, error) {
+	req, out := c.StartDeleteMonitorDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartInputDevice = "StartInputDevice"
 
 // StartInputDeviceRequest generates a "aws/request.Request" representing the
@@ -5213,6 +7341,95 @@ func (c *MediaLive) StartInputDeviceMaintenanceWindowWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opStartMonitorDeployment = "StartMonitorDeployment"
+
+// StartMonitorDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the StartMonitorDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMonitorDeployment for more information on using the StartMonitorDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartMonitorDeploymentRequest method.
+//	req, resp := client.StartMonitorDeploymentRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMonitorDeployment
+func (c *MediaLive) StartMonitorDeploymentRequest(input *StartMonitorDeploymentInput) (req *request.Request, output *StartMonitorDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opStartMonitorDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/signal-maps/{identifier}/monitor-deployment",
+	}
+
+	if input == nil {
+		input = &StartMonitorDeploymentInput{}
+	}
+
+	output = &StartMonitorDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMonitorDeployment API operation for AWS Elemental MediaLive.
+//
+// Initiates a deployment to deploy the latest monitor of the specified signal
+// map.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StartMonitorDeployment for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartMonitorDeployment
+func (c *MediaLive) StartMonitorDeployment(input *StartMonitorDeploymentInput) (*StartMonitorDeploymentOutput, error) {
+	req, out := c.StartMonitorDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// StartMonitorDeploymentWithContext is the same as StartMonitorDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMonitorDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StartMonitorDeploymentWithContext(ctx aws.Context, input *StartMonitorDeploymentInput, opts ...request.Option) (*StartMonitorDeploymentOutput, error) {
+	req, out := c.StartMonitorDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMultiplex = "StartMultiplex"
 
 // StartMultiplexRequest generates a "aws/request.Request" representing the
@@ -5301,6 +7518,95 @@ func (c *MediaLive) StartMultiplex(input *StartMultiplexInput) (*StartMultiplexO
 // for more information on using Contexts.
 func (c *MediaLive) StartMultiplexWithContext(ctx aws.Context, input *StartMultiplexInput, opts ...request.Option) (*StartMultiplexOutput, error) {
 	req, out := c.StartMultiplexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartUpdateSignalMap = "StartUpdateSignalMap"
+
+// StartUpdateSignalMapRequest generates a "aws/request.Request" representing the
+// client's request for the StartUpdateSignalMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartUpdateSignalMap for more information on using the StartUpdateSignalMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartUpdateSignalMapRequest method.
+//	req, resp := client.StartUpdateSignalMapRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartUpdateSignalMap
+func (c *MediaLive) StartUpdateSignalMapRequest(input *StartUpdateSignalMapInput) (req *request.Request, output *StartUpdateSignalMapOutput) {
+	op := &request.Operation{
+		Name:       opStartUpdateSignalMap,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/prod/signal-maps/{identifier}",
+	}
+
+	if input == nil {
+		input = &StartUpdateSignalMapInput{}
+	}
+
+	output = &StartUpdateSignalMapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartUpdateSignalMap API operation for AWS Elemental MediaLive.
+//
+// Initiates an update for the specified signal map. Will discover a new signal
+// map if a changed discoveryEntryPointArn is provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation StartUpdateSignalMap for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/StartUpdateSignalMap
+func (c *MediaLive) StartUpdateSignalMap(input *StartUpdateSignalMapInput) (*StartUpdateSignalMapOutput, error) {
+	req, out := c.StartUpdateSignalMapRequest(input)
+	return out, req.Send()
+}
+
+// StartUpdateSignalMapWithContext is the same as StartUpdateSignalMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartUpdateSignalMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) StartUpdateSignalMapWithContext(ctx aws.Context, input *StartUpdateSignalMapInput, opts ...request.Option) (*StartUpdateSignalMapOutput, error) {
+	req, out := c.StartUpdateSignalMapRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5951,6 +8257,358 @@ func (c *MediaLive) UpdateChannelClass(input *UpdateChannelClassInput) (*UpdateC
 // for more information on using Contexts.
 func (c *MediaLive) UpdateChannelClassWithContext(ctx aws.Context, input *UpdateChannelClassInput, opts ...request.Option) (*UpdateChannelClassOutput, error) {
 	req, out := c.UpdateChannelClassRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCloudWatchAlarmTemplate = "UpdateCloudWatchAlarmTemplate"
+
+// UpdateCloudWatchAlarmTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCloudWatchAlarmTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCloudWatchAlarmTemplate for more information on using the UpdateCloudWatchAlarmTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCloudWatchAlarmTemplateRequest method.
+//	req, resp := client.UpdateCloudWatchAlarmTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplate
+func (c *MediaLive) UpdateCloudWatchAlarmTemplateRequest(input *UpdateCloudWatchAlarmTemplateInput) (req *request.Request, output *UpdateCloudWatchAlarmTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCloudWatchAlarmTemplate,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/prod/cloudwatch-alarm-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateCloudWatchAlarmTemplateInput{}
+	}
+
+	output = &UpdateCloudWatchAlarmTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCloudWatchAlarmTemplate API operation for AWS Elemental MediaLive.
+//
+// Updates the specified cloudwatch alarm template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation UpdateCloudWatchAlarmTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplate
+func (c *MediaLive) UpdateCloudWatchAlarmTemplate(input *UpdateCloudWatchAlarmTemplateInput) (*UpdateCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.UpdateCloudWatchAlarmTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCloudWatchAlarmTemplateWithContext is the same as UpdateCloudWatchAlarmTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCloudWatchAlarmTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) UpdateCloudWatchAlarmTemplateWithContext(ctx aws.Context, input *UpdateCloudWatchAlarmTemplateInput, opts ...request.Option) (*UpdateCloudWatchAlarmTemplateOutput, error) {
+	req, out := c.UpdateCloudWatchAlarmTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCloudWatchAlarmTemplateGroup = "UpdateCloudWatchAlarmTemplateGroup"
+
+// UpdateCloudWatchAlarmTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCloudWatchAlarmTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCloudWatchAlarmTemplateGroup for more information on using the UpdateCloudWatchAlarmTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateCloudWatchAlarmTemplateGroupRequest method.
+//	req, resp := client.UpdateCloudWatchAlarmTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplateGroup
+func (c *MediaLive) UpdateCloudWatchAlarmTemplateGroupRequest(input *UpdateCloudWatchAlarmTemplateGroupInput) (req *request.Request, output *UpdateCloudWatchAlarmTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCloudWatchAlarmTemplateGroup,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/prod/cloudwatch-alarm-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateCloudWatchAlarmTemplateGroupInput{}
+	}
+
+	output = &UpdateCloudWatchAlarmTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCloudWatchAlarmTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Updates the specified cloudwatch alarm template group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation UpdateCloudWatchAlarmTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateCloudWatchAlarmTemplateGroup
+func (c *MediaLive) UpdateCloudWatchAlarmTemplateGroup(input *UpdateCloudWatchAlarmTemplateGroupInput) (*UpdateCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.UpdateCloudWatchAlarmTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCloudWatchAlarmTemplateGroupWithContext is the same as UpdateCloudWatchAlarmTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCloudWatchAlarmTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) UpdateCloudWatchAlarmTemplateGroupWithContext(ctx aws.Context, input *UpdateCloudWatchAlarmTemplateGroupInput, opts ...request.Option) (*UpdateCloudWatchAlarmTemplateGroupOutput, error) {
+	req, out := c.UpdateCloudWatchAlarmTemplateGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEventBridgeRuleTemplate = "UpdateEventBridgeRuleTemplate"
+
+// UpdateEventBridgeRuleTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventBridgeRuleTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventBridgeRuleTemplate for more information on using the UpdateEventBridgeRuleTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEventBridgeRuleTemplateRequest method.
+//	req, resp := client.UpdateEventBridgeRuleTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplate
+func (c *MediaLive) UpdateEventBridgeRuleTemplateRequest(input *UpdateEventBridgeRuleTemplateInput) (req *request.Request, output *UpdateEventBridgeRuleTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventBridgeRuleTemplate,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/prod/eventbridge-rule-templates/{identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateEventBridgeRuleTemplateInput{}
+	}
+
+	output = &UpdateEventBridgeRuleTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEventBridgeRuleTemplate API operation for AWS Elemental MediaLive.
+//
+// Updates the specified eventbridge rule template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation UpdateEventBridgeRuleTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplate
+func (c *MediaLive) UpdateEventBridgeRuleTemplate(input *UpdateEventBridgeRuleTemplateInput) (*UpdateEventBridgeRuleTemplateOutput, error) {
+	req, out := c.UpdateEventBridgeRuleTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventBridgeRuleTemplateWithContext is the same as UpdateEventBridgeRuleTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventBridgeRuleTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) UpdateEventBridgeRuleTemplateWithContext(ctx aws.Context, input *UpdateEventBridgeRuleTemplateInput, opts ...request.Option) (*UpdateEventBridgeRuleTemplateOutput, error) {
+	req, out := c.UpdateEventBridgeRuleTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEventBridgeRuleTemplateGroup = "UpdateEventBridgeRuleTemplateGroup"
+
+// UpdateEventBridgeRuleTemplateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventBridgeRuleTemplateGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventBridgeRuleTemplateGroup for more information on using the UpdateEventBridgeRuleTemplateGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateEventBridgeRuleTemplateGroupRequest method.
+//	req, resp := client.UpdateEventBridgeRuleTemplateGroupRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplateGroup
+func (c *MediaLive) UpdateEventBridgeRuleTemplateGroupRequest(input *UpdateEventBridgeRuleTemplateGroupInput) (req *request.Request, output *UpdateEventBridgeRuleTemplateGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventBridgeRuleTemplateGroup,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/prod/eventbridge-rule-template-groups/{identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateEventBridgeRuleTemplateGroupInput{}
+	}
+
+	output = &UpdateEventBridgeRuleTemplateGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEventBridgeRuleTemplateGroup API operation for AWS Elemental MediaLive.
+//
+// Updates the specified eventbridge rule template group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation UpdateEventBridgeRuleTemplateGroup for usage and error information.
+//
+// Returned Error Types:
+//
+//   - BadRequestException
+//
+//   - InternalServerErrorException
+//
+//   - ForbiddenException
+//
+//   - NotFoundException
+//
+//   - TooManyRequestsException
+//
+//   - ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/UpdateEventBridgeRuleTemplateGroup
+func (c *MediaLive) UpdateEventBridgeRuleTemplateGroup(input *UpdateEventBridgeRuleTemplateGroupInput) (*UpdateEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.UpdateEventBridgeRuleTemplateGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventBridgeRuleTemplateGroupWithContext is the same as UpdateEventBridgeRuleTemplateGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventBridgeRuleTemplateGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) UpdateEventBridgeRuleTemplateGroupWithContext(ctx aws.Context, input *UpdateEventBridgeRuleTemplateGroupInput, opts ...request.Option) (*UpdateEventBridgeRuleTemplateGroupOutput, error) {
+	req, out := c.UpdateEventBridgeRuleTemplateGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10942,6 +13600,314 @@ func (s ClaimDeviceOutput) GoString() string {
 	return s.String()
 }
 
+type CloudWatchAlarmTemplateGroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A cloudwatch alarm template group's ARN (Amazon Resource Name)
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A resource's optional description.
+	Description *string `locationName:"description" type:"string"`
+
+	// A cloudwatch alarm template group's id. AWS provided template groups have
+	// ids that start with `aws-`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"7" type:"string" required:"true"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A resource's name. Names must be unique within the scope of a resource type
+	// in a specific region.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The number of templates in a group.
+	//
+	// TemplateCount is a required field
+	TemplateCount *int64 `locationName:"templateCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchAlarmTemplateGroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchAlarmTemplateGroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetArn(v string) *CloudWatchAlarmTemplateGroupSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetCreatedAt(v time.Time) *CloudWatchAlarmTemplateGroupSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetDescription(v string) *CloudWatchAlarmTemplateGroupSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetId(v string) *CloudWatchAlarmTemplateGroupSummary {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetModifiedAt(v time.Time) *CloudWatchAlarmTemplateGroupSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetName(v string) *CloudWatchAlarmTemplateGroupSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetTags(v map[string]*string) *CloudWatchAlarmTemplateGroupSummary {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateCount sets the TemplateCount field's value.
+func (s *CloudWatchAlarmTemplateGroupSummary) SetTemplateCount(v int64) *CloudWatchAlarmTemplateGroupSummary {
+	s.TemplateCount = &v
+	return s
+}
+
+type CloudWatchAlarmTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A cloudwatch alarm template's ARN (Amazon Resource Name)
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	//
+	// ComparisonOperator is a required field
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" required:"true" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The number of datapoints within the evaluation period that must be breaching
+	// to trigger the alarm.
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	// A resource's optional description.
+	Description *string `locationName:"description" type:"string"`
+
+	// The number of periods over which data is compared to the specified threshold.
+	//
+	// EvaluationPeriods is a required field
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer" required:"true"`
+
+	// A cloudwatch alarm template group's id. AWS provided template groups have
+	// ids that start with `aws-`
+	//
+	// GroupId is a required field
+	GroupId *string `locationName:"groupId" min:"7" type:"string" required:"true"`
+
+	// A cloudwatch alarm template's id. AWS provided templates have ids that start
+	// with `aws-`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"7" type:"string" required:"true"`
+
+	// The name of the metric associated with the alarm. Must be compatible with
+	// targetResourceType.
+	//
+	// MetricName is a required field
+	MetricName *string `locationName:"metricName" type:"string" required:"true"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A resource's name. Names must be unique within the scope of a resource type
+	// in a specific region.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The period, in seconds, over which the specified statistic is applied.
+	//
+	// Period is a required field
+	Period *int64 `locationName:"period" min:"10" type:"integer" required:"true"`
+
+	// The statistic to apply to the alarm's metric data.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	//
+	// TargetResourceType is a required field
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" required:"true" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	// The threshold value to compare with the specified statistic.
+	//
+	// Threshold is a required field
+	Threshold *float64 `locationName:"threshold" type:"double" required:"true"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	//
+	// TreatMissingData is a required field
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" required:"true" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchAlarmTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchAlarmTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetArn(v string) *CloudWatchAlarmTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetComparisonOperator(v string) *CloudWatchAlarmTemplateSummary {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetCreatedAt(v time.Time) *CloudWatchAlarmTemplateSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetDatapointsToAlarm(v int64) *CloudWatchAlarmTemplateSummary {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetDescription(v string) *CloudWatchAlarmTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetEvaluationPeriods(v int64) *CloudWatchAlarmTemplateSummary {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetGroupId(v string) *CloudWatchAlarmTemplateSummary {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetId(v string) *CloudWatchAlarmTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetMetricName(v string) *CloudWatchAlarmTemplateSummary {
+	s.MetricName = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetModifiedAt(v time.Time) *CloudWatchAlarmTemplateSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetName(v string) *CloudWatchAlarmTemplateSummary {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetPeriod(v int64) *CloudWatchAlarmTemplateSummary {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetStatistic(v string) *CloudWatchAlarmTemplateSummary {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetTags(v map[string]*string) *CloudWatchAlarmTemplateSummary {
+	s.Tags = v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetTargetResourceType(v string) *CloudWatchAlarmTemplateSummary {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetThreshold(v float64) *CloudWatchAlarmTemplateSummary {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *CloudWatchAlarmTemplateSummary) SetTreatMissingData(v string) *CloudWatchAlarmTemplateSummary {
+	s.TreatMissingData = &v
+	return s
+}
+
 // Cmaf Ingest Group Settings
 type CmafIngestGroupSettings struct {
 	_ struct{} `type:"structure"`
@@ -11512,6 +14478,868 @@ func (s *CreateChannelOutput) SetChannel(v *Channel) *CreateChannelOutput {
 	return s
 }
 
+type CreateCloudWatchAlarmTemplateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCloudWatchAlarmTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCloudWatchAlarmTemplateGroupInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupInput) SetDescription(v string) *CreateCloudWatchAlarmTemplateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupInput) SetName(v string) *CreateCloudWatchAlarmTemplateGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupInput) SetTags(v map[string]*string) *CreateCloudWatchAlarmTemplateGroupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCloudWatchAlarmTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetArn(v string) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetCreatedAt(v time.Time) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetDescription(v string) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetId(v string) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetModifiedAt(v time.Time) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetName(v string) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCloudWatchAlarmTemplateGroupOutput) SetTags(v map[string]*string) *CreateCloudWatchAlarmTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type CreateCloudWatchAlarmTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	//
+	// ComparisonOperator is a required field
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" required:"true" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// EvaluationPeriods is a required field
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer" required:"true"`
+
+	// GroupIdentifier is a required field
+	GroupIdentifier *string `locationName:"groupIdentifier" type:"string" required:"true"`
+
+	// MetricName is a required field
+	MetricName *string `locationName:"metricName" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Period is a required field
+	Period *int64 `locationName:"period" min:"10" type:"integer" required:"true"`
+
+	// The statistic to apply to the alarm's metric data.
+	//
+	// Statistic is a required field
+	Statistic *string `locationName:"statistic" type:"string" required:"true" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	//
+	// TargetResourceType is a required field
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" required:"true" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	// Threshold is a required field
+	Threshold *float64 `locationName:"threshold" type:"double" required:"true"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	//
+	// TreatMissingData is a required field
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" required:"true" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCloudWatchAlarmTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCloudWatchAlarmTemplateInput"}
+	if s.ComparisonOperator == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComparisonOperator"))
+	}
+	if s.DatapointsToAlarm != nil && *s.DatapointsToAlarm < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DatapointsToAlarm", 1))
+	}
+	if s.EvaluationPeriods == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationPeriods"))
+	}
+	if s.EvaluationPeriods != nil && *s.EvaluationPeriods < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationPeriods", 1))
+	}
+	if s.GroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupIdentifier"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Period == nil {
+		invalidParams.Add(request.NewErrParamRequired("Period"))
+	}
+	if s.Period != nil && *s.Period < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("Period", 10))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+	if s.TargetResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetResourceType"))
+	}
+	if s.Threshold == nil {
+		invalidParams.Add(request.NewErrParamRequired("Threshold"))
+	}
+	if s.TreatMissingData == nil {
+		invalidParams.Add(request.NewErrParamRequired("TreatMissingData"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetComparisonOperator(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetDatapointsToAlarm(v int64) *CreateCloudWatchAlarmTemplateInput {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetDescription(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetEvaluationPeriods(v int64) *CreateCloudWatchAlarmTemplateInput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetGroupIdentifier(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetMetricName(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetName(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetPeriod(v int64) *CreateCloudWatchAlarmTemplateInput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetStatistic(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetTags(v map[string]*string) *CreateCloudWatchAlarmTemplateInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetTargetResourceType(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetThreshold(v float64) *CreateCloudWatchAlarmTemplateInput {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *CreateCloudWatchAlarmTemplateInput) SetTreatMissingData(v string) *CreateCloudWatchAlarmTemplateInput {
+	s.TreatMissingData = &v
+	return s
+}
+
+type CreateCloudWatchAlarmTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	MetricName *string `locationName:"metricName" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	Period *int64 `locationName:"period" min:"10" type:"integer"`
+
+	// The statistic to apply to the alarm's metric data.
+	Statistic *string `locationName:"statistic" type:"string" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	Threshold *float64 `locationName:"threshold" type:"double"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCloudWatchAlarmTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetArn(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetComparisonOperator(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetCreatedAt(v time.Time) *CreateCloudWatchAlarmTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetDatapointsToAlarm(v int64) *CreateCloudWatchAlarmTemplateOutput {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetDescription(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetEvaluationPeriods(v int64) *CreateCloudWatchAlarmTemplateOutput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetGroupId(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetId(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetMetricName(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetModifiedAt(v time.Time) *CreateCloudWatchAlarmTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetName(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetPeriod(v int64) *CreateCloudWatchAlarmTemplateOutput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetStatistic(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetTags(v map[string]*string) *CreateCloudWatchAlarmTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetTargetResourceType(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetThreshold(v float64) *CreateCloudWatchAlarmTemplateOutput {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *CreateCloudWatchAlarmTemplateOutput) SetTreatMissingData(v string) *CreateCloudWatchAlarmTemplateOutput {
+	s.TreatMissingData = &v
+	return s
+}
+
+type CreateEventBridgeRuleTemplateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventBridgeRuleTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventBridgeRuleTemplateGroupInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBridgeRuleTemplateGroupInput) SetDescription(v string) *CreateEventBridgeRuleTemplateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEventBridgeRuleTemplateGroupInput) SetName(v string) *CreateEventBridgeRuleTemplateGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventBridgeRuleTemplateGroupInput) SetTags(v map[string]*string) *CreateEventBridgeRuleTemplateGroupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEventBridgeRuleTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetArn(v string) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetCreatedAt(v time.Time) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetDescription(v string) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetId(v string) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetModifiedAt(v time.Time) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetName(v string) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventBridgeRuleTemplateGroupOutput) SetTags(v map[string]*string) *CreateEventBridgeRuleTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type CreateEventBridgeRuleTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EventTargets []*EventBridgeRuleTemplateTarget `locationName:"eventTargets" type:"list"`
+
+	// The type of event to match with the rule.
+	//
+	// EventType is a required field
+	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventBridgeRuleTemplateEventType"`
+
+	// GroupIdentifier is a required field
+	GroupIdentifier *string `locationName:"groupIdentifier" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventBridgeRuleTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventBridgeRuleTemplateInput"}
+	if s.EventType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventType"))
+	}
+	if s.GroupIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupIdentifier"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.EventTargets != nil {
+		for i, v := range s.EventTargets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EventTargets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetDescription(v string) *CreateEventBridgeRuleTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargets sets the EventTargets field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetEventTargets(v []*EventBridgeRuleTemplateTarget) *CreateEventBridgeRuleTemplateInput {
+	s.EventTargets = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetEventType(v string) *CreateEventBridgeRuleTemplateInput {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetGroupIdentifier(v string) *CreateEventBridgeRuleTemplateInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetName(v string) *CreateEventBridgeRuleTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventBridgeRuleTemplateInput) SetTags(v map[string]*string) *CreateEventBridgeRuleTemplateInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEventBridgeRuleTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EventTargets []*EventBridgeRuleTemplateTarget `locationName:"eventTargets" type:"list"`
+
+	// The type of event to match with the rule.
+	EventType *string `locationName:"eventType" type:"string" enum:"EventBridgeRuleTemplateEventType"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventBridgeRuleTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetArn(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetCreatedAt(v time.Time) *CreateEventBridgeRuleTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetDescription(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargets sets the EventTargets field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetEventTargets(v []*EventBridgeRuleTemplateTarget) *CreateEventBridgeRuleTemplateOutput {
+	s.EventTargets = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetEventType(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetGroupId(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetId(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetModifiedAt(v time.Time) *CreateEventBridgeRuleTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetName(v string) *CreateEventBridgeRuleTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventBridgeRuleTemplateOutput) SetTags(v map[string]*string) *CreateEventBridgeRuleTemplateOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateInputInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12073,6 +15901,274 @@ func (s *CreatePartnerInputOutput) SetInput(v *Input) *CreatePartnerInputOutput 
 	return s
 }
 
+type CreateSignalMapInput struct {
+	_ struct{} `type:"structure"`
+
+	CloudWatchAlarmTemplateGroupIdentifiers []*string `locationName:"cloudWatchAlarmTemplateGroupIdentifiers" type:"list"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// DiscoveryEntryPointArn is a required field
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string" required:"true"`
+
+	EventBridgeRuleTemplateGroupIdentifiers []*string `locationName:"eventBridgeRuleTemplateGroupIdentifiers" type:"list"`
+
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSignalMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSignalMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSignalMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSignalMapInput"}
+	if s.DiscoveryEntryPointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DiscoveryEntryPointArn"))
+	}
+	if s.DiscoveryEntryPointArn != nil && len(*s.DiscoveryEntryPointArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DiscoveryEntryPointArn", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchAlarmTemplateGroupIdentifiers sets the CloudWatchAlarmTemplateGroupIdentifiers field's value.
+func (s *CreateSignalMapInput) SetCloudWatchAlarmTemplateGroupIdentifiers(v []*string) *CreateSignalMapInput {
+	s.CloudWatchAlarmTemplateGroupIdentifiers = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSignalMapInput) SetDescription(v string) *CreateSignalMapInput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *CreateSignalMapInput) SetDiscoveryEntryPointArn(v string) *CreateSignalMapInput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIdentifiers sets the EventBridgeRuleTemplateGroupIdentifiers field's value.
+func (s *CreateSignalMapInput) SetEventBridgeRuleTemplateGroupIdentifiers(v []*string) *CreateSignalMapInput {
+	s.EventBridgeRuleTemplateGroupIdentifiers = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSignalMapInput) SetName(v string) *CreateSignalMapInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSignalMapInput) SetTags(v map[string]*string) *CreateSignalMapInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSignalMapOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CloudWatchAlarmTemplateGroupIds []*string `locationName:"cloudWatchAlarmTemplateGroupIds" type:"list"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIds []*string `locationName:"eventBridgeRuleTemplateGroupIds" type:"list"`
+
+	// A map representing an incomplete AWS media workflow as a graph.
+	FailedMediaResourceMap map[string]*MediaResource `locationName:"failedMediaResourceMap" type:"map"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	LastDiscoveredAt *time.Time `locationName:"lastDiscoveredAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents the latest successful monitor deployment of a signal map.
+	LastSuccessfulMonitorDeployment *SuccessfulMonitorDeployment `locationName:"lastSuccessfulMonitorDeployment" type:"structure"`
+
+	// A map representing an AWS media workflow as a graph.
+	MediaResourceMap map[string]*MediaResource `locationName:"mediaResourceMap" type:"map"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	MonitorChangesPendingDeployment *bool `locationName:"monitorChangesPendingDeployment" type:"boolean"`
+
+	// Represents the latest monitor deployment of a signal map.
+	MonitorDeployment *MonitorDeployment `locationName:"monitorDeployment" type:"structure"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	Status *string `locationName:"status" type:"string" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSignalMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSignalMapOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateSignalMapOutput) SetArn(v string) *CreateSignalMapOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCloudWatchAlarmTemplateGroupIds sets the CloudWatchAlarmTemplateGroupIds field's value.
+func (s *CreateSignalMapOutput) SetCloudWatchAlarmTemplateGroupIds(v []*string) *CreateSignalMapOutput {
+	s.CloudWatchAlarmTemplateGroupIds = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateSignalMapOutput) SetCreatedAt(v time.Time) *CreateSignalMapOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSignalMapOutput) SetDescription(v string) *CreateSignalMapOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *CreateSignalMapOutput) SetDiscoveryEntryPointArn(v string) *CreateSignalMapOutput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *CreateSignalMapOutput) SetErrorMessage(v string) *CreateSignalMapOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIds sets the EventBridgeRuleTemplateGroupIds field's value.
+func (s *CreateSignalMapOutput) SetEventBridgeRuleTemplateGroupIds(v []*string) *CreateSignalMapOutput {
+	s.EventBridgeRuleTemplateGroupIds = v
+	return s
+}
+
+// SetFailedMediaResourceMap sets the FailedMediaResourceMap field's value.
+func (s *CreateSignalMapOutput) SetFailedMediaResourceMap(v map[string]*MediaResource) *CreateSignalMapOutput {
+	s.FailedMediaResourceMap = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateSignalMapOutput) SetId(v string) *CreateSignalMapOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastDiscoveredAt sets the LastDiscoveredAt field's value.
+func (s *CreateSignalMapOutput) SetLastDiscoveredAt(v time.Time) *CreateSignalMapOutput {
+	s.LastDiscoveredAt = &v
+	return s
+}
+
+// SetLastSuccessfulMonitorDeployment sets the LastSuccessfulMonitorDeployment field's value.
+func (s *CreateSignalMapOutput) SetLastSuccessfulMonitorDeployment(v *SuccessfulMonitorDeployment) *CreateSignalMapOutput {
+	s.LastSuccessfulMonitorDeployment = v
+	return s
+}
+
+// SetMediaResourceMap sets the MediaResourceMap field's value.
+func (s *CreateSignalMapOutput) SetMediaResourceMap(v map[string]*MediaResource) *CreateSignalMapOutput {
+	s.MediaResourceMap = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *CreateSignalMapOutput) SetModifiedAt(v time.Time) *CreateSignalMapOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorChangesPendingDeployment sets the MonitorChangesPendingDeployment field's value.
+func (s *CreateSignalMapOutput) SetMonitorChangesPendingDeployment(v bool) *CreateSignalMapOutput {
+	s.MonitorChangesPendingDeployment = &v
+	return s
+}
+
+// SetMonitorDeployment sets the MonitorDeployment field's value.
+func (s *CreateSignalMapOutput) SetMonitorDeployment(v *MonitorDeployment) *CreateSignalMapOutput {
+	s.MonitorDeployment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSignalMapOutput) SetName(v string) *CreateSignalMapOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateSignalMapOutput) SetStatus(v string) *CreateSignalMapOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSignalMapOutput) SetTags(v map[string]*string) *CreateSignalMapOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12366,6 +16462,282 @@ func (s *DeleteChannelOutput) SetTags(v map[string]*string) *DeleteChannelOutput
 func (s *DeleteChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *DeleteChannelOutput {
 	s.Vpc = v
 	return s
+}
+
+type DeleteCloudWatchAlarmTemplateGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCloudWatchAlarmTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCloudWatchAlarmTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteCloudWatchAlarmTemplateGroupInput) SetIdentifier(v string) *DeleteCloudWatchAlarmTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteCloudWatchAlarmTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCloudWatchAlarmTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCloudWatchAlarmTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCloudWatchAlarmTemplateInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteCloudWatchAlarmTemplateInput) SetIdentifier(v string) *DeleteCloudWatchAlarmTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteCloudWatchAlarmTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCloudWatchAlarmTemplateOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEventBridgeRuleTemplateGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventBridgeRuleTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventBridgeRuleTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteEventBridgeRuleTemplateGroupInput) SetIdentifier(v string) *DeleteEventBridgeRuleTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteEventBridgeRuleTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEventBridgeRuleTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventBridgeRuleTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventBridgeRuleTemplateInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteEventBridgeRuleTemplateInput) SetIdentifier(v string) *DeleteEventBridgeRuleTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteEventBridgeRuleTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventBridgeRuleTemplateOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteInputInput struct {
@@ -13075,6 +17447,75 @@ func (s DeleteScheduleOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteScheduleOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSignalMapInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSignalMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSignalMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSignalMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSignalMapInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *DeleteSignalMapInput) SetIdentifier(v string) *DeleteSignalMapInput {
+	s.Identifier = &v
+	return s
+}
+
+type DeleteSignalMapOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSignalMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSignalMapOutput) GoString() string {
 	return s.String()
 }
 
@@ -16432,6 +20873,285 @@ func (s *Esam) SetZoneIdentity(v string) *Esam {
 	return s
 }
 
+type EventBridgeRuleTemplateGroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An eventbridge rule template group's ARN (Amazon Resource Name)
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A resource's optional description.
+	Description *string `locationName:"description" type:"string"`
+
+	// An eventbridge rule template group's id. AWS provided template groups have
+	// ids that start with `aws-`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"7" type:"string" required:"true"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A resource's name. Names must be unique within the scope of a resource type
+	// in a specific region.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The number of templates in a group.
+	//
+	// TemplateCount is a required field
+	TemplateCount *int64 `locationName:"templateCount" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateGroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateGroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetArn(v string) *EventBridgeRuleTemplateGroupSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetCreatedAt(v time.Time) *EventBridgeRuleTemplateGroupSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetDescription(v string) *EventBridgeRuleTemplateGroupSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetId(v string) *EventBridgeRuleTemplateGroupSummary {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetModifiedAt(v time.Time) *EventBridgeRuleTemplateGroupSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetName(v string) *EventBridgeRuleTemplateGroupSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetTags(v map[string]*string) *EventBridgeRuleTemplateGroupSummary {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateCount sets the TemplateCount field's value.
+func (s *EventBridgeRuleTemplateGroupSummary) SetTemplateCount(v int64) *EventBridgeRuleTemplateGroupSummary {
+	s.TemplateCount = &v
+	return s
+}
+
+type EventBridgeRuleTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An eventbridge rule template's ARN (Amazon Resource Name)
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A resource's optional description.
+	Description *string `locationName:"description" type:"string"`
+
+	// The number of targets configured to send matching events.
+	//
+	// EventTargetCount is a required field
+	EventTargetCount *int64 `locationName:"eventTargetCount" type:"integer" required:"true"`
+
+	// The type of event to match with the rule.
+	//
+	// EventType is a required field
+	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventBridgeRuleTemplateEventType"`
+
+	// An eventbridge rule template group's id. AWS provided template groups have
+	// ids that start with `aws-`
+	//
+	// GroupId is a required field
+	GroupId *string `locationName:"groupId" min:"7" type:"string" required:"true"`
+
+	// An eventbridge rule template's id. AWS provided templates have ids that start
+	// with `aws-`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"7" type:"string" required:"true"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A resource's name. Names must be unique within the scope of a resource type
+	// in a specific region.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventBridgeRuleTemplateSummary) SetArn(v string) *EventBridgeRuleTemplateSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *EventBridgeRuleTemplateSummary) SetCreatedAt(v time.Time) *EventBridgeRuleTemplateSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EventBridgeRuleTemplateSummary) SetDescription(v string) *EventBridgeRuleTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargetCount sets the EventTargetCount field's value.
+func (s *EventBridgeRuleTemplateSummary) SetEventTargetCount(v int64) *EventBridgeRuleTemplateSummary {
+	s.EventTargetCount = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *EventBridgeRuleTemplateSummary) SetEventType(v string) *EventBridgeRuleTemplateSummary {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *EventBridgeRuleTemplateSummary) SetGroupId(v string) *EventBridgeRuleTemplateSummary {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *EventBridgeRuleTemplateSummary) SetId(v string) *EventBridgeRuleTemplateSummary {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *EventBridgeRuleTemplateSummary) SetModifiedAt(v time.Time) *EventBridgeRuleTemplateSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EventBridgeRuleTemplateSummary) SetName(v string) *EventBridgeRuleTemplateSummary {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EventBridgeRuleTemplateSummary) SetTags(v map[string]*string) *EventBridgeRuleTemplateSummary {
+	s.Tags = v
+	return s
+}
+
+// The target to which to send matching events.
+type EventBridgeRuleTemplateTarget struct {
+	_ struct{} `type:"structure"`
+
+	// Target ARNs must be either an SNS topic or CloudWatch log group.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeRuleTemplateTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventBridgeRuleTemplateTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventBridgeRuleTemplateTarget"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventBridgeRuleTemplateTarget) SetArn(v string) *EventBridgeRuleTemplateTarget {
+	s.Arn = &v
+	return s
+}
+
 // Failover Condition settings. There can be multiple failover conditions inside
 // AutomaticInputFailoverSettings.
 type FailoverCondition struct {
@@ -17218,6 +21938,841 @@ func (s *GatewayTimeoutException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *GatewayTimeoutException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type GetCloudWatchAlarmTemplateGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCloudWatchAlarmTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCloudWatchAlarmTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetCloudWatchAlarmTemplateGroupInput) SetIdentifier(v string) *GetCloudWatchAlarmTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetCloudWatchAlarmTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetArn(v string) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetCreatedAt(v time.Time) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetDescription(v string) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetId(v string) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetModifiedAt(v time.Time) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetName(v string) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetCloudWatchAlarmTemplateGroupOutput) SetTags(v map[string]*string) *GetCloudWatchAlarmTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type GetCloudWatchAlarmTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCloudWatchAlarmTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCloudWatchAlarmTemplateInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetCloudWatchAlarmTemplateInput) SetIdentifier(v string) *GetCloudWatchAlarmTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetCloudWatchAlarmTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	MetricName *string `locationName:"metricName" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	Period *int64 `locationName:"period" min:"10" type:"integer"`
+
+	// The statistic to apply to the alarm's metric data.
+	Statistic *string `locationName:"statistic" type:"string" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	Threshold *float64 `locationName:"threshold" type:"double"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCloudWatchAlarmTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetArn(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetComparisonOperator(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetCreatedAt(v time.Time) *GetCloudWatchAlarmTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetDatapointsToAlarm(v int64) *GetCloudWatchAlarmTemplateOutput {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetDescription(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetEvaluationPeriods(v int64) *GetCloudWatchAlarmTemplateOutput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetGroupId(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetId(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetMetricName(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetModifiedAt(v time.Time) *GetCloudWatchAlarmTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetName(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetPeriod(v int64) *GetCloudWatchAlarmTemplateOutput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetStatistic(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetTags(v map[string]*string) *GetCloudWatchAlarmTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetTargetResourceType(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetThreshold(v float64) *GetCloudWatchAlarmTemplateOutput {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *GetCloudWatchAlarmTemplateOutput) SetTreatMissingData(v string) *GetCloudWatchAlarmTemplateOutput {
+	s.TreatMissingData = &v
+	return s
+}
+
+type GetEventBridgeRuleTemplateGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventBridgeRuleTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventBridgeRuleTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetEventBridgeRuleTemplateGroupInput) SetIdentifier(v string) *GetEventBridgeRuleTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetEventBridgeRuleTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetArn(v string) *GetEventBridgeRuleTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetCreatedAt(v time.Time) *GetEventBridgeRuleTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetDescription(v string) *GetEventBridgeRuleTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetId(v string) *GetEventBridgeRuleTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetModifiedAt(v time.Time) *GetEventBridgeRuleTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetName(v string) *GetEventBridgeRuleTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetEventBridgeRuleTemplateGroupOutput) SetTags(v map[string]*string) *GetEventBridgeRuleTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type GetEventBridgeRuleTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventBridgeRuleTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventBridgeRuleTemplateInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetEventBridgeRuleTemplateInput) SetIdentifier(v string) *GetEventBridgeRuleTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetEventBridgeRuleTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EventTargets []*EventBridgeRuleTemplateTarget `locationName:"eventTargets" type:"list"`
+
+	// The type of event to match with the rule.
+	EventType *string `locationName:"eventType" type:"string" enum:"EventBridgeRuleTemplateEventType"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventBridgeRuleTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetArn(v string) *GetEventBridgeRuleTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetCreatedAt(v time.Time) *GetEventBridgeRuleTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetDescription(v string) *GetEventBridgeRuleTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargets sets the EventTargets field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetEventTargets(v []*EventBridgeRuleTemplateTarget) *GetEventBridgeRuleTemplateOutput {
+	s.EventTargets = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetEventType(v string) *GetEventBridgeRuleTemplateOutput {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetGroupId(v string) *GetEventBridgeRuleTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetId(v string) *GetEventBridgeRuleTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetModifiedAt(v time.Time) *GetEventBridgeRuleTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetName(v string) *GetEventBridgeRuleTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetEventBridgeRuleTemplateOutput) SetTags(v map[string]*string) *GetEventBridgeRuleTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+type GetSignalMapInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignalMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignalMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSignalMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSignalMapInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetSignalMapInput) SetIdentifier(v string) *GetSignalMapInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetSignalMapOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CloudWatchAlarmTemplateGroupIds []*string `locationName:"cloudWatchAlarmTemplateGroupIds" type:"list"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIds []*string `locationName:"eventBridgeRuleTemplateGroupIds" type:"list"`
+
+	// A map representing an incomplete AWS media workflow as a graph.
+	FailedMediaResourceMap map[string]*MediaResource `locationName:"failedMediaResourceMap" type:"map"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	LastDiscoveredAt *time.Time `locationName:"lastDiscoveredAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents the latest successful monitor deployment of a signal map.
+	LastSuccessfulMonitorDeployment *SuccessfulMonitorDeployment `locationName:"lastSuccessfulMonitorDeployment" type:"structure"`
+
+	// A map representing an AWS media workflow as a graph.
+	MediaResourceMap map[string]*MediaResource `locationName:"mediaResourceMap" type:"map"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	MonitorChangesPendingDeployment *bool `locationName:"monitorChangesPendingDeployment" type:"boolean"`
+
+	// Represents the latest monitor deployment of a signal map.
+	MonitorDeployment *MonitorDeployment `locationName:"monitorDeployment" type:"structure"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	Status *string `locationName:"status" type:"string" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignalMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSignalMapOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetSignalMapOutput) SetArn(v string) *GetSignalMapOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCloudWatchAlarmTemplateGroupIds sets the CloudWatchAlarmTemplateGroupIds field's value.
+func (s *GetSignalMapOutput) SetCloudWatchAlarmTemplateGroupIds(v []*string) *GetSignalMapOutput {
+	s.CloudWatchAlarmTemplateGroupIds = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetSignalMapOutput) SetCreatedAt(v time.Time) *GetSignalMapOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetSignalMapOutput) SetDescription(v string) *GetSignalMapOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *GetSignalMapOutput) SetDiscoveryEntryPointArn(v string) *GetSignalMapOutput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *GetSignalMapOutput) SetErrorMessage(v string) *GetSignalMapOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIds sets the EventBridgeRuleTemplateGroupIds field's value.
+func (s *GetSignalMapOutput) SetEventBridgeRuleTemplateGroupIds(v []*string) *GetSignalMapOutput {
+	s.EventBridgeRuleTemplateGroupIds = v
+	return s
+}
+
+// SetFailedMediaResourceMap sets the FailedMediaResourceMap field's value.
+func (s *GetSignalMapOutput) SetFailedMediaResourceMap(v map[string]*MediaResource) *GetSignalMapOutput {
+	s.FailedMediaResourceMap = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetSignalMapOutput) SetId(v string) *GetSignalMapOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastDiscoveredAt sets the LastDiscoveredAt field's value.
+func (s *GetSignalMapOutput) SetLastDiscoveredAt(v time.Time) *GetSignalMapOutput {
+	s.LastDiscoveredAt = &v
+	return s
+}
+
+// SetLastSuccessfulMonitorDeployment sets the LastSuccessfulMonitorDeployment field's value.
+func (s *GetSignalMapOutput) SetLastSuccessfulMonitorDeployment(v *SuccessfulMonitorDeployment) *GetSignalMapOutput {
+	s.LastSuccessfulMonitorDeployment = v
+	return s
+}
+
+// SetMediaResourceMap sets the MediaResourceMap field's value.
+func (s *GetSignalMapOutput) SetMediaResourceMap(v map[string]*MediaResource) *GetSignalMapOutput {
+	s.MediaResourceMap = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *GetSignalMapOutput) SetModifiedAt(v time.Time) *GetSignalMapOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorChangesPendingDeployment sets the MonitorChangesPendingDeployment field's value.
+func (s *GetSignalMapOutput) SetMonitorChangesPendingDeployment(v bool) *GetSignalMapOutput {
+	s.MonitorChangesPendingDeployment = &v
+	return s
+}
+
+// SetMonitorDeployment sets the MonitorDeployment field's value.
+func (s *GetSignalMapOutput) SetMonitorDeployment(v *MonitorDeployment) *GetSignalMapOutput {
+	s.MonitorDeployment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetSignalMapOutput) SetName(v string) *GetSignalMapOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetSignalMapOutput) SetStatus(v string) *GetSignalMapOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetSignalMapOutput) SetTags(v map[string]*string) *GetSignalMapOutput {
+	s.Tags = v
+	return s
 }
 
 // Global Configuration
@@ -22358,6 +27913,426 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 	return s
 }
 
+type ListCloudWatchAlarmTemplateGroupsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	Scope *string `location:"querystring" locationName:"scope" type:"string"`
+
+	SignalMapIdentifier *string `location:"querystring" locationName:"signalMapIdentifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplateGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplateGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCloudWatchAlarmTemplateGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCloudWatchAlarmTemplateGroupsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsInput) SetMaxResults(v int64) *ListCloudWatchAlarmTemplateGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsInput) SetNextToken(v string) *ListCloudWatchAlarmTemplateGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsInput) SetScope(v string) *ListCloudWatchAlarmTemplateGroupsInput {
+	s.Scope = &v
+	return s
+}
+
+// SetSignalMapIdentifier sets the SignalMapIdentifier field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsInput) SetSignalMapIdentifier(v string) *ListCloudWatchAlarmTemplateGroupsInput {
+	s.SignalMapIdentifier = &v
+	return s
+}
+
+type ListCloudWatchAlarmTemplateGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	CloudWatchAlarmTemplateGroups []*CloudWatchAlarmTemplateGroupSummary `locationName:"cloudWatchAlarmTemplateGroups" type:"list"`
+
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplateGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplateGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchAlarmTemplateGroups sets the CloudWatchAlarmTemplateGroups field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsOutput) SetCloudWatchAlarmTemplateGroups(v []*CloudWatchAlarmTemplateGroupSummary) *ListCloudWatchAlarmTemplateGroupsOutput {
+	s.CloudWatchAlarmTemplateGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCloudWatchAlarmTemplateGroupsOutput) SetNextToken(v string) *ListCloudWatchAlarmTemplateGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCloudWatchAlarmTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	GroupIdentifier *string `location:"querystring" locationName:"groupIdentifier" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	Scope *string `location:"querystring" locationName:"scope" type:"string"`
+
+	SignalMapIdentifier *string `location:"querystring" locationName:"signalMapIdentifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCloudWatchAlarmTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCloudWatchAlarmTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *ListCloudWatchAlarmTemplatesInput) SetGroupIdentifier(v string) *ListCloudWatchAlarmTemplatesInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCloudWatchAlarmTemplatesInput) SetMaxResults(v int64) *ListCloudWatchAlarmTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCloudWatchAlarmTemplatesInput) SetNextToken(v string) *ListCloudWatchAlarmTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListCloudWatchAlarmTemplatesInput) SetScope(v string) *ListCloudWatchAlarmTemplatesInput {
+	s.Scope = &v
+	return s
+}
+
+// SetSignalMapIdentifier sets the SignalMapIdentifier field's value.
+func (s *ListCloudWatchAlarmTemplatesInput) SetSignalMapIdentifier(v string) *ListCloudWatchAlarmTemplatesInput {
+	s.SignalMapIdentifier = &v
+	return s
+}
+
+type ListCloudWatchAlarmTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	CloudWatchAlarmTemplates []*CloudWatchAlarmTemplateSummary `locationName:"cloudWatchAlarmTemplates" type:"list"`
+
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCloudWatchAlarmTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchAlarmTemplates sets the CloudWatchAlarmTemplates field's value.
+func (s *ListCloudWatchAlarmTemplatesOutput) SetCloudWatchAlarmTemplates(v []*CloudWatchAlarmTemplateSummary) *ListCloudWatchAlarmTemplatesOutput {
+	s.CloudWatchAlarmTemplates = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCloudWatchAlarmTemplatesOutput) SetNextToken(v string) *ListCloudWatchAlarmTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventBridgeRuleTemplateGroupsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	SignalMapIdentifier *string `location:"querystring" locationName:"signalMapIdentifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplateGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplateGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventBridgeRuleTemplateGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventBridgeRuleTemplateGroupsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventBridgeRuleTemplateGroupsInput) SetMaxResults(v int64) *ListEventBridgeRuleTemplateGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventBridgeRuleTemplateGroupsInput) SetNextToken(v string) *ListEventBridgeRuleTemplateGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSignalMapIdentifier sets the SignalMapIdentifier field's value.
+func (s *ListEventBridgeRuleTemplateGroupsInput) SetSignalMapIdentifier(v string) *ListEventBridgeRuleTemplateGroupsInput {
+	s.SignalMapIdentifier = &v
+	return s
+}
+
+type ListEventBridgeRuleTemplateGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	EventBridgeRuleTemplateGroups []*EventBridgeRuleTemplateGroupSummary `locationName:"eventBridgeRuleTemplateGroups" type:"list"`
+
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplateGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplateGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventBridgeRuleTemplateGroups sets the EventBridgeRuleTemplateGroups field's value.
+func (s *ListEventBridgeRuleTemplateGroupsOutput) SetEventBridgeRuleTemplateGroups(v []*EventBridgeRuleTemplateGroupSummary) *ListEventBridgeRuleTemplateGroupsOutput {
+	s.EventBridgeRuleTemplateGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventBridgeRuleTemplateGroupsOutput) SetNextToken(v string) *ListEventBridgeRuleTemplateGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventBridgeRuleTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	GroupIdentifier *string `location:"querystring" locationName:"groupIdentifier" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	SignalMapIdentifier *string `location:"querystring" locationName:"signalMapIdentifier" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventBridgeRuleTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventBridgeRuleTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *ListEventBridgeRuleTemplatesInput) SetGroupIdentifier(v string) *ListEventBridgeRuleTemplatesInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventBridgeRuleTemplatesInput) SetMaxResults(v int64) *ListEventBridgeRuleTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventBridgeRuleTemplatesInput) SetNextToken(v string) *ListEventBridgeRuleTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSignalMapIdentifier sets the SignalMapIdentifier field's value.
+func (s *ListEventBridgeRuleTemplatesInput) SetSignalMapIdentifier(v string) *ListEventBridgeRuleTemplatesInput {
+	s.SignalMapIdentifier = &v
+	return s
+}
+
+type ListEventBridgeRuleTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	EventBridgeRuleTemplates []*EventBridgeRuleTemplateSummary `locationName:"eventBridgeRuleTemplates" type:"list"`
+
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventBridgeRuleTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventBridgeRuleTemplates sets the EventBridgeRuleTemplates field's value.
+func (s *ListEventBridgeRuleTemplatesOutput) SetEventBridgeRuleTemplates(v []*EventBridgeRuleTemplateSummary) *ListEventBridgeRuleTemplatesOutput {
+	s.EventBridgeRuleTemplates = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventBridgeRuleTemplatesOutput) SetNextToken(v string) *ListEventBridgeRuleTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListInputDeviceTransfersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -23238,6 +29213,111 @@ func (s *ListReservationsOutput) SetNextToken(v string) *ListReservationsOutput 
 // SetReservations sets the Reservations field's value.
 func (s *ListReservationsOutput) SetReservations(v []*Reservation) *ListReservationsOutput {
 	s.Reservations = v
+	return s
+}
+
+type ListSignalMapsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	CloudWatchAlarmTemplateGroupIdentifier *string `location:"querystring" locationName:"cloudWatchAlarmTemplateGroupIdentifier" type:"string"`
+
+	EventBridgeRuleTemplateGroupIdentifier *string `location:"querystring" locationName:"eventBridgeRuleTemplateGroupIdentifier" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSignalMapsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSignalMapsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSignalMapsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSignalMapsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchAlarmTemplateGroupIdentifier sets the CloudWatchAlarmTemplateGroupIdentifier field's value.
+func (s *ListSignalMapsInput) SetCloudWatchAlarmTemplateGroupIdentifier(v string) *ListSignalMapsInput {
+	s.CloudWatchAlarmTemplateGroupIdentifier = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIdentifier sets the EventBridgeRuleTemplateGroupIdentifier field's value.
+func (s *ListSignalMapsInput) SetEventBridgeRuleTemplateGroupIdentifier(v string) *ListSignalMapsInput {
+	s.EventBridgeRuleTemplateGroupIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSignalMapsInput) SetMaxResults(v int64) *ListSignalMapsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSignalMapsInput) SetNextToken(v string) *ListSignalMapsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSignalMapsOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	SignalMaps []*SignalMapSummary `locationName:"signalMaps" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSignalMapsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSignalMapsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSignalMapsOutput) SetNextToken(v string) *ListSignalMapsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSignalMaps sets the SignalMaps field's value.
+func (s *ListSignalMapsOutput) SetSignalMaps(v []*SignalMapSummary) *ListSignalMapsOutput {
+	s.SignalMaps = v
 	return s
 }
 
@@ -24439,6 +30519,149 @@ func (s MediaPackageOutputSettings) String() string {
 // value will be replaced with "sensitive".
 func (s MediaPackageOutputSettings) GoString() string {
 	return s.String()
+}
+
+// An AWS resource used in media workflows.
+type MediaResource struct {
+	_ struct{} `type:"structure"`
+
+	Destinations []*MediaResourceNeighbor `locationName:"destinations" type:"list"`
+
+	// The logical name of an AWS media resource.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	Sources []*MediaResourceNeighbor `locationName:"sources" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaResource) GoString() string {
+	return s.String()
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *MediaResource) SetDestinations(v []*MediaResourceNeighbor) *MediaResource {
+	s.Destinations = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MediaResource) SetName(v string) *MediaResource {
+	s.Name = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *MediaResource) SetSources(v []*MediaResourceNeighbor) *MediaResource {
+	s.Sources = v
+	return s
+}
+
+// A direct source or destination neighbor to an AWS media resource.
+type MediaResourceNeighbor struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a resource used in AWS media workflows.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+
+	// The logical name of an AWS media resource.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaResourceNeighbor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MediaResourceNeighbor) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *MediaResourceNeighbor) SetArn(v string) *MediaResourceNeighbor {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MediaResourceNeighbor) SetName(v string) *MediaResourceNeighbor {
+	s.Name = &v
+	return s
+}
+
+// Represents the latest monitor deployment of a signal map.
+type MonitorDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// URI associated with a signal map's monitor deployment.
+	DetailsUri *string `locationName:"detailsUri" min:"1" type:"string"`
+
+	// Error message associated with a failed monitor deployment of a signal map.
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	// A signal map's monitor deployment status.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"SignalMapMonitorDeploymentStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MonitorDeployment) GoString() string {
+	return s.String()
+}
+
+// SetDetailsUri sets the DetailsUri field's value.
+func (s *MonitorDeployment) SetDetailsUri(v string) *MonitorDeployment {
+	s.DetailsUri = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *MonitorDeployment) SetErrorMessage(v string) *MonitorDeployment {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MonitorDeployment) SetStatus(v string) *MonitorDeployment {
+	s.Status = &v
+	return s
 }
 
 // Settings to specify the rendering of motion graphics into the video stream.
@@ -30227,6 +36450,120 @@ func (s *Scte35TimeSignalScheduleActionSettings) SetScte35Descriptors(v []*Scte3
 	return s
 }
 
+type SignalMapSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A signal map's ARN (Amazon Resource Name)
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A resource's optional description.
+	Description *string `locationName:"description" type:"string"`
+
+	// A signal map's id.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" min:"7" type:"string" required:"true"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A signal map's monitor deployment status.
+	//
+	// MonitorDeploymentStatus is a required field
+	MonitorDeploymentStatus *string `locationName:"monitorDeploymentStatus" type:"string" required:"true" enum:"SignalMapMonitorDeploymentStatus"`
+
+	// A resource's name. Names must be unique within the scope of a resource type
+	// in a specific region.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignalMapSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SignalMapSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SignalMapSummary) SetArn(v string) *SignalMapSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *SignalMapSummary) SetCreatedAt(v time.Time) *SignalMapSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SignalMapSummary) SetDescription(v string) *SignalMapSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SignalMapSummary) SetId(v string) *SignalMapSummary {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *SignalMapSummary) SetModifiedAt(v time.Time) *SignalMapSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorDeploymentStatus sets the MonitorDeploymentStatus field's value.
+func (s *SignalMapSummary) SetMonitorDeploymentStatus(v string) *SignalMapSummary {
+	s.MonitorDeploymentStatus = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SignalMapSummary) SetName(v string) *SignalMapSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SignalMapSummary) SetStatus(v string) *SignalMapSummary {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SignalMapSummary) SetTags(v map[string]*string) *SignalMapSummary {
+	s.Tags = v
+	return s
+}
+
 // Smpte Tt Destination Settings
 type SmpteTtDestinationSettings struct {
 	_ struct{} `type:"structure"`
@@ -30525,6 +36862,226 @@ func (s *StartChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StartChann
 	return s
 }
 
+type StartDeleteMonitorDeploymentInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDeleteMonitorDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDeleteMonitorDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDeleteMonitorDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDeleteMonitorDeploymentInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StartDeleteMonitorDeploymentInput) SetIdentifier(v string) *StartDeleteMonitorDeploymentInput {
+	s.Identifier = &v
+	return s
+}
+
+type StartDeleteMonitorDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CloudWatchAlarmTemplateGroupIds []*string `locationName:"cloudWatchAlarmTemplateGroupIds" type:"list"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIds []*string `locationName:"eventBridgeRuleTemplateGroupIds" type:"list"`
+
+	// A map representing an incomplete AWS media workflow as a graph.
+	FailedMediaResourceMap map[string]*MediaResource `locationName:"failedMediaResourceMap" type:"map"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	LastDiscoveredAt *time.Time `locationName:"lastDiscoveredAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents the latest successful monitor deployment of a signal map.
+	LastSuccessfulMonitorDeployment *SuccessfulMonitorDeployment `locationName:"lastSuccessfulMonitorDeployment" type:"structure"`
+
+	// A map representing an AWS media workflow as a graph.
+	MediaResourceMap map[string]*MediaResource `locationName:"mediaResourceMap" type:"map"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	MonitorChangesPendingDeployment *bool `locationName:"monitorChangesPendingDeployment" type:"boolean"`
+
+	// Represents the latest monitor deployment of a signal map.
+	MonitorDeployment *MonitorDeployment `locationName:"monitorDeployment" type:"structure"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	Status *string `locationName:"status" type:"string" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDeleteMonitorDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDeleteMonitorDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetArn(v string) *StartDeleteMonitorDeploymentOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCloudWatchAlarmTemplateGroupIds sets the CloudWatchAlarmTemplateGroupIds field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetCloudWatchAlarmTemplateGroupIds(v []*string) *StartDeleteMonitorDeploymentOutput {
+	s.CloudWatchAlarmTemplateGroupIds = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetCreatedAt(v time.Time) *StartDeleteMonitorDeploymentOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetDescription(v string) *StartDeleteMonitorDeploymentOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetDiscoveryEntryPointArn(v string) *StartDeleteMonitorDeploymentOutput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetErrorMessage(v string) *StartDeleteMonitorDeploymentOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIds sets the EventBridgeRuleTemplateGroupIds field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetEventBridgeRuleTemplateGroupIds(v []*string) *StartDeleteMonitorDeploymentOutput {
+	s.EventBridgeRuleTemplateGroupIds = v
+	return s
+}
+
+// SetFailedMediaResourceMap sets the FailedMediaResourceMap field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetFailedMediaResourceMap(v map[string]*MediaResource) *StartDeleteMonitorDeploymentOutput {
+	s.FailedMediaResourceMap = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetId(v string) *StartDeleteMonitorDeploymentOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastDiscoveredAt sets the LastDiscoveredAt field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetLastDiscoveredAt(v time.Time) *StartDeleteMonitorDeploymentOutput {
+	s.LastDiscoveredAt = &v
+	return s
+}
+
+// SetLastSuccessfulMonitorDeployment sets the LastSuccessfulMonitorDeployment field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetLastSuccessfulMonitorDeployment(v *SuccessfulMonitorDeployment) *StartDeleteMonitorDeploymentOutput {
+	s.LastSuccessfulMonitorDeployment = v
+	return s
+}
+
+// SetMediaResourceMap sets the MediaResourceMap field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetMediaResourceMap(v map[string]*MediaResource) *StartDeleteMonitorDeploymentOutput {
+	s.MediaResourceMap = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetModifiedAt(v time.Time) *StartDeleteMonitorDeploymentOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorChangesPendingDeployment sets the MonitorChangesPendingDeployment field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetMonitorChangesPendingDeployment(v bool) *StartDeleteMonitorDeploymentOutput {
+	s.MonitorChangesPendingDeployment = &v
+	return s
+}
+
+// SetMonitorDeployment sets the MonitorDeployment field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetMonitorDeployment(v *MonitorDeployment) *StartDeleteMonitorDeploymentOutput {
+	s.MonitorDeployment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetName(v string) *StartDeleteMonitorDeploymentOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetStatus(v string) *StartDeleteMonitorDeploymentOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartDeleteMonitorDeploymentOutput) SetTags(v map[string]*string) *StartDeleteMonitorDeploymentOutput {
+	s.Tags = v
+	return s
+}
+
 type StartInputDeviceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -30661,6 +37218,234 @@ func (s StartInputDeviceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s StartInputDeviceOutput) GoString() string {
 	return s.String()
+}
+
+type StartMonitorDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMonitorDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMonitorDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMonitorDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMonitorDeploymentInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *StartMonitorDeploymentInput) SetDryRun(v bool) *StartMonitorDeploymentInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StartMonitorDeploymentInput) SetIdentifier(v string) *StartMonitorDeploymentInput {
+	s.Identifier = &v
+	return s
+}
+
+type StartMonitorDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CloudWatchAlarmTemplateGroupIds []*string `locationName:"cloudWatchAlarmTemplateGroupIds" type:"list"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIds []*string `locationName:"eventBridgeRuleTemplateGroupIds" type:"list"`
+
+	// A map representing an incomplete AWS media workflow as a graph.
+	FailedMediaResourceMap map[string]*MediaResource `locationName:"failedMediaResourceMap" type:"map"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	LastDiscoveredAt *time.Time `locationName:"lastDiscoveredAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents the latest successful monitor deployment of a signal map.
+	LastSuccessfulMonitorDeployment *SuccessfulMonitorDeployment `locationName:"lastSuccessfulMonitorDeployment" type:"structure"`
+
+	// A map representing an AWS media workflow as a graph.
+	MediaResourceMap map[string]*MediaResource `locationName:"mediaResourceMap" type:"map"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	MonitorChangesPendingDeployment *bool `locationName:"monitorChangesPendingDeployment" type:"boolean"`
+
+	// Represents the latest monitor deployment of a signal map.
+	MonitorDeployment *MonitorDeployment `locationName:"monitorDeployment" type:"structure"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	Status *string `locationName:"status" type:"string" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMonitorDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMonitorDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartMonitorDeploymentOutput) SetArn(v string) *StartMonitorDeploymentOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCloudWatchAlarmTemplateGroupIds sets the CloudWatchAlarmTemplateGroupIds field's value.
+func (s *StartMonitorDeploymentOutput) SetCloudWatchAlarmTemplateGroupIds(v []*string) *StartMonitorDeploymentOutput {
+	s.CloudWatchAlarmTemplateGroupIds = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *StartMonitorDeploymentOutput) SetCreatedAt(v time.Time) *StartMonitorDeploymentOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartMonitorDeploymentOutput) SetDescription(v string) *StartMonitorDeploymentOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *StartMonitorDeploymentOutput) SetDiscoveryEntryPointArn(v string) *StartMonitorDeploymentOutput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *StartMonitorDeploymentOutput) SetErrorMessage(v string) *StartMonitorDeploymentOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIds sets the EventBridgeRuleTemplateGroupIds field's value.
+func (s *StartMonitorDeploymentOutput) SetEventBridgeRuleTemplateGroupIds(v []*string) *StartMonitorDeploymentOutput {
+	s.EventBridgeRuleTemplateGroupIds = v
+	return s
+}
+
+// SetFailedMediaResourceMap sets the FailedMediaResourceMap field's value.
+func (s *StartMonitorDeploymentOutput) SetFailedMediaResourceMap(v map[string]*MediaResource) *StartMonitorDeploymentOutput {
+	s.FailedMediaResourceMap = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartMonitorDeploymentOutput) SetId(v string) *StartMonitorDeploymentOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastDiscoveredAt sets the LastDiscoveredAt field's value.
+func (s *StartMonitorDeploymentOutput) SetLastDiscoveredAt(v time.Time) *StartMonitorDeploymentOutput {
+	s.LastDiscoveredAt = &v
+	return s
+}
+
+// SetLastSuccessfulMonitorDeployment sets the LastSuccessfulMonitorDeployment field's value.
+func (s *StartMonitorDeploymentOutput) SetLastSuccessfulMonitorDeployment(v *SuccessfulMonitorDeployment) *StartMonitorDeploymentOutput {
+	s.LastSuccessfulMonitorDeployment = v
+	return s
+}
+
+// SetMediaResourceMap sets the MediaResourceMap field's value.
+func (s *StartMonitorDeploymentOutput) SetMediaResourceMap(v map[string]*MediaResource) *StartMonitorDeploymentOutput {
+	s.MediaResourceMap = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *StartMonitorDeploymentOutput) SetModifiedAt(v time.Time) *StartMonitorDeploymentOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorChangesPendingDeployment sets the MonitorChangesPendingDeployment field's value.
+func (s *StartMonitorDeploymentOutput) SetMonitorChangesPendingDeployment(v bool) *StartMonitorDeploymentOutput {
+	s.MonitorChangesPendingDeployment = &v
+	return s
+}
+
+// SetMonitorDeployment sets the MonitorDeployment field's value.
+func (s *StartMonitorDeploymentOutput) SetMonitorDeployment(v *MonitorDeployment) *StartMonitorDeploymentOutput {
+	s.MonitorDeployment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartMonitorDeploymentOutput) SetName(v string) *StartMonitorDeploymentOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartMonitorDeploymentOutput) SetStatus(v string) *StartMonitorDeploymentOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartMonitorDeploymentOutput) SetTags(v map[string]*string) *StartMonitorDeploymentOutput {
+	s.Tags = v
+	return s
 }
 
 type StartMultiplexInput struct {
@@ -30845,6 +37630,280 @@ func (s StartTimecode) GoString() string {
 // SetTimecode sets the Timecode field's value.
 func (s *StartTimecode) SetTimecode(v string) *StartTimecode {
 	s.Timecode = &v
+	return s
+}
+
+type StartUpdateSignalMapInput struct {
+	_ struct{} `type:"structure"`
+
+	CloudWatchAlarmTemplateGroupIdentifiers []*string `locationName:"cloudWatchAlarmTemplateGroupIdentifiers" type:"list"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIdentifiers []*string `locationName:"eventBridgeRuleTemplateGroupIdentifiers" type:"list"`
+
+	ForceRediscovery *bool `locationName:"forceRediscovery" type:"boolean"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartUpdateSignalMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartUpdateSignalMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartUpdateSignalMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartUpdateSignalMapInput"}
+	if s.DiscoveryEntryPointArn != nil && len(*s.DiscoveryEntryPointArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DiscoveryEntryPointArn", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchAlarmTemplateGroupIdentifiers sets the CloudWatchAlarmTemplateGroupIdentifiers field's value.
+func (s *StartUpdateSignalMapInput) SetCloudWatchAlarmTemplateGroupIdentifiers(v []*string) *StartUpdateSignalMapInput {
+	s.CloudWatchAlarmTemplateGroupIdentifiers = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartUpdateSignalMapInput) SetDescription(v string) *StartUpdateSignalMapInput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *StartUpdateSignalMapInput) SetDiscoveryEntryPointArn(v string) *StartUpdateSignalMapInput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIdentifiers sets the EventBridgeRuleTemplateGroupIdentifiers field's value.
+func (s *StartUpdateSignalMapInput) SetEventBridgeRuleTemplateGroupIdentifiers(v []*string) *StartUpdateSignalMapInput {
+	s.EventBridgeRuleTemplateGroupIdentifiers = v
+	return s
+}
+
+// SetForceRediscovery sets the ForceRediscovery field's value.
+func (s *StartUpdateSignalMapInput) SetForceRediscovery(v bool) *StartUpdateSignalMapInput {
+	s.ForceRediscovery = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *StartUpdateSignalMapInput) SetIdentifier(v string) *StartUpdateSignalMapInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartUpdateSignalMapInput) SetName(v string) *StartUpdateSignalMapInput {
+	s.Name = &v
+	return s
+}
+
+type StartUpdateSignalMapOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CloudWatchAlarmTemplateGroupIds []*string `locationName:"cloudWatchAlarmTemplateGroupIds" type:"list"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	DiscoveryEntryPointArn *string `locationName:"discoveryEntryPointArn" min:"1" type:"string"`
+
+	ErrorMessage *string `locationName:"errorMessage" min:"1" type:"string"`
+
+	EventBridgeRuleTemplateGroupIds []*string `locationName:"eventBridgeRuleTemplateGroupIds" type:"list"`
+
+	// A map representing an incomplete AWS media workflow as a graph.
+	FailedMediaResourceMap map[string]*MediaResource `locationName:"failedMediaResourceMap" type:"map"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	LastDiscoveredAt *time.Time `locationName:"lastDiscoveredAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents the latest successful monitor deployment of a signal map.
+	LastSuccessfulMonitorDeployment *SuccessfulMonitorDeployment `locationName:"lastSuccessfulMonitorDeployment" type:"structure"`
+
+	// A map representing an AWS media workflow as a graph.
+	MediaResourceMap map[string]*MediaResource `locationName:"mediaResourceMap" type:"map"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	MonitorChangesPendingDeployment *bool `locationName:"monitorChangesPendingDeployment" type:"boolean"`
+
+	// Represents the latest monitor deployment of a signal map.
+	MonitorDeployment *MonitorDeployment `locationName:"monitorDeployment" type:"structure"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// A signal map's current status which is dependent on its lifecycle actions
+	// or associated jobs.
+	Status *string `locationName:"status" type:"string" enum:"SignalMapStatus"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartUpdateSignalMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartUpdateSignalMapOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartUpdateSignalMapOutput) SetArn(v string) *StartUpdateSignalMapOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCloudWatchAlarmTemplateGroupIds sets the CloudWatchAlarmTemplateGroupIds field's value.
+func (s *StartUpdateSignalMapOutput) SetCloudWatchAlarmTemplateGroupIds(v []*string) *StartUpdateSignalMapOutput {
+	s.CloudWatchAlarmTemplateGroupIds = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *StartUpdateSignalMapOutput) SetCreatedAt(v time.Time) *StartUpdateSignalMapOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartUpdateSignalMapOutput) SetDescription(v string) *StartUpdateSignalMapOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDiscoveryEntryPointArn sets the DiscoveryEntryPointArn field's value.
+func (s *StartUpdateSignalMapOutput) SetDiscoveryEntryPointArn(v string) *StartUpdateSignalMapOutput {
+	s.DiscoveryEntryPointArn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *StartUpdateSignalMapOutput) SetErrorMessage(v string) *StartUpdateSignalMapOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetEventBridgeRuleTemplateGroupIds sets the EventBridgeRuleTemplateGroupIds field's value.
+func (s *StartUpdateSignalMapOutput) SetEventBridgeRuleTemplateGroupIds(v []*string) *StartUpdateSignalMapOutput {
+	s.EventBridgeRuleTemplateGroupIds = v
+	return s
+}
+
+// SetFailedMediaResourceMap sets the FailedMediaResourceMap field's value.
+func (s *StartUpdateSignalMapOutput) SetFailedMediaResourceMap(v map[string]*MediaResource) *StartUpdateSignalMapOutput {
+	s.FailedMediaResourceMap = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StartUpdateSignalMapOutput) SetId(v string) *StartUpdateSignalMapOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLastDiscoveredAt sets the LastDiscoveredAt field's value.
+func (s *StartUpdateSignalMapOutput) SetLastDiscoveredAt(v time.Time) *StartUpdateSignalMapOutput {
+	s.LastDiscoveredAt = &v
+	return s
+}
+
+// SetLastSuccessfulMonitorDeployment sets the LastSuccessfulMonitorDeployment field's value.
+func (s *StartUpdateSignalMapOutput) SetLastSuccessfulMonitorDeployment(v *SuccessfulMonitorDeployment) *StartUpdateSignalMapOutput {
+	s.LastSuccessfulMonitorDeployment = v
+	return s
+}
+
+// SetMediaResourceMap sets the MediaResourceMap field's value.
+func (s *StartUpdateSignalMapOutput) SetMediaResourceMap(v map[string]*MediaResource) *StartUpdateSignalMapOutput {
+	s.MediaResourceMap = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *StartUpdateSignalMapOutput) SetModifiedAt(v time.Time) *StartUpdateSignalMapOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetMonitorChangesPendingDeployment sets the MonitorChangesPendingDeployment field's value.
+func (s *StartUpdateSignalMapOutput) SetMonitorChangesPendingDeployment(v bool) *StartUpdateSignalMapOutput {
+	s.MonitorChangesPendingDeployment = &v
+	return s
+}
+
+// SetMonitorDeployment sets the MonitorDeployment field's value.
+func (s *StartUpdateSignalMapOutput) SetMonitorDeployment(v *MonitorDeployment) *StartUpdateSignalMapOutput {
+	s.MonitorDeployment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartUpdateSignalMapOutput) SetName(v string) *StartUpdateSignalMapOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartUpdateSignalMapOutput) SetStatus(v string) *StartUpdateSignalMapOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartUpdateSignalMapOutput) SetTags(v map[string]*string) *StartUpdateSignalMapOutput {
+	s.Tags = v
 	return s
 }
 
@@ -31832,6 +38891,51 @@ func (s *StopTimecode) SetLastFrameClippingBehavior(v string) *StopTimecode {
 // SetTimecode sets the Timecode field's value.
 func (s *StopTimecode) SetTimecode(v string) *StopTimecode {
 	s.Timecode = &v
+	return s
+}
+
+// Represents the latest successful monitor deployment of a signal map.
+type SuccessfulMonitorDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// URI associated with a signal map's monitor deployment.
+	//
+	// DetailsUri is a required field
+	DetailsUri *string `locationName:"detailsUri" min:"1" type:"string" required:"true"`
+
+	// A signal map's monitor deployment status.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"SignalMapMonitorDeploymentStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulMonitorDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuccessfulMonitorDeployment) GoString() string {
+	return s.String()
+}
+
+// SetDetailsUri sets the DetailsUri field's value.
+func (s *SuccessfulMonitorDeployment) SetDetailsUri(v string) *SuccessfulMonitorDeployment {
+	s.DetailsUri = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SuccessfulMonitorDeployment) SetStatus(v string) *SuccessfulMonitorDeployment {
+	s.Status = &v
 	return s
 }
 
@@ -33100,6 +40204,805 @@ func (s UpdateChannelOutput) GoString() string {
 // SetChannel sets the Channel field's value.
 func (s *UpdateChannelOutput) SetChannel(v *Channel) *UpdateChannelOutput {
 	s.Channel = v
+	return s
+}
+
+type UpdateCloudWatchAlarmTemplateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCloudWatchAlarmTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCloudWatchAlarmTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupInput) SetDescription(v string) *UpdateCloudWatchAlarmTemplateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupInput) SetIdentifier(v string) *UpdateCloudWatchAlarmTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type UpdateCloudWatchAlarmTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetArn(v string) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetCreatedAt(v time.Time) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetDescription(v string) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetId(v string) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetModifiedAt(v time.Time) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetName(v string) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateCloudWatchAlarmTemplateGroupOutput) SetTags(v map[string]*string) *UpdateCloudWatchAlarmTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type UpdateCloudWatchAlarmTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer"`
+
+	GroupIdentifier *string `locationName:"groupIdentifier" type:"string"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	MetricName *string `locationName:"metricName" type:"string"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	Period *int64 `locationName:"period" min:"10" type:"integer"`
+
+	// The statistic to apply to the alarm's metric data.
+	Statistic *string `locationName:"statistic" type:"string" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	Threshold *float64 `locationName:"threshold" type:"double"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCloudWatchAlarmTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCloudWatchAlarmTemplateInput"}
+	if s.DatapointsToAlarm != nil && *s.DatapointsToAlarm < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DatapointsToAlarm", 1))
+	}
+	if s.EvaluationPeriods != nil && *s.EvaluationPeriods < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EvaluationPeriods", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Period != nil && *s.Period < 10 {
+		invalidParams.Add(request.NewErrParamMinValue("Period", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetComparisonOperator(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetDatapointsToAlarm(v int64) *UpdateCloudWatchAlarmTemplateInput {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetDescription(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetEvaluationPeriods(v int64) *UpdateCloudWatchAlarmTemplateInput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetGroupIdentifier(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetIdentifier(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetMetricName(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetName(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetPeriod(v int64) *UpdateCloudWatchAlarmTemplateInput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetStatistic(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetTargetResourceType(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetThreshold(v float64) *UpdateCloudWatchAlarmTemplateInput {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *UpdateCloudWatchAlarmTemplateInput) SetTreatMissingData(v string) *UpdateCloudWatchAlarmTemplateInput {
+	s.TreatMissingData = &v
+	return s
+}
+
+type UpdateCloudWatchAlarmTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The comparison operator used to compare the specified statistic and the threshold.
+	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"CloudWatchAlarmTemplateComparisonOperator"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	DatapointsToAlarm *int64 `locationName:"datapointsToAlarm" min:"1" type:"integer"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EvaluationPeriods *int64 `locationName:"evaluationPeriods" min:"1" type:"integer"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	MetricName *string `locationName:"metricName" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	Period *int64 `locationName:"period" min:"10" type:"integer"`
+
+	// The statistic to apply to the alarm's metric data.
+	Statistic *string `locationName:"statistic" type:"string" enum:"CloudWatchAlarmTemplateStatistic"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The resource type this template should dynamically generate cloudwatch metric
+	// alarms for.
+	TargetResourceType *string `locationName:"targetResourceType" type:"string" enum:"CloudWatchAlarmTemplateTargetResourceType"`
+
+	Threshold *float64 `locationName:"threshold" type:"double"`
+
+	// Specifies how missing data points are treated when evaluating the alarm's
+	// condition.
+	TreatMissingData *string `locationName:"treatMissingData" type:"string" enum:"CloudWatchAlarmTemplateTreatMissingData"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateCloudWatchAlarmTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetArn(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetComparisonOperator(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetCreatedAt(v time.Time) *UpdateCloudWatchAlarmTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatapointsToAlarm sets the DatapointsToAlarm field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetDatapointsToAlarm(v int64) *UpdateCloudWatchAlarmTemplateOutput {
+	s.DatapointsToAlarm = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetDescription(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetEvaluationPeriods(v int64) *UpdateCloudWatchAlarmTemplateOutput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetGroupId(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetId(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetMetricName(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetModifiedAt(v time.Time) *UpdateCloudWatchAlarmTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetName(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetPeriod(v int64) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetStatistic(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Statistic = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetTags(v map[string]*string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetResourceType sets the TargetResourceType field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetTargetResourceType(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.TargetResourceType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetThreshold(v float64) *UpdateCloudWatchAlarmTemplateOutput {
+	s.Threshold = &v
+	return s
+}
+
+// SetTreatMissingData sets the TreatMissingData field's value.
+func (s *UpdateCloudWatchAlarmTemplateOutput) SetTreatMissingData(v string) *UpdateCloudWatchAlarmTemplateOutput {
+	s.TreatMissingData = &v
+	return s
+}
+
+type UpdateEventBridgeRuleTemplateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventBridgeRuleTemplateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventBridgeRuleTemplateGroupInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupInput) SetDescription(v string) *UpdateEventBridgeRuleTemplateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupInput) SetIdentifier(v string) *UpdateEventBridgeRuleTemplateGroupInput {
+	s.Identifier = &v
+	return s
+}
+
+type UpdateEventBridgeRuleTemplateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetArn(v string) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetCreatedAt(v time.Time) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetDescription(v string) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetId(v string) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetModifiedAt(v time.Time) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetName(v string) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateEventBridgeRuleTemplateGroupOutput) SetTags(v map[string]*string) *UpdateEventBridgeRuleTemplateGroupOutput {
+	s.Tags = v
+	return s
+}
+
+type UpdateEventBridgeRuleTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EventTargets []*EventBridgeRuleTemplateTarget `locationName:"eventTargets" type:"list"`
+
+	// The type of event to match with the rule.
+	EventType *string `locationName:"eventType" type:"string" enum:"EventBridgeRuleTemplateEventType"`
+
+	GroupIdentifier *string `locationName:"groupIdentifier" type:"string"`
+
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"identifier" type:"string" required:"true"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventBridgeRuleTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventBridgeRuleTemplateInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.EventTargets != nil {
+		for i, v := range s.EventTargets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EventTargets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetDescription(v string) *UpdateEventBridgeRuleTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargets sets the EventTargets field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetEventTargets(v []*EventBridgeRuleTemplateTarget) *UpdateEventBridgeRuleTemplateInput {
+	s.EventTargets = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetEventType(v string) *UpdateEventBridgeRuleTemplateInput {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupIdentifier sets the GroupIdentifier field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetGroupIdentifier(v string) *UpdateEventBridgeRuleTemplateInput {
+	s.GroupIdentifier = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetIdentifier(v string) *UpdateEventBridgeRuleTemplateInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEventBridgeRuleTemplateInput) SetName(v string) *UpdateEventBridgeRuleTemplateInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateEventBridgeRuleTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	EventTargets []*EventBridgeRuleTemplateTarget `locationName:"eventTargets" type:"list"`
+
+	// The type of event to match with the rule.
+	EventType *string `locationName:"eventType" type:"string" enum:"EventBridgeRuleTemplateEventType"`
+
+	GroupId *string `locationName:"groupId" min:"7" type:"string"`
+
+	Id *string `locationName:"id" min:"7" type:"string"`
+
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Represents the tags associated with a resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventBridgeRuleTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetArn(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetCreatedAt(v time.Time) *UpdateEventBridgeRuleTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetDescription(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEventTargets sets the EventTargets field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetEventTargets(v []*EventBridgeRuleTemplateTarget) *UpdateEventBridgeRuleTemplateOutput {
+	s.EventTargets = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetEventType(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.EventType = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetGroupId(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetId(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.Id = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetModifiedAt(v time.Time) *UpdateEventBridgeRuleTemplateOutput {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetName(v string) *UpdateEventBridgeRuleTemplateOutput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateEventBridgeRuleTemplateOutput) SetTags(v map[string]*string) *UpdateEventBridgeRuleTemplateOutput {
+	s.Tags = v
 	return s
 }
 
@@ -35394,6 +43297,128 @@ func ChannelState_Values() []string {
 	}
 }
 
+// The comparison operator used to compare the specified statistic and the threshold.
+const (
+	// CloudWatchAlarmTemplateComparisonOperatorGreaterThanOrEqualToThreshold is a CloudWatchAlarmTemplateComparisonOperator enum value
+	CloudWatchAlarmTemplateComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+
+	// CloudWatchAlarmTemplateComparisonOperatorGreaterThanThreshold is a CloudWatchAlarmTemplateComparisonOperator enum value
+	CloudWatchAlarmTemplateComparisonOperatorGreaterThanThreshold = "GreaterThanThreshold"
+
+	// CloudWatchAlarmTemplateComparisonOperatorLessThanThreshold is a CloudWatchAlarmTemplateComparisonOperator enum value
+	CloudWatchAlarmTemplateComparisonOperatorLessThanThreshold = "LessThanThreshold"
+
+	// CloudWatchAlarmTemplateComparisonOperatorLessThanOrEqualToThreshold is a CloudWatchAlarmTemplateComparisonOperator enum value
+	CloudWatchAlarmTemplateComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
+)
+
+// CloudWatchAlarmTemplateComparisonOperator_Values returns all elements of the CloudWatchAlarmTemplateComparisonOperator enum
+func CloudWatchAlarmTemplateComparisonOperator_Values() []string {
+	return []string{
+		CloudWatchAlarmTemplateComparisonOperatorGreaterThanOrEqualToThreshold,
+		CloudWatchAlarmTemplateComparisonOperatorGreaterThanThreshold,
+		CloudWatchAlarmTemplateComparisonOperatorLessThanThreshold,
+		CloudWatchAlarmTemplateComparisonOperatorLessThanOrEqualToThreshold,
+	}
+}
+
+// The statistic to apply to the alarm's metric data.
+const (
+	// CloudWatchAlarmTemplateStatisticSampleCount is a CloudWatchAlarmTemplateStatistic enum value
+	CloudWatchAlarmTemplateStatisticSampleCount = "SampleCount"
+
+	// CloudWatchAlarmTemplateStatisticAverage is a CloudWatchAlarmTemplateStatistic enum value
+	CloudWatchAlarmTemplateStatisticAverage = "Average"
+
+	// CloudWatchAlarmTemplateStatisticSum is a CloudWatchAlarmTemplateStatistic enum value
+	CloudWatchAlarmTemplateStatisticSum = "Sum"
+
+	// CloudWatchAlarmTemplateStatisticMinimum is a CloudWatchAlarmTemplateStatistic enum value
+	CloudWatchAlarmTemplateStatisticMinimum = "Minimum"
+
+	// CloudWatchAlarmTemplateStatisticMaximum is a CloudWatchAlarmTemplateStatistic enum value
+	CloudWatchAlarmTemplateStatisticMaximum = "Maximum"
+)
+
+// CloudWatchAlarmTemplateStatistic_Values returns all elements of the CloudWatchAlarmTemplateStatistic enum
+func CloudWatchAlarmTemplateStatistic_Values() []string {
+	return []string{
+		CloudWatchAlarmTemplateStatisticSampleCount,
+		CloudWatchAlarmTemplateStatisticAverage,
+		CloudWatchAlarmTemplateStatisticSum,
+		CloudWatchAlarmTemplateStatisticMinimum,
+		CloudWatchAlarmTemplateStatisticMaximum,
+	}
+}
+
+// The resource type this template should dynamically generate cloudwatch metric
+// alarms for.
+const (
+	// CloudWatchAlarmTemplateTargetResourceTypeCloudfrontDistribution is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeCloudfrontDistribution = "CLOUDFRONT_DISTRIBUTION"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMedialiveMultiplex is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMedialiveMultiplex = "MEDIALIVE_MULTIPLEX"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMedialiveChannel is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMedialiveChannel = "MEDIALIVE_CHANNEL"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMedialiveInputDevice is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMedialiveInputDevice = "MEDIALIVE_INPUT_DEVICE"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMediapackageChannel is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMediapackageChannel = "MEDIAPACKAGE_CHANNEL"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMediapackageOriginEndpoint is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMediapackageOriginEndpoint = "MEDIAPACKAGE_ORIGIN_ENDPOINT"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeMediaconnectFlow is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeMediaconnectFlow = "MEDIACONNECT_FLOW"
+
+	// CloudWatchAlarmTemplateTargetResourceTypeS3Bucket is a CloudWatchAlarmTemplateTargetResourceType enum value
+	CloudWatchAlarmTemplateTargetResourceTypeS3Bucket = "S3_BUCKET"
+)
+
+// CloudWatchAlarmTemplateTargetResourceType_Values returns all elements of the CloudWatchAlarmTemplateTargetResourceType enum
+func CloudWatchAlarmTemplateTargetResourceType_Values() []string {
+	return []string{
+		CloudWatchAlarmTemplateTargetResourceTypeCloudfrontDistribution,
+		CloudWatchAlarmTemplateTargetResourceTypeMedialiveMultiplex,
+		CloudWatchAlarmTemplateTargetResourceTypeMedialiveChannel,
+		CloudWatchAlarmTemplateTargetResourceTypeMedialiveInputDevice,
+		CloudWatchAlarmTemplateTargetResourceTypeMediapackageChannel,
+		CloudWatchAlarmTemplateTargetResourceTypeMediapackageOriginEndpoint,
+		CloudWatchAlarmTemplateTargetResourceTypeMediaconnectFlow,
+		CloudWatchAlarmTemplateTargetResourceTypeS3Bucket,
+	}
+}
+
+// Specifies how missing data points are treated when evaluating the alarm's
+// condition.
+const (
+	// CloudWatchAlarmTemplateTreatMissingDataNotBreaching is a CloudWatchAlarmTemplateTreatMissingData enum value
+	CloudWatchAlarmTemplateTreatMissingDataNotBreaching = "notBreaching"
+
+	// CloudWatchAlarmTemplateTreatMissingDataBreaching is a CloudWatchAlarmTemplateTreatMissingData enum value
+	CloudWatchAlarmTemplateTreatMissingDataBreaching = "breaching"
+
+	// CloudWatchAlarmTemplateTreatMissingDataIgnore is a CloudWatchAlarmTemplateTreatMissingData enum value
+	CloudWatchAlarmTemplateTreatMissingDataIgnore = "ignore"
+
+	// CloudWatchAlarmTemplateTreatMissingDataMissing is a CloudWatchAlarmTemplateTreatMissingData enum value
+	CloudWatchAlarmTemplateTreatMissingDataMissing = "missing"
+)
+
+// CloudWatchAlarmTemplateTreatMissingData_Values returns all elements of the CloudWatchAlarmTemplateTreatMissingData enum
+func CloudWatchAlarmTemplateTreatMissingData_Values() []string {
+	return []string{
+		CloudWatchAlarmTemplateTreatMissingDataNotBreaching,
+		CloudWatchAlarmTemplateTreatMissingDataBreaching,
+		CloudWatchAlarmTemplateTreatMissingDataIgnore,
+		CloudWatchAlarmTemplateTreatMissingDataMissing,
+	}
+}
+
 // Cmaf Ingest Segment Length Units
 const (
 	// CmafIngestSegmentLengthUnitsMilliseconds is a CmafIngestSegmentLengthUnits enum value
@@ -36354,6 +44379,67 @@ func EmbeddedScte20Detection_Values() []string {
 	return []string{
 		EmbeddedScte20DetectionAuto,
 		EmbeddedScte20DetectionOff,
+	}
+}
+
+// The type of event to match with the rule.
+const (
+	// EventBridgeRuleTemplateEventTypeMedialiveMultiplexAlert is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMedialiveMultiplexAlert = "MEDIALIVE_MULTIPLEX_ALERT"
+
+	// EventBridgeRuleTemplateEventTypeMedialiveMultiplexStateChange is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMedialiveMultiplexStateChange = "MEDIALIVE_MULTIPLEX_STATE_CHANGE"
+
+	// EventBridgeRuleTemplateEventTypeMedialiveChannelAlert is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMedialiveChannelAlert = "MEDIALIVE_CHANNEL_ALERT"
+
+	// EventBridgeRuleTemplateEventTypeMedialiveChannelInputChange is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMedialiveChannelInputChange = "MEDIALIVE_CHANNEL_INPUT_CHANGE"
+
+	// EventBridgeRuleTemplateEventTypeMedialiveChannelStateChange is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMedialiveChannelStateChange = "MEDIALIVE_CHANNEL_STATE_CHANGE"
+
+	// EventBridgeRuleTemplateEventTypeMediapackageInputNotification is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediapackageInputNotification = "MEDIAPACKAGE_INPUT_NOTIFICATION"
+
+	// EventBridgeRuleTemplateEventTypeMediapackageKeyProviderNotification is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediapackageKeyProviderNotification = "MEDIAPACKAGE_KEY_PROVIDER_NOTIFICATION"
+
+	// EventBridgeRuleTemplateEventTypeMediapackageHarvestJobNotification is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediapackageHarvestJobNotification = "MEDIAPACKAGE_HARVEST_JOB_NOTIFICATION"
+
+	// EventBridgeRuleTemplateEventTypeSignalMapActiveAlarm is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeSignalMapActiveAlarm = "SIGNAL_MAP_ACTIVE_ALARM"
+
+	// EventBridgeRuleTemplateEventTypeMediaconnectAlert is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediaconnectAlert = "MEDIACONNECT_ALERT"
+
+	// EventBridgeRuleTemplateEventTypeMediaconnectSourceHealth is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediaconnectSourceHealth = "MEDIACONNECT_SOURCE_HEALTH"
+
+	// EventBridgeRuleTemplateEventTypeMediaconnectOutputHealth is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediaconnectOutputHealth = "MEDIACONNECT_OUTPUT_HEALTH"
+
+	// EventBridgeRuleTemplateEventTypeMediaconnectFlowStatusChange is a EventBridgeRuleTemplateEventType enum value
+	EventBridgeRuleTemplateEventTypeMediaconnectFlowStatusChange = "MEDIACONNECT_FLOW_STATUS_CHANGE"
+)
+
+// EventBridgeRuleTemplateEventType_Values returns all elements of the EventBridgeRuleTemplateEventType enum
+func EventBridgeRuleTemplateEventType_Values() []string {
+	return []string{
+		EventBridgeRuleTemplateEventTypeMedialiveMultiplexAlert,
+		EventBridgeRuleTemplateEventTypeMedialiveMultiplexStateChange,
+		EventBridgeRuleTemplateEventTypeMedialiveChannelAlert,
+		EventBridgeRuleTemplateEventTypeMedialiveChannelInputChange,
+		EventBridgeRuleTemplateEventTypeMedialiveChannelStateChange,
+		EventBridgeRuleTemplateEventTypeMediapackageInputNotification,
+		EventBridgeRuleTemplateEventTypeMediapackageKeyProviderNotification,
+		EventBridgeRuleTemplateEventTypeMediapackageHarvestJobNotification,
+		EventBridgeRuleTemplateEventTypeSignalMapActiveAlarm,
+		EventBridgeRuleTemplateEventTypeMediaconnectAlert,
+		EventBridgeRuleTemplateEventTypeMediaconnectSourceHealth,
+		EventBridgeRuleTemplateEventTypeMediaconnectOutputHealth,
+		EventBridgeRuleTemplateEventTypeMediaconnectFlowStatusChange,
 	}
 }
 
@@ -40124,6 +48210,101 @@ func Scte35WebDeliveryAllowedFlag_Values() []string {
 	return []string{
 		Scte35WebDeliveryAllowedFlagWebDeliveryNotAllowed,
 		Scte35WebDeliveryAllowedFlagWebDeliveryAllowed,
+	}
+}
+
+// A signal map's monitor deployment status.
+const (
+	// SignalMapMonitorDeploymentStatusNotDeployed is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusNotDeployed = "NOT_DEPLOYED"
+
+	// SignalMapMonitorDeploymentStatusDryRunDeploymentComplete is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDryRunDeploymentComplete = "DRY_RUN_DEPLOYMENT_COMPLETE"
+
+	// SignalMapMonitorDeploymentStatusDryRunDeploymentFailed is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDryRunDeploymentFailed = "DRY_RUN_DEPLOYMENT_FAILED"
+
+	// SignalMapMonitorDeploymentStatusDryRunDeploymentInProgress is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDryRunDeploymentInProgress = "DRY_RUN_DEPLOYMENT_IN_PROGRESS"
+
+	// SignalMapMonitorDeploymentStatusDeploymentComplete is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeploymentComplete = "DEPLOYMENT_COMPLETE"
+
+	// SignalMapMonitorDeploymentStatusDeploymentFailed is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeploymentFailed = "DEPLOYMENT_FAILED"
+
+	// SignalMapMonitorDeploymentStatusDeploymentInProgress is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeploymentInProgress = "DEPLOYMENT_IN_PROGRESS"
+
+	// SignalMapMonitorDeploymentStatusDeleteComplete is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeleteComplete = "DELETE_COMPLETE"
+
+	// SignalMapMonitorDeploymentStatusDeleteFailed is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeleteFailed = "DELETE_FAILED"
+
+	// SignalMapMonitorDeploymentStatusDeleteInProgress is a SignalMapMonitorDeploymentStatus enum value
+	SignalMapMonitorDeploymentStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+)
+
+// SignalMapMonitorDeploymentStatus_Values returns all elements of the SignalMapMonitorDeploymentStatus enum
+func SignalMapMonitorDeploymentStatus_Values() []string {
+	return []string{
+		SignalMapMonitorDeploymentStatusNotDeployed,
+		SignalMapMonitorDeploymentStatusDryRunDeploymentComplete,
+		SignalMapMonitorDeploymentStatusDryRunDeploymentFailed,
+		SignalMapMonitorDeploymentStatusDryRunDeploymentInProgress,
+		SignalMapMonitorDeploymentStatusDeploymentComplete,
+		SignalMapMonitorDeploymentStatusDeploymentFailed,
+		SignalMapMonitorDeploymentStatusDeploymentInProgress,
+		SignalMapMonitorDeploymentStatusDeleteComplete,
+		SignalMapMonitorDeploymentStatusDeleteFailed,
+		SignalMapMonitorDeploymentStatusDeleteInProgress,
+	}
+}
+
+// A signal map's current status which is dependent on its lifecycle actions
+// or associated jobs.
+const (
+	// SignalMapStatusCreateInProgress is a SignalMapStatus enum value
+	SignalMapStatusCreateInProgress = "CREATE_IN_PROGRESS"
+
+	// SignalMapStatusCreateComplete is a SignalMapStatus enum value
+	SignalMapStatusCreateComplete = "CREATE_COMPLETE"
+
+	// SignalMapStatusCreateFailed is a SignalMapStatus enum value
+	SignalMapStatusCreateFailed = "CREATE_FAILED"
+
+	// SignalMapStatusUpdateInProgress is a SignalMapStatus enum value
+	SignalMapStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// SignalMapStatusUpdateComplete is a SignalMapStatus enum value
+	SignalMapStatusUpdateComplete = "UPDATE_COMPLETE"
+
+	// SignalMapStatusUpdateReverted is a SignalMapStatus enum value
+	SignalMapStatusUpdateReverted = "UPDATE_REVERTED"
+
+	// SignalMapStatusUpdateFailed is a SignalMapStatus enum value
+	SignalMapStatusUpdateFailed = "UPDATE_FAILED"
+
+	// SignalMapStatusReady is a SignalMapStatus enum value
+	SignalMapStatusReady = "READY"
+
+	// SignalMapStatusNotReady is a SignalMapStatus enum value
+	SignalMapStatusNotReady = "NOT_READY"
+)
+
+// SignalMapStatus_Values returns all elements of the SignalMapStatus enum
+func SignalMapStatus_Values() []string {
+	return []string{
+		SignalMapStatusCreateInProgress,
+		SignalMapStatusCreateComplete,
+		SignalMapStatusCreateFailed,
+		SignalMapStatusUpdateInProgress,
+		SignalMapStatusUpdateComplete,
+		SignalMapStatusUpdateReverted,
+		SignalMapStatusUpdateFailed,
+		SignalMapStatusReady,
+		SignalMapStatusNotReady,
 	}
 }
 

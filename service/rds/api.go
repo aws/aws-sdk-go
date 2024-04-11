@@ -21157,8 +21157,15 @@ type CreateCustomDBEngineVersionInput struct {
 	// An optional description of your CEV.
 	Description *string `min:"1" type:"string"`
 
-	// The database engine to use for your custom engine version (CEV). The only
-	// supported value is custom-oracle-ee.
+	// The database engine. RDS Custom for Oracle supports the following values:
+	//
+	//    * custom-oracle-ee
+	//
+	//    * custom-oracle-ee-cdb
+	//
+	//    * custom-oracle-se2
+	//
+	//    * custom-oracle-se2-cdb
 	//
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
@@ -23952,6 +23959,10 @@ type CreateDBInstanceInput struct {
 	//    * custom-oracle-ee (for RDS Custom for Oracle DB instances)
 	//
 	//    * custom-oracle-ee-cdb (for RDS Custom for Oracle DB instances)
+	//
+	//    * custom-oracle-se2 (for RDS Custom for Oracle DB instances)
+	//
+	//    * custom-oracle-se2-cdb (for RDS Custom for Oracle DB instances)
 	//
 	//    * custom-sqlserver-ee (for RDS Custom for SQL Server DB instances)
 	//
@@ -33846,8 +33857,15 @@ func (s *DeleteBlueGreenDeploymentOutput) SetBlueGreenDeployment(v *BlueGreenDep
 type DeleteCustomDBEngineVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The database engine. The only supported engines are custom-oracle-ee and
-	// custom-oracle-ee-cdb.
+	// The database engine. RDS Custom for Oracle supports the following values:
+	//
+	//    * custom-oracle-ee
+	//
+	//    * custom-oracle-ee-cdb
+	//
+	//    * custom-oracle-se2
+	//
+	//    * custom-oracle-se2-cdb
 	//
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
@@ -37967,6 +37985,12 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	//    * custom-oracle-ee
 	//
+	//    * custom-oracle-ee-cdb
+	//
+	//    * custom-oracle-se2
+	//
+	//    * custom-oracle-se2-cdb
+	//
 	//    * db2-ae
 	//
 	//    * db2-se
@@ -40881,6 +40905,8 @@ type DescribeEngineDefaultParametersInput struct {
 	//
 	//    * custom-oracle-ee-19
 	//
+	//    * custom-oracle-ee-cdb-19
+	//
 	//    * db2-ae
 	//
 	//    * db2-se
@@ -42321,7 +42347,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	// class.
 	DBInstanceClass *string `type:"string"`
 
-	// The name of the engine to describe DB instance options for.
+	// The name of the database engine to describe DB instance options for.
 	//
 	// Valid Values:
 	//
@@ -42330,6 +42356,12 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//    * aurora-postgresql
 	//
 	//    * custom-oracle-ee
+	//
+	//    * custom-oracle-ee-cdb
+	//
+	//    * custom-oracle-se2
+	//
+	//    * custom-oracle-se2-cdb
 	//
 	//    * db2-ae
 	//
@@ -42383,7 +42415,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: Minimum 20, maximum 10000.
+	// Constraints: Minimum 20, maximum 1000.
 	MaxRecords *int64 `type:"integer"`
 
 	// Specifies whether to show only VPC or non-VPC offerings. RDS Custom supports
@@ -46204,7 +46236,15 @@ type ModifyCustomDBEngineVersionInput struct {
 	// An optional description of your CEV.
 	Description *string `min:"1" type:"string"`
 
-	// The DB engine. The only supported values are custom-oracle-ee and custom-oracle-ee-cdb.
+	// The database engine. RDS Custom for Oracle supports the following values:
+	//
+	//    * custom-oracle-ee
+	//
+	//    * custom-oracle-ee-cdb
+	//
+	//    * custom-oracle-se2
+	//
+	//    * custom-oracle-se2-cdb
 	//
 	// Engine is a required field
 	Engine *string `min:"1" type:"string" required:"true"`
@@ -48033,6 +48073,12 @@ type ModifyDBInstanceInput struct {
 	// so that they are 10% greater than the current value.
 	//
 	// For the valid values for allocated storage for each engine, see CreateDBInstance.
+	//
+	// Constraints:
+	//
+	//    * When you increase the allocated storage for a DB instance that uses
+	//    Provisioned IOPS (gp3, io1, or io2 storage type), you must also specify
+	//    the Iops parameter. You can use the current value for Iops.
 	AllocatedStorage *int64 `type:"integer"`
 
 	// Specifies whether major version upgrades are allowed. Changing this parameter
@@ -48472,6 +48518,9 @@ type ModifyDBInstanceInput struct {
 	//    - The value supplied must be at least 10% greater than the current value.
 	//    Values that are not at least 10% greater than the existing value are rounded
 	//    up so that they are 10% greater than the current value.
+	//
+	//    * When you increase the Provisioned IOPS, you must also specify the AllocatedStorage
+	//    parameter. You can use the current value for AllocatedStorage.
 	//
 	// Default: Uses existing setting
 	Iops *int64 `type:"integer"`

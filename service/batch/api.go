@@ -2734,6 +2734,10 @@ type AttemptDetail struct {
 	// the attempt transitioned from the RUNNING state to a terminal state, such
 	// as SUCCEEDED or FAILED).
 	StoppedAt *int64 `locationName:"stoppedAt" type:"long"`
+
+	// The properties for a task definition that describes the container and volume
+	// definitions of an Amazon ECS task.
+	TaskProperties []*AttemptEcsTaskDetails `locationName:"taskProperties" type:"list"`
 }
 
 // String returns the string representation.
@@ -2775,6 +2779,135 @@ func (s *AttemptDetail) SetStatusReason(v string) *AttemptDetail {
 // SetStoppedAt sets the StoppedAt field's value.
 func (s *AttemptDetail) SetStoppedAt(v int64) *AttemptDetail {
 	s.StoppedAt = &v
+	return s
+}
+
+// SetTaskProperties sets the TaskProperties field's value.
+func (s *AttemptDetail) SetTaskProperties(v []*AttemptEcsTaskDetails) *AttemptDetail {
+	s.TaskProperties = v
+	return s
+}
+
+// An object that represents the details of a task.
+type AttemptEcsTaskDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container instance that hosts the task.
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
+
+	// A list of containers that are included in the taskProperties list.
+	Containers []*AttemptTaskContainerDetails `locationName:"containers" type:"list"`
+
+	// The ARN of the Amazon ECS task.
+	TaskArn *string `locationName:"taskArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttemptEcsTaskDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttemptEcsTaskDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerInstanceArn sets the ContainerInstanceArn field's value.
+func (s *AttemptEcsTaskDetails) SetContainerInstanceArn(v string) *AttemptEcsTaskDetails {
+	s.ContainerInstanceArn = &v
+	return s
+}
+
+// SetContainers sets the Containers field's value.
+func (s *AttemptEcsTaskDetails) SetContainers(v []*AttemptTaskContainerDetails) *AttemptEcsTaskDetails {
+	s.Containers = v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *AttemptEcsTaskDetails) SetTaskArn(v string) *AttemptEcsTaskDetails {
+	s.TaskArn = &v
+	return s
+}
+
+// An object that represents the details of a container that's part of a job
+// attempt.
+type AttemptTaskContainerDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The exit code for the container’s attempt. A non-zero exit code is considered
+	// failed.
+	ExitCode *int64 `locationName:"exitCode" type:"integer"`
+
+	// The name of the Amazon CloudWatch Logs log stream that's associated with
+	// the container. The log group for Batch jobs is /aws/batch/job. Each container
+	// attempt receives a log stream name when they reach the RUNNING status.
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
+	// The name of a container.
+	Name *string `locationName:"name" type:"string"`
+
+	// The network interfaces that are associated with the job attempt.
+	NetworkInterfaces []*NetworkInterface `locationName:"networkInterfaces" type:"list"`
+
+	// A short (255 max characters) string that's easy to understand and provides
+	// additional details for a running or stopped container.
+	Reason *string `locationName:"reason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttemptTaskContainerDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttemptTaskContainerDetails) GoString() string {
+	return s.String()
+}
+
+// SetExitCode sets the ExitCode field's value.
+func (s *AttemptTaskContainerDetails) SetExitCode(v int64) *AttemptTaskContainerDetails {
+	s.ExitCode = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *AttemptTaskContainerDetails) SetLogStreamName(v string) *AttemptTaskContainerDetails {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AttemptTaskContainerDetails) SetName(v string) *AttemptTaskContainerDetails {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *AttemptTaskContainerDetails) SetNetworkInterfaces(v []*NetworkInterface) *AttemptTaskContainerDetails {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *AttemptTaskContainerDetails) SetReason(v string) *AttemptTaskContainerDetails {
+	s.Reason = &v
 	return s
 }
 
@@ -7245,6 +7378,9 @@ type EksAttemptContainerDetail struct {
 	// failed.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
 
+	// The name of a container.
+	Name *string `locationName:"name" type:"string"`
+
 	// A short (255 max characters) human-readable string to provide additional
 	// details for a running or stopped container.
 	Reason *string `locationName:"reason" type:"string"`
@@ -7271,6 +7407,12 @@ func (s EksAttemptContainerDetail) GoString() string {
 // SetExitCode sets the ExitCode field's value.
 func (s *EksAttemptContainerDetail) SetExitCode(v int64) *EksAttemptContainerDetail {
 	s.ExitCode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EksAttemptContainerDetail) SetName(v string) *EksAttemptContainerDetail {
+	s.Name = &v
 	return s
 }
 
@@ -8372,9 +8514,8 @@ type EksPodProperties struct {
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
 
-	// References a Kubernetes secret resource. This object must start and end with
-	// an alphanumeric character, is required to be lowercase, can include periods
-	// (.) and hyphens (-), and can't contain more than 253 characters.
+	// References a Kubernetes secret resource. It holds a list of secrets. These
+	// secrets help to gain access to pull an images from a private registry.
 	//
 	// ImagePullSecret$name is required when this object is used.
 	ImagePullSecrets []*ImagePullSecret `locationName:"imagePullSecrets" type:"list"`
@@ -8564,7 +8705,8 @@ type EksPodPropertiesDetail struct {
 	// in the Kubernetes documentation.
 	HostNetwork *bool `locationName:"hostNetwork" type:"boolean"`
 
-	// Displays the reference pointer to the Kubernetes secret resource.
+	// Displays the reference pointer to the Kubernetes secret resource. These secrets
+	// help to gain access to pull an images from a private registry.
 	ImagePullSecrets []*ImagePullSecret `locationName:"imagePullSecrets" type:"list"`
 
 	// The container registered with the Amazon EKS Connector agent and persists
@@ -9364,8 +9506,9 @@ func (s *Host) SetSourcePath(v string) *Host {
 	return s
 }
 
-// References a Kubernetes configuration resource that holds a list of secrets.
-// These secrets help to gain access to pull an image from a private registry.
+// References a Kubernetes secret resource. This name of the secret must start
+// and end with an alphanumeric character, is required to be lowercase, can
+// include periods (.) and hyphens (-), and can't contain more than 253 characters.
 type ImagePullSecret struct {
 	_ struct{} `type:"structure"`
 
@@ -10151,7 +10294,7 @@ type JobStateTimeLimitAction struct {
 	_ struct{} `type:"structure"`
 
 	// The action to take when a job is at the head of the job queue in the specified
-	// state for the specified period of time. The only supported value is "CANCEL",
+	// state for the specified period of time. The only supported value is CANCEL,
 	// which will cancel the job.
 	//
 	// Action is a required field
@@ -10170,7 +10313,7 @@ type JobStateTimeLimitAction struct {
 	Reason *string `locationName:"reason" type:"string" required:"true"`
 
 	// The state of the job needed to trigger the action. The only supported value
-	// is "RUNNABLE".
+	// is RUNNABLE.
 	//
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"JobStateTimeLimitActionsState"`

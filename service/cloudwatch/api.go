@@ -4299,6 +4299,11 @@ type AnomalyDetector struct {
 	// Deprecated: Use SingleMetricAnomalyDetector.Dimensions property.
 	Dimensions []*Dimension `deprecated:"true" type:"list"`
 
+	// This object includes parameters that you can use to provide information about
+	// your metric to CloudWatch to help it build more accurate anomaly detection
+	// models. Currently, it includes the PeriodicSpikes parameter.
+	MetricCharacteristics *MetricCharacteristics `type:"structure"`
+
 	// The CloudWatch metric math expression for this anomaly detector.
 	MetricMathAnomalyDetector *MetricMathAnomalyDetector `type:"structure"`
 
@@ -4320,8 +4325,7 @@ type AnomalyDetector struct {
 	// Deprecated: Use SingleMetricAnomalyDetector.Stat property.
 	Stat *string `deprecated:"true" type:"string"`
 
-	// The current status of the anomaly detector's training. The possible values
-	// are TRAINED | PENDING_TRAINING | TRAINED_INSUFFICIENT_DATA
+	// The current status of the anomaly detector's training.
 	StateValue *string `type:"string" enum:"AnomalyDetectorStateValue"`
 }
 
@@ -4352,6 +4356,12 @@ func (s *AnomalyDetector) SetConfiguration(v *AnomalyDetectorConfiguration) *Ano
 // SetDimensions sets the Dimensions field's value.
 func (s *AnomalyDetector) SetDimensions(v []*Dimension) *AnomalyDetector {
 	s.Dimensions = v
+	return s
+}
+
+// SetMetricCharacteristics sets the MetricCharacteristics field's value.
+func (s *AnomalyDetector) SetMetricCharacteristics(v *MetricCharacteristics) *AnomalyDetector {
+	s.MetricCharacteristics = v
 	return s
 }
 
@@ -9262,6 +9272,42 @@ func (s *MetricAlarm) SetUnit(v string) *MetricAlarm {
 	return s
 }
 
+// This object includes parameters that you can use to provide information to
+// CloudWatch to help it build more accurate anomaly detection models.
+type MetricCharacteristics struct {
+	_ struct{} `type:"structure"`
+
+	// Set this parameter to true if values for this metric consistently include
+	// spikes that should not be considered to be anomalies. With this set to true,
+	// CloudWatch will expect to see spikes that occurred consistently during the
+	// model training period, and won't flag future similar spikes as anomalies.
+	PeriodicSpikes *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricCharacteristics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricCharacteristics) GoString() string {
+	return s.String()
+}
+
+// SetPeriodicSpikes sets the PeriodicSpikes field's value.
+func (s *MetricCharacteristics) SetPeriodicSpikes(v bool) *MetricCharacteristics {
+	s.PeriodicSpikes = &v
+	return s
+}
+
 // This structure is used in both GetMetricData and PutMetricAlarm. The supported
 // use of this structure is different for those two operations.
 //
@@ -10286,6 +10332,11 @@ type PutAnomalyDetectorInput struct {
 	// Deprecated: Use SingleMetricAnomalyDetector.
 	Dimensions []*Dimension `deprecated:"true" type:"list"`
 
+	// Use this object to include parameters to provide information about your metric
+	// to CloudWatch to help it build more accurate anomaly detection models. Currently,
+	// it includes the PeriodicSpikes parameter.
+	MetricCharacteristics *MetricCharacteristics `type:"structure"`
+
 	// The metric math anomaly detector to be created.
 	//
 	// When using MetricMathAnomalyDetector, you cannot include the following parameters
@@ -10408,6 +10459,12 @@ func (s *PutAnomalyDetectorInput) SetConfiguration(v *AnomalyDetectorConfigurati
 // SetDimensions sets the Dimensions field's value.
 func (s *PutAnomalyDetectorInput) SetDimensions(v []*Dimension) *PutAnomalyDetectorInput {
 	s.Dimensions = v
+	return s
+}
+
+// SetMetricCharacteristics sets the MetricCharacteristics field's value.
+func (s *PutAnomalyDetectorInput) SetMetricCharacteristics(v *MetricCharacteristics) *PutAnomalyDetectorInput {
+	s.MetricCharacteristics = v
 	return s
 }
 

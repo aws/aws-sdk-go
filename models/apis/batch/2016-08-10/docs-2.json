@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Batch</fullname> <p>Using Batch, you can run batch computing workloads on the Amazon Web Services Cloud. Batch computing is a common means for developers, scientists, and engineers to access large amounts of compute resources. Batch uses the advantages of the batch computing to remove the undifferentiated heavy lifting of configuring and managing required infrastructure. At the same time, it also adopts a familiar batch computing software approach. You can use Batch to efficiently provision resources d, and work toward eliminating capacity constraints, reducing your overall compute costs, and delivering results more quickly.</p> <p>As a fully managed service, Batch can run batch computing workloads of any scale. Batch automatically provisions compute resources and optimizes workload distribution based on the quantity and scale of your specific workloads. With Batch, there's no need to install or manage batch computing software. This means that you can focus on analyzing results and solving your specific problems instead.</p>",
+  "service": "<fullname>Batch</fullname> <p>Using Batch, you can run batch computing workloads on the Amazon Web Services Cloud. Batch computing is a common means for developers, scientists, and engineers to access large amounts of compute resources. Batch uses the advantages of the batch computing to remove the undifferentiated heavy lifting of configuring and managing required infrastructure. At the same time, it also adopts a familiar batch computing software approach. You can use Batch to efficiently provision resources, and work toward eliminating capacity constraints, reducing your overall compute costs, and delivering results more quickly.</p> <p>As a fully managed service, Batch can run batch computing workloads of any scale. Batch automatically provisions compute resources and optimizes workload distribution based on the quantity and scale of your specific workloads. With Batch, there's no need to install or manage batch computing software. This means that you can focus on analyzing results and solving your specific problems instead.</p>",
   "operations": {
     "CancelJob": "<p>Cancels a job in an Batch job queue. Jobs that are in the <code>SUBMITTED</code> or <code>PENDING</code> are canceled. A job in<code>RUNNABLE</code> remains in <code>RUNNABLE</code> until it reaches the head of the job queue. Then the job status is updated to <code>FAILED</code>.</p> <note> <p>A <code>PENDING</code> job is canceled after all dependency jobs are completed. Therefore, it may take longer than expected to cancel a job in <code>PENDING</code> status.</p> <p>When you try to cancel an array parent job in <code>PENDING</code>, Batch attempts to cancel all child jobs. The array parent job is canceled when all child jobs are completed.</p> </note> <p>Jobs that progressed to the <code>STARTING</code> or <code>RUNNING</code> state aren't canceled. However, the API operation still succeeds, even if no job is canceled. These jobs must be terminated with the <a>TerminateJob</a> operation.</p>",
     "CreateComputeEnvironment": "<p>Creates an Batch compute environment. You can create <code>MANAGED</code> or <code>UNMANAGED</code> compute environments. <code>MANAGED</code> compute environments can use Amazon EC2 or Fargate resources. <code>UNMANAGED</code> compute environments can only use EC2 resources.</p> <p>In a managed compute environment, Batch manages the capacity and instance types of the compute resources within the environment. This is based on the compute resource specification that you define or the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html\">launch template</a> that you specify when you create the compute environment. Either, you can choose to use EC2 On-Demand Instances and EC2 Spot Instances. Or, you can use Fargate and Fargate Spot capacity in your managed compute environment. You can optionally set a maximum price so that Spot Instances only launch when the Spot Instance price is less than a specified percentage of the On-Demand price.</p> <note> <p>Multi-node parallel jobs aren't supported on Spot Instances.</p> </note> <p>In an unmanaged compute environment, you can manage your own EC2 compute resources and have flexibility with how you configure your compute resources. For example, you can use custom AMIs. However, you must verify that each of your AMIs meet the Amazon ECS container instance AMI specification. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html\">container instance AMIs</a> in the <i>Amazon Elastic Container Service Developer Guide</i>. After you created your unmanaged compute environment, you can use the <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS cluster that's associated with it. Then, launch your container instances into that Amazon ECS cluster. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html\">Launching an Amazon ECS container instance</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <note> <p>To create a compute environment that uses EKS resources, the caller must have permissions to call <code>eks:DescribeCluster</code>.</p> </note> <note> <p>Batch doesn't automatically upgrade the AMIs in a compute environment after it's created. For example, it also doesn't update the AMIs in your compute environment when a newer version of the Amazon ECS optimized AMI is available. You're responsible for the management of the guest operating system. This includes any updates and security patches. You're also responsible for any additional application software or utilities that you install on the compute resources. There are two ways to use a new AMI for your Batch jobs. The original method is to complete these steps:</p> <ol> <li> <p>Create a new compute environment with the new AMI.</p> </li> <li> <p>Add the compute environment to an existing job queue.</p> </li> <li> <p>Remove the earlier compute environment from your job queue.</p> </li> <li> <p>Delete the earlier compute environment.</p> </li> </ol> <p>In April 2022, Batch added enhanced support for updating compute environments. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/updating-compute-environments.html\">Updating compute environments</a>. To use the enhanced updating of compute environments to update AMIs, follow these rules:</p> <ul> <li> <p>Either don't set the service role (<code>serviceRole</code>) parameter or set it to the <b>AWSBatchServiceRole</b> service-linked role.</p> </li> <li> <p>Set the allocation strategy (<code>allocationStrategy</code>) parameter to <code>BEST_FIT_PROGRESSIVE</code>, <code>SPOT_CAPACITY_OPTIMIZED</code>, or <code>SPOT_PRICE_CAPACITY_OPTIMIZED</code>.</p> </li> <li> <p>Set the update to latest image version (<code>updateToLatestImageVersion</code>) parameter to <code>true</code>. The <code>updateToLatestImageVersion</code> parameter is used when you update a compute environment. This parameter is ignored when you create a compute environment.</p> </li> <li> <p>Don't specify an AMI ID in <code>imageId</code>, <code>imageIdOverride</code> (in <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_Ec2Configuration.html\"> <code>ec2Configuration</code> </a>), or in the launch template (<code>launchTemplate</code>). In that case, Batch selects the latest Amazon ECS optimized AMI that's supported by Batch at the time the infrastructure update is initiated. Alternatively, you can specify the AMI ID in the <code>imageId</code> or <code>imageIdOverride</code> parameters, or the launch template identified by the <code>LaunchTemplate</code> properties. Changing any of these properties starts an infrastructure update. If the AMI ID is specified in the launch template, it can't be replaced by specifying an AMI ID in either the <code>imageId</code> or <code>imageIdOverride</code> parameters. It can only be replaced by specifying a different launch template, or if the launch template version is set to <code>$Default</code> or <code>$Latest</code>, by setting either a new default version for the launch template (if <code>$Default</code>) or by adding a new version to the launch template (if <code>$Latest</code>).</p> </li> </ul> <p>If these rules are followed, any update that starts an infrastructure update causes the AMI ID to be re-selected. If the <code>version</code> setting in the launch template (<code>launchTemplate</code>) is set to <code>$Latest</code> or <code>$Default</code>, the latest or default version of the launch template is evaluated up at the time of the infrastructure update, even if the <code>launchTemplate</code> wasn't updated.</p> </note>",
@@ -80,6 +80,18 @@
       "base": null,
       "refs": {
         "JobDetail$attempts": "<p>A list of job attempts that are associated with this job.</p>"
+      }
+    },
+    "AttemptEcsTaskDetails": {
+      "base": "<p>An object that represents the details of a task.</p>",
+      "refs": {
+        "ListAttemptEcsTaskDetails$member": null
+      }
+    },
+    "AttemptTaskContainerDetails": {
+      "base": "<p>An object that represents the details of a container that's part of a job attempt.</p>",
+      "refs": {
+        "ListAttemptTaskContainerDetails$member": null
       }
     },
     "Boolean": {
@@ -727,7 +739,7 @@
       }
     },
     "ImagePullSecret": {
-      "base": "<p>References a Kubernetes configuration resource that holds a list of secrets. These secrets help to gain access to pull an image from a private registry.</p>",
+      "base": "<p>References a Kubernetes secret resource. This name of the secret must start and end with an alphanumeric character, is required to be lowercase, can include periods (.) and hyphens (-), and can't contain more than 253 characters.</p>",
       "refs": {
         "ImagePullSecrets$member": null
       }
@@ -735,8 +747,8 @@
     "ImagePullSecrets": {
       "base": null,
       "refs": {
-        "EksPodProperties$imagePullSecrets": "<p>References a Kubernetes secret resource. This object must start and end with an alphanumeric character, is required to be lowercase, can include periods (.) and hyphens (-), and can't contain more than 253 characters.</p> <p> <code>ImagePullSecret$name</code> is required when this object is used.</p>",
-        "EksPodPropertiesDetail$imagePullSecrets": "<p>Displays the reference pointer to the Kubernetes secret resource.</p>"
+        "EksPodProperties$imagePullSecrets": "<p>References a Kubernetes secret resource. It holds a list of secrets. These secrets help to gain access to pull an images from a private registry.</p> <p> <code>ImagePullSecret$name</code> is required when this object is used.</p>",
+        "EksPodPropertiesDetail$imagePullSecrets": "<p>Displays the reference pointer to the Kubernetes secret resource. These secrets help to gain access to pull an images from a private registry.</p>"
       }
     },
     "ImageType": {
@@ -755,6 +767,7 @@
         "ArrayPropertiesSummary$size": "<p>The size of the array job. This parameter is returned for parent array jobs.</p>",
         "ArrayPropertiesSummary$index": "<p>The job index within the array that's associated with this job. This parameter is returned for children of array jobs.</p>",
         "AttemptContainerDetail$exitCode": "<p>The exit code for the job attempt. A non-zero exit code is considered failed.</p>",
+        "AttemptTaskContainerDetails$exitCode": "<p>The exit code for the container’s attempt. A non-zero exit code is considered failed.</p>",
         "ComputeEnvironmentDetail$unmanagedvCpus": "<p>The maximum number of VCPUs expected to be used for an unmanaged compute environment.</p>",
         "ComputeEnvironmentOrder$order": "<p>The order of the compute environment. Compute environments are tried in ascending order. For example, if two compute environments are associated with a job queue, the compute environment with a lower <code>order</code> integer value is tried for job placement first.</p>",
         "ComputeResource$minvCpus": "<p>The minimum number of vCPUs that a compute environment should maintain (even if the compute environment is <code>DISABLED</code>).</p> <note> <p>This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.</p> </note>",
@@ -905,13 +918,13 @@
     "JobStateTimeLimitActionsAction": {
       "base": null,
       "refs": {
-        "JobStateTimeLimitAction$action": "<p>The action to take when a job is at the head of the job queue in the specified state for the specified period of time. The only supported value is \"<code>CANCEL</code>\", which will cancel the job.</p>"
+        "JobStateTimeLimitAction$action": "<p>The action to take when a job is at the head of the job queue in the specified state for the specified period of time. The only supported value is <code>CANCEL</code>, which will cancel the job.</p>"
       }
     },
     "JobStateTimeLimitActionsState": {
       "base": null,
       "refs": {
-        "JobStateTimeLimitAction$state": "<p>The state of the job needed to trigger the action. The only supported value is \"<code>RUNNABLE</code>\".</p>"
+        "JobStateTimeLimitAction$state": "<p>The state of the job needed to trigger the action. The only supported value is <code>RUNNABLE</code>.</p>"
       }
     },
     "JobStatus": {
@@ -975,6 +988,18 @@
         "ContainerProperties$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as details for device mappings.</p>",
         "TaskContainerDetails$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html\">KernelCapabilities</a>.</p> <note> <p>This parameter is not supported for Windows containers.</p> </note>",
         "TaskContainerProperties$linuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html\">KernelCapabilities</a>.</p>"
+      }
+    },
+    "ListAttemptEcsTaskDetails": {
+      "base": null,
+      "refs": {
+        "AttemptDetail$taskProperties": "<p>The properties for a task definition that describes the container and volume definitions of an Amazon ECS task.</p>"
+      }
+    },
+    "ListAttemptTaskContainerDetails": {
+      "base": null,
+      "refs": {
+        "AttemptEcsTaskDetails$containers": "<p>A list of containers that are included in the <code>taskProperties</code> list.</p>"
       }
     },
     "ListEcsTaskDetails": {
@@ -1121,6 +1146,7 @@
       "base": null,
       "refs": {
         "AttemptContainerDetail$networkInterfaces": "<p>The network interfaces that are associated with the job attempt.</p>",
+        "AttemptTaskContainerDetails$networkInterfaces": "<p>The network interfaces that are associated with the job attempt.</p>",
         "ContainerDetail$networkInterfaces": "<p>The network interfaces that are associated with the job.</p>",
         "TaskContainerDetails$networkInterfaces": "<p>The network interfaces that are associated with the job.</p>"
       }
@@ -1345,6 +1371,11 @@
         "AttemptContainerDetail$reason": "<p>A short (255 max characters) human-readable string to provide additional details for a running or stopped container.</p>",
         "AttemptContainerDetail$logStreamName": "<p>The name of the CloudWatch Logs log stream that's associated with the container. The log group for Batch jobs is <code>/aws/batch/job</code>. Each container attempt receives a log stream name when they reach the <code>RUNNING</code> status.</p>",
         "AttemptDetail$statusReason": "<p>A short, human-readable string to provide additional details for the current status of the job attempt.</p>",
+        "AttemptEcsTaskDetails$containerInstanceArn": "<p>The Amazon Resource Name (ARN) of the container instance that hosts the task.</p>",
+        "AttemptEcsTaskDetails$taskArn": "<p>The ARN of the Amazon ECS task.</p>",
+        "AttemptTaskContainerDetails$name": "<p>The name of a container.</p>",
+        "AttemptTaskContainerDetails$reason": "<p>A short (255 max characters) string that's easy to understand and provides additional details for a running or stopped container.</p>",
+        "AttemptTaskContainerDetails$logStreamName": "<p>The name of the Amazon CloudWatch Logs log stream that's associated with the container. The log group for Batch jobs is <code>/aws/batch/job</code>. Each container attempt receives a log stream name when they reach the <code>RUNNING</code> status.</p>",
         "CancelJobRequest$jobId": "<p>The Batch job ID of the job to cancel.</p>",
         "CancelJobRequest$reason": "<p>A message to attach to the job that explains the reason for canceling it. This message is returned by future <a>DescribeJobs</a> operations on the job. This message is also recorded in the Batch activity logs.</p>",
         "ClientException$message": null,
@@ -1420,6 +1451,7 @@
         "EcsTaskProperties$ipcMode": "<p>The IPC resource namespace to use for the containers in the task. The valid values are <code>host</code>, <code>task</code>, or <code>none</code>.</p> <p>If <code>host</code> is specified, all containers within the tasks that specified the <code>host</code> IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance.</p> <p>If <code>task</code> is specified, all containers within the specified <code>task</code> share the same IPC resources.</p> <p>If <code>none</code> is specified, the IPC resources within the containers of a task are private, and are not shared with other containers in a task or on the container instance. </p> <p>If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance. For more information, see <a href=\"https://docs.docker.com/engine/reference/run/#ipc-settings---ipc\">IPC settings</a> in the Docker run reference.</p>",
         "EcsTaskProperties$taskRoleArn": "<p>The Amazon Resource Name (ARN) that's associated with the Amazon ECS task.</p> <note> <p>This is object is comparable to <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_ContainerProperties.html\">ContainerProperties:jobRoleArn</a>.</p> </note>",
         "EcsTaskProperties$pidMode": "<p>The process namespace to use for the containers in the task. The valid values are <code>host</code> or <code>task</code>. For example, monitoring sidecars might need <code>pidMode</code> to access information about other containers running in the same task.</p> <p>If <code>host</code> is specified, all containers within the tasks that specified the <code>host</code> PID mode on the same container instance share the process namespace with the host Amazon EC2 instance.</p> <p>If <code>task</code> is specified, all containers within the specified task share the same process namespace.</p> <p>If no value is specified, the default is a private namespace for each container. For more information, see <a href=\"https://docs.docker.com/engine/reference/run/#pid-settings---pid\">PID settings</a> in the Docker run reference.</p>",
+        "EksAttemptContainerDetail$name": "<p>The name of a container.</p>",
         "EksAttemptContainerDetail$reason": "<p>A short (255 max characters) human-readable string to provide additional details for a running or stopped container.</p>",
         "EksAttemptDetail$podName": "<p>The name of the pod for this job attempt.</p>",
         "EksAttemptDetail$nodeName": "<p>The name of the node for this job attempt.</p>",

@@ -6,7 +6,7 @@
 // This is the Amazon CloudFront API Reference. This guide is for developers
 // who need detailed information about CloudFront API actions, data types, and
 // errors. For detailed information about CloudFront features, see the Amazon
-// CloudFront Developer Guide.
+// CloudFront Developer Guide (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31 for more information on this service.
 //

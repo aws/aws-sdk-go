@@ -383,12 +383,31 @@
         "container":{"shape":"AttemptContainerDetail"},
         "startedAt":{"shape":"Long"},
         "stoppedAt":{"shape":"Long"},
-        "statusReason":{"shape":"String"}
+        "statusReason":{"shape":"String"},
+        "taskProperties":{"shape":"ListAttemptEcsTaskDetails"}
       }
     },
     "AttemptDetails":{
       "type":"list",
       "member":{"shape":"AttemptDetail"}
+    },
+    "AttemptEcsTaskDetails":{
+      "type":"structure",
+      "members":{
+        "containerInstanceArn":{"shape":"String"},
+        "taskArn":{"shape":"String"},
+        "containers":{"shape":"ListAttemptTaskContainerDetails"}
+      }
+    },
+    "AttemptTaskContainerDetails":{
+      "type":"structure",
+      "members":{
+        "exitCode":{"shape":"Integer"},
+        "name":{"shape":"String"},
+        "reason":{"shape":"String"},
+        "logStreamName":{"shape":"String"},
+        "networkInterfaces":{"shape":"NetworkInterfaceList"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "CEState":{
@@ -976,6 +995,7 @@
     "EksAttemptContainerDetail":{
       "type":"structure",
       "members":{
+        "name":{"shape":"String"},
         "exitCode":{"shape":"Integer"},
         "reason":{"shape":"String"}
       }
@@ -1539,6 +1559,14 @@
         "maxSwap":{"shape":"Integer"},
         "swappiness":{"shape":"Integer"}
       }
+    },
+    "ListAttemptEcsTaskDetails":{
+      "type":"list",
+      "member":{"shape":"AttemptEcsTaskDetails"}
+    },
+    "ListAttemptTaskContainerDetails":{
+      "type":"list",
+      "member":{"shape":"AttemptTaskContainerDetails"}
     },
     "ListEcsTaskDetails":{
       "type":"list",

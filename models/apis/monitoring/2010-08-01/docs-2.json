@@ -215,7 +215,7 @@
     "AnomalyDetectorStateValue": {
       "base": null,
       "refs": {
-        "AnomalyDetector$StateValue": "<p>The current status of the anomaly detector's training. The possible values are <code>TRAINED | PENDING_TRAINING | TRAINED_INSUFFICIENT_DATA</code> </p>"
+        "AnomalyDetector$StateValue": "<p>The current status of the anomaly detector's training.</p>"
       }
     },
     "AnomalyDetectorType": {
@@ -1134,6 +1134,13 @@
         "DescribeAlarmsOutput$MetricAlarms": "<p>The information about any metric alarms returned by the operation.</p>"
       }
     },
+    "MetricCharacteristics": {
+      "base": "<p>This object includes parameters that you can use to provide information to CloudWatch to help it build more accurate anomaly detection models.</p>",
+      "refs": {
+        "AnomalyDetector$MetricCharacteristics": "<p>This object includes parameters that you can use to provide information about your metric to CloudWatch to help it build more accurate anomaly detection models. Currently, it includes the <code>PeriodicSpikes</code> parameter.</p>",
+        "PutAnomalyDetectorInput$MetricCharacteristics": "<p>Use this object to include parameters to provide information about your metric to CloudWatch to help it build more accurate anomaly detection models. Currently, it includes the <code>PeriodicSpikes</code> parameter.</p>"
+      }
+    },
     "MetricData": {
       "base": null,
       "refs": {
@@ -1432,6 +1439,12 @@
         "MetricDataQuery$Period": "<p>The granularity, in seconds, of the returned data points. For metrics with regular resolution, a period can be as short as one minute (60 seconds) and must be a multiple of 60. For high-resolution metrics that are collected at intervals of less than one minute, the period can be 1, 5, 10, 30, 60, or any multiple of 60. High-resolution metrics are those metrics stored by a <code>PutMetricData</code> operation that includes a <code>StorageResolution of 1 second</code>.</p>",
         "MetricStat$Period": "<p>The granularity, in seconds, of the returned data points. For metrics with regular resolution, a period can be as short as one minute (60 seconds) and must be a multiple of 60. For high-resolution metrics that are collected at intervals of less than one minute, the period can be 1, 5, 10, 30, 60, or any multiple of 60. High-resolution metrics are those metrics stored by a <code>PutMetricData</code> call that includes a <code>StorageResolution</code> of 1 second.</p> <p>If the <code>StartTime</code> parameter specifies a time stamp that is greater than 3 hours ago, you must specify the period as follows or no data points in that time range is returned:</p> <ul> <li> <p>Start time between 3 hours and 15 days ago - Use a multiple of 60 seconds (1 minute).</p> </li> <li> <p>Start time between 15 and 63 days ago - Use a multiple of 300 seconds (5 minutes).</p> </li> <li> <p>Start time greater than 63 days ago - Use a multiple of 3600 seconds (1 hour).</p> </li> </ul>",
         "PutMetricAlarmInput$Period": "<p>The length, in seconds, used each time the metric specified in <code>MetricName</code> is evaluated. Valid values are 10, 30, and any multiple of 60.</p> <p> <code>Period</code> is required for alarms based on static thresholds. If you are creating an alarm based on a metric math expression, you specify the period for each metric within the objects in the <code>Metrics</code> array.</p> <p>Be sure to specify 10 or 30 only for metrics that are stored by a <code>PutMetricData</code> call with a <code>StorageResolution</code> of 1. If you specify a period of 10 or 30 for a metric that does not have sub-minute resolution, the alarm still attempts to gather data at the period rate that you specify. In this case, it does not receive data for the attempts that do not correspond to a one-minute data resolution, and the alarm might often lapse into INSUFFICENT_DATA status. Specifying 10 or 30 also sets this alarm as a high-resolution alarm, which has a higher charge than other alarms. For more information about pricing, see <a href=\"https://aws.amazon.com/cloudwatch/pricing/\">Amazon CloudWatch Pricing</a>.</p> <p>An alarm's total current evaluation period can be no longer than one day, so <code>Period</code> multiplied by <code>EvaluationPeriods</code> cannot be more than 86,400 seconds.</p>"
+      }
+    },
+    "PeriodicSpikes": {
+      "base": null,
+      "refs": {
+        "MetricCharacteristics$PeriodicSpikes": "<p>Set this parameter to <code>true</code> if values for this metric consistently include spikes that should not be considered to be anomalies. With this set to <code>true</code>, CloudWatch will expect to see spikes that occurred consistently during the model training period, and won't flag future similar spikes as anomalies.</p>"
       }
     },
     "PutAnomalyDetectorInput": {

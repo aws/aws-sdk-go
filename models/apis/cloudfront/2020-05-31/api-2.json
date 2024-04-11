@@ -432,7 +432,8 @@
         {"shape":"EntityLimitExceeded"},
         {"shape":"EntityAlreadyExists"},
         {"shape":"EntitySizeLimitExceeded"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "CreateMonitoringSubscription":{
@@ -733,7 +734,8 @@
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"EntityNotFound"},
         {"shape":"CannotDeleteEntityWhileInUse"},
-        {"shape":"PreconditionFailed"}
+        {"shape":"PreconditionFailed"},
+        {"shape":"UnsupportedOperation"}
       ],
       "idempotent":true
     },
@@ -877,7 +879,8 @@
       "errors":[
         {"shape":"AccessDenied"},
         {"shape":"InvalidArgument"},
-        {"shape":"EntityNotFound"}
+        {"shape":"EntityNotFound"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "GetCachePolicy":{
@@ -1473,7 +1476,8 @@
       "output":{"shape":"ListKeyValueStoresResult"},
       "errors":[
         {"shape":"AccessDenied"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "ListOriginAccessControls":{
@@ -1943,7 +1947,8 @@
         {"shape":"InvalidArgument"},
         {"shape":"EntityNotFound"},
         {"shape":"InvalidIfMatchVersion"},
-        {"shape":"PreconditionFailed"}
+        {"shape":"PreconditionFailed"},
+        {"shape":"UnsupportedOperation"}
       ],
       "idempotent":true
     },
@@ -6400,7 +6405,9 @@
       "type":"string",
       "enum":[
         "s3",
-        "mediastore"
+        "mediastore",
+        "mediapackagev2",
+        "lambda"
       ]
     },
     "OriginAccessControlSigningBehaviors":{

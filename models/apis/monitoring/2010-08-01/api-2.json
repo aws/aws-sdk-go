@@ -716,6 +716,7 @@
         },
         "Configuration":{"shape":"AnomalyDetectorConfiguration"},
         "StateValue":{"shape":"AnomalyDetectorStateValue"},
+        "MetricCharacteristics":{"shape":"MetricCharacteristics"},
         "SingleMetricAnomalyDetector":{"shape":"SingleMetricAnomalyDetector"},
         "MetricMathAnomalyDetector":{"shape":"MetricMathAnomalyDetector"}
       }
@@ -1836,6 +1837,12 @@
       "type":"list",
       "member":{"shape":"MetricAlarm"}
     },
+    "MetricCharacteristics":{
+      "type":"structure",
+      "members":{
+        "PeriodicSpikes":{"shape":"PeriodicSpikes"}
+      }
+    },
     "MetricData":{
       "type":"list",
       "member":{"shape":"MetricDatum"}
@@ -2057,6 +2064,7 @@
       "type":"integer",
       "min":1
     },
+    "PeriodicSpikes":{"type":"boolean"},
     "PutAnomalyDetectorInput":{
       "type":"structure",
       "members":{
@@ -2081,6 +2089,7 @@
           "deprecatedMessage":"Use SingleMetricAnomalyDetector."
         },
         "Configuration":{"shape":"AnomalyDetectorConfiguration"},
+        "MetricCharacteristics":{"shape":"MetricCharacteristics"},
         "SingleMetricAnomalyDetector":{"shape":"SingleMetricAnomalyDetector"},
         "MetricMathAnomalyDetector":{"shape":"MetricMathAnomalyDetector"}
       }
