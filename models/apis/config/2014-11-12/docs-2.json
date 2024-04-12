@@ -713,8 +713,8 @@
     "ConfigurationItemDeliveryTime": {
       "base": null,
       "refs": {
-        "BaseConfigurationItem$configurationItemDeliveryTime": "<p>The time when configuration changes for the resource were delivered.</p>",
-        "ConfigurationItem$configurationItemDeliveryTime": "<p>The time when configuration changes for the resource were delivered.</p>"
+        "BaseConfigurationItem$configurationItemDeliveryTime": "<p>The time when configuration changes for the resource were delivered.</p> <note> <p>This field is optional and is not guaranteed to be present in a configuration item (CI). If you are using daily recording, this field will be populated. However, if you are using continuous recording, this field will be omitted since the delivery time is instantaneous as the CI is available right away. For more information on daily recording and continuous recording, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency\">Recording Frequency</a> in the <i>Config Developer Guide</i>.</p> </note>",
+        "ConfigurationItem$configurationItemDeliveryTime": "<p>The time when configuration changes for the resource were delivered.</p> <note> <p>This field is optional and is not guaranteed to be present in a configuration item (CI). If you are using daily recording, this field will be populated. However, if you are using continuous recording, this field will be omitted since the delivery time is instantaneous as the CI is available right away. For more information on daily recording and continuous recording, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency\">Recording Frequency</a> in the <i>Config Developer Guide</i>.</p> </note>"
       }
     },
     "ConfigurationItemList": {
@@ -1544,7 +1544,7 @@
         "EvaluationResultQualifier$EvaluationMode": "<p>The mode of an evaluation. The valid values are Detective or Proactive.</p>",
         "GetResourceEvaluationSummaryResponse$EvaluationMode": "<p>Lists results of the mode that you requested to retrieve the resource evaluation summary. The valid values are Detective or Proactive.</p>",
         "ResourceEvaluation$EvaluationMode": "<p>The mode of an evaluation. The valid values are Detective or Proactive.</p>",
-        "ResourceEvaluationFilters$EvaluationMode": "<p>Filters all resource evaluations results based on an evaluation mode. the valid value for this API is <code>Proactive</code>.</p>",
+        "ResourceEvaluationFilters$EvaluationMode": "<p>Filters all resource evaluations results based on an evaluation mode.</p> <important> <p>Currently, <code>DECTECTIVE</code> is not supported as a valid value. Ignore other documentation stating otherwise.</p> </important>",
         "StartResourceEvaluationRequest$EvaluationMode": "<p>The mode of an evaluation. The valid values for this API are <code>DETECTIVE</code> and <code>PROACTIVE</code>.</p>"
       }
     },
@@ -2135,7 +2135,7 @@
       }
     },
     "MaxNumberOfConfigRulesExceededException": {
-      "base": "<p>Failed to add the Config rule because the account already contains the maximum number of 150 rules. Consider deleting any deactivated rules before you add new rules.</p>",
+      "base": "<p>Failed to add the Config rule because the account already contains the maximum number of 1000 rules. Consider deleting any deactivated rules before you add new rules.</p>",
       "refs": {
       }
     },
@@ -3279,7 +3279,7 @@
     "RuleLimit": {
       "base": null,
       "refs": {
-        "DescribeConfigRuleEvaluationStatusRequest$Limit": "<p>The number of rule evaluation results that you want returned.</p> <p>This parameter is required if the rule limit for your account is more than the default of 150 rules.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">Config Limits</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>"
+        "DescribeConfigRuleEvaluationStatusRequest$Limit": "<p>The number of rule evaluation results that you want returned.</p> <p>This parameter is required if the rule limit for your account is more than the default of 1000 rules.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">Config Limits</a> in the <i>Amazon Web Services General Reference Guide</i>.</p>"
       }
     },
     "SSMDocumentName": {

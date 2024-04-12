@@ -8418,6 +8418,13 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
+	// The setting that controls whether players can use stitched or guided ad insertion.
+	// The default, STITCHED_ONLY, forces all player sessions to use stitched (server-side)
+	// ad insertion. Choosing PLAYER_SELECT allows players to select either stitched
+	// or guided ad insertion at session-initialization time. The default for players
+	// that do not specify an insertion mode is stitched.
+	InsertionMode *string `type:"string" enum:"InsertionMode"`
+
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
@@ -8533,6 +8540,12 @@ func (s *GetPlaybackConfigurationOutput) SetDashConfiguration(v *DashConfigurati
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration) *GetPlaybackConfigurationOutput {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetInsertionMode sets the InsertionMode field's value.
+func (s *GetPlaybackConfigurationOutput) SetInsertionMode(v string) *GetPlaybackConfigurationOutput {
+	s.InsertionMode = &v
 	return s
 }
 
@@ -10169,6 +10182,13 @@ type PlaybackConfiguration struct {
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
+	// The setting that controls whether players can use stitched or guided ad insertion.
+	// The default, STITCHED_ONLY, forces all player sessions to use stitched (server-side)
+	// ad insertion. Choosing PLAYER_SELECT allows players to select either stitched
+	// or guided ad insertion at session-initialization time. The default for players
+	// that do not specify an insertion mode is stitched.
+	InsertionMode *string `type:"string" enum:"InsertionMode"`
+
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
@@ -10283,6 +10303,12 @@ func (s *PlaybackConfiguration) SetDashConfiguration(v *DashConfiguration) *Play
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *PlaybackConfiguration) SetHlsConfiguration(v *HlsConfiguration) *PlaybackConfiguration {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetInsertionMode sets the InsertionMode field's value.
+func (s *PlaybackConfiguration) SetInsertionMode(v string) *PlaybackConfiguration {
+	s.InsertionMode = &v
 	return s
 }
 
@@ -10729,6 +10755,13 @@ type PutPlaybackConfigurationInput struct {
 	// The configuration for DASH content.
 	DashConfiguration *DashConfigurationForPut `type:"structure"`
 
+	// The setting that controls whether players can use stitched or guided ad insertion.
+	// The default, STITCHED_ONLY, forces all player sessions to use stitched (server-side)
+	// ad insertion. Choosing PLAYER_SELECT allows players to select either stitched
+	// or guided ad insertion at session-initialization time. The default for players
+	// that do not specify an insertion mode is stitched.
+	InsertionMode *string `type:"string" enum:"InsertionMode"`
+
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
@@ -10845,6 +10878,12 @@ func (s *PutPlaybackConfigurationInput) SetDashConfiguration(v *DashConfiguratio
 	return s
 }
 
+// SetInsertionMode sets the InsertionMode field's value.
+func (s *PutPlaybackConfigurationInput) SetInsertionMode(v string) *PutPlaybackConfigurationInput {
+	s.InsertionMode = &v
+	return s
+}
+
 // SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
 func (s *PutPlaybackConfigurationInput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationInput {
 	s.LivePreRollConfiguration = v
@@ -10925,6 +10964,13 @@ type PutPlaybackConfigurationOutput struct {
 
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
+
+	// The setting that controls whether players can use stitched or guided ad insertion.
+	// The default, STITCHED_ONLY, forces all player sessions to use stitched (server-side)
+	// ad insertion. Choosing PLAYER_SELECT allows players to select either stitched
+	// or guided ad insertion at session-initialization time. The default for players
+	// that do not specify an insertion mode is stitched.
+	InsertionMode *string `type:"string" enum:"InsertionMode"`
 
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
@@ -11039,6 +11085,12 @@ func (s *PutPlaybackConfigurationOutput) SetDashConfiguration(v *DashConfigurati
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration) *PutPlaybackConfigurationOutput {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetInsertionMode sets the InsertionMode field's value.
+func (s *PutPlaybackConfigurationOutput) SetInsertionMode(v string) *PutPlaybackConfigurationOutput {
+	s.InsertionMode = &v
 	return s
 }
 
@@ -13798,6 +13850,23 @@ func FillPolicy_Values() []string {
 	return []string{
 		FillPolicyFullAvailOnly,
 		FillPolicyPartialAvail,
+	}
+}
+
+// Insertion Mode controls whether players can use stitched or guided ad insertion.
+const (
+	// InsertionModeStitchedOnly is a InsertionMode enum value
+	InsertionModeStitchedOnly = "STITCHED_ONLY"
+
+	// InsertionModePlayerSelect is a InsertionMode enum value
+	InsertionModePlayerSelect = "PLAYER_SELECT"
+)
+
+// InsertionMode_Values returns all elements of the InsertionMode enum
+func InsertionMode_Values() []string {
+	return []string{
+		InsertionModeStitchedOnly,
+		InsertionModePlayerSelect,
 	}
 }
 

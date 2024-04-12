@@ -10917,7 +10917,13 @@ type DescribedCertificate struct {
 	// If there is no private key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -12822,7 +12828,13 @@ type ImportCertificateInput struct {
 	// Key-value pairs that can be used to group and search for certificates.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	//
 	// Usage is a required field
 	Usage *string `type:"string" required:"true" enum:"CertificateUsageType"`
@@ -15131,7 +15143,13 @@ type ListedCertificate struct {
 	// key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies whether this certificate is used for signing or encryption.
+	// Specifies how this certificate is used. It can be used in the following ways:
+	//
+	//    * SIGNING: For signing AS2 messages
+	//
+	//    * ENCRYPTION: For encrypting AS2 messages
+	//
+	//    * TLS: For securing AS2 communications sent over HTTPS
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -19807,6 +19825,9 @@ const (
 
 	// CertificateUsageTypeEncryption is a CertificateUsageType enum value
 	CertificateUsageTypeEncryption = "ENCRYPTION"
+
+	// CertificateUsageTypeTls is a CertificateUsageType enum value
+	CertificateUsageTypeTls = "TLS"
 )
 
 // CertificateUsageType_Values returns all elements of the CertificateUsageType enum
@@ -19814,6 +19835,7 @@ func CertificateUsageType_Values() []string {
 	return []string{
 		CertificateUsageTypeSigning,
 		CertificateUsageTypeEncryption,
+		CertificateUsageTypeTls,
 	}
 }
 

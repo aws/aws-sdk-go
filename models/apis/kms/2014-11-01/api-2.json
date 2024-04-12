@@ -588,6 +588,23 @@
         {"shape":"KMSInvalidStateException"}
       ]
     },
+    "ListKeyRotations":{
+      "name":"ListKeyRotations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListKeyRotationsRequest"},
+      "output":{"shape":"ListKeyRotationsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"InvalidMarkerException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "ListKeys":{
       "name":"ListKeys",
       "http":{
@@ -727,6 +744,26 @@
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"},
         {"shape":"DryRunOperationException"}
+      ]
+    },
+    "RotateKeyOnDemand":{
+      "name":"RotateKeyOnDemand",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RotateKeyOnDemandRequest"},
+      "output":{"shape":"RotateKeyOnDemandResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"DisabledException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"DependencyTimeoutException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
       ]
     },
     "ScheduleKeyDeletion":{
@@ -1015,6 +1052,13 @@
       "exception":true
     },
     "CloudHsmClusterNotRelatedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
+    },
+    "ConflictException":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessageType"}
@@ -1397,7 +1441,8 @@
       "type":"structure",
       "required":["KeyId"],
       "members":{
-        "KeyId":{"shape":"KeyIdType"}
+        "KeyId":{"shape":"KeyIdType"},
+        "RotationPeriodInDays":{"shape":"RotationPeriodInDaysType"}
       }
     },
     "EncryptRequest":{
@@ -1611,7 +1656,11 @@
     "GetKeyRotationStatusResponse":{
       "type":"structure",
       "members":{
-        "KeyRotationEnabled":{"shape":"BooleanType"}
+        "KeyRotationEnabled":{"shape":"BooleanType"},
+        "KeyId":{"shape":"KeyIdType"},
+        "RotationPeriodInDays":{"shape":"RotationPeriodInDaysType"},
+        "NextRotationDate":{"shape":"DateType"},
+        "OnDemandRotationStartDate":{"shape":"DateType"}
       }
     },
     "GetParametersForImportRequest":{
@@ -2036,6 +2085,23 @@
         "Truncated":{"shape":"BooleanType"}
       }
     },
+    "ListKeyRotationsRequest":{
+      "type":"structure",
+      "required":["KeyId"],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "Limit":{"shape":"LimitType"},
+        "Marker":{"shape":"MarkerType"}
+      }
+    },
+    "ListKeyRotationsResponse":{
+      "type":"structure",
+      "members":{
+        "Rotations":{"shape":"RotationsList"},
+        "NextMarker":{"shape":"MarkerType"},
+        "Truncated":{"shape":"BooleanType"}
+      }
+    },
     "ListKeysRequest":{
       "type":"structure",
       "members":{
@@ -2292,6 +2358,43 @@
         "KeyId":{"shape":"KeyIdType"},
         "GrantId":{"shape":"GrantIdType"},
         "DryRun":{"shape":"NullableBooleanType"}
+      }
+    },
+    "RotateKeyOnDemandRequest":{
+      "type":"structure",
+      "required":["KeyId"],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"}
+      }
+    },
+    "RotateKeyOnDemandResponse":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"}
+      }
+    },
+    "RotationPeriodInDaysType":{
+      "type":"integer",
+      "max":2560,
+      "min":90
+    },
+    "RotationType":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "ON_DEMAND"
+      ]
+    },
+    "RotationsList":{
+      "type":"list",
+      "member":{"shape":"RotationsListEntry"}
+    },
+    "RotationsListEntry":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "RotationDate":{"shape":"DateType"},
+        "RotationType":{"shape":"RotationType"}
       }
     },
     "ScheduleKeyDeletionRequest":{

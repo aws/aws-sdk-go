@@ -1,15 +1,15 @@
 {
   "version": "2.0",
-  "service": "<p>With Fleet Hub for AWS IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+  "service": "<p>With Fleet Hub for IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets.</p>",
   "operations": {
-    "CreateApplication": "<p>Creates a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "DeleteApplication": "<p>Deletes a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "DescribeApplication": "<p>Gets information about a Fleet Hub for AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "ListApplications": "<p>Gets a list of Fleet Hub for AWS IoT Device Management web applications for the current account.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "ListTagsForResource": "<p>Lists the tags for the specified resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "TagResource": "<p>Adds to or modifies the tags of the specified resource. Tags are metadata which can be used to manage a resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "UntagResource": "<p>Removes the specified tags (metadata) from the resource.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
-    "UpdateApplication": "<p>Updates information about a Fleet Hub for a AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>"
+    "CreateApplication": "<p>Creates a Fleet Hub for IoT Device Management web application.</p> <p>When creating a Fleet Hub application, you must create an organization instance of IAM Identity Center if you don't already have one. The Fleet Hub application you create must also be in the same Amazon Web Services Region of the organization instance of IAM Identity Center. For more information see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/get-set-up-for-idc.html\">Enabling IAM Identity Center</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/organization-instances-identity-center.html\">Organization instances of IAM Identity Center</a>.</p>",
+    "DeleteApplication": "<p>Deletes a Fleet Hub for IoT Device Management web application.</p>",
+    "DescribeApplication": "<p>Gets information about a Fleet Hub for IoT Device Management web application.</p>",
+    "ListApplications": "<p>Gets a list of Fleet Hub for IoT Device Management web applications for the current account.</p>",
+    "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the specified resource. Tags are metadata which can be used to manage a resource.</p>",
+    "UntagResource": "<p>Removes the specified tags (metadata) from the resource.</p>",
+    "UpdateApplication": "<p>Updates information about a Fleet Hub for IoT Device Management web application.</p>"
   },
   "shapes": {
     "ApplicationState": {
@@ -26,7 +26,7 @@
       }
     },
     "ApplicationSummary": {
-      "base": "<p>A summary of information about a AWS IoT Device Management web application.</p> <note> <p>Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.</p> </note>",
+      "base": "<p>A summary of information about a Fleet Hub for IoT Device Management web application.</p>",
       "refs": {
         "ApplicationSummaries$member": null
       }
@@ -34,10 +34,10 @@
     "Arn": {
       "base": null,
       "refs": {
-        "CreateApplicationRequest$roleArn": "<p>The ARN of the role that the web application assumes when it interacts with AWS IoT Core.</p> <note> <p>The name of the role must be in the form <code>AWSIotFleetHub_<i>random_string</i> </code>.</p> </note>",
+        "CreateApplicationRequest$roleArn": "<p>The ARN of the role that the web application assumes when it interacts with Amazon Web Services IoT Core.</p> <note> <p>The name of the role must be in the form <code>AWSIotFleetHub_<i>random_string</i> </code>.</p> </note>",
         "CreateApplicationResponse$applicationArn": "<p>The ARN of the web application.</p>",
         "DescribeApplicationResponse$applicationArn": "<p>The ARN of the web application.</p>",
-        "DescribeApplicationResponse$roleArn": "<p>The ARN of the role that the web application assumes when it interacts with AWS IoT Core.</p>"
+        "DescribeApplicationResponse$roleArn": "<p>The ARN of the role that the web application assumes when it interacts with Amazon Web Services IoT Core.</p>"
       }
     },
     "ClientRequestToken": {
@@ -95,7 +95,7 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "DescribeApplicationResponse$errorMessage": "<p>A message indicating why the <code>DescribeApplication</code> API failed.</p>"
+        "DescribeApplicationResponse$errorMessage": "<p>A message that explains any failures included in the <code>applicationState</code> response field. This message explains failures in the <code>CreateApplication</code> and <code>DeleteApplication</code> actions.</p>"
       }
     },
     "Id": {

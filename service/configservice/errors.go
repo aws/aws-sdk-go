@@ -176,8 +176,8 @@ const (
 	// "MaxNumberOfConfigRulesExceededException".
 	//
 	// Failed to add the Config rule because the account already contains the maximum
-	// number of 150 rules. Consider deleting any deactivated rules before you add
-	// new rules.
+	// number of 1000 rules. Consider deleting any deactivated rules before you
+	// add new rules.
 	ErrCodeMaxNumberOfConfigRulesExceededException = "MaxNumberOfConfigRulesExceededException"
 
 	// ErrCodeMaxNumberOfConfigurationRecordersExceededException for service response error code

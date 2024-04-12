@@ -333,7 +333,8 @@
         "DatastoreEndpoint":{"shape":"String"},
         "SseConfiguration":{"shape":"SseConfiguration"},
         "PreloadDataConfig":{"shape":"PreloadDataConfig"},
-        "IdentityProviderConfiguration":{"shape":"IdentityProviderConfiguration"}
+        "IdentityProviderConfiguration":{"shape":"IdentityProviderConfiguration"},
+        "ErrorCause":{"shape":"ErrorCause"}
       }
     },
     "DatastorePropertiesList":{
@@ -346,7 +347,8 @@
         "CREATING",
         "ACTIVE",
         "DELETING",
-        "DELETED"
+        "DELETED",
+        "CREATE_FAILED"
       ]
     },
     "DeleteFHIRDatastoreRequest":{
@@ -426,6 +428,25 @@
       "max":400,
       "min":1,
       "pattern":"(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}-[a-z]+(-[a-z]+)?-\\d:)?(\\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))"
+    },
+    "ErrorCategory":{
+      "type":"string",
+      "enum":[
+        "RETRYABLE_ERROR",
+        "NON_RETRYABLE_ERROR"
+      ]
+    },
+    "ErrorCause":{
+      "type":"structure",
+      "members":{
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "ErrorCategory":{"shape":"ErrorCategory"}
+      }
+    },
+    "ErrorMessage":{
+      "type":"string",
+      "max":4096,
+      "min":1
     },
     "ExportJobProperties":{
       "type":"structure",

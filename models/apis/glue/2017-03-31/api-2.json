@@ -8429,6 +8429,8 @@
         "Name":{"shape":"NameString"},
         "AuditContext":{"shape":"AuditContext"},
         "SupportedPermissionTypes":{"shape":"PermissionTypeList"},
+        "ParentResourceArn":{"shape":"ArnString"},
+        "RootResourceArn":{"shape":"ArnString"},
         "SupportedDialect":{"shape":"SupportedDialect"},
         "Permissions":{"shape":"PermissionList"},
         "QuerySessionContext":{"shape":"QuerySessionContext"}

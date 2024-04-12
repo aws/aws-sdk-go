@@ -7840,6 +7840,9 @@ const (
 
 	// ShipmentCarrierUps is a ShipmentCarrier enum value
 	ShipmentCarrierUps = "UPS"
+
+	// ShipmentCarrierExpeditors is a ShipmentCarrier enum value
+	ShipmentCarrierExpeditors = "EXPEDITORS"
 )
 
 // ShipmentCarrier_Values returns all elements of the ShipmentCarrier enum
@@ -7849,6 +7852,7 @@ func ShipmentCarrier_Values() []string {
 		ShipmentCarrierDbs,
 		ShipmentCarrierFedex,
 		ShipmentCarrierUps,
+		ShipmentCarrierExpeditors,
 	}
 }
 

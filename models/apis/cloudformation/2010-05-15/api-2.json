@@ -1318,6 +1318,8 @@
         "Arn":{"shape":"PrivateTypeArn"}
       }
     },
+    "AfterContext":{"type":"string"},
+    "AfterValue":{"type":"string"},
     "AllowedValue":{"type":"string"},
     "AllowedValues":{
       "type":"list",
@@ -1335,6 +1337,14 @@
       "exception":true
     },
     "Arn":{"type":"string"},
+    "AttributeChangeType":{
+      "type":"string",
+      "enum":[
+        "Add",
+        "Remove",
+        "Modify"
+      ]
+    },
     "AutoDeployment":{
       "type":"structure",
       "members":{
@@ -1371,6 +1381,8 @@
         "TypeConfigurations":{"shape":"TypeConfigurationDetailsList"}
       }
     },
+    "BeforeContext":{"type":"string"},
+    "BeforeValue":{"type":"string"},
     "BoxedInteger":{
       "type":"integer",
       "box":true
@@ -1947,7 +1959,8 @@
       "members":{
         "ChangeSetName":{"shape":"ChangeSetNameOrId"},
         "StackName":{"shape":"StackNameOrId"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "IncludePropertyValues":{"shape":"IncludePropertyValues"}
       }
     },
     "DescribeChangeSetOutput":{
@@ -2686,6 +2699,7 @@
       "min":0
     },
     "IncludeNestedStacks":{"type":"boolean"},
+    "IncludePropertyValues":{"type":"boolean"},
     "InsufficientCapabilitiesException":{
       "type":"structure",
       "members":{
@@ -3609,7 +3623,9 @@
         "Scope":{"shape":"Scope"},
         "Details":{"shape":"ResourceChangeDetails"},
         "ChangeSetId":{"shape":"ChangeSetId"},
-        "ModuleInfo":{"shape":"ModuleInfo"}
+        "ModuleInfo":{"shape":"ModuleInfo"},
+        "BeforeContext":{"shape":"BeforeContext"},
+        "AfterContext":{"shape":"AfterContext"}
       }
     },
     "ResourceChangeDetail":{
@@ -3700,6 +3716,7 @@
       "min":1
     },
     "ResourceProperties":{"type":"string"},
+    "ResourcePropertyPath":{"type":"string"},
     "ResourceScanId":{"type":"string"},
     "ResourceScanInProgressException":{
       "type":"structure",
@@ -3808,7 +3825,11 @@
       "members":{
         "Attribute":{"shape":"ResourceAttribute"},
         "Name":{"shape":"PropertyName"},
-        "RequiresRecreation":{"shape":"RequiresRecreation"}
+        "RequiresRecreation":{"shape":"RequiresRecreation"},
+        "Path":{"shape":"ResourcePropertyPath"},
+        "BeforeValue":{"shape":"BeforeValue"},
+        "AfterValue":{"shape":"AfterValue"},
+        "AttributeChangeType":{"shape":"AttributeChangeType"}
       }
     },
     "ResourceToImport":{

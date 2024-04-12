@@ -7047,7 +7047,8 @@
         "ManualSnapshotRemainingDays":{"shape":"IntegerOptional"},
         "SnapshotRetentionStartTime":{"shape":"TStamp"},
         "MasterPasswordSecretArn":{"shape":"String"},
-        "MasterPasswordSecretKmsKeyId":{"shape":"String"}
+        "MasterPasswordSecretKmsKeyId":{"shape":"String"},
+        "SnapshotArn":{"shape":"String"}
       },
       "wrapper":true
     },

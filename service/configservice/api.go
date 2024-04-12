@@ -9046,8 +9046,8 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //
 //   - MaxNumberOfConfigRulesExceededException
 //     Failed to add the Config rule because the account already contains the maximum
-//     number of 150 rules. Consider deleting any deactivated rules before you add
-//     new rules.
+//     number of 1000 rules. Consider deleting any deactivated rules before you
+//     add new rules.
 //
 //   - ResourceInUseException
 //     You see this exception in the following cases:
@@ -12789,6 +12789,14 @@ type BaseConfigurationItem struct {
 	ConfigurationItemCaptureTime *time.Time `locationName:"configurationItemCaptureTime" type:"timestamp"`
 
 	// The time when configuration changes for the resource were delivered.
+	//
+	// This field is optional and is not guaranteed to be present in a configuration
+	// item (CI). If you are using daily recording, this field will be populated.
+	// However, if you are using continuous recording, this field will be omitted
+	// since the delivery time is instantaneous as the CI is available right away.
+	// For more information on daily recording and continuous recording, see Recording
+	// Frequency (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency)
+	// in the Config Developer Guide.
 	ConfigurationItemDeliveryTime *time.Time `locationName:"configurationItemDeliveryTime" type:"timestamp"`
 
 	// The configuration item status. Valid values include:
@@ -14316,6 +14324,14 @@ type ConfigurationItem struct {
 	ConfigurationItemCaptureTime *time.Time `locationName:"configurationItemCaptureTime" type:"timestamp"`
 
 	// The time when configuration changes for the resource were delivered.
+	//
+	// This field is optional and is not guaranteed to be present in a configuration
+	// item (CI). If you are using daily recording, this field will be populated.
+	// However, if you are using continuous recording, this field will be omitted
+	// since the delivery time is instantaneous as the CI is available right away.
+	// For more information on daily recording and continuous recording, see Recording
+	// Frequency (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency)
+	// in the Config Developer Guide.
 	ConfigurationItemDeliveryTime *time.Time `locationName:"configurationItemDeliveryTime" type:"timestamp"`
 
 	// Unique MD5 hash that represents the configuration item's state.
@@ -17601,7 +17617,7 @@ type DescribeConfigRuleEvaluationStatusInput struct {
 	// The number of rule evaluation results that you want returned.
 	//
 	// This parameter is required if the rule limit for your account is more than
-	// the default of 150 rules.
+	// the default of 1000 rules.
 	//
 	// For information about requesting a rule limit increase, see Config Limits
 	// (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
@@ -24620,8 +24636,8 @@ func (s *MaxActiveResourcesExceededException) RequestID() string {
 }
 
 // Failed to add the Config rule because the account already contains the maximum
-// number of 150 rules. Consider deleting any deactivated rules before you add
-// new rules.
+// number of 1000 rules. Consider deleting any deactivated rules before you
+// add new rules.
 type MaxNumberOfConfigRulesExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -31190,8 +31206,10 @@ type ResourceEvaluationFilters struct {
 	// Stack.
 	EvaluationContextIdentifier *string `min:"1" type:"string"`
 
-	// Filters all resource evaluations results based on an evaluation mode. the
-	// valid value for this API is Proactive.
+	// Filters all resource evaluations results based on an evaluation mode.
+	//
+	// Currently, DECTECTIVE is not supported as a valid value. Ignore other documentation
+	// stating otherwise.
 	EvaluationMode *string `type:"string" enum:"EvaluationMode"`
 
 	// Returns a TimeWindow object.

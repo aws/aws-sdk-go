@@ -1064,15 +1064,17 @@
     "EnableKeyRotation": [
       {
         "input": {
-          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+          "RotationPeriodInDays": 365
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the KMS key whose key material will be rotated annually. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
+            "KeyId": "The identifier of the KMS key whose key material will be automatically rotated. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "RotationPeriodInDays": "The number of days between each rotation date. Specify a value between 9 and 2560. If no value is specified, the default value is 365 days."
           }
         },
-        "description": "The following example enables automatic annual rotation of the key material for the specified KMS key.",
-        "id": "to-enable-automatic-rotation-of-key-material-1478629109677",
+        "description": "The following example enables automatic rotation with a rotation period of 365 days for the specified KMS key.",
+        "id": "to-enable-automatic-rotation-of-key-material-1712499675853",
         "title": "To enable automatic rotation of key material"
       }
     ],
@@ -1415,18 +1417,26 @@
           "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
         },
         "output": {
-          "KeyRotationEnabled": true
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+          "KeyRotationEnabled": true,
+          "NextRotationDate": "2024-04-05T15:14:47.757000+00:00",
+          "OnDemandRotationStartDate": "2024-03-02T10:11:36.564000+00:00",
+          "RotationPeriodInDays": 365
         },
         "comments": {
           "input": {
             "KeyId": "The identifier of the KMS key whose key material rotation status you want to retrieve. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
-            "KeyRotationEnabled": "A boolean that indicates the key material rotation status. Returns true when automatic annual rotation of the key material is enabled, or false when it is not."
+            "KeyId": "Identifies the specified symmetric encryption KMS key.",
+            "KeyRotationEnabled": "A boolean that indicates the key material rotation status. Returns true when automatic rotation of the key material is enabled, or false when it is not.",
+            "NextRotationDate": "The next date that the key material will be automatically rotated.",
+            "OnDemandRotationStartDate": "Identifies the date and time that an in progress on-demand rotation was initiated.",
+            "RotationPeriodInDays": "The number of days between each automatic rotation. The default value is 365 days."
           }
         },
-        "description": "The following example retrieves the status of automatic annual rotation of the key material for the specified KMS key.",
-        "id": "to-retrieve-the-rotation-status-for-a-cmk-1479172287408",
+        "description": "The following example retrieves detailed information about the rotation status for a KMS key, including whether automatic key rotation is enabled for the specified KMS key, the rotation period, and the next scheduled rotation date.",
+        "id": "to-retrieve-the-rotation-status-for-a-kms-key-1712500357701",
         "title": "To retrieve the rotation status for a KMS key"
       }
     ],
@@ -1780,6 +1790,40 @@
         "title": "To list key policies for a KMS key"
       }
     ],
+    "ListKeyRotations": [
+      {
+        "input": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "Rotations": [
+            {
+              "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+              "RotationDate": "2024-03-02T10:11:36.564000+00:00",
+              "RotationType": "AUTOMATIC"
+            },
+            {
+              "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
+              "RotationDate": "2024-04-05T15:14:47.757000+00:00",
+              "RotationType": "ON_DEMAND"
+            }
+          ],
+          "Truncated": false
+        },
+        "comments": {
+          "input": {
+            "KeyID": "The key ID or the Amazon Resource Name (ARN) of the KMS key."
+          },
+          "output": {
+            "Rotations": "A list of key rotations.",
+            "Truncated": "A flag that indicates whether there are more items in the list. When the value is true, the list in this response is truncated. To get more items, pass the value of the NextMarker element in this response to the Marker parameter in a subsequent request."
+          }
+        },
+        "description": "The following example returns information about all completed key material rotations for the specified KMS key.",
+        "id": "to-retrieve-information-about-all-completed-key-material-rotations-1712585167775",
+        "title": "To retrieve information about all completed key material rotations"
+      }
+    ],
     "ListKeys": [
       {
         "output": {
@@ -2035,6 +2079,27 @@
         "description": "The following example revokes a grant.",
         "id": "to-revoke-a-grant-1481329549302",
         "title": "To revoke a grant"
+      }
+    ],
+    "RotateKeyOnDemand": [
+      {
+        "input": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "output": {
+          "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
+        },
+        "comments": {
+          "input": {
+            "KeyId": "The identifier of the KMS key whose key material you want to initiate on-demand rotation on. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
+          },
+          "output": {
+            "KeyId": "The KMS key that you initiated on-demand rotation on."
+          }
+        },
+        "description": "The following example immediately initiates rotation of the key material for the specified KMS key.",
+        "id": "to-perform-on-demand-rotation-of-key-material-1712499025700",
+        "title": "To perform on-demand rotation of key material"
       }
     ],
     "ScheduleKeyDeletion": [

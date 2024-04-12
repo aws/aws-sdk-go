@@ -200,6 +200,13 @@ type KMSAPI interface {
 	ListKeyPoliciesPages(*kms.ListKeyPoliciesInput, func(*kms.ListKeyPoliciesOutput, bool) bool) error
 	ListKeyPoliciesPagesWithContext(aws.Context, *kms.ListKeyPoliciesInput, func(*kms.ListKeyPoliciesOutput, bool) bool, ...request.Option) error
 
+	ListKeyRotations(*kms.ListKeyRotationsInput) (*kms.ListKeyRotationsOutput, error)
+	ListKeyRotationsWithContext(aws.Context, *kms.ListKeyRotationsInput, ...request.Option) (*kms.ListKeyRotationsOutput, error)
+	ListKeyRotationsRequest(*kms.ListKeyRotationsInput) (*request.Request, *kms.ListKeyRotationsOutput)
+
+	ListKeyRotationsPages(*kms.ListKeyRotationsInput, func(*kms.ListKeyRotationsOutput, bool) bool) error
+	ListKeyRotationsPagesWithContext(aws.Context, *kms.ListKeyRotationsInput, func(*kms.ListKeyRotationsOutput, bool) bool, ...request.Option) error
+
 	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, error)
 	ListKeysWithContext(aws.Context, *kms.ListKeysInput, ...request.Option) (*kms.ListKeysOutput, error)
 	ListKeysRequest(*kms.ListKeysInput) (*request.Request, *kms.ListKeysOutput)
@@ -240,6 +247,10 @@ type KMSAPI interface {
 	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
 	RevokeGrantWithContext(aws.Context, *kms.RevokeGrantInput, ...request.Option) (*kms.RevokeGrantOutput, error)
 	RevokeGrantRequest(*kms.RevokeGrantInput) (*request.Request, *kms.RevokeGrantOutput)
+
+	RotateKeyOnDemand(*kms.RotateKeyOnDemandInput) (*kms.RotateKeyOnDemandOutput, error)
+	RotateKeyOnDemandWithContext(aws.Context, *kms.RotateKeyOnDemandInput, ...request.Option) (*kms.RotateKeyOnDemandOutput, error)
+	RotateKeyOnDemandRequest(*kms.RotateKeyOnDemandInput) (*request.Request, *kms.RotateKeyOnDemandOutput)
 
 	ScheduleKeyDeletion(*kms.ScheduleKeyDeletionInput) (*kms.ScheduleKeyDeletionOutput, error)
 	ScheduleKeyDeletionWithContext(aws.Context, *kms.ScheduleKeyDeletionInput, ...request.Option) (*kms.ScheduleKeyDeletionOutput, error)
