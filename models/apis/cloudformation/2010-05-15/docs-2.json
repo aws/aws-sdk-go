@@ -176,6 +176,18 @@
       "refs": {
       }
     },
+    "AfterContext": {
+      "base": null,
+      "refs": {
+        "ResourceChange$AfterContext": "<p>An encoded JSON string containing the context of the resource after the change is executed.</p>"
+      }
+    },
+    "AfterValue": {
+      "base": null,
+      "refs": {
+        "ResourceTargetDefinition$AfterValue": "<p>The value of the property after the change is executed. Large values can be truncated.</p>"
+      }
+    },
     "AllowedValue": {
       "base": null,
       "refs": {
@@ -197,6 +209,12 @@
       "base": null,
       "refs": {
         "RollbackTrigger$Arn": "<p>The Amazon Resource Name (ARN) of the rollback trigger.</p> <p>If a specified trigger is missing, the entire stack operation fails and is rolled back.</p>"
+      }
+    },
+    "AttributeChangeType": {
+      "base": null,
+      "refs": {
+        "ResourceTargetDefinition$AttributeChangeType": "<p>The type of change to be made to the property if the change is executed.</p> <ul> <li> <p> <code>Add</code> The item will be added.</p> </li> <li> <p> <code>Remove</code> The item will be removed.</p> </li> <li> <p> <code>Modify</code> The item will be modified.</p> </li> </ul>"
       }
     },
     "AutoDeployment": {
@@ -241,6 +259,18 @@
     "BatchDescribeTypeConfigurationsOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "BeforeContext": {
+      "base": null,
+      "refs": {
+        "ResourceChange$BeforeContext": "<p>An encoded JSON string containing the context of the resource before the change is executed.</p>"
+      }
+    },
+    "BeforeValue": {
+      "base": null,
+      "refs": {
+        "ResourceTargetDefinition$BeforeValue": "<p>The value of the property before the change is executed. Large values can be truncated.</p>"
       }
     },
     "BoxedInteger": {
@@ -454,7 +484,7 @@
     "ChangeType": {
       "base": null,
       "refs": {
-        "Change$Type": "<p>The type of entity that CloudFormation changes. Currently, the only entity type is <code>Resource</code>.</p>"
+        "Change$Type": "<p>The type of entity that CloudFormation changes.</p> <ul> <li> <p> <code>Resource</code> This change is for a resource.</p> </li> </ul>"
       }
     },
     "Changes": {
@@ -1292,6 +1322,12 @@
         "ChangeSetSummary$IncludeNestedStacks": "<p>Specifies the current setting of <code>IncludeNestedStacks</code> for the change set.</p>",
         "CreateChangeSetInput$IncludeNestedStacks": "<p>Creates a change set for the all nested stacks specified in the template. The default behavior of this action is set to <code>False</code>. To include nested sets in a change set, specify <code>True</code>.</p>",
         "DescribeChangeSetOutput$IncludeNestedStacks": "<p>Verifies if <code>IncludeNestedStacks</code> is set to <code>True</code>.</p>"
+      }
+    },
+    "IncludePropertyValues": {
+      "base": null,
+      "refs": {
+        "DescribeChangeSetInput$IncludePropertyValues": "<p>If <code>true</code>, the returned changes include detailed changes in the property values.</p>"
       }
     },
     "InsufficientCapabilitiesException": {
@@ -2392,6 +2428,12 @@
       "base": null,
       "refs": {
         "StackEvent$ResourceProperties": "<p>BLOB of the properties used to create the resource.</p>"
+      }
+    },
+    "ResourcePropertyPath": {
+      "base": null,
+      "refs": {
+        "ResourceTargetDefinition$Path": "<p>The property path of the property.</p>"
       }
     },
     "ResourceScanId": {

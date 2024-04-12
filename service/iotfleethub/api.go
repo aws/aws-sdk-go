@@ -55,10 +55,14 @@ func (c *IoTFleetHub) CreateApplicationRequest(input *CreateApplicationInput) (r
 
 // CreateApplication API operation for AWS IoT Fleet Hub.
 //
-// Creates a Fleet Hub for AWS IoT Device Management web application.
+// Creates a Fleet Hub for IoT Device Management web application.
 //
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// When creating a Fleet Hub application, you must create an organization instance
+// of IAM Identity Center if you don't already have one. The Fleet Hub application
+// you create must also be in the same Amazon Web Services Region of the organization
+// instance of IAM Identity Center. For more information see Enabling IAM Identity
+// Center (https://docs.aws.amazon.com/singlesignon/latest/userguide/get-set-up-for-idc.html)
+// and Organization instances of IAM Identity Center (https://docs.aws.amazon.com/singlesignon/latest/userguide/organization-instances-identity-center.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -147,10 +151,7 @@ func (c *IoTFleetHub) DeleteApplicationRequest(input *DeleteApplicationInput) (r
 
 // DeleteApplication API operation for AWS IoT Fleet Hub.
 //
-// Deletes a Fleet Hub for AWS IoT Device Management web application.
-//
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// Deletes a Fleet Hub for IoT Device Management web application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -238,10 +239,7 @@ func (c *IoTFleetHub) DescribeApplicationRequest(input *DescribeApplicationInput
 
 // DescribeApplication API operation for AWS IoT Fleet Hub.
 //
-// Gets information about a Fleet Hub for AWS IoT Device Management web application.
-//
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// Gets information about a Fleet Hub for IoT Device Management web application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -335,11 +333,8 @@ func (c *IoTFleetHub) ListApplicationsRequest(input *ListApplicationsInput) (req
 
 // ListApplications API operation for AWS IoT Fleet Hub.
 //
-// Gets a list of Fleet Hub for AWS IoT Device Management web applications for
-// the current account.
-//
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// Gets a list of Fleet Hub for IoT Device Management web applications for the
+// current account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -477,9 +472,6 @@ func (c *IoTFleetHub) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Lists the tags for the specified resource.
 //
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -567,9 +559,6 @@ func (c *IoTFleetHub) TagResourceRequest(input *TagResourceInput) (req *request.
 // Adds to or modifies the tags of the specified resource. Tags are metadata
 // which can be used to manage a resource.
 //
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -656,9 +645,6 @@ func (c *IoTFleetHub) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Removes the specified tags (metadata) from the resource.
 //
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -743,11 +729,7 @@ func (c *IoTFleetHub) UpdateApplicationRequest(input *UpdateApplicationInput) (r
 
 // UpdateApplication API operation for AWS IoT Fleet Hub.
 //
-// Updates information about a Fleet Hub for a AWS IoT Device Management web
-// application.
-//
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// Updates information about a Fleet Hub for IoT Device Management web application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -795,10 +777,8 @@ func (c *IoTFleetHub) UpdateApplicationWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
-// A summary of information about a AWS IoT Device Management web application.
-//
-// Fleet Hub for AWS IoT Device Management is in public preview and is subject
-// to change.
+// A summary of information about a Fleet Hub for IoT Device Management web
+// application.
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -971,7 +951,7 @@ type CreateApplicationInput struct {
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ARN of the role that the web application assumes when it interacts with
-	// AWS IoT Core.
+	// Amazon Web Services IoT Core.
 	//
 	// The name of the role must be in the form AWSIotFleetHub_random_string .
 	//
@@ -1280,11 +1260,13 @@ type DescribeApplicationOutput struct {
 	// ApplicationUrl is a required field
 	ApplicationUrl *string `locationName:"applicationUrl" min:"1" type:"string" required:"true"`
 
-	// A message indicating why the DescribeApplication API failed.
+	// A message that explains any failures included in the applicationState response
+	// field. This message explains failures in the CreateApplication and DeleteApplication
+	// actions.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The ARN of the role that the web application assumes when it interacts with
-	// AWS IoT Core.
+	// Amazon Web Services IoT Core.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`

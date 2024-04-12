@@ -3935,6 +3935,7 @@
         "Snapshot$MaintenanceTrackName": "<p>The name of the maintenance track for the snapshot.</p>",
         "Snapshot$MasterPasswordSecretArn": "<p>The Amazon Resource Name (ARN) for the cluster's admin user credentials secret.</p>",
         "Snapshot$MasterPasswordSecretKmsKeyId": "<p>The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's admin credentials secret.</p>",
+        "Snapshot$SnapshotArn": "<p>The Amazon Resource Name (ARN) of the snapshot.</p>",
         "SnapshotCopyGrant$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant.</p>",
         "SnapshotCopyGrant$KmsKeyId": "<p>The unique identifier of the encrypted symmetric key in Amazon Web Services KMS to which Amazon Redshift is granted permission.</p>",
         "SnapshotCopyGrantMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <code>DescribeSnapshotCopyGrant</code> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p> <p>Constraints: You can specify either the <b>SnapshotCopyGrantName</b> parameter or the <b>Marker</b> parameter, but not both. </p>",

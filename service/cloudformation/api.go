@@ -8959,8 +8959,9 @@ type Change struct {
 	// will perform.
 	ResourceChange *ResourceChange `type:"structure"`
 
-	// The type of entity that CloudFormation changes. Currently, the only entity
-	// type is Resource.
+	// The type of entity that CloudFormation changes.
+	//
+	//    * Resource This change is for a resource.
 	Type *string `type:"string" enum:"ChangeType"`
 }
 
@@ -12190,6 +12191,9 @@ type DescribeChangeSetInput struct {
 	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
+	// If true, the returned changes include detailed changes in the property values.
+	IncludePropertyValues *bool `type:"boolean"`
+
 	// A string (provided by the DescribeChangeSet response output) that identifies
 	// the next page of information that you want to retrieve.
 	NextToken *string `min:"1" type:"string"`
@@ -12242,6 +12246,12 @@ func (s *DescribeChangeSetInput) Validate() error {
 // SetChangeSetName sets the ChangeSetName field's value.
 func (s *DescribeChangeSetInput) SetChangeSetName(v string) *DescribeChangeSetInput {
 	s.ChangeSetName = &v
+	return s
+}
+
+// SetIncludePropertyValues sets the IncludePropertyValues field's value.
+func (s *DescribeChangeSetInput) SetIncludePropertyValues(v bool) *DescribeChangeSetInput {
+	s.IncludePropertyValues = &v
 	return s
 }
 
@@ -19932,6 +19942,14 @@ type ResourceChange struct {
 	// be determined).
 	Action *string `type:"string" enum:"ChangeAction"`
 
+	// An encoded JSON string containing the context of the resource after the change
+	// is executed.
+	AfterContext *string `type:"string"`
+
+	// An encoded JSON string containing the context of the resource before the
+	// change is executed.
+	BeforeContext *string `type:"string"`
+
 	// The change set ID of the nested change set.
 	ChangeSetId *string `min:"1" type:"string"`
 
@@ -20010,6 +20028,18 @@ func (s ResourceChange) GoString() string {
 // SetAction sets the Action field's value.
 func (s *ResourceChange) SetAction(v string) *ResourceChange {
 	s.Action = &v
+	return s
+}
+
+// SetAfterContext sets the AfterContext field's value.
+func (s *ResourceChange) SetAfterContext(v string) *ResourceChange {
+	s.AfterContext = &v
+	return s
+}
+
+// SetBeforeContext sets the BeforeContext field's value.
+func (s *ResourceChange) SetBeforeContext(v string) *ResourceChange {
+	s.BeforeContext = &v
 	return s
 }
 
@@ -20512,13 +20542,33 @@ func (s *ResourceScanSummary) SetStatusReason(v string) *ResourceScanSummary {
 type ResourceTargetDefinition struct {
 	_ struct{} `type:"structure"`
 
+	// The value of the property after the change is executed. Large values can
+	// be truncated.
+	AfterValue *string `type:"string"`
+
 	// Indicates which resource attribute is triggering this update, such as a change
 	// in the resource attribute's Metadata, Properties, or Tags.
 	Attribute *string `type:"string" enum:"ResourceAttribute"`
 
+	// The type of change to be made to the property if the change is executed.
+	//
+	//    * Add The item will be added.
+	//
+	//    * Remove The item will be removed.
+	//
+	//    * Modify The item will be modified.
+	AttributeChangeType *string `type:"string" enum:"AttributeChangeType"`
+
+	// The value of the property before the change is executed. Large values can
+	// be truncated.
+	BeforeValue *string `type:"string"`
+
 	// If the Attribute value is Properties, the name of the property. For all other
 	// attributes, the value is null.
 	Name *string `type:"string"`
+
+	// The property path of the property.
+	Path *string `type:"string"`
 
 	// If the Attribute value is Properties, indicates whether a change to this
 	// property causes the resource to be recreated. The value can be Never, Always,
@@ -20546,15 +20596,39 @@ func (s ResourceTargetDefinition) GoString() string {
 	return s.String()
 }
 
+// SetAfterValue sets the AfterValue field's value.
+func (s *ResourceTargetDefinition) SetAfterValue(v string) *ResourceTargetDefinition {
+	s.AfterValue = &v
+	return s
+}
+
 // SetAttribute sets the Attribute field's value.
 func (s *ResourceTargetDefinition) SetAttribute(v string) *ResourceTargetDefinition {
 	s.Attribute = &v
 	return s
 }
 
+// SetAttributeChangeType sets the AttributeChangeType field's value.
+func (s *ResourceTargetDefinition) SetAttributeChangeType(v string) *ResourceTargetDefinition {
+	s.AttributeChangeType = &v
+	return s
+}
+
+// SetBeforeValue sets the BeforeValue field's value.
+func (s *ResourceTargetDefinition) SetBeforeValue(v string) *ResourceTargetDefinition {
+	s.BeforeValue = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *ResourceTargetDefinition) SetName(v string) *ResourceTargetDefinition {
 	s.Name = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *ResourceTargetDefinition) SetPath(v string) *ResourceTargetDefinition {
+	s.Path = &v
 	return s
 }
 
@@ -27707,6 +27781,26 @@ func AccountGateStatus_Values() []string {
 		AccountGateStatusSucceeded,
 		AccountGateStatusFailed,
 		AccountGateStatusSkipped,
+	}
+}
+
+const (
+	// AttributeChangeTypeAdd is a AttributeChangeType enum value
+	AttributeChangeTypeAdd = "Add"
+
+	// AttributeChangeTypeRemove is a AttributeChangeType enum value
+	AttributeChangeTypeRemove = "Remove"
+
+	// AttributeChangeTypeModify is a AttributeChangeType enum value
+	AttributeChangeTypeModify = "Modify"
+)
+
+// AttributeChangeType_Values returns all elements of the AttributeChangeType enum
+func AttributeChangeType_Values() []string {
+	return []string{
+		AttributeChangeTypeAdd,
+		AttributeChangeTypeRemove,
+		AttributeChangeTypeModify,
 	}
 }
 

@@ -13136,7 +13136,8 @@ func (c *Glue) GetUnfilteredTableMetadataRequest(input *GetUnfilteredTableMetada
 
 // GetUnfilteredTableMetadata API operation for AWS Glue.
 //
-// Retrieves table metadata from the Data Catalog that contains unfiltered metadata.
+// Allows a third-party analytical engine to retrieve unfiltered table metadata
+// from the Data Catalog.
 //
 // For IAM authorization, the public IAM action associated with this API is
 // glue:GetTable.
@@ -51342,6 +51343,9 @@ type GetUnfilteredTableMetadataInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The resource ARN of the view.
+	ParentResourceArn *string `min:"20" type:"string"`
+
 	// The Lake Formation data permissions of the caller on the table. Used to authorize
 	// the call when no view context is found.
 	Permissions []*string `type:"list" enum:"Permission"`
@@ -51355,11 +51359,43 @@ type GetUnfilteredTableMetadataInput struct {
 	// Region.
 	Region *string `type:"string"`
 
+	// The resource ARN of the root view in a chain of nested views.
+	RootResourceArn *string `min:"20" type:"string"`
+
 	// A structure specifying the dialect and dialect version used by the query
 	// engine.
 	SupportedDialect *SupportedDialect `type:"structure"`
 
-	// (Required) A list of supported permission types.
+	// Indicates the level of filtering a third-party analytical engine is capable
+	// of enforcing when calling the GetUnfilteredTableMetadata API operation. Accepted
+	// values are:
+	//
+	//    * COLUMN_PERMISSION - Column permissions ensure that users can access
+	//    only specific columns in the table. If there are particular columns contain
+	//    sensitive data, data lake administrators can define column filters that
+	//    exclude access to specific columns.
+	//
+	//    * CELL_FILTER_PERMISSION - Cell-level filtering combines column filtering
+	//    (include or exclude columns) and row filter expressions to restrict access
+	//    to individual elements in the table.
+	//
+	//    * NESTED_PERMISSION - Nested permissions combines cell-level filtering
+	//    and nested column filtering to restrict access to columns and/or nested
+	//    columns in specific rows based on row filter expressions.
+	//
+	//    * NESTED_CELL_PERMISSION - Nested cell permissions combines nested permission
+	//    with nested cell-level filtering. This allows different subsets of nested
+	//    columns to be restricted based on an array of row filter expressions.
+	//
+	// Note: Each of these permission types follows a hierarchical order where each
+	// subsequent permission type includes all permission of the previous type.
+	//
+	// Important: If you provide a supported permission type that doesn't match
+	// the user's level of permissions on the table, then Lake Formation raises
+	// an exception. For example, if the third-party engine calling the GetUnfilteredTableMetadata
+	// operation can enforce only column-level filtering, and the user has nested
+	// cell filtering applied on the table, Lake Formation throws an exception,
+	// and will not return unfiltered table metadata and data access credentials.
 	//
 	// SupportedPermissionTypes is a required field
 	SupportedPermissionTypes []*string `min:"1" type:"list" required:"true" enum:"PermissionType"`
@@ -51403,6 +51439,12 @@ func (s *GetUnfilteredTableMetadataInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ParentResourceArn != nil && len(*s.ParentResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ParentResourceArn", 20))
+	}
+	if s.RootResourceArn != nil && len(*s.RootResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RootResourceArn", 20))
 	}
 	if s.SupportedPermissionTypes == nil {
 		invalidParams.Add(request.NewErrParamRequired("SupportedPermissionTypes"))
@@ -51451,6 +51493,12 @@ func (s *GetUnfilteredTableMetadataInput) SetName(v string) *GetUnfilteredTableM
 	return s
 }
 
+// SetParentResourceArn sets the ParentResourceArn field's value.
+func (s *GetUnfilteredTableMetadataInput) SetParentResourceArn(v string) *GetUnfilteredTableMetadataInput {
+	s.ParentResourceArn = &v
+	return s
+}
+
 // SetPermissions sets the Permissions field's value.
 func (s *GetUnfilteredTableMetadataInput) SetPermissions(v []*string) *GetUnfilteredTableMetadataInput {
 	s.Permissions = v
@@ -51466,6 +51514,12 @@ func (s *GetUnfilteredTableMetadataInput) SetQuerySessionContext(v *QuerySession
 // SetRegion sets the Region field's value.
 func (s *GetUnfilteredTableMetadataInput) SetRegion(v string) *GetUnfilteredTableMetadataInput {
 	s.Region = &v
+	return s
+}
+
+// SetRootResourceArn sets the RootResourceArn field's value.
+func (s *GetUnfilteredTableMetadataInput) SetRootResourceArn(v string) *GetUnfilteredTableMetadataInput {
+	s.RootResourceArn = &v
 	return s
 }
 
@@ -55808,13 +55862,16 @@ type KinesisStreamingSourceOptions struct {
 	// version 2.0 and above.
 	IdleTimeBetweenReadsInMs *int64 `type:"long"`
 
-	// The maximum number of records to fetch per shard in the Kinesis data stream.
-	// The default value is 100000.
+	// The maximum number of records to fetch per shard in the Kinesis data stream
+	// per microbatch. Note: The client can exceed this limit if the streaming job
+	// has already read extra records from Kinesis (in the same get-records call).
+	// If MaxFetchRecordsPerShard needs to be strict then it needs to be a multiple
+	// of MaxRecordPerRead. The default value is 100000.
 	MaxFetchRecordsPerShard *int64 `type:"long"`
 
-	// The maximum time spent in the job executor to fetch a record from the Kinesis
-	// data stream per shard, specified in milliseconds (ms). The default value
-	// is 1000.
+	// The maximum time spent for the job executor to read records for the current
+	// batch from the Kinesis data stream, specified in milliseconds (ms). Multiple
+	// GetRecords API calls may be made within this time. The default value is 1000.
 	MaxFetchTimeInMs *int64 `type:"long"`
 
 	// The maximum number of records to fetch from the Kinesis data stream in each

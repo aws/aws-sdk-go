@@ -1061,7 +1061,8 @@
       "type":"string",
       "enum":[
         "SIGNING",
-        "ENCRYPTION"
+        "ENCRYPTION",
+        "TLS"
       ]
     },
     "CompressionEnum":{

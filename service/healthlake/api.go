@@ -1785,6 +1785,9 @@ type DatastoreProperties struct {
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
+	// The error cause for the current data store operation.
+	ErrorCause *ErrorCause `type:"structure"`
+
 	// The identity provider that you selected when you created the data store.
 	IdentityProviderConfiguration *IdentityProviderConfiguration `type:"structure"`
 
@@ -1854,6 +1857,12 @@ func (s *DatastoreProperties) SetDatastoreStatus(v string) *DatastoreProperties 
 // SetDatastoreTypeVersion sets the DatastoreTypeVersion field's value.
 func (s *DatastoreProperties) SetDatastoreTypeVersion(v string) *DatastoreProperties {
 	s.DatastoreTypeVersion = &v
+	return s
+}
+
+// SetErrorCause sets the ErrorCause field's value.
+func (s *DatastoreProperties) SetErrorCause(v *ErrorCause) *DatastoreProperties {
+	s.ErrorCause = v
 	return s
 }
 
@@ -2272,6 +2281,48 @@ func (s DescribeFHIRImportJobOutput) GoString() string {
 // SetImportJobProperties sets the ImportJobProperties field's value.
 func (s *DescribeFHIRImportJobOutput) SetImportJobProperties(v *ImportJobProperties) *DescribeFHIRImportJobOutput {
 	s.ImportJobProperties = v
+	return s
+}
+
+// The error info of the create/delete data store operation.
+type ErrorCause struct {
+	_ struct{} `type:"structure"`
+
+	// The error category of the create/delete data store operation. Possible statuses
+	// are RETRYABLE_ERROR or NON_RETRYABLE_ERROR.
+	ErrorCategory *string `type:"string" enum:"ErrorCategory"`
+
+	// The text of the error message.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorCause) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ErrorCause) GoString() string {
+	return s.String()
+}
+
+// SetErrorCategory sets the ErrorCategory field's value.
+func (s *ErrorCause) SetErrorCategory(v string) *ErrorCause {
+	s.ErrorCategory = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ErrorCause) SetErrorMessage(v string) *ErrorCause {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -4432,6 +4483,9 @@ const (
 
 	// DatastoreStatusDeleted is a DatastoreStatus enum value
 	DatastoreStatusDeleted = "DELETED"
+
+	// DatastoreStatusCreateFailed is a DatastoreStatus enum value
+	DatastoreStatusCreateFailed = "CREATE_FAILED"
 )
 
 // DatastoreStatus_Values returns all elements of the DatastoreStatus enum
@@ -4441,6 +4495,23 @@ func DatastoreStatus_Values() []string {
 		DatastoreStatusActive,
 		DatastoreStatusDeleting,
 		DatastoreStatusDeleted,
+		DatastoreStatusCreateFailed,
+	}
+}
+
+const (
+	// ErrorCategoryRetryableError is a ErrorCategory enum value
+	ErrorCategoryRetryableError = "RETRYABLE_ERROR"
+
+	// ErrorCategoryNonRetryableError is a ErrorCategory enum value
+	ErrorCategoryNonRetryableError = "NON_RETRYABLE_ERROR"
+)
+
+// ErrorCategory_Values returns all elements of the ErrorCategory enum
+func ErrorCategory_Values() []string {
+	return []string{
+		ErrorCategoryRetryableError,
+		ErrorCategoryNonRetryableError,
 	}
 }
 

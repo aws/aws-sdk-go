@@ -1410,6 +1410,7 @@
         "ConfigurationAliases":{"shape":"ConfigurationAliasesResponse"},
         "DashConfiguration":{"shape":"DashConfiguration"},
         "HlsConfiguration":{"shape":"HlsConfiguration"},
+        "InsertionMode":{"shape":"InsertionMode"},
         "LivePreRollConfiguration":{"shape":"LivePreRollConfiguration"},
         "LogConfiguration":{"shape":"LogConfiguration"},
         "ManifestProcessingRules":{"shape":"ManifestProcessingRules"},
@@ -1493,6 +1494,13 @@
     "HttpPackageConfigurations":{
       "type":"list",
       "member":{"shape":"HttpPackageConfiguration"}
+    },
+    "InsertionMode":{
+      "type":"string",
+      "enum":[
+        "STITCHED_ONLY",
+        "PLAYER_SELECT"
+      ]
     },
     "Integer":{
       "type":"integer",
@@ -1801,6 +1809,7 @@
         "ConfigurationAliases":{"shape":"ConfigurationAliasesResponse"},
         "DashConfiguration":{"shape":"DashConfiguration"},
         "HlsConfiguration":{"shape":"HlsConfiguration"},
+        "InsertionMode":{"shape":"InsertionMode"},
         "LivePreRollConfiguration":{"shape":"LivePreRollConfiguration"},
         "LogConfiguration":{"shape":"LogConfiguration"},
         "ManifestProcessingRules":{"shape":"ManifestProcessingRules"},
@@ -1891,6 +1900,7 @@
         "CdnConfiguration":{"shape":"CdnConfiguration"},
         "ConfigurationAliases":{"shape":"ConfigurationAliasesRequest"},
         "DashConfiguration":{"shape":"DashConfigurationForPut"},
+        "InsertionMode":{"shape":"InsertionMode"},
         "LivePreRollConfiguration":{"shape":"LivePreRollConfiguration"},
         "ManifestProcessingRules":{"shape":"ManifestProcessingRules"},
         "Name":{"shape":"__string"},
@@ -1914,6 +1924,7 @@
         "ConfigurationAliases":{"shape":"ConfigurationAliasesResponse"},
         "DashConfiguration":{"shape":"DashConfiguration"},
         "HlsConfiguration":{"shape":"HlsConfiguration"},
+        "InsertionMode":{"shape":"InsertionMode"},
         "LivePreRollConfiguration":{"shape":"LivePreRollConfiguration"},
         "LogConfiguration":{"shape":"LogConfiguration"},
         "ManifestProcessingRules":{"shape":"ManifestProcessingRules"},

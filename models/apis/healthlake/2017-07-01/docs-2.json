@@ -195,6 +195,24 @@
         "S3Configuration$KmsKeyId": "<p> The KMS key ID used to access the S3 bucket. </p>"
       }
     },
+    "ErrorCategory": {
+      "base": null,
+      "refs": {
+        "ErrorCause$ErrorCategory": "<p>The error category of the create/delete data store operation. Possible statuses are RETRYABLE_ERROR or NON_RETRYABLE_ERROR.</p>"
+      }
+    },
+    "ErrorCause": {
+      "base": "<p>The error info of the create/delete data store operation.</p>",
+      "refs": {
+        "DatastoreProperties$ErrorCause": "<p>The error cause for the current data store operation.</p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "ErrorCause$ErrorMessage": "<p>The text of the error message.</p>"
+      }
+    },
     "ExportJobProperties": {
       "base": "<p>The properties of a FHIR export job, including the ID, ARN, name, and the status of the job.</p>",
       "refs": {

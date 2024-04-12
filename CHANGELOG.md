@@ -1,3 +1,23 @@
+Release v1.51.21 (2024-04-12)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Adding support for the new parameter "IncludePropertyValues" in the CloudFormation DescribeChangeSet API. When this parameter is included, the DescribeChangeSet response will include more detailed information such as before and after values for the resource properties that will change.
+* `service/config`: Updates service documentation
+* `service/glue`: Updates service API and documentation
+  * Modifying request for GetUnfilteredTableMetadata for view-related fields.
+* `service/healthlake`: Updates service API and documentation
+* `service/iotfleethub`: Updates service documentation
+* `service/kms`: Updates service API, documentation, paginators, and examples
+  * This feature supports the ability to specify a custom rotation period for automatic key rotations, the ability to perform on-demand key rotations, and visibility into your key material rotations.
+* `service/mediatailor`: Updates service API and documentation
+* `service/outposts`: Updates service API
+* `service/redshift`: Updates service API and documentation
+  * Adds support for Amazon Redshift DescribeClusterSnapshots API to include Snapshot ARN response field.
+* `service/transfer`: Updates service API and documentation
+  * This change releases support for importing self signed certificates to the Transfer Family for sending outbound file transfers over TLS/HTTPS.
+
 Release v1.51.20 (2024-04-11)
 ===
 

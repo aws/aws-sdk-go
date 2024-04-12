@@ -248,9 +248,9 @@
     "CertificateUsageType": {
       "base": null,
       "refs": {
-        "DescribedCertificate$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>",
-        "ImportCertificateRequest$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>",
-        "ListedCertificate$Usage": "<p>Specifies whether this certificate is used for signing or encryption.</p>"
+        "DescribedCertificate$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>",
+        "ImportCertificateRequest$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>",
+        "ListedCertificate$Usage": "<p>Specifies how this certificate is used. It can be used in the following ways:</p> <ul> <li> <p> <code>SIGNING</code>: For signing AS2 messages</p> </li> <li> <p> <code>ENCRYPTION</code>: For encrypting AS2 messages</p> </li> <li> <p> <code>TLS</code>: For securing AS2 communications sent over HTTPS</p> </li> </ul>"
       }
     },
     "CompressionEnum": {
