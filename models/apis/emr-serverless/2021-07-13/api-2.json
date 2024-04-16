@@ -525,6 +525,10 @@
       "min":1,
       "pattern":"[1-9][0-9]*(\\s)?(GB|gb|gB|Gb)"
     },
+    "DiskType":{
+      "type":"string",
+      "pattern":"(SHUFFLE_OPTIMIZED|[Ss]huffle_[Oo]ptimized|STANDARD|[Ss]tandard)"
+    },
     "Double":{
       "type":"double",
       "box":true
@@ -1352,7 +1356,8 @@
       "members":{
         "cpu":{"shape":"CpuSize"},
         "memory":{"shape":"MemorySize"},
-        "disk":{"shape":"DiskSize"}
+        "disk":{"shape":"DiskSize"},
+        "diskType":{"shape":"DiskType"}
       }
     },
     "WorkerTypeSpecification":{

@@ -3138,6 +3138,7 @@
       "members":{
       }
     },
+    "DlAllowed":{"type":"boolean"},
     "DlBucketSize":{
       "type":"integer",
       "max":2147483647,
@@ -4156,6 +4157,10 @@
       "type":"string",
       "pattern":"^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$"
     },
+    "Id":{
+      "type":"string",
+      "max":256
+    },
     "Identifier":{
       "type":"string",
       "max":256
@@ -4754,7 +4759,8 @@
         "DataRate":{"shape":"Integer"},
         "Frequency":{"shape":"Integer"},
         "Timestamp":{"shape":"ISODateTimeString"},
-        "Gateways":{"shape":"LoRaWANGatewayMetadataList"}
+        "Gateways":{"shape":"LoRaWANGatewayMetadataList"},
+        "PublicGateways":{"shape":"LoRaWANPublicGatewayMetadataList"}
       }
     },
     "LoRaWANDeviceProfile":{
@@ -4905,6 +4911,21 @@
         "SessionTimeout":{"shape":"SessionTimeout"},
         "PingSlotPeriod":{"shape":"PingSlotPeriod"}
       }
+    },
+    "LoRaWANPublicGatewayMetadata":{
+      "type":"structure",
+      "members":{
+        "ProviderNetId":{"shape":"ProviderNetId"},
+        "Id":{"shape":"Id"},
+        "Rssi":{"shape":"Double"},
+        "Snr":{"shape":"Double"},
+        "RfRegion":{"shape":"RfRegion"},
+        "DlAllowed":{"shape":"DlAllowed"}
+      }
+    },
+    "LoRaWANPublicGatewayMetadataList":{
+      "type":"list",
+      "member":{"shape":"LoRaWANPublicGatewayMetadata"}
     },
     "LoRaWANSendDataToDevice":{
       "type":"structure",
@@ -5496,6 +5517,10 @@
     "PrivateKeysList":{
       "type":"list",
       "member":{"shape":"CertificateList"}
+    },
+    "ProviderNetId":{
+      "type":"string",
+      "max":256
     },
     "ProximityEventConfiguration":{
       "type":"structure",

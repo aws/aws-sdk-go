@@ -13,6 +13,22 @@
     "uid":"outposts-2019-12-03"
   },
   "operations":{
+    "CancelCapacityTask":{
+      "name":"CancelCapacityTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/outposts/{OutpostId}/capacity/{CapacityTaskId}"
+      },
+      "input":{"shape":"CancelCapacityTaskInput"},
+      "output":{"shape":"CancelCapacityTaskOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CancelOrder":{
       "name":"CancelOrder",
       "http":{
@@ -111,6 +127,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetCapacityTask":{
+      "name":"GetCapacityTask",
+      "http":{
+        "method":"GET",
+        "requestUri":"/outposts/{OutpostId}/capacity/{CapacityTaskId}"
+      },
+      "input":{"shape":"GetCapacityTaskInput"},
+      "output":{"shape":"GetCapacityTaskOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetCatalogItem":{
       "name":"GetCatalogItem",
       "http":{
@@ -184,6 +215,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetOutpostSupportedInstanceTypes":{
+      "name":"GetOutpostSupportedInstanceTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/outposts/{OutpostId}/supportedInstanceTypes"
+      },
+      "input":{"shape":"GetOutpostSupportedInstanceTypesInput"},
+      "output":{"shape":"GetOutpostSupportedInstanceTypesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetSite":{
       "name":"GetSite",
       "http":{
@@ -222,6 +268,21 @@
       },
       "input":{"shape":"ListAssetsInput"},
       "output":{"shape":"ListAssetsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListCapacityTasks":{
+      "name":"ListCapacityTasks",
+      "http":{
+        "method":"GET",
+        "requestUri":"/capacity/tasks"
+      },
+      "input":{"shape":"ListCapacityTasksInput"},
+      "output":{"shape":"ListCapacityTasksOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -298,6 +359,22 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "StartCapacityTask":{
+      "name":"StartCapacityTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/outposts/{OutpostId}/capacity"
+      },
+      "input":{"shape":"StartCapacityTaskInput"},
+      "output":{"shape":"StartCapacityTaskOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
       ]
     },
     "StartConnection":{
@@ -548,6 +625,30 @@
       "type":"list",
       "member":{"shape":"CIDR"}
     },
+    "CancelCapacityTaskInput":{
+      "type":"structure",
+      "required":[
+        "CapacityTaskId",
+        "OutpostIdentifier"
+      ],
+      "members":{
+        "CapacityTaskId":{
+          "shape":"CapacityTaskId",
+          "location":"uri",
+          "locationName":"CapacityTaskId"
+        },
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostId"
+        }
+      }
+    },
+    "CancelCapacityTaskOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CancelOrderInput":{
       "type":"structure",
       "required":["OrderId"],
@@ -562,6 +663,58 @@
     "CancelOrderOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CapacityTaskFailure":{
+      "type":"structure",
+      "required":["Reason"],
+      "members":{
+        "Reason":{"shape":"CapacityTaskStatusReason"},
+        "Type":{"shape":"CapacityTaskFailureType"}
+      }
+    },
+    "CapacityTaskFailureType":{
+      "type":"string",
+      "enum":["UNSUPPORTED_CAPACITY_CONFIGURATION"]
+    },
+    "CapacityTaskId":{
+      "type":"string",
+      "max":21,
+      "min":21,
+      "pattern":"^cap-[a-f0-9]{17}$"
+    },
+    "CapacityTaskList":{
+      "type":"list",
+      "member":{"shape":"CapacityTaskSummary"}
+    },
+    "CapacityTaskStatus":{
+      "type":"string",
+      "enum":[
+        "REQUESTED",
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETED",
+        "CANCELLED"
+      ]
+    },
+    "CapacityTaskStatusList":{
+      "type":"list",
+      "member":{"shape":"CapacityTaskStatus"}
+    },
+    "CapacityTaskStatusReason":{
+      "type":"string",
+      "max":128
+    },
+    "CapacityTaskSummary":{
+      "type":"structure",
+      "members":{
+        "CapacityTaskId":{"shape":"CapacityTaskId"},
+        "OutpostId":{"shape":"OutpostId"},
+        "OrderId":{"shape":"OrderId"},
+        "CapacityTaskStatus":{"shape":"CapacityTaskStatus"},
+        "CreationDate":{"shape":"ISO8601Timestamp"},
+        "CompletionDate":{"shape":"ISO8601Timestamp"},
+        "LastModifiedDate":{"shape":"ISO8601Timestamp"}
       }
     },
     "CatalogItem":{
@@ -786,6 +939,7 @@
       "min":1,
       "pattern":"^\\S[\\S ]*"
     },
+    "DryRun":{"type":"boolean"},
     "EC2Capacity":{
       "type":"structure",
       "members":{
@@ -820,6 +974,40 @@
         "SINGLE_MODE",
         "MULTI_MODE"
       ]
+    },
+    "GetCapacityTaskInput":{
+      "type":"structure",
+      "required":[
+        "CapacityTaskId",
+        "OutpostIdentifier"
+      ],
+      "members":{
+        "CapacityTaskId":{
+          "shape":"CapacityTaskId",
+          "location":"uri",
+          "locationName":"CapacityTaskId"
+        },
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostId"
+        }
+      }
+    },
+    "GetCapacityTaskOutput":{
+      "type":"structure",
+      "members":{
+        "CapacityTaskId":{"shape":"CapacityTaskId"},
+        "OutpostId":{"shape":"OutpostId"},
+        "OrderId":{"shape":"OrderId"},
+        "RequestedInstancePools":{"shape":"RequestedInstancePools"},
+        "DryRun":{"shape":"DryRun"},
+        "CapacityTaskStatus":{"shape":"CapacityTaskStatus"},
+        "Failed":{"shape":"CapacityTaskFailure"},
+        "CreationDate":{"shape":"ISO8601Timestamp"},
+        "CompletionDate":{"shape":"ISO8601Timestamp"},
+        "LastModifiedDate":{"shape":"ISO8601Timestamp"}
+      }
     },
     "GetCatalogItemInput":{
       "type":"structure",
@@ -920,6 +1108,42 @@
         "Outpost":{"shape":"Outpost"}
       }
     },
+    "GetOutpostSupportedInstanceTypesInput":{
+      "type":"structure",
+      "required":[
+        "OutpostIdentifier",
+        "OrderId"
+      ],
+      "members":{
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostId"
+        },
+        "OrderId":{
+          "shape":"OrderId",
+          "location":"querystring",
+          "locationName":"OrderId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults1000",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "GetOutpostSupportedInstanceTypesOutput":{
+      "type":"structure",
+      "members":{
+        "InstanceTypes":{"shape":"InstanceTypeListDefinition"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "GetSiteAddressInput":{
       "type":"structure",
       "required":[
@@ -986,6 +1210,22 @@
       "pattern":"^(?:.{1,200}/)?(?:[a-z0-9-_A-Z])+$"
     },
     "InstanceType":{"type":"string"},
+    "InstanceTypeCapacity":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "Count"
+      ],
+      "members":{
+        "InstanceType":{"shape":"InstanceTypeName"},
+        "Count":{"shape":"InstanceTypeCount"}
+      }
+    },
+    "InstanceTypeCount":{
+      "type":"integer",
+      "max":9999,
+      "min":0
+    },
     "InstanceTypeItem":{
       "type":"structure",
       "members":{
@@ -995,6 +1235,12 @@
     "InstanceTypeListDefinition":{
       "type":"list",
       "member":{"shape":"InstanceTypeItem"}
+    },
+    "InstanceTypeName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-z0-9\\-]+\\.[a-z0-9\\-]+$"
     },
     "InternalServerException":{
       "type":"structure",
@@ -1119,6 +1365,38 @@
       "type":"structure",
       "members":{
         "Assets":{"shape":"AssetListDefinition"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListCapacityTasksInput":{
+      "type":"structure",
+      "members":{
+        "OutpostIdentifierFilter":{
+          "shape":"OutpostIdentifier",
+          "location":"querystring",
+          "locationName":"OutpostIdentifierFilter"
+        },
+        "MaxResults":{
+          "shape":"MaxResults1000",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "CapacityTaskStatusFilter":{
+          "shape":"CapacityTaskStatusList",
+          "location":"querystring",
+          "locationName":"CapacityTaskStatusFilter"
+        }
+      }
+    },
+    "ListCapacityTasksOutput":{
+      "type":"structure",
+      "members":{
+        "CapacityTasks":{"shape":"CapacityTaskList"},
         "NextToken":{"shape":"Token"}
       }
     },
@@ -1538,6 +1816,10 @@
         "MaximumSupportedWeightLbs":{"shape":"MaximumSupportedWeightLbs"}
       }
     },
+    "RequestedInstancePools":{
+      "type":"list",
+      "member":{"shape":"InstanceTypeCapacity"}
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -1627,6 +1909,39 @@
       "max":10,
       "min":1,
       "pattern":"OR-[A-Z0-9]{7}"
+    },
+    "StartCapacityTaskInput":{
+      "type":"structure",
+      "required":[
+        "OutpostIdentifier",
+        "OrderId",
+        "InstancePools"
+      ],
+      "members":{
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostId"
+        },
+        "OrderId":{"shape":"OrderId"},
+        "InstancePools":{"shape":"RequestedInstancePools"},
+        "DryRun":{"shape":"DryRun"}
+      }
+    },
+    "StartCapacityTaskOutput":{
+      "type":"structure",
+      "members":{
+        "CapacityTaskId":{"shape":"CapacityTaskId"},
+        "OutpostId":{"shape":"OutpostId"},
+        "OrderId":{"shape":"OrderId"},
+        "RequestedInstancePools":{"shape":"RequestedInstancePools"},
+        "DryRun":{"shape":"DryRun"},
+        "CapacityTaskStatus":{"shape":"CapacityTaskStatus"},
+        "Failed":{"shape":"CapacityTaskFailure"},
+        "CreationDate":{"shape":"ISO8601Timestamp"},
+        "CompletionDate":{"shape":"ISO8601Timestamp"},
+        "LastModifiedDate":{"shape":"ISO8601Timestamp"}
+      }
     },
     "StartConnectionRequest":{
       "type":"structure",

@@ -232,6 +232,12 @@
         "WorkerResourceConfig$disk": "<p>The disk requirements for every worker instance of the worker type.</p>"
       }
     },
+    "DiskType": {
+      "base": null,
+      "refs": {
+        "WorkerResourceConfig$diskType": "<p>The disk type for every worker instance of the work type. Shuffle optimized disks have higher performance characteristics and are better for shuffle heavy workloads. Default is <code>STANDARD</code>.</p>"
+      }
+    },
     "Double": {
       "base": null,
       "refs": {

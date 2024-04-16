@@ -13,6 +13,106 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAddPolicyStatement = "AddPolicyStatement"
+
+// AddPolicyStatementRequest generates a "aws/request.Request" representing the
+// client's request for the AddPolicyStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddPolicyStatement for more information on using the AddPolicyStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AddPolicyStatementRequest method.
+//	req, resp := client.AddPolicyStatementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/AddPolicyStatement
+func (c *EntityResolution) AddPolicyStatementRequest(input *AddPolicyStatementInput) (req *request.Request, output *AddPolicyStatementOutput) {
+	op := &request.Operation{
+		Name:       opAddPolicyStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/policies/{arn}/{statementId}",
+	}
+
+	if input == nil {
+		input = &AddPolicyStatementInput{}
+	}
+
+	output = &AddPolicyStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddPolicyStatement API operation for AWS EntityResolution.
+//
+// Adds a policy statement object. To retrieve a list of existing policy statements,
+// use the GetPolicy API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation AddPolicyStatement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/AddPolicyStatement
+func (c *EntityResolution) AddPolicyStatement(input *AddPolicyStatementInput) (*AddPolicyStatementOutput, error) {
+	req, out := c.AddPolicyStatementRequest(input)
+	return out, req.Send()
+}
+
+// AddPolicyStatementWithContext is the same as AddPolicyStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddPolicyStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) AddPolicyStatementWithContext(ctx aws.Context, input *AddPolicyStatementInput, opts ...request.Option) (*AddPolicyStatementOutput, error) {
+	req, out := c.AddPolicyStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIdMappingWorkflow = "CreateIdMappingWorkflow"
 
 // CreateIdMappingWorkflowRequest generates a "aws/request.Request" representing the
@@ -112,6 +212,110 @@ func (c *EntityResolution) CreateIdMappingWorkflow(input *CreateIdMappingWorkflo
 // for more information on using Contexts.
 func (c *EntityResolution) CreateIdMappingWorkflowWithContext(ctx aws.Context, input *CreateIdMappingWorkflowInput, opts ...request.Option) (*CreateIdMappingWorkflowOutput, error) {
 	req, out := c.CreateIdMappingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateIdNamespace = "CreateIdNamespace"
+
+// CreateIdNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIdNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateIdNamespace for more information on using the CreateIdNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateIdNamespaceRequest method.
+//	req, resp := client.CreateIdNamespaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdNamespace
+func (c *EntityResolution) CreateIdNamespaceRequest(input *CreateIdNamespaceInput) (req *request.Request, output *CreateIdNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opCreateIdNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/idnamespaces",
+	}
+
+	if input == nil {
+		input = &CreateIdNamespaceInput{}
+	}
+
+	output = &CreateIdNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateIdNamespace API operation for AWS EntityResolution.
+//
+// Creates an ID namespace object which will help customers provide metadata
+// explaining their dataset and how to use it. Each ID namespace must have a
+// unique name. To modify an existing ID namespace, use the UpdateIdNamespace
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation CreateIdNamespace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ExceedsLimitException
+//     The request was rejected because it attempted to create resources beyond
+//     the current Entity Resolution account limits. The error message describes
+//     the limit exceeded. HTTP Status Code: 402
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/CreateIdNamespace
+func (c *EntityResolution) CreateIdNamespace(input *CreateIdNamespaceInput) (*CreateIdNamespaceOutput, error) {
+	req, out := c.CreateIdNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// CreateIdNamespaceWithContext is the same as CreateIdNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIdNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) CreateIdNamespaceWithContext(ctx aws.Context, input *CreateIdNamespaceInput, opts ...request.Option) (*CreateIdNamespaceOutput, error) {
+	req, out := c.CreateIdNamespaceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -391,6 +595,11 @@ func (c *EntityResolution) DeleteIdMappingWorkflowRequest(input *DeleteIdMapping
 //     You do not have sufficient access to perform this action. HTTP Status Code:
 //     403
 //
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
@@ -412,6 +621,97 @@ func (c *EntityResolution) DeleteIdMappingWorkflow(input *DeleteIdMappingWorkflo
 // for more information on using Contexts.
 func (c *EntityResolution) DeleteIdMappingWorkflowWithContext(ctx aws.Context, input *DeleteIdMappingWorkflowInput, opts ...request.Option) (*DeleteIdMappingWorkflowOutput, error) {
 	req, out := c.DeleteIdMappingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteIdNamespace = "DeleteIdNamespace"
+
+// DeleteIdNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIdNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIdNamespace for more information on using the DeleteIdNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteIdNamespaceRequest method.
+//	req, resp := client.DeleteIdNamespaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdNamespace
+func (c *EntityResolution) DeleteIdNamespaceRequest(input *DeleteIdNamespaceInput) (req *request.Request, output *DeleteIdNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIdNamespace,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/idnamespaces/{idNamespaceName}",
+	}
+
+	if input == nil {
+		input = &DeleteIdNamespaceInput{}
+	}
+
+	output = &DeleteIdNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteIdNamespace API operation for AWS EntityResolution.
+//
+// Deletes the IdNamespace with a given name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation DeleteIdNamespace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeleteIdNamespace
+func (c *EntityResolution) DeleteIdNamespace(input *DeleteIdNamespaceInput) (*DeleteIdNamespaceOutput, error) {
+	req, out := c.DeleteIdNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIdNamespaceWithContext is the same as DeleteIdNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIdNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) DeleteIdNamespaceWithContext(ctx aws.Context, input *DeleteIdNamespaceInput, opts ...request.Option) (*DeleteIdNamespaceOutput, error) {
+	req, out := c.DeleteIdNamespaceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -483,6 +783,11 @@ func (c *EntityResolution) DeleteMatchingWorkflowRequest(input *DeleteMatchingWo
 //     You do not have sufficient access to perform this action. HTTP Status Code:
 //     403
 //
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
 //   - ValidationException
 //     The input fails to satisfy the constraints specified by Entity Resolution.
 //     HTTP Status Code: 400
@@ -504,6 +809,105 @@ func (c *EntityResolution) DeleteMatchingWorkflow(input *DeleteMatchingWorkflowI
 // for more information on using Contexts.
 func (c *EntityResolution) DeleteMatchingWorkflowWithContext(ctx aws.Context, input *DeleteMatchingWorkflowInput, opts ...request.Option) (*DeleteMatchingWorkflowOutput, error) {
 	req, out := c.DeleteMatchingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePolicyStatement = "DeletePolicyStatement"
+
+// DeletePolicyStatementRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePolicyStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePolicyStatement for more information on using the DeletePolicyStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeletePolicyStatementRequest method.
+//	req, resp := client.DeletePolicyStatementRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeletePolicyStatement
+func (c *EntityResolution) DeletePolicyStatementRequest(input *DeletePolicyStatementInput) (req *request.Request, output *DeletePolicyStatementOutput) {
+	op := &request.Operation{
+		Name:       opDeletePolicyStatement,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/policies/{arn}/{statementId}",
+	}
+
+	if input == nil {
+		input = &DeletePolicyStatementInput{}
+	}
+
+	output = &DeletePolicyStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePolicyStatement API operation for AWS EntityResolution.
+//
+// Deletes the policy statement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation DeletePolicyStatement for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/DeletePolicyStatement
+func (c *EntityResolution) DeletePolicyStatement(input *DeletePolicyStatementInput) (*DeletePolicyStatementOutput, error) {
+	req, out := c.DeletePolicyStatementRequest(input)
+	return out, req.Send()
+}
+
+// DeletePolicyStatementWithContext is the same as DeletePolicyStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePolicyStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) DeletePolicyStatementWithContext(ctx aws.Context, input *DeletePolicyStatementInput, opts ...request.Option) (*DeletePolicyStatementOutput, error) {
+	req, out := c.DeletePolicyStatementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -797,6 +1201,100 @@ func (c *EntityResolution) GetIdMappingWorkflowWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opGetIdNamespace = "GetIdNamespace"
+
+// GetIdNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the GetIdNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetIdNamespace for more information on using the GetIdNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetIdNamespaceRequest method.
+//	req, resp := client.GetIdNamespaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdNamespace
+func (c *EntityResolution) GetIdNamespaceRequest(input *GetIdNamespaceInput) (req *request.Request, output *GetIdNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opGetIdNamespace,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idnamespaces/{idNamespaceName}",
+	}
+
+	if input == nil {
+		input = &GetIdNamespaceInput{}
+	}
+
+	output = &GetIdNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetIdNamespace API operation for AWS EntityResolution.
+//
+// Returns the IdNamespace with a given name, if it exists.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation GetIdNamespace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetIdNamespace
+func (c *EntityResolution) GetIdNamespace(input *GetIdNamespaceInput) (*GetIdNamespaceOutput, error) {
+	req, out := c.GetIdNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// GetIdNamespaceWithContext is the same as GetIdNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetIdNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) GetIdNamespaceWithContext(ctx aws.Context, input *GetIdNamespaceInput, opts ...request.Option) (*GetIdNamespaceOutput, error) {
+	req, out := c.GetIdNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMatchId = "GetMatchId"
 
 // GetMatchIdRequest generates a "aws/request.Request" representing the
@@ -1076,6 +1574,100 @@ func (c *EntityResolution) GetMatchingWorkflow(input *GetMatchingWorkflowInput) 
 // for more information on using Contexts.
 func (c *EntityResolution) GetMatchingWorkflowWithContext(ctx aws.Context, input *GetMatchingWorkflowInput, opts ...request.Option) (*GetMatchingWorkflowOutput, error) {
 	req, out := c.GetMatchingWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPolicy = "GetPolicy"
+
+// GetPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPolicy for more information on using the GetPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetPolicyRequest method.
+//	req, resp := client.GetPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetPolicy
+func (c *EntityResolution) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/policies/{arn}",
+	}
+
+	if input == nil {
+		input = &GetPolicyInput{}
+	}
+
+	output = &GetPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPolicy API operation for AWS EntityResolution.
+//
+// Returns the resource-based policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation GetPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/GetPolicy
+func (c *EntityResolution) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetPolicyWithContext is the same as GetPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) GetPolicyWithContext(ctx aws.Context, input *GetPolicyInput, opts ...request.Option) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1468,6 +2060,154 @@ func (c *EntityResolution) ListIdMappingWorkflowsPagesWithContext(ctx aws.Contex
 
 	for p.Next() {
 		if !fn(p.Page().(*ListIdMappingWorkflowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIdNamespaces = "ListIdNamespaces"
+
+// ListIdNamespacesRequest generates a "aws/request.Request" representing the
+// client's request for the ListIdNamespaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIdNamespaces for more information on using the ListIdNamespaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListIdNamespacesRequest method.
+//	req, resp := client.ListIdNamespacesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdNamespaces
+func (c *EntityResolution) ListIdNamespacesRequest(input *ListIdNamespacesInput) (req *request.Request, output *ListIdNamespacesOutput) {
+	op := &request.Operation{
+		Name:       opListIdNamespaces,
+		HTTPMethod: "GET",
+		HTTPPath:   "/idnamespaces",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIdNamespacesInput{}
+	}
+
+	output = &ListIdNamespacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIdNamespaces API operation for AWS EntityResolution.
+//
+// Returns a list of all ID namespaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation ListIdNamespaces for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/ListIdNamespaces
+func (c *EntityResolution) ListIdNamespaces(input *ListIdNamespacesInput) (*ListIdNamespacesOutput, error) {
+	req, out := c.ListIdNamespacesRequest(input)
+	return out, req.Send()
+}
+
+// ListIdNamespacesWithContext is the same as ListIdNamespaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIdNamespaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdNamespacesWithContext(ctx aws.Context, input *ListIdNamespacesInput, opts ...request.Option) (*ListIdNamespacesOutput, error) {
+	req, out := c.ListIdNamespacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIdNamespacesPages iterates over the pages of a ListIdNamespaces operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdNamespaces method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListIdNamespaces operation.
+//	pageNum := 0
+//	err := client.ListIdNamespacesPages(params,
+//	    func(page *entityresolution.ListIdNamespacesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EntityResolution) ListIdNamespacesPages(input *ListIdNamespacesInput, fn func(*ListIdNamespacesOutput, bool) bool) error {
+	return c.ListIdNamespacesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdNamespacesPagesWithContext same as ListIdNamespacesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) ListIdNamespacesPagesWithContext(ctx aws.Context, input *ListIdNamespacesInput, fn func(*ListIdNamespacesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdNamespacesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdNamespacesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdNamespacesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2161,6 +2901,105 @@ func (c *EntityResolution) ListTagsForResourceWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opPutPolicy = "PutPolicy"
+
+// PutPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPolicy for more information on using the PutPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutPolicyRequest method.
+//	req, resp := client.PutPolicyRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/PutPolicy
+func (c *EntityResolution) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, output *PutPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/policies/{arn}",
+	}
+
+	if input == nil {
+		input = &PutPolicyInput{}
+	}
+
+	output = &PutPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutPolicy API operation for AWS EntityResolution.
+//
+// Updates the resource-based policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation PutPolicy for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ConflictException
+//     The request could not be processed because of conflict in the current state
+//     of the resource. Example: Workflow already exists, Schema already exists,
+//     Workflow is currently running, etc. HTTP Status Code: 400
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/PutPolicy
+func (c *EntityResolution) PutPolicy(input *PutPolicyInput) (*PutPolicyOutput, error) {
+	req, out := c.PutPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutPolicyWithContext is the same as PutPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) PutPolicyWithContext(ctx aws.Context, input *PutPolicyInput, opts ...request.Option) (*PutPolicyOutput, error) {
+	req, out := c.PutPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartIdMappingJob = "StartIdMappingJob"
 
 // StartIdMappingJobRequest generates a "aws/request.Request" representing the
@@ -2650,6 +3489,100 @@ func (c *EntityResolution) UpdateIdMappingWorkflowWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opUpdateIdNamespace = "UpdateIdNamespace"
+
+// UpdateIdNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIdNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIdNamespace for more information on using the UpdateIdNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIdNamespaceRequest method.
+//	req, resp := client.UpdateIdNamespaceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdNamespace
+func (c *EntityResolution) UpdateIdNamespaceRequest(input *UpdateIdNamespaceInput) (req *request.Request, output *UpdateIdNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIdNamespace,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/idnamespaces/{idNamespaceName}",
+	}
+
+	if input == nil {
+		input = &UpdateIdNamespaceInput{}
+	}
+
+	output = &UpdateIdNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIdNamespace API operation for AWS EntityResolution.
+//
+// Updates an existing ID namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation UpdateIdNamespace for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling. HTTP Status Code: 429
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action. HTTP Status Code:
+//     403
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/UpdateIdNamespace
+func (c *EntityResolution) UpdateIdNamespace(input *UpdateIdNamespaceInput) (*UpdateIdNamespaceOutput, error) {
+	req, out := c.UpdateIdNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIdNamespaceWithContext is the same as UpdateIdNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIdNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) UpdateIdNamespaceWithContext(ctx aws.Context, input *UpdateIdNamespaceInput, opts ...request.Option) (*UpdateIdNamespaceOutput, error) {
+	req, out := c.UpdateIdNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMatchingWorkflow = "UpdateMatchingWorkflow"
 
 // UpdateMatchingWorkflowRequest generates a "aws/request.Request" representing the
@@ -2913,6 +3846,192 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AddPolicyStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action that the principal can use on the resource.
+	//
+	// For example, entityresolution:GetIdMappingJob, entityresolution:GetMatchingJob.
+	//
+	// Action is a required field
+	Action []*string `locationName:"action" min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource that will be accessed by the
+	// principal.
+	//
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+
+	// A set of condition keys that you can use in key policies.
+	Condition *string `locationName:"condition" min:"1" type:"string"`
+
+	// Determines whether the permissions specified in the policy are to be allowed
+	// (Allow) or denied (Deny).
+	//
+	// Effect is a required field
+	Effect *string `locationName:"effect" type:"string" required:"true" enum:"StatementEffect"`
+
+	// The Amazon Web Services service or Amazon Web Services account that can access
+	// the resource defined as ARN.
+	//
+	// Principal is a required field
+	Principal []*string `locationName:"principal" min:"1" type:"list" required:"true"`
+
+	// A statement identifier that differentiates the statement from others in the
+	// same policy.
+	//
+	// StatementId is a required field
+	StatementId *string `location:"uri" locationName:"statementId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddPolicyStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddPolicyStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddPolicyStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddPolicyStatementInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Action != nil && len(s.Action) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Action", 1))
+	}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.Condition != nil && len(*s.Condition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Condition", 1))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.Principal != nil && len(s.Principal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Principal", 1))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+	if s.StatementId != nil && len(*s.StatementId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *AddPolicyStatementInput) SetAction(v []*string) *AddPolicyStatementInput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AddPolicyStatementInput) SetArn(v string) *AddPolicyStatementInput {
+	s.Arn = &v
+	return s
+}
+
+// SetCondition sets the Condition field's value.
+func (s *AddPolicyStatementInput) SetCondition(v string) *AddPolicyStatementInput {
+	s.Condition = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *AddPolicyStatementInput) SetEffect(v string) *AddPolicyStatementInput {
+	s.Effect = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *AddPolicyStatementInput) SetPrincipal(v []*string) *AddPolicyStatementInput {
+	s.Principal = v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *AddPolicyStatementInput) SetStatementId(v string) *AddPolicyStatementInput {
+	s.StatementId = &v
+	return s
+}
+
+type AddPolicyStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource that will be accessed by the
+	// principal.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The resource-based policy.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// Token is a required field
+	Token *string `locationName:"token" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddPolicyStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddPolicyStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AddPolicyStatementOutput) SetArn(v string) *AddPolicyStatementOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *AddPolicyStatementOutput) SetPolicy(v string) *AddPolicyStatementOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *AddPolicyStatementOutput) SetToken(v string) *AddPolicyStatementOutput {
+	s.Token = &v
+	return s
+}
+
 // The request could not be processed because of conflict in the current state
 // of the resource. Example: Workflow already exists, Schema already exists,
 // Workflow is currently running, etc. HTTP Status Code: 400
@@ -2997,15 +4116,13 @@ type CreateIdMappingWorkflowInput struct {
 
 	// A list of IdMappingWorkflowOutputSource objects, each of which contains fields
 	// OutputS3Path and Output.
-	//
-	// OutputSourceConfig is a required field
-	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -3047,14 +4164,14 @@ func (s *CreateIdMappingWorkflowInput) Validate() error {
 	if s.InputSourceConfig != nil && len(s.InputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InputSourceConfig", 1))
 	}
-	if s.OutputSourceConfig == nil {
-		invalidParams.Add(request.NewErrParamRequired("OutputSourceConfig"))
-	}
 	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
@@ -3154,15 +4271,13 @@ type CreateIdMappingWorkflowOutput struct {
 
 	// A list of IdMappingWorkflowOutputSource objects, each of which contains fields
 	// OutputS3Path and Output.
-	//
-	// OutputSourceConfig is a required field
-	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
 	// this role to create resources on your behalf as part of workflow execution.
 	//
 	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
 
 	// The ARN (Amazon Resource Name) that Entity Resolution generated for the IDMappingWorkflow.
 	//
@@ -3232,6 +4347,280 @@ func (s *CreateIdMappingWorkflowOutput) SetWorkflowArn(v string) *CreateIdMappin
 // SetWorkflowName sets the WorkflowName field's value.
 func (s *CreateIdMappingWorkflowOutput) SetWorkflowName(v string) *CreateIdMappingWorkflowOutput {
 	s.WorkflowName = &v
+	return s
+}
+
+type CreateIdNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// Determines the properties of IdMappingWorflow where this IdNamespace can
+	// be used as a Source or a Target.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowProperties `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	InputSourceConfig []*IdNamespaceInputSource `locationName:"inputSourceConfig" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access the resources defined in this IdNamespace on your behalf
+	// as part of the workflow run.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
+	//
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIdNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIdNamespaceInput"}
+	if s.IdMappingWorkflowProperties != nil && len(s.IdMappingWorkflowProperties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingWorkflowProperties", 1))
+	}
+	if s.IdNamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdNamespaceName"))
+	}
+	if s.IdNamespaceName != nil && len(*s.IdNamespaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdNamespaceName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.IdMappingWorkflowProperties != nil {
+		for i, v := range s.IdMappingWorkflowProperties {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IdMappingWorkflowProperties", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InputSourceConfig != nil {
+		for i, v := range s.InputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIdNamespaceInput) SetDescription(v string) *CreateIdNamespaceInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *CreateIdNamespaceInput) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowProperties) *CreateIdNamespaceInput {
+	s.IdMappingWorkflowProperties = v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *CreateIdNamespaceInput) SetIdNamespaceName(v string) *CreateIdNamespaceInput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *CreateIdNamespaceInput) SetInputSourceConfig(v []*IdNamespaceInputSource) *CreateIdNamespaceInput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateIdNamespaceInput) SetRoleArn(v string) *CreateIdNamespaceInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIdNamespaceInput) SetTags(v map[string]*string) *CreateIdNamespaceInput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateIdNamespaceInput) SetType(v string) *CreateIdNamespaceInput {
+	s.Type = &v
+	return s
+}
+
+type CreateIdNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the ID namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// Determines the properties of IdMappingWorkflow where this IdNamespace can
+	// be used as a Source or a Target.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowProperties `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the ID namespace.
+	//
+	// IdNamespaceArn is a required field
+	IdNamespaceArn *string `locationName:"idNamespaceArn" type:"string" required:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	InputSourceConfig []*IdNamespaceInputSource `locationName:"inputSourceConfig" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access the resources defined in inputSourceConfig on your behalf
+	// as part of the workflow run.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
+	//
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+
+	// The timestamp of when the ID namespace was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateIdNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateIdNamespaceOutput) SetCreatedAt(v time.Time) *CreateIdNamespaceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateIdNamespaceOutput) SetDescription(v string) *CreateIdNamespaceOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *CreateIdNamespaceOutput) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowProperties) *CreateIdNamespaceOutput {
+	s.IdMappingWorkflowProperties = v
+	return s
+}
+
+// SetIdNamespaceArn sets the IdNamespaceArn field's value.
+func (s *CreateIdNamespaceOutput) SetIdNamespaceArn(v string) *CreateIdNamespaceOutput {
+	s.IdNamespaceArn = &v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *CreateIdNamespaceOutput) SetIdNamespaceName(v string) *CreateIdNamespaceOutput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *CreateIdNamespaceOutput) SetInputSourceConfig(v []*IdNamespaceInputSource) *CreateIdNamespaceOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateIdNamespaceOutput) SetRoleArn(v string) *CreateIdNamespaceOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIdNamespaceOutput) SetTags(v map[string]*string) *CreateIdNamespaceOutput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateIdNamespaceOutput) SetType(v string) *CreateIdNamespaceOutput {
+	s.Type = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateIdNamespaceOutput) SetUpdatedAt(v time.Time) *CreateIdNamespaceOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -3758,6 +5147,88 @@ func (s *DeleteIdMappingWorkflowOutput) SetMessage(v string) *DeleteIdMappingWor
 	return s
 }
 
+type DeleteIdNamespaceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `location:"uri" locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIdNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIdNamespaceInput"}
+	if s.IdNamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdNamespaceName"))
+	}
+	if s.IdNamespaceName != nil && len(*s.IdNamespaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdNamespaceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *DeleteIdNamespaceInput) SetIdNamespaceName(v string) *DeleteIdNamespaceInput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+type DeleteIdNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A successful operation message.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteIdNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DeleteIdNamespaceOutput) SetMessage(v string) *DeleteIdNamespaceOutput {
+	s.Message = &v
+	return s
+}
+
 type DeleteMatchingWorkflowInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3837,6 +5308,126 @@ func (s DeleteMatchingWorkflowOutput) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *DeleteMatchingWorkflowOutput) SetMessage(v string) *DeleteMatchingWorkflowOutput {
 	s.Message = &v
+	return s
+}
+
+type DeletePolicyStatementInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the resource for which the policy need to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+
+	// A statement identifier that differentiates the statement from others in the
+	// same policy.
+	//
+	// StatementId is a required field
+	StatementId *string `location:"uri" locationName:"statementId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePolicyStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePolicyStatementInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+	if s.StatementId != nil && len(*s.StatementId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeletePolicyStatementInput) SetArn(v string) *DeletePolicyStatementInput {
+	s.Arn = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *DeletePolicyStatementInput) SetStatementId(v string) *DeletePolicyStatementInput {
+	s.StatementId = &v
+	return s
+}
+
+type DeletePolicyStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource for which the policy need to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The resource-based policy.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// A unique identifier for the deleted policy.
+	//
+	// Token is a required field
+	Token *string `locationName:"token" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeletePolicyStatementOutput) SetArn(v string) *DeletePolicyStatementOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *DeletePolicyStatementOutput) SetPolicy(v string) *DeletePolicyStatementOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *DeletePolicyStatementOutput) SetToken(v string) *DeletePolicyStatementOutput {
+	s.Token = &v
 	return s
 }
 
@@ -4037,7 +5628,7 @@ type GetIdMappingJobInput struct {
 	// The name of the workflow.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4110,6 +5701,9 @@ type GetIdMappingJobOutput struct {
 	// unique IDs generated, and records the execution skipped.
 	Metrics *IdMappingJobMetrics `locationName:"metrics" type:"structure"`
 
+	// A list of OutputSource objects.
+	OutputSourceConfig []*IdMappingJobOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
+
 	// The time at which the job was started.
 	//
 	// StartTime is a required field
@@ -4160,6 +5754,12 @@ func (s *GetIdMappingJobOutput) SetJobId(v string) *GetIdMappingJobOutput {
 // SetMetrics sets the Metrics field's value.
 func (s *GetIdMappingJobOutput) SetMetrics(v *IdMappingJobMetrics) *GetIdMappingJobOutput {
 	s.Metrics = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *GetIdMappingJobOutput) SetOutputSourceConfig(v []*IdMappingJobOutputSource) *GetIdMappingJobOutput {
+	s.OutputSourceConfig = v
 	return s
 }
 
@@ -4247,15 +5847,13 @@ type GetIdMappingWorkflowOutput struct {
 
 	// A list of OutputSource objects, each of which contains fields OutputS3Path
 	// and KMSArn.
-	//
-	// OutputSourceConfig is a required field
-	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
-	// this role to access resources on your behalf.
+	// this role to access Amazon Web Services resources on your behalf.
 	//
 	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -4354,8 +5952,194 @@ func (s *GetIdMappingWorkflowOutput) SetWorkflowName(v string) *GetIdMappingWork
 	return s
 }
 
+type GetIdNamespaceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `location:"uri" locationName:"idNamespaceName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetIdNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetIdNamespaceInput"}
+	if s.IdNamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdNamespaceName"))
+	}
+	if s.IdNamespaceName != nil && len(*s.IdNamespaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdNamespaceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *GetIdNamespaceInput) SetIdNamespaceName(v string) *GetIdNamespaceInput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+type GetIdNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the ID namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// Determines the properties of IdMappingWorkflow where this IdNamespace can
+	// be used as a Source or a Target.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowProperties `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the ID namespace.
+	//
+	// IdNamespaceArn is a required field
+	IdNamespaceArn *string `locationName:"idNamespaceArn" type:"string" required:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	InputSourceConfig []*IdNamespaceInputSource `locationName:"inputSourceConfig" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access the resources defined in this IdNamespace on your behalf
+	// as part of a workflow run.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
+	//
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+
+	// The timestamp of when the ID namespace was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetIdNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetIdNamespaceOutput) SetCreatedAt(v time.Time) *GetIdNamespaceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetIdNamespaceOutput) SetDescription(v string) *GetIdNamespaceOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *GetIdNamespaceOutput) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowProperties) *GetIdNamespaceOutput {
+	s.IdMappingWorkflowProperties = v
+	return s
+}
+
+// SetIdNamespaceArn sets the IdNamespaceArn field's value.
+func (s *GetIdNamespaceOutput) SetIdNamespaceArn(v string) *GetIdNamespaceOutput {
+	s.IdNamespaceArn = &v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *GetIdNamespaceOutput) SetIdNamespaceName(v string) *GetIdNamespaceOutput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *GetIdNamespaceOutput) SetInputSourceConfig(v []*IdNamespaceInputSource) *GetIdNamespaceOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetIdNamespaceOutput) SetRoleArn(v string) *GetIdNamespaceOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetIdNamespaceOutput) SetTags(v map[string]*string) *GetIdNamespaceOutput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetIdNamespaceOutput) SetType(v string) *GetIdNamespaceOutput {
+	s.Type = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetIdNamespaceOutput) SetUpdatedAt(v time.Time) *GetIdNamespaceOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
 type GetMatchIdInput struct {
 	_ struct{} `type:"structure"`
+
+	// Normalizes the attributes defined in the schema in the input data. For example,
+	// if an attribute has an AttributeType of PHONE_NUMBER, and the data in the
+	// input table is in a format of 1234567890, Entity Resolution will normalize
+	// this field in the output to (123)-456-7890.
+	ApplyNormalization *bool `locationName:"applyNormalization" type:"boolean"`
 
 	// The record to fetch the Match ID for.
 	//
@@ -4409,6 +6193,12 @@ func (s *GetMatchIdInput) Validate() error {
 	return nil
 }
 
+// SetApplyNormalization sets the ApplyNormalization field's value.
+func (s *GetMatchIdInput) SetApplyNormalization(v bool) *GetMatchIdInput {
+	s.ApplyNormalization = &v
+	return s
+}
+
 // SetRecord sets the Record field's value.
 func (s *GetMatchIdInput) SetRecord(v map[string]*string) *GetMatchIdInput {
 	s.Record = v
@@ -4426,6 +6216,9 @@ type GetMatchIdOutput struct {
 
 	// The unique identifiers for this group of match records.
 	MatchId *string `locationName:"matchId" type:"string"`
+
+	// The rule the record matched on.
+	MatchRule *string `locationName:"matchRule" type:"string"`
 }
 
 // String returns the string representation.
@@ -4449,6 +6242,12 @@ func (s GetMatchIdOutput) GoString() string {
 // SetMatchId sets the MatchId field's value.
 func (s *GetMatchIdOutput) SetMatchId(v string) *GetMatchIdOutput {
 	s.MatchId = &v
+	return s
+}
+
+// SetMatchRule sets the MatchRule field's value.
+func (s *GetMatchIdOutput) SetMatchRule(v string) *GetMatchIdOutput {
+	s.MatchRule = &v
 	return s
 }
 
@@ -4536,6 +6335,9 @@ type GetMatchingJobOutput struct {
 	// unique IDs generated, and records the execution skipped.
 	Metrics *JobMetrics `locationName:"metrics" type:"structure"`
 
+	// A list of OutputSource objects.
+	OutputSourceConfig []*JobOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
+
 	// The time at which the job was started.
 	//
 	// StartTime is a required field
@@ -4586,6 +6388,12 @@ func (s *GetMatchingJobOutput) SetJobId(v string) *GetMatchingJobOutput {
 // SetMetrics sets the Metrics field's value.
 func (s *GetMatchingJobOutput) SetMetrics(v *JobMetrics) *GetMatchingJobOutput {
 	s.Metrics = v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *GetMatchingJobOutput) SetOutputSourceConfig(v []*JobOutputSource) *GetMatchingJobOutput {
+	s.OutputSourceConfig = v
 	return s
 }
 
@@ -4682,7 +6490,7 @@ type GetMatchingWorkflowOutput struct {
 	ResolutionTechniques *ResolutionTechniques `locationName:"resolutionTechniques" type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
-	// this role to access resources on your behalf.
+	// this role to access Amazon Web Services resources on your behalf.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -4787,6 +6595,109 @@ func (s *GetMatchingWorkflowOutput) SetWorkflowArn(v string) *GetMatchingWorkflo
 // SetWorkflowName sets the WorkflowName field's value.
 func (s *GetMatchingWorkflowOutput) SetWorkflowName(v string) *GetMatchingWorkflowOutput {
 	s.WorkflowName = &v
+	return s
+}
+
+type GetPolicyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource for which the policy need
+	// to be returned.
+	//
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPolicyInput) SetArn(v string) *GetPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+type GetPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Entity Resolution resource ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The resource-based policy.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// Token is a required field
+	Token *string `locationName:"token" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPolicyOutput) SetArn(v string) *GetPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetPolicyOutput) SetPolicy(v string) *GetPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *GetPolicyOutput) SetToken(v string) *GetPolicyOutput {
+	s.Token = &v
 	return s
 }
 
@@ -4997,6 +6908,85 @@ func (s *IdMappingJobMetrics) SetTotalRecordsProcessed(v int64) *IdMappingJobMet
 	return s
 }
 
+// An object containing KMSArn, OutputS3Path, and RoleARN.
+type IdMappingJobOutputSource struct {
+	_ struct{} `type:"structure"`
+
+	// Customer KMS ARN for encryption at rest. If not provided, system will use
+	// an Entity Resolution managed KMS key.
+	KMSArn *string `type:"string"`
+
+	// The S3 path to which Entity Resolution will write the output table.
+	//
+	// OutputS3Path is a required field
+	OutputS3Path *string `locationName:"outputS3Path" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access Amazon Web Services resources on your behalf as part
+	// of workflow execution.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingJobOutputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdMappingJobOutputSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdMappingJobOutputSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdMappingJobOutputSource"}
+	if s.OutputS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputS3Path"))
+	}
+	if s.OutputS3Path != nil && len(*s.OutputS3Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputS3Path", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKMSArn sets the KMSArn field's value.
+func (s *IdMappingJobOutputSource) SetKMSArn(v string) *IdMappingJobOutputSource {
+	s.KMSArn = &v
+	return s
+}
+
+// SetOutputS3Path sets the OutputS3Path field's value.
+func (s *IdMappingJobOutputSource) SetOutputS3Path(v string) *IdMappingJobOutputSource {
+	s.OutputS3Path = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *IdMappingJobOutputSource) SetRoleArn(v string) *IdMappingJobOutputSource {
+	s.RoleArn = &v
+	return s
+}
+
 // An object which defines the ID mapping techniques and provider configurations.
 type IdMappingTechniques struct {
 	_ struct{} `type:"structure"`
@@ -5008,9 +6998,7 @@ type IdMappingTechniques struct {
 
 	// An object which defines any additional configurations required by the provider
 	// service.
-	//
-	// ProviderProperties is a required field
-	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure" required:"true"`
+	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure"`
 }
 
 // String returns the string representation.
@@ -5037,9 +7025,6 @@ func (s *IdMappingTechniques) Validate() error {
 	if s.IdMappingType == nil {
 		invalidParams.Add(request.NewErrParamRequired("IdMappingType"))
 	}
-	if s.ProviderProperties == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProviderProperties"))
-	}
 	if s.ProviderProperties != nil {
 		if err := s.ProviderProperties.Validate(); err != nil {
 			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
@@ -5064,19 +7049,26 @@ func (s *IdMappingTechniques) SetProviderProperties(v *ProviderProperties) *IdMa
 	return s
 }
 
-// An object containing InputSourceARN and SchemaName.
+// An object containing InputSourceARN, SchemaName, and Type.
 type IdMappingWorkflowInputSource struct {
 	_ struct{} `type:"structure"`
 
-	// An Gluetable ARN for the input source table.
+	// An Glue table ARN for the input source table.
 	//
 	// InputSourceARN is a required field
 	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
 
 	// The name of the schema to be retrieved.
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
 	//
-	// SchemaName is a required field
-	SchemaName *string `locationName:"schemaName" min:"1" type:"string" required:"true"`
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	Type *string `locationName:"type" type:"string" enum:"IdNamespaceType"`
 }
 
 // String returns the string representation.
@@ -5103,9 +7095,6 @@ func (s *IdMappingWorkflowInputSource) Validate() error {
 	if s.InputSourceARN == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputSourceARN"))
 	}
-	if s.SchemaName == nil {
-		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
-	}
 	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
 	}
@@ -5125,6 +7114,12 @@ func (s *IdMappingWorkflowInputSource) SetInputSourceARN(v string) *IdMappingWor
 // SetSchemaName sets the SchemaName field's value.
 func (s *IdMappingWorkflowInputSource) SetSchemaName(v string) *IdMappingWorkflowInputSource {
 	s.SchemaName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IdMappingWorkflowInputSource) SetType(v string) *IdMappingWorkflowInputSource {
+	s.Type = &v
 	return s
 }
 
@@ -5253,6 +7248,220 @@ func (s *IdMappingWorkflowSummary) SetWorkflowArn(v string) *IdMappingWorkflowSu
 // SetWorkflowName sets the WorkflowName field's value.
 func (s *IdMappingWorkflowSummary) SetWorkflowName(v string) *IdMappingWorkflowSummary {
 	s.WorkflowName = &v
+	return s
+}
+
+// An object containing IdMappingType and ProviderProperties.
+type IdNamespaceIdMappingWorkflowProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The type of ID mapping.
+	//
+	// IdMappingType is a required field
+	IdMappingType *string `locationName:"idMappingType" type:"string" required:"true" enum:"IdMappingType"`
+
+	// An object which defines any additional configurations required by the provider
+	// service.
+	ProviderProperties *NamespaceProviderProperties `locationName:"providerProperties" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceIdMappingWorkflowProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceIdMappingWorkflowProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdNamespaceIdMappingWorkflowProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdNamespaceIdMappingWorkflowProperties"}
+	if s.IdMappingType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdMappingType"))
+	}
+	if s.ProviderProperties != nil {
+		if err := s.ProviderProperties.Validate(); err != nil {
+			invalidParams.AddNested("ProviderProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdMappingType sets the IdMappingType field's value.
+func (s *IdNamespaceIdMappingWorkflowProperties) SetIdMappingType(v string) *IdNamespaceIdMappingWorkflowProperties {
+	s.IdMappingType = &v
+	return s
+}
+
+// SetProviderProperties sets the ProviderProperties field's value.
+func (s *IdNamespaceIdMappingWorkflowProperties) SetProviderProperties(v *NamespaceProviderProperties) *IdNamespaceIdMappingWorkflowProperties {
+	s.ProviderProperties = v
+	return s
+}
+
+// An object containing InputSourceARN and SchemaName.
+type IdNamespaceInputSource struct {
+	_ struct{} `type:"structure"`
+
+	// An Glue table ARN for the input source table.
+	//
+	// InputSourceARN is a required field
+	InputSourceARN *string `locationName:"inputSourceARN" type:"string" required:"true"`
+
+	// The name of the schema.
+	SchemaName *string `locationName:"schemaName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceInputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceInputSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IdNamespaceInputSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IdNamespaceInputSource"}
+	if s.InputSourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSourceARN"))
+	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputSourceARN sets the InputSourceARN field's value.
+func (s *IdNamespaceInputSource) SetInputSourceARN(v string) *IdNamespaceInputSource {
+	s.InputSourceARN = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *IdNamespaceInputSource) SetSchemaName(v string) *IdNamespaceInputSource {
+	s.SchemaName = &v
+	return s
+}
+
+// A summary of ID namespaces.
+type IdNamespaceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the ID namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the ID namespace.
+	//
+	// IdNamespaceArn is a required field
+	IdNamespaceArn *string `locationName:"idNamespaceArn" type:"string" required:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
+	//
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+
+	// The timestamp of when the ID namespace was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdNamespaceSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *IdNamespaceSummary) SetCreatedAt(v time.Time) *IdNamespaceSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *IdNamespaceSummary) SetDescription(v string) *IdNamespaceSummary {
+	s.Description = &v
+	return s
+}
+
+// SetIdNamespaceArn sets the IdNamespaceArn field's value.
+func (s *IdNamespaceSummary) SetIdNamespaceArn(v string) *IdNamespaceSummary {
+	s.IdNamespaceArn = &v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *IdNamespaceSummary) SetIdNamespaceName(v string) *IdNamespaceSummary {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IdNamespaceSummary) SetType(v string) *IdNamespaceSummary {
+	s.Type = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *IdNamespaceSummary) SetUpdatedAt(v time.Time) *IdNamespaceSummary {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -5540,6 +7749,63 @@ func (s *JobMetrics) SetTotalRecordsProcessed(v int64) *JobMetrics {
 	return s
 }
 
+// An object containing KMSArn, OutputS3Path, and RoleArn.
+type JobOutputSource struct {
+	_ struct{} `type:"structure"`
+
+	// Customer KMS ARN for encryption at rest. If not provided, system will use
+	// an Entity Resolution managed KMS key.
+	KMSArn *string `type:"string"`
+
+	// The S3 path to which Entity Resolution will write the output table.
+	//
+	// OutputS3Path is a required field
+	OutputS3Path *string `locationName:"outputS3Path" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access Amazon Web Services resources on your behalf as part
+	// of workflow execution.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobOutputSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobOutputSource) GoString() string {
+	return s.String()
+}
+
+// SetKMSArn sets the KMSArn field's value.
+func (s *JobOutputSource) SetKMSArn(v string) *JobOutputSource {
+	s.KMSArn = &v
+	return s
+}
+
+// SetOutputS3Path sets the OutputS3Path field's value.
+func (s *JobOutputSource) SetOutputS3Path(v string) *JobOutputSource {
+	s.OutputS3Path = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *JobOutputSource) SetRoleArn(v string) *JobOutputSource {
+	s.RoleArn = &v
+	return s
+}
+
 // An object containing the JobId, Status, StartTime, and EndTime of a job.
 type JobSummary struct {
 	_ struct{} `type:"structure"`
@@ -5617,7 +7883,7 @@ type ListIdMappingJobsInput struct {
 	// The name of the workflow to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -5808,6 +8074,99 @@ func (s *ListIdMappingWorkflowsOutput) SetNextToken(v string) *ListIdMappingWork
 // SetWorkflowSummaries sets the WorkflowSummaries field's value.
 func (s *ListIdMappingWorkflowsOutput) SetWorkflowSummaries(v []*IdMappingWorkflowSummary) *ListIdMappingWorkflowsOutput {
 	s.WorkflowSummaries = v
+	return s
+}
+
+type ListIdNamespacesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of IdNamespace objects returned per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIdNamespacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIdNamespacesInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdNamespacesInput) SetMaxResults(v int64) *ListIdNamespacesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdNamespacesInput) SetNextToken(v string) *ListIdNamespacesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIdNamespacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IdNamespaceSummaries objects.
+	IdNamespaceSummaries []*IdNamespaceSummary `locationName:"idNamespaceSummaries" type:"list"`
+
+	// The pagination token from the previous API call.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListIdNamespacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdNamespaceSummaries sets the IdNamespaceSummaries field's value.
+func (s *ListIdNamespacesOutput) SetIdNamespaceSummaries(v []*IdNamespaceSummary) *ListIdNamespacesOutput {
+	s.IdNamespaceSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdNamespacesOutput) SetNextToken(v string) *ListIdNamespacesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -6383,6 +8742,56 @@ func (s *MatchingWorkflowSummary) SetWorkflowName(v string) *MatchingWorkflowSum
 	return s
 }
 
+// An object containing ProviderConfiguration and ProviderServiceArn.
+type NamespaceProviderProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the provider service.
+	//
+	// ProviderServiceArn is a required field
+	ProviderServiceArn *string `locationName:"providerServiceArn" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceProviderProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NamespaceProviderProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NamespaceProviderProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NamespaceProviderProperties"}
+	if s.ProviderServiceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProviderServiceArn"))
+	}
+	if s.ProviderServiceArn != nil && len(*s.ProviderServiceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderServiceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProviderServiceArn sets the ProviderServiceArn field's value.
+func (s *NamespaceProviderProperties) SetProviderServiceArn(v string) *NamespaceProviderProperties {
+	s.ProviderServiceArn = &v
+	return s
+}
+
 // A list of OutputAttribute objects, each of which have the fields Name and
 // Hashed. Each of these objects selects a column to be included in the output
 // table, and whether the values of the column should be hashed.
@@ -6687,6 +9096,138 @@ func (s *ProviderServiceSummary) SetProviderServiceType(v string) *ProviderServi
 	return s
 }
 
+type PutPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource for which the policy needs
+	// to be updated.
+	//
+	// Arn is a required field
+	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
+
+	// The resource-based policy.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy.
+	Token *string `locationName:"token" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+	if s.Token != nil && len(*s.Token) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Token", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *PutPolicyInput) SetArn(v string) *PutPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPolicyInput) SetPolicy(v string) *PutPolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *PutPolicyInput) SetToken(v string) *PutPolicyInput {
+	s.Token = &v
+	return s
+}
+
+type PutPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Entity Resolution resource ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The resource-based policy.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// Token is a required field
+	Token *string `locationName:"token" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PutPolicyOutput) SetArn(v string) *PutPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPolicyOutput) SetPolicy(v string) *PutPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *PutPolicyOutput) SetToken(v string) *PutPolicyOutput {
+	s.Token = &v
+	return s
+}
+
 // An object which defines the resolutionType and the ruleBasedProperties.
 type ResolutionTechniques struct {
 	_ struct{} `type:"structure"`
@@ -6694,8 +9235,8 @@ type ResolutionTechniques struct {
 	// The properties of the provider service.
 	ProviderProperties *ProviderProperties `locationName:"providerProperties" type:"structure"`
 
-	// The type of matching. There are two types of matching: RULE_MATCHING and
-	// ML_MATCHING.
+	// The type of matching. There are three types of matching: RULE_MATCHING, ML_MATCHING,
+	// and PROVIDER.
 	//
 	// ResolutionType is a required field
 	ResolutionType *string `locationName:"resolutionType" type:"string" required:"true" enum:"ResolutionType"`
@@ -6977,7 +9518,7 @@ func (s *RuleBasedProperties) SetRules(v []*Rule) *RuleBasedProperties {
 	return s
 }
 
-// An object containing FieldName, Type, GroupName, and MatchKey.
+// An object containing FieldName, Type, GroupName, MatchKey, and SubType.
 type SchemaInputAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -6986,19 +9527,21 @@ type SchemaInputAttribute struct {
 	// FieldName is a required field
 	FieldName *string `locationName:"fieldName" type:"string" required:"true"`
 
-	// Instruct Entity Resolution to combine several columns into a unified column
-	// with the identical attribute type. For example, when working with columns
-	// such as first_name, middle_name, and last_name, assigning them a common GroupName
-	// will prompt Entity Resolution to concatenate them into a single value.
+	// A string that instructs Entity Resolution to combine several columns into
+	// a unified column with the identical attribute type.
+	//
+	// For example, when working with columns such as first_name, middle_name, and
+	// last_name, assigning them a common groupName will prompt Entity Resolution
+	// to concatenate them into a single value.
 	GroupName *string `locationName:"groupName" type:"string"`
 
 	// A key that allows grouping of multiple input attributes into a unified matching
-	// group. For example, let's consider a scenario where the source table contains
-	// various addresses, such as business_address and shipping_address. By assigning
-	// the MatchKey Address to both attributes, Entity Resolution will match records
-	// across these fields to create a consolidated matching group. If no MatchKey
-	// is specified for a column, it won't be utilized for matching purposes but
-	// will still be included in the output table.
+	// group. For example, consider a scenario where the source table contains various
+	// addresses, such as business_address and shipping_address. By assigning a
+	// matchKey called address to both attributes, Entity Resolution will match
+	// records across these fields to create a consolidated matching group. If no
+	// matchKey is specified for a column, it won't be utilized for matching purposes
+	// but will still be included in the output table.
 	MatchKey *string `locationName:"matchKey" type:"string"`
 
 	// The subtype of the attribute, selected from a list of values.
@@ -7153,12 +9696,15 @@ func (s *SchemaMappingSummary) SetUpdatedAt(v time.Time) *SchemaMappingSummary {
 }
 
 type StartIdMappingJobInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
+
+	// A list of OutputSource objects.
+	OutputSourceConfig []*IdMappingJobOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The name of the ID mapping job to be retrieved.
 	//
 	// WorkflowName is a required field
-	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+	WorkflowName *string `location:"uri" locationName:"workflowName" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -7182,17 +9728,36 @@ func (s StartIdMappingJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartIdMappingJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartIdMappingJobInput"}
+	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
+	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
 	}
 	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
 	}
+	if s.OutputSourceConfig != nil {
+		for i, v := range s.OutputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *StartIdMappingJobInput) SetOutputSourceConfig(v []*IdMappingJobOutputSource) *StartIdMappingJobInput {
+	s.OutputSourceConfig = v
+	return s
 }
 
 // SetWorkflowName sets the WorkflowName field's value.
@@ -7208,6 +9773,9 @@ type StartIdMappingJobOutput struct {
 	//
 	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
+
+	// A list of OutputSource objects.
+	OutputSourceConfig []*IdMappingJobOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -7231,6 +9799,12 @@ func (s StartIdMappingJobOutput) GoString() string {
 // SetJobId sets the JobId field's value.
 func (s *StartIdMappingJobOutput) SetJobId(v string) *StartIdMappingJobOutput {
 	s.JobId = &v
+	return s
+}
+
+// SetOutputSourceConfig sets the OutputSourceConfig field's value.
+func (s *StartIdMappingJobOutput) SetOutputSourceConfig(v []*IdMappingJobOutputSource) *StartIdMappingJobOutput {
+	s.OutputSourceConfig = v
 	return s
 }
 
@@ -7568,15 +10142,13 @@ type UpdateIdMappingWorkflowInput struct {
 
 	// A list of OutputSource objects, each of which contains fields OutputS3Path
 	// and KMSArn.
-	//
-	// OutputSourceConfig is a required field
-	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
-	// this role to access resources on your behalf.
+	// this role to access Amazon Web Services resources on your behalf.
 	//
 	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
 
 	// The name of the workflow.
 	//
@@ -7614,14 +10186,14 @@ func (s *UpdateIdMappingWorkflowInput) Validate() error {
 	if s.InputSourceConfig != nil && len(s.InputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InputSourceConfig", 1))
 	}
-	if s.OutputSourceConfig == nil {
-		invalidParams.Add(request.NewErrParamRequired("OutputSourceConfig"))
-	}
 	if s.OutputSourceConfig != nil && len(s.OutputSourceConfig) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputSourceConfig", 1))
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
 	}
 	if s.WorkflowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
@@ -7715,18 +10287,16 @@ type UpdateIdMappingWorkflowOutput struct {
 
 	// A list of OutputSource objects, each of which contains fields OutputS3Path
 	// and KMSArn.
-	//
-	// OutputSourceConfig is a required field
-	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list" required:"true"`
+	OutputSourceConfig []*IdMappingWorkflowOutputSource `locationName:"outputSourceConfig" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
-	// this role to access resources on your behalf.
+	// this role to access Amazon Web Services resources on your behalf.
 	//
 	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the workflow role. Entity Resolution assumes
-	// this role to access resources on your behalf.
+	// this role to access Amazon Web Services resources on your behalf.
 	//
 	// WorkflowArn is a required field
 	WorkflowArn *string `locationName:"workflowArn" type:"string" required:"true"`
@@ -7794,6 +10364,242 @@ func (s *UpdateIdMappingWorkflowOutput) SetWorkflowArn(v string) *UpdateIdMappin
 // SetWorkflowName sets the WorkflowName field's value.
 func (s *UpdateIdMappingWorkflowOutput) SetWorkflowName(v string) *UpdateIdMappingWorkflowOutput {
 	s.WorkflowName = &v
+	return s
+}
+
+type UpdateIdNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// Determines the properties of IdMappingWorkflow where this IdNamespace can
+	// be used as a Source or a Target.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowProperties `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `location:"uri" locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	InputSourceConfig []*IdNamespaceInputSource `locationName:"inputSourceConfig" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access the resources defined in this IdNamespace on your behalf
+	// as part of a workflow run.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIdNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIdNamespaceInput"}
+	if s.IdMappingWorkflowProperties != nil && len(s.IdMappingWorkflowProperties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdMappingWorkflowProperties", 1))
+	}
+	if s.IdNamespaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdNamespaceName"))
+	}
+	if s.IdNamespaceName != nil && len(*s.IdNamespaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdNamespaceName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.IdMappingWorkflowProperties != nil {
+		for i, v := range s.IdMappingWorkflowProperties {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IdMappingWorkflowProperties", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InputSourceConfig != nil {
+		for i, v := range s.InputSourceConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputSourceConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIdNamespaceInput) SetDescription(v string) *UpdateIdNamespaceInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *UpdateIdNamespaceInput) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowProperties) *UpdateIdNamespaceInput {
+	s.IdMappingWorkflowProperties = v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *UpdateIdNamespaceInput) SetIdNamespaceName(v string) *UpdateIdNamespaceInput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *UpdateIdNamespaceInput) SetInputSourceConfig(v []*IdNamespaceInputSource) *UpdateIdNamespaceInput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateIdNamespaceInput) SetRoleArn(v string) *UpdateIdNamespaceInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdateIdNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the ID namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The description of the ID namespace.
+	Description *string `locationName:"description" type:"string"`
+
+	// Determines the properties of IdMappingWorkflow where this IdNamespace can
+	// be used as a Source or a Target.
+	IdMappingWorkflowProperties []*IdNamespaceIdMappingWorkflowProperties `locationName:"idMappingWorkflowProperties" min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the ID namespace.
+	//
+	// IdNamespaceArn is a required field
+	IdNamespaceArn *string `locationName:"idNamespaceArn" type:"string" required:"true"`
+
+	// The name of the ID namespace.
+	//
+	// IdNamespaceName is a required field
+	IdNamespaceName *string `locationName:"idNamespaceName" min:"1" type:"string" required:"true"`
+
+	// A list of InputSource objects, which have the fields InputSourceARN and SchemaName.
+	InputSourceConfig []*IdNamespaceInputSource `locationName:"inputSourceConfig" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes
+	// this role to access the resources defined in this IdNamespace on your behalf
+	// as part of a workflow run.
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string"`
+
+	// The type of ID namespace. There are two types: SOURCE and TARGET.
+	//
+	// The SOURCE contains configurations for sourceId data that will be processed
+	// in an ID mapping workflow.
+	//
+	// The TARGET contains a configuration of targetId to which all sourceIds will
+	// resolve to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"IdNamespaceType"`
+
+	// The timestamp of when the ID namespace was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIdNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateIdNamespaceOutput) SetCreatedAt(v time.Time) *UpdateIdNamespaceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateIdNamespaceOutput) SetDescription(v string) *UpdateIdNamespaceOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIdMappingWorkflowProperties sets the IdMappingWorkflowProperties field's value.
+func (s *UpdateIdNamespaceOutput) SetIdMappingWorkflowProperties(v []*IdNamespaceIdMappingWorkflowProperties) *UpdateIdNamespaceOutput {
+	s.IdMappingWorkflowProperties = v
+	return s
+}
+
+// SetIdNamespaceArn sets the IdNamespaceArn field's value.
+func (s *UpdateIdNamespaceOutput) SetIdNamespaceArn(v string) *UpdateIdNamespaceOutput {
+	s.IdNamespaceArn = &v
+	return s
+}
+
+// SetIdNamespaceName sets the IdNamespaceName field's value.
+func (s *UpdateIdNamespaceOutput) SetIdNamespaceName(v string) *UpdateIdNamespaceOutput {
+	s.IdNamespaceName = &v
+	return s
+}
+
+// SetInputSourceConfig sets the InputSourceConfig field's value.
+func (s *UpdateIdNamespaceOutput) SetInputSourceConfig(v []*IdNamespaceInputSource) *UpdateIdNamespaceOutput {
+	s.InputSourceConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateIdNamespaceOutput) SetRoleArn(v string) *UpdateIdNamespaceOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateIdNamespaceOutput) SetType(v string) *UpdateIdNamespaceOutput {
+	s.Type = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateIdNamespaceOutput) SetUpdatedAt(v time.Time) *UpdateIdNamespaceOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -8300,6 +11106,22 @@ func IdMappingType_Values() []string {
 }
 
 const (
+	// IdNamespaceTypeSource is a IdNamespaceType enum value
+	IdNamespaceTypeSource = "SOURCE"
+
+	// IdNamespaceTypeTarget is a IdNamespaceType enum value
+	IdNamespaceTypeTarget = "TARGET"
+)
+
+// IdNamespaceType_Values returns all elements of the IdNamespaceType enum
+func IdNamespaceType_Values() []string {
+	return []string{
+		IdNamespaceTypeSource,
+		IdNamespaceTypeTarget,
+	}
+}
+
+const (
 	// IncrementalRunTypeImmediate is a IncrementalRunType enum value
 	IncrementalRunTypeImmediate = "IMMEDIATE"
 )
@@ -8456,5 +11278,21 @@ func ServiceType_Values() []string {
 	return []string{
 		ServiceTypeAssignment,
 		ServiceTypeIdMapping,
+	}
+}
+
+const (
+	// StatementEffectAllow is a StatementEffect enum value
+	StatementEffectAllow = "Allow"
+
+	// StatementEffectDeny is a StatementEffect enum value
+	StatementEffectDeny = "Deny"
+)
+
+// StatementEffect_Values returns all elements of the StatementEffect enum
+func StatementEffect_Values() []string {
+	return []string{
+		StatementEffectAllow,
+		StatementEffectDeny,
 	}
 }

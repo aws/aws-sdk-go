@@ -1174,7 +1174,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "InstanceArn":{"shape":"IdentityCenterInstanceArn"},
-        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"}
+        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"}
       }
     },
     "CreateLakeFormationIdentityCenterConfigurationResponse":{
@@ -1414,7 +1415,9 @@
         "CatalogId":{"shape":"CatalogIdString"},
         "InstanceArn":{"shape":"IdentityCenterInstanceArn"},
         "ApplicationArn":{"shape":"ApplicationArn"},
-        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"}
+        "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"},
+        "ResourceShare":{"shape":"RAMResourceShareArn"}
       }
     },
     "DescribeResourceRequest":{
@@ -2773,6 +2776,7 @@
       "type":"structure",
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
+        "ShareRecipients":{"shape":"DataLakePrincipalList"},
         "ApplicationStatus":{"shape":"ApplicationStatus"},
         "ExternalFiltering":{"shape":"ExternalFilteringConfiguration"}
       }

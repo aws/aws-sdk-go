@@ -33,6 +33,12 @@
       "refs": {
       }
     },
+    "AdMarkerDash": {
+      "base": null,
+      "refs": {
+        "ScteDash$AdMarkerDash": "<p>Choose how ad markers are included in the packaged content. If you include ad markers in the content stream in your upstream encoders, then you need to inform MediaPackage what to do with the ad markers in the output.</p> <p>Value description:</p> <ul> <li> <p> <code>Binary</code> - The SCTE-35 marker is expressed as a hex-string (Base64 string) rather than full XML.</p> </li> <li> <p> <code>XML</code> - The SCTE marker is expressed fully in XML.</p> </li> </ul>"
+      }
+    },
     "AdMarkerHls": {
       "base": null,
       "refs": {
@@ -119,6 +125,43 @@
       "refs": {
       }
     },
+    "CreateDashManifestConfiguration": {
+      "base": "<p>Create a DASH manifest configuration.</p>",
+      "refs": {
+        "CreateDashManifests$member": null
+      }
+    },
+    "CreateDashManifestConfigurationManifestWindowSecondsInteger": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$ManifestWindowSeconds": "<p>The total duration (in seconds) of the manifest's content.</p>"
+      }
+    },
+    "CreateDashManifestConfigurationMinBufferTimeSecondsInteger": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$MinBufferTimeSeconds": "<p>Minimum amount of content (in seconds) that a player must keep available in the buffer.</p>"
+      }
+    },
+    "CreateDashManifestConfigurationMinUpdatePeriodSecondsInteger": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$MinUpdatePeriodSeconds": "<p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.</p>"
+      }
+    },
+    "CreateDashManifestConfigurationSuggestedPresentationDelaySecondsInteger": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$SuggestedPresentationDelaySeconds": "<p>The amount of time (in seconds) that the player should be from the end of the manifest.</p>"
+      }
+    },
+    "CreateDashManifests": {
+      "base": null,
+      "refs": {
+        "CreateOriginEndpointRequest$DashManifests": "<p>A DASH manifest configuration.</p>",
+        "UpdateOriginEndpointRequest$DashManifests": "<p>A DASH manifest configuration.</p>"
+      }
+    },
     "CreateHlsManifestConfiguration": {
       "base": "<p>Create an HTTP live streaming (HLS) manifest configuration.</p>",
       "refs": {
@@ -183,6 +226,52 @@
     "CreateOriginEndpointResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DashDrmSignaling": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$DrmSignaling": "<p>Determines how the DASH manifest signals the DRM content.</p>",
+        "GetDashManifestConfiguration$DrmSignaling": "<p>Determines how the DASH manifest signals the DRM content.</p>"
+      }
+    },
+    "DashPeriodTrigger": {
+      "base": null,
+      "refs": {
+        "DashPeriodTriggers$member": null
+      }
+    },
+    "DashPeriodTriggers": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$PeriodTriggers": "<p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Type <code>ADS</code> to indicate that AWS Elemental MediaPackage must create periods in the output manifest that correspond to SCTE-35 ad markers in the input source. Leave this value empty to indicate that the manifest is contained all in one period. For more information about periods in the DASH manifest, see <a href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>",
+        "GetDashManifestConfiguration$PeriodTriggers": "<p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period. For more information about periods in the DASH manifest, see <a href=\"https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html\">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>"
+      }
+    },
+    "DashSegmentTemplateFormat": {
+      "base": null,
+      "refs": {
+        "CreateDashManifestConfiguration$SegmentTemplateFormat": "<p>Determines the type of variable used in the <code>media</code> URL of the <code>SegmentTemplate</code> tag in the manifest. Also specifies if segment timeline information is included in <code>SegmentTimeline</code> or <code>SegmentTemplate</code>.</p> <p>Value description:</p> <ul> <li> <p> <code>NUMBER_WITH_TIMELINE</code> - The <code>$Number$</code> variable is used in the <code>media</code> URL. The value of this variable is the sequential number of the segment. A full <code>SegmentTimeline</code> object is presented in each <code>SegmentTemplate</code>.</p> </li> </ul>",
+        "GetDashManifestConfiguration$SegmentTemplateFormat": "<p>Determines the type of variable used in the <code>media</code> URL of the <code>SegmentTemplate</code> tag in the manifest. Also specifies if segment timeline information is included in <code>SegmentTimeline</code> or <code>SegmentTemplate</code>.</p> <p>Value description:</p> <ul> <li> <p> <code>NUMBER_WITH_TIMELINE</code> - The <code>$Number$</code> variable is used in the <code>media</code> URL. The value of this variable is the sequential number of the segment. A full <code>SegmentTimeline</code> object is presented in each <code>SegmentTemplate</code>.</p> </li> </ul>"
+      }
+    },
+    "DashUtcTiming": {
+      "base": "<p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>",
+      "refs": {
+        "CreateDashManifestConfiguration$UtcTiming": "<p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>",
+        "GetDashManifestConfiguration$UtcTiming": "<p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>"
+      }
+    },
+    "DashUtcTimingMode": {
+      "base": null,
+      "refs": {
+        "DashUtcTiming$TimingMode": "<p>The UTC timing mode.</p>"
+      }
+    },
+    "DashUtcTimingTimingSourceString": {
+      "base": null,
+      "refs": {
+        "DashUtcTiming$TimingSource": "<p>The the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.</p>"
       }
     },
     "DeleteChannelGroupRequest": {
@@ -291,8 +380,10 @@
     "FilterConfiguration": {
       "base": "<p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>",
       "refs": {
+        "CreateDashManifestConfiguration$FilterConfiguration": null,
         "CreateHlsManifestConfiguration$FilterConfiguration": null,
         "CreateLowLatencyHlsManifestConfiguration$FilterConfiguration": null,
+        "GetDashManifestConfiguration$FilterConfiguration": null,
         "GetHlsManifestConfiguration$FilterConfiguration": null,
         "GetLowLatencyHlsManifestConfiguration$FilterConfiguration": null
       }
@@ -337,6 +428,20 @@
     "GetChannelResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "GetDashManifestConfiguration": {
+      "base": "<p>Retrieve the DASH manifest configuration.</p>",
+      "refs": {
+        "GetDashManifests$member": null
+      }
+    },
+    "GetDashManifests": {
+      "base": null,
+      "refs": {
+        "CreateOriginEndpointResponse$DashManifests": "<p>A DASH manifest configuration.</p>",
+        "GetOriginEndpointResponse$DashManifests": "<p>A DASH manifest configuration.</p>",
+        "UpdateOriginEndpointResponse$DashManifests": "<p>A DASH manifest configuration.</p>"
       }
     },
     "GetHlsManifestConfiguration": {
@@ -413,6 +518,10 @@
       "base": null,
       "refs": {
         "CreateOriginEndpointResponse$StartoverWindowSeconds": "<p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window.</p>",
+        "GetDashManifestConfiguration$ManifestWindowSeconds": "<p>The total duration (in seconds) of the manifest's content.</p>",
+        "GetDashManifestConfiguration$MinUpdatePeriodSeconds": "<p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.</p>",
+        "GetDashManifestConfiguration$MinBufferTimeSeconds": "<p>Minimum amount of content (in seconds) that a player must keep available in the buffer.</p>",
+        "GetDashManifestConfiguration$SuggestedPresentationDelaySeconds": "<p>The amount of time (in seconds) that the player should be from the end of the manifest.</p>",
         "GetHlsManifestConfiguration$ManifestWindowSeconds": "<p>The total duration (in seconds) of the manifest's content.</p>",
         "GetHlsManifestConfiguration$ProgramDateTimeIntervalSeconds": "<p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval, EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest. The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player. ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p> <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>",
         "GetLowLatencyHlsManifestConfiguration$ManifestWindowSeconds": "<p>The total duration (in seconds) of the manifest's content.</p>",
@@ -444,6 +553,18 @@
     "ListChannelsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListDashManifestConfiguration": {
+      "base": "<p>List the DASH manifest configuration.</p>",
+      "refs": {
+        "ListDashManifests$member": null
+      }
+    },
+    "ListDashManifests": {
+      "base": null,
+      "refs": {
+        "OriginEndpointListConfiguration$DashManifests": "<p>A DASH manifest configuration.</p>"
       }
     },
     "ListHlsManifestConfiguration": {
@@ -501,6 +622,7 @@
     "ManifestName": {
       "base": null,
       "refs": {
+        "CreateDashManifestConfiguration$ManifestName": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint.</p>",
         "CreateHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "CreateHlsManifestConfiguration$ChildManifestName": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index, with an added suffix to distinguish it from the manifest name. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "CreateLowLatencyHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
@@ -611,6 +733,7 @@
         "GetChannelPolicyRequest$ChannelName": "<p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>",
         "GetChannelRequest$ChannelGroupName": "<p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>",
         "GetChannelRequest$ChannelName": "<p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>",
+        "GetDashManifestConfiguration$ManifestName": "<p>A short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. </p>",
         "GetHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "GetHlsManifestConfiguration$ChildManifestName": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "GetLowLatencyHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
@@ -628,6 +751,7 @@
         "GetOriginEndpointResponse$ChannelName": "<p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>",
         "GetOriginEndpointResponse$OriginEndpointName": "<p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel.</p>",
         "ListChannelsRequest$ChannelGroupName": "<p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>",
+        "ListDashManifestConfiguration$ManifestName": "<p>A short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. </p>",
         "ListHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "ListHlsManifestConfiguration$ChildManifestName": "<p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
         "ListLowLatencyHlsManifestConfiguration$ManifestName": "<p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>",
@@ -668,6 +792,13 @@
       "base": "<p>The SCTE configuration.</p>",
       "refs": {
         "Segment$Scte": "<p>The SCTE configuration options in the segment settings.</p>"
+      }
+    },
+    "ScteDash": {
+      "base": "<p>The SCTE configuration.</p>",
+      "refs": {
+        "CreateDashManifestConfiguration$ScteDash": "<p>The SCTE configuration.</p>",
+        "GetDashManifestConfiguration$ScteDash": "<p>The SCTE configuration.</p>"
       }
     },
     "ScteFilter": {
@@ -773,6 +904,7 @@
         "GetChannelResponse$Arn": "<p>The Amazon Resource Name (ARN) associated with the resource.</p>",
         "GetChannelResponse$ChannelName": "<p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>",
         "GetChannelResponse$ChannelGroupName": "<p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>",
+        "GetDashManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "GetHlsManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "GetLowLatencyHlsManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "GetOriginEndpointResponse$Arn": "<p>The Amazon Resource Name (ARN) associated with the resource.</p>",
@@ -783,6 +915,7 @@
         "ListChannelGroupsResponse$NextToken": "<p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>",
         "ListChannelsRequest$NextToken": "<p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>",
         "ListChannelsResponse$NextToken": "<p>The pagination token from the GET list request.</p>",
+        "ListDashManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "ListHlsManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "ListLowLatencyHlsManifestConfiguration$Url": "<p>The egress domain URL for stream delivery from MediaPackage.</p>",
         "ListOriginEndpointsRequest$NextToken": "<p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>",

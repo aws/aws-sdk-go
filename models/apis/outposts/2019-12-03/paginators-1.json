@@ -6,11 +6,23 @@
       "limit_key": "MaxResults",
       "result_key": "InstanceTypes"
     },
+    "GetOutpostSupportedInstanceTypes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "InstanceTypes"
+    },
     "ListAssets": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Assets"
+    },
+    "ListCapacityTasks": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "CapacityTasks"
     },
     "ListCatalogItems": {
       "input_token": "NextToken",

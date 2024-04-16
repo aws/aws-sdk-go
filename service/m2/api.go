@@ -2107,6 +2107,101 @@ func (c *M2) ListBatchJobExecutionsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListBatchJobRestartPoints = "ListBatchJobRestartPoints"
+
+// ListBatchJobRestartPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBatchJobRestartPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBatchJobRestartPoints for more information on using the ListBatchJobRestartPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListBatchJobRestartPointsRequest method.
+//	req, resp := client.ListBatchJobRestartPointsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobRestartPoints
+func (c *M2) ListBatchJobRestartPointsRequest(input *ListBatchJobRestartPointsInput) (req *request.Request, output *ListBatchJobRestartPointsOutput) {
+	op := &request.Operation{
+		Name:       opListBatchJobRestartPoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{applicationId}/batch-job-executions/{executionId}/steps",
+	}
+
+	if input == nil {
+		input = &ListBatchJobRestartPointsInput{}
+	}
+
+	output = &ListBatchJobRestartPointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBatchJobRestartPoints API operation for AWSMainframeModernization.
+//
+// Lists all the job steps for JCL files to restart a batch job. This is only
+// applicable for Micro Focus engine with versions 8.0.6 and above.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSMainframeModernization's
+// API operation ListBatchJobRestartPoints for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The number of requests made exceeds the limit.
+//
+//   - AccessDeniedException
+//     The account or role doesn't have the right permissions to make the request.
+//
+//   - ConflictException
+//     The parameters provided in the request conflict with existing resources.
+//
+//   - ValidationException
+//     One or more parameters provided in the request is not valid.
+//
+//   - InternalServerException
+//     An unexpected error occurred during the processing of the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobRestartPoints
+func (c *M2) ListBatchJobRestartPoints(input *ListBatchJobRestartPointsInput) (*ListBatchJobRestartPointsOutput, error) {
+	req, out := c.ListBatchJobRestartPointsRequest(input)
+	return out, req.Send()
+}
+
+// ListBatchJobRestartPointsWithContext is the same as ListBatchJobRestartPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBatchJobRestartPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *M2) ListBatchJobRestartPointsWithContext(ctx aws.Context, input *ListBatchJobRestartPointsInput, opts ...request.Option) (*ListBatchJobRestartPointsOutput, error) {
+	req, out := c.ListBatchJobRestartPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDataSetImportHistory = "ListDataSetImportHistory"
 
 // ListDataSetImportHistoryRequest generates a "aws/request.Request" representing the
@@ -4155,6 +4250,10 @@ type BatchJobIdentifier struct {
 	// Specifies a file associated with a specific batch job.
 	FileBatchJobIdentifier *FileBatchJobIdentifier `locationName:"fileBatchJobIdentifier" type:"structure"`
 
+	// Specifies the required information for restart, including execution ID and
+	// jobsteprestartmarker.
+	RestartBatchJobIdentifier *RestartBatchJobIdentifier `locationName:"restartBatchJobIdentifier" type:"structure"`
+
 	// Specifies an Amazon S3 location that identifies the batch jobs that you want
 	// to run. Use this identifier to run ad hoc batch jobs.
 	S3BatchJobIdentifier *S3BatchJobIdentifier `locationName:"s3BatchJobIdentifier" type:"structure"`
@@ -4190,6 +4289,11 @@ func (s *BatchJobIdentifier) Validate() error {
 			invalidParams.AddNested("FileBatchJobIdentifier", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RestartBatchJobIdentifier != nil {
+		if err := s.RestartBatchJobIdentifier.Validate(); err != nil {
+			invalidParams.AddNested("RestartBatchJobIdentifier", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3BatchJobIdentifier != nil {
 		if err := s.S3BatchJobIdentifier.Validate(); err != nil {
 			invalidParams.AddNested("S3BatchJobIdentifier", err.(request.ErrInvalidParams))
@@ -4210,6 +4314,12 @@ func (s *BatchJobIdentifier) Validate() error {
 // SetFileBatchJobIdentifier sets the FileBatchJobIdentifier field's value.
 func (s *BatchJobIdentifier) SetFileBatchJobIdentifier(v *FileBatchJobIdentifier) *BatchJobIdentifier {
 	s.FileBatchJobIdentifier = v
+	return s
+}
+
+// SetRestartBatchJobIdentifier sets the RestartBatchJobIdentifier field's value.
+func (s *BatchJobIdentifier) SetRestartBatchJobIdentifier(v *RestartBatchJobIdentifier) *BatchJobIdentifier {
+	s.RestartBatchJobIdentifier = v
 	return s
 }
 
@@ -7182,6 +7292,9 @@ type GetBatchJobExecutionOutput struct {
 	// The name of this batch job.
 	JobName *string `locationName:"jobName" type:"string"`
 
+	// The restart steps information for the most recent restart operation.
+	JobStepRestartMarker *JobStepRestartMarker `locationName:"jobStepRestartMarker" type:"structure"`
+
 	// The type of job.
 	JobType *string `locationName:"jobType" type:"string" enum:"BatchJobType"`
 
@@ -7258,6 +7371,12 @@ func (s *GetBatchJobExecutionOutput) SetJobId(v string) *GetBatchJobExecutionOut
 // SetJobName sets the JobName field's value.
 func (s *GetBatchJobExecutionOutput) SetJobName(v string) *GetBatchJobExecutionOutput {
 	s.JobName = &v
+	return s
+}
+
+// SetJobStepRestartMarker sets the JobStepRestartMarker field's value.
+func (s *GetBatchJobExecutionOutput) SetJobStepRestartMarker(v *JobStepRestartMarker) *GetBatchJobExecutionOutput {
+	s.JobStepRestartMarker = v
 	return s
 }
 
@@ -8258,6 +8377,157 @@ func (s *JobIdentifier) SetScriptName(v string) *JobIdentifier {
 	return s
 }
 
+// Provides information related to a job step.
+type JobStep struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a procedure step.
+	ProcStepName *string `locationName:"procStepName" type:"string"`
+
+	// The number of a procedure step.
+	ProcStepNumber *int64 `locationName:"procStepNumber" type:"integer"`
+
+	// The condition code of a step.
+	StepCondCode *string `locationName:"stepCondCode" type:"string"`
+
+	// The name of a step.
+	StepName *string `locationName:"stepName" type:"string"`
+
+	// The number of a step.
+	StepNumber *int64 `locationName:"stepNumber" type:"integer"`
+
+	// Specifies if a step can be restarted or not.
+	StepRestartable *bool `locationName:"stepRestartable" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStep) GoString() string {
+	return s.String()
+}
+
+// SetProcStepName sets the ProcStepName field's value.
+func (s *JobStep) SetProcStepName(v string) *JobStep {
+	s.ProcStepName = &v
+	return s
+}
+
+// SetProcStepNumber sets the ProcStepNumber field's value.
+func (s *JobStep) SetProcStepNumber(v int64) *JobStep {
+	s.ProcStepNumber = &v
+	return s
+}
+
+// SetStepCondCode sets the StepCondCode field's value.
+func (s *JobStep) SetStepCondCode(v string) *JobStep {
+	s.StepCondCode = &v
+	return s
+}
+
+// SetStepName sets the StepName field's value.
+func (s *JobStep) SetStepName(v string) *JobStep {
+	s.StepName = &v
+	return s
+}
+
+// SetStepNumber sets the StepNumber field's value.
+func (s *JobStep) SetStepNumber(v int64) *JobStep {
+	s.StepNumber = &v
+	return s
+}
+
+// SetStepRestartable sets the StepRestartable field's value.
+func (s *JobStep) SetStepRestartable(v bool) *JobStep {
+	s.StepRestartable = &v
+	return s
+}
+
+// Provides restart step information for the most recent restart operation.
+type JobStepRestartMarker struct {
+	_ struct{} `type:"structure"`
+
+	// The procedure step name that a job was restarted from.
+	FromProcStep *string `locationName:"fromProcStep" type:"string"`
+
+	// The step name that a batch job restart was from.
+	//
+	// FromStep is a required field
+	FromStep *string `locationName:"fromStep" type:"string" required:"true"`
+
+	// The procedure step name that a batch job was restarted to.
+	ToProcStep *string `locationName:"toProcStep" type:"string"`
+
+	// The step name that a job was restarted to.
+	ToStep *string `locationName:"toStep" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStepRestartMarker) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobStepRestartMarker) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobStepRestartMarker) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobStepRestartMarker"}
+	if s.FromStep == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromStep"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromProcStep sets the FromProcStep field's value.
+func (s *JobStepRestartMarker) SetFromProcStep(v string) *JobStepRestartMarker {
+	s.FromProcStep = &v
+	return s
+}
+
+// SetFromStep sets the FromStep field's value.
+func (s *JobStepRestartMarker) SetFromStep(v string) *JobStepRestartMarker {
+	s.FromStep = &v
+	return s
+}
+
+// SetToProcStep sets the ToProcStep field's value.
+func (s *JobStepRestartMarker) SetToProcStep(v string) *JobStepRestartMarker {
+	s.ToProcStep = &v
+	return s
+}
+
+// SetToStep sets the ToStep field's value.
+func (s *JobStepRestartMarker) SetToStep(v string) *JobStepRestartMarker {
+	s.ToStep = &v
+	return s
+}
+
 type ListApplicationVersionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8776,6 +9046,104 @@ func (s *ListBatchJobExecutionsOutput) SetBatchJobExecutions(v []*BatchJobExecut
 // SetNextToken sets the NextToken field's value.
 func (s *ListBatchJobExecutionsOutput) SetNextToken(v string) *ListBatchJobExecutionsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListBatchJobRestartPointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the application.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
+
+	// The unique identifier of each batch job execution.
+	//
+	// ExecutionId is a required field
+	ExecutionId *string `location:"uri" locationName:"executionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchJobRestartPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchJobRestartPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBatchJobRestartPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBatchJobRestartPointsInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.ExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionId"))
+	}
+	if s.ExecutionId != nil && len(*s.ExecutionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ListBatchJobRestartPointsInput) SetApplicationId(v string) *ListBatchJobRestartPointsInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *ListBatchJobRestartPointsInput) SetExecutionId(v string) *ListBatchJobRestartPointsInput {
+	s.ExecutionId = &v
+	return s
+}
+
+type ListBatchJobRestartPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns all the batch job steps and related information for a batch job that
+	// previously ran.
+	BatchJobSteps []*JobStep `locationName:"batchJobSteps" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchJobRestartPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchJobRestartPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchJobSteps sets the BatchJobSteps field's value.
+func (s *ListBatchJobRestartPointsOutput) SetBatchJobSteps(v []*JobStep) *ListBatchJobRestartPointsOutput {
+	s.BatchJobSteps = v
 	return s
 }
 
@@ -10006,6 +10374,73 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An identifier for the StartBatchJob API to show that it is a restart operation.
+type RestartBatchJobIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The executionId from the StartBatchJob response when the job ran for the
+	// first time.
+	//
+	// ExecutionId is a required field
+	ExecutionId *string `locationName:"executionId" type:"string" required:"true"`
+
+	// The restart step information for the most recent restart operation.
+	//
+	// JobStepRestartMarker is a required field
+	JobStepRestartMarker *JobStepRestartMarker `locationName:"jobStepRestartMarker" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartBatchJobIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RestartBatchJobIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RestartBatchJobIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RestartBatchJobIdentifier"}
+	if s.ExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionId"))
+	}
+	if s.JobStepRestartMarker == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobStepRestartMarker"))
+	}
+	if s.JobStepRestartMarker != nil {
+		if err := s.JobStepRestartMarker.Validate(); err != nil {
+			invalidParams.AddNested("JobStepRestartMarker", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *RestartBatchJobIdentifier) SetExecutionId(v string) *RestartBatchJobIdentifier {
+	s.ExecutionId = &v
+	return s
+}
+
+// SetJobStepRestartMarker sets the JobStepRestartMarker field's value.
+func (s *RestartBatchJobIdentifier) SetJobStepRestartMarker(v *JobStepRestartMarker) *RestartBatchJobIdentifier {
+	s.JobStepRestartMarker = v
+	return s
 }
 
 // A batch job identifier in which the batch jobs to run are identified by an
@@ -11564,6 +11999,9 @@ const (
 	// BatchJobExecutionStatusFailed is a BatchJobExecutionStatus enum value
 	BatchJobExecutionStatusFailed = "Failed"
 
+	// BatchJobExecutionStatusPurged is a BatchJobExecutionStatus enum value
+	BatchJobExecutionStatusPurged = "Purged"
+
 	// BatchJobExecutionStatusSucceededWithWarning is a BatchJobExecutionStatus enum value
 	BatchJobExecutionStatusSucceededWithWarning = "Succeeded With Warning"
 )
@@ -11579,6 +12017,7 @@ func BatchJobExecutionStatus_Values() []string {
 		BatchJobExecutionStatusCancelled,
 		BatchJobExecutionStatusSucceeded,
 		BatchJobExecutionStatusFailed,
+		BatchJobExecutionStatusPurged,
 		BatchJobExecutionStatusSucceededWithWarning,
 	}
 }
@@ -11702,6 +12141,12 @@ const (
 	// ValidationExceptionReasonCannotParse is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCannotParse = "cannotParse"
 
+	// ValidationExceptionReasonFeatureNotAvailable is a ValidationExceptionReason enum value
+	ValidationExceptionReasonFeatureNotAvailable = "featureNotAvailable"
+
+	// ValidationExceptionReasonUnsupportedEngineVersion is a ValidationExceptionReason enum value
+	ValidationExceptionReasonUnsupportedEngineVersion = "unsupportedEngineVersion"
+
 	// ValidationExceptionReasonFieldValidationFailed is a ValidationExceptionReason enum value
 	ValidationExceptionReasonFieldValidationFailed = "fieldValidationFailed"
 
@@ -11714,6 +12159,8 @@ func ValidationExceptionReason_Values() []string {
 	return []string{
 		ValidationExceptionReasonUnknownOperation,
 		ValidationExceptionReasonCannotParse,
+		ValidationExceptionReasonFeatureNotAvailable,
+		ValidationExceptionReasonUnsupportedEngineVersion,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
 	}

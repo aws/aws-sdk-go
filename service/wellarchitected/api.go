@@ -2517,6 +2517,94 @@ func (c *WellArchitected) GetConsolidatedReportPagesWithContext(ctx aws.Context,
 	return p.Err()
 }
 
+const opGetGlobalSettings = "GetGlobalSettings"
+
+// GetGlobalSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetGlobalSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGlobalSettings for more information on using the GetGlobalSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetGlobalSettingsRequest method.
+//	req, resp := client.GetGlobalSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/GetGlobalSettings
+func (c *WellArchitected) GetGlobalSettingsRequest(input *GetGlobalSettingsInput) (req *request.Request, output *GetGlobalSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetGlobalSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-settings",
+	}
+
+	if input == nil {
+		input = &GetGlobalSettingsInput{}
+	}
+
+	output = &GetGlobalSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGlobalSettings API operation for AWS Well-Architected Tool.
+//
+// Global settings for all workloads.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Well-Architected Tool's
+// API operation GetGlobalSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The user input is not valid.
+//
+//   - InternalServerException
+//     There is a problem with the Well-Architected Tool API service.
+//
+//   - AccessDeniedException
+//     User does not have sufficient access to perform this action.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/GetGlobalSettings
+func (c *WellArchitected) GetGlobalSettings(input *GetGlobalSettingsInput) (*GetGlobalSettingsOutput, error) {
+	req, out := c.GetGlobalSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetGlobalSettingsWithContext is the same as GetGlobalSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGlobalSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) GetGlobalSettingsWithContext(ctx aws.Context, input *GetGlobalSettingsInput, opts ...request.Option) (*GetGlobalSettingsOutput, error) {
+	req, out := c.GetGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetLens = "GetLens"
 
 // GetLensRequest generates a "aws/request.Request" representing the
@@ -4131,7 +4219,7 @@ func (c *WellArchitected) ListLensReviewImprovementsRequest(input *ListLensRevie
 
 // ListLensReviewImprovements API operation for AWS Well-Architected Tool.
 //
-// List lens review improvements.
+// List the improvements of a particular lens review.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6683,7 +6771,7 @@ func (c *WellArchitected) UpdateGlobalSettingsRequest(input *UpdateGlobalSetting
 
 // UpdateGlobalSettings API operation for AWS Well-Architected Tool.
 //
-// Updates whether the Amazon Web Services account is opted into organization
+// Update whether the Amazon Web Services account is opted into organization
 // sharing and discovery integration features.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6727,6 +6815,101 @@ func (c *WellArchitected) UpdateGlobalSettings(input *UpdateGlobalSettingsInput)
 // for more information on using Contexts.
 func (c *WellArchitected) UpdateGlobalSettingsWithContext(ctx aws.Context, input *UpdateGlobalSettingsInput, opts ...request.Option) (*UpdateGlobalSettingsOutput, error) {
 	req, out := c.UpdateGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateIntegration = "UpdateIntegration"
+
+// UpdateIntegrationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIntegration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIntegration for more information on using the UpdateIntegration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateIntegrationRequest method.
+//	req, resp := client.UpdateIntegrationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateIntegration
+func (c *WellArchitected) UpdateIntegrationRequest(input *UpdateIntegrationInput) (req *request.Request, output *UpdateIntegrationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIntegration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workloads/{WorkloadId}/updateIntegration",
+	}
+
+	if input == nil {
+		input = &UpdateIntegrationInput{}
+	}
+
+	output = &UpdateIntegrationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateIntegration API operation for AWS Well-Architected Tool.
+//
+// Update integration features.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Well-Architected Tool's
+// API operation UpdateIntegration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The user input is not valid.
+//
+//   - ConflictException
+//     The resource has already been processed, was deleted, or is too large.
+//
+//   - ResourceNotFoundException
+//     The requested resource was not found.
+//
+//   - AccessDeniedException
+//     User does not have sufficient access to perform this action.
+//
+//   - InternalServerException
+//     There is a problem with the Well-Architected Tool API service.
+//
+//   - ThrottlingException
+//     Request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpdateIntegration
+func (c *WellArchitected) UpdateIntegration(input *UpdateIntegrationInput) (*UpdateIntegrationOutput, error) {
+	req, out := c.UpdateIntegrationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIntegrationWithContext is the same as UpdateIntegration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIntegration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WellArchitected) UpdateIntegrationWithContext(ctx aws.Context, input *UpdateIntegrationInput, opts ...request.Option) (*UpdateIntegrationOutput, error) {
+	req, out := c.UpdateIntegrationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7560,6 +7743,9 @@ func (c *WellArchitected) UpgradeLensReviewRequest(input *UpgradeLensReviewInput
 //   - ThrottlingException
 //     Request was denied due to request throttling.
 //
+//   - ServiceQuotaExceededException
+//     The user has reached their resource quota.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpgradeLensReview
 func (c *WellArchitected) UpgradeLensReview(input *UpgradeLensReviewInput) (*UpgradeLensReviewOutput, error) {
 	req, out := c.UpgradeLensReviewRequest(input)
@@ -7654,6 +7840,9 @@ func (c *WellArchitected) UpgradeProfileVersionRequest(input *UpgradeProfileVers
 //
 //   - ThrottlingException
 //     Request was denied due to request throttling.
+//
+//   - ServiceQuotaExceededException
+//     The user has reached their resource quota.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wellarchitected-2020-03-31/UpgradeProfileVersion
 func (c *WellArchitected) UpgradeProfileVersion(input *UpgradeProfileVersionInput) (*UpgradeProfileVersionOutput, error) {
@@ -7837,6 +8026,155 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Account-level: Input for the Jira configuration.
+type AccountJiraConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Account-level: Configuration status of the Jira integration.
+	IntegrationStatus *string `type:"string" enum:"IntegrationStatusInput_"`
+
+	// Account-level: Jira issue management status.
+	IssueManagementStatus *string `type:"string" enum:"AccountJiraIssueManagementStatus"`
+
+	// Account-level: Jira issue management type.
+	IssueManagementType *string `type:"string" enum:"IssueManagementType"`
+
+	// Account-level: Jira project key to sync workloads to.
+	JiraProjectKey *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountJiraConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountJiraConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AccountJiraConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AccountJiraConfigurationInput_"}
+	if s.JiraProjectKey != nil && len(*s.JiraProjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JiraProjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntegrationStatus sets the IntegrationStatus field's value.
+func (s *AccountJiraConfigurationInput_) SetIntegrationStatus(v string) *AccountJiraConfigurationInput_ {
+	s.IntegrationStatus = &v
+	return s
+}
+
+// SetIssueManagementStatus sets the IssueManagementStatus field's value.
+func (s *AccountJiraConfigurationInput_) SetIssueManagementStatus(v string) *AccountJiraConfigurationInput_ {
+	s.IssueManagementStatus = &v
+	return s
+}
+
+// SetIssueManagementType sets the IssueManagementType field's value.
+func (s *AccountJiraConfigurationInput_) SetIssueManagementType(v string) *AccountJiraConfigurationInput_ {
+	s.IssueManagementType = &v
+	return s
+}
+
+// SetJiraProjectKey sets the JiraProjectKey field's value.
+func (s *AccountJiraConfigurationInput_) SetJiraProjectKey(v string) *AccountJiraConfigurationInput_ {
+	s.JiraProjectKey = &v
+	return s
+}
+
+// Account-level: Output configuration of the Jira integration.
+type AccountJiraConfigurationOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Account-level: Configuration status of the Jira integration.
+	IntegrationStatus *string `type:"string" enum:"IntegrationStatus"`
+
+	// Account-level: Jira issue management status.
+	IssueManagementStatus *string `type:"string" enum:"AccountJiraIssueManagementStatus"`
+
+	// Account-level: Jira issue management type.
+	IssueManagementType *string `type:"string" enum:"IssueManagementType"`
+
+	// Account-level: Jira project key to sync workloads to.
+	JiraProjectKey *string `min:"1" type:"string"`
+
+	// Account-level: Status message on configuration of the Jira integration.
+	StatusMessage *string `min:"1" type:"string"`
+
+	// Account-level: Jira subdomain URL.
+	Subdomain *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountJiraConfigurationOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountJiraConfigurationOutput_) GoString() string {
+	return s.String()
+}
+
+// SetIntegrationStatus sets the IntegrationStatus field's value.
+func (s *AccountJiraConfigurationOutput_) SetIntegrationStatus(v string) *AccountJiraConfigurationOutput_ {
+	s.IntegrationStatus = &v
+	return s
+}
+
+// SetIssueManagementStatus sets the IssueManagementStatus field's value.
+func (s *AccountJiraConfigurationOutput_) SetIssueManagementStatus(v string) *AccountJiraConfigurationOutput_ {
+	s.IssueManagementStatus = &v
+	return s
+}
+
+// SetIssueManagementType sets the IssueManagementType field's value.
+func (s *AccountJiraConfigurationOutput_) SetIssueManagementType(v string) *AccountJiraConfigurationOutput_ {
+	s.IssueManagementType = &v
+	return s
+}
+
+// SetJiraProjectKey sets the JiraProjectKey field's value.
+func (s *AccountJiraConfigurationOutput_) SetJiraProjectKey(v string) *AccountJiraConfigurationOutput_ {
+	s.JiraProjectKey = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *AccountJiraConfigurationOutput_) SetStatusMessage(v string) *AccountJiraConfigurationOutput_ {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetSubdomain sets the Subdomain field's value.
+func (s *AccountJiraConfigurationOutput_) SetSubdomain(v string) *AccountJiraConfigurationOutput_ {
+	s.Subdomain = &v
+	return s
+}
+
 // The choice level additional resources for a custom lens.
 //
 // This field does not apply to Amazon Web Services official lenses.
@@ -7915,6 +8253,9 @@ type Answer struct {
 
 	// Defines whether this question is applicable to a lens review.
 	IsApplicable *bool `type:"boolean"`
+
+	// Configuration of the Jira integration.
+	JiraConfiguration *JiraConfiguration `type:"structure"`
 
 	// The notes associated with the workload.
 	//
@@ -8002,6 +8343,12 @@ func (s *Answer) SetIsApplicable(v bool) *Answer {
 	return s
 }
 
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *Answer) SetJiraConfiguration(v *JiraConfiguration) *Answer {
+	s.JiraConfiguration = v
+	return s
+}
+
 // SetNotes sets the Notes field's value.
 func (s *Answer) SetNotes(v string) *Answer {
 	s.Notes = &v
@@ -8063,6 +8410,9 @@ type AnswerSummary struct {
 	// Defines whether this question is applicable to a lens review.
 	IsApplicable *bool `type:"boolean"`
 
+	// Configuration of the Jira integration.
+	JiraConfiguration *JiraConfiguration `type:"structure"`
+
 	// The ID used to identify a pillar, for example, security.
 	//
 	// A pillar is identified by its PillarReviewSummary$PillarId.
@@ -8122,6 +8472,12 @@ func (s *AnswerSummary) SetChoices(v []*Choice) *AnswerSummary {
 // SetIsApplicable sets the IsApplicable field's value.
 func (s *AnswerSummary) SetIsApplicable(v bool) *AnswerSummary {
 	s.IsApplicable = &v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *AnswerSummary) SetJiraConfiguration(v *JiraConfiguration) *AnswerSummary {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -10292,6 +10648,9 @@ type CreateWorkloadInput struct {
 	//    * Other
 	IndustryType *string `type:"string"`
 
+	// Jira configuration settings when creating a workload.
+	JiraConfiguration *WorkloadJiraConfigurationInput_ `type:"structure"`
+
 	// The list of lenses associated with the workload. Each lens is identified
 	// by its LensSummary$LensAlias.
 	//
@@ -10384,6 +10743,11 @@ func (s *CreateWorkloadInput) Validate() error {
 	if s.WorkloadName != nil && len(*s.WorkloadName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 3))
 	}
+	if s.JiraConfiguration != nil {
+		if err := s.JiraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JiraConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10448,6 +10812,12 @@ func (s *CreateWorkloadInput) SetIndustry(v string) *CreateWorkloadInput {
 // SetIndustryType sets the IndustryType field's value.
 func (s *CreateWorkloadInput) SetIndustryType(v string) *CreateWorkloadInput {
 	s.IndustryType = &v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *CreateWorkloadInput) SetJiraConfiguration(v *WorkloadJiraConfigurationInput_) *CreateWorkloadInput {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -12155,6 +12525,77 @@ func (s *GetConsolidatedReportOutput) SetNextToken(v string) *GetConsolidatedRep
 	return s
 }
 
+type GetGlobalSettingsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGlobalSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGlobalSettingsInput) GoString() string {
+	return s.String()
+}
+
+type GetGlobalSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Discovery integration status.
+	DiscoveryIntegrationStatus *string `type:"string" enum:"DiscoveryIntegrationStatus"`
+
+	// Jira configuration status.
+	JiraConfiguration *AccountJiraConfigurationOutput_ `type:"structure"`
+
+	// Amazon Web Services Organizations sharing status.
+	OrganizationSharingStatus *string `type:"string" enum:"OrganizationSharingStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGlobalSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGlobalSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDiscoveryIntegrationStatus sets the DiscoveryIntegrationStatus field's value.
+func (s *GetGlobalSettingsOutput) SetDiscoveryIntegrationStatus(v string) *GetGlobalSettingsOutput {
+	s.DiscoveryIntegrationStatus = &v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *GetGlobalSettingsOutput) SetJiraConfiguration(v *AccountJiraConfigurationOutput_) *GetGlobalSettingsOutput {
+	s.JiraConfiguration = v
+	return s
+}
+
+// SetOrganizationSharingStatus sets the OrganizationSharingStatus field's value.
+func (s *GetGlobalSettingsOutput) SetOrganizationSharingStatus(v string) *GetGlobalSettingsOutput {
+	s.OrganizationSharingStatus = &v
+	return s
+}
+
 type GetLensInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -13556,6 +13997,9 @@ type ImprovementSummary struct {
 	// The improvement plan details.
 	ImprovementPlans []*ChoiceImprovementPlan `type:"list"`
 
+	// Configuration of the Jira integration.
+	JiraConfiguration *JiraConfiguration `type:"structure"`
+
 	// The ID used to identify a pillar, for example, security.
 	//
 	// A pillar is identified by its PillarReviewSummary$PillarId.
@@ -13598,6 +14042,12 @@ func (s *ImprovementSummary) SetImprovementPlanUrl(v string) *ImprovementSummary
 // SetImprovementPlans sets the ImprovementPlans field's value.
 func (s *ImprovementSummary) SetImprovementPlans(v []*ChoiceImprovementPlan) *ImprovementSummary {
 	s.ImprovementPlans = v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *ImprovementSummary) SetJiraConfiguration(v *JiraConfiguration) *ImprovementSummary {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -13688,6 +14138,99 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration of the Jira integration.
+type JiraConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The URL of the associated Jira issue.
+	JiraIssueUrl *string `min:"1" type:"string"`
+
+	// The date and time recorded.
+	LastSyncedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetJiraIssueUrl sets the JiraIssueUrl field's value.
+func (s *JiraConfiguration) SetJiraIssueUrl(v string) *JiraConfiguration {
+	s.JiraIssueUrl = &v
+	return s
+}
+
+// SetLastSyncedTime sets the LastSyncedTime field's value.
+func (s *JiraConfiguration) SetLastSyncedTime(v time.Time) *JiraConfiguration {
+	s.LastSyncedTime = &v
+	return s
+}
+
+// Selected questions in the workload.
+type JiraSelectedQuestionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Selected pillars in the workload.
+	SelectedPillars []*SelectedPillar `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraSelectedQuestionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JiraSelectedQuestionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JiraSelectedQuestionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JiraSelectedQuestionConfiguration"}
+	if s.SelectedPillars != nil {
+		for i, v := range s.SelectedPillars {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SelectedPillars", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelectedPillars sets the SelectedPillars field's value.
+func (s *JiraSelectedQuestionConfiguration) SetSelectedPillars(v []*SelectedPillar) *JiraSelectedQuestionConfiguration {
+	s.SelectedPillars = v
+	return s
 }
 
 // A lens return object.
@@ -13830,6 +14373,9 @@ func (s *LensMetric) SetRiskCounts(v map[string]*int64) *LensMetric {
 type LensReview struct {
 	_ struct{} `type:"structure"`
 
+	// Jira configuration status of the Lens review.
+	JiraConfiguration *JiraSelectedQuestionConfiguration `type:"structure"`
+
 	// The alias of the lens.
 	//
 	// For Amazon Web Services official lenses, this is either the lens alias, such
@@ -13895,6 +14441,12 @@ func (s LensReview) String() string {
 // value will be replaced with "sensitive".
 func (s LensReview) GoString() string {
 	return s.String()
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *LensReview) SetJiraConfiguration(v *JiraSelectedQuestionConfiguration) *LensReview {
+	s.JiraConfiguration = v
+	return s
 }
 
 // SetLensAlias sets the LensAlias field's value.
@@ -19065,6 +19617,62 @@ func (s *ReviewTemplateSummary) SetUpdatedAt(v time.Time) *ReviewTemplateSummary
 	return s
 }
 
+// The selected pillar.
+type SelectedPillar struct {
+	_ struct{} `type:"structure"`
+
+	// The ID used to identify a pillar, for example, security.
+	//
+	// A pillar is identified by its PillarReviewSummary$PillarId.
+	PillarId *string `min:"1" type:"string"`
+
+	// Selected question IDs in the selected pillar.
+	SelectedQuestionIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelectedPillar) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelectedPillar) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelectedPillar) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelectedPillar"}
+	if s.PillarId != nil && len(*s.PillarId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PillarId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPillarId sets the PillarId field's value.
+func (s *SelectedPillar) SetPillarId(v string) *SelectedPillar {
+	s.PillarId = &v
+	return s
+}
+
+// SetSelectedQuestionIds sets the SelectedQuestionIds field's value.
+func (s *SelectedPillar) SetSelectedQuestionIds(v []*string) *SelectedPillar {
+	s.SelectedQuestionIds = v
+	return s
+}
+
 // The user has reached their resource quota.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -19925,6 +20533,9 @@ type UpdateGlobalSettingsInput struct {
 	// The status of discovery support settings.
 	DiscoveryIntegrationStatus *string `type:"string" enum:"DiscoveryIntegrationStatus"`
 
+	// The status of Jira integration settings.
+	JiraConfiguration *AccountJiraConfigurationInput_ `type:"structure"`
+
 	// The status of organization sharing settings.
 	OrganizationSharingStatus *string `type:"string" enum:"OrganizationSharingStatus"`
 }
@@ -19947,9 +20558,30 @@ func (s UpdateGlobalSettingsInput) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGlobalSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGlobalSettingsInput"}
+	if s.JiraConfiguration != nil {
+		if err := s.JiraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JiraConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetDiscoveryIntegrationStatus sets the DiscoveryIntegrationStatus field's value.
 func (s *UpdateGlobalSettingsInput) SetDiscoveryIntegrationStatus(v string) *UpdateGlobalSettingsInput {
 	s.DiscoveryIntegrationStatus = &v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *UpdateGlobalSettingsInput) SetJiraConfiguration(v *AccountJiraConfigurationInput_) *UpdateGlobalSettingsInput {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -19981,9 +20613,121 @@ func (s UpdateGlobalSettingsOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique case-sensitive string used to ensure that this request is idempotent
+	// (executes only once).
+	//
+	// You should not reuse the same token for other requests. If you retry a request
+	// with the same client request token and the same parameters after the original
+	// request has completed successfully, the result of the original request is
+	// returned.
+	//
+	// This token is listed as required, however, if you do not specify it, the
+	// Amazon Web Services SDKs automatically generate one for you. If you are not
+	// using the Amazon Web Services SDK or the CLI, you must provide this token
+	// or the request will fail.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Which integrated service to update.
+	//
+	// IntegratingService is a required field
+	IntegratingService *string `type:"string" required:"true" enum:"IntegratingService"`
+
+	// The ID assigned to the workload. This ID is unique within an Amazon Web Services
+	// Region.
+	//
+	// WorkloadId is a required field
+	WorkloadId *string `location:"uri" locationName:"WorkloadId" min:"32" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIntegrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIntegrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIntegrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIntegrationInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.IntegratingService == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegratingService"))
+	}
+	if s.WorkloadId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkloadId"))
+	}
+	if s.WorkloadId != nil && len(*s.WorkloadId) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 32))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateIntegrationInput) SetClientRequestToken(v string) *UpdateIntegrationInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetIntegratingService sets the IntegratingService field's value.
+func (s *UpdateIntegrationInput) SetIntegratingService(v string) *UpdateIntegrationInput {
+	s.IntegratingService = &v
+	return s
+}
+
+// SetWorkloadId sets the WorkloadId field's value.
+func (s *UpdateIntegrationInput) SetWorkloadId(v string) *UpdateIntegrationInput {
+	s.WorkloadId = &v
+	return s
+}
+
+type UpdateIntegrationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIntegrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIntegrationOutput) GoString() string {
+	return s.String()
+}
+
 // Input for update lens review.
 type UpdateLensReviewInput struct {
 	_ struct{} `type:"structure"`
+
+	// Configuration of the Jira integration.
+	JiraConfiguration *JiraSelectedQuestionConfiguration `type:"structure"`
 
 	// The alias of the lens.
 	//
@@ -20051,11 +20795,22 @@ func (s *UpdateLensReviewInput) Validate() error {
 	if s.WorkloadId != nil && len(*s.WorkloadId) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 32))
 	}
+	if s.JiraConfiguration != nil {
+		if err := s.JiraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JiraConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *UpdateLensReviewInput) SetJiraConfiguration(v *JiraSelectedQuestionConfiguration) *UpdateLensReviewInput {
+	s.JiraConfiguration = v
+	return s
 }
 
 // SetLensAlias sets the LensAlias field's value.
@@ -20918,6 +21673,9 @@ type UpdateWorkloadInput struct {
 	// access to the workload is restricted until an owner is added.
 	IsReviewOwnerUpdateAcknowledged *bool `type:"boolean"`
 
+	// Configuration of the Jira integration.
+	JiraConfiguration *WorkloadJiraConfigurationInput_ `type:"structure"`
+
 	// The list of non-Amazon Web Services Regions associated with the workload.
 	NonAwsRegions []*string `type:"list"`
 
@@ -20983,6 +21741,11 @@ func (s *UpdateWorkloadInput) Validate() error {
 	}
 	if s.WorkloadName != nil && len(*s.WorkloadName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkloadName", 3))
+	}
+	if s.JiraConfiguration != nil {
+		if err := s.JiraConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JiraConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -21054,6 +21817,12 @@ func (s *UpdateWorkloadInput) SetIndustryType(v string) *UpdateWorkloadInput {
 // SetIsReviewOwnerUpdateAcknowledged sets the IsReviewOwnerUpdateAcknowledged field's value.
 func (s *UpdateWorkloadInput) SetIsReviewOwnerUpdateAcknowledged(v bool) *UpdateWorkloadInput {
 	s.IsReviewOwnerUpdateAcknowledged = &v
+	return s
+}
+
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *UpdateWorkloadInput) SetJiraConfiguration(v *WorkloadJiraConfigurationInput_) *UpdateWorkloadInput {
+	s.JiraConfiguration = v
 	return s
 }
 
@@ -21882,6 +22651,9 @@ type Workload struct {
 	// access to the workload is restricted until an owner is added.
 	IsReviewOwnerUpdateAcknowledged *bool `type:"boolean"`
 
+	// Jira configuration for a specific workload.
+	JiraConfiguration *WorkloadJiraConfigurationOutput_ `type:"structure"`
+
 	// The list of lenses associated with the workload. Each lens is identified
 	// by its LensSummary$LensAlias.
 	//
@@ -22028,6 +22800,12 @@ func (s *Workload) SetIsReviewOwnerUpdateAcknowledged(v bool) *Workload {
 	return s
 }
 
+// SetJiraConfiguration sets the JiraConfiguration field's value.
+func (s *Workload) SetJiraConfiguration(v *WorkloadJiraConfigurationOutput_) *Workload {
+	s.JiraConfiguration = v
+	return s
+}
+
 // SetLenses sets the Lenses field's value.
 func (s *Workload) SetLenses(v []*string) *Workload {
 	s.Lenses = v
@@ -22164,6 +22942,128 @@ func (s *WorkloadDiscoveryConfig) SetTrustedAdvisorIntegrationStatus(v string) *
 // SetWorkloadResourceDefinition sets the WorkloadResourceDefinition field's value.
 func (s *WorkloadDiscoveryConfig) SetWorkloadResourceDefinition(v []*string) *WorkloadDiscoveryConfig {
 	s.WorkloadResourceDefinition = v
+	return s
+}
+
+// Workload-level: Input for the Jira configuration.
+type WorkloadJiraConfigurationInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Workload-level: Jira issue management status.
+	IssueManagementStatus *string `type:"string" enum:"WorkloadIssueManagementStatus"`
+
+	// Workload-level: Jira issue management type.
+	IssueManagementType *string `type:"string" enum:"IssueManagementType"`
+
+	// Workload-level: Jira project key to sync workloads to.
+	JiraProjectKey *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadJiraConfigurationInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadJiraConfigurationInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkloadJiraConfigurationInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkloadJiraConfigurationInput_"}
+	if s.JiraProjectKey != nil && len(*s.JiraProjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JiraProjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIssueManagementStatus sets the IssueManagementStatus field's value.
+func (s *WorkloadJiraConfigurationInput_) SetIssueManagementStatus(v string) *WorkloadJiraConfigurationInput_ {
+	s.IssueManagementStatus = &v
+	return s
+}
+
+// SetIssueManagementType sets the IssueManagementType field's value.
+func (s *WorkloadJiraConfigurationInput_) SetIssueManagementType(v string) *WorkloadJiraConfigurationInput_ {
+	s.IssueManagementType = &v
+	return s
+}
+
+// SetJiraProjectKey sets the JiraProjectKey field's value.
+func (s *WorkloadJiraConfigurationInput_) SetJiraProjectKey(v string) *WorkloadJiraConfigurationInput_ {
+	s.JiraProjectKey = &v
+	return s
+}
+
+// Workload-level: Output configuration of the Jira integration.
+type WorkloadJiraConfigurationOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Workload-level: Jira issue management status.
+	IssueManagementStatus *string `type:"string" enum:"WorkloadIssueManagementStatus"`
+
+	// Workload-level: Jira issue management type.
+	IssueManagementType *string `type:"string" enum:"IssueManagementType"`
+
+	// Workload-level: Jira project key to sync workloads to.
+	JiraProjectKey *string `min:"1" type:"string"`
+
+	// Workload-level: Status message on configuration of the Jira integration.
+	StatusMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadJiraConfigurationOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkloadJiraConfigurationOutput_) GoString() string {
+	return s.String()
+}
+
+// SetIssueManagementStatus sets the IssueManagementStatus field's value.
+func (s *WorkloadJiraConfigurationOutput_) SetIssueManagementStatus(v string) *WorkloadJiraConfigurationOutput_ {
+	s.IssueManagementStatus = &v
+	return s
+}
+
+// SetIssueManagementType sets the IssueManagementType field's value.
+func (s *WorkloadJiraConfigurationOutput_) SetIssueManagementType(v string) *WorkloadJiraConfigurationOutput_ {
+	s.IssueManagementType = &v
+	return s
+}
+
+// SetJiraProjectKey sets the JiraProjectKey field's value.
+func (s *WorkloadJiraConfigurationOutput_) SetJiraProjectKey(v string) *WorkloadJiraConfigurationOutput_ {
+	s.JiraProjectKey = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *WorkloadJiraConfigurationOutput_) SetStatusMessage(v string) *WorkloadJiraConfigurationOutput_ {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -22490,6 +23390,22 @@ func (s *WorkloadSummary) SetWorkloadName(v string) *WorkloadSummary {
 }
 
 const (
+	// AccountJiraIssueManagementStatusEnabled is a AccountJiraIssueManagementStatus enum value
+	AccountJiraIssueManagementStatusEnabled = "ENABLED"
+
+	// AccountJiraIssueManagementStatusDisabled is a AccountJiraIssueManagementStatus enum value
+	AccountJiraIssueManagementStatusDisabled = "DISABLED"
+)
+
+// AccountJiraIssueManagementStatus_Values returns all elements of the AccountJiraIssueManagementStatus enum
+func AccountJiraIssueManagementStatus_Values() []string {
+	return []string{
+		AccountJiraIssueManagementStatusEnabled,
+		AccountJiraIssueManagementStatusDisabled,
+	}
+}
+
+const (
 	// AdditionalResourceTypeHelpfulResource is a AdditionalResourceType enum value
 	AdditionalResourceTypeHelpfulResource = "HELPFUL_RESOURCE"
 
@@ -22714,6 +23630,62 @@ func ImportLensStatus_Values() []string {
 		ImportLensStatusInProgress,
 		ImportLensStatusComplete,
 		ImportLensStatusError,
+	}
+}
+
+const (
+	// IntegratingServiceJira is a IntegratingService enum value
+	IntegratingServiceJira = "JIRA"
+)
+
+// IntegratingService_Values returns all elements of the IntegratingService enum
+func IntegratingService_Values() []string {
+	return []string{
+		IntegratingServiceJira,
+	}
+}
+
+const (
+	// IntegrationStatusConfigured is a IntegrationStatus enum value
+	IntegrationStatusConfigured = "CONFIGURED"
+
+	// IntegrationStatusNotConfigured is a IntegrationStatus enum value
+	IntegrationStatusNotConfigured = "NOT_CONFIGURED"
+)
+
+// IntegrationStatus_Values returns all elements of the IntegrationStatus enum
+func IntegrationStatus_Values() []string {
+	return []string{
+		IntegrationStatusConfigured,
+		IntegrationStatusNotConfigured,
+	}
+}
+
+const (
+	// IntegrationStatusInputNotConfigured is a IntegrationStatusInput_ enum value
+	IntegrationStatusInputNotConfigured = "NOT_CONFIGURED"
+)
+
+// IntegrationStatusInput__Values returns all elements of the IntegrationStatusInput_ enum
+func IntegrationStatusInput__Values() []string {
+	return []string{
+		IntegrationStatusInputNotConfigured,
+	}
+}
+
+const (
+	// IssueManagementTypeAuto is a IssueManagementType enum value
+	IssueManagementTypeAuto = "AUTO"
+
+	// IssueManagementTypeManual is a IssueManagementType enum value
+	IssueManagementTypeManual = "MANUAL"
+)
+
+// IssueManagementType_Values returns all elements of the IssueManagementType enum
+func IssueManagementType_Values() []string {
+	return []string{
+		IssueManagementTypeAuto,
+		IssueManagementTypeManual,
 	}
 }
 
@@ -23169,5 +24141,25 @@ func WorkloadImprovementStatus_Values() []string {
 		WorkloadImprovementStatusInProgress,
 		WorkloadImprovementStatusComplete,
 		WorkloadImprovementStatusRiskAcknowledged,
+	}
+}
+
+const (
+	// WorkloadIssueManagementStatusEnabled is a WorkloadIssueManagementStatus enum value
+	WorkloadIssueManagementStatusEnabled = "ENABLED"
+
+	// WorkloadIssueManagementStatusDisabled is a WorkloadIssueManagementStatus enum value
+	WorkloadIssueManagementStatusDisabled = "DISABLED"
+
+	// WorkloadIssueManagementStatusInherit is a WorkloadIssueManagementStatus enum value
+	WorkloadIssueManagementStatusInherit = "INHERIT"
+)
+
+// WorkloadIssueManagementStatus_Values returns all elements of the WorkloadIssueManagementStatus enum
+func WorkloadIssueManagementStatus_Values() []string {
+	return []string{
+		WorkloadIssueManagementStatusEnabled,
+		WorkloadIssueManagementStatusDisabled,
+		WorkloadIssueManagementStatusInherit,
 	}
 }
