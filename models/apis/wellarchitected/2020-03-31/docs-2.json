@@ -26,6 +26,7 @@
     "ExportLens": "<p>Export an existing lens.</p> <p>Only the owner of a lens can export it. Lenses provided by Amazon Web Services (Amazon Web Services Official Content) cannot be exported.</p> <p>Lenses are defined in JSON. For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/lenses-format-specification.html\">JSON format specification</a> in the <i>Well-Architected Tool User Guide</i>.</p> <note> <p> <b>Disclaimer</b> </p> <p>Do not include or gather personal identifiable information (PII) of end users or other identifiable individuals in or via your custom lenses. If your custom lens or those shared with you and used in your account do include or collect PII you are responsible for: ensuring that the included PII is processed in accordance with applicable law, providing adequate privacy notices, and obtaining necessary consents for processing such data.</p> </note>",
     "GetAnswer": "<p>Get the answer to a specific question in a workload review.</p>",
     "GetConsolidatedReport": "<p>Get a consolidated report of your workloads.</p> <p>You can optionally choose to include workloads that have been shared with you.</p>",
+    "GetGlobalSettings": "<p>Global settings for all workloads.</p>",
     "GetLens": "<p>Get an existing lens.</p>",
     "GetLensReview": "<p>Get lens review.</p>",
     "GetLensReviewReport": "<p>Get lens review report.</p>",
@@ -41,7 +42,7 @@
     "ListAnswers": "<p>List of answers for a particular workload and lens.</p>",
     "ListCheckDetails": "<p>List of Trusted Advisor check details by account related to the workload.</p>",
     "ListCheckSummaries": "<p>List of Trusted Advisor checks summarized for all accounts related to the workload.</p>",
-    "ListLensReviewImprovements": "<p>List lens review improvements.</p>",
+    "ListLensReviewImprovements": "<p>List the improvements of a particular lens review.</p>",
     "ListLensReviews": "<p>List lens reviews for a particular workload.</p>",
     "ListLensShares": "<p>List the lens shares associated with the lens.</p>",
     "ListLenses": "<p>List the available lenses.</p>",
@@ -60,7 +61,8 @@
     "TagResource": "<p>Adds one or more tags to the specified resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.</p> </note>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p> <note> <p>The WorkloadArn parameter can be a workload ARN, a custom lens ARN, a profile ARN, or review template ARN.</p> </note> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
-    "UpdateGlobalSettings": "<p>Updates whether the Amazon Web Services account is opted into organization sharing and discovery integration features.</p>",
+    "UpdateGlobalSettings": "<p>Update whether the Amazon Web Services account is opted into organization sharing and discovery integration features.</p>",
+    "UpdateIntegration": "<p>Update integration features.</p>",
     "UpdateLensReview": "<p>Update lens review for a particular workload.</p>",
     "UpdateProfile": "<p>Update a profile.</p>",
     "UpdateReviewTemplate": "<p>Update a review template.</p>",
@@ -77,6 +79,25 @@
     "AccessDeniedException": {
       "base": "<p>User does not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AccountJiraConfigurationInput": {
+      "base": "<p>Account-level: Input for the Jira configuration.</p>",
+      "refs": {
+        "UpdateGlobalSettingsInput$JiraConfiguration": "<p>The status of Jira integration settings.</p>"
+      }
+    },
+    "AccountJiraConfigurationOutput": {
+      "base": "<p>Account-level: Output configuration of the Jira integration.</p>",
+      "refs": {
+        "GetGlobalSettingsOutput$JiraConfiguration": "<p>Jira configuration status.</p>"
+      }
+    },
+    "AccountJiraIssueManagementStatus": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationInput$IssueManagementStatus": "<p>Account-level: Jira issue management status.</p>",
+        "AccountJiraConfigurationOutput$IssueManagementStatus": "<p>Account-level: Jira issue management status.</p>"
       }
     },
     "AccountSummary": {
@@ -429,6 +450,7 @@
         "DeleteWorkloadInput$ClientRequestToken": null,
         "DeleteWorkloadShareInput$ClientRequestToken": null,
         "ImportLensInput$ClientRequestToken": null,
+        "UpdateIntegrationInput$ClientRequestToken": null,
         "UpgradeLensReviewInput$ClientRequestToken": null,
         "UpgradeProfileVersionInput$ClientRequestToken": null,
         "UpgradeReviewTemplateLensReviewInput$ClientRequestToken": null
@@ -614,6 +636,7 @@
     "DiscoveryIntegrationStatus": {
       "base": null,
       "refs": {
+        "GetGlobalSettingsOutput$DiscoveryIntegrationStatus": "<p>Discovery integration status.</p>",
         "UpdateGlobalSettingsInput$DiscoveryIntegrationStatus": "<p>The status of discovery support settings.</p>"
       }
     },
@@ -692,6 +715,11 @@
       }
     },
     "GetConsolidatedReportOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetGlobalSettingsOutput": {
       "base": null,
       "refs": {
       }
@@ -856,6 +884,24 @@
         "GetConsolidatedReportInput$IncludeSharedResources": "<p>Set to <code>true</code> to have shared resources included in the report.</p>"
       }
     },
+    "IntegratingService": {
+      "base": null,
+      "refs": {
+        "UpdateIntegrationInput$IntegratingService": "<p>Which integrated service to update.</p>"
+      }
+    },
+    "IntegrationStatus": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationOutput$IntegrationStatus": "<p>Account-level: Configuration status of the Jira integration.</p>"
+      }
+    },
+    "IntegrationStatusInput": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationInput$IntegrationStatus": "<p>Account-level: Configuration status of the Jira integration.</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>There is a problem with the Well-Architected Tool API service.</p>",
       "refs": {
@@ -883,6 +929,45 @@
       "refs": {
         "UpdateWorkloadInput$IsReviewOwnerUpdateAcknowledged": "<p>Flag indicating whether the workload owner has acknowledged that the <i>Review owner</i> field is required.</p> <p>If a <b>Review owner</b> is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.</p>",
         "Workload$IsReviewOwnerUpdateAcknowledged": "<p>Flag indicating whether the workload owner has acknowledged that the <i>Review owner</i> field is required.</p> <p>If a <b>Review owner</b> is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.</p>"
+      }
+    },
+    "IssueManagementType": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationInput$IssueManagementType": "<p>Account-level: Jira issue management type.</p>",
+        "AccountJiraConfigurationOutput$IssueManagementType": "<p>Account-level: Jira issue management type.</p>",
+        "WorkloadJiraConfigurationInput$IssueManagementType": "<p>Workload-level: Jira issue management type.</p>",
+        "WorkloadJiraConfigurationOutput$IssueManagementType": "<p>Workload-level: Jira issue management type.</p>"
+      }
+    },
+    "JiraConfiguration": {
+      "base": "<p>Configuration of the Jira integration.</p>",
+      "refs": {
+        "Answer$JiraConfiguration": "<p>Configuration of the Jira integration.</p>",
+        "AnswerSummary$JiraConfiguration": "<p>Configuration of the Jira integration.</p>",
+        "ImprovementSummary$JiraConfiguration": "<p>Configuration of the Jira integration.</p>"
+      }
+    },
+    "JiraIssueUrl": {
+      "base": null,
+      "refs": {
+        "JiraConfiguration$JiraIssueUrl": "<p>The URL of the associated Jira issue.</p>"
+      }
+    },
+    "JiraProjectKey": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationInput$JiraProjectKey": "<p>Account-level: Jira project key to sync workloads to.</p>",
+        "AccountJiraConfigurationOutput$JiraProjectKey": "<p>Account-level: Jira project key to sync workloads to.</p>",
+        "WorkloadJiraConfigurationInput$JiraProjectKey": "<p>Workload-level: Jira project key to sync workloads to.</p>",
+        "WorkloadJiraConfigurationOutput$JiraProjectKey": "<p>Workload-level: Jira project key to sync workloads to.</p>"
+      }
+    },
+    "JiraSelectedQuestionConfiguration": {
+      "base": "<p>Selected questions in the workload.</p>",
+      "refs": {
+        "LensReview$JiraConfiguration": "<p>Jira configuration status of the Lens review.</p>",
+        "UpdateLensReviewInput$JiraConfiguration": "<p>Configuration of the Jira integration.</p>"
       }
     },
     "Lens": {
@@ -1541,6 +1626,7 @@
     "OrganizationSharingStatus": {
       "base": null,
       "refs": {
+        "GetGlobalSettingsOutput$OrganizationSharingStatus": "<p>Amazon Web Services Organizations sharing status.</p>",
         "UpdateGlobalSettingsInput$OrganizationSharingStatus": "<p>The status of organization sharing settings.</p>"
       }
     },
@@ -1586,6 +1672,7 @@
         "ReviewTemplateAnswer$PillarId": null,
         "ReviewTemplateAnswerSummary$PillarId": null,
         "ReviewTemplatePillarReviewSummary$PillarId": null,
+        "SelectedPillar$PillarId": null,
         "WorkloadPillarPriorities$member": null
       }
     },
@@ -2071,10 +2158,34 @@
         "UpdateReviewTemplateAnswerInput$SelectedChoices": null
       }
     },
+    "SelectedPillar": {
+      "base": "<p>The selected pillar.</p>",
+      "refs": {
+        "SelectedPillars$member": null
+      }
+    },
+    "SelectedPillars": {
+      "base": null,
+      "refs": {
+        "JiraSelectedQuestionConfiguration$SelectedPillars": "<p>Selected pillars in the workload.</p>"
+      }
+    },
     "SelectedProfileChoiceIds": {
       "base": null,
       "refs": {
         "ProfileQuestionUpdate$SelectedChoiceIds": "<p>The selected choices.</p>"
+      }
+    },
+    "SelectedQuestionId": {
+      "base": null,
+      "refs": {
+        "SelectedQuestionIds$member": null
+      }
+    },
+    "SelectedQuestionIds": {
+      "base": null,
+      "refs": {
+        "SelectedPillar$SelectedQuestionIds": "<p>Selected question IDs in the selected pillar.</p>"
       }
     },
     "ServiceCode": {
@@ -2193,10 +2304,18 @@
     "StatusMessage": {
       "base": null,
       "refs": {
+        "AccountJiraConfigurationOutput$StatusMessage": "<p>Account-level: Status message on configuration of the Jira integration.</p>",
         "LensShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>",
         "ProfileShareSummary$StatusMessage": "<p>Profile share invitation status message.</p>",
         "TemplateShareSummary$StatusMessage": "<p>Review template share invitation status message. </p>",
+        "WorkloadJiraConfigurationOutput$StatusMessage": "<p>Workload-level: Status message on configuration of the Jira integration.</p>",
         "WorkloadShareSummary$StatusMessage": "<p>Optional message to compliment the Status field.</p>"
+      }
+    },
+    "Subdomain": {
+      "base": null,
+      "refs": {
+        "AccountJiraConfigurationOutput$Subdomain": "<p>Account-level: Jira subdomain URL.</p>"
       }
     },
     "TagKey": {
@@ -2327,6 +2446,7 @@
         "CheckDetail$UpdatedAt": null,
         "CheckSummary$UpdatedAt": null,
         "ConsolidatedReportMetric$UpdatedAt": null,
+        "JiraConfiguration$LastSyncedTime": null,
         "LensReview$UpdatedAt": null,
         "LensReviewSummary$UpdatedAt": null,
         "LensSummary$CreatedAt": null,
@@ -2374,6 +2494,11 @@
       }
     },
     "UpdateGlobalSettingsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIntegrationInput": {
       "base": null,
       "refs": {
       }
@@ -2634,6 +2759,7 @@
         "ShareInvitationSummary$WorkloadId": null,
         "UpdateAnswerInput$WorkloadId": null,
         "UpdateAnswerOutput$WorkloadId": null,
+        "UpdateIntegrationInput$WorkloadId": null,
         "UpdateLensReviewInput$WorkloadId": null,
         "UpdateLensReviewOutput$WorkloadId": null,
         "UpdateWorkloadInput$WorkloadId": null,
@@ -2668,6 +2794,26 @@
         "CreateWorkloadInput$IndustryType": null,
         "UpdateWorkloadInput$IndustryType": null,
         "Workload$IndustryType": null
+      }
+    },
+    "WorkloadIssueManagementStatus": {
+      "base": null,
+      "refs": {
+        "WorkloadJiraConfigurationInput$IssueManagementStatus": "<p>Workload-level: Jira issue management status.</p>",
+        "WorkloadJiraConfigurationOutput$IssueManagementStatus": "<p>Workload-level: Jira issue management status.</p>"
+      }
+    },
+    "WorkloadJiraConfigurationInput": {
+      "base": "<p>Workload-level: Input for the Jira configuration.</p>",
+      "refs": {
+        "CreateWorkloadInput$JiraConfiguration": "<p>Jira configuration settings when creating a workload.</p>",
+        "UpdateWorkloadInput$JiraConfiguration": "<p>Configuration of the Jira integration.</p>"
+      }
+    },
+    "WorkloadJiraConfigurationOutput": {
+      "base": "<p>Workload-level: Output configuration of the Jira integration.</p>",
+      "refs": {
+        "Workload$JiraConfiguration": "<p>Jira configuration for a specific workload.</p>"
       }
     },
     "WorkloadLenses": {

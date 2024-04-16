@@ -22,6 +22,7 @@
     "ListApplications": "<p>Lists the applications associated with a specific Amazon Web Services account. You can provide the unique identifier of a specific runtime environment in a query parameter to see all applications associated with that environment.</p>",
     "ListBatchJobDefinitions": "<p>Lists all the available batch job definitions based on the batch job resources uploaded during the application creation. You can use the batch job definitions in the list to start a batch job.</p>",
     "ListBatchJobExecutions": "<p>Lists historical, current, and scheduled batch job executions for a specific application.</p>",
+    "ListBatchJobRestartPoints": "<p>Lists all the job steps for JCL files to restart a batch job. This is only applicable for Micro Focus engine with versions 8.0.6 and above.</p>",
     "ListDataSetImportHistory": "<p>Lists the data set imports for the specified application.</p>",
     "ListDataSets": "<p>Lists the data sets imported for a specific application. In Amazon Web Services Mainframe Modernization, data sets are associated with applications deployed on runtime environments. This is known as importing data sets. Currently, Amazon Web Services Mainframe Modernization can import data sets into catalogs using <a href=\"https://docs.aws.amazon.com/m2/latest/APIReference/API_CreateDataSetImportTask.html\">CreateDataSetImportTask</a>.</p>",
     "ListDeployments": "<p>Returns a list of all deployments of a specific application. A deployment is a combination of a specific application and a specific version of that application. Each deployment is mapped to a particular application version.</p>",
@@ -171,6 +172,12 @@
         "StartBatchJobRequest$jobParams": "<p>The collection of batch job parameters. For details about limits for keys and values, see <a href=\"https://www.ibm.com/docs/en/workload-automation/9.3.0?topic=zos-coding-variables-in-jcl\">Coding variables in JCL</a>.</p>"
       }
     },
+    "BatchJobStepList": {
+      "base": null,
+      "refs": {
+        "ListBatchJobRestartPointsResponse$batchJobSteps": "<p>Returns all the batch job steps and related information for a batch job that previously ran.</p>"
+      }
+    },
     "BatchJobType": {
       "base": null,
       "refs": {
@@ -196,6 +203,7 @@
         "AlternateKey$allowDuplicates": "<p>Indicates whether the alternate key values are supposed to be unique for the given data set.</p>",
         "CreateEnvironmentRequest$publiclyAccessible": "<p>Specifies whether the runtime environment is publicly accessible.</p>",
         "GetEnvironmentResponse$publiclyAccessible": "<p>Whether applications running in this runtime environment are publicly accessible. </p>",
+        "JobStep$stepRestartable": "<p>Specifies if a step can be restarted or not.</p>",
         "StopApplicationRequest$forceStop": "<p>Stopping an application process can take a long time. Setting this parameter to true lets you force stop the application so you don't need to wait until the process finishes to apply another action on the application. The default value is false.</p>",
         "UpdateEnvironmentRequest$applyDuringMaintenanceWindow": "<p>Indicates whether to update the runtime environment during the maintenance window. The default is false. Currently, Amazon Web Services Mainframe Modernization accepts the <code>engineVersion</code> parameter only if <code>applyDuringMaintenanceWindow</code> is true. If any parameter other than <code>engineVersion</code> is provided in <code>UpdateEnvironmentRequest</code>, it will fail if <code>applyDuringMaintenanceWindow</code> is set to true.</p>",
         "UpdateEnvironmentRequest$forceUpdate": "<p>Forces the updates on the environment. This option is needed if the applications in the environment are not stopped or if there are ongoing application-related activities in the environment.</p> <p>If you use this option, be aware that it could lead to data corruption in the applications, and that you might need to perform repair and recovery procedures for the applications.</p> <p>This option is not needed if the attribute being updated is <code>preferredMaintenanceWindow</code>.</p>",
@@ -667,9 +675,12 @@
         "ListApplicationsRequest$environmentId": "<p>The unique identifier of the runtime environment where the applications are deployed.</p>",
         "ListBatchJobDefinitionsRequest$applicationId": "<p>The identifier of the application.</p>",
         "ListBatchJobExecutionsRequest$applicationId": "<p>The unique identifier of the application.</p>",
+        "ListBatchJobRestartPointsRequest$applicationId": "<p>The unique identifier of the application.</p>",
+        "ListBatchJobRestartPointsRequest$executionId": "<p>The unique identifier of each batch job execution.</p>",
         "ListDataSetImportHistoryRequest$applicationId": "<p>The unique identifier of the application.</p>",
         "ListDataSetsRequest$applicationId": "<p>The unique identifier of the application for which you want to list the associated data sets.</p>",
         "ListDeploymentsRequest$applicationId": "<p>The application identifier.</p>",
+        "RestartBatchJobIdentifier$executionId": "<p>The executionId from the StartBatchJob response when the job ran for the first time.</p>",
         "StartApplicationRequest$applicationId": "<p>The unique identifier of the application you want to start.</p>",
         "StartBatchJobRequest$applicationId": "<p>The unique identifier of the application associated with this batch job.</p>",
         "StartBatchJobResponse$executionId": "<p>The unique identifier of this execution of the batch job.</p>",
@@ -700,6 +711,8 @@
         "GetDataSetDetailsResponse$blocksize": "<p>The size of the block on disk. </p>",
         "GetDataSetDetailsResponse$recordLength": "<p>The length of records in the data set.</p>",
         "InternalServerException$retryAfterSeconds": "<p>The number of seconds to wait before retrying the request.</p>",
+        "JobStep$procStepNumber": "<p>The number of a procedure step.</p>",
+        "JobStep$stepNumber": "<p>The number of a step.</p>",
         "PortList$member": null,
         "PrimaryKey$length": "<p>A strictly positive integer value representing the length of the primary key. </p>",
         "PrimaryKey$offset": "<p>A positive integer value representing the offset to mark the start of the primary key in the record byte array.</p>",
@@ -717,6 +730,19 @@
       "base": "<p>Identifies a specific batch job.</p>",
       "refs": {
         "S3BatchJobIdentifier$identifier": "<p>Identifies the batch job definition. This identifier can also point to any batch job definition that already exists in the application or to one of the batch job definitions within the directory that is specified in <code>keyPrefix</code>.</p>"
+      }
+    },
+    "JobStep": {
+      "base": "<p>Provides information related to a job step.</p>",
+      "refs": {
+        "BatchJobStepList$member": null
+      }
+    },
+    "JobStepRestartMarker": {
+      "base": "<p>Provides restart step information for the most recent restart operation.</p>",
+      "refs": {
+        "GetBatchJobExecutionResponse$jobStepRestartMarker": "<p>The restart steps information for the most recent restart operation.</p>",
+        "RestartBatchJobIdentifier$jobStepRestartMarker": "<p>The restart step information for the most recent restart operation.</p>"
       }
     },
     "ListApplicationVersionsRequest": {
@@ -755,6 +781,16 @@
       }
     },
     "ListBatchJobExecutionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBatchJobRestartPointsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBatchJobRestartPointsResponse": {
       "base": null,
       "refs": {
       }
@@ -940,6 +976,12 @@
       "refs": {
       }
     },
+    "RestartBatchJobIdentifier": {
+      "base": "<p>An identifier for the StartBatchJob API to show that it is a restart operation.</p>",
+      "refs": {
+        "BatchJobIdentifier$restartBatchJobIdentifier": "<p>Specifies the required information for restart, including execution ID and jobsteprestartmarker.</p>"
+      }
+    },
     "S3BatchJobIdentifier": {
       "base": "<p>A batch job identifier in which the batch jobs to run are identified by an Amazon S3 location.</p>",
       "refs": {
@@ -1054,6 +1096,13 @@
         "InternalServerException$message": null,
         "JobIdentifier$fileName": "<p>The name of the file that contains the batch job definition.</p>",
         "JobIdentifier$scriptName": "<p>The name of the script that contains the batch job definition.</p>",
+        "JobStep$procStepName": "<p>The name of a procedure step.</p>",
+        "JobStep$stepCondCode": "<p>The condition code of a step.</p>",
+        "JobStep$stepName": "<p>The name of a step.</p>",
+        "JobStepRestartMarker$fromProcStep": "<p>The procedure step name that a job was restarted from.</p>",
+        "JobStepRestartMarker$fromStep": "<p>The step name that a batch job restart was from.</p>",
+        "JobStepRestartMarker$toProcStep": "<p>The procedure step name that a batch job was restarted to.</p>",
+        "JobStepRestartMarker$toStep": "<p>The step name that a job was restarted to.</p>",
         "ListBatchJobDefinitionsRequest$prefix": "<p>If the batch job definition is a FileBatchJobDefinition, the prefix allows you to search on the file names of FileBatchJobDefinitions.</p>",
         "PendingMaintenance$engineVersion": "<p>The specific runtime engine that the maintenance schedule applies to.</p>",
         "PoAttributes$encoding": "<p>The character set encoding of the data set.</p>",

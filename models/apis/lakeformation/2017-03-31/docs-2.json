@@ -107,8 +107,8 @@
     "ApplicationArn": {
       "base": null,
       "refs": {
-        "CreateLakeFormationIdentityCenterConfigurationResponse$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the integrated application.</p>",
-        "DescribeLakeFormationIdentityCenterConfigurationResponse$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the integrated application.</p>"
+        "CreateLakeFormationIdentityCenterConfigurationResponse$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the Lake Formation application integrated with IAM Identity Center.</p>",
+        "DescribeLakeFormationIdentityCenterConfigurationResponse$ApplicationArn": "<p>The Amazon Resource Name (ARN) of the Lake Formation application integrated with IAM Identity Center.</p>"
       }
     },
     "ApplicationStatus": {
@@ -412,9 +412,12 @@
     "DataLakePrincipalList": {
       "base": null,
       "refs": {
+        "CreateLakeFormationIdentityCenterConfigurationRequest$ShareRecipients": "<p>A list of Amazon Web Services account IDs and/or Amazon Web Services organization/organizational unit ARNs that are allowed to access data managed by Lake Formation. </p> <p>If the <code>ShareRecipients</code> list includes valid values, a resource share is created with the principals you want to have access to the resources.</p> <p>If the <code>ShareRecipients</code> value is null or the list is empty, no resource share is created.</p>",
         "DataLakeSettings$DataLakeAdmins": "<p>A list of Lake Formation principals. Supported principals are IAM users or IAM roles.</p>",
         "DataLakeSettings$ReadOnlyAdmins": "<p>A list of Lake Formation principals with only view access to the resources, without the ability to make changes. Supported principals are IAM users or IAM roles.</p>",
-        "DataLakeSettings$ExternalDataFilteringAllowList": "<p>A list of the account IDs of Amazon Web Services accounts with Amazon EMR clusters that are to perform data filtering.&gt;</p>"
+        "DataLakeSettings$ExternalDataFilteringAllowList": "<p>A list of the account IDs of Amazon Web Services accounts with Amazon EMR clusters that are to perform data filtering.&gt;</p>",
+        "DescribeLakeFormationIdentityCenterConfigurationResponse$ShareRecipients": "<p>A list of Amazon Web Services account IDs or Amazon Web Services organization/organizational unit ARNs that are allowed to access data managed by Lake Formation. </p> <p>If the <code>ShareRecipients</code> list includes valid values, a resource share is created with the principals you want to have access to the resources as the <code>ShareRecipients</code>.</p> <p>If the <code>ShareRecipients</code> value is null or the list is empty, no resource share is created.</p>",
+        "UpdateLakeFormationIdentityCenterConfigurationRequest$ShareRecipients": "<p>A list of Amazon Web Services account IDs or Amazon Web Services organization/organizational unit ARNs that are allowed to access to access data managed by Lake Formation. </p> <p>If the <code>ShareRecipients</code> list includes valid values, then the resource share is updated with the principals you want to have access to the resources.</p> <p>If the <code>ShareRecipients</code> value is null, both the list of share recipients and the resource share remain unchanged.</p> <p>If the <code>ShareRecipients</code> value is an empty list, then the existing share recipients list will be cleared, and the resource share will be deleted.</p>"
       }
     },
     "DataLakePrincipalString": {
@@ -1374,6 +1377,7 @@
     "RAMResourceShareArn": {
       "base": null,
       "refs": {
+        "DescribeLakeFormationIdentityCenterConfigurationResponse$ResourceShare": "<p>The Amazon Resource Name (ARN) of the RAM share.</p>",
         "ResourceShareList$member": null
       }
     },

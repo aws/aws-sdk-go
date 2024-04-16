@@ -414,6 +414,20 @@
         {"shape":"ConflictException"}
       ]
     },
+    "GetGlobalSettings":{
+      "name":"GetGlobalSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-settings"
+      },
+      "output":{"shape":"GetGlobalSettingsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetLens":{
       "name":"GetLens",
       "http":{
@@ -960,6 +974,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateIntegration":{
+      "name":"UpdateIntegration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workloads/{WorkloadId}/updateIntegration"
+      },
+      "input":{"shape":"UpdateIntegrationInput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateLensReview":{
       "name":"UpdateLensReview",
       "http":{
@@ -1109,7 +1139,8 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "UpgradeProfileVersion":{
@@ -1125,7 +1156,8 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "UpgradeReviewTemplateLensReview":{
@@ -1154,6 +1186,33 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "AccountJiraConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "IssueManagementStatus":{"shape":"AccountJiraIssueManagementStatus"},
+        "IssueManagementType":{"shape":"IssueManagementType"},
+        "JiraProjectKey":{"shape":"JiraProjectKey"},
+        "IntegrationStatus":{"shape":"IntegrationStatusInput"}
+      }
+    },
+    "AccountJiraConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "IntegrationStatus":{"shape":"IntegrationStatus"},
+        "IssueManagementStatus":{"shape":"AccountJiraIssueManagementStatus"},
+        "IssueManagementType":{"shape":"IssueManagementType"},
+        "Subdomain":{"shape":"Subdomain"},
+        "JiraProjectKey":{"shape":"JiraProjectKey"},
+        "StatusMessage":{"shape":"StatusMessage"}
+      }
+    },
+    "AccountJiraIssueManagementStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "AccountSummary":{
       "type":"map",
@@ -1194,7 +1253,8 @@
         "IsApplicable":{"shape":"IsApplicable"},
         "Risk":{"shape":"Risk"},
         "Notes":{"shape":"Notes"},
-        "Reason":{"shape":"AnswerReason"}
+        "Reason":{"shape":"AnswerReason"},
+        "JiraConfiguration":{"shape":"JiraConfiguration"}
       }
     },
     "AnswerReason":{
@@ -1223,7 +1283,8 @@
         "IsApplicable":{"shape":"IsApplicable"},
         "Risk":{"shape":"Risk"},
         "Reason":{"shape":"AnswerReason"},
-        "QuestionType":{"shape":"QuestionType"}
+        "QuestionType":{"shape":"QuestionType"},
+        "JiraConfiguration":{"shape":"JiraConfiguration"}
       }
     },
     "ApplicationArn":{
@@ -1735,7 +1796,8 @@
         "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
         "Applications":{"shape":"WorkloadApplications"},
         "ProfileArns":{"shape":"WorkloadProfileArns"},
-        "ReviewTemplateArns":{"shape":"ReviewTemplateArns"}
+        "ReviewTemplateArns":{"shape":"ReviewTemplateArns"},
+        "JiraConfiguration":{"shape":"WorkloadJiraConfigurationInput"}
       }
     },
     "CreateWorkloadOutput":{
@@ -2130,6 +2192,14 @@
         "Base64String":{"shape":"Base64String"}
       }
     },
+    "GetGlobalSettingsOutput":{
+      "type":"structure",
+      "members":{
+        "OrganizationSharingStatus":{"shape":"OrganizationSharingStatus"},
+        "DiscoveryIntegrationStatus":{"shape":"DiscoveryIntegrationStatus"},
+        "JiraConfiguration":{"shape":"AccountJiraConfigurationOutput"}
+      }
+    },
     "GetLensInput":{
       "type":"structure",
       "required":["LensAlias"],
@@ -2453,10 +2523,26 @@
         "QuestionTitle":{"shape":"QuestionTitle"},
         "Risk":{"shape":"Risk"},
         "ImprovementPlanUrl":{"shape":"ImprovementPlanUrl"},
-        "ImprovementPlans":{"shape":"ChoiceImprovementPlans"}
+        "ImprovementPlans":{"shape":"ChoiceImprovementPlans"},
+        "JiraConfiguration":{"shape":"JiraConfiguration"}
       }
     },
     "IncludeSharedResources":{"type":"boolean"},
+    "IntegratingService":{
+      "type":"string",
+      "enum":["JIRA"]
+    },
+    "IntegrationStatus":{
+      "type":"string",
+      "enum":[
+        "CONFIGURED",
+        "NOT_CONFIGURED"
+      ]
+    },
+    "IntegrationStatusInput":{
+      "type":"string",
+      "enum":["NOT_CONFIGURED"]
+    },
     "InternalServerException":{
       "type":"structure",
       "required":["Message"],
@@ -2470,6 +2556,37 @@
     "IsApplicable":{"type":"boolean"},
     "IsMajorVersion":{"type":"boolean"},
     "IsReviewOwnerUpdateAcknowledged":{"type":"boolean"},
+    "IssueManagementType":{
+      "type":"string",
+      "enum":[
+        "AUTO",
+        "MANUAL"
+      ]
+    },
+    "JiraConfiguration":{
+      "type":"structure",
+      "members":{
+        "JiraIssueUrl":{"shape":"JiraIssueUrl"},
+        "LastSyncedTime":{"shape":"Timestamp"}
+      }
+    },
+    "JiraIssueUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "JiraProjectKey":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[A-Z][A-Z0-9_]*$"
+    },
+    "JiraSelectedQuestionConfiguration":{
+      "type":"structure",
+      "members":{
+        "SelectedPillars":{"shape":"SelectedPillars"}
+      }
+    },
     "Lens":{
       "type":"structure",
       "members":{
@@ -2534,6 +2651,7 @@
         "LensName":{"shape":"LensName"},
         "LensStatus":{"shape":"LensStatus"},
         "PillarReviewSummaries":{"shape":"PillarReviewSummaries"},
+        "JiraConfiguration":{"shape":"JiraSelectedQuestionConfiguration"},
         "UpdatedAt":{"shape":"Timestamp"},
         "Notes":{"shape":"Notes"},
         "RiskCounts":{"shape":"RiskCounts"},
@@ -3505,19 +3623,16 @@
     "ProfileDescription":{
       "type":"string",
       "max":100,
-      "min":3,
-      "pattern":"^[A-Za-z0-9-_.,:/()@!&?#+'’\\s]+$"
+      "min":3
     },
     "ProfileName":{
       "type":"string",
       "max":100,
-      "min":3,
-      "pattern":"^[A-Za-z0-9-_.,:/()@!&?#+'’\\s]+$"
+      "min":3
     },
     "ProfileNamePrefix":{
       "type":"string",
-      "max":100,
-      "pattern":"^[A-Za-z0-9-_.,:/()@!&?#+'’\\s]+$"
+      "max":100
     },
     "ProfileNotificationSummaries":{
       "type":"list",
@@ -3891,9 +4006,25 @@
       "type":"list",
       "member":{"shape":"ChoiceId"}
     },
+    "SelectedPillar":{
+      "type":"structure",
+      "members":{
+        "PillarId":{"shape":"PillarId"},
+        "SelectedQuestionIds":{"shape":"SelectedQuestionIds"}
+      }
+    },
+    "SelectedPillars":{
+      "type":"list",
+      "member":{"shape":"SelectedPillar"}
+    },
     "SelectedProfileChoiceIds":{
       "type":"list",
       "member":{"shape":"ChoiceId"}
+    },
+    "SelectedQuestionId":{"type":"string"},
+    "SelectedQuestionIds":{
+      "type":"list",
+      "member":{"shape":"SelectedQuestionId"}
     },
     "ServiceCode":{"type":"string"},
     "ServiceQuotaExceededException":{
@@ -3996,6 +4127,11 @@
     "StatusMessage":{
       "type":"string",
       "max":512,
+      "min":1
+    },
+    "Subdomain":{
+      "type":"string",
+      "max":100,
       "min":1
     },
     "TagKey":{
@@ -4167,7 +4303,28 @@
       "type":"structure",
       "members":{
         "OrganizationSharingStatus":{"shape":"OrganizationSharingStatus"},
-        "DiscoveryIntegrationStatus":{"shape":"DiscoveryIntegrationStatus"}
+        "DiscoveryIntegrationStatus":{"shape":"DiscoveryIntegrationStatus"},
+        "JiraConfiguration":{"shape":"AccountJiraConfigurationInput"}
+      }
+    },
+    "UpdateIntegrationInput":{
+      "type":"structure",
+      "required":[
+        "WorkloadId",
+        "ClientRequestToken",
+        "IntegratingService"
+      ],
+      "members":{
+        "WorkloadId":{
+          "shape":"WorkloadId",
+          "location":"uri",
+          "locationName":"WorkloadId"
+        },
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "IntegratingService":{"shape":"IntegratingService"}
       }
     },
     "UpdateLensReviewInput":{
@@ -4188,7 +4345,8 @@
           "locationName":"LensAlias"
         },
         "LensNotes":{"shape":"Notes"},
-        "PillarNotes":{"shape":"PillarNotes"}
+        "PillarNotes":{"shape":"PillarNotes"},
+        "JiraConfiguration":{"shape":"JiraSelectedQuestionConfiguration"}
       }
     },
     "UpdateLensReviewOutput":{
@@ -4350,7 +4508,8 @@
         "Notes":{"shape":"Notes"},
         "ImprovementStatus":{"shape":"WorkloadImprovementStatus"},
         "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
-        "Applications":{"shape":"WorkloadApplications"}
+        "Applications":{"shape":"WorkloadApplications"},
+        "JiraConfiguration":{"shape":"WorkloadJiraConfigurationInput"}
       }
     },
     "UpdateWorkloadOutput":{
@@ -4528,7 +4687,8 @@
         "DiscoveryConfig":{"shape":"WorkloadDiscoveryConfig"},
         "Applications":{"shape":"WorkloadApplications"},
         "Profiles":{"shape":"WorkloadProfiles"},
-        "PrioritizedRiskCounts":{"shape":"RiskCounts"}
+        "PrioritizedRiskCounts":{"shape":"RiskCounts"},
+        "JiraConfiguration":{"shape":"WorkloadJiraConfigurationOutput"}
       }
     },
     "WorkloadAccountIds":{
@@ -4594,6 +4754,31 @@
     "WorkloadIndustryType":{
       "type":"string",
       "max":100
+    },
+    "WorkloadIssueManagementStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "INHERIT"
+      ]
+    },
+    "WorkloadJiraConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "IssueManagementStatus":{"shape":"WorkloadIssueManagementStatus"},
+        "IssueManagementType":{"shape":"IssueManagementType"},
+        "JiraProjectKey":{"shape":"JiraProjectKey"}
+      }
+    },
+    "WorkloadJiraConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "IssueManagementStatus":{"shape":"WorkloadIssueManagementStatus"},
+        "IssueManagementType":{"shape":"IssueManagementType"},
+        "JiraProjectKey":{"shape":"JiraProjectKey"},
+        "StatusMessage":{"shape":"StatusMessage"}
+      }
     },
     "WorkloadLenses":{
       "type":"list",

@@ -159,6 +159,10 @@ type WellArchitectedAPI interface {
 	GetConsolidatedReportPages(*wellarchitected.GetConsolidatedReportInput, func(*wellarchitected.GetConsolidatedReportOutput, bool) bool) error
 	GetConsolidatedReportPagesWithContext(aws.Context, *wellarchitected.GetConsolidatedReportInput, func(*wellarchitected.GetConsolidatedReportOutput, bool) bool, ...request.Option) error
 
+	GetGlobalSettings(*wellarchitected.GetGlobalSettingsInput) (*wellarchitected.GetGlobalSettingsOutput, error)
+	GetGlobalSettingsWithContext(aws.Context, *wellarchitected.GetGlobalSettingsInput, ...request.Option) (*wellarchitected.GetGlobalSettingsOutput, error)
+	GetGlobalSettingsRequest(*wellarchitected.GetGlobalSettingsInput) (*request.Request, *wellarchitected.GetGlobalSettingsOutput)
+
 	GetLens(*wellarchitected.GetLensInput) (*wellarchitected.GetLensOutput, error)
 	GetLensWithContext(aws.Context, *wellarchitected.GetLensInput, ...request.Option) (*wellarchitected.GetLensOutput, error)
 	GetLensRequest(*wellarchitected.GetLensInput) (*request.Request, *wellarchitected.GetLensOutput)
@@ -352,6 +356,10 @@ type WellArchitectedAPI interface {
 	UpdateGlobalSettings(*wellarchitected.UpdateGlobalSettingsInput) (*wellarchitected.UpdateGlobalSettingsOutput, error)
 	UpdateGlobalSettingsWithContext(aws.Context, *wellarchitected.UpdateGlobalSettingsInput, ...request.Option) (*wellarchitected.UpdateGlobalSettingsOutput, error)
 	UpdateGlobalSettingsRequest(*wellarchitected.UpdateGlobalSettingsInput) (*request.Request, *wellarchitected.UpdateGlobalSettingsOutput)
+
+	UpdateIntegration(*wellarchitected.UpdateIntegrationInput) (*wellarchitected.UpdateIntegrationOutput, error)
+	UpdateIntegrationWithContext(aws.Context, *wellarchitected.UpdateIntegrationInput, ...request.Option) (*wellarchitected.UpdateIntegrationOutput, error)
+	UpdateIntegrationRequest(*wellarchitected.UpdateIntegrationInput) (*request.Request, *wellarchitected.UpdateIntegrationOutput)
 
 	UpdateLensReview(*wellarchitected.UpdateLensReviewInput) (*wellarchitected.UpdateLensReviewOutput, error)
 	UpdateLensReviewWithContext(aws.Context, *wellarchitected.UpdateLensReviewInput, ...request.Option) (*wellarchitected.UpdateLensReviewOutput, error)

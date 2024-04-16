@@ -365,6 +365,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListBatchJobRestartPoints":{
+      "name":"ListBatchJobRestartPoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{applicationId}/batch-job-executions/{executionId}/steps",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBatchJobRestartPointsRequest"},
+      "output":{"shape":"ListBatchJobRestartPointsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListDataSetImportHistory":{
       "name":"ListDataSetImportHistory",
       "http":{
@@ -737,6 +755,7 @@
         "Cancelled",
         "Succeeded",
         "Failed",
+        "Purged",
         "Succeeded With Warning"
       ]
     },
@@ -769,6 +788,7 @@
       "type":"structure",
       "members":{
         "fileBatchJobIdentifier":{"shape":"FileBatchJobIdentifier"},
+        "restartBatchJobIdentifier":{"shape":"RestartBatchJobIdentifier"},
         "s3BatchJobIdentifier":{"shape":"S3BatchJobIdentifier"},
         "scriptBatchJobIdentifier":{"shape":"ScriptBatchJobIdentifier"}
       },
@@ -780,6 +800,10 @@
       "value":{"shape":"BatchParamValue"},
       "max":500,
       "min":0
+    },
+    "BatchJobStepList":{
+      "type":"list",
+      "member":{"shape":"JobStep"}
     },
     "BatchJobType":{
       "type":"string",
@@ -1471,6 +1495,7 @@
         "executionId":{"shape":"Identifier"},
         "jobId":{"shape":"String100"},
         "jobName":{"shape":"String100"},
+        "jobStepRestartMarker":{"shape":"JobStepRestartMarker"},
         "jobType":{"shape":"BatchJobType"},
         "jobUser":{"shape":"String100"},
         "returnCode":{"shape":"String"},
@@ -1689,6 +1714,27 @@
       },
       "union":true
     },
+    "JobStep":{
+      "type":"structure",
+      "members":{
+        "procStepName":{"shape":"String"},
+        "procStepNumber":{"shape":"Integer"},
+        "stepCondCode":{"shape":"String"},
+        "stepName":{"shape":"String"},
+        "stepNumber":{"shape":"Integer"},
+        "stepRestartable":{"shape":"Boolean"}
+      }
+    },
+    "JobStepRestartMarker":{
+      "type":"structure",
+      "required":["fromStep"],
+      "members":{
+        "fromProcStep":{"shape":"String"},
+        "fromStep":{"shape":"String"},
+        "toProcStep":{"shape":"String"},
+        "toStep":{"shape":"String"}
+      }
+    },
     "ListApplicationVersionsRequest":{
       "type":"structure",
       "required":["applicationId"],
@@ -1837,6 +1883,31 @@
       "members":{
         "batchJobExecutions":{"shape":"BatchJobExecutionSummaryList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBatchJobRestartPointsRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "executionId"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"Identifier",
+          "location":"uri",
+          "locationName":"applicationId"
+        },
+        "executionId":{
+          "shape":"Identifier",
+          "location":"uri",
+          "locationName":"executionId"
+        }
+      }
+    },
+    "ListBatchJobRestartPointsResponse":{
+      "type":"structure",
+      "members":{
+        "batchJobSteps":{"shape":"BatchJobStepList"}
       }
     },
     "ListDataSetImportHistoryRequest":{
@@ -2146,6 +2217,17 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "RestartBatchJobIdentifier":{
+      "type":"structure",
+      "required":[
+        "executionId",
+        "jobStepRestartMarker"
+      ],
+      "members":{
+        "executionId":{"shape":"Identifier"},
+        "jobStepRestartMarker":{"shape":"JobStepRestartMarker"}
+      }
     },
     "S3BatchJobIdentifier":{
       "type":"structure",
@@ -2473,6 +2555,8 @@
       "enum":[
         "unknownOperation",
         "cannotParse",
+        "featureNotAvailable",
+        "unsupportedEngineVersion",
         "fieldValidationFailed",
         "other"
       ]

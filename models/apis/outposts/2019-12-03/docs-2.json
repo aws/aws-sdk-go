@@ -2,25 +2,30 @@
   "version": "2.0",
   "service": "<p>Amazon Web Services Outposts is a fully managed service that extends Amazon Web Services infrastructure, APIs, and tools to customer premises. By providing local access to Amazon Web Services managed infrastructure, Amazon Web Services Outposts enables customers to build and run applications on premises using the same programming interfaces as in Amazon Web Services Regions, while using local compute and storage resources for lower latency and local data processing needs.</p>",
   "operations": {
+    "CancelCapacityTask": "<p>Cancels the capacity task.</p>",
     "CancelOrder": "<p>Cancels the specified order for an Outpost.</p>",
     "CreateOrder": "<p>Creates an order for an Outpost.</p>",
     "CreateOutpost": "<p>Creates an Outpost.</p> <p>You can specify either an Availability one or an AZ ID.</p>",
     "CreateSite": "<p> Creates a site for an Outpost. </p>",
     "DeleteOutpost": "<p>Deletes the specified Outpost.</p>",
     "DeleteSite": "<p>Deletes the specified site.</p>",
+    "GetCapacityTask": "<p>Gets details of the specified capacity task.</p>",
     "GetCatalogItem": "<p>Gets information about the specified catalog item.</p>",
     "GetConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Gets information about the specified connection. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
     "GetOrder": "<p>Gets information about the specified order.</p>",
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
     "GetOutpostInstanceTypes": "<p>Gets the instance types for the specified Outpost.</p>",
+    "GetOutpostSupportedInstanceTypes": "<p>Gets the instance types that an Outpost can support in <code>InstanceTypeCapacity</code>. This will generally include instance types that are not currently configured and therefore cannot be launched with the current Outpost capacity configuration.</p>",
     "GetSite": "<p>Gets information about the specified Outpost site.</p>",
     "GetSiteAddress": "<p> Gets the site address of the specified site. </p>",
     "ListAssets": "<p>Lists the hardware assets for the specified Outpost.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
+    "ListCapacityTasks": "<p>Lists the capacity tasks for your Amazon Web Services account.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
     "ListCatalogItems": "<p>Lists the items in the catalog.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
     "ListOrders": "<p>Lists the Outpost orders for your Amazon Web Services account.</p>",
     "ListOutposts": "<p>Lists the Outposts for your Amazon Web Services account.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
     "ListSites": "<p>Lists the Outpost sites for your Amazon Web Services account. Use filters to return specific results.</p> <p>Use filters to return specific results. If you specify multiple filters, the results include only the resources that match all of the specified filters. For a filter where you can specify multiple values, the results include items that match any of the values that you specify for the filter.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "StartCapacityTask": "<p>Starts the specified capacity task. You can have one active capacity task for an order.</p>",
     "StartConnection": "<note> <p> Amazon Web Services uses this action to install Outpost servers.</p> </note> <p> Starts the connection required for Outpost server installation. </p> <p> Use CloudTrail to monitor this action or Amazon Web Services managed policy for Amazon Web Services Outposts to secure it. For more information, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/security-iam-awsmanpol.html\"> Amazon Web Services managed policies for Amazon Web Services Outposts</a> and <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/logging-using-cloudtrail.html\"> Logging Amazon Web Services Outposts API calls with Amazon Web Services CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>. </p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from the specified resource.</p>",
@@ -166,6 +171,16 @@
         "ConnectionDetails$AllowedIps": "<p> The allowed IP addresses. </p>"
       }
     },
+    "CancelCapacityTaskInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelCapacityTaskOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CancelOrderInput": {
       "base": null,
       "refs": {
@@ -174,6 +189,62 @@
     "CancelOrderOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "CapacityTaskFailure": {
+      "base": "<p>The capacity tasks that failed.</p>",
+      "refs": {
+        "GetCapacityTaskOutput$Failed": "<p>Reason why the capacity task failed.</p>",
+        "StartCapacityTaskOutput$Failed": "<p>Reason that the specified capacity task failed.</p>"
+      }
+    },
+    "CapacityTaskFailureType": {
+      "base": null,
+      "refs": {
+        "CapacityTaskFailure$Type": "<p>The type of failure.</p>"
+      }
+    },
+    "CapacityTaskId": {
+      "base": null,
+      "refs": {
+        "CancelCapacityTaskInput$CapacityTaskId": "<p>ID of the capacity task that you want to cancel.</p>",
+        "CapacityTaskSummary$CapacityTaskId": "<p>The ID of the specified capacity task.</p>",
+        "GetCapacityTaskInput$CapacityTaskId": "<p>ID of the capacity task.</p>",
+        "GetCapacityTaskOutput$CapacityTaskId": "<p>ID of the capacity task.</p>",
+        "StartCapacityTaskOutput$CapacityTaskId": "<p>ID of the capacity task that you want to start.</p>"
+      }
+    },
+    "CapacityTaskList": {
+      "base": null,
+      "refs": {
+        "ListCapacityTasksOutput$CapacityTasks": "<p>Lists all the capacity tasks.</p>"
+      }
+    },
+    "CapacityTaskStatus": {
+      "base": null,
+      "refs": {
+        "CapacityTaskStatusList$member": null,
+        "CapacityTaskSummary$CapacityTaskStatus": "<p>The status of the capacity task.</p>",
+        "GetCapacityTaskOutput$CapacityTaskStatus": "<p>Status of the capacity task.</p> <p>A capacity task can have one of the following statuses:</p> <ul> <li> <p> <code>REQUESTED</code> - The capacity task was created and is awaiting the next step by Amazon Web Services Outposts.</p> </li> <li> <p> <code>IN_PROGRESS</code> - The capacity task is running and cannot be cancelled.</p> </li> <li> <p> <code>WAITING_FOR_EVACUATION</code> - The capacity task requires capacity to run. You must stop the recommended EC2 running instances to free up capacity for the task to run.</p> </li> </ul>",
+        "StartCapacityTaskOutput$CapacityTaskStatus": "<p>Status of the specified capacity task.</p>"
+      }
+    },
+    "CapacityTaskStatusList": {
+      "base": null,
+      "refs": {
+        "ListCapacityTasksInput$CapacityTaskStatusFilter": "<p>A list of statuses. For example, <code>REQUESTED</code> or <code>WAITING_FOR_EVACUATION</code>.</p>"
+      }
+    },
+    "CapacityTaskStatusReason": {
+      "base": null,
+      "refs": {
+        "CapacityTaskFailure$Reason": "<p>The reason that the specified capacity task failed.</p>"
+      }
+    },
+    "CapacityTaskSummary": {
+      "base": "<p>The summary of the capacity task.</p>",
+      "refs": {
+        "CapacityTaskList$member": null
       }
     },
     "CatalogItem": {
@@ -352,6 +423,14 @@
         "Address$DistrictOrCounty": "<p>The district or county for the address.</p>"
       }
     },
+    "DryRun": {
+      "base": null,
+      "refs": {
+        "GetCapacityTaskOutput$DryRun": "<p>Performs a dry run to determine if you are above or below instance capacity.</p>",
+        "StartCapacityTaskInput$DryRun": "<p>You can request a dry run to determine if the instance type and instance size changes is above or below available instance capacity. Requesting a dry run does not make any changes to your plan.</p>",
+        "StartCapacityTaskOutput$DryRun": "<p>Results of the dry run showing if the specified capacity task is above or below the available instance capacity.</p>"
+      }
+    },
     "EC2Capacity": {
       "base": "<p> Information about EC2 capacity. </p>",
       "refs": {
@@ -393,6 +472,16 @@
       "refs": {
         "RackPhysicalProperties$FiberOpticCableType": "<p>The type of fiber used to attach the Outpost to the network. </p>",
         "UpdateSiteRackPhysicalPropertiesInput$FiberOpticCableType": "<p>The type of fiber that you will use to attach the Outpost to your network. </p>"
+      }
+    },
+    "GetCapacityTaskInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCapacityTaskOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "GetCatalogItemInput": {
@@ -445,6 +534,16 @@
       "refs": {
       }
     },
+    "GetOutpostSupportedInstanceTypesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOutpostSupportedInstanceTypesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetSiteAddressInput": {
       "base": null,
       "refs": {
@@ -481,10 +580,19 @@
     "ISO8601Timestamp": {
       "base": null,
       "refs": {
+        "CapacityTaskSummary$CreationDate": "<p>The date that the specified capacity task was created.</p>",
+        "CapacityTaskSummary$CompletionDate": "<p>The date that the specified capacity task successfully ran.</p>",
+        "CapacityTaskSummary$LastModifiedDate": "<p>The date that the specified capacity was last modified.</p>",
+        "GetCapacityTaskOutput$CreationDate": "<p>The date the capacity task was created.</p>",
+        "GetCapacityTaskOutput$CompletionDate": "<p>The date the capacity task ran successfully.</p>",
+        "GetCapacityTaskOutput$LastModifiedDate": "<p>The date the capacity task was last modified.</p>",
         "Order$OrderSubmissionDate": "<p>The submission date for the order.</p>",
         "Order$OrderFulfilledDate": "<p>The fulfillment date of the order.</p>",
         "OrderSummary$OrderSubmissionDate": "<p> The submission date for the order. </p>",
-        "OrderSummary$OrderFulfilledDate": "<p> The fulfilment date for the order. </p>"
+        "OrderSummary$OrderFulfilledDate": "<p> The fulfilment date for the order. </p>",
+        "StartCapacityTaskOutput$CreationDate": "<p>Date that the specified capacity task was created.</p>",
+        "StartCapacityTaskOutput$CompletionDate": "<p>Date that the specified capacity task ran successfully.</p>",
+        "StartCapacityTaskOutput$LastModifiedDate": "<p>Date that the specified capacity task was last modified.</p>"
       }
     },
     "InstanceFamilies": {
@@ -505,6 +613,18 @@
         "InstanceTypeItem$InstanceType": null
       }
     },
+    "InstanceTypeCapacity": {
+      "base": "<p>The instance type that you specify determines the combination of CPU, memory, storage, and networking capacity.</p>",
+      "refs": {
+        "RequestedInstancePools$member": null
+      }
+    },
+    "InstanceTypeCount": {
+      "base": null,
+      "refs": {
+        "InstanceTypeCapacity$Count": "<p>The number of instances for the specified instance type.</p>"
+      }
+    },
     "InstanceTypeItem": {
       "base": "<p>Information about an instance type.</p>",
       "refs": {
@@ -514,7 +634,14 @@
     "InstanceTypeListDefinition": {
       "base": "<p>Information about the instance types.</p>",
       "refs": {
-        "GetOutpostInstanceTypesOutput$InstanceTypes": null
+        "GetOutpostInstanceTypesOutput$InstanceTypes": null,
+        "GetOutpostSupportedInstanceTypesOutput$InstanceTypes": null
+      }
+    },
+    "InstanceTypeName": {
+      "base": null,
+      "refs": {
+        "InstanceTypeCapacity$InstanceType": "<p>The instance type of the hosts.</p>"
       }
     },
     "InternalServerException": {
@@ -609,6 +736,16 @@
       "refs": {
       }
     },
+    "ListCapacityTasksInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListCapacityTasksOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCatalogItemsInput": {
       "base": null,
       "refs": {
@@ -675,7 +812,9 @@
       "base": "<p>The maximum page size.</p>",
       "refs": {
         "GetOutpostInstanceTypesInput$MaxResults": null,
+        "GetOutpostSupportedInstanceTypesInput$MaxResults": null,
         "ListAssetsInput$MaxResults": null,
+        "ListCapacityTasksInput$MaxResults": null,
         "ListCatalogItemsInput$MaxResults": null,
         "ListOrdersInput$MaxResults": null,
         "ListOutpostsInput$MaxResults": null,
@@ -730,10 +869,15 @@
       "base": null,
       "refs": {
         "CancelOrderInput$OrderId": "<p> The ID of the order. </p>",
+        "CapacityTaskSummary$OrderId": "<p>The ID of the Amazon Web Services Outposts order of the host associated with the capacity task.</p>",
+        "GetCapacityTaskOutput$OrderId": "<p>ID of the Amazon Web Services Outposts order associated with the specified capacity task.</p>",
         "GetOrderInput$OrderId": "<p>The ID of the order.</p>",
+        "GetOutpostSupportedInstanceTypesInput$OrderId": "<p>The ID for the Amazon Web Services Outposts order.</p>",
         "LineItem$PreviousOrderId": "<p>The ID of the previous order.</p>",
         "Order$OrderId": "<p>The ID of the order.</p>",
-        "OrderSummary$OrderId": "<p> The ID of the order. </p>"
+        "OrderSummary$OrderId": "<p> The ID of the order. </p>",
+        "StartCapacityTaskInput$OrderId": "<p>The ID of the Amazon Web Services Outposts order associated with the specified capacity task.</p>",
+        "StartCapacityTaskOutput$OrderId": "<p>ID of the Amazon Web Services Outposts order of the host associated with the capacity task.</p>"
       }
     },
     "OrderStatus": {
@@ -789,12 +933,15 @@
     "OutpostId": {
       "base": null,
       "refs": {
-        "DeleteOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
-        "GetOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
-        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "CapacityTaskSummary$OutpostId": "<p>The ID of the Outpost associated with the specified capacity task.</p>",
+        "DeleteOutpostInput$OutpostId": "<p> The ID or ARN of the Outpost. </p>",
+        "GetCapacityTaskOutput$OutpostId": "<p>ID of the Outpost associated with the specified capacity task.</p>",
+        "GetOutpostInput$OutpostId": "<p> The ID or ARN of the Outpost. </p>",
+        "GetOutpostInstanceTypesInput$OutpostId": "<p> The ID or ARN of the Outpost. </p>",
         "GetOutpostInstanceTypesOutput$OutpostId": "<p> The ID of the Outpost. </p>",
         "Outpost$OutpostId": "<p> The ID of the Outpost. </p>",
-        "UpdateOutpostInput$OutpostId": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"
+        "StartCapacityTaskOutput$OutpostId": "<p>ID of the Outpost associated with the capacity task.</p>",
+        "UpdateOutpostInput$OutpostId": "<p> The ID or ARN of the Outpost. </p>"
       }
     },
     "OutpostIdOnly": {
@@ -807,9 +954,14 @@
     "OutpostIdentifier": {
       "base": null,
       "refs": {
+        "CancelCapacityTaskInput$OutpostIdentifier": "<p>ID or ARN of the Outpost associated with the capacity task that you want to cancel.</p>",
         "CreateOrderInput$OutpostIdentifier": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "GetCapacityTaskInput$OutpostIdentifier": "<p>ID or ARN of the Outpost associated with the specified capacity task.</p>",
+        "GetOutpostSupportedInstanceTypesInput$OutpostIdentifier": "<p>The ID or ARN of the Outpost.</p>",
         "ListAssetsInput$OutpostIdentifier": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
-        "ListOrdersInput$OutpostIdentifierFilter": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>"
+        "ListCapacityTasksInput$OutpostIdentifierFilter": "<p>Filters the results by an Outpost ID or an Outpost ARN.</p>",
+        "ListOrdersInput$OutpostIdentifierFilter": "<p> The ID or the Amazon Resource Name (ARN) of the Outpost. </p>",
+        "StartCapacityTaskInput$OutpostIdentifier": "<p>The ID or ARN of the Outposts associated with the specified capacity task.</p>"
       }
     },
     "OutpostName": {
@@ -897,6 +1049,14 @@
       "refs": {
         "CreateSiteInput$RackPhysicalProperties": "<p> Information about the physical and logistical details for the rack at this site. For more information about hardware requirements for racks, see <a href=\"https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist\">Network readiness checklist</a> in the Amazon Web Services Outposts User Guide. </p>",
         "Site$RackPhysicalProperties": "<p> Information about the physical and logistical details for a rack at the site. </p>"
+      }
+    },
+    "RequestedInstancePools": {
+      "base": null,
+      "refs": {
+        "GetCapacityTaskOutput$RequestedInstancePools": "<p>List of instance pools requested in the capacity task.</p>",
+        "StartCapacityTaskInput$InstancePools": "<p>The instance pools specified in the capacity task.</p>",
+        "StartCapacityTaskOutput$RequestedInstancePools": "<p>List of the instance pools requested in the specified capacity task.</p>"
       }
     },
     "ResourceType": {
@@ -991,6 +1151,16 @@
         "GetCatalogItemInput$CatalogItemId": "<p>The ID of the catalog item.</p>",
         "LineItem$CatalogItemId": "<p> The ID of the catalog item.</p>",
         "LineItemRequest$CatalogItemId": "<p>The ID of the catalog item.</p>"
+      }
+    },
+    "StartCapacityTaskInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartCapacityTaskOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "StartConnectionRequest": {
@@ -1107,8 +1277,12 @@
       "refs": {
         "GetOutpostInstanceTypesInput$NextToken": null,
         "GetOutpostInstanceTypesOutput$NextToken": null,
+        "GetOutpostSupportedInstanceTypesInput$NextToken": null,
+        "GetOutpostSupportedInstanceTypesOutput$NextToken": null,
         "ListAssetsInput$NextToken": null,
         "ListAssetsOutput$NextToken": null,
+        "ListCapacityTasksInput$NextToken": null,
+        "ListCapacityTasksOutput$NextToken": null,
         "ListCatalogItemsInput$NextToken": null,
         "ListCatalogItemsOutput$NextToken": null,
         "ListOrdersInput$NextToken": null,

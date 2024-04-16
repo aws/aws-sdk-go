@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS Outposts.
 //	func myFunc(svc outpostsiface.OutpostsAPI) bool {
-//	    // Make svc.CancelOrder request
+//	    // Make svc.CancelCapacityTask request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockOutpostsClient struct {
 //	    outpostsiface.OutpostsAPI
 //	}
-//	func (m *mockOutpostsClient) CancelOrder(input *outposts.CancelOrderInput) (*outposts.CancelOrderOutput, error) {
+//	func (m *mockOutpostsClient) CancelCapacityTask(input *outposts.CancelCapacityTaskInput) (*outposts.CancelCapacityTaskOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type OutpostsAPI interface {
+	CancelCapacityTask(*outposts.CancelCapacityTaskInput) (*outposts.CancelCapacityTaskOutput, error)
+	CancelCapacityTaskWithContext(aws.Context, *outposts.CancelCapacityTaskInput, ...request.Option) (*outposts.CancelCapacityTaskOutput, error)
+	CancelCapacityTaskRequest(*outposts.CancelCapacityTaskInput) (*request.Request, *outposts.CancelCapacityTaskOutput)
+
 	CancelOrder(*outposts.CancelOrderInput) (*outposts.CancelOrderOutput, error)
 	CancelOrderWithContext(aws.Context, *outposts.CancelOrderInput, ...request.Option) (*outposts.CancelOrderOutput, error)
 	CancelOrderRequest(*outposts.CancelOrderInput) (*request.Request, *outposts.CancelOrderOutput)
@@ -84,6 +88,10 @@ type OutpostsAPI interface {
 	DeleteSiteWithContext(aws.Context, *outposts.DeleteSiteInput, ...request.Option) (*outposts.DeleteSiteOutput, error)
 	DeleteSiteRequest(*outposts.DeleteSiteInput) (*request.Request, *outposts.DeleteSiteOutput)
 
+	GetCapacityTask(*outposts.GetCapacityTaskInput) (*outposts.GetCapacityTaskOutput, error)
+	GetCapacityTaskWithContext(aws.Context, *outposts.GetCapacityTaskInput, ...request.Option) (*outposts.GetCapacityTaskOutput, error)
+	GetCapacityTaskRequest(*outposts.GetCapacityTaskInput) (*request.Request, *outposts.GetCapacityTaskOutput)
+
 	GetCatalogItem(*outposts.GetCatalogItemInput) (*outposts.GetCatalogItemOutput, error)
 	GetCatalogItemWithContext(aws.Context, *outposts.GetCatalogItemInput, ...request.Option) (*outposts.GetCatalogItemOutput, error)
 	GetCatalogItemRequest(*outposts.GetCatalogItemInput) (*request.Request, *outposts.GetCatalogItemOutput)
@@ -107,6 +115,13 @@ type OutpostsAPI interface {
 	GetOutpostInstanceTypesPages(*outposts.GetOutpostInstanceTypesInput, func(*outposts.GetOutpostInstanceTypesOutput, bool) bool) error
 	GetOutpostInstanceTypesPagesWithContext(aws.Context, *outposts.GetOutpostInstanceTypesInput, func(*outposts.GetOutpostInstanceTypesOutput, bool) bool, ...request.Option) error
 
+	GetOutpostSupportedInstanceTypes(*outposts.GetOutpostSupportedInstanceTypesInput) (*outposts.GetOutpostSupportedInstanceTypesOutput, error)
+	GetOutpostSupportedInstanceTypesWithContext(aws.Context, *outposts.GetOutpostSupportedInstanceTypesInput, ...request.Option) (*outposts.GetOutpostSupportedInstanceTypesOutput, error)
+	GetOutpostSupportedInstanceTypesRequest(*outposts.GetOutpostSupportedInstanceTypesInput) (*request.Request, *outposts.GetOutpostSupportedInstanceTypesOutput)
+
+	GetOutpostSupportedInstanceTypesPages(*outposts.GetOutpostSupportedInstanceTypesInput, func(*outposts.GetOutpostSupportedInstanceTypesOutput, bool) bool) error
+	GetOutpostSupportedInstanceTypesPagesWithContext(aws.Context, *outposts.GetOutpostSupportedInstanceTypesInput, func(*outposts.GetOutpostSupportedInstanceTypesOutput, bool) bool, ...request.Option) error
+
 	GetSite(*outposts.GetSiteInput) (*outposts.GetSiteOutput, error)
 	GetSiteWithContext(aws.Context, *outposts.GetSiteInput, ...request.Option) (*outposts.GetSiteOutput, error)
 	GetSiteRequest(*outposts.GetSiteInput) (*request.Request, *outposts.GetSiteOutput)
@@ -121,6 +136,13 @@ type OutpostsAPI interface {
 
 	ListAssetsPages(*outposts.ListAssetsInput, func(*outposts.ListAssetsOutput, bool) bool) error
 	ListAssetsPagesWithContext(aws.Context, *outposts.ListAssetsInput, func(*outposts.ListAssetsOutput, bool) bool, ...request.Option) error
+
+	ListCapacityTasks(*outposts.ListCapacityTasksInput) (*outposts.ListCapacityTasksOutput, error)
+	ListCapacityTasksWithContext(aws.Context, *outposts.ListCapacityTasksInput, ...request.Option) (*outposts.ListCapacityTasksOutput, error)
+	ListCapacityTasksRequest(*outposts.ListCapacityTasksInput) (*request.Request, *outposts.ListCapacityTasksOutput)
+
+	ListCapacityTasksPages(*outposts.ListCapacityTasksInput, func(*outposts.ListCapacityTasksOutput, bool) bool) error
+	ListCapacityTasksPagesWithContext(aws.Context, *outposts.ListCapacityTasksInput, func(*outposts.ListCapacityTasksOutput, bool) bool, ...request.Option) error
 
 	ListCatalogItems(*outposts.ListCatalogItemsInput) (*outposts.ListCatalogItemsOutput, error)
 	ListCatalogItemsWithContext(aws.Context, *outposts.ListCatalogItemsInput, ...request.Option) (*outposts.ListCatalogItemsOutput, error)
@@ -153,6 +175,10 @@ type OutpostsAPI interface {
 	ListTagsForResource(*outposts.ListTagsForResourceInput) (*outposts.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *outposts.ListTagsForResourceInput, ...request.Option) (*outposts.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*outposts.ListTagsForResourceInput) (*request.Request, *outposts.ListTagsForResourceOutput)
+
+	StartCapacityTask(*outposts.StartCapacityTaskInput) (*outposts.StartCapacityTaskOutput, error)
+	StartCapacityTaskWithContext(aws.Context, *outposts.StartCapacityTaskInput, ...request.Option) (*outposts.StartCapacityTaskOutput, error)
+	StartCapacityTaskRequest(*outposts.StartCapacityTaskInput) (*request.Request, *outposts.StartCapacityTaskOutput)
 
 	StartConnection(*outposts.StartConnectionInput) (*outposts.StartConnectionOutput, error)
 	StartConnectionWithContext(aws.Context, *outposts.StartConnectionInput, ...request.Option) (*outposts.StartConnectionOutput, error)

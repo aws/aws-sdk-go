@@ -7186,6 +7186,16 @@ type CreateLakeFormationIdentityCenterConfigurationInput struct {
 	// and Amazon Web Services Service Namespaces in the Amazon Web Services General
 	// Reference.
 	InstanceArn *string `type:"string"`
+
+	// A list of Amazon Web Services account IDs and/or Amazon Web Services organization/organizational
+	// unit ARNs that are allowed to access data managed by Lake Formation.
+	//
+	// If the ShareRecipients list includes valid values, a resource share is created
+	// with the principals you want to have access to the resources.
+	//
+	// If the ShareRecipients value is null or the list is empty, no resource share
+	// is created.
+	ShareRecipients []*DataLakePrincipal `type:"list"`
 }
 
 // String returns the string representation.
@@ -7217,6 +7227,16 @@ func (s *CreateLakeFormationIdentityCenterConfigurationInput) Validate() error {
 			invalidParams.AddNested("ExternalFiltering", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ShareRecipients != nil {
+		for i, v := range s.ShareRecipients {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ShareRecipients", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7242,10 +7262,17 @@ func (s *CreateLakeFormationIdentityCenterConfigurationInput) SetInstanceArn(v s
 	return s
 }
 
+// SetShareRecipients sets the ShareRecipients field's value.
+func (s *CreateLakeFormationIdentityCenterConfigurationInput) SetShareRecipients(v []*DataLakePrincipal) *CreateLakeFormationIdentityCenterConfigurationInput {
+	s.ShareRecipients = v
+	return s
+}
+
 type CreateLakeFormationIdentityCenterConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the integrated application.
+	// The Amazon Resource Name (ARN) of the Lake Formation application integrated
+	// with IAM Identity Center.
 	ApplicationArn *string `type:"string"`
 }
 
@@ -8674,7 +8701,8 @@ func (s *DescribeLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v s
 type DescribeLakeFormationIdentityCenterConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the integrated application.
+	// The Amazon Resource Name (ARN) of the Lake Formation application integrated
+	// with IAM Identity Center.
 	ApplicationArn *string `type:"string"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
@@ -8688,6 +8716,19 @@ type DescribeLakeFormationIdentityCenterConfigurationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the connection.
 	InstanceArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the RAM share.
+	ResourceShare *string `type:"string"`
+
+	// A list of Amazon Web Services account IDs or Amazon Web Services organization/organizational
+	// unit ARNs that are allowed to access data managed by Lake Formation.
+	//
+	// If the ShareRecipients list includes valid values, a resource share is created
+	// with the principals you want to have access to the resources as the ShareRecipients.
+	//
+	// If the ShareRecipients value is null or the list is empty, no resource share
+	// is created.
+	ShareRecipients []*DataLakePrincipal `type:"list"`
 }
 
 // String returns the string representation.
@@ -8729,6 +8770,18 @@ func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetExternalFilt
 // SetInstanceArn sets the InstanceArn field's value.
 func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetInstanceArn(v string) *DescribeLakeFormationIdentityCenterConfigurationOutput {
 	s.InstanceArn = &v
+	return s
+}
+
+// SetResourceShare sets the ResourceShare field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetResourceShare(v string) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.ResourceShare = &v
+	return s
+}
+
+// SetShareRecipients sets the ShareRecipients field's value.
+func (s *DescribeLakeFormationIdentityCenterConfigurationOutput) SetShareRecipients(v []*DataLakePrincipal) *DescribeLakeFormationIdentityCenterConfigurationOutput {
+	s.ShareRecipients = v
 	return s
 }
 
@@ -15453,6 +15506,19 @@ type UpdateLakeFormationIdentityCenterConfigurationInput struct {
 	// A list of the account IDs of Amazon Web Services accounts of third-party
 	// applications that are allowed to access data managed by Lake Formation.
 	ExternalFiltering *ExternalFilteringConfiguration `type:"structure"`
+
+	// A list of Amazon Web Services account IDs or Amazon Web Services organization/organizational
+	// unit ARNs that are allowed to access to access data managed by Lake Formation.
+	//
+	// If the ShareRecipients list includes valid values, then the resource share
+	// is updated with the principals you want to have access to the resources.
+	//
+	// If the ShareRecipients value is null, both the list of share recipients and
+	// the resource share remain unchanged.
+	//
+	// If the ShareRecipients value is an empty list, then the existing share recipients
+	// list will be cleared, and the resource share will be deleted.
+	ShareRecipients []*DataLakePrincipal `type:"list"`
 }
 
 // String returns the string representation.
@@ -15484,6 +15550,16 @@ func (s *UpdateLakeFormationIdentityCenterConfigurationInput) Validate() error {
 			invalidParams.AddNested("ExternalFiltering", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ShareRecipients != nil {
+		for i, v := range s.ShareRecipients {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ShareRecipients", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15506,6 +15582,12 @@ func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetCatalogId(v str
 // SetExternalFiltering sets the ExternalFiltering field's value.
 func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetExternalFiltering(v *ExternalFilteringConfiguration) *UpdateLakeFormationIdentityCenterConfigurationInput {
 	s.ExternalFiltering = v
+	return s
+}
+
+// SetShareRecipients sets the ShareRecipients field's value.
+func (s *UpdateLakeFormationIdentityCenterConfigurationInput) SetShareRecipients(v []*DataLakePrincipal) *UpdateLakeFormationIdentityCenterConfigurationInput {
+	s.ShareRecipients = v
 	return s
 }
 

@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCancelCapacityTask = "CancelCapacityTask"
+
+// CancelCapacityTaskRequest generates a "aws/request.Request" representing the
+// client's request for the CancelCapacityTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelCapacityTask for more information on using the CancelCapacityTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CancelCapacityTaskRequest method.
+//	req, resp := client.CancelCapacityTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelCapacityTask
+func (c *Outposts) CancelCapacityTaskRequest(input *CancelCapacityTaskInput) (req *request.Request, output *CancelCapacityTaskOutput) {
+	op := &request.Operation{
+		Name:       opCancelCapacityTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/outposts/{OutpostId}/capacity/{CapacityTaskId}",
+	}
+
+	if input == nil {
+		input = &CancelCapacityTaskInput{}
+	}
+
+	output = &CancelCapacityTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelCapacityTask API operation for AWS Outposts.
+//
+// Cancels the capacity task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation CancelCapacityTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
+//   - NotFoundException
+//     The specified request is not valid.
+//
+//   - ConflictException
+//     Updating or deleting this resource can cause an inconsistent state.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelCapacityTask
+func (c *Outposts) CancelCapacityTask(input *CancelCapacityTaskInput) (*CancelCapacityTaskOutput, error) {
+	req, out := c.CancelCapacityTaskRequest(input)
+	return out, req.Send()
+}
+
+// CancelCapacityTaskWithContext is the same as CancelCapacityTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelCapacityTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) CancelCapacityTaskWithContext(ctx aws.Context, input *CancelCapacityTaskInput, opts ...request.Option) (*CancelCapacityTaskOutput, error) {
+	req, out := c.CancelCapacityTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelOrder = "CancelOrder"
 
 // CancelOrderRequest generates a "aws/request.Request" representing the
@@ -570,6 +662,94 @@ func (c *Outposts) DeleteSiteWithContext(ctx aws.Context, input *DeleteSiteInput
 	return out, req.Send()
 }
 
+const opGetCapacityTask = "GetCapacityTask"
+
+// GetCapacityTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetCapacityTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCapacityTask for more information on using the GetCapacityTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetCapacityTaskRequest method.
+//	req, resp := client.GetCapacityTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCapacityTask
+func (c *Outposts) GetCapacityTaskRequest(input *GetCapacityTaskInput) (req *request.Request, output *GetCapacityTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetCapacityTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/outposts/{OutpostId}/capacity/{CapacityTaskId}",
+	}
+
+	if input == nil {
+		input = &GetCapacityTaskInput{}
+	}
+
+	output = &GetCapacityTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCapacityTask API operation for AWS Outposts.
+//
+// Gets details of the specified capacity task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetCapacityTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
+//   - NotFoundException
+//     The specified request is not valid.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCapacityTask
+func (c *Outposts) GetCapacityTask(input *GetCapacityTaskInput) (*GetCapacityTaskOutput, error) {
+	req, out := c.GetCapacityTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetCapacityTaskWithContext is the same as GetCapacityTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCapacityTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetCapacityTaskWithContext(ctx aws.Context, input *GetCapacityTaskInput, opts ...request.Option) (*GetCapacityTaskOutput, error) {
+	req, out := c.GetCapacityTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCatalogItem = "GetCatalogItem"
 
 // GetCatalogItemRequest generates a "aws/request.Request" representing the
@@ -1070,6 +1250,153 @@ func (c *Outposts) GetOutpostInstanceTypesPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opGetOutpostSupportedInstanceTypes = "GetOutpostSupportedInstanceTypes"
+
+// GetOutpostSupportedInstanceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the GetOutpostSupportedInstanceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOutpostSupportedInstanceTypes for more information on using the GetOutpostSupportedInstanceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetOutpostSupportedInstanceTypesRequest method.
+//	req, resp := client.GetOutpostSupportedInstanceTypesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOutpostSupportedInstanceTypes
+func (c *Outposts) GetOutpostSupportedInstanceTypesRequest(input *GetOutpostSupportedInstanceTypesInput) (req *request.Request, output *GetOutpostSupportedInstanceTypesOutput) {
+	op := &request.Operation{
+		Name:       opGetOutpostSupportedInstanceTypes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/outposts/{OutpostId}/supportedInstanceTypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetOutpostSupportedInstanceTypesInput{}
+	}
+
+	output = &GetOutpostSupportedInstanceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOutpostSupportedInstanceTypes API operation for AWS Outposts.
+//
+// Gets the instance types that an Outpost can support in InstanceTypeCapacity.
+// This will generally include instance types that are not currently configured
+// and therefore cannot be launched with the current Outpost capacity configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetOutpostSupportedInstanceTypes for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
+//   - NotFoundException
+//     The specified request is not valid.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOutpostSupportedInstanceTypes
+func (c *Outposts) GetOutpostSupportedInstanceTypes(input *GetOutpostSupportedInstanceTypesInput) (*GetOutpostSupportedInstanceTypesOutput, error) {
+	req, out := c.GetOutpostSupportedInstanceTypesRequest(input)
+	return out, req.Send()
+}
+
+// GetOutpostSupportedInstanceTypesWithContext is the same as GetOutpostSupportedInstanceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOutpostSupportedInstanceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetOutpostSupportedInstanceTypesWithContext(ctx aws.Context, input *GetOutpostSupportedInstanceTypesInput, opts ...request.Option) (*GetOutpostSupportedInstanceTypesOutput, error) {
+	req, out := c.GetOutpostSupportedInstanceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetOutpostSupportedInstanceTypesPages iterates over the pages of a GetOutpostSupportedInstanceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetOutpostSupportedInstanceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a GetOutpostSupportedInstanceTypes operation.
+//	pageNum := 0
+//	err := client.GetOutpostSupportedInstanceTypesPages(params,
+//	    func(page *outposts.GetOutpostSupportedInstanceTypesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Outposts) GetOutpostSupportedInstanceTypesPages(input *GetOutpostSupportedInstanceTypesInput, fn func(*GetOutpostSupportedInstanceTypesOutput, bool) bool) error {
+	return c.GetOutpostSupportedInstanceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetOutpostSupportedInstanceTypesPagesWithContext same as GetOutpostSupportedInstanceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetOutpostSupportedInstanceTypesPagesWithContext(ctx aws.Context, input *GetOutpostSupportedInstanceTypesInput, fn func(*GetOutpostSupportedInstanceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetOutpostSupportedInstanceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetOutpostSupportedInstanceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetOutpostSupportedInstanceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetSite = "GetSite"
 
 // GetSiteRequest generates a "aws/request.Request" representing the
@@ -1389,6 +1716,156 @@ func (c *Outposts) ListAssetsPagesWithContext(ctx aws.Context, input *ListAssets
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAssetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCapacityTasks = "ListCapacityTasks"
+
+// ListCapacityTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListCapacityTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCapacityTasks for more information on using the ListCapacityTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListCapacityTasksRequest method.
+//	req, resp := client.ListCapacityTasksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCapacityTasks
+func (c *Outposts) ListCapacityTasksRequest(input *ListCapacityTasksInput) (req *request.Request, output *ListCapacityTasksOutput) {
+	op := &request.Operation{
+		Name:       opListCapacityTasks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/capacity/tasks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCapacityTasksInput{}
+	}
+
+	output = &ListCapacityTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCapacityTasks API operation for AWS Outposts.
+//
+// Lists the capacity tasks for your Amazon Web Services account.
+//
+// Use filters to return specific results. If you specify multiple filters,
+// the results include only the resources that match all of the specified filters.
+// For a filter where you can specify multiple values, the results include items
+// that match any of the values that you specify for the filter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation ListCapacityTasks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
+//   - NotFoundException
+//     The specified request is not valid.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCapacityTasks
+func (c *Outposts) ListCapacityTasks(input *ListCapacityTasksInput) (*ListCapacityTasksOutput, error) {
+	req, out := c.ListCapacityTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListCapacityTasksWithContext is the same as ListCapacityTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCapacityTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListCapacityTasksWithContext(ctx aws.Context, input *ListCapacityTasksInput, opts ...request.Option) (*ListCapacityTasksOutput, error) {
+	req, out := c.ListCapacityTasksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCapacityTasksPages iterates over the pages of a ListCapacityTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCapacityTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListCapacityTasks operation.
+//	pageNum := 0
+//	err := client.ListCapacityTasksPages(params,
+//	    func(page *outposts.ListCapacityTasksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Outposts) ListCapacityTasksPages(input *ListCapacityTasksInput, fn func(*ListCapacityTasksOutput, bool) bool) error {
+	return c.ListCapacityTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCapacityTasksPagesWithContext same as ListCapacityTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListCapacityTasksPagesWithContext(ctx aws.Context, input *ListCapacityTasksInput, fn func(*ListCapacityTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCapacityTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCapacityTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCapacityTasksOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2063,6 +2540,98 @@ func (c *Outposts) ListTagsForResource(input *ListTagsForResourceInput) (*ListTa
 // for more information on using Contexts.
 func (c *Outposts) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartCapacityTask = "StartCapacityTask"
+
+// StartCapacityTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartCapacityTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCapacityTask for more information on using the StartCapacityTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartCapacityTaskRequest method.
+//	req, resp := client.StartCapacityTaskRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartCapacityTask
+func (c *Outposts) StartCapacityTaskRequest(input *StartCapacityTaskInput) (req *request.Request, output *StartCapacityTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartCapacityTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/outposts/{OutpostId}/capacity",
+	}
+
+	if input == nil {
+		input = &StartCapacityTaskInput{}
+	}
+
+	output = &StartCapacityTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCapacityTask API operation for AWS Outposts.
+//
+// Starts the specified capacity task. You can have one active capacity task
+// for an order.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation StartCapacityTask for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     A parameter is not valid.
+//
+//   - AccessDeniedException
+//     You do not have permission to perform this operation.
+//
+//   - NotFoundException
+//     The specified request is not valid.
+//
+//   - InternalServerException
+//     An internal error has occurred.
+//
+//   - ConflictException
+//     Updating or deleting this resource can cause an inconsistent state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/StartCapacityTask
+func (c *Outposts) StartCapacityTask(input *StartCapacityTaskInput) (*StartCapacityTaskOutput, error) {
+	req, out := c.StartCapacityTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartCapacityTaskWithContext is the same as StartCapacityTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCapacityTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) StartCapacityTaskWithContext(ctx aws.Context, input *StartCapacityTaskInput, opts ...request.Option) (*StartCapacityTaskOutput, error) {
+	req, out := c.StartCapacityTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3058,6 +3627,95 @@ func (s *AssetLocation) SetRackElevation(v float64) *AssetLocation {
 	return s
 }
 
+type CancelCapacityTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ID of the capacity task that you want to cancel.
+	//
+	// CapacityTaskId is a required field
+	CapacityTaskId *string `location:"uri" locationName:"CapacityTaskId" min:"21" type:"string" required:"true"`
+
+	// ID or ARN of the Outpost associated with the capacity task that you want
+	// to cancel.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelCapacityTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelCapacityTaskInput"}
+	if s.CapacityTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityTaskId"))
+	}
+	if s.CapacityTaskId != nil && len(*s.CapacityTaskId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("CapacityTaskId", 21))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityTaskId sets the CapacityTaskId field's value.
+func (s *CancelCapacityTaskInput) SetCapacityTaskId(v string) *CancelCapacityTaskInput {
+	s.CapacityTaskId = &v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *CancelCapacityTaskInput) SetOutpostIdentifier(v string) *CancelCapacityTaskInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+type CancelCapacityTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelCapacityTaskOutput) GoString() string {
+	return s.String()
+}
+
 type CancelOrderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3127,6 +3785,136 @@ func (s CancelOrderOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CancelOrderOutput) GoString() string {
 	return s.String()
+}
+
+// The capacity tasks that failed.
+type CapacityTaskFailure struct {
+	_ struct{} `type:"structure"`
+
+	// The reason that the specified capacity task failed.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true"`
+
+	// The type of failure.
+	Type *string `type:"string" enum:"CapacityTaskFailureType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityTaskFailure) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityTaskFailure) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *CapacityTaskFailure) SetReason(v string) *CapacityTaskFailure {
+	s.Reason = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CapacityTaskFailure) SetType(v string) *CapacityTaskFailure {
+	s.Type = &v
+	return s
+}
+
+// The summary of the capacity task.
+type CapacityTaskSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the specified capacity task.
+	CapacityTaskId *string `min:"21" type:"string"`
+
+	// The status of the capacity task.
+	CapacityTaskStatus *string `type:"string" enum:"CapacityTaskStatus"`
+
+	// The date that the specified capacity task successfully ran.
+	CompletionDate *time.Time `type:"timestamp"`
+
+	// The date that the specified capacity task was created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// The date that the specified capacity was last modified.
+	LastModifiedDate *time.Time `type:"timestamp"`
+
+	// The ID of the Amazon Web Services Outposts order of the host associated with
+	// the capacity task.
+	OrderId *string `min:"1" type:"string"`
+
+	// The ID of the Outpost associated with the specified capacity task.
+	OutpostId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityTaskSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CapacityTaskSummary) GoString() string {
+	return s.String()
+}
+
+// SetCapacityTaskId sets the CapacityTaskId field's value.
+func (s *CapacityTaskSummary) SetCapacityTaskId(v string) *CapacityTaskSummary {
+	s.CapacityTaskId = &v
+	return s
+}
+
+// SetCapacityTaskStatus sets the CapacityTaskStatus field's value.
+func (s *CapacityTaskSummary) SetCapacityTaskStatus(v string) *CapacityTaskSummary {
+	s.CapacityTaskStatus = &v
+	return s
+}
+
+// SetCompletionDate sets the CompletionDate field's value.
+func (s *CapacityTaskSummary) SetCompletionDate(v time.Time) *CapacityTaskSummary {
+	s.CompletionDate = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *CapacityTaskSummary) SetCreationDate(v time.Time) *CapacityTaskSummary {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *CapacityTaskSummary) SetLastModifiedDate(v time.Time) *CapacityTaskSummary {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *CapacityTaskSummary) SetOrderId(v string) *CapacityTaskSummary {
+	s.OrderId = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *CapacityTaskSummary) SetOutpostId(v string) *CapacityTaskSummary {
+	s.OutpostId = &v
+	return s
 }
 
 // Information about a catalog item.
@@ -3868,7 +4656,7 @@ func (s *CreateSiteOutput) SetSite(v *Site) *CreateSiteOutput {
 type DeleteOutpostInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	// The ID or ARN of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -4054,6 +4842,196 @@ func (s *EC2Capacity) SetMaxSize(v string) *EC2Capacity {
 // SetQuantity sets the Quantity field's value.
 func (s *EC2Capacity) SetQuantity(v string) *EC2Capacity {
 	s.Quantity = &v
+	return s
+}
+
+type GetCapacityTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ID of the capacity task.
+	//
+	// CapacityTaskId is a required field
+	CapacityTaskId *string `location:"uri" locationName:"CapacityTaskId" min:"21" type:"string" required:"true"`
+
+	// ID or ARN of the Outpost associated with the specified capacity task.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCapacityTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCapacityTaskInput"}
+	if s.CapacityTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CapacityTaskId"))
+	}
+	if s.CapacityTaskId != nil && len(*s.CapacityTaskId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("CapacityTaskId", 21))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityTaskId sets the CapacityTaskId field's value.
+func (s *GetCapacityTaskInput) SetCapacityTaskId(v string) *GetCapacityTaskInput {
+	s.CapacityTaskId = &v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *GetCapacityTaskInput) SetOutpostIdentifier(v string) *GetCapacityTaskInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+type GetCapacityTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the capacity task.
+	CapacityTaskId *string `min:"21" type:"string"`
+
+	// Status of the capacity task.
+	//
+	// A capacity task can have one of the following statuses:
+	//
+	//    * REQUESTED - The capacity task was created and is awaiting the next step
+	//    by Amazon Web Services Outposts.
+	//
+	//    * IN_PROGRESS - The capacity task is running and cannot be cancelled.
+	//
+	//    * WAITING_FOR_EVACUATION - The capacity task requires capacity to run.
+	//    You must stop the recommended EC2 running instances to free up capacity
+	//    for the task to run.
+	CapacityTaskStatus *string `type:"string" enum:"CapacityTaskStatus"`
+
+	// The date the capacity task ran successfully.
+	CompletionDate *time.Time `type:"timestamp"`
+
+	// The date the capacity task was created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// Performs a dry run to determine if you are above or below instance capacity.
+	DryRun *bool `type:"boolean"`
+
+	// Reason why the capacity task failed.
+	Failed *CapacityTaskFailure `type:"structure"`
+
+	// The date the capacity task was last modified.
+	LastModifiedDate *time.Time `type:"timestamp"`
+
+	// ID of the Amazon Web Services Outposts order associated with the specified
+	// capacity task.
+	OrderId *string `min:"1" type:"string"`
+
+	// ID of the Outpost associated with the specified capacity task.
+	OutpostId *string `min:"1" type:"string"`
+
+	// List of instance pools requested in the capacity task.
+	RequestedInstancePools []*InstanceTypeCapacity `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCapacityTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityTaskId sets the CapacityTaskId field's value.
+func (s *GetCapacityTaskOutput) SetCapacityTaskId(v string) *GetCapacityTaskOutput {
+	s.CapacityTaskId = &v
+	return s
+}
+
+// SetCapacityTaskStatus sets the CapacityTaskStatus field's value.
+func (s *GetCapacityTaskOutput) SetCapacityTaskStatus(v string) *GetCapacityTaskOutput {
+	s.CapacityTaskStatus = &v
+	return s
+}
+
+// SetCompletionDate sets the CompletionDate field's value.
+func (s *GetCapacityTaskOutput) SetCompletionDate(v time.Time) *GetCapacityTaskOutput {
+	s.CompletionDate = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetCapacityTaskOutput) SetCreationDate(v time.Time) *GetCapacityTaskOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *GetCapacityTaskOutput) SetDryRun(v bool) *GetCapacityTaskOutput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *GetCapacityTaskOutput) SetFailed(v *CapacityTaskFailure) *GetCapacityTaskOutput {
+	s.Failed = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *GetCapacityTaskOutput) SetLastModifiedDate(v time.Time) *GetCapacityTaskOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *GetCapacityTaskOutput) SetOrderId(v string) *GetCapacityTaskOutput {
+	s.OrderId = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *GetCapacityTaskOutput) SetOutpostId(v string) *GetCapacityTaskOutput {
+	s.OutpostId = &v
+	return s
+}
+
+// SetRequestedInstancePools sets the RequestedInstancePools field's value.
+func (s *GetCapacityTaskOutput) SetRequestedInstancePools(v []*InstanceTypeCapacity) *GetCapacityTaskOutput {
+	s.RequestedInstancePools = v
 	return s
 }
 
@@ -4309,7 +5287,7 @@ func (s *GetOrderOutput) SetOrder(v *Order) *GetOrderOutput {
 type GetOutpostInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	// The ID or ARN of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -4364,7 +5342,7 @@ type GetOutpostInstanceTypesInput struct {
 	// The pagination token.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	// The ID or ARN of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -4514,6 +5492,136 @@ func (s GetOutpostOutput) GoString() string {
 // SetOutpost sets the Outpost field's value.
 func (s *GetOutpostOutput) SetOutpost(v *Outpost) *GetOutpostOutput {
 	s.Outpost = v
+	return s
+}
+
+type GetOutpostSupportedInstanceTypesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum page size.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// The ID for the Amazon Web Services Outposts order.
+	//
+	// OrderId is a required field
+	OrderId *string `location:"querystring" locationName:"OrderId" min:"1" type:"string" required:"true"`
+
+	// The ID or ARN of the Outpost.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostSupportedInstanceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostSupportedInstanceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOutpostSupportedInstanceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOutpostSupportedInstanceTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderId"))
+	}
+	if s.OrderId != nil && len(*s.OrderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrderId", 1))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetOutpostSupportedInstanceTypesInput) SetMaxResults(v int64) *GetOutpostSupportedInstanceTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetOutpostSupportedInstanceTypesInput) SetNextToken(v string) *GetOutpostSupportedInstanceTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *GetOutpostSupportedInstanceTypesInput) SetOrderId(v string) *GetOutpostSupportedInstanceTypesInput {
+	s.OrderId = &v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *GetOutpostSupportedInstanceTypesInput) SetOutpostIdentifier(v string) *GetOutpostSupportedInstanceTypesInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+type GetOutpostSupportedInstanceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the instance types.
+	InstanceTypes []*InstanceTypeItem `type:"list"`
+
+	// The pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostSupportedInstanceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOutpostSupportedInstanceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceTypes sets the InstanceTypes field's value.
+func (s *GetOutpostSupportedInstanceTypesOutput) SetInstanceTypes(v []*InstanceTypeItem) *GetOutpostSupportedInstanceTypesOutput {
+	s.InstanceTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetOutpostSupportedInstanceTypesOutput) SetNextToken(v string) *GetOutpostSupportedInstanceTypesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4706,6 +5814,71 @@ func (s GetSiteOutput) GoString() string {
 // SetSite sets the Site field's value.
 func (s *GetSiteOutput) SetSite(v *Site) *GetSiteOutput {
 	s.Site = v
+	return s
+}
+
+// The instance type that you specify determines the combination of CPU, memory,
+// storage, and networking capacity.
+type InstanceTypeCapacity struct {
+	_ struct{} `type:"structure"`
+
+	// The number of instances for the specified instance type.
+	//
+	// Count is a required field
+	Count *int64 `type:"integer" required:"true"`
+
+	// The instance type of the hosts.
+	//
+	// InstanceType is a required field
+	InstanceType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceTypeCapacity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceTypeCapacity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceTypeCapacity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceTypeCapacity"}
+	if s.Count == nil {
+		invalidParams.Add(request.NewErrParamRequired("Count"))
+	}
+	if s.InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
+	}
+	if s.InstanceType != nil && len(*s.InstanceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCount sets the Count field's value.
+func (s *InstanceTypeCapacity) SetCount(v int64) *InstanceTypeCapacity {
+	s.Count = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceTypeCapacity) SetInstanceType(v string) *InstanceTypeCapacity {
+	s.InstanceType = &v
 	return s
 }
 
@@ -5128,6 +6301,123 @@ func (s *ListAssetsOutput) SetAssets(v []*AssetInfo) *ListAssetsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCapacityTasksInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A list of statuses. For example, REQUESTED or WAITING_FOR_EVACUATION.
+	CapacityTaskStatusFilter []*string `location:"querystring" locationName:"CapacityTaskStatusFilter" type:"list" enum:"CapacityTaskStatus"`
+
+	// The maximum page size.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// Filters the results by an Outpost ID or an Outpost ARN.
+	OutpostIdentifierFilter *string `location:"querystring" locationName:"OutpostIdentifierFilter" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityTasksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCapacityTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCapacityTasksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OutpostIdentifierFilter != nil && len(*s.OutpostIdentifierFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifierFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCapacityTaskStatusFilter sets the CapacityTaskStatusFilter field's value.
+func (s *ListCapacityTasksInput) SetCapacityTaskStatusFilter(v []*string) *ListCapacityTasksInput {
+	s.CapacityTaskStatusFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCapacityTasksInput) SetMaxResults(v int64) *ListCapacityTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCapacityTasksInput) SetNextToken(v string) *ListCapacityTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostIdentifierFilter sets the OutpostIdentifierFilter field's value.
+func (s *ListCapacityTasksInput) SetOutpostIdentifierFilter(v string) *ListCapacityTasksInput {
+	s.OutpostIdentifierFilter = &v
+	return s
+}
+
+type ListCapacityTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists all the capacity tasks.
+	CapacityTasks []*CapacityTaskSummary `type:"list"`
+
+	// The pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCapacityTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityTasks sets the CapacityTasks field's value.
+func (s *ListCapacityTasksOutput) SetCapacityTasks(v []*CapacityTaskSummary) *ListCapacityTasksOutput {
+	s.CapacityTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCapacityTasksOutput) SetNextToken(v string) *ListCapacityTasksOutput {
 	s.NextToken = &v
 	return s
 }
@@ -6451,6 +7741,222 @@ func (s *Site) SetTags(v map[string]*string) *Site {
 	return s
 }
 
+type StartCapacityTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// You can request a dry run to determine if the instance type and instance
+	// size changes is above or below available instance capacity. Requesting a
+	// dry run does not make any changes to your plan.
+	DryRun *bool `type:"boolean"`
+
+	// The instance pools specified in the capacity task.
+	//
+	// InstancePools is a required field
+	InstancePools []*InstanceTypeCapacity `type:"list" required:"true"`
+
+	// The ID of the Amazon Web Services Outposts order associated with the specified
+	// capacity task.
+	//
+	// OrderId is a required field
+	OrderId *string `min:"1" type:"string" required:"true"`
+
+	// The ID or ARN of the Outposts associated with the specified capacity task.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCapacityTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCapacityTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCapacityTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCapacityTaskInput"}
+	if s.InstancePools == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstancePools"))
+	}
+	if s.OrderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderId"))
+	}
+	if s.OrderId != nil && len(*s.OrderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrderId", 1))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+	if s.InstancePools != nil {
+		for i, v := range s.InstancePools {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstancePools", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *StartCapacityTaskInput) SetDryRun(v bool) *StartCapacityTaskInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstancePools sets the InstancePools field's value.
+func (s *StartCapacityTaskInput) SetInstancePools(v []*InstanceTypeCapacity) *StartCapacityTaskInput {
+	s.InstancePools = v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *StartCapacityTaskInput) SetOrderId(v string) *StartCapacityTaskInput {
+	s.OrderId = &v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *StartCapacityTaskInput) SetOutpostIdentifier(v string) *StartCapacityTaskInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+type StartCapacityTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the capacity task that you want to start.
+	CapacityTaskId *string `min:"21" type:"string"`
+
+	// Status of the specified capacity task.
+	CapacityTaskStatus *string `type:"string" enum:"CapacityTaskStatus"`
+
+	// Date that the specified capacity task ran successfully.
+	CompletionDate *time.Time `type:"timestamp"`
+
+	// Date that the specified capacity task was created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// Results of the dry run showing if the specified capacity task is above or
+	// below the available instance capacity.
+	DryRun *bool `type:"boolean"`
+
+	// Reason that the specified capacity task failed.
+	Failed *CapacityTaskFailure `type:"structure"`
+
+	// Date that the specified capacity task was last modified.
+	LastModifiedDate *time.Time `type:"timestamp"`
+
+	// ID of the Amazon Web Services Outposts order of the host associated with
+	// the capacity task.
+	OrderId *string `min:"1" type:"string"`
+
+	// ID of the Outpost associated with the capacity task.
+	OutpostId *string `min:"1" type:"string"`
+
+	// List of the instance pools requested in the specified capacity task.
+	RequestedInstancePools []*InstanceTypeCapacity `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCapacityTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartCapacityTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityTaskId sets the CapacityTaskId field's value.
+func (s *StartCapacityTaskOutput) SetCapacityTaskId(v string) *StartCapacityTaskOutput {
+	s.CapacityTaskId = &v
+	return s
+}
+
+// SetCapacityTaskStatus sets the CapacityTaskStatus field's value.
+func (s *StartCapacityTaskOutput) SetCapacityTaskStatus(v string) *StartCapacityTaskOutput {
+	s.CapacityTaskStatus = &v
+	return s
+}
+
+// SetCompletionDate sets the CompletionDate field's value.
+func (s *StartCapacityTaskOutput) SetCompletionDate(v time.Time) *StartCapacityTaskOutput {
+	s.CompletionDate = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *StartCapacityTaskOutput) SetCreationDate(v time.Time) *StartCapacityTaskOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *StartCapacityTaskOutput) SetDryRun(v bool) *StartCapacityTaskOutput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *StartCapacityTaskOutput) SetFailed(v *CapacityTaskFailure) *StartCapacityTaskOutput {
+	s.Failed = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *StartCapacityTaskOutput) SetLastModifiedDate(v time.Time) *StartCapacityTaskOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *StartCapacityTaskOutput) SetOrderId(v string) *StartCapacityTaskOutput {
+	s.OrderId = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *StartCapacityTaskOutput) SetOutpostId(v string) *StartCapacityTaskOutput {
+	s.OutpostId = &v
+	return s
+}
+
+// SetRequestedInstancePools sets the RequestedInstancePools field's value.
+func (s *StartCapacityTaskOutput) SetRequestedInstancePools(v []*InstanceTypeCapacity) *StartCapacityTaskOutput {
+	s.RequestedInstancePools = v
+	return s
+}
+
 type StartConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6768,7 +8274,7 @@ type UpdateOutpostInput struct {
 	// The name of the Outpost.
 	Name *string `min:"1" type:"string"`
 
-	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	// The ID or ARN of the Outpost.
 	//
 	// OutpostId is a required field
 	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
@@ -7429,6 +8935,46 @@ const (
 func AssetType_Values() []string {
 	return []string{
 		AssetTypeCompute,
+	}
+}
+
+const (
+	// CapacityTaskFailureTypeUnsupportedCapacityConfiguration is a CapacityTaskFailureType enum value
+	CapacityTaskFailureTypeUnsupportedCapacityConfiguration = "UNSUPPORTED_CAPACITY_CONFIGURATION"
+)
+
+// CapacityTaskFailureType_Values returns all elements of the CapacityTaskFailureType enum
+func CapacityTaskFailureType_Values() []string {
+	return []string{
+		CapacityTaskFailureTypeUnsupportedCapacityConfiguration,
+	}
+}
+
+const (
+	// CapacityTaskStatusRequested is a CapacityTaskStatus enum value
+	CapacityTaskStatusRequested = "REQUESTED"
+
+	// CapacityTaskStatusInProgress is a CapacityTaskStatus enum value
+	CapacityTaskStatusInProgress = "IN_PROGRESS"
+
+	// CapacityTaskStatusFailed is a CapacityTaskStatus enum value
+	CapacityTaskStatusFailed = "FAILED"
+
+	// CapacityTaskStatusCompleted is a CapacityTaskStatus enum value
+	CapacityTaskStatusCompleted = "COMPLETED"
+
+	// CapacityTaskStatusCancelled is a CapacityTaskStatus enum value
+	CapacityTaskStatusCancelled = "CANCELLED"
+)
+
+// CapacityTaskStatus_Values returns all elements of the CapacityTaskStatus enum
+func CapacityTaskStatus_Values() []string {
+	return []string{
+		CapacityTaskStatusRequested,
+		CapacityTaskStatusInProgress,
+		CapacityTaskStatusFailed,
+		CapacityTaskStatusCompleted,
+		CapacityTaskStatusCancelled,
 	}
 }
 

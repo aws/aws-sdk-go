@@ -82,8 +82,8 @@ func (c *BedrockAgent) AssociateAgentKnowledgeBaseRequest(input *AssociateAgentK
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -161,11 +161,12 @@ func (c *BedrockAgent) CreateAgentRequest(input *CreateAgentInput) (req *request
 // out tasks to help customers.
 //
 //   - Specify the following fields for security purposes. agentResourceRoleArn
-//     – The ARN of the role with permissions to create an agent. (Optional)
-//     customerEncryptionKeyArn – The ARN of a KMS key to encrypt the creation
-//     of the agent. (Optional) idleSessionTTLinSeconds – Specify the number
-//     of seconds for which the agent should maintain session information. After
-//     this time expires, the subsequent InvokeAgent request begins a new session.
+//     – The Amazon Resource Name (ARN) of the role with permissions to invoke
+//     API operations on an agent. (Optional) customerEncryptionKeyArn – The
+//     Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the
+//     agent. (Optional) idleSessionTTLinSeconds – Specify the number of seconds
+//     for which the agent should maintain session information. After this time
+//     expires, the subsequent InvokeAgent request begins a new session.
 //
 //   - To override the default prompt behavior for agent orchestration and
 //     to use advanced prompts, include a promptOverrideConfiguration object.
@@ -301,8 +302,8 @@ func (c *BedrockAgent) CreateAgentActionGroupRequest(input *CreateAgentActionGro
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -399,8 +400,8 @@ func (c *BedrockAgent) CreateAgentAliasRequest(input *CreateAgentAliasInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -499,8 +500,8 @@ func (c *BedrockAgent) CreateDataSourceRequest(input *CreateDataSourceInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -584,8 +585,8 @@ func (c *BedrockAgent) CreateKnowledgeBaseRequest(input *CreateKnowledgeBaseInpu
 //
 //   - Provide the name and an optional description.
 //
-//   - Provide the ARN with permissions to create a knowledge base in the roleArn
-//     field.
+//   - Provide the Amazon Resource Name (ARN) with permissions to create a
+//     knowledge base in the roleArn field.
 //
 //   - Provide the embedding model to use in the embeddingModelArn field in
 //     the knowledgeBaseConfiguration object.
@@ -718,8 +719,8 @@ func (c *BedrockAgent) DeleteAgentRequest(input *DeleteAgentInput) (req *request
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -814,8 +815,8 @@ func (c *BedrockAgent) DeleteAgentActionGroupRequest(input *DeleteAgentActionGro
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -909,8 +910,8 @@ func (c *BedrockAgent) DeleteAgentAliasRequest(input *DeleteAgentAliasInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/DeleteAgentAlias
 func (c *BedrockAgent) DeleteAgentAlias(input *DeleteAgentAliasInput) (*DeleteAgentAliasOutput, error) {
@@ -1001,8 +1002,8 @@ func (c *BedrockAgent) DeleteAgentVersionRequest(input *DeleteAgentVersionInput)
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -1096,8 +1097,8 @@ func (c *BedrockAgent) DeleteDataSourceRequest(input *DeleteDataSourceInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -1194,8 +1195,8 @@ func (c *BedrockAgent) DeleteKnowledgeBaseRequest(input *DeleteKnowledgeBaseInpu
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -1290,8 +1291,8 @@ func (c *BedrockAgent) DisassociateAgentKnowledgeBaseRequest(input *Disassociate
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -1385,8 +1386,8 @@ func (c *BedrockAgent) GetAgentRequest(input *GetAgentInput) (req *request.Reque
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgent
 func (c *BedrockAgent) GetAgent(input *GetAgentInput) (*GetAgentOutput, error) {
@@ -1477,8 +1478,8 @@ func (c *BedrockAgent) GetAgentActionGroupRequest(input *GetAgentActionGroupInpu
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentActionGroup
 func (c *BedrockAgent) GetAgentActionGroup(input *GetAgentActionGroupInput) (*GetAgentActionGroupOutput, error) {
@@ -1569,8 +1570,8 @@ func (c *BedrockAgent) GetAgentAliasRequest(input *GetAgentAliasInput) (req *req
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentAlias
 func (c *BedrockAgent) GetAgentAlias(input *GetAgentAliasInput) (*GetAgentAliasOutput, error) {
@@ -1661,8 +1662,8 @@ func (c *BedrockAgent) GetAgentKnowledgeBaseRequest(input *GetAgentKnowledgeBase
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentKnowledgeBase
 func (c *BedrockAgent) GetAgentKnowledgeBase(input *GetAgentKnowledgeBaseInput) (*GetAgentKnowledgeBaseOutput, error) {
@@ -1753,8 +1754,8 @@ func (c *BedrockAgent) GetAgentVersionRequest(input *GetAgentVersionInput) (req 
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetAgentVersion
 func (c *BedrockAgent) GetAgentVersion(input *GetAgentVersionInput) (*GetAgentVersionOutput, error) {
@@ -1845,8 +1846,8 @@ func (c *BedrockAgent) GetDataSourceRequest(input *GetDataSourceInput) (req *req
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetDataSource
 func (c *BedrockAgent) GetDataSource(input *GetDataSourceInput) (*GetDataSourceOutput, error) {
@@ -1938,8 +1939,8 @@ func (c *BedrockAgent) GetIngestionJobRequest(input *GetIngestionJobInput) (req 
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetIngestionJob
 func (c *BedrockAgent) GetIngestionJob(input *GetIngestionJobInput) (*GetIngestionJobOutput, error) {
@@ -2030,8 +2031,8 @@ func (c *BedrockAgent) GetKnowledgeBaseRequest(input *GetKnowledgeBaseInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/GetKnowledgeBase
 func (c *BedrockAgent) GetKnowledgeBase(input *GetKnowledgeBaseInput) (*GetKnowledgeBaseOutput, error) {
@@ -2128,8 +2129,8 @@ func (c *BedrockAgent) ListAgentActionGroupsRequest(input *ListAgentActionGroups
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentActionGroups
 func (c *BedrockAgent) ListAgentActionGroups(input *ListAgentActionGroupsInput) (*ListAgentActionGroupsOutput, error) {
@@ -2277,8 +2278,8 @@ func (c *BedrockAgent) ListAgentAliasesRequest(input *ListAgentAliasesInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentAliases
 func (c *BedrockAgent) ListAgentAliases(input *ListAgentAliasesInput) (*ListAgentAliasesOutput, error) {
@@ -2427,8 +2428,8 @@ func (c *BedrockAgent) ListAgentKnowledgeBasesRequest(input *ListAgentKnowledgeB
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentKnowledgeBases
 func (c *BedrockAgent) ListAgentKnowledgeBases(input *ListAgentKnowledgeBasesInput) (*ListAgentKnowledgeBasesOutput, error) {
@@ -2576,8 +2577,8 @@ func (c *BedrockAgent) ListAgentVersionsRequest(input *ListAgentVersionsInput) (
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListAgentVersions
 func (c *BedrockAgent) ListAgentVersions(input *ListAgentVersionsInput) (*ListAgentVersionsOutput, error) {
@@ -2870,8 +2871,8 @@ func (c *BedrockAgent) ListDataSourcesRequest(input *ListDataSourcesInput) (req 
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListDataSources
 func (c *BedrockAgent) ListDataSources(input *ListDataSourcesInput) (*ListDataSourcesOutput, error) {
@@ -3020,8 +3021,8 @@ func (c *BedrockAgent) ListIngestionJobsRequest(input *ListIngestionJobsInput) (
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListIngestionJobs
 func (c *BedrockAgent) ListIngestionJobs(input *ListIngestionJobsInput) (*ListIngestionJobsOutput, error) {
@@ -3308,8 +3309,8 @@ func (c *BedrockAgent) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/ListTagsForResource
 func (c *BedrockAgent) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3400,8 +3401,8 @@ func (c *BedrockAgent) PrepareAgentRequest(input *PrepareAgentInput) (req *reque
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -3498,8 +3499,8 @@ func (c *BedrockAgent) StartIngestionJobRequest(input *StartIngestionJobInput) (
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -3599,8 +3600,8 @@ func (c *BedrockAgent) TagResourceRequest(input *TagResourceInput) (req *request
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ServiceQuotaExceededException
 //     The number of requests exceeds the service quota. Resubmit your request later.
@@ -3695,8 +3696,8 @@ func (c *BedrockAgent) UntagResourceRequest(input *UntagResourceInput) (req *req
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-agent-2023-06-05/UntagResource
 func (c *BedrockAgent) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3787,8 +3788,8 @@ func (c *BedrockAgent) UpdateAgentRequest(input *UpdateAgentInput) (req *request
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -3885,8 +3886,8 @@ func (c *BedrockAgent) UpdateAgentActionGroupRequest(input *UpdateAgentActionGro
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -3983,8 +3984,8 @@ func (c *BedrockAgent) UpdateAgentAliasRequest(input *UpdateAgentAliasInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -4082,8 +4083,8 @@ func (c *BedrockAgent) UpdateAgentKnowledgeBaseRequest(input *UpdateAgentKnowled
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -4180,8 +4181,8 @@ func (c *BedrockAgent) UpdateDataSourceRequest(input *UpdateDataSourceInput) (re
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -4290,8 +4291,8 @@ func (c *BedrockAgent) UpdateKnowledgeBaseRequest(input *UpdateKnowledgeBaseInpu
 //     An internal server error occurred. Retry your request.
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - ConflictException
 //     There was a conflict performing an operation.
@@ -4452,8 +4453,8 @@ func (s *AccessDeniedException) RequestID() string {
 type ActionGroupExecutor struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Lambda function containing the business logic that is carried
-	// out upon invoking the action.
+	// The Amazon Resource Name (ARN) of the Lambda function containing the business
+	// logic that is carried out upon invoking the action.
 	Lambda *string `locationName:"lambda" type:"string"`
 }
 
@@ -4563,7 +4564,7 @@ func (s *ActionGroupSummary) SetUpdatedAt(v time.Time) *ActionGroupSummary {
 type Agent struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the agent.
+	// The Amazon Resource Name (ARN) of the agent.
 	//
 	// AgentArn is a required field
 	AgentArn *string `locationName:"agentArn" type:"string" required:"true"`
@@ -4578,8 +4579,8 @@ type Agent struct {
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to call API operations on the agent.
-	// The ARN must begin with AmazonBedrockExecutionRoleForAgents_.
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the agent.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
@@ -4620,7 +4621,7 @@ type Agent struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN of the KMS key that encrypts the agent.
+	// The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
 	// The description of the agent.
@@ -4801,8 +4802,8 @@ func (s *Agent) SetUpdatedAt(v time.Time) *Agent {
 type AgentActionGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Lambda function containing the business logic that is carried
-	// out upon invoking the action.
+	// The Amazon Resource Name (ARN) of the Lambda function containing the business
+	// logic that is carried out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
 	// The unique identifier of the action group.
@@ -4962,7 +4963,7 @@ func (s *AgentActionGroup) SetUpdatedAt(v time.Time) *AgentActionGroup {
 type AgentAlias struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the alias of the agent.
+	// The Amazon Resource Name (ARN) of the alias of the agent.
 	//
 	// AgentAliasArn is a required field
 	AgentAliasArn *string `locationName:"agentAliasArn" type:"string" required:"true"`
@@ -5570,7 +5571,7 @@ func (s *AgentSummary) SetUpdatedAt(v time.Time) *AgentSummary {
 type AgentVersion struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the agent that the version belongs to.
+	// The Amazon Resource Name (ARN) of the agent that the version belongs to.
 	//
 	// AgentArn is a required field
 	AgentArn *string `locationName:"agentArn" type:"string" required:"true"`
@@ -5585,8 +5586,8 @@ type AgentVersion struct {
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to invoke API operations on the
-	// agent. The ARN must begin with AmazonBedrockExecutionRoleForAgents_.
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the agent.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
@@ -5601,7 +5602,7 @@ type AgentVersion struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN of the KMS key that encrypts the agent.
+	// The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
 	// The description of the version.
@@ -6139,8 +6140,8 @@ func (s *ConflictException) RequestID() string {
 type CreateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Lambda function containing the business logic that is carried
-	// out upon invoking the action.
+	// The Amazon Resource Name (ARN) of the Lambda function containing the business
+	// logic that is carried out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
 	// The name to give the action group.
@@ -6490,11 +6491,9 @@ type CreateAgentInput struct {
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to create the agent. The ARN must
-	// begin with AmazonBedrockExecutionRoleForAgents_.
-	//
-	// AgentResourceRoleArn is a required field
-	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the agent.
+	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string"`
 
 	// A unique, case-sensitive identifier to ensure that the API request completes
 	// no more than one time. If this token matches a previous request, Amazon Bedrock
@@ -6502,7 +6501,7 @@ type CreateAgentInput struct {
 	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// The ARN of the KMS key with which to encrypt the agent.
+	// The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
 	// A description of the agent.
@@ -6562,9 +6561,6 @@ func (s *CreateAgentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAgentInput"}
 	if s.AgentName == nil {
 		invalidParams.Add(request.NewErrParamRequired("AgentName"))
-	}
-	if s.AgentResourceRoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("AgentResourceRoleArn"))
 	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 33 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 33))
@@ -6881,7 +6877,8 @@ type CreateKnowledgeBaseInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to create the knowledge base.
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the knowledge base.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -9604,7 +9601,7 @@ type KnowledgeBase struct {
 	// A list of reasons that the API operation on the knowledge base failed.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
-	// The ARN of the knowledge base.
+	// The Amazon Resource Name (ARN) of the knowledge base.
 	//
 	// KnowledgeBaseArn is a required field
 	KnowledgeBaseArn *string `locationName:"knowledgeBaseArn" type:"string" required:"true"`
@@ -9624,8 +9621,8 @@ type KnowledgeBase struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to invoke API operations on the
-	// knowledge base. The ARN must begin with AmazonBedrockExecutionRoleForKnowledgeBase_.
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the knowledge base.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -10919,7 +10916,7 @@ func (s *ListKnowledgeBasesOutput) SetNextToken(v string) *ListKnowledgeBasesOut
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the resource for which to list tags.
+	// The Amazon Resource Name (ARN) of the resource for which to list tags.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -11002,7 +10999,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type OpenSearchServerlessConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the OpenSearch Service vector store.
+	// The Amazon Resource Name (ARN) of the OpenSearch Service vector store.
 	//
 	// CollectionArn is a required field
 	CollectionArn *string `locationName:"collectionArn" type:"string" required:"true"`
@@ -11168,8 +11165,8 @@ type PineconeConfiguration struct {
 	// ConnectionString is a required field
 	ConnectionString *string `locationName:"connectionString" type:"string" required:"true"`
 
-	// The ARN of the secret that you created in Secrets Manager that is linked
-	// to your Pinecone API key.
+	// The Amazon Resource Name (ARN) of the secret that you created in Secrets
+	// Manager that is linked to your Pinecone API key.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
@@ -11618,8 +11615,8 @@ func (s *PromptOverrideConfiguration) SetPromptConfigurations(v []*PromptConfigu
 type RdsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the secret that you created in Secrets Manager that is linked
-	// to your Amazon RDS database.
+	// The Amazon Resource Name (ARN) of the secret that you created in Secrets
+	// Manager that is linked to your Amazon RDS database.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
@@ -11635,7 +11632,7 @@ type RdsConfiguration struct {
 	// FieldMapping is a required field
 	FieldMapping *RdsFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
 
-	// The ARN of the vector store.
+	// The Amazon Resource Name (ARN) of the vector store.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
@@ -11823,8 +11820,8 @@ func (s *RdsFieldMapping) SetVectorField(v string) *RdsFieldMapping {
 type RedisEnterpriseCloudConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the secret that you created in Secrets Manager that is linked
-	// to your Redis Enterprise Cloud database.
+	// The Amazon Resource Name (ARN) of the secret that you created in Secrets
+	// Manager that is linked to your Redis Enterprise Cloud database.
 	//
 	// CredentialsSecretArn is a required field
 	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
@@ -11994,8 +11991,8 @@ func (s *RedisEnterpriseCloudFieldMapping) SetVectorField(v string) *RedisEnterp
 	return s
 }
 
-// The specified resource ARN was not found. Check the ARN and try your request
-// again.
+// The specified resource Amazon Resource Name (ARN) was not found. Check the
+// Amazon Resource Name (ARN) and try your request again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12063,7 +12060,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the bucket that contains the data source.
+	// The Amazon Resource Name (ARN) of the bucket that contains the data source.
 	//
 	// BucketArn is a required field
 	BucketArn *string `locationName:"bucketArn" min:"1" type:"string" required:"true"`
@@ -12183,7 +12180,7 @@ func (s *S3Identifier) SetS3ObjectKey(v string) *S3Identifier {
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the KMS key used to encrypt the resource.
+	// The Amazon Resource Name (ARN) of the KMS key used to encrypt the resource.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -12524,7 +12521,7 @@ func (s *StorageConfiguration) SetType(v string) *StorageConfiguration {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource to tag.
+	// The Amazon Resource Name (ARN) of the resource to tag.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -12674,7 +12671,7 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN of the resource from which to remove tags.
+	// The Amazon Resource Name (ARN) of the resource from which to remove tags.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -12759,8 +12756,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the Lambda function containing the business logic that is carried
-	// out upon invoking the action.
+	// The Amazon Resource Name (ARN) of the Lambda function containing the business
+	// logic that is carried out upon invoking the action.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
 	// The unique identifier of the action group.
@@ -13111,13 +13108,13 @@ type UpdateAgentInput struct {
 	// AgentName is a required field
 	AgentName *string `locationName:"agentName" type:"string" required:"true"`
 
-	// The ARN of the IAM role with permissions to update the agent. The ARN must
-	// begin with AmazonBedrockExecutionRoleForAgents_.
+	// The Amazon Resource Name (ARN) of the IAM role with permissions to invoke
+	// API operations on the agent.
 	//
 	// AgentResourceRoleArn is a required field
 	AgentResourceRoleArn *string `locationName:"agentResourceRoleArn" type:"string" required:"true"`
 
-	// The ARN of the KMS key with which to encrypt the agent.
+	// The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.
 	CustomerEncryptionKeyArn *string `locationName:"customerEncryptionKeyArn" min:"1" type:"string"`
 
 	// Specifies a new description of the agent.
@@ -13642,7 +13639,7 @@ type UpdateKnowledgeBaseInput struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions
-	// to modify the knowledge base.
+	// to invoke API operations on the knowledge base.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -13950,7 +13947,8 @@ func (s *VectorIngestionConfiguration) SetChunkingConfiguration(v *ChunkingConfi
 type VectorKnowledgeBaseConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the model used to create vector embeddings for the knowledge base.
+	// The Amazon Resource Name (ARN) of the model used to create vector embeddings
+	// for the knowledge base.
 	//
 	// EmbeddingModelArn is a required field
 	EmbeddingModelArn *string `locationName:"embeddingModelArn" min:"20" type:"string" required:"true"`

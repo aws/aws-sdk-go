@@ -5535,6 +5535,11 @@ type WorkerResourceConfig struct {
 	// The disk requirements for every worker instance of the worker type.
 	Disk *string `locationName:"disk" min:"1" type:"string"`
 
+	// The disk type for every worker instance of the work type. Shuffle optimized
+	// disks have higher performance characteristics and are better for shuffle
+	// heavy workloads. Default is STANDARD.
+	DiskType *string `locationName:"diskType" type:"string"`
+
 	// The memory requirements for every worker instance of the worker type.
 	//
 	// Memory is a required field
@@ -5593,6 +5598,12 @@ func (s *WorkerResourceConfig) SetCpu(v string) *WorkerResourceConfig {
 // SetDisk sets the Disk field's value.
 func (s *WorkerResourceConfig) SetDisk(v string) *WorkerResourceConfig {
 	s.Disk = &v
+	return s
+}
+
+// SetDiskType sets the DiskType field's value.
+func (s *WorkerResourceConfig) SetDiskType(v string) *WorkerResourceConfig {
+	s.DiskType = &v
 	return s
 }
 

@@ -1259,10 +1259,7 @@
     },
     "CreateAgentRequest":{
       "type":"structure",
-      "required":[
-        "agentName",
-        "agentResourceRoleArn"
-      ],
+      "required":["agentName"],
       "members":{
         "agentName":{"shape":"Name"},
         "agentResourceRoleArn":{"shape":"AgentRoleArn"},

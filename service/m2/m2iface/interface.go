@@ -152,6 +152,10 @@ type M2API interface {
 	ListBatchJobExecutionsPages(*m2.ListBatchJobExecutionsInput, func(*m2.ListBatchJobExecutionsOutput, bool) bool) error
 	ListBatchJobExecutionsPagesWithContext(aws.Context, *m2.ListBatchJobExecutionsInput, func(*m2.ListBatchJobExecutionsOutput, bool) bool, ...request.Option) error
 
+	ListBatchJobRestartPoints(*m2.ListBatchJobRestartPointsInput) (*m2.ListBatchJobRestartPointsOutput, error)
+	ListBatchJobRestartPointsWithContext(aws.Context, *m2.ListBatchJobRestartPointsInput, ...request.Option) (*m2.ListBatchJobRestartPointsOutput, error)
+	ListBatchJobRestartPointsRequest(*m2.ListBatchJobRestartPointsInput) (*request.Request, *m2.ListBatchJobRestartPointsOutput)
+
 	ListDataSetImportHistory(*m2.ListDataSetImportHistoryInput) (*m2.ListDataSetImportHistoryOutput, error)
 	ListDataSetImportHistoryWithContext(aws.Context, *m2.ListDataSetImportHistoryInput, ...request.Option) (*m2.ListDataSetImportHistoryOutput, error)
 	ListDataSetImportHistoryRequest(*m2.ListDataSetImportHistoryInput) (*request.Request, *m2.ListDataSetImportHistoryOutput)

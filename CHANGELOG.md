@@ -1,3 +1,17 @@
+Release v1.51.22 (2024-04-16)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/entityresolution`: Updates service API, documentation, and paginators
+* `service/iotwireless`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/m2`: Updates service API and documentation
+* `service/mediapackagev2`: Updates service API and documentation
+* `service/outposts`: Updates service API, documentation, and paginators
+* `service/wellarchitected`: Updates service API and documentation
+
 Release v1.51.21 (2024-04-12)
 ===
 

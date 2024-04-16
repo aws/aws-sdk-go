@@ -17,7 +17,7 @@
     "CreateNetworkAnalyzerConfiguration": "<p>Creates a new network analyzer configuration.</p>",
     "CreateServiceProfile": "<p>Creates a new service profile.</p>",
     "CreateWirelessDevice": "<p>Provisions a wireless device.</p>",
-    "CreateWirelessGateway": "<p>Provisions a wireless gateway.</p>",
+    "CreateWirelessGateway": "<p>Provisions a wireless gateway.</p> <note> <p>When provisioning a wireless gateway, you might run into duplication errors for the following reasons.</p> <ul> <li> <p>If you specify a <code>GatewayEui</code> value that already exists.</p> </li> <li> <p>If you used a <code>ClientRequestToken</code> with the same parameters within the last 10 minutes.</p> </li> </ul> <p>To avoid this error, make sure that you use unique identifiers and parameters for each request within the specified time period.</p> </note>",
     "CreateWirelessGatewayTask": "<p>Creates a task for a wireless gateway.</p>",
     "CreateWirelessGatewayTaskDefinition": "<p>Creates a gateway task definition.</p>",
     "DeleteDestination": "<p>Deletes a destination.</p>",
@@ -29,7 +29,7 @@
     "DeleteServiceProfile": "<p>Deletes a service profile.</p>",
     "DeleteWirelessDevice": "<p>Deletes a wireless device.</p>",
     "DeleteWirelessDeviceImportTask": "<p>Delete an import task.</p>",
-    "DeleteWirelessGateway": "<p>Deletes a wireless gateway.</p>",
+    "DeleteWirelessGateway": "<p>Deletes a wireless gateway.</p> <note> <p>When deleting a wireless gateway, you might run into duplication errors for the following reasons.</p> <ul> <li> <p>If you specify a <code>GatewayEui</code> value that already exists.</p> </li> <li> <p>If you used a <code>ClientRequestToken</code> with the same parameters within the last 10 minutes.</p> </li> </ul> <p>To avoid this error, make sure that you use unique identifiers and parameters for each request within the specified time period.</p> </note>",
     "DeleteWirelessGatewayTask": "<p>Deletes a wireless gateway task.</p>",
     "DeleteWirelessGatewayTaskDefinition": "<p>Deletes a wireless gateway task definition. Deleting this task definition does not affect tasks that are currently in progress.</p>",
     "DeregisterWirelessDevice": "<p>Deregister a wireless device from AWS IoT Wireless.</p>",
@@ -45,8 +45,8 @@
     "GetEventConfigurationByResourceTypes": "<p>Get the event configuration based on resource types.</p>",
     "GetFuotaTask": "<p>Gets information about a FUOTA task.</p>",
     "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
-    "GetMetricConfiguration": "<p>Get the metric configuration status for this account.</p>",
-    "GetMetrics": "<p>Get metrics.</p>",
+    "GetMetricConfiguration": "<p>Get the metric configuration status for this AWS account.</p>",
+    "GetMetrics": "<p>Get the summary metrics for this AWS account.</p>",
     "GetMulticastGroup": "<p>Gets information about a multicast group.</p>",
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
     "GetNetworkAnalyzerConfiguration": "<p>Get network analyzer configuration.</p>",
@@ -104,7 +104,7 @@
     "UpdateEventConfigurationByResourceTypes": "<p>Update the event configuration based on resource types.</p>",
     "UpdateFuotaTask": "<p>Updates properties of a FUOTA task.</p>",
     "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
-    "UpdateMetricConfiguration": "<p>Update the metric configuration.</p>",
+    "UpdateMetricConfiguration": "<p>Update the summary metric configuration.</p>",
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
     "UpdateNetworkAnalyzerConfiguration": "<p>Update network analyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
@@ -161,7 +161,7 @@
     "AggregationPeriod": {
       "base": null,
       "refs": {
-        "SummaryMetricQuery$AggregationPeriod": "<p>The aggregation period of the metric.</p>",
+        "SummaryMetricQuery$AggregationPeriod": "<p>The aggregation period of the summary metric.</p>",
         "SummaryMetricQueryResult$AggregationPeriod": "<p>The aggregation period of the metric.</p>"
       }
     },
@@ -327,7 +327,7 @@
     "Avg": {
       "base": null,
       "refs": {
-        "MetricQueryValue$Avg": "<p>The average of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$Avg": "<p>The average of the values of all data points collected during the aggregation period.</p>"
       }
     },
     "BCCH": {
@@ -497,18 +497,18 @@
       }
     },
     "ClientRequestToken": {
-      "base": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request.</p>",
+      "base": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
       "refs": {
-        "AssociateAwsAccountWithPartnerAccountRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateDestinationRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateDeviceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
+        "AssociateAwsAccountWithPartnerAccountRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
+        "CreateDestinationRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
+        "CreateDeviceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
         "CreateFuotaTaskRequest$ClientRequestToken": null,
-        "CreateMulticastGroupRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
+        "CreateMulticastGroupRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
         "CreateNetworkAnalyzerConfigurationRequest$ClientRequestToken": null,
-        "CreateServiceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateWirelessDeviceRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateWirelessGatewayRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateWirelessGatewayTaskDefinitionRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. If you try to create a new resource with the same token as a resource that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
+        "CreateServiceProfileRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
+        "CreateWirelessDeviceRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
+        "CreateWirelessGatewayRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
+        "CreateWirelessGatewayTaskDefinitionRequest$ClientRequestToken": "<p>Each resource must have a unique client request token. The client token is used to implement idempotency. It ensures that the request completes no more than one time. If you retry a request with the same token and the same parameters, the request will complete successfully. However, if you try to create a new resource using the same token but different parameters, an HTTP 409 conflict occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. For more information about idempotency, see <a href=\"https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html\">Ensuring idempotency in Amazon EC2 API requests</a>.</p>",
         "StartSingleWirelessDeviceImportTaskRequest$ClientRequestToken": null,
         "StartWirelessDeviceImportTaskRequest$ClientRequestToken": null
       }
@@ -1038,7 +1038,7 @@
     "Dimensions": {
       "base": null,
       "refs": {
-        "SummaryMetricQuery$Dimensions": "<p>The dimensions of the metric.</p>",
+        "SummaryMetricQuery$Dimensions": "<p>The dimensions of the summary metric.</p>",
         "SummaryMetricQueryResult$Dimensions": "<p>The dimensions of the metric.</p>"
       }
     },
@@ -1112,6 +1112,12 @@
       "refs": {
       }
     },
+    "DlAllowed": {
+      "base": null,
+      "refs": {
+        "LoRaWANPublicGatewayMetadata$DlAllowed": "<p>Boolean that indicates whether downlink is allowed using the network.</p>"
+      }
+    },
     "DlBucketSize": {
       "base": null,
       "refs": {
@@ -1153,7 +1159,9 @@
       "base": null,
       "refs": {
         "LoRaWANGatewayMetadata$Snr": "<p>The SNR value.</p>",
-        "LoRaWANGatewayMetadata$Rssi": "<p>The RSSI value.</p>"
+        "LoRaWANGatewayMetadata$Rssi": "<p>The RSSI value.</p>",
+        "LoRaWANPublicGatewayMetadata$Rssi": "<p>The RSSI (received signal strength indicator) value.</p>",
+        "LoRaWANPublicGatewayMetadata$Snr": "<p>The SNR (signal to noise ratio) value.</p>"
       }
     },
     "DownlinkFrequency": {
@@ -1859,6 +1867,12 @@
         "WirelessGatewayStatistics$LastUplinkReceivedAt": "<p>The date and time when the most recent uplink was received.</p> <note> <p>This value is only valid for 3 months.</p> </note>"
       }
     },
+    "Id": {
+      "base": null,
+      "refs": {
+        "LoRaWANPublicGatewayMetadata$Id": "<p>The ID of the gateways that are operated by the network provider.</p>"
+      }
+    },
     "Identifier": {
       "base": null,
       "refs": {
@@ -2319,6 +2333,18 @@
         "StartMulticastGroupSessionRequest$LoRaWAN": null
       }
     },
+    "LoRaWANPublicGatewayMetadata": {
+      "base": "<p>LoRaWAN public gateway metadata.</p>",
+      "refs": {
+        "LoRaWANPublicGatewayMetadataList$member": null
+      }
+    },
+    "LoRaWANPublicGatewayMetadataList": {
+      "base": null,
+      "refs": {
+        "LoRaWANDeviceMetadata$PublicGateways": "<p>Information about the LoRaWAN public network accessed by the device.</p>"
+      }
+    },
     "LoRaWANSendDataToDevice": {
       "base": "<p>LoRaWAN router info.</p>",
       "refs": {
@@ -2439,7 +2465,7 @@
     "Max": {
       "base": null,
       "refs": {
-        "MetricQueryValue$Max": "<p>The maximum of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$Max": "<p>The maximum of the values of all the data points collected during the aggregation period.</p>"
       }
     },
     "MaxAllowedSignature": {
@@ -2532,40 +2558,40 @@
       "base": null,
       "refs": {
         "SummaryMetricQuery$MetricName": "<p>The name of the metric.</p>",
-        "SummaryMetricQueryResult$MetricName": "<p>The name of the metric.</p>"
+        "SummaryMetricQueryResult$MetricName": "<p>The name of the summary metric query result.</p>"
       }
     },
     "MetricQueryEndTimestamp": {
       "base": null,
       "refs": {
-        "SummaryMetricQuery$EndTimestamp": "<p>The end timestamp for summary metric query.</p>",
-        "SummaryMetricQueryResult$EndTimestamp": "<p>The end timestamp for summary metric query.</p>"
+        "SummaryMetricQuery$EndTimestamp": "<p>The end timestamp for the summary metric query.</p>",
+        "SummaryMetricQueryResult$EndTimestamp": "<p>The end timestamp for the summary metric query.</p>"
       }
     },
     "MetricQueryError": {
       "base": null,
       "refs": {
-        "SummaryMetricQueryResult$Error": "<p>The error message for the summary metric query.</p>"
+        "SummaryMetricQueryResult$Error": "<p>The error message for the summary metric query result.</p>"
       }
     },
     "MetricQueryId": {
       "base": null,
       "refs": {
-        "SummaryMetricQuery$QueryId": "<p>The id of the query.</p>",
-        "SummaryMetricQueryResult$QueryId": "<p>The id of the query.</p>"
+        "SummaryMetricQuery$QueryId": "<p>The id of the summary metric query.</p>",
+        "SummaryMetricQueryResult$QueryId": "<p>The ID of the summary metric results query operation.</p>"
       }
     },
     "MetricQueryStartTimestamp": {
       "base": null,
       "refs": {
-        "SummaryMetricQuery$StartTimestamp": "<p>The start timestamp for summary metric query.</p>",
-        "SummaryMetricQueryResult$StartTimestamp": "<p>The start timestamp for summary metric query.</p>"
+        "SummaryMetricQuery$StartTimestamp": "<p>The start timestamp for the summary metric query.</p>",
+        "SummaryMetricQueryResult$StartTimestamp": "<p>The start timestamp for the summary metric query.</p>"
       }
     },
     "MetricQueryStatus": {
       "base": null,
       "refs": {
-        "SummaryMetricQueryResult$QueryStatus": "<p>The status of the metric query.</p>"
+        "SummaryMetricQueryResult$QueryStatus": "<p>The status of the summary metric query result.</p>"
       }
     },
     "MetricQueryTimestamp": {
@@ -2589,7 +2615,7 @@
     "MetricQueryValues": {
       "base": null,
       "refs": {
-        "SummaryMetricQueryResult$Values": "<p>The list of aggregated metrics.</p>"
+        "SummaryMetricQueryResult$Values": "<p>The list of aggregated summary metric query results.</p>"
       }
     },
     "MetricUnit": {
@@ -2601,7 +2627,7 @@
     "Min": {
       "base": null,
       "refs": {
-        "MetricQueryValue$Min": "<p>The minimum of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$Min": "<p>The minimum of the values of all data points collected during the aggregation period.</p>"
       }
     },
     "MinGwDiversity": {
@@ -2878,7 +2904,7 @@
     "P90": {
       "base": null,
       "refs": {
-        "MetricQueryValue$P90": "<p>The 90th percentile of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$P90": "<p>The 90th percentile of the values of all data points collected during the aggregation period.</p>"
       }
     },
     "PCI": {
@@ -3110,6 +3136,12 @@
         "SidewalkDevice$PrivateKeys": "<p>The Sidewalk device private keys that will be used for onboarding the device.</p>"
       }
     },
+    "ProviderNetId": {
+      "base": null,
+      "refs": {
+        "LoRaWANPublicGatewayMetadata$ProviderNetId": "<p>The ID of the LoRaWAN public network provider.</p>"
+      }
+    },
     "ProximityEventConfiguration": {
       "base": "<p>Proximity event configuration object for enabling and disabling relevant topics.</p>",
       "refs": {
@@ -3287,7 +3319,8 @@
       "refs": {
         "LoRaWANDeviceProfile$RfRegion": "<p>The frequency band (RFRegion) value.</p>",
         "LoRaWANFuotaTaskGetInfo$RfRegion": null,
-        "LoRaWANGateway$RfRegion": "<p>The frequency band (RFRegion) value.</p>"
+        "LoRaWANGateway$RfRegion": "<p>The frequency band (RFRegion) value.</p>",
+        "LoRaWANPublicGatewayMetadata$RfRegion": null
       }
     },
     "Role": {
@@ -3660,7 +3693,7 @@
     "Std": {
       "base": null,
       "refs": {
-        "MetricQueryValue$Std": "<p>The standard deviation of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$Std": "<p>The standard deviation of the values of all data points collected during the aggregation period.</p>"
       }
     },
     "SubBand": {
@@ -3678,36 +3711,36 @@
     "Sum": {
       "base": null,
       "refs": {
-        "MetricQueryValue$Sum": "<p>The sum of the values of the all data points collected during the period.</p>"
+        "MetricQueryValue$Sum": "<p>The sum of the values of all data points collected during the aggregation period.</p>"
       }
     },
     "SummaryMetricConfiguration": {
-      "base": "<p>The configuration of summary metric.</p>",
+      "base": "<p>The configuration of summary metrics.</p>",
       "refs": {
-        "GetMetricConfigurationResponse$SummaryMetric": "<p>The account's configuration status for summary metric aggregation.</p>",
+        "GetMetricConfigurationResponse$SummaryMetric": "<p>The configuration status of the AWS account for summary metric aggregation.</p>",
         "UpdateMetricConfigurationRequest$SummaryMetric": "<p>The value to be used to set summary metric configuration.</p>"
       }
     },
     "SummaryMetricConfigurationStatus": {
       "base": null,
       "refs": {
-        "SummaryMetricConfiguration$Status": "<p>The configuration of summary metric.</p>"
+        "SummaryMetricConfiguration$Status": "<p>The status of the configuration of summary metrics.</p>"
       }
     },
     "SummaryMetricQueries": {
       "base": null,
       "refs": {
-        "GetMetricsRequest$SummaryMetricQueries": "<p>The list of queries to retrieve summary metrics.</p>"
+        "GetMetricsRequest$SummaryMetricQueries": "<p>The list of queries to retrieve the summary metrics.</p>"
       }
     },
     "SummaryMetricQuery": {
-      "base": "<p>The metric query object.</p>",
+      "base": "<p>The summary metric query object.</p>",
       "refs": {
         "SummaryMetricQueries$member": null
       }
     },
     "SummaryMetricQueryResult": {
-      "base": "<p>The result of metrics aggregation operation.</p>",
+      "base": "<p>The result of the summary metrics aggregation operation.</p>",
       "refs": {
         "SummaryMetricQueryResults$member": null
       }
@@ -3715,7 +3748,7 @@
     "SummaryMetricQueryResults": {
       "base": null,
       "refs": {
-        "GetMetricsResponse$SummaryMetricQueryResults": "<p>The list of retrieved metrics.</p>"
+        "GetMetricsResponse$SummaryMetricQueryResults": "<p>The list of summary metrics that were retrieved.</p>"
       }
     },
     "SupportedRfRegion": {

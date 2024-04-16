@@ -1468,6 +1468,17 @@ func (c *IoTWireless) CreateWirelessGatewayRequest(input *CreateWirelessGatewayI
 //
 // Provisions a wireless gateway.
 //
+// When provisioning a wireless gateway, you might run into duplication errors
+// for the following reasons.
+//
+//   - If you specify a GatewayEui value that already exists.
+//
+//   - If you used a ClientRequestToken with the same parameters within the
+//     last 10 minutes.
+//
+// To avoid this error, make sure that you use unique identifiers and parameters
+// for each request within the specified time period.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2593,6 +2604,17 @@ func (c *IoTWireless) DeleteWirelessGatewayRequest(input *DeleteWirelessGatewayI
 // DeleteWirelessGateway API operation for AWS IoT Wireless.
 //
 // Deletes a wireless gateway.
+//
+// When deleting a wireless gateway, you might run into duplication errors for
+// the following reasons.
+//
+//   - If you specify a GatewayEui value that already exists.
+//
+//   - If you used a ClientRequestToken with the same parameters within the
+//     last 10 minutes.
+//
+// To avoid this error, make sure that you use unique identifiers and parameters
+// for each request within the specified time period.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4060,7 +4082,7 @@ func (c *IoTWireless) GetMetricConfigurationRequest(input *GetMetricConfiguratio
 
 // GetMetricConfiguration API operation for AWS IoT Wireless.
 //
-// Get the metric configuration status for this account.
+// Get the metric configuration status for this AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4154,7 +4176,7 @@ func (c *IoTWireless) GetMetricsRequest(input *GetMetricsInput) (req *request.Re
 
 // GetMetrics API operation for AWS IoT Wireless.
 //
-// Get metrics.
+// Get the summary metrics for this AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10133,7 +10155,7 @@ func (c *IoTWireless) UpdateMetricConfigurationRequest(input *UpdateMetricConfig
 
 // UpdateMetricConfiguration API operation for AWS IoT Wireless.
 //
-// Update the metric configuration.
+// Update the summary metric configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11311,10 +11333,14 @@ func (s *ApplicationConfig) SetType(v string) *ApplicationConfig {
 type AssociateAwsAccountWithPartnerAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The Sidewalk account credentials.
@@ -12711,10 +12737,14 @@ func (s *ConnectionStatusResourceTypeEventConfiguration) SetLoRaWAN(v *LoRaWANCo
 type CreateDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the new resource.
@@ -12886,10 +12916,14 @@ func (s *CreateDestinationOutput) SetName(v string) *CreateDestinationOutput {
 type CreateDeviceProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The device profile information to use to create the device profile.
@@ -13025,10 +13059,14 @@ func (s *CreateDeviceProfileOutput) SetId(v string) *CreateDeviceProfileOutput {
 type CreateFuotaTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the new resource.
@@ -13237,10 +13275,14 @@ func (s *CreateFuotaTaskOutput) SetId(v string) *CreateFuotaTaskOutput {
 type CreateMulticastGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the multicast group.
@@ -13376,10 +13418,14 @@ func (s *CreateMulticastGroupOutput) SetId(v string) *CreateMulticastGroupOutput
 type CreateNetworkAnalyzerConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the new resource.
@@ -13548,10 +13594,14 @@ func (s *CreateNetworkAnalyzerConfigurationOutput) SetName(v string) *CreateNetw
 type CreateServiceProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The service profile information to use to create the service profile.
@@ -13673,10 +13723,14 @@ func (s *CreateServiceProfileOutput) SetId(v string) *CreateServiceProfileOutput
 type CreateWirelessDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the new resource.
@@ -13859,10 +13913,14 @@ func (s *CreateWirelessDeviceOutput) SetId(v string) *CreateWirelessDeviceOutput
 type CreateWirelessGatewayInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the new resource.
@@ -14005,10 +14063,14 @@ type CreateWirelessGatewayTaskDefinitionInput struct {
 	// AutoCreateTasks is a required field
 	AutoCreateTasks *bool `type:"boolean" required:"true"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name of the new resource.
@@ -17113,7 +17175,7 @@ func (s GetMetricConfigurationInput) GoString() string {
 type GetMetricConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The account's configuration status for summary metric aggregation.
+	// The configuration status of the AWS account for summary metric aggregation.
 	SummaryMetric *SummaryMetricConfiguration `type:"structure"`
 }
 
@@ -17144,7 +17206,7 @@ func (s *GetMetricConfigurationOutput) SetSummaryMetric(v *SummaryMetricConfigur
 type GetMetricsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of queries to retrieve summary metrics.
+	// The list of queries to retrieve the summary metrics.
 	SummaryMetricQueries []*SummaryMetricQuery `type:"list"`
 }
 
@@ -17175,7 +17237,7 @@ func (s *GetMetricsInput) SetSummaryMetricQueries(v []*SummaryMetricQuery) *GetM
 type GetMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of retrieved metrics.
+	// The list of summary metrics that were retrieved.
 	SummaryMetricQueryResults []*SummaryMetricQueryResult `type:"list"`
 }
 
@@ -22249,6 +22311,9 @@ type LoRaWANDeviceMetadata struct {
 	// Information about the gateways accessed by the device.
 	Gateways []*LoRaWANGatewayMetadata `type:"list"`
 
+	// Information about the LoRaWAN public network accessed by the device.
+	PublicGateways []*LoRaWANPublicGatewayMetadata `type:"list"`
+
 	// The date and time of the metadata.
 	Timestamp *string `type:"string"`
 }
@@ -22298,6 +22363,12 @@ func (s *LoRaWANDeviceMetadata) SetFrequency(v int64) *LoRaWANDeviceMetadata {
 // SetGateways sets the Gateways field's value.
 func (s *LoRaWANDeviceMetadata) SetGateways(v []*LoRaWANGatewayMetadata) *LoRaWANDeviceMetadata {
 	s.Gateways = v
+	return s
+}
+
+// SetPublicGateways sets the PublicGateways field's value.
+func (s *LoRaWANDeviceMetadata) SetPublicGateways(v []*LoRaWANPublicGatewayMetadata) *LoRaWANDeviceMetadata {
+	s.PublicGateways = v
 	return s
 }
 
@@ -23357,6 +23428,83 @@ func (s *LoRaWANMulticastSession) SetSessionTimeout(v int64) *LoRaWANMulticastSe
 	return s
 }
 
+// LoRaWAN public gateway metadata.
+type LoRaWANPublicGatewayMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Boolean that indicates whether downlink is allowed using the network.
+	DlAllowed *bool `type:"boolean"`
+
+	// The ID of the gateways that are operated by the network provider.
+	Id *string `type:"string"`
+
+	// The ID of the LoRaWAN public network provider.
+	ProviderNetId *string `type:"string"`
+
+	// The frequency band (RFRegion) value.
+	RfRegion *string `type:"string"`
+
+	// The RSSI (received signal strength indicator) value.
+	Rssi *float64 `type:"double"`
+
+	// The SNR (signal to noise ratio) value.
+	Snr *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANPublicGatewayMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANPublicGatewayMetadata) GoString() string {
+	return s.String()
+}
+
+// SetDlAllowed sets the DlAllowed field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetDlAllowed(v bool) *LoRaWANPublicGatewayMetadata {
+	s.DlAllowed = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetId(v string) *LoRaWANPublicGatewayMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetProviderNetId sets the ProviderNetId field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetProviderNetId(v string) *LoRaWANPublicGatewayMetadata {
+	s.ProviderNetId = &v
+	return s
+}
+
+// SetRfRegion sets the RfRegion field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetRfRegion(v string) *LoRaWANPublicGatewayMetadata {
+	s.RfRegion = &v
+	return s
+}
+
+// SetRssi sets the Rssi field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetRssi(v float64) *LoRaWANPublicGatewayMetadata {
+	s.Rssi = &v
+	return s
+}
+
+// SetSnr sets the Snr field's value.
+func (s *LoRaWANPublicGatewayMetadata) SetSnr(v float64) *LoRaWANPublicGatewayMetadata {
+	s.Snr = &v
+	return s
+}
+
 // LoRaWAN router info.
 type LoRaWANSendDataToDevice struct {
 	_ struct{} `type:"structure"`
@@ -24138,24 +24286,28 @@ func (s *MessageDeliveryStatusResourceTypeEventConfiguration) SetSidewalk(v *Sid
 type MetricQueryValue struct {
 	_ struct{} `type:"structure"`
 
-	// The average of the values of the all data points collected during the period.
+	// The average of the values of all data points collected during the aggregation
+	// period.
 	Avg *float64 `type:"double"`
 
-	// The maximum of the values of the all data points collected during the period.
+	// The maximum of the values of all the data points collected during the aggregation
+	// period.
 	Max *float64 `type:"double"`
 
-	// The minimum of the values of the all data points collected during the period.
+	// The minimum of the values of all data points collected during the aggregation
+	// period.
 	Min *float64 `type:"double"`
 
-	// The 90th percentile of the values of the all data points collected during
-	// the period.
+	// The 90th percentile of the values of all data points collected during the
+	// aggregation period.
 	P90 *float64 `type:"double"`
 
-	// The standard deviation of the values of the all data points collected during
-	// the period.
+	// The standard deviation of the values of all data points collected during
+	// the aggregation period.
 	Std *float64 `type:"double"`
 
-	// The sum of the values of the all data points collected during the period.
+	// The sum of the values of all data points collected during the aggregation
+	// period.
 	Sum *float64 `type:"double"`
 }
 
@@ -26936,10 +27088,14 @@ func (s StartMulticastGroupSessionOutput) GoString() string {
 type StartSingleWirelessDeviceImportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name of the Sidewalk destination that describes the IoT rule to route
@@ -27082,10 +27238,14 @@ func (s *StartSingleWirelessDeviceImportTaskOutput) SetId(v string) *StartSingle
 type StartWirelessDeviceImportTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Each resource must have a unique client request token. If you try to create
-	// a new resource with the same token as a resource that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// Each resource must have a unique client request token. The client token is
+	// used to implement idempotency. It ensures that the request completes no more
+	// than one time. If you retry a request with the same token and the same parameters,
+	// the request will complete successfully. However, if you try to create a new
+	// resource using the same token but different parameters, an HTTP 409 conflict
+	// occurs. If you omit this value, AWS SDKs will automatically generate a unique
+	// client request. For more information about idempotency, see Ensuring idempotency
+	// in Amazon EC2 API requests (https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html).
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name of the Sidewalk destination that describes the IoT rule to route
@@ -27217,11 +27377,11 @@ func (s *StartWirelessDeviceImportTaskOutput) SetId(v string) *StartWirelessDevi
 	return s
 }
 
-// The configuration of summary metric.
+// The configuration of summary metrics.
 type SummaryMetricConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration of summary metric.
+	// The status of the configuration of summary metrics.
 	Status *string `type:"string" enum:"SummaryMetricConfigurationStatus"`
 }
 
@@ -27249,26 +27409,26 @@ func (s *SummaryMetricConfiguration) SetStatus(v string) *SummaryMetricConfigura
 	return s
 }
 
-// The metric query object.
+// The summary metric query object.
 type SummaryMetricQuery struct {
 	_ struct{} `type:"structure"`
 
-	// The aggregation period of the metric.
+	// The aggregation period of the summary metric.
 	AggregationPeriod *string `type:"string" enum:"AggregationPeriod"`
 
-	// The dimensions of the metric.
+	// The dimensions of the summary metric.
 	Dimensions []*Dimension `type:"list"`
 
-	// The end timestamp for summary metric query.
+	// The end timestamp for the summary metric query.
 	EndTimestamp *time.Time `type:"timestamp"`
 
 	// The name of the metric.
 	MetricName *string `type:"string" enum:"MetricName"`
 
-	// The id of the query.
+	// The id of the summary metric query.
 	QueryId *string `type:"string"`
 
-	// The start timestamp for summary metric query.
+	// The start timestamp for the summary metric query.
 	StartTimestamp *time.Time `type:"timestamp"`
 }
 
@@ -27326,7 +27486,7 @@ func (s *SummaryMetricQuery) SetStartTimestamp(v time.Time) *SummaryMetricQuery 
 	return s
 }
 
-// The result of metrics aggregation operation.
+// The result of the summary metrics aggregation operation.
 type SummaryMetricQueryResult struct {
 	_ struct{} `type:"structure"`
 
@@ -27336,22 +27496,22 @@ type SummaryMetricQueryResult struct {
 	// The dimensions of the metric.
 	Dimensions []*Dimension `type:"list"`
 
-	// The end timestamp for summary metric query.
+	// The end timestamp for the summary metric query.
 	EndTimestamp *time.Time `type:"timestamp"`
 
-	// The error message for the summary metric query.
+	// The error message for the summary metric query result.
 	Error *string `type:"string"`
 
-	// The name of the metric.
+	// The name of the summary metric query result.
 	MetricName *string `type:"string" enum:"MetricName"`
 
-	// The id of the query.
+	// The ID of the summary metric results query operation.
 	QueryId *string `type:"string"`
 
-	// The status of the metric query.
+	// The status of the summary metric query result.
 	QueryStatus *string `type:"string" enum:"MetricQueryStatus"`
 
-	// The start timestamp for summary metric query.
+	// The start timestamp for the summary metric query.
 	StartTimestamp *time.Time `type:"timestamp"`
 
 	// The timestamp of each aggregation result.
@@ -27360,7 +27520,7 @@ type SummaryMetricQueryResult struct {
 	// The units of measurement to be used for interpreting the aggregation result.
 	Unit *string `type:"string"`
 
-	// The list of aggregated metrics.
+	// The list of aggregated summary metric query results.
 	Values []*MetricQueryValue `type:"list"`
 }
 

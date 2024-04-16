@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// AWS EntityResolution.
 //	func myFunc(svc entityresolutioniface.EntityResolutionAPI) bool {
-//	    // Make svc.CreateIdMappingWorkflow request
+//	    // Make svc.AddPolicyStatement request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockEntityResolutionClient struct {
 //	    entityresolutioniface.EntityResolutionAPI
 //	}
-//	func (m *mockEntityResolutionClient) CreateIdMappingWorkflow(input *entityresolution.CreateIdMappingWorkflowInput) (*entityresolution.CreateIdMappingWorkflowOutput, error) {
+//	func (m *mockEntityResolutionClient) AddPolicyStatement(input *entityresolution.AddPolicyStatementInput) (*entityresolution.AddPolicyStatementOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,9 +60,17 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type EntityResolutionAPI interface {
+	AddPolicyStatement(*entityresolution.AddPolicyStatementInput) (*entityresolution.AddPolicyStatementOutput, error)
+	AddPolicyStatementWithContext(aws.Context, *entityresolution.AddPolicyStatementInput, ...request.Option) (*entityresolution.AddPolicyStatementOutput, error)
+	AddPolicyStatementRequest(*entityresolution.AddPolicyStatementInput) (*request.Request, *entityresolution.AddPolicyStatementOutput)
+
 	CreateIdMappingWorkflow(*entityresolution.CreateIdMappingWorkflowInput) (*entityresolution.CreateIdMappingWorkflowOutput, error)
 	CreateIdMappingWorkflowWithContext(aws.Context, *entityresolution.CreateIdMappingWorkflowInput, ...request.Option) (*entityresolution.CreateIdMappingWorkflowOutput, error)
 	CreateIdMappingWorkflowRequest(*entityresolution.CreateIdMappingWorkflowInput) (*request.Request, *entityresolution.CreateIdMappingWorkflowOutput)
+
+	CreateIdNamespace(*entityresolution.CreateIdNamespaceInput) (*entityresolution.CreateIdNamespaceOutput, error)
+	CreateIdNamespaceWithContext(aws.Context, *entityresolution.CreateIdNamespaceInput, ...request.Option) (*entityresolution.CreateIdNamespaceOutput, error)
+	CreateIdNamespaceRequest(*entityresolution.CreateIdNamespaceInput) (*request.Request, *entityresolution.CreateIdNamespaceOutput)
 
 	CreateMatchingWorkflow(*entityresolution.CreateMatchingWorkflowInput) (*entityresolution.CreateMatchingWorkflowOutput, error)
 	CreateMatchingWorkflowWithContext(aws.Context, *entityresolution.CreateMatchingWorkflowInput, ...request.Option) (*entityresolution.CreateMatchingWorkflowOutput, error)
@@ -76,9 +84,17 @@ type EntityResolutionAPI interface {
 	DeleteIdMappingWorkflowWithContext(aws.Context, *entityresolution.DeleteIdMappingWorkflowInput, ...request.Option) (*entityresolution.DeleteIdMappingWorkflowOutput, error)
 	DeleteIdMappingWorkflowRequest(*entityresolution.DeleteIdMappingWorkflowInput) (*request.Request, *entityresolution.DeleteIdMappingWorkflowOutput)
 
+	DeleteIdNamespace(*entityresolution.DeleteIdNamespaceInput) (*entityresolution.DeleteIdNamespaceOutput, error)
+	DeleteIdNamespaceWithContext(aws.Context, *entityresolution.DeleteIdNamespaceInput, ...request.Option) (*entityresolution.DeleteIdNamespaceOutput, error)
+	DeleteIdNamespaceRequest(*entityresolution.DeleteIdNamespaceInput) (*request.Request, *entityresolution.DeleteIdNamespaceOutput)
+
 	DeleteMatchingWorkflow(*entityresolution.DeleteMatchingWorkflowInput) (*entityresolution.DeleteMatchingWorkflowOutput, error)
 	DeleteMatchingWorkflowWithContext(aws.Context, *entityresolution.DeleteMatchingWorkflowInput, ...request.Option) (*entityresolution.DeleteMatchingWorkflowOutput, error)
 	DeleteMatchingWorkflowRequest(*entityresolution.DeleteMatchingWorkflowInput) (*request.Request, *entityresolution.DeleteMatchingWorkflowOutput)
+
+	DeletePolicyStatement(*entityresolution.DeletePolicyStatementInput) (*entityresolution.DeletePolicyStatementOutput, error)
+	DeletePolicyStatementWithContext(aws.Context, *entityresolution.DeletePolicyStatementInput, ...request.Option) (*entityresolution.DeletePolicyStatementOutput, error)
+	DeletePolicyStatementRequest(*entityresolution.DeletePolicyStatementInput) (*request.Request, *entityresolution.DeletePolicyStatementOutput)
 
 	DeleteSchemaMapping(*entityresolution.DeleteSchemaMappingInput) (*entityresolution.DeleteSchemaMappingOutput, error)
 	DeleteSchemaMappingWithContext(aws.Context, *entityresolution.DeleteSchemaMappingInput, ...request.Option) (*entityresolution.DeleteSchemaMappingOutput, error)
@@ -92,6 +108,10 @@ type EntityResolutionAPI interface {
 	GetIdMappingWorkflowWithContext(aws.Context, *entityresolution.GetIdMappingWorkflowInput, ...request.Option) (*entityresolution.GetIdMappingWorkflowOutput, error)
 	GetIdMappingWorkflowRequest(*entityresolution.GetIdMappingWorkflowInput) (*request.Request, *entityresolution.GetIdMappingWorkflowOutput)
 
+	GetIdNamespace(*entityresolution.GetIdNamespaceInput) (*entityresolution.GetIdNamespaceOutput, error)
+	GetIdNamespaceWithContext(aws.Context, *entityresolution.GetIdNamespaceInput, ...request.Option) (*entityresolution.GetIdNamespaceOutput, error)
+	GetIdNamespaceRequest(*entityresolution.GetIdNamespaceInput) (*request.Request, *entityresolution.GetIdNamespaceOutput)
+
 	GetMatchId(*entityresolution.GetMatchIdInput) (*entityresolution.GetMatchIdOutput, error)
 	GetMatchIdWithContext(aws.Context, *entityresolution.GetMatchIdInput, ...request.Option) (*entityresolution.GetMatchIdOutput, error)
 	GetMatchIdRequest(*entityresolution.GetMatchIdInput) (*request.Request, *entityresolution.GetMatchIdOutput)
@@ -103,6 +123,10 @@ type EntityResolutionAPI interface {
 	GetMatchingWorkflow(*entityresolution.GetMatchingWorkflowInput) (*entityresolution.GetMatchingWorkflowOutput, error)
 	GetMatchingWorkflowWithContext(aws.Context, *entityresolution.GetMatchingWorkflowInput, ...request.Option) (*entityresolution.GetMatchingWorkflowOutput, error)
 	GetMatchingWorkflowRequest(*entityresolution.GetMatchingWorkflowInput) (*request.Request, *entityresolution.GetMatchingWorkflowOutput)
+
+	GetPolicy(*entityresolution.GetPolicyInput) (*entityresolution.GetPolicyOutput, error)
+	GetPolicyWithContext(aws.Context, *entityresolution.GetPolicyInput, ...request.Option) (*entityresolution.GetPolicyOutput, error)
+	GetPolicyRequest(*entityresolution.GetPolicyInput) (*request.Request, *entityresolution.GetPolicyOutput)
 
 	GetSchemaMapping(*entityresolution.GetSchemaMappingInput) (*entityresolution.GetSchemaMappingOutput, error)
 	GetSchemaMappingWithContext(aws.Context, *entityresolution.GetSchemaMappingInput, ...request.Option) (*entityresolution.GetSchemaMappingOutput, error)
@@ -121,6 +145,13 @@ type EntityResolutionAPI interface {
 
 	ListIdMappingWorkflowsPages(*entityresolution.ListIdMappingWorkflowsInput, func(*entityresolution.ListIdMappingWorkflowsOutput, bool) bool) error
 	ListIdMappingWorkflowsPagesWithContext(aws.Context, *entityresolution.ListIdMappingWorkflowsInput, func(*entityresolution.ListIdMappingWorkflowsOutput, bool) bool, ...request.Option) error
+
+	ListIdNamespaces(*entityresolution.ListIdNamespacesInput) (*entityresolution.ListIdNamespacesOutput, error)
+	ListIdNamespacesWithContext(aws.Context, *entityresolution.ListIdNamespacesInput, ...request.Option) (*entityresolution.ListIdNamespacesOutput, error)
+	ListIdNamespacesRequest(*entityresolution.ListIdNamespacesInput) (*request.Request, *entityresolution.ListIdNamespacesOutput)
+
+	ListIdNamespacesPages(*entityresolution.ListIdNamespacesInput, func(*entityresolution.ListIdNamespacesOutput, bool) bool) error
+	ListIdNamespacesPagesWithContext(aws.Context, *entityresolution.ListIdNamespacesInput, func(*entityresolution.ListIdNamespacesOutput, bool) bool, ...request.Option) error
 
 	ListMatchingJobs(*entityresolution.ListMatchingJobsInput) (*entityresolution.ListMatchingJobsOutput, error)
 	ListMatchingJobsWithContext(aws.Context, *entityresolution.ListMatchingJobsInput, ...request.Option) (*entityresolution.ListMatchingJobsOutput, error)
@@ -154,6 +185,10 @@ type EntityResolutionAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *entityresolution.ListTagsForResourceInput, ...request.Option) (*entityresolution.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*entityresolution.ListTagsForResourceInput) (*request.Request, *entityresolution.ListTagsForResourceOutput)
 
+	PutPolicy(*entityresolution.PutPolicyInput) (*entityresolution.PutPolicyOutput, error)
+	PutPolicyWithContext(aws.Context, *entityresolution.PutPolicyInput, ...request.Option) (*entityresolution.PutPolicyOutput, error)
+	PutPolicyRequest(*entityresolution.PutPolicyInput) (*request.Request, *entityresolution.PutPolicyOutput)
+
 	StartIdMappingJob(*entityresolution.StartIdMappingJobInput) (*entityresolution.StartIdMappingJobOutput, error)
 	StartIdMappingJobWithContext(aws.Context, *entityresolution.StartIdMappingJobInput, ...request.Option) (*entityresolution.StartIdMappingJobOutput, error)
 	StartIdMappingJobRequest(*entityresolution.StartIdMappingJobInput) (*request.Request, *entityresolution.StartIdMappingJobOutput)
@@ -173,6 +208,10 @@ type EntityResolutionAPI interface {
 	UpdateIdMappingWorkflow(*entityresolution.UpdateIdMappingWorkflowInput) (*entityresolution.UpdateIdMappingWorkflowOutput, error)
 	UpdateIdMappingWorkflowWithContext(aws.Context, *entityresolution.UpdateIdMappingWorkflowInput, ...request.Option) (*entityresolution.UpdateIdMappingWorkflowOutput, error)
 	UpdateIdMappingWorkflowRequest(*entityresolution.UpdateIdMappingWorkflowInput) (*request.Request, *entityresolution.UpdateIdMappingWorkflowOutput)
+
+	UpdateIdNamespace(*entityresolution.UpdateIdNamespaceInput) (*entityresolution.UpdateIdNamespaceOutput, error)
+	UpdateIdNamespaceWithContext(aws.Context, *entityresolution.UpdateIdNamespaceInput, ...request.Option) (*entityresolution.UpdateIdNamespaceOutput, error)
+	UpdateIdNamespaceRequest(*entityresolution.UpdateIdNamespaceInput) (*request.Request, *entityresolution.UpdateIdNamespaceOutput)
 
 	UpdateMatchingWorkflow(*entityresolution.UpdateMatchingWorkflowInput) (*entityresolution.UpdateMatchingWorkflowOutput, error)
 	UpdateMatchingWorkflowWithContext(aws.Context, *entityresolution.UpdateMatchingWorkflowInput, ...request.Option) (*entityresolution.UpdateMatchingWorkflowOutput, error)

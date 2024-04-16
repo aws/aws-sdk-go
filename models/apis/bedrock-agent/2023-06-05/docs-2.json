@@ -3,11 +3,11 @@
   "service": "<p>Describes the API operations for creating and managing Amazon Bedrock agents.</p>",
   "operations": {
     "AssociateAgentKnowledgeBase": "<p>Associates a knowledge base with an agent. If a knowledge base is associated and its <code>indexState</code> is set to <code>Enabled</code>, the agent queries the knowledge base for information to augment its response to the user.</p>",
-    "CreateAgent": "<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The ARN of the role with permissions to create an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The ARN of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
+    "CreateAgent": "<p>Creates an agent that orchestrates interactions between foundation models, data sources, software applications, user conversations, and APIs to carry out tasks to help customers.</p> <ul> <li> <p>Specify the following fields for security purposes.</p> <ul> <li> <p> <code>agentResourceRoleArn</code> – The Amazon Resource Name (ARN) of the role with permissions to invoke API operations on an agent.</p> </li> <li> <p>(Optional) <code>customerEncryptionKeyArn</code> – The Amazon Resource Name (ARN) of a KMS key to encrypt the creation of the agent.</p> </li> <li> <p>(Optional) <code>idleSessionTTLinSeconds</code> – Specify the number of seconds for which the agent should maintain session information. After this time expires, the subsequent <code>InvokeAgent</code> request begins a new session.</p> </li> </ul> </li> <li> <p>To override the default prompt behavior for agent orchestration and to use advanced prompts, include a <code>promptOverrideConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/advanced-prompts.html\">Advanced prompts</a>.</p> </li> <li> <p>If you agent fails to be created, the response returns a list of <code>failureReasons</code> alongside a list of <code>recommendedActions</code> for you to troubleshoot.</p> </li> </ul>",
     "CreateAgentActionGroup": "<p>Creates an action group for an agent. An action group represents the actions that an agent can carry out for the customer by defining the APIs that an agent can call and the logic for calling them.</p> <p>To allow your agent to request the user for additional information when trying to complete a task, add an action group with the <code>parentActionGroupSignature</code> field set to <code>AMAZON.UserInput</code>. You must leave the <code>description</code>, <code>apiSchema</code>, and <code>actionGroupExecutor</code> fields blank for this action group. During orchestration, if your agent determines that it needs to invoke an API in an action group, but doesn't have enough information to complete the API request, it will invoke this action group instead and return an <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Observation.html\">Observation</a> reprompting the user for more information.</p>",
     "CreateAgentAlias": "<p>Creates an alias of an agent that can be used to deploy the agent.</p>",
     "CreateDataSource": "<p>Sets up a data source to be added to a knowledge base.</p> <important> <p>You can't change the <code>chunkingConfiguration</code> after you create the data source.</p> </important>",
-    "CreateKnowledgeBase": "<p>Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html\">Set up your data for ingestion</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the ARN with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>",
+    "CreateKnowledgeBase": "<p>Creates a knowledge base that contains data sources from which information can be queried and used by LLMs. To create a knowledge base, you must first set up your data sources and configure a supported vector store. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup.html\">Set up your data for ingestion</a>.</p> <note> <p>If you prefer to let Amazon Bedrock create and manage a vector store for you in Amazon OpenSearch Service, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-create\">Create a knowledge base</a>.</p> </note> <ul> <li> <p>Provide the <code>name</code> and an optional <code>description</code>.</p> </li> <li> <p>Provide the Amazon Resource Name (ARN) with permissions to create a knowledge base in the <code>roleArn</code> field.</p> </li> <li> <p>Provide the embedding model to use in the <code>embeddingModelArn</code> field in the <code>knowledgeBaseConfiguration</code> object.</p> </li> <li> <p>Provide the configuration for your vector store in the <code>storageConfiguration</code> object.</p> <ul> <li> <p>For an Amazon OpenSearch Service database, use the <code>opensearchServerlessConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html\">Create a vector store in Amazon OpenSearch Service</a>.</p> </li> <li> <p>For an Amazon Aurora database, use the <code>RdsConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-rds.html\">Create a vector store in Amazon Aurora</a>.</p> </li> <li> <p>For a Pinecone database, use the <code>pineconeConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html\">Create a vector store in Pinecone</a>.</p> </li> <li> <p>For a Redis Enterprise Cloud database, use the <code>redisEnterpriseCloudConfiguration</code> object. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-redis.html\">Create a vector store in Redis Enterprise Cloud</a>.</p> </li> </ul> </li> </ul>",
     "DeleteAgent": "<p>Deletes an agent.</p>",
     "DeleteAgentActionGroup": "<p>Deletes an action group in an agent.</p>",
     "DeleteAgentAlias": "<p>Deletes an alias of an agent.</p>",
@@ -60,9 +60,9 @@
     "ActionGroupExecutor": {
       "base": "<p>Contains details about the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
       "refs": {
-        "AgentActionGroup$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
-        "CreateAgentActionGroupRequest$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
-        "UpdateAgentActionGroupRequest$actionGroupExecutor": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
+        "AgentActionGroup$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "CreateAgentActionGroupRequest$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "UpdateAgentActionGroupRequest$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
       }
     },
     "ActionGroupSignature": {
@@ -121,7 +121,7 @@
     "AgentAliasArn": {
       "base": null,
       "refs": {
-        "AgentAlias$agentAliasArn": "<p>The ARN of the alias of the agent.</p>"
+        "AgentAlias$agentAliasArn": "<p>The Amazon Resource Name (ARN) of the alias of the agent.</p>"
       }
     },
     "AgentAliasHistoryEvent": {
@@ -186,8 +186,8 @@
     "AgentArn": {
       "base": null,
       "refs": {
-        "Agent$agentArn": "<p>The ARN of the agent.</p>",
-        "AgentVersion$agentArn": "<p>The ARN of the agent that the version belongs to.</p>"
+        "Agent$agentArn": "<p>The Amazon Resource Name (ARN) of the agent.</p>",
+        "AgentVersion$agentArn": "<p>The Amazon Resource Name (ARN) of the agent that the version belongs to.</p>"
       }
     },
     "AgentKnowledgeBase": {
@@ -213,10 +213,10 @@
     "AgentRoleArn": {
       "base": null,
       "refs": {
-        "Agent$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to call API operations on the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
-        "AgentVersion$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to invoke API operations on the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
-        "CreateAgentRequest$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to create the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>",
-        "UpdateAgentRequest$agentResourceRoleArn": "<p>The ARN of the IAM role with permissions to update the agent. The ARN must begin with <code>AmazonBedrockExecutionRoleForAgents_</code>.</p>"
+        "Agent$agentResourceRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>",
+        "AgentVersion$agentResourceRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>",
+        "CreateAgentRequest$agentResourceRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>",
+        "UpdateAgentRequest$agentResourceRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the agent.</p>"
       }
     },
     "AgentStatus": {
@@ -280,7 +280,7 @@
     "BedrockEmbeddingModelArn": {
       "base": null,
       "refs": {
-        "VectorKnowledgeBaseConfiguration$embeddingModelArn": "<p>The ARN of the model used to create vector embeddings for the knowledge base.</p>"
+        "VectorKnowledgeBaseConfiguration$embeddingModelArn": "<p>The Amazon Resource Name (ARN) of the model used to create vector embeddings for the knowledge base.</p>"
       }
     },
     "Boolean": {
@@ -893,11 +893,11 @@
     "KmsKeyArn": {
       "base": null,
       "refs": {
-        "Agent$customerEncryptionKeyArn": "<p>The ARN of the KMS key that encrypts the agent.</p>",
-        "AgentVersion$customerEncryptionKeyArn": "<p>The ARN of the KMS key that encrypts the agent.</p>",
-        "CreateAgentRequest$customerEncryptionKeyArn": "<p>The ARN of the KMS key with which to encrypt the agent.</p>",
-        "ServerSideEncryptionConfiguration$kmsKeyArn": "<p>The ARN of the KMS key used to encrypt the resource.</p>",
-        "UpdateAgentRequest$customerEncryptionKeyArn": "<p>The ARN of the KMS key with which to encrypt the agent.</p>"
+        "Agent$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>",
+        "AgentVersion$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key that encrypts the agent.</p>",
+        "CreateAgentRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>",
+        "ServerSideEncryptionConfiguration$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key used to encrypt the resource.</p>",
+        "UpdateAgentRequest$customerEncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the agent.</p>"
       }
     },
     "KnowledgeBase": {
@@ -911,7 +911,7 @@
     "KnowledgeBaseArn": {
       "base": null,
       "refs": {
-        "KnowledgeBase$knowledgeBaseArn": "<p>The ARN of the knowledge base.</p>"
+        "KnowledgeBase$knowledgeBaseArn": "<p>The Amazon Resource Name (ARN) of the knowledge base.</p>"
       }
     },
     "KnowledgeBaseConfiguration": {
@@ -925,9 +925,9 @@
     "KnowledgeBaseRoleArn": {
       "base": null,
       "refs": {
-        "CreateKnowledgeBaseRequest$roleArn": "<p>The ARN of the IAM role with permissions to create the knowledge base.</p>",
-        "KnowledgeBase$roleArn": "<p>The ARN of the IAM role with permissions to invoke API operations on the knowledge base. The ARN must begin with <code>AmazonBedrockExecutionRoleForKnowledgeBase_</code>.</p>",
-        "UpdateKnowledgeBaseRequest$roleArn": "<p>Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions to modify the knowledge base.</p>"
+        "CreateKnowledgeBaseRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>",
+        "KnowledgeBase$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>",
+        "UpdateKnowledgeBaseRequest$roleArn": "<p>Specifies a different Amazon Resource Name (ARN) of the IAM role with permissions to invoke API operations on the knowledge base.</p>"
       }
     },
     "KnowledgeBaseState": {
@@ -974,7 +974,7 @@
     "LambdaArn": {
       "base": null,
       "refs": {
-        "ActionGroupExecutor$lambda": "<p>The ARN of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "ActionGroupExecutor$lambda": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
         "PromptOverrideConfiguration$overrideLambda": "<p>The ARN of the Lambda function to use when parsing the raw foundation model output in parts of the agent sequence. If you specify this field, at least one of the <code>promptConfigurations</code> must contain a <code>parserMode</code> value that is set to <code>OVERRIDDEN</code>.</p>"
       }
     },
@@ -1170,7 +1170,7 @@
     "OpenSearchServerlessCollectionArn": {
       "base": null,
       "refs": {
-        "OpenSearchServerlessConfiguration$collectionArn": "<p>The ARN of the OpenSearch Service vector store.</p>"
+        "OpenSearchServerlessConfiguration$collectionArn": "<p>The Amazon Resource Name (ARN) of the OpenSearch Service vector store.</p>"
       }
     },
     "OpenSearchServerlessConfiguration": {
@@ -1279,7 +1279,7 @@
     "RdsArn": {
       "base": null,
       "refs": {
-        "RdsConfiguration$resourceArn": "<p>The ARN of the vector store.</p>"
+        "RdsConfiguration$resourceArn": "<p>The Amazon Resource Name (ARN) of the vector store.</p>"
       }
     },
     "RdsConfiguration": {
@@ -1344,14 +1344,14 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>",
+      "base": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>",
       "refs": {
       }
     },
     "S3BucketArn": {
       "base": null,
       "refs": {
-        "S3DataSourceConfiguration$bucketArn": "<p>The ARN of the bucket that contains the data source.</p>"
+        "S3DataSourceConfiguration$bucketArn": "<p>The Amazon Resource Name (ARN) of the bucket that contains the data source.</p>"
       }
     },
     "S3BucketName": {
@@ -1393,9 +1393,9 @@
     "SecretArn": {
       "base": null,
       "refs": {
-        "PineconeConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>",
-        "RdsConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>",
-        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The ARN of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
+        "PineconeConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>",
+        "RdsConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>",
+        "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
       }
     },
     "ServerSideEncryptionConfiguration": {
@@ -1488,9 +1488,9 @@
     "TaggableResourcesArn": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource for which to list tags.</p>",
-        "TagResourceRequest$resourceArn": "<p>The ARN of the resource to tag.</p>",
-        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource from which to remove tags.</p>"
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to list tags.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to tag.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags.</p>"
       }
     },
     "TagsMap": {
