@@ -2040,6 +2040,17 @@
       },
       "type": "structure"
     },
+    "AppliedCreatorModeConfiguration": {
+      "members": {
+        "creatorModeControl": {
+          "shape": "CreatorModeControl"
+        }
+      },
+      "required": [
+        "creatorModeControl"
+      ],
+      "type": "structure"
+    },
     "AttachmentInput": {
       "members": {
         "data": {
@@ -2307,6 +2318,23 @@
       "min": 0,
       "type": "long"
     },
+    "ChatMode": {
+      "enum": [
+        "RETRIEVAL_MODE",
+        "CREATOR_MODE",
+        "PLUGIN_MODE"
+      ],
+      "type": "string"
+    },
+    "ChatModeConfiguration": {
+      "members": {
+        "pluginConfiguration": {
+          "shape": "PluginConfiguration"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
     "ChatSyncInput": {
       "members": {
         "applicationId": {
@@ -2319,6 +2347,12 @@
         },
         "attributeFilter": {
           "shape": "AttributeFilter"
+        },
+        "chatMode": {
+          "shape": "ChatMode"
+        },
+        "chatModeConfiguration": {
+          "shape": "ChatModeConfiguration"
         },
         "clientToken": {
           "idempotencyToken": true,
@@ -2345,8 +2379,7 @@
         }
       },
       "required": [
-        "applicationId",
-        "userId"
+        "applicationId"
       ],
       "type": "structure"
     },
@@ -2484,6 +2517,9 @@
         },
         "encryptionConfiguration": {
           "shape": "EncryptionConfiguration"
+        },
+        "identityCenterInstanceArn": {
+          "shape": "InstanceArn"
         },
         "roleArn": {
           "shape": "RoleArn"
@@ -2701,6 +2737,9 @@
           "idempotencyToken": true,
           "shape": "ClientToken"
         },
+        "roleArn": {
+          "shape": "RoleArn"
+        },
         "samplePromptsControlMode": {
           "shape": "WebExperienceSamplePromptsControlMode"
         },
@@ -2732,6 +2771,24 @@
         }
       },
       "type": "structure"
+    },
+    "CreatorModeConfiguration": {
+      "members": {
+        "creatorModeControl": {
+          "shape": "CreatorModeControl"
+        }
+      },
+      "required": [
+        "creatorModeControl"
+      ],
+      "type": "structure"
+    },
+    "CreatorModeControl": {
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ],
+      "type": "string"
     },
     "DataSource": {
       "members": {
@@ -2952,8 +3009,7 @@
       },
       "required": [
         "applicationId",
-        "conversationId",
-        "userId"
+        "conversationId"
       ],
       "type": "structure"
     },
@@ -3577,6 +3633,9 @@
         "error": {
           "shape": "ErrorDetail"
         },
+        "identityCenterApplicationArn": {
+          "shape": "IdcApplicationArn"
+        },
         "roleArn": {
           "shape": "RoleArn"
         },
@@ -3616,6 +3675,9 @@
       "members": {
         "blockedPhrases": {
           "shape": "BlockedPhrasesConfiguration"
+        },
+        "creatorModeConfiguration": {
+          "shape": "AppliedCreatorModeConfiguration"
         },
         "nextToken": {
           "shape": "NextToken"
@@ -3976,6 +4038,9 @@
         "error": {
           "shape": "ErrorDetail"
         },
+        "roleArn": {
+          "shape": "RoleArn"
+        },
         "samplePromptsControlMode": {
           "shape": "WebExperienceSamplePromptsControlMode"
         },
@@ -4080,6 +4145,12 @@
         }
       },
       "type": "structure"
+    },
+    "IdcApplicationArn": {
+      "max": 1224,
+      "min": 10,
+      "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$",
+      "type": "string"
     },
     "Index": {
       "members": {
@@ -4187,6 +4258,12 @@
       },
       "min": 1,
       "type": "list"
+    },
+    "InstanceArn": {
+      "max": 1224,
+      "min": 10,
+      "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
+      "type": "string"
     },
     "Integer": {
       "box": true,
@@ -4303,8 +4380,7 @@
         }
       },
       "required": [
-        "applicationId",
-        "userId"
+        "applicationId"
       ],
       "type": "structure"
     },
@@ -4580,8 +4656,7 @@
       },
       "required": [
         "applicationId",
-        "conversationId",
-        "userId"
+        "conversationId"
       ],
       "type": "structure"
     },
@@ -5058,6 +5133,17 @@
       "type": "structure",
       "union": true
     },
+    "PluginConfiguration": {
+      "members": {
+        "pluginId": {
+          "shape": "PluginId"
+        }
+      },
+      "required": [
+        "pluginId"
+      ],
+      "type": "structure"
+    },
     "PluginId": {
       "max": 36,
       "min": 36,
@@ -5176,8 +5262,7 @@
       "required": [
         "applicationId",
         "conversationId",
-        "messageId",
-        "userId"
+        "messageId"
       ],
       "type": "structure"
     },
@@ -5882,6 +5967,9 @@
         "clientToken": {
           "idempotencyToken": true,
           "shape": "ClientToken"
+        },
+        "creatorModeConfiguration": {
+          "shape": "CreatorModeConfiguration"
         },
         "responseScope": {
           "shape": "ResponseScope"

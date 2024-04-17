@@ -1,3 +1,11 @@
+Release v1.51.23 (2024-04-17)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Elastic Compute Cloud (EC2).
+* `service/qbusiness`: Updates service API and documentation
+
 Release v1.51.22 (2024-04-16)
 ===
 
