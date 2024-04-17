@@ -25,8 +25,8 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// An issue occurred with the internal server used for your Amazon Q service.
-	// Wait some minutes and try again, or contact Support (http://aws.amazon.com/contact-us/)
+	// An issue occurred with the internal server used for your Amazon Q Business
+	// service. Wait some minutes and try again, or contact Support (http://aws.amazon.com/contact-us/)
 	// for help.
 	ErrCodeInternalServerException = "InternalServerException"
 
@@ -48,7 +48,7 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// You have exceeded the set limits for your Amazon Q service.
+	// You have exceeded the set limits for your Amazon Q Business service.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
@@ -61,8 +61,8 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input doesn't meet the constraints set by the Amazon Q service. Provide
-	// the correct input and try again.
+	// The input doesn't meet the constraints set by the Amazon Q Business service.
+	// Provide the correct input and try again.
 	ErrCodeValidationException = "ValidationException"
 )
 
