@@ -178,6 +178,18 @@
         "StartJobRunRequest$configurationOverrides": "<p>The configuration overrides for the job run.</p>"
       }
     },
+    "ConfigurationPropertyKey": {
+      "base": null,
+      "refs": {
+        "SensitivePropertiesMap$key": null
+      }
+    },
+    "ConfigurationPropertyValue": {
+      "base": null,
+      "refs": {
+        "SensitivePropertiesMap$value": null
+      }
+    },
     "ConflictException": {
       "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
       "refs": {
@@ -584,6 +596,18 @@
         "ListJobRunsResponse$nextToken": "<p>The output displays the token for the next set of job run results. This is required for pagination and is available as a response of the previous request.</p>"
       }
     },
+    "PrometheusMonitoringConfiguration": {
+      "base": "<p>The monitoring configuration object you can configure to send metrics to Amazon Managed Service for Prometheus for a job run.</p>",
+      "refs": {
+        "MonitoringConfiguration$prometheusMonitoringConfiguration": "<p>The monitoring configuration object you can configure to send metrics to Amazon Managed Service for Prometheus for a job run.</p>"
+      }
+    },
+    "PrometheusUrlString": {
+      "base": null,
+      "refs": {
+        "PrometheusMonitoringConfiguration$remoteWriteUrl": "<p>The remote write URL in the Amazon Managed Service for Prometheus workspace to send metrics to.</p>"
+      }
+    },
     "Query": {
       "base": null,
       "refs": {
@@ -705,8 +729,6 @@
         "ConflictException$message": null,
         "InternalServerException$message": null,
         "ResourceNotFoundException$message": null,
-        "SensitivePropertiesMap$key": null,
-        "SensitivePropertiesMap$value": null,
         "ServiceQuotaExceededException$message": null,
         "ValidationException$message": null
       }

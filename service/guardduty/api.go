@@ -9380,6 +9380,8 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.ipAddressV4
 	//
+	//    * service.action.awsApiCallAction.remoteIpDetails.ipAddressV6
+	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.organization.asn
 	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.organization.asnOrg
@@ -9404,6 +9406,8 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.networkConnectionAction.remoteIpDetails.ipAddressV4
 	//
+	//    * service.action.networkConnectionAction.remoteIpDetails.ipAddressV6
+	//
 	//    * service.action.networkConnectionAction.remoteIpDetails.organization.asn
 	//
 	//    * service.action.networkConnectionAction.remoteIpDetails.organization.asnOrg
@@ -9414,6 +9418,8 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV4
 	//
+	//    * service.action.kubernetesApiCallAction.remoteIpDetails.ipAddressV6
+	//
 	//    * service.action.kubernetesApiCallAction.namespace
 	//
 	//    * service.action.kubernetesApiCallAction.remoteIpDetails.organization.asn
@@ -9423,6 +9429,8 @@ type CreateFilterInput struct {
 	//    * service.action.kubernetesApiCallAction.statusCode
 	//
 	//    * service.action.networkConnectionAction.localIpDetails.ipAddressV4
+	//
+	//    * service.action.networkConnectionAction.localIpDetails.ipAddressV6
 	//
 	//    * service.action.networkConnectionAction.protocol
 	//
@@ -18317,6 +18325,13 @@ type LocalIpDetails struct {
 	// replaced with "sensitive" in string returned by LocalIpDetails's
 	// String and GoString methods.
 	IpAddressV4 *string `locationName:"ipAddressV4" type:"string" sensitive:"true"`
+
+	// The IPv6 local address of the connection.
+	//
+	// IpAddressV6 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LocalIpDetails's
+	// String and GoString methods.
+	IpAddressV6 *string `locationName:"ipAddressV6" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -18340,6 +18355,12 @@ func (s LocalIpDetails) GoString() string {
 // SetIpAddressV4 sets the IpAddressV4 field's value.
 func (s *LocalIpDetails) SetIpAddressV4(v string) *LocalIpDetails {
 	s.IpAddressV4 = &v
+	return s
+}
+
+// SetIpAddressV6 sets the IpAddressV6 field's value.
+func (s *LocalIpDetails) SetIpAddressV6(v string) *LocalIpDetails {
+	s.IpAddressV6 = &v
 	return s
 }
 
@@ -21005,6 +21026,13 @@ type RemoteIpDetails struct {
 	// String and GoString methods.
 	IpAddressV4 *string `locationName:"ipAddressV4" type:"string" sensitive:"true"`
 
+	// The IPv6 remote address of the connection.
+	//
+	// IpAddressV6 is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RemoteIpDetails's
+	// String and GoString methods.
+	IpAddressV6 *string `locationName:"ipAddressV6" type:"string" sensitive:"true"`
+
 	// The ISP organization information of the remote IP address.
 	Organization *Organization `locationName:"organization" type:"structure"`
 }
@@ -21048,6 +21076,12 @@ func (s *RemoteIpDetails) SetGeoLocation(v *GeoLocation) *RemoteIpDetails {
 // SetIpAddressV4 sets the IpAddressV4 field's value.
 func (s *RemoteIpDetails) SetIpAddressV4(v string) *RemoteIpDetails {
 	s.IpAddressV4 = &v
+	return s
+}
+
+// SetIpAddressV6 sets the IpAddressV6 field's value.
+func (s *RemoteIpDetails) SetIpAddressV6(v string) *RemoteIpDetails {
+	s.IpAddressV6 = &v
 	return s
 }
 

@@ -40,6 +40,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DeleteAttributeMapping":{
+      "name":"DeleteAttributeMapping",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/profiles/{profileId}/mappings",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteAttributeMappingRequest"},
+      "output":{"shape":"DeleteAttributeMappingResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "DeleteCrl":{
       "name":"DeleteCrl",
       "http":{
@@ -310,6 +326,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "PutAttributeMapping":{
+      "name":"PutAttributeMapping",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/profiles/{profileId}/mappings",
+        "responseCode":200
+      },
+      "input":{"shape":"PutAttributeMappingRequest"},
+      "output":{"shape":"PutAttributeMappingResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "PutNotificationSettings":{
       "name":"PutNotificationSettings",
       "http":{
@@ -436,10 +468,29 @@
       "max":1011,
       "min":1
     },
+    "AttributeMapping":{
+      "type":"structure",
+      "members":{
+        "certificateField":{"shape":"CertificateField"},
+        "mappingRules":{"shape":"MappingRules"}
+      }
+    },
+    "AttributeMappings":{
+      "type":"list",
+      "member":{"shape":"AttributeMapping"}
+    },
     "Blob":{"type":"blob"},
     "Boolean":{
       "type":"boolean",
       "box":true
+    },
+    "CertificateField":{
+      "type":"string",
+      "enum":[
+        "x509Subject",
+        "x509Issuer",
+        "x509SAN"
+      ]
     },
     "CreateProfileRequest":{
       "type":"structure",
@@ -516,6 +567,37 @@
     "CrlDetails":{
       "type":"list",
       "member":{"shape":"CrlDetail"}
+    },
+    "DeleteAttributeMappingRequest":{
+      "type":"structure",
+      "required":[
+        "certificateField",
+        "profileId"
+      ],
+      "members":{
+        "certificateField":{
+          "shape":"CertificateField",
+          "location":"querystring",
+          "locationName":"certificateField"
+        },
+        "profileId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"profileId"
+        },
+        "specifiers":{
+          "shape":"SpecifierList",
+          "location":"querystring",
+          "locationName":"specifiers"
+        }
+      }
+    },
+    "DeleteAttributeMappingResponse":{
+      "type":"structure",
+      "required":["profile"],
+      "members":{
+        "profile":{"shape":"ProfileDetail"}
+      }
     },
     "ImportCrlRequest":{
       "type":"structure",
@@ -646,6 +728,22 @@
       "max":200,
       "min":1
     },
+    "MappingRule":{
+      "type":"structure",
+      "required":["specifier"],
+      "members":{
+        "specifier":{"shape":"MappingRuleSpecifierString"}
+      }
+    },
+    "MappingRuleSpecifierString":{
+      "type":"string",
+      "max":60,
+      "min":0
+    },
+    "MappingRules":{
+      "type":"list",
+      "member":{"shape":"MappingRule"}
+    },
     "NotificationChannel":{
       "type":"string",
       "enum":["ALL"]
@@ -736,6 +834,7 @@
     "ProfileDetail":{
       "type":"structure",
       "members":{
+        "attributeMappings":{"shape":"AttributeMappings"},
         "createdAt":{"shape":"SyntheticTimestamp_date_time"},
         "createdBy":{"shape":"String"},
         "durationSeconds":{"shape":"Integer"},
@@ -759,6 +858,30 @@
     "ProfileDetails":{
       "type":"list",
       "member":{"shape":"ProfileDetail"}
+    },
+    "PutAttributeMappingRequest":{
+      "type":"structure",
+      "required":[
+        "certificateField",
+        "mappingRules",
+        "profileId"
+      ],
+      "members":{
+        "certificateField":{"shape":"CertificateField"},
+        "mappingRules":{"shape":"MappingRules"},
+        "profileId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"profileId"
+        }
+      }
+    },
+    "PutAttributeMappingResponse":{
+      "type":"structure",
+      "required":["profile"],
+      "members":{
+        "profile":{"shape":"ProfileDetail"}
+      }
     },
     "PutNotificationSettingsRequest":{
       "type":"structure",
@@ -888,6 +1011,10 @@
       "type":"string",
       "max":8000,
       "min":1
+    },
+    "SpecifierList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "String":{"type":"string"},
     "SubjectDetail":{

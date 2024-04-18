@@ -4932,10 +4932,7 @@
       "type":"string",
       "enum":[
         "AWS/Rekognition/DetectModerationLabels/Image/V3",
-        "AWS/Textract/AnalyzeDocument/Forms/V1",
-        "AWS/Textract/AnalyzeExpense",
-        "AWS/Handshake/VerifyIdentity",
-        "AWS/Bedrock/ModelEvaluation"
+        "AWS/Textract/AnalyzeDocument/Forms/V1"
       ]
     },
     "BacktestResultsLocation":{

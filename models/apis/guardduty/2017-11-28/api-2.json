@@ -4990,6 +4990,10 @@
         "IpAddressV4":{
           "shape":"SensitiveString",
           "locationName":"ipAddressV4"
+        },
+        "IpAddressV6":{
+          "shape":"SensitiveString",
+          "locationName":"ipAddressV6"
         }
       }
     },
@@ -6024,6 +6028,10 @@
         "IpAddressV4":{
           "shape":"SensitiveString",
           "locationName":"ipAddressV4"
+        },
+        "IpAddressV6":{
+          "shape":"SensitiveString",
+          "locationName":"ipAddressV6"
         },
         "Organization":{
           "shape":"Organization",

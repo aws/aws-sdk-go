@@ -6659,6 +6659,9 @@ type DataReplicationInfo struct {
 
 	// AWS Availability zone into which data is being replicated.
 	StagingAvailabilityZone *string `locationName:"stagingAvailabilityZone" type:"string"`
+
+	// The ARN of the staging Outpost
+	StagingOutpostArn *string `locationName:"stagingOutpostArn" min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -6718,6 +6721,12 @@ func (s *DataReplicationInfo) SetReplicatedDisks(v []*DataReplicationInfoReplica
 // SetStagingAvailabilityZone sets the StagingAvailabilityZone field's value.
 func (s *DataReplicationInfo) SetStagingAvailabilityZone(v string) *DataReplicationInfo {
 	s.StagingAvailabilityZone = &v
+	return s
+}
+
+// SetStagingOutpostArn sets the StagingOutpostArn field's value.
+func (s *DataReplicationInfo) SetStagingOutpostArn(v string) *DataReplicationInfo {
+	s.StagingOutpostArn = &v
 	return s
 }
 
@@ -11708,6 +11717,9 @@ type RecoveryInstance struct {
 	// Properties of the Recovery Instance machine.
 	RecoveryInstanceProperties *RecoveryInstanceProperties `locationName:"recoveryInstanceProperties" type:"structure"`
 
+	// The ARN of the source Outpost
+	SourceOutpostArn *string `locationName:"sourceOutpostArn" min:"20" type:"string"`
+
 	// The Source Server ID that this Recovery Instance is associated with.
 	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
 
@@ -11815,6 +11827,12 @@ func (s *RecoveryInstance) SetRecoveryInstanceProperties(v *RecoveryInstanceProp
 	return s
 }
 
+// SetSourceOutpostArn sets the SourceOutpostArn field's value.
+func (s *RecoveryInstance) SetSourceOutpostArn(v string) *RecoveryInstance {
+	s.SourceOutpostArn = &v
+	return s
+}
+
 // SetSourceServerID sets the SourceServerID field's value.
 func (s *RecoveryInstance) SetSourceServerID(v string) *RecoveryInstance {
 	s.SourceServerID = &v
@@ -11892,6 +11910,9 @@ type RecoveryInstanceDataReplicationInfo struct {
 
 	// AWS Availability zone into which data is being replicated.
 	StagingAvailabilityZone *string `locationName:"stagingAvailabilityZone" type:"string"`
+
+	// The ARN of the staging Outpost
+	StagingOutpostArn *string `locationName:"stagingOutpostArn" min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -11951,6 +11972,12 @@ func (s *RecoveryInstanceDataReplicationInfo) SetReplicatedDisks(v []*RecoveryIn
 // SetStagingAvailabilityZone sets the StagingAvailabilityZone field's value.
 func (s *RecoveryInstanceDataReplicationInfo) SetStagingAvailabilityZone(v string) *RecoveryInstanceDataReplicationInfo {
 	s.StagingAvailabilityZone = &v
+	return s
+}
+
+// SetStagingOutpostArn sets the StagingOutpostArn field's value.
+func (s *RecoveryInstanceDataReplicationInfo) SetStagingOutpostArn(v string) *RecoveryInstanceDataReplicationInfo {
+	s.StagingOutpostArn = &v
 	return s
 }
 
@@ -13198,6 +13225,9 @@ type SourceCloudProperties struct {
 
 	// AWS Region for an EC2-originated Source Server.
 	OriginRegion *string `locationName:"originRegion" type:"string"`
+
+	// The ARN of the source Outpost
+	SourceOutpostArn *string `locationName:"sourceOutpostArn" min:"20" type:"string"`
 }
 
 // String returns the string representation.
@@ -13233,6 +13263,12 @@ func (s *SourceCloudProperties) SetOriginAvailabilityZone(v string) *SourceCloud
 // SetOriginRegion sets the OriginRegion field's value.
 func (s *SourceCloudProperties) SetOriginRegion(v string) *SourceCloudProperties {
 	s.OriginRegion = &v
+	return s
+}
+
+// SetSourceOutpostArn sets the SourceOutpostArn field's value.
+func (s *SourceCloudProperties) SetSourceOutpostArn(v string) *SourceCloudProperties {
+	s.SourceOutpostArn = &v
 	return s
 }
 
@@ -17685,6 +17721,9 @@ const (
 
 	// VolumeStatusMissingVolumeAttributesAndPrecheckUnavailable is a VolumeStatus enum value
 	VolumeStatusMissingVolumeAttributesAndPrecheckUnavailable = "MISSING_VOLUME_ATTRIBUTES_AND_PRECHECK_UNAVAILABLE"
+
+	// VolumeStatusPending is a VolumeStatus enum value
+	VolumeStatusPending = "PENDING"
 )
 
 // VolumeStatus_Values returns all elements of the VolumeStatus enum
@@ -17694,5 +17733,6 @@ func VolumeStatus_Values() []string {
 		VolumeStatusContainsMarketplaceProductCodes,
 		VolumeStatusMissingVolumeAttributes,
 		VolumeStatusMissingVolumeAttributesAndPrecheckUnavailable,
+		VolumeStatusPending,
 	}
 }

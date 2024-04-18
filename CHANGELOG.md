@@ -1,3 +1,19 @@
+Release v1.51.24 (2024-04-18)
+===
+
+### Service Client Updates
+* `service/drs`: Updates service API and documentation
+* `service/emr-serverless`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Added IPv6Address fields for local and remote IP addresses
+* `service/quicksight`: Updates service API and documentation
+  * This release adds support for the Cross Sheet Filter and Control features, and support for warnings in asset imports for any permitted errors encountered during execution
+* `service/rolesanywhere`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Removed deprecated enum values and updated API documentation.
+* `service/workspaces`: Updates service API, documentation, and paginators
+  * Adds new APIs for managing and sharing WorkSpaces BYOL configuration across accounts.
+
 Release v1.51.23 (2024-04-17)
 ===
 

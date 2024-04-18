@@ -444,6 +444,18 @@
         "monitoringConfiguration":{"shape":"MonitoringConfiguration"}
       }
     },
+    "ConfigurationPropertyKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ConfigurationPropertyValue":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*\\S.*"
+    },
     "ConflictException":{
       "type":"structure",
       "required":["message"],
@@ -993,7 +1005,8 @@
       "members":{
         "s3MonitoringConfiguration":{"shape":"S3MonitoringConfiguration"},
         "managedPersistenceMonitoringConfiguration":{"shape":"ManagedPersistenceMonitoringConfiguration"},
-        "cloudWatchLoggingConfiguration":{"shape":"CloudWatchLoggingConfiguration"}
+        "cloudWatchLoggingConfiguration":{"shape":"CloudWatchLoggingConfiguration"},
+        "prometheusMonitoringConfiguration":{"shape":"PrometheusMonitoringConfiguration"}
       }
     },
     "NetworkConfiguration":{
@@ -1008,6 +1021,18 @@
       "max":1024,
       "min":1,
       "pattern":"[A-Za-z0-9_=-]+"
+    },
+    "PrometheusMonitoringConfiguration":{
+      "type":"structure",
+      "members":{
+        "remoteWriteUrl":{"shape":"PrometheusUrlString"}
+      }
+    },
+    "PrometheusUrlString":{
+      "type":"string",
+      "max":10280,
+      "min":1,
+      "pattern":"https://aps-workspaces.([a-z]{2}-[a-z-]{1,20}-[1-9]).amazonaws(.[0-9A-Za-z]{2,4})+/workspaces/[-_.0-9A-Za-z]{1,100}/api/v1/remote_write"
     },
     "Query":{
       "type":"string",
@@ -1075,8 +1100,8 @@
     },
     "SensitivePropertiesMap":{
       "type":"map",
-      "key":{"shape":"String1024"},
-      "value":{"shape":"String1024"},
+      "key":{"shape":"ConfigurationPropertyKey"},
+      "value":{"shape":"ConfigurationPropertyValue"},
       "max":100,
       "min":0,
       "sensitive":true

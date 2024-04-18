@@ -68,6 +68,10 @@ type RolesAnywhereAPI interface {
 	CreateTrustAnchorWithContext(aws.Context, *rolesanywhere.CreateTrustAnchorInput, ...request.Option) (*rolesanywhere.CreateTrustAnchorOutput, error)
 	CreateTrustAnchorRequest(*rolesanywhere.CreateTrustAnchorInput) (*request.Request, *rolesanywhere.CreateTrustAnchorOutput)
 
+	DeleteAttributeMapping(*rolesanywhere.DeleteAttributeMappingInput) (*rolesanywhere.DeleteAttributeMappingOutput, error)
+	DeleteAttributeMappingWithContext(aws.Context, *rolesanywhere.DeleteAttributeMappingInput, ...request.Option) (*rolesanywhere.DeleteAttributeMappingOutput, error)
+	DeleteAttributeMappingRequest(*rolesanywhere.DeleteAttributeMappingInput) (*request.Request, *rolesanywhere.DeleteAttributeMappingOutput)
+
 	DeleteCrl(*rolesanywhere.DeleteCrlInput) (*rolesanywhere.DeleteCrlOutput, error)
 	DeleteCrlWithContext(aws.Context, *rolesanywhere.DeleteCrlInput, ...request.Option) (*rolesanywhere.DeleteCrlOutput, error)
 	DeleteCrlRequest(*rolesanywhere.DeleteCrlInput) (*request.Request, *rolesanywhere.DeleteCrlOutput)
@@ -155,6 +159,10 @@ type RolesAnywhereAPI interface {
 
 	ListTrustAnchorsPages(*rolesanywhere.ListTrustAnchorsInput, func(*rolesanywhere.ListTrustAnchorsOutput, bool) bool) error
 	ListTrustAnchorsPagesWithContext(aws.Context, *rolesanywhere.ListTrustAnchorsInput, func(*rolesanywhere.ListTrustAnchorsOutput, bool) bool, ...request.Option) error
+
+	PutAttributeMapping(*rolesanywhere.PutAttributeMappingInput) (*rolesanywhere.PutAttributeMappingOutput, error)
+	PutAttributeMappingWithContext(aws.Context, *rolesanywhere.PutAttributeMappingInput, ...request.Option) (*rolesanywhere.PutAttributeMappingOutput, error)
+	PutAttributeMappingRequest(*rolesanywhere.PutAttributeMappingInput) (*request.Request, *rolesanywhere.PutAttributeMappingOutput)
 
 	PutNotificationSettings(*rolesanywhere.PutNotificationSettingsInput) (*rolesanywhere.PutNotificationSettingsOutput, error)
 	PutNotificationSettingsWithContext(aws.Context, *rolesanywhere.PutNotificationSettingsInput, ...request.Option) (*rolesanywhere.PutNotificationSettingsOutput, error)

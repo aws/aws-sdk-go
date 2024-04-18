@@ -3551,7 +3551,8 @@
         "ClusterId",
         "ManifestFileLocation",
         "Warehouse",
-        "RoleArn"
+        "RoleArn",
+        "ProductType"
       ]
     },
     "AssetBundleExportJobDataSourcePropertyToOverrideList":{
@@ -4116,6 +4117,17 @@
       "member":{"shape":"AssetBundleImportJobVPCConnectionOverrideTags"},
       "max":5,
       "min":1
+    },
+    "AssetBundleImportJobWarning":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Message":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssetBundleImportJobWarningList":{
+      "type":"list",
+      "member":{"shape":"AssetBundleImportJobWarning"}
     },
     "AssetBundleImportSource":{
       "type":"structure",
@@ -4824,7 +4836,8 @@
       "members":{
         "FilterId":{"shape":"ShortRestrictiveResourceId"},
         "Column":{"shape":"ColumnIdentifier"},
-        "Configuration":{"shape":"CategoryFilterConfiguration"}
+        "Configuration":{"shape":"CategoryFilterConfiguration"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "CategoryFilterConfiguration":{
@@ -7577,6 +7590,52 @@
         "VARP"
       ]
     },
+    "DefaultDateTimePickerControlOptions":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"SheetControlDateTimePickerType"},
+        "DisplayOptions":{"shape":"DateTimePickerControlDisplayOptions"}
+      }
+    },
+    "DefaultFilterControlConfiguration":{
+      "type":"structure",
+      "required":[
+        "Title",
+        "ControlOptions"
+      ],
+      "members":{
+        "Title":{"shape":"SheetControlTitle"},
+        "ControlOptions":{"shape":"DefaultFilterControlOptions"}
+      }
+    },
+    "DefaultFilterControlOptions":{
+      "type":"structure",
+      "members":{
+        "DefaultDateTimePickerOptions":{"shape":"DefaultDateTimePickerControlOptions"},
+        "DefaultListOptions":{"shape":"DefaultFilterListControlOptions"},
+        "DefaultDropdownOptions":{"shape":"DefaultFilterDropDownControlOptions"},
+        "DefaultTextFieldOptions":{"shape":"DefaultTextFieldControlOptions"},
+        "DefaultTextAreaOptions":{"shape":"DefaultTextAreaControlOptions"},
+        "DefaultSliderOptions":{"shape":"DefaultSliderControlOptions"},
+        "DefaultRelativeDateTimeOptions":{"shape":"DefaultRelativeDateTimeControlOptions"}
+      }
+    },
+    "DefaultFilterDropDownControlOptions":{
+      "type":"structure",
+      "members":{
+        "DisplayOptions":{"shape":"DropDownControlDisplayOptions"},
+        "Type":{"shape":"SheetControlListType"},
+        "SelectableValues":{"shape":"FilterSelectableValues"}
+      }
+    },
+    "DefaultFilterListControlOptions":{
+      "type":"structure",
+      "members":{
+        "DisplayOptions":{"shape":"ListControlDisplayOptions"},
+        "Type":{"shape":"SheetControlListType"},
+        "SelectableValues":{"shape":"FilterSelectableValues"}
+      }
+    },
     "DefaultFormatting":{
       "type":"structure",
       "members":{
@@ -7619,11 +7678,45 @@
         "SectionBased":{"shape":"DefaultSectionBasedLayoutConfiguration"}
       }
     },
+    "DefaultRelativeDateTimeControlOptions":{
+      "type":"structure",
+      "members":{
+        "DisplayOptions":{"shape":"RelativeDateTimeControlDisplayOptions"}
+      }
+    },
     "DefaultSectionBasedLayoutConfiguration":{
       "type":"structure",
       "required":["CanvasSizeOptions"],
       "members":{
         "CanvasSizeOptions":{"shape":"SectionBasedLayoutCanvasSizeOptions"}
+      }
+    },
+    "DefaultSliderControlOptions":{
+      "type":"structure",
+      "required":[
+        "MaximumValue",
+        "MinimumValue",
+        "StepSize"
+      ],
+      "members":{
+        "DisplayOptions":{"shape":"SliderControlDisplayOptions"},
+        "Type":{"shape":"SheetControlSliderType"},
+        "MaximumValue":{"shape":"Double"},
+        "MinimumValue":{"shape":"Double"},
+        "StepSize":{"shape":"Double"}
+      }
+    },
+    "DefaultTextAreaControlOptions":{
+      "type":"structure",
+      "members":{
+        "Delimiter":{"shape":"TextAreaControlDelimiter"},
+        "DisplayOptions":{"shape":"TextAreaControlDisplayOptions"}
+      }
+    },
+    "DefaultTextFieldControlOptions":{
+      "type":"structure",
+      "members":{
+        "DisplayOptions":{"shape":"TextFieldControlDisplayOptions"}
       }
     },
     "DeleteAccountCustomizationRequest":{
@@ -8775,7 +8868,8 @@
         },
         "OverridePermissions":{"shape":"AssetBundleImportJobOverridePermissions"},
         "OverrideTags":{"shape":"AssetBundleImportJobOverrideTags"},
-        "OverrideValidationStrategy":{"shape":"AssetBundleImportJobOverrideValidationStrategy"}
+        "OverrideValidationStrategy":{"shape":"AssetBundleImportJobOverrideValidationStrategy"},
+        "Warnings":{"shape":"AssetBundleImportJobWarningList"}
       }
     },
     "DescribeDashboardDefinitionRequest":{
@@ -10473,13 +10567,26 @@
         "TextField":{"shape":"FilterTextFieldControl"},
         "TextArea":{"shape":"FilterTextAreaControl"},
         "Slider":{"shape":"FilterSliderControl"},
-        "RelativeDateTime":{"shape":"FilterRelativeDateTimeControl"}
+        "RelativeDateTime":{"shape":"FilterRelativeDateTimeControl"},
+        "CrossSheet":{"shape":"FilterCrossSheetControl"}
       }
     },
     "FilterControlList":{
       "type":"list",
       "member":{"shape":"FilterControl"},
       "max":200
+    },
+    "FilterCrossSheetControl":{
+      "type":"structure",
+      "required":[
+        "FilterControlId",
+        "SourceFilterId"
+      ],
+      "members":{
+        "FilterControlId":{"shape":"ShortRestrictiveResourceId"},
+        "SourceFilterId":{"shape":"ShortRestrictiveResourceId"},
+        "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"}
+      }
     },
     "FilterDateTimePickerControl":{
       "type":"structure",
@@ -14340,7 +14447,8 @@
         "MatchOperator":{"shape":"NumericEqualityMatchOperator"},
         "AggregationFunction":{"shape":"AggregationFunction"},
         "ParameterName":{"shape":"ParameterName"},
-        "NullOption":{"shape":"FilterNullOption"}
+        "NullOption":{"shape":"FilterNullOption"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "NumericEqualityMatchOperator":{
@@ -14390,7 +14498,8 @@
         },
         "SelectAllOptions":{"shape":"NumericFilterSelectAllOptions"},
         "AggregationFunction":{"shape":"AggregationFunction"},
-        "NullOption":{"shape":"FilterNullOption"}
+        "NullOption":{"shape":"FilterNullOption"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "NumericRangeFilterValue":{
@@ -15848,7 +15957,8 @@
         },
         "ParameterName":{"shape":"ParameterName"},
         "NullOption":{"shape":"FilterNullOption"},
-        "ExcludePeriodConfiguration":{"shape":"ExcludePeriodConfiguration"}
+        "ExcludePeriodConfiguration":{"shape":"ExcludePeriodConfiguration"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "RelativeFontSize":{
@@ -18390,7 +18500,8 @@
         "Value":{"shape":"Timestamp"},
         "ParameterName":{"shape":"ParameterName"},
         "TimeGranularity":{"shape":"TimeGranularity"},
-        "RollingDate":{"shape":"RollingDateConfiguration"}
+        "RollingDate":{"shape":"RollingDateConfiguration"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "TimeGranularity":{
@@ -18444,7 +18555,8 @@
         "RangeMaximumValue":{"shape":"TimeRangeFilterValue"},
         "NullOption":{"shape":"FilterNullOption"},
         "ExcludePeriodConfiguration":{"shape":"ExcludePeriodConfiguration"},
-        "TimeGranularity":{"shape":"TimeGranularity"}
+        "TimeGranularity":{"shape":"TimeGranularity"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "TimeRangeFilterValue":{
@@ -18514,7 +18626,8 @@
         },
         "AggregationSortConfigurations":{"shape":"AggregationSortConfigurationList"},
         "TimeGranularity":{"shape":"TimeGranularity"},
-        "ParameterName":{"shape":"ParameterName"}
+        "ParameterName":{"shape":"ParameterName"},
+        "DefaultFilterControlConfiguration":{"shape":"DefaultFilterControlConfiguration"}
       }
     },
     "TopBottomMoversComputation":{
