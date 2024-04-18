@@ -25,6 +25,12 @@
       "limit_key": "Limit",
       "output_token": "NextToken",
       "result_key": "Workspaces"
+    },
+    "ListAccountLinks": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "AccountLinks"
     }
   }
 }

@@ -13,6 +13,101 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAcceptAccountLinkInvitation = "AcceptAccountLinkInvitation"
+
+// AcceptAccountLinkInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the AcceptAccountLinkInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AcceptAccountLinkInvitation for more information on using the AcceptAccountLinkInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AcceptAccountLinkInvitationRequest method.
+//	req, resp := client.AcceptAccountLinkInvitationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/AcceptAccountLinkInvitation
+func (c *WorkSpaces) AcceptAccountLinkInvitationRequest(input *AcceptAccountLinkInvitationInput) (req *request.Request, output *AcceptAccountLinkInvitationOutput) {
+	op := &request.Operation{
+		Name:       opAcceptAccountLinkInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AcceptAccountLinkInvitationInput{}
+	}
+
+	output = &AcceptAccountLinkInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AcceptAccountLinkInvitation API operation for Amazon WorkSpaces.
+//
+// Accepts the account link invitation.
+//
+// There's currently no unlinking capability after you accept the account linking
+// invitation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation AcceptAccountLinkInvitation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ConflictException
+//     The TargetAccountId is already linked or invited.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/AcceptAccountLinkInvitation
+func (c *WorkSpaces) AcceptAccountLinkInvitation(input *AcceptAccountLinkInvitationInput) (*AcceptAccountLinkInvitationOutput, error) {
+	req, out := c.AcceptAccountLinkInvitationRequest(input)
+	return out, req.Send()
+}
+
+// AcceptAccountLinkInvitationWithContext is the same as AcceptAccountLinkInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AcceptAccountLinkInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) AcceptAccountLinkInvitationWithContext(ctx aws.Context, input *AcceptAccountLinkInvitationInput, opts ...request.Option) (*AcceptAccountLinkInvitationOutput, error) {
+	req, out := c.AcceptAccountLinkInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateConnectionAlias = "AssociateConnectionAlias"
 
 // AssociateConnectionAliasRequest generates a "aws/request.Request" representing the
@@ -514,6 +609,95 @@ func (c *WorkSpaces) CopyWorkspaceImage(input *CopyWorkspaceImageInput) (*CopyWo
 // for more information on using Contexts.
 func (c *WorkSpaces) CopyWorkspaceImageWithContext(ctx aws.Context, input *CopyWorkspaceImageInput, opts ...request.Option) (*CopyWorkspaceImageOutput, error) {
 	req, out := c.CopyWorkspaceImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccountLinkInvitation = "CreateAccountLinkInvitation"
+
+// CreateAccountLinkInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccountLinkInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccountLinkInvitation for more information on using the CreateAccountLinkInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateAccountLinkInvitationRequest method.
+//	req, resp := client.CreateAccountLinkInvitationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateAccountLinkInvitation
+func (c *WorkSpaces) CreateAccountLinkInvitationRequest(input *CreateAccountLinkInvitationInput) (req *request.Request, output *CreateAccountLinkInvitationOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccountLinkInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAccountLinkInvitationInput{}
+	}
+
+	output = &CreateAccountLinkInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccountLinkInvitation API operation for Amazon WorkSpaces.
+//
+// Creates the account link invitation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateAccountLinkInvitation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ConflictException
+//     The TargetAccountId is already linked or invited.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateAccountLinkInvitation
+func (c *WorkSpaces) CreateAccountLinkInvitation(input *CreateAccountLinkInvitationInput) (*CreateAccountLinkInvitationOutput, error) {
+	req, out := c.CreateAccountLinkInvitationRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccountLinkInvitationWithContext is the same as CreateAccountLinkInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccountLinkInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateAccountLinkInvitationWithContext(ctx aws.Context, input *CreateAccountLinkInvitationInput, opts ...request.Option) (*CreateAccountLinkInvitationOutput, error) {
+	req, out := c.CreateAccountLinkInvitationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1381,6 +1565,98 @@ func (c *WorkSpaces) CreateWorkspaces(input *CreateWorkspacesInput) (*CreateWork
 // for more information on using Contexts.
 func (c *WorkSpaces) CreateWorkspacesWithContext(ctx aws.Context, input *CreateWorkspacesInput, opts ...request.Option) (*CreateWorkspacesOutput, error) {
 	req, out := c.CreateWorkspacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccountLinkInvitation = "DeleteAccountLinkInvitation"
+
+// DeleteAccountLinkInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccountLinkInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccountLinkInvitation for more information on using the DeleteAccountLinkInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccountLinkInvitationRequest method.
+//	req, resp := client.DeleteAccountLinkInvitationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteAccountLinkInvitation
+func (c *WorkSpaces) DeleteAccountLinkInvitationRequest(input *DeleteAccountLinkInvitationInput) (req *request.Request, output *DeleteAccountLinkInvitationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccountLinkInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAccountLinkInvitationInput{}
+	}
+
+	output = &DeleteAccountLinkInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAccountLinkInvitation API operation for Amazon WorkSpaces.
+//
+// Deletes the account link invitation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DeleteAccountLinkInvitation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The TargetAccountId is already linked or invited.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteAccountLinkInvitation
+func (c *WorkSpaces) DeleteAccountLinkInvitation(input *DeleteAccountLinkInvitationInput) (*DeleteAccountLinkInvitationOutput, error) {
+	req, out := c.DeleteAccountLinkInvitationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccountLinkInvitationWithContext is the same as DeleteAccountLinkInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccountLinkInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DeleteAccountLinkInvitationWithContext(ctx aws.Context, input *DeleteAccountLinkInvitationInput, opts ...request.Option) (*DeleteAccountLinkInvitationOutput, error) {
+	req, out := c.DeleteAccountLinkInvitationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4555,6 +4831,95 @@ func (c *WorkSpaces) DisassociateWorkspaceApplicationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opGetAccountLink = "GetAccountLink"
+
+// GetAccountLinkRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccountLink operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccountLink for more information on using the GetAccountLink
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAccountLinkRequest method.
+//	req, resp := client.GetAccountLinkRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/GetAccountLink
+func (c *WorkSpaces) GetAccountLinkRequest(input *GetAccountLinkInput) (req *request.Request, output *GetAccountLinkOutput) {
+	op := &request.Operation{
+		Name:       opGetAccountLink,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAccountLinkInput{}
+	}
+
+	output = &GetAccountLinkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccountLink API operation for Amazon WorkSpaces.
+//
+// Retrieves account link information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation GetAccountLink for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/GetAccountLink
+func (c *WorkSpaces) GetAccountLink(input *GetAccountLinkInput) (*GetAccountLinkOutput, error) {
+	req, out := c.GetAccountLinkRequest(input)
+	return out, req.Send()
+}
+
+// GetAccountLinkWithContext is the same as GetAccountLink with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccountLink for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) GetAccountLinkWithContext(ctx aws.Context, input *GetAccountLinkInput, opts ...request.Option) (*GetAccountLinkOutput, error) {
+	req, out := c.GetAccountLinkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportClientBranding = "ImportClientBranding"
 
 // ImportClientBrandingRequest generates a "aws/request.Request" representing the
@@ -4757,6 +5122,149 @@ func (c *WorkSpaces) ImportWorkspaceImageWithContext(ctx aws.Context, input *Imp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAccountLinks = "ListAccountLinks"
+
+// ListAccountLinksRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccountLinks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccountLinks for more information on using the ListAccountLinks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAccountLinksRequest method.
+//	req, resp := client.ListAccountLinksRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ListAccountLinks
+func (c *WorkSpaces) ListAccountLinksRequest(input *ListAccountLinksInput) (req *request.Request, output *ListAccountLinksOutput) {
+	op := &request.Operation{
+		Name:       opListAccountLinks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccountLinksInput{}
+	}
+
+	output = &ListAccountLinksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccountLinks API operation for Amazon WorkSpaces.
+//
+// Lists all account links.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation ListAccountLinks for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ListAccountLinks
+func (c *WorkSpaces) ListAccountLinks(input *ListAccountLinksInput) (*ListAccountLinksOutput, error) {
+	req, out := c.ListAccountLinksRequest(input)
+	return out, req.Send()
+}
+
+// ListAccountLinksWithContext is the same as ListAccountLinks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccountLinks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ListAccountLinksWithContext(ctx aws.Context, input *ListAccountLinksInput, opts ...request.Option) (*ListAccountLinksOutput, error) {
+	req, out := c.ListAccountLinksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccountLinksPages iterates over the pages of a ListAccountLinks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccountLinks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAccountLinks operation.
+//	pageNum := 0
+//	err := client.ListAccountLinksPages(params,
+//	    func(page *workspaces.ListAccountLinksOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *WorkSpaces) ListAccountLinksPages(input *ListAccountLinksInput, fn func(*ListAccountLinksOutput, bool) bool) error {
+	return c.ListAccountLinksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccountLinksPagesWithContext same as ListAccountLinksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) ListAccountLinksPagesWithContext(ctx aws.Context, input *ListAccountLinksInput, fn func(*ListAccountLinksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccountLinksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccountLinksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccountLinksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAvailableManagementCidrRanges = "ListAvailableManagementCidrRanges"
@@ -6063,6 +6571,98 @@ func (c *WorkSpaces) RegisterWorkspaceDirectoryWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opRejectAccountLinkInvitation = "RejectAccountLinkInvitation"
+
+// RejectAccountLinkInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the RejectAccountLinkInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RejectAccountLinkInvitation for more information on using the RejectAccountLinkInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RejectAccountLinkInvitationRequest method.
+//	req, resp := client.RejectAccountLinkInvitationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RejectAccountLinkInvitation
+func (c *WorkSpaces) RejectAccountLinkInvitationRequest(input *RejectAccountLinkInvitationInput) (req *request.Request, output *RejectAccountLinkInvitationOutput) {
+	op := &request.Operation{
+		Name:       opRejectAccountLinkInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RejectAccountLinkInvitationInput{}
+	}
+
+	output = &RejectAccountLinkInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RejectAccountLinkInvitation API operation for Amazon WorkSpaces.
+//
+// Rejects the account link invitation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation RejectAccountLinkInvitation for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The user is not authorized to access a resource.
+//
+//   - ValidationException
+//     You either haven't provided a TargetAccountId or are using the same value
+//     for TargetAccountId and SourceAccountId.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - ConflictException
+//     The TargetAccountId is already linked or invited.
+//
+//   - InternalServerException
+//     Unexpected server error occured.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RejectAccountLinkInvitation
+func (c *WorkSpaces) RejectAccountLinkInvitation(input *RejectAccountLinkInvitationInput) (*RejectAccountLinkInvitationOutput, error) {
+	req, out := c.RejectAccountLinkInvitationRequest(input)
+	return out, req.Send()
+}
+
+// RejectAccountLinkInvitationWithContext is the same as RejectAccountLinkInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RejectAccountLinkInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) RejectAccountLinkInvitationWithContext(ctx aws.Context, input *RejectAccountLinkInvitationInput, opts ...request.Option) (*RejectAccountLinkInvitationOutput, error) {
+	req, out := c.RejectAccountLinkInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRestoreWorkspace = "RestoreWorkspace"
 
 // RestoreWorkspaceRequest generates a "aws/request.Request" representing the
@@ -7005,6 +7605,93 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+type AcceptAccountLinkInvitationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent
+	// creation.
+	ClientToken *string `type:"string"`
+
+	// The identifier of the account link.
+	//
+	// LinkId is a required field
+	LinkId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAccountLinkInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAccountLinkInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptAccountLinkInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptAccountLinkInvitationInput"}
+	if s.LinkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LinkId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AcceptAccountLinkInvitationInput) SetClientToken(v string) *AcceptAccountLinkInvitationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetLinkId sets the LinkId field's value.
+func (s *AcceptAccountLinkInvitationInput) SetLinkId(v string) *AcceptAccountLinkInvitationInput {
+	s.LinkId = &v
+	return s
+}
+
+type AcceptAccountLinkInvitationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the account link.
+	AccountLink *AccountLink `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAccountLinkInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AcceptAccountLinkInvitationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLink sets the AccountLink field's value.
+func (s *AcceptAccountLinkInvitationOutput) SetAccountLink(v *AccountLink) *AcceptAccountLinkInvitationOutput {
+	s.AccountLink = v
+	return s
+}
+
 // The user is not authorized to access a resource.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -7067,6 +7754,65 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about about the account link.
+type AccountLink struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the account link.
+	AccountLinkId *string `type:"string"`
+
+	// The status of the account link.
+	AccountLinkStatus *string `type:"string" enum:"AccountLinkStatusEnum"`
+
+	// The identifier of the source account.
+	SourceAccountId *string `type:"string"`
+
+	// The identifier of the target account.
+	TargetAccountId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountLink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountLink) GoString() string {
+	return s.String()
+}
+
+// SetAccountLinkId sets the AccountLinkId field's value.
+func (s *AccountLink) SetAccountLinkId(v string) *AccountLink {
+	s.AccountLinkId = &v
+	return s
+}
+
+// SetAccountLinkStatus sets the AccountLinkStatus field's value.
+func (s *AccountLink) SetAccountLinkStatus(v string) *AccountLink {
+	s.AccountLinkStatus = &v
+	return s
+}
+
+// SetSourceAccountId sets the SourceAccountId field's value.
+func (s *AccountLink) SetSourceAccountId(v string) *AccountLink {
+	s.SourceAccountId = &v
+	return s
+}
+
+// SetTargetAccountId sets the TargetAccountId field's value.
+func (s *AccountLink) SetTargetAccountId(v string) *AccountLink {
+	s.TargetAccountId = &v
+	return s
 }
 
 // Describes a modification to the configuration of Bring Your Own License (BYOL)
@@ -8024,6 +8770,70 @@ func (s *ComputeType) SetName(v string) *ComputeType {
 	return s
 }
 
+// The TargetAccountId is already linked or invited.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Describes an Amazon Connect client add-in.
 type ConnectClientAddIn struct {
 	_ struct{} `type:"structure"`
@@ -8424,6 +9234,93 @@ func (s CopyWorkspaceImageOutput) GoString() string {
 // SetImageId sets the ImageId field's value.
 func (s *CopyWorkspaceImageOutput) SetImageId(v string) *CopyWorkspaceImageOutput {
 	s.ImageId = &v
+	return s
+}
+
+type CreateAccountLinkInvitationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent
+	// creation.
+	ClientToken *string `type:"string"`
+
+	// The identifier of the target account.
+	//
+	// TargetAccountId is a required field
+	TargetAccountId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountLinkInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountLinkInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccountLinkInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccountLinkInvitationInput"}
+	if s.TargetAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetAccountId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateAccountLinkInvitationInput) SetClientToken(v string) *CreateAccountLinkInvitationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetTargetAccountId sets the TargetAccountId field's value.
+func (s *CreateAccountLinkInvitationInput) SetTargetAccountId(v string) *CreateAccountLinkInvitationInput {
+	s.TargetAccountId = &v
+	return s
+}
+
+type CreateAccountLinkInvitationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the account link.
+	AccountLink *AccountLink `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountLinkInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAccountLinkInvitationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLink sets the AccountLink field's value.
+func (s *CreateAccountLinkInvitationOutput) SetAccountLink(v *AccountLink) *CreateAccountLinkInvitationOutput {
+	s.AccountLink = v
 	return s
 }
 
@@ -9921,6 +10818,93 @@ func (s *DefaultWorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(
 	return s
 }
 
+type DeleteAccountLinkInvitationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent
+	// creation.
+	ClientToken *string `type:"string"`
+
+	// The identifier of the account link.
+	//
+	// LinkId is a required field
+	LinkId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountLinkInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountLinkInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccountLinkInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccountLinkInvitationInput"}
+	if s.LinkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LinkId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteAccountLinkInvitationInput) SetClientToken(v string) *DeleteAccountLinkInvitationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetLinkId sets the LinkId field's value.
+func (s *DeleteAccountLinkInvitationInput) SetLinkId(v string) *DeleteAccountLinkInvitationInput {
+	s.LinkId = &v
+	return s
+}
+
+type DeleteAccountLinkInvitationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the account link.
+	AccountLink *AccountLink `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountLinkInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountLinkInvitationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLink sets the AccountLink field's value.
+func (s *DeleteAccountLinkInvitationOutput) SetAccountLink(v *AccountLink) *DeleteAccountLinkInvitationOutput {
+	s.AccountLink = v
+	return s
+}
+
 type DeleteClientBrandingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10717,6 +11701,9 @@ func (s *DescribeAccountModificationsOutput) SetNextToken(v string) *DescribeAcc
 type DescribeAccountOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The type of linked account.
+	DedicatedTenancyAccountType *string `type:"string" enum:"DedicatedTenancyAccountType"`
+
 	// The IP address range, specified as an IPv4 CIDR block, used for the management
 	// network interface.
 	//
@@ -10746,6 +11733,12 @@ func (s DescribeAccountOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeAccountOutput) GoString() string {
 	return s.String()
+}
+
+// SetDedicatedTenancyAccountType sets the DedicatedTenancyAccountType field's value.
+func (s *DescribeAccountOutput) SetDedicatedTenancyAccountType(v string) *DescribeAccountOutput {
+	s.DedicatedTenancyAccountType = &v
+	return s
 }
 
 // SetDedicatedTenancyManagementCidrRange sets the DedicatedTenancyManagementCidrRange field's value.
@@ -13319,6 +14312,77 @@ func (s *FailedWorkspaceChangeRequest) SetWorkspaceId(v string) *FailedWorkspace
 	return s
 }
 
+type GetAccountLinkInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the account to link.
+	LinkId *string `type:"string"`
+
+	// The identifier of the account link
+	LinkedAccountId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLinkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLinkInput) GoString() string {
+	return s.String()
+}
+
+// SetLinkId sets the LinkId field's value.
+func (s *GetAccountLinkInput) SetLinkId(v string) *GetAccountLinkInput {
+	s.LinkId = &v
+	return s
+}
+
+// SetLinkedAccountId sets the LinkedAccountId field's value.
+func (s *GetAccountLinkInput) SetLinkedAccountId(v string) *GetAccountLinkInput {
+	s.LinkedAccountId = &v
+	return s
+}
+
+type GetAccountLinkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The account link of the account link to retrieve.
+	AccountLink *AccountLink `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLinkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAccountLinkOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLink sets the AccountLink field's value.
+func (s *GetAccountLinkOutput) SetAccountLink(v *AccountLink) *GetAccountLinkOutput {
+	s.AccountLink = v
+	return s
+}
+
 // Describes the Amazon Web Services accounts that have been granted permission
 // to use a shared image. For more information about sharing images, see Share
 // or Unshare a Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
@@ -13889,6 +14953,70 @@ func (s *IncompatibleApplicationsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Unexpected server error occured.
+type InternalServerException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s *InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServerException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServerException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One or more parameter values are not valid.
 type InvalidParameterValuesException struct {
 	_            struct{}                  `type:"structure"`
@@ -14390,6 +15518,113 @@ func (s *IpRuleItem) SetIpRule(v string) *IpRuleItem {
 // SetRuleDesc sets the RuleDesc field's value.
 func (s *IpRuleItem) SetRuleDesc(v string) *IpRuleItem {
 	s.RuleDesc = &v
+	return s
+}
+
+type ListAccountLinksInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the account based on their link status.
+	LinkStatusFilter []*string `type:"list" enum:"AccountLinkStatusEnum"`
+
+	// The maximum number of accounts to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccountLinksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccountLinksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccountLinksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccountLinksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLinkStatusFilter sets the LinkStatusFilter field's value.
+func (s *ListAccountLinksInput) SetLinkStatusFilter(v []*string) *ListAccountLinksInput {
+	s.LinkStatusFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccountLinksInput) SetMaxResults(v int64) *ListAccountLinksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccountLinksInput) SetNextToken(v string) *ListAccountLinksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccountLinksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the account links.
+	AccountLinks []*AccountLink `type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccountLinksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAccountLinksOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLinks sets the AccountLinks field's value.
+func (s *ListAccountLinksOutput) SetAccountLinks(v []*AccountLink) *ListAccountLinksOutput {
+	s.AccountLinks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccountLinksOutput) SetNextToken(v string) *ListAccountLinksOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -16137,6 +17372,92 @@ func (s RegisterWorkspaceDirectoryOutput) String() string {
 // value will be replaced with "sensitive".
 func (s RegisterWorkspaceDirectoryOutput) GoString() string {
 	return s.String()
+}
+
+type RejectAccountLinkInvitationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token of the account link invitation to reject.
+	ClientToken *string `type:"string"`
+
+	// The identifier of the account link
+	//
+	// LinkId is a required field
+	LinkId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectAccountLinkInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectAccountLinkInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectAccountLinkInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectAccountLinkInvitationInput"}
+	if s.LinkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LinkId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RejectAccountLinkInvitationInput) SetClientToken(v string) *RejectAccountLinkInvitationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetLinkId sets the LinkId field's value.
+func (s *RejectAccountLinkInvitationInput) SetLinkId(v string) *RejectAccountLinkInvitationInput {
+	s.LinkId = &v
+	return s
+}
+
+type RejectAccountLinkInvitationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the account link.
+	AccountLink *AccountLink `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectAccountLinkInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RejectAccountLinkInvitationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountLink sets the AccountLink field's value.
+func (s *RejectAccountLinkInvitationOutput) SetAccountLink(v *AccountLink) *RejectAccountLinkInvitationOutput {
+	s.AccountLink = v
+	return s
 }
 
 // Describes the related WorkSpace. The related WorkSpace could be a standby
@@ -18296,6 +19617,71 @@ func (s *UserStorage) SetCapacity(v string) *UserStorage {
 	return s
 }
 
+// You either haven't provided a TargetAccountId or are using the same value
+// for TargetAccountId and SourceAccountId.
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Describes the WorkSpace application.
 type WorkSpaceApplication struct {
 	_ struct{} `type:"structure"`
@@ -19836,6 +21222,34 @@ func AccessPropertyValue_Values() []string {
 }
 
 const (
+	// AccountLinkStatusEnumLinked is a AccountLinkStatusEnum enum value
+	AccountLinkStatusEnumLinked = "LINKED"
+
+	// AccountLinkStatusEnumLinkingFailed is a AccountLinkStatusEnum enum value
+	AccountLinkStatusEnumLinkingFailed = "LINKING_FAILED"
+
+	// AccountLinkStatusEnumLinkNotFound is a AccountLinkStatusEnum enum value
+	AccountLinkStatusEnumLinkNotFound = "LINK_NOT_FOUND"
+
+	// AccountLinkStatusEnumPendingAcceptanceByTargetAccount is a AccountLinkStatusEnum enum value
+	AccountLinkStatusEnumPendingAcceptanceByTargetAccount = "PENDING_ACCEPTANCE_BY_TARGET_ACCOUNT"
+
+	// AccountLinkStatusEnumRejected is a AccountLinkStatusEnum enum value
+	AccountLinkStatusEnumRejected = "REJECTED"
+)
+
+// AccountLinkStatusEnum_Values returns all elements of the AccountLinkStatusEnum enum
+func AccountLinkStatusEnum_Values() []string {
+	return []string{
+		AccountLinkStatusEnumLinked,
+		AccountLinkStatusEnumLinkingFailed,
+		AccountLinkStatusEnumLinkNotFound,
+		AccountLinkStatusEnumPendingAcceptanceByTargetAccount,
+		AccountLinkStatusEnumRejected,
+	}
+}
+
+const (
 	// ApplicationMicrosoftOffice2016 is a Application enum value
 	ApplicationMicrosoftOffice2016 = "Microsoft_Office_2016"
 
@@ -20144,6 +21558,22 @@ func DataReplication_Values() []string {
 	return []string{
 		DataReplicationNoReplication,
 		DataReplicationPrimaryAsSource,
+	}
+}
+
+const (
+	// DedicatedTenancyAccountTypeSourceAccount is a DedicatedTenancyAccountType enum value
+	DedicatedTenancyAccountTypeSourceAccount = "SOURCE_ACCOUNT"
+
+	// DedicatedTenancyAccountTypeTargetAccount is a DedicatedTenancyAccountType enum value
+	DedicatedTenancyAccountTypeTargetAccount = "TARGET_ACCOUNT"
+)
+
+// DedicatedTenancyAccountType_Values returns all elements of the DedicatedTenancyAccountType enum
+func DedicatedTenancyAccountType_Values() []string {
+	return []string{
+		DedicatedTenancyAccountTypeSourceAccount,
+		DedicatedTenancyAccountTypeTargetAccount,
 	}
 }
 

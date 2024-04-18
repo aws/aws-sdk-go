@@ -1226,6 +1226,15 @@
         "RecoveryInstance$originEnvironment": "<p>Environment (On Premises / AWS) of the instance that the recovery instance originated from.</p>"
       }
     },
+    "OutpostARN": {
+      "base": null,
+      "refs": {
+        "DataReplicationInfo$stagingOutpostArn": "<p>The ARN of the staging Outpost</p>",
+        "RecoveryInstance$sourceOutpostArn": "<p>The ARN of the source Outpost</p>",
+        "RecoveryInstanceDataReplicationInfo$stagingOutpostArn": "<p>The ARN of the staging Outpost</p>",
+        "SourceCloudProperties$sourceOutpostArn": "<p>The ARN of the source Outpost</p>"
+      }
+    },
     "PITPolicy": {
       "base": null,
       "refs": {

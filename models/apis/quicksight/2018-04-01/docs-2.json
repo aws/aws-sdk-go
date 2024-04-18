@@ -138,7 +138,7 @@
     "SearchGroups": "<p>Use the <code>SearchGroups</code> operation to search groups in a specified Amazon QuickSight namespace using the supplied filters.</p>",
     "StartAssetBundleExportJob": "<p>Starts an Asset Bundle export job.</p> <p>An Asset Bundle export job exports specified Amazon QuickSight assets. You can also choose to export any asset dependencies in the same job. Export jobs run asynchronously and can be polled with a <code>DescribeAssetBundleExportJob</code> API call. When a job is successfully completed, a download URL that contains the exported assets is returned. The URL is valid for 5 minutes and can be refreshed with a <code>DescribeAssetBundleExportJob</code> API call. Each Amazon QuickSight account can run up to 5 export jobs concurrently.</p> <p>The API caller must have the necessary permissions in their IAM role to access each resource before the resources can be exported.</p>",
     "StartAssetBundleImportJob": "<p>Starts an Asset Bundle import job.</p> <p>An Asset Bundle import job imports specified Amazon QuickSight assets into an Amazon QuickSight account. You can also choose to import a naming prefix and specified configuration overrides. The assets that are contained in the bundle file that you provide are used to create or update a new or existing asset in your Amazon QuickSight account. Each Amazon QuickSight account can run up to 5 import jobs concurrently.</p> <p>The API caller must have the necessary <code>\"create\"</code>, <code>\"describe\"</code>, and <code>\"update\"</code> permissions in their IAM role to access each resource type that is contained in the bundle file before the resources can be imported.</p>",
-    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a dashboard snapshot. You can request one of the following format configurations per API call.</p> <ul> <li> <p>1 paginated PDF</p> </li> <li> <p>1 Excel workbook</p> </li> <li> <p>5 CSVs</p> </li> </ul> <p>Poll job descriptions with a <code>DescribeDashboardSnapshotJob</code> API call. Once the job succeeds, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the download URIs that the job generates.</p>",
+    "StartDashboardSnapshotJob": "<p>Starts an asynchronous job that generates a snapshot of a dashboard's output. You can request one or several of the following format configurations in each API call.</p> <ul> <li> <p>1 Paginated PDF</p> </li> <li> <p>1 Excel workbook that includes up to 5 table or pivot table visuals</p> </li> <li> <p>5 CSVs from table or pivot table visuals</p> </li> </ul> <p>The status of a submitted job can be polled with the <code>DescribeDashboardSnapshotJob</code> API. When you call the <code>DescribeDashboardSnapshotJob</code> API, check the <code>JobStatus</code> field in the response. Once the job reaches a <code>COMPLETED</code> or <code>FAILED</code> status, use the <code>DescribeDashboardSnapshotJobResult</code> API to obtain the URLs for the generated files. If the job fails, the <code>DescribeDashboardSnapshotJobResult</code> API returns detailed information about the error that occurred.</p> <p> <b>StartDashboardSnapshotJob API throttling</b> </p> <p>Amazon QuickSight utilizes API throttling to create a more consistent user experience within a time span for customers when they call the <code>StartDashboardSnapshotJob</code>. By default, 12 jobs can run simlutaneously in one Amazon Web Services account and users can submit up 10 API requests per second before an account is throttled. If an overwhelming number of API requests are made by the same user in a short period of time, Amazon QuickSight throttles the API calls to maintin an optimal experience and reliability for all Amazon QuickSight users.</p> <p> <b>Common throttling scenarios</b> </p> <p>The following list provides information about the most commin throttling scenarios that can occur.</p> <ul> <li> <p> <b>A large number of <code>SnapshotExport</code> API jobs are running simultaneously on an Amazon Web Services account.</b> When a new <code>StartDashboardSnapshotJob</code> is created and there are already 12 jobs with the <code>RUNNING</code> status, the new job request fails and returns a <code>LimitExceededException</code> error. Wait for a current job to comlpete before you resubmit the new job.</p> </li> <li> <p> <b>A large number of API requests are submitted on an Amazon Web Services account.</b> When a user makes more than 10 API calls to the Amazon QuickSight API in one second, a <code>ThrottlingException</code> is returned.</p> </li> </ul> <p>If your use case requires a higher throttling limit, contact your account admin or <a href=\"http://aws.amazon.com/contact-us/\">Amazon Web ServicesSupport</a> to explore options to tailor a more optimal expereince for your account.</p> <p> <b>Best practices to handle throttling</b> </p> <p>If your use case projects high levels of API traffic, try to reduce the degree of frequency and parallelism of API calls as much as you can to avoid throttling. You can also perform a timing test to calculate an estimate for the total processing time of your projected load that stays within the throttling limits of the Amazon QuickSight APIs. For example, if your projected traffic is 100 snapshot jobs before 12:00 PM per day, start 12 jobs in parallel and measure the amount of time it takes to proccess all 12 jobs. Once you obtain the result, multiply the duration by 9, for example <code>(12 minutes * 9 = 108 minutes)</code>. Use the new result to determine the latest time at which the jobs need to be started to meet your target deadline.</p> <p>The time that it takes to process a job can be impacted by the following factors:</p> <ul> <li> <p>The dataset type (Direct Query or SPICE).</p> </li> <li> <p>The size of the dataset.</p> </li> <li> <p>The complexity of the calculated fields that are used in the dashboard.</p> </li> <li> <p>The number of visuals that are on a sheet.</p> </li> <li> <p>The types of visuals that are on the sheet.</p> </li> <li> <p>The number of formats and snapshots that are requested in the job configuration.</p> </li> <li> <p>The size of the generated snapshots.</p> </li> </ul>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, template, topic, and user. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>Tags are used to track costs for users in Amazon QuickSight. You can't tag other resources that Amazon QuickSight costs are based on, such as storage capacoty (SPICE), session usage, alert consumption, or reporting units.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations for the current Amazon Web Services Region. Currently, the only customization that you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
@@ -510,6 +510,7 @@
         "AssetBundleExportJobWarning$Arn": "<p>The ARN of the resource whose processing caused a warning.</p>",
         "AssetBundleImportJobError$Arn": "<p>The ARN of the resource whose processing caused an error.</p>",
         "AssetBundleImportJobSummary$Arn": "<p>The ARN of the import job.</p>",
+        "AssetBundleImportJobWarning$Arn": "<p>The ARN of the resource that the warning occurred for.</p>",
         "AssetBundleResourceArns$member": null,
         "CancelIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateAccountCustomizationResponse$Arn": "<p>The Amazon Resource Name (ARN) for the customization that you created for this Amazon Web Services account.</p>",
@@ -898,7 +899,7 @@
       }
     },
     "AssetBundleExportJobValidationStrategy": {
-      "base": "<p>The option to relax the validation that is required to export each asset. When <code>StrictModeForAllResource</code> is set to true, validation is skipped for specific UI errors.</p>",
+      "base": "<p>The option to relax the validation that is required to export each asset. When <code>StrictModeForAllResource</code> is set to <code>false</code>, validation is skipped for specific UI errors.</p>",
       "refs": {
         "DescribeAssetBundleExportJobResponse$ValidationStrategy": "<p>The validation strategy that is used to export the analysis or dashboard.</p>",
         "StartAssetBundleExportJobRequest$ValidationStrategy": "<p>An optional parameter that determines which validation strategy to use for the export job. If <code>StrictModeForAllResources</code> is set to <code>TRUE</code>, strict validation for every error is enforced. If it is set to <code>FALSE</code>, validation is skipped for specific UI errors that are shown as warnings. The default value for <code>StrictModeForAllResources</code> is <code>FALSE</code>.</p>"
@@ -1222,6 +1223,18 @@
       "base": null,
       "refs": {
         "AssetBundleImportJobOverrideTags$VPCConnections": "<p>A list of tag overrides for any <code>VPCConnection</code> resources that are present in the asset bundle that is imported.</p>"
+      }
+    },
+    "AssetBundleImportJobWarning": {
+      "base": "<p>Describes a warning that occurred during an Asset Bundle import job.</p>",
+      "refs": {
+        "AssetBundleImportJobWarningList$member": null
+      }
+    },
+    "AssetBundleImportJobWarningList": {
+      "base": null,
+      "refs": {
+        "DescribeAssetBundleImportJobResponse$Warnings": "<p>An array of warning records that describe all permitted errors that are encountered during the import job.</p>"
       }
     },
     "AssetBundleImportSource": {
@@ -1956,6 +1969,7 @@
     "CascadingControlConfiguration": {
       "base": "<p>The values that are displayed in a control can be configured to only show values that are valid based on what's selected in other controls.</p>",
       "refs": {
+        "FilterCrossSheetControl$CascadingControlConfiguration": "<p>The values that are displayed in a control can be configured to only show values that are valid based on what's selected in other controls.</p>",
         "FilterDropDownControl$CascadingControlConfiguration": "<p>The values that are displayed in a control can be configured to only show values that are valid based on what's selected in other controls.</p>",
         "FilterListControl$CascadingControlConfiguration": "<p>The values that are displayed in a control can be configured to only show values that are valid based on what's selected in other controls.</p>",
         "ParameterDropDownControl$CascadingControlConfiguration": "<p>The values that are displayed in a control can be configured to only show values that are valid based on what's selected in other controls.</p>",
@@ -2008,7 +2022,7 @@
       }
     },
     "CategoryDrillDownFilter": {
-      "base": "<p>The numeric equality type drill down filter.</p>",
+      "base": "<p>The category drill down filter.</p>",
       "refs": {
         "DrillDownFilter$CategoryFilter": "<p>The category type drill down filter. This filter is used for string type columns.</p>"
       }
@@ -3711,6 +3725,7 @@
     "DateTimePickerControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultDateTimePickerControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterDateTimePickerControl$DisplayOptions": "<p>The display options of a control.</p>",
         "ParameterDateTimePickerControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
@@ -3829,6 +3844,42 @@
         "TopicColumn$Aggregation": "<p>The type of aggregation that is performed on the column data when it's queried.</p>"
       }
     },
+    "DefaultDateTimePickerControlOptions": {
+      "base": "<p>The default options that correspond to the filter control type of a <code>DateTimePicker</code>.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultDateTimePickerOptions": "<p>The default options that correspond to the filter control type of a <code>DateTimePicker</code>.</p>"
+      }
+    },
+    "DefaultFilterControlConfiguration": {
+      "base": "<p>The default configuration for all dependent controls of the filter.</p>",
+      "refs": {
+        "CategoryFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "NumericEqualityFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "NumericRangeFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "RelativeDatesFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "TimeEqualityFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "TimeRangeFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>",
+        "TopBottomFilter$DefaultFilterControlConfiguration": "<p>The default configurations for the associated controls. This applies only for filters that are scoped to multiple sheets.</p>"
+      }
+    },
+    "DefaultFilterControlOptions": {
+      "base": "<p>The option that corresponds to the control type of the filter.</p>",
+      "refs": {
+        "DefaultFilterControlConfiguration$ControlOptions": "<p>The control option for the <code>DefaultFilterControlConfiguration</code>.</p>"
+      }
+    },
+    "DefaultFilterDropDownControlOptions": {
+      "base": "<p>The default options that correspond to the <code>Dropdown</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultDropdownOptions": "<p>The default options that correspond to the <code>Dropdown</code> filter control type.</p>"
+      }
+    },
+    "DefaultFilterListControlOptions": {
+      "base": "<p>The default options that correspond to the <code>List</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultListOptions": "<p>The default options that correspond to the <code>List</code> filter control type.</p>"
+      }
+    },
     "DefaultFormatting": {
       "base": "<p>A structure that represents a default formatting definition.</p>",
       "refs": {
@@ -3866,10 +3917,34 @@
         "DefaultNewSheetConfiguration$PaginatedLayoutConfiguration": "<p>The options that determine the default settings for a paginated layout configuration.</p>"
       }
     },
+    "DefaultRelativeDateTimeControlOptions": {
+      "base": "<p>The default options that correspond to the <code>RelativeDateTime</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultRelativeDateTimeOptions": "<p>The default options that correspond to the <code>RelativeDateTime</code> filter control type.</p>"
+      }
+    },
     "DefaultSectionBasedLayoutConfiguration": {
       "base": "<p>The options that determine the default settings for a section-based layout configuration.</p>",
       "refs": {
         "DefaultPaginatedLayoutConfiguration$SectionBased": "<p>The options that determine the default settings for a section-based layout configuration.</p>"
+      }
+    },
+    "DefaultSliderControlOptions": {
+      "base": "<p>The default options that correspond to the <code>Slider</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultSliderOptions": "<p>The default options that correspond to the <code>Slider</code> filter control type.</p>"
+      }
+    },
+    "DefaultTextAreaControlOptions": {
+      "base": "<p>The default options that correspond to the <code>TextArea</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultTextAreaOptions": "<p>The default options that correspond to the <code>TextArea</code> filter control type.</p>"
+      }
+    },
+    "DefaultTextFieldControlOptions": {
+      "base": "<p>The default options that correspond to the <code>TextField</code> filter control type.</p>",
+      "refs": {
+        "DefaultFilterControlOptions$DefaultTextFieldOptions": "<p>The default options that correspond to the <code>TextField</code> filter control type.</p>"
       }
     },
     "DeleteAccountCustomizationRequest": {
@@ -4672,8 +4747,11 @@
         "AxisLogarithmicScale$Base": "<p>The base setup of a logarithmic axis scale.</p>",
         "AxisTickLabelOptions$RotationAngle": "<p>The rotation angle of the axis tick labels.</p>",
         "DataColor$DataValue": "<p>The data value that the color is applied to.</p>",
-        "FilterSliderControl$MaximumValue": "<p>The smaller value that is displayed at the left of the slider.</p>",
-        "FilterSliderControl$MinimumValue": "<p>The larger value that is displayed at the right of the slider.</p>",
+        "DefaultSliderControlOptions$MaximumValue": "<p>The larger value that is displayed at the right of the slider.</p>",
+        "DefaultSliderControlOptions$MinimumValue": "<p>The smaller value that is displayed at the left of the slider.</p>",
+        "DefaultSliderControlOptions$StepSize": "<p>The number of increments that the slider bar is divided into.</p>",
+        "FilterSliderControl$MaximumValue": "<p>The larger value that is displayed at the right of the slider.</p>",
+        "FilterSliderControl$MinimumValue": "<p>The smaller value that is displayed at the left of the slider.</p>",
         "FilterSliderControl$StepSize": "<p>The number of increments that the slider bar is divided into.</p>",
         "ForecastComputation$UpperBoundary": "<p>The upper boundary setup of a forecast computation.</p>",
         "ForecastComputation$LowerBoundary": "<p>The lower boundary setup of a forecast computation.</p>",
@@ -4683,8 +4761,8 @@
         "NumericEqualityDrillDownFilter$Value": "<p>The value of the double input numeric drill down filter.</p>",
         "NumericEqualityFilter$Value": "<p>The input value.</p>",
         "NumericRangeFilterValue$StaticValue": "<p>The static value of the numeric range filter.</p>",
-        "ParameterSliderControl$MaximumValue": "<p>The smaller value that is displayed at the left of the slider.</p>",
-        "ParameterSliderControl$MinimumValue": "<p>The larger value that is displayed at the right of the slider.</p>",
+        "ParameterSliderControl$MaximumValue": "<p>The larger value that is displayed at the right of the slider.</p>",
+        "ParameterSliderControl$MinimumValue": "<p>The smaller value that is displayed at the left of the slider.</p>",
         "ParameterSliderControl$StepSize": "<p>The number of increments that the slider bar is divided into.</p>",
         "TimeBasedForecastProperties$UpperBoundary": "<p>The upper boundary setup of a forecast computation.</p>",
         "TimeBasedForecastProperties$LowerBoundary": "<p>The lower boundary setup of a forecast computation.</p>",
@@ -4709,6 +4787,7 @@
     "DropDownControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultFilterDropDownControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterDropDownControl$DisplayOptions": "<p>The display options of the <code>FilterDropDownControl</code>.</p>",
         "ParameterDropDownControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
@@ -5085,6 +5164,12 @@
         "SheetDefinition$FilterControls": "<p>The list of filter controls that are on a sheet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/filter-controls.html\">Adding filter controls to analysis sheets</a> in the <i>Amazon QuickSight User Guide</i>.</p>"
       }
     },
+    "FilterCrossSheetControl": {
+      "base": "<p>A control from a filter that is scoped across more than one sheet. This represents your filter control on a sheet</p>",
+      "refs": {
+        "FilterControl$CrossSheet": "<p>A control from a filter that is scoped across more than one sheet. This represents your filter control on a sheet</p>"
+      }
+    },
     "FilterDateTimePickerControl": {
       "base": "<p>A control from a date filter that is used to specify date and time.</p>",
       "refs": {
@@ -5184,6 +5269,8 @@
     "FilterSelectableValues": {
       "base": "<p>A list of selectable values that are used in a control.</p>",
       "refs": {
+        "DefaultFilterDropDownControlOptions$SelectableValues": "<p>A list of selectable values that are used in a control.</p>",
+        "DefaultFilterListControlOptions$SelectableValues": "<p>A list of selectable values that are used in a control.</p>",
         "FilterDropDownControl$SelectableValues": "<p>A list of selectable values that are used in a control.</p>",
         "FilterListControl$SelectableValues": "<p>A list of selectable values that are used in a control.</p>"
       }
@@ -6819,6 +6906,7 @@
     "ListControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultFilterListControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterListControl$DisplayOptions": "<p>The display options of a control.</p>",
         "ParameterListControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
@@ -7588,6 +7676,7 @@
         "AssetBundleExportJobWarning$Message": "<p>A description of the warning.</p>",
         "AssetBundleImportJobError$Type": "<p>The specific error type or the error that occurred.</p>",
         "AssetBundleImportJobError$Message": "<p>A description of the error.</p>",
+        "AssetBundleImportJobWarning$Message": "<p>A description of the warning that occurred during an Asset Bundle import job.</p>",
         "DashboardError$Message": "<p>Message.</p>",
         "DataSetReference$DataSetPlaceholder": "<p>Dataset placeholder.</p>",
         "DateTimeParameter$Name": "<p>A display name for the date-time parameter.</p>",
@@ -7670,7 +7759,7 @@
       }
     },
     "NumericEqualityDrillDownFilter": {
-      "base": "<p>The category drill down filter.</p>",
+      "base": "<p>The numeric equality type drill down filter.</p>",
       "refs": {
         "DrillDownFilter$NumericEqualityFilter": "<p>The numeric equality type drill down filter. This filter is used for number type columns.</p>"
       }
@@ -8801,6 +8890,7 @@
     "RelativeDateTimeControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultRelativeDateTimeControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterRelativeDateTimeControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
     },
@@ -9674,7 +9764,8 @@
     "SheetControlDateTimePickerType": {
       "base": null,
       "refs": {
-        "FilterDateTimePickerControl$Type": "<p>The date time picker type of a <code>FilterDateTimePickerControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_VALUED</code>: The filter condition is a fixed date.</p> </li> <li> <p> <code>DATE_RANGE</code>: The filter condition is a date time range.</p> </li> </ul>"
+        "DefaultDateTimePickerControlOptions$Type": "<p>The date time picker type of the <code>DefaultDateTimePickerControlOptions</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_VALUED</code>: The filter condition is a fixed date.</p> </li> <li> <p> <code>DATE_RANGE</code>: The filter condition is a date time range.</p> </li> </ul>",
+        "FilterDateTimePickerControl$Type": "<p>The type of the <code>FilterDropDownControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from a dropdown menu.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from a dropdown menu.</p> </li> </ul>"
       }
     },
     "SheetControlInfoIconLabelOptions": {
@@ -9716,8 +9807,10 @@
     "SheetControlListType": {
       "base": null,
       "refs": {
+        "DefaultFilterDropDownControlOptions$Type": "<p>The type of the <code>FilterDropDownControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from a dropdown menu.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from a dropdown menu.</p> </li> </ul>",
+        "DefaultFilterListControlOptions$Type": "<p>The type of the <code>DefaultFilterListControlOptions</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from the list.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from the list.</p> </li> </ul>",
         "FilterDropDownControl$Type": "<p>The type of the <code>FilterDropDownControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from a dropdown menu.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from a dropdown menu.</p> </li> </ul>",
-        "FilterListControl$Type": "<p>The type of <code>FilterListControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from the list.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from the list.</p> </li> </ul>",
+        "FilterListControl$Type": "<p>The type of the <code>FilterListControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>MULTI_SELECT</code>: The user can select multiple entries from the list.</p> </li> <li> <p> <code>SINGLE_SELECT</code>: The user can select a single entry from the list.</p> </li> </ul>",
         "ParameterDropDownControl$Type": "<p>The type parameter name of the <code>ParameterDropDownControl</code>.</p>",
         "ParameterListControl$Type": "<p>The type of <code>ParameterListControl</code>.</p>"
       }
@@ -9725,12 +9818,14 @@
     "SheetControlSliderType": {
       "base": null,
       "refs": {
-        "FilterSliderControl$Type": "<p>The type of <code>FilterSliderControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_POINT</code>: Filter against(equals) a single data point.</p> </li> <li> <p> <code>RANGE</code>: Filter data that is in a specified range.</p> </li> </ul>"
+        "DefaultSliderControlOptions$Type": "<p>The type of the <code>DefaultSliderControlOptions</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_POINT</code>: Filter against(equals) a single data point.</p> </li> <li> <p> <code>RANGE</code>: Filter data that is in a specified range.</p> </li> </ul>",
+        "FilterSliderControl$Type": "<p>The type of the <code>FilterSliderControl</code>. Choose one of the following options:</p> <ul> <li> <p> <code>SINGLE_POINT</code>: Filter against(equals) a single data point.</p> </li> <li> <p> <code>RANGE</code>: Filter data that is in a specified range.</p> </li> </ul>"
       }
     },
     "SheetControlTitle": {
       "base": null,
       "refs": {
+        "DefaultFilterControlConfiguration$Title": "<p>The title of the <code>DefaultFilterControlConfiguration</code>. This title is shared by all controls that are tied to this filter.</p>",
         "FilterDateTimePickerControl$Title": "<p>The title of the <code>FilterDateTimePickerControl</code>.</p>",
         "FilterDropDownControl$Title": "<p>The title of the <code>FilterDropDownControl</code>.</p>",
         "FilterListControl$Title": "<p>The title of the <code>FilterListControl</code>.</p>",
@@ -9940,6 +10035,8 @@
         "DescribeThemeRequest$ThemeId": "<p>The ID for the theme.</p>",
         "EmptyVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers.</p>",
         "FilledMapVisual$VisualId": "<p>The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers..</p>",
+        "FilterCrossSheetControl$FilterControlId": "<p>The ID of the <code>FilterCrossSheetControl</code>.</p>",
+        "FilterCrossSheetControl$SourceFilterId": "<p>The source filter ID of the <code>FilterCrossSheetControl</code>.</p>",
         "FilterDateTimePickerControl$FilterControlId": "<p>The ID of the <code>FilterDateTimePickerControl</code>.</p>",
         "FilterDateTimePickerControl$SourceFilterId": "<p>The source filter ID of the <code>FilterDateTimePickerControl</code>.</p>",
         "FilterDropDownControl$FilterControlId": "<p>The ID of the <code>FilterDropDownControl</code>.</p>",
@@ -10111,6 +10208,7 @@
     "SliderControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultSliderControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterSliderControl$DisplayOptions": "<p>The display options of a control.</p>",
         "ParameterSliderControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
@@ -11595,6 +11693,7 @@
     "TextAreaControlDelimiter": {
       "base": null,
       "refs": {
+        "DefaultTextAreaControlOptions$Delimiter": "<p>The delimiter that is used to separate the lines in text.</p>",
         "FilterTextAreaControl$Delimiter": "<p>The delimiter that is used to separate the lines in text.</p>",
         "ParameterTextAreaControl$Delimiter": "<p>The delimiter that is used to separate the lines in text.</p>"
       }
@@ -11602,6 +11701,7 @@
     "TextAreaControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultTextAreaControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterTextAreaControl$DisplayOptions": "<p>The display options of a control.</p>",
         "ParameterTextAreaControl$DisplayOptions": "<p>The display options of a control.</p>"
       }
@@ -11623,6 +11723,7 @@
     "TextFieldControlDisplayOptions": {
       "base": "<p>The display options of a control.</p>",
       "refs": {
+        "DefaultTextFieldControlOptions$DisplayOptions": "<p>The display options of a control.</p>",
         "FilterTextFieldControl$DisplayOptions": "<p>The display options of a control.</p>",
         "ParameterTextFieldControl$DisplayOptions": "<p>The display options of a control.</p>"
       }

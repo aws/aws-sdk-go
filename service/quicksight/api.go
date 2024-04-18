@@ -16061,18 +16061,81 @@ func (c *QuickSight) StartDashboardSnapshotJobRequest(input *StartDashboardSnaps
 
 // StartDashboardSnapshotJob API operation for Amazon QuickSight.
 //
-// Starts an asynchronous job that generates a dashboard snapshot. You can request
-// one of the following format configurations per API call.
+// Starts an asynchronous job that generates a snapshot of a dashboard's output.
+// You can request one or several of the following format configurations in
+// each API call.
 //
-//   - 1 paginated PDF
+//   - 1 Paginated PDF
 //
-//   - 1 Excel workbook
+//   - 1 Excel workbook that includes up to 5 table or pivot table visuals
 //
-//   - 5 CSVs
+//   - 5 CSVs from table or pivot table visuals
 //
-// Poll job descriptions with a DescribeDashboardSnapshotJob API call. Once
-// the job succeeds, use the DescribeDashboardSnapshotJobResult API to obtain
-// the download URIs that the job generates.
+// The status of a submitted job can be polled with the DescribeDashboardSnapshotJob
+// API. When you call the DescribeDashboardSnapshotJob API, check the JobStatus
+// field in the response. Once the job reaches a COMPLETED or FAILED status,
+// use the DescribeDashboardSnapshotJobResult API to obtain the URLs for the
+// generated files. If the job fails, the DescribeDashboardSnapshotJobResult
+// API returns detailed information about the error that occurred.
+//
+// # StartDashboardSnapshotJob API throttling
+//
+// Amazon QuickSight utilizes API throttling to create a more consistent user
+// experience within a time span for customers when they call the StartDashboardSnapshotJob.
+// By default, 12 jobs can run simlutaneously in one Amazon Web Services account
+// and users can submit up 10 API requests per second before an account is throttled.
+// If an overwhelming number of API requests are made by the same user in a
+// short period of time, Amazon QuickSight throttles the API calls to maintin
+// an optimal experience and reliability for all Amazon QuickSight users.
+//
+// # Common throttling scenarios
+//
+// The following list provides information about the most commin throttling
+// scenarios that can occur.
+//
+//   - A large number of SnapshotExport API jobs are running simultaneously
+//     on an Amazon Web Services account. When a new StartDashboardSnapshotJob
+//     is created and there are already 12 jobs with the RUNNING status, the
+//     new job request fails and returns a LimitExceededException error. Wait
+//     for a current job to comlpete before you resubmit the new job.
+//
+//   - A large number of API requests are submitted on an Amazon Web Services
+//     account. When a user makes more than 10 API calls to the Amazon QuickSight
+//     API in one second, a ThrottlingException is returned.
+//
+// If your use case requires a higher throttling limit, contact your account
+// admin or Amazon Web ServicesSupport (http://aws.amazon.com/contact-us/) to
+// explore options to tailor a more optimal expereince for your account.
+//
+// # Best practices to handle throttling
+//
+// If your use case projects high levels of API traffic, try to reduce the degree
+// of frequency and parallelism of API calls as much as you can to avoid throttling.
+// You can also perform a timing test to calculate an estimate for the total
+// processing time of your projected load that stays within the throttling limits
+// of the Amazon QuickSight APIs. For example, if your projected traffic is
+// 100 snapshot jobs before 12:00 PM per day, start 12 jobs in parallel and
+// measure the amount of time it takes to proccess all 12 jobs. Once you obtain
+// the result, multiply the duration by 9, for example (12 minutes * 9 = 108
+// minutes). Use the new result to determine the latest time at which the jobs
+// need to be started to meet your target deadline.
+//
+// The time that it takes to process a job can be impacted by the following
+// factors:
+//
+//   - The dataset type (Direct Query or SPICE).
+//
+//   - The size of the dataset.
+//
+//   - The complexity of the calculated fields that are used in the dashboard.
+//
+//   - The number of visuals that are on a sheet.
+//
+//   - The types of visuals that are on the sheet.
+//
+//   - The number of formats and snapshots that are requested in the job configuration.
+//
+//   - The size of the generated snapshots.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22353,8 +22416,8 @@ func (s *AssetBundleExportJobVPCConnectionOverrideProperties) SetProperties(v []
 }
 
 // The option to relax the validation that is required to export each asset.
-// When StrictModeForAllResource is set to true, validation is skipped for specific
-// UI errors.
+// When StrictModeForAllResource is set to false, validation is skipped for
+// specific UI errors.
 type AssetBundleExportJobValidationStrategy struct {
 	_ struct{} `type:"structure"`
 
@@ -24650,6 +24713,48 @@ func (s *AssetBundleImportJobVPCConnectionOverrideTags) SetTags(v []*Tag) *Asset
 // SetVPCConnectionIds sets the VPCConnectionIds field's value.
 func (s *AssetBundleImportJobVPCConnectionOverrideTags) SetVPCConnectionIds(v []*string) *AssetBundleImportJobVPCConnectionOverrideTags {
 	s.VPCConnectionIds = v
+	return s
+}
+
+// Describes a warning that occurred during an Asset Bundle import job.
+type AssetBundleImportJobWarning struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource that the warning occurred for.
+	Arn *string `type:"string"`
+
+	// A description of the warning that occurred during an Asset Bundle import
+	// job.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobWarning) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssetBundleImportJobWarning) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssetBundleImportJobWarning) SetArn(v string) *AssetBundleImportJobWarning {
+	s.Arn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AssetBundleImportJobWarning) SetMessage(v string) *AssetBundleImportJobWarning {
+	s.Message = &v
 	return s
 }
 
@@ -28218,7 +28323,7 @@ func (s *CategoricalMeasureField) SetFormatConfiguration(v *StringFormatConfigur
 	return s
 }
 
-// The numeric equality type drill down filter.
+// The category drill down filter.
 type CategoryDrillDownFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -28302,6 +28407,10 @@ type CategoryFilter struct {
 	// Configuration is a required field
 	Configuration *CategoryFilterConfiguration `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
 	//
@@ -28352,6 +28461,11 @@ func (s *CategoryFilter) Validate() error {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28368,6 +28482,12 @@ func (s *CategoryFilter) SetColumn(v *ColumnIdentifier) *CategoryFilter {
 // SetConfiguration sets the Configuration field's value.
 func (s *CategoryFilter) SetConfiguration(v *CategoryFilterConfiguration) *CategoryFilter {
 	s.Configuration = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *CategoryFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *CategoryFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -42587,6 +42707,408 @@ func (s *DecimalValueWhenUnsetConfiguration) SetValueWhenUnsetOption(v string) *
 	return s
 }
 
+// The default options that correspond to the filter control type of a DateTimePicker.
+type DefaultDateTimePickerControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *DateTimePickerControlDisplayOptions `type:"structure"`
+
+	// The date time picker type of the DefaultDateTimePickerControlOptions. Choose
+	// one of the following options:
+	//
+	//    * SINGLE_VALUED: The filter condition is a fixed date.
+	//
+	//    * DATE_RANGE: The filter condition is a date time range.
+	Type *string `type:"string" enum:"SheetControlDateTimePickerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultDateTimePickerControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultDateTimePickerControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultDateTimePickerControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultDateTimePickerControlOptions"}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultDateTimePickerControlOptions) SetDisplayOptions(v *DateTimePickerControlDisplayOptions) *DefaultDateTimePickerControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DefaultDateTimePickerControlOptions) SetType(v string) *DefaultDateTimePickerControlOptions {
+	s.Type = &v
+	return s
+}
+
+// The default configuration for all dependent controls of the filter.
+type DefaultFilterControlConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The control option for the DefaultFilterControlConfiguration.
+	//
+	// ControlOptions is a required field
+	ControlOptions *DefaultFilterControlOptions `type:"structure" required:"true"`
+
+	// The title of the DefaultFilterControlConfiguration. This title is shared
+	// by all controls that are tied to this filter.
+	//
+	// Title is a required field
+	Title *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterControlConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterControlConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultFilterControlConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultFilterControlConfiguration"}
+	if s.ControlOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("ControlOptions"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Title != nil && len(*s.Title) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Title", 1))
+	}
+	if s.ControlOptions != nil {
+		if err := s.ControlOptions.Validate(); err != nil {
+			invalidParams.AddNested("ControlOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetControlOptions sets the ControlOptions field's value.
+func (s *DefaultFilterControlConfiguration) SetControlOptions(v *DefaultFilterControlOptions) *DefaultFilterControlConfiguration {
+	s.ControlOptions = v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *DefaultFilterControlConfiguration) SetTitle(v string) *DefaultFilterControlConfiguration {
+	s.Title = &v
+	return s
+}
+
+// The option that corresponds to the control type of the filter.
+type DefaultFilterControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The default options that correspond to the filter control type of a DateTimePicker.
+	DefaultDateTimePickerOptions *DefaultDateTimePickerControlOptions `type:"structure"`
+
+	// The default options that correspond to the Dropdown filter control type.
+	DefaultDropdownOptions *DefaultFilterDropDownControlOptions `type:"structure"`
+
+	// The default options that correspond to the List filter control type.
+	DefaultListOptions *DefaultFilterListControlOptions `type:"structure"`
+
+	// The default options that correspond to the RelativeDateTime filter control
+	// type.
+	DefaultRelativeDateTimeOptions *DefaultRelativeDateTimeControlOptions `type:"structure"`
+
+	// The default options that correspond to the Slider filter control type.
+	DefaultSliderOptions *DefaultSliderControlOptions `type:"structure"`
+
+	// The default options that correspond to the TextArea filter control type.
+	DefaultTextAreaOptions *DefaultTextAreaControlOptions `type:"structure"`
+
+	// The default options that correspond to the TextField filter control type.
+	DefaultTextFieldOptions *DefaultTextFieldControlOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultFilterControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultFilterControlOptions"}
+	if s.DefaultDateTimePickerOptions != nil {
+		if err := s.DefaultDateTimePickerOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultDateTimePickerOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultDropdownOptions != nil {
+		if err := s.DefaultDropdownOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultDropdownOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultListOptions != nil {
+		if err := s.DefaultListOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultListOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultRelativeDateTimeOptions != nil {
+		if err := s.DefaultRelativeDateTimeOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultRelativeDateTimeOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultSliderOptions != nil {
+		if err := s.DefaultSliderOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultSliderOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultTextAreaOptions != nil {
+		if err := s.DefaultTextAreaOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultTextAreaOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultTextFieldOptions != nil {
+		if err := s.DefaultTextFieldOptions.Validate(); err != nil {
+			invalidParams.AddNested("DefaultTextFieldOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultDateTimePickerOptions sets the DefaultDateTimePickerOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultDateTimePickerOptions(v *DefaultDateTimePickerControlOptions) *DefaultFilterControlOptions {
+	s.DefaultDateTimePickerOptions = v
+	return s
+}
+
+// SetDefaultDropdownOptions sets the DefaultDropdownOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultDropdownOptions(v *DefaultFilterDropDownControlOptions) *DefaultFilterControlOptions {
+	s.DefaultDropdownOptions = v
+	return s
+}
+
+// SetDefaultListOptions sets the DefaultListOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultListOptions(v *DefaultFilterListControlOptions) *DefaultFilterControlOptions {
+	s.DefaultListOptions = v
+	return s
+}
+
+// SetDefaultRelativeDateTimeOptions sets the DefaultRelativeDateTimeOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultRelativeDateTimeOptions(v *DefaultRelativeDateTimeControlOptions) *DefaultFilterControlOptions {
+	s.DefaultRelativeDateTimeOptions = v
+	return s
+}
+
+// SetDefaultSliderOptions sets the DefaultSliderOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultSliderOptions(v *DefaultSliderControlOptions) *DefaultFilterControlOptions {
+	s.DefaultSliderOptions = v
+	return s
+}
+
+// SetDefaultTextAreaOptions sets the DefaultTextAreaOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultTextAreaOptions(v *DefaultTextAreaControlOptions) *DefaultFilterControlOptions {
+	s.DefaultTextAreaOptions = v
+	return s
+}
+
+// SetDefaultTextFieldOptions sets the DefaultTextFieldOptions field's value.
+func (s *DefaultFilterControlOptions) SetDefaultTextFieldOptions(v *DefaultTextFieldControlOptions) *DefaultFilterControlOptions {
+	s.DefaultTextFieldOptions = v
+	return s
+}
+
+// The default options that correspond to the Dropdown filter control type.
+type DefaultFilterDropDownControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *DropDownControlDisplayOptions `type:"structure"`
+
+	// A list of selectable values that are used in a control.
+	SelectableValues *FilterSelectableValues `type:"structure"`
+
+	// The type of the FilterDropDownControl. Choose one of the following options:
+	//
+	//    * MULTI_SELECT: The user can select multiple entries from a dropdown menu.
+	//
+	//    * SINGLE_SELECT: The user can select a single entry from a dropdown menu.
+	Type *string `type:"string" enum:"SheetControlListType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterDropDownControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterDropDownControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultFilterDropDownControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultFilterDropDownControlOptions"}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultFilterDropDownControlOptions) SetDisplayOptions(v *DropDownControlDisplayOptions) *DefaultFilterDropDownControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
+// SetSelectableValues sets the SelectableValues field's value.
+func (s *DefaultFilterDropDownControlOptions) SetSelectableValues(v *FilterSelectableValues) *DefaultFilterDropDownControlOptions {
+	s.SelectableValues = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DefaultFilterDropDownControlOptions) SetType(v string) *DefaultFilterDropDownControlOptions {
+	s.Type = &v
+	return s
+}
+
+// The default options that correspond to the List filter control type.
+type DefaultFilterListControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *ListControlDisplayOptions `type:"structure"`
+
+	// A list of selectable values that are used in a control.
+	SelectableValues *FilterSelectableValues `type:"structure"`
+
+	// The type of the DefaultFilterListControlOptions. Choose one of the following
+	// options:
+	//
+	//    * MULTI_SELECT: The user can select multiple entries from the list.
+	//
+	//    * SINGLE_SELECT: The user can select a single entry from the list.
+	Type *string `type:"string" enum:"SheetControlListType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterListControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultFilterListControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultFilterListControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultFilterListControlOptions"}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultFilterListControlOptions) SetDisplayOptions(v *ListControlDisplayOptions) *DefaultFilterListControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
+// SetSelectableValues sets the SelectableValues field's value.
+func (s *DefaultFilterListControlOptions) SetSelectableValues(v *FilterSelectableValues) *DefaultFilterListControlOptions {
+	s.SelectableValues = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DefaultFilterListControlOptions) SetType(v string) *DefaultFilterListControlOptions {
+	s.Type = &v
+	return s
+}
+
 // A structure that represents a default formatting definition.
 type DefaultFormatting struct {
 	_ struct{} `type:"structure"`
@@ -42912,6 +43434,54 @@ func (s *DefaultPaginatedLayoutConfiguration) SetSectionBased(v *DefaultSectionB
 	return s
 }
 
+// The default options that correspond to the RelativeDateTime filter control
+// type.
+type DefaultRelativeDateTimeControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *RelativeDateTimeControlDisplayOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultRelativeDateTimeControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultRelativeDateTimeControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultRelativeDateTimeControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultRelativeDateTimeControlOptions"}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultRelativeDateTimeControlOptions) SetDisplayOptions(v *RelativeDateTimeControlDisplayOptions) *DefaultRelativeDateTimeControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
 // The options that determine the default settings for a section-based layout
 // configuration.
 type DefaultSectionBasedLayoutConfiguration struct {
@@ -42957,6 +43527,215 @@ func (s *DefaultSectionBasedLayoutConfiguration) Validate() error {
 // SetCanvasSizeOptions sets the CanvasSizeOptions field's value.
 func (s *DefaultSectionBasedLayoutConfiguration) SetCanvasSizeOptions(v *SectionBasedLayoutCanvasSizeOptions) *DefaultSectionBasedLayoutConfiguration {
 	s.CanvasSizeOptions = v
+	return s
+}
+
+// The default options that correspond to the Slider filter control type.
+type DefaultSliderControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *SliderControlDisplayOptions `type:"structure"`
+
+	// The larger value that is displayed at the right of the slider.
+	//
+	// MaximumValue is a required field
+	MaximumValue *float64 `type:"double" required:"true"`
+
+	// The smaller value that is displayed at the left of the slider.
+	//
+	// MinimumValue is a required field
+	MinimumValue *float64 `type:"double" required:"true"`
+
+	// The number of increments that the slider bar is divided into.
+	//
+	// StepSize is a required field
+	StepSize *float64 `type:"double" required:"true"`
+
+	// The type of the DefaultSliderControlOptions. Choose one of the following
+	// options:
+	//
+	//    * SINGLE_POINT: Filter against(equals) a single data point.
+	//
+	//    * RANGE: Filter data that is in a specified range.
+	Type *string `type:"string" enum:"SheetControlSliderType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultSliderControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultSliderControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultSliderControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultSliderControlOptions"}
+	if s.MaximumValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaximumValue"))
+	}
+	if s.MinimumValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinimumValue"))
+	}
+	if s.StepSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("StepSize"))
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultSliderControlOptions) SetDisplayOptions(v *SliderControlDisplayOptions) *DefaultSliderControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
+// SetMaximumValue sets the MaximumValue field's value.
+func (s *DefaultSliderControlOptions) SetMaximumValue(v float64) *DefaultSliderControlOptions {
+	s.MaximumValue = &v
+	return s
+}
+
+// SetMinimumValue sets the MinimumValue field's value.
+func (s *DefaultSliderControlOptions) SetMinimumValue(v float64) *DefaultSliderControlOptions {
+	s.MinimumValue = &v
+	return s
+}
+
+// SetStepSize sets the StepSize field's value.
+func (s *DefaultSliderControlOptions) SetStepSize(v float64) *DefaultSliderControlOptions {
+	s.StepSize = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DefaultSliderControlOptions) SetType(v string) *DefaultSliderControlOptions {
+	s.Type = &v
+	return s
+}
+
+// The default options that correspond to the TextArea filter control type.
+type DefaultTextAreaControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The delimiter that is used to separate the lines in text.
+	Delimiter *string `min:"1" type:"string"`
+
+	// The display options of a control.
+	DisplayOptions *TextAreaControlDisplayOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultTextAreaControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultTextAreaControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultTextAreaControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultTextAreaControlOptions"}
+	if s.Delimiter != nil && len(*s.Delimiter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Delimiter", 1))
+	}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelimiter sets the Delimiter field's value.
+func (s *DefaultTextAreaControlOptions) SetDelimiter(v string) *DefaultTextAreaControlOptions {
+	s.Delimiter = &v
+	return s
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultTextAreaControlOptions) SetDisplayOptions(v *TextAreaControlDisplayOptions) *DefaultTextAreaControlOptions {
+	s.DisplayOptions = v
+	return s
+}
+
+// The default options that correspond to the TextField filter control type.
+type DefaultTextFieldControlOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The display options of a control.
+	DisplayOptions *TextFieldControlDisplayOptions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultTextFieldControlOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultTextFieldControlOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultTextFieldControlOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultTextFieldControlOptions"}
+	if s.DisplayOptions != nil {
+		if err := s.DisplayOptions.Validate(); err != nil {
+			invalidParams.AddNested("DisplayOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayOptions sets the DisplayOptions field's value.
+func (s *DefaultTextFieldControlOptions) SetDisplayOptions(v *TextFieldControlDisplayOptions) *DefaultTextFieldControlOptions {
+	s.DisplayOptions = v
 	return s
 }
 
@@ -47561,6 +48340,10 @@ type DescribeAssetBundleImportJobOutput struct {
 
 	// The HTTP status of the response.
 	Status *int64 `location:"statusCode" type:"integer"`
+
+	// An array of warning records that describe all permitted errors that are encountered
+	// during the import job.
+	Warnings []*AssetBundleImportJobWarning `type:"list"`
 }
 
 // String returns the string representation.
@@ -47668,6 +48451,12 @@ func (s *DescribeAssetBundleImportJobOutput) SetRollbackErrors(v []*AssetBundleI
 // SetStatus sets the Status field's value.
 func (s *DescribeAssetBundleImportJobOutput) SetStatus(v int64) *DescribeAssetBundleImportJobOutput {
 	s.Status = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *DescribeAssetBundleImportJobOutput) SetWarnings(v []*AssetBundleImportJobWarning) *DescribeAssetBundleImportJobOutput {
+	s.Warnings = v
 	return s
 }
 
@@ -54984,6 +55773,10 @@ func (s *Filter) SetTopBottomFilter(v *TopBottomFilter) *Filter {
 type FilterControl struct {
 	_ struct{} `type:"structure"`
 
+	// A control from a filter that is scoped across more than one sheet. This represents
+	// your filter control on a sheet
+	CrossSheet *FilterCrossSheetControl `type:"structure"`
+
 	// A control from a date filter that is used to specify date and time.
 	DateTimePicker *FilterDateTimePickerControl `type:"structure"`
 
@@ -55030,6 +55823,11 @@ func (s FilterControl) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FilterControl) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FilterControl"}
+	if s.CrossSheet != nil {
+		if err := s.CrossSheet.Validate(); err != nil {
+			invalidParams.AddNested("CrossSheet", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DateTimePicker != nil {
 		if err := s.DateTimePicker.Validate(); err != nil {
 			invalidParams.AddNested("DateTimePicker", err.(request.ErrInvalidParams))
@@ -55070,6 +55868,12 @@ func (s *FilterControl) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCrossSheet sets the CrossSheet field's value.
+func (s *FilterControl) SetCrossSheet(v *FilterCrossSheetControl) *FilterControl {
+	s.CrossSheet = v
+	return s
 }
 
 // SetDateTimePicker sets the DateTimePicker field's value.
@@ -55114,6 +55918,89 @@ func (s *FilterControl) SetTextField(v *FilterTextFieldControl) *FilterControl {
 	return s
 }
 
+// A control from a filter that is scoped across more than one sheet. This represents
+// your filter control on a sheet
+type FilterCrossSheetControl struct {
+	_ struct{} `type:"structure"`
+
+	// The values that are displayed in a control can be configured to only show
+	// values that are valid based on what's selected in other controls.
+	CascadingControlConfiguration *CascadingControlConfiguration `type:"structure"`
+
+	// The ID of the FilterCrossSheetControl.
+	//
+	// FilterControlId is a required field
+	FilterControlId *string `min:"1" type:"string" required:"true"`
+
+	// The source filter ID of the FilterCrossSheetControl.
+	//
+	// SourceFilterId is a required field
+	SourceFilterId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterCrossSheetControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterCrossSheetControl) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterCrossSheetControl) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterCrossSheetControl"}
+	if s.FilterControlId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterControlId"))
+	}
+	if s.FilterControlId != nil && len(*s.FilterControlId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterControlId", 1))
+	}
+	if s.SourceFilterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFilterId"))
+	}
+	if s.SourceFilterId != nil && len(*s.SourceFilterId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceFilterId", 1))
+	}
+	if s.CascadingControlConfiguration != nil {
+		if err := s.CascadingControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CascadingControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCascadingControlConfiguration sets the CascadingControlConfiguration field's value.
+func (s *FilterCrossSheetControl) SetCascadingControlConfiguration(v *CascadingControlConfiguration) *FilterCrossSheetControl {
+	s.CascadingControlConfiguration = v
+	return s
+}
+
+// SetFilterControlId sets the FilterControlId field's value.
+func (s *FilterCrossSheetControl) SetFilterControlId(v string) *FilterCrossSheetControl {
+	s.FilterControlId = &v
+	return s
+}
+
+// SetSourceFilterId sets the SourceFilterId field's value.
+func (s *FilterCrossSheetControl) SetSourceFilterId(v string) *FilterCrossSheetControl {
+	s.SourceFilterId = &v
+	return s
+}
+
 // A control from a date filter that is used to specify date and time.
 type FilterDateTimePickerControl struct {
 	_ struct{} `type:"structure"`
@@ -55136,12 +56023,11 @@ type FilterDateTimePickerControl struct {
 	// Title is a required field
 	Title *string `min:"1" type:"string" required:"true"`
 
-	// The date time picker type of a FilterDateTimePickerControl. Choose one of
-	// the following options:
+	// The type of the FilterDropDownControl. Choose one of the following options:
 	//
-	//    * SINGLE_VALUED: The filter condition is a fixed date.
+	//    * MULTI_SELECT: The user can select multiple entries from a dropdown menu.
 	//
-	//    * DATE_RANGE: The filter condition is a date time range.
+	//    * SINGLE_SELECT: The user can select a single entry from a dropdown menu.
 	Type *string `type:"string" enum:"SheetControlDateTimePickerType"`
 }
 
@@ -55604,7 +56490,7 @@ type FilterListControl struct {
 	// Title is a required field
 	Title *string `min:"1" type:"string" required:"true"`
 
-	// The type of FilterListControl. Choose one of the following options:
+	// The type of the FilterListControl. Choose one of the following options:
 	//
 	//    * MULTI_SELECT: The user can select multiple entries from the list.
 	//
@@ -56101,12 +56987,12 @@ type FilterSliderControl struct {
 	// FilterControlId is a required field
 	FilterControlId *string `min:"1" type:"string" required:"true"`
 
-	// The smaller value that is displayed at the left of the slider.
+	// The larger value that is displayed at the right of the slider.
 	//
 	// MaximumValue is a required field
 	MaximumValue *float64 `type:"double" required:"true"`
 
-	// The larger value that is displayed at the right of the slider.
+	// The smaller value that is displayed at the left of the slider.
 	//
 	// MinimumValue is a required field
 	MinimumValue *float64 `type:"double" required:"true"`
@@ -56126,7 +57012,7 @@ type FilterSliderControl struct {
 	// Title is a required field
 	Title *string `min:"1" type:"string" required:"true"`
 
-	// The type of FilterSliderControl. Choose one of the following options:
+	// The type of the FilterSliderControl. Choose one of the following options:
 	//
 	//    * SINGLE_POINT: Filter against(equals) a single data point.
 	//
@@ -72689,7 +73575,7 @@ func (s *NumericAxisOptions) SetScale(v *AxisScale) *NumericAxisOptions {
 	return s
 }
 
-// The category drill down filter.
+// The numeric equality type drill down filter.
 type NumericEqualityDrillDownFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -72766,6 +73652,10 @@ type NumericEqualityFilter struct {
 	//
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
+
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
 
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
@@ -72845,6 +73735,11 @@ func (s *NumericEqualityFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -72861,6 +73756,12 @@ func (s *NumericEqualityFilter) SetAggregationFunction(v *AggregationFunction) *
 // SetColumn sets the Column field's value.
 func (s *NumericEqualityFilter) SetColumn(v *ColumnIdentifier) *NumericEqualityFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *NumericEqualityFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *NumericEqualityFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -72990,6 +73891,10 @@ type NumericRangeFilter struct {
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
 	//
@@ -73065,6 +73970,11 @@ func (s *NumericRangeFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RangeMaximum != nil {
 		if err := s.RangeMaximum.Validate(); err != nil {
 			invalidParams.AddNested("RangeMaximum", err.(request.ErrInvalidParams))
@@ -73091,6 +74001,12 @@ func (s *NumericRangeFilter) SetAggregationFunction(v *AggregationFunction) *Num
 // SetColumn sets the Column field's value.
 func (s *NumericRangeFilter) SetColumn(v *ColumnIdentifier) *NumericRangeFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *NumericRangeFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *NumericRangeFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -74573,12 +75489,12 @@ type ParameterSliderControl struct {
 	// The display options of a control.
 	DisplayOptions *SliderControlDisplayOptions `type:"structure"`
 
-	// The smaller value that is displayed at the left of the slider.
+	// The larger value that is displayed at the right of the slider.
 	//
 	// MaximumValue is a required field
 	MaximumValue *float64 `type:"double" required:"true"`
 
-	// The larger value that is displayed at the right of the slider.
+	// The smaller value that is displayed at the left of the slider.
 	//
 	// MinimumValue is a required field
 	MinimumValue *float64 `type:"double" required:"true"`
@@ -81149,6 +82065,10 @@ type RelativeDatesFilter struct {
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// The configuration for the exclude period of the filter.
 	ExcludePeriodConfiguration *ExcludePeriodConfiguration `type:"structure"`
 
@@ -81254,6 +82174,11 @@ func (s *RelativeDatesFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExcludePeriodConfiguration != nil {
 		if err := s.ExcludePeriodConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ExcludePeriodConfiguration", err.(request.ErrInvalidParams))
@@ -81275,6 +82200,12 @@ func (s *RelativeDatesFilter) SetAnchorDateConfiguration(v *AnchorDateConfigurat
 // SetColumn sets the Column field's value.
 func (s *RelativeDatesFilter) SetColumn(v *ColumnIdentifier) *RelativeDatesFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *RelativeDatesFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *RelativeDatesFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -93338,6 +94269,10 @@ type TimeEqualityFilter struct {
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
 	//
@@ -93401,6 +94336,11 @@ func (s *TimeEqualityFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RollingDate != nil {
 		if err := s.RollingDate.Validate(); err != nil {
 			invalidParams.AddNested("RollingDate", err.(request.ErrInvalidParams))
@@ -93416,6 +94356,12 @@ func (s *TimeEqualityFilter) Validate() error {
 // SetColumn sets the Column field's value.
 func (s *TimeEqualityFilter) SetColumn(v *ColumnIdentifier) *TimeEqualityFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *TimeEqualityFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *TimeEqualityFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -93552,6 +94498,10 @@ type TimeRangeFilter struct {
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// The exclude period of the time range filter.
 	ExcludePeriodConfiguration *ExcludePeriodConfiguration `type:"structure"`
 
@@ -93628,6 +94578,11 @@ func (s *TimeRangeFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ExcludePeriodConfiguration != nil {
 		if err := s.ExcludePeriodConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ExcludePeriodConfiguration", err.(request.ErrInvalidParams))
@@ -93653,6 +94608,12 @@ func (s *TimeRangeFilter) Validate() error {
 // SetColumn sets the Column field's value.
 func (s *TimeRangeFilter) SetColumn(v *ColumnIdentifier) *TimeRangeFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *TimeRangeFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *TimeRangeFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -93923,6 +94884,10 @@ type TopBottomFilter struct {
 	// Column is a required field
 	Column *ColumnIdentifier `type:"structure" required:"true"`
 
+	// The default configurations for the associated controls. This applies only
+	// for filters that are scoped to multiple sheets.
+	DefaultFilterControlConfiguration *DefaultFilterControlConfiguration `type:"structure"`
+
 	// An identifier that uniquely identifies a filter within a dashboard, analysis,
 	// or template.
 	//
@@ -93990,6 +94955,11 @@ func (s *TopBottomFilter) Validate() error {
 			invalidParams.AddNested("Column", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DefaultFilterControlConfiguration != nil {
+		if err := s.DefaultFilterControlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DefaultFilterControlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -94006,6 +94976,12 @@ func (s *TopBottomFilter) SetAggregationSortConfigurations(v []*AggregationSortC
 // SetColumn sets the Column field's value.
 func (s *TopBottomFilter) SetColumn(v *ColumnIdentifier) *TopBottomFilter {
 	s.Column = v
+	return s
+}
+
+// SetDefaultFilterControlConfiguration sets the DefaultFilterControlConfiguration field's value.
+func (s *TopBottomFilter) SetDefaultFilterControlConfiguration(v *DefaultFilterControlConfiguration) *TopBottomFilter {
+	s.DefaultFilterControlConfiguration = v
 	return s
 }
 
@@ -106386,6 +107362,9 @@ const (
 
 	// AssetBundleExportJobDataSourcePropertyToOverrideRoleArn is a AssetBundleExportJobDataSourcePropertyToOverride enum value
 	AssetBundleExportJobDataSourcePropertyToOverrideRoleArn = "RoleArn"
+
+	// AssetBundleExportJobDataSourcePropertyToOverrideProductType is a AssetBundleExportJobDataSourcePropertyToOverride enum value
+	AssetBundleExportJobDataSourcePropertyToOverrideProductType = "ProductType"
 )
 
 // AssetBundleExportJobDataSourcePropertyToOverride_Values returns all elements of the AssetBundleExportJobDataSourcePropertyToOverride enum
@@ -106408,6 +107387,7 @@ func AssetBundleExportJobDataSourcePropertyToOverride_Values() []string {
 		AssetBundleExportJobDataSourcePropertyToOverrideManifestFileLocation,
 		AssetBundleExportJobDataSourcePropertyToOverrideWarehouse,
 		AssetBundleExportJobDataSourcePropertyToOverrideRoleArn,
+		AssetBundleExportJobDataSourcePropertyToOverrideProductType,
 	}
 }
 

@@ -2,11 +2,13 @@
   "version": "2.0",
   "service": "<fullname>Amazon WorkSpaces Service</fullname> <p>Amazon WorkSpaces enables you to provision virtual, cloud-based Microsoft Windows or Amazon Linux desktops for your users, known as <i>WorkSpaces</i>. WorkSpaces eliminates the need to procure and deploy hardware or install complex software. You can quickly add or remove users as your needs change. Users can access their virtual desktops from multiple devices or web browsers.</p> <p>This API Reference provides detailed information about the actions, data types, parameters, and errors of the WorkSpaces service. For more information about the supported Amazon Web Services Regions, endpoints, and service quotas of the Amazon WorkSpaces service, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/wsp.html\">WorkSpaces endpoints and quotas</a> in the <i>Amazon Web Services General Reference</i>.</p> <p>You can also manage your WorkSpaces resources using the WorkSpaces console, Command Line Interface (CLI), and SDKs. For more information about administering WorkSpaces, see the <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/\">Amazon WorkSpaces Administration Guide</a>. For more information about using the Amazon WorkSpaces client application or web browser to access provisioned WorkSpaces, see the <a href=\"https://docs.aws.amazon.com/workspaces/latest/userguide/\">Amazon WorkSpaces User Guide</a>. For more information about using the CLI to manage your WorkSpaces resources, see the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/workspaces/index.html\">WorkSpaces section of the CLI Reference</a>.</p>",
   "operations": {
+    "AcceptAccountLinkInvitation": "<p>Accepts the account link invitation.</p> <important> <p>There's currently no unlinking capability after you accept the account linking invitation.</p> </important>",
     "AssociateConnectionAlias": "<p>Associates the specified connection alias with the specified directory to enable cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "AssociateIpGroups": "<p>Associates the specified IP access control group with the specified directory.</p>",
     "AssociateWorkspaceApplication": "<p>Associates the specified application to the specified WorkSpace.</p>",
     "AuthorizeIpRules": "<p>Adds one or more rules to the specified IP access control group.</p> <p>This action gives users permission to access their WorkSpaces from the CIDR address ranges specified in the rules.</p>",
     "CopyWorkspaceImage": "<p>Copies the specified image from the specified Region to the current Region. For more information about copying images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/copy-custom-image.html\"> Copy a Custom WorkSpaces Image</a>.</p> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In Amazon Web Services GovCloud (US), to copy images to and from other Regions, contact Amazon Web Services Support.</p> <important> <p>Before copying a shared image, be sure to verify that it has been shared from the correct Amazon Web Services account. To determine if an image has been shared and to see the ID of the Amazon Web Services account that owns an image, use the <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html\">DescribeWorkSpaceImages</a> and <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImagePermissions.html\">DescribeWorkspaceImagePermissions</a> API operations. </p> </important>",
+    "CreateAccountLinkInvitation": "<p>Creates the account link invitation.</p>",
     "CreateConnectClientAddIn": "<p>Creates a client-add-in for Amazon Connect within a directory. You can create only one Amazon Connect client add-in within a directory.</p> <p>This client add-in allows WorkSpaces users to seamlessly connect to Amazon Connect.</p>",
     "CreateConnectionAlias": "<p>Creates the specified connection alias for use with cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "CreateIpGroup": "<p>Creates an IP access control group.</p> <p>An IP access control group provides you with the ability to control the IP addresses from which users are allowed to access their WorkSpaces. To specify the CIDR address ranges, add rules to your IP access control group and then associate the group with your directory. You can add rules when you create the group or at any time using <a>AuthorizeIpRules</a>.</p> <p>There is a default IP access control group associated with your directory. If you don't associate an IP access control group with your directory, the default group is used. The default group includes a default rule that allows users to access their WorkSpaces from anywhere. You cannot modify the default IP access control group for your directory.</p>",
@@ -16,6 +18,7 @@
     "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaceImage": "<p>Creates a new WorkSpace image from an existing WorkSpace.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p> <note> <ul> <li> <p>The <code>MANUAL</code> running mode value is only supported by Amazon WorkSpaces Core. Contact your account team to be allow-listed to use this value. For more information, see <a href=\"http://aws.amazon.com/workspaces/core/\">Amazon WorkSpaces Core</a>.</p> </li> <li> <p>You don't need to specify the <code>PCOIP</code> protocol for Linux bundles because <code>WSP</code> is the default protocol for those bundles.</p> </li> <li> <p>User-decoupled WorkSpaces are only supported by Amazon WorkSpaces Core.</p> </li> </ul> </note>",
+    "DeleteAccountLinkInvitation": "<p>Deletes the account link invitation.</p>",
     "DeleteClientBranding": "<p>Deletes customized client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you delete your customized client branding, your login portal reverts to the default client branding.</p>",
     "DeleteConnectClientAddIn": "<p>Deletes a client-add-in for Amazon Connect that is configured within a directory.</p>",
     "DeleteConnectionAlias": "<p>Deletes the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <important> <p> <b>If you will no longer be using a fully qualified domain name (FQDN) as the registration code for your WorkSpaces users, you must take certain precautions to prevent potential security issues.</b> For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html#cross-region-redirection-security-considerations\"> Security Considerations if You Stop Using Cross-Region Redirection</a>.</p> </important> <note> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </note>",
@@ -49,8 +52,10 @@
     "DisassociateConnectionAlias": "<p>Disassociates a connection alias from a directory. Disassociating a connection alias disables cross-Region redirection between two directories in different Regions. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
     "DisassociateWorkspaceApplication": "<p>Disassociates the specified application from a WorkSpace.</p>",
+    "GetAccountLink": "<p>Retrieves account link information.</p>",
     "ImportClientBranding": "<p>Imports client branding. Client branding allows you to customize your WorkSpace's client login portal. You can tailor your login portal company logo, the support email address, support link, link to reset password, and a custom message for users trying to sign in.</p> <p>After you import client branding, the default branding experience for the specified platform type is replaced with the imported experience</p> <note> <ul> <li> <p>You must specify at least one platform type when importing client branding.</p> </li> <li> <p>You can import up to 6 MB of data with each request. If your request exceeds this limit, you can import client branding for different platform types using separate requests.</p> </li> <li> <p>In each platform type, the <code>SupportEmail</code> and <code>SupportLink</code> parameters are mutually exclusive. You can specify only one parameter for each platform type, but not both.</p> </li> <li> <p>Imported data can take up to a minute to appear in the WorkSpaces client.</p> </li> </ul> </note>",
     "ImportWorkspaceImage": "<p>Imports the specified Windows 10 or 11 Bring Your Own License (BYOL) image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is in your Amazon Web Services account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
+    "ListAccountLinks": "<p>Lists all account links.</p>",
     "ListAvailableManagementCidrRanges": "<p>Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use for the network management interface when you enable Bring Your Own License (BYOL). </p> <p>This operation can be run only by Amazon Web Services accounts that are enabled for BYOL. If your account isn't enabled for BYOL, you'll receive an <code>AccessDeniedException</code> error.</p> <p>The management network interface is connected to a secure Amazon WorkSpaces management network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage the WorkSpace.</p>",
     "MigrateWorkspace": "<p>Migrates a WorkSpace from one operating system or bundle type to another, while retaining the data on the user volume.</p> <p>The migration process recreates the WorkSpace by using a new root volume from the target bundle image and the user volume from the last available snapshot of the original WorkSpace. During migration, the original <code>D:\\Users\\%USERNAME%</code> user profile folder is renamed to <code>D:\\Users\\%USERNAME%MMddyyTHHmmss%.NotMigrated</code>. A new <code>D:\\Users\\%USERNAME%\\</code> folder is generated by the new OS. Certain files in the old user profile are moved to the new user profile.</p> <p>For available migration scenarios, details about what happens during migration, and best practices, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/migrate-workspaces.html\">Migrate a WorkSpace</a>.</p>",
     "ModifyAccount": "<p>Modifies the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
@@ -65,6 +70,7 @@
     "RebootWorkspaces": "<p>Reboots the specified WorkSpaces.</p> <p>You cannot reboot a WorkSpace unless its state is <code>AVAILABLE</code>, <code>UNHEALTHY</code>, or <code>REBOOTING</code>. Reboot a WorkSpace in the <code>REBOOTING</code> state only if your WorkSpace has been stuck in the <code>REBOOTING</code> state for over 20 minutes.</p> <p>This operation is asynchronous and returns before the WorkSpaces have rebooted.</p>",
     "RebuildWorkspaces": "<p>Rebuilds the specified WorkSpace.</p> <p>You cannot rebuild a WorkSpace unless its state is <code>AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, <code>STOPPED</code>, or <code>REBOOTING</code>.</p> <p>Rebuilding a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/reset-workspace.html\">Rebuild a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely rebuilt.</p>",
     "RegisterWorkspaceDirectory": "<p>Registers the specified directory. This operation is asynchronous and returns before the WorkSpace directory is registered. If this is the first time you are registering a directory, you will need to create the workspaces_DefaultRole role before you can register a directory. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-access-control.html#create-default-role\"> Creating the workspaces_DefaultRole Role</a>.</p>",
+    "RejectAccountLinkInvitation": "<p>Rejects the account link invitation.</p>",
     "RestoreWorkspace": "<p>Restores the specified WorkSpace to its last known healthy state.</p> <p>You cannot restore a WorkSpace unless its state is <code> AVAILABLE</code>, <code>ERROR</code>, <code>UNHEALTHY</code>, or <code>STOPPED</code>.</p> <p>Restoring a WorkSpace is a potentially destructive action that can result in the loss of data. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/restore-workspace.html\">Restore a WorkSpace</a>.</p> <p>This operation is asynchronous and returns before the WorkSpace is completely restored.</p>",
     "RevokeIpRules": "<p>Removes one or more rules from the specified IP access control group.</p>",
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
@@ -83,6 +89,16 @@
         "WorkspaceDirectory$IamRoleId": "<p>The identifier of the IAM role. This is the role that allows Amazon WorkSpaces to make calls to other services, such as Amazon EC2, on your behalf.</p>"
       }
     },
+    "AcceptAccountLinkInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AcceptAccountLinkInvitationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AccessDeniedException": {
       "base": "<p>The user is not authorized to access a resource.</p>",
       "refs": {
@@ -99,6 +115,30 @@
         "WorkspaceAccessProperties$DeviceTypeChromeOs": "<p>Indicates whether users can use Chromebooks to access their WorkSpaces.</p>",
         "WorkspaceAccessProperties$DeviceTypeZeroClient": "<p>Indicates whether users can use zero client devices to access their WorkSpaces.</p>",
         "WorkspaceAccessProperties$DeviceTypeLinux": "<p>Indicates whether users can use Linux clients to access their WorkSpaces.</p>"
+      }
+    },
+    "AccountLink": {
+      "base": "<p>Information about about the account link.</p>",
+      "refs": {
+        "AcceptAccountLinkInvitationResult$AccountLink": "<p>Information about the account link.</p>",
+        "AccountLinkList$member": null,
+        "CreateAccountLinkInvitationResult$AccountLink": "<p>Information about the account link.</p>",
+        "DeleteAccountLinkInvitationResult$AccountLink": "<p>Information about the account link.</p>",
+        "GetAccountLinkResult$AccountLink": "<p>The account link of the account link to retrieve.</p>",
+        "RejectAccountLinkInvitationResult$AccountLink": "<p>Information about the account link.</p>"
+      }
+    },
+    "AccountLinkList": {
+      "base": null,
+      "refs": {
+        "ListAccountLinksResult$AccountLinks": "<p>Information about the account links.</p>"
+      }
+    },
+    "AccountLinkStatusEnum": {
+      "base": null,
+      "refs": {
+        "AccountLink$AccountLinkStatus": "<p>The status of the account link.</p>",
+        "LinkStatusFilterList$member": null
       }
     },
     "AccountModification": {
@@ -259,10 +299,14 @@
     "AwsAccount": {
       "base": null,
       "refs": {
+        "AccountLink$SourceAccountId": "<p>The identifier of the source account.</p>",
+        "AccountLink$TargetAccountId": "<p>The identifier of the target account.</p>",
         "ConnectionAlias$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the connection alias.</p>",
         "ConnectionAliasAssociation$AssociatedAccountId": "<p>The identifier of the Amazon Web Services account that associated the connection alias with a directory.</p>",
         "ConnectionAliasPermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that the connection alias is shared with.</p>",
+        "CreateAccountLinkInvitationRequest$TargetAccountId": "<p>The identifier of the target account.</p>",
         "CreateWorkspaceImageResult$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the image.</p>",
+        "GetAccountLinkRequest$LinkedAccountId": "<p>The identifier of the account link</p>",
         "ImagePermission$SharedAccountId": "<p>The identifier of the Amazon Web Services account that an image has been shared with.</p>",
         "UpdateWorkspaceImagePermissionRequest$SharedAccountId": "<p>The identifier of the Amazon Web Services account to share or unshare the image with.</p> <important> <p>Before sharing the image, confirm that you are sharing to the correct Amazon Web Services account ID.</p> </important>",
         "WorkspaceImage$OwnerAccountId": "<p>The identifier of the Amazon Web Services account that owns the image.</p>"
@@ -427,6 +471,15 @@
         "ClientPropertiesList$member": null
       }
     },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "AcceptAccountLinkInvitationRequest$ClientToken": "<p>A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.</p>",
+        "CreateAccountLinkInvitationRequest$ClientToken": "<p>A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.</p>",
+        "DeleteAccountLinkInvitationRequest$ClientToken": "<p>A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation.</p>",
+        "RejectAccountLinkInvitationRequest$ClientToken": "<p>The client token of the account link invitation to reject.</p>"
+      }
+    },
     "ClientUrl": {
       "base": null,
       "refs": {
@@ -475,6 +528,11 @@
       "base": null,
       "refs": {
         "Workspace$ComputerName": "<p>The name of the WorkSpace, as seen by the operating system. The format of this name varies. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html\"> Launch a WorkSpace</a>. </p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The <code>TargetAccountId</code> is already linked or invited.</p>",
+      "refs": {
       }
     },
     "ConnectClientAddIn": {
@@ -578,6 +636,16 @@
       }
     },
     "CopyWorkspaceImageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccountLinkInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAccountLinkInvitationResult": {
       "base": null,
       "refs": {
       }
@@ -687,6 +755,12 @@
         "Workspace$DataReplicationSettings": "<p>Indicates the settings of the data replication.</p>"
       }
     },
+    "DedicatedTenancyAccountType": {
+      "base": null,
+      "refs": {
+        "DescribeAccountResult$DedicatedTenancyAccountType": "<p>The type of linked account.</p>"
+      }
+    },
     "DedicatedTenancyCidrRangeList": {
       "base": null,
       "refs": {
@@ -787,6 +861,16 @@
       "base": null,
       "refs": {
         "DeletableSamlPropertiesList$member": null
+      }
+    },
+    "DeleteAccountLinkInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccountLinkInvitationResult": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteClientBrandingRequest": {
@@ -1220,6 +1304,8 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
+        "ConflictException$message": null,
+        "InternalServerException$message": null,
         "InvalidParameterValuesException$message": "<p>The exception error message.</p>",
         "InvalidResourceStateException$message": null,
         "OperationInProgressException$message": null,
@@ -1233,6 +1319,7 @@
         "ResourceUnavailableException$message": "<p>The exception error message.</p>",
         "UnsupportedNetworkConfigurationException$message": null,
         "UnsupportedWorkspaceConfigurationException$message": null,
+        "ValidationException$message": null,
         "WorkspacesDefaultRoleNotFoundException$message": null
       }
     },
@@ -1300,6 +1387,16 @@
         "FailedTerminateWorkspaceRequests$member": null
       }
     },
+    "GetAccountLinkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccountLinkResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ImageAssociatedResourceType": {
       "base": null,
       "refs": {
@@ -1365,6 +1462,11 @@
     },
     "IncompatibleApplicationsException": {
       "base": "<p>The specified application is not compatible with the resource.</p>",
+      "refs": {
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Unexpected server error occured.</p>",
       "refs": {
       }
     },
@@ -1497,7 +1599,34 @@
         "DescribeWorkspaceDirectoriesRequest$Limit": "<p>The maximum number of directories to return.</p>",
         "DescribeWorkspaceImagePermissionsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspaceImagesRequest$MaxResults": "<p>The maximum number of items to return.</p>",
-        "DescribeWorkspacesRequest$Limit": "<p>The maximum number of items to return.</p>"
+        "DescribeWorkspacesRequest$Limit": "<p>The maximum number of items to return.</p>",
+        "ListAccountLinksRequest$MaxResults": "<p>The maximum number of accounts to return.</p>"
+      }
+    },
+    "LinkId": {
+      "base": null,
+      "refs": {
+        "AcceptAccountLinkInvitationRequest$LinkId": "<p>The identifier of the account link.</p>",
+        "AccountLink$AccountLinkId": "<p>The identifier of the account link.</p>",
+        "DeleteAccountLinkInvitationRequest$LinkId": "<p>The identifier of the account link.</p>",
+        "GetAccountLinkRequest$LinkId": "<p>The identifier of the account to link.</p>",
+        "RejectAccountLinkInvitationRequest$LinkId": "<p>The identifier of the account link</p>"
+      }
+    },
+    "LinkStatusFilterList": {
+      "base": null,
+      "refs": {
+        "ListAccountLinksRequest$LinkStatusFilter": "<p>Filters the account based on their link status.</p>"
+      }
+    },
+    "ListAccountLinksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccountLinksResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ListAvailableManagementCidrRangesRequest": {
@@ -1759,6 +1888,8 @@
         "DescribeWorkspacesConnectionStatusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspacesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeWorkspacesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
+        "ListAccountLinksRequest$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
+        "ListAccountLinksResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "ListAvailableManagementCidrRangesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "ListAvailableManagementCidrRangesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>"
       }
@@ -1864,6 +1995,16 @@
       "base": null,
       "refs": {
         "WorkspaceDirectory$RegistrationCode": "<p>The registration code for the directory. This is the code that users enter in their Amazon WorkSpaces client application to connect to the directory.</p>"
+      }
+    },
+    "RejectAccountLinkInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RejectAccountLinkInvitationResult": {
+      "base": null,
+      "refs": {
       }
     },
     "RelatedWorkspaceProperties": {
@@ -2300,6 +2441,11 @@
       "base": null,
       "refs": {
         "WorkspaceProperties$UserVolumeSizeGib": "<p>The size of the user storage. For important information about how to modify the size of the root and user volumes, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/modify-workspaces.html\">Modify a WorkSpace</a>.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>You either haven't provided a <code>TargetAccountId</code> or are using the same value for <code>TargetAccountId</code> and <code>SourceAccountId</code>.</p>",
+      "refs": {
       }
     },
     "VolumeEncryptionKey": {

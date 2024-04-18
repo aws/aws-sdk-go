@@ -187,6 +187,91 @@ func (c *RolesAnywhere) CreateTrustAnchorWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+const opDeleteAttributeMapping = "DeleteAttributeMapping"
+
+// DeleteAttributeMappingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAttributeMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAttributeMapping for more information on using the DeleteAttributeMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAttributeMappingRequest method.
+//	req, resp := client.DeleteAttributeMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteAttributeMapping
+func (c *RolesAnywhere) DeleteAttributeMappingRequest(input *DeleteAttributeMappingInput) (req *request.Request, output *DeleteAttributeMappingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAttributeMapping,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/profiles/{profileId}/mappings",
+	}
+
+	if input == nil {
+		input = &DeleteAttributeMappingInput{}
+	}
+
+	output = &DeleteAttributeMappingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAttributeMapping API operation for IAM Roles Anywhere.
+//
+// Delete an entry from the attribute mapping rules enforced by a given profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for IAM Roles Anywhere's
+// API operation DeleteAttributeMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Validation exception error.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/DeleteAttributeMapping
+func (c *RolesAnywhere) DeleteAttributeMapping(input *DeleteAttributeMappingInput) (*DeleteAttributeMappingOutput, error) {
+	req, out := c.DeleteAttributeMappingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAttributeMappingWithContext is the same as DeleteAttributeMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAttributeMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RolesAnywhere) DeleteAttributeMappingWithContext(ctx aws.Context, input *DeleteAttributeMappingInput, opts ...request.Option) (*DeleteAttributeMappingOutput, error) {
+	req, out := c.DeleteAttributeMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCrl = "DeleteCrl"
 
 // DeleteCrlRequest generates a "aws/request.Request" representing the
@@ -2025,6 +2110,93 @@ func (c *RolesAnywhere) ListTrustAnchorsPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opPutAttributeMapping = "PutAttributeMapping"
+
+// PutAttributeMappingRequest generates a "aws/request.Request" representing the
+// client's request for the PutAttributeMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAttributeMapping for more information on using the PutAttributeMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the PutAttributeMappingRequest method.
+//	req, resp := client.PutAttributeMappingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/PutAttributeMapping
+func (c *RolesAnywhere) PutAttributeMappingRequest(input *PutAttributeMappingInput) (req *request.Request, output *PutAttributeMappingOutput) {
+	op := &request.Operation{
+		Name:       opPutAttributeMapping,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/profiles/{profileId}/mappings",
+	}
+
+	if input == nil {
+		input = &PutAttributeMappingInput{}
+	}
+
+	output = &PutAttributeMappingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutAttributeMapping API operation for IAM Roles Anywhere.
+//
+// Put an entry in the attribute mapping rules that will be enforced by a given
+// profile. A mapping specifies a certificate field and one or more specifiers
+// that have contextual meanings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for IAM Roles Anywhere's
+// API operation PutAttributeMapping for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     Validation exception error.
+//
+//   - ResourceNotFoundException
+//     The resource could not be found.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rolesanywhere-2018-05-10/PutAttributeMapping
+func (c *RolesAnywhere) PutAttributeMapping(input *PutAttributeMappingInput) (*PutAttributeMappingOutput, error) {
+	req, out := c.PutAttributeMappingRequest(input)
+	return out, req.Send()
+}
+
+// PutAttributeMappingWithContext is the same as PutAttributeMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAttributeMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RolesAnywhere) PutAttributeMappingWithContext(ctx aws.Context, input *PutAttributeMappingInput, opts ...request.Option) (*PutAttributeMappingOutput, error) {
+	req, out := c.PutAttributeMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutNotificationSettings = "PutNotificationSettings"
 
 // PutNotificationSettingsRequest generates a "aws/request.Request" representing the
@@ -2715,6 +2887,47 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A mapping applied to the authenticating end-entity certificate.
+type AttributeMapping struct {
+	_ struct{} `type:"structure"`
+
+	// Fields (x509Subject, x509Issuer and x509SAN) within X.509 certificates.
+	CertificateField *string `locationName:"certificateField" type:"string" enum:"CertificateField"`
+
+	// A list of mapping entries for every supported specifier or sub-field.
+	MappingRules []*MappingRule `locationName:"mappingRules" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttributeMapping) GoString() string {
+	return s.String()
+}
+
+// SetCertificateField sets the CertificateField field's value.
+func (s *AttributeMapping) SetCertificateField(v string) *AttributeMapping {
+	s.CertificateField = &v
+	return s
+}
+
+// SetMappingRules sets the MappingRules field's value.
+func (s *AttributeMapping) SetMappingRules(v []*MappingRule) *AttributeMapping {
+	s.MappingRules = v
+	return s
+}
+
 type CreateProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3206,6 +3419,112 @@ func (s *CrlDetail) SetTrustAnchorArn(v string) *CrlDetail {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *CrlDetail) SetUpdatedAt(v time.Time) *CrlDetail {
 	s.UpdatedAt = &v
+	return s
+}
+
+type DeleteAttributeMappingInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Fields (x509Subject, x509Issuer and x509SAN) within X.509 certificates.
+	//
+	// CertificateField is a required field
+	CertificateField *string `location:"querystring" locationName:"certificateField" type:"string" required:"true" enum:"CertificateField"`
+
+	// The unique identifier of the profile.
+	//
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"profileId" min:"36" type:"string" required:"true"`
+
+	// A list of specifiers of a certificate field; for example, CN, OU, UID from
+	// a Subject.
+	Specifiers []*string `location:"querystring" locationName:"specifiers" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttributeMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttributeMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAttributeMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAttributeMappingInput"}
+	if s.CertificateField == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateField"))
+	}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateField sets the CertificateField field's value.
+func (s *DeleteAttributeMappingInput) SetCertificateField(v string) *DeleteAttributeMappingInput {
+	s.CertificateField = &v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *DeleteAttributeMappingInput) SetProfileId(v string) *DeleteAttributeMappingInput {
+	s.ProfileId = &v
+	return s
+}
+
+// SetSpecifiers sets the Specifiers field's value.
+func (s *DeleteAttributeMappingInput) SetSpecifiers(v []*string) *DeleteAttributeMappingInput {
+	s.Specifiers = v
+	return s
+}
+
+type DeleteAttributeMappingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the profile after a read or write operation.
+	//
+	// Profile is a required field
+	Profile *ProfileDetail `locationName:"profile" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttributeMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttributeMappingOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfile sets the Profile field's value.
+func (s *DeleteAttributeMappingOutput) SetProfile(v *ProfileDetail) *DeleteAttributeMappingOutput {
+	s.Profile = v
 	return s
 }
 
@@ -4936,6 +5255,54 @@ func (s *ListTrustAnchorsOutput) SetTrustAnchors(v []*TrustAnchorDetail) *ListTr
 	return s
 }
 
+// A single mapping entry for each supported specifier or sub-field.
+type MappingRule struct {
+	_ struct{} `type:"structure"`
+
+	// Specifier within a certificate field, such as CN, OU, or UID from the Subject
+	// field.
+	//
+	// Specifier is a required field
+	Specifier *string `locationName:"specifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappingRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MappingRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MappingRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MappingRule"}
+	if s.Specifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Specifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSpecifier sets the Specifier field's value.
+func (s *MappingRule) SetSpecifier(v string) *MappingRule {
+	s.Specifier = &v
+	return s
+}
+
 // Customizable notification settings that will be applied to notification events.
 // IAM Roles Anywhere consumes these settings while notifying across multiple
 // channels - CloudWatch metrics, EventBridge, and Health Dashboard.
@@ -5167,6 +5534,9 @@ func (s *NotificationSettingKey) SetEvent(v string) *NotificationSettingKey {
 type ProfileDetail struct {
 	_ struct{} `type:"structure"`
 
+	// A mapping applied to the authenticating end-entity certificate.
+	AttributeMappings []*AttributeMapping `locationName:"attributeMappings" type:"list"`
+
 	// The ISO-8601 timestamp when the profile was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
@@ -5226,6 +5596,12 @@ func (s ProfileDetail) String() string {
 // value will be replaced with "sensitive".
 func (s ProfileDetail) GoString() string {
 	return s.String()
+}
+
+// SetAttributeMappings sets the AttributeMappings field's value.
+func (s *ProfileDetail) SetAttributeMappings(v []*AttributeMapping) *ProfileDetail {
+	s.AttributeMappings = v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -5297,6 +5673,126 @@ func (s *ProfileDetail) SetSessionPolicy(v string) *ProfileDetail {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *ProfileDetail) SetUpdatedAt(v time.Time) *ProfileDetail {
 	s.UpdatedAt = &v
+	return s
+}
+
+type PutAttributeMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// Fields (x509Subject, x509Issuer and x509SAN) within X.509 certificates.
+	//
+	// CertificateField is a required field
+	CertificateField *string `locationName:"certificateField" type:"string" required:"true" enum:"CertificateField"`
+
+	// A list of mapping entries for every supported specifier or sub-field.
+	//
+	// MappingRules is a required field
+	MappingRules []*MappingRule `locationName:"mappingRules" type:"list" required:"true"`
+
+	// The unique identifier of the profile.
+	//
+	// ProfileId is a required field
+	ProfileId *string `location:"uri" locationName:"profileId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAttributeMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAttributeMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAttributeMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAttributeMappingInput"}
+	if s.CertificateField == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertificateField"))
+	}
+	if s.MappingRules == nil {
+		invalidParams.Add(request.NewErrParamRequired("MappingRules"))
+	}
+	if s.ProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
+	}
+	if s.ProfileId != nil && len(*s.ProfileId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileId", 36))
+	}
+	if s.MappingRules != nil {
+		for i, v := range s.MappingRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MappingRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateField sets the CertificateField field's value.
+func (s *PutAttributeMappingInput) SetCertificateField(v string) *PutAttributeMappingInput {
+	s.CertificateField = &v
+	return s
+}
+
+// SetMappingRules sets the MappingRules field's value.
+func (s *PutAttributeMappingInput) SetMappingRules(v []*MappingRule) *PutAttributeMappingInput {
+	s.MappingRules = v
+	return s
+}
+
+// SetProfileId sets the ProfileId field's value.
+func (s *PutAttributeMappingInput) SetProfileId(v string) *PutAttributeMappingInput {
+	s.ProfileId = &v
+	return s
+}
+
+type PutAttributeMappingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The state of the profile after a read or write operation.
+	//
+	// Profile is a required field
+	Profile *ProfileDetail `locationName:"profile" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAttributeMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAttributeMappingOutput) GoString() string {
+	return s.String()
+}
+
+// SetProfile sets the Profile field's value.
+func (s *PutAttributeMappingOutput) SetProfile(v *ProfileDetail) *PutAttributeMappingOutput {
+	s.Profile = v
 	return s
 }
 
@@ -6712,6 +7208,26 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// CertificateFieldX509subject is a CertificateField enum value
+	CertificateFieldX509subject = "x509Subject"
+
+	// CertificateFieldX509issuer is a CertificateField enum value
+	CertificateFieldX509issuer = "x509Issuer"
+
+	// CertificateFieldX509san is a CertificateField enum value
+	CertificateFieldX509san = "x509SAN"
+)
+
+// CertificateField_Values returns all elements of the CertificateField enum
+func CertificateField_Values() []string {
+	return []string{
+		CertificateFieldX509subject,
+		CertificateFieldX509issuer,
+		CertificateFieldX509san,
+	}
 }
 
 const (

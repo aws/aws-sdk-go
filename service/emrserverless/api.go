@@ -4205,6 +4205,10 @@ type MonitoringConfiguration struct {
 	// The managed log persistence configuration for a job run.
 	ManagedPersistenceMonitoringConfiguration *ManagedPersistenceMonitoringConfiguration `locationName:"managedPersistenceMonitoringConfiguration" type:"structure"`
 
+	// The monitoring configuration object you can configure to send metrics to
+	// Amazon Managed Service for Prometheus for a job run.
+	PrometheusMonitoringConfiguration *PrometheusMonitoringConfiguration `locationName:"prometheusMonitoringConfiguration" type:"structure"`
+
 	// The Amazon S3 configuration for monitoring log publishing.
 	S3MonitoringConfiguration *S3MonitoringConfiguration `locationName:"s3MonitoringConfiguration" type:"structure"`
 }
@@ -4240,6 +4244,11 @@ func (s *MonitoringConfiguration) Validate() error {
 			invalidParams.AddNested("ManagedPersistenceMonitoringConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PrometheusMonitoringConfiguration != nil {
+		if err := s.PrometheusMonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PrometheusMonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3MonitoringConfiguration != nil {
 		if err := s.S3MonitoringConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("S3MonitoringConfiguration", err.(request.ErrInvalidParams))
@@ -4261,6 +4270,12 @@ func (s *MonitoringConfiguration) SetCloudWatchLoggingConfiguration(v *CloudWatc
 // SetManagedPersistenceMonitoringConfiguration sets the ManagedPersistenceMonitoringConfiguration field's value.
 func (s *MonitoringConfiguration) SetManagedPersistenceMonitoringConfiguration(v *ManagedPersistenceMonitoringConfiguration) *MonitoringConfiguration {
 	s.ManagedPersistenceMonitoringConfiguration = v
+	return s
+}
+
+// SetPrometheusMonitoringConfiguration sets the PrometheusMonitoringConfiguration field's value.
+func (s *MonitoringConfiguration) SetPrometheusMonitoringConfiguration(v *PrometheusMonitoringConfiguration) *MonitoringConfiguration {
+	s.PrometheusMonitoringConfiguration = v
 	return s
 }
 
@@ -4308,6 +4323,53 @@ func (s *NetworkConfiguration) SetSecurityGroupIds(v []*string) *NetworkConfigur
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *NetworkConfiguration) SetSubnetIds(v []*string) *NetworkConfiguration {
 	s.SubnetIds = v
+	return s
+}
+
+// The monitoring configuration object you can configure to send metrics to
+// Amazon Managed Service for Prometheus for a job run.
+type PrometheusMonitoringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The remote write URL in the Amazon Managed Service for Prometheus workspace
+	// to send metrics to.
+	RemoteWriteUrl *string `locationName:"remoteWriteUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrometheusMonitoringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrometheusMonitoringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrometheusMonitoringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrometheusMonitoringConfiguration"}
+	if s.RemoteWriteUrl != nil && len(*s.RemoteWriteUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RemoteWriteUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRemoteWriteUrl sets the RemoteWriteUrl field's value.
+func (s *PrometheusMonitoringConfiguration) SetRemoteWriteUrl(v string) *PrometheusMonitoringConfiguration {
+	s.RemoteWriteUrl = &v
 	return s
 }
 
