@@ -72,6 +72,10 @@ type InternetMonitorAPI interface {
 	GetHealthEventWithContext(aws.Context, *internetmonitor.GetHealthEventInput, ...request.Option) (*internetmonitor.GetHealthEventOutput, error)
 	GetHealthEventRequest(*internetmonitor.GetHealthEventInput) (*request.Request, *internetmonitor.GetHealthEventOutput)
 
+	GetInternetEvent(*internetmonitor.GetInternetEventInput) (*internetmonitor.GetInternetEventOutput, error)
+	GetInternetEventWithContext(aws.Context, *internetmonitor.GetInternetEventInput, ...request.Option) (*internetmonitor.GetInternetEventOutput, error)
+	GetInternetEventRequest(*internetmonitor.GetInternetEventInput) (*request.Request, *internetmonitor.GetInternetEventOutput)
+
 	GetMonitor(*internetmonitor.GetMonitorInput) (*internetmonitor.GetMonitorOutput, error)
 	GetMonitorWithContext(aws.Context, *internetmonitor.GetMonitorInput, ...request.Option) (*internetmonitor.GetMonitorOutput, error)
 	GetMonitorRequest(*internetmonitor.GetMonitorInput) (*request.Request, *internetmonitor.GetMonitorOutput)
@@ -93,6 +97,13 @@ type InternetMonitorAPI interface {
 
 	ListHealthEventsPages(*internetmonitor.ListHealthEventsInput, func(*internetmonitor.ListHealthEventsOutput, bool) bool) error
 	ListHealthEventsPagesWithContext(aws.Context, *internetmonitor.ListHealthEventsInput, func(*internetmonitor.ListHealthEventsOutput, bool) bool, ...request.Option) error
+
+	ListInternetEvents(*internetmonitor.ListInternetEventsInput) (*internetmonitor.ListInternetEventsOutput, error)
+	ListInternetEventsWithContext(aws.Context, *internetmonitor.ListInternetEventsInput, ...request.Option) (*internetmonitor.ListInternetEventsOutput, error)
+	ListInternetEventsRequest(*internetmonitor.ListInternetEventsInput) (*request.Request, *internetmonitor.ListInternetEventsOutput)
+
+	ListInternetEventsPages(*internetmonitor.ListInternetEventsInput, func(*internetmonitor.ListInternetEventsOutput, bool) bool) error
+	ListInternetEventsPagesWithContext(aws.Context, *internetmonitor.ListInternetEventsInput, func(*internetmonitor.ListInternetEventsOutput, bool) bool, ...request.Option) error
 
 	ListMonitors(*internetmonitor.ListMonitorsInput) (*internetmonitor.ListMonitorsOutput, error)
 	ListMonitorsWithContext(aws.Context, *internetmonitor.ListMonitorsInput, ...request.Option) (*internetmonitor.ListMonitorsOutput, error)

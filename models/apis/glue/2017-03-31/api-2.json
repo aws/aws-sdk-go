@@ -8447,7 +8447,8 @@
         "IsMultiDialectView":{"shape":"Boolean"},
         "ResourceArn":{"shape":"ArnString"},
         "IsProtected":{"shape":"Boolean"},
-        "Permissions":{"shape":"PermissionList"}
+        "Permissions":{"shape":"PermissionList"},
+        "RowFilter":{"shape":"PredicateString"}
       }
     },
     "GetUserDefinedFunctionRequest":{

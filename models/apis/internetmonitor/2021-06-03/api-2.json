@@ -64,6 +64,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetInternetEvent":{
+      "name":"GetInternetEvent",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20210603/InternetEvents/{EventId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetInternetEventInput"},
+      "output":{"shape":"GetInternetEventOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetMonitor":{
       "name":"GetMonitor",
       "http":{
@@ -123,6 +139,22 @@
       },
       "input":{"shape":"ListHealthEventsInput"},
       "output":{"shape":"ListHealthEventsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListInternetEvents":{
+      "name":"ListInternetEvents",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20210603/InternetEvents",
+        "responseCode":200
+      },
+      "input":{"shape":"ListInternetEventsInput"},
+      "output":{"shape":"ListInternetEventsOutput"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
@@ -299,6 +331,27 @@
       "type":"boolean",
       "box":true
     },
+    "ClientLocation":{
+      "type":"structure",
+      "required":[
+        "ASName",
+        "ASNumber",
+        "Country",
+        "City",
+        "Latitude",
+        "Longitude"
+      ],
+      "members":{
+        "ASName":{"shape":"String"},
+        "ASNumber":{"shape":"Long"},
+        "Country":{"shape":"String"},
+        "Subdivision":{"shape":"String"},
+        "Metro":{"shape":"String"},
+        "City":{"shape":"String"},
+        "Latitude":{"shape":"Double"},
+        "Longitude":{"shape":"Double"}
+      }
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -421,6 +474,37 @@
         "PercentOfTotalTrafficImpacted":{"shape":"Double"},
         "ImpactType":{"shape":"HealthEventImpactType"},
         "HealthScoreThreshold":{"shape":"Percentage"}
+      }
+    },
+    "GetInternetEventInput":{
+      "type":"structure",
+      "required":["EventId"],
+      "members":{
+        "EventId":{
+          "shape":"InternetEventId",
+          "location":"uri",
+          "locationName":"EventId"
+        }
+      }
+    },
+    "GetInternetEventOutput":{
+      "type":"structure",
+      "required":[
+        "EventId",
+        "EventArn",
+        "StartedAt",
+        "ClientLocation",
+        "EventType",
+        "EventStatus"
+      ],
+      "members":{
+        "EventId":{"shape":"InternetEventId"},
+        "EventArn":{"shape":"Arn"},
+        "StartedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "EndedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "ClientLocation":{"shape":"ClientLocation"},
+        "EventType":{"shape":"InternetEventType"},
+        "EventStatus":{"shape":"InternetEventStatus"}
       }
     },
     "GetMonitorInput":{
@@ -642,6 +726,56 @@
       "fault":true,
       "retryable":{"throttling":false}
     },
+    "InternetEventId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
+    },
+    "InternetEventMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "InternetEventStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "RESOLVED"
+      ]
+    },
+    "InternetEventSummary":{
+      "type":"structure",
+      "required":[
+        "EventId",
+        "EventArn",
+        "StartedAt",
+        "ClientLocation",
+        "EventType",
+        "EventStatus"
+      ],
+      "members":{
+        "EventId":{"shape":"InternetEventId"},
+        "EventArn":{"shape":"Arn"},
+        "StartedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "EndedAt":{"shape":"SyntheticTimestamp_date_time"},
+        "ClientLocation":{"shape":"ClientLocation"},
+        "EventType":{"shape":"InternetEventType"},
+        "EventStatus":{"shape":"InternetEventStatus"}
+      }
+    },
+    "InternetEventType":{
+      "type":"string",
+      "enum":[
+        "AVAILABILITY",
+        "PERFORMANCE"
+      ]
+    },
+    "InternetEventsList":{
+      "type":"list",
+      "member":{"shape":"InternetEventSummary"}
+    },
     "InternetHealth":{
       "type":"structure",
       "members":{
@@ -716,6 +850,49 @@
       "required":["HealthEvents"],
       "members":{
         "HealthEvents":{"shape":"HealthEventList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListInternetEventsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"InternetEventMaxResults",
+          "location":"querystring",
+          "locationName":"InternetEventMaxResults"
+        },
+        "StartTime":{
+          "shape":"SyntheticTimestamp_date_time",
+          "location":"querystring",
+          "locationName":"StartTime"
+        },
+        "EndTime":{
+          "shape":"SyntheticTimestamp_date_time",
+          "location":"querystring",
+          "locationName":"EndTime"
+        },
+        "EventStatus":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"EventStatus"
+        },
+        "EventType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"EventType"
+        }
+      }
+    },
+    "ListInternetEventsOutput":{
+      "type":"structure",
+      "required":["InternetEvents"],
+      "members":{
+        "InternetEvents":{"shape":"InternetEventsList"},
         "NextToken":{"shape":"String"}
       }
     },
