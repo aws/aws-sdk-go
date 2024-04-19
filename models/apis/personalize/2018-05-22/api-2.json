@@ -1050,6 +1050,12 @@
         "bestRecipeArn":{"shape":"Arn"}
       }
     },
+    "AutoTrainingConfig":{
+      "type":"structure",
+      "members":{
+        "schedulingExpression":{"shape":"SchedulingExpression"}
+      }
+    },
     "AvroSchema":{
       "type":"string",
       "max":20000
@@ -1187,7 +1193,8 @@
       "type":"structure",
       "members":{
         "itemExplorationConfig":{"shape":"HyperParameters"},
-        "enableMetadataWithRecommendations":{"shape":"Boolean"}
+        "enableMetadataWithRecommendations":{"shape":"Boolean"},
+        "syncWithLatestSolutionVersion":{"shape":"Boolean"}
       }
     },
     "CampaignSummary":{
@@ -1540,6 +1547,7 @@
         "name":{"shape":"Name"},
         "performHPO":{"shape":"Boolean"},
         "performAutoML":{"shape":"PerformAutoML"},
+        "performAutoTraining":{"shape":"PerformAutoTraining"},
         "recipeArn":{"shape":"Arn"},
         "datasetGroupArn":{"shape":"Arn"},
         "eventType":{"shape":"EventType"},
@@ -2669,7 +2677,8 @@
     },
     "NextToken":{
       "type":"string",
-      "max":1500
+      "max":1500,
+      "pattern":"\\p{ASCII}{0,1500}"
     },
     "NumBatchResults":{"type":"integer"},
     "ObjectiveSensitivity":{
@@ -2697,6 +2706,10 @@
       "max":1000
     },
     "PerformAutoML":{"type":"boolean"},
+    "PerformAutoTraining":{
+      "type":"boolean",
+      "box":true
+    },
     "PerformHPO":{"type":"boolean"},
     "Recipe":{
       "type":"structure",
@@ -2834,6 +2847,12 @@
       "max":256,
       "pattern":"(s3|http|https)://.+"
     },
+    "SchedulingExpression":{
+      "type":"string",
+      "max":16,
+      "min":1,
+      "pattern":"rate\\(\\d+ days?\\)"
+    },
     "Schemas":{
       "type":"list",
       "member":{"shape":"DatasetSchemaSummary"},
@@ -2846,6 +2865,7 @@
         "solutionArn":{"shape":"Arn"},
         "performHPO":{"shape":"PerformHPO"},
         "performAutoML":{"shape":"PerformAutoML"},
+        "performAutoTraining":{"shape":"PerformAutoTraining"},
         "recipeArn":{"shape":"Arn"},
         "datasetGroupArn":{"shape":"Arn"},
         "eventType":{"shape":"EventType"},
@@ -2866,7 +2886,8 @@
         "featureTransformationParameters":{"shape":"FeatureTransformationParameters"},
         "autoMLConfig":{"shape":"AutoMLConfig"},
         "optimizationObjective":{"shape":"OptimizationObjective"},
-        "trainingDataConfig":{"shape":"TrainingDataConfig"}
+        "trainingDataConfig":{"shape":"TrainingDataConfig"},
+        "autoTrainingConfig":{"shape":"AutoTrainingConfig"}
       }
     },
     "SolutionSummary":{
@@ -2898,7 +2919,8 @@
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "trainingType":{"shape":"TrainingType"}
       }
     },
     "SolutionVersionSummary":{
@@ -2906,6 +2928,8 @@
       "members":{
         "solutionVersionArn":{"shape":"Arn"},
         "status":{"shape":"Status"},
+        "trainingMode":{"shape":"TrainingMode"},
+        "trainingType":{"shape":"TrainingType"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
         "failureReason":{"shape":"FailureReason"}
@@ -3052,7 +3076,15 @@
       "type":"string",
       "enum":[
         "FULL",
-        "UPDATE"
+        "UPDATE",
+        "AUTOTRAIN"
+      ]
+    },
+    "TrainingType":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "MANUAL"
       ]
     },
     "TransactionsPerSecond":{

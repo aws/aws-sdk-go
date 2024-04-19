@@ -51569,6 +51569,11 @@ type GetUnfilteredTableMetadataOutput struct {
 	// The resource ARN of the parent resource extracted from the request.
 	ResourceArn *string `min:"20" type:"string"`
 
+	// The filter that applies to the table. For example when applying the filter
+	// in SQL, it would go in the WHERE clause and can be evaluated by using an
+	// AND operator with any other predicates applied by the user querying the table.
+	RowFilter *string `type:"string"`
+
 	// A Table object containing the table metadata.
 	Table *TableData `type:"structure"`
 }
@@ -51636,6 +51641,12 @@ func (s *GetUnfilteredTableMetadataOutput) SetQueryAuthorizationId(v string) *Ge
 // SetResourceArn sets the ResourceArn field's value.
 func (s *GetUnfilteredTableMetadataOutput) SetResourceArn(v string) *GetUnfilteredTableMetadataOutput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetRowFilter sets the RowFilter field's value.
+func (s *GetUnfilteredTableMetadataOutput) SetRowFilter(v string) *GetUnfilteredTableMetadataOutput {
+	s.RowFilter = &v
 	return s
 }
 

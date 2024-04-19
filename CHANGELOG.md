@@ -1,3 +1,12 @@
+Release v1.51.25 (2024-04-19)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Adding RowFilter in the response for GetUnfilteredTableMetadata API
+* `service/internetmonitor`: Updates service API, documentation, and paginators
+* `service/personalize`: Updates service API and documentation
+
 Release v1.51.24 (2024-04-18)
 ===
 

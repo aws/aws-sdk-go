@@ -4,11 +4,13 @@
   "operations": {
     "CreateMonitor": "<p>Creates a monitor in Amazon CloudWatch Internet Monitor. A monitor is built based on information from the application resources that you add: VPCs, Network Load Balancers (NLBs), Amazon CloudFront distributions, and Amazon WorkSpaces directories. Internet Monitor then publishes internet measurements from Amazon Web Services that are specific to the <i>city-networks</i>. That is, the locations and ASNs (typically internet service providers or ISPs), where clients access your application. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-InternetMonitor.html\">Using Amazon CloudWatch Internet Monitor</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>When you create a monitor, you choose the percentage of traffic that you want to monitor. You can also set a maximum limit for the number of city-networks where client traffic is monitored, that caps the total traffic that Internet Monitor monitors. A city-network maximum is the limit of city-networks, but you only pay for the number of city-networks that are actually monitored. You can update your monitor at any time to change the percentage of traffic to monitor or the city-networks maximum. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/IMCityNetworksMaximum.html\">Choosing a city-network maximum value</a> in the <i>Amazon CloudWatch User Guide</i>.</p>",
     "DeleteMonitor": "<p>Deletes a monitor in Amazon CloudWatch Internet Monitor. </p>",
-    "GetHealthEvent": "<p>Gets information the Amazon CloudWatch Internet Monitor has created and stored about a health event for a specified monitor. This information includes the impacted locations, and all the information related to the event, by location.</p> <p>The information returned includes the impact on performance, availability, and round-trip time, information about the network providers (ASNs), the event type, and so on.</p> <p>Information rolled up at the global traffic level is also returned, including the impact type and total traffic impact.</p>",
+    "GetHealthEvent": "<p>Gets information that Amazon CloudWatch Internet Monitor has created and stored about a health event for a specified monitor. This information includes the impacted locations, and all the information related to the event, by location.</p> <p>The information returned includes the impact on performance, availability, and round-trip time, information about the network providers (ASNs), the event type, and so on.</p> <p>Information rolled up at the global traffic level is also returned, including the impact type and total traffic impact.</p>",
+    "GetInternetEvent": "<p>Gets information that Amazon CloudWatch Internet Monitor has generated about an internet event. Internet Monitor displays information about recent global health events, called internet events, on a global outages map that is available to all Amazon Web Services customers. </p> <p>The information returned here includes the impacted location, when the event started and (if the event is over) ended, the type of event (<code>PERFORMANCE</code> or <code>AVAILABILITY</code>), and the status (<code>ACTIVE</code> or <code>RESOLVED</code>).</p>",
     "GetMonitor": "<p>Gets information about a monitor in Amazon CloudWatch Internet Monitor based on a monitor name. The information returned includes the Amazon Resource Name (ARN), create time, modified time, resources included in the monitor, and status information.</p>",
     "GetQueryResults": "<p>Return the data for a query with the Amazon CloudWatch Internet Monitor query interface. Specify the query that you want to return results for by providing a <code>QueryId</code> and a monitor name.</p> <p>For more information about using the query interface, including examples, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html\">Using the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>",
     "GetQueryStatus": "<p>Returns the current status of a query for the Amazon CloudWatch Internet Monitor query interface, for a specified query ID and monitor. When you run a query, check the status to make sure that the query has <code>SUCCEEDED</code> before you review the results.</p> <ul> <li> <p> <code>QUEUED</code>: The query is scheduled to run.</p> </li> <li> <p> <code>RUNNING</code>: The query is in progress but not complete.</p> </li> <li> <p> <code>SUCCEEDED</code>: The query completed sucessfully.</p> </li> <li> <p> <code>FAILED</code>: The query failed due to an error.</p> </li> <li> <p> <code>CANCELED</code>: The query was canceled.</p> </li> </ul>",
-    "ListHealthEvents": "<p>Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns information for health events including the event start and end time and the status.</p> <note> <p>Health events that have start times during the time frame that is requested are not included in the list of health events.</p> </note>",
+    "ListHealthEvents": "<p>Lists all health events for a monitor in Amazon CloudWatch Internet Monitor. Returns information for health events including the event start and end times, and the status.</p> <note> <p>Health events that have start times during the time frame that is requested are not included in the list of health events.</p> </note>",
+    "ListInternetEvents": "<p>Lists internet events that cause performance or availability issues for client locations. Amazon CloudWatch Internet Monitor displays information about recent global health events, called internet events, on a global outages map that is available to all Amazon Web Services customers. </p> <p>You can constrain the list of internet events returned by providing a start time and end time to define a total time frame for events you want to list. Both start time and end time specify the time when an event started. End time is optional. If you don't include it, the default end time is the current time.</p> <p>You can also limit the events returned to a specific status (<code>ACTIVE</code> or <code>RESOLVED</code>) or type (<code>PERFORMANCE</code> or <code>AVAILABILITY</code>).</p>",
     "ListMonitors": "<p>Lists all of your monitors for Amazon CloudWatch Internet Monitor and their statuses, along with the Amazon Resource Name (ARN) and name of each monitor.</p>",
     "ListTagsForResource": "<p>Lists the tags for a resource. Tags are supported only for monitors in Amazon CloudWatch Internet Monitor.</p>",
     "StartQuery": "<p>Start a query to return data for a specific query type for the Amazon CloudWatch Internet Monitor query interface. Specify a time period for the data that you want returned by using <code>StartTime</code> and <code>EndTime</code>. You filter the query results to return by providing parameters that you specify with <code>FilterParameters</code>.</p> <p>For more information about using the query interface, including examples, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-view-cw-tools-cwim-query.html\">Using the Amazon CloudWatch Internet Monitor query interface</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>",
@@ -26,17 +28,19 @@
     "AccountId": {
       "base": null,
       "refs": {
-        "GetHealthEventInput$LinkedAccountId": "<p>TBD </p>",
-        "GetMonitorInput$LinkedAccountId": "<p>TBD </p>",
-        "ListHealthEventsInput$LinkedAccountId": "<p>TBD </p>",
-        "StartQueryInput$LinkedAccountId": "<p>TBD </p>"
+        "GetHealthEventInput$LinkedAccountId": "<p>The account ID for an account that you've set up cross-account sharing for in Amazon CloudWatch Internet Monitor. You configure cross-account sharing by using Amazon CloudWatch Observability Access Manager. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwim-cross-account.html\">Internet Monitor cross-account observability</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>",
+        "GetMonitorInput$LinkedAccountId": "<p>The account ID for an account that you've set up cross-account sharing for in Amazon CloudWatch Internet Monitor. You configure cross-account sharing by using Amazon CloudWatch Observability Access Manager. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwim-cross-account.html\">Internet Monitor cross-account observability</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>",
+        "ListHealthEventsInput$LinkedAccountId": "<p>The account ID for an account that you've set up cross-account sharing for in Amazon CloudWatch Internet Monitor. You configure cross-account sharing by using Amazon CloudWatch Observability Access Manager. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwim-cross-account.html\">Internet Monitor cross-account observability</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>",
+        "StartQueryInput$LinkedAccountId": "<p>The account ID for an account that you've set up cross-account sharing for in Amazon CloudWatch Internet Monitor. You configure cross-account sharing by using Amazon CloudWatch Observability Access Manager. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwim-cross-account.html\">Internet Monitor cross-account observability</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>"
       }
     },
     "Arn": {
       "base": null,
       "refs": {
         "GetHealthEventOutput$EventArn": "<p>The Amazon Resource Name (ARN) of the event.</p>",
+        "GetInternetEventOutput$EventArn": "<p>The Amazon Resource Name (ARN) of the internet event.</p>",
         "HealthEvent$EventArn": "<p>The Amazon Resource Name (ARN) of the event.</p>",
+        "InternetEventSummary$EventArn": "<p>The Amazon Resource Name (ARN) of the internet event.</p>",
         "SetOfARNs$member": null
       }
     },
@@ -54,7 +58,14 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ListMonitorsInput$IncludeLinkedAccounts": "<p>TBD </p>"
+        "ListMonitorsInput$IncludeLinkedAccounts": "<p>A boolean option that you can set to <code>TRUE</code> to include monitors for linked accounts in a list of monitors, when you've set up cross-account sharing in Amazon CloudWatch Internet Monitor. You configure cross-account sharing by using Amazon CloudWatch Observability Access Manager. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwim-cross-account.html\">Internet Monitor cross-account observability</a> in the Amazon CloudWatch Internet Monitor User Guide.</p>"
+      }
+    },
+    "ClientLocation": {
+      "base": "<p>The impacted location, such as a city, that Amazon Web Services clients access application resources from.</p>",
+      "refs": {
+        "GetInternetEventOutput$ClientLocation": "<p>The impacted location, such as a city, where clients access Amazon Web Services application resources.</p>",
+        "InternetEventSummary$ClientLocation": "<p>The impacted location, such as a city, that Amazon Web Services clients access application resources from.</p>"
       }
     },
     "ConflictException": {
@@ -88,6 +99,8 @@
         "AvailabilityMeasurement$ExperienceScore": "<p>Experience scores, or health scores are calculated for different geographic and network provider combinations (that is, different granularities) and also summed into global scores. If you view performance or availability scores without filtering for any specific geography or service provider, Amazon CloudWatch Internet Monitor provides global health scores.</p> <p>The Amazon CloudWatch Internet Monitor chapter in the <i>CloudWatch User Guide</i> includes detailed information about how Internet Monitor calculates health scores, including performance and availability scores, and when it creates and resolves health events. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html#IMExperienceScores\">How Amazon Web Services calculates performance and availability scores</a> in the Amazon CloudWatch Internet Monitor section of the <i>CloudWatch User Guide</i>.</p>",
         "AvailabilityMeasurement$PercentOfTotalTrafficImpacted": "<p>The impact on total traffic that a health event has, in increased latency or reduced availability. This is the percentage of how much latency has increased or availability has decreased during the event, compared to what is typical for traffic from this client location to the Amazon Web Services location using this client network.</p> <p>For information about how Internet Monitor calculates impact, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html\">How Internet Monitor works</a> in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch User Guide.</p>",
         "AvailabilityMeasurement$PercentOfClientLocationImpacted": "<p>The percentage of impact caused by a health event for client location traffic globally.</p> <p>For information about how Internet Monitor calculates impact, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-IM-inside-internet-monitor.html\">Inside Internet Monitor</a> in the Amazon CloudWatch Internet Monitor section of the Amazon CloudWatch User Guide.</p>",
+        "ClientLocation$Latitude": "<p>The latitude where the internet event is located.</p>",
+        "ClientLocation$Longitude": "<p>The longitude where the internet event is located.</p>",
         "GetHealthEventOutput$PercentOfTotalTrafficImpacted": "<p>The impact on total traffic that a health event has, in increased latency or reduced availability. This is the percentage of how much latency has increased or availability has decreased during the event, compared to what is typical for traffic from this client location to the Amazon Web Services location using this client network.</p>",
         "HealthEvent$PercentOfTotalTrafficImpacted": "<p>The impact on total traffic that a health event has, in increased latency or reduced availability. This is the percentage of how much latency has increased or availability has decreased during the event, compared to what is typical for traffic from this client location to the Amazon Web Services location using this client network.</p>",
         "ImpactedLocation$Latitude": "<p>The latitude where the health event is located.</p>",
@@ -124,6 +137,16 @@
       }
     },
     "GetHealthEventOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInternetEventInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInternetEventOutput": {
       "base": null,
       "refs": {
       }
@@ -189,7 +212,7 @@
       "base": null,
       "refs": {
         "GetHealthEventOutput$Status": "<p>The status of a health event.</p>",
-        "HealthEvent$Status": "<p>Health event list member.</p>",
+        "HealthEvent$Status": "<p>The status of a health event.</p>",
         "ImpactedLocation$Status": "<p>The status of the health event at an impacted location.</p>",
         "ListHealthEventsInput$EventStatus": "<p>The status of a health event.</p>"
       }
@@ -225,6 +248,46 @@
       "refs": {
       }
     },
+    "InternetEventId": {
+      "base": null,
+      "refs": {
+        "GetInternetEventInput$EventId": "<p>The <code>EventId</code> of the internet event to return information for. </p>",
+        "GetInternetEventOutput$EventId": "<p>The internally-generated identifier of an internet event.</p>",
+        "InternetEventSummary$EventId": "<p>The internally-generated identifier of an internet event.</p>"
+      }
+    },
+    "InternetEventMaxResults": {
+      "base": null,
+      "refs": {
+        "ListInternetEventsInput$MaxResults": "<p>The number of query results that you want to return with this call.</p>"
+      }
+    },
+    "InternetEventStatus": {
+      "base": null,
+      "refs": {
+        "GetInternetEventOutput$EventStatus": "<p>The status of the internet event.</p>",
+        "InternetEventSummary$EventStatus": "<p>The status of an internet event.</p>"
+      }
+    },
+    "InternetEventSummary": {
+      "base": "<p>A summary of information about an internet event in Amazon CloudWatch Internet Monitor. Internet events are issues that cause performance degradation or availability problems for impacted Amazon Web Services client locations. Internet Monitor displays information about recent global health events, called internet events, on a global outages map that is available to all Amazon Web Services customers. </p>",
+      "refs": {
+        "InternetEventsList$member": null
+      }
+    },
+    "InternetEventType": {
+      "base": null,
+      "refs": {
+        "GetInternetEventOutput$EventType": "<p>The type of network impairment.</p>",
+        "InternetEventSummary$EventType": "<p>The type of network impairment.</p>"
+      }
+    },
+    "InternetEventsList": {
+      "base": null,
+      "refs": {
+        "ListInternetEventsOutput$InternetEvents": "<p>A set of internet events returned for the list operation.</p>"
+      }
+    },
     "InternetHealth": {
       "base": "<p>Internet health includes measurements calculated by Amazon CloudWatch Internet Monitor about the performance and availability for your application on the internet. Amazon Web Services has substantial historical data about internet performance and availability between Amazon Web Services services and different network providers and geographies. By applying statistical analysis to the data, Internet Monitor can detect when the performance and availability for your application has dropped, compared to an estimated baseline that's already calculated. To make it easier to see those drops, Internet Monitor reports the information to you in the form of health scores: a performance score and an availability score.</p>",
       "refs": {
@@ -256,6 +319,16 @@
       }
     },
     "ListHealthEventsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInternetEventsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInternetEventsOutput": {
       "base": null,
       "refs": {
       }
@@ -302,6 +375,7 @@
     "Long": {
       "base": null,
       "refs": {
+        "ClientLocation$ASNumber": "<p>The Autonomous System Number (ASN) of the network at an impacted location.</p>",
         "ImpactedLocation$ASNumber": "<p>The Autonomous System Number (ASN) of the network at an impacted location.</p>",
         "Network$ASNumber": "<p>The Autonomous System Number (ASN) of the internet provider or network.</p>"
       }
@@ -363,7 +437,7 @@
       }
     },
     "Network": {
-      "base": "<p>An internet service provider (ISP) or network in Amazon CloudWatch Internet Monitor.</p>",
+      "base": "<p>An internet service provider (ISP) or network (ASN) in Amazon CloudWatch Internet Monitor.</p>",
       "refs": {
         "NetworkList$member": null
       }
@@ -525,6 +599,11 @@
       "refs": {
         "AccessDeniedException$message": null,
         "BadRequestException$message": null,
+        "ClientLocation$ASName": "<p>The name of the internet service provider (ISP) or network (ASN).</p>",
+        "ClientLocation$Country": "<p>The name of the country where the internet event is located.</p>",
+        "ClientLocation$Subdivision": "<p>The subdivision location where the health event is located. The subdivision usually maps to states in most countries (including the United States). For United Kingdom, it maps to a country (England, Scotland, Wales) or province (Northern Ireland).</p>",
+        "ClientLocation$Metro": "<p>The metro area where the health event is located.</p> <p>Metro indicates a metropolitan region in the United States, such as the region around New York City. In non-US countries, this is a second-level subdivision. For example, in the United Kingdom, it could be a county, a London borough, a unitary authority, council area, and so on.</p>",
+        "ClientLocation$City": "<p>The name of the city where the internet event is located.</p>",
         "ConflictException$message": null,
         "CreateMonitorInput$ClientToken": "<p>A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. Don't reuse the same client token for other API requests.</p>",
         "FilterList$member": null,
@@ -534,7 +613,7 @@
         "GetQueryResultsInput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "GetQueryResultsOutput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "GetQueryStatusInput$QueryId": "<p>The ID of the query that you want to return the status for. A <code>QueryId</code> is an internally-generated dentifier for a specific query.</p>",
-        "ImpactedLocation$ASName": "<p>The name of the network at an impacted location.</p>",
+        "ImpactedLocation$ASName": "<p>The name of the internet service provider (ISP) or network (ASN).</p>",
         "ImpactedLocation$Country": "<p>The name of the country where the health event is located.</p>",
         "ImpactedLocation$Subdivision": "<p>The subdivision location where the health event is located. The subdivision usually maps to states in most countries (including the United States). For United Kingdom, it maps to a country (England, Scotland, Wales) or province (Northern Ireland).</p>",
         "ImpactedLocation$Metro": "<p>The metro area where the health event is located.</p> <p>Metro indicates a metropolitan region in the United States, such as the region around New York City. In non-US countries, this is a second-level subdivision. For example, in the United Kingdom, it could be a county, a London borough, a unitary authority, council area, and so on.</p>",
@@ -548,10 +627,14 @@
         "LimitExceededException$message": null,
         "ListHealthEventsInput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListHealthEventsOutput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
+        "ListInternetEventsInput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
+        "ListInternetEventsInput$EventStatus": "<p>The status of an internet event.</p>",
+        "ListInternetEventsInput$EventType": "<p>The type of network impairment.</p>",
+        "ListInternetEventsOutput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListMonitorsInput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListMonitorsInput$MonitorStatus": "<p>The status of a monitor. This includes the status of the data processing for the monitor and the status of the monitor itself.</p> <p>For information about the statuses for a monitor, see <a href=\"https://docs.aws.amazon.com/internet-monitor/latest/api/API_Monitor.html\"> Monitor</a>.</p>",
         "ListMonitorsOutput$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
-        "Network$ASName": "<p>The internet provider name or network name.</p>",
+        "Network$ASName": "<p>The name of the internet service provider (ISP) or network (ASN).</p>",
         "NotFoundException$message": null,
         "QueryField$Name": "<p>The name of a field to query your application's Amazon CloudWatch Internet Monitor data for, such as <code>availability_score</code>.</p>",
         "QueryField$Type": "<p>The data type for a query field, which must correspond to the field you're defining for <code>QueryField</code>. For example, if the query field name is <code>availability_score</code>, the data type is <code>float</code>.</p>",
@@ -573,14 +656,20 @@
         "GetHealthEventOutput$EndedAt": "<p>The time when a health event was resolved. If the health event is still active, the end time is not set.</p>",
         "GetHealthEventOutput$CreatedAt": "<p>The time when a health event was created.</p>",
         "GetHealthEventOutput$LastUpdatedAt": "<p>The time when a health event was last updated or recalculated.</p>",
+        "GetInternetEventOutput$StartedAt": "<p>The time when the internet event started.</p>",
+        "GetInternetEventOutput$EndedAt": "<p>The time when the internet event ended. If the event hasn't ended yet, this value is empty.</p>",
         "GetMonitorOutput$CreatedAt": "<p>The time when the monitor was created.</p>",
         "GetMonitorOutput$ModifiedAt": "<p>The last time that the monitor was modified.</p>",
         "HealthEvent$StartedAt": "<p>When a health event started.</p>",
         "HealthEvent$EndedAt": "<p>The time when a health event ended. If the health event is still active, then the end time is not set.</p>",
         "HealthEvent$CreatedAt": "<p>When the health event was created.</p>",
         "HealthEvent$LastUpdatedAt": "<p>When the health event was last updated.</p>",
+        "InternetEventSummary$StartedAt": "<p>The time when an internet event started.</p>",
+        "InternetEventSummary$EndedAt": "<p>The time when an internet event ended. If the event hasn't ended yet, this value is empty.</p>",
         "ListHealthEventsInput$StartTime": "<p>The time when a health event started.</p>",
         "ListHealthEventsInput$EndTime": "<p>The time when a health event ended. If the health event is still ongoing, then the end time is not set.</p>",
+        "ListInternetEventsInput$StartTime": "<p>The start time of the time window that you want to get a list of internet events for.</p>",
+        "ListInternetEventsInput$EndTime": "<p>The end time of the time window that you want to get a list of internet events for.</p>",
         "StartQueryInput$StartTime": "<p>The timestamp that is the beginning of the period that you want to retrieve data for with your query.</p>",
         "StartQueryInput$EndTime": "<p>The timestamp that is the end of the period that you want to retrieve data for with your query.</p>"
       }
@@ -644,7 +733,7 @@
     "TriangulationEventType": {
       "base": null,
       "refs": {
-        "NetworkImpairment$NetworkEventType": "<p>Type of network impairment.</p>"
+        "NetworkImpairment$NetworkEventType": "<p>The type of network impairment.</p>"
       }
     },
     "UntagResourceInput": {

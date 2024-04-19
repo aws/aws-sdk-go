@@ -267,6 +267,10 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 
 // CreateCampaign API operation for Amazon Personalize.
 //
+// You incur campaign costs while it is active. To avoid unnecessary costs,
+// make sure to delete the campaign when you are finished. For information about
+// campaign costs, see Amazon Personalize pricing (https://aws.amazon.com/personalize/pricing/).
+//
 // Creates a campaign that deploys a solution version. When a client calls the
 // GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // and GetPersonalizedRanking (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html)
@@ -1487,24 +1491,41 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 
 // CreateSolution API operation for Amazon Personalize.
 //
-// Creates the configuration for training a model. A trained model is known
-// as a solution version. After the configuration is created, you train the
-// model (create a solution version) by calling the CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
-// operation. Every time you call CreateSolutionVersion, a new version of the
-// solution is created.
+// After you create a solution, you can’t change its configuration. By default,
+// all new solutions use automatic training. With automatic training, you incur
+// training costs while your solution is active. You can't stop automatic training
+// for a solution. To avoid unnecessary costs, make sure to delete the solution
+// when you are finished. For information about training costs, see Amazon Personalize
+// pricing (https://aws.amazon.com/personalize/pricing/).
 //
-// After creating a solution version, you check its accuracy by calling GetSolutionMetrics
+// Creates the configuration for training a model (creating a solution version).
+// This configuration includes the recipe to use for model training and optional
+// training configuration, such as columns to use in training and feature transformation
+// parameters. For more information about configuring a solution, see Creating
+// and configuring a solution (https://docs.aws.amazon.com/personalize/latest/dg/customizing-solution-config.html).
+//
+// By default, new solutions use automatic training to create solution versions
+// every 7 days. You can change the training frequency. Automatic solution version
+// creation starts one hour after the solution is ACTIVE. If you manually create
+// a solution version within the hour, the solution skips the first automatic
+// training. For more information, see Configuring automatic training (https://docs.aws.amazon.com/personalize/latest/dg/solution-config-auto-training.html).
+//
+// To turn off automatic training, set performAutoTraining to false. If you
+// turn off automatic training, you must manually create a solution version
+// by calling the CreateSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html)
+// operation.
+//
+// After training starts, you can get the solution version's Amazon Resource
+// Name (ARN) with the ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
+// API operation. To get its status, use the DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html).
+//
+// After training completes you can evaluate model accuracy by calling GetSolutionMetrics
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html).
-// When you are satisfied with the version, you deploy it using CreateCampaign
+// When you are satisfied with the solution version, you deploy it using CreateCampaign
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html).
 // The campaign provides recommendations to a client through the GetRecommendations
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // API.
-//
-// To train a model, Amazon Personalize requires training data and a recipe.
-// The training data comes from the dataset group that you provide in the request.
-// A recipe specifies the training algorithm and a feature transformation. You
-// can specify one of the predefined recipes provided by Amazon Personalize.
 //
 // Amazon Personalize doesn't support configuring the hpoObjective for solution
 // hyperparameter optimization at this time.
@@ -1518,7 +1539,7 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 //   - DELETE PENDING > DELETE IN_PROGRESS
 //
 // To get the status of the solution, call DescribeSolution (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html).
-// Wait until the status shows as ACTIVE before calling CreateSolutionVersion.
+// If you use manual training, the status must be ACTIVE before you call CreateSolutionVersion.
 //
 // Related APIs
 //
@@ -6208,10 +6229,10 @@ func (c *Personalize) ListSolutionsRequest(input *ListSolutionsInput) (req *requ
 
 // ListSolutions API operation for Amazon Personalize.
 //
-// Returns a list of solutions that use the given dataset group. When a dataset
-// group is not specified, all the solutions associated with the account are
-// listed. The response provides the properties for each solution, including
-// the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution
+// Returns a list of solutions in a given dataset group. When a dataset group
+// is not specified, all the solutions associated with the account are listed.
+// The response provides the properties for each solution, including the Amazon
+// Resource Name (ARN). For more information on solutions, see CreateSolution
 // (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6794,8 +6815,8 @@ func (c *Personalize) UntagResourceRequest(input *UntagResourceInput) (req *requ
 
 // UntagResource API operation for Amazon Personalize.
 //
-// Remove tags (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html)
-// that are attached to a resource.
+// Removes the specified tags that are attached to a resource. For more information,
+// see Removing tags from Amazon Personalize resources (https://docs.aws.amazon.com/personalize/latest/dg/tags-remove.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6886,7 +6907,16 @@ func (c *Personalize) UpdateCampaignRequest(input *UpdateCampaignInput) (req *re
 //
 // Updates a campaign to deploy a retrained solution version with an existing
 // campaign, change your campaign's minProvisionedTPS, or modify your campaign's
-// configuration, such as the exploration configuration.
+// configuration. For example, you can set enableMetadataWithRecommendations
+// to true for an existing campaign.
+//
+// To update a campaign to start automatically using the latest solution version,
+// specify the following:
+//
+//   - For the SolutionVersionArn parameter, specify the Amazon Resource Name
+//     (ARN) of your solution in SolutionArn/$LATEST format.
+//
+//   - In the campaignConfig, set syncWithLatestSolutionVersion to true.
 //
 // To update a campaign, the campaign status must be ACTIVE or CREATE FAILED.
 // Check the campaign status using the DescribeCampaign (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html)
@@ -7440,6 +7470,58 @@ func (s AutoMLResult) GoString() string {
 // SetBestRecipeArn sets the BestRecipeArn field's value.
 func (s *AutoMLResult) SetBestRecipeArn(v string) *AutoMLResult {
 	s.BestRecipeArn = &v
+	return s
+}
+
+// The automatic training configuration to use when performAutoTraining is true.
+type AutoTrainingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how often to automatically train new solution versions. Specify
+	// a rate expression in rate(value unit) format. For value, specify a number
+	// between 1 and 30. For unit, specify day or days. For example, to automatically
+	// create a new solution version every 5 days, specify rate(5 days). The default
+	// is every 7 days.
+	//
+	// For more information about auto training, see Creating and configuring a
+	// solution (https://docs.aws.amazon.com/personalize/latest/dg/customizing-solution-config.html).
+	SchedulingExpression *string `locationName:"schedulingExpression" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoTrainingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoTrainingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoTrainingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoTrainingConfig"}
+	if s.SchedulingExpression != nil && len(*s.SchedulingExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchedulingExpression", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSchedulingExpression sets the SchedulingExpression field's value.
+func (s *AutoTrainingConfig) SetSchedulingExpression(v string) *AutoTrainingConfig {
+	s.SchedulingExpression = &v
 	return s
 }
 
@@ -8242,7 +8324,7 @@ type Campaign struct {
 	// The name of the campaign.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of a specific version of the solution.
+	// The Amazon Resource Name (ARN) of the solution version the campaign uses.
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 
 	// The status of the campaign.
@@ -8354,6 +8436,16 @@ type CampaignConfig struct {
 	// (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
 	// recipe.
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+
+	// Whether the campaign automatically updates to use the latest solution version
+	// (trained model) of a solution. If you specify True, you must specify the
+	// ARN of your solution for the SolutionVersionArn parameter. It must be in
+	// SolutionArn/$LATEST format. The default is False and you must manually update
+	// the campaign to deploy the latest solution version.
+	//
+	// For more information about automatic campaign updates, see Enabling automatic
+	// campaign updates (https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-automatic-latest-sv-update).
+	SyncWithLatestSolutionVersion *bool `locationName:"syncWithLatestSolutionVersion" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -8383,6 +8475,12 @@ func (s *CampaignConfig) SetEnableMetadataWithRecommendations(v bool) *CampaignC
 // SetItemExplorationConfig sets the ItemExplorationConfig field's value.
 func (s *CampaignConfig) SetItemExplorationConfig(v map[string]*string) *CampaignConfig {
 	s.ItemExplorationConfig = v
+	return s
+}
+
+// SetSyncWithLatestSolutionVersion sets the SyncWithLatestSolutionVersion field's value.
+func (s *CampaignConfig) SetSyncWithLatestSolutionVersion(v bool) *CampaignConfig {
+	s.SyncWithLatestSolutionVersion = &v
 	return s
 }
 
@@ -9107,7 +9205,16 @@ type CreateCampaignInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the solution version to deploy.
+	// The Amazon Resource Name (ARN) of the trained model to deploy with the campaign.
+	// To specify the latest solution version of your solution, specify the ARN
+	// of your solution in SolutionArn/$LATEST format. You must use this format
+	// if you set syncWithLatestSolutionVersion to True in the CampaignConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_CampaignConfig.html).
+	//
+	// To deploy a model that isn't the latest solution version of your solution,
+	// specify the ARN of the solution version.
+	//
+	// For more information about automatic campaign updates, see Enabling automatic
+	// campaign updates (https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-automatic-latest-sv-update).
 	//
 	// SolutionVersionArn is a required field
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
@@ -10549,6 +10656,22 @@ type CreateSolutionInput struct {
 	// the training process as compared to selecting a specific recipe.
 	PerformAutoML *bool `locationName:"performAutoML" type:"boolean"`
 
+	// Whether the solution uses automatic training to create new solution versions
+	// (trained models). The default is True and the solution automatically creates
+	// new solution versions every 7 days. You can change the training frequency
+	// by specifying a schedulingExpression in the AutoTrainingConfig as part of
+	// solution configuration. For more information about automatic training, see
+	// Configuring automatic training (https://docs.aws.amazon.com/personalize/latest/dg/solution-config-auto-training.html).
+	//
+	// Automatic solution version creation starts one hour after the solution is
+	// ACTIVE. If you manually create a solution version within the hour, the solution
+	// skips the first automatic training.
+	//
+	// After training starts, you can get the solution version's Amazon Resource
+	// Name (ARN) with the ListSolutionVersions (https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html)
+	// API operation. To get its status, use the DescribeSolutionVersion (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html).
+	PerformAutoTraining *bool `locationName:"performAutoTraining" type:"boolean"`
+
 	// Whether to perform hyperparameter optimization (HPO) on the specified or
 	// selected recipe. The default is false.
 	//
@@ -10646,6 +10769,12 @@ func (s *CreateSolutionInput) SetName(v string) *CreateSolutionInput {
 // SetPerformAutoML sets the PerformAutoML field's value.
 func (s *CreateSolutionInput) SetPerformAutoML(v bool) *CreateSolutionInput {
 	s.PerformAutoML = &v
+	return s
+}
+
+// SetPerformAutoTraining sets the PerformAutoTraining field's value.
+func (s *CreateSolutionInput) SetPerformAutoTraining(v bool) *CreateSolutionInput {
+	s.PerformAutoTraining = &v
 	return s
 }
 
@@ -16935,7 +17064,7 @@ func (s *ListSolutionsOutput) SetSolutions(v []*SolutionSummary) *ListSolutionsO
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource's Amazon Resource Name.
+	// The resource's Amazon Resource Name (ARN).
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
@@ -18237,8 +18366,20 @@ func (s *S3DataConfig) SetPath(v string) *S3DataConfig {
 	return s
 }
 
-// An object that provides information about a solution. A solution is a trained
-// model that can be deployed as a campaign.
+// After you create a solution, you can’t change its configuration. By default,
+// all new solutions use automatic training. With automatic training, you incur
+// training costs while your solution is active. You can't stop automatic training
+// for a solution. To avoid unnecessary costs, make sure to delete the solution
+// when you are finished. For information about training costs, see Amazon Personalize
+// pricing (https://aws.amazon.com/personalize/pricing/).
+//
+// An object that provides information about a solution. A solution includes
+// the custom recipe, customized parameters, and trained models (Solution Versions)
+// that Amazon Personalize uses to generate recommendations.
+//
+// After you create a solution, you can’t change its configuration. If you
+// need to make changes, you can clone the solution (https://docs.aws.amazon.com/personalize/latest/dg/cloning-solution.html)
+// with the Amazon Personalize console or create a new one.
 type Solution struct {
 	_ struct{} `type:"structure"`
 
@@ -18277,6 +18418,14 @@ type Solution struct {
 	// not be specified). When false (the default), Amazon Personalize uses recipeArn
 	// for training.
 	PerformAutoML *bool `locationName:"performAutoML" type:"boolean"`
+
+	// Specifies whether the solution automatically creates solution versions. The
+	// default is True and the solution automatically creates new solution versions
+	// every 7 days.
+	//
+	// For more information about auto training, see Creating and configuring a
+	// solution (https://docs.aws.amazon.com/personalize/latest/dg/customizing-solution-config.html).
+	PerformAutoTraining *bool `locationName:"performAutoTraining" type:"boolean"`
 
 	// Whether to perform hyperparameter optimization (HPO) on the chosen recipe.
 	// The default is false.
@@ -18368,6 +18517,12 @@ func (s *Solution) SetPerformAutoML(v bool) *Solution {
 	return s
 }
 
+// SetPerformAutoTraining sets the PerformAutoTraining field's value.
+func (s *Solution) SetPerformAutoTraining(v bool) *Solution {
+	s.PerformAutoTraining = &v
+	return s
+}
+
 // SetPerformHPO sets the PerformHPO field's value.
 func (s *Solution) SetPerformHPO(v bool) *Solution {
 	s.PerformHPO = &v
@@ -18408,6 +18563,9 @@ type SolutionConfig struct {
 	// The AutoMLConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_AutoMLConfig.html)
 	// object containing a list of recipes to search when AutoML is performed.
 	AutoMLConfig *AutoMLConfig `locationName:"autoMLConfig" type:"structure"`
+
+	// Specifies the automatic training configuration to use.
+	AutoTrainingConfig *AutoTrainingConfig `locationName:"autoTrainingConfig" type:"structure"`
 
 	// Only events with a value greater than or equal to this threshold are used
 	// for training a model.
@@ -18450,6 +18608,11 @@ func (s SolutionConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SolutionConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SolutionConfig"}
+	if s.AutoTrainingConfig != nil {
+		if err := s.AutoTrainingConfig.Validate(); err != nil {
+			invalidParams.AddNested("AutoTrainingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.HpoConfig != nil {
 		if err := s.HpoConfig.Validate(); err != nil {
 			invalidParams.AddNested("HpoConfig", err.(request.ErrInvalidParams))
@@ -18476,6 +18639,12 @@ func (s *SolutionConfig) SetAlgorithmHyperParameters(v map[string]*string) *Solu
 // SetAutoMLConfig sets the AutoMLConfig field's value.
 func (s *SolutionConfig) SetAutoMLConfig(v *AutoMLConfig) *SolutionConfig {
 	s.AutoMLConfig = v
+	return s
+}
+
+// SetAutoTrainingConfig sets the AutoTrainingConfig field's value.
+func (s *SolutionConfig) SetAutoTrainingConfig(v *AutoTrainingConfig) *SolutionConfig {
+	s.AutoTrainingConfig = v
 	return s
 }
 
@@ -18664,18 +18833,13 @@ type SolutionVersion struct {
 	TrainingHours *float64 `locationName:"trainingHours" type:"double"`
 
 	// The scope of training to be performed when creating the solution version.
-	// The FULL option trains the solution version based on the entirety of the
-	// input solution's training data, while the UPDATE option processes only the
-	// data that has changed in comparison to the input solution. Choose UPDATE
-	// when you want to incrementally update your solution version instead of creating
-	// an entirely new one.
-	//
-	// The UPDATE option can only be used when you already have an active solution
-	// version created from the input solution using the FULL option and the input
-	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
-	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
-	// recipe.
+	// A FULL training considers all of the data in your dataset group. An UPDATE
+	// processes only the data that has changed since the latest training. Only
+	// solution versions created with the User-Personalization recipe can use UPDATE.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
+
+	// Whether the solution version was created automatically or manually.
+	TrainingType *string `locationName:"trainingType" type:"string" enum:"TrainingType"`
 
 	// If hyperparameter optimization was performed, contains the hyperparameter
 	// values of the best performing model.
@@ -18790,6 +18954,12 @@ func (s *SolutionVersion) SetTrainingMode(v string) *SolutionVersion {
 	return s
 }
 
+// SetTrainingType sets the TrainingType field's value.
+func (s *SolutionVersion) SetTrainingType(v string) *SolutionVersion {
+	s.TrainingType = &v
+	return s
+}
+
 // SetTunedHPOParams sets the TunedHPOParams field's value.
 func (s *SolutionVersion) SetTunedHPOParams(v *TunedHPOParams) *SolutionVersion {
 	s.TunedHPOParams = v
@@ -18820,6 +18990,15 @@ type SolutionVersionSummary struct {
 	//
 	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
 	Status *string `locationName:"status" type:"string"`
+
+	// The scope of training to be performed when creating the solution version.
+	// A FULL training considers all of the data in your dataset group. An UPDATE
+	// processes only the data that has changed since the latest training. Only
+	// solution versions created with the User-Personalization recipe can use UPDATE.
+	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
+
+	// Whether the solution version was created automatically or manually.
+	TrainingType *string `locationName:"trainingType" type:"string" enum:"TrainingType"`
 }
 
 // String returns the string representation.
@@ -18867,6 +19046,18 @@ func (s *SolutionVersionSummary) SetSolutionVersionArn(v string) *SolutionVersio
 // SetStatus sets the Status field's value.
 func (s *SolutionVersionSummary) SetStatus(v string) *SolutionVersionSummary {
 	s.Status = &v
+	return s
+}
+
+// SetTrainingMode sets the TrainingMode field's value.
+func (s *SolutionVersionSummary) SetTrainingMode(v string) *SolutionVersionSummary {
+	s.TrainingMode = &v
+	return s
+}
+
+// SetTrainingType sets the TrainingType field's value.
+func (s *SolutionVersionSummary) SetTrainingType(v string) *SolutionVersionSummary {
+	s.TrainingType = &v
 	return s
 }
 
@@ -19095,7 +19286,7 @@ func (s StopSolutionVersionCreationOutput) GoString() string {
 // The optional metadata that you apply to resources to help you categorize
 // and organize them. Each tag consists of a key and an optional value, both
 // of which you define. For more information see Tagging Amazon Personalize
-// recources (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html).
+// resources (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html).
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -19170,7 +19361,7 @@ type TagResourceInput struct {
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
 	// Tags to apply to the resource. For more information see Tagging Amazon Personalize
-	// recources (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html).
+	// resources (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html).
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -19442,10 +19633,11 @@ type TrainingDataConfig struct {
 
 	// Specifies the columns to exclude from training. Each key is a dataset type,
 	// and each value is a list of columns. Exclude columns to control what data
-	// Amazon Personalize uses to generate recommendations. For example, you might
-	// have a column that you want to use only to filter recommendations. You can
-	// exclude this column from training and Amazon Personalize considers it only
-	// when filtering.
+	// Amazon Personalize uses to generate recommendations.
+	//
+	// For example, you might have a column that you want to use only to filter
+	// recommendations. You can exclude this column from training and Amazon Personalize
+	// considers it only when filtering.
 	ExcludedDatasetColumns map[string][]*string `locationName:"excludedDatasetColumns" type:"map"`
 }
 
@@ -19514,7 +19706,7 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
-	// Keys to remove from the resource's tags.
+	// The keys of the tags to be removed.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
@@ -19606,7 +19798,16 @@ type UpdateCampaignInput struct {
 	// the minProvisionedTPS as necessary.
 	MinProvisionedTPS *int64 `locationName:"minProvisionedTPS" min:"1" type:"integer"`
 
-	// The ARN of a new solution version to deploy.
+	// The Amazon Resource Name (ARN) of a new model to deploy. To specify the latest
+	// solution version of your solution, specify the ARN of your solution in SolutionArn/$LATEST
+	// format. You must use this format if you set syncWithLatestSolutionVersion
+	// to True in the CampaignConfig (https://docs.aws.amazon.com/personalize/latest/dg/API_CampaignConfig.html).
+	//
+	// To deploy a model that isn't the latest solution version of your solution,
+	// specify the ARN of the solution version.
+	//
+	// For more information about automatic campaign updates, see Enabling automatic
+	// campaign updates (https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-automatic-latest-sv-update).
 	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
 }
 
@@ -20110,6 +20311,9 @@ const (
 
 	// TrainingModeUpdate is a TrainingMode enum value
 	TrainingModeUpdate = "UPDATE"
+
+	// TrainingModeAutotrain is a TrainingMode enum value
+	TrainingModeAutotrain = "AUTOTRAIN"
 )
 
 // TrainingMode_Values returns all elements of the TrainingMode enum
@@ -20117,5 +20321,22 @@ func TrainingMode_Values() []string {
 	return []string{
 		TrainingModeFull,
 		TrainingModeUpdate,
+		TrainingModeAutotrain,
+	}
+}
+
+const (
+	// TrainingTypeAutomatic is a TrainingType enum value
+	TrainingTypeAutomatic = "AUTOMATIC"
+
+	// TrainingTypeManual is a TrainingType enum value
+	TrainingTypeManual = "MANUAL"
+)
+
+// TrainingType_Values returns all elements of the TrainingType enum
+func TrainingType_Values() []string {
+	return []string{
+		TrainingTypeAutomatic,
+		TrainingTypeManual,
 	}
 }
