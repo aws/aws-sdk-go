@@ -4453,6 +4453,10 @@ func (s *AccessDeniedException) RequestID() string {
 type ActionGroupExecutor struct {
 	_ struct{} `type:"structure"`
 
+	// To return the action group invocation results directly in the InvokeAgent
+	// response, specify RETURN_CONTROL.
+	CustomControl *string `locationName:"customControl" type:"string" enum:"CustomControlMethod"`
+
 	// The Amazon Resource Name (ARN) of the Lambda function containing the business
 	// logic that is carried out upon invoking the action.
 	Lambda *string `locationName:"lambda" type:"string"`
@@ -4474,6 +4478,12 @@ func (s ActionGroupExecutor) String() string {
 // value will be replaced with "sensitive".
 func (s ActionGroupExecutor) GoString() string {
 	return s.String()
+}
+
+// SetCustomControl sets the CustomControl field's value.
+func (s *ActionGroupExecutor) SetCustomControl(v string) *ActionGroupExecutor {
+	s.CustomControl = &v
+	return s
 }
 
 // SetLambda sets the Lambda field's value.
@@ -4852,6 +4862,10 @@ type AgentActionGroup struct {
 	// The description of the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// Defines functions that each define parameters that the agent needs to invoke
+	// from the user. Each function represents an action in an action group.
+	FunctionSchema *FunctionSchema `locationName:"functionSchema" type:"structure"`
+
 	// If this field is set as AMAZON.UserInput, the agent can request the user
 	// for additional information when trying to complete a task. The description,
 	// apiSchema, and actionGroupExecutor fields must be blank for this action group.
@@ -4944,6 +4958,12 @@ func (s *AgentActionGroup) SetCreatedAt(v time.Time) *AgentActionGroup {
 // SetDescription sets the Description field's value.
 func (s *AgentActionGroup) SetDescription(v string) *AgentActionGroup {
 	s.Description = &v
+	return s
+}
+
+// SetFunctionSchema sets the FunctionSchema field's value.
+func (s *AgentActionGroup) SetFunctionSchema(v *FunctionSchema) *AgentActionGroup {
+	s.FunctionSchema = v
 	return s
 }
 
@@ -6178,6 +6198,10 @@ type CreateAgentActionGroupInput struct {
 	// A description of the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// Contains details about the function schema for the action group or the JSON
+	// or YAML-formatted payload defining the schema.
+	FunctionSchema *FunctionSchema `locationName:"functionSchema" type:"structure"`
+
 	// To allow your agent to request the user for additional information when trying
 	// to complete a task, set this field to AMAZON.UserInput. You must leave the
 	// description, apiSchema, and actionGroupExecutor fields blank for this action
@@ -6238,6 +6262,11 @@ func (s *CreateAgentActionGroupInput) Validate() error {
 			invalidParams.AddNested("ApiSchema", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FunctionSchema != nil {
+		if err := s.FunctionSchema.Validate(); err != nil {
+			invalidParams.AddNested("FunctionSchema", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6290,6 +6319,12 @@ func (s *CreateAgentActionGroupInput) SetClientToken(v string) *CreateAgentActio
 // SetDescription sets the Description field's value.
 func (s *CreateAgentActionGroupInput) SetDescription(v string) *CreateAgentActionGroupInput {
 	s.Description = &v
+	return s
+}
+
+// SetFunctionSchema sets the FunctionSchema field's value.
+func (s *CreateAgentActionGroupInput) SetFunctionSchema(v *FunctionSchema) *CreateAgentActionGroupInput {
+	s.FunctionSchema = v
 	return s
 }
 
@@ -8169,6 +8204,162 @@ func (s *FixedSizeChunkingConfiguration) SetOverlapPercentage(v int64) *FixedSiz
 	return s
 }
 
+// Defines parameters that the agent needs to invoke from the user to complete
+// the function. Corresponds to an action in an action group.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax)
+//
+//   - CreateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax)
+//
+//   - UpdateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax)
+//
+//   - UpdateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax)
+//
+//   - GetAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax)
+type Function struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the function and its purpose.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// A name for the function.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The parameters that the agent elicits from the user to fulfill the function.
+	Parameters map[string]*ParameterDetail `locationName:"parameters" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Function) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Function) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Function) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Function"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *Function) SetDescription(v string) *Function {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Function) SetName(v string) *Function {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *Function) SetParameters(v map[string]*ParameterDetail) *Function {
+	s.Parameters = v
+	return s
+}
+
+// Defines functions that each define parameters that the agent needs to invoke
+// from the user. Each function represents an action in an action group.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax)
+//
+//   - CreateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax)
+//
+//   - UpdateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax)
+//
+//   - UpdateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax)
+//
+//   - GetAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax)
+type FunctionSchema struct {
+	_ struct{} `type:"structure"`
+
+	// A list of functions that each define an action in the action group.
+	Functions []*Function `locationName:"functions" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FunctionSchema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FunctionSchema) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionSchema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionSchema"}
+	if s.Functions != nil {
+		for i, v := range s.Functions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Functions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctions sets the Functions field's value.
+func (s *FunctionSchema) SetFunctions(v []*Function) *FunctionSchema {
+	s.Functions = v
+	return s
+}
+
 type GetAgentActionGroupInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9072,7 +9263,7 @@ func (s *InferenceConfiguration) SetTopP(v float64) *InferenceConfiguration {
 //
 //   - GetIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax)
 //
-//   - ListIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJob.html#API_agent_ListIngestionJob_ResponseSyntax)
+//   - ListIngestionJob response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJobs.html#API_agent_ListIngestionJobs_ResponseSyntax)
 type IngestionJob struct {
 	_ struct{} `type:"structure"`
 
@@ -11155,6 +11346,88 @@ func (s *OpenSearchServerlessFieldMapping) SetVectorField(v string) *OpenSearchS
 	return s
 }
 
+// Contains details about a parameter in a function for an action group.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax)
+//
+//   - CreateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax)
+//
+//   - UpdateAgentActionGroup request (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax)
+//
+//   - UpdateAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax)
+//
+//   - GetAgentActionGroup response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax)
+type ParameterDetail struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the parameter. Helps the foundation model determine how
+	// to elicit the parameters from the user.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Whether the parameter is required for the agent to complete the function
+	// for action group invocation.
+	Required *bool `locationName:"required" type:"boolean"`
+
+	// The data type of the parameter.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"Type"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParameterDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ParameterDetail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParameterDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParameterDetail"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *ParameterDetail) SetDescription(v string) *ParameterDetail {
+	s.Description = &v
+	return s
+}
+
+// SetRequired sets the Required field's value.
+func (s *ParameterDetail) SetRequired(v bool) *ParameterDetail {
+	s.Required = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ParameterDetail) SetType(v string) *ParameterDetail {
+	s.Type = &v
+	return s
+}
+
 // Contains details about the storage configuration of the knowledge base in
 // Pinecone. For more information, see Create a vector index in Pinecone (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-pinecone.html).
 type PineconeConfiguration struct {
@@ -12794,6 +13067,10 @@ type UpdateAgentActionGroupInput struct {
 	// Specifies a new name for the action group.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// Contains details about the function schema for the action group or the JSON
+	// or YAML-formatted payload defining the schema.
+	FunctionSchema *FunctionSchema `locationName:"functionSchema" type:"structure"`
+
 	// To allow your agent to request the user for additional information when trying
 	// to complete a task, set this field to AMAZON.UserInput. You must leave the
 	// description, apiSchema, and actionGroupExecutor fields blank for this action
@@ -12857,6 +13134,11 @@ func (s *UpdateAgentActionGroupInput) Validate() error {
 			invalidParams.AddNested("ApiSchema", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FunctionSchema != nil {
+		if err := s.FunctionSchema.Validate(); err != nil {
+			invalidParams.AddNested("FunctionSchema", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12909,6 +13191,12 @@ func (s *UpdateAgentActionGroupInput) SetApiSchema(v *APISchema) *UpdateAgentAct
 // SetDescription sets the Description field's value.
 func (s *UpdateAgentActionGroupInput) SetDescription(v string) *UpdateAgentActionGroupInput {
 	s.Description = &v
+	return s
+}
+
+// SetFunctionSchema sets the FunctionSchema field's value.
+func (s *UpdateAgentActionGroupInput) SetFunctionSchema(v *FunctionSchema) *UpdateAgentActionGroupInput {
+	s.FunctionSchema = v
 	return s
 }
 
@@ -14123,6 +14411,18 @@ func CreationMode_Values() []string {
 }
 
 const (
+	// CustomControlMethodReturnControl is a CustomControlMethod enum value
+	CustomControlMethodReturnControl = "RETURN_CONTROL"
+)
+
+// CustomControlMethod_Values returns all elements of the CustomControlMethod enum
+func CustomControlMethod_Values() []string {
+	return []string{
+		CustomControlMethodReturnControl,
+	}
+}
+
+const (
 	// DataSourceStatusAvailable is a DataSourceStatus enum value
 	DataSourceStatusAvailable = "AVAILABLE"
 
@@ -14347,5 +14647,33 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// TypeString is a Type enum value
+	TypeString = "string"
+
+	// TypeNumber is a Type enum value
+	TypeNumber = "number"
+
+	// TypeInteger is a Type enum value
+	TypeInteger = "integer"
+
+	// TypeBoolean is a Type enum value
+	TypeBoolean = "boolean"
+
+	// TypeArray is a Type enum value
+	TypeArray = "array"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeString,
+		TypeNumber,
+		TypeInteger,
+		TypeBoolean,
+		TypeArray,
 	}
 }

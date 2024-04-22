@@ -4800,6 +4800,132 @@ func (c *Transfer) SendWorkflowStepStateWithContext(ctx aws.Context, input *Send
 	return out, req.Send()
 }
 
+const opStartDirectoryListing = "StartDirectoryListing"
+
+// StartDirectoryListingRequest generates a "aws/request.Request" representing the
+// client's request for the StartDirectoryListing operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDirectoryListing for more information on using the StartDirectoryListing
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartDirectoryListingRequest method.
+//	req, resp := client.StartDirectoryListingRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartDirectoryListing
+func (c *Transfer) StartDirectoryListingRequest(input *StartDirectoryListingInput) (req *request.Request, output *StartDirectoryListingOutput) {
+	op := &request.Operation{
+		Name:       opStartDirectoryListing,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartDirectoryListingInput{}
+	}
+
+	output = &StartDirectoryListingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDirectoryListing API operation for AWS Transfer Family.
+//
+// Retrieves a list of the contents of a directory from a remote SFTP server.
+// You specify the connector ID, the output path, and the remote directory path.
+// You can also specify the optional MaxItems value to control the maximum number
+// of items that are listed from the remote directory. This API returns a list
+// of all files and directories in the remote directory (up to the maximum value),
+// but does not return files or folders in sub-directories. That is, it only
+// returns a list of files and directories one-level deep.
+//
+// After you receive the listing file, you can provide the files that you want
+// to transfer to the RetrieveFilePaths parameter of the StartFileTransfer API
+// call.
+//
+// The naming convention for the output file is connector-ID-listing-ID.json.
+// The output file contains the following information:
+//
+//   - filePath: the complete path of a remote file, relative to the directory
+//     of the listing request for your SFTP connector on the remote server.
+//
+//   - modifiedTimestamp: the last time the file was modified, in UTC time
+//     format. This field is optional. If the remote file attributes don't contain
+//     a timestamp, it is omitted from the file listing.
+//
+//   - size: the size of the file, in bytes. This field is optional. If the
+//     remote file attributes don't contain a file size, it is omitted from the
+//     file listing.
+//
+//   - path: the complete path of a remote directory, relative to the directory
+//     of the listing request for your SFTP connector on the remote server.
+//
+//   - truncated: a flag indicating whether the list output contains all of
+//     the items contained in the remote directory or not. If your Truncated
+//     output value is true, you can increase the value provided in the optional
+//     max-items input attribute to be able to list more items (up to the maximum
+//     allowed list size of 10,000 items).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation StartDirectoryListing for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//     Family service.
+//
+//   - InvalidRequestException
+//     This exception is thrown when the client submits a malformed request.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InternalServiceError
+//     This exception is thrown when an error occurs in the Transfer Family service.
+//
+//   - ServiceUnavailableException
+//     The request has failed because the Amazon Web ServicesTransfer Family service
+//     is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/StartDirectoryListing
+func (c *Transfer) StartDirectoryListing(input *StartDirectoryListingInput) (*StartDirectoryListingOutput, error) {
+	req, out := c.StartDirectoryListingRequest(input)
+	return out, req.Send()
+}
+
+// StartDirectoryListingWithContext is the same as StartDirectoryListing with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDirectoryListing for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) StartDirectoryListingWithContext(ctx aws.Context, input *StartDirectoryListingInput, opts ...request.Option) (*StartDirectoryListingOutput, error) {
+	req, out := c.StartDirectoryListingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartFileTransfer = "StartFileTransfer"
 
 // StartFileTransferRequest generates a "aws/request.Request" representing the
@@ -4853,7 +4979,7 @@ func (c *Transfer) StartFileTransferRequest(input *StartFileTransferInput) (req 
 //     In both cases, you specify the ConnectorId. Depending on the direction
 //     of the transfer, you also specify the following items: If you are transferring
 //     file from a partner's SFTP server to Amazon Web Services storage, you
-//     specify one or more RetreiveFilePaths to identify the files you want to
+//     specify one or more RetrieveFilePaths to identify the files you want to
 //     transfer, and a LocalDirectoryPath to specify the destination folder.
 //     If you are transferring file to a partner's SFTP server from Amazon Web
 //     Services storage, you specify one or more SendFilePaths to identify the
@@ -10917,13 +11043,7 @@ type DescribedCertificate struct {
 	// If there is no private key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies how this certificate is used. It can be used in the following ways:
-	//
-	//    * SIGNING: For signing AS2 messages
-	//
-	//    * ENCRYPTION: For encrypting AS2 messages
-	//
-	//    * TLS: For securing AS2 communications sent over HTTPS
+	// Specifies whether this certificate is used for signing or encryption.
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -12828,13 +12948,7 @@ type ImportCertificateInput struct {
 	// Key-value pairs that can be used to group and search for certificates.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// Specifies how this certificate is used. It can be used in the following ways:
-	//
-	//    * SIGNING: For signing AS2 messages
-	//
-	//    * ENCRYPTION: For encrypting AS2 messages
-	//
-	//    * TLS: For securing AS2 communications sent over HTTPS
+	// Specifies whether this certificate is used for signing or encryption.
 	//
 	// Usage is a required field
 	Usage *string `type:"string" required:"true" enum:"CertificateUsageType"`
@@ -15143,13 +15257,7 @@ type ListedCertificate struct {
 	// key, the type is CERTIFICATE.
 	Type *string `type:"string" enum:"CertificateType"`
 
-	// Specifies how this certificate is used. It can be used in the following ways:
-	//
-	//    * SIGNING: For signing AS2 messages
-	//
-	//    * ENCRYPTION: For encrypting AS2 messages
-	//
-	//    * TLS: For securing AS2 communications sent over HTTPS
+	// Specifies whether this certificate is used for signing or encryption.
 	Usage *string `type:"string" enum:"CertificateUsageType"`
 }
 
@@ -16782,6 +16890,149 @@ func (s *SshPublicKey) SetSshPublicKeyBody(v string) *SshPublicKey {
 // SetSshPublicKeyId sets the SshPublicKeyId field's value.
 func (s *SshPublicKey) SetSshPublicKeyId(v string) *SshPublicKey {
 	s.SshPublicKeyId = &v
+	return s
+}
+
+type StartDirectoryListingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the connector.
+	//
+	// ConnectorId is a required field
+	ConnectorId *string `min:"19" type:"string" required:"true"`
+
+	// An optional parameter where you can specify the maximum number of file/directory
+	// names to retrieve. The default value is 1,000.
+	MaxItems *int64 `min:"1" type:"integer"`
+
+	// Specifies the path (bucket and prefix) in Amazon S3 storage to store the
+	// results of the directory listing.
+	//
+	// OutputDirectoryPath is a required field
+	OutputDirectoryPath *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the directory on the remote SFTP server for which you want to list
+	// its contents.
+	//
+	// RemoteDirectoryPath is a required field
+	RemoteDirectoryPath *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDirectoryListingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDirectoryListingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDirectoryListingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDirectoryListingInput"}
+	if s.ConnectorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorId"))
+	}
+	if s.ConnectorId != nil && len(*s.ConnectorId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectorId", 19))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+	if s.OutputDirectoryPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDirectoryPath"))
+	}
+	if s.OutputDirectoryPath != nil && len(*s.OutputDirectoryPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputDirectoryPath", 1))
+	}
+	if s.RemoteDirectoryPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("RemoteDirectoryPath"))
+	}
+	if s.RemoteDirectoryPath != nil && len(*s.RemoteDirectoryPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RemoteDirectoryPath", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *StartDirectoryListingInput) SetConnectorId(v string) *StartDirectoryListingInput {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *StartDirectoryListingInput) SetMaxItems(v int64) *StartDirectoryListingInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetOutputDirectoryPath sets the OutputDirectoryPath field's value.
+func (s *StartDirectoryListingInput) SetOutputDirectoryPath(v string) *StartDirectoryListingInput {
+	s.OutputDirectoryPath = &v
+	return s
+}
+
+// SetRemoteDirectoryPath sets the RemoteDirectoryPath field's value.
+func (s *StartDirectoryListingInput) SetRemoteDirectoryPath(v string) *StartDirectoryListingInput {
+	s.RemoteDirectoryPath = &v
+	return s
+}
+
+type StartDirectoryListingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a unique identifier for the directory listing call.
+	//
+	// ListingId is a required field
+	ListingId *string `min:"1" type:"string" required:"true"`
+
+	// Returns the file name where the results are stored. This is a combination
+	// of the connector ID and the listing ID: <connector-id>-<listing-id>.json.
+	//
+	// OutputFileName is a required field
+	OutputFileName *string `min:"26" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDirectoryListingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartDirectoryListingOutput) GoString() string {
+	return s.String()
+}
+
+// SetListingId sets the ListingId field's value.
+func (s *StartDirectoryListingOutput) SetListingId(v string) *StartDirectoryListingOutput {
+	s.ListingId = &v
+	return s
+}
+
+// SetOutputFileName sets the OutputFileName field's value.
+func (s *StartDirectoryListingOutput) SetOutputFileName(v string) *StartDirectoryListingOutput {
+	s.OutputFileName = &v
 	return s
 }
 

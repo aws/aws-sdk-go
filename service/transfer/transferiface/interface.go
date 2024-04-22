@@ -269,6 +269,10 @@ type TransferAPI interface {
 	SendWorkflowStepStateWithContext(aws.Context, *transfer.SendWorkflowStepStateInput, ...request.Option) (*transfer.SendWorkflowStepStateOutput, error)
 	SendWorkflowStepStateRequest(*transfer.SendWorkflowStepStateInput) (*request.Request, *transfer.SendWorkflowStepStateOutput)
 
+	StartDirectoryListing(*transfer.StartDirectoryListingInput) (*transfer.StartDirectoryListingOutput, error)
+	StartDirectoryListingWithContext(aws.Context, *transfer.StartDirectoryListingInput, ...request.Option) (*transfer.StartDirectoryListingOutput, error)
+	StartDirectoryListingRequest(*transfer.StartDirectoryListingInput) (*request.Request, *transfer.StartDirectoryListingOutput)
+
 	StartFileTransfer(*transfer.StartFileTransferInput) (*transfer.StartFileTransferOutput, error)
 	StartFileTransferWithContext(aws.Context, *transfer.StartFileTransferInput, ...request.Option) (*transfer.StartFileTransferOutput, error)
 	StartFileTransferRequest(*transfer.StartFileTransferInput) (*request.Request, *transfer.StartFileTransferOutput)

@@ -1,3 +1,18 @@
+Release v1.51.26 (2024-04-22)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/payment-cryptography`: Updates service API, documentation, and waiters
+* `service/redshift-serverless`: Updates service documentation
+* `service/route53profiles`: Adds new service
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for Real-Time Collaboration and Shared Space for JupyterLab App on SageMaker Studio.
+* `service/servicediscovery`: Updates service documentation and examples
+* `service/transfer`: Updates service API and documentation
+  * Adding new API to support remote directory listing using SFTP connector
+
 Release v1.51.25 (2024-04-19)
 ===
 

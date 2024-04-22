@@ -6412,15 +6412,16 @@ type CreateScheduledActionInput struct {
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
-	// The schedule for a one-time (at format) or recurring (cron format) scheduled
-	// action. Schedule invocations must be separated by at least one hour.
+	// The schedule for a one-time (at timestamp format) or recurring (cron format)
+	// scheduled action. Schedule invocations must be separated by at least one
+	// hour. Times are in UTC.
 	//
-	// Format of at expressions is "at(yyyy-mm-ddThh:mm:ss)". For example, "at(2016-03-04T17:27:00)".
+	//    * Format of at timestamp is yyyy-mm-ddThh:mm:ss. For example, 2016-03-04T17:27:00.
 	//
-	// Format of cron expressions is "cron(Minutes Hours Day-of-month Month Day-of-week
-	// Year)". For example, "cron(0 10 ? * MON *)". For more information, see Cron
-	// Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-	// in the Amazon CloudWatch Events User Guide.
+	//    * Format of cron expression is (Minutes Hours Day-of-month Month Day-of-week
+	//    Year). For example, "(0 10 ? * MON *)". For more information, see Cron
+	//    Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
+	//    in the Amazon CloudWatch Events User Guide.
 	//
 	// Schedule is a required field
 	Schedule *Schedule `locationName:"schedule" type:"structure" required:"true"`
@@ -11795,16 +11796,16 @@ type Schedule struct {
 	_ struct{} `type:"structure"`
 
 	// The timestamp of when Amazon Redshift Serverless should run the scheduled
-	// action. Format of at expressions is "at(yyyy-mm-ddThh:mm:ss)". For example,
-	// "at(2016-03-04T17:27:00)".
+	// action. Timestamp is in UTC. Format of at expression is yyyy-mm-ddThh:mm:ss.
+	// For example, 2016-03-04T17:27:00.
 	At *time.Time `locationName:"at" type:"timestamp"`
 
 	// The cron expression to use to schedule a recurring scheduled action. Schedule
-	// invocations must be separated by at least one hour.
+	// invocations must be separated by at least one hour. Times are in UTC.
 	//
-	// Format of cron expressions is "cron(Minutes Hours Day-of-month Month Day-of-week
-	// Year)". For example, "cron(0 10 ? * MON *)". For more information, see Cron
-	// Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
+	// Format of cron expressions is (Minutes Hours Day-of-month Month Day-of-week
+	// Year). For example, "(0 10 ? * MON *)". For more information, see Cron Expressions
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
 	// in the Amazon CloudWatch Events User Guide.
 	Cron *string `locationName:"cron" type:"string"`
 }
@@ -11863,15 +11864,16 @@ type ScheduledActionResponse struct {
 	// in the Amazon Redshift Cluster Management Guide
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	// The schedule for a one-time (at format) or recurring (cron format) scheduled
-	// action. Schedule invocations must be separated by at least one hour.
+	// The schedule for a one-time (at timestamp format) or recurring (cron format)
+	// scheduled action. Schedule invocations must be separated by at least one
+	// hour. Times are in UTC.
 	//
-	// Format of at expressions is "at(yyyy-mm-ddThh:mm:ss)". For example, "at(2016-03-04T17:27:00)".
+	//    * Format of at timestamp is yyyy-mm-ddThh:mm:ss. For example, 2016-03-04T17:27:00.
 	//
-	// Format of cron expressions is "cron(Minutes Hours Day-of-month Month Day-of-week
-	// Year)". For example, "cron(0 10 ? * MON *)". For more information, see Cron
-	// Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-	// in the Amazon CloudWatch Events User Guide.
+	//    * Format of cron expression is (Minutes Hours Day-of-month Month Day-of-week
+	//    Year). For example, "(0 10 ? * MON *)". For more information, see Cron
+	//    Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
+	//    in the Amazon CloudWatch Events User Guide.
 	Schedule *Schedule `locationName:"schedule" type:"structure"`
 
 	// The description of the scheduled action.
@@ -13377,15 +13379,16 @@ type UpdateScheduledActionInput struct {
 	// in the Amazon Redshift Cluster Management Guide
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	// The schedule for a one-time (at format) or recurring (cron format) scheduled
-	// action. Schedule invocations must be separated by at least one hour.
+	// The schedule for a one-time (at timestamp format) or recurring (cron format)
+	// scheduled action. Schedule invocations must be separated by at least one
+	// hour. Times are in UTC.
 	//
-	// Format of at expressions is "at(yyyy-mm-ddThh:mm:ss)". For example, "at(2016-03-04T17:27:00)".
+	//    * Format of at timestamp is yyyy-mm-ddThh:mm:ss. For example, 2016-03-04T17:27:00.
 	//
-	// Format of cron expressions is "cron(Minutes Hours Day-of-month Month Day-of-week
-	// Year)". For example, "cron(0 10 ? * MON *)". For more information, see Cron
-	// Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-	// in the Amazon CloudWatch Events User Guide.
+	//    * Format of cron expression is (Minutes Hours Day-of-month Month Day-of-week
+	//    Year). For example, "(0 10 ? * MON *)". For more information, see Cron
+	//    Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
+	//    in the Amazon CloudWatch Events User Guide.
 	Schedule *Schedule `locationName:"schedule" type:"structure"`
 
 	// The descripion of the scheduled action to update to.

@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p>Contains APIs related to model invocation and querying of knowledge bases.</p>",
   "operations": {
-    "InvokeAgent": "<p>Sends a prompt for the agent to process and respond to.</p> <note> <p>The CLI doesn't support <code>InvokeAgent</code>.</p> </note> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>Include attributes for the session or prompt in the <code>sessionState</code> object.</p> </li> </ul> <p>The response is returned in the <code>bytes</code> field of the <code>chunk</code> object.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>",
+    "InvokeAgent": "<p>Sends a prompt for the agent to process and respond to. Use return control event type for function calling.</p> <note> <p>The CLI doesn't support <code>InvokeAgent</code>.</p> </note> <ul> <li> <p>To continue the same conversation with an agent, use the same <code>sessionId</code> value in the request.</p> </li> <li> <p>To activate trace enablement, turn <code>enableTrace</code> to <code>true</code>. Trace enablement helps you follow the agent's reasoning process that led it to the information it processed, the actions it took, and the final result it yielded. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p> </li> <li> <p>End a conversation by setting <code>endSession</code> to <code>true</code>.</p> </li> <li> <p>In the <code>sessionState</code> object, you can include attributes for the session or prompt or parameters returned from the action group.</p> </li> <li> <p>Use return control event type for function calling.</p> </li> </ul> <p>The response is returned in the <code>bytes</code> field of the <code>chunk</code> object.</p> <ul> <li> <p>The <code>attribution</code> object contains citations for parts of the response.</p> </li> <li> <p>If you set <code>enableTrace</code> to <code>true</code> in the request, you can trace the agent's steps and reasoning process that led it to the response.</p> </li> <li> <p>Errors are also surfaced in the response.</p> </li> </ul>",
     "Retrieve": "<p>Queries a knowledge base and retrieves information from it.</p>",
     "RetrieveAndGenerate": "<p>Queries a knowledge base and generates responses based on the retrieved results. The response only cites sources that are relevant to the query.</p>"
   },
@@ -14,7 +14,7 @@
       }
     },
     "ActionGroupInvocationInput": {
-      "base": "<p>Contains information about the action group being invoked.</p>",
+      "base": "<p>Contains information about the action group being invoked. For more information about the possible structures, see the InvocationInput tab in <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/trace-orchestration.html\">OrchestrationTrace</a> in the Amazon Bedrock User Guide.</p>",
       "refs": {
         "InvocationInput$actionGroupInvocationInput": "<p>Contains information about the action group to be invoked.</p>"
       }
@@ -51,10 +51,54 @@
         "TracePart$agentId": "<p>The unique identifier of the agent.</p>"
       }
     },
+    "AgentVersion": {
+      "base": null,
+      "refs": {
+        "TracePart$agentVersion": "<p>The version of the agent.</p>"
+      }
+    },
+    "ApiContentMap": {
+      "base": null,
+      "refs": {
+        "ApiRequestBody$content": "<p>The content of the request body. The key of the object in this field is a media type defining the format of the request body.</p>"
+      }
+    },
+    "ApiInvocationInput": {
+      "base": "<p>Contains information about the API operation that the agent predicts should be called.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControl</code> field of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "InvocationInputMember$apiInvocationInput": "<p>Contains information about the API operation that the agent predicts should be called.</p>"
+      }
+    },
+    "ApiParameter": {
+      "base": "<p>Information about a parameter to provide to the API request.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "ApiParameters$member": null
+      }
+    },
+    "ApiParameters": {
+      "base": null,
+      "refs": {
+        "ApiInvocationInput$parameters": "<p>The parameters to provide for the API request, as the agent elicited from the user.</p>"
+      }
+    },
     "ApiPath": {
       "base": null,
       "refs": {
-        "ActionGroupInvocationInput$apiPath": "<p>The path to the API to call, based off the action group.</p>"
+        "ActionGroupInvocationInput$apiPath": "<p>The path to the API to call, based off the action group.</p>",
+        "ApiInvocationInput$apiPath": "<p>The path to the API operation.</p>",
+        "ApiResult$apiPath": "<p>The path to the API operation.</p>"
+      }
+    },
+    "ApiRequestBody": {
+      "base": "<p>The request body to provide for the API request, as the agent elicited from the user.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "ApiInvocationInput$requestBody": "<p>The request body to provide for the API request, as the agent elicited from the user.</p>"
+      }
+    },
+    "ApiResult": {
+      "base": "<p>Contains information about the API operation that was called from the action group and the response body that was returned.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControlInvocationResults</code> of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> </p> </li> </ul>",
+      "refs": {
+        "InvocationResultMember$apiResult": "<p>The result from the API response from the action group invocation.</p>"
       }
     },
     "Attribution": {
@@ -100,6 +144,12 @@
       "base": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>",
       "refs": {
         "ResponseStream$conflictException": "<p>There was a conflict performing an operation. Resolve the conflict and retry your request.</p>"
+      }
+    },
+    "ContentBody": {
+      "base": "<p>Contains the body of the API response.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControlInvocationResults</code> field of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> </p> </li> </ul>",
+      "refs": {
+        "ResponseBody$value": null
       }
     },
     "ContentMap": {
@@ -177,6 +227,36 @@
         "FinalResponse$text": "<p>The text in the response to the user.</p>"
       }
     },
+    "Function": {
+      "base": null,
+      "refs": {
+        "ActionGroupInvocationInput$function": "<p>The function in the action group to call.</p>"
+      }
+    },
+    "FunctionInvocationInput": {
+      "base": "<p>Contains information about the function that the agent predicts should be called.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControl</code> field of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "InvocationInputMember$functionInvocationInput": "<p>Contains information about the function that the agent predicts should be called.</p>"
+      }
+    },
+    "FunctionParameter": {
+      "base": "<p>Contains information about a parameter of the function.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControl</code> field of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "FunctionParameters$member": null
+      }
+    },
+    "FunctionParameters": {
+      "base": null,
+      "refs": {
+        "FunctionInvocationInput$parameters": "<p>A list of parameters of the function.</p>"
+      }
+    },
+    "FunctionResult": {
+      "base": "<p>Contains information about the function that was called from the action group and the response that was returned.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControlInvocationResults</code> of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> </p> </li> </ul>",
+      "refs": {
+        "InvocationResultMember$functionResult": "<p>The result from the function from the action group invocation.</p>"
+      }
+    },
     "GeneratedResponsePart": {
       "base": "<p>Contains metadata about a part of the generated response that is accompanied by a citation.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> – in the <code>generatedResponsePart</code> field</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_ResponseSyntax\">RetrieveAndGenerate response</a> – in the <code>generatedResponsePart</code> field</p> </li> </ul>",
       "refs": {
@@ -201,6 +281,12 @@
         "InvokeAgentRequest$inputText": "<p>The prompt text to send the agent.</p>"
       }
     },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "ApiResult$httpStatusCode": "<p>http status code from API execution response (for example: 200, 400, 500).</p>"
+      }
+    },
     "InternalServerException": {
       "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
@@ -211,6 +297,24 @@
       "base": "<p>Contains information pertaining to the action group or knowledge base that is being invoked.</p>",
       "refs": {
         "OrchestrationTrace$invocationInput": "<p>Contains information pertaining to the action group or knowledge base that is being invoked.</p>"
+      }
+    },
+    "InvocationInputMember": {
+      "base": "<p>Contains details about the API operation or function that the agent predicts should be called.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p>In the <code>returnControl</code> field of the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "InvocationInputs$member": null
+      }
+    },
+    "InvocationInputs": {
+      "base": null,
+      "refs": {
+        "ReturnControlPayload$invocationInputs": "<p>A list of objects that contain information about the parameters and inputs that need to be sent into the API operation or function, based on what the agent determines from its session with the user.</p>"
+      }
+    },
+    "InvocationResultMember": {
+      "base": "<p>A result from the action group invocation.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_RequestSyntax\">Retrieve request</a> </p> </li> </ul>",
+      "refs": {
+        "ReturnControlInvocationResults$member": null
       }
     },
     "InvocationType": {
@@ -377,9 +481,16 @@
       }
     },
     "Parameter": {
-      "base": "<p>A parameter in the Lambda input event.</p>",
+      "base": "<p>A parameter for the API request or function.</p>",
       "refs": {
+        "ParameterList$member": null,
         "Parameters$member": null
+      }
+    },
+    "ParameterList": {
+      "base": null,
+      "refs": {
+        "PropertyParameters$properties": "<p>A list of parameters in the request body.</p>"
       }
     },
     "Parameters": {
@@ -461,6 +572,12 @@
         "ModelInvocationInput$type": "<p>The step in the agent sequence.</p>"
       }
     },
+    "PropertyParameters": {
+      "base": "<p>Contains the parameters in the request body.</p>",
+      "refs": {
+        "ApiContentMap$value": null
+      }
+    },
     "Rationale": {
       "base": "<p>Contains the reasoning, based on the input, that the agent uses to justify carrying out an action group or getting information from a knowledge base.</p>",
       "refs": {
@@ -481,15 +598,29 @@
       }
     },
     "RequestBody": {
-      "base": "<p>The parameters in the request body for the Lambda input event.</p>",
+      "base": "<p>The parameters in the API request body.</p>",
       "refs": {
         "ActionGroupInvocationInput$requestBody": "<p>The parameters in the request body for the Lambda input event.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>",
+      "base": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>",
       "refs": {
-        "ResponseStream$resourceNotFoundException": "<p>The specified resource ARN was not found. Check the ARN and try your request again.</p>"
+        "ResponseStream$resourceNotFoundException": "<p>The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.</p>"
+      }
+    },
+    "ResponseBody": {
+      "base": null,
+      "refs": {
+        "ApiResult$responseBody": "<p>The response body from the API operation. The key of the object is the content type. The response may be returned directly or from the Lambda function.</p>",
+        "FunctionResult$responseBody": "<p>The response from the function call using the parameters. The response may be returned directly or from the Lambda function.</p>"
+      }
+    },
+    "ResponseState": {
+      "base": null,
+      "refs": {
+        "ApiResult$responseState": "<p>Controls the final response state returned to end user when API/Function execution failed. When this state is FAILURE, the request would fail with dependency failure exception. When this state is REPROMPT, the API/function response will be sent to model for re-prompt</p>",
+        "FunctionResult$responseState": "<p>Controls the final response state returned to end user when API/Function execution failed. When this state is FAILURE, the request would fail with dependency failure exception. When this state is REPROMPT, the API/function response will be sent to model for re-prompt</p>"
       }
     },
     "ResponseStream": {
@@ -626,6 +757,18 @@
         "KnowledgeBaseLookupOutput$retrievedReferences": "<p>Contains metadata about the sources cited for the generated response.</p>"
       }
     },
+    "ReturnControlInvocationResults": {
+      "base": null,
+      "refs": {
+        "SessionState$returnControlInvocationResults": "<p>Contains information about the results from the action group invocation.</p>"
+      }
+    },
+    "ReturnControlPayload": {
+      "base": "<p>Contains information to return from the action group that the agent has predicted to invoke.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
+      "refs": {
+        "ResponseStream$returnControl": "<p>Contains the parameters and information that the agent elicited from the customer to carry out an action. This information is returned to the system and can be used in your own setup for fulfilling the action.</p>"
+      }
+    },
     "SearchType": {
       "base": null,
       "refs": {
@@ -693,18 +836,37 @@
     "String": {
       "base": null,
       "refs": {
+        "ApiContentMap$key": null,
+        "ApiInvocationInput$actionGroup": "<p>The action group that the API operation belongs to.</p>",
+        "ApiInvocationInput$httpMethod": "<p>The HTTP method of the API operation.</p>",
+        "ApiParameter$name": "<p>The name of the parameter.</p>",
+        "ApiParameter$type": "<p>The data type for the parameter.</p>",
+        "ApiParameter$value": "<p>The value of the parameter.</p>",
+        "ApiResult$actionGroup": "<p>The action group that the API operation belongs to.</p>",
+        "ApiResult$httpMethod": "<p>The HTTP method for the API operation.</p>",
+        "ContentBody$body": "<p>The body of the API response.</p>",
         "ContentMap$key": null,
+        "FunctionInvocationInput$actionGroup": "<p>The action group that the function belongs to.</p>",
+        "FunctionInvocationInput$function": "<p>The name of the function.</p>",
+        "FunctionParameter$name": "<p>The name of the parameter.</p>",
+        "FunctionParameter$type": "<p>The data type of the parameter.</p>",
+        "FunctionParameter$value": "<p>The value of the parameter.</p>",
+        "FunctionResult$actionGroup": "<p>The action group that the function belongs to.</p>",
+        "FunctionResult$function": "<p>The name of the function that was called.</p>",
         "Parameter$name": "<p>The name of the parameter.</p>",
         "Parameter$type": "<p>The type of the parameter.</p>",
         "Parameter$value": "<p>The value of the parameter.</p>",
         "PromptSessionAttributesMap$key": null,
         "PromptSessionAttributesMap$value": null,
         "RepromptResponse$text": "<p>The text reprompting the input.</p>",
+        "ResponseBody$key": null,
         "RetrievalResultContent$text": "<p>The cited text from the data source.</p>",
         "RetrievalResultS3Location$uri": "<p>The S3 URI of the data source.</p>",
         "RetrieveAndGenerateOutput$text": "<p>The response generated from querying the knowledge base.</p>",
+        "ReturnControlPayload$invocationId": "<p>The identifier of the action group invocation.</p>",
         "SessionAttributesMap$key": null,
         "SessionAttributesMap$value": null,
+        "SessionState$invocationId": "<p>The identifier of the invocation.</p>",
         "StopSequences$member": null,
         "TextResponsePart$text": "<p>The part of the generated text that contains a citation.</p>"
       }
@@ -772,7 +934,7 @@
     "TracePart": {
       "base": "<p>Contains information about the agent and session, alongside the agent's reasoning process and results from calling API actions and querying knowledge bases and metadata about the trace. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-enablement\">Trace enablement</a>.</p>",
       "refs": {
-        "ResponseStream$trace": "<p>Contains information about the agent and session, alongside the agent's reasoning process and results from calling API actions and querying knowledge bases and metadata about the trace. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html\">Trace events</a>.</p>"
+        "ResponseStream$trace": "<p>Contains information about the agent and session, alongside the agent's reasoning process and results from calling actions and querying knowledge bases and metadata about the trace. You can use the trace to understand how the agent arrived at the response it provided the customer. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html\">Trace events</a>.</p>"
       }
     },
     "Type": {

@@ -368,9 +368,333 @@ func mockInvokeAgentReadEvents() (
 			},
 			Bytes: []byte("blob value goes here"),
 		},
+		&ReturnControlPayload{
+			InvocationId: aws.String("string value goes here"),
+			InvocationInputs: []*InvocationInputMember{
+				{
+					ApiInvocationInput: &ApiInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						ApiPath:     aws.String("string value goes here"),
+						HttpMethod:  aws.String("string value goes here"),
+						Parameters: []*ApiParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+						RequestBody: &ApiRequestBody{
+							Content: map[string]*PropertyParameters{
+								"a": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"b": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"c": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+					},
+					FunctionInvocationInput: &FunctionInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						Function:    aws.String("string value goes here"),
+						Parameters: []*FunctionParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+					},
+				},
+				{
+					ApiInvocationInput: &ApiInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						ApiPath:     aws.String("string value goes here"),
+						HttpMethod:  aws.String("string value goes here"),
+						Parameters: []*ApiParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+						RequestBody: &ApiRequestBody{
+							Content: map[string]*PropertyParameters{
+								"a": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"b": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"c": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+					},
+					FunctionInvocationInput: &FunctionInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						Function:    aws.String("string value goes here"),
+						Parameters: []*FunctionParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+					},
+				},
+				{
+					ApiInvocationInput: &ApiInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						ApiPath:     aws.String("string value goes here"),
+						HttpMethod:  aws.String("string value goes here"),
+						Parameters: []*ApiParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+						RequestBody: &ApiRequestBody{
+							Content: map[string]*PropertyParameters{
+								"a": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"b": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+								"c": {
+									Properties: []*Parameter{
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+										{
+											Name:  aws.String("string value goes here"),
+											Type:  aws.String("string value goes here"),
+											Value: aws.String("string value goes here"),
+										},
+									},
+								},
+							},
+						},
+					},
+					FunctionInvocationInput: &FunctionInvocationInput_{
+						ActionGroup: aws.String("string value goes here"),
+						Function:    aws.String("string value goes here"),
+						Parameters: []*FunctionParameter{
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+							{
+								Name:  aws.String("string value goes here"),
+								Type:  aws.String("string value goes here"),
+								Value: aws.String("string value goes here"),
+							},
+						},
+					},
+				},
+			},
+		},
 		&TracePart{
 			AgentAliasId: aws.String("string value goes here"),
 			AgentId:      aws.String("string value goes here"),
+			AgentVersion: aws.String("string value goes here"),
 			SessionId:    aws.String("string value goes here"),
 			Trace: &Trace{
 				FailureTrace: &FailureTrace{
@@ -382,6 +706,7 @@ func mockInvokeAgentReadEvents() (
 						ActionGroupInvocationInput: &ActionGroupInvocationInput_{
 							ActionGroupName: aws.String("string value goes here"),
 							ApiPath:         aws.String("string value goes here"),
+							Function:        aws.String("string value goes here"),
 							Parameters: []*Parameter{
 								{
 									Name:  aws.String("string value goes here"),
@@ -620,10 +945,20 @@ func mockInvokeAgentReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("trace"),
+					Value: eventstream.StringValue("returnControl"),
 				},
 			},
 			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
+		},
+		{
+			Headers: eventstream.Headers{
+				eventstreamtest.EventMessageTypeHeader,
+				{
+					Name:  eventstreamapi.EventTypeHeader,
+					Value: eventstream.StringValue("trace"),
+				},
+			},
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[2]),
 		},
 	}
 

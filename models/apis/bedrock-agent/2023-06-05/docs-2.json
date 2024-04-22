@@ -288,7 +288,8 @@
       "refs": {
         "DeleteAgentActionGroupRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
         "DeleteAgentRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
-        "DeleteAgentVersionRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>"
+        "DeleteAgentVersionRequest$skipResourceInUseCheck": "<p>By default, this value is <code>false</code> and deletion is stopped if the resource is in use. If you set it to <code>true</code>, the resource will be deleted even if the resource is in use.</p>",
+        "ParameterDetail$required": "<p>Whether the parameter is required for the agent to complete the function for action group invocation.</p>"
       }
     },
     "ChunkingConfiguration": {
@@ -386,6 +387,12 @@
       "refs": {
         "PromptConfiguration$parserMode": "<p>Specifies whether to override the default parser Lambda function when parsing the raw foundation model output in the part of the agent sequence defined by the <code>promptType</code>. If you set the field as <code>OVERRIDEN</code>, the <code>overrideLambda</code> field in the <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_PromptOverrideConfiguration.html\">PromptOverrideConfiguration</a> must be specified with the ARN of a Lambda function.</p>",
         "PromptConfiguration$promptCreationMode": "<p>Specifies whether to override the default prompt template for this <code>promptType</code>. Set this value to <code>OVERRIDDEN</code> to use the prompt that you provide in the <code>basePromptTemplate</code>. If you leave it as <code>DEFAULT</code>, the agent uses a default prompt template.</p>"
+      }
+    },
+    "CustomControlMethod": {
+      "base": null,
+      "refs": {
+        "ActionGroupExecutor$customControl": "<p>To return the action group invocation results directly in the <code>InvokeAgent</code> response, specify <code>RETURN_CONTROL</code>.</p>"
       }
     },
     "DataSource": {
@@ -628,6 +635,32 @@
         "FixedSizeChunkingConfiguration$overlapPercentage": "<p>The percentage of overlap between adjacent chunks of a data source.</p>"
       }
     },
+    "Function": {
+      "base": "<p>Defines parameters that the agent needs to invoke from the user to complete the function. Corresponds to an action in an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>",
+      "refs": {
+        "Functions$member": null
+      }
+    },
+    "FunctionDescription": {
+      "base": null,
+      "refs": {
+        "Function$description": "<p>A description of the function and its purpose.</p>"
+      }
+    },
+    "FunctionSchema": {
+      "base": "<p>Defines functions that each define parameters that the agent needs to invoke from the user. Each function represents an action in an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>",
+      "refs": {
+        "AgentActionGroup$functionSchema": "<p>Defines functions that each define parameters that the agent needs to invoke from the user. Each function represents an action in an action group.</p>",
+        "CreateAgentActionGroupRequest$functionSchema": "<p>Contains details about the function schema for the action group or the JSON or YAML-formatted payload defining the schema.</p>",
+        "UpdateAgentActionGroupRequest$functionSchema": "<p>Contains details about the function schema for the action group or the JSON or YAML-formatted payload defining the schema.</p>"
+      }
+    },
+    "Functions": {
+      "base": null,
+      "refs": {
+        "FunctionSchema$functions": "<p>A list of functions that each define an action in the action group.</p>"
+      }
+    },
     "GetAgentActionGroupRequest": {
       "base": null,
       "refs": {
@@ -796,7 +829,7 @@
       }
     },
     "IngestionJob": {
-      "base": "<p>Contains details about an ingestion job, which converts a data source to embeddings for a vector store in knowledge base.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_StartIngestionJob.html#API_agent_StartIngestionJob_ResponseSyntax\">StartIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax\">GetIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJob.html#API_agent_ListIngestionJob_ResponseSyntax\">ListIngestionJob response</a> </p> </li> </ul>",
+      "base": "<p>Contains details about an ingestion job, which converts a data source to embeddings for a vector store in knowledge base.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_StartIngestionJob.html#API_agent_StartIngestionJob_ResponseSyntax\">StartIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetIngestionJob.html#API_agent_GetIngestionJob_ResponseSyntax\">GetIngestionJob response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListIngestionJobs.html#API_agent_ListIngestionJobs_ResponseSyntax\">ListIngestionJob response</a> </p> </li> </ul>",
       "refs": {
         "GetIngestionJobResponse$ingestionJob": "<p>Contains details about the ingestion job.</p>",
         "StartIngestionJobResponse$ingestionJob": "<p>An object containing information about the ingestion job.</p>"
@@ -1114,8 +1147,10 @@
         "CreateKnowledgeBaseRequest$name": "<p>A name for the knowledge base.</p>",
         "DataSource$name": "<p>The name of the data source.</p>",
         "DataSourceSummary$name": "<p>The name of the data source.</p>",
+        "Function$name": "<p>A name for the function.</p>",
         "KnowledgeBase$name": "<p>The name of the knowledge base.</p>",
         "KnowledgeBaseSummary$name": "<p>The name of the knowledge base.</p>",
+        "ParameterMap$key": null,
         "UpdateAgentActionGroupRequest$actionGroupName": "<p>Specifies a new name for the action group.</p>",
         "UpdateAgentAliasRequest$agentAliasName": "<p>Specifies a new name for the alias.</p>",
         "UpdateAgentRequest$agentName": "<p>Specifies a new name for the agent.</p>",
@@ -1189,6 +1224,24 @@
       "base": null,
       "refs": {
         "OpenSearchServerlessConfiguration$vectorIndexName": "<p>The name of the vector store.</p>"
+      }
+    },
+    "ParameterDescription": {
+      "base": null,
+      "refs": {
+        "ParameterDetail$description": "<p>A description of the parameter. Helps the foundation model determine how to elicit the parameters from the user.</p>"
+      }
+    },
+    "ParameterDetail": {
+      "base": "<p>Contains details about a parameter in a function for an action group.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_RequestSyntax\">CreateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgentActionGroup.html#API_agent_CreateAgentActionGroup_ResponseSyntax\">CreateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_RequestSyntax\">UpdateAgentActionGroup request</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_UpdateAgentActionGroup.html#API_agent_UpdateAgentActionGroup_ResponseSyntax\">UpdateAgentActionGroup response</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetAgentActionGroup.html#API_agent_GetAgentActionGroup_ResponseSyntax\">GetAgentActionGroup response</a> </p> </li> </ul>",
+      "refs": {
+        "ParameterMap$value": null
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "Function$parameters": "<p>The parameters that the agent elicits from the user to fulfill the function.</p>"
       }
     },
     "Payload": {
@@ -1524,6 +1577,12 @@
       "base": null,
       "refs": {
         "InferenceConfiguration$topP": "<p>While generating a response, the model determines the probability of the following token at each point of generation. The value that you set for <code>Top P</code> determines the number of most-likely candidates from which the model chooses the next token in the sequence. For example, if you set <code>topP</code> to 80, the model only selects the next token from the top 80% of the probability distribution of next tokens.</p>"
+      }
+    },
+    "Type": {
+      "base": null,
+      "refs": {
+        "ParameterDetail$type": "<p>The data type of the parameter.</p>"
       }
     },
     "UntagResourceRequest": {

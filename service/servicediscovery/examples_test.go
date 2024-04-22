@@ -327,6 +327,41 @@ func ExampleServiceDiscovery_DiscoverInstances_shared00() {
 	fmt.Println(result)
 }
 
+// To discover the revision for a registered instance
+// The following example discovers the revision ID for a registered instance.
+func ExampleServiceDiscovery_DiscoverInstancesRevision_shared00() {
+	svc := servicediscovery.New(session.New())
+	input := &servicediscovery.DiscoverInstancesRevisionInput{
+		NamespaceName: aws.String("example-namespace"),
+		ServiceName:   aws.String("example-service"),
+	}
+
+	result, err := svc.DiscoverInstancesRevision(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case servicediscovery.ErrCodeServiceNotFound:
+				fmt.Println(servicediscovery.ErrCodeServiceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeNamespaceNotFound:
+				fmt.Println(servicediscovery.ErrCodeNamespaceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeInvalidInput:
+				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeRequestLimitExceeded:
+				fmt.Println(servicediscovery.ErrCodeRequestLimitExceeded, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // GetInstance example
 // This example gets information about a specified instance.
 func ExampleServiceDiscovery_GetInstance_shared00() {
@@ -750,6 +785,43 @@ func ExampleServiceDiscovery_UntagResource_shared00() {
 	fmt.Println(result)
 }
 
+// To update a HTTP namespace
+// The following example updates the description of a HTTP namespace.
+func ExampleServiceDiscovery_UpdateHttpNamespace_shared00() {
+	svc := servicediscovery.New(session.New())
+	input := &servicediscovery.UpdateHttpNamespaceInput{
+		Id: aws.String("ns-vh4nbmEXAMPLE"),
+		Namespace: &servicediscovery.HttpNamespaceChange{
+			Description: aws.String("The updated namespace description."),
+		},
+	}
+
+	result, err := svc.UpdateHttpNamespace(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case servicediscovery.ErrCodeInvalidInput:
+				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeNamespaceNotFound:
+				fmt.Println(servicediscovery.ErrCodeNamespaceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeResourceInUse:
+				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
+			case servicediscovery.ErrCodeDuplicateRequest:
+				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // UpdateInstanceCustomHealthStatus Example
 // This example submits a request to change the health status of an instance associated
 // with a service with a custom health check to HEALTHY.
@@ -773,6 +845,82 @@ func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
 				fmt.Println(servicediscovery.ErrCodeCustomHealthNotFound, aerr.Error())
 			case servicediscovery.ErrCodeInvalidInput:
 				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To update a private DNS namespace
+// The following example updates the description of a private DNS namespace.
+func ExampleServiceDiscovery_UpdatePrivateDnsNamespace_shared00() {
+	svc := servicediscovery.New(session.New())
+	input := &servicediscovery.UpdatePrivateDnsNamespaceInput{
+		Id: aws.String("ns-bk3aEXAMPLE"),
+		Namespace: &servicediscovery.PrivateDnsNamespaceChange{
+			Description: aws.String("The updated namespace description."),
+		},
+		UpdaterRequestId: aws.String(""),
+	}
+
+	result, err := svc.UpdatePrivateDnsNamespace(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case servicediscovery.ErrCodeInvalidInput:
+				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeNamespaceNotFound:
+				fmt.Println(servicediscovery.ErrCodeNamespaceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeResourceInUse:
+				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
+			case servicediscovery.ErrCodeDuplicateRequest:
+				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To update a public DNS namespace
+// The following example updates the description of a public DNS namespace.
+func ExampleServiceDiscovery_UpdatePrivateDnsNamespace_shared01() {
+	svc := servicediscovery.New(session.New())
+	input := &servicediscovery.UpdatePrivateDnsNamespaceInput{
+		Id: aws.String("ns-bk3aEXAMPLE"),
+		Namespace: &servicediscovery.PrivateDnsNamespaceChange{
+			Description: aws.String("The updated namespace description."),
+		},
+		UpdaterRequestId: aws.String(""),
+	}
+
+	result, err := svc.UpdatePrivateDnsNamespace(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case servicediscovery.ErrCodeInvalidInput:
+				fmt.Println(servicediscovery.ErrCodeInvalidInput, aerr.Error())
+			case servicediscovery.ErrCodeNamespaceNotFound:
+				fmt.Println(servicediscovery.ErrCodeNamespaceNotFound, aerr.Error())
+			case servicediscovery.ErrCodeResourceInUse:
+				fmt.Println(servicediscovery.ErrCodeResourceInUse, aerr.Error())
+			case servicediscovery.ErrCodeDuplicateRequest:
+				fmt.Println(servicediscovery.ErrCodeDuplicateRequest, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

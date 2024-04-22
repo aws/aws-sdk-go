@@ -694,6 +694,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "StartDirectoryListing":{
+      "name":"StartDirectoryListing",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartDirectoryListingRequest"},
+      "output":{"shape":"StartDirectoryListingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "StartFileTransfer":{
       "name":"StartFileTransfer",
       "http":{
@@ -2482,6 +2498,12 @@
       "type":"list",
       "member":{"shape":"ListedWorkflow"}
     },
+    "ListingId":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[0-9a-zA-Z./-]+"
+    },
     "LogGroupName":{
       "type":"string",
       "max":512,
@@ -2513,6 +2535,12 @@
         "FILE",
         "DIRECTORY"
       ]
+    },
+    "MaxItems":{
+      "type":"integer",
+      "box":true,
+      "max":10000,
+      "min":1
     },
     "MaxResults":{
       "type":"integer",
@@ -2567,6 +2595,12 @@
       "member":{"shape":"WorkflowDetail"},
       "max":1,
       "min":0
+    },
+    "OutputFileName":{
+      "type":"string",
+      "max":537,
+      "min":26,
+      "pattern":"c-([0-9a-f]{17})-[0-9a-zA-Z./-]+.json"
     },
     "OverwriteExisting":{
       "type":"string",
@@ -2977,6 +3011,31 @@
       "member":{"shape":"SshPublicKey"},
       "max":5,
       "min":0
+    },
+    "StartDirectoryListingRequest":{
+      "type":"structure",
+      "required":[
+        "ConnectorId",
+        "RemoteDirectoryPath",
+        "OutputDirectoryPath"
+      ],
+      "members":{
+        "ConnectorId":{"shape":"ConnectorId"},
+        "RemoteDirectoryPath":{"shape":"FilePath"},
+        "MaxItems":{"shape":"MaxItems"},
+        "OutputDirectoryPath":{"shape":"FilePath"}
+      }
+    },
+    "StartDirectoryListingResponse":{
+      "type":"structure",
+      "required":[
+        "ListingId",
+        "OutputFileName"
+      ],
+      "members":{
+        "ListingId":{"shape":"ListingId"},
+        "OutputFileName":{"shape":"OutputFileName"}
+      }
     },
     "StartFileTransferRequest":{
       "type":"structure",

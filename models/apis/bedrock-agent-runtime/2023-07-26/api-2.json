@@ -163,6 +163,9 @@
         "apiPath": {
           "shape": "ApiPath"
         },
+        "function": {
+          "shape": "Function"
+        },
         "parameters": {
           "shape": "Parameters"
         },
@@ -203,9 +206,101 @@
       "pattern": "^[0-9a-zA-Z]+$",
       "type": "string"
     },
+    "AgentVersion": {
+      "max": 5,
+      "min": 1,
+      "pattern": "^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$",
+      "type": "string"
+    },
+    "ApiContentMap": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "PropertyParameters"
+      }
+    },
+    "ApiInvocationInput": {
+      "members": {
+        "actionGroup": {
+          "shape": "String"
+        },
+        "apiPath": {
+          "shape": "ApiPath"
+        },
+        "httpMethod": {
+          "shape": "String"
+        },
+        "parameters": {
+          "shape": "ApiParameters"
+        },
+        "requestBody": {
+          "shape": "ApiRequestBody"
+        }
+      },
+      "required": [
+        "actionGroup"
+      ],
+      "type": "structure"
+    },
+    "ApiParameter": {
+      "members": {
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "String"
+        },
+        "value": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "ApiParameters": {
+      "member": {
+        "shape": "ApiParameter"
+      },
+      "type": "list"
+    },
     "ApiPath": {
       "sensitive": true,
       "type": "string"
+    },
+    "ApiRequestBody": {
+      "members": {
+        "content": {
+          "shape": "ApiContentMap"
+        }
+      },
+      "type": "structure"
+    },
+    "ApiResult": {
+      "members": {
+        "actionGroup": {
+          "shape": "String"
+        },
+        "apiPath": {
+          "shape": "ApiPath"
+        },
+        "httpMethod": {
+          "shape": "String"
+        },
+        "httpStatusCode": {
+          "shape": "Integer"
+        },
+        "responseBody": {
+          "shape": "ResponseBody"
+        },
+        "responseState": {
+          "shape": "ResponseState"
+        }
+      },
+      "required": [
+        "actionGroup"
+      ],
+      "type": "structure"
     },
     "Attribution": {
       "members": {
@@ -267,6 +362,14 @@
       "members": {
         "message": {
           "shape": "NonBlankString"
+        }
+      },
+      "type": "structure"
+    },
+    "ContentBody": {
+      "members": {
+        "body": {
+          "shape": "String"
         }
       },
       "type": "structure"
@@ -340,6 +443,67 @@
       "sensitive": true,
       "type": "string"
     },
+    "Function": {
+      "sensitive": true,
+      "type": "string"
+    },
+    "FunctionInvocationInput": {
+      "members": {
+        "actionGroup": {
+          "shape": "String"
+        },
+        "function": {
+          "shape": "String"
+        },
+        "parameters": {
+          "shape": "FunctionParameters"
+        }
+      },
+      "required": [
+        "actionGroup"
+      ],
+      "type": "structure"
+    },
+    "FunctionParameter": {
+      "members": {
+        "name": {
+          "shape": "String"
+        },
+        "type": {
+          "shape": "String"
+        },
+        "value": {
+          "shape": "String"
+        }
+      },
+      "type": "structure"
+    },
+    "FunctionParameters": {
+      "member": {
+        "shape": "FunctionParameter"
+      },
+      "type": "list"
+    },
+    "FunctionResult": {
+      "members": {
+        "actionGroup": {
+          "shape": "String"
+        },
+        "function": {
+          "shape": "String"
+        },
+        "responseBody": {
+          "shape": "ResponseBody"
+        },
+        "responseState": {
+          "shape": "ResponseState"
+        }
+      },
+      "required": [
+        "actionGroup"
+      ],
+      "type": "structure"
+    },
     "GeneratedResponsePart": {
       "members": {
         "textResponsePart": {
@@ -382,6 +546,10 @@
       "sensitive": true,
       "type": "string"
     },
+    "Integer": {
+      "box": true,
+      "type": "integer"
+    },
     "InternalServerException": {
       "error": {
         "httpStatusCode": 500
@@ -412,6 +580,38 @@
       },
       "sensitive": true,
       "type": "structure"
+    },
+    "InvocationInputMember": {
+      "members": {
+        "apiInvocationInput": {
+          "shape": "ApiInvocationInput"
+        },
+        "functionInvocationInput": {
+          "shape": "FunctionInvocationInput"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "InvocationInputs": {
+      "max": 5,
+      "member": {
+        "shape": "InvocationInputMember"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "InvocationResultMember": {
+      "members": {
+        "apiResult": {
+          "shape": "ApiResult"
+        },
+        "functionResult": {
+          "shape": "FunctionResult"
+        }
+      },
+      "type": "structure",
+      "union": true
     },
     "InvocationType": {
       "enum": [
@@ -454,7 +654,6 @@
       "required": [
         "agentAliasId",
         "agentId",
-        "inputText",
         "sessionId"
       ],
       "type": "structure"
@@ -722,6 +921,12 @@
       },
       "type": "structure"
     },
+    "ParameterList": {
+      "member": {
+        "shape": "Parameter"
+      },
+      "type": "list"
+    },
     "Parameters": {
       "member": {
         "shape": "Parameter"
@@ -848,6 +1053,14 @@
       ],
       "type": "string"
     },
+    "PropertyParameters": {
+      "members": {
+        "properties": {
+          "shape": "ParameterList"
+        }
+      },
+      "type": "structure"
+    },
     "Rationale": {
       "members": {
         "text": {
@@ -897,6 +1110,22 @@
       },
       "type": "structure"
     },
+    "ResponseBody": {
+      "key": {
+        "shape": "String"
+      },
+      "type": "map",
+      "value": {
+        "shape": "ContentBody"
+      }
+    },
+    "ResponseState": {
+      "enum": [
+        "FAILURE",
+        "REPROMPT"
+      ],
+      "type": "string"
+    },
     "ResponseStream": {
       "eventstream": true,
       "members": {
@@ -920,6 +1149,9 @@
         },
         "resourceNotFoundException": {
           "shape": "ResourceNotFoundException"
+        },
+        "returnControl": {
+          "shape": "ReturnControlPayload"
         },
         "serviceQuotaExceededException": {
           "shape": "ServiceQuotaExceededException"
@@ -1155,6 +1387,27 @@
       },
       "type": "list"
     },
+    "ReturnControlInvocationResults": {
+      "max": 5,
+      "member": {
+        "shape": "InvocationResultMember"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ReturnControlPayload": {
+      "event": true,
+      "members": {
+        "invocationId": {
+          "shape": "String"
+        },
+        "invocationInputs": {
+          "shape": "InvocationInputs"
+        }
+      },
+      "sensitive": true,
+      "type": "structure"
+    },
     "SearchType": {
       "enum": [
         "HYBRID",
@@ -1192,8 +1445,14 @@
     },
     "SessionState": {
       "members": {
+        "invocationId": {
+          "shape": "String"
+        },
         "promptSessionAttributes": {
           "shape": "PromptSessionAttributesMap"
+        },
+        "returnControlInvocationResults": {
+          "shape": "ReturnControlInvocationResults"
         },
         "sessionAttributes": {
           "shape": "SessionAttributesMap"
@@ -1327,6 +1586,9 @@
         },
         "agentId": {
           "shape": "AgentId"
+        },
+        "agentVersion": {
+          "shape": "AgentVersion"
         },
         "sessionId": {
           "shape": "SessionId"
