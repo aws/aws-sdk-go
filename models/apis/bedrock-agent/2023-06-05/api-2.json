@@ -765,6 +765,7 @@
     "ActionGroupExecutor":{
       "type":"structure",
       "members":{
+        "customControl":{"shape":"CustomControlMethod"},
         "lambda":{"shape":"LambdaArn"}
       },
       "union":true
@@ -858,6 +859,7 @@
         "clientToken":{"shape":"ClientToken"},
         "createdAt":{"shape":"DateTimestamp"},
         "description":{"shape":"Description"},
+        "functionSchema":{"shape":"FunctionSchema"},
         "parentActionSignature":{"shape":"ActionGroupSignature"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
@@ -1218,6 +1220,7 @@
           "idempotencyToken":true
         },
         "description":{"shape":"Description"},
+        "functionSchema":{"shape":"FunctionSchema"},
         "parentActionGroupSignature":{"shape":"ActionGroupSignature"}
       }
     },
@@ -1348,6 +1351,10 @@
         "DEFAULT",
         "OVERRIDDEN"
       ]
+    },
+    "CustomControlMethod":{
+      "type":"string",
+      "enum":["RETURN_CONTROL"]
     },
     "DataSource":{
       "type":"structure",
@@ -1682,6 +1689,31 @@
       "box":true,
       "max":99,
       "min":1
+    },
+    "Function":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "description":{"shape":"FunctionDescription"},
+        "name":{"shape":"Name"},
+        "parameters":{"shape":"ParameterMap"}
+      }
+    },
+    "FunctionDescription":{
+      "type":"string",
+      "max":1200,
+      "min":1
+    },
+    "FunctionSchema":{
+      "type":"structure",
+      "members":{
+        "functions":{"shape":"Functions"}
+      },
+      "union":true
+    },
+    "Functions":{
+      "type":"list",
+      "member":{"shape":"Function"}
     },
     "GetAgentActionGroupRequest":{
       "type":"structure",
@@ -2429,6 +2461,25 @@
       "min":0,
       "pattern":"^.*$"
     },
+    "ParameterDescription":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "ParameterDetail":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "description":{"shape":"ParameterDescription"},
+        "required":{"shape":"Boolean"},
+        "type":{"shape":"Type"}
+      }
+    },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"Name"},
+      "value":{"shape":"ParameterDetail"}
+    },
     "Payload":{
       "type":"string",
       "sensitive":true
@@ -2854,6 +2905,16 @@
       "max":1,
       "min":0
     },
+    "Type":{
+      "type":"string",
+      "enum":[
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "array"
+      ]
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -2907,6 +2968,7 @@
         },
         "apiSchema":{"shape":"APISchema"},
         "description":{"shape":"Description"},
+        "functionSchema":{"shape":"FunctionSchema"},
         "parentActionGroupSignature":{"shape":"ActionGroupSignature"}
       }
     },

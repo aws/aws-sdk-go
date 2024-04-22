@@ -3213,6 +3213,7 @@
     "CustomFileSystemConfigs": {
       "base": null,
       "refs": {
+        "DefaultSpaceSettings$CustomFileSystemConfigs": "<p>The settings for assigning a custom file system to a domain. Permitted users can access this file system in Amazon SageMaker Studio.</p>",
         "UserSettings$CustomFileSystemConfigs": "<p>The settings for assigning a custom file system to a user profile. Permitted users can access this file system in Amazon SageMaker Studio.</p>"
       }
     },
@@ -3258,6 +3259,7 @@
     "CustomPosixUserConfig": {
       "base": "<p>Details about the POSIX identity that is used for file system operations.</p>",
       "refs": {
+        "DefaultSpaceSettings$CustomPosixUserConfig": null,
         "UserSettings$CustomPosixUserConfig": "<p>Details about the POSIX identity that is used for file system operations.</p>"
       }
     },
@@ -3424,9 +3426,9 @@
       }
     },
     "DefaultEbsStorageSettings": {
-      "base": "<p>A collection of default EBS storage settings that applies to private spaces created within a domain or user profile.</p>",
+      "base": "<p>A collection of default EBS storage settings that apply to spaces created within a domain or user profile.</p>",
       "refs": {
-        "DefaultSpaceStorageSettings$DefaultEbsStorageSettings": "<p>The default EBS storage settings for a private space.</p>"
+        "DefaultSpaceStorageSettings$DefaultEbsStorageSettings": "<p>The default EBS storage settings for a space.</p>"
       }
     },
     "DefaultGid": {
@@ -3444,9 +3446,10 @@
       }
     },
     "DefaultSpaceStorageSettings": {
-      "base": "<p>The default storage settings for a private space.</p>",
+      "base": "<p>The default storage settings for a space.</p>",
       "refs": {
-        "UserSettings$SpaceStorageSettings": "<p>The storage settings for a private space.</p>"
+        "DefaultSpaceSettings$SpaceStorageSettings": null,
+        "UserSettings$SpaceStorageSettings": "<p>The storage settings for a space.</p>"
       }
     },
     "DefaultUid": {
@@ -4912,9 +4915,9 @@
       }
     },
     "EbsStorageSettings": {
-      "base": "<p>A collection of EBS storage settings that applies to private spaces.</p>",
+      "base": "<p>A collection of EBS storage settings that apply to both private and shared spaces.</p>",
       "refs": {
-        "SpaceStorageSettings$EbsStorageSettings": "<p>A collection of EBS storage settings for a private space.</p>"
+        "SpaceStorageSettings$EbsStorageSettings": "<p>A collection of EBS storage settings for a space.</p>"
       }
     },
     "Edge": {
@@ -7744,6 +7747,7 @@
     "JupyterLabAppSettings": {
       "base": "<p>The settings for the JupyterLab application.</p>",
       "refs": {
+        "DefaultSpaceSettings$JupyterLabAppSettings": null,
         "UserSettings$JupyterLabAppSettings": "<p>The settings for the JupyterLab application.</p>"
       }
     },
@@ -13683,9 +13687,9 @@
     "SpaceEbsVolumeSizeInGb": {
       "base": null,
       "refs": {
-        "DefaultEbsStorageSettings$DefaultEbsVolumeSizeInGb": "<p>The default size of the EBS storage volume for a private space.</p>",
-        "DefaultEbsStorageSettings$MaximumEbsVolumeSizeInGb": "<p>The maximum size of the EBS storage volume for a private space.</p>",
-        "EbsStorageSettings$EbsVolumeSizeInGb": "<p>The size of an EBS storage volume for a private space.</p>"
+        "DefaultEbsStorageSettings$DefaultEbsVolumeSizeInGb": "<p>The default size of the EBS storage volume for a space.</p>",
+        "DefaultEbsStorageSettings$MaximumEbsVolumeSizeInGb": "<p>The maximum size of the EBS storage volume for a space.</p>",
+        "EbsStorageSettings$EbsVolumeSizeInGb": "<p>The size of an EBS storage volume for a space.</p>"
       }
     },
     "SpaceJupyterLabAppSettings": {
@@ -13760,10 +13764,10 @@
       }
     },
     "SpaceStorageSettings": {
-      "base": "<p>The storage settings for a private space.</p>",
+      "base": "<p>The storage settings for a space.</p>",
       "refs": {
-        "SpaceSettings$SpaceStorageSettings": "<p>The storage settings for a private space.</p>",
-        "SpaceSettingsSummary$SpaceStorageSettings": "<p>The storage settings for a private space.</p>"
+        "SpaceSettings$SpaceStorageSettings": "<p>The storage settings for a space.</p>",
+        "SpaceSettingsSummary$SpaceStorageSettings": "<p>The storage settings for a space.</p>"
       }
     },
     "SpawnRate": {
@@ -16201,8 +16205,8 @@
         "DescribeUserProfileResponse$UserProfileName": "<p>The user profile name.</p>",
         "ListAppsRequest$UserProfileNameEquals": "<p>A parameter to search by user profile name. If <code>SpaceNameEquals</code> is set, then this value cannot be set.</p>",
         "ListUserProfilesRequest$UserProfileNameContains": "<p>A parameter by which to filter the results.</p>",
-        "OwnershipSettings$OwnerUserProfileName": "<p>The user profile who is the owner of the private space.</p>",
-        "OwnershipSettingsSummary$OwnerUserProfileName": "<p>The user profile who is the owner of the private space.</p>",
+        "OwnershipSettings$OwnerUserProfileName": "<p>The user profile who is the owner of the space.</p>",
+        "OwnershipSettingsSummary$OwnerUserProfileName": "<p>The user profile who is the owner of the space.</p>",
         "UpdateUserProfileRequest$UserProfileName": "<p>The user profile name.</p>",
         "UserProfileDetails$UserProfileName": "<p>The user profile name.</p>"
       }

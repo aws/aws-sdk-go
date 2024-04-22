@@ -202,6 +202,26 @@
         "title": "Example: Discover registered instances"
       }
     ],
+    "DiscoverInstancesRevision": [
+      {
+        "input": {
+          "NamespaceName": "example-namespace",
+          "ServiceName": "example-service"
+        },
+        "output": {
+          "InstancesRevision": 123456
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example discovers the revision ID for a registered instance.",
+        "id": "to-discover-the-revision-for-a-registered-instance-1712867460953",
+        "title": "To discover the revision for a registered instance"
+      }
+    ],
     "GetInstance": [
       {
         "input": {
@@ -616,6 +636,28 @@
         "title": "UntagResource example"
       }
     ],
+    "UpdateHttpNamespace": [
+      {
+        "input": {
+          "Id": "ns-vh4nbmEXAMPLE",
+          "Namespace": {
+            "Description": "The updated namespace description."
+          }
+        },
+        "output": {
+          "OperationId": "ft52xe2koxhoeormaceymagglsdjyvEXAMPLE"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example updates the description of a HTTP namespace.",
+        "id": "to-update-a-http-namespace-17128EXAMPLE",
+        "title": "To update a HTTP namespace"
+      }
+    ],
     "UpdateInstanceCustomHealthStatus": [
       {
         "input": {
@@ -632,6 +674,50 @@
         "description": "This example submits a request to change the health status of an instance associated with a service with a custom health check to HEALTHY.",
         "id": "updateinstancecustomhealthstatus-example-1590118408574",
         "title": "UpdateInstanceCustomHealthStatus Example"
+      }
+    ],
+    "UpdatePrivateDnsNamespace": [
+      {
+        "input": {
+          "Id": "ns-bk3aEXAMPLE",
+          "Namespace": {
+            "Description": "The updated namespace description."
+          },
+          "UpdaterRequestId": ""
+        },
+        "output": {
+          "OperationId": "ft52xe2koxhoeormaceymagglsdjyvEXAMPLE"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example updates the description of a private DNS namespace.",
+        "id": "to-update-a-private-dns-namespace-1712868389604",
+        "title": "To update a private DNS namespace"
+      },
+      {
+        "input": {
+          "Id": "ns-bk3aEXAMPLE",
+          "Namespace": {
+            "Description": "The updated namespace description."
+          },
+          "UpdaterRequestId": ""
+        },
+        "output": {
+          "OperationId": "ft52xe2koxhoeormaceymagglsdjEXAMPLE"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example updates the description of a public DNS namespace.",
+        "id": "to-update-a-public-dns-namespace-1712868389604",
+        "title": "To update a public DNS namespace"
       }
     ],
     "UpdateService": [

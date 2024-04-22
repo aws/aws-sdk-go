@@ -1865,7 +1865,7 @@ func (c *ServiceDiscovery) ListServicesRequest(input *ListServicesInput) (req *r
 // ListServices API operation for AWS Cloud Map.
 //
 // Lists summary information for all the services that are associated with one
-// or more specified namespaces.
+// or more namespaces.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3778,7 +3778,9 @@ type DiscoverInstancesInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The HttpName name of the namespace. It's found in the HttpProperties member
-	// of the Properties member of the namespace.
+	// of the Properties member of the namespace. In most cases, Name and HttpName
+	// match. However, if you reuse Name for namespace creation, a generated hash
+	// is added to HttpName to distinguish the two.
 	//
 	// NamespaceName is a required field
 	NamespaceName *string `type:"string" required:"true"`
@@ -7711,7 +7713,7 @@ type RegisterInstanceInput struct {
 	// Do not include sensitive information in the attributes if the namespace is
 	// discoverable by public DNS queries.
 	//
-	// Supported attribute keys include the following:
+	// The following are the supported attribute keys.
 	//
 	// AWS_ALIAS_DNS_NAME
 	//
@@ -7739,6 +7741,8 @@ type RegisterInstanceInput struct {
 	//
 	//    * If you specify a value for AWS_ALIAS_DNS_NAME, don't specify values
 	//    for any of the AWS_INSTANCE attributes.
+	//
+	//    * The AWS_ALIAS_DNS_NAME is not supported in the GovCloud (US) Regions.
 	//
 	// AWS_EC2_INSTANCE_ID
 	//

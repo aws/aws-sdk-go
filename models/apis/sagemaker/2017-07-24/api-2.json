@@ -7954,7 +7954,11 @@
         "ExecutionRole":{"shape":"RoleArn"},
         "SecurityGroups":{"shape":"SecurityGroupIds"},
         "JupyterServerAppSettings":{"shape":"JupyterServerAppSettings"},
-        "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"}
+        "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"},
+        "JupyterLabAppSettings":{"shape":"JupyterLabAppSettings"},
+        "SpaceStorageSettings":{"shape":"DefaultSpaceStorageSettings"},
+        "CustomPosixUserConfig":{"shape":"CustomPosixUserConfig"},
+        "CustomFileSystemConfigs":{"shape":"CustomFileSystemConfigs"}
       }
     },
     "DefaultSpaceStorageSettings":{

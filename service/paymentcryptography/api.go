@@ -68,22 +68,23 @@ func (c *PaymentCryptography) CreateAliasRequest(input *CreateAliasInput) (req *
 // create another alias with the same name in a different Amazon Web Services
 // Region.
 //
-// To change the key that's associated with the alias, call UpdateAlias. To
-// delete the alias, call DeleteAlias. These operations don't affect the underlying
-// key. To get the alias that you created, call ListAliases.
+// To change the key that's associated with the alias, call UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html).
+// To delete the alias, call DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html).
+// These operations don't affect the underlying key. To get the alias that you
+// created, call ListAliases (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListAliases.html).
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - DeleteAlias
+//   - DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html)
 //
-//   - GetAlias
+//   - GetAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetAlias.html)
 //
-//   - ListAliases
+//   - ListAliases (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListAliases.html)
 //
-//   - UpdateAlias
+//   - UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -213,11 +214,11 @@ func (c *PaymentCryptography) CreateKeyRequest(input *CreateKeyInput) (req *requ
 //
 // Related operations:
 //
-//   - DeleteKey
+//   - DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
 //
-//   - GetKey
+//   - GetKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetKey.html)
 //
-//   - ListKeys
+//   - ListKeys (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListKeys.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -322,22 +323,24 @@ func (c *PaymentCryptography) DeleteAliasRequest(input *DeleteAliasInput) (req *
 // Deletes the alias, but doesn't affect the underlying key.
 //
 // Each key can have multiple aliases. To get the aliases of all keys, use the
-// ListAliases operation. To change the alias of a key, first use DeleteAlias
-// to delete the current alias and then use CreateAlias to create a new alias.
-// To associate an existing alias with a different key, call UpdateAlias.
+// UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html)
+// operation. To change the alias of a key, first use DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html)
+// to delete the current alias and then use CreateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html)
+// to create a new alias. To associate an existing alias with a different key,
+// call UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html).
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - CreateAlias
+//   - CreateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html)
 //
-//   - GetAlias
+//   - GetAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetAlias.html)
 //
-//   - ListAliases
+//   - ListAliases (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListAliases.html)
 //
-//   - UpdateAlias
+//   - UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -451,18 +454,18 @@ func (c *PaymentCryptography) DeleteKeyRequest(input *DeleteKeyInput) (req *requ
 //
 // You should delete a key only when you are sure that you don't need to use
 // it anymore and no other parties are utilizing this key. If you aren't sure,
-// consider deactivating it instead by calling StopKeyUsage.
+// consider deactivating it instead by calling StopKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html).
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - RestoreKey
+//   - RestoreKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_RestoreKey.html)
 //
-//   - StartKeyUsage
+//   - StartKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html)
 //
-//   - StopKeyUsage
+//   - StopKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -594,6 +597,22 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // IPEK does not persist within Amazon Web Services Payment Cryptography and
 // has to be re-generated each time during export.
 //
+// For key exchange using TR-31 or TR-34 key blocks, you can also export optional
+// blocks within the key block header which contain additional attribute information
+// about the key. The KeyVersion within KeyBlockHeaders indicates the version
+// of the key within the key block. Furthermore, KeyExportability within KeyBlockHeaders
+// can be used to further restrict exportability of the key after export from
+// Amazon Web Services Payment Cryptography.
+//
+// The OptionalBlocks contain the additional data related to the key. For information
+// on data type that can be included within optional blocks, refer to ASC X9.143-2022
+// (https://webstore.ansi.org/standards/ascx9/ansix91432022).
+//
+// Data included in key block headers is signed but transmitted in clear text.
+// Sensitive or confidential information should not be included in optional
+// blocks. Refer to ASC X9.143-2022 standard for information on allowed data
+// type.
+//
 // # To export initial keys (KEK) or IPEK using TR-34
 //
 // Using this operation, you can export initial key using TR-34 asymmetric key
@@ -605,23 +624,24 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // receiving the key.
 //
 // To initiate TR-34 key export, the KRD must obtain an export token by calling
-// GetParametersForExport. This operation also generates a key pair for the
-// purpose of key export, signs the key and returns back the signing public
-// key certificate (also known as KDH signing certificate) and root certificate
-// chain. The KDH uses the private key to sign the the export payload and the
-// signing public key certificate is provided to KRD to verify the signature.
-// The KRD can import the root certificate into its Hardware Security Module
-// (HSM), as required. The export token and the associated KDH signing certificate
-// expires after 7 days.
+// GetParametersForExport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForExport.html).
+// This operation also generates a key pair for the purpose of key export, signs
+// the key and returns back the signing public key certificate (also known as
+// KDH signing certificate) and root certificate chain. The KDH uses the private
+// key to sign the the export payload and the signing public key certificate
+// is provided to KRD to verify the signature. The KRD can import the root certificate
+// into its Hardware Security Module (HSM), as required. The export token and
+// the associated KDH signing certificate expires after 7 days.
 //
 // Next the KRD generates a key pair for the the purpose of encrypting the KDH
 // key and provides the public key cerificate (also known as KRD wrapping certificate)
 // back to KDH. The KRD will also import the root cerificate chain into Amazon
-// Web Services Payment Cryptography by calling ImportKey for RootCertificatePublicKey.
-// The KDH, Amazon Web Services Payment Cryptography, will use the KRD wrapping
-// cerificate to encrypt (wrap) the key under export and signs it with signing
-// private key to generate a TR-34 WrappedKeyBlock. For more information on
-// TR-34 key export, see section Exporting symmetric keys (https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-export.html)
+// Web Services Payment Cryptography by calling ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html)
+// for RootCertificatePublicKey. The KDH, Amazon Web Services Payment Cryptography,
+// will use the KRD wrapping cerificate to encrypt (wrap) the key under export
+// and signs it with signing private key to generate a TR-34 WrappedKeyBlock.
+// For more information on TR-34 key export, see section Exporting symmetric
+// keys (https://docs.aws.amazon.com/payment-cryptography/latest/userguide/keys-export.html)
 // in the Amazon Web Services Payment Cryptography User Guide.
 //
 // Set the following parameters:
@@ -637,7 +657,7 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 //   - CertificateAuthorityPublicKeyIdentifier: The KeyARN of the certificate
 //     chain that signed the KRD wrapping key certificate.
 //
-//   - ExportToken: Obtained from KDH by calling GetParametersForImport.
+//   - ExportToken: Obtained from KDH by calling GetParametersForImport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html).
 //
 //   - WrappingKeyCertificate: The public key certificate in PEM format (base64
 //     encoded) of the KRD wrapping key Amazon Web Services Payment Cryptography
@@ -655,7 +675,8 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 // key pair on the receiving HSM and obtain the public key certificate in PEM
 // format (base64 encoded) for the purpose of wrapping and the root certifiate
 // chain. Import the root certificate into Amazon Web Services Payment Cryptography
-// by calling ImportKey for RootCertificatePublicKey.
+// by calling ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html)
+// for RootCertificatePublicKey.
 //
 // Next call ExportKey and set the following parameters:
 //
@@ -677,8 +698,8 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 //
 // Using this operation, you can export working keys or IPEK using TR-31 symmetric
 // key exchange. In TR-31, you must use an initial key such as KEK to encrypt
-// or wrap the key under export. To establish a KEK, you can use CreateKey or
-// ImportKey.
+// or wrap the key under export. To establish a KEK, you can use CreateKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html)
+// or ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html).
 //
 // Set the following parameters:
 //
@@ -698,9 +719,9 @@ func (c *PaymentCryptography) ExportKeyRequest(input *ExportKeyInput) (req *requ
 //
 // Related operations:
 //
-//   - GetParametersForExport
+//   - GetParametersForExport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForExport.html)
 //
-//   - ImportKey
+//   - ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -806,13 +827,13 @@ func (c *PaymentCryptography) GetAliasRequest(input *GetAliasInput) (req *reques
 //
 // Related operations:
 //
-//   - CreateAlias
+//   - CreateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html)
 //
-//   - DeleteAlias
+//   - DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html)
 //
-//   - ListAliases
+//   - ListAliases (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListAliases.html)
 //
-//   - UpdateAlias
+//   - UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -915,11 +936,11 @@ func (c *PaymentCryptography) GetKeyRequest(input *GetKeyInput) (req *request.Re
 //
 // Related operations:
 //
-//   - CreateKey
+//   - CreateKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html)
 //
-//   - DeleteKey
+//   - DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
 //
-//   - ListKeys
+//   - ListKeys (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListKeys.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1019,18 +1040,18 @@ func (c *PaymentCryptography) GetParametersForExportRequest(input *GetParameters
 //
 // The signing key certificate signs the wrapped key under export within the
 // TR-34 key payload. The export token and signing key certificate must be in
-// place and operational before calling ExportKey. The export token expires
-// in 7 days. You can use the same export token to export multiple keys from
-// your service account.
+// place and operational before calling ExportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ExportKey.html).
+// The export token expires in 7 days. You can use the same export token to
+// export multiple keys from your service account.
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - ExportKey
+//   - ExportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ExportKey.html)
 //
-//   - GetParametersForImport
+//   - GetParametersForImport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1137,17 +1158,18 @@ func (c *PaymentCryptography) GetParametersForImportRequest(input *GetParameters
 //
 // The wrapping key certificate wraps the key under import. The import token
 // and wrapping key certificate must be in place and operational before calling
-// ImportKey. The import token expires in 7 days. You can use the same import
-// token to import multiple keys into your service account.
+// ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html).
+// The import token expires in 7 days. You can use the same import token to
+// import multiple keys into your service account.
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - GetParametersForExport
+//   - GetParametersForExport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForExport.html)
 //
-//   - ImportKey
+//   - ImportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1434,13 +1456,13 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 // who receives the key.
 //
 // To initiate TR-34 key import, the KDH must obtain an import token by calling
-// GetParametersForImport. This operation generates an encryption keypair for
-// the purpose of key import, signs the key and returns back the wrapping key
-// certificate (also known as KRD wrapping certificate) and the root certificate
-// chain. The KDH must trust and install the KRD wrapping certificate on its
-// HSM and use it to encrypt (wrap) the KDH key during TR-34 WrappedKeyBlock
-// generation. The import token and associated KRD wrapping certificate expires
-// after 7 days.
+// GetParametersForImport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html).
+// This operation generates an encryption keypair for the purpose of key import,
+// signs the key and returns back the wrapping key certificate (also known as
+// KRD wrapping certificate) and the root certificate chain. The KDH must trust
+// and install the KRD wrapping certificate on its HSM and use it to encrypt
+// (wrap) the KDH key during TR-34 WrappedKeyBlock generation. The import token
+// and associated KRD wrapping certificate expires after 7 days.
 //
 // Next the KDH generates a key pair for the purpose of signing the encrypted
 // KDH key and provides the public certificate of the signing key to Amazon
@@ -1457,7 +1479,7 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //   - CertificateAuthorityPublicKeyIdentifier: The KeyARN of the certificate
 //     chain that signed the KDH signing key certificate.
 //
-//   - ImportToken: Obtained from KRD by calling GetParametersForImport.
+//   - ImportToken: Obtained from KRD by calling GetParametersForImport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html).
 //
 //   - WrappedKeyBlock: The TR-34 wrapped key material from KDH. It contains
 //     the KDH key under import, wrapped with KRD wrapping certificate and signed
@@ -1473,6 +1495,7 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //
 // Using this operation, you can import initial key using asymmetric RSA wrap
 // and unwrap key exchange method. To initiate import, call GetParametersForImport
+// (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html)
 // with KeyMaterial set to KEY_CRYPTOGRAM to generate an import token. This
 // operation also generates an encryption keypair for the purpose of key import,
 // signs the key and returns back the wrapping key certificate in PEM format
@@ -1488,7 +1511,8 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //
 // Amazon Web Services Payment Cryptography uses TR-31 symmetric key exchange
 // norm to import working keys. A KEK must be established within Amazon Web
-// Services Payment Cryptography by using TR-34 key import or by using CreateKey.
+// Services Payment Cryptography by using TR-34 key import or by using CreateKey
+// (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html).
 // To initiate a TR-31 key import, set the following parameters:
 //
 //   - KeyMaterial: Use Tr31KeyBlock parameters.
@@ -1505,9 +1529,9 @@ func (c *PaymentCryptography) ImportKeyRequest(input *ImportKeyInput) (req *requ
 //
 // Related operations:
 //
-//   - ExportKey
+//   - ExportKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ExportKey.html)
 //
-//   - GetParametersForImport
+//   - GetParametersForImport (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1631,13 +1655,13 @@ func (c *PaymentCryptography) ListAliasesRequest(input *ListAliasesInput) (req *
 //
 // Related operations:
 //
-//   - CreateAlias
+//   - CreateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html)
 //
-//   - DeleteAlias
+//   - DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html)
 //
-//   - GetAlias
+//   - GetAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetAlias.html)
 //
-//   - UpdateAlias
+//   - UpdateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UpdateAlias.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1803,11 +1827,11 @@ func (c *PaymentCryptography) ListKeysRequest(input *ListKeysInput) (req *reques
 //
 // Related operations:
 //
-//   - CreateKey
+//   - CreateKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html)
 //
-//   - DeleteKey
+//   - DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
 //
-//   - GetKey
+//   - GetKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetKey.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1972,9 +1996,9 @@ func (c *PaymentCryptography) ListTagsForResourceRequest(input *ListTagsForResou
 //
 // Related operations:
 //
-//   - TagResource
+//   - TagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html)
 //
-//   - UntagResource
+//   - UntagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UntagResource.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2133,11 +2157,11 @@ func (c *PaymentCryptography) RestoreKeyRequest(input *RestoreKeyInput) (req *re
 //
 // Related operations:
 //
-//   - DeleteKey
+//   - DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
 //
-//   - StartKeyUsage
+//   - StartKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html)
 //
-//   - StopKeyUsage
+//   - StopKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2246,7 +2270,7 @@ func (c *PaymentCryptography) StartKeyUsageRequest(input *StartKeyUsageInput) (r
 //
 // Related operations:
 //
-//   - StopKeyUsage
+//   - StopKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2350,17 +2374,18 @@ func (c *PaymentCryptography) StopKeyUsageRequest(input *StopKeyUsageInput) (req
 // Disables an Amazon Web Services Payment Cryptography key, which makes it
 // inactive within Amazon Web Services Payment Cryptography.
 //
-// You can use this operation instead of DeleteKey to deactivate a key. You
-// can enable the key in the future by calling StartKeyUsage.
+// You can use this operation instead of DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
+// to deactivate a key. You can enable the key in the future by calling StartKeyUsage
+// (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html).
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - DeleteKey
+//   - DeleteKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html)
 //
-//   - StartKeyUsage
+//   - StartKeyUsage (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2471,16 +2496,16 @@ func (c *PaymentCryptography) TagResourceRequest(input *TagResourceInput) (req *
 // strings. The tag value can be an empty (null) string. To add a tag, specify
 // a new tag key and a tag value. To edit a tag, specify an existing tag key
 // and a new tag value. You can also add tags to an Amazon Web Services Payment
-// Cryptography key when you create it with CreateKey.
+// Cryptography key when you create it with CreateKey (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html).
 //
 // Cross-account use: This operation can't be used across different Amazon Web
 // Services accounts.
 //
 // Related operations:
 //
-//   - ListTagsForResource
+//   - ListTagsForResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListTagsForResource.html)
 //
-//   - UntagResource
+//   - UntagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_UntagResource.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2592,9 +2617,9 @@ func (c *PaymentCryptography) UntagResourceRequest(input *UntagResourceInput) (r
 //
 // Related operations:
 //
-//   - ListTagsForResource
+//   - ListTagsForResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListTagsForResource.html)
 //
-//   - TagResource
+//   - TagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2703,13 +2728,13 @@ func (c *PaymentCryptography) UpdateAliasRequest(input *UpdateAliasInput) (req *
 //
 // Related operations:
 //
-//   - CreateAlias
+//   - CreateAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateAlias.html)
 //
-//   - DeleteAlias
+//   - DeleteAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteAlias.html)
 //
-//   - GetAlias
+//   - GetAlias (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetAlias.html)
 //
-//   - ListAliases
+//   - ListAliases (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListAliases.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3070,7 +3095,8 @@ type CreateKeyInput struct {
 
 	// Assigns one or more tags to the Amazon Web Services Payment Cryptography
 	// key. Use this parameter to tag a key when it is created. To tag an existing
-	// Amazon Web Services Payment Cryptography key, use the TagResource operation.
+	// Amazon Web Services Payment Cryptography key, use the TagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html)
+	// operation.
 	//
 	// Each tag consists of a tag key and a tag value. Both the tag key and the
 	// tag value are required, but the tag value can be an empty (null) string.
@@ -3762,6 +3788,10 @@ func (s *ExportKeyOutput) SetWrappedKey(v *WrappedKey) *ExportKeyOutput {
 type ExportTr31KeyBlock struct {
 	_ struct{} `type:"structure"`
 
+	// Optional metadata for export associated with the key material. This data
+	// is signed but transmitted in clear text.
+	KeyBlockHeaders *KeyBlockHeaders `type:"structure"`
+
 	// The KeyARN of the the wrapping key. This key encrypts or wraps the key under
 	// export for TR-31 key block generation.
 	//
@@ -3796,11 +3826,22 @@ func (s *ExportTr31KeyBlock) Validate() error {
 	if s.WrappingKeyIdentifier != nil && len(*s.WrappingKeyIdentifier) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WrappingKeyIdentifier", 7))
 	}
+	if s.KeyBlockHeaders != nil {
+		if err := s.KeyBlockHeaders.Validate(); err != nil {
+			invalidParams.AddNested("KeyBlockHeaders", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKeyBlockHeaders sets the KeyBlockHeaders field's value.
+func (s *ExportTr31KeyBlock) SetKeyBlockHeaders(v *KeyBlockHeaders) *ExportTr31KeyBlock {
+	s.KeyBlockHeaders = v
+	return s
 }
 
 // SetWrappingKeyIdentifier sets the WrappingKeyIdentifier field's value.
@@ -3823,6 +3864,7 @@ type ExportTr34KeyBlock struct {
 	// The export token to initiate key export from Amazon Web Services Payment
 	// Cryptography. It also contains the signing key certificate that will sign
 	// the wrapped key during TR-34 key block generation. Call GetParametersForExport
+	// (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForExport.html)
 	// to receive an export token. It expires after 7 days. You can use the same
 	// export token to export multiple keys from the same service account.
 	//
@@ -3834,6 +3876,10 @@ type ExportTr34KeyBlock struct {
 	//
 	// KeyBlockFormat is a required field
 	KeyBlockFormat *string `type:"string" required:"true" enum:"Tr34KeyBlockFormat"`
+
+	// Optional metadata for export associated with the key material. This data
+	// is signed but transmitted in clear text.
+	KeyBlockHeaders *KeyBlockHeaders `type:"structure"`
 
 	// A random number value that is unique to the TR-34 key block generated using
 	// 2 pass. The operation will fail, if a random nonce value is not provided
@@ -3893,6 +3939,11 @@ func (s *ExportTr34KeyBlock) Validate() error {
 	if s.WrappingKeyCertificate != nil && len(*s.WrappingKeyCertificate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WrappingKeyCertificate", 1))
 	}
+	if s.KeyBlockHeaders != nil {
+		if err := s.KeyBlockHeaders.Validate(); err != nil {
+			invalidParams.AddNested("KeyBlockHeaders", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3915,6 +3966,12 @@ func (s *ExportTr34KeyBlock) SetExportToken(v string) *ExportTr34KeyBlock {
 // SetKeyBlockFormat sets the KeyBlockFormat field's value.
 func (s *ExportTr34KeyBlock) SetKeyBlockFormat(v string) *ExportTr34KeyBlock {
 	s.KeyBlockFormat = &v
+	return s
+}
+
+// SetKeyBlockHeaders sets the KeyBlockHeaders field's value.
+func (s *ExportTr34KeyBlock) SetKeyBlockHeaders(v *KeyBlockHeaders) *ExportTr34KeyBlock {
+	s.KeyBlockHeaders = v
 	return s
 }
 
@@ -4647,7 +4704,8 @@ type ImportKeyInput struct {
 
 	// Assigns one or more tags to the Amazon Web Services Payment Cryptography
 	// key. Use this parameter to tag a key when it is imported. To tag an existing
-	// Amazon Web Services Payment Cryptography key, use the TagResource operation.
+	// Amazon Web Services Payment Cryptography key, use the TagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html)
+	// operation.
 	//
 	// Each tag consists of a tag key and a tag value. Both the tag key and the
 	// tag value are required, but the tag value can be an empty (null) string.
@@ -5418,6 +5476,97 @@ func (s *KeyAttributes) SetKeyModesOfUse(v *KeyModesOfUse) *KeyAttributes {
 // SetKeyUsage sets the KeyUsage field's value.
 func (s *KeyAttributes) SetKeyUsage(v string) *KeyAttributes {
 	s.KeyUsage = &v
+	return s
+}
+
+// Optional metadata for export associated with the key material. This data
+// is signed but transmitted in clear text.
+type KeyBlockHeaders struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies subsequent exportability of the key within the key block after
+	// it is received by the receiving party. It can be used to further restrict
+	// exportability of the key after export from Amazon Web Services Payment Cryptography.
+	//
+	// When set to EXPORTABLE, the key can be subsequently exported by the receiver
+	// under a KEK using TR-31 or TR-34 key block export only. When set to NON_EXPORTABLE,
+	// the key cannot be subsequently exported by the receiver. When set to SENSITIVE,
+	// the key can be exported by the receiver under a KEK using TR-31, TR-34, RSA
+	// wrap and unwrap cryptogram or using a symmetric cryptogram key export method.
+	// For further information refer to ANSI X9.143-2022 (https://webstore.ansi.org/standards/ascx9/ansix91432022).
+	KeyExportability *string `type:"string" enum:"KeyExportability"`
+
+	// The list of cryptographic operations that you can perform using the key.
+	// The modes of use are deﬁned in section A.5.3 of the TR-31 spec.
+	KeyModesOfUse *KeyModesOfUse `type:"structure"`
+
+	// Parameter used to indicate the version of the key carried in the key block
+	// or indicate the value carried in the key block is a component of a key.
+	KeyVersion *string `min:"2" type:"string"`
+
+	// Parameter used to indicate the type of optional data in key block headers.
+	// Refer to ANSI X9.143-2022 (https://webstore.ansi.org/standards/ascx9/ansix91432022)
+	// for information on allowed data type for optional blocks.
+	//
+	// Optional block character limit is 112 characters. For each optional block,
+	// 2 characters are reserved for optional block ID and 2 characters reserved
+	// for optional block length. More than one optional blocks can be included
+	// as long as the combined length does not increase 112 characters.
+	OptionalBlocks map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyBlockHeaders) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s KeyBlockHeaders) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KeyBlockHeaders) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KeyBlockHeaders"}
+	if s.KeyVersion != nil && len(*s.KeyVersion) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyVersion", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyExportability sets the KeyExportability field's value.
+func (s *KeyBlockHeaders) SetKeyExportability(v string) *KeyBlockHeaders {
+	s.KeyExportability = &v
+	return s
+}
+
+// SetKeyModesOfUse sets the KeyModesOfUse field's value.
+func (s *KeyBlockHeaders) SetKeyModesOfUse(v *KeyModesOfUse) *KeyBlockHeaders {
+	s.KeyModesOfUse = v
+	return s
+}
+
+// SetKeyVersion sets the KeyVersion field's value.
+func (s *KeyBlockHeaders) SetKeyVersion(v string) *KeyBlockHeaders {
+	s.KeyVersion = &v
+	return s
+}
+
+// SetOptionalBlocks sets the OptionalBlocks field's value.
+func (s *KeyBlockHeaders) SetOptionalBlocks(v map[string]*string) *KeyBlockHeaders {
+	s.OptionalBlocks = v
 	return s
 }
 
@@ -6568,7 +6717,8 @@ type TagResourceInput struct {
 	// Don't include personal, confidential or sensitive information in this field.
 	// This field may be displayed in plaintext in CloudTrail logs and other output.
 	//
-	// To use this parameter, you must have TagResource permission in an IAM policy.
+	// To use this parameter, you must have TagResource (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_TagResource.html)
+	// permission in an IAM policy.
 	//
 	// Don't include personal, confidential or sensitive information in this field.
 	// This field may be displayed in plaintext in CloudTrail logs and other output.
@@ -6828,6 +6978,7 @@ type UntagResourceInput struct {
 	// If the Amazon Web Services Payment Cryptography key doesn't have the specified
 	// tag key, Amazon Web Services Payment Cryptography doesn't throw an exception
 	// or return a response. To confirm that the operation succeeded, use the ListTagsForResource
+	// (https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ListTagsForResource.html)
 	// operation.
 	//
 	// TagKeys is a required field
@@ -7227,6 +7378,26 @@ func KeyClass_Values() []string {
 		KeyClassAsymmetricKeyPair,
 		KeyClassPrivateKey,
 		KeyClassPublicKey,
+	}
+}
+
+const (
+	// KeyExportabilityExportable is a KeyExportability enum value
+	KeyExportabilityExportable = "EXPORTABLE"
+
+	// KeyExportabilityNonExportable is a KeyExportability enum value
+	KeyExportabilityNonExportable = "NON_EXPORTABLE"
+
+	// KeyExportabilitySensitive is a KeyExportability enum value
+	KeyExportabilitySensitive = "SENSITIVE"
+)
+
+// KeyExportability_Values returns all elements of the KeyExportability enum
+func KeyExportability_Values() []string {
+	return []string{
+		KeyExportabilityExportable,
+		KeyExportabilityNonExportable,
+		KeyExportabilitySensitive,
 	}
 }
 
