@@ -200,10 +200,10 @@ type Signer struct {
 	// values are the same.
 	DisableRequestBodyOverwrite bool
 
-	// currentTimeFn returns the time value which represents the current time.
+	// CurrentTimeFn returns the time value which represents the current time.
 	// This value should only be used for testing. If it is nil the default
 	// time.Now will be used.
-	currentTimeFn func() time.Time
+	CurrentTimeFn func() time.Time
 
 	// UnsignedPayload will prevent signing of the payload. This will only
 	// work for services that have support for this.
@@ -315,7 +315,7 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 }
 
 func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, region string, exp time.Duration, isPresign bool, signTime time.Time) (http.Header, error) {
-	currentTimeFn := v4.currentTimeFn
+	currentTimeFn := v4.CurrentTimeFn
 	if currentTimeFn == nil {
 		currentTimeFn = time.Now
 	}
@@ -465,7 +465,7 @@ func SignSDKRequestWithCurrentTime(req *request.Request, curTimeFn func() time.T
 		v4.Debug = req.Config.LogLevel.Value()
 		v4.Logger = req.Config.Logger
 		v4.DisableHeaderHoisting = req.NotHoist
-		v4.currentTimeFn = curTimeFn
+		v4.CurrentTimeFn = curTimeFn
 		if name == "s3" {
 			// S3 service should not have any escaping applied
 			v4.DisableURIPathEscaping = true
