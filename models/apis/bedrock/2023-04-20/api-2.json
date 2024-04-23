@@ -12,6 +12,65 @@
     "uid":"bedrock-2023-04-20"
   },
   "operations":{
+    "CreateEvaluationJob":{
+      "name":"CreateEvaluationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluation-jobs",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateEvaluationJobRequest"},
+      "output":{"shape":"CreateEvaluationJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "CreateGuardrail":{
+      "name":"CreateGuardrail",
+      "http":{
+        "method":"POST",
+        "requestUri":"/guardrails",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateGuardrailRequest"},
+      "output":{"shape":"CreateGuardrailResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateGuardrailVersion":{
+      "name":"CreateGuardrailVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/guardrails/{guardrailIdentifier}",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateGuardrailVersionRequest"},
+      "output":{"shape":"CreateGuardrailVersionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateModelCustomizationJob":{
       "name":"CreateModelCustomizationJob",
       "http":{
@@ -62,6 +121,25 @@
       },
       "input":{"shape":"DeleteCustomModelRequest"},
       "output":{"shape":"DeleteCustomModelResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteGuardrail":{
+      "name":"DeleteGuardrail",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/guardrails/{guardrailIdentifier}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteGuardrailRequest"},
+      "output":{"shape":"DeleteGuardrailResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
@@ -124,6 +202,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetEvaluationJob":{
+      "name":"GetEvaluationJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluation-jobs/{jobIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEvaluationJobRequest"},
+      "output":{"shape":"GetEvaluationJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetFoundationModel":{
       "name":"GetFoundationModel",
       "http":{
@@ -133,6 +228,23 @@
       },
       "input":{"shape":"GetFoundationModelRequest"},
       "output":{"shape":"GetFoundationModelResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetGuardrail":{
+      "name":"GetGuardrail",
+      "http":{
+        "method":"GET",
+        "requestUri":"/guardrails/{guardrailIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetGuardrailRequest"},
+      "output":{"shape":"GetGuardrailResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
@@ -206,6 +318,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListEvaluationJobs":{
+      "name":"ListEvaluationJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluation-jobs",
+        "responseCode":200
+      },
+      "input":{"shape":"ListEvaluationJobsRequest"},
+      "output":{"shape":"ListEvaluationJobsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListFoundationModels":{
       "name":"ListFoundationModels",
       "http":{
@@ -216,6 +344,23 @@
       "input":{"shape":"ListFoundationModelsRequest"},
       "output":{"shape":"ListFoundationModelsResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListGuardrails":{
+      "name":"ListGuardrails",
+      "http":{
+        "method":"GET",
+        "requestUri":"/guardrails",
+        "responseCode":200
+      },
+      "input":{"shape":"ListGuardrailsRequest"},
+      "output":{"shape":"ListGuardrailsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
@@ -288,6 +433,24 @@
       ],
       "idempotent":true
     },
+    "StopEvaluationJob":{
+      "name":"StopEvaluationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluation-job/{jobIdentifier}/stop",
+        "responseCode":200
+      },
+      "input":{"shape":"StopEvaluationJobRequest"},
+      "output":{"shape":"StopEvaluationJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "StopModelCustomizationJob":{
       "name":"StopModelCustomizationJob",
       "http":{
@@ -342,6 +505,26 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateGuardrail":{
+      "name":"UpdateGuardrail",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/guardrails/{guardrailIdentifier}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateGuardrailRequest"},
+      "output":{"shape":"UpdateGuardrailResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "UpdateProvisionedModelThroughput":{
       "name":"UpdateProvisionedModelThroughput",
       "http":{
@@ -372,6 +555,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AutomatedEvaluationConfig":{
+      "type":"structure",
+      "required":["datasetMetricConfigs"],
+      "members":{
+        "datasetMetricConfigs":{"shape":"EvaluationDatasetMetricConfigs"}
+      }
     },
     "BaseModelIdentifier":{
       "type":"string",
@@ -429,6 +619,103 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "CreateEvaluationJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "roleArn",
+        "evaluationConfig",
+        "inferenceConfig",
+        "outputDataConfig"
+      ],
+      "members":{
+        "jobName":{"shape":"EvaluationJobName"},
+        "jobDescription":{"shape":"EvaluationJobDescription"},
+        "clientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "roleArn":{"shape":"RoleArn"},
+        "customerEncryptionKeyId":{"shape":"KmsKeyId"},
+        "jobTags":{"shape":"TagList"},
+        "evaluationConfig":{"shape":"EvaluationConfig"},
+        "inferenceConfig":{"shape":"EvaluationInferenceConfig"},
+        "outputDataConfig":{"shape":"EvaluationOutputDataConfig"}
+      }
+    },
+    "CreateEvaluationJobResponse":{
+      "type":"structure",
+      "required":["jobArn"],
+      "members":{
+        "jobArn":{"shape":"EvaluationJobArn"}
+      }
+    },
+    "CreateGuardrailRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "blockedInputMessaging",
+        "blockedOutputsMessaging"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailName"},
+        "description":{"shape":"GuardrailDescription"},
+        "topicPolicyConfig":{"shape":"GuardrailTopicPolicyConfig"},
+        "contentPolicyConfig":{"shape":"GuardrailContentPolicyConfig"},
+        "wordPolicyConfig":{"shape":"GuardrailWordPolicyConfig"},
+        "sensitiveInformationPolicyConfig":{"shape":"GuardrailSensitiveInformationPolicyConfig"},
+        "blockedInputMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "blockedOutputsMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "kmsKeyId":{"shape":"KmsKeyId"},
+        "tags":{"shape":"TagList"},
+        "clientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateGuardrailResponse":{
+      "type":"structure",
+      "required":[
+        "guardrailId",
+        "guardrailArn",
+        "version",
+        "createdAt"
+      ],
+      "members":{
+        "guardrailId":{"shape":"GuardrailId"},
+        "guardrailArn":{"shape":"GuardrailArn"},
+        "version":{"shape":"GuardrailDraftVersion"},
+        "createdAt":{"shape":"Timestamp"}
+      }
+    },
+    "CreateGuardrailVersionRequest":{
+      "type":"structure",
+      "required":["guardrailIdentifier"],
+      "members":{
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"uri",
+          "locationName":"guardrailIdentifier"
+        },
+        "description":{"shape":"GuardrailDescription"},
+        "clientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateGuardrailVersionResponse":{
+      "type":"structure",
+      "required":[
+        "guardrailId",
+        "version"
+      ],
+      "members":{
+        "guardrailId":{"shape":"GuardrailId"},
+        "version":{"shape":"GuardrailNumericalVersion"}
+      }
     },
     "CreateModelCustomizationJobRequest":{
       "type":"structure",
@@ -551,6 +838,27 @@
       "members":{
       }
     },
+    "DeleteGuardrailRequest":{
+      "type":"structure",
+      "required":["guardrailIdentifier"],
+      "members":{
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"uri",
+          "locationName":"guardrailIdentifier"
+        },
+        "guardrailVersion":{
+          "shape":"GuardrailNumericalVersion",
+          "location":"querystring",
+          "locationName":"guardrailVersion"
+        }
+      }
+    },
+    "DeleteGuardrailResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteModelInvocationLoggingConfigurationRequest":{
       "type":"structure",
       "members":{
@@ -581,6 +889,232 @@
       "type":"string",
       "max":2048,
       "min":0
+    },
+    "ErrorMessages":{
+      "type":"list",
+      "member":{"shape":"ErrorMessage"},
+      "max":20,
+      "min":0
+    },
+    "EvaluationBedrockModel":{
+      "type":"structure",
+      "required":[
+        "modelIdentifier",
+        "inferenceParams"
+      ],
+      "members":{
+        "modelIdentifier":{"shape":"EvaluationModelIdentifier"},
+        "inferenceParams":{"shape":"EvaluationModelInferenceParams"}
+      }
+    },
+    "EvaluationConfig":{
+      "type":"structure",
+      "members":{
+        "automated":{"shape":"AutomatedEvaluationConfig"},
+        "human":{"shape":"HumanEvaluationConfig"}
+      },
+      "union":true
+    },
+    "EvaluationDataset":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"EvaluationDatasetName"},
+        "datasetLocation":{"shape":"EvaluationDatasetLocation"}
+      }
+    },
+    "EvaluationDatasetLocation":{
+      "type":"structure",
+      "members":{
+        "s3Uri":{"shape":"S3Uri"}
+      },
+      "union":true
+    },
+    "EvaluationDatasetMetricConfig":{
+      "type":"structure",
+      "required":[
+        "taskType",
+        "dataset",
+        "metricNames"
+      ],
+      "members":{
+        "taskType":{"shape":"EvaluationTaskType"},
+        "dataset":{"shape":"EvaluationDataset"},
+        "metricNames":{"shape":"EvaluationMetricNames"}
+      }
+    },
+    "EvaluationDatasetMetricConfigs":{
+      "type":"list",
+      "member":{"shape":"EvaluationDatasetMetricConfig"},
+      "max":5,
+      "min":1
+    },
+    "EvaluationDatasetName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[0-9a-zA-Z-_.]+",
+      "sensitive":true
+    },
+    "EvaluationInferenceConfig":{
+      "type":"structure",
+      "members":{
+        "models":{"shape":"EvaluationModelConfigs"}
+      },
+      "union":true
+    },
+    "EvaluationJobArn":{
+      "type":"string",
+      "max":1011,
+      "min":0,
+      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:evaluation-job/[a-z0-9]{12}"
+    },
+    "EvaluationJobDescription":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".+",
+      "sensitive":true
+    },
+    "EvaluationJobIdentifier":{
+      "type":"string",
+      "max":1011,
+      "min":0,
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:evaluation-job/[a-z0-9]{12})",
+      "sensitive":true
+    },
+    "EvaluationJobName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[a-z0-9](-*[a-z0-9]){0,62}"
+    },
+    "EvaluationJobStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Stopping",
+        "Stopped"
+      ]
+    },
+    "EvaluationJobType":{
+      "type":"string",
+      "enum":[
+        "Human",
+        "Automated"
+      ]
+    },
+    "EvaluationMetricDescription":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":".+",
+      "sensitive":true
+    },
+    "EvaluationMetricName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[0-9a-zA-Z-_.]+",
+      "sensitive":true
+    },
+    "EvaluationMetricNames":{
+      "type":"list",
+      "member":{"shape":"EvaluationMetricName"},
+      "max":10,
+      "min":1
+    },
+    "EvaluationModelConfig":{
+      "type":"structure",
+      "members":{
+        "bedrockModel":{"shape":"EvaluationBedrockModel"}
+      },
+      "union":true
+    },
+    "EvaluationModelConfigs":{
+      "type":"list",
+      "member":{"shape":"EvaluationModelConfig"},
+      "max":2,
+      "min":1
+    },
+    "EvaluationModelIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}(([:][a-z0-9-]{1,63}){0,2})?/[a-z0-9]{12})|(:foundation-model/([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2})))|(([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.]?[a-z0-9-]{1,63})([:][a-z0-9-]{1,63}){0,2}))|(([0-9a-zA-Z][_-]?)+)"
+    },
+    "EvaluationModelIdentifiers":{
+      "type":"list",
+      "member":{"shape":"EvaluationModelIdentifier"},
+      "max":2,
+      "min":1
+    },
+    "EvaluationModelInferenceParams":{
+      "type":"string",
+      "max":1023,
+      "min":1,
+      "sensitive":true
+    },
+    "EvaluationOutputDataConfig":{
+      "type":"structure",
+      "required":["s3Uri"],
+      "members":{
+        "s3Uri":{"shape":"S3Uri"}
+      }
+    },
+    "EvaluationRatingMethod":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[0-9a-zA-Z-_]+"
+    },
+    "EvaluationSummaries":{
+      "type":"list",
+      "member":{"shape":"EvaluationSummary"},
+      "max":5,
+      "min":1
+    },
+    "EvaluationSummary":{
+      "type":"structure",
+      "required":[
+        "jobArn",
+        "jobName",
+        "status",
+        "creationTime",
+        "jobType",
+        "evaluationTaskTypes",
+        "modelIdentifiers"
+      ],
+      "members":{
+        "jobArn":{"shape":"EvaluationJobArn"},
+        "jobName":{"shape":"EvaluationJobName"},
+        "status":{"shape":"EvaluationJobStatus"},
+        "creationTime":{"shape":"Timestamp"},
+        "jobType":{"shape":"EvaluationJobType"},
+        "evaluationTaskTypes":{"shape":"EvaluationTaskTypes"},
+        "modelIdentifiers":{"shape":"EvaluationModelIdentifiers"}
+      }
+    },
+    "EvaluationTaskType":{
+      "type":"string",
+      "enum":[
+        "Summarization",
+        "Classification",
+        "QuestionAndAnswer",
+        "Generation",
+        "Custom"
+      ],
+      "max":63,
+      "min":1,
+      "pattern":"[A-Za-z0-9]+"
+    },
+    "EvaluationTaskTypes":{
+      "type":"list",
+      "member":{"shape":"EvaluationTaskType"},
+      "max":5,
+      "min":1
     },
     "FineTuningJobStatus":{
       "type":"string",
@@ -691,6 +1225,46 @@
         "creationTime":{"shape":"Timestamp"}
       }
     },
+    "GetEvaluationJobRequest":{
+      "type":"structure",
+      "required":["jobIdentifier"],
+      "members":{
+        "jobIdentifier":{
+          "shape":"EvaluationJobIdentifier",
+          "location":"uri",
+          "locationName":"jobIdentifier"
+        }
+      }
+    },
+    "GetEvaluationJobResponse":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "status",
+        "jobArn",
+        "roleArn",
+        "jobType",
+        "evaluationConfig",
+        "inferenceConfig",
+        "outputDataConfig",
+        "creationTime"
+      ],
+      "members":{
+        "jobName":{"shape":"EvaluationJobName"},
+        "status":{"shape":"EvaluationJobStatus"},
+        "jobArn":{"shape":"EvaluationJobArn"},
+        "jobDescription":{"shape":"EvaluationJobDescription"},
+        "roleArn":{"shape":"RoleArn"},
+        "customerEncryptionKeyId":{"shape":"KmsKeyId"},
+        "jobType":{"shape":"EvaluationJobType"},
+        "evaluationConfig":{"shape":"EvaluationConfig"},
+        "inferenceConfig":{"shape":"EvaluationInferenceConfig"},
+        "outputDataConfig":{"shape":"EvaluationOutputDataConfig"},
+        "creationTime":{"shape":"Timestamp"},
+        "lastModifiedTime":{"shape":"Timestamp"},
+        "failureMessages":{"shape":"ErrorMessages"}
+      }
+    },
     "GetFoundationModelRequest":{
       "type":"structure",
       "required":["modelIdentifier"],
@@ -706,6 +1280,55 @@
       "type":"structure",
       "members":{
         "modelDetails":{"shape":"FoundationModelDetails"}
+      }
+    },
+    "GetGuardrailRequest":{
+      "type":"structure",
+      "required":["guardrailIdentifier"],
+      "members":{
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"uri",
+          "locationName":"guardrailIdentifier"
+        },
+        "guardrailVersion":{
+          "shape":"GuardrailVersion",
+          "location":"querystring",
+          "locationName":"guardrailVersion"
+        }
+      }
+    },
+    "GetGuardrailResponse":{
+      "type":"structure",
+      "required":[
+        "name",
+        "guardrailId",
+        "guardrailArn",
+        "version",
+        "status",
+        "createdAt",
+        "updatedAt",
+        "blockedInputMessaging",
+        "blockedOutputsMessaging"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailName"},
+        "description":{"shape":"GuardrailDescription"},
+        "guardrailId":{"shape":"GuardrailId"},
+        "guardrailArn":{"shape":"GuardrailArn"},
+        "version":{"shape":"GuardrailVersion"},
+        "status":{"shape":"GuardrailStatus"},
+        "topicPolicy":{"shape":"GuardrailTopicPolicy"},
+        "contentPolicy":{"shape":"GuardrailContentPolicy"},
+        "wordPolicy":{"shape":"GuardrailWordPolicy"},
+        "sensitiveInformationPolicy":{"shape":"GuardrailSensitiveInformationPolicy"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "statusReasons":{"shape":"GuardrailStatusReasons"},
+        "failureRecommendations":{"shape":"GuardrailFailureRecommendations"},
+        "blockedInputMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "blockedOutputsMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "GetModelCustomizationJobRequest":{
@@ -807,6 +1430,548 @@
         "failureMessage":{"shape":"ErrorMessage"},
         "commitmentDuration":{"shape":"CommitmentDuration"},
         "commitmentExpirationTime":{"shape":"Timestamp"}
+      }
+    },
+    "GuardrailArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+"
+    },
+    "GuardrailBlockedMessaging":{
+      "type":"string",
+      "max":500,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailContentFilter":{
+      "type":"structure",
+      "required":[
+        "type",
+        "inputStrength",
+        "outputStrength"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailContentFilterType"},
+        "inputStrength":{"shape":"GuardrailFilterStrength"},
+        "outputStrength":{"shape":"GuardrailFilterStrength"}
+      }
+    },
+    "GuardrailContentFilterConfig":{
+      "type":"structure",
+      "required":[
+        "type",
+        "inputStrength",
+        "outputStrength"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailContentFilterType"},
+        "inputStrength":{"shape":"GuardrailFilterStrength"},
+        "outputStrength":{"shape":"GuardrailFilterStrength"}
+      }
+    },
+    "GuardrailContentFilterType":{
+      "type":"string",
+      "enum":[
+        "SEXUAL",
+        "VIOLENCE",
+        "HATE",
+        "INSULTS",
+        "MISCONDUCT",
+        "PROMPT_ATTACK"
+      ]
+    },
+    "GuardrailContentFilters":{
+      "type":"list",
+      "member":{"shape":"GuardrailContentFilter"},
+      "max":6,
+      "min":1
+    },
+    "GuardrailContentFiltersConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailContentFilterConfig"},
+      "max":6,
+      "min":1
+    },
+    "GuardrailContentPolicy":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"GuardrailContentFilters"}
+      }
+    },
+    "GuardrailContentPolicyConfig":{
+      "type":"structure",
+      "required":["filtersConfig"],
+      "members":{
+        "filtersConfig":{"shape":"GuardrailContentFiltersConfig"}
+      }
+    },
+    "GuardrailDescription":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailDraftVersion":{
+      "type":"string",
+      "max":5,
+      "min":5,
+      "pattern":"DRAFT"
+    },
+    "GuardrailFailureRecommendation":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailFailureRecommendations":{
+      "type":"list",
+      "member":{"shape":"GuardrailFailureRecommendation"},
+      "max":100,
+      "min":0
+    },
+    "GuardrailFilterStrength":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
+    "GuardrailId":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "pattern":"[a-z0-9]+"
+    },
+    "GuardrailIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))"
+    },
+    "GuardrailManagedWordLists":{
+      "type":"list",
+      "member":{"shape":"GuardrailManagedWords"}
+    },
+    "GuardrailManagedWordListsConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailManagedWordsConfig"}
+    },
+    "GuardrailManagedWords":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"GuardrailManagedWordsType"}
+      }
+    },
+    "GuardrailManagedWordsConfig":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"GuardrailManagedWordsType"}
+      }
+    },
+    "GuardrailManagedWordsType":{
+      "type":"string",
+      "enum":["PROFANITY"]
+    },
+    "GuardrailName":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"[0-9a-zA-Z-_]+",
+      "sensitive":true
+    },
+    "GuardrailNumericalVersion":{
+      "type":"string",
+      "pattern":"[1-9][0-9]{0,7}"
+    },
+    "GuardrailPiiEntities":{
+      "type":"list",
+      "member":{"shape":"GuardrailPiiEntity"},
+      "min":1
+    },
+    "GuardrailPiiEntitiesConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailPiiEntityConfig"},
+      "min":1
+    },
+    "GuardrailPiiEntity":{
+      "type":"structure",
+      "required":[
+        "type",
+        "action"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailPiiEntityType"},
+        "action":{"shape":"GuardrailSensitiveInformationAction"}
+      }
+    },
+    "GuardrailPiiEntityConfig":{
+      "type":"structure",
+      "required":[
+        "type",
+        "action"
+      ],
+      "members":{
+        "type":{"shape":"GuardrailPiiEntityType"},
+        "action":{"shape":"GuardrailSensitiveInformationAction"}
+      }
+    },
+    "GuardrailPiiEntityType":{
+      "type":"string",
+      "enum":[
+        "ADDRESS",
+        "AGE",
+        "AWS_ACCESS_KEY",
+        "AWS_SECRET_KEY",
+        "CA_HEALTH_NUMBER",
+        "CA_SOCIAL_INSURANCE_NUMBER",
+        "CREDIT_DEBIT_CARD_CVV",
+        "CREDIT_DEBIT_CARD_EXPIRY",
+        "CREDIT_DEBIT_CARD_NUMBER",
+        "DRIVER_ID",
+        "EMAIL",
+        "INTERNATIONAL_BANK_ACCOUNT_NUMBER",
+        "IP_ADDRESS",
+        "LICENSE_PLATE",
+        "MAC_ADDRESS",
+        "NAME",
+        "PASSWORD",
+        "PHONE",
+        "PIN",
+        "SWIFT_CODE",
+        "UK_NATIONAL_HEALTH_SERVICE_NUMBER",
+        "UK_NATIONAL_INSURANCE_NUMBER",
+        "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER",
+        "URL",
+        "USERNAME",
+        "US_BANK_ACCOUNT_NUMBER",
+        "US_BANK_ROUTING_NUMBER",
+        "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER",
+        "US_PASSPORT_NUMBER",
+        "US_SOCIAL_SECURITY_NUMBER",
+        "VEHICLE_IDENTIFICATION_NUMBER"
+      ]
+    },
+    "GuardrailRegex":{
+      "type":"structure",
+      "required":[
+        "name",
+        "pattern",
+        "action"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailRegexNameString"},
+        "description":{"shape":"GuardrailRegexDescriptionString"},
+        "pattern":{"shape":"GuardrailRegexPatternString"},
+        "action":{"shape":"GuardrailSensitiveInformationAction"}
+      }
+    },
+    "GuardrailRegexConfig":{
+      "type":"structure",
+      "required":[
+        "name",
+        "pattern",
+        "action"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailRegexConfigNameString"},
+        "description":{"shape":"GuardrailRegexConfigDescriptionString"},
+        "pattern":{"shape":"GuardrailRegexConfigPatternString"},
+        "action":{"shape":"GuardrailSensitiveInformationAction"}
+      }
+    },
+    "GuardrailRegexConfigDescriptionString":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "GuardrailRegexConfigNameString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "GuardrailRegexConfigPatternString":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "GuardrailRegexDescriptionString":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
+    "GuardrailRegexNameString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "GuardrailRegexPatternString":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "GuardrailRegexes":{
+      "type":"list",
+      "member":{"shape":"GuardrailRegex"}
+    },
+    "GuardrailRegexesConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailRegexConfig"},
+      "max":10,
+      "min":1
+    },
+    "GuardrailSensitiveInformationAction":{
+      "type":"string",
+      "enum":[
+        "BLOCK",
+        "ANONYMIZE"
+      ]
+    },
+    "GuardrailSensitiveInformationPolicy":{
+      "type":"structure",
+      "members":{
+        "piiEntities":{"shape":"GuardrailPiiEntities"},
+        "regexes":{"shape":"GuardrailRegexes"}
+      }
+    },
+    "GuardrailSensitiveInformationPolicyConfig":{
+      "type":"structure",
+      "members":{
+        "piiEntitiesConfig":{"shape":"GuardrailPiiEntitiesConfig"},
+        "regexesConfig":{"shape":"GuardrailRegexesConfig"}
+      }
+    },
+    "GuardrailStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "VERSIONING",
+        "READY",
+        "FAILED",
+        "DELETING"
+      ]
+    },
+    "GuardrailStatusReason":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailStatusReasons":{
+      "type":"list",
+      "member":{"shape":"GuardrailStatusReason"},
+      "max":100,
+      "min":0
+    },
+    "GuardrailSummaries":{
+      "type":"list",
+      "member":{"shape":"GuardrailSummary"},
+      "max":1000,
+      "min":0
+    },
+    "GuardrailSummary":{
+      "type":"structure",
+      "required":[
+        "id",
+        "arn",
+        "status",
+        "name",
+        "version",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "id":{"shape":"GuardrailId"},
+        "arn":{"shape":"GuardrailArn"},
+        "status":{"shape":"GuardrailStatus"},
+        "name":{"shape":"GuardrailName"},
+        "description":{"shape":"GuardrailDescription"},
+        "version":{"shape":"GuardrailVersion"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "GuardrailTopic":{
+      "type":"structure",
+      "required":[
+        "name",
+        "definition"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailTopicName"},
+        "definition":{"shape":"GuardrailTopicDefinition"},
+        "examples":{"shape":"GuardrailTopicExamples"},
+        "type":{"shape":"GuardrailTopicType"}
+      }
+    },
+    "GuardrailTopicConfig":{
+      "type":"structure",
+      "required":[
+        "name",
+        "definition",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"GuardrailTopicName"},
+        "definition":{"shape":"GuardrailTopicDefinition"},
+        "examples":{"shape":"GuardrailTopicExamples"},
+        "type":{"shape":"GuardrailTopicType"}
+      }
+    },
+    "GuardrailTopicDefinition":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailTopicExample":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "sensitive":true
+    },
+    "GuardrailTopicExamples":{
+      "type":"list",
+      "member":{"shape":"GuardrailTopicExample"},
+      "max":5,
+      "min":0
+    },
+    "GuardrailTopicName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[0-9a-zA-Z-_ !?.]+",
+      "sensitive":true
+    },
+    "GuardrailTopicPolicy":{
+      "type":"structure",
+      "required":["topics"],
+      "members":{
+        "topics":{"shape":"GuardrailTopics"}
+      }
+    },
+    "GuardrailTopicPolicyConfig":{
+      "type":"structure",
+      "required":["topicsConfig"],
+      "members":{
+        "topicsConfig":{"shape":"GuardrailTopicsConfig"}
+      }
+    },
+    "GuardrailTopicType":{
+      "type":"string",
+      "enum":["DENY"]
+    },
+    "GuardrailTopics":{
+      "type":"list",
+      "member":{"shape":"GuardrailTopic"},
+      "max":30,
+      "min":1
+    },
+    "GuardrailTopicsConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailTopicConfig"},
+      "max":30,
+      "min":1
+    },
+    "GuardrailVersion":{
+      "type":"string",
+      "pattern":"(([1-9][0-9]{0,7})|(DRAFT))"
+    },
+    "GuardrailWord":{
+      "type":"structure",
+      "required":["text"],
+      "members":{
+        "text":{"shape":"GuardrailWordTextString"}
+      }
+    },
+    "GuardrailWordConfig":{
+      "type":"structure",
+      "required":["text"],
+      "members":{
+        "text":{"shape":"GuardrailWordConfigTextString"}
+      }
+    },
+    "GuardrailWordConfigTextString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "GuardrailWordPolicy":{
+      "type":"structure",
+      "members":{
+        "words":{"shape":"GuardrailWords"},
+        "managedWordLists":{"shape":"GuardrailManagedWordLists"}
+      }
+    },
+    "GuardrailWordPolicyConfig":{
+      "type":"structure",
+      "members":{
+        "wordsConfig":{"shape":"GuardrailWordsConfig"},
+        "managedWordListsConfig":{"shape":"GuardrailManagedWordListsConfig"}
+      }
+    },
+    "GuardrailWordTextString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "GuardrailWords":{
+      "type":"list",
+      "member":{"shape":"GuardrailWord"},
+      "max":10000,
+      "min":1
+    },
+    "GuardrailWordsConfig":{
+      "type":"list",
+      "member":{"shape":"GuardrailWordConfig"},
+      "max":10000,
+      "min":1
+    },
+    "HumanEvaluationConfig":{
+      "type":"structure",
+      "required":["datasetMetricConfigs"],
+      "members":{
+        "humanWorkflowConfig":{"shape":"HumanWorkflowConfig"},
+        "customMetrics":{"shape":"HumanEvaluationCustomMetrics"},
+        "datasetMetricConfigs":{"shape":"EvaluationDatasetMetricConfigs"}
+      }
+    },
+    "HumanEvaluationCustomMetric":{
+      "type":"structure",
+      "required":[
+        "name",
+        "ratingMethod"
+      ],
+      "members":{
+        "name":{"shape":"EvaluationMetricName"},
+        "description":{"shape":"EvaluationMetricDescription"},
+        "ratingMethod":{"shape":"EvaluationRatingMethod"}
+      }
+    },
+    "HumanEvaluationCustomMetrics":{
+      "type":"list",
+      "member":{"shape":"HumanEvaluationCustomMetric"},
+      "max":10,
+      "min":1
+    },
+    "HumanTaskInstructions":{
+      "type":"string",
+      "max":5000,
+      "min":1,
+      "pattern":"[\\S\\s]+",
+      "sensitive":true
+    },
+    "HumanWorkflowConfig":{
+      "type":"structure",
+      "required":["flowDefinitionArn"],
+      "members":{
+        "flowDefinitionArn":{"shape":"SageMakerFlowDefinitionArn"},
+        "instructions":{"shape":"HumanTaskInstructions"}
       }
     },
     "IdempotencyToken":{
@@ -915,6 +2080,58 @@
         "modelSummaries":{"shape":"CustomModelSummaryList"}
       }
     },
+    "ListEvaluationJobsRequest":{
+      "type":"structure",
+      "members":{
+        "creationTimeAfter":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"creationTimeAfter"
+        },
+        "creationTimeBefore":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"creationTimeBefore"
+        },
+        "statusEquals":{
+          "shape":"EvaluationJobStatus",
+          "location":"querystring",
+          "locationName":"statusEquals"
+        },
+        "nameContains":{
+          "shape":"EvaluationJobName",
+          "location":"querystring",
+          "locationName":"nameContains"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "sortBy":{
+          "shape":"SortJobsBy",
+          "location":"querystring",
+          "locationName":"sortBy"
+        },
+        "sortOrder":{
+          "shape":"SortOrder",
+          "location":"querystring",
+          "locationName":"sortOrder"
+        }
+      }
+    },
+    "ListEvaluationJobsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "jobSummaries":{"shape":"EvaluationSummaries"}
+      }
+    },
     "ListFoundationModelsRequest":{
       "type":"structure",
       "members":{
@@ -944,6 +2161,34 @@
       "type":"structure",
       "members":{
         "modelSummaries":{"shape":"FoundationModelSummaryList"}
+      }
+    },
+    "ListGuardrailsRequest":{
+      "type":"structure",
+      "members":{
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"querystring",
+          "locationName":"guardrailIdentifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListGuardrailsResponse":{
+      "type":"structure",
+      "required":["guardrails"],
+      "members":{
+        "guardrails":{"shape":"GuardrailSummaries"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListModelCustomizationJobsRequest":{
@@ -1312,6 +2557,12 @@
       "min":1,
       "pattern":"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
     },
+    "SageMakerFlowDefinitionArn":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":"arn:aws(-[^:]+)?:sagemaker:[a-z0-9-]{1,20}:[0-9]{12}:flow-definition/.*"
+    },
     "SecurityGroupId":{
       "type":"string",
       "max":32,
@@ -1353,6 +2604,22 @@
         "Ascending",
         "Descending"
       ]
+    },
+    "StopEvaluationJobRequest":{
+      "type":"structure",
+      "required":["jobIdentifier"],
+      "members":{
+        "jobIdentifier":{
+          "shape":"EvaluationJobIdentifier",
+          "location":"uri",
+          "locationName":"jobIdentifier"
+        }
+      }
+    },
+    "StopEvaluationJobResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "StopModelCustomizationJobRequest":{
       "type":"structure",
@@ -1438,7 +2705,7 @@
       "type":"string",
       "max":1011,
       "min":20,
-      "pattern":".*(^[a-zA-Z0-9][a-zA-Z0-9\\-]*$)|(^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:([0-9]{12}|)((:(fine-tuning-job|model-customization-job|custom-model)/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2}(/[a-z0-9]{12})$)|(:provisioned-model/[a-z0-9]{12}$))).*"
+      "pattern":".*(^[a-zA-Z0-9][a-zA-Z0-9\\-]*$)|(^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:([0-9]{12}|)((:(fine-tuning-job|model-customization-job|custom-model)/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([a-z0-9-]{1,63}[.]){0,2}[a-z0-9-]{1,63}([:][a-z0-9-]{1,63}){0,2}(/[a-z0-9]{12})$)|(:provisioned-model/[a-z0-9]{12}$)|(:guardrail/[a-z0-9]+$)|(:evaluation-job/[a-z0-9]{12}$))).*"
     },
     "ThrottlingException":{
       "type":"structure",
@@ -1494,6 +2761,46 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateGuardrailRequest":{
+      "type":"structure",
+      "required":[
+        "guardrailIdentifier",
+        "name",
+        "blockedInputMessaging",
+        "blockedOutputsMessaging"
+      ],
+      "members":{
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"uri",
+          "locationName":"guardrailIdentifier"
+        },
+        "name":{"shape":"GuardrailName"},
+        "description":{"shape":"GuardrailDescription"},
+        "topicPolicyConfig":{"shape":"GuardrailTopicPolicyConfig"},
+        "contentPolicyConfig":{"shape":"GuardrailContentPolicyConfig"},
+        "wordPolicyConfig":{"shape":"GuardrailWordPolicyConfig"},
+        "sensitiveInformationPolicyConfig":{"shape":"GuardrailSensitiveInformationPolicyConfig"},
+        "blockedInputMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "blockedOutputsMessaging":{"shape":"GuardrailBlockedMessaging"},
+        "kmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "UpdateGuardrailResponse":{
+      "type":"structure",
+      "required":[
+        "guardrailId",
+        "guardrailArn",
+        "version",
+        "updatedAt"
+      ],
+      "members":{
+        "guardrailId":{"shape":"GuardrailId"},
+        "guardrailArn":{"shape":"GuardrailArn"},
+        "version":{"shape":"GuardrailDraftVersion"},
+        "updatedAt":{"shape":"Timestamp"}
       }
     },
     "UpdateProvisionedModelThroughputRequest":{

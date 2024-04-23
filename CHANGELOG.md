@@ -1,3 +1,19 @@
+Release v1.51.27 (2024-04-23)
+===
+
+### Service Client Updates
+* `service/bedrock`: Updates service API, documentation, and paginators
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/bedrock-agent-runtime`: Updates service API and documentation
+* `service/bedrock-runtime`: Updates service API and documentation
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release introduces EC2 AMI Deregistration Protection, a new AMI property that can be enabled by customers to protect an AMI against an unintended deregistration. This release also enables the AMI owners to view the AMI 'LastLaunchedTime' in DescribeImages API.
+* `service/pi`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Fix the example ARN for ModifyActivityStreamRequest
+* `service/workspaces-web`: Updates service API and documentation
+
 Release v1.51.26 (2024-04-22)
 ===
 

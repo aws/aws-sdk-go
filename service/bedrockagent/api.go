@@ -6729,6 +6729,9 @@ type CreateDataSourceInput struct {
 	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
+	// The deletion policy for the requested data source
+	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
+
 	// Contains metadata about where the data source is stored.
 	//
 	// DataSourceConfiguration is a required field
@@ -6818,6 +6821,12 @@ func (s *CreateDataSourceInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateDataSourceInput) SetClientToken(v string) *CreateDataSourceInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetDataDeletionPolicy sets the DataDeletionPolicy field's value.
+func (s *CreateDataSourceInput) SetDataDeletionPolicy(v string) *CreateDataSourceInput {
+	s.DataDeletionPolicy = &v
 	return s
 }
 
@@ -7069,6 +7078,9 @@ type DataSource struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
+	// The deletion policy for the data source.
+	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
+
 	// Contains details about how the data source is stored.
 	//
 	// DataSourceConfiguration is a required field
@@ -7081,6 +7093,9 @@ type DataSource struct {
 
 	// The description of the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The details of the failure reasons related to the data source.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
 	// The unique identifier of the knowledge base to which the data source belongs.
 	//
@@ -7138,6 +7153,12 @@ func (s *DataSource) SetCreatedAt(v time.Time) *DataSource {
 	return s
 }
 
+// SetDataDeletionPolicy sets the DataDeletionPolicy field's value.
+func (s *DataSource) SetDataDeletionPolicy(v string) *DataSource {
+	s.DataDeletionPolicy = &v
+	return s
+}
+
 // SetDataSourceConfiguration sets the DataSourceConfiguration field's value.
 func (s *DataSource) SetDataSourceConfiguration(v *DataSourceConfiguration) *DataSource {
 	s.DataSourceConfiguration = v
@@ -7153,6 +7174,12 @@ func (s *DataSource) SetDataSourceId(v string) *DataSource {
 // SetDescription sets the Description field's value.
 func (s *DataSource) SetDescription(v string) *DataSource {
 	s.Description = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DataSource) SetFailureReasons(v []*string) *DataSource {
+	s.FailureReasons = v
 	return s
 }
 
@@ -12338,6 +12365,9 @@ type S3DataSourceConfiguration struct {
 	// BucketArn is a required field
 	BucketArn *string `locationName:"bucketArn" min:"1" type:"string" required:"true"`
 
+	// The account ID for the owner of the S3 bucket.
+	BucketOwnerAccountId *string `locationName:"bucketOwnerAccountId" min:"12" type:"string"`
+
 	// A list of S3 prefixes that define the object containing the data sources.
 	// For more information, see Organizing objects using prefixes (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html).
 	InclusionPrefixes []*string `locationName:"inclusionPrefixes" min:"1" type:"list"`
@@ -12370,6 +12400,9 @@ func (s *S3DataSourceConfiguration) Validate() error {
 	if s.BucketArn != nil && len(*s.BucketArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketArn", 1))
 	}
+	if s.BucketOwnerAccountId != nil && len(*s.BucketOwnerAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketOwnerAccountId", 12))
+	}
 	if s.InclusionPrefixes != nil && len(s.InclusionPrefixes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InclusionPrefixes", 1))
 	}
@@ -12383,6 +12416,12 @@ func (s *S3DataSourceConfiguration) Validate() error {
 // SetBucketArn sets the BucketArn field's value.
 func (s *S3DataSourceConfiguration) SetBucketArn(v string) *S3DataSourceConfiguration {
 	s.BucketArn = &v
+	return s
+}
+
+// SetBucketOwnerAccountId sets the BucketOwnerAccountId field's value.
+func (s *S3DataSourceConfiguration) SetBucketOwnerAccountId(v string) *S3DataSourceConfiguration {
+	s.BucketOwnerAccountId = &v
 	return s
 }
 
@@ -13734,6 +13773,9 @@ func (s *UpdateAgentOutput) SetAgent(v *Agent) *UpdateAgentOutput {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The data deletion policy of the updated data source.
+	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
+
 	// Contains details about the storage configuration of the data source.
 	//
 	// DataSourceConfiguration is a required field
@@ -13826,6 +13868,12 @@ func (s *UpdateDataSourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataDeletionPolicy sets the DataDeletionPolicy field's value.
+func (s *UpdateDataSourceInput) SetDataDeletionPolicy(v string) *UpdateDataSourceInput {
+	s.DataDeletionPolicy = &v
+	return s
 }
 
 // SetDataSourceConfiguration sets the DataSourceConfiguration field's value.
@@ -14423,11 +14471,30 @@ func CustomControlMethod_Values() []string {
 }
 
 const (
+	// DataDeletionPolicyRetain is a DataDeletionPolicy enum value
+	DataDeletionPolicyRetain = "RETAIN"
+
+	// DataDeletionPolicyDelete is a DataDeletionPolicy enum value
+	DataDeletionPolicyDelete = "DELETE"
+)
+
+// DataDeletionPolicy_Values returns all elements of the DataDeletionPolicy enum
+func DataDeletionPolicy_Values() []string {
+	return []string{
+		DataDeletionPolicyRetain,
+		DataDeletionPolicyDelete,
+	}
+}
+
+const (
 	// DataSourceStatusAvailable is a DataSourceStatus enum value
 	DataSourceStatusAvailable = "AVAILABLE"
 
 	// DataSourceStatusDeleting is a DataSourceStatus enum value
 	DataSourceStatusDeleting = "DELETING"
+
+	// DataSourceStatusDeleteUnsuccessful is a DataSourceStatus enum value
+	DataSourceStatusDeleteUnsuccessful = "DELETE_UNSUCCESSFUL"
 )
 
 // DataSourceStatus_Values returns all elements of the DataSourceStatus enum
@@ -14435,6 +14502,7 @@ func DataSourceStatus_Values() []string {
 	return []string{
 		DataSourceStatusAvailable,
 		DataSourceStatusDeleting,
+		DataSourceStatusDeleteUnsuccessful,
 	}
 }
 
@@ -14545,6 +14613,9 @@ const (
 
 	// KnowledgeBaseStatusFailed is a KnowledgeBaseStatus enum value
 	KnowledgeBaseStatusFailed = "FAILED"
+
+	// KnowledgeBaseStatusDeleteUnsuccessful is a KnowledgeBaseStatus enum value
+	KnowledgeBaseStatusDeleteUnsuccessful = "DELETE_UNSUCCESSFUL"
 )
 
 // KnowledgeBaseStatus_Values returns all elements of the KnowledgeBaseStatus enum
@@ -14555,6 +14626,7 @@ func KnowledgeBaseStatus_Values() []string {
 		KnowledgeBaseStatusDeleting,
 		KnowledgeBaseStatusUpdating,
 		KnowledgeBaseStatusFailed,
+		KnowledgeBaseStatusDeleteUnsuccessful,
 	}
 }
 

@@ -1155,6 +1155,12 @@
       "type":"boolean",
       "box":true
     },
+    "BucketOwnerAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
+    },
     "ChunkingConfiguration":{
       "type":"structure",
       "required":["chunkingStrategy"],
@@ -1298,6 +1304,7 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
+        "dataDeletionPolicy":{"shape":"DataDeletionPolicy"},
         "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "description":{"shape":"Description"},
         "knowledgeBaseId":{
@@ -1356,6 +1363,13 @@
       "type":"string",
       "enum":["RETURN_CONTROL"]
     },
+    "DataDeletionPolicy":{
+      "type":"string",
+      "enum":[
+        "RETAIN",
+        "DELETE"
+      ]
+    },
     "DataSource":{
       "type":"structure",
       "required":[
@@ -1369,9 +1383,11 @@
       ],
       "members":{
         "createdAt":{"shape":"DateTimestamp"},
+        "dataDeletionPolicy":{"shape":"DataDeletionPolicy"},
         "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "dataSourceId":{"shape":"Id"},
         "description":{"shape":"Description"},
+        "failureReasons":{"shape":"FailureReasons"},
         "knowledgeBaseId":{"shape":"Id"},
         "name":{"shape":"Name"},
         "serverSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
@@ -1392,7 +1408,8 @@
       "type":"string",
       "enum":[
         "AVAILABLE",
-        "DELETING"
+        "DELETING",
+        "DELETE_UNSUCCESSFUL"
       ]
     },
     "DataSourceSummaries":{
@@ -2146,7 +2163,8 @@
         "ACTIVE",
         "DELETING",
         "UPDATING",
-        "FAILED"
+        "FAILED",
+        "DELETE_UNSUCCESSFUL"
       ]
     },
     "KnowledgeBaseStorageType":{
@@ -2717,6 +2735,7 @@
       "required":["bucketArn"],
       "members":{
         "bucketArn":{"shape":"S3BucketArn"},
+        "bucketOwnerAccountId":{"shape":"BucketOwnerAccountId"},
         "inclusionPrefixes":{"shape":"S3Prefixes"}
       }
     },
@@ -3083,6 +3102,7 @@
         "name"
       ],
       "members":{
+        "dataDeletionPolicy":{"shape":"DataDeletionPolicy"},
         "dataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "dataSourceId":{
           "shape":"Id",

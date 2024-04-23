@@ -1,9 +1,9 @@
 {
   "version": "2.0",
-  "service": "<p>Describes the API operations for running inference using Bedrock models.</p>",
+  "service": "<p>Describes the API operations for running inference using Amazon Bedrock models.</p>",
   "operations": {
-    "InvokeModel": "<p>Invokes the specified Bedrock model to run inference using the input provided in the request body. You use InvokeModel to run inference for text models, image models, and embedding models.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>For example requests, see Examples (after the Errors section).</p>",
-    "InvokeModelWithResponseStream": "<p>Invoke the specified Bedrock model to run inference using the input provided. Return the response in a stream.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p> <p>For an example request and response, see Examples (after the Errors section).</p>"
+    "InvokeModel": "<p>Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. You use model inference to generate text, images, and embeddings.</p> <p>For example code, see <i>Invoke model code examples</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permission for the <code>bedrock:InvokeModel</code> action.</p>",
+    "InvokeModelWithResponseStream": "<p>Invoke the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a stream.</p> <p>To see if a model supports streaming, call <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html\">GetFoundationModel</a> and check the <code>responseStreamingSupported</code> field in the response.</p> <note> <p>The CLI doesn't support <code>InvokeModelWithResponseStream</code>.</p> </note> <p>For example code, see <i>Invoke model with streaming code example</i> in the <i>Amazon Bedrock User Guide</i>. </p> <p>This operation requires permissions to perform the <code>bedrock:InvokeModelWithResponseStream</code> action. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -14,22 +14,36 @@
     "Body": {
       "base": null,
       "refs": {
-        "InvokeModelRequest$body": "<p>Input data in the format specified in the content-type request header. To see the format and content of this field for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>",
-        "InvokeModelResponse$body": "<p>Inference response from the model in the format specified in the content-type header field. To see the format and content of this field for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>",
-        "InvokeModelWithResponseStreamRequest$body": "<p>Inference input in the format specified by the content-type. To see the format and content of this field for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>"
+        "InvokeModelRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>",
+        "InvokeModelResponse$body": "<p>Inference response from the model in the format specified in the <code>contentType</code> header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>",
+        "InvokeModelWithResponseStreamRequest$body": "<p>The prompt and inference parameters in the format specified in the <code>contentType</code> in the header. To see the format and content of the request and response bodies for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html\">Run inference</a> in the Bedrock User Guide.</p>"
+      }
+    },
+    "GuardrailIdentifier": {
+      "base": null,
+      "refs": {
+        "InvokeModelRequest$guardrailIdentifier": "<p>The unique identifier of the guardrail that you want to use. If you don't provide a value, no guardrail is applied to the invocation.</p> <p>An error will be thrown in the following situations.</p> <ul> <li> <p>You don't provide a guardrail identifier but you specify the <code>amazon-bedrock-guardrailConfig</code> field in the request body.</p> </li> <li> <p>You enable the guardrail but the <code>contentType</code> isn't <code>application/json</code>.</p> </li> <li> <p>You provide a guardrail identifier, but <code>guardrailVersion</code> isn't specified.</p> </li> </ul>",
+        "InvokeModelWithResponseStreamRequest$guardrailIdentifier": "<p>The unique identifier of the guardrail that you want to use. If you don't provide a value, no guardrail is applied to the invocation.</p> <p>An error is thrown in the following situations.</p> <ul> <li> <p>You don't provide a guardrail identifier but you specify the <code>amazon-bedrock-guardrailConfig</code> field in the request body.</p> </li> <li> <p>You enable the guardrail but the <code>contentType</code> isn't <code>application/json</code>.</p> </li> <li> <p>You provide a guardrail identifier, but <code>guardrailVersion</code> isn't specified.</p> </li> </ul>"
+      }
+    },
+    "GuardrailVersion": {
+      "base": null,
+      "refs": {
+        "InvokeModelRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>",
+        "InvokeModelWithResponseStreamRequest$guardrailVersion": "<p>The version number for the guardrail. The value can also be <code>DRAFT</code>.</p>"
       }
     },
     "InternalServerException": {
       "base": "<p>An internal server error occurred. Retry your request.</p>",
       "refs": {
-        "ResponseStream$internalServerException": null
+        "ResponseStream$internalServerException": "<p>An internal server error occurred. Retry your request.</p>"
       }
     },
     "InvokeModelIdentifier": {
       "base": null,
       "refs": {
-        "InvokeModelRequest$modelId": "<p>Identifier of the model. </p>",
-        "InvokeModelWithResponseStreamRequest$modelId": "<p>Id of the model to invoke using the streaming request.</p>"
+        "InvokeModelRequest$modelId": "<p>The unique identifier of the model to invoke to run inference.</p> <p>The <code>modelId</code> to provide depends on the type of model that you use:</p> <ul> <li> <p>If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns\">Amazon Bedrock base model IDs (on-demand throughput)</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html\">Run inference using a Provisioned Throughput</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html\">Use a custom model in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p> </li> </ul>",
+        "InvokeModelWithResponseStreamRequest$modelId": "<p>The unique identifier of the model to invoke to run inference.</p> <p>The <code>modelId</code> to provide depends on the type of model that you use:</p> <ul> <li> <p>If you use a base model, specify the model ID or its ARN. For a list of model IDs for base models, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns\">Amazon Bedrock base model IDs (on-demand throughput)</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a provisioned model, specify the ARN of the Provisioned Throughput. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html\">Run inference using a Provisioned Throughput</a> in the Amazon Bedrock User Guide.</p> </li> <li> <p>If you use a custom model, first purchase Provisioned Throughput for it. Then specify the ARN of the resulting provisioned model. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html\">Use a custom model in Amazon Bedrock</a> in the Amazon Bedrock User Guide.</p> </li> </ul>"
       }
     },
     "InvokeModelRequest": {
@@ -74,15 +88,15 @@
       }
     },
     "ModelStreamErrorException": {
-      "base": "<p>An error occurred while streaming the response.</p>",
+      "base": "<p>An error occurred while streaming the response. Retry your request.</p>",
       "refs": {
-        "ResponseStream$modelStreamErrorException": null
+        "ResponseStream$modelStreamErrorException": "<p>An error occurred while streaming the response. Retry your request.</p>"
       }
     },
     "ModelTimeoutException": {
       "base": "<p>The request took too long to process. Processing time exceeded the model timeout length.</p>",
       "refs": {
-        "ResponseStream$modelTimeoutException": null
+        "ResponseStream$modelTimeoutException": "<p>The request took too long to process. Processing time exceeded the model timeout length.</p>"
       }
     },
     "NonBlankString": {
@@ -122,7 +136,7 @@
     "ResponseStream": {
       "base": "<p>Definition of content in the response stream.</p>",
       "refs": {
-        "InvokeModelWithResponseStreamResponse$body": "<p>Inference response from the model in the format specified by Content-Type. To see the format and content of this field for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>"
+        "InvokeModelWithResponseStreamResponse$body": "<p>Inference response from the model in the format specified by the <code>contentType</code> header. To see the format and content of this field for different models, refer to <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html\">Inference parameters</a>.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -140,13 +154,20 @@
     "ThrottlingException": {
       "base": "<p>The number of requests exceeds the limit. Resubmit your request later.</p>",
       "refs": {
-        "ResponseStream$throttlingException": null
+        "ResponseStream$throttlingException": "<p>The number or frequency of requests exceeds the limit. Resubmit your request later.</p>"
+      }
+    },
+    "Trace": {
+      "base": null,
+      "refs": {
+        "InvokeModelRequest$trace": "<p>Specifies whether to enable or disable the Bedrock trace. If enabled, you can see the full Bedrock trace.</p>",
+        "InvokeModelWithResponseStreamRequest$trace": "<p>Specifies whether to enable or disable the Bedrock trace. If enabled, you can see the full Bedrock trace.</p>"
       }
     },
     "ValidationException": {
       "base": "<p>Input validation failed. Check your request parameters and retry the request.</p>",
       "refs": {
-        "ResponseStream$validationException": null
+        "ResponseStream$validationException": "<p>Input validation failed. Check your request parameters and retry the request.</p>"
       }
     }
   }

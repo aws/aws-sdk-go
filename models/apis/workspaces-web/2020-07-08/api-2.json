@@ -974,6 +974,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ],
@@ -1252,9 +1253,11 @@
       "type":"structure",
       "required":["browserSettingsArn"],
       "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
         "associatedPortalArns":{"shape":"ArnList"},
         "browserPolicy":{"shape":"BrowserPolicy"},
-        "browserSettingsArn":{"shape":"ARN"}
+        "browserSettingsArn":{"shape":"ARN"},
+        "customerManagedKey":{"shape":"keyArn"}
       }
     },
     "BrowserSettingsList":{
@@ -1340,18 +1343,21 @@
       "type":"string",
       "max":253,
       "min":0,
-      "pattern":"^(\\.?)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+      "pattern":"^(\\.?)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)*[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$",
+      "sensitive":true
     },
     "CookieName":{
       "type":"string",
       "max":4096,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "CookiePath":{
       "type":"string",
       "max":2000,
       "min":0,
-      "pattern":"^/(\\S)*$"
+      "pattern":"^/(\\S)*$",
+      "sensitive":true
     },
     "CookieSpecification":{
       "type":"structure",
@@ -1483,6 +1489,8 @@
         },
         "customerManagedKey":{"shape":"keyArn"},
         "displayName":{"shape":"DisplayName"},
+        "instanceType":{"shape":"InstanceType"},
+        "maxConcurrentSessions":{"shape":"MaxConcurrentSessions"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -2062,6 +2070,14 @@
       "max":60,
       "min":0
     },
+    "InstanceType":{
+      "type":"string",
+      "enum":[
+        "standard.regular",
+        "standard.large",
+        "standard.xlarge"
+      ]
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -2080,8 +2096,10 @@
       "type":"structure",
       "required":["ipAccessSettingsArn"],
       "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
         "associatedPortalArns":{"shape":"ArnList"},
         "creationDate":{"shape":"Timestamp"},
+        "customerManagedKey":{"shape":"keyArn"},
         "description":{"shape":"Description"},
         "displayName":{"shape":"DisplayName"},
         "ipAccessSettingsArn":{"shape":"ARN"},
@@ -2357,6 +2375,12 @@
         "userSettings":{"shape":"UserSettingsList"}
       }
     },
+    "MaxConcurrentSessions":{
+      "type":"integer",
+      "box":true,
+      "max":5000,
+      "min":1
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -2395,12 +2419,16 @@
       "type":"structure",
       "required":["portalArn"],
       "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
         "authenticationType":{"shape":"AuthenticationType"},
         "browserSettingsArn":{"shape":"ARN"},
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
+        "customerManagedKey":{"shape":"keyArn"},
         "displayName":{"shape":"DisplayName"},
+        "instanceType":{"shape":"InstanceType"},
         "ipAccessSettingsArn":{"shape":"ARN"},
+        "maxConcurrentSessions":{"shape":"MaxConcurrentSessions"},
         "networkSettingsArn":{"shape":"ARN"},
         "portalArn":{"shape":"ARN"},
         "portalEndpoint":{"shape":"PortalEndpoint"},
@@ -2439,7 +2467,9 @@
         "browserType":{"shape":"BrowserType"},
         "creationDate":{"shape":"Timestamp"},
         "displayName":{"shape":"DisplayName"},
+        "instanceType":{"shape":"InstanceType"},
         "ipAccessSettingsArn":{"shape":"ARN"},
+        "maxConcurrentSessions":{"shape":"MaxConcurrentSessions"},
         "networkSettingsArn":{"shape":"ARN"},
         "portalArn":{"shape":"ARN"},
         "portalEndpoint":{"shape":"PortalEndpoint"},
@@ -2775,6 +2805,8 @@
       "members":{
         "authenticationType":{"shape":"AuthenticationType"},
         "displayName":{"shape":"DisplayName"},
+        "instanceType":{"shape":"InstanceType"},
+        "maxConcurrentSessions":{"shape":"MaxConcurrentSessions"},
         "portalArn":{
           "shape":"ARN",
           "location":"uri",
@@ -2890,9 +2922,11 @@
       "type":"structure",
       "required":["userSettingsArn"],
       "members":{
+        "additionalEncryptionContext":{"shape":"EncryptionContextMap"},
         "associatedPortalArns":{"shape":"ArnList"},
         "cookieSynchronizationConfiguration":{"shape":"CookieSynchronizationConfiguration"},
         "copyAllowed":{"shape":"EnabledType"},
+        "customerManagedKey":{"shape":"keyArn"},
         "disconnectTimeoutInMinutes":{"shape":"DisconnectTimeoutInMinutes"},
         "downloadAllowed":{"shape":"EnabledType"},
         "idleDisconnectTimeoutInMinutes":{"shape":"IdleDisconnectTimeoutInMinutes"},

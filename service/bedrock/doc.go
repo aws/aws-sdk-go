@@ -3,7 +3,8 @@
 // Package bedrock provides the client and types for making API
 // requests to Amazon Bedrock.
 //
-// Describes the API operations for creating and managing Amazon Bedrock models.
+// Describes the API operations for creating, managing, fine-turning, and evaluating
+// Amazon Bedrock models.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20 for more information on this service.
 //

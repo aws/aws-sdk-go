@@ -3429,6 +3429,15 @@
       "input":{"shape":"DisableImageDeprecationRequest"},
       "output":{"shape":"DisableImageDeprecationResult"}
     },
+    "DisableImageDeregistrationProtection":{
+      "name":"DisableImageDeregistrationProtection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableImageDeregistrationProtectionRequest"},
+      "output":{"shape":"DisableImageDeregistrationProtectionResult"}
+    },
     "DisableIpamOrganizationAdminAccount":{
       "name":"DisableIpamOrganizationAdminAccount",
       "http":{
@@ -3695,6 +3704,15 @@
       },
       "input":{"shape":"EnableImageDeprecationRequest"},
       "output":{"shape":"EnableImageDeprecationResult"}
+    },
+    "EnableImageDeregistrationProtection":{
+      "name":"EnableImageDeregistrationProtection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableImageDeregistrationProtectionRequest"},
+      "output":{"shape":"EnableImageDeregistrationProtectionResult"}
     },
     "EnableIpamOrganizationAdminAccount":{
       "name":"EnableIpamOrganizationAdminAccount",
@@ -20081,6 +20099,23 @@
         }
       }
     },
+    "DisableImageDeregistrationProtectionRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableImageDeregistrationProtectionResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"String",
+          "locationName":"return"
+        }
+      }
+    },
     "DisableImageRequest":{
       "type":"structure",
       "required":["ImageId"],
@@ -21514,6 +21549,24 @@
       "members":{
         "Return":{
           "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
+    "EnableImageDeregistrationProtectionRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "WithCooldown":{"shape":"Boolean"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableImageDeregistrationProtectionResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"String",
           "locationName":"return"
         }
       }
@@ -25310,6 +25363,14 @@
         "SourceInstanceId":{
           "shape":"String",
           "locationName":"sourceInstanceId"
+        },
+        "DeregistrationProtection":{
+          "shape":"String",
+          "locationName":"deregistrationProtection"
+        },
+        "LastLaunchedTime":{
+          "shape":"String",
+          "locationName":"lastLaunchedTime"
         }
       }
     },
@@ -25367,6 +25428,10 @@
         "ImdsSupport":{
           "shape":"AttributeValue",
           "locationName":"imdsSupport"
+        },
+        "DeregistrationProtection":{
+          "shape":"AttributeValue",
+          "locationName":"deregistrationProtection"
         }
       }
     },
@@ -25384,7 +25449,8 @@
         "tpmSupport",
         "uefiData",
         "lastLaunchedTime",
-        "imdsSupport"
+        "imdsSupport",
+        "deregistrationProtection"
       ]
     },
     "ImageBlockPublicAccessDisabledState":{

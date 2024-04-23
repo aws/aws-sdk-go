@@ -35,7 +35,7 @@ const (
 	// ErrCodeModelStreamErrorException for service response error code
 	// "ModelStreamErrorException".
 	//
-	// An error occurred while streaming the response.
+	// An error occurred while streaming the response. Retry your request.
 	ErrCodeModelStreamErrorException = "ModelStreamErrorException"
 
 	// ErrCodeModelTimeoutException for service response error code
