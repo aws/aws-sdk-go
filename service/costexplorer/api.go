@@ -1086,8 +1086,11 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // by various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
 // operation. Management account in an organization in Organizations have access
-// to all member accounts. This API is currently available for the Amazon Elastic
-// Compute Cloud – Compute service only.
+// to all member accounts.
+//
+// Hourly granularity is only available for EC2-Instances (Elastic Compute Cloud)
+// resource-level data. All other resource-level data is available at daily
+// granularity.
 //
 // This is an opt-in only feature. You can enable this feature from the Cost
 // Explorer Settings page. For information about how to access the Settings
@@ -14449,15 +14452,18 @@ func (s *ReservationPurchaseRecommendationDetail) SetUpfrontCost(v string) *Rese
 	return s
 }
 
-// Information about this specific recommendation, such as the timestamp for
-// when Amazon Web Services made a specific recommendation.
+// Information about a recommendation, such as the timestamp for when Amazon
+// Web Services made a specific recommendation.
 type ReservationPurchaseRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when Amazon Web Services made this recommendation.
+	// Additional metadata that might be applicable to the recommendation.
+	AdditionalMetadata *string `type:"string"`
+
+	// The timestamp for when Amazon Web Services made the recommendation.
 	GenerationTimestamp *string `type:"string"`
 
-	// The ID for this specific recommendation.
+	// The ID for the recommendation.
 	RecommendationId *string `type:"string"`
 }
 
@@ -14477,6 +14483,12 @@ func (s ReservationPurchaseRecommendationMetadata) String() string {
 // value will be replaced with "sensitive".
 func (s ReservationPurchaseRecommendationMetadata) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetadata sets the AdditionalMetadata field's value.
+func (s *ReservationPurchaseRecommendationMetadata) SetAdditionalMetadata(v string) *ReservationPurchaseRecommendationMetadata {
+	s.AdditionalMetadata = &v
+	return s
 }
 
 // SetGenerationTimestamp sets the GenerationTimestamp field's value.
@@ -15009,21 +15021,21 @@ func (s *RightsizingRecommendationConfiguration) SetRecommendationTarget(v strin
 	return s
 }
 
-// Metadata for this recommendation set.
+// Metadata for a recommendation set.
 type RightsizingRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// Additional metadata that might be applicable to the recommendation.
 	AdditionalMetadata *string `type:"string"`
 
-	// The timestamp for when Amazon Web Services made this recommendation.
+	// The timestamp for when Amazon Web Services made the recommendation.
 	GenerationTimestamp *string `type:"string"`
 
 	// The number of days of previous usage that Amazon Web Services considers when
-	// making this recommendation.
+	// making the recommendation.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
-	// The ID for this specific recommendation.
+	// The ID for the recommendation.
 	RecommendationId *string `type:"string"`
 }
 

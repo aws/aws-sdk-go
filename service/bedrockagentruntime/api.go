@@ -1219,6 +1219,97 @@ func (s *BadGatewayException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This property contains the document to chat with, along with its attributes.
+type ByteContentDoc struct {
+	_ struct{} `type:"structure"`
+
+	// The MIME type of the document contained in the wrapper object.
+	//
+	// ContentType is a required field
+	ContentType *string `locationName:"contentType" type:"string" required:"true"`
+
+	// The byte value of the file to upload, encoded as a Base-64 string.
+	//
+	// Data is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ByteContentDoc's
+	// String and GoString methods.
+	//
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" min:"1" type:"blob" required:"true" sensitive:"true"`
+
+	// The file name of the document contained in the wrapper object.
+	//
+	// Identifier is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ByteContentDoc's
+	// String and GoString methods.
+	//
+	// Identifier is a required field
+	Identifier *string `locationName:"identifier" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ByteContentDoc) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ByteContentDoc) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ByteContentDoc) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ByteContentDoc"}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Data != nil && len(s.Data) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Data", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *ByteContentDoc) SetContentType(v string) *ByteContentDoc {
+	s.ContentType = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *ByteContentDoc) SetData(v []byte) *ByteContentDoc {
+	s.Data = v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ByteContentDoc) SetIdentifier(v string) *ByteContentDoc {
+	s.Identifier = &v
+	return s
+}
+
 // An object containing a segment of the generated response that is based on
 // a source in the knowledge base, alongside information about the source.
 //
@@ -1496,6 +1587,223 @@ func (s *DependencyFailedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DependencyFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The unique external source of the content contained in the wrapper object.
+type ExternalSource struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier, contentType, and data of the external source wrapper object.
+	ByteContent *ByteContentDoc `locationName:"byteContent" type:"structure"`
+
+	// The S3 location of the external source wrapper object.
+	S3Location *S3ObjectDoc `locationName:"s3Location" type:"structure"`
+
+	// The source type of the external source wrapper object.
+	//
+	// SourceType is a required field
+	SourceType *string `locationName:"sourceType" type:"string" required:"true" enum:"ExternalSourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalSource"}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+	if s.ByteContent != nil {
+		if err := s.ByteContent.Validate(); err != nil {
+			invalidParams.AddNested("ByteContent", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Location != nil {
+		if err := s.S3Location.Validate(); err != nil {
+			invalidParams.AddNested("S3Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetByteContent sets the ByteContent field's value.
+func (s *ExternalSource) SetByteContent(v *ByteContentDoc) *ExternalSource {
+	s.ByteContent = v
+	return s
+}
+
+// SetS3Location sets the S3Location field's value.
+func (s *ExternalSource) SetS3Location(v *S3ObjectDoc) *ExternalSource {
+	s.S3Location = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ExternalSource) SetSourceType(v string) *ExternalSource {
+	s.SourceType = &v
+	return s
+}
+
+// Contains the generation configuration of the external source wrapper object.
+type ExternalSourcesGenerationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contain the textPromptTemplate string for the external source wrapper object.
+	PromptTemplate *PromptTemplate `locationName:"promptTemplate" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourcesGenerationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourcesGenerationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalSourcesGenerationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalSourcesGenerationConfiguration"}
+	if s.PromptTemplate != nil {
+		if err := s.PromptTemplate.Validate(); err != nil {
+			invalidParams.AddNested("PromptTemplate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPromptTemplate sets the PromptTemplate field's value.
+func (s *ExternalSourcesGenerationConfiguration) SetPromptTemplate(v *PromptTemplate) *ExternalSourcesGenerationConfiguration {
+	s.PromptTemplate = v
+	return s
+}
+
+// The configurations of the external source wrapper object in the retrieveAndGenerate
+// function.
+type ExternalSourcesRetrieveAndGenerateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The prompt used with the external source wrapper object with the retrieveAndGenerate
+	// function.
+	GenerationConfiguration *ExternalSourcesGenerationConfiguration `locationName:"generationConfiguration" type:"structure"`
+
+	// The modelArn used with the external source wrapper object in the retrieveAndGenerate
+	// function.
+	//
+	// ModelArn is a required field
+	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
+
+	// The document used with the external source wrapper object in the retrieveAndGenerate
+	// function.
+	//
+	// Sources is a required field
+	Sources []*ExternalSource `locationName:"sources" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourcesRetrieveAndGenerateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExternalSourcesRetrieveAndGenerateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalSourcesRetrieveAndGenerateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalSourcesRetrieveAndGenerateConfiguration"}
+	if s.ModelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelArn"))
+	}
+	if s.ModelArn != nil && len(*s.ModelArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelArn", 20))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil && len(s.Sources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sources", 1))
+	}
+	if s.GenerationConfiguration != nil {
+		if err := s.GenerationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GenerationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGenerationConfiguration sets the GenerationConfiguration field's value.
+func (s *ExternalSourcesRetrieveAndGenerateConfiguration) SetGenerationConfiguration(v *ExternalSourcesGenerationConfiguration) *ExternalSourcesRetrieveAndGenerateConfiguration {
+	s.GenerationConfiguration = v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *ExternalSourcesRetrieveAndGenerateConfiguration) SetModelArn(v string) *ExternalSourcesRetrieveAndGenerateConfiguration {
+	s.ModelArn = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *ExternalSourcesRetrieveAndGenerateConfiguration) SetSources(v []*ExternalSource) *ExternalSourcesRetrieveAndGenerateConfiguration {
+	s.Sources = v
+	return s
 }
 
 // Contains information about the failure of the interaction.
@@ -4295,6 +4603,10 @@ func (s *RetrievalResultS3Location) SetUri(v string) *RetrievalResultS3Location 
 type RetrieveAndGenerateConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration used with the external source wrapper object in the retrieveAndGenerate
+	// function.
+	ExternalSourcesConfiguration *ExternalSourcesRetrieveAndGenerateConfiguration `locationName:"externalSourcesConfiguration" type:"structure"`
+
 	// Contains details about the resource being queried.
 	KnowledgeBaseConfiguration *KnowledgeBaseRetrieveAndGenerateConfiguration `locationName:"knowledgeBaseConfiguration" type:"structure"`
 
@@ -4328,6 +4640,11 @@ func (s *RetrieveAndGenerateConfiguration) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.ExternalSourcesConfiguration != nil {
+		if err := s.ExternalSourcesConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ExternalSourcesConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.KnowledgeBaseConfiguration != nil {
 		if err := s.KnowledgeBaseConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("KnowledgeBaseConfiguration", err.(request.ErrInvalidParams))
@@ -4338,6 +4655,12 @@ func (s *RetrieveAndGenerateConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExternalSourcesConfiguration sets the ExternalSourcesConfiguration field's value.
+func (s *RetrieveAndGenerateConfiguration) SetExternalSourcesConfiguration(v *ExternalSourcesRetrieveAndGenerateConfiguration) *RetrieveAndGenerateConfiguration {
+	s.ExternalSourcesConfiguration = v
+	return s
 }
 
 // SetKnowledgeBaseConfiguration sets the KnowledgeBaseConfiguration field's value.
@@ -4935,6 +5258,56 @@ func (s *ReturnControlPayload) MarshalEvent(pm protocol.PayloadMarshaler) (msg e
 	}
 	msg.Payload = buf.Bytes()
 	return msg, err
+}
+
+// The unique wrapper object of the document from the S3 location.
+type S3ObjectDoc struct {
+	_ struct{} `type:"structure"`
+
+	// The file location of the S3 wrapper object.
+	//
+	// Uri is a required field
+	Uri *string `locationName:"uri" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ObjectDoc) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ObjectDoc) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ObjectDoc) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ObjectDoc"}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *S3ObjectDoc) SetUri(v string) *S3ObjectDoc {
+	s.Uri = &v
+	return s
 }
 
 // The number of requests exceeds the service quota. Resubmit your request later.
@@ -5614,6 +5987,22 @@ func CreationMode_Values() []string {
 }
 
 const (
+	// ExternalSourceTypeS3 is a ExternalSourceType enum value
+	ExternalSourceTypeS3 = "S3"
+
+	// ExternalSourceTypeByteContent is a ExternalSourceType enum value
+	ExternalSourceTypeByteContent = "BYTE_CONTENT"
+)
+
+// ExternalSourceType_Values returns all elements of the ExternalSourceType enum
+func ExternalSourceType_Values() []string {
+	return []string{
+		ExternalSourceTypeS3,
+		ExternalSourceTypeByteContent,
+	}
+}
+
+const (
 	// InvocationTypeActionGroup is a InvocationType enum value
 	InvocationTypeActionGroup = "ACTION_GROUP"
 
@@ -5688,12 +6077,16 @@ func RetrievalResultLocationType_Values() []string {
 const (
 	// RetrieveAndGenerateTypeKnowledgeBase is a RetrieveAndGenerateType enum value
 	RetrieveAndGenerateTypeKnowledgeBase = "KNOWLEDGE_BASE"
+
+	// RetrieveAndGenerateTypeExternalSources is a RetrieveAndGenerateType enum value
+	RetrieveAndGenerateTypeExternalSources = "EXTERNAL_SOURCES"
 )
 
 // RetrieveAndGenerateType_Values returns all elements of the RetrieveAndGenerateType enum
 func RetrieveAndGenerateType_Values() []string {
 	return []string{
 		RetrieveAndGenerateTypeKnowledgeBase,
+		RetrieveAndGenerateTypeExternalSources,
 	}
 }
 

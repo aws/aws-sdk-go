@@ -292,6 +292,12 @@
         "ParameterDetail$required": "<p>Whether the parameter is required for the agent to complete the function for action group invocation.</p>"
       }
     },
+    "BucketOwnerAccountId": {
+      "base": null,
+      "refs": {
+        "S3DataSourceConfiguration$bucketOwnerAccountId": "<p>The account ID for the owner of the S3 bucket.</p>"
+      }
+    },
     "ChunkingConfiguration": {
       "base": "<p>Details about how to chunk the documents in the data source. A <i>chunk</i> refers to an excerpt from a data source that is returned when the knowledge base that it belongs to is queried.</p>",
       "refs": {
@@ -393,6 +399,14 @@
       "base": null,
       "refs": {
         "ActionGroupExecutor$customControl": "<p>To return the action group invocation results directly in the <code>InvokeAgent</code> response, specify <code>RETURN_CONTROL</code>.</p>"
+      }
+    },
+    "DataDeletionPolicy": {
+      "base": null,
+      "refs": {
+        "CreateDataSourceRequest$dataDeletionPolicy": "<p>The deletion policy for the requested data source</p>",
+        "DataSource$dataDeletionPolicy": "<p>The deletion policy for the data source.</p>",
+        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy of the updated data source.</p>"
       }
     },
     "DataSource": {
@@ -600,6 +614,7 @@
       "refs": {
         "Agent$failureReasons": "<p>Contains reasons that the agent-related API that you invoked failed.</p>",
         "AgentVersion$failureReasons": "<p>A list of reasons that the API operation on the version failed.</p>",
+        "DataSource$failureReasons": "<p>The details of the failure reasons related to the data source.</p>",
         "IngestionJob$failureReasons": "<p>A list of reasons that the ingestion job failed.</p>",
         "KnowledgeBase$failureReasons": "<p>A list of reasons that the API operation on the knowledge base failed.</p>"
       }

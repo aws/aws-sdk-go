@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// Amazon Bedrock.
 //	func myFunc(svc bedrockiface.BedrockAPI) bool {
-//	    // Make svc.CreateModelCustomizationJob request
+//	    // Make svc.CreateEvaluationJob request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockBedrockClient struct {
 //	    bedrockiface.BedrockAPI
 //	}
-//	func (m *mockBedrockClient) CreateModelCustomizationJob(input *bedrock.CreateModelCustomizationJobInput) (*bedrock.CreateModelCustomizationJobOutput, error) {
+//	func (m *mockBedrockClient) CreateEvaluationJob(input *bedrock.CreateEvaluationJobInput) (*bedrock.CreateEvaluationJobOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,18 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type BedrockAPI interface {
+	CreateEvaluationJob(*bedrock.CreateEvaluationJobInput) (*bedrock.CreateEvaluationJobOutput, error)
+	CreateEvaluationJobWithContext(aws.Context, *bedrock.CreateEvaluationJobInput, ...request.Option) (*bedrock.CreateEvaluationJobOutput, error)
+	CreateEvaluationJobRequest(*bedrock.CreateEvaluationJobInput) (*request.Request, *bedrock.CreateEvaluationJobOutput)
+
+	CreateGuardrail(*bedrock.CreateGuardrailInput) (*bedrock.CreateGuardrailOutput, error)
+	CreateGuardrailWithContext(aws.Context, *bedrock.CreateGuardrailInput, ...request.Option) (*bedrock.CreateGuardrailOutput, error)
+	CreateGuardrailRequest(*bedrock.CreateGuardrailInput) (*request.Request, *bedrock.CreateGuardrailOutput)
+
+	CreateGuardrailVersion(*bedrock.CreateGuardrailVersionInput) (*bedrock.CreateGuardrailVersionOutput, error)
+	CreateGuardrailVersionWithContext(aws.Context, *bedrock.CreateGuardrailVersionInput, ...request.Option) (*bedrock.CreateGuardrailVersionOutput, error)
+	CreateGuardrailVersionRequest(*bedrock.CreateGuardrailVersionInput) (*request.Request, *bedrock.CreateGuardrailVersionOutput)
+
 	CreateModelCustomizationJob(*bedrock.CreateModelCustomizationJobInput) (*bedrock.CreateModelCustomizationJobOutput, error)
 	CreateModelCustomizationJobWithContext(aws.Context, *bedrock.CreateModelCustomizationJobInput, ...request.Option) (*bedrock.CreateModelCustomizationJobOutput, error)
 	CreateModelCustomizationJobRequest(*bedrock.CreateModelCustomizationJobInput) (*request.Request, *bedrock.CreateModelCustomizationJobOutput)
@@ -71,6 +83,10 @@ type BedrockAPI interface {
 	DeleteCustomModel(*bedrock.DeleteCustomModelInput) (*bedrock.DeleteCustomModelOutput, error)
 	DeleteCustomModelWithContext(aws.Context, *bedrock.DeleteCustomModelInput, ...request.Option) (*bedrock.DeleteCustomModelOutput, error)
 	DeleteCustomModelRequest(*bedrock.DeleteCustomModelInput) (*request.Request, *bedrock.DeleteCustomModelOutput)
+
+	DeleteGuardrail(*bedrock.DeleteGuardrailInput) (*bedrock.DeleteGuardrailOutput, error)
+	DeleteGuardrailWithContext(aws.Context, *bedrock.DeleteGuardrailInput, ...request.Option) (*bedrock.DeleteGuardrailOutput, error)
+	DeleteGuardrailRequest(*bedrock.DeleteGuardrailInput) (*request.Request, *bedrock.DeleteGuardrailOutput)
 
 	DeleteModelInvocationLoggingConfiguration(*bedrock.DeleteModelInvocationLoggingConfigurationInput) (*bedrock.DeleteModelInvocationLoggingConfigurationOutput, error)
 	DeleteModelInvocationLoggingConfigurationWithContext(aws.Context, *bedrock.DeleteModelInvocationLoggingConfigurationInput, ...request.Option) (*bedrock.DeleteModelInvocationLoggingConfigurationOutput, error)
@@ -84,9 +100,17 @@ type BedrockAPI interface {
 	GetCustomModelWithContext(aws.Context, *bedrock.GetCustomModelInput, ...request.Option) (*bedrock.GetCustomModelOutput, error)
 	GetCustomModelRequest(*bedrock.GetCustomModelInput) (*request.Request, *bedrock.GetCustomModelOutput)
 
+	GetEvaluationJob(*bedrock.GetEvaluationJobInput) (*bedrock.GetEvaluationJobOutput, error)
+	GetEvaluationJobWithContext(aws.Context, *bedrock.GetEvaluationJobInput, ...request.Option) (*bedrock.GetEvaluationJobOutput, error)
+	GetEvaluationJobRequest(*bedrock.GetEvaluationJobInput) (*request.Request, *bedrock.GetEvaluationJobOutput)
+
 	GetFoundationModel(*bedrock.GetFoundationModelInput) (*bedrock.GetFoundationModelOutput, error)
 	GetFoundationModelWithContext(aws.Context, *bedrock.GetFoundationModelInput, ...request.Option) (*bedrock.GetFoundationModelOutput, error)
 	GetFoundationModelRequest(*bedrock.GetFoundationModelInput) (*request.Request, *bedrock.GetFoundationModelOutput)
+
+	GetGuardrail(*bedrock.GetGuardrailInput) (*bedrock.GetGuardrailOutput, error)
+	GetGuardrailWithContext(aws.Context, *bedrock.GetGuardrailInput, ...request.Option) (*bedrock.GetGuardrailOutput, error)
+	GetGuardrailRequest(*bedrock.GetGuardrailInput) (*request.Request, *bedrock.GetGuardrailOutput)
 
 	GetModelCustomizationJob(*bedrock.GetModelCustomizationJobInput) (*bedrock.GetModelCustomizationJobOutput, error)
 	GetModelCustomizationJobWithContext(aws.Context, *bedrock.GetModelCustomizationJobInput, ...request.Option) (*bedrock.GetModelCustomizationJobOutput, error)
@@ -107,9 +131,23 @@ type BedrockAPI interface {
 	ListCustomModelsPages(*bedrock.ListCustomModelsInput, func(*bedrock.ListCustomModelsOutput, bool) bool) error
 	ListCustomModelsPagesWithContext(aws.Context, *bedrock.ListCustomModelsInput, func(*bedrock.ListCustomModelsOutput, bool) bool, ...request.Option) error
 
+	ListEvaluationJobs(*bedrock.ListEvaluationJobsInput) (*bedrock.ListEvaluationJobsOutput, error)
+	ListEvaluationJobsWithContext(aws.Context, *bedrock.ListEvaluationJobsInput, ...request.Option) (*bedrock.ListEvaluationJobsOutput, error)
+	ListEvaluationJobsRequest(*bedrock.ListEvaluationJobsInput) (*request.Request, *bedrock.ListEvaluationJobsOutput)
+
+	ListEvaluationJobsPages(*bedrock.ListEvaluationJobsInput, func(*bedrock.ListEvaluationJobsOutput, bool) bool) error
+	ListEvaluationJobsPagesWithContext(aws.Context, *bedrock.ListEvaluationJobsInput, func(*bedrock.ListEvaluationJobsOutput, bool) bool, ...request.Option) error
+
 	ListFoundationModels(*bedrock.ListFoundationModelsInput) (*bedrock.ListFoundationModelsOutput, error)
 	ListFoundationModelsWithContext(aws.Context, *bedrock.ListFoundationModelsInput, ...request.Option) (*bedrock.ListFoundationModelsOutput, error)
 	ListFoundationModelsRequest(*bedrock.ListFoundationModelsInput) (*request.Request, *bedrock.ListFoundationModelsOutput)
+
+	ListGuardrails(*bedrock.ListGuardrailsInput) (*bedrock.ListGuardrailsOutput, error)
+	ListGuardrailsWithContext(aws.Context, *bedrock.ListGuardrailsInput, ...request.Option) (*bedrock.ListGuardrailsOutput, error)
+	ListGuardrailsRequest(*bedrock.ListGuardrailsInput) (*request.Request, *bedrock.ListGuardrailsOutput)
+
+	ListGuardrailsPages(*bedrock.ListGuardrailsInput, func(*bedrock.ListGuardrailsOutput, bool) bool) error
+	ListGuardrailsPagesWithContext(aws.Context, *bedrock.ListGuardrailsInput, func(*bedrock.ListGuardrailsOutput, bool) bool, ...request.Option) error
 
 	ListModelCustomizationJobs(*bedrock.ListModelCustomizationJobsInput) (*bedrock.ListModelCustomizationJobsOutput, error)
 	ListModelCustomizationJobsWithContext(aws.Context, *bedrock.ListModelCustomizationJobsInput, ...request.Option) (*bedrock.ListModelCustomizationJobsOutput, error)
@@ -133,6 +171,10 @@ type BedrockAPI interface {
 	PutModelInvocationLoggingConfigurationWithContext(aws.Context, *bedrock.PutModelInvocationLoggingConfigurationInput, ...request.Option) (*bedrock.PutModelInvocationLoggingConfigurationOutput, error)
 	PutModelInvocationLoggingConfigurationRequest(*bedrock.PutModelInvocationLoggingConfigurationInput) (*request.Request, *bedrock.PutModelInvocationLoggingConfigurationOutput)
 
+	StopEvaluationJob(*bedrock.StopEvaluationJobInput) (*bedrock.StopEvaluationJobOutput, error)
+	StopEvaluationJobWithContext(aws.Context, *bedrock.StopEvaluationJobInput, ...request.Option) (*bedrock.StopEvaluationJobOutput, error)
+	StopEvaluationJobRequest(*bedrock.StopEvaluationJobInput) (*request.Request, *bedrock.StopEvaluationJobOutput)
+
 	StopModelCustomizationJob(*bedrock.StopModelCustomizationJobInput) (*bedrock.StopModelCustomizationJobOutput, error)
 	StopModelCustomizationJobWithContext(aws.Context, *bedrock.StopModelCustomizationJobInput, ...request.Option) (*bedrock.StopModelCustomizationJobOutput, error)
 	StopModelCustomizationJobRequest(*bedrock.StopModelCustomizationJobInput) (*request.Request, *bedrock.StopModelCustomizationJobOutput)
@@ -144,6 +186,10 @@ type BedrockAPI interface {
 	UntagResource(*bedrock.UntagResourceInput) (*bedrock.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *bedrock.UntagResourceInput, ...request.Option) (*bedrock.UntagResourceOutput, error)
 	UntagResourceRequest(*bedrock.UntagResourceInput) (*request.Request, *bedrock.UntagResourceOutput)
+
+	UpdateGuardrail(*bedrock.UpdateGuardrailInput) (*bedrock.UpdateGuardrailOutput, error)
+	UpdateGuardrailWithContext(aws.Context, *bedrock.UpdateGuardrailInput, ...request.Option) (*bedrock.UpdateGuardrailOutput, error)
+	UpdateGuardrailRequest(*bedrock.UpdateGuardrailInput) (*request.Request, *bedrock.UpdateGuardrailOutput)
 
 	UpdateProvisionedModelThroughput(*bedrock.UpdateProvisionedModelThroughputInput) (*bedrock.UpdateProvisionedModelThroughputOutput, error)
 	UpdateProvisionedModelThroughputWithContext(aws.Context, *bedrock.UpdateProvisionedModelThroughputInput, ...request.Option) (*bedrock.UpdateProvisionedModelThroughputOutput, error)

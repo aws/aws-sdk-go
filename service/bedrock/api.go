@@ -13,6 +13,340 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateEvaluationJob = "CreateEvaluationJob"
+
+// CreateEvaluationJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEvaluationJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEvaluationJob for more information on using the CreateEvaluationJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateEvaluationJobRequest method.
+//	req, resp := client.CreateEvaluationJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateEvaluationJob
+func (c *Bedrock) CreateEvaluationJobRequest(input *CreateEvaluationJobInput) (req *request.Request, output *CreateEvaluationJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateEvaluationJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/evaluation-jobs",
+	}
+
+	if input == nil {
+		input = &CreateEvaluationJobInput{}
+	}
+
+	output = &CreateEvaluationJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEvaluationJob API operation for Amazon Bedrock.
+//
+// API operation for creating and managing Amazon Bedrock automatic model evaluation
+// jobs and model evaluation jobs that use human workers. To learn more about
+// the requirements for creating a model evaluation job see, Model evaluations
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation CreateEvaluationJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateEvaluationJob
+func (c *Bedrock) CreateEvaluationJob(input *CreateEvaluationJobInput) (*CreateEvaluationJobOutput, error) {
+	req, out := c.CreateEvaluationJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateEvaluationJobWithContext is the same as CreateEvaluationJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEvaluationJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) CreateEvaluationJobWithContext(ctx aws.Context, input *CreateEvaluationJobInput, opts ...request.Option) (*CreateEvaluationJobOutput, error) {
+	req, out := c.CreateEvaluationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateGuardrail = "CreateGuardrail"
+
+// CreateGuardrailRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGuardrail operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateGuardrail for more information on using the CreateGuardrail
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateGuardrailRequest method.
+//	req, resp := client.CreateGuardrailRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateGuardrail
+func (c *Bedrock) CreateGuardrailRequest(input *CreateGuardrailInput) (req *request.Request, output *CreateGuardrailOutput) {
+	op := &request.Operation{
+		Name:       opCreateGuardrail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/guardrails",
+	}
+
+	if input == nil {
+		input = &CreateGuardrailInput{}
+	}
+
+	output = &CreateGuardrailOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateGuardrail API operation for Amazon Bedrock.
+//
+// Creates a guardrail to block topics and to filter out harmful content.
+//
+//   - Specify a name and optional description.
+//
+//   - Specify messages for when the guardrail successfully blocks a prompt
+//     or a model response in the blockedInputMessaging and blockedOutputsMessaging
+//     fields.
+//
+//   - Specify topics for the guardrail to deny in the topicPolicyConfig object.
+//     Each GuardrailTopicConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailTopicConfig.html)
+//     object in the topicsConfig list pertains to one topic. Give a name and
+//     description so that the guardrail can properly identify the topic. Specify
+//     DENY in the type field. (Optional) Provide up to five prompts that you
+//     would categorize as belonging to the topic in the examples list.
+//
+//   - Specify filter strengths for the harmful categories defined in Amazon
+//     Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig
+//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html)
+//     object in the filtersConfig list pertains to a harmful category. For more
+//     information, see Content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters).
+//     For more information about the fields in a content filter, see GuardrailContentFilterConfig
+//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
+//     Specify the category in the type field. Specify the strength of the filter
+//     for prompts in the inputStrength field and for model responses in the
+//     strength field of the GuardrailContentFilterConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
+//
+//   - (Optional) For security, include the ARN of a KMS key in the kmsKeyId
+//     field.
+//
+//   - (Optional) Attach any tags to the guardrail in the tags object. For
+//     more information, see Tag resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation CreateGuardrail for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - TooManyTagsException
+//     The request contains more tags than can be associated with a resource (50
+//     tags per resource). The maximum number of tags includes both existing tags
+//     and those included in your current request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateGuardrail
+func (c *Bedrock) CreateGuardrail(input *CreateGuardrailInput) (*CreateGuardrailOutput, error) {
+	req, out := c.CreateGuardrailRequest(input)
+	return out, req.Send()
+}
+
+// CreateGuardrailWithContext is the same as CreateGuardrail with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGuardrail for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) CreateGuardrailWithContext(ctx aws.Context, input *CreateGuardrailInput, opts ...request.Option) (*CreateGuardrailOutput, error) {
+	req, out := c.CreateGuardrailRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateGuardrailVersion = "CreateGuardrailVersion"
+
+// CreateGuardrailVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGuardrailVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateGuardrailVersion for more information on using the CreateGuardrailVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateGuardrailVersionRequest method.
+//	req, resp := client.CreateGuardrailVersionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateGuardrailVersion
+func (c *Bedrock) CreateGuardrailVersionRequest(input *CreateGuardrailVersionInput) (req *request.Request, output *CreateGuardrailVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateGuardrailVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/guardrails/{guardrailIdentifier}",
+	}
+
+	if input == nil {
+		input = &CreateGuardrailVersionInput{}
+	}
+
+	output = &CreateGuardrailVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateGuardrailVersion API operation for Amazon Bedrock.
+//
+// Creates a version of the guardrail. Use this API to create a snapshot of
+// the guardrail when you are satisfied with a configuration, or to compare
+// the configuration with another version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation CreateGuardrailVersion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/CreateGuardrailVersion
+func (c *Bedrock) CreateGuardrailVersion(input *CreateGuardrailVersionInput) (*CreateGuardrailVersionOutput, error) {
+	req, out := c.CreateGuardrailVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateGuardrailVersionWithContext is the same as CreateGuardrailVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGuardrailVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) CreateGuardrailVersionWithContext(ctx aws.Context, input *CreateGuardrailVersionInput, opts ...request.Option) (*CreateGuardrailVersionOutput, error) {
+	req, out := c.CreateGuardrailVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateModelCustomizationJob = "CreateModelCustomizationJob"
 
 // CreateModelCustomizationJobRequest generates a "aws/request.Request" representing the
@@ -60,17 +394,18 @@ func (c *Bedrock) CreateModelCustomizationJobRequest(input *CreateModelCustomiza
 //
 // You specify the base foundation model and the location of the training data.
 // After the model-customization job completes successfully, your custom model
-// resource will be ready to use. Training data contains input and output text
-// for each record in a JSONL format. Optionally, you can specify validation
-// data in the same format as the training data. Amazon Bedrock returns validation
-// loss metrics and output generations after the job completes.
+// resource will be ready to use. Amazon Bedrock returns validation loss metrics
+// and output generations after the job completes.
+//
+// For information on the format of training and validation data, see Prepare
+// the datasets (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-prepare.html).
 //
 // Model-customization jobs are asynchronous and the completion time depends
 // on the base model and the training/validation data size. To monitor a job,
 // use the GetModelCustomizationJob operation to retrieve the job status.
 //
 // For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -82,8 +417,8 @@ func (c *Bedrock) CreateModelCustomizationJobRequest(input *CreateModelCustomiza
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -173,11 +508,11 @@ func (c *Bedrock) CreateProvisionedModelThroughputRequest(input *CreateProvision
 
 // CreateProvisionedModelThroughput API operation for Amazon Bedrock.
 //
-// Creates a provisioned throughput with dedicated capacity for a foundation
-// model or a fine-tuned model.
-//
-// For more information, see Provisioned throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// Creates dedicated throughput for a base or custom model with the model units
+// and for the duration that you specify. For pricing details, see Amazon Bedrock
+// Pricing (http://aws.amazon.com/bedrock/pricing/). For more information, see
+// Provisioned Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -189,8 +524,8 @@ func (c *Bedrock) CreateProvisionedModelThroughputRequest(input *CreateProvision
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -280,7 +615,7 @@ func (c *Bedrock) DeleteCustomModelRequest(input *DeleteCustomModelInput) (req *
 //
 // Deletes a custom model that you created earlier. For more information, see
 // Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -292,8 +627,8 @@ func (c *Bedrock) DeleteCustomModelRequest(input *DeleteCustomModelInput) (req *
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -327,6 +662,110 @@ func (c *Bedrock) DeleteCustomModel(input *DeleteCustomModelInput) (*DeleteCusto
 // for more information on using Contexts.
 func (c *Bedrock) DeleteCustomModelWithContext(ctx aws.Context, input *DeleteCustomModelInput, opts ...request.Option) (*DeleteCustomModelOutput, error) {
 	req, out := c.DeleteCustomModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteGuardrail = "DeleteGuardrail"
+
+// DeleteGuardrailRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGuardrail operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteGuardrail for more information on using the DeleteGuardrail
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteGuardrailRequest method.
+//	req, resp := client.DeleteGuardrailRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/DeleteGuardrail
+func (c *Bedrock) DeleteGuardrailRequest(input *DeleteGuardrailInput) (req *request.Request, output *DeleteGuardrailOutput) {
+	op := &request.Operation{
+		Name:       opDeleteGuardrail,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/guardrails/{guardrailIdentifier}",
+	}
+
+	if input == nil {
+		input = &DeleteGuardrailInput{}
+	}
+
+	output = &DeleteGuardrailOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteGuardrail API operation for Amazon Bedrock.
+//
+// Deletes a guardrail.
+//
+//   - To delete a guardrail, only specify the ARN of the guardrail in the
+//     guardrailIdentifier field. If you delete a guardrail, all of its versions
+//     will be deleted.
+//
+//   - To delete a version of a guardrail, specify the ARN of the guardrail
+//     in the guardrailIdentifier field and the version in the guardrailVersion
+//     field.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation DeleteGuardrail for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/DeleteGuardrail
+func (c *Bedrock) DeleteGuardrail(input *DeleteGuardrailInput) (*DeleteGuardrailOutput, error) {
+	req, out := c.DeleteGuardrailRequest(input)
+	return out, req.Send()
+}
+
+// DeleteGuardrailWithContext is the same as DeleteGuardrail with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGuardrail for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) DeleteGuardrailWithContext(ctx aws.Context, input *DeleteGuardrailInput, opts ...request.Option) (*DeleteGuardrailOutput, error) {
+	req, out := c.DeleteGuardrailRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -462,9 +901,10 @@ func (c *Bedrock) DeleteProvisionedModelThroughputRequest(input *DeleteProvision
 
 // DeleteProvisionedModelThroughput API operation for Amazon Bedrock.
 //
-// Deletes a provisioned throughput. For more information, see Provisioned throughput
-// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// Deletes a Provisioned Throughput. You can't delete a Provisioned Throughput
+// before the commitment term is over. For more information, see Provisioned
+// Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -476,8 +916,8 @@ func (c *Bedrock) DeleteProvisionedModelThroughputRequest(input *DeleteProvision
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -561,7 +1001,7 @@ func (c *Bedrock) GetCustomModelRequest(input *GetCustomModelInput) (req *reques
 //
 // Get the properties associated with a Amazon Bedrock custom model that you
 // have created.For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -573,8 +1013,8 @@ func (c *Bedrock) GetCustomModelRequest(input *GetCustomModelInput) (req *reques
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -605,6 +1045,99 @@ func (c *Bedrock) GetCustomModel(input *GetCustomModelInput) (*GetCustomModelOut
 // for more information on using Contexts.
 func (c *Bedrock) GetCustomModelWithContext(ctx aws.Context, input *GetCustomModelInput, opts ...request.Option) (*GetCustomModelOutput, error) {
 	req, out := c.GetCustomModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEvaluationJob = "GetEvaluationJob"
+
+// GetEvaluationJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetEvaluationJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEvaluationJob for more information on using the GetEvaluationJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetEvaluationJobRequest method.
+//	req, resp := client.GetEvaluationJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetEvaluationJob
+func (c *Bedrock) GetEvaluationJobRequest(input *GetEvaluationJobInput) (req *request.Request, output *GetEvaluationJobOutput) {
+	op := &request.Operation{
+		Name:       opGetEvaluationJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evaluation-jobs/{jobIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetEvaluationJobInput{}
+	}
+
+	output = &GetEvaluationJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEvaluationJob API operation for Amazon Bedrock.
+//
+// Retrieves the properties associated with a model evaluation job, including
+// the status of the job. For more information, see Model evaluations (https://docs.aws.amazon.com/bedrock/latest/userguide/latest/userguide/model-evaluation.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation GetEvaluationJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetEvaluationJob
+func (c *Bedrock) GetEvaluationJob(input *GetEvaluationJobInput) (*GetEvaluationJobOutput, error) {
+	req, out := c.GetEvaluationJobRequest(input)
+	return out, req.Send()
+}
+
+// GetEvaluationJobWithContext is the same as GetEvaluationJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEvaluationJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) GetEvaluationJobWithContext(ctx aws.Context, input *GetEvaluationJobInput, opts ...request.Option) (*GetEvaluationJobOutput, error) {
+	req, out := c.GetEvaluationJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -665,8 +1198,8 @@ func (c *Bedrock) GetFoundationModelRequest(input *GetFoundationModelInput) (req
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -697,6 +1230,99 @@ func (c *Bedrock) GetFoundationModel(input *GetFoundationModelInput) (*GetFounda
 // for more information on using Contexts.
 func (c *Bedrock) GetFoundationModelWithContext(ctx aws.Context, input *GetFoundationModelInput, opts ...request.Option) (*GetFoundationModelOutput, error) {
 	req, out := c.GetFoundationModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetGuardrail = "GetGuardrail"
+
+// GetGuardrailRequest generates a "aws/request.Request" representing the
+// client's request for the GetGuardrail operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGuardrail for more information on using the GetGuardrail
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetGuardrailRequest method.
+//	req, resp := client.GetGuardrailRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetGuardrail
+func (c *Bedrock) GetGuardrailRequest(input *GetGuardrailInput) (req *request.Request, output *GetGuardrailOutput) {
+	op := &request.Operation{
+		Name:       opGetGuardrail,
+		HTTPMethod: "GET",
+		HTTPPath:   "/guardrails/{guardrailIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetGuardrailInput{}
+	}
+
+	output = &GetGuardrailOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGuardrail API operation for Amazon Bedrock.
+//
+// Gets details about a guardrail. If you don't specify a version, the response
+// returns details for the DRAFT version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation GetGuardrail for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/GetGuardrail
+func (c *Bedrock) GetGuardrail(input *GetGuardrailInput) (*GetGuardrailOutput, error) {
+	req, out := c.GetGuardrailRequest(input)
+	return out, req.Send()
+}
+
+// GetGuardrailWithContext is the same as GetGuardrail with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGuardrail for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) GetGuardrailWithContext(ctx aws.Context, input *GetGuardrailInput, opts ...request.Option) (*GetGuardrailOutput, error) {
+	req, out := c.GetGuardrailRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -747,7 +1373,7 @@ func (c *Bedrock) GetModelCustomizationJobRequest(input *GetModelCustomizationJo
 //
 // Retrieves the properties associated with a model-customization job, including
 // the status of the job. For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -759,8 +1385,8 @@ func (c *Bedrock) GetModelCustomizationJobRequest(input *GetModelCustomizationJo
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -924,9 +1550,9 @@ func (c *Bedrock) GetProvisionedModelThroughputRequest(input *GetProvisionedMode
 
 // GetProvisionedModelThroughput API operation for Amazon Bedrock.
 //
-// Get details for a provisioned throughput. For more information, see Provisioned
-// throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// Returns details for a Provisioned Throughput. For more information, see Provisioned
+// Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -938,8 +1564,8 @@ func (c *Bedrock) GetProvisionedModelThroughputRequest(input *GetProvisionedMode
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -1028,7 +1654,7 @@ func (c *Bedrock) ListCustomModelsRequest(input *ListCustomModelsInput) (req *re
 // operation.
 //
 // For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1124,6 +1750,151 @@ func (c *Bedrock) ListCustomModelsPagesWithContext(ctx aws.Context, input *ListC
 	return p.Err()
 }
 
+const opListEvaluationJobs = "ListEvaluationJobs"
+
+// ListEvaluationJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEvaluationJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEvaluationJobs for more information on using the ListEvaluationJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListEvaluationJobsRequest method.
+//	req, resp := client.ListEvaluationJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListEvaluationJobs
+func (c *Bedrock) ListEvaluationJobsRequest(input *ListEvaluationJobsInput) (req *request.Request, output *ListEvaluationJobsOutput) {
+	op := &request.Operation{
+		Name:       opListEvaluationJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/evaluation-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEvaluationJobsInput{}
+	}
+
+	output = &ListEvaluationJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEvaluationJobs API operation for Amazon Bedrock.
+//
+// Lists model evaluation jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation ListEvaluationJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListEvaluationJobs
+func (c *Bedrock) ListEvaluationJobs(input *ListEvaluationJobsInput) (*ListEvaluationJobsOutput, error) {
+	req, out := c.ListEvaluationJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListEvaluationJobsWithContext is the same as ListEvaluationJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEvaluationJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListEvaluationJobsWithContext(ctx aws.Context, input *ListEvaluationJobsInput, opts ...request.Option) (*ListEvaluationJobsOutput, error) {
+	req, out := c.ListEvaluationJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEvaluationJobsPages iterates over the pages of a ListEvaluationJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEvaluationJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListEvaluationJobs operation.
+//	pageNum := 0
+//	err := client.ListEvaluationJobsPages(params,
+//	    func(page *bedrock.ListEvaluationJobsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Bedrock) ListEvaluationJobsPages(input *ListEvaluationJobsInput, fn func(*ListEvaluationJobsOutput, bool) bool) error {
+	return c.ListEvaluationJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEvaluationJobsPagesWithContext same as ListEvaluationJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListEvaluationJobsPagesWithContext(ctx aws.Context, input *ListEvaluationJobsInput, fn func(*ListEvaluationJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEvaluationJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEvaluationJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEvaluationJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFoundationModels = "ListFoundationModels"
 
 // ListFoundationModelsRequest generates a "aws/request.Request" representing the
@@ -1167,9 +1938,10 @@ func (c *Bedrock) ListFoundationModelsRequest(input *ListFoundationModelsInput) 
 
 // ListFoundationModels API operation for Amazon Bedrock.
 //
-// List of Amazon Bedrock foundation models that you can use. For more information,
-// see Foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html)
-// in the Bedrock User Guide.
+// Lists Amazon Bedrock foundation models that you can use. You can filter the
+// results with the request parameters. For more information, see Foundation
+// models (https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1212,6 +1984,163 @@ func (c *Bedrock) ListFoundationModelsWithContext(ctx aws.Context, input *ListFo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListGuardrails = "ListGuardrails"
+
+// ListGuardrailsRequest generates a "aws/request.Request" representing the
+// client's request for the ListGuardrails operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListGuardrails for more information on using the ListGuardrails
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListGuardrailsRequest method.
+//	req, resp := client.ListGuardrailsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListGuardrails
+func (c *Bedrock) ListGuardrailsRequest(input *ListGuardrailsInput) (req *request.Request, output *ListGuardrailsOutput) {
+	op := &request.Operation{
+		Name:       opListGuardrails,
+		HTTPMethod: "GET",
+		HTTPPath:   "/guardrails",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListGuardrailsInput{}
+	}
+
+	output = &ListGuardrailsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListGuardrails API operation for Amazon Bedrock.
+//
+// Lists details about all the guardrails in an account. To list the DRAFT version
+// of all your guardrails, don't specify the guardrailIdentifier field. To list
+// all versions of a guardrail, specify the ARN of the guardrail in the guardrailIdentifier
+// field.
+//
+// You can set the maximum number of results to return in a response in the
+// maxResults field. If there are more results than the number you set, the
+// response returns a nextToken that you can send in another ListGuardrails
+// request to see the next batch of results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation ListGuardrails for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/ListGuardrails
+func (c *Bedrock) ListGuardrails(input *ListGuardrailsInput) (*ListGuardrailsOutput, error) {
+	req, out := c.ListGuardrailsRequest(input)
+	return out, req.Send()
+}
+
+// ListGuardrailsWithContext is the same as ListGuardrails with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListGuardrails for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListGuardrailsWithContext(ctx aws.Context, input *ListGuardrailsInput, opts ...request.Option) (*ListGuardrailsOutput, error) {
+	req, out := c.ListGuardrailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListGuardrailsPages iterates over the pages of a ListGuardrails operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListGuardrails method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListGuardrails operation.
+//	pageNum := 0
+//	err := client.ListGuardrailsPages(params,
+//	    func(page *bedrock.ListGuardrailsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *Bedrock) ListGuardrailsPages(input *ListGuardrailsInput, fn func(*ListGuardrailsOutput, bool) bool) error {
+	return c.ListGuardrailsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListGuardrailsPagesWithContext same as ListGuardrailsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) ListGuardrailsPagesWithContext(ctx aws.Context, input *ListGuardrailsInput, fn func(*ListGuardrailsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListGuardrailsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListGuardrailsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListGuardrailsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListModelCustomizationJobs = "ListModelCustomizationJobs"
@@ -1267,7 +2196,7 @@ func (c *Bedrock) ListModelCustomizationJobsRequest(input *ListModelCustomizatio
 // filter the jobs to return based on one or more criteria.
 //
 // For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1412,9 +2341,9 @@ func (c *Bedrock) ListProvisionedModelThroughputsRequest(input *ListProvisionedM
 
 // ListProvisionedModelThroughputs API operation for Amazon Bedrock.
 //
-// List the provisioned capacities. For more information, see Provisioned throughput
-// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// Lists the Provisioned Throughputs in the account. For more information, see
+// Provisioned Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1555,8 +2484,8 @@ func (c *Bedrock) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //
 // List the tags associated with the specified resource.
 //
-// For more information, see Tagging resources (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// For more information, see Tagging resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1568,8 +2497,8 @@ func (c *Bedrock) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -1694,6 +2623,102 @@ func (c *Bedrock) PutModelInvocationLoggingConfigurationWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opStopEvaluationJob = "StopEvaluationJob"
+
+// StopEvaluationJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopEvaluationJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopEvaluationJob for more information on using the StopEvaluationJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StopEvaluationJobRequest method.
+//	req, resp := client.StopEvaluationJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/StopEvaluationJob
+func (c *Bedrock) StopEvaluationJobRequest(input *StopEvaluationJobInput) (req *request.Request, output *StopEvaluationJobOutput) {
+	op := &request.Operation{
+		Name:       opStopEvaluationJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/evaluation-job/{jobIdentifier}/stop",
+	}
+
+	if input == nil {
+		input = &StopEvaluationJobInput{}
+	}
+
+	output = &StopEvaluationJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopEvaluationJob API operation for Amazon Bedrock.
+//
+// Stops an in progress model evaluation job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation StopEvaluationJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/StopEvaluationJob
+func (c *Bedrock) StopEvaluationJob(input *StopEvaluationJobInput) (*StopEvaluationJobOutput, error) {
+	req, out := c.StopEvaluationJobRequest(input)
+	return out, req.Send()
+}
+
+// StopEvaluationJobWithContext is the same as StopEvaluationJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopEvaluationJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) StopEvaluationJobWithContext(ctx aws.Context, input *StopEvaluationJobInput, opts ...request.Option) (*StopEvaluationJobOutput, error) {
+	req, out := c.StopEvaluationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopModelCustomizationJob = "StopModelCustomizationJob"
 
 // StopModelCustomizationJobRequest generates a "aws/request.Request" representing the
@@ -1740,7 +2765,7 @@ func (c *Bedrock) StopModelCustomizationJobRequest(input *StopModelCustomization
 //
 // Stops an active model customization job. For more information, see Custom
 // models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
-// in the Bedrock User Guide.
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1752,8 +2777,8 @@ func (c *Bedrock) StopModelCustomizationJobRequest(input *StopModelCustomization
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -1837,8 +2862,8 @@ func (c *Bedrock) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // TagResource API operation for Amazon Bedrock.
 //
 // Associate tags with a resource. For more information, see Tagging resources
-// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html) in the
+// Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1850,8 +2875,8 @@ func (c *Bedrock) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -1937,8 +2962,8 @@ func (c *Bedrock) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // UntagResource API operation for Amazon Bedrock.
 //
 // Remove one or more tags from a resource. For more information, see Tagging
-// resources (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1950,8 +2975,8 @@ func (c *Bedrock) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -1982,6 +3007,134 @@ func (c *Bedrock) UntagResource(input *UntagResourceInput) (*UntagResourceOutput
 // for more information on using Contexts.
 func (c *Bedrock) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateGuardrail = "UpdateGuardrail"
+
+// UpdateGuardrailRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGuardrail operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGuardrail for more information on using the UpdateGuardrail
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateGuardrailRequest method.
+//	req, resp := client.UpdateGuardrailRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/UpdateGuardrail
+func (c *Bedrock) UpdateGuardrailRequest(input *UpdateGuardrailInput) (req *request.Request, output *UpdateGuardrailOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGuardrail,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/guardrails/{guardrailIdentifier}",
+	}
+
+	if input == nil {
+		input = &UpdateGuardrailInput{}
+	}
+
+	output = &UpdateGuardrailOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateGuardrail API operation for Amazon Bedrock.
+//
+// Updates a guardrail with the values you specify.
+//
+//   - Specify a name and optional description.
+//
+//   - Specify messages for when the guardrail successfully blocks a prompt
+//     or a model response in the blockedInputMessaging and blockedOutputsMessaging
+//     fields.
+//
+//   - Specify topics for the guardrail to deny in the topicPolicyConfig object.
+//     Each GuardrailTopicConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailTopicConfig.html)
+//     object in the topicsConfig list pertains to one topic. Give a name and
+//     description so that the guardrail can properly identify the topic. Specify
+//     DENY in the type field. (Optional) Provide up to five prompts that you
+//     would categorize as belonging to the topic in the examples list.
+//
+//   - Specify filter strengths for the harmful categories defined in Amazon
+//     Bedrock in the contentPolicyConfig object. Each GuardrailContentFilterConfig
+//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html)
+//     object in the filtersConfig list pertains to a harmful category. For more
+//     information, see Content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters).
+//     For more information about the fields in a content filter, see GuardrailContentFilterConfig
+//     (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
+//     Specify the category in the type field. Specify the strength of the filter
+//     for prompts in the inputStrength field and for model responses in the
+//     strength field of the GuardrailContentFilterConfig (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GuardrailContentFilterConfig.html).
+//
+//   - (Optional) For security, include the ARN of a KMS key in the kmsKeyId
+//     field.
+//
+//   - (Optional) Attach any tags to the guardrail in the tags object. For
+//     more information, see Tag resources (https://docs.aws.amazon.com/bedrock/latest/userguide/tagging).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Bedrock's
+// API operation UpdateGuardrail for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
+//
+//   - AccessDeniedException
+//     The request is denied because of missing access permissions.
+//
+//   - ValidationException
+//     Input validation failed. Check your request parameters and retry the request.
+//
+//   - ConflictException
+//     Error occurred because of a conflict while performing an operation.
+//
+//   - InternalServerException
+//     An internal server error occurred. Retry your request.
+//
+//   - ServiceQuotaExceededException
+//     The number of requests exceeds the service quota. Resubmit your request later.
+//
+//   - ThrottlingException
+//     The number of requests exceeds the limit. Resubmit your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/bedrock-2023-04-20/UpdateGuardrail
+func (c *Bedrock) UpdateGuardrail(input *UpdateGuardrailInput) (*UpdateGuardrailOutput, error) {
+	req, out := c.UpdateGuardrailRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGuardrailWithContext is the same as UpdateGuardrail with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGuardrail for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Bedrock) UpdateGuardrailWithContext(ctx aws.Context, input *UpdateGuardrailInput, opts ...request.Option) (*UpdateGuardrailOutput, error) {
+	req, out := c.UpdateGuardrailRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2031,9 +3184,9 @@ func (c *Bedrock) UpdateProvisionedModelThroughputRequest(input *UpdateProvision
 
 // UpdateProvisionedModelThroughput API operation for Amazon Bedrock.
 //
-// Update a provisioned throughput. For more information, see Provisioned throughput
-// (https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-service.html)
-// in the Bedrock User Guide.
+// Updates the name or associated model for a Provisioned Throughput. For more
+// information, see Provisioned Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+// in the Amazon Bedrock User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2045,8 +3198,8 @@ func (c *Bedrock) UpdateProvisionedModelThroughputRequest(input *UpdateProvision
 // Returned Error Types:
 //
 //   - ResourceNotFoundException
-//     The specified resource ARN was not found. Check the ARN and try your request
-//     again.
+//     The specified resource Amazon Resource Name (ARN) was not found. Check the
+//     Amazon Resource Name (ARN) and try your request again.
 //
 //   - AccessDeniedException
 //     The request is denied because of missing access permissions.
@@ -2146,6 +3299,67 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Use to specify a automatic model evaluation job. The EvaluationDatasetMetricConfig
+// object is used to specify the prompt datasets, task type, and metric names.
+type AutomatedEvaluationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the required elements for an automatic model evaluation job.
+	//
+	// DatasetMetricConfigs is a required field
+	DatasetMetricConfigs []*EvaluationDatasetMetricConfig `locationName:"datasetMetricConfigs" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomatedEvaluationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutomatedEvaluationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutomatedEvaluationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutomatedEvaluationConfig"}
+	if s.DatasetMetricConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetMetricConfigs"))
+	}
+	if s.DatasetMetricConfigs != nil && len(s.DatasetMetricConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetMetricConfigs", 1))
+	}
+	if s.DatasetMetricConfigs != nil {
+		for i, v := range s.DatasetMetricConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatasetMetricConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetMetricConfigs sets the DatasetMetricConfigs field's value.
+func (s *AutomatedEvaluationConfig) SetDatasetMetricConfigs(v []*EvaluationDatasetMetricConfig) *AutomatedEvaluationConfig {
+	s.DatasetMetricConfigs = v
+	return s
+}
+
 // CloudWatch logging configuration.
 type CloudWatchConfig struct {
 	_ struct{} `type:"structure"`
@@ -2158,7 +3372,7 @@ type CloudWatchConfig struct {
 	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
-	// The role ARN.
+	// The role Amazon Resource Name (ARN).
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -2288,6 +3502,636 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateEvaluationJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specify your customer managed key ARN that will be used to encrypt your model
+	// evaluation job.
+	CustomerEncryptionKeyId *string `locationName:"customerEncryptionKeyId" min:"1" type:"string"`
+
+	// Specifies whether the model evaluation job is automatic or uses human worker.
+	//
+	// EvaluationConfig is a required field
+	EvaluationConfig *EvaluationConfig `locationName:"evaluationConfig" type:"structure" required:"true"`
+
+	// Specify the models you want to use in your model evaluation job. Automatic
+	// model evaluation jobs support a single model, and model evaluation job that
+	// use human workers support two models.
+	//
+	// InferenceConfig is a required field
+	InferenceConfig *EvaluationInferenceConfig `locationName:"inferenceConfig" type:"structure" required:"true"`
+
+	// A description of the model evaluation job.
+	//
+	// JobDescription is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateEvaluationJobInput's
+	// String and GoString methods.
+	JobDescription *string `locationName:"jobDescription" min:"1" type:"string" sensitive:"true"`
+
+	// The name of the model evaluation job. Model evaluation job names must unique
+	// with your AWS account, and your account's AWS region.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// Tags to attach to the model evaluation job.
+	JobTags []*Tag `locationName:"jobTags" type:"list"`
+
+	// An object that defines where the results of model evaluation job will be
+	// saved in Amazon S3.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *EvaluationOutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock
+	// can assume to perform tasks on your behalf. The service role must have Amazon
+	// Bedrock as the service principal, and provide access to any Amazon S3 buckets
+	// specified in the EvaluationConfig object. To pass this role to Amazon Bedrock,
+	// the caller of this API must have the iam:PassRole permission. To learn more
+	// about the required permissions, see Required permissions (https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-security.html).
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEvaluationJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEvaluationJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CustomerEncryptionKeyId != nil && len(*s.CustomerEncryptionKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerEncryptionKeyId", 1))
+	}
+	if s.EvaluationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("EvaluationConfig"))
+	}
+	if s.InferenceConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InferenceConfig"))
+	}
+	if s.JobDescription != nil && len(*s.JobDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDescription", 1))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.EvaluationConfig != nil {
+		if err := s.EvaluationConfig.Validate(); err != nil {
+			invalidParams.AddNested("EvaluationConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InferenceConfig != nil {
+		if err := s.InferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobTags != nil {
+		for i, v := range s.JobTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "JobTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateEvaluationJobInput) SetClientRequestToken(v string) *CreateEvaluationJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyId sets the CustomerEncryptionKeyId field's value.
+func (s *CreateEvaluationJobInput) SetCustomerEncryptionKeyId(v string) *CreateEvaluationJobInput {
+	s.CustomerEncryptionKeyId = &v
+	return s
+}
+
+// SetEvaluationConfig sets the EvaluationConfig field's value.
+func (s *CreateEvaluationJobInput) SetEvaluationConfig(v *EvaluationConfig) *CreateEvaluationJobInput {
+	s.EvaluationConfig = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *CreateEvaluationJobInput) SetInferenceConfig(v *EvaluationInferenceConfig) *CreateEvaluationJobInput {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *CreateEvaluationJobInput) SetJobDescription(v string) *CreateEvaluationJobInput {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateEvaluationJobInput) SetJobName(v string) *CreateEvaluationJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobTags sets the JobTags field's value.
+func (s *CreateEvaluationJobInput) SetJobTags(v []*Tag) *CreateEvaluationJobInput {
+	s.JobTags = v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *CreateEvaluationJobInput) SetOutputDataConfig(v *EvaluationOutputDataConfig) *CreateEvaluationJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateEvaluationJobInput) SetRoleArn(v string) *CreateEvaluationJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+type CreateEvaluationJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the model evaluation job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEvaluationJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CreateEvaluationJobOutput) SetJobArn(v string) *CreateEvaluationJobOutput {
+	s.JobArn = &v
+	return s
+}
+
+type CreateGuardrailInput struct {
+	_ struct{} `type:"structure"`
+
+	// The message to return when the guardrail blocks a prompt.
+	//
+	// BlockedInputMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateGuardrailInput's
+	// String and GoString methods.
+	//
+	// BlockedInputMessaging is a required field
+	BlockedInputMessaging *string `locationName:"blockedInputMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The message to return when the guardrail blocks a model response.
+	//
+	// BlockedOutputsMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateGuardrailInput's
+	// String and GoString methods.
+	//
+	// BlockedOutputsMessaging is a required field
+	BlockedOutputsMessaging *string `locationName:"blockedOutputsMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than once. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// in the Amazon S3 User Guide.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The content filter policies to configure for the guardrail.
+	ContentPolicyConfig *GuardrailContentPolicyConfig `locationName:"contentPolicyConfig" type:"structure"`
+
+	// A description of the guardrail.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateGuardrailInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The ARN of the KMS key that you use to encrypt the guardrail.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// The name to give the guardrail.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateGuardrailInput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The sensitive information policy to configure for the guardrail.
+	SensitiveInformationPolicyConfig *GuardrailSensitiveInformationPolicyConfig `locationName:"sensitiveInformationPolicyConfig" type:"structure"`
+
+	// The tags that you want to attach to the guardrail.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The topic policies to configure for the guardrail.
+	TopicPolicyConfig *GuardrailTopicPolicyConfig `locationName:"topicPolicyConfig" type:"structure"`
+
+	// The word policy you configure for the guardrail.
+	WordPolicyConfig *GuardrailWordPolicyConfig `locationName:"wordPolicyConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGuardrailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGuardrailInput"}
+	if s.BlockedInputMessaging == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockedInputMessaging"))
+	}
+	if s.BlockedInputMessaging != nil && len(*s.BlockedInputMessaging) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockedInputMessaging", 1))
+	}
+	if s.BlockedOutputsMessaging == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockedOutputsMessaging"))
+	}
+	if s.BlockedOutputsMessaging != nil && len(*s.BlockedOutputsMessaging) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockedOutputsMessaging", 1))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ContentPolicyConfig != nil {
+		if err := s.ContentPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContentPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SensitiveInformationPolicyConfig != nil {
+		if err := s.SensitiveInformationPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("SensitiveInformationPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TopicPolicyConfig != nil {
+		if err := s.TopicPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("TopicPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WordPolicyConfig != nil {
+		if err := s.WordPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("WordPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlockedInputMessaging sets the BlockedInputMessaging field's value.
+func (s *CreateGuardrailInput) SetBlockedInputMessaging(v string) *CreateGuardrailInput {
+	s.BlockedInputMessaging = &v
+	return s
+}
+
+// SetBlockedOutputsMessaging sets the BlockedOutputsMessaging field's value.
+func (s *CreateGuardrailInput) SetBlockedOutputsMessaging(v string) *CreateGuardrailInput {
+	s.BlockedOutputsMessaging = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateGuardrailInput) SetClientRequestToken(v string) *CreateGuardrailInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetContentPolicyConfig sets the ContentPolicyConfig field's value.
+func (s *CreateGuardrailInput) SetContentPolicyConfig(v *GuardrailContentPolicyConfig) *CreateGuardrailInput {
+	s.ContentPolicyConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateGuardrailInput) SetDescription(v string) *CreateGuardrailInput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateGuardrailInput) SetKmsKeyId(v string) *CreateGuardrailInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateGuardrailInput) SetName(v string) *CreateGuardrailInput {
+	s.Name = &v
+	return s
+}
+
+// SetSensitiveInformationPolicyConfig sets the SensitiveInformationPolicyConfig field's value.
+func (s *CreateGuardrailInput) SetSensitiveInformationPolicyConfig(v *GuardrailSensitiveInformationPolicyConfig) *CreateGuardrailInput {
+	s.SensitiveInformationPolicyConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateGuardrailInput) SetTags(v []*Tag) *CreateGuardrailInput {
+	s.Tags = v
+	return s
+}
+
+// SetTopicPolicyConfig sets the TopicPolicyConfig field's value.
+func (s *CreateGuardrailInput) SetTopicPolicyConfig(v *GuardrailTopicPolicyConfig) *CreateGuardrailInput {
+	s.TopicPolicyConfig = v
+	return s
+}
+
+// SetWordPolicyConfig sets the WordPolicyConfig field's value.
+func (s *CreateGuardrailInput) SetWordPolicyConfig(v *GuardrailWordPolicyConfig) *CreateGuardrailInput {
+	s.WordPolicyConfig = v
+	return s
+}
+
+type CreateGuardrailOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the guardrail was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The ARN of the guardrail that was created.
+	//
+	// GuardrailArn is a required field
+	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
+
+	// The unique identifier of the guardrail that was created.
+	//
+	// GuardrailId is a required field
+	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
+
+	// The version of the guardrail that was created. This value should be 1.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateGuardrailOutput) SetCreatedAt(v time.Time) *CreateGuardrailOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetGuardrailArn sets the GuardrailArn field's value.
+func (s *CreateGuardrailOutput) SetGuardrailArn(v string) *CreateGuardrailOutput {
+	s.GuardrailArn = &v
+	return s
+}
+
+// SetGuardrailId sets the GuardrailId field's value.
+func (s *CreateGuardrailOutput) SetGuardrailId(v string) *CreateGuardrailOutput {
+	s.GuardrailId = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateGuardrailOutput) SetVersion(v string) *CreateGuardrailOutput {
+	s.Version = &v
+	return s
+}
+
+type CreateGuardrailVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than once. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// in the Amazon S3 User Guide.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A description of the guardrail version.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateGuardrailVersionInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier of the guardrail.
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGuardrailVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGuardrailVersionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailIdentifier != nil && len(*s.GuardrailIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GuardrailIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateGuardrailVersionInput) SetClientRequestToken(v string) *CreateGuardrailVersionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateGuardrailVersionInput) SetDescription(v string) *CreateGuardrailVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *CreateGuardrailVersionInput) SetGuardrailIdentifier(v string) *CreateGuardrailVersionInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+type CreateGuardrailVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the guardrail.
+	//
+	// GuardrailId is a required field
+	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
+
+	// The number of the version of the guardrail.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateGuardrailVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetGuardrailId sets the GuardrailId field's value.
+func (s *CreateGuardrailVersionOutput) SetGuardrailId(v string) *CreateGuardrailVersionOutput {
+	s.GuardrailId = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateGuardrailVersionOutput) SetVersion(v string) *CreateGuardrailVersionOutput {
+	s.Version = &v
+	return s
+}
+
 type CreateModelCustomizationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2296,35 +4140,38 @@ type CreateModelCustomizationJobInput struct {
 	// BaseModelIdentifier is a required field
 	BaseModelIdentifier *string `locationName:"baseModelIdentifier" min:"1" type:"string" required:"true"`
 
-	// Unique token value that you can provide. The GetModelCustomizationJob response
-	// includes the same token value.
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The custom model is encrypted at rest using this key.
 	CustomModelKmsKeyId *string `locationName:"customModelKmsKeyId" min:"1" type:"string"`
 
-	// Enter a name for the custom model.
+	// A name for the resulting custom model.
 	//
 	// CustomModelName is a required field
 	CustomModelName *string `locationName:"customModelName" min:"1" type:"string" required:"true"`
 
-	// Assign tags to the custom model.
+	// Tags to attach to the resulting custom model.
 	CustomModelTags []*Tag `locationName:"customModelTags" type:"list"`
 
 	// The customization type.
 	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
 
-	// Parameters related to tuning the model.
+	// Parameters related to tuning the model. For details on the format for different
+	// models, see Custom model hyperparameters (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models-hp.html).
 	//
 	// HyperParameters is a required field
 	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map" required:"true"`
 
-	// Enter a unique name for the fine-tuning job.
+	// A name for the fine-tuning job.
 	//
 	// JobName is a required field
 	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
 
-	// Assign tags to the job.
+	// Tags to attach to the job.
 	JobTags []*Tag `locationName:"jobTags" type:"list"`
 
 	// S3 location for the output data.
@@ -2332,11 +4179,11 @@ type CreateModelCustomizationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that Amazon Bedrock can assume
-	// to perform tasks on your behalf. For example, during model training, Amazon
-	// Bedrock needs your permission to read input data from an S3 bucket, write
-	// model artifacts to an S3 bucket. To pass this role to Amazon Bedrock, the
-	// caller of this API must have the iam:PassRole permission.
+	// The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock
+	// can assume to perform tasks on your behalf. For example, during model training,
+	// Amazon Bedrock needs your permission to read input data from an S3 bucket,
+	// write model artifacts to an S3 bucket. To pass this role to Amazon Bedrock,
+	// the caller of this API must have the iam:PassRole permission.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -2545,7 +4392,7 @@ func (s *CreateModelCustomizationJobInput) SetVpcConfig(v *VpcConfig) *CreateMod
 type CreateModelCustomizationJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the fine tuning job
+	// Amazon Resource Name (ARN) of the fine tuning job
 	//
 	// JobArn is a required field
 	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
@@ -2578,29 +4425,55 @@ func (s *CreateModelCustomizationJobOutput) SetJobArn(v string) *CreateModelCust
 type CreateProvisionedModelThroughputInput struct {
 	_ struct{} `type:"structure"`
 
-	// Unique token value that you can provide. If this token matches a previous
-	// request, Amazon Bedrock ignores the request, but does not return an error.
+	// A unique, case-sensitive identifier to ensure that the API request completes
+	// no more than one time. If this token matches a previous request, Amazon Bedrock
+	// ignores the request, but does not return an error. For more information,
+	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// in the Amazon S3 User Guide.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// Commitment duration requested for the provisioned throughput.
+	// The commitment duration requested for the Provisioned Throughput. Billing
+	// occurs hourly and is discounted for longer commitment terms. To request a
+	// no-commit Provisioned Throughput, omit this field.
+	//
+	// Custom models support all levels of commitment. To see which base models
+	// support no commitment, see Supported regions and models for Provisioned Throughput
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/pt-supported.html)
+	// in the Amazon Bedrock User Guide
 	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
 
-	// Name or ARN of the model to associate with this provisioned throughput.
+	// The Amazon Resource Name (ARN) or name of the model to associate with this
+	// Provisioned Throughput. For a list of models for which you can purchase Provisioned
+	// Throughput, see Amazon Bedrock model IDs for purchasing Provisioned Throughput
+	// (https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#prov-throughput-models)
+	// in the Amazon Bedrock User Guide.
 	//
 	// ModelId is a required field
 	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
 
-	// Number of model units to allocate.
+	// Number of model units to allocate. A model unit delivers a specific throughput
+	// level for the specified model. The throughput level of a model unit specifies
+	// the total number of input and output tokens that it can process and generate
+	// within a span of one minute. By default, your account has no model units
+	// for purchasing Provisioned Throughputs with commitment. You must first visit
+	// the Amazon Web Services support center (https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase)
+	// to request MUs.
+	//
+	// For model unit quotas, see Provisioned Throughput quotas (https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html#prov-thru-quotas)
+	// in the Amazon Bedrock User Guide.
+	//
+	// For more information about what an MU specifies, contact your Amazon Web
+	// Services account manager.
 	//
 	// ModelUnits is a required field
 	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
 
-	// Unique name for this provisioned throughput.
+	// The name for this Provisioned Throughput.
 	//
 	// ProvisionedModelName is a required field
 	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
 
-	// Tags to associate with this provisioned throughput.
+	// Tags to associate with this Provisioned Throughput.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -2702,7 +4575,7 @@ func (s *CreateProvisionedModelThroughputInput) SetTags(v []*Tag) *CreateProvisi
 type CreateProvisionedModelThroughputOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN for this provisioned throughput.
+	// The Amazon Resource Name (ARN) for this Provisioned Throughput.
 	//
 	// ProvisionedModelArn is a required field
 	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
@@ -2736,7 +4609,7 @@ func (s *CreateProvisionedModelThroughputOutput) SetProvisionedModelArn(v string
 type CustomModelSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The base model ARN.
+	// The base model Amazon Resource Name (ARN).
 	//
 	// BaseModelArn is a required field
 	BaseModelArn *string `locationName:"baseModelArn" min:"20" type:"string" required:"true"`
@@ -2755,7 +4628,7 @@ type CustomModelSummary struct {
 	// to fine-tune it. For more information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html).
 	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
 
-	// The ARN of the custom model.
+	// The Amazon Resource Name (ARN) of the custom model.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
@@ -2891,6 +4764,86 @@ func (s DeleteCustomModelOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteGuardrailInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the guardrail.
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
+
+	// The version of the guardrail.
+	GuardrailVersion *string `location:"querystring" locationName:"guardrailVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGuardrailInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGuardrailInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGuardrailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGuardrailInput"}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailIdentifier != nil && len(*s.GuardrailIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GuardrailIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *DeleteGuardrailInput) SetGuardrailIdentifier(v string) *DeleteGuardrailInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *DeleteGuardrailInput) SetGuardrailVersion(v string) *DeleteGuardrailInput {
+	s.GuardrailVersion = &v
+	return s
+}
+
+type DeleteGuardrailOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGuardrailOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteGuardrailOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteModelInvocationLoggingConfigurationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -2938,7 +4891,7 @@ func (s DeleteModelInvocationLoggingConfigurationOutput) GoString() string {
 type DeleteProvisionedModelThroughputInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN or name of the provisioned throughput.
+	// The Amazon Resource Name (ARN) or name of the Provisioned Throughput.
 	//
 	// ProvisionedModelId is a required field
 	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
@@ -3006,6 +4959,615 @@ func (s DeleteProvisionedModelThroughputOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the ARN of the Amazon Bedrock models specified in your model evaluation
+// job. Each Amazon Bedrock model supports different inferenceParams. To learn
+// more about supported inference parameters for Amazon Bedrock models, see
+// Inference parameters for foundation models (https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-prompt-datasets-custom.html).
+//
+// The inferenceParams are specified using JSON. To successfully insert JSON
+// as string make sure that all quotations are properly escaped. For example,
+// "temperature":"0.25" key value pair would need to be formatted as \"temperature\":\"0.25\"
+// to successfully accepted in the request.
+type EvaluationBedrockModel struct {
+	_ struct{} `type:"structure"`
+
+	// Each Amazon Bedrock support different inference parameters that change how
+	// the model behaves during inference.
+	//
+	// InferenceParams is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EvaluationBedrockModel's
+	// String and GoString methods.
+	//
+	// InferenceParams is a required field
+	InferenceParams *string `locationName:"inferenceParams" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The ARN of the Amazon Bedrock model specified.
+	//
+	// ModelIdentifier is a required field
+	ModelIdentifier *string `locationName:"modelIdentifier" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationBedrockModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationBedrockModel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationBedrockModel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationBedrockModel"}
+	if s.InferenceParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("InferenceParams"))
+	}
+	if s.InferenceParams != nil && len(*s.InferenceParams) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceParams", 1))
+	}
+	if s.ModelIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelIdentifier"))
+	}
+	if s.ModelIdentifier != nil && len(*s.ModelIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInferenceParams sets the InferenceParams field's value.
+func (s *EvaluationBedrockModel) SetInferenceParams(v string) *EvaluationBedrockModel {
+	s.InferenceParams = &v
+	return s
+}
+
+// SetModelIdentifier sets the ModelIdentifier field's value.
+func (s *EvaluationBedrockModel) SetModelIdentifier(v string) *EvaluationBedrockModel {
+	s.ModelIdentifier = &v
+	return s
+}
+
+// Used to specify either a AutomatedEvaluationConfig or HumanEvaluationConfig
+// object.
+type EvaluationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Used to specify an automated model evaluation job. See AutomatedEvaluationConfig
+	// to view the required parameters.
+	Automated *AutomatedEvaluationConfig `locationName:"automated" type:"structure"`
+
+	// Used to specify a model evaluation job that uses human workers.See HumanEvaluationConfig
+	// to view the required parameters.
+	Human *HumanEvaluationConfig `locationName:"human" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationConfig"}
+	if s.Automated != nil {
+		if err := s.Automated.Validate(); err != nil {
+			invalidParams.AddNested("Automated", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Human != nil {
+		if err := s.Human.Validate(); err != nil {
+			invalidParams.AddNested("Human", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomated sets the Automated field's value.
+func (s *EvaluationConfig) SetAutomated(v *AutomatedEvaluationConfig) *EvaluationConfig {
+	s.Automated = v
+	return s
+}
+
+// SetHuman sets the Human field's value.
+func (s *EvaluationConfig) SetHuman(v *HumanEvaluationConfig) *EvaluationConfig {
+	s.Human = v
+	return s
+}
+
+// Used to specify the name of a built-in prompt dataset and optionally, the
+// Amazon S3 bucket where a custom prompt dataset is saved.
+type EvaluationDataset struct {
+	_ struct{} `type:"structure"`
+
+	// For custom prompt datasets, you must specify the location in Amazon S3 where
+	// the prompt dataset is saved.
+	DatasetLocation *EvaluationDatasetLocation `locationName:"datasetLocation" type:"structure"`
+
+	// Used to specify supported built-in prompt datasets. Valid values are Builtin.Bold,
+	// Builtin.BoolQ, Builtin.NaturalQuestions, Builtin.Gigaword, Builtin.RealToxicityPrompts,
+	// Builtin.TriviaQa, Builtin.T-Rex, Builtin.WomensEcommerceClothingReviews and
+	// Builtin.Wikitext2.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EvaluationDataset's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDataset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDataset) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationDataset) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationDataset"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.DatasetLocation != nil {
+		if err := s.DatasetLocation.Validate(); err != nil {
+			invalidParams.AddNested("DatasetLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetLocation sets the DatasetLocation field's value.
+func (s *EvaluationDataset) SetDatasetLocation(v *EvaluationDatasetLocation) *EvaluationDataset {
+	s.DatasetLocation = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EvaluationDataset) SetName(v string) *EvaluationDataset {
+	s.Name = &v
+	return s
+}
+
+// The location in Amazon S3 where your prompt dataset is stored.
+type EvaluationDatasetLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 URI of the S3 bucket specified in the job.
+	S3Uri *string `locationName:"s3Uri" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDatasetLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDatasetLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationDatasetLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationDatasetLocation"}
+	if s.S3Uri != nil && len(*s.S3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *EvaluationDatasetLocation) SetS3Uri(v string) *EvaluationDatasetLocation {
+	s.S3Uri = &v
+	return s
+}
+
+// Defines the built-in prompt datasets, built-in metric names and custom metric
+// names, and the task type.
+type EvaluationDatasetMetricConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the prompt dataset.
+	//
+	// Dataset is a required field
+	Dataset *EvaluationDataset `locationName:"dataset" type:"structure" required:"true"`
+
+	// The names of the metrics used. For automated model evaluation jobs valid
+	// values are "Builtin.Accuracy", "Builtin.Robustness", and "Builtin.Toxicity".
+	// In human-based model evaluation jobs the array of strings must match the
+	// name parameter specified in HumanEvaluationCustomMetric.
+	//
+	// MetricNames is a required field
+	MetricNames []*string `locationName:"metricNames" min:"1" type:"list" required:"true"`
+
+	// The task type you want the model to carry out.
+	//
+	// TaskType is a required field
+	TaskType *string `locationName:"taskType" min:"1" type:"string" required:"true" enum:"EvaluationTaskType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDatasetMetricConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationDatasetMetricConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationDatasetMetricConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationDatasetMetricConfig"}
+	if s.Dataset == nil {
+		invalidParams.Add(request.NewErrParamRequired("Dataset"))
+	}
+	if s.MetricNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricNames"))
+	}
+	if s.MetricNames != nil && len(s.MetricNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricNames", 1))
+	}
+	if s.TaskType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskType"))
+	}
+	if s.TaskType != nil && len(*s.TaskType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskType", 1))
+	}
+	if s.Dataset != nil {
+		if err := s.Dataset.Validate(); err != nil {
+			invalidParams.AddNested("Dataset", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataset sets the Dataset field's value.
+func (s *EvaluationDatasetMetricConfig) SetDataset(v *EvaluationDataset) *EvaluationDatasetMetricConfig {
+	s.Dataset = v
+	return s
+}
+
+// SetMetricNames sets the MetricNames field's value.
+func (s *EvaluationDatasetMetricConfig) SetMetricNames(v []*string) *EvaluationDatasetMetricConfig {
+	s.MetricNames = v
+	return s
+}
+
+// SetTaskType sets the TaskType field's value.
+func (s *EvaluationDatasetMetricConfig) SetTaskType(v string) *EvaluationDatasetMetricConfig {
+	s.TaskType = &v
+	return s
+}
+
+// Used to define the models you want used in your model evaluation job. Automated
+// model evaluation jobs support only a single model. In a human-based model
+// evaluation job, your annotator can compare the responses for up to two different
+// models.
+type EvaluationInferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Used to specify the models.
+	Models []*EvaluationModelConfig `locationName:"models" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationInferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationInferenceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationInferenceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationInferenceConfig"}
+	if s.Models != nil && len(s.Models) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Models", 1))
+	}
+	if s.Models != nil {
+		for i, v := range s.Models {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Models", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModels sets the Models field's value.
+func (s *EvaluationInferenceConfig) SetModels(v []*EvaluationModelConfig) *EvaluationInferenceConfig {
+	s.Models = v
+	return s
+}
+
+// Defines the models used in the model evaluation job.
+type EvaluationModelConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the Amazon Bedrock model and inference parameters you want used.
+	BedrockModel *EvaluationBedrockModel `locationName:"bedrockModel" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationModelConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationModelConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationModelConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationModelConfig"}
+	if s.BedrockModel != nil {
+		if err := s.BedrockModel.Validate(); err != nil {
+			invalidParams.AddNested("BedrockModel", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBedrockModel sets the BedrockModel field's value.
+func (s *EvaluationModelConfig) SetBedrockModel(v *EvaluationBedrockModel) *EvaluationModelConfig {
+	s.BedrockModel = v
+	return s
+}
+
+// The Amazon S3 location where the results of your model evaluation job are
+// saved.
+type EvaluationOutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 URI where the results of model evaluation job are saved.
+	//
+	// S3Uri is a required field
+	S3Uri *string `locationName:"s3Uri" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationOutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationOutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluationOutputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluationOutputDataConfig"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+	if s.S3Uri != nil && len(*s.S3Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *EvaluationOutputDataConfig) SetS3Uri(v string) *EvaluationOutputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// A summary of the model evaluation job.
+type EvaluationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// When the model evaluation job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// What task type was used in the model evaluation job.
+	//
+	// EvaluationTaskTypes is a required field
+	EvaluationTaskTypes []*string `locationName:"evaluationTaskTypes" min:"1" type:"list" required:"true" enum:"EvaluationTaskType"`
+
+	// The Amazon Resource Name (ARN) of the model evaluation job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+
+	// The name of the model evaluation job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The type, either human or automatic, of model evaluation job.
+	//
+	// JobType is a required field
+	JobType *string `locationName:"jobType" type:"string" required:"true" enum:"EvaluationJobType"`
+
+	// The Amazon Resource Names (ARNs) of the model(s) used in the model evaluation
+	// job.
+	//
+	// ModelIdentifiers is a required field
+	ModelIdentifiers []*string `locationName:"modelIdentifiers" min:"1" type:"list" required:"true"`
+
+	// The current status of the model evaluation job.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"EvaluationJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvaluationSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *EvaluationSummary) SetCreationTime(v time.Time) *EvaluationSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEvaluationTaskTypes sets the EvaluationTaskTypes field's value.
+func (s *EvaluationSummary) SetEvaluationTaskTypes(v []*string) *EvaluationSummary {
+	s.EvaluationTaskTypes = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *EvaluationSummary) SetJobArn(v string) *EvaluationSummary {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *EvaluationSummary) SetJobName(v string) *EvaluationSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetJobType sets the JobType field's value.
+func (s *EvaluationSummary) SetJobType(v string) *EvaluationSummary {
+	s.JobType = &v
+	return s
+}
+
+// SetModelIdentifiers sets the ModelIdentifiers field's value.
+func (s *EvaluationSummary) SetModelIdentifiers(v []*string) *EvaluationSummary {
+	s.ModelIdentifiers = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EvaluationSummary) SetStatus(v string) *EvaluationSummary {
+	s.Status = &v
+	return s
+}
+
 // Information about a foundation model.
 type FoundationModelDetails struct {
 	_ struct{} `type:"structure"`
@@ -3019,7 +5581,7 @@ type FoundationModelDetails struct {
 	// The input modalities that the model supports.
 	InputModalities []*string `locationName:"inputModalities" type:"list" enum:"ModelModality"`
 
-	// The model ARN.
+	// The model Amazon Resource Name (ARN).
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" type:"string" required:"true"`
@@ -3038,7 +5600,7 @@ type FoundationModelDetails struct {
 	// The output modalities that the model supports.
 	OutputModalities []*string `locationName:"outputModalities" type:"list" enum:"ModelModality"`
 
-	// he model's provider name.
+	// The model's provider name.
 	ProviderName *string `locationName:"providerName" min:"1" type:"string"`
 
 	// Indicates whether the model supports streaming.
@@ -3170,12 +5732,12 @@ type FoundationModelSummary struct {
 	// The input modalities that the model supports.
 	InputModalities []*string `locationName:"inputModalities" type:"list" enum:"ModelModality"`
 
-	// The ARN of the foundation model.
+	// The Amazon Resource Name (ARN) of the foundation model.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" type:"string" required:"true"`
 
-	// The model Id of the foundation model.
+	// The model ID of the foundation model.
 	//
 	// ModelId is a required field
 	ModelId *string `locationName:"modelId" type:"string" required:"true"`
@@ -3277,7 +5839,7 @@ func (s *FoundationModelSummary) SetResponseStreamingSupported(v bool) *Foundati
 type GetCustomModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Name or ARN of the custom model.
+	// Name or Amazon Resource Name (ARN) of the custom model.
 	//
 	// ModelIdentifier is a required field
 	ModelIdentifier *string `location:"uri" locationName:"modelIdentifier" min:"1" type:"string" required:"true"`
@@ -3326,7 +5888,7 @@ func (s *GetCustomModelInput) SetModelIdentifier(v string) *GetCustomModelInput 
 type GetCustomModelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the base model.
+	// Amazon Resource Name (ARN) of the base model.
 	//
 	// BaseModelArn is a required field
 	BaseModelArn *string `locationName:"baseModelArn" min:"20" type:"string" required:"true"`
@@ -3339,10 +5901,11 @@ type GetCustomModelOutput struct {
 	// The type of model customization.
 	CustomizationType *string `locationName:"customizationType" type:"string" enum:"CustomizationType"`
 
-	// Hyperparameter values associated with this model.
+	// Hyperparameter values associated with this model. For details on the format
+	// for different models, see Custom model hyperparameters (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models-hp.html).
 	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map"`
 
-	// Job ARN associated with this model.
+	// Job Amazon Resource Name (ARN) associated with this model.
 	//
 	// JobArn is a required field
 	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
@@ -3350,7 +5913,7 @@ type GetCustomModelOutput struct {
 	// Job name associated with this model.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
 
-	// ARN associated with this model.
+	// Amazon Resource Name (ARN) associated with this model.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
@@ -3368,15 +5931,15 @@ type GetCustomModelOutput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
 
-	// Information about the training dataset.
+	// Contains information about the training dataset.
 	//
 	// TrainingDataConfig is a required field
 	TrainingDataConfig *TrainingDataConfig `locationName:"trainingDataConfig" type:"structure" required:"true"`
 
-	// The training metrics from the job creation.
+	// Contains training metrics from the job creation.
 	TrainingMetrics *TrainingMetrics `locationName:"trainingMetrics" type:"structure"`
 
-	// Array of up to 10 validators.
+	// Contains information about the validation dataset.
 	ValidationDataConfig *ValidationDataConfig `locationName:"validationDataConfig" type:"structure"`
 
 	// The validation metrics from the job creation.
@@ -3485,6 +6048,223 @@ func (s *GetCustomModelOutput) SetValidationMetrics(v []*ValidatorMetric) *GetCu
 	return s
 }
 
+type GetEvaluationJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Resource Name (ARN) of the model evaluation job.
+	//
+	// JobIdentifier is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetEvaluationJobInput's
+	// String and GoString methods.
+	//
+	// JobIdentifier is a required field
+	JobIdentifier *string `location:"uri" locationName:"jobIdentifier" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvaluationJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvaluationJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEvaluationJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEvaluationJobInput"}
+	if s.JobIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobIdentifier"))
+	}
+	if s.JobIdentifier != nil && len(*s.JobIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobIdentifier sets the JobIdentifier field's value.
+func (s *GetEvaluationJobInput) SetJobIdentifier(v string) *GetEvaluationJobInput {
+	s.JobIdentifier = &v
+	return s
+}
+
+type GetEvaluationJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When the model evaluation job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the customer managed key specified when
+	// the model evaluation job was created.
+	CustomerEncryptionKeyId *string `locationName:"customerEncryptionKeyId" min:"1" type:"string"`
+
+	// Contains details about the type of model evaluation job, the metrics used,
+	// the task type selected, the datasets used, and any custom metrics you defined.
+	//
+	// EvaluationConfig is a required field
+	EvaluationConfig *EvaluationConfig `locationName:"evaluationConfig" type:"structure" required:"true"`
+
+	// An array of strings the specify why the model evaluation job has failed.
+	FailureMessages []*string `locationName:"failureMessages" type:"list"`
+
+	// Details about the models you specified in your model evaluation job.
+	//
+	// InferenceConfig is a required field
+	InferenceConfig *EvaluationInferenceConfig `locationName:"inferenceConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the model evaluation job.
+	//
+	// JobArn is a required field
+	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
+
+	// The description of the model evaluation job.
+	//
+	// JobDescription is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetEvaluationJobOutput's
+	// String and GoString methods.
+	JobDescription *string `locationName:"jobDescription" min:"1" type:"string" sensitive:"true"`
+
+	// The name of the model evaluation job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The type of model evaluation job.
+	//
+	// JobType is a required field
+	JobType *string `locationName:"jobType" type:"string" required:"true" enum:"EvaluationJobType"`
+
+	// When the model evaluation job was last modified.
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Amazon S3 location for where output data is saved.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *EvaluationOutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM service role used in the model
+	// evaluation job.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The status of the model evaluation job.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"EvaluationJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvaluationJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEvaluationJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetEvaluationJobOutput) SetCreationTime(v time.Time) *GetEvaluationJobOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCustomerEncryptionKeyId sets the CustomerEncryptionKeyId field's value.
+func (s *GetEvaluationJobOutput) SetCustomerEncryptionKeyId(v string) *GetEvaluationJobOutput {
+	s.CustomerEncryptionKeyId = &v
+	return s
+}
+
+// SetEvaluationConfig sets the EvaluationConfig field's value.
+func (s *GetEvaluationJobOutput) SetEvaluationConfig(v *EvaluationConfig) *GetEvaluationJobOutput {
+	s.EvaluationConfig = v
+	return s
+}
+
+// SetFailureMessages sets the FailureMessages field's value.
+func (s *GetEvaluationJobOutput) SetFailureMessages(v []*string) *GetEvaluationJobOutput {
+	s.FailureMessages = v
+	return s
+}
+
+// SetInferenceConfig sets the InferenceConfig field's value.
+func (s *GetEvaluationJobOutput) SetInferenceConfig(v *EvaluationInferenceConfig) *GetEvaluationJobOutput {
+	s.InferenceConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *GetEvaluationJobOutput) SetJobArn(v string) *GetEvaluationJobOutput {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *GetEvaluationJobOutput) SetJobDescription(v string) *GetEvaluationJobOutput {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *GetEvaluationJobOutput) SetJobName(v string) *GetEvaluationJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobType sets the JobType field's value.
+func (s *GetEvaluationJobOutput) SetJobType(v string) *GetEvaluationJobOutput {
+	s.JobType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetEvaluationJobOutput) SetLastModifiedTime(v time.Time) *GetEvaluationJobOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *GetEvaluationJobOutput) SetOutputDataConfig(v *EvaluationOutputDataConfig) *GetEvaluationJobOutput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetEvaluationJobOutput) SetRoleArn(v string) *GetEvaluationJobOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetEvaluationJobOutput) SetStatus(v string) *GetEvaluationJobOutput {
+	s.Status = &v
+	return s
+}
+
 type GetFoundationModelInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3565,6 +6345,276 @@ func (s *GetFoundationModelOutput) SetModelDetails(v *FoundationModelDetails) *G
 	return s
 }
 
+type GetGuardrailInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the guardrail for which to get details.
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
+
+	// The version of the guardrail for which to get details. If you don't specify
+	// a version, the response returns details for the DRAFT version.
+	GuardrailVersion *string `location:"querystring" locationName:"guardrailVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGuardrailInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGuardrailInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGuardrailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGuardrailInput"}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailIdentifier != nil && len(*s.GuardrailIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GuardrailIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *GetGuardrailInput) SetGuardrailIdentifier(v string) *GetGuardrailInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *GetGuardrailInput) SetGuardrailVersion(v string) *GetGuardrailInput {
+	s.GuardrailVersion = &v
+	return s
+}
+
+type GetGuardrailOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The message that the guardrail returns when it blocks a prompt.
+	//
+	// BlockedInputMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetGuardrailOutput's
+	// String and GoString methods.
+	//
+	// BlockedInputMessaging is a required field
+	BlockedInputMessaging *string `locationName:"blockedInputMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The message that the guardrail returns when it blocks a model response.
+	//
+	// BlockedOutputsMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetGuardrailOutput's
+	// String and GoString methods.
+	//
+	// BlockedOutputsMessaging is a required field
+	BlockedOutputsMessaging *string `locationName:"blockedOutputsMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The content policy that was configured for the guardrail.
+	ContentPolicy *GuardrailContentPolicy `locationName:"contentPolicy" type:"structure"`
+
+	// The date and time at which the guardrail was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The description of the guardrail.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetGuardrailOutput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// Appears if the status of the guardrail is FAILED. A list of recommendations
+	// to carry out before retrying the request.
+	FailureRecommendations []*string `locationName:"failureRecommendations" type:"list"`
+
+	// The ARN of the guardrail that was created.
+	//
+	// GuardrailArn is a required field
+	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
+
+	// The unique identifier of the guardrail.
+	//
+	// GuardrailId is a required field
+	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
+
+	// The ARN of the KMS key that encrypts the guardrail.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
+
+	// The name of the guardrail.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetGuardrailOutput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The sensitive information policy that was configured for the guardrail.
+	SensitiveInformationPolicy *GuardrailSensitiveInformationPolicy `locationName:"sensitiveInformationPolicy" type:"structure"`
+
+	// The status of the guardrail.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"GuardrailStatus"`
+
+	// Appears if the status is FAILED. A list of reasons for why the guardrail
+	// failed to be created, updated, versioned, or deleted.
+	StatusReasons []*string `locationName:"statusReasons" type:"list"`
+
+	// The topic policy that was configured for the guardrail.
+	TopicPolicy *GuardrailTopicPolicy `locationName:"topicPolicy" type:"structure"`
+
+	// The date and time at which the guardrail was updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+
+	// The word policy that was configured for the guardrail.
+	WordPolicy *GuardrailWordPolicy `locationName:"wordPolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGuardrailOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetGuardrailOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlockedInputMessaging sets the BlockedInputMessaging field's value.
+func (s *GetGuardrailOutput) SetBlockedInputMessaging(v string) *GetGuardrailOutput {
+	s.BlockedInputMessaging = &v
+	return s
+}
+
+// SetBlockedOutputsMessaging sets the BlockedOutputsMessaging field's value.
+func (s *GetGuardrailOutput) SetBlockedOutputsMessaging(v string) *GetGuardrailOutput {
+	s.BlockedOutputsMessaging = &v
+	return s
+}
+
+// SetContentPolicy sets the ContentPolicy field's value.
+func (s *GetGuardrailOutput) SetContentPolicy(v *GuardrailContentPolicy) *GetGuardrailOutput {
+	s.ContentPolicy = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetGuardrailOutput) SetCreatedAt(v time.Time) *GetGuardrailOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetGuardrailOutput) SetDescription(v string) *GetGuardrailOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFailureRecommendations sets the FailureRecommendations field's value.
+func (s *GetGuardrailOutput) SetFailureRecommendations(v []*string) *GetGuardrailOutput {
+	s.FailureRecommendations = v
+	return s
+}
+
+// SetGuardrailArn sets the GuardrailArn field's value.
+func (s *GetGuardrailOutput) SetGuardrailArn(v string) *GetGuardrailOutput {
+	s.GuardrailArn = &v
+	return s
+}
+
+// SetGuardrailId sets the GuardrailId field's value.
+func (s *GetGuardrailOutput) SetGuardrailId(v string) *GetGuardrailOutput {
+	s.GuardrailId = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *GetGuardrailOutput) SetKmsKeyArn(v string) *GetGuardrailOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetGuardrailOutput) SetName(v string) *GetGuardrailOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSensitiveInformationPolicy sets the SensitiveInformationPolicy field's value.
+func (s *GetGuardrailOutput) SetSensitiveInformationPolicy(v *GuardrailSensitiveInformationPolicy) *GetGuardrailOutput {
+	s.SensitiveInformationPolicy = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetGuardrailOutput) SetStatus(v string) *GetGuardrailOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReasons sets the StatusReasons field's value.
+func (s *GetGuardrailOutput) SetStatusReasons(v []*string) *GetGuardrailOutput {
+	s.StatusReasons = v
+	return s
+}
+
+// SetTopicPolicy sets the TopicPolicy field's value.
+func (s *GetGuardrailOutput) SetTopicPolicy(v *GuardrailTopicPolicy) *GetGuardrailOutput {
+	s.TopicPolicy = v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetGuardrailOutput) SetUpdatedAt(v time.Time) *GetGuardrailOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetGuardrailOutput) SetVersion(v string) *GetGuardrailOutput {
+	s.Version = &v
+	return s
+}
+
+// SetWordPolicy sets the WordPolicy field's value.
+func (s *GetGuardrailOutput) SetWordPolicy(v *GuardrailWordPolicy) *GetGuardrailOutput {
+	s.WordPolicy = v
+	return s
+}
+
 type GetModelCustomizationJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3617,7 +6667,7 @@ func (s *GetModelCustomizationJobInput) SetJobIdentifier(v string) *GetModelCust
 type GetModelCustomizationJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the base model.
+	// Amazon Resource Name (ARN) of the base model.
 	//
 	// BaseModelArn is a required field
 	BaseModelArn *string `locationName:"baseModelArn" type:"string" required:"true"`
@@ -3639,13 +6689,13 @@ type GetModelCustomizationJobOutput struct {
 	// Information about why the job failed.
 	FailureMessage *string `locationName:"failureMessage" type:"string"`
 
-	// The hyperparameter values for the job. For information about hyperparameters
-	// for specific models, see Guidelines for model customization (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-guidelines.html).
+	// The hyperparameter values for the job. For details on the format for different
+	// models, see Custom model hyperparameters (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models-hp.html).
 	//
 	// HyperParameters is a required field
 	HyperParameters map[string]*string `locationName:"hyperParameters" type:"map" required:"true"`
 
-	// The ARN of the customization job.
+	// The Amazon Resource Name (ARN) of the customization job.
 	//
 	// JobArn is a required field
 	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
@@ -3663,7 +6713,7 @@ type GetModelCustomizationJobOutput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `locationName:"outputDataConfig" type:"structure" required:"true"`
 
-	// The ARN of the output model.
+	// The Amazon Resource Name (ARN) of the output model.
 	OutputModelArn *string `locationName:"outputModelArn" min:"20" type:"string"`
 
 	// The custom model is encrypted at rest using this key.
@@ -3674,7 +6724,7 @@ type GetModelCustomizationJobOutput struct {
 	// OutputModelName is a required field
 	OutputModelName *string `locationName:"outputModelName" min:"1" type:"string" required:"true"`
 
-	// The ARN of the IAM role.
+	// The Amazon Resource Name (ARN) of the IAM role.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -3684,15 +6734,15 @@ type GetModelCustomizationJobOutput struct {
 	// contains information about why the job failed.
 	Status *string `locationName:"status" type:"string" enum:"ModelCustomizationJobStatus"`
 
-	// S3 Location of the training data.
+	// Contains information about the training dataset.
 	//
 	// TrainingDataConfig is a required field
 	TrainingDataConfig *TrainingDataConfig `locationName:"trainingDataConfig" type:"structure" required:"true"`
 
-	// Metrics associated with the custom job.
+	// Contains training metrics from the job creation.
 	TrainingMetrics *TrainingMetrics `locationName:"trainingMetrics" type:"structure"`
 
-	// Array of up to 10 validators.
+	// Contains information about the validation dataset.
 	//
 	// ValidationDataConfig is a required field
 	ValidationDataConfig *ValidationDataConfig `locationName:"validationDataConfig" type:"structure" required:"true"`
@@ -3904,7 +6954,7 @@ func (s *GetModelInvocationLoggingConfigurationOutput) SetLoggingConfig(v *Loggi
 type GetProvisionedModelThroughputInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ARN or name of the provisioned throughput.
+	// The Amazon Resource Name (ARN) or name of the Provisioned Throughput.
 	//
 	// ProvisionedModelId is a required field
 	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
@@ -3953,63 +7003,68 @@ func (s *GetProvisionedModelThroughputInput) SetProvisionedModelId(v string) *Ge
 type GetProvisionedModelThroughputOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Commitment duration of the provisioned throughput.
+	// Commitment duration of the Provisioned Throughput.
 	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
 
-	// Commitment expiration time for the provisioned throughput.
+	// The timestamp for when the commitment term for the Provisioned Throughput
+	// expires.
 	CommitmentExpirationTime *time.Time `locationName:"commitmentExpirationTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The timestamp of the creation time for this provisioned throughput.
+	// The timestamp of the creation time for this Provisioned Throughput.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN of the new model to asssociate with this provisioned throughput.
+	// The Amazon Resource Name (ARN) of the model requested to be associated to
+	// this Provisioned Throughput. This value differs from the modelArn if updating
+	// hasn't completed.
 	//
 	// DesiredModelArn is a required field
 	DesiredModelArn *string `locationName:"desiredModelArn" min:"20" type:"string" required:"true"`
 
-	// The desired number of model units that was requested to be available for
-	// this provisioned throughput.
+	// The number of model units that was requested for this Provisioned Throughput.
 	//
 	// DesiredModelUnits is a required field
 	DesiredModelUnits *int64 `locationName:"desiredModelUnits" min:"1" type:"integer" required:"true"`
 
-	// Failure message for any issues that the create operation encounters.
+	// A failure message for any issues that occurred during creation, updating,
+	// or deletion of the Provisioned Throughput.
 	FailureMessage *string `locationName:"failureMessage" type:"string"`
 
-	// ARN of the foundation model.
+	// The Amazon Resource Name (ARN) of the base model for which the Provisioned
+	// Throughput was created, or of the base model that the custom model for which
+	// the Provisioned Throughput was created was customized.
 	//
 	// FoundationModelArn is a required field
 	FoundationModelArn *string `locationName:"foundationModelArn" type:"string" required:"true"`
 
-	// The timestamp of the last modified time of this provisioned throughput.
+	// The timestamp of the last time that this Provisioned Throughput was modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN or name of the model associated with this provisioned throughput.
+	// The Amazon Resource Name (ARN) of the model associated with this Provisioned
+	// Throughput.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
 
-	// The current number of model units requested to be available for this provisioned
-	// throughput.
+	// The number of model units allocated to this Provisioned Throughput.
 	//
 	// ModelUnits is a required field
 	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
 
-	// The ARN of the provisioned throughput.
+	// The Amazon Resource Name (ARN) of the Provisioned Throughput.
 	//
 	// ProvisionedModelArn is a required field
 	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
 
-	// The name of the provisioned throughput.
+	// The name of the Provisioned Throughput.
 	//
 	// ProvisionedModelName is a required field
 	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
 
-	// Status of the provisioned throughput.
+	// The status of the Provisioned Throughput.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ProvisionedModelStatus"`
@@ -4111,6 +7166,1661 @@ func (s *GetProvisionedModelThroughputOutput) SetStatus(v string) *GetProvisione
 	return s
 }
 
+// Contains filter strengths for harmful content. Guardrails support the following
+// content filters to detect and filter harmful user inputs and FM-generated
+// outputs.
+//
+//   - Hate – Describes language or a statement that discriminates, criticizes,
+//     insults, denounces, or dehumanizes a person or group on the basis of an
+//     identity (such as race, ethnicity, gender, religion, sexual orientation,
+//     ability, and national origin).
+//
+//   - Insults – Describes language or a statement that includes demeaning,
+//     humiliating, mocking, insulting, or belittling language. This type of
+//     language is also labeled as bullying.
+//
+//   - Sexual – Describes language or a statement that indicates sexual interest,
+//     activity, or arousal using direct or indirect references to body parts,
+//     physical traits, or sex.
+//
+//   - Violence – Describes language or a statement that includes glorification
+//     of or threats to inflict physical pain, hurt, or injury toward a person,
+//     group or thing.
+//
+// Content filtering depends on the confidence classification of user inputs
+// and FM responses across each of the four harmful categories. All input and
+// output statements are classified into one of four confidence levels (NONE,
+// LOW, MEDIUM, HIGH) for each harmful category. For example, if a statement
+// is classified as Hate with HIGH confidence, the likelihood of the statement
+// representing hateful content is high. A single statement can be classified
+// across multiple categories with varying confidence levels. For example, a
+// single statement can be classified as Hate with HIGH confidence, Insults
+// with LOW confidence, Sexual with NONE confidence, and Violence with MEDIUM
+// confidence.
+//
+// For more information, see Guardrails content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters.html).
+//
+// This data type is used in the following API operations:
+//
+//   - GetGuardrail response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetGuardrail.html#API_GetGuardrail_ResponseSyntax)
+type GuardrailContentFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The strength of the content filter to apply to prompts. As you increase the
+	// filter strength, the likelihood of filtering harmful content increases and
+	// the probability of seeing harmful content in your application reduces.
+	//
+	// InputStrength is a required field
+	InputStrength *string `locationName:"inputStrength" type:"string" required:"true" enum:"GuardrailFilterStrength"`
+
+	// The strength of the content filter to apply to model responses. As you increase
+	// the filter strength, the likelihood of filtering harmful content increases
+	// and the probability of seeing harmful content in your application reduces.
+	//
+	// OutputStrength is a required field
+	OutputStrength *string `locationName:"outputStrength" type:"string" required:"true" enum:"GuardrailFilterStrength"`
+
+	// The harmful category that the content filter is applied to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailContentFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilter) GoString() string {
+	return s.String()
+}
+
+// SetInputStrength sets the InputStrength field's value.
+func (s *GuardrailContentFilter) SetInputStrength(v string) *GuardrailContentFilter {
+	s.InputStrength = &v
+	return s
+}
+
+// SetOutputStrength sets the OutputStrength field's value.
+func (s *GuardrailContentFilter) SetOutputStrength(v string) *GuardrailContentFilter {
+	s.OutputStrength = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContentFilter) SetType(v string) *GuardrailContentFilter {
+	s.Type = &v
+	return s
+}
+
+// Contains filter strengths for harmful content. Guardrails support the following
+// content filters to detect and filter harmful user inputs and FM-generated
+// outputs.
+//
+//   - Hate – Describes language or a statement that discriminates, criticizes,
+//     insults, denounces, or dehumanizes a person or group on the basis of an
+//     identity (such as race, ethnicity, gender, religion, sexual orientation,
+//     ability, and national origin).
+//
+//   - Insults – Describes language or a statement that includes demeaning,
+//     humiliating, mocking, insulting, or belittling language. This type of
+//     language is also labeled as bullying.
+//
+//   - Sexual – Describes language or a statement that indicates sexual interest,
+//     activity, or arousal using direct or indirect references to body parts,
+//     physical traits, or sex.
+//
+//   - Violence – Describes language or a statement that includes glorification
+//     of or threats to inflict physical pain, hurt, or injury toward a person,
+//     group or thing.
+//
+// Content filtering depends on the confidence classification of user inputs
+// and FM responses across each of the four harmful categories. All input and
+// output statements are classified into one of four confidence levels (NONE,
+// LOW, MEDIUM, HIGH) for each harmful category. For example, if a statement
+// is classified as Hate with HIGH confidence, the likelihood of the statement
+// representing hateful content is high. A single statement can be classified
+// across multiple categories with varying confidence levels. For example, a
+// single statement can be classified as Hate with HIGH confidence, Insults
+// with LOW confidence, Sexual with NONE confidence, and Violence with MEDIUM
+// confidence.
+//
+// For more information, see Guardrails content filters (https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-filters.html).
+//
+// This data type is used in the following API operations:
+//
+//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
+//
+//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
+type GuardrailContentFilterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The strength of the content filter to apply to prompts. As you increase the
+	// filter strength, the likelihood of filtering harmful content increases and
+	// the probability of seeing harmful content in your application reduces.
+	//
+	// InputStrength is a required field
+	InputStrength *string `locationName:"inputStrength" type:"string" required:"true" enum:"GuardrailFilterStrength"`
+
+	// The strength of the content filter to apply to model responses. As you increase
+	// the filter strength, the likelihood of filtering harmful content increases
+	// and the probability of seeing harmful content in your application reduces.
+	//
+	// OutputStrength is a required field
+	OutputStrength *string `locationName:"outputStrength" type:"string" required:"true" enum:"GuardrailFilterStrength"`
+
+	// The harmful category that the content filter is applied to.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailContentFilterType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentFilterConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailContentFilterConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailContentFilterConfig"}
+	if s.InputStrength == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputStrength"))
+	}
+	if s.OutputStrength == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputStrength"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputStrength sets the InputStrength field's value.
+func (s *GuardrailContentFilterConfig) SetInputStrength(v string) *GuardrailContentFilterConfig {
+	s.InputStrength = &v
+	return s
+}
+
+// SetOutputStrength sets the OutputStrength field's value.
+func (s *GuardrailContentFilterConfig) SetOutputStrength(v string) *GuardrailContentFilterConfig {
+	s.OutputStrength = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailContentFilterConfig) SetType(v string) *GuardrailContentFilterConfig {
+	s.Type = &v
+	return s
+}
+
+// Contains details about how to handle harmful content.
+//
+// This data type is used in the following API operations:
+//
+//   - GetGuardrail response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetGuardrail.html#API_GetGuardrail_ResponseSyntax)
+type GuardrailContentPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the type of the content filter and how strongly it should apply
+	// to prompts and model responses.
+	Filters []*GuardrailContentFilter `locationName:"filters" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicy) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GuardrailContentPolicy) SetFilters(v []*GuardrailContentFilter) *GuardrailContentPolicy {
+	s.Filters = v
+	return s
+}
+
+// Contains details about how to handle harmful content.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
+//
+//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
+type GuardrailContentPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the type of the content filter and how strongly it should apply
+	// to prompts and model responses.
+	//
+	// FiltersConfig is a required field
+	FiltersConfig []*GuardrailContentFilterConfig `locationName:"filtersConfig" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailContentPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailContentPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailContentPolicyConfig"}
+	if s.FiltersConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("FiltersConfig"))
+	}
+	if s.FiltersConfig != nil && len(s.FiltersConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FiltersConfig", 1))
+	}
+	if s.FiltersConfig != nil {
+		for i, v := range s.FiltersConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FiltersConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFiltersConfig sets the FiltersConfig field's value.
+func (s *GuardrailContentPolicyConfig) SetFiltersConfig(v []*GuardrailContentFilterConfig) *GuardrailContentPolicyConfig {
+	s.FiltersConfig = v
+	return s
+}
+
+// The managed word list that was configured for the guardrail. (This is a list
+// of words that are pre-defined and managed by Guardrails only.)
+type GuardrailManagedWords struct {
+	_ struct{} `type:"structure"`
+
+	// ManagedWords$type The managed word type that was configured for the guardrail.
+	// (For now, we only offer profanity word list)
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailManagedWordsType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWords) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWords) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailManagedWords) SetType(v string) *GuardrailManagedWords {
+	s.Type = &v
+	return s
+}
+
+// The managed word list to configure for the guardrail.
+type GuardrailManagedWordsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The managed word type to configure for the guardrail.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailManagedWordsType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWordsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailManagedWordsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailManagedWordsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailManagedWordsConfig"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailManagedWordsConfig) SetType(v string) *GuardrailManagedWordsConfig {
+	s.Type = &v
+	return s
+}
+
+// The PII entity configured for the guardrail.
+type GuardrailPiiEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The configured guardrail action when PII entity is detected.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationAction"`
+
+	// The type of PII entity. For example, Social Security Number.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailPiiEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntity) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailPiiEntity) SetAction(v string) *GuardrailPiiEntity {
+	s.Action = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailPiiEntity) SetType(v string) *GuardrailPiiEntity {
+	s.Type = &v
+	return s
+}
+
+// The PII entity to configure for the guardrail.
+type GuardrailPiiEntityConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configure guardrail action when the PII entity is detected.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationAction"`
+
+	// Configure guardrail type when the PII entity is detected.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailPiiEntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailPiiEntityConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailPiiEntityConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailPiiEntityConfig"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailPiiEntityConfig) SetAction(v string) *GuardrailPiiEntityConfig {
+	s.Action = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailPiiEntityConfig) SetType(v string) *GuardrailPiiEntityConfig {
+	s.Type = &v
+	return s
+}
+
+// The regular expression configured for the guardrail.
+type GuardrailRegex struct {
+	_ struct{} `type:"structure"`
+
+	// The action taken when a match to the regular expression is detected.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationAction"`
+
+	// The description of the regular expression for the guardrail.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the regular expression for the guardrail.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The pattern of the regular expression configured for the guardrail.
+	//
+	// Pattern is a required field
+	Pattern *string `locationName:"pattern" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegex) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegex) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailRegex) SetAction(v string) *GuardrailRegex {
+	s.Action = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GuardrailRegex) SetDescription(v string) *GuardrailRegex {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailRegex) SetName(v string) *GuardrailRegex {
+	s.Name = &v
+	return s
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *GuardrailRegex) SetPattern(v string) *GuardrailRegex {
+	s.Pattern = &v
+	return s
+}
+
+// The regular expression to configure for the guardrail.
+type GuardrailRegexConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The guardrail action to configure when matching regular expression is detected.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"GuardrailSensitiveInformationAction"`
+
+	// The description of the regular expression to configure for the guardrail.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of the regular expression to configure for the guardrail.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The regular expression pattern to configure for the guardrail.
+	//
+	// Pattern is a required field
+	Pattern *string `locationName:"pattern" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailRegexConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailRegexConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailRegexConfig"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Pattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("Pattern"))
+	}
+	if s.Pattern != nil && len(*s.Pattern) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Pattern", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *GuardrailRegexConfig) SetAction(v string) *GuardrailRegexConfig {
+	s.Action = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GuardrailRegexConfig) SetDescription(v string) *GuardrailRegexConfig {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailRegexConfig) SetName(v string) *GuardrailRegexConfig {
+	s.Name = &v
+	return s
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *GuardrailRegexConfig) SetPattern(v string) *GuardrailRegexConfig {
+	s.Pattern = &v
+	return s
+}
+
+// Contains details about PII entities and regular expressions configured for
+// the guardrail.
+type GuardrailSensitiveInformationPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The list of PII entities configured for the guardrail.
+	PiiEntities []*GuardrailPiiEntity `locationName:"piiEntities" min:"1" type:"list"`
+
+	// The list of regular expressions configured for the guardrail.
+	Regexes []*GuardrailRegex `locationName:"regexes" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPiiEntities sets the PiiEntities field's value.
+func (s *GuardrailSensitiveInformationPolicy) SetPiiEntities(v []*GuardrailPiiEntity) *GuardrailSensitiveInformationPolicy {
+	s.PiiEntities = v
+	return s
+}
+
+// SetRegexes sets the Regexes field's value.
+func (s *GuardrailSensitiveInformationPolicy) SetRegexes(v []*GuardrailRegex) *GuardrailSensitiveInformationPolicy {
+	s.Regexes = v
+	return s
+}
+
+// Contains details about PII entities and regular expressions to configure
+// for the guardrail.
+type GuardrailSensitiveInformationPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of PII entities to configure to the guardrail.
+	PiiEntitiesConfig []*GuardrailPiiEntityConfig `locationName:"piiEntitiesConfig" min:"1" type:"list"`
+
+	// A list of regular expressions to configure to the guardrail.
+	RegexesConfig []*GuardrailRegexConfig `locationName:"regexesConfig" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSensitiveInformationPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailSensitiveInformationPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailSensitiveInformationPolicyConfig"}
+	if s.PiiEntitiesConfig != nil && len(s.PiiEntitiesConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PiiEntitiesConfig", 1))
+	}
+	if s.RegexesConfig != nil && len(s.RegexesConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegexesConfig", 1))
+	}
+	if s.PiiEntitiesConfig != nil {
+		for i, v := range s.PiiEntitiesConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PiiEntitiesConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RegexesConfig != nil {
+		for i, v := range s.RegexesConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RegexesConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPiiEntitiesConfig sets the PiiEntitiesConfig field's value.
+func (s *GuardrailSensitiveInformationPolicyConfig) SetPiiEntitiesConfig(v []*GuardrailPiiEntityConfig) *GuardrailSensitiveInformationPolicyConfig {
+	s.PiiEntitiesConfig = v
+	return s
+}
+
+// SetRegexesConfig sets the RegexesConfig field's value.
+func (s *GuardrailSensitiveInformationPolicyConfig) SetRegexesConfig(v []*GuardrailRegexConfig) *GuardrailSensitiveInformationPolicyConfig {
+	s.RegexesConfig = v
+	return s
+}
+
+// Contains details about a guardrail.
+//
+// This data type is used in the following API operations:
+//
+//   - ListGuardrails response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListGuardrails.html#API_ListGuardrails_ResponseSyntax)
+type GuardrailSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the guardrail.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The date and time at which the guardrail was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A description of the guardrail.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailSummary's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier of the guardrail.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the guardrail.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailSummary's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The status of the guardrail.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"GuardrailStatus"`
+
+	// The date and time at which the guardrail was last updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GuardrailSummary) SetArn(v string) *GuardrailSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GuardrailSummary) SetCreatedAt(v time.Time) *GuardrailSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GuardrailSummary) SetDescription(v string) *GuardrailSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GuardrailSummary) SetId(v string) *GuardrailSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailSummary) SetName(v string) *GuardrailSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GuardrailSummary) SetStatus(v string) *GuardrailSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GuardrailSummary) SetUpdatedAt(v time.Time) *GuardrailSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GuardrailSummary) SetVersion(v string) *GuardrailSummary {
+	s.Version = &v
+	return s
+}
+
+// Details about topics for the guardrail to identify and deny.
+//
+// This data type is used in the following API operations:
+//
+//   - GetGuardrail response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetGuardrail.html#API_GetGuardrail_ResponseSyntax)
+type GuardrailTopic struct {
+	_ struct{} `type:"structure"`
+
+	// A definition of the topic to deny.
+	//
+	// Definition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailTopic's
+	// String and GoString methods.
+	//
+	// Definition is a required field
+	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A list of prompts, each of which is an example of a prompt that can be categorized
+	// as belonging to the topic.
+	Examples []*string `locationName:"examples" type:"list"`
+
+	// The name of the topic to deny.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailTopic's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Specifies to deny the topic.
+	Type *string `locationName:"type" type:"string" enum:"GuardrailTopicType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopic) GoString() string {
+	return s.String()
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *GuardrailTopic) SetDefinition(v string) *GuardrailTopic {
+	s.Definition = &v
+	return s
+}
+
+// SetExamples sets the Examples field's value.
+func (s *GuardrailTopic) SetExamples(v []*string) *GuardrailTopic {
+	s.Examples = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailTopic) SetName(v string) *GuardrailTopic {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailTopic) SetType(v string) *GuardrailTopic {
+	s.Type = &v
+	return s
+}
+
+// Details about topics for the guardrail to identify and deny.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
+//
+//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
+type GuardrailTopicConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A definition of the topic to deny.
+	//
+	// Definition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailTopicConfig's
+	// String and GoString methods.
+	//
+	// Definition is a required field
+	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A list of prompts, each of which is an example of a prompt that can be categorized
+	// as belonging to the topic.
+	Examples []*string `locationName:"examples" type:"list"`
+
+	// The name of the topic to deny.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GuardrailTopicConfig's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Specifies to deny the topic.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"GuardrailTopicType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailTopicConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailTopicConfig"}
+	if s.Definition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Definition"))
+	}
+	if s.Definition != nil && len(*s.Definition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Definition", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *GuardrailTopicConfig) SetDefinition(v string) *GuardrailTopicConfig {
+	s.Definition = &v
+	return s
+}
+
+// SetExamples sets the Examples field's value.
+func (s *GuardrailTopicConfig) SetExamples(v []*string) *GuardrailTopicConfig {
+	s.Examples = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GuardrailTopicConfig) SetName(v string) *GuardrailTopicConfig {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GuardrailTopicConfig) SetType(v string) *GuardrailTopicConfig {
+	s.Type = &v
+	return s
+}
+
+// Contains details about topics that the guardrail should identify and deny.
+//
+// This data type is used in the following API operations:
+//
+//   - GetGuardrail response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetGuardrail.html#API_GetGuardrail_ResponseSyntax)
+type GuardrailTopicPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of policies related to topics that the guardrail should deny.
+	//
+	// Topics is a required field
+	Topics []*GuardrailTopic `locationName:"topics" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicy) GoString() string {
+	return s.String()
+}
+
+// SetTopics sets the Topics field's value.
+func (s *GuardrailTopicPolicy) SetTopics(v []*GuardrailTopic) *GuardrailTopicPolicy {
+	s.Topics = v
+	return s
+}
+
+// Contains details about topics that the guardrail should identify and deny.
+//
+// This data type is used in the following API operations:
+//
+//   - CreateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateGuardrail.html#API_CreateGuardrail_RequestSyntax)
+//
+//   - UpdateGuardrail request body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_UpdateGuardrail.html#API_UpdateGuardrail_RequestSyntax)
+type GuardrailTopicPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of policies related to topics that the guardrail should deny.
+	//
+	// TopicsConfig is a required field
+	TopicsConfig []*GuardrailTopicConfig `locationName:"topicsConfig" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailTopicPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailTopicPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailTopicPolicyConfig"}
+	if s.TopicsConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicsConfig"))
+	}
+	if s.TopicsConfig != nil && len(s.TopicsConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TopicsConfig", 1))
+	}
+	if s.TopicsConfig != nil {
+		for i, v := range s.TopicsConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TopicsConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTopicsConfig sets the TopicsConfig field's value.
+func (s *GuardrailTopicPolicyConfig) SetTopicsConfig(v []*GuardrailTopicConfig) *GuardrailTopicPolicyConfig {
+	s.TopicsConfig = v
+	return s
+}
+
+// A word configured for the guardrail.
+type GuardrailWord struct {
+	_ struct{} `type:"structure"`
+
+	// Text of the word configured for the guardrail to block.
+	//
+	// Text is a required field
+	Text *string `locationName:"text" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWord) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *GuardrailWord) SetText(v string) *GuardrailWord {
+	s.Text = &v
+	return s
+}
+
+// A word to configure for the guardrail.
+type GuardrailWordConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Text of the word configured for the guardrail to block.
+	//
+	// Text is a required field
+	Text *string `locationName:"text" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailWordConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailWordConfig"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *GuardrailWordConfig) SetText(v string) *GuardrailWordConfig {
+	s.Text = &v
+	return s
+}
+
+// Contains details about the word policy configured for the guardrail.
+type GuardrailWordPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A list of managed words configured for the guardrail.
+	ManagedWordLists []*GuardrailManagedWords `locationName:"managedWordLists" type:"list"`
+
+	// A list of words configured for the guardrail.
+	Words []*GuardrailWord `locationName:"words" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicy) GoString() string {
+	return s.String()
+}
+
+// SetManagedWordLists sets the ManagedWordLists field's value.
+func (s *GuardrailWordPolicy) SetManagedWordLists(v []*GuardrailManagedWords) *GuardrailWordPolicy {
+	s.ManagedWordLists = v
+	return s
+}
+
+// SetWords sets the Words field's value.
+func (s *GuardrailWordPolicy) SetWords(v []*GuardrailWord) *GuardrailWordPolicy {
+	s.Words = v
+	return s
+}
+
+// Contains details about the word policy to configured for the guardrail.
+type GuardrailWordPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of managed words to configure for the guardrail.
+	ManagedWordListsConfig []*GuardrailManagedWordsConfig `locationName:"managedWordListsConfig" type:"list"`
+
+	// A list of words to configure for the guardrail.
+	WordsConfig []*GuardrailWordConfig `locationName:"wordsConfig" min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GuardrailWordPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GuardrailWordPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GuardrailWordPolicyConfig"}
+	if s.WordsConfig != nil && len(s.WordsConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WordsConfig", 1))
+	}
+	if s.ManagedWordListsConfig != nil {
+		for i, v := range s.ManagedWordListsConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedWordListsConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.WordsConfig != nil {
+		for i, v := range s.WordsConfig {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WordsConfig", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetManagedWordListsConfig sets the ManagedWordListsConfig field's value.
+func (s *GuardrailWordPolicyConfig) SetManagedWordListsConfig(v []*GuardrailManagedWordsConfig) *GuardrailWordPolicyConfig {
+	s.ManagedWordListsConfig = v
+	return s
+}
+
+// SetWordsConfig sets the WordsConfig field's value.
+func (s *GuardrailWordPolicyConfig) SetWordsConfig(v []*GuardrailWordConfig) *GuardrailWordPolicyConfig {
+	s.WordsConfig = v
+	return s
+}
+
+// Specifies the custom metrics, how tasks will be rated, the flow definition
+// ARN, and your custom prompt datasets. Model evaluation jobs use human workers
+// only support the use of custom prompt datasets. To learn more about custom
+// prompt datasets and the required format, see Custom prompt datasets (https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-prompt-datasets-custom.html).
+//
+// When you create custom metrics in HumanEvaluationCustomMetric you must specify
+// the metric's name. The list of names specified in the HumanEvaluationCustomMetric
+// array, must match the metricNames array of strings specified in EvaluationDatasetMetricConfig.
+// For example, if in the HumanEvaluationCustomMetric array your specified the
+// names "accuracy", "toxicity", "readability" as custom metrics then the metricNames
+// array would need to look like the following ["accuracy", "toxicity", "readability"]
+// in EvaluationDatasetMetricConfig.
+type HumanEvaluationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A HumanEvaluationCustomMetric object. It contains the names the metrics,
+	// how the metrics are to be evaluated, an optional description.
+	CustomMetrics []*HumanEvaluationCustomMetric `locationName:"customMetrics" min:"1" type:"list"`
+
+	// Use to specify the metrics, task, and prompt dataset to be used in your model
+	// evaluation job.
+	//
+	// DatasetMetricConfigs is a required field
+	DatasetMetricConfigs []*EvaluationDatasetMetricConfig `locationName:"datasetMetricConfigs" min:"1" type:"list" required:"true"`
+
+	// The parameters of the human workflow.
+	HumanWorkflowConfig *HumanWorkflowConfig `locationName:"humanWorkflowConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanEvaluationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanEvaluationConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HumanEvaluationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanEvaluationConfig"}
+	if s.CustomMetrics != nil && len(s.CustomMetrics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomMetrics", 1))
+	}
+	if s.DatasetMetricConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetMetricConfigs"))
+	}
+	if s.DatasetMetricConfigs != nil && len(s.DatasetMetricConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetMetricConfigs", 1))
+	}
+	if s.CustomMetrics != nil {
+		for i, v := range s.CustomMetrics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomMetrics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DatasetMetricConfigs != nil {
+		for i, v := range s.DatasetMetricConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatasetMetricConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.HumanWorkflowConfig != nil {
+		if err := s.HumanWorkflowConfig.Validate(); err != nil {
+			invalidParams.AddNested("HumanWorkflowConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomMetrics sets the CustomMetrics field's value.
+func (s *HumanEvaluationConfig) SetCustomMetrics(v []*HumanEvaluationCustomMetric) *HumanEvaluationConfig {
+	s.CustomMetrics = v
+	return s
+}
+
+// SetDatasetMetricConfigs sets the DatasetMetricConfigs field's value.
+func (s *HumanEvaluationConfig) SetDatasetMetricConfigs(v []*EvaluationDatasetMetricConfig) *HumanEvaluationConfig {
+	s.DatasetMetricConfigs = v
+	return s
+}
+
+// SetHumanWorkflowConfig sets the HumanWorkflowConfig field's value.
+func (s *HumanEvaluationConfig) SetHumanWorkflowConfig(v *HumanWorkflowConfig) *HumanEvaluationConfig {
+	s.HumanWorkflowConfig = v
+	return s
+}
+
+// In a model evaluation job that uses human workers you must define the name
+// of the metric, and how you want that metric rated ratingMethod, and an optional
+// description of the metric.
+type HumanEvaluationCustomMetric struct {
+	_ struct{} `type:"structure"`
+
+	// An optional description of the metric. Use this parameter to provide more
+	// details about the metric.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by HumanEvaluationCustomMetric's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The name of the metric. Your human evaluators will see this name in the evaluation
+	// UI.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by HumanEvaluationCustomMetric's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Choose how you want your human workers to evaluation your model. Valid values
+	// for rating methods are ThumbsUpDown, IndividualLikertScale,ComparisonLikertScale,
+	// ComparisonChoice, and ComparisonRank
+	//
+	// RatingMethod is a required field
+	RatingMethod *string `locationName:"ratingMethod" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanEvaluationCustomMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanEvaluationCustomMetric) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HumanEvaluationCustomMetric) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanEvaluationCustomMetric"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RatingMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("RatingMethod"))
+	}
+	if s.RatingMethod != nil && len(*s.RatingMethod) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RatingMethod", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *HumanEvaluationCustomMetric) SetDescription(v string) *HumanEvaluationCustomMetric {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HumanEvaluationCustomMetric) SetName(v string) *HumanEvaluationCustomMetric {
+	s.Name = &v
+	return s
+}
+
+// SetRatingMethod sets the RatingMethod field's value.
+func (s *HumanEvaluationCustomMetric) SetRatingMethod(v string) *HumanEvaluationCustomMetric {
+	s.RatingMethod = &v
+	return s
+}
+
+// Contains SageMakerFlowDefinition object. The object is used to specify the
+// prompt dataset, task type, rating method and metric names.
+type HumanWorkflowConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) for the flow definition
+	//
+	// FlowDefinitionArn is a required field
+	FlowDefinitionArn *string `locationName:"flowDefinitionArn" type:"string" required:"true"`
+
+	// Instructions for the flow definition
+	//
+	// Instructions is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by HumanWorkflowConfig's
+	// String and GoString methods.
+	Instructions *string `locationName:"instructions" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanWorkflowConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HumanWorkflowConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HumanWorkflowConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanWorkflowConfig"}
+	if s.FlowDefinitionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowDefinitionArn"))
+	}
+	if s.Instructions != nil && len(*s.Instructions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Instructions", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowDefinitionArn sets the FlowDefinitionArn field's value.
+func (s *HumanWorkflowConfig) SetFlowDefinitionArn(v string) *HumanWorkflowConfig {
+	s.FlowDefinitionArn = &v
+	return s
+}
+
+// SetInstructions sets the Instructions field's value.
+func (s *HumanWorkflowConfig) SetInstructions(v string) *HumanWorkflowConfig {
+	s.Instructions = &v
+	return s
+}
+
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -4178,7 +8888,8 @@ func (s *InternalServerException) RequestID() string {
 type ListCustomModelsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Return custom models only if the base model ARN matches this parameter.
+	// Return custom models only if the base model Amazon Resource Name (ARN) matches
+	// this parameter.
 	BaseModelArnEquals *string `location:"querystring" locationName:"baseModelArnEquals" min:"20" type:"string"`
 
 	// Return custom models created after the specified time.
@@ -4187,7 +8898,8 @@ type ListCustomModelsInput struct {
 	// Return custom models created before the specified time.
 	CreationTimeBefore *time.Time `location:"querystring" locationName:"creationTimeBefore" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Return custom models only if the foundation model ARN matches this parameter.
+	// Return custom models only if the foundation model Amazon Resource Name (ARN)
+	// matches this parameter.
 	FoundationModelArnEquals *string `location:"querystring" locationName:"foundationModelArnEquals" type:"string"`
 
 	// Maximum number of results to return in the response.
@@ -4341,19 +9053,178 @@ func (s *ListCustomModelsOutput) SetNextToken(v string) *ListCustomModelsOutput 
 	return s
 }
 
+type ListEvaluationJobsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A filter that includes model evaluation jobs created after the time specified.
+	CreationTimeAfter *time.Time `location:"querystring" locationName:"creationTimeAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// A filter that includes model evaluation jobs created prior to the time specified.
+	CreationTimeBefore *time.Time `location:"querystring" locationName:"creationTimeBefore" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Query parameter string for model evaluation job names.
+	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
+
+	// Continuation token from the previous response, for Amazon Bedrock to list
+	// the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// Allows you to sort model evaluation jobs by when they were created.
+	SortBy *string `location:"querystring" locationName:"sortBy" type:"string" enum:"SortJobsBy"`
+
+	// How you want the order of jobs sorted.
+	SortOrder *string `location:"querystring" locationName:"sortOrder" type:"string" enum:"SortOrder"`
+
+	// Only return jobs where the status condition is met.
+	StatusEquals *string `location:"querystring" locationName:"statusEquals" type:"string" enum:"EvaluationJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEvaluationJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEvaluationJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NameContains != nil && len(*s.NameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameContains", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListEvaluationJobsInput) SetCreationTimeAfter(v time.Time) *ListEvaluationJobsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListEvaluationJobsInput) SetCreationTimeBefore(v time.Time) *ListEvaluationJobsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEvaluationJobsInput) SetMaxResults(v int64) *ListEvaluationJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListEvaluationJobsInput) SetNameContains(v string) *ListEvaluationJobsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationJobsInput) SetNextToken(v string) *ListEvaluationJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListEvaluationJobsInput) SetSortBy(v string) *ListEvaluationJobsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListEvaluationJobsInput) SetSortOrder(v string) *ListEvaluationJobsInput {
+	s.SortOrder = &v
+	return s
+}
+
+// SetStatusEquals sets the StatusEquals field's value.
+func (s *ListEvaluationJobsInput) SetStatusEquals(v string) *ListEvaluationJobsInput {
+	s.StatusEquals = &v
+	return s
+}
+
+type ListEvaluationJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of the model evaluation jobs.
+	JobSummaries []*EvaluationSummary `locationName:"jobSummaries" min:"1" type:"list"`
+
+	// Continuation token from the previous response, for Amazon Bedrock to list
+	// the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEvaluationJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobSummaries sets the JobSummaries field's value.
+func (s *ListEvaluationJobsOutput) SetJobSummaries(v []*EvaluationSummary) *ListEvaluationJobsOutput {
+	s.JobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEvaluationJobsOutput) SetNextToken(v string) *ListEvaluationJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListFoundationModelsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// List by customization type.
+	// Return models that support the customization type that you specify. For more
+	// information, see Custom models (https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html)
+	// in the Amazon Bedrock User Guide.
 	ByCustomizationType *string `location:"querystring" locationName:"byCustomizationType" type:"string" enum:"ModelCustomization"`
 
-	// List by inference type.
+	// Return models that support the inference type that you specify. For more
+	// information, see Provisioned Throughput (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html)
+	// in the Amazon Bedrock User Guide.
 	ByInferenceType *string `location:"querystring" locationName:"byInferenceType" type:"string" enum:"InferenceType"`
 
-	// List by output modality type.
+	// Return models that support the output modality that you specify.
 	ByOutputModality *string `location:"querystring" locationName:"byOutputModality" type:"string" enum:"ModelModality"`
 
-	// A Amazon Bedrock model provider.
+	// Return models belonging to the model provider that you specify.
 	ByProvider *string `location:"querystring" locationName:"byProvider" type:"string"`
 }
 
@@ -4427,6 +9298,117 @@ func (s ListFoundationModelsOutput) GoString() string {
 // SetModelSummaries sets the ModelSummaries field's value.
 func (s *ListFoundationModelsOutput) SetModelSummaries(v []*FoundationModelSummary) *ListFoundationModelsOutput {
 	s.ModelSummaries = v
+	return s
+}
+
+type ListGuardrailsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the guardrail.
+	GuardrailIdentifier *string `location:"querystring" locationName:"guardrailIdentifier" type:"string"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// If there are more results than were returned in the response, the response
+	// returns a nextToken that you can send in another ListGuardrails request to
+	// see the next batch of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGuardrailsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGuardrailsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGuardrailsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGuardrailsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *ListGuardrailsInput) SetGuardrailIdentifier(v string) *ListGuardrailsInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListGuardrailsInput) SetMaxResults(v int64) *ListGuardrailsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGuardrailsInput) SetNextToken(v string) *ListGuardrailsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListGuardrailsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects, each of which contains details about a guardrail.
+	//
+	// Guardrails is a required field
+	Guardrails []*GuardrailSummary `locationName:"guardrails" type:"list" required:"true"`
+
+	// If there are more results than were returned in the response, the response
+	// returns a nextToken that you can send in another ListGuardrails request to
+	// see the next batch of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGuardrailsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListGuardrailsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGuardrails sets the Guardrails field's value.
+func (s *ListGuardrailsOutput) SetGuardrails(v []*GuardrailSummary) *ListGuardrailsOutput {
+	s.Guardrails = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGuardrailsOutput) SetNextToken(v string) *ListGuardrailsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4587,33 +9569,41 @@ func (s *ListModelCustomizationJobsOutput) SetNextToken(v string) *ListModelCust
 type ListProvisionedModelThroughputsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Return provisioned capacities created after the specified time.
+	// A filter that returns Provisioned Throughputs created after the specified
+	// time.
 	CreationTimeAfter *time.Time `location:"querystring" locationName:"creationTimeAfter" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Return provisioned capacities created before the specified time.
+	// A filter that returns Provisioned Throughputs created before the specified
+	// time.
 	CreationTimeBefore *time.Time `location:"querystring" locationName:"creationTimeBefore" type:"timestamp" timestampFormat:"iso8601"`
 
-	// THe maximum number of results to return in the response.
+	// THe maximum number of results to return in the response. If there are more
+	// results than the number you specified, the response returns a nextToken value.
+	// To see the next batch of results, send the nextToken value in another list
+	// request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// Return the list of provisioned capacities where their model ARN is equal
-	// to this parameter.
+	// A filter that returns Provisioned Throughputs whose model Amazon Resource
+	// Name (ARN) is equal to the value that you specify.
 	ModelArnEquals *string `location:"querystring" locationName:"modelArnEquals" min:"20" type:"string"`
 
-	// Return the list of provisioned capacities if their name contains these characters.
+	// A filter that returns Provisioned Throughputs if their name contains the
+	// expression that you specify.
 	NameContains *string `location:"querystring" locationName:"nameContains" min:"1" type:"string"`
 
-	// Continuation token from the previous response, for Amazon Bedrock to list
-	// the next set of results.
+	// If there are more results than the number you specified in the maxResults
+	// field, the response returns a nextToken value. To see the next batch of results,
+	// specify the nextToken value in this field.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The field to sort by in the returned list of provisioned capacities.
+	// The field by which to sort the returned list of Provisioned Throughputs.
 	SortBy *string `location:"querystring" locationName:"sortBy" type:"string" enum:"SortByProvisionedModels"`
 
 	// The sort order of the results.
 	SortOrder *string `location:"querystring" locationName:"sortOrder" type:"string" enum:"SortOrder"`
 
-	// Return the list of provisioned capacities that match the specified status.
+	// A filter that returns Provisioned Throughputs if their statuses matches the
+	// value that you specify.
 	StatusEquals *string `location:"querystring" locationName:"statusEquals" type:"string" enum:"ProvisionedModelStatus"`
 }
 
@@ -4714,10 +9704,12 @@ func (s *ListProvisionedModelThroughputsInput) SetStatusEquals(v string) *ListPr
 type ListProvisionedModelThroughputsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Continuation token for the next request to list the next set of results.
+	// If there are more results than the number you specified in the maxResults
+	// field, this value is returned. To see the next batch of results, include
+	// this value in the nextToken field in another list request.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// List of summaries, one for each provisioned throughput in the response.
+	// A list of summaries, one for each Provisioned Throughput in the response.
 	ProvisionedModelSummaries []*ProvisionedModelSummary `locationName:"provisionedModelSummaries" type:"list"`
 }
 
@@ -4754,7 +9746,7 @@ func (s *ListProvisionedModelThroughputsOutput) SetProvisionedModelSummaries(v [
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource.
+	// The Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `locationName:"resourceARN" min:"20" type:"string" required:"true"`
@@ -4831,7 +9823,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// Configuration fields for invokation logging.
+// Configuration fields for invocation logging.
 type LoggingConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4923,7 +9915,7 @@ func (s *LoggingConfig) SetTextDataDeliveryEnabled(v bool) *LoggingConfig {
 type ModelCustomizationJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the base model.
+	// Amazon Resource Name (ARN) of the base model.
 	//
 	// BaseModelArn is a required field
 	BaseModelArn *string `locationName:"baseModelArn" min:"20" type:"string" required:"true"`
@@ -4933,7 +9925,7 @@ type ModelCustomizationJobSummary struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// ARN of the custom model.
+	// Amazon Resource Name (ARN) of the custom model.
 	CustomModelArn *string `locationName:"customModelArn" min:"20" type:"string"`
 
 	// Name of the custom model.
@@ -4946,7 +9938,7 @@ type ModelCustomizationJobSummary struct {
 	// Time that the customization job ended.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// ARN of the customization job.
+	// Amazon Resource Name (ARN) of the customization job.
 	//
 	// JobArn is a required field
 	JobArn *string `locationName:"jobArn" type:"string" required:"true"`
@@ -5093,62 +10085,73 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	return s
 }
 
-// Set of fields associated with a provisioned throughput.
+// A summary of information about a Provisioned Throughput.
+//
+// This data type is used in the following API operations:
+//
+//   - ListProvisionedThroughputs response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListProvisionedModelThroughputs.html#API_ListProvisionedModelThroughputs_ResponseSyntax)
 type ProvisionedModelSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Commitment duration for the provisioned throughput.
+	// The duration for which the Provisioned Throughput was committed.
 	CommitmentDuration *string `locationName:"commitmentDuration" type:"string" enum:"CommitmentDuration"`
 
-	// Commitment expiration time for the provisioned throughput.
+	// The timestamp for when the commitment term of the Provisioned Throughput
+	// expires.
 	CommitmentExpirationTime *time.Time `locationName:"commitmentExpirationTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The time that this provisioned throughput was created.
+	// The time that the Provisioned Throughput was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Desired model ARN.
+	// The Amazon Resource Name (ARN) of the model requested to be associated to
+	// this Provisioned Throughput. This value differs from the modelArn if updating
+	// hasn't completed.
 	//
 	// DesiredModelArn is a required field
 	DesiredModelArn *string `locationName:"desiredModelArn" min:"20" type:"string" required:"true"`
 
-	// Desired model units.
+	// The number of model units that was requested to be allocated to the Provisioned
+	// Throughput.
 	//
 	// DesiredModelUnits is a required field
 	DesiredModelUnits *int64 `locationName:"desiredModelUnits" min:"1" type:"integer" required:"true"`
 
-	// Foundation model ARN.
+	// The Amazon Resource Name (ARN) of the base model for which the Provisioned
+	// Throughput was created, or of the base model that the custom model for which
+	// the Provisioned Throughput was created was customized.
 	//
 	// FoundationModelArn is a required field
 	FoundationModelArn *string `locationName:"foundationModelArn" type:"string" required:"true"`
 
-	// The time that this provisioned throughput was last modified.
+	// The time that the Provisioned Throughput was last modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The ARN of the model associated with this provisioned throughput.
+	// The Amazon Resource Name (ARN) of the model associated with the Provisioned
+	// Throughput.
 	//
 	// ModelArn is a required field
 	ModelArn *string `locationName:"modelArn" min:"20" type:"string" required:"true"`
 
-	// The number of model units allocated.
+	// The number of model units allocated to the Provisioned Throughput.
 	//
 	// ModelUnits is a required field
 	ModelUnits *int64 `locationName:"modelUnits" min:"1" type:"integer" required:"true"`
 
-	// The ARN of the provisioned throughput.
+	// The Amazon Resource Name (ARN) of the Provisioned Throughput.
 	//
 	// ProvisionedModelArn is a required field
 	ProvisionedModelArn *string `locationName:"provisionedModelArn" type:"string" required:"true"`
 
-	// The name of the provisioned throughput.
+	// The name of the Provisioned Throughput.
 	//
 	// ProvisionedModelName is a required field
 	ProvisionedModelName *string `locationName:"provisionedModelName" min:"1" type:"string" required:"true"`
 
-	// Status of the provisioned throughput.
+	// The status of the Provisioned Throughput.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ProvisionedModelStatus"`
@@ -5317,8 +10320,8 @@ func (s PutModelInvocationLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
 
-// The specified resource ARN was not found. Check the ARN and try your request
-// again.
+// The specified resource Amazon Resource Name (ARN) was not found. Check the
+// Amazon Resource Name (ARN) and try your request again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5505,6 +10508,81 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type StopEvaluationJobInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the model evaluation job you want to stop.
+	//
+	// JobIdentifier is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StopEvaluationJobInput's
+	// String and GoString methods.
+	//
+	// JobIdentifier is a required field
+	JobIdentifier *string `location:"uri" locationName:"jobIdentifier" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEvaluationJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEvaluationJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopEvaluationJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopEvaluationJobInput"}
+	if s.JobIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobIdentifier"))
+	}
+	if s.JobIdentifier != nil && len(*s.JobIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobIdentifier sets the JobIdentifier field's value.
+func (s *StopEvaluationJobInput) SetJobIdentifier(v string) *StopEvaluationJobInput {
+	s.JobIdentifier = &v
+	return s
+}
+
+type StopEvaluationJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEvaluationJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopEvaluationJobOutput) GoString() string {
+	return s.String()
+}
+
 type StopModelCustomizationJobInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5643,7 +10721,7 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource to tag.
+	// The Amazon Resource Name (ARN) of the resource to tag.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `locationName:"resourceARN" min:"20" type:"string" required:"true"`
@@ -5953,7 +11031,7 @@ func (s *TrainingMetrics) SetTrainingLoss(v float64) *TrainingMetrics {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource to untag.
+	// The Amazon Resource Name (ARN) of the resource to untag.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `locationName:"resourceARN" min:"20" type:"string" required:"true"`
@@ -6035,16 +11113,288 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateGuardrailInput struct {
+	_ struct{} `type:"structure"`
+
+	// The message to return when the guardrail blocks a prompt.
+	//
+	// BlockedInputMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateGuardrailInput's
+	// String and GoString methods.
+	//
+	// BlockedInputMessaging is a required field
+	BlockedInputMessaging *string `locationName:"blockedInputMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The message to return when the guardrail blocks a model response.
+	//
+	// BlockedOutputsMessaging is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateGuardrailInput's
+	// String and GoString methods.
+	//
+	// BlockedOutputsMessaging is a required field
+	BlockedOutputsMessaging *string `locationName:"blockedOutputsMessaging" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The content policy to configure for the guardrail.
+	ContentPolicyConfig *GuardrailContentPolicyConfig `locationName:"contentPolicyConfig" type:"structure"`
+
+	// A description of the guardrail.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateGuardrailInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier of the guardrail
+	//
+	// GuardrailIdentifier is a required field
+	GuardrailIdentifier *string `location:"uri" locationName:"guardrailIdentifier" type:"string" required:"true"`
+
+	// The ARN of the KMS key with which to encrypt the guardrail.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// A name for the guardrail.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateGuardrailInput's
+	// String and GoString methods.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The sensitive information policy to configure for the guardrail.
+	SensitiveInformationPolicyConfig *GuardrailSensitiveInformationPolicyConfig `locationName:"sensitiveInformationPolicyConfig" type:"structure"`
+
+	// The topic policy to configure for the guardrail.
+	TopicPolicyConfig *GuardrailTopicPolicyConfig `locationName:"topicPolicyConfig" type:"structure"`
+
+	// The word policy to configure for the guardrail.
+	WordPolicyConfig *GuardrailWordPolicyConfig `locationName:"wordPolicyConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGuardrailInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGuardrailInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGuardrailInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGuardrailInput"}
+	if s.BlockedInputMessaging == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockedInputMessaging"))
+	}
+	if s.BlockedInputMessaging != nil && len(*s.BlockedInputMessaging) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockedInputMessaging", 1))
+	}
+	if s.BlockedOutputsMessaging == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlockedOutputsMessaging"))
+	}
+	if s.BlockedOutputsMessaging != nil && len(*s.BlockedOutputsMessaging) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockedOutputsMessaging", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.GuardrailIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GuardrailIdentifier"))
+	}
+	if s.GuardrailIdentifier != nil && len(*s.GuardrailIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GuardrailIdentifier", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ContentPolicyConfig != nil {
+		if err := s.ContentPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ContentPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SensitiveInformationPolicyConfig != nil {
+		if err := s.SensitiveInformationPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("SensitiveInformationPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TopicPolicyConfig != nil {
+		if err := s.TopicPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("TopicPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WordPolicyConfig != nil {
+		if err := s.WordPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("WordPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlockedInputMessaging sets the BlockedInputMessaging field's value.
+func (s *UpdateGuardrailInput) SetBlockedInputMessaging(v string) *UpdateGuardrailInput {
+	s.BlockedInputMessaging = &v
+	return s
+}
+
+// SetBlockedOutputsMessaging sets the BlockedOutputsMessaging field's value.
+func (s *UpdateGuardrailInput) SetBlockedOutputsMessaging(v string) *UpdateGuardrailInput {
+	s.BlockedOutputsMessaging = &v
+	return s
+}
+
+// SetContentPolicyConfig sets the ContentPolicyConfig field's value.
+func (s *UpdateGuardrailInput) SetContentPolicyConfig(v *GuardrailContentPolicyConfig) *UpdateGuardrailInput {
+	s.ContentPolicyConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateGuardrailInput) SetDescription(v string) *UpdateGuardrailInput {
+	s.Description = &v
+	return s
+}
+
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *UpdateGuardrailInput) SetGuardrailIdentifier(v string) *UpdateGuardrailInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateGuardrailInput) SetKmsKeyId(v string) *UpdateGuardrailInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateGuardrailInput) SetName(v string) *UpdateGuardrailInput {
+	s.Name = &v
+	return s
+}
+
+// SetSensitiveInformationPolicyConfig sets the SensitiveInformationPolicyConfig field's value.
+func (s *UpdateGuardrailInput) SetSensitiveInformationPolicyConfig(v *GuardrailSensitiveInformationPolicyConfig) *UpdateGuardrailInput {
+	s.SensitiveInformationPolicyConfig = v
+	return s
+}
+
+// SetTopicPolicyConfig sets the TopicPolicyConfig field's value.
+func (s *UpdateGuardrailInput) SetTopicPolicyConfig(v *GuardrailTopicPolicyConfig) *UpdateGuardrailInput {
+	s.TopicPolicyConfig = v
+	return s
+}
+
+// SetWordPolicyConfig sets the WordPolicyConfig field's value.
+func (s *UpdateGuardrailInput) SetWordPolicyConfig(v *GuardrailWordPolicyConfig) *UpdateGuardrailInput {
+	s.WordPolicyConfig = v
+	return s
+}
+
+type UpdateGuardrailOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the guardrail that was created.
+	//
+	// GuardrailArn is a required field
+	GuardrailArn *string `locationName:"guardrailArn" type:"string" required:"true"`
+
+	// The unique identifier of the guardrail
+	//
+	// GuardrailId is a required field
+	GuardrailId *string `locationName:"guardrailId" type:"string" required:"true"`
+
+	// The date and time at which the guardrail was updated.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The version of the guardrail.
+	//
+	// Version is a required field
+	Version *string `locationName:"version" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGuardrailOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateGuardrailOutput) GoString() string {
+	return s.String()
+}
+
+// SetGuardrailArn sets the GuardrailArn field's value.
+func (s *UpdateGuardrailOutput) SetGuardrailArn(v string) *UpdateGuardrailOutput {
+	s.GuardrailArn = &v
+	return s
+}
+
+// SetGuardrailId sets the GuardrailId field's value.
+func (s *UpdateGuardrailOutput) SetGuardrailId(v string) *UpdateGuardrailOutput {
+	s.GuardrailId = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateGuardrailOutput) SetUpdatedAt(v time.Time) *UpdateGuardrailOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateGuardrailOutput) SetVersion(v string) *UpdateGuardrailOutput {
+	s.Version = &v
+	return s
+}
+
 type UpdateProvisionedModelThroughputInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the new model to associate with this provisioned throughput.
+	// The Amazon Resource Name (ARN) of the new model to associate with this Provisioned
+	// Throughput. You can't specify this field if this Provisioned Throughput is
+	// associated with a base model.
+	//
+	// If this Provisioned Throughput is associated with a custom model, you can
+	// specify one of the following options:
+	//
+	//    * The base model from which the custom model was customized.
+	//
+	//    * Another custom model that was customized from the same base model as
+	//    the custom model.
 	DesiredModelId *string `locationName:"desiredModelId" min:"1" type:"string"`
 
-	// The new name for this provisioned throughput.
+	// The new name for this Provisioned Throughput.
 	DesiredProvisionedModelName *string `locationName:"desiredProvisionedModelName" min:"1" type:"string"`
 
-	// The ARN or name of the provisioned throughput to update.
+	// The Amazon Resource Name (ARN) or name of the Provisioned Throughput to update.
 	//
 	// ProvisionedModelId is a required field
 	ProvisionedModelId *string `location:"uri" locationName:"provisionedModelId" type:"string" required:"true"`
@@ -6433,6 +11783,78 @@ func CustomizationType_Values() []string {
 }
 
 const (
+	// EvaluationJobStatusInProgress is a EvaluationJobStatus enum value
+	EvaluationJobStatusInProgress = "InProgress"
+
+	// EvaluationJobStatusCompleted is a EvaluationJobStatus enum value
+	EvaluationJobStatusCompleted = "Completed"
+
+	// EvaluationJobStatusFailed is a EvaluationJobStatus enum value
+	EvaluationJobStatusFailed = "Failed"
+
+	// EvaluationJobStatusStopping is a EvaluationJobStatus enum value
+	EvaluationJobStatusStopping = "Stopping"
+
+	// EvaluationJobStatusStopped is a EvaluationJobStatus enum value
+	EvaluationJobStatusStopped = "Stopped"
+)
+
+// EvaluationJobStatus_Values returns all elements of the EvaluationJobStatus enum
+func EvaluationJobStatus_Values() []string {
+	return []string{
+		EvaluationJobStatusInProgress,
+		EvaluationJobStatusCompleted,
+		EvaluationJobStatusFailed,
+		EvaluationJobStatusStopping,
+		EvaluationJobStatusStopped,
+	}
+}
+
+const (
+	// EvaluationJobTypeHuman is a EvaluationJobType enum value
+	EvaluationJobTypeHuman = "Human"
+
+	// EvaluationJobTypeAutomated is a EvaluationJobType enum value
+	EvaluationJobTypeAutomated = "Automated"
+)
+
+// EvaluationJobType_Values returns all elements of the EvaluationJobType enum
+func EvaluationJobType_Values() []string {
+	return []string{
+		EvaluationJobTypeHuman,
+		EvaluationJobTypeAutomated,
+	}
+}
+
+const (
+	// EvaluationTaskTypeSummarization is a EvaluationTaskType enum value
+	EvaluationTaskTypeSummarization = "Summarization"
+
+	// EvaluationTaskTypeClassification is a EvaluationTaskType enum value
+	EvaluationTaskTypeClassification = "Classification"
+
+	// EvaluationTaskTypeQuestionAndAnswer is a EvaluationTaskType enum value
+	EvaluationTaskTypeQuestionAndAnswer = "QuestionAndAnswer"
+
+	// EvaluationTaskTypeGeneration is a EvaluationTaskType enum value
+	EvaluationTaskTypeGeneration = "Generation"
+
+	// EvaluationTaskTypeCustom is a EvaluationTaskType enum value
+	EvaluationTaskTypeCustom = "Custom"
+)
+
+// EvaluationTaskType_Values returns all elements of the EvaluationTaskType enum
+func EvaluationTaskType_Values() []string {
+	return []string{
+		EvaluationTaskTypeSummarization,
+		EvaluationTaskTypeClassification,
+		EvaluationTaskTypeQuestionAndAnswer,
+		EvaluationTaskTypeGeneration,
+		EvaluationTaskTypeCustom,
+	}
+}
+
+const (
 	// FineTuningJobStatusInProgress is a FineTuningJobStatus enum value
 	FineTuningJobStatusInProgress = "InProgress"
 
@@ -6473,6 +11895,266 @@ func FoundationModelLifecycleStatus_Values() []string {
 	return []string{
 		FoundationModelLifecycleStatusActive,
 		FoundationModelLifecycleStatusLegacy,
+	}
+}
+
+const (
+	// GuardrailContentFilterTypeSexual is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeSexual = "SEXUAL"
+
+	// GuardrailContentFilterTypeViolence is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeViolence = "VIOLENCE"
+
+	// GuardrailContentFilterTypeHate is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeHate = "HATE"
+
+	// GuardrailContentFilterTypeInsults is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeInsults = "INSULTS"
+
+	// GuardrailContentFilterTypeMisconduct is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypeMisconduct = "MISCONDUCT"
+
+	// GuardrailContentFilterTypePromptAttack is a GuardrailContentFilterType enum value
+	GuardrailContentFilterTypePromptAttack = "PROMPT_ATTACK"
+)
+
+// GuardrailContentFilterType_Values returns all elements of the GuardrailContentFilterType enum
+func GuardrailContentFilterType_Values() []string {
+	return []string{
+		GuardrailContentFilterTypeSexual,
+		GuardrailContentFilterTypeViolence,
+		GuardrailContentFilterTypeHate,
+		GuardrailContentFilterTypeInsults,
+		GuardrailContentFilterTypeMisconduct,
+		GuardrailContentFilterTypePromptAttack,
+	}
+}
+
+const (
+	// GuardrailFilterStrengthNone is a GuardrailFilterStrength enum value
+	GuardrailFilterStrengthNone = "NONE"
+
+	// GuardrailFilterStrengthLow is a GuardrailFilterStrength enum value
+	GuardrailFilterStrengthLow = "LOW"
+
+	// GuardrailFilterStrengthMedium is a GuardrailFilterStrength enum value
+	GuardrailFilterStrengthMedium = "MEDIUM"
+
+	// GuardrailFilterStrengthHigh is a GuardrailFilterStrength enum value
+	GuardrailFilterStrengthHigh = "HIGH"
+)
+
+// GuardrailFilterStrength_Values returns all elements of the GuardrailFilterStrength enum
+func GuardrailFilterStrength_Values() []string {
+	return []string{
+		GuardrailFilterStrengthNone,
+		GuardrailFilterStrengthLow,
+		GuardrailFilterStrengthMedium,
+		GuardrailFilterStrengthHigh,
+	}
+}
+
+const (
+	// GuardrailManagedWordsTypeProfanity is a GuardrailManagedWordsType enum value
+	GuardrailManagedWordsTypeProfanity = "PROFANITY"
+)
+
+// GuardrailManagedWordsType_Values returns all elements of the GuardrailManagedWordsType enum
+func GuardrailManagedWordsType_Values() []string {
+	return []string{
+		GuardrailManagedWordsTypeProfanity,
+	}
+}
+
+const (
+	// GuardrailPiiEntityTypeAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAddress = "ADDRESS"
+
+	// GuardrailPiiEntityTypeAge is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAge = "AGE"
+
+	// GuardrailPiiEntityTypeAwsAccessKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsAccessKey = "AWS_ACCESS_KEY"
+
+	// GuardrailPiiEntityTypeAwsSecretKey is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeAwsSecretKey = "AWS_SECRET_KEY"
+
+	// GuardrailPiiEntityTypeCaHealthNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaHealthNumber = "CA_HEALTH_NUMBER"
+
+	// GuardrailPiiEntityTypeCaSocialInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCaSocialInsuranceNumber = "CA_SOCIAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeCreditDebitCardCvv is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardCvv = "CREDIT_DEBIT_CARD_CVV"
+
+	// GuardrailPiiEntityTypeCreditDebitCardExpiry is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardExpiry = "CREDIT_DEBIT_CARD_EXPIRY"
+
+	// GuardrailPiiEntityTypeCreditDebitCardNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeCreditDebitCardNumber = "CREDIT_DEBIT_CARD_NUMBER"
+
+	// GuardrailPiiEntityTypeDriverId is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeDriverId = "DRIVER_ID"
+
+	// GuardrailPiiEntityTypeEmail is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeEmail = "EMAIL"
+
+	// GuardrailPiiEntityTypeInternationalBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeInternationalBankAccountNumber = "INTERNATIONAL_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeIpAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeIpAddress = "IP_ADDRESS"
+
+	// GuardrailPiiEntityTypeLicensePlate is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeLicensePlate = "LICENSE_PLATE"
+
+	// GuardrailPiiEntityTypeMacAddress is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeMacAddress = "MAC_ADDRESS"
+
+	// GuardrailPiiEntityTypeName is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeName = "NAME"
+
+	// GuardrailPiiEntityTypePassword is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePassword = "PASSWORD"
+
+	// GuardrailPiiEntityTypePhone is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePhone = "PHONE"
+
+	// GuardrailPiiEntityTypePin is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypePin = "PIN"
+
+	// GuardrailPiiEntityTypeSwiftCode is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeSwiftCode = "SWIFT_CODE"
+
+	// GuardrailPiiEntityTypeUkNationalHealthServiceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalHealthServiceNumber = "UK_NATIONAL_HEALTH_SERVICE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkNationalInsuranceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkNationalInsuranceNumber = "UK_NATIONAL_INSURANCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber = "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+
+	// GuardrailPiiEntityTypeUrl is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUrl = "URL"
+
+	// GuardrailPiiEntityTypeUsername is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsername = "USERNAME"
+
+	// GuardrailPiiEntityTypeUsBankAccountNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankAccountNumber = "US_BANK_ACCOUNT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsBankRoutingNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsBankRoutingNumber = "US_BANK_ROUTING_NUMBER"
+
+	// GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber = "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER"
+
+	// GuardrailPiiEntityTypeUsPassportNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsPassportNumber = "US_PASSPORT_NUMBER"
+
+	// GuardrailPiiEntityTypeUsSocialSecurityNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeUsSocialSecurityNumber = "US_SOCIAL_SECURITY_NUMBER"
+
+	// GuardrailPiiEntityTypeVehicleIdentificationNumber is a GuardrailPiiEntityType enum value
+	GuardrailPiiEntityTypeVehicleIdentificationNumber = "VEHICLE_IDENTIFICATION_NUMBER"
+)
+
+// GuardrailPiiEntityType_Values returns all elements of the GuardrailPiiEntityType enum
+func GuardrailPiiEntityType_Values() []string {
+	return []string{
+		GuardrailPiiEntityTypeAddress,
+		GuardrailPiiEntityTypeAge,
+		GuardrailPiiEntityTypeAwsAccessKey,
+		GuardrailPiiEntityTypeAwsSecretKey,
+		GuardrailPiiEntityTypeCaHealthNumber,
+		GuardrailPiiEntityTypeCaSocialInsuranceNumber,
+		GuardrailPiiEntityTypeCreditDebitCardCvv,
+		GuardrailPiiEntityTypeCreditDebitCardExpiry,
+		GuardrailPiiEntityTypeCreditDebitCardNumber,
+		GuardrailPiiEntityTypeDriverId,
+		GuardrailPiiEntityTypeEmail,
+		GuardrailPiiEntityTypeInternationalBankAccountNumber,
+		GuardrailPiiEntityTypeIpAddress,
+		GuardrailPiiEntityTypeLicensePlate,
+		GuardrailPiiEntityTypeMacAddress,
+		GuardrailPiiEntityTypeName,
+		GuardrailPiiEntityTypePassword,
+		GuardrailPiiEntityTypePhone,
+		GuardrailPiiEntityTypePin,
+		GuardrailPiiEntityTypeSwiftCode,
+		GuardrailPiiEntityTypeUkNationalHealthServiceNumber,
+		GuardrailPiiEntityTypeUkNationalInsuranceNumber,
+		GuardrailPiiEntityTypeUkUniqueTaxpayerReferenceNumber,
+		GuardrailPiiEntityTypeUrl,
+		GuardrailPiiEntityTypeUsername,
+		GuardrailPiiEntityTypeUsBankAccountNumber,
+		GuardrailPiiEntityTypeUsBankRoutingNumber,
+		GuardrailPiiEntityTypeUsIndividualTaxIdentificationNumber,
+		GuardrailPiiEntityTypeUsPassportNumber,
+		GuardrailPiiEntityTypeUsSocialSecurityNumber,
+		GuardrailPiiEntityTypeVehicleIdentificationNumber,
+	}
+}
+
+const (
+	// GuardrailSensitiveInformationActionBlock is a GuardrailSensitiveInformationAction enum value
+	GuardrailSensitiveInformationActionBlock = "BLOCK"
+
+	// GuardrailSensitiveInformationActionAnonymize is a GuardrailSensitiveInformationAction enum value
+	GuardrailSensitiveInformationActionAnonymize = "ANONYMIZE"
+)
+
+// GuardrailSensitiveInformationAction_Values returns all elements of the GuardrailSensitiveInformationAction enum
+func GuardrailSensitiveInformationAction_Values() []string {
+	return []string{
+		GuardrailSensitiveInformationActionBlock,
+		GuardrailSensitiveInformationActionAnonymize,
+	}
+}
+
+const (
+	// GuardrailStatusCreating is a GuardrailStatus enum value
+	GuardrailStatusCreating = "CREATING"
+
+	// GuardrailStatusUpdating is a GuardrailStatus enum value
+	GuardrailStatusUpdating = "UPDATING"
+
+	// GuardrailStatusVersioning is a GuardrailStatus enum value
+	GuardrailStatusVersioning = "VERSIONING"
+
+	// GuardrailStatusReady is a GuardrailStatus enum value
+	GuardrailStatusReady = "READY"
+
+	// GuardrailStatusFailed is a GuardrailStatus enum value
+	GuardrailStatusFailed = "FAILED"
+
+	// GuardrailStatusDeleting is a GuardrailStatus enum value
+	GuardrailStatusDeleting = "DELETING"
+)
+
+// GuardrailStatus_Values returns all elements of the GuardrailStatus enum
+func GuardrailStatus_Values() []string {
+	return []string{
+		GuardrailStatusCreating,
+		GuardrailStatusUpdating,
+		GuardrailStatusVersioning,
+		GuardrailStatusReady,
+		GuardrailStatusFailed,
+		GuardrailStatusDeleting,
+	}
+}
+
+const (
+	// GuardrailTopicTypeDeny is a GuardrailTopicType enum value
+	GuardrailTopicTypeDeny = "DENY"
+)
+
+// GuardrailTopicType_Values returns all elements of the GuardrailTopicType enum
+func GuardrailTopicType_Values() []string {
+	return []string{
+		GuardrailTopicTypeDeny,
 	}
 }
 

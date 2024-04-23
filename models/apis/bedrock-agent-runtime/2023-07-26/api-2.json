@@ -336,6 +336,31 @@
       "box": true,
       "type": "boolean"
     },
+    "ByteContentBlob": {
+      "max": 10485760,
+      "min": 1,
+      "sensitive": true,
+      "type": "blob"
+    },
+    "ByteContentDoc": {
+      "members": {
+        "contentType": {
+          "shape": "ContentType"
+        },
+        "data": {
+          "shape": "ByteContentBlob"
+        },
+        "identifier": {
+          "shape": "Identifier"
+        }
+      },
+      "required": [
+        "contentType",
+        "data",
+        "identifier"
+      ],
+      "type": "structure"
+    },
     "Citation": {
       "members": {
         "generatedResponsePart": {
@@ -383,6 +408,10 @@
         "shape": "Parameters"
       }
     },
+    "ContentType": {
+      "pattern": "[a-z]{1,20}/.{1,20}",
+      "type": "string"
+    },
     "CreationMode": {
       "enum": [
         "DEFAULT",
@@ -409,6 +438,64 @@
     "Double": {
       "box": true,
       "type": "double"
+    },
+    "ExternalSource": {
+      "members": {
+        "byteContent": {
+          "shape": "ByteContentDoc"
+        },
+        "s3Location": {
+          "shape": "S3ObjectDoc"
+        },
+        "sourceType": {
+          "shape": "ExternalSourceType"
+        }
+      },
+      "required": [
+        "sourceType"
+      ],
+      "type": "structure"
+    },
+    "ExternalSourceType": {
+      "enum": [
+        "S3",
+        "BYTE_CONTENT"
+      ],
+      "type": "string"
+    },
+    "ExternalSources": {
+      "max": 1,
+      "member": {
+        "shape": "ExternalSource"
+      },
+      "min": 1,
+      "type": "list"
+    },
+    "ExternalSourcesGenerationConfiguration": {
+      "members": {
+        "promptTemplate": {
+          "shape": "PromptTemplate"
+        }
+      },
+      "type": "structure"
+    },
+    "ExternalSourcesRetrieveAndGenerateConfiguration": {
+      "members": {
+        "generationConfiguration": {
+          "shape": "ExternalSourcesGenerationConfiguration"
+        },
+        "modelArn": {
+          "shape": "BedrockModelArn"
+        },
+        "sources": {
+          "shape": "ExternalSources"
+        }
+      },
+      "required": [
+        "modelArn",
+        "sources"
+      ],
+      "type": "structure"
     },
     "FailureReasonString": {
       "sensitive": true,
@@ -519,6 +606,12 @@
         }
       },
       "type": "structure"
+    },
+    "Identifier": {
+      "max": 1024,
+      "min": 1,
+      "sensitive": true,
+      "type": "string"
     },
     "InferenceConfiguration": {
       "members": {
@@ -1237,6 +1330,9 @@
     },
     "RetrieveAndGenerateConfiguration": {
       "members": {
+        "externalSourcesConfiguration": {
+          "shape": "ExternalSourcesRetrieveAndGenerateConfiguration"
+        },
         "knowledgeBaseConfiguration": {
           "shape": "KnowledgeBaseRetrieveAndGenerateConfiguration"
         },
@@ -1329,7 +1425,8 @@
     },
     "RetrieveAndGenerateType": {
       "enum": [
-        "KNOWLEDGE_BASE"
+        "KNOWLEDGE_BASE",
+        "EXTERNAL_SOURCES"
       ],
       "type": "string"
     },
@@ -1407,6 +1504,23 @@
       },
       "sensitive": true,
       "type": "structure"
+    },
+    "S3ObjectDoc": {
+      "members": {
+        "uri": {
+          "shape": "S3Uri"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "structure"
+    },
+    "S3Uri": {
+      "max": 1024,
+      "min": 1,
+      "pattern": "^s3://[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]/.{1,1024}$",
+      "type": "string"
     },
     "SearchType": {
       "enum": [

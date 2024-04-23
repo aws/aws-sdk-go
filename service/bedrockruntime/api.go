@@ -64,14 +64,14 @@ func (c *BedrockRuntime) InvokeModelRequest(input *InvokeModelInput) (req *reque
 
 // InvokeModel API operation for Amazon Bedrock Runtime.
 //
-// Invokes the specified Bedrock model to run inference using the input provided
-// in the request body. You use InvokeModel to run inference for text models,
-// image models, and embedding models.
+// Invokes the specified Amazon Bedrock model to run inference using the prompt
+// and inference parameters provided in the request body. You use model inference
+// to generate text, images, and embeddings.
 //
-// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
-// in the Bedrock User Guide.
+// For example code, see Invoke model code examples in the Amazon Bedrock User
+// Guide.
 //
-// For example requests, see Examples (after the Errors section).
+// This operation requires permission for the bedrock:InvokeModel action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -184,13 +184,20 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 
 // InvokeModelWithResponseStream API operation for Amazon Bedrock Runtime.
 //
-// Invoke the specified Bedrock model to run inference using the input provided.
-// Return the response in a stream.
+// Invoke the specified Amazon Bedrock model to run inference using the prompt
+// and inference parameters provided in the request body. The response is returned
+// in a stream.
 //
-// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
-// in the Bedrock User Guide.
+// To see if a model supports streaming, call GetFoundationModel (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModel.html)
+// and check the responseStreamingSupported field in the response.
 //
-// For an example request and response, see Examples (after the Errors section).
+// The CLI doesn't support InvokeModelWithResponseStream.
+//
+// For example code, see Invoke model with streaming code example in the Amazon
+// Bedrock User Guide.
+//
+// This operation requires permissions to perform the bedrock:InvokeModelWithResponseStream
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -219,7 +226,7 @@ func (c *BedrockRuntime) InvokeModelWithResponseStreamRequest(input *InvokeModel
 //     An internal server error occurred. Retry your request.
 //
 //   - ModelStreamErrorException
-//     An error occurred while streaming the response.
+//     An error occurred while streaming the response. Retry your request.
 //
 //   - ValidationException
 //     Input validation failed. Check your request parameters and retry the request.
@@ -567,9 +574,11 @@ type InvokeModelInput struct {
 	// value is application/json.
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
-	// Input data in the format specified in the content-type request header. To
-	// see the format and content of this field for different models, refer to Inference
-	// parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// The prompt and inference parameters in the format specified in the contentType
+	// in the header. To see the format and content of the request and response
+	// bodies for different models, refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+	// in the Bedrock User Guide.
 	//
 	// Body is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeModelInput's
@@ -581,10 +590,47 @@ type InvokeModelInput struct {
 	// The MIME type of the input data in the request. The default value is application/json.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
-	// Identifier of the model.
+	// The unique identifier of the guardrail that you want to use. If you don't
+	// provide a value, no guardrail is applied to the invocation.
+	//
+	// An error will be thrown in the following situations.
+	//
+	//    * You don't provide a guardrail identifier but you specify the amazon-bedrock-guardrailConfig
+	//    field in the request body.
+	//
+	//    * You enable the guardrail but the contentType isn't application/json.
+	//
+	//    * You provide a guardrail identifier, but guardrailVersion isn't specified.
+	GuardrailIdentifier *string `location:"header" locationName:"X-Amzn-Bedrock-GuardrailIdentifier" type:"string"`
+
+	// The version number for the guardrail. The value can also be DRAFT.
+	GuardrailVersion *string `location:"header" locationName:"X-Amzn-Bedrock-GuardrailVersion" type:"string"`
+
+	// The unique identifier of the model to invoke to run inference.
+	//
+	// The modelId to provide depends on the type of model that you use:
+	//
+	//    * If you use a base model, specify the model ID or its ARN. For a list
+	//    of model IDs for base models, see Amazon Bedrock base model IDs (on-demand
+	//    throughput) (https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a provisioned model, specify the ARN of the Provisioned Throughput.
+	//    For more information, see Run inference using a Provisioned Throughput
+	//    (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a custom model, first purchase Provisioned Throughput for
+	//    it. Then specify the ARN of the resulting provisioned model. For more
+	//    information, see Use a custom model in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html)
+	//    in the Amazon Bedrock User Guide.
 	//
 	// ModelId is a required field
 	ModelId *string `location:"uri" locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// Specifies whether to enable or disable the Bedrock trace. If enabled, you
+	// can see the full Bedrock trace.
+	Trace *string `location:"header" locationName:"X-Amzn-Bedrock-Trace" type:"string" enum:"Trace"`
 }
 
 // String returns the string representation.
@@ -642,18 +688,36 @@ func (s *InvokeModelInput) SetContentType(v string) *InvokeModelInput {
 	return s
 }
 
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *InvokeModelInput) SetGuardrailIdentifier(v string) *InvokeModelInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *InvokeModelInput) SetGuardrailVersion(v string) *InvokeModelInput {
+	s.GuardrailVersion = &v
+	return s
+}
+
 // SetModelId sets the ModelId field's value.
 func (s *InvokeModelInput) SetModelId(v string) *InvokeModelInput {
 	s.ModelId = &v
 	return s
 }
 
+// SetTrace sets the Trace field's value.
+func (s *InvokeModelInput) SetTrace(v string) *InvokeModelInput {
+	s.Trace = &v
+	return s
+}
+
 type InvokeModelOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
-	// Inference response from the model in the format specified in the content-type
-	// header field. To see the format and content of this field for different models,
-	// refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// Inference response from the model in the format specified in the contentType
+	// header. To see the format and content of the request and response bodies
+	// for different models, refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
 	//
 	// Body is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeModelOutput's
@@ -705,9 +769,11 @@ type InvokeModelWithResponseStreamInput struct {
 	// value is application/json.
 	Accept *string `location:"header" locationName:"X-Amzn-Bedrock-Accept" type:"string"`
 
-	// Inference input in the format specified by the content-type. To see the format
-	// and content of this field for different models, refer to Inference parameters
-	// (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// The prompt and inference parameters in the format specified in the contentType
+	// in the header. To see the format and content of the request and response
+	// bodies for different models, refer to Inference parameters (https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html).
+	// For more information, see Run inference (https://docs.aws.amazon.com/bedrock/latest/userguide/api-methods-run.html)
+	// in the Bedrock User Guide.
 	//
 	// Body is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeModelWithResponseStreamInput's
@@ -719,10 +785,47 @@ type InvokeModelWithResponseStreamInput struct {
 	// The MIME type of the input data in the request. The default value is application/json.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
-	// Id of the model to invoke using the streaming request.
+	// The unique identifier of the guardrail that you want to use. If you don't
+	// provide a value, no guardrail is applied to the invocation.
+	//
+	// An error is thrown in the following situations.
+	//
+	//    * You don't provide a guardrail identifier but you specify the amazon-bedrock-guardrailConfig
+	//    field in the request body.
+	//
+	//    * You enable the guardrail but the contentType isn't application/json.
+	//
+	//    * You provide a guardrail identifier, but guardrailVersion isn't specified.
+	GuardrailIdentifier *string `location:"header" locationName:"X-Amzn-Bedrock-GuardrailIdentifier" type:"string"`
+
+	// The version number for the guardrail. The value can also be DRAFT.
+	GuardrailVersion *string `location:"header" locationName:"X-Amzn-Bedrock-GuardrailVersion" type:"string"`
+
+	// The unique identifier of the model to invoke to run inference.
+	//
+	// The modelId to provide depends on the type of model that you use:
+	//
+	//    * If you use a base model, specify the model ID or its ARN. For a list
+	//    of model IDs for base models, see Amazon Bedrock base model IDs (on-demand
+	//    throughput) (https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a provisioned model, specify the ARN of the Provisioned Throughput.
+	//    For more information, see Run inference using a Provisioned Throughput
+	//    (https://docs.aws.amazon.com/bedrock/latest/userguide/prov-thru-use.html)
+	//    in the Amazon Bedrock User Guide.
+	//
+	//    * If you use a custom model, first purchase Provisioned Throughput for
+	//    it. Then specify the ARN of the resulting provisioned model. For more
+	//    information, see Use a custom model in Amazon Bedrock (https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization-use.html)
+	//    in the Amazon Bedrock User Guide.
 	//
 	// ModelId is a required field
 	ModelId *string `location:"uri" locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// Specifies whether to enable or disable the Bedrock trace. If enabled, you
+	// can see the full Bedrock trace.
+	Trace *string `location:"header" locationName:"X-Amzn-Bedrock-Trace" type:"string" enum:"Trace"`
 }
 
 // String returns the string representation.
@@ -780,9 +883,27 @@ func (s *InvokeModelWithResponseStreamInput) SetContentType(v string) *InvokeMod
 	return s
 }
 
+// SetGuardrailIdentifier sets the GuardrailIdentifier field's value.
+func (s *InvokeModelWithResponseStreamInput) SetGuardrailIdentifier(v string) *InvokeModelWithResponseStreamInput {
+	s.GuardrailIdentifier = &v
+	return s
+}
+
+// SetGuardrailVersion sets the GuardrailVersion field's value.
+func (s *InvokeModelWithResponseStreamInput) SetGuardrailVersion(v string) *InvokeModelWithResponseStreamInput {
+	s.GuardrailVersion = &v
+	return s
+}
+
 // SetModelId sets the ModelId field's value.
 func (s *InvokeModelWithResponseStreamInput) SetModelId(v string) *InvokeModelWithResponseStreamInput {
 	s.ModelId = &v
+	return s
+}
+
+// SetTrace sets the Trace field's value.
+func (s *InvokeModelWithResponseStreamInput) SetTrace(v string) *InvokeModelWithResponseStreamInput {
+	s.Trace = &v
 	return s
 }
 
@@ -960,7 +1081,7 @@ func (s *ModelNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An error occurred while streaming the response.
+// An error occurred while streaming the response. Retry your request.
 type ModelStreamErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1695,4 +1816,20 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// TraceEnabled is a Trace enum value
+	TraceEnabled = "ENABLED"
+
+	// TraceDisabled is a Trace enum value
+	TraceDisabled = "DISABLED"
+)
+
+// Trace_Values returns all elements of the Trace enum
+func Trace_Values() []string {
+	return []string{
+		TraceEnabled,
+		TraceDisabled,
+	}
 }

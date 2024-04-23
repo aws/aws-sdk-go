@@ -14,7 +14,7 @@
     "GetAnomalySubscriptions": "<p>Retrieves the cost anomaly subscription objects for your account. You can filter using a list of cost anomaly monitor Amazon Resource Names (ARNs). </p>",
     "GetApproximateUsageRecords": "<p>Retrieves estimated usage records for hourly granularity or resource-level data at daily granularity.</p>",
     "GetCostAndUsage": "<p>Retrieves cost and usage metrics for your account. You can specify which cost and usage-related metric that you want the request to return. For example, you can specify <code>BlendedCosts</code> or <code>UsageQuantity</code>. You can also filter and group your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range. For a complete list of valid dimensions, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html\">GetDimensionValues</a> operation. Management account in an organization in Organizations have access to all member accounts.</p> <p>For information about filter limitations, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-limits.html\">Quotas and restrictions</a> in the <i>Billing and Cost Management User Guide</i>.</p>",
-    "GetCostAndUsageWithResources": "<p>Retrieves cost and usage metrics with resources for your account. You can specify which cost and usage-related metric, such as <code>BlendedCosts</code> or <code>UsageQuantity</code>, that you want the request to return. You can also filter and group your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range. For a complete list of valid dimensions, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html\">GetDimensionValues</a> operation. Management account in an organization in Organizations have access to all member accounts. This API is currently available for the Amazon Elastic Compute Cloud – Compute service only.</p> <note> <p>This is an opt-in only feature. You can enable this feature from the Cost Explorer Settings page. For information about how to access the Settings page, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-access.html\">Controlling Access for Cost Explorer</a> in the <i>Billing and Cost Management User Guide</i>.</p> </note>",
+    "GetCostAndUsageWithResources": "<p>Retrieves cost and usage metrics with resources for your account. You can specify which cost and usage-related metric, such as <code>BlendedCosts</code> or <code>UsageQuantity</code>, that you want the request to return. You can also filter and group your data by various dimensions, such as <code>SERVICE</code> or <code>AZ</code>, in a specific time range. For a complete list of valid dimensions, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html\">GetDimensionValues</a> operation. Management account in an organization in Organizations have access to all member accounts.</p> <p>Hourly granularity is only available for EC2-Instances (Elastic Compute Cloud) resource-level data. All other resource-level data is available at daily granularity.</p> <note> <p>This is an opt-in only feature. You can enable this feature from the Cost Explorer Settings page. For information about how to access the Settings page, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-access.html\">Controlling Access for Cost Explorer</a> in the <i>Billing and Cost Management User Guide</i>.</p> </note>",
     "GetCostCategories": "<p>Retrieves an array of Cost Category names and values incurred cost.</p> <note> <p>If some Cost Category names and values are not associated with any cost, they will not be returned by this API.</p> </note>",
     "GetCostForecast": "<p>Retrieves a forecast for how much Amazon Web Services predicts that you will spend over the forecast time period that you select, based on your past costs. </p>",
     "GetDimensionValues": "<p>Retrieves all available filter values for a specified filter over a period of time. You can search the dimension values for an arbitrary string. </p>",
@@ -957,14 +957,15 @@
         "ReservationPurchaseRecommendationDetail$EstimatedReservationCostForLookbackPeriod": "<p>How much Amazon Web Services estimates that you might spend for all usage during the specified historical period if you had a reservation.</p>",
         "ReservationPurchaseRecommendationDetail$UpfrontCost": "<p>How much purchasing this instance costs you upfront.</p>",
         "ReservationPurchaseRecommendationDetail$RecurringStandardMonthlyCost": "<p>How much purchasing this instance costs you on a monthly basis.</p>",
-        "ReservationPurchaseRecommendationMetadata$RecommendationId": "<p>The ID for this specific recommendation.</p>",
-        "ReservationPurchaseRecommendationMetadata$GenerationTimestamp": "<p>The timestamp for when Amazon Web Services made this recommendation.</p>",
+        "ReservationPurchaseRecommendationMetadata$RecommendationId": "<p>The ID for the recommendation.</p>",
+        "ReservationPurchaseRecommendationMetadata$GenerationTimestamp": "<p>The timestamp for when Amazon Web Services made the recommendation.</p>",
+        "ReservationPurchaseRecommendationMetadata$AdditionalMetadata": "<p>Additional metadata that might be applicable to the recommendation.</p>",
         "ReservationPurchaseRecommendationSummary$TotalEstimatedMonthlySavingsAmount": "<p>The total amount that Amazon Web Services estimates that this recommendation could save you in a month.</p>",
         "ReservationPurchaseRecommendationSummary$TotalEstimatedMonthlySavingsPercentage": "<p>The total amount that Amazon Web Services estimates that this recommendation could save you in a month, as a percentage of your costs.</p>",
         "ReservationPurchaseRecommendationSummary$CurrencyCode": "<p>The currency code used for this recommendation.</p>",
         "RightsizingRecommendation$AccountId": "<p>The account that this recommendation is for.</p>",
-        "RightsizingRecommendationMetadata$RecommendationId": "<p>The ID for this specific recommendation.</p>",
-        "RightsizingRecommendationMetadata$GenerationTimestamp": "<p>The timestamp for when Amazon Web Services made this recommendation.</p>",
+        "RightsizingRecommendationMetadata$RecommendationId": "<p>The ID for the recommendation.</p>",
+        "RightsizingRecommendationMetadata$GenerationTimestamp": "<p>The timestamp for when Amazon Web Services made the recommendation.</p>",
         "RightsizingRecommendationMetadata$AdditionalMetadata": "<p>Additional metadata that might be applicable to the recommendation.</p>",
         "RightsizingRecommendationSummary$TotalRecommendationCount": "<p>The total number of instance recommendations.</p>",
         "RightsizingRecommendationSummary$EstimatedTotalMonthlySavingsAmount": "<p>The estimated total savings resulting from modifications, on a monthly basis.</p>",
@@ -1382,7 +1383,7 @@
         "GetSavingsPlansPurchaseRecommendationRequest$LookbackPeriodInDays": "<p>The lookback period that's used to generate the recommendation.</p>",
         "RecommendationDetailData$LookbackPeriodInDays": "<p>How many days of previous usage that Amazon Web Services considers when making this recommendation.</p>",
         "ReservationPurchaseRecommendation$LookbackPeriodInDays": "<p>How many days of previous usage that Amazon Web Services considers when making this recommendation.</p>",
-        "RightsizingRecommendationMetadata$LookbackPeriodInDays": "<p>The number of days of previous usage that Amazon Web Services considers when making this recommendation.</p>",
+        "RightsizingRecommendationMetadata$LookbackPeriodInDays": "<p>The number of days of previous usage that Amazon Web Services considers when making the recommendation.</p>",
         "SavingsPlansPurchaseRecommendation$LookbackPeriodInDays": "<p>The lookback period in days that's used to generate the recommendation.</p>"
       }
     },
@@ -1803,7 +1804,7 @@
       }
     },
     "ReservationPurchaseRecommendationMetadata": {
-      "base": "<p>Information about this specific recommendation, such as the timestamp for when Amazon Web Services made a specific recommendation.</p>",
+      "base": "<p>Information about a recommendation, such as the timestamp for when Amazon Web Services made a specific recommendation.</p>",
       "refs": {
         "GetReservationPurchaseRecommendationResponse$Metadata": "<p>Information about this specific recommendation call, such as the time stamp for when Cost Explorer generated this recommendation.</p>"
       }
@@ -1931,7 +1932,7 @@
       }
     },
     "RightsizingRecommendationMetadata": {
-      "base": "<p>Metadata for this recommendation set.</p>",
+      "base": "<p>Metadata for a recommendation set.</p>",
       "refs": {
         "GetRightsizingRecommendationResponse$Metadata": "<p>Information regarding this specific recommendation set.</p>"
       }

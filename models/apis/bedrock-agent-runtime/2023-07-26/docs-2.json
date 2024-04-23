@@ -116,6 +116,7 @@
     "BedrockModelArn": {
       "base": null,
       "refs": {
+        "ExternalSourcesRetrieveAndGenerateConfiguration$modelArn": "<p>The modelArn used with the external source wrapper object in the retrieveAndGenerate function.</p>",
         "KnowledgeBaseRetrieveAndGenerateConfiguration$modelArn": "<p>The ARN of the foundation model used to generate a response.</p>"
       }
     },
@@ -125,6 +126,18 @@
         "InvokeAgentRequest$enableTrace": "<p>Specifies whether to turn on the trace or not to track the agent's reasoning process. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/agents-test.html#trace-events\">Trace enablement</a>.</p>",
         "InvokeAgentRequest$endSession": "<p>Specifies whether to end the session with the agent or not.</p>",
         "PreProcessingParsedResponse$isValid": "<p>Whether the user input is valid or not. If <code>false</code>, the agent doesn't proceed to orchestration.</p>"
+      }
+    },
+    "ByteContentBlob": {
+      "base": null,
+      "refs": {
+        "ByteContentDoc$data": "<p>The byte value of the file to upload, encoded as a Base-64 string.</p>"
+      }
+    },
+    "ByteContentDoc": {
+      "base": "<p>This property contains the document to chat with, along with its attributes.</p>",
+      "refs": {
+        "ExternalSource$byteContent": "<p>The identifier, contentType, and data of the external source wrapper object.</p>"
       }
     },
     "Citation": {
@@ -158,6 +171,12 @@
         "RequestBody$content": "<p>The content in the request body.</p>"
       }
     },
+    "ContentType": {
+      "base": null,
+      "refs": {
+        "ByteContentDoc$contentType": "<p>The MIME type of the document contained in the wrapper object.</p>"
+      }
+    },
     "CreationMode": {
       "base": null,
       "refs": {
@@ -175,6 +194,36 @@
       "base": null,
       "refs": {
         "KnowledgeBaseRetrievalResult$score": "<p>The level of relevance of the result to the query.</p>"
+      }
+    },
+    "ExternalSource": {
+      "base": "<p>The unique external source of the content contained in the wrapper object.</p>",
+      "refs": {
+        "ExternalSources$member": null
+      }
+    },
+    "ExternalSourceType": {
+      "base": null,
+      "refs": {
+        "ExternalSource$sourceType": "<p>The source type of the external source wrapper object.</p>"
+      }
+    },
+    "ExternalSources": {
+      "base": null,
+      "refs": {
+        "ExternalSourcesRetrieveAndGenerateConfiguration$sources": "<p>The document used with the external source wrapper object in the retrieveAndGenerate function.</p>"
+      }
+    },
+    "ExternalSourcesGenerationConfiguration": {
+      "base": "<p>Contains the generation configuration of the external source wrapper object.</p>",
+      "refs": {
+        "ExternalSourcesRetrieveAndGenerateConfiguration$generationConfiguration": "<p>The prompt used with the external source wrapper object with the retrieveAndGenerate function.</p>"
+      }
+    },
+    "ExternalSourcesRetrieveAndGenerateConfiguration": {
+      "base": "<p>The configurations of the external source wrapper object in the retrieveAndGenerate function.</p>",
+      "refs": {
+        "RetrieveAndGenerateConfiguration$externalSourcesConfiguration": "<p>The configuration used with the external source wrapper object in the retrieveAndGenerate function.</p>"
       }
     },
     "FailureReasonString": {
@@ -267,6 +316,12 @@
       "base": "<p>Contains configurations for response generation based on the knowledge base query results.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> </p> </li> </ul>",
       "refs": {
         "KnowledgeBaseRetrieveAndGenerateConfiguration$generationConfiguration": "<p>Contains configurations for response generation based on the knowwledge base query results.</p>"
+      }
+    },
+    "Identifier": {
+      "base": null,
+      "refs": {
+        "ByteContentDoc$identifier": "<p>The file name of the document contained in the wrapper object.</p>"
       }
     },
     "InferenceConfiguration": {
@@ -557,6 +612,7 @@
     "PromptTemplate": {
       "base": "<p>Contains the template for the prompt that's sent to the model for response generation. For more information, see <a href=\"https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-config.html#kb-test-config-sysprompt\">Knowledge base prompt templates</a>.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_RetrieveAndGenerate.html#API_agent-runtime_RetrieveAndGenerate_RequestSyntax\">RetrieveAndGenerate request</a> – in the <code>filter</code> field</p> </li> </ul>",
       "refs": {
+        "ExternalSourcesGenerationConfiguration$promptTemplate": "<p>Contain the textPromptTemplate string for the external source wrapper object.</p>",
         "GenerationConfiguration$promptTemplate": "<p>Contains the template for the prompt that's sent to the model for response generation.</p>"
       }
     },
@@ -767,6 +823,18 @@
       "base": "<p>Contains information to return from the action group that the agent has predicted to invoke.</p> <p>This data type is used in the following API operations:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_Retrieve.html#API_agent-runtime_Retrieve_ResponseSyntax\">Retrieve response</a> </p> </li> </ul>",
       "refs": {
         "ResponseStream$returnControl": "<p>Contains the parameters and information that the agent elicited from the customer to carry out an action. This information is returned to the system and can be used in your own setup for fulfilling the action.</p>"
+      }
+    },
+    "S3ObjectDoc": {
+      "base": "<p>The unique wrapper object of the document from the S3 location.</p>",
+      "refs": {
+        "ExternalSource$s3Location": "<p>The S3 location of the external source wrapper object.</p>"
+      }
+    },
+    "S3Uri": {
+      "base": null,
+      "refs": {
+        "S3ObjectDoc$uri": "<p>The file location of the S3 wrapper object.</p>"
       }
     },
     "SearchType": {

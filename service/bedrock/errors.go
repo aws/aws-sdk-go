@@ -29,8 +29,8 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The specified resource ARN was not found. Check the ARN and try your request
-	// again.
+	// The specified resource Amazon Resource Name (ARN) was not found. Check the
+	// Amazon Resource Name (ARN) and try your request again.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code

@@ -5303,7 +5303,7 @@
         "MetricReference$Name": "<p>The name of the metric reference.</p>",
         "MinimumEngineVersionPerAllowedValue$AllowedValue": "<p>The allowed value for an option setting.</p>",
         "MinimumEngineVersionPerAllowedValue$MinimumEngineVersion": "<p>The minimum DB engine version required for the allowed value.</p>",
-        "ModifyActivityStreamRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the RDS for Oracle or Microsoft SQL Server DB instance. For example, <code>arn:aws:rds:us-east-1:12345667890:instance:my-orcl-db</code>.</p>",
+        "ModifyActivityStreamRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the RDS for Oracle or Microsoft SQL Server DB instance. For example, <code>arn:aws:rds:us-east-1:12345667890:db:my-orcl-db</code>.</p>",
         "ModifyActivityStreamResponse$KmsKeyId": "<p>The Amazon Web Services KMS key identifier for encryption of messages in the database activity stream.</p>",
         "ModifyActivityStreamResponse$KinesisStreamName": "<p>The name of the Amazon Kinesis data stream to be used for the database activity stream.</p>",
         "ModifyCertificatesMessage$CertificateIdentifier": "<p>The new default certificate identifier to override the current one with.</p> <p>To determine the valid values, use the <code>describe-certificates</code> CLI command or the <code>DescribeCertificates</code> API operation.</p>",

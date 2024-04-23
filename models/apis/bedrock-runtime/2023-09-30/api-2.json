@@ -74,6 +74,16 @@
       "min":0,
       "sensitive":true
     },
+    "GuardrailIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"(([a-z0-9]+)|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:guardrail/[a-z0-9]+))"
+    },
+    "GuardrailVersion":{
+      "type":"string",
+      "pattern":"(([1-9][0-9]{0,7})|(DRAFT))"
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -111,6 +121,21 @@
           "shape":"InvokeModelIdentifier",
           "location":"uri",
           "locationName":"modelId"
+        },
+        "trace":{
+          "shape":"Trace",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-Trace"
+        },
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-GuardrailIdentifier"
+        },
+        "guardrailVersion":{
+          "shape":"GuardrailVersion",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-GuardrailVersion"
         }
       },
       "payload":"body"
@@ -153,6 +178,21 @@
           "shape":"InvokeModelIdentifier",
           "location":"uri",
           "locationName":"modelId"
+        },
+        "trace":{
+          "shape":"Trace",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-Trace"
+        },
+        "guardrailIdentifier":{
+          "shape":"GuardrailIdentifier",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-GuardrailIdentifier"
+        },
+        "guardrailVersion":{
+          "shape":"GuardrailVersion",
+          "location":"header",
+          "locationName":"X-Amzn-Bedrock-GuardrailVersion"
         }
       },
       "payload":"body"
@@ -290,6 +330,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "Trace":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "ValidationException":{
       "type":"structure",
