@@ -76,6 +76,10 @@ type GameLiftAPI interface {
 	CreateBuildWithContext(aws.Context, *gamelift.CreateBuildInput, ...request.Option) (*gamelift.CreateBuildOutput, error)
 	CreateBuildRequest(*gamelift.CreateBuildInput) (*request.Request, *gamelift.CreateBuildOutput)
 
+	CreateContainerGroupDefinition(*gamelift.CreateContainerGroupDefinitionInput) (*gamelift.CreateContainerGroupDefinitionOutput, error)
+	CreateContainerGroupDefinitionWithContext(aws.Context, *gamelift.CreateContainerGroupDefinitionInput, ...request.Option) (*gamelift.CreateContainerGroupDefinitionOutput, error)
+	CreateContainerGroupDefinitionRequest(*gamelift.CreateContainerGroupDefinitionInput) (*request.Request, *gamelift.CreateContainerGroupDefinitionOutput)
+
 	CreateFleet(*gamelift.CreateFleetInput) (*gamelift.CreateFleetOutput, error)
 	CreateFleetWithContext(aws.Context, *gamelift.CreateFleetInput, ...request.Option) (*gamelift.CreateFleetOutput, error)
 	CreateFleetRequest(*gamelift.CreateFleetInput) (*request.Request, *gamelift.CreateFleetOutput)
@@ -135,6 +139,10 @@ type GameLiftAPI interface {
 	DeleteBuild(*gamelift.DeleteBuildInput) (*gamelift.DeleteBuildOutput, error)
 	DeleteBuildWithContext(aws.Context, *gamelift.DeleteBuildInput, ...request.Option) (*gamelift.DeleteBuildOutput, error)
 	DeleteBuildRequest(*gamelift.DeleteBuildInput) (*request.Request, *gamelift.DeleteBuildOutput)
+
+	DeleteContainerGroupDefinition(*gamelift.DeleteContainerGroupDefinitionInput) (*gamelift.DeleteContainerGroupDefinitionOutput, error)
+	DeleteContainerGroupDefinitionWithContext(aws.Context, *gamelift.DeleteContainerGroupDefinitionInput, ...request.Option) (*gamelift.DeleteContainerGroupDefinitionOutput, error)
+	DeleteContainerGroupDefinitionRequest(*gamelift.DeleteContainerGroupDefinitionInput) (*request.Request, *gamelift.DeleteContainerGroupDefinitionOutput)
 
 	DeleteFleet(*gamelift.DeleteFleetInput) (*gamelift.DeleteFleetOutput, error)
 	DeleteFleetWithContext(aws.Context, *gamelift.DeleteFleetInput, ...request.Option) (*gamelift.DeleteFleetOutput, error)
@@ -199,6 +207,10 @@ type GameLiftAPI interface {
 	DescribeCompute(*gamelift.DescribeComputeInput) (*gamelift.DescribeComputeOutput, error)
 	DescribeComputeWithContext(aws.Context, *gamelift.DescribeComputeInput, ...request.Option) (*gamelift.DescribeComputeOutput, error)
 	DescribeComputeRequest(*gamelift.DescribeComputeInput) (*request.Request, *gamelift.DescribeComputeOutput)
+
+	DescribeContainerGroupDefinition(*gamelift.DescribeContainerGroupDefinitionInput) (*gamelift.DescribeContainerGroupDefinitionOutput, error)
+	DescribeContainerGroupDefinitionWithContext(aws.Context, *gamelift.DescribeContainerGroupDefinitionInput, ...request.Option) (*gamelift.DescribeContainerGroupDefinitionOutput, error)
+	DescribeContainerGroupDefinitionRequest(*gamelift.DescribeContainerGroupDefinitionInput) (*request.Request, *gamelift.DescribeContainerGroupDefinitionOutput)
 
 	DescribeEC2InstanceLimits(*gamelift.DescribeEC2InstanceLimitsInput) (*gamelift.DescribeEC2InstanceLimitsOutput, error)
 	DescribeEC2InstanceLimitsWithContext(aws.Context, *gamelift.DescribeEC2InstanceLimitsInput, ...request.Option) (*gamelift.DescribeEC2InstanceLimitsOutput, error)
@@ -382,6 +394,13 @@ type GameLiftAPI interface {
 
 	ListComputePages(*gamelift.ListComputeInput, func(*gamelift.ListComputeOutput, bool) bool) error
 	ListComputePagesWithContext(aws.Context, *gamelift.ListComputeInput, func(*gamelift.ListComputeOutput, bool) bool, ...request.Option) error
+
+	ListContainerGroupDefinitions(*gamelift.ListContainerGroupDefinitionsInput) (*gamelift.ListContainerGroupDefinitionsOutput, error)
+	ListContainerGroupDefinitionsWithContext(aws.Context, *gamelift.ListContainerGroupDefinitionsInput, ...request.Option) (*gamelift.ListContainerGroupDefinitionsOutput, error)
+	ListContainerGroupDefinitionsRequest(*gamelift.ListContainerGroupDefinitionsInput) (*request.Request, *gamelift.ListContainerGroupDefinitionsOutput)
+
+	ListContainerGroupDefinitionsPages(*gamelift.ListContainerGroupDefinitionsInput, func(*gamelift.ListContainerGroupDefinitionsOutput, bool) bool) error
+	ListContainerGroupDefinitionsPagesWithContext(aws.Context, *gamelift.ListContainerGroupDefinitionsInput, func(*gamelift.ListContainerGroupDefinitionsOutput, bool) bool, ...request.Option) error
 
 	ListFleets(*gamelift.ListFleetsInput) (*gamelift.ListFleetsOutput, error)
 	ListFleetsWithContext(aws.Context, *gamelift.ListFleetsInput, ...request.Option) (*gamelift.ListFleetsOutput, error)

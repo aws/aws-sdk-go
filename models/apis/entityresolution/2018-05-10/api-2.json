@@ -47,6 +47,31 @@
         "shape": "AddPolicyStatementOutput"
       }
     },
+    "BatchDeleteUniqueId": {
+      "errors": [
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ValidationException"
+        }
+      ],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/matchingworkflows/{workflowName}/uniqueids",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchDeleteUniqueIdInput"
+      },
+      "name": "BatchDeleteUniqueId",
+      "output": {
+        "shape": "BatchDeleteUniqueIdOutput"
+      }
+    },
     "CreateIdMappingWorkflow": {
       "errors": [
         {
@@ -1196,6 +1221,57 @@
       },
       "type": "list"
     },
+    "BatchDeleteUniqueIdInput": {
+      "members": {
+        "inputSource": {
+          "location": "header",
+          "locationName": "inputSource",
+          "shape": "BatchDeleteUniqueIdInputInputSourceString"
+        },
+        "uniqueIds": {
+          "location": "header",
+          "locationName": "uniqueIds",
+          "shape": "UniqueIdList"
+        },
+        "workflowName": {
+          "location": "uri",
+          "locationName": "workflowName",
+          "shape": "EntityName"
+        }
+      },
+      "required": [
+        "uniqueIds",
+        "workflowName"
+      ],
+      "type": "structure"
+    },
+    "BatchDeleteUniqueIdInputInputSourceString": {
+      "pattern": "^arn:(aws|aws-us-gov|aws-cn):glue:[a-z]{2}-[a-z]{1,10}-[0-9]:[0-9]{12}:(table/[a-zA-Z_0-9-]{1,255}/[a-zA-Z_0-9-]{1,255})$",
+      "type": "string"
+    },
+    "BatchDeleteUniqueIdOutput": {
+      "members": {
+        "deleted": {
+          "shape": "DeletedUniqueIdList"
+        },
+        "disconnectedUniqueIds": {
+          "shape": "DisconnectedUniqueIdsList"
+        },
+        "errors": {
+          "shape": "DeleteUniqueIdErrorsList"
+        },
+        "status": {
+          "shape": "DeleteUniqueIdStatus"
+        }
+      },
+      "required": [
+        "deleted",
+        "disconnectedUniqueIds",
+        "errors",
+        "status"
+      ],
+      "type": "structure"
+    },
     "Boolean": {
       "box": true,
       "type": "boolean"
@@ -1600,10 +1676,68 @@
       ],
       "type": "structure"
     },
+    "DeleteUniqueIdError": {
+      "members": {
+        "errorType": {
+          "shape": "DeleteUniqueIdErrorType"
+        },
+        "uniqueId": {
+          "shape": "UniqueId"
+        }
+      },
+      "required": [
+        "errorType",
+        "uniqueId"
+      ],
+      "type": "structure"
+    },
+    "DeleteUniqueIdErrorType": {
+      "enum": [
+        "SERVICE_ERROR",
+        "VALIDATION_ERROR"
+      ],
+      "type": "string"
+    },
+    "DeleteUniqueIdErrorsList": {
+      "member": {
+        "shape": "DeleteUniqueIdError"
+      },
+      "type": "list"
+    },
+    "DeleteUniqueIdStatus": {
+      "enum": [
+        "COMPLETED",
+        "ACCEPTED"
+      ],
+      "type": "string"
+    },
+    "DeletedUniqueId": {
+      "members": {
+        "uniqueId": {
+          "shape": "UniqueId"
+        }
+      },
+      "required": [
+        "uniqueId"
+      ],
+      "type": "structure"
+    },
+    "DeletedUniqueIdList": {
+      "member": {
+        "shape": "DeletedUniqueId"
+      },
+      "type": "list"
+    },
     "Description": {
       "max": 255,
       "min": 0,
       "type": "string"
+    },
+    "DisconnectedUniqueIdsList": {
+      "member": {
+        "shape": "UniqueId"
+      },
+      "type": "list"
     },
     "EntityName": {
       "max": 255,
@@ -3042,7 +3176,7 @@
     "RecordAttributeMapValueString": {
       "max": 255,
       "min": 0,
-      "pattern": "^[a-zA-Z_0-9-.@ ()+\\t]*$",
+      "pattern": "^[a-zA-Z_0-9-./@ ()+\\t]*$",
       "type": "string"
     },
     "RequiredBucketActionsList": {
@@ -3126,7 +3260,7 @@
       "type": "structure"
     },
     "RuleBasedPropertiesRulesList": {
-      "max": 15,
+      "max": 25,
       "member": {
         "shape": "Rule"
       },
@@ -3435,6 +3569,18 @@
     },
     "Timestamp": {
       "type": "timestamp"
+    },
+    "UniqueId": {
+      "max": 760,
+      "min": 1,
+      "pattern": "^[a-zA-Z_0-9-,]*$",
+      "type": "string"
+    },
+    "UniqueIdList": {
+      "member": {
+        "shape": "UniqueId"
+      },
+      "type": "list"
     },
     "UntagResourceInput": {
       "members": {

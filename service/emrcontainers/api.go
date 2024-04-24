@@ -271,6 +271,92 @@ func (c *EMRContainers) CreateManagedEndpointWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opCreateSecurityConfiguration = "CreateSecurityConfiguration"
+
+// CreateSecurityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSecurityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSecurityConfiguration for more information on using the CreateSecurityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateSecurityConfigurationRequest method.
+//	req, resp := client.CreateSecurityConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration
+func (c *EMRContainers) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurationInput) (req *request.Request, output *CreateSecurityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateSecurityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/securityconfigurations",
+	}
+
+	if input == nil {
+		input = &CreateSecurityConfigurationInput{}
+	}
+
+	output = &CreateSecurityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSecurityConfiguration API operation for Amazon EMR Containers.
+//
+// Creates a security configuration. Security configurations in Amazon EMR on
+// EKS are templates for different security setups. You can use security configurations
+// to configure the Lake Formation integration setup. You can also create a
+// security configuration to re-use a security setup each time you create a
+// virtual cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation CreateSecurityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/CreateSecurityConfiguration
+func (c *EMRContainers) CreateSecurityConfiguration(input *CreateSecurityConfigurationInput) (*CreateSecurityConfigurationOutput, error) {
+	req, out := c.CreateSecurityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateSecurityConfigurationWithContext is the same as CreateSecurityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSecurityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) CreateSecurityConfigurationWithContext(ctx aws.Context, input *CreateSecurityConfigurationInput, opts ...request.Option) (*CreateSecurityConfigurationOutput, error) {
+	req, out := c.CreateSecurityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateVirtualCluster = "CreateVirtualCluster"
 
 // CreateVirtualClusterRequest generates a "aws/request.Request" representing the
@@ -883,6 +969,95 @@ func (c *EMRContainers) DescribeManagedEndpointWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDescribeSecurityConfiguration = "DescribeSecurityConfiguration"
+
+// DescribeSecurityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSecurityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSecurityConfiguration for more information on using the DescribeSecurityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeSecurityConfigurationRequest method.
+//	req, resp := client.DescribeSecurityConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration
+func (c *EMRContainers) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfigurationInput) (req *request.Request, output *DescribeSecurityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSecurityConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/securityconfigurations/{securityConfigurationId}",
+	}
+
+	if input == nil {
+		input = &DescribeSecurityConfigurationInput{}
+	}
+
+	output = &DescribeSecurityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSecurityConfiguration API operation for Amazon EMR Containers.
+//
+// Displays detailed information about a specified security configuration. Security
+// configurations in Amazon EMR on EKS are templates for different security
+// setups. You can use security configurations to configure the Lake Formation
+// integration setup. You can also create a security configuration to re-use
+// a security setup each time you create a virtual cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation DescribeSecurityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/DescribeSecurityConfiguration
+func (c *EMRContainers) DescribeSecurityConfiguration(input *DescribeSecurityConfigurationInput) (*DescribeSecurityConfigurationOutput, error) {
+	req, out := c.DescribeSecurityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSecurityConfigurationWithContext is the same as DescribeSecurityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSecurityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) DescribeSecurityConfigurationWithContext(ctx aws.Context, input *DescribeSecurityConfigurationInput, opts ...request.Option) (*DescribeSecurityConfigurationOutput, error) {
+	req, out := c.DescribeSecurityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeVirtualCluster = "DescribeVirtualCluster"
 
 // DescribeVirtualClusterRequest generates a "aws/request.Request" representing the
@@ -1485,6 +1660,149 @@ func (c *EMRContainers) ListManagedEndpointsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opListSecurityConfigurations = "ListSecurityConfigurations"
+
+// ListSecurityConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityConfigurations for more information on using the ListSecurityConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListSecurityConfigurationsRequest method.
+//	req, resp := client.ListSecurityConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations
+func (c *EMRContainers) ListSecurityConfigurationsRequest(input *ListSecurityConfigurationsInput) (req *request.Request, output *ListSecurityConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/securityconfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityConfigurationsInput{}
+	}
+
+	output = &ListSecurityConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityConfigurations API operation for Amazon EMR Containers.
+//
+// Lists security configurations based on a set of parameters. Security configurations
+// in Amazon EMR on EKS are templates for different security setups. You can
+// use security configurations to configure the Lake Formation integration setup.
+// You can also create a security configuration to re-use a security setup each
+// time you create a virtual cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR Containers's
+// API operation ListSecurityConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     There are invalid parameters in the client request.
+//
+//   - InternalServerException
+//     This is an internal server exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/emr-containers-2020-10-01/ListSecurityConfigurations
+func (c *EMRContainers) ListSecurityConfigurations(input *ListSecurityConfigurationsInput) (*ListSecurityConfigurationsOutput, error) {
+	req, out := c.ListSecurityConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityConfigurationsWithContext is the same as ListSecurityConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) ListSecurityConfigurationsWithContext(ctx aws.Context, input *ListSecurityConfigurationsInput, opts ...request.Option) (*ListSecurityConfigurationsOutput, error) {
+	req, out := c.ListSecurityConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityConfigurationsPages iterates over the pages of a ListSecurityConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListSecurityConfigurations operation.
+//	pageNum := 0
+//	err := client.ListSecurityConfigurationsPages(params,
+//	    func(page *emrcontainers.ListSecurityConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *EMRContainers) ListSecurityConfigurationsPages(input *ListSecurityConfigurationsInput, fn func(*ListSecurityConfigurationsOutput, bool) bool) error {
+	return c.ListSecurityConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityConfigurationsPagesWithContext same as ListSecurityConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMRContainers) ListSecurityConfigurationsPagesWithContext(ctx aws.Context, input *ListSecurityConfigurationsInput, fn func(*ListSecurityConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1979,6 +2297,67 @@ func (c *EMRContainers) UntagResourceWithContext(ctx aws.Context, input *UntagRe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Authorization-related configuration inputs for the security configuration.
+type AuthorizationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Encryption-related configuration input for the security configuration.
+	EncryptionConfiguration *EncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
+
+	// Lake Formation related configuration inputs for the security configuration.
+	LakeFormationConfiguration *LakeFormationConfiguration `locationName:"lakeFormationConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthorizationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthorizationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthorizationConfiguration"}
+	if s.EncryptionConfiguration != nil {
+		if err := s.EncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LakeFormationConfiguration != nil {
+		if err := s.LakeFormationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LakeFormationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
+func (s *AuthorizationConfiguration) SetEncryptionConfiguration(v *EncryptionConfiguration) *AuthorizationConfiguration {
+	s.EncryptionConfiguration = v
+	return s
+}
+
+// SetLakeFormationConfiguration sets the LakeFormationConfiguration field's value.
+func (s *AuthorizationConfiguration) SetLakeFormationConfiguration(v *LakeFormationConfiguration) *AuthorizationConfiguration {
+	s.LakeFormationConfiguration = v
+	return s
 }
 
 type CancelJobRunInput struct {
@@ -2921,6 +3300,144 @@ func (s *CreateManagedEndpointOutput) SetVirtualClusterId(v string) *CreateManag
 	return s
 }
 
+type CreateSecurityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client idempotency token to use when creating the security configuration.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the security configuration.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Security configuration input for the request.
+	//
+	// SecurityConfigurationData is a required field
+	SecurityConfigurationData *SecurityConfigurationData `locationName:"securityConfigurationData" type:"structure" required:"true"`
+
+	// The tags to add to the security configuration.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSecurityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityConfigurationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SecurityConfigurationData == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityConfigurationData"))
+	}
+	if s.SecurityConfigurationData != nil {
+		if err := s.SecurityConfigurationData.Validate(); err != nil {
+			invalidParams.AddNested("SecurityConfigurationData", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateSecurityConfigurationInput) SetClientToken(v string) *CreateSecurityConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSecurityConfigurationInput) SetName(v string) *CreateSecurityConfigurationInput {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityConfigurationData sets the SecurityConfigurationData field's value.
+func (s *CreateSecurityConfigurationInput) SetSecurityConfigurationData(v *SecurityConfigurationData) *CreateSecurityConfigurationInput {
+	s.SecurityConfigurationData = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSecurityConfigurationInput) SetTags(v map[string]*string) *CreateSecurityConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSecurityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the security configuration.
+	Arn *string `locationName:"arn" min:"60" type:"string"`
+
+	// The ID of the security configuration.
+	Id *string `locationName:"id" min:"1" type:"string"`
+
+	// The name of the security configuration.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateSecurityConfigurationOutput) SetArn(v string) *CreateSecurityConfigurationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateSecurityConfigurationOutput) SetId(v string) *CreateSecurityConfigurationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityConfigurationOutput {
+	s.Name = &v
+	return s
+}
+
 type CreateVirtualClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2936,6 +3453,9 @@ type CreateVirtualClusterInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ID of the security configuration.
+	SecurityConfigurationId *string `locationName:"securityConfigurationId" min:"1" type:"string"`
 
 	// The tags assigned to the virtual cluster.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2974,6 +3494,9 @@ func (s *CreateVirtualClusterInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.SecurityConfigurationId != nil && len(*s.SecurityConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityConfigurationId", 1))
+	}
 	if s.ContainerProvider != nil {
 		if err := s.ContainerProvider.Validate(); err != nil {
 			invalidParams.AddNested("ContainerProvider", err.(request.ErrInvalidParams))
@@ -3001,6 +3524,12 @@ func (s *CreateVirtualClusterInput) SetContainerProvider(v *ContainerProvider) *
 // SetName sets the Name field's value.
 func (s *CreateVirtualClusterInput) SetName(v string) *CreateVirtualClusterInput {
 	s.Name = &v
+	return s
+}
+
+// SetSecurityConfigurationId sets the SecurityConfigurationId field's value.
+func (s *CreateVirtualClusterInput) SetSecurityConfigurationId(v string) *CreateVirtualClusterInput {
+	s.SecurityConfigurationId = &v
 	return s
 }
 
@@ -3635,6 +4164,86 @@ func (s *DescribeManagedEndpointOutput) SetEndpoint(v *Endpoint) *DescribeManage
 	return s
 }
 
+type DescribeSecurityConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the security configuration.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"securityConfigurationId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSecurityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSecurityConfigurationInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeSecurityConfigurationInput) SetId(v string) *DescribeSecurityConfigurationInput {
+	s.Id = &v
+	return s
+}
+
+type DescribeSecurityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the security configuration.
+	SecurityConfiguration *SecurityConfiguration `locationName:"securityConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *DescribeSecurityConfigurationOutput) SetSecurityConfiguration(v *SecurityConfiguration) *DescribeSecurityConfigurationOutput {
+	s.SecurityConfiguration = v
+	return s
+}
+
 type DescribeVirtualClusterInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3821,6 +4430,53 @@ func (s *EksInfo) Validate() error {
 // SetNamespace sets the Namespace field's value.
 func (s *EksInfo) SetNamespace(v string) *EksInfo {
 	s.Namespace = &v
+	return s
+}
+
+// Configurations related to encryption for the security configuration.
+type EncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// In-transit encryption-related input for the security configuration.
+	InTransitEncryptionConfiguration *InTransitEncryptionConfiguration `locationName:"inTransitEncryptionConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfiguration"}
+	if s.InTransitEncryptionConfiguration != nil {
+		if err := s.InTransitEncryptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("InTransitEncryptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInTransitEncryptionConfiguration sets the InTransitEncryptionConfiguration field's value.
+func (s *EncryptionConfiguration) SetInTransitEncryptionConfiguration(v *InTransitEncryptionConfiguration) *EncryptionConfiguration {
+	s.InTransitEncryptionConfiguration = v
 	return s
 }
 
@@ -4196,6 +4852,53 @@ func (s *GetManagedEndpointSessionCredentialsOutput) SetExpiresAt(v time.Time) *
 // SetId sets the Id field's value.
 func (s *GetManagedEndpointSessionCredentialsOutput) SetId(v string) *GetManagedEndpointSessionCredentialsOutput {
 	s.Id = &v
+	return s
+}
+
+// Configurations related to in-transit encryption for the security configuration.
+type InTransitEncryptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// TLS certificate-related configuration input for the security configuration.
+	TlsCertificateConfiguration *TLSCertificateConfiguration `locationName:"tlsCertificateConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InTransitEncryptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InTransitEncryptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InTransitEncryptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InTransitEncryptionConfiguration"}
+	if s.TlsCertificateConfiguration != nil {
+		if err := s.TlsCertificateConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TlsCertificateConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTlsCertificateConfiguration sets the TlsCertificateConfiguration field's value.
+func (s *InTransitEncryptionConfiguration) SetTlsCertificateConfiguration(v *TLSCertificateConfiguration) *InTransitEncryptionConfiguration {
+	s.TlsCertificateConfiguration = v
 	return s
 }
 
@@ -4751,6 +5454,78 @@ func (s *JobTemplateData) SetReleaseLabel(v string) *JobTemplateData {
 	return s
 }
 
+// Lake Formation related configuration inputs for the security configuration.
+type LakeFormationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The session tag to authorize Amazon EMR on EKS for API calls to Lake Formation.
+	AuthorizedSessionTagValue *string `locationName:"authorizedSessionTagValue" min:"1" type:"string"`
+
+	// The query engine IAM role ARN that is tied to the secure Spark job. The QueryEngine
+	// role assumes the JobExecutionRole to execute all the Lake Formation calls.
+	QueryEngineRoleArn *string `locationName:"queryEngineRoleArn" min:"20" type:"string"`
+
+	// The namespace input of the system job.
+	SecureNamespaceInfo *SecureNamespaceInfo `locationName:"secureNamespaceInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LakeFormationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LakeFormationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LakeFormationConfiguration"}
+	if s.AuthorizedSessionTagValue != nil && len(*s.AuthorizedSessionTagValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AuthorizedSessionTagValue", 1))
+	}
+	if s.QueryEngineRoleArn != nil && len(*s.QueryEngineRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryEngineRoleArn", 20))
+	}
+	if s.SecureNamespaceInfo != nil {
+		if err := s.SecureNamespaceInfo.Validate(); err != nil {
+			invalidParams.AddNested("SecureNamespaceInfo", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizedSessionTagValue sets the AuthorizedSessionTagValue field's value.
+func (s *LakeFormationConfiguration) SetAuthorizedSessionTagValue(v string) *LakeFormationConfiguration {
+	s.AuthorizedSessionTagValue = &v
+	return s
+}
+
+// SetQueryEngineRoleArn sets the QueryEngineRoleArn field's value.
+func (s *LakeFormationConfiguration) SetQueryEngineRoleArn(v string) *LakeFormationConfiguration {
+	s.QueryEngineRoleArn = &v
+	return s
+}
+
+// SetSecureNamespaceInfo sets the SecureNamespaceInfo field's value.
+func (s *LakeFormationConfiguration) SetSecureNamespaceInfo(v *SecureNamespaceInfo) *LakeFormationConfiguration {
+	s.SecureNamespaceInfo = v
+	return s
+}
+
 type ListJobRunsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -5154,6 +5929,117 @@ func (s *ListManagedEndpointsOutput) SetEndpoints(v []*Endpoint) *ListManagedEnd
 // SetNextToken sets the NextToken field's value.
 func (s *ListManagedEndpointsOutput) SetNextToken(v string) *ListManagedEndpointsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListSecurityConfigurationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The date and time after which the security configuration was created.
+	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date and time before which the security configuration was created.
+	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The maximum number of security configurations the operation can list.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of security configurations to return.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityConfigurationsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *ListSecurityConfigurationsInput) SetCreatedAfter(v time.Time) *ListSecurityConfigurationsInput {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *ListSecurityConfigurationsInput) SetCreatedBefore(v time.Time) *ListSecurityConfigurationsInput {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityConfigurationsInput) SetMaxResults(v int64) *ListSecurityConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityConfigurationsInput) SetNextToken(v string) *ListSecurityConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSecurityConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of security configurations to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The list of returned security configurations.
+	SecurityConfigurations []*SecurityConfiguration `locationName:"securityConfigurations" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityConfigurationsOutput) SetNextToken(v string) *ListSecurityConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityConfigurations sets the SecurityConfigurations field's value.
+func (s *ListSecurityConfigurationsOutput) SetSecurityConfigurations(v []*SecurityConfiguration) *ListSecurityConfigurationsOutput {
+	s.SecurityConfigurations = v
 	return s
 }
 
@@ -5981,6 +6867,200 @@ func (s *S3MonitoringConfiguration) SetLogUri(v string) *S3MonitoringConfigurati
 	return s
 }
 
+// Namespace inputs for the system job.
+type SecureNamespaceInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon EKS cluster where Amazon EMR on EKS jobs run.
+	ClusterId *string `locationName:"clusterId" min:"1" type:"string"`
+
+	// The namespace of the Amazon EKS cluster where the system jobs run.
+	Namespace *string `locationName:"namespace" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecureNamespaceInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecureNamespaceInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecureNamespaceInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecureNamespaceInfo"}
+	if s.ClusterId != nil && len(*s.ClusterId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterId", 1))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *SecureNamespaceInfo) SetClusterId(v string) *SecureNamespaceInfo {
+	s.ClusterId = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *SecureNamespaceInfo) SetNamespace(v string) *SecureNamespaceInfo {
+	s.Namespace = &v
+	return s
+}
+
+// Inputs related to the security configuration. Security configurations in
+// Amazon EMR on EKS are templates for different security setups. You can use
+// security configurations to configure the Lake Formation integration setup.
+// You can also create a security configuration to re-use a security setup each
+// time you create a virtual cluster.
+type SecurityConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the security configuration.
+	Arn *string `locationName:"arn" min:"60" type:"string"`
+
+	// The date and time that the job run was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The user who created the job run.
+	CreatedBy *string `locationName:"createdBy" min:"20" type:"string"`
+
+	// The ID of the security configuration.
+	Id *string `locationName:"id" min:"1" type:"string"`
+
+	// The name of the security configuration.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Security configuration inputs for the request.
+	SecurityConfigurationData *SecurityConfigurationData `locationName:"securityConfigurationData" type:"structure"`
+
+	// The tags to assign to the security configuration.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SecurityConfiguration) SetArn(v string) *SecurityConfiguration {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *SecurityConfiguration) SetCreatedAt(v time.Time) *SecurityConfiguration {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *SecurityConfiguration) SetCreatedBy(v string) *SecurityConfiguration {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SecurityConfiguration) SetId(v string) *SecurityConfiguration {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SecurityConfiguration) SetName(v string) *SecurityConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityConfigurationData sets the SecurityConfigurationData field's value.
+func (s *SecurityConfiguration) SetSecurityConfigurationData(v *SecurityConfigurationData) *SecurityConfiguration {
+	s.SecurityConfigurationData = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SecurityConfiguration) SetTags(v map[string]*string) *SecurityConfiguration {
+	s.Tags = v
+	return s
+}
+
+// Configurations related to the security configuration for the request.
+type SecurityConfigurationData struct {
+	_ struct{} `type:"structure"`
+
+	// Authorization-related configuration input for the security configuration.
+	AuthorizationConfiguration *AuthorizationConfiguration `locationName:"authorizationConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityConfigurationData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityConfigurationData) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecurityConfigurationData) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecurityConfigurationData"}
+	if s.AuthorizationConfiguration != nil {
+		if err := s.AuthorizationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuthorizationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationConfiguration sets the AuthorizationConfiguration field's value.
+func (s *SecurityConfigurationData) SetAuthorizationConfiguration(v *AuthorizationConfiguration) *SecurityConfigurationData {
+	s.AuthorizationConfiguration = v
+	return s
+}
+
 // The job driver for job type.
 type SparkSqlJobDriver struct {
 	_ struct{} `type:"structure"`
@@ -6352,6 +7432,74 @@ func (s *StartJobRunOutput) SetVirtualClusterId(v string) *StartJobRunOutput {
 	return s
 }
 
+// Configurations related to the TLS certificate for the security configuration.
+type TLSCertificateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The TLS certificate type. Acceptable values: PEM or Custom.
+	CertificateProviderType *string `locationName:"certificateProviderType" type:"string" enum:"CertificateProviderType"`
+
+	// Secrets Manager ARN that contains the private TLS certificate contents, used
+	// for communication between the user job and the system job.
+	PrivateCertificateSecretArn *string `locationName:"privateCertificateSecretArn" min:"3" type:"string"`
+
+	// Secrets Manager ARN that contains the public TLS certificate contents, used
+	// for communication between the user job and the system job.
+	PublicCertificateSecretArn *string `locationName:"publicCertificateSecretArn" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSCertificateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TLSCertificateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TLSCertificateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TLSCertificateConfiguration"}
+	if s.PrivateCertificateSecretArn != nil && len(*s.PrivateCertificateSecretArn) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("PrivateCertificateSecretArn", 3))
+	}
+	if s.PublicCertificateSecretArn != nil && len(*s.PublicCertificateSecretArn) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("PublicCertificateSecretArn", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateProviderType sets the CertificateProviderType field's value.
+func (s *TLSCertificateConfiguration) SetCertificateProviderType(v string) *TLSCertificateConfiguration {
+	s.CertificateProviderType = &v
+	return s
+}
+
+// SetPrivateCertificateSecretArn sets the PrivateCertificateSecretArn field's value.
+func (s *TLSCertificateConfiguration) SetPrivateCertificateSecretArn(v string) *TLSCertificateConfiguration {
+	s.PrivateCertificateSecretArn = &v
+	return s
+}
+
+// SetPublicCertificateSecretArn sets the PublicCertificateSecretArn field's value.
+func (s *TLSCertificateConfiguration) SetPublicCertificateSecretArn(v string) *TLSCertificateConfiguration {
+	s.PublicCertificateSecretArn = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6666,6 +7814,9 @@ type VirtualCluster struct {
 	// The name of the virtual cluster.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// The ID of the security configuration.
+	SecurityConfigurationId *string `locationName:"securityConfigurationId" min:"1" type:"string"`
+
 	// The state of the virtual cluster.
 	State *string `locationName:"state" type:"string" enum:"VirtualClusterState"`
 
@@ -6721,6 +7872,12 @@ func (s *VirtualCluster) SetName(v string) *VirtualCluster {
 	return s
 }
 
+// SetSecurityConfigurationId sets the SecurityConfigurationId field's value.
+func (s *VirtualCluster) SetSecurityConfigurationId(v string) *VirtualCluster {
+	s.SecurityConfigurationId = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *VirtualCluster) SetState(v string) *VirtualCluster {
 	s.State = &v
@@ -6731,6 +7888,18 @@ func (s *VirtualCluster) SetState(v string) *VirtualCluster {
 func (s *VirtualCluster) SetTags(v map[string]*string) *VirtualCluster {
 	s.Tags = v
 	return s
+}
+
+const (
+	// CertificateProviderTypePem is a CertificateProviderType enum value
+	CertificateProviderTypePem = "PEM"
+)
+
+// CertificateProviderType_Values returns all elements of the CertificateProviderType enum
+func CertificateProviderType_Values() []string {
+	return []string{
+		CertificateProviderTypePem,
+	}
 }
 
 const (

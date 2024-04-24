@@ -72,6 +72,10 @@ type EMRContainersAPI interface {
 	CreateManagedEndpointWithContext(aws.Context, *emrcontainers.CreateManagedEndpointInput, ...request.Option) (*emrcontainers.CreateManagedEndpointOutput, error)
 	CreateManagedEndpointRequest(*emrcontainers.CreateManagedEndpointInput) (*request.Request, *emrcontainers.CreateManagedEndpointOutput)
 
+	CreateSecurityConfiguration(*emrcontainers.CreateSecurityConfigurationInput) (*emrcontainers.CreateSecurityConfigurationOutput, error)
+	CreateSecurityConfigurationWithContext(aws.Context, *emrcontainers.CreateSecurityConfigurationInput, ...request.Option) (*emrcontainers.CreateSecurityConfigurationOutput, error)
+	CreateSecurityConfigurationRequest(*emrcontainers.CreateSecurityConfigurationInput) (*request.Request, *emrcontainers.CreateSecurityConfigurationOutput)
+
 	CreateVirtualCluster(*emrcontainers.CreateVirtualClusterInput) (*emrcontainers.CreateVirtualClusterOutput, error)
 	CreateVirtualClusterWithContext(aws.Context, *emrcontainers.CreateVirtualClusterInput, ...request.Option) (*emrcontainers.CreateVirtualClusterOutput, error)
 	CreateVirtualClusterRequest(*emrcontainers.CreateVirtualClusterInput) (*request.Request, *emrcontainers.CreateVirtualClusterOutput)
@@ -99,6 +103,10 @@ type EMRContainersAPI interface {
 	DescribeManagedEndpoint(*emrcontainers.DescribeManagedEndpointInput) (*emrcontainers.DescribeManagedEndpointOutput, error)
 	DescribeManagedEndpointWithContext(aws.Context, *emrcontainers.DescribeManagedEndpointInput, ...request.Option) (*emrcontainers.DescribeManagedEndpointOutput, error)
 	DescribeManagedEndpointRequest(*emrcontainers.DescribeManagedEndpointInput) (*request.Request, *emrcontainers.DescribeManagedEndpointOutput)
+
+	DescribeSecurityConfiguration(*emrcontainers.DescribeSecurityConfigurationInput) (*emrcontainers.DescribeSecurityConfigurationOutput, error)
+	DescribeSecurityConfigurationWithContext(aws.Context, *emrcontainers.DescribeSecurityConfigurationInput, ...request.Option) (*emrcontainers.DescribeSecurityConfigurationOutput, error)
+	DescribeSecurityConfigurationRequest(*emrcontainers.DescribeSecurityConfigurationInput) (*request.Request, *emrcontainers.DescribeSecurityConfigurationOutput)
 
 	DescribeVirtualCluster(*emrcontainers.DescribeVirtualClusterInput) (*emrcontainers.DescribeVirtualClusterOutput, error)
 	DescribeVirtualClusterWithContext(aws.Context, *emrcontainers.DescribeVirtualClusterInput, ...request.Option) (*emrcontainers.DescribeVirtualClusterOutput, error)
@@ -128,6 +136,13 @@ type EMRContainersAPI interface {
 
 	ListManagedEndpointsPages(*emrcontainers.ListManagedEndpointsInput, func(*emrcontainers.ListManagedEndpointsOutput, bool) bool) error
 	ListManagedEndpointsPagesWithContext(aws.Context, *emrcontainers.ListManagedEndpointsInput, func(*emrcontainers.ListManagedEndpointsOutput, bool) bool, ...request.Option) error
+
+	ListSecurityConfigurations(*emrcontainers.ListSecurityConfigurationsInput) (*emrcontainers.ListSecurityConfigurationsOutput, error)
+	ListSecurityConfigurationsWithContext(aws.Context, *emrcontainers.ListSecurityConfigurationsInput, ...request.Option) (*emrcontainers.ListSecurityConfigurationsOutput, error)
+	ListSecurityConfigurationsRequest(*emrcontainers.ListSecurityConfigurationsInput) (*request.Request, *emrcontainers.ListSecurityConfigurationsOutput)
+
+	ListSecurityConfigurationsPages(*emrcontainers.ListSecurityConfigurationsInput, func(*emrcontainers.ListSecurityConfigurationsOutput, bool) bool) error
+	ListSecurityConfigurationsPagesWithContext(aws.Context, *emrcontainers.ListSecurityConfigurationsInput, func(*emrcontainers.ListSecurityConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*emrcontainers.ListTagsForResourceInput) (*emrcontainers.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *emrcontainers.ListTagsForResourceInput, ...request.Option) (*emrcontainers.ListTagsForResourceOutput, error)

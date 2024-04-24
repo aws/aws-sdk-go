@@ -532,6 +532,157 @@ func (c *GameLift) CreateBuildWithContext(ctx aws.Context, input *CreateBuildInp
 	return out, req.Send()
 }
 
+const opCreateContainerGroupDefinition = "CreateContainerGroupDefinition"
+
+// CreateContainerGroupDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContainerGroupDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContainerGroupDefinition for more information on using the CreateContainerGroupDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateContainerGroupDefinitionRequest method.
+//	req, resp := client.CreateContainerGroupDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateContainerGroupDefinition
+func (c *GameLift) CreateContainerGroupDefinitionRequest(input *CreateContainerGroupDefinitionInput) (req *request.Request, output *CreateContainerGroupDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateContainerGroupDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateContainerGroupDefinitionInput{}
+	}
+
+	output = &CreateContainerGroupDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContainerGroupDefinition API operation for Amazon GameLift.
+//
+// This operation is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Creates a ContainerGroupDefinition resource that describes a set of containers
+// for hosting your game server with Amazon GameLift managed EC2 hosting. An
+// Amazon GameLift container group is similar to a container "task" and "pod".
+// Each container group can have one or more containers.
+//
+// Use container group definitions when you create a container fleet. Container
+// group definitions determine how Amazon GameLift deploys your containers to
+// each instance in a container fleet.
+//
+// You can create two types of container groups, based on scheduling strategy:
+//
+//   - A replica container group manages the containers that run your game
+//     server application and supporting software. Replica container groups might
+//     be replicated multiple times on each fleet instance, depending on instance
+//     resources.
+//
+//   - A daemon container group manages containers that run other software,
+//     such as background services, logging, or test processes. You might use
+//     a daemon container group for processes that need to run only once per
+//     fleet instance, or processes that need to persist independently of the
+//     replica container group.
+//
+// To create a container group definition, specify a group name, a list of container
+// definitions, and maximum total CPU and memory requirements for the container
+// group. Specify an operating system and scheduling strategy or use the default
+// values. When using the Amazon Web Services CLI tool, you can pass in your
+// container definitions as a JSON file.
+//
+// This operation requires Identity and Access Management (IAM) permissions
+// to access container images in Amazon ECR repositories. See IAM permissions
+// for Amazon GameLift (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-iam-policy-examples.html)
+// for help setting the appropriate permissions.
+//
+// If successful, this operation creates a new ContainerGroupDefinition resource
+// with an ARN value assigned. You can't change the properties of a container
+// group definition. Instead, create a new one.
+//
+// Learn more
+//
+//   - Create a container group definition (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-create-groups.html)
+//
+//   - Container fleet design guide (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-design-fleet.html)
+//
+//   - Create a container definition as a JSON file (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-definitions.html#containers-definitions-create)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GameLift's
+// API operation CreateContainerGroupDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     The client failed authentication. Clients should not retry such requests.
+//
+//   - InvalidRequestException
+//     One or more parameter values in the request are invalid. Correct the invalid
+//     parameter values before retrying.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request.
+//
+//   - LimitExceededException
+//     The requested operation would cause the resource to exceed the allowed service
+//     limit. Resolve the issue before retrying.
+//
+//   - TaggingFailedException
+//     The requested tagging operation did not succeed. This may be due to invalid
+//     tag format or the maximum tag limit may have been exceeded. Resolve the issue
+//     before retrying.
+//
+//   - InternalServiceException
+//     The service encountered an unrecoverable internal failure while processing
+//     the request. Clients can retry such requests immediately or after a waiting
+//     period.
+//
+//   - UnsupportedRegionException
+//     The requested operation is not supported in the Region specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateContainerGroupDefinition
+func (c *GameLift) CreateContainerGroupDefinition(input *CreateContainerGroupDefinitionInput) (*CreateContainerGroupDefinitionOutput, error) {
+	req, out := c.CreateContainerGroupDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateContainerGroupDefinitionWithContext is the same as CreateContainerGroupDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContainerGroupDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) CreateContainerGroupDefinitionWithContext(ctx aws.Context, input *CreateContainerGroupDefinitionInput, opts ...request.Option) (*CreateContainerGroupDefinitionOutput, error) {
+	req, out := c.CreateContainerGroupDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFleet = "CreateFleet"
 
 // CreateFleetRequest generates a "aws/request.Request" representing the
@@ -575,48 +726,103 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 
 // CreateFleet API operation for Amazon GameLift.
 //
-// Creates a fleet of Amazon Elastic Compute Cloud (Amazon EC2) instances to
-// host your custom game server or Realtime Servers. Use this operation to configure
-// the computing resources for your fleet and provide instructions for running
-// game servers on each instance.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// Most Amazon GameLift fleets can deploy instances to multiple locations, including
-// the home Region (where the fleet is created) and an optional set of remote
-// locations. Fleets that are created in the following Amazon Web Services Regions
-// support multiple locations: us-east-1 (N. Virginia), us-west-2 (Oregon),
-// eu-central-1 (Frankfurt), eu-west-1 (Ireland), ap-southeast-2 (Sydney), ap-northeast-1
-// (Tokyo), and ap-northeast-2 (Seoul). Fleets that are created in other Amazon
-// GameLift Regions can deploy instances in the fleet's home Region only. All
-// fleet instances use the same configuration regardless of location; however,
-// you can adjust capacity settings and turn auto-scaling on/off for each location.
+// Creates a fleet of compute resources to host your game servers. Use this
+// operation to set up the following types of fleets based on compute type:
 //
-// To create a fleet, choose the hardware for your instances, specify a game
-// server build or Realtime script to deploy, and provide a runtime configuration
-// to direct Amazon GameLift how to start and run game servers on each instance
-// in the fleet. Set permissions for inbound traffic to your game servers, and
-// enable optional features as needed. When creating a multi-location fleet,
-// provide a list of additional remote locations.
+// # Managed EC2 fleet
 //
-// If you need to debug your fleet, fetch logs, view performance metrics or
-// other actions on the fleet, create the development fleet with port 22/3389
-// open. As a best practice, we recommend opening ports for remote access only
-// when you need them and closing them when you're finished.
+// An EC2 fleet is a set of Amazon Elastic Compute Cloud (Amazon EC2) instances.
+// Your game server build is deployed to each fleet instance. Amazon GameLift
+// manages the fleet's instances and controls the lifecycle of game server processes,
+// which host game sessions for players. EC2 fleets can have instances in multiple
+// locations. Each instance in the fleet is designated a Compute.
 //
-// If successful, this operation creates a new Fleet resource and places it
-// in NEW status, which prompts Amazon GameLift to initiate the fleet creation
-// workflow (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-all.html#fleets-creation-workflow).
-// You can track fleet creation by checking fleet status using DescribeFleetAttributes
-// and DescribeFleetLocationAttributes/, or by monitoring fleet creation events
-// using DescribeFleetEvents.
+// To create an EC2 fleet, provide these required parameters:
 //
-// When the fleet status changes to ACTIVE, you can enable automatic scaling
-// with PutScalingPolicy and set capacity for the home Region with UpdateFleetCapacity.
-// When the status of each remote location reaches ACTIVE, you can set capacity
-// by location using UpdateFleetCapacity.
+//   - Either BuildId or ScriptId
+//
+//   - ComputeType set to EC2 (the default value)
+//
+//   - EC2InboundPermissions
+//
+//   - EC2InstanceType
+//
+//   - FleetType
+//
+//   - Name
+//
+//   - RuntimeConfiguration with at least one ServerProcesses configuration
+//
+// If successful, this operation creates a new fleet resource and places it
+// in NEW status while Amazon GameLift initiates the fleet creation workflow
+// (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-all.html#fleets-creation-workflow).
+// To debug your fleet, fetch logs, view performance metrics or other actions
+// on the fleet, create a development fleet with port 22/3389 open. As a best
+// practice, we recommend opening ports for remote access only when you need
+// them and closing them when you're finished.
+//
+// When the fleet status is ACTIVE, you can adjust capacity settings and turn
+// autoscaling on/off for each location.
+//
+// # Managed container fleet
+//
+// A container fleet is a set of Amazon Elastic Compute Cloud (Amazon EC2) instances.
+// Your container architecture is deployed to each fleet instance based on the
+// fleet configuration. Amazon GameLift manages the containers on each fleet
+// instance and controls the lifecycle of game server processes, which host
+// game sessions for players. Container fleets can have instances in multiple
+// locations. Each container on an instance that runs game server processes
+// is registered as a Compute.
+//
+// To create a container fleet, provide these required parameters:
+//
+//   - ComputeType set to CONTAINER
+//
+//   - ContainerGroupsConfiguration
+//
+//   - EC2InboundPermissions
+//
+//   - EC2InstanceType
+//
+//   - FleetType set to ON_DEMAND
+//
+//   - Name
+//
+//   - RuntimeConfiguration with at least one ServerProcesses configuration
+//
+// If successful, this operation creates a new fleet resource and places it
+// in NEW status while Amazon GameLift initiates the fleet creation workflow
+// (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-all.html#fleets-creation-workflow).
+//
+// When the fleet status is ACTIVE, you can adjust capacity settings and turn
+// autoscaling on/off for each location.
+//
+// # Anywhere fleet
+//
+// An Anywhere fleet represents compute resources that are not owned or managed
+// by Amazon GameLift. You might create an Anywhere fleet with your local machine
+// for testing, or use one to host game servers with on-premises hardware or
+// other game hosting solutions.
+//
+// To create an Anywhere fleet, provide these required parameters:
+//
+//   - ComputeType set to ANYWHERE
+//
+//   - Locations specifying a custom location
+//
+//   - Name
+//
+// If successful, this operation creates a new fleet resource and places it
+// in ACTIVE status. You can register computes with a fleet in ACTIVE status.
 //
 // # Learn more
 //
 // Setting up fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html)
+//
+// Setting up a container fleet (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-build-fleet.html)
 //
 // Debug fleet creation issues (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html#fleets-creating-debug-creation)
 //
@@ -639,6 +845,11 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 //   - NotFoundException
 //     THe requested resources was not found. The resource was either not created
 //     yet or deleted.
+//
+//   - NotReadyException
+//     The operation failed because Amazon GameLift has not yet finished validating
+//     this compute. We recommend attempting 8 to 10 retries over 3 to 5 minutes
+//     with exponential backoffs and jitter (http://aws.amazon.com/blogs/https:/aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
 //
 //   - ConflictException
 //     The requested operation would cause a conflict with the current state of
@@ -729,14 +940,16 @@ func (c *GameLift) CreateFleetLocationsRequest(input *CreateFleetLocationsInput)
 
 // CreateFleetLocations API operation for Amazon GameLift.
 //
-// Adds remote locations to a fleet and begins populating the new locations
-// with EC2 instances. The new instances conform to the fleet's instance type,
-// auto-scaling, and other configuration settings.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// This operation cannot be used with fleets that don't support remote locations.
-// Fleets can have multiple locations only if they reside in Amazon Web Services
-// Regions that support this feature and were created after the feature was
-// released in March 2021.
+// Adds remote locations to an EC2 or container fleet and begins populating
+// the new locations with instances. The new instances conform to the fleet's
+// instance type, auto-scaling, and other configuration settings.
+//
+// You can't add remote locations to a fleet that resides in an Amazon Web Services
+// Region that doesn't support multiple locations. Fleets created prior to March
+// 2021 can't support multiple locations.
 //
 // To add fleet locations, specify the fleet to be updated and provide a list
 // of one or more locations.
@@ -776,6 +989,11 @@ func (c *GameLift) CreateFleetLocationsRequest(input *CreateFleetLocationsInput)
 //   - NotFoundException
 //     THe requested resources was not found. The resource was either not created
 //     yet or deleted.
+//
+//   - NotReadyException
+//     The operation failed because Amazon GameLift has not yet finished validating
+//     this compute. We recommend attempting 8 to 10 retries over 3 to 5 minutes
+//     with exponential backoffs and jitter (http://aws.amazon.com/blogs/https:/aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
 //
 //   - InvalidFleetStatusException
 //     The requested operation would cause a conflict with the current state of
@@ -2448,6 +2666,117 @@ func (c *GameLift) DeleteBuildWithContext(ctx aws.Context, input *DeleteBuildInp
 	return out, req.Send()
 }
 
+const opDeleteContainerGroupDefinition = "DeleteContainerGroupDefinition"
+
+// DeleteContainerGroupDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContainerGroupDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContainerGroupDefinition for more information on using the DeleteContainerGroupDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteContainerGroupDefinitionRequest method.
+//	req, resp := client.DeleteContainerGroupDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteContainerGroupDefinition
+func (c *GameLift) DeleteContainerGroupDefinitionRequest(input *DeleteContainerGroupDefinitionInput) (req *request.Request, output *DeleteContainerGroupDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContainerGroupDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteContainerGroupDefinitionInput{}
+	}
+
+	output = &DeleteContainerGroupDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContainerGroupDefinition API operation for Amazon GameLift.
+//
+// This operation is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Deletes a container group definition resource. You can delete a container
+// group definition if there are no fleets using the definition.
+//
+// To delete a container group definition, identify the resource to delete.
+//
+// Learn more
+//
+//   - Manage a container group definition (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-create-groups.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GameLift's
+// API operation DeleteContainerGroupDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     The client failed authentication. Clients should not retry such requests.
+//
+//   - NotFoundException
+//     THe requested resources was not found. The resource was either not created
+//     yet or deleted.
+//
+//   - InternalServiceException
+//     The service encountered an unrecoverable internal failure while processing
+//     the request. Clients can retry such requests immediately or after a waiting
+//     period.
+//
+//   - TaggingFailedException
+//     The requested tagging operation did not succeed. This may be due to invalid
+//     tag format or the maximum tag limit may have been exceeded. Resolve the issue
+//     before retrying.
+//
+//   - InvalidRequestException
+//     One or more parameter values in the request are invalid. Correct the invalid
+//     parameter values before retrying.
+//
+//   - UnsupportedRegionException
+//     The requested operation is not supported in the Region specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteContainerGroupDefinition
+func (c *GameLift) DeleteContainerGroupDefinition(input *DeleteContainerGroupDefinitionInput) (*DeleteContainerGroupDefinitionOutput, error) {
+	req, out := c.DeleteContainerGroupDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContainerGroupDefinitionWithContext is the same as DeleteContainerGroupDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContainerGroupDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DeleteContainerGroupDefinitionWithContext(ctx aws.Context, input *DeleteContainerGroupDefinitionInput, opts ...request.Option) (*DeleteContainerGroupDefinitionOutput, error) {
+	req, out := c.DeleteContainerGroupDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFleet = "DeleteFleet"
 
 // DeleteFleetRequest generates a "aws/request.Request" representing the
@@ -2492,18 +2821,17 @@ func (c *GameLift) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Req
 
 // DeleteFleet API operation for Amazon GameLift.
 //
-// Deletes all resources and information related a fleet. Any current fleet
-// instances, including those in remote locations, are shut down. You don't
-// need to call DeleteFleetLocations separately.
+// Deletes all resources and information related to a fleet and shuts down any
+// currently running fleet instances, including those in remote locations.
 //
 // If the fleet being deleted has a VPC peering connection, you first need to
 // get a valid authorization (good for 24 hours) by calling CreateVpcPeeringAuthorization
 // (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateVpcPeeringAuthorization.html).
-// You do not need to explicitly delete the VPC peering connection.
+// You don't need to explicitly delete the VPC peering connection.
 //
 // To delete a fleet, specify the fleet ID to be terminated. During the deletion
-// process the fleet status is changed to DELETING. When completed, the status
-// switches to TERMINATED and the fleet event FLEET_DELETED is sent.
+// process, the fleet status is changed to DELETING. When completed, the status
+// switches to TERMINATED and the fleet event FLEET_DELETED is emitted.
 //
 // # Learn more
 //
@@ -3655,8 +3983,20 @@ func (c *GameLift) DeregisterComputeRequest(input *DeregisterComputeInput) (req 
 
 // DeregisterCompute API operation for Amazon GameLift.
 //
-// Removes a compute resource from an Amazon GameLift Anywhere fleet. Deregistered
-// computes can no longer host game sessions through Amazon GameLift.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
+// Removes a compute resource from an Amazon GameLift Anywhere fleet or container
+// fleet. Deregistered computes can no longer host game sessions through Amazon
+// GameLift.
+//
+// For an Anywhere fleet or a container fleet that's running the Amazon GameLift
+// Agent, the Agent handles all compute registry tasks for you. For an Anywhere
+// fleet that doesn't use the Agent, call this operation to deregister fleet
+// computes.
+//
+// To deregister a compute, call this operation from the compute that's being
+// deregistered and specify the compute name and the fleet ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4054,15 +4394,27 @@ func (c *GameLift) DescribeComputeRequest(input *DescribeComputeInput) (req *req
 
 // DescribeCompute API operation for Amazon GameLift.
 //
-// Retrieves properties for a compute resource in an Amazon GameLift fleet.
-// Call ListCompute to get a list of compute resources in a fleet. You can request
-// information for computes in either managed EC2 fleets or Anywhere fleets.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// To request compute properties, specify the compute name and fleet ID.
+// Retrieves properties for a compute resource in an Amazon GameLift fleet.
+// To get a list of all computes in a fleet, call ListCompute.
+//
+// To request information on a specific compute, provide the fleet ID and compute
+// name.
 //
 // If successful, this operation returns details for the requested compute resource.
-// For managed EC2 fleets, this operation returns the fleet's EC2 instances.
-// For Anywhere fleets, this operation returns the fleet's registered computes.
+// Depending on the fleet's compute type, the result includes the following
+// information:
+//
+//   - For EC2 fleets, this operation returns information about the EC2 instance.
+//
+//   - For ANYWHERE fleets, this operation returns information about the registered
+//     compute.
+//
+//   - For CONTAINER fleets, this operation returns information about the container
+//     that's registered as a compute, and the instance it's running on. The
+//     compute name is the container name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4106,6 +4458,113 @@ func (c *GameLift) DescribeCompute(input *DescribeComputeInput) (*DescribeComput
 // for more information on using Contexts.
 func (c *GameLift) DescribeComputeWithContext(ctx aws.Context, input *DescribeComputeInput, opts ...request.Option) (*DescribeComputeOutput, error) {
 	req, out := c.DescribeComputeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeContainerGroupDefinition = "DescribeContainerGroupDefinition"
+
+// DescribeContainerGroupDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContainerGroupDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContainerGroupDefinition for more information on using the DescribeContainerGroupDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeContainerGroupDefinitionRequest method.
+//	req, resp := client.DescribeContainerGroupDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeContainerGroupDefinition
+func (c *GameLift) DescribeContainerGroupDefinitionRequest(input *DescribeContainerGroupDefinitionInput) (req *request.Request, output *DescribeContainerGroupDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContainerGroupDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeContainerGroupDefinitionInput{}
+	}
+
+	output = &DescribeContainerGroupDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContainerGroupDefinition API operation for Amazon GameLift.
+//
+// This operation is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Retrieves the properties of a container group definition, including all container
+// definitions in the group.
+//
+// To retrieve a container group definition, provide a resource identifier.
+// If successful, this operation returns the complete properties of the container
+// group definition.
+//
+// Learn more
+//
+//   - Manage a container group definition (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-create-groups.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GameLift's
+// API operation DescribeContainerGroupDefinition for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     The client failed authentication. Clients should not retry such requests.
+//
+//   - InvalidRequestException
+//     One or more parameter values in the request are invalid. Correct the invalid
+//     parameter values before retrying.
+//
+//   - NotFoundException
+//     THe requested resources was not found. The resource was either not created
+//     yet or deleted.
+//
+//   - InternalServiceException
+//     The service encountered an unrecoverable internal failure while processing
+//     the request. Clients can retry such requests immediately or after a waiting
+//     period.
+//
+//   - UnsupportedRegionException
+//     The requested operation is not supported in the Region specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeContainerGroupDefinition
+func (c *GameLift) DescribeContainerGroupDefinition(input *DescribeContainerGroupDefinitionInput) (*DescribeContainerGroupDefinitionOutput, error) {
+	req, out := c.DescribeContainerGroupDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContainerGroupDefinitionWithContext is the same as DescribeContainerGroupDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContainerGroupDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) DescribeContainerGroupDefinitionWithContext(ctx aws.Context, input *DescribeContainerGroupDefinitionInput, opts ...request.Option) (*DescribeContainerGroupDefinitionOutput, error) {
+	req, out := c.DescribeContainerGroupDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4300,13 +4759,17 @@ func (c *GameLift) DescribeFleetAttributesRequest(input *DescribeFleetAttributes
 
 // DescribeFleetAttributes API operation for Amazon GameLift.
 //
-// Retrieves core fleet-wide properties, including the computing hardware and
-// deployment configuration for all instances in the fleet.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// This operation can be used in the following ways:
+// Retrieves core fleet-wide properties for fleets in an Amazon Web Services
+// Region. Properties include the computing hardware and deployment configuration
+// for instances in the fleet.
 //
-//   - To get attributes for one or more specific fleets, provide a list of
-//     fleet IDs or fleet ARNs.
+// You can use this operation in the following ways:
+//
+//   - To get attributes for specific fleets, provide a list of fleet IDs or
+//     fleet ARNs.
 //
 //   - To get attributes for all fleets, do not provide a fleet identifier.
 //
@@ -4471,10 +4934,14 @@ func (c *GameLift) DescribeFleetCapacityRequest(input *DescribeFleetCapacityInpu
 
 // DescribeFleetCapacity API operation for Amazon GameLift.
 //
-// Retrieves the resource capacity settings for one or more fleets. The data
-// returned includes the current fleet capacity (number of EC2 instances), and
-// settings that can control how capacity scaling. For fleets with remote locations,
-// this operation retrieves data for the fleet's home Region only.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
+// Retrieves the resource capacity settings for one or more fleets. For a container
+// fleet, this operation also returns counts for replica container groups.
+//
+// With multi-location fleets, this operation retrieves data for the fleet's
+// home Region only. To retrieve capacity for remote locations, see DescribeFleetLocationCapacity.
 //
 // This operation can be used in the following ways:
 //
@@ -4488,8 +4955,8 @@ func (c *GameLift) DescribeFleetCapacityRequest(input *DescribeFleetCapacityInpu
 //
 // If successful, a FleetCapacity object is returned for each requested fleet
 // ID. Each FleetCapacity object includes a Location property, which is set
-// to the fleet's home Region. When a list of fleet IDs is provided, attribute
-// objects are returned only for fleets that currently exist.
+// to the fleet's home Region. Capacity values are returned only for fleets
+// that currently exist.
 //
 // Some API operations may limit the number of fleet IDs that are allowed in
 // one request. If a request exceeds this limit, the request fails and the error
@@ -4979,9 +5446,12 @@ func (c *GameLift) DescribeFleetLocationCapacityRequest(input *DescribeFleetLoca
 //
 // Retrieves the resource capacity settings for a fleet location. The data returned
 // includes the current capacity (number of EC2 instances) and some scaling
-// settings for the requested fleet location. Use this operation to retrieve
-// capacity information for a fleet's remote location or home Region (you can
-// also retrieve home Region capacity by calling DescribeFleetCapacity).
+// settings for the requested fleet location. For a container fleet, this operation
+// also returns counts for replica container groups.
+//
+// Use this operation to retrieve capacity information for a fleet's remote
+// location or home Region (you can also retrieve home Region capacity by calling
+// DescribeFleetCapacity).
 //
 // To retrieve capacity data, identify a fleet and location.
 //
@@ -5198,22 +5668,24 @@ func (c *GameLift) DescribeFleetPortSettingsRequest(input *DescribeFleetPortSett
 // DescribeFleetPortSettings API operation for Amazon GameLift.
 //
 // Retrieves a fleet's inbound connection permissions. Connection permissions
-// specify the range of IP addresses and port settings that incoming traffic
-// can use to access server processes in the fleet. Game sessions that are running
-// on instances in the fleet must use connections that fall in this range.
+// specify IP addresses and port settings that incoming traffic can use to access
+// server processes in the fleet. Game server processes that are running in
+// the fleet must use a port that falls within this range. To connect to game
+// server processes on a container fleet, the port settings should include one
+// or more of the fleet's connection ports.
 //
-// This operation can be used in the following ways:
+// Use this operation in the following ways:
 //
-//   - To retrieve the inbound connection permissions for a fleet, identify
-//     the fleet's unique identifier.
+//   - To retrieve the port settings for a fleet, identify the fleet's unique
+//     identifier.
 //
 //   - To check the status of recent updates to a fleet remote location, specify
 //     the fleet ID and a location. Port setting updates can take time to propagate
 //     across all locations.
 //
 // If successful, a set of IpPermission objects is returned for the requested
-// fleet ID. When a location is specified, a pending status is included. If
-// the requested fleet has been deleted, the result set is empty.
+// fleet ID. When specifying a location, this operation returns a pending status.
+// If the requested fleet has been deleted, the result set is empty.
 //
 // # Learn more
 //
@@ -7293,11 +7765,13 @@ func (c *GameLift) DescribeRuntimeConfigurationRequest(input *DescribeRuntimeCon
 // DescribeRuntimeConfiguration API operation for Amazon GameLift.
 //
 // Retrieves a fleet's runtime configuration settings. The runtime configuration
-// tells Amazon GameLift which server processes to run (and how) on each instance
-// in the fleet.
+// determines which server processes run, and how, on computes in the fleet.
+// For managed EC2 fleets, the runtime configuration describes server processes
+// that run on each fleet instance. For container fleets, the runtime configuration
+// describes server processes that run in each replica container group. You
+// can update a fleet's runtime configuration at any time using UpdateRuntimeConfiguration.
 //
-// To get the runtime configuration that is currently in forces for a fleet,
-// provide the fleet ID.
+// To get the current runtime configuration for a fleet, provide the fleet ID.
 //
 // If successful, a RuntimeConfiguration object is returned for the requested
 // fleet. If the requested fleet has been deleted, the result set is empty.
@@ -7860,27 +8334,38 @@ func (c *GameLift) GetComputeAccessRequest(input *GetComputeAccessInput) (req *r
 
 // GetComputeAccess API operation for Amazon GameLift.
 //
-// Requests authorization to remotely connect to a compute resource in an Amazon
-// GameLift fleet. Call this action to connect to an instance in a managed EC2
-// fleet if the fleet's game build uses Amazon GameLift server SDK 5.x or later.
-// To connect to instances with game builds that use server SDK 4.x or earlier,
-// call GetInstanceAccess.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// To request access to a compute, identify the specific EC2 instance and the
-// fleet it belongs to. You can retrieve instances for a managed EC2 fleet by
-// calling ListCompute.
+// Requests authorization to remotely connect to a hosting resource in a Amazon
+// GameLift managed fleet. This operation is not used with Amazon GameLift Anywhere
+// fleets
 //
-// If successful, this operation returns a set of temporary Amazon Web Services
-// credentials, including a two-part access key and a session token. Use these
-// credentials with Amazon EC2 Systems Manager (SSM) to start a session with
-// the compute. For more details, see Starting a session (CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html#sessions-start-cli)
+// To request access, specify the compute name and the fleet ID. If successful,
+// this operation returns a set of temporary Amazon Web Services credentials,
+// including a two-part access key and a session token.
+//
+// # EC2 fleets
+//
+// With an EC2 fleet (where compute type is EC2), use these credentials with
+// Amazon EC2 Systems Manager (SSM) to start a session with the compute. For
+// more details, see Starting a session (CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-sessions-start.html#sessions-start-cli)
 // in the Amazon EC2 Systems Manager User Guide.
 //
-// # Learn more
+// # Container fleets
 //
-// Remotely connect to fleet instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-remote-access.html)
+// With a container fleet (where compute type is CONTAINER), use these credentials
+// and the target value with SSM to connect to the fleet instance where the
+// container is running. After you're connected to the instance, use Docker
+// commands to interact with the container.
 //
-// Debug fleet issues (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html)
+// Learn more
+//
+//   - Remotely connect to fleet instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-remote-access.html)
+//
+//   - Debug fleet issues (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html)
+//
+//   - Remotely connect to a container fleet (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-remote-access.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7972,15 +8457,24 @@ func (c *GameLift) GetComputeAuthTokenRequest(input *GetComputeAuthTokenInput) (
 
 // GetComputeAuthToken API operation for Amazon GameLift.
 //
-// Requests an authentication token from Amazon GameLift for a registered compute
-// in an Anywhere fleet. The game servers that are running on the compute use
-// this token to authenticate with the Amazon GameLift service. Each server
-// process must provide a valid authentication token in its call to the Amazon
-// GameLift server SDK action InitSDK().
+// Requests an authentication token from Amazon GameLift for a compute resource
+// in an Amazon GameLift Anywhere fleet or container fleet. Game servers that
+// are running on the compute use this token to communicate with the Amazon
+// GameLift service, such as when calling the Amazon GameLift server SDK action
+// InitSDK(). Authentication tokens are valid for a limited time span, so you
+// need to request a fresh token before the current token expires.
 //
-// Authentication tokens are valid for a limited time span. Use a mechanism
-// to regularly request a fresh authentication token before the current token
-// expires.
+// Use this operation based on the fleet compute type:
+//
+//   - For EC2 fleets, auth token retrieval and refresh is handled automatically.
+//     All game servers that are running on all fleet instances have access to
+//     a valid auth token.
+//
+//   - For ANYWHERE and CONTAINER fleets, if you're using the Amazon GameLift
+//     Agent, auth token retrieval and refresh is handled automatically for any
+//     container or Anywhere compute where the Agent is running. If you're not
+//     using the Agent, create a mechanism to retrieve and refresh auth tokens
+//     for computes that are running game server processes.
 //
 // Learn more
 //
@@ -8619,16 +9113,30 @@ func (c *GameLift) ListComputeRequest(input *ListComputeInput) (req *request.Req
 
 // ListCompute API operation for Amazon GameLift.
 //
-// Retrieves the compute resources in an Amazon GameLift fleet. You can request
-// information for either managed EC2 fleets or Anywhere fleets.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// To request a list of computes, specify the fleet ID. You can filter the result
-// set by location. Use the pagination parameters to retrieve results in a set
-// of sequential pages.
+// Retrieves information on the compute resources in an Amazon GameLift fleet.
 //
-// If successful, this operation returns the compute resource for the requested
-// fleet. For managed EC2 fleets, it returns a list of EC2 instances. For Anywhere
-// fleets, it returns a list of registered compute names.
+// To request a list of computes, specify the fleet ID. Use the pagination parameters
+// to retrieve results in a set of sequential pages.
+//
+// You can filter the result set by location.
+//
+// If successful, this operation returns information on all computes in the
+// requested fleet. Depending on the fleet's compute type, the result includes
+// the following information:
+//
+//   - For EC2 fleets, this operation returns information about the EC2 instance.
+//     Compute names are instance IDs.
+//
+//   - For ANYWHERE fleets, this operation returns the compute names and details
+//     provided when the compute was registered with RegisterCompute. The GameLiftServiceSdkEndpoint
+//     or GameLiftAgentEndpoint is included.
+//
+//   - For CONTAINER fleets, this operation returns information about containers
+//     that are registered as computes, and the instances they're running on.
+//     Compute names are container names.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8724,6 +9232,167 @@ func (c *GameLift) ListComputePagesWithContext(ctx aws.Context, input *ListCompu
 	return p.Err()
 }
 
+const opListContainerGroupDefinitions = "ListContainerGroupDefinitions"
+
+// ListContainerGroupDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListContainerGroupDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContainerGroupDefinitions for more information on using the ListContainerGroupDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListContainerGroupDefinitionsRequest method.
+//	req, resp := client.ListContainerGroupDefinitionsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ListContainerGroupDefinitions
+func (c *GameLift) ListContainerGroupDefinitionsRequest(input *ListContainerGroupDefinitionsInput) (req *request.Request, output *ListContainerGroupDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListContainerGroupDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContainerGroupDefinitionsInput{}
+	}
+
+	output = &ListContainerGroupDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContainerGroupDefinitions API operation for Amazon GameLift.
+//
+// This operation is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Retrieves all container group definitions for the Amazon Web Services account
+// and Amazon Web Services Region that are currently in use. You can filter
+// the result set by the container groups' scheduling strategy. Use the pagination
+// parameters to retrieve results in a set of sequential pages.
+//
+// This operation returns the list of container group definitions in no particular
+// order.
+//
+// Learn more
+//
+//   - Manage a container group definition (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-create-groups.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon GameLift's
+// API operation ListContainerGroupDefinitions for usage and error information.
+//
+// Returned Error Types:
+//
+//   - UnauthorizedException
+//     The client failed authentication. Clients should not retry such requests.
+//
+//   - InvalidRequestException
+//     One or more parameter values in the request are invalid. Correct the invalid
+//     parameter values before retrying.
+//
+//   - InternalServiceException
+//     The service encountered an unrecoverable internal failure while processing
+//     the request. Clients can retry such requests immediately or after a waiting
+//     period.
+//
+//   - UnsupportedRegionException
+//     The requested operation is not supported in the Region specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ListContainerGroupDefinitions
+func (c *GameLift) ListContainerGroupDefinitions(input *ListContainerGroupDefinitionsInput) (*ListContainerGroupDefinitionsOutput, error) {
+	req, out := c.ListContainerGroupDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListContainerGroupDefinitionsWithContext is the same as ListContainerGroupDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContainerGroupDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ListContainerGroupDefinitionsWithContext(ctx aws.Context, input *ListContainerGroupDefinitionsInput, opts ...request.Option) (*ListContainerGroupDefinitionsOutput, error) {
+	req, out := c.ListContainerGroupDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContainerGroupDefinitionsPages iterates over the pages of a ListContainerGroupDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContainerGroupDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListContainerGroupDefinitions operation.
+//	pageNum := 0
+//	err := client.ListContainerGroupDefinitionsPages(params,
+//	    func(page *gamelift.ListContainerGroupDefinitionsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *GameLift) ListContainerGroupDefinitionsPages(input *ListContainerGroupDefinitionsInput, fn func(*ListContainerGroupDefinitionsOutput, bool) bool) error {
+	return c.ListContainerGroupDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContainerGroupDefinitionsPagesWithContext same as ListContainerGroupDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GameLift) ListContainerGroupDefinitionsPagesWithContext(ctx aws.Context, input *ListContainerGroupDefinitionsInput, fn func(*ListContainerGroupDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContainerGroupDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContainerGroupDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContainerGroupDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFleets = "ListFleets"
 
 // ListFleetsRequest generates a "aws/request.Request" representing the
@@ -8773,37 +9442,36 @@ func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Reque
 
 // ListFleets API operation for Amazon GameLift.
 //
-// Retrieves a collection of fleet resources in an Amazon Web Services Region.
-// You can call this operation to get fleets in a previously selected default
-// Region (see https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html
-// (https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html)or
-// specify a Region in your request. You can filter the result set to find only
-// those fleets that are deployed with a specific build or script. For fleets
-// that have multiple locations, this operation retrieves fleets based on their
-// home Region only.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// This operation can be used in the following ways:
+// Retrieves a collection of fleet resources in an Amazon Web Services Region.
+// You can filter the result set to find only those fleets that are deployed
+// with a specific build or script. For fleets that have multiple locations,
+// this operation retrieves fleets based on their home Region only.
+//
+// You can use operation in the following ways:
 //
 //   - To get a list of all fleets in a Region, don't provide a build or script
 //     identifier.
 //
-//   - To get a list of all fleets where a specific custom game build is deployed,
+//   - To get a list of all fleets where a specific game build is deployed,
 //     provide the build ID.
 //
 //   - To get a list of all Realtime Servers fleets with a specific configuration
 //     script, provide the script ID.
 //
+//   - To get a list of all fleets with a specific container group definition,
+//     provide the ContainerGroupDefinition ID.
+//
 // Use the pagination parameters to retrieve results as a set of sequential
 // pages.
 //
-// If successful, a list of fleet IDs that match the request parameters is returned.
-// A NextToken value is also returned if there are more result pages to retrieve.
+// If successful, this operation returns a list of fleet IDs that match the
+// request parameters. A NextToken value is also returned if there are more
+// result pages to retrieve.
 //
-// Fleet resources are not listed in a particular order.
-//
-// # Learn more
-//
-// Setting up Amazon GameLift fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html)
+// Fleet IDs are returned in no particular order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9815,21 +10483,29 @@ func (c *GameLift) RegisterComputeRequest(input *RegisterComputeInput) (req *req
 
 // RegisterCompute API operation for Amazon GameLift.
 //
-// Registers a compute resource to an Amazon GameLift Anywhere fleet. With Anywhere
-// fleets you can incorporate your own computing hardware into an Amazon GameLift
-// game hosting solution.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// To register a compute to a fleet, give the compute a name (must be unique
-// within the fleet) and specify the compute resource's DNS name or IP address.
-// Provide the Anywhere fleet ID and a fleet location to associate with the
-// compute being registered. You can optionally include the path to a TLS certificate
-// on the compute resource.
+// Registers a compute resource in an Amazon GameLift fleet. Register computes
+// with an Amazon GameLift Anywhere fleet or a container fleet.
 //
-// If successful, this operation returns the compute details, including an Amazon
-// GameLift SDK endpoint. Game server processes that run on the compute use
-// this endpoint to communicate with the Amazon GameLift service. Each server
-// process includes the SDK endpoint in its call to the Amazon GameLift server
-// SDK action InitSDK().
+// For an Anywhere fleet or a container fleet that's running the Amazon GameLift
+// Agent, the Agent handles all compute registry tasks for you. For an Anywhere
+// fleet that doesn't use the Agent, call this operation to register fleet computes.
+//
+// To register a compute, give the compute a name (must be unique within the
+// fleet) and specify the compute resource's DNS name or IP address. Provide
+// a fleet ID and a fleet location to associate with the compute being registered.
+// You can optionally include the path to a TLS certificate on the compute resource.
+//
+// If successful, this operation returns compute details, including an Amazon
+// GameLift SDK endpoint or Agent endpoint. Game server processes running on
+// the compute can use this endpoint to communicate with the Amazon GameLift
+// service. Each server process includes the SDK endpoint in its call to the
+// Amazon GameLift server SDK action InitSDK().
+//
+// To view compute details, call DescribeCompute (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeCompute.html)
+// with the compute name.
 //
 // Learn more
 //
@@ -9865,6 +10541,11 @@ func (c *GameLift) RegisterComputeRequest(input *RegisterComputeInput) (req *req
 //     The service encountered an unrecoverable internal failure while processing
 //     the request. Clients can retry such requests immediately or after a waiting
 //     period.
+//
+//   - NotReadyException
+//     The operation failed because Amazon GameLift has not yet finished validating
+//     this compute. We recommend attempting 8 to 10 retries over 3 to 5 minutes
+//     with exponential backoffs and jitter (http://aws.amazon.com/blogs/https:/aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
 //
 //   - LimitExceededException
 //     The requested operation would cause the resource to exceed the allowed service
@@ -10055,7 +10736,7 @@ func (c *GameLift) RequestUploadCredentialsRequest(input *RequestUploadCredentia
 //
 // Retrieves a fresh set of credentials for use when uploading a new set of
 // game build files to Amazon GameLift's Amazon S3. This is done as part of
-// the build creation process; see GameSession (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateBuild.html).
+// the build creation process; see CreateBuild (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateBuild.html).
 //
 // To request new credentials, specify the build ID as returned with an initial
 // CreateBuild request. If successful, a new set of credentials are returned,
@@ -10157,7 +10838,11 @@ func (c *GameLift) ResolveAliasRequest(input *ResolveAliasInput) (req *request.R
 
 // ResolveAlias API operation for Amazon GameLift.
 //
-// Retrieves the fleet ID that an alias is currently pointing to.
+// Attempts to retrieve a fleet ID that is associated with an alias. Specify
+// a unique alias identifier.
+//
+// If the alias has a SIMPLE routing strategy, Amazon GameLift returns a fleet
+// ID. If the alias has a TERMINAL routing strategy, the result is a TerminalRoutingStrategyException.
 //
 // # Related actions
 //
@@ -10381,7 +11066,7 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 // This operation is not designed to continually track game session status because
 // that practice can cause you to exceed your API limit and generate errors.
 // Instead, configure an Amazon Simple Notification Service (Amazon SNS) topic
-// to receive notifications from a matchmaker or game session placement queue.
+// to receive notifications from a matchmaker or a game session placement queue.
 //
 // When searching for game sessions, you specify exactly where you want to search
 // and provide a search filter expression, a sort expression, or both. A search
@@ -11113,6 +11798,7 @@ func (c *GameLift) StopFleetActionsRequest(input *StopFleetActionsInput) (req *r
 //
 // If successful, Amazon GameLift no longer initiates scaling events except
 // in response to manual changes using UpdateFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html).
+// To restart fleet actions again, call StartFleetActions (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartFleetActions.html).
 //
 // # Learn more
 //
@@ -11754,10 +12440,10 @@ func (c *GameLift) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Req
 
 // UpdateAlias API operation for Amazon GameLift.
 //
-// Updates properties for an alias. To update properties, specify the alias
-// ID to be updated and provide the information to be changed. To reassign an
-// alias to another fleet, provide an updated routing strategy. If successful,
-// the updated alias record is returned.
+// Updates properties for an alias. Specify the unique identifier of the alias
+// to be updated and the new property values. When reassigning an alias to a
+// new fleet, provide an updated routing strategy. If successful, the updated
+// alias record is returned.
 //
 // # Related actions
 //
@@ -11954,13 +12640,12 @@ func (c *GameLift) UpdateFleetAttributesRequest(input *UpdateFleetAttributesInpu
 
 // UpdateFleetAttributes API operation for Amazon GameLift.
 //
-// Updates a fleet's mutable attributes, including game session protection and
+// Updates a fleet's mutable attributes, such as game session protection and
 // resource creation limits.
 //
 // To update fleet attributes, specify the fleet ID and the property values
-// that you want to change.
-//
-// If successful, an updated FleetAttributes object is returned.
+// that you want to change. If successful, Amazon GameLift returns the identifiers
+// for the updated fleet.
 //
 // # Learn more
 //
@@ -12070,41 +12755,45 @@ func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (
 
 // UpdateFleetCapacity API operation for Amazon GameLift.
 //
-// Updates capacity settings for a fleet. For fleets with multiple locations,
-// use this operation to manage capacity settings in each location individually.
-// Fleet capacity determines the number of game sessions and players that can
-// be hosted based on the fleet configuration. Use this operation to set the
-// following fleet capacity properties:
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-//   - Minimum/maximum size: Set hard limits on fleet capacity. Amazon GameLift
-//     cannot set the fleet's capacity to a value outside of this range, whether
-//     the capacity is changed manually or through automatic scaling.
+// Updates capacity settings for a managed EC2 fleet or container fleet. For
+// these fleets, you adjust capacity by changing the number of instances in
+// the fleet. Fleet capacity determines the number of game sessions and players
+// that the fleet can host based on its configuration. For fleets with multiple
+// locations, use this operation to manage capacity settings in each location
+// individually.
 //
-//   - Desired capacity: Manually set the number of Amazon EC2 instances to
-//     be maintained in a fleet location. Before changing a fleet's desired capacity,
-//     you may want to call DescribeEC2InstanceLimits (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeEC2InstanceLimits.html)
-//     to get the maximum capacity of the fleet's Amazon EC2 instance type. Alternatively,
-//     consider using automatic scaling to adjust capacity based on player demand.
+// Use this operation to set these fleet capacity properties:
 //
-// This operation can be used in the following ways:
+//   - Minimum/maximum size: Set hard limits on the number of Amazon EC2 instances
+//     allowed. If Amazon GameLift receives a request--either through manual
+//     update or automatic scaling--it won't change the capacity to a value outside
+//     of this range.
 //
-//   - To update capacity for a fleet's home Region, or if the fleet has no
-//     remote locations, omit the Location parameter. The fleet must be in ACTIVE
-//     status.
+//   - Desired capacity: As an alternative to automatic scaling, manually set
+//     the number of Amazon EC2 instances to be maintained. Before changing a
+//     fleet's desired capacity, check the maximum capacity of the fleet's Amazon
+//     EC2 instance type by calling DescribeEC2InstanceLimits (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeEC2InstanceLimits.html).
 //
-//   - To update capacity for a fleet's remote location, include the Location
-//     parameter set to the location to be updated. The location must be in ACTIVE
-//     status.
+// To update capacity for a fleet's home Region, or if the fleet has no remote
+// locations, omit the Location parameter. The fleet must be in ACTIVE status.
 //
-// If successful, capacity settings are updated immediately. In response a change
-// in desired capacity, Amazon GameLift initiates steps to start new instances
-// or terminate existing instances in the requested fleet location. This continues
-// until the location's active instance count matches the new desired instance
-// count. You can track a fleet's current capacity by calling DescribeFleetCapacity
-// (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html)
+// To update capacity for a fleet's remote location, set the Location parameter
+// to the location to update. The location must be in ACTIVE status.
+//
+// If successful, Amazon GameLift updates the capacity settings and returns
+// the identifiers for the updated fleet and/or location. If a requested change
+// to desired capacity exceeds the instance type's limit, the LimitExceeded
+// exception occurs.
+//
+// Updates often prompt an immediate change in fleet capacity, such as when
+// current capacity is different than the new desired capacity or outside the
+// new limits. In this scenario, Amazon GameLift automatically initiates steps
+// to add or remove instances in the fleet location. You can track a fleet's
+// current capacity by calling DescribeFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html)
 // or DescribeFleetLocationCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html).
-// If the requested desired instance count is higher than the instance type's
-// limit, the LimitExceeded exception occurs.
 //
 // # Learn more
 //
@@ -12218,12 +12907,15 @@ func (c *GameLift) UpdateFleetPortSettingsRequest(input *UpdateFleetPortSettings
 // UpdateFleetPortSettings API operation for Amazon GameLift.
 //
 // Updates permissions that allow inbound traffic to connect to game sessions
-// that are being hosted on instances in the fleet.
+// in the fleet.
 //
 // To update settings, specify the fleet ID to be updated and specify the changes
 // to be made. List the permissions you want to add in InboundPermissionAuthorizations,
 // and permissions you want to remove in InboundPermissionRevocations. Permissions
 // to be removed must match existing fleet permissions.
+//
+// For a container fleet, inbound permissions must specify port numbers that
+// are defined in the fleet's connection port settings.
 //
 // If successful, the fleet ID for the updated fleet is returned. For fleets
 // with remote locations, port setting updates can take time to propagate across
@@ -12874,20 +13566,23 @@ func (c *GameLift) UpdateRuntimeConfigurationRequest(input *UpdateRuntimeConfigu
 
 // UpdateRuntimeConfiguration API operation for Amazon GameLift.
 //
-// Updates the current runtime configuration for the specified fleet, which
-// tells Amazon GameLift how to launch server processes on all instances in
-// the fleet. You can update a fleet's runtime configuration at any time after
-// the fleet is created; it does not need to be in ACTIVE status.
+// Updates the runtime configuration for the specified fleet. The runtime configuration
+// tells Amazon GameLift how to launch server processes on computes in the fleet.
+// For managed EC2 fleets, it determines what server processes to run on each
+// fleet instance. For container fleets, it describes what server processes
+// to run in each replica container group. You can update a fleet's runtime
+// configuration at any time after the fleet is created; it does not need to
+// be in ACTIVE status.
 //
 // To update runtime configuration, specify the fleet ID and provide a RuntimeConfiguration
 // with an updated set of server process configurations.
 //
-// If successful, the fleet's runtime configuration settings are updated. Each
-// instance in the fleet regularly checks for and retrieves updated runtime
-// configurations. Instances immediately begin complying with the new configuration
-// by launching new server processes or not replacing existing processes when
-// they shut down. Updating a fleet's runtime configuration never affects existing
-// server processes.
+// If successful, the fleet's runtime configuration settings are updated. Fleet
+// computes that run game server processes regularly check for and receive updated
+// runtime configurations. The computes immediately take action to comply with
+// the new configuration by launching new server processes or by not replacing
+// existing processes when they shut down. Updating a fleet's runtime configuration
+// never affects existing server processes.
 //
 // # Learn more
 //
@@ -12922,6 +13617,10 @@ func (c *GameLift) UpdateRuntimeConfigurationRequest(input *UpdateRuntimeConfigu
 //     The requested operation would cause a conflict with the current state of
 //     a resource associated with the request and/or the fleet. Resolve the conflict
 //     before retrying.
+//
+//   - LimitExceededException
+//     The requested operation would cause the resource to exceed the allowed service
+//     limit. Resolve the issue before retrying.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateRuntimeConfiguration
 func (c *GameLift) UpdateRuntimeConfiguration(input *UpdateRuntimeConfigurationInput) (*UpdateRuntimeConfigurationOutput, error) {
@@ -13352,7 +14051,7 @@ func (s *Alias) SetRoutingStrategy(v *RoutingStrategy) *Alias {
 	return s
 }
 
-// Amazon GameLift Anywhere configuration options for your Anywhere fleets.
+// Amazon GameLift configuration options for your Anywhere fleets.
 type AnywhereConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -13676,6 +14375,9 @@ func (s *Build) SetVersion(v string) *Build {
 	return s
 }
 
+// This data type has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
 // Determines whether a TLS/SSL certificate is generated for a fleet. This feature
 // must be enabled when creating the fleet. All instances in a fleet share the
 // same certificate. The certificate can be retrieved by calling the Amazon
@@ -13889,24 +14591,38 @@ func (s *ClaimGameServerOutput) SetGameServer(v *GameServer) *ClaimGameServerOut
 	return s
 }
 
-// An Amazon GameLift compute resource for hosting your game servers. A compute
-// can be an EC2instance in a managed EC2 fleet or a registered compute in an
-// Anywhere fleet.
+// This data type has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
+// An Amazon GameLift compute resource for hosting your game servers. Computes
+// in an Amazon GameLift fleet differs depending on the fleet's compute type
+// property as follows:
+//
+//   - For EC2 fleets, a compute is an EC2 instance.
+//
+//   - For ANYWHERE fleets, a compute is a computing resource that you provide
+//     and is registered to the fleet.
+//
+//   - For CONTAINER fleets, a compute is a container that's registered to
+//     the fleet.
 type Compute struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that is assigned to a compute resource and uniquely identifies it.
 	// ARNs are unique across locations. Instances in managed EC2 fleets are not
-	// assigned a ComputeARN.
+	// assigned a Compute ARN.
 	ComputeArn *string `type:"string"`
 
 	// A descriptive label for the compute resource. For instances in a managed
-	// EC2 fleet, the compute name is an instance ID.
+	// EC2 fleet, the compute name is the same value as the InstanceId ID.
 	ComputeName *string `min:"1" type:"string"`
 
 	// Current status of the compute. A compute must have an ACTIVE status to host
 	// game sessions.
 	ComputeStatus *string `type:"string" enum:"ComputeStatus"`
+
+	// Some attributes of a container.
+	ContainerAttributes *ContainerAttributes `type:"structure"`
 
 	// A time stamp indicating when this data object was created. Format is a number
 	// expressed in Unix time as milliseconds (for example "1469498468.057").
@@ -13922,10 +14638,17 @@ type Compute struct {
 	// A unique identifier for the fleet that the compute belongs to.
 	FleetId *string `type:"string"`
 
+	// The endpoint of the Amazon GameLift Agent.
+	GameLiftAgentEndpoint *string `min:"1" type:"string"`
+
 	// The Amazon GameLift SDK endpoint connection for a registered compute resource
 	// in an Anywhere fleet. The game servers on the compute use this endpoint to
 	// connect to the Amazon GameLift service.
 	GameLiftServiceSdkEndpoint *string `min:"1" type:"string"`
+
+	// The InstanceID of the Instance hosting the compute for Container and Managed
+	// EC2 fleets.
+	InstanceId *string `type:"string"`
 
 	// The IP address of a compute resource. Amazon GameLift requires a DNS name
 	// or IP address for a compute.
@@ -13983,6 +14706,12 @@ func (s *Compute) SetComputeStatus(v string) *Compute {
 	return s
 }
 
+// SetContainerAttributes sets the ContainerAttributes field's value.
+func (s *Compute) SetContainerAttributes(v *ContainerAttributes) *Compute {
+	s.ContainerAttributes = v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *Compute) SetCreationTime(v time.Time) *Compute {
 	s.CreationTime = &v
@@ -14007,9 +14736,21 @@ func (s *Compute) SetFleetId(v string) *Compute {
 	return s
 }
 
+// SetGameLiftAgentEndpoint sets the GameLiftAgentEndpoint field's value.
+func (s *Compute) SetGameLiftAgentEndpoint(v string) *Compute {
+	s.GameLiftAgentEndpoint = &v
+	return s
+}
+
 // SetGameLiftServiceSdkEndpoint sets the GameLiftServiceSdkEndpoint field's value.
 func (s *Compute) SetGameLiftServiceSdkEndpoint(v string) *Compute {
 	s.GameLiftServiceSdkEndpoint = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Compute) SetInstanceId(v string) *Compute {
+	s.InstanceId = &v
 	return s
 }
 
@@ -14101,6 +14842,1658 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
+// The set of port numbers to open on each instance in a container fleet. Connection
+// ports are used by inbound traffic to connect with processes that are running
+// in containers on the fleet.
+//
+// Part of: ContainerGroupsConfiguration, ContainerGroupsAttributes
+type ConnectionPortRange struct {
+	_ struct{} `type:"structure"`
+
+	// Starting value for the port range.
+	//
+	// FromPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConnectionPortRange's
+	// String and GoString methods.
+	//
+	// FromPort is a required field
+	FromPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
+
+	// Ending value for the port. Port numbers are end-inclusive. This value must
+	// be equal to or greater than FromPort.
+	//
+	// ToPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ConnectionPortRange's
+	// String and GoString methods.
+	//
+	// ToPort is a required field
+	ToPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionPortRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionPortRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectionPortRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectionPortRange"}
+	if s.FromPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPort"))
+	}
+	if s.FromPort != nil && *s.FromPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FromPort", 1))
+	}
+	if s.ToPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPort"))
+	}
+	if s.ToPort != nil && *s.ToPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ToPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *ConnectionPortRange) SetFromPort(v int64) *ConnectionPortRange {
+	s.FromPort = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *ConnectionPortRange) SetToPort(v int64) *ConnectionPortRange {
+	s.ToPort = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Describes attributes of containers that are deployed to a fleet with compute
+// type CONTAINER.
+type ContainerAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Describes how container ports map to connection ports on the fleet instance.
+	// Incoming traffic connects to a game via a connection port. A ContainerPortMapping
+	// directs the traffic from a connection port to a port on the container that
+	// hosts the game session.
+	ContainerPortMappings []*ContainerPortMapping `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerAttributes) GoString() string {
+	return s.String()
+}
+
+// SetContainerPortMappings sets the ContainerPortMappings field's value.
+func (s *ContainerAttributes) SetContainerPortMappings(v []*ContainerPortMapping) *ContainerAttributes {
+	s.ContainerPortMappings = v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Describes a container in a container fleet, the resources available to the
+// container, and the commands that are run when the container starts. Container
+// properties can't be updated. To change a property, create a new container
+// group definition. See also ContainerDefinitionInput.
+//
+// Part of: ContainerGroupDefinition
+//
+// Returned by: DescribeContainerGroupDefinition, ListContainerGroupDefinitions
+type ContainerDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// A command that's passed to the container on startup. Each argument for the
+	// command is an additional string in the array. See the ContainerDefinition::command
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-command)
+	// parameter in the Amazon Elastic Container Service API reference.
+	Command []*string `min:"1" type:"list"`
+
+	// The container definition identifier. Container names are unique within a
+	// container group definition.
+	//
+	// ContainerName is a required field
+	ContainerName *string `min:"1" type:"string" required:"true"`
+
+	// The number of CPU units that are reserved for the container. Note: 1 vCPU
+	// unit equals 1024 CPU units. If no resources are reserved, the container shares
+	// the total CPU limit for the container group.
+	//
+	// Related data type: ContainerGroupDefinition$TotalCpuLimit
+	Cpu *int64 `min:"1" type:"integer"`
+
+	// Indicates that the container relies on the status of other containers in
+	// the same container group during its startup and shutdown sequences. A container
+	// might have dependencies on multiple containers.
+	DependsOn []*ContainerDependency `min:"1" type:"list"`
+
+	// The entry point that's passed to the container on startup. If there are multiple
+	// arguments, each argument is an additional string in the array. See the ContainerDefinition::entryPoint
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-entryPoint)
+	// parameter in the Amazon Elastic Container Service API Reference.
+	EntryPoint []*string `min:"1" type:"list"`
+
+	// A set of environment variables that's passed to the container on startup.
+	// See the ContainerDefinition::environment (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-environment)
+	// parameter in the Amazon Elastic Container Service API Reference.
+	Environment []*ContainerEnvironment `min:"1" type:"list"`
+
+	// Indicates whether the container is vital to the container group. If an essential
+	// container fails, the entire container group is restarted.
+	Essential *bool `type:"boolean"`
+
+	// A configuration for a non-terminal health check. A container, which automatically
+	// restarts if it stops functioning, also restarts if it fails this health check.
+	// If an essential container in the daemon group fails a health check, the entire
+	// container group is restarted. The essential container in the replica group
+	// doesn't use this health check mechanism, because the Amazon GameLift Agent
+	// automatically handles the task.
+	HealthCheck *ContainerHealthCheck `type:"structure"`
+
+	// The URI to the image that $short; copied and deployed to a container fleet.
+	// For a more specific identifier, see ResolvedImageDigest.
+	//
+	// ImageUri is a required field
+	ImageUri *string `min:"1" type:"string" required:"true"`
+
+	// The amount of memory that Amazon GameLift makes available to the container.
+	// If memory limits aren't set for an individual container, the container shares
+	// the container group's total memory allocation.
+	//
+	// Related data type: ContainerGroupDefinition$TotalMemoryLimit
+	MemoryLimits *ContainerMemoryLimits `type:"structure"`
+
+	// Defines the ports that are available to assign to processes in the container.
+	// For example, a game server process requires a container port to allow game
+	// clients to connect to it. Container ports aren't directly accessed by inbound
+	// traffic. Amazon GameLift maps these container ports to externally accessible
+	// connection ports, which are assigned as needed from the container fleet's
+	// ConnectionPortRange.
+	PortConfiguration *ContainerPortConfiguration `type:"structure"`
+
+	// A unique and immutable identifier for the container image that is deployed
+	// to a container fleet. The digest is a SHA 256 hash of the container image
+	// manifest.
+	ResolvedImageDigest *string `type:"string"`
+
+	// The directory in the container where commands are run. See the ContainerDefinition::workingDirectory
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-workingDirectory)
+	// parameter in the Amazon Elastic Container Service API Reference.
+	WorkingDirectory *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDefinition) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *ContainerDefinition) SetCommand(v []*string) *ContainerDefinition {
+	s.Command = v
+	return s
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *ContainerDefinition) SetContainerName(v string) *ContainerDefinition {
+	s.ContainerName = &v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *ContainerDefinition) SetCpu(v int64) *ContainerDefinition {
+	s.Cpu = &v
+	return s
+}
+
+// SetDependsOn sets the DependsOn field's value.
+func (s *ContainerDefinition) SetDependsOn(v []*ContainerDependency) *ContainerDefinition {
+	s.DependsOn = v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *ContainerDefinition) SetEntryPoint(v []*string) *ContainerDefinition {
+	s.EntryPoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ContainerDefinition) SetEnvironment(v []*ContainerEnvironment) *ContainerDefinition {
+	s.Environment = v
+	return s
+}
+
+// SetEssential sets the Essential field's value.
+func (s *ContainerDefinition) SetEssential(v bool) *ContainerDefinition {
+	s.Essential = &v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *ContainerDefinition) SetHealthCheck(v *ContainerHealthCheck) *ContainerDefinition {
+	s.HealthCheck = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ContainerDefinition) SetImageUri(v string) *ContainerDefinition {
+	s.ImageUri = &v
+	return s
+}
+
+// SetMemoryLimits sets the MemoryLimits field's value.
+func (s *ContainerDefinition) SetMemoryLimits(v *ContainerMemoryLimits) *ContainerDefinition {
+	s.MemoryLimits = v
+	return s
+}
+
+// SetPortConfiguration sets the PortConfiguration field's value.
+func (s *ContainerDefinition) SetPortConfiguration(v *ContainerPortConfiguration) *ContainerDefinition {
+	s.PortConfiguration = v
+	return s
+}
+
+// SetResolvedImageDigest sets the ResolvedImageDigest field's value.
+func (s *ContainerDefinition) SetResolvedImageDigest(v string) *ContainerDefinition {
+	s.ResolvedImageDigest = &v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *ContainerDefinition) SetWorkingDirectory(v string) *ContainerDefinition {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Describes a container's configuration, resources, and start instructions.
+// Use this data type to create a container group definition. For the properties
+// of a container that's been deployed to a fleet, see ContainerDefinition.
+// You can't change these properties after you've created the container group
+// definition. If you need a container group with different properties, then
+// you must create a new one.
+//
+// Used with: CreateContainerGroupDefinition
+type ContainerDefinitionInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A command to pass to the container on startup. Add multiple arguments as
+	// additional strings in the array. See the ContainerDefinition command (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-command)
+	// parameter in the Amazon Elastic Container Service API reference.
+	Command []*string `min:"1" type:"list"`
+
+	// A string that uniquely identifies the container definition within a container
+	// group.
+	//
+	// ContainerName is a required field
+	ContainerName *string `min:"1" type:"string" required:"true"`
+
+	// The number of CPU units to reserve for this container. The container can
+	// use more resources when needed, if available. Note: 1 vCPU unit equals 1024
+	// CPU units. If you don't reserve CPU units for this container, then it shares
+	// the total CPU limit for the container group. This property is similar to
+	// the Amazon ECS container definition parameter environment (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_environment)
+	// (Amazon Elastic Container Service Developer Guide).
+	//
+	// Related data type: ContainerGroupDefinition$TotalCpuLimit
+	Cpu *int64 `min:"1" type:"integer"`
+
+	// Sets up dependencies between this container and the status of other containers
+	// in the same container group. A container can have dependencies on multiple
+	// different containers.
+	//
+	// You can use dependencies to establish a startup/shutdown sequence across
+	// the container group. A container startup dependency is reversed on shutdown.
+	//
+	// For example, you might specify that SideCarContainerB has a START dependency
+	// on SideCarContainerA. This dependency means that SideCarContainerB can't
+	// start until after SideCarContainerA has started. This dependency is reversed
+	// on shutdown, which means that SideCarContainerB must shut down before SideCarContainerA
+	// can shut down.
+	DependsOn []*ContainerDependency `min:"1" type:"list"`
+
+	// An entry point to pass to the container on startup. Add multiple arguments
+	// as additional strings in the array. See the ContainerDefinition::entryPoint
+	// (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-entryPoint)
+	// parameter in the Amazon Elastic Container Service API Reference.
+	EntryPoint []*string `min:"1" type:"list"`
+
+	// A set of environment variables to pass to the container on startup. See the
+	// ContainerDefinition::environment (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-environment)
+	// parameter in the Amazon Elastic Container Service API Reference.
+	Environment []*ContainerEnvironment `min:"1" type:"list"`
+
+	// Specifies whether the container is vital for the container group to function
+	// properly. If an essential container fails, it causes the entire container
+	// group to restart. Each container group must have an essential container.
+	//
+	// Replica container groups - A replica group must have exactly one essential
+	// container. Use the following to configure an essential replica container:
+	//
+	//    * Choose a container is running your game server and the Amazon GameLift
+	//    Agent.
+	//
+	//    * Include a port configuration. This container runs your game server processes,
+	//    and each process requires a container port to allow access to game clients.
+	//
+	//    * Don't configure a health check. The Agent handles this task for the
+	//    essential replica container.
+	//
+	// Daemon container groups - A daemon group must have at least one essential
+	// container.
+	Essential *bool `type:"boolean"`
+
+	// Configuration for a non-terminal health check. A container automatically
+	// restarts if it stops functioning. This parameter lets you define additional
+	// reasons to consider a container unhealthy and restart it. You can set a health
+	// check for any container except for the essential container in the replica
+	// container group. If an essential container in the daemon group fails a health
+	// check, the entire container group is restarted.
+	HealthCheck *ContainerHealthCheck `type:"structure"`
+
+	// The location of a container image that $short; will copy and deploy to a
+	// container fleet. Images in Amazon Elastic Container Registry private repositories
+	// are supported. The repository must be in the same Amazon Web Services account
+	// and Amazon Web Services Region where you're creating the container group
+	// definition. For limits on image size, see Amazon GameLift endpoints and quotas
+	// (https://docs.aws.amazon.com/general/latest/gr/gamelift.html). You can use
+	// any of the following image URI formats:
+	//
+	//    * Image ID only: [AWS account].dkr.ecr.[AWS region].amazonaws.com/[repository
+	//    ID]
+	//
+	//    * Image ID and digest: [AWS account].dkr.ecr.[AWS region].amazonaws.com/[repository
+	//    ID]@[digest]
+	//
+	//    * Image ID and tag: [AWS account].dkr.ecr.[AWS region].amazonaws.com/[repository
+	//    ID]:[tag]
+	//
+	// ImageUri is a required field
+	ImageUri *string `min:"1" type:"string" required:"true"`
+
+	// The amount of memory to make available to the container. If you don't specify
+	// memory limits for this container, then it shares the container group's total
+	// memory allocation.
+	//
+	// Related data type: ContainerGroupDefinition$TotalMemoryLimit
+	MemoryLimits *ContainerMemoryLimits `type:"structure"`
+
+	// A set of ports that Amazon GameLift can assign to processes in the container.
+	// All processes that accept inbound traffic connections, including game server
+	// processes, must be assigned a port from this set. The set of ports must be
+	// large enough to assign one to each process in the container that needs one.
+	// If the container includes your game server, include enough ports to assign
+	// one port to each concurrent server process (as defined in a container fleet's
+	// RuntimeConfiguration). For more details, see Networking for container fleets
+	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-network).
+	//
+	// Container ports aren't directly accessed by inbound traffic. Amazon GameLift
+	// maps these container ports to externally accessible connection ports, which
+	// are assigned as needed from the container fleet's ConnectionPortRange.
+	PortConfiguration *ContainerPortConfiguration `type:"structure"`
+
+	// The directory in the container where commands are run. See the ContainerDefinition::workingDirectory
+	// parameter (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html#ECS-Type-ContainerDefinition-workingDirectory)
+	// in the Amazon Elastic Container Service API Reference.
+	WorkingDirectory *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDefinitionInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDefinitionInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerDefinitionInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerDefinitionInput_"}
+	if s.Command != nil && len(s.Command) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Command", 1))
+	}
+	if s.ContainerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerName"))
+	}
+	if s.ContainerName != nil && len(*s.ContainerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerName", 1))
+	}
+	if s.Cpu != nil && *s.Cpu < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Cpu", 1))
+	}
+	if s.DependsOn != nil && len(s.DependsOn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DependsOn", 1))
+	}
+	if s.EntryPoint != nil && len(s.EntryPoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntryPoint", 1))
+	}
+	if s.Environment != nil && len(s.Environment) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Environment", 1))
+	}
+	if s.ImageUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageUri"))
+	}
+	if s.ImageUri != nil && len(*s.ImageUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageUri", 1))
+	}
+	if s.WorkingDirectory != nil && len(*s.WorkingDirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkingDirectory", 1))
+	}
+	if s.DependsOn != nil {
+		for i, v := range s.DependsOn {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DependsOn", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Environment != nil {
+		for i, v := range s.Environment {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Environment", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.HealthCheck != nil {
+		if err := s.HealthCheck.Validate(); err != nil {
+			invalidParams.AddNested("HealthCheck", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MemoryLimits != nil {
+		if err := s.MemoryLimits.Validate(); err != nil {
+			invalidParams.AddNested("MemoryLimits", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PortConfiguration != nil {
+		if err := s.PortConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PortConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *ContainerDefinitionInput_) SetCommand(v []*string) *ContainerDefinitionInput_ {
+	s.Command = v
+	return s
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *ContainerDefinitionInput_) SetContainerName(v string) *ContainerDefinitionInput_ {
+	s.ContainerName = &v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *ContainerDefinitionInput_) SetCpu(v int64) *ContainerDefinitionInput_ {
+	s.Cpu = &v
+	return s
+}
+
+// SetDependsOn sets the DependsOn field's value.
+func (s *ContainerDefinitionInput_) SetDependsOn(v []*ContainerDependency) *ContainerDefinitionInput_ {
+	s.DependsOn = v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *ContainerDefinitionInput_) SetEntryPoint(v []*string) *ContainerDefinitionInput_ {
+	s.EntryPoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ContainerDefinitionInput_) SetEnvironment(v []*ContainerEnvironment) *ContainerDefinitionInput_ {
+	s.Environment = v
+	return s
+}
+
+// SetEssential sets the Essential field's value.
+func (s *ContainerDefinitionInput_) SetEssential(v bool) *ContainerDefinitionInput_ {
+	s.Essential = &v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *ContainerDefinitionInput_) SetHealthCheck(v *ContainerHealthCheck) *ContainerDefinitionInput_ {
+	s.HealthCheck = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ContainerDefinitionInput_) SetImageUri(v string) *ContainerDefinitionInput_ {
+	s.ImageUri = &v
+	return s
+}
+
+// SetMemoryLimits sets the MemoryLimits field's value.
+func (s *ContainerDefinitionInput_) SetMemoryLimits(v *ContainerMemoryLimits) *ContainerDefinitionInput_ {
+	s.MemoryLimits = v
+	return s
+}
+
+// SetPortConfiguration sets the PortConfiguration field's value.
+func (s *ContainerDefinitionInput_) SetPortConfiguration(v *ContainerPortConfiguration) *ContainerDefinitionInput_ {
+	s.PortConfiguration = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *ContainerDefinitionInput_) SetWorkingDirectory(v string) *ContainerDefinitionInput_ {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// A container's dependency on another container in the same container group.
+// The dependency impacts how the dependent container is able to start or shut
+// down based the status of the other container.
+//
+// For example, ContainerA is configured with the following dependency: a START
+// dependency on ContainerB. This means that ContainerA can't start until ContainerB
+// has started. It also means that ContainerA must shut down before ContainerB.
+//
+// Part of: ContainerDefinition
+type ContainerDependency struct {
+	_ struct{} `type:"structure"`
+
+	// The condition that the dependency container must reach before the dependent
+	// container can start. Valid conditions include:
+	//
+	//    * START - The dependency container must have started.
+	//
+	//    * COMPLETE - The dependency container has run to completion (exits). Use
+	//    this condition with nonessential containers, such as those that run a
+	//    script and then exit. The dependency container can't be an essential container.
+	//
+	//    * SUCCESS - The dependency container has run to completion and exited
+	//    with a zero status. The dependency container can't be an essential container.
+	//
+	//    * HEALTHY - The dependency container has passed its Docker health check.
+	//    Use this condition with dependency containers that have health checks
+	//    configured. This condition is confirmed at container group startup only.
+	//
+	// Condition is a required field
+	Condition *string `type:"string" required:"true" enum:"ContainerDependencyCondition"`
+
+	// A descriptive label for the container definition that this container depends
+	// on.
+	//
+	// ContainerName is a required field
+	ContainerName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDependency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerDependency) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerDependency) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerDependency"}
+	if s.Condition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Condition"))
+	}
+	if s.ContainerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerName"))
+	}
+	if s.ContainerName != nil && len(*s.ContainerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *ContainerDependency) SetCondition(v string) *ContainerDependency {
+	s.Condition = &v
+	return s
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *ContainerDependency) SetContainerName(v string) *ContainerDependency {
+	s.ContainerName = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// An environment variable to set inside a container, in the form of a key-value
+// pair.
+//
+// Related data type: ContainerDefinition$Environment
+type ContainerEnvironment struct {
+	_ struct{} `type:"structure"`
+
+	// The environment variable name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The environment variable value.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerEnvironment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerEnvironment) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerEnvironment) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerEnvironment"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerEnvironment) SetName(v string) *ContainerEnvironment {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ContainerEnvironment) SetValue(v string) *ContainerEnvironment {
+	s.Value = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// The properties that describe a container group resource. Container group
+// definition properties can't be updated. To change a property, create a new
+// container group definition.
+//
+// Used with: CreateContainerGroupDefinition
+//
+// Returned by: DescribeContainerGroupDefinition, ListContainerGroupDefinitions
+type ContainerGroupDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The set of container definitions that are included in the container group.
+	ContainerDefinitions []*ContainerDefinition `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
+	// that is assigned to an Amazon GameLift ContainerGroupDefinition resource.
+	// It uniquely identifies the resource across all Amazon Web Services Regions.
+	// Format is arn:aws:gamelift:<region>::containergroupdefinition/[container
+	// group definition name].
+	ContainerGroupDefinitionArn *string `min:"1" type:"string"`
+
+	// A time stamp indicating when this data object was created. Format is a number
+	// expressed in Unix time as milliseconds (for example "1469498468.057").
+	CreationTime *time.Time `type:"timestamp"`
+
+	// A descriptive identifier for the container group definition. The name value
+	// is unique in an Amazon Web Services Region.
+	Name *string `min:"1" type:"string"`
+
+	// The platform required for all containers in the container group definition.
+	OperatingSystem *string `type:"string" enum:"ContainerOperatingSystem"`
+
+	// The method for deploying the container group across fleet instances. A replica
+	// container group might have multiple copies on each fleet instance. A daemon
+	// container group maintains only one copy per fleet instance.
+	SchedulingStrategy *string `type:"string" enum:"ContainerSchedulingStrategy"`
+
+	// Current status of the container group definition resource. Values include:
+	//
+	//    * COPYING -- Amazon GameLift is in the process of making copies of all
+	//    container images that are defined in the group. While in this state, the
+	//    resource can't be used to create a container fleet.
+	//
+	//    * READY -- Amazon GameLift has copied the registry images for all containers
+	//    that are defined in the group. You can use a container group definition
+	//    in this status to create a container fleet.
+	//
+	//    * FAILED -- Amazon GameLift failed to create a valid container group definition
+	//    resource. For more details on the cause of the failure, see StatusReason.
+	//    A container group definition resource in failed status will be deleted
+	//    within a few minutes.
+	Status *string `type:"string" enum:"ContainerGroupDefinitionStatus"`
+
+	// Additional information about a container group definition that's in FAILED
+	// status. Possible reasons include:
+	//
+	//    * An internal issue prevented Amazon GameLift from creating the container
+	//    group definition resource. Delete the failed resource and call CreateContainerGroupDefinitionagain.
+	//
+	//    * An access-denied message means that you don't have permissions to access
+	//    the container image on ECR. See IAM permission examples (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-iam-policy-examples.html)
+	//    for help setting up required IAM permissions for Amazon GameLift.
+	//
+	//    * The ImageUri value for at least one of the containers in the container
+	//    group definition was invalid or not found in the current Amazon Web Services
+	//    account.
+	//
+	//    * At least one of the container images referenced in the container group
+	//    definition exceeds the allowed size. For size limits, see Amazon GameLift
+	//    endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/gamelift.html).
+	//
+	//    * At least one of the container images referenced in the container group
+	//    definition uses a different operating system than the one defined for
+	//    the container group.
+	StatusReason *string `min:"1" type:"string"`
+
+	// The amount of CPU units on a fleet instance to allocate for the container
+	// group. All containers in the group share these resources. This property is
+	// an integer value in CPU units (1 vCPU is equal to 1024 CPU units).
+	//
+	// You can set additional limits for each ContainerDefinition in the group.
+	// If individual containers have limits, this value must be equal to or greater
+	// than the sum of all container-specific CPU limits in the group.
+	//
+	// For more details on memory allocation, see the Container fleet design guide
+	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-design-fleet).
+	TotalCpuLimit *int64 `min:"128" type:"integer"`
+
+	// The amount of memory (in MiB) on a fleet instance to allocate for the container
+	// group. All containers in the group share these resources.
+	//
+	// You can set additional limits for each ContainerDefinition in the group.
+	// If individual containers have limits, this value must meet the following
+	// requirements:
+	//
+	//    * Equal to or greater than the sum of all container-specific soft memory
+	//    limits in the group.
+	//
+	//    * Equal to or greater than any container-specific hard limits in the group.
+	//
+	// For more details on memory allocation, see the Container fleet design guide
+	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-design-fleet).
+	TotalMemoryLimit *int64 `min:"4" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupDefinition) GoString() string {
+	return s.String()
+}
+
+// SetContainerDefinitions sets the ContainerDefinitions field's value.
+func (s *ContainerGroupDefinition) SetContainerDefinitions(v []*ContainerDefinition) *ContainerGroupDefinition {
+	s.ContainerDefinitions = v
+	return s
+}
+
+// SetContainerGroupDefinitionArn sets the ContainerGroupDefinitionArn field's value.
+func (s *ContainerGroupDefinition) SetContainerGroupDefinitionArn(v string) *ContainerGroupDefinition {
+	s.ContainerGroupDefinitionArn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ContainerGroupDefinition) SetCreationTime(v time.Time) *ContainerGroupDefinition {
+	s.CreationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerGroupDefinition) SetName(v string) *ContainerGroupDefinition {
+	s.Name = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *ContainerGroupDefinition) SetOperatingSystem(v string) *ContainerGroupDefinition {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetSchedulingStrategy sets the SchedulingStrategy field's value.
+func (s *ContainerGroupDefinition) SetSchedulingStrategy(v string) *ContainerGroupDefinition {
+	s.SchedulingStrategy = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ContainerGroupDefinition) SetStatus(v string) *ContainerGroupDefinition {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *ContainerGroupDefinition) SetStatusReason(v string) *ContainerGroupDefinition {
+	s.StatusReason = &v
+	return s
+}
+
+// SetTotalCpuLimit sets the TotalCpuLimit field's value.
+func (s *ContainerGroupDefinition) SetTotalCpuLimit(v int64) *ContainerGroupDefinition {
+	s.TotalCpuLimit = &v
+	return s
+}
+
+// SetTotalMemoryLimit sets the TotalMemoryLimit field's value.
+func (s *ContainerGroupDefinition) SetTotalMemoryLimit(v int64) *ContainerGroupDefinition {
+	s.TotalMemoryLimit = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// The properties of a container group that is deployed to a container fleet.
+//
+// Part of: ContainerGroupsAttributes
+//
+// Returned by: DescribeFleetAttributes
+type ContainerGroupDefinitionProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the container group definition.
+	ContainerGroupDefinitionName *string `min:"1" type:"string"`
+
+	// The method for scheduling and maintaining copies of the container group across
+	// a container fleet.
+	SchedulingStrategy *string `type:"string" enum:"ContainerSchedulingStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupDefinitionProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupDefinitionProperty) GoString() string {
+	return s.String()
+}
+
+// SetContainerGroupDefinitionName sets the ContainerGroupDefinitionName field's value.
+func (s *ContainerGroupDefinitionProperty) SetContainerGroupDefinitionName(v string) *ContainerGroupDefinitionProperty {
+	s.ContainerGroupDefinitionName = &v
+	return s
+}
+
+// SetSchedulingStrategy sets the SchedulingStrategy field's value.
+func (s *ContainerGroupDefinitionProperty) SetSchedulingStrategy(v string) *ContainerGroupDefinitionProperty {
+	s.SchedulingStrategy = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// The properties of container groups that are running on a container fleet.
+// Container group properties for a fleet can't be changed.
+//
+// Returned by: DescribeFleetAttributes, CreateFleet
+type ContainerGroupsAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A set of ports that allow inbound traffic to connect to processes running
+	// in the fleet's container groups. Amazon GameLift maps each connection port
+	// to a container port, which is assigned to a specific container process. A
+	// fleet's connection port range can't be changed, but you can control access
+	// to connection ports by updating a fleet's EC2InboundPermissions with UpdateFleetPortSettings.
+	ConnectionPortRange *ConnectionPortRange `type:"structure"`
+
+	// A collection of properties that describe each container group in the fleet.
+	// A container fleet is deployed with one or more ContainerGroupDefinition resources,
+	// which is where these properties are set.
+	ContainerGroupDefinitionProperties []*ContainerGroupDefinitionProperty `type:"list"`
+
+	// Details about the number of replica container groups that Amazon GameLift
+	// deploys to each instance in the container fleet.
+	ContainerGroupsPerInstance *ContainerGroupsPerInstance `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsAttributes) GoString() string {
+	return s.String()
+}
+
+// SetConnectionPortRange sets the ConnectionPortRange field's value.
+func (s *ContainerGroupsAttributes) SetConnectionPortRange(v *ConnectionPortRange) *ContainerGroupsAttributes {
+	s.ConnectionPortRange = v
+	return s
+}
+
+// SetContainerGroupDefinitionProperties sets the ContainerGroupDefinitionProperties field's value.
+func (s *ContainerGroupsAttributes) SetContainerGroupDefinitionProperties(v []*ContainerGroupDefinitionProperty) *ContainerGroupsAttributes {
+	s.ContainerGroupDefinitionProperties = v
+	return s
+}
+
+// SetContainerGroupsPerInstance sets the ContainerGroupsPerInstance field's value.
+func (s *ContainerGroupsAttributes) SetContainerGroupsPerInstance(v *ContainerGroupsPerInstance) *ContainerGroupsAttributes {
+	s.ContainerGroupsPerInstance = v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Configuration details for a set of container groups, for use when creating
+// a fleet with compute type CONTAINER.
+//
+// Used with: CreateFleet
+type ContainerGroupsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A set of ports to allow inbound traffic, including game clients, to connect
+	// to processes running in the container fleet.
+	//
+	// Connection ports are dynamically mapped to container ports, which are assigned
+	// to individual processes running in a container. The connection port range
+	// must have enough ports to map to all container ports across a fleet instance.
+	// To calculate the minimum connection ports needed, use the following formula:
+	//
+	// [Total number of container ports as defined for containers in the replica
+	// container group] * [Desired or calculated number of replica container groups
+	// per instance] + [Total number of container ports as defined for containers
+	// in the daemon container group]
+	//
+	// As a best practice, double the minimum number of connection ports.
+	//
+	// Use the fleet's EC2InboundPermissions property to control external access
+	// to connection ports. Set this property to the connection port numbers that
+	// you want to open access to. See IpPermission for more details.
+	//
+	// ConnectionPortRange is a required field
+	ConnectionPortRange *ConnectionPortRange `type:"structure" required:"true"`
+
+	// The list of container group definition names to deploy to a new container
+	// fleet.
+	//
+	// ContainerGroupDefinitionNames is a required field
+	ContainerGroupDefinitionNames []*string `min:"1" type:"list" required:"true"`
+
+	// The number of times to replicate the replica container group on each instance
+	// in a container fleet. By default, Amazon GameLift calculates the maximum
+	// number of replica container groups that can fit on a fleet instance (based
+	// on CPU and memory resources). Leave this parameter empty if you want to use
+	// the maximum number, or specify a desired number to override the maximum.
+	// The desired number is used if it's less than the maximum number.
+	DesiredReplicaContainerGroupsPerInstance *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerGroupsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerGroupsConfiguration"}
+	if s.ConnectionPortRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionPortRange"))
+	}
+	if s.ContainerGroupDefinitionNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerGroupDefinitionNames"))
+	}
+	if s.ContainerGroupDefinitionNames != nil && len(s.ContainerGroupDefinitionNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerGroupDefinitionNames", 1))
+	}
+	if s.DesiredReplicaContainerGroupsPerInstance != nil && *s.DesiredReplicaContainerGroupsPerInstance < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DesiredReplicaContainerGroupsPerInstance", 1))
+	}
+	if s.ConnectionPortRange != nil {
+		if err := s.ConnectionPortRange.Validate(); err != nil {
+			invalidParams.AddNested("ConnectionPortRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionPortRange sets the ConnectionPortRange field's value.
+func (s *ContainerGroupsConfiguration) SetConnectionPortRange(v *ConnectionPortRange) *ContainerGroupsConfiguration {
+	s.ConnectionPortRange = v
+	return s
+}
+
+// SetContainerGroupDefinitionNames sets the ContainerGroupDefinitionNames field's value.
+func (s *ContainerGroupsConfiguration) SetContainerGroupDefinitionNames(v []*string) *ContainerGroupsConfiguration {
+	s.ContainerGroupDefinitionNames = v
+	return s
+}
+
+// SetDesiredReplicaContainerGroupsPerInstance sets the DesiredReplicaContainerGroupsPerInstance field's value.
+func (s *ContainerGroupsConfiguration) SetDesiredReplicaContainerGroupsPerInstance(v int64) *ContainerGroupsConfiguration {
+	s.DesiredReplicaContainerGroupsPerInstance = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Determines how many replica container groups that Amazon GameLift deploys
+// to each instance in a container fleet.
+//
+// Amazon GameLift calculates the maximum possible replica groups per instance
+// based on the instance 's CPU and memory resources. When deploying a fleet,
+// Amazon GameLift places replica container groups on each fleet instance based
+// on the following:
+//
+//   - If no desired value is set, Amazon GameLift places the calculated maximum.
+//
+//   - If a desired number is set to a value higher than the calculated maximum,
+//     Amazon GameLift places the calculated maximum.
+//
+//   - If a desired number is set to a value lower than the calculated maximum,
+//     Amazon GameLift places the desired number.
+//
+// Part of: ContainerGroupsConfiguration, ContainerGroupsAttributes
+//
+// Returned by: DescribeFleetAttributes, CreateFleet
+type ContainerGroupsPerInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The desired number of replica container groups to place on each fleet instance.
+	DesiredReplicaContainerGroupsPerInstance *int64 `min:"1" type:"integer"`
+
+	// The maximum possible number of replica container groups that each fleet instance
+	// can have.
+	MaxReplicaContainerGroupsPerInstance *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsPerInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerGroupsPerInstance) GoString() string {
+	return s.String()
+}
+
+// SetDesiredReplicaContainerGroupsPerInstance sets the DesiredReplicaContainerGroupsPerInstance field's value.
+func (s *ContainerGroupsPerInstance) SetDesiredReplicaContainerGroupsPerInstance(v int64) *ContainerGroupsPerInstance {
+	s.DesiredReplicaContainerGroupsPerInstance = &v
+	return s
+}
+
+// SetMaxReplicaContainerGroupsPerInstance sets the MaxReplicaContainerGroupsPerInstance field's value.
+func (s *ContainerGroupsPerInstance) SetMaxReplicaContainerGroupsPerInstance(v int64) *ContainerGroupsPerInstance {
+	s.MaxReplicaContainerGroupsPerInstance = &v
+	return s
+}
+
+// Instructions on when and how to check the health of a container in a container
+// fleet. When health check properties are set in a container definition, they
+// override any Docker health checks in the container image. For more information
+// on container health checks, see HealthCheck command (https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html#ECS-Type-HealthCheck-command)
+// in the Amazon Elastic Container Service API.
+//
+// The following example instructions tell the container to wait 100 seconds
+// after launch before counting failed health checks, then initiate the health
+// check command every 60 seconds. After issuing the health check command, wait
+// 10 seconds for it to succeed. If it fails, retry the command 3 times before
+// considering the container to be unhealthy.
+//
+// {"Command": [ "CMD-SHELL", "ps cax | grep "processmanager" || exit 1" ],
+// "Interval": 300, "Timeout": 30, "Retries": 5, "StartPeriod": 100 }
+//
+// Part of: ContainerDefinition$HealthCheck
+type ContainerHealthCheck struct {
+	_ struct{} `type:"structure"`
+
+	// A string array that specifies the command that the container runs to determine
+	// if it's healthy.
+	//
+	// Command is a required field
+	Command []*string `min:"1" type:"list" required:"true"`
+
+	// The time period (in seconds) between each health check.
+	Interval *int64 `min:"60" type:"integer"`
+
+	// The number of times to retry a failed health check before the container is
+	// considered unhealthy. The first run of the command does not count as a retry.
+	Retries *int64 `min:"5" type:"integer"`
+
+	// The optional grace period (in seconds) to give a container time to bootstrap
+	// before the first failed health check counts toward the number of retries.
+	StartPeriod *int64 `type:"integer"`
+
+	// The time period (in seconds) to wait for a health check to succeed before
+	// a failed health check is counted.
+	Timeout *int64 `min:"30" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerHealthCheck) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerHealthCheck) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerHealthCheck) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerHealthCheck"}
+	if s.Command == nil {
+		invalidParams.Add(request.NewErrParamRequired("Command"))
+	}
+	if s.Command != nil && len(s.Command) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Command", 1))
+	}
+	if s.Interval != nil && *s.Interval < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 60))
+	}
+	if s.Retries != nil && *s.Retries < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("Retries", 5))
+	}
+	if s.Timeout != nil && *s.Timeout < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("Timeout", 30))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *ContainerHealthCheck) SetCommand(v []*string) *ContainerHealthCheck {
+	s.Command = v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *ContainerHealthCheck) SetInterval(v int64) *ContainerHealthCheck {
+	s.Interval = &v
+	return s
+}
+
+// SetRetries sets the Retries field's value.
+func (s *ContainerHealthCheck) SetRetries(v int64) *ContainerHealthCheck {
+	s.Retries = &v
+	return s
+}
+
+// SetStartPeriod sets the StartPeriod field's value.
+func (s *ContainerHealthCheck) SetStartPeriod(v int64) *ContainerHealthCheck {
+	s.StartPeriod = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *ContainerHealthCheck) SetTimeout(v int64) *ContainerHealthCheck {
+	s.Timeout = &v
+	return s
+}
+
+// Specifies how much memory is available to a container. You can't change this
+// value after you create this object.
+//
+// Part of: ContainerDefinition$MemoryLimits
+type ContainerMemoryLimits struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of memory that the container can use. If a container attempts
+	// to exceed this limit, the container is stopped. This property is similar
+	// to the Amazon ECS container definition parameter memory (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_memory)
+	// in the Amazon Elastic Container Service Developer Guide.
+	HardLimit *int64 `min:"4" type:"integer"`
+
+	// The amount of memory that is reserved for a container. When the container
+	// group's shared memory is under contention, the system attempts to maintain
+	// the container memory usage at this soft limit. However, the container can
+	// use more memory when needed, if available. This property is similar to the
+	// Amazon ECS container definition parameter memoryreservation (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#ContainerDefinition-memoryReservation)
+	// (Amazon Elastic Container Service Developer Guide).
+	SoftLimit *int64 `min:"4" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerMemoryLimits) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerMemoryLimits) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerMemoryLimits) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerMemoryLimits"}
+	if s.HardLimit != nil && *s.HardLimit < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("HardLimit", 4))
+	}
+	if s.SoftLimit != nil && *s.SoftLimit < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("SoftLimit", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHardLimit sets the HardLimit field's value.
+func (s *ContainerMemoryLimits) SetHardLimit(v int64) *ContainerMemoryLimits {
+	s.HardLimit = &v
+	return s
+}
+
+// SetSoftLimit sets the SoftLimit field's value.
+func (s *ContainerMemoryLimits) SetSoftLimit(v int64) *ContainerMemoryLimits {
+	s.SoftLimit = &v
+	return s
+}
+
+// Defines ranges of ports that server processes can connect to.
+//
+// Part of: ContainerDefinition$PortConfiguration
+type ContainerPortConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies one or more ranges of ports on a container. These ranges must not
+	// overlap.
+	//
+	// ContainerPortRanges is a required field
+	ContainerPortRanges []*ContainerPortRange `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerPortConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerPortConfiguration"}
+	if s.ContainerPortRanges == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerPortRanges"))
+	}
+	if s.ContainerPortRanges != nil && len(s.ContainerPortRanges) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerPortRanges", 1))
+	}
+	if s.ContainerPortRanges != nil {
+		for i, v := range s.ContainerPortRanges {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContainerPortRanges", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerPortRanges sets the ContainerPortRanges field's value.
+func (s *ContainerPortConfiguration) SetContainerPortRanges(v []*ContainerPortRange) *ContainerPortConfiguration {
+	s.ContainerPortRanges = v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// Defines how an internal-facing container port is mapped to an external-facing
+// connection port on a fleet instance of compute type CONTAINER. Incoming traffic,
+// such as a game client, uses a connection port to connect to a process in
+// the container fleet. Amazon GameLift directs the inbound traffic to the container
+// port that is assigned to the process, such as a game session, running on
+// a container.
+//
+// Part of: ContainerAttributes
+type ContainerPortMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The port opened on the fleet instance. This is also called the "host port".
+	//
+	// ConnectionPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContainerPortMapping's
+	// String and GoString methods.
+	ConnectionPort *int64 `min:"1" type:"integer" sensitive:"true"`
+
+	// The port opened on the container.
+	//
+	// ContainerPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContainerPortMapping's
+	// String and GoString methods.
+	ContainerPort *int64 `min:"1" type:"integer" sensitive:"true"`
+
+	// The network protocol that this mapping supports.
+	Protocol *string `type:"string" enum:"IpProtocol"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortMapping) GoString() string {
+	return s.String()
+}
+
+// SetConnectionPort sets the ConnectionPort field's value.
+func (s *ContainerPortMapping) SetConnectionPort(v int64) *ContainerPortMapping {
+	s.ConnectionPort = &v
+	return s
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *ContainerPortMapping) SetContainerPort(v int64) *ContainerPortMapping {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *ContainerPortMapping) SetProtocol(v string) *ContainerPortMapping {
+	s.Protocol = &v
+	return s
+}
+
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// A set of one or more port numbers that can be opened on the container.
+//
+// Part of: ContainerPortConfiguration
+type ContainerPortRange struct {
+	_ struct{} `type:"structure"`
+
+	// A starting value for the range of allowed port numbers.
+	//
+	// FromPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContainerPortRange's
+	// String and GoString methods.
+	//
+	// FromPort is a required field
+	FromPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
+
+	// The network protocol that these ports support.
+	//
+	// Protocol is a required field
+	Protocol *string `type:"string" required:"true" enum:"IpProtocol"`
+
+	// An ending value for the range of allowed port numbers. Port numbers are end-inclusive.
+	// This value must be equal to or greater than FromPort.
+	//
+	// ToPort is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ContainerPortRange's
+	// String and GoString methods.
+	//
+	// ToPort is a required field
+	ToPort *int64 `min:"1" type:"integer" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContainerPortRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerPortRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerPortRange"}
+	if s.FromPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPort"))
+	}
+	if s.FromPort != nil && *s.FromPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FromPort", 1))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.ToPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPort"))
+	}
+	if s.ToPort != nil && *s.ToPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ToPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *ContainerPortRange) SetFromPort(v int64) *ContainerPortRange {
+	s.FromPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *ContainerPortRange) SetProtocol(v string) *ContainerPortRange {
+	s.Protocol = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *ContainerPortRange) SetToPort(v int64) *ContainerPortRange {
+	s.ToPort = &v
+	return s
 }
 
 type CreateAliasInput struct {
@@ -14429,16 +16822,221 @@ func (s *CreateBuildOutput) SetUploadCredentials(v *AwsCredentials) *CreateBuild
 	return s
 }
 
+type CreateContainerGroupDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Definitions for all containers in this group. Each container definition identifies
+	// the container image and specifies configuration settings for the container.
+	// See the Container fleet design guide (https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-design-fleet.html)
+	// for container guidelines.
+	//
+	// ContainerDefinitions is a required field
+	ContainerDefinitions []*ContainerDefinitionInput_ `min:"1" type:"list" required:"true"`
+
+	// A descriptive identifier for the container group definition. The name value
+	// must be unique in an Amazon Web Services Region.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The platform that is used by containers in the container group definition.
+	// All containers in a group must run on the same operating system.
+	//
+	// OperatingSystem is a required field
+	OperatingSystem *string `type:"string" required:"true" enum:"ContainerOperatingSystem"`
+
+	// The method for deploying the container group across fleet instances. A replica
+	// container group might have multiple copies on each fleet instance. A daemon
+	// container group has one copy per fleet instance. Default value is REPLICA.
+	SchedulingStrategy *string `type:"string" enum:"ContainerSchedulingStrategy"`
+
+	// A list of labels to assign to the container group definition resource. Tags
+	// are developer-defined key-value pairs. Tagging Amazon Web Services resources
+	// are useful for resource management, access management and cost allocation.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference.
+	Tags []*Tag `type:"list"`
+
+	// The maximum amount of CPU units to allocate to the container group. Set this
+	// parameter to an integer value in CPU units (1 vCPU is equal to 1024 CPU units).
+	// All containers in the group share this memory. If you specify CPU limits
+	// for individual containers, set this parameter based on the following guidelines.
+	// The value must be equal to or greater than the sum of the CPU limits for
+	// all containers in the group.
+	//
+	// TotalCpuLimit is a required field
+	TotalCpuLimit *int64 `min:"128" type:"integer" required:"true"`
+
+	// The maximum amount of memory (in MiB) to allocate to the container group.
+	// All containers in the group share this memory. If you specify memory limits
+	// for individual containers, set this parameter based on the following guidelines.
+	// The value must be (1) greater than the sum of the soft memory limits for
+	// all containers in the group, and (2) greater than any individual container's
+	// hard memory limit.
+	//
+	// TotalMemoryLimit is a required field
+	TotalMemoryLimit *int64 `min:"4" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContainerGroupDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContainerGroupDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContainerGroupDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContainerGroupDefinitionInput"}
+	if s.ContainerDefinitions == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerDefinitions"))
+	}
+	if s.ContainerDefinitions != nil && len(s.ContainerDefinitions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerDefinitions", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OperatingSystem == nil {
+		invalidParams.Add(request.NewErrParamRequired("OperatingSystem"))
+	}
+	if s.TotalCpuLimit == nil {
+		invalidParams.Add(request.NewErrParamRequired("TotalCpuLimit"))
+	}
+	if s.TotalCpuLimit != nil && *s.TotalCpuLimit < 128 {
+		invalidParams.Add(request.NewErrParamMinValue("TotalCpuLimit", 128))
+	}
+	if s.TotalMemoryLimit == nil {
+		invalidParams.Add(request.NewErrParamRequired("TotalMemoryLimit"))
+	}
+	if s.TotalMemoryLimit != nil && *s.TotalMemoryLimit < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("TotalMemoryLimit", 4))
+	}
+	if s.ContainerDefinitions != nil {
+		for i, v := range s.ContainerDefinitions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContainerDefinitions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerDefinitions sets the ContainerDefinitions field's value.
+func (s *CreateContainerGroupDefinitionInput) SetContainerDefinitions(v []*ContainerDefinitionInput_) *CreateContainerGroupDefinitionInput {
+	s.ContainerDefinitions = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateContainerGroupDefinitionInput) SetName(v string) *CreateContainerGroupDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *CreateContainerGroupDefinitionInput) SetOperatingSystem(v string) *CreateContainerGroupDefinitionInput {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetSchedulingStrategy sets the SchedulingStrategy field's value.
+func (s *CreateContainerGroupDefinitionInput) SetSchedulingStrategy(v string) *CreateContainerGroupDefinitionInput {
+	s.SchedulingStrategy = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContainerGroupDefinitionInput) SetTags(v []*Tag) *CreateContainerGroupDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+// SetTotalCpuLimit sets the TotalCpuLimit field's value.
+func (s *CreateContainerGroupDefinitionInput) SetTotalCpuLimit(v int64) *CreateContainerGroupDefinitionInput {
+	s.TotalCpuLimit = &v
+	return s
+}
+
+// SetTotalMemoryLimit sets the TotalMemoryLimit field's value.
+func (s *CreateContainerGroupDefinitionInput) SetTotalMemoryLimit(v int64) *CreateContainerGroupDefinitionInput {
+	s.TotalMemoryLimit = &v
+	return s
+}
+
+type CreateContainerGroupDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the newly created container group definition resource.
+	// You use this resource to create a container fleet.
+	ContainerGroupDefinition *ContainerGroupDefinition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContainerGroupDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContainerGroupDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerGroupDefinition sets the ContainerGroupDefinition field's value.
+func (s *CreateContainerGroupDefinitionOutput) SetContainerGroupDefinition(v *ContainerGroupDefinition) *CreateContainerGroupDefinitionOutput {
+	s.ContainerGroupDefinition = v
+	return s
+}
+
 type CreateFleetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Amazon GameLift Anywhere configuration options.
 	AnywhereConfiguration *AnywhereConfiguration `type:"structure"`
 
-	// The unique identifier for a custom game server build to be deployed on fleet
-	// instances. You can use either the build ID or ARN. The build must be uploaded
-	// to Amazon GameLift and in READY status. This fleet property can't be changed
-	// after the fleet is created.
+	// The unique identifier for a custom game server build to be deployed to a
+	// fleet with compute type EC2. You can use either the build ID or ARN. The
+	// build must be uploaded to Amazon GameLift and in READY status. This fleet
+	// property can't be changed after the fleet is created.
 	BuildId *string `type:"string"`
 
 	// Prompts Amazon GameLift to generate a TLS/SSL certificate for the fleet.
@@ -14458,25 +17056,49 @@ type CreateFleetInput struct {
 	// in the Certificate Manager User Guide.
 	CertificateConfiguration *CertificateConfiguration `type:"structure"`
 
-	// The type of compute resource used to host your game servers. You can use
-	// your own compute resources with Amazon GameLift Anywhere or use Amazon EC2
-	// instances with managed Amazon GameLift. By default, this property is set
-	// to EC2.
+	// The type of compute resource used to host your game servers.
+	//
+	//    * EC2 – The game server build is deployed to Amazon EC2 instances for
+	//    cloud hosting. This is the default setting.
+	//
+	//    * CONTAINER – Container images with your game server build and supporting
+	//    software are deployed to Amazon EC2 instances for cloud hosting. With
+	//    this compute type, you must specify the ContainerGroupsConfiguration parameter.
+	//
+	//    * ANYWHERE – Game servers or container images with your game server
+	//    and supporting software are deployed to compute resources that are provided
+	//    and managed by you. With this compute type, you can also set the AnywhereConfiguration
+	//    parameter.
 	ComputeType *string `type:"string" enum:"ComputeType"`
+
+	// The container groups to deploy to instances in the container fleet and other
+	// fleet-level configuration settings. Use the CreateContainerGroupDefinition
+	// action to create container groups. A container fleet must have exactly one
+	// replica container group, and can optionally have one daemon container group.
+	// You can't change this property after you create the fleet.
+	ContainerGroupsConfiguration *ContainerGroupsConfiguration `type:"structure"`
 
 	// A description for the fleet.
 	Description *string `min:"1" type:"string"`
 
-	// The allowed IP address ranges and port settings that allow inbound traffic
-	// to access game sessions on this fleet. If the fleet is hosting a custom game
-	// build, this property must be set before players can connect to game sessions.
+	// The IP address ranges and port settings that allow inbound traffic to access
+	// game server processes and other processes on this fleet. Set this parameter
+	// for EC2 and container fleets. You can leave this parameter empty when creating
+	// the fleet, but you must call UpdateFleetPortSettings to set it before players
+	// can connect to game sessions. As a best practice, we recommend opening ports
+	// for remote access only when you need them and closing them when you're finished.
 	// For Realtime Servers fleets, Amazon GameLift automatically sets TCP and UDP
 	// ranges.
+	//
+	// To manage inbound access for a container fleet, set this parameter to the
+	// same port numbers that you set for the fleet's connection port range. During
+	// the life of the fleet, update this parameter to control which connection
+	// ports are open to inbound traffic.
 	EC2InboundPermissions []*IpPermission `type:"list"`
 
-	// The Amazon GameLift-supported Amazon EC2 instance type to use for all fleet
-	// instances. Instance type determines the computing resources that will be
-	// used to host your game servers, including CPU, memory, storage, and networking
+	// The Amazon GameLift-supported Amazon EC2 instance type to use with EC2 and
+	// container fleets. Instance type determines the computing resources that will
+	// be used to host your game servers, including CPU, memory, storage, and networking
 	// capacity. See Amazon Elastic Compute Cloud Instance Types (http://aws.amazon.com/ec2/instance-types/)
 	// for detailed descriptions of Amazon EC2 instance types.
 	EC2InstanceType *string `type:"string" enum:"EC2InstanceType"`
@@ -14498,23 +17120,24 @@ type CreateFleetInput struct {
 	InstanceRoleArn *string `min:"1" type:"string"`
 
 	// Prompts Amazon GameLift to generate a shared credentials file for the IAM
-	// role defined in InstanceRoleArn. The shared credentials file is stored on
-	// each fleet instance and refreshed as needed. Use shared credentials for applications
-	// that are deployed along with the game server executable, if the game server
-	// is integrated with server SDK version 5.x. For more information about using
-	// shared credentials, see Communicate with other Amazon Web Services resources
-	// from your fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// role that's defined in InstanceRoleArn. The shared credentials file is stored
+	// on each fleet instance and refreshed as needed. Use shared credentials for
+	// applications that are deployed along with the game server executable, if
+	// the game server is integrated with server SDK version 5.x. For more information
+	// about using shared credentials, see Communicate with other Amazon Web Services
+	// resources from your fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
 	InstanceRoleCredentialsProvider *string `type:"string" enum:"InstanceRoleCredentialsProvider"`
 
 	// A set of remote locations to deploy additional instances to and manage as
 	// part of the fleet. This parameter can only be used when creating fleets in
 	// Amazon Web Services Regions that support multiple locations. You can add
 	// any Amazon GameLift-supported Amazon Web Services Region as a remote location,
-	// in the form of an Amazon Web Services Region code such as us-west-2. To create
-	// a fleet with instances in the home Region only, don't use this parameter.
+	// in the form of an Amazon Web Services Region code, such as us-west-2 or Local
+	// Zone code. To create a fleet with instances in the home Region only, don't
+	// set this parameter.
 	//
-	// To use this parameter, Amazon GameLift requires you to use your home location
-	// in the request.
+	// When using this parameter, Amazon GameLift requires you to include your home
+	// location in the request.
 	Locations []*LocationConfiguration `min:"1" type:"list"`
 
 	// This parameter is no longer used. To specify where Amazon GameLift should
@@ -14564,20 +17187,21 @@ type CreateFleetInput struct {
 	// can create on instances in this fleet within a specified span of time.
 	ResourceCreationLimitPolicy *ResourceCreationLimitPolicy `type:"structure"`
 
-	// Instructions for how to launch and maintain server processes on instances
-	// in the fleet. The runtime configuration defines one or more server process
-	// configurations, each identifying a build executable or Realtime script file
-	// and the number of processes of that type to run concurrently.
+	// Instructions for how to launch and run server processes on the fleet. Set
+	// runtime configuration for EC2 fleets and container fleets. For an Anywhere
+	// fleets, set this parameter only if the fleet is running the Amazon GameLift
+	// Agent. The runtime configuration defines one or more server process configurations.
+	// Each server process identifies a game executable or Realtime script file
+	// and the number of processes to run concurrently.
 	//
-	// The RuntimeConfiguration parameter is required unless the fleet is being
-	// configured using the older parameters ServerLaunchPath and ServerLaunchParameters,
+	// This parameter replaces the parameters ServerLaunchPath and ServerLaunchParameters,
 	// which are still supported for backward compatibility.
 	RuntimeConfiguration *RuntimeConfiguration `type:"structure"`
 
 	// The unique identifier for a Realtime configuration script to be deployed
-	// on fleet instances. You can use either the script ID or ARN. Scripts must
-	// be uploaded to Amazon GameLift prior to creating the fleet. This fleet property
-	// can't be changed after the fleet is created.
+	// to a fleet with compute type EC2. You can use either the script ID or ARN.
+	// Scripts must be uploaded to Amazon GameLift prior to creating the fleet.
+	// This fleet property can't be changed after the fleet is created.
 	ScriptId *string `type:"string"`
 
 	// This parameter is no longer used. Specify server launch parameters using
@@ -14656,6 +17280,11 @@ func (s *CreateFleetInput) Validate() error {
 			invalidParams.AddNested("CertificateConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ContainerGroupsConfiguration != nil {
+		if err := s.ContainerGroupsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ContainerGroupsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EC2InboundPermissions != nil {
 		for i, v := range s.EC2InboundPermissions {
 			if v == nil {
@@ -14719,6 +17348,12 @@ func (s *CreateFleetInput) SetCertificateConfiguration(v *CertificateConfigurati
 // SetComputeType sets the ComputeType field's value.
 func (s *CreateFleetInput) SetComputeType(v string) *CreateFleetInput {
 	s.ComputeType = &v
+	return s
+}
+
+// SetContainerGroupsConfiguration sets the ContainerGroupsConfiguration field's value.
+func (s *CreateFleetInput) SetContainerGroupsConfiguration(v *ContainerGroupsConfiguration) *CreateFleetInput {
+	s.ContainerGroupsConfiguration = v
 	return s
 }
 
@@ -17023,6 +19658,78 @@ func (s DeleteBuildOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteContainerGroupDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the container group definition to delete. You can
+	// use either the Name or ARN value.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContainerGroupDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContainerGroupDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContainerGroupDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContainerGroupDefinitionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteContainerGroupDefinitionInput) SetName(v string) *DeleteContainerGroupDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteContainerGroupDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContainerGroupDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContainerGroupDefinitionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteFleetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17941,7 +20648,10 @@ func (s DeleteVpcPeeringConnectionOutput) GoString() string {
 type DeregisterComputeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the compute resource to remove from the specified Anywhere fleet.
+	// The unique identifier of the compute resource to deregister. For an Anywhere
+	// fleet compute, use the registered compute name. For a container fleet, use
+	// the compute name (for example, a123b456c789012d3e4567f8a901b23c/1a234b56-7cd8-9e0f-a1b2-c34d567ef8a9)
+	// or the compute ARN.
 	//
 	// ComputeName is a required field
 	ComputeName *string `type:"string" required:"true"`
@@ -18269,14 +20979,16 @@ type DescribeComputeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the compute resource to retrieve properties for.
-	// For an Anywhere fleet compute, use the registered compute name. For a managed
-	// EC2 fleet instance, use the instance ID.
+	// For an Anywhere fleet compute, use the registered compute name. For an EC2
+	// fleet instance, use the instance ID. For a container fleet, use the compute
+	// name (for example, a123b456c789012d3e4567f8a901b23c/1a234b56-7cd8-9e0f-a1b2-c34d567ef8a9)
+	// or the compute ARN.
 	//
 	// ComputeName is a required field
 	ComputeName *string `type:"string" required:"true"`
 
-	// A unique identifier for the fleet that the compute is registered to. You
-	// can use either the fleet ID or ARN value.
+	// A unique identifier for the fleet that the compute belongs to. You can use
+	// either the fleet ID or ARN value.
 	//
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
@@ -18356,6 +21068,87 @@ func (s DescribeComputeOutput) GoString() string {
 // SetCompute sets the Compute field's value.
 func (s *DescribeComputeOutput) SetCompute(v *Compute) *DescribeComputeOutput {
 	s.Compute = v
+	return s
+}
+
+type DescribeContainerGroupDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the container group definition to retrieve properties
+	// for. You can use either the Name or ARN value.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContainerGroupDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContainerGroupDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContainerGroupDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContainerGroupDefinitionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeContainerGroupDefinitionInput) SetName(v string) *DescribeContainerGroupDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+type DescribeContainerGroupDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the requested container group definition resource.
+	ContainerGroupDefinition *ContainerGroupDefinition `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContainerGroupDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContainerGroupDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerGroupDefinition sets the ContainerGroupDefinition field's value.
+func (s *DescribeContainerGroupDefinitionOutput) SetContainerGroupDefinition(v *ContainerGroupDefinition) *DescribeContainerGroupDefinitionOutput {
+	s.ContainerGroupDefinition = v
 	return s
 }
 
@@ -20928,8 +23721,8 @@ func (s *DescribeRuntimeConfigurationInput) SetFleetId(v string) *DescribeRuntim
 type DescribeRuntimeConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Instructions that describe how server processes should be launched and maintained
-	// on each instance in the fleet.
+	// Instructions that describe how server processes are launched and maintained
+	// on computes in the fleet.
 	RuntimeConfiguration *RuntimeConfiguration `type:"structure"`
 }
 
@@ -21533,6 +24326,9 @@ func (s *EC2InstanceLimit) SetLocation(v string) *EC2InstanceLimit {
 type Event struct {
 	_ struct{} `type:"structure"`
 
+	// The number of times that this event occurred.
+	Count *int64 `min:"1" type:"long"`
+
 	// The type of event being logged.
 	//
 	// Fleet state transition events:
@@ -21730,6 +24526,12 @@ func (s Event) GoString() string {
 	return s.String()
 }
 
+// SetCount sets the Count field's value.
+func (s *Event) SetCount(v int64) *Event {
+	s.Count = &v
+	return s
+}
+
 // SetEventCode sets the EventCode field's value.
 func (s *Event) SetEventCode(v string) *Event {
 	s.EventCode = &v
@@ -21815,36 +24617,58 @@ func (s *FilterConfiguration) SetAllowedLocations(v []*string) *FilterConfigurat
 	return s
 }
 
-// Describes a Amazon GameLift fleet of game hosting resources.
+// This operation has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// Related actions
+// Describes an Amazon GameLift fleet of game hosting resources. Attributes
+// differ based on the fleet's compute type, as follows:
+//
+//   - EC2 fleet attributes identify a Build resource (for fleets with customer
+//     game server builds) or a Script resource (for Realtime Servers fleets).
+//
+//   - Container fleets have ContainerGroupsAttributes, which identify the
+//     fleet's ContainerGroupDefinition resources.
+//
+//   - Amazon GameLift Anywhere fleets have an abbreviated set of attributes,
+//     because most fleet configurations are set directly on the fleet's computes.
+//     Attributes include fleet identifiers and descriptive properties, creation/termination
+//     time, and fleet status.
+//
+// Returned by: DescribeFleetAttributes
 type FleetAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon GameLift Anywhere configuration options for your Anywhere fleets.
+	// This property is used with the Amazon GameLift containers feature, which
+	// is currently in public preview. A set of attributes that describe the container
+	// groups that are deployed on the fleet. These attributes are included for
+	// fleets with compute type CONTAINER only. This attribute is used with fleets
+	// where ComputeType is "Container".
 	AnywhereConfiguration *AnywhereConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html))
 	// associated with the Amazon GameLift build resource that is deployed on instances
 	// in this fleet. In a GameLift build ARN, the resource ID matches the BuildId
-	// value.
+	// value. This attribute is used with fleets where ComputeType is "EC2".
 	BuildArn *string `type:"string"`
 
 	// A unique identifier for the build resource that is deployed on instances
-	// in this fleet.
+	// in this fleet. This attribute is used with fleets where ComputeType is "EC2".
 	BuildId *string `type:"string"`
 
 	// Determines whether a TLS/SSL certificate is generated for a fleet. This feature
 	// must be enabled when creating the fleet. All instances in a fleet share the
-	// same certificate. The certificate can be retrieved by calling the Amazon
-	// GameLift Server SDK (https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk.html)
-	// operation GetInstanceCertificate.
+	// same certificate.
 	CertificateConfiguration *CertificateConfiguration `type:"structure"`
 
 	// The type of compute resource used to host your game servers. You can use
 	// your own compute resources with Amazon GameLift Anywhere or use Amazon EC2
 	// instances with managed Amazon GameLift.
 	ComputeType *string `type:"string" enum:"ComputeType"`
+
+	// A set of properties that describe the container groups that are deployed
+	// to the fleet. These attributes are included for fleets with compute type
+	// CONTAINER.
+	ContainerGroupsAttributes *ContainerGroupsAttributes `type:"structure"`
 
 	// A time stamp indicating when this data object was created. Format is a number
 	// expressed in Unix time as milliseconds (for example "1469498468.057").
@@ -21862,9 +24686,8 @@ type FleetAttributes struct {
 	// A unique identifier for the fleet.
 	FleetId *string `type:"string"`
 
-	// Indicates whether to use On-Demand or Spot instances for this fleet. By default,
-	// this property is set to ON_DEMAND. Learn more about when to use On-Demand
-	// versus Spot Instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot).
+	// Indicates whether the fleet uses On-Demand or Spot instances. For more information,
+	// see On-Demand versus Spot Instances (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot).
 	// This fleet property can't be changed after the fleet is created.
 	FleetType *string `type:"string" enum:"FleetType"`
 
@@ -21875,6 +24698,7 @@ type FleetAttributes struct {
 	// to. For more information about using the role with your game server builds,
 	// see Communicate with other Amazon Web Services resources from your fleets
 	// (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// This attribute is used with fleets where ComputeType is "EC2" or "Container".
 	InstanceRoleArn *string `min:"1" type:"string"`
 
 	// Indicates that fleet instances maintain a shared credentials file for the
@@ -21884,12 +24708,14 @@ type FleetAttributes struct {
 	// is integrated with the server SDK version 5.x. For more information about
 	// using shared credentials, see Communicate with other Amazon Web Services
 	// resources from your fleets (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// This attribute is used with fleets where ComputeType is "EC2" or "Container".
 	InstanceRoleCredentialsProvider *string `type:"string" enum:"InstanceRoleCredentialsProvider"`
 
-	// The Amazon EC2 instance type that determines the computing resources of each
-	// instance in the fleet. Instance type defines the CPU, memory, storage, and
-	// networking capacity. See Amazon Elastic Compute Cloud Instance Types (http://aws.amazon.com/ec2/instance-types/)
-	// for detailed descriptions.
+	// The Amazon EC2 instance type that the fleet uses. Instance type determines
+	// the computing resources of each instance in the fleet, including CPU, memory,
+	// storage, and networking capacity. See Amazon Elastic Compute Cloud Instance
+	// Types (http://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
+	// This attribute is used with fleets where ComputeType is "EC2" or "Container".
 	InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
 	// This parameter is no longer used. Game session log paths are now defined
@@ -21899,7 +24725,8 @@ type FleetAttributes struct {
 
 	// Name of a metric group that metrics for this fleet are added to. In Amazon
 	// CloudWatch, you can view aggregated metrics for fleets that are in a metric
-	// group. A fleet can be included in only one metric group at a time.
+	// group. A fleet can be included in only one metric group at a time. This attribute
+	// is used with fleets where ComputeType is "EC2" or "Container".
 	MetricGroups []*string `type:"list"`
 
 	// A descriptive label that is associated with a fleet. Fleet names do not need
@@ -21907,7 +24734,8 @@ type FleetAttributes struct {
 	Name *string `min:"1" type:"string"`
 
 	// The type of game session protection to set on all new instances that are
-	// started in the fleet.
+	// started in the fleet. This attribute is used with fleets where ComputeType
+	// is "EC2" or "Container".
 	//
 	//    * NoProtection -- The game session can be terminated during a scale-down
 	//    event.
@@ -21918,7 +24746,8 @@ type FleetAttributes struct {
 
 	// The operating system of the fleet's computing resources. A fleet's operating
 	// system is determined by the OS of the build or script that is deployed on
-	// this fleet.
+	// this fleet. This attribute is used with fleets where ComputeType is "EC2"
+	// or "Container".
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
 	// A policy that puts limits on the number of game sessions that a player can
@@ -21938,17 +24767,18 @@ type FleetAttributes struct {
 	ScriptArn *string `type:"string"`
 
 	// A unique identifier for the Realtime script resource that is deployed on
-	// instances in this fleet.
+	// instances in this fleet. This attribute is used with fleets where ComputeType
+	// is "EC2".
 	ScriptId *string `type:"string"`
 
 	// This parameter is no longer used. Server launch parameters are now defined
 	// using the fleet's runtime configuration . Requests that use this parameter
-	// instead continue to be valid.
+	// continue to be valid.
 	ServerLaunchParameters *string `min:"1" type:"string"`
 
 	// This parameter is no longer used. Server launch paths are now defined using
 	// the fleet's RuntimeConfiguration (https://docs.aws.amazon.com/gamelift/latest/apireference/RuntimeConfiguration.html)
-	// . Requests that use this parameter instead continue to be valid.
+	// . Requests that use this parameter continue to be valid.
 	ServerLaunchPath *string `min:"1" type:"string"`
 
 	// Current status of the fleet. Possible fleet statuses include the following:
@@ -21970,8 +24800,9 @@ type FleetAttributes struct {
 	//    * TERMINATED -- The fleet no longer exists.
 	Status *string `type:"string" enum:"FleetStatus"`
 
-	// A list of fleet activity that has been suspended using StopFleetActions (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopFleetActions.html)
-	// . This includes fleet auto-scaling.
+	// A list of fleet activity that has been suspended using StopFleetActions (https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopFleetActions.html).
+	// This includes fleet auto-scaling. This attribute is used with fleets where
+	// ComputeType is "EC2" or "Container".
 	StoppedActions []*string `min:"1" type:"list" enum:"FleetAction"`
 
 	// A time stamp indicating when this data object was terminated. Format is a
@@ -22024,6 +24855,12 @@ func (s *FleetAttributes) SetCertificateConfiguration(v *CertificateConfiguratio
 // SetComputeType sets the ComputeType field's value.
 func (s *FleetAttributes) SetComputeType(v string) *FleetAttributes {
 	s.ComputeType = &v
+	return s
+}
+
+// SetContainerGroupsAttributes sets the ContainerGroupsAttributes field's value.
+func (s *FleetAttributes) SetContainerGroupsAttributes(v *ContainerGroupsAttributes) *FleetAttributes {
+	s.ContainerGroupsAttributes = v
 	return s
 }
 
@@ -22153,14 +24990,13 @@ func (s *FleetAttributes) SetTerminationTime(v time.Time) *FleetAttributes {
 	return s
 }
 
-// Current resource capacity settings in a specified fleet or location. The
-// location value might refer to a fleet's remote location or its home Region.
+// Current resource capacity settings for managed EC2 fleets and container fleets.
+// For multi-location fleets, location values might refer to a fleet's remote
+// location or its home Region.
 //
-// # Related actions
-//
-// DescribeFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html)
-// | DescribeFleetLocationCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html)
-// | UpdateFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html)
+// Returned by: DescribeFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html),
+// DescribeFleetLocationCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html),
+// UpdateFleetCapacity (https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html)
 type FleetCapacity struct {
 	_ struct{} `type:"structure"`
 
@@ -22172,20 +25008,26 @@ type FleetCapacity struct {
 	// A unique identifier for the fleet associated with the location.
 	FleetId *string `type:"string"`
 
-	// Resource capacity settings. Fleet capacity is measured in Amazon EC2 instances.
-	// Pending and terminating counts are non-zero when the fleet capacity is adjusting
-	// to a scaling event or if access to resources is temporarily affected.
+	// The current number of instances in the fleet, listed by instance status.
+	// Counts for pending and terminating instances might be non-zero if the fleet
+	// is adjusting to a scaling event or if access to resources is temporarily
+	// affected.
 	InstanceCounts *EC2InstanceCounts `type:"structure"`
 
-	// The Amazon EC2 instance type that is used for all instances in a fleet. The
-	// instance type determines the computing resources in use, including CPU, memory,
-	// storage, and networking capacity. See Amazon Elastic Compute Cloud Instance
-	// Types (http://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
+	// The Amazon EC2 instance type that is used for instances in a fleet. Instance
+	// type determines the computing resources in use, including CPU, memory, storage,
+	// and networking capacity. See Amazon Elastic Compute Cloud Instance Types
+	// (http://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
 	InstanceType *string `type:"string" enum:"EC2InstanceType"`
 
 	// The fleet location for the instance count information, expressed as an Amazon
 	// Web Services Region code, such as us-west-2.
 	Location *string `min:"1" type:"string"`
+
+	// This property is used with the Amazon GameLift containers feature, which
+	// is currently in public preview. The number and status of replica container
+	// groups in a container fleet.
+	ReplicaContainerGroupCounts *ReplicaContainerGroupCounts `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22233,6 +25075,12 @@ func (s *FleetCapacity) SetInstanceType(v string) *FleetCapacity {
 // SetLocation sets the Location field's value.
 func (s *FleetCapacity) SetLocation(v string) *FleetCapacity {
 	s.Location = &v
+	return s
+}
+
+// SetReplicaContainerGroupCounts sets the ReplicaContainerGroupCounts field's value.
+func (s *FleetCapacity) SetReplicaContainerGroupCounts(v *ReplicaContainerGroupCounts) *FleetCapacity {
+	s.ReplicaContainerGroupCounts = v
 	return s
 }
 
@@ -22302,9 +25150,7 @@ func (s *FleetCapacityExceededException) RequestID() string {
 }
 
 // Current resource utilization statistics in a specified fleet or location.
-// The location value might refer to a fleet's remote location or its home Region.
-//
-// Related actions
+// The location value might refer to a fleet's remote location or its home region.
 type FleetUtilization struct {
 	_ struct{} `type:"structure"`
 
@@ -23845,12 +26691,14 @@ type GetComputeAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for the compute resource that you want to connect to.
-	// You can use either a registered compute name or an instance ID.
+	// For an EC2 fleet compute, use the instance ID. For a container fleet, use
+	// the compute name (for example, a123b456c789012d3e4567f8a901b23c/1a234b56-7cd8-9e0f-a1b2-c34d567ef8a9)
+	// or the compute ARN.
 	//
 	// ComputeName is a required field
 	ComputeName *string `type:"string" required:"true"`
 
-	// A unique identifier for the fleet that contains the compute resource you
+	// A unique identifier for the fleet that holds the compute resource that you
 	// want to connect to. You can use either the fleet ID or ARN value.
 	//
 	// FleetId is a required field
@@ -23928,8 +26776,12 @@ type GetComputeAccessOutput struct {
 	// it. ARNs are unique across all Regions. Format is arn:aws:gamelift:<region>::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912.
 	FleetArn *string `type:"string"`
 
-	// The ID of the fleet that contains the compute resource to be accessed.
+	// The ID of the fleet that holds the compute resource to be accessed.
 	FleetId *string `type:"string"`
+
+	// (For container fleets only) The instance ID where the compute resource is
+	// running.
+	Target *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -23980,11 +26832,20 @@ func (s *GetComputeAccessOutput) SetFleetId(v string) *GetComputeAccessOutput {
 	return s
 }
 
+// SetTarget sets the Target field's value.
+func (s *GetComputeAccessOutput) SetTarget(v string) *GetComputeAccessOutput {
+	s.Target = &v
+	return s
+}
+
 type GetComputeAuthTokenInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the compute resource you are requesting the authentication token
-	// for.
+	// for. For an Anywhere fleet compute, use the registered compute name. For
+	// an EC2 fleet instance, use the instance ID. For a container fleet, use the
+	// compute name (for example, a123b456c789012d3e4567f8a901b23c/1a234b56-7cd8-9e0f-a1b2-c34d567ef8a9)
+	// or the compute ARN.
 	//
 	// ComputeName is a required field
 	ComputeName *string `type:"string" required:"true"`
@@ -24970,9 +27831,11 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 // A range of IP addresses and port settings that allow inbound traffic to connect
-// to server processes on an instance in a fleet. New game sessions are assigned
-// an IP address/port number combination, which must fall into the fleet's allowed
-// ranges. Fleets with custom game builds must have permissions explicitly set.
+// to processes on an instance in a fleet. Processes are assigned an IP address/port
+// number combination, which must fall into the fleet's allowed ranges. For
+// container fleets, the port settings must use the same port numbers as the
+// fleet's connection ports.
+//
 // For Realtime Servers fleets, Amazon GameLift automatically opens two port
 // ranges, one for TCP messaging and one for UDP.
 type IpPermission struct {
@@ -25504,7 +28367,10 @@ type ListComputeInput struct {
 	// to get results as a set of sequential pages.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// The name of a location to retrieve compute resources for.
+	// The name of a location to retrieve compute resources for. For an Amazon GameLift
+	// Anywhere fleet, use a custom location. For a multi-location EC2 or container
+	// fleet, provide a Amazon Web Services Region or Local Zone code (for example:
+	// us-west-2 or us-west-2-lax-1).
 	Location *string `min:"1" type:"string"`
 
 	// A token that indicates the start of the next sequential page of results.
@@ -25619,6 +28485,123 @@ func (s *ListComputeOutput) SetNextToken(v string) *ListComputeOutput {
 	return s
 }
 
+type ListContainerGroupDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return. Use this parameter with NextToken
+	// to get results as a set of sequential pages.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// A token that indicates the start of the next sequential page of results.
+	// Use the token that is returned with a previous call to this operation. To
+	// start at the beginning of the result set, do not specify a value.
+	NextToken *string `min:"1" type:"string"`
+
+	// The type of container group definitions to retrieve.
+	//
+	//    * DAEMON -- Daemon container groups run background processes and are deployed
+	//    once per fleet instance.
+	//
+	//    * REPLICA -- Replica container groups run your game server application
+	//    and supporting software. Replica groups might be deployed multiple times
+	//    per fleet instance.
+	SchedulingStrategy *string `type:"string" enum:"ContainerSchedulingStrategy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContainerGroupDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContainerGroupDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContainerGroupDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContainerGroupDefinitionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListContainerGroupDefinitionsInput) SetLimit(v int64) *ListContainerGroupDefinitionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerGroupDefinitionsInput) SetNextToken(v string) *ListContainerGroupDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSchedulingStrategy sets the SchedulingStrategy field's value.
+func (s *ListContainerGroupDefinitionsInput) SetSchedulingStrategy(v string) *ListContainerGroupDefinitionsInput {
+	s.SchedulingStrategy = &v
+	return s
+}
+
+type ListContainerGroupDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A result set of container group definitions that match the request.
+	ContainerGroupDefinitions []*ContainerGroupDefinition `type:"list"`
+
+	// A token that indicates where to resume retrieving results on the next call
+	// to this operation. If no token is returned, these results represent the end
+	// of the list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContainerGroupDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContainerGroupDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerGroupDefinitions sets the ContainerGroupDefinitions field's value.
+func (s *ListContainerGroupDefinitionsOutput) SetContainerGroupDefinitions(v []*ContainerGroupDefinition) *ListContainerGroupDefinitionsOutput {
+	s.ContainerGroupDefinitions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerGroupDefinitionsOutput) SetNextToken(v string) *ListContainerGroupDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListFleetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25626,6 +28609,11 @@ type ListFleetsInput struct {
 	// to return only fleets using a specified build. Use either the build ID or
 	// ARN value.
 	BuildId *string `type:"string"`
+
+	// The container group definition name to request fleets for. Use this parameter
+	// to return only fleets that are deployed with the specified container group
+	// definition.
+	ContainerGroupDefinitionName *string `min:"1" type:"string"`
 
 	// The maximum number of results to return. Use this parameter with NextToken
 	// to get results as a set of sequential pages.
@@ -25663,6 +28651,9 @@ func (s ListFleetsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListFleetsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListFleetsInput"}
+	if s.ContainerGroupDefinitionName != nil && len(*s.ContainerGroupDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerGroupDefinitionName", 1))
+	}
 	if s.Limit != nil && *s.Limit < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
 	}
@@ -25679,6 +28670,12 @@ func (s *ListFleetsInput) Validate() error {
 // SetBuildId sets the BuildId field's value.
 func (s *ListFleetsInput) SetBuildId(v string) *ListFleetsInput {
 	s.BuildId = &v
+	return s
+}
+
+// SetContainerGroupDefinitionName sets the ContainerGroupDefinitionName field's value.
+func (s *ListFleetsInput) SetContainerGroupDefinitionName(v string) *ListFleetsInput {
+	s.ContainerGroupDefinitionName = &v
 	return s
 }
 
@@ -26321,6 +29318,9 @@ func (s *LocationAttributes) SetUpdateStatus(v string) *LocationAttributes {
 	return s
 }
 
+// This data type has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
+//
 // A remote location where a multi-location fleet can deploy game servers for
 // game hosting.
 type LocationConfiguration struct {
@@ -26372,7 +29372,9 @@ func (s *LocationConfiguration) SetLocation(v string) *LocationConfiguration {
 	return s
 }
 
-// Properties of a location
+// Properties of a custom location for use in an Amazon GameLift Anywhere fleet.
+// This data type is returned in response to a call to https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateLocation.html
+// (https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateLocation.html).
 type LocationModel struct {
 	_ struct{} `type:"structure"`
 
@@ -27086,6 +30088,72 @@ func (s *NotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *NotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The operation failed because Amazon GameLift has not yet finished validating
+// this compute. We recommend attempting 8 to 10 retries over 3 to 5 minutes
+// with exponential backoffs and jitter (http://aws.amazon.com/blogs/https:/aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
+type NotReadyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotReadyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotReadyException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotReadyException(v protocol.ResponseMetadata) error {
+	return &NotReadyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NotReadyException) Code() string {
+	return "NotReadyException"
+}
+
+// Message returns the exception's message.
+func (s *NotReadyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NotReadyException) OrigErr() error {
+	return nil
+}
+
+func (s *NotReadyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NotReadyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -28240,6 +31308,74 @@ func (s *RegisterGameServerOutput) SetGameServer(v *GameServer) *RegisterGameSer
 	return s
 }
 
+// This data type is used with the Amazon GameLift containers feature, which
+// is currently in public preview.
+//
+// The number and status of replica container groups that are deployed across
+// a fleet with compute type CONTAINER. This information, combined with the
+// number of server processes being hosted per container group (see RuntimeConfiguration),
+// tells you how many game sessions the fleet is currently capable of hosting
+// concurrently.
+//
+// Returned by: DescribeFleetCapacity, DescribeFleetLocationCapacity
+type ReplicaContainerGroupCounts struct {
+	_ struct{} `type:"structure"`
+
+	// The number of container groups that have active game sessions.
+	ACTIVE *int64 `type:"integer"`
+
+	// The number of container groups that have no active game sessions.
+	IDLE *int64 `type:"integer"`
+
+	// The number of container groups that are starting up but have not yet registered.
+	PENDING *int64 `type:"integer"`
+
+	// The number of container groups that are in the process of shutting down.
+	TERMINATING *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaContainerGroupCounts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplicaContainerGroupCounts) GoString() string {
+	return s.String()
+}
+
+// SetACTIVE sets the ACTIVE field's value.
+func (s *ReplicaContainerGroupCounts) SetACTIVE(v int64) *ReplicaContainerGroupCounts {
+	s.ACTIVE = &v
+	return s
+}
+
+// SetIDLE sets the IDLE field's value.
+func (s *ReplicaContainerGroupCounts) SetIDLE(v int64) *ReplicaContainerGroupCounts {
+	s.IDLE = &v
+	return s
+}
+
+// SetPENDING sets the PENDING field's value.
+func (s *ReplicaContainerGroupCounts) SetPENDING(v int64) *ReplicaContainerGroupCounts {
+	s.PENDING = &v
+	return s
+}
+
+// SetTERMINATING sets the TERMINATING field's value.
+func (s *ReplicaContainerGroupCounts) SetTERMINATING(v int64) *ReplicaContainerGroupCounts {
+	s.TERMINATING = &v
+	return s
+}
+
 type RequestUploadCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -28639,15 +31775,21 @@ func (s *RoutingStrategy) SetType(v string) *RoutingStrategy {
 	return s
 }
 
-// A collection of server process configurations that describe the set of processes
-// to run on each instance in a fleet. Server processes run either an executable
-// in a custom game build or a Realtime Servers script. Amazon GameLift launches
-// the configured processes, manages their life cycle, and replaces them as
-// needed. Each instance checks regularly for an updated runtime configuration.
+// This data type has been expanded to use with the Amazon GameLift containers
+// feature, which is currently in public preview.
 //
-// A Amazon GameLift instance is limited to 50 processes running concurrently.
-// To calculate the total number of processes in a runtime configuration, add
-// the values of the ConcurrentExecutions parameter for each server process.
+// A set of instructions that define the set of server processes to run on computes
+// in a fleet. Server processes run either an executable in a custom game build
+// or a Realtime Servers script. Amazon GameLift launches the processes, manages
+// their life cycle, and replaces them as needed. Computes check regularly for
+// an updated runtime configuration.
+//
+// On a container fleet, the Amazon GameLift Agent uses the runtime configuration
+// to manage the lifecycle of server processes in a replica container group.
+//
+// An Amazon GameLift instance is limited to 50 processes running concurrently.
+// To calculate the total number of processes defined in a runtime configuration,
+// add the values of the ConcurrentExecutions parameter for each server process.
 // Learn more about Running Multiple Processes on a Fleet (https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-multiprocess.html).
 type RuntimeConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -28658,13 +31800,13 @@ type RuntimeConfiguration struct {
 	// the timeout, it is ended and the game session status is changed to TERMINATED.
 	GameSessionActivationTimeoutSeconds *int64 `min:"1" type:"integer"`
 
-	// The number of game sessions in status ACTIVATING to allow on an instance.
-	// This setting limits the instance resources that can be used for new game
-	// activations at any one time.
+	// The number of game sessions in status ACTIVATING to allow on an instance
+	// or container. This setting limits the instance resources that can be used
+	// for new game activations at any one time.
 	MaxConcurrentGameSessionActivations *int64 `min:"1" type:"integer"`
 
 	// A collection of server process configurations that identify what server processes
-	// to run on each instance in a fleet.
+	// to run on fleet computes.
 	ServerProcesses []*ServerProcess `min:"1" type:"list"`
 }
 
@@ -29364,15 +32506,14 @@ func (s *SearchGameSessionsOutput) SetNextToken(v string) *SearchGameSessionsOut
 	return s
 }
 
-// A set of instructions for launching server processes on each instance in
-// a fleet. Server processes run either an executable in a custom game build
-// or a Realtime Servers script. Server process configurations are part of a
-// fleet's runtime configuration.
+// A set of instructions for launching server processes on fleet computes. Server
+// processes run either an executable in a custom game build or a Realtime Servers
+// script. Server process configurations are part of a fleet's runtime configuration.
 type ServerProcess struct {
 	_ struct{} `type:"structure"`
 
 	// The number of server processes using this configuration that run concurrently
-	// on each instance.
+	// on each instance or container..
 	//
 	// ConcurrentExecutions is a required field
 	ConcurrentExecutions *int64 `min:"1" type:"integer" required:"true"`
@@ -32627,11 +35768,10 @@ type UpdateRuntimeConfigurationInput struct {
 	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
-	// Instructions for launching server processes on each instance in the fleet.
-	// Server processes run either a custom game build executable or a Realtime
-	// Servers script. The runtime configuration lists the types of server processes
-	// to run on an instance, how to launch them, and the number of processes to
-	// run concurrently.
+	// Instructions for launching server processes on fleet computes. Server processes
+	// run either a custom game build executable or a Realtime Servers script. The
+	// runtime configuration lists the types of server processes to run, how to
+	// launch them, and the number of processes to run concurrently.
 	//
 	// RuntimeConfiguration is a required field
 	RuntimeConfiguration *RuntimeConfiguration `type:"structure" required:"true"`
@@ -32691,8 +35831,8 @@ func (s *UpdateRuntimeConfigurationInput) SetRuntimeConfiguration(v *RuntimeConf
 type UpdateRuntimeConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The runtime configuration currently in use by all instances in the fleet.
-	// If the update was successful, all property changes are shown.
+	// The runtime configuration currently in use by computes in the fleet. If the
+	// update is successful, all property changes are shown.
 	RuntimeConfiguration *RuntimeConfiguration `type:"structure"`
 }
 
@@ -33317,6 +36457,9 @@ const (
 
 	// ComputeTypeAnywhere is a ComputeType enum value
 	ComputeTypeAnywhere = "ANYWHERE"
+
+	// ComputeTypeContainer is a ComputeType enum value
+	ComputeTypeContainer = "CONTAINER"
 )
 
 // ComputeType_Values returns all elements of the ComputeType enum
@@ -33324,6 +36467,79 @@ func ComputeType_Values() []string {
 	return []string{
 		ComputeTypeEc2,
 		ComputeTypeAnywhere,
+		ComputeTypeContainer,
+	}
+}
+
+const (
+	// ContainerDependencyConditionStart is a ContainerDependencyCondition enum value
+	ContainerDependencyConditionStart = "START"
+
+	// ContainerDependencyConditionComplete is a ContainerDependencyCondition enum value
+	ContainerDependencyConditionComplete = "COMPLETE"
+
+	// ContainerDependencyConditionSuccess is a ContainerDependencyCondition enum value
+	ContainerDependencyConditionSuccess = "SUCCESS"
+
+	// ContainerDependencyConditionHealthy is a ContainerDependencyCondition enum value
+	ContainerDependencyConditionHealthy = "HEALTHY"
+)
+
+// ContainerDependencyCondition_Values returns all elements of the ContainerDependencyCondition enum
+func ContainerDependencyCondition_Values() []string {
+	return []string{
+		ContainerDependencyConditionStart,
+		ContainerDependencyConditionComplete,
+		ContainerDependencyConditionSuccess,
+		ContainerDependencyConditionHealthy,
+	}
+}
+
+const (
+	// ContainerGroupDefinitionStatusReady is a ContainerGroupDefinitionStatus enum value
+	ContainerGroupDefinitionStatusReady = "READY"
+
+	// ContainerGroupDefinitionStatusCopying is a ContainerGroupDefinitionStatus enum value
+	ContainerGroupDefinitionStatusCopying = "COPYING"
+
+	// ContainerGroupDefinitionStatusFailed is a ContainerGroupDefinitionStatus enum value
+	ContainerGroupDefinitionStatusFailed = "FAILED"
+)
+
+// ContainerGroupDefinitionStatus_Values returns all elements of the ContainerGroupDefinitionStatus enum
+func ContainerGroupDefinitionStatus_Values() []string {
+	return []string{
+		ContainerGroupDefinitionStatusReady,
+		ContainerGroupDefinitionStatusCopying,
+		ContainerGroupDefinitionStatusFailed,
+	}
+}
+
+const (
+	// ContainerOperatingSystemAmazonLinux2023 is a ContainerOperatingSystem enum value
+	ContainerOperatingSystemAmazonLinux2023 = "AMAZON_LINUX_2023"
+)
+
+// ContainerOperatingSystem_Values returns all elements of the ContainerOperatingSystem enum
+func ContainerOperatingSystem_Values() []string {
+	return []string{
+		ContainerOperatingSystemAmazonLinux2023,
+	}
+}
+
+const (
+	// ContainerSchedulingStrategyReplica is a ContainerSchedulingStrategy enum value
+	ContainerSchedulingStrategyReplica = "REPLICA"
+
+	// ContainerSchedulingStrategyDaemon is a ContainerSchedulingStrategy enum value
+	ContainerSchedulingStrategyDaemon = "DAEMON"
+)
+
+// ContainerSchedulingStrategy_Values returns all elements of the ContainerSchedulingStrategy enum
+func ContainerSchedulingStrategy_Values() []string {
+	return []string{
+		ContainerSchedulingStrategyReplica,
+		ContainerSchedulingStrategyDaemon,
 	}
 }
 

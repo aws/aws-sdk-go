@@ -17412,6 +17412,10 @@
         "SourceDestCheck":{
           "shape":"AttributeBooleanValue",
           "locationName":"sourceDestCheck"
+        },
+        "AssociatePublicIpAddress":{
+          "shape":"Boolean",
+          "locationName":"associatePublicIpAddress"
         }
       }
     },
@@ -33274,7 +33278,8 @@
         },
         "EnaSrdSpecification":{"shape":"EnaSrdSpecification"},
         "EnablePrimaryIpv6":{"shape":"Boolean"},
-        "ConnectionTrackingSpecification":{"shape":"ConnectionTrackingSpecificationRequest"}
+        "ConnectionTrackingSpecification":{"shape":"ConnectionTrackingSpecificationRequest"},
+        "AssociatePublicIpAddress":{"shape":"Boolean"}
       }
     },
     "ModifyPrivateDnsNameOptionsRequest":{
@@ -35205,7 +35210,8 @@
         "description",
         "groupSet",
         "sourceDestCheck",
-        "attachment"
+        "attachment",
+        "associatePublicIpAddress"
       ]
     },
     "NetworkInterfaceCount":{

@@ -384,6 +384,12 @@ const (
 	// The specified filter value isn't valid.
 	ErrCodeInvalidInstanceInformationFilterValue = "InvalidInstanceInformationFilterValue"
 
+	// ErrCodeInvalidInstancePropertyFilterValue for service response error code
+	// "InvalidInstancePropertyFilterValue".
+	//
+	// The specified filter value isn't valid.
+	ErrCodeInvalidInstancePropertyFilterValue = "InvalidInstancePropertyFilterValue"
+
 	// ErrCodeInvalidInventoryGroupException for service response error code
 	// "InvalidInventoryGroupException".
 	//
@@ -991,6 +997,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidFilterValue":                             newErrorInvalidFilterValue,
 	"InvalidInstanceId":                              newErrorInvalidInstanceId,
 	"InvalidInstanceInformationFilterValue":          newErrorInvalidInstanceInformationFilterValue,
+	"InvalidInstancePropertyFilterValue":             newErrorInvalidInstancePropertyFilterValue,
 	"InvalidInventoryGroupException":                 newErrorInvalidInventoryGroupException,
 	"InvalidInventoryItemContextException":           newErrorInvalidInventoryItemContextException,
 	"InvalidInventoryRequestException":               newErrorInvalidInventoryRequestException,

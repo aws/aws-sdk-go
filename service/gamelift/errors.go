@@ -82,6 +82,14 @@ const (
 	// yet or deleted.
 	ErrCodeNotFoundException = "NotFoundException"
 
+	// ErrCodeNotReadyException for service response error code
+	// "NotReadyException".
+	//
+	// The operation failed because Amazon GameLift has not yet finished validating
+	// this compute. We recommend attempting 8 to 10 retries over 3 to 5 minutes
+	// with exponential backoffs and jitter (http://aws.amazon.com/blogs/https:/aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
+	ErrCodeNotReadyException = "NotReadyException"
+
 	// ErrCodeOutOfCapacityException for service response error code
 	// "OutOfCapacityException".
 	//
@@ -132,6 +140,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,
 	"NotFoundException":                    newErrorNotFoundException,
+	"NotReadyException":                    newErrorNotReadyException,
 	"OutOfCapacityException":               newErrorOutOfCapacityException,
 	"TaggingFailedException":               newErrorTaggingFailedException,
 	"TerminalRoutingStrategyException":     newErrorTerminalRoutingStrategyException,

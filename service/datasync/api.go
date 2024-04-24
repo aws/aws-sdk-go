@@ -1292,12 +1292,10 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 
 // CreateTask API operation for AWS DataSync.
 //
-// Configures a transfer task, which defines where and how DataSync moves your
-// data.
+// Configures a task, which defines where and how DataSync transfers your data.
 //
-// A task includes a source location, destination location, and the options
-// for how and when you want to transfer your data (such as bandwidth limits,
-// scheduling, among other options).
+// A task includes a source location, destination location, and transfer options
+// (such as bandwidth limits, scheduling, and more).
 //
 // If you're planning to transfer data to or from an Amazon S3 location, review
 // how DataSync can affect your S3 request charges (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests)
@@ -3094,7 +3092,8 @@ func (c *DataSync) DescribeTaskRequest(input *DescribeTaskInput) (req *request.R
 
 // DescribeTask API operation for AWS DataSync.
 //
-// Provides information about an DataSync transfer task.
+// Provides information about a task, which defines where and how DataSync transfers
+// your data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5551,7 +5550,8 @@ func (c *DataSync) UpdateTaskRequest(input *UpdateTaskInput) (req *request.Reque
 
 // UpdateTask API operation for AWS DataSync.
 //
-// Updates the configuration of an DataSync transfer task.
+// Updates the configuration of a task, which defines where and how DataSync
+// transfers your data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5884,7 +5884,7 @@ type AgentListEntry struct {
 	AgentArn *string `type:"string"`
 
 	// The name of an agent.
-	Name *string `min:"1" type:"string"`
+	Name *string `type:"string"`
 
 	// The platform-related details about the agent, such as the version number.
 	Platform *Platform `type:"structure"`
@@ -6148,7 +6148,7 @@ type CreateAgentInput struct {
 	ActivationKey *string `type:"string" required:"true"`
 
 	// Specifies a name for your agent. You can see this name in the DataSync console.
-	AgentName *string `min:"1" type:"string"`
+	AgentName *string `type:"string"`
 
 	// Specifies the Amazon Resource Name (ARN) of the security group that protects
 	// your task's network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
@@ -6197,9 +6197,6 @@ func (s *CreateAgentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAgentInput"}
 	if s.ActivationKey == nil {
 		invalidParams.Add(request.NewErrParamRequired("ActivationKey"))
-	}
-	if s.AgentName != nil && len(*s.AgentName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AgentName", 1))
 	}
 	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
@@ -8299,24 +8296,23 @@ func (s *CreateLocationSmbOutput) SetLocationArn(v string) *CreateLocationSmbOut
 type CreateTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is
-	// used to monitor and log events in the task.
+	// Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group
+	// for monitoring your task.
 	CloudWatchLogGroupArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of an Amazon Web Services storage resource's
-	// location.
+	// Specifies the ARN of your transfer's destination location.
 	//
 	// DestinationLocationArn is a required field
 	DestinationLocationArn *string `type:"string" required:"true"`
 
-	// Specifies a list of filter rules that exclude specific data during your transfer.
-	// For more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// Specifies exclude filters that define the files, objects, and folders in
+	// your source location that you don't want DataSync to transfer. For more information
+	// and examples, see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
 
-	// Specifies a list of filter rules that include specific data during your transfer.
-	// For more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// Specifies include filters define the files, objects, and folders in your
+	// source location that you want DataSync to transfer. For more information
+	// and examples, see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Includes []*FilterRule `type:"list"`
 
 	// Configures a manifest, which is a list of files or objects that you want
@@ -8329,30 +8325,23 @@ type CreateTaskInput struct {
 	// policy includes this permission.
 	ManifestConfig *ManifestConfig `type:"structure"`
 
-	// The name of a task. This value is a text reference that is used to identify
-	// the task in the console.
-	Name *string `min:"1" type:"string"`
+	// Specifies the name of your task.
+	Name *string `type:"string"`
 
-	// Specifies the configuration options for a task. Some options include preserving
-	// file or object metadata and verifying data integrity.
-	//
-	// You can also override these options before starting an individual run of
-	// a task (also known as a task execution). For more information, see StartTaskExecution
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	// Specifies your task's settings, such as preserving file metadata, verifying
+	// data integrity, among other options.
 	Options *Options `type:"structure"`
 
-	// Specifies a schedule used to periodically transfer files from a source to
-	// a destination location. The schedule should be specified in UTC time. For
-	// more information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
+	// Specifies a schedule for when you want your task to run. For more information,
+	// see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the source location for the task.
+	// Specifies the ARN of your transfer's source location.
 	//
 	// SourceLocationArn is a required field
 	SourceLocationArn *string `type:"string" required:"true"`
 
-	// Specifies the tags that you want to apply to the Amazon Resource Name (ARN)
-	// representing the task.
+	// Specifies the tags that you want to apply to your task.
 	//
 	// Tags are key-value pairs that help you manage, filter, and search for your
 	// DataSync resources.
@@ -8392,9 +8381,6 @@ func (s *CreateTaskInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateTaskInput"}
 	if s.DestinationLocationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("DestinationLocationArn"))
-	}
-	if s.Name != nil && len(*s.Name) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.SourceLocationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceLocationArn"))
@@ -8882,7 +8868,7 @@ type DescribeAgentOutput struct {
 	LastConnectionTime *time.Time `type:"timestamp"`
 
 	// The name of the agent.
-	Name *string `min:"1" type:"string"`
+	Name *string `type:"string"`
 
 	// The platform-related details about the agent, such as the version number.
 	Platform *Platform `type:"structure"`
@@ -11186,7 +11172,10 @@ type DescribeTaskExecutionOutput struct {
 	// limits for your task, among other options.
 	//
 	// Each option has a default value. Unless you need to, you don't have to configure
-	// any of these options before starting your task.
+	// any option before calling StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	//
+	// You also can override your task options for each task execution. For example,
+	// you might want to adjust the LogLevel for an individual execution.
 	Options *Options `type:"structure"`
 
 	// Indicates whether DataSync generated a complete task report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html)
@@ -11357,7 +11346,8 @@ func (s *DescribeTaskExecutionOutput) SetTaskReportConfig(v *TaskReportConfig) *
 type DescribeTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the Amazon Resource Name (ARN) of the transfer task.
+	// Specifies the Amazon Resource Name (ARN) of the transfer task that you want
+	// information about.
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
@@ -11404,87 +11394,82 @@ func (s *DescribeTaskInput) SetTaskArn(v string) *DescribeTaskInput {
 type DescribeTaskOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that was
-	// used to monitor and log events in the task.
+	// The Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring
+	// your task.
 	//
-	// For more information on these groups, see Working with Log Groups and Log
-	// Streams in the Amazon CloudWatch User Guide.
+	// For more information, see Monitoring DataSync with Amazon CloudWatch (https://docs.aws.amazon.com/datasync/latest/userguide/monitor-datasync.html).
 	CloudWatchLogGroupArn *string `type:"string"`
 
 	// The time that the task was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the task execution that is transferring
-	// files.
+	// The ARN of the most recent task execution.
 	CurrentTaskExecutionArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Web Services storage resource's
-	// location.
+	// The ARN of your transfer's destination location.
 	DestinationLocationArn *string `type:"string"`
 
-	// The Amazon Resource Names (ARNs) of the network interfaces created for your
-	// destination location. For more information, see Network interface requirements
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces).
+	// The ARNs of the network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// that DataSync created for your destination location.
 	DestinationNetworkInterfaceArns []*string `type:"list"`
 
-	// Errors that DataSync encountered during execution of the task. You can use
-	// this error code to help troubleshoot issues.
+	// If there's an issue with your task, you can use the error code to help you
+	// troubleshoot the problem. For more information, see Troubleshooting issues
+	// with DataSync transfers (https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html).
 	ErrorCode *string `type:"string"`
 
-	// Detailed description of an error that was encountered during the task execution.
-	// You can use this information to help troubleshoot issues.
+	// If there's an issue with your task, you can use the error details to help
+	// you troubleshoot the problem. For more information, see Troubleshooting issues
+	// with DataSync transfers (https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html).
 	ErrorDetail *string `type:"string"`
 
-	// A list of filter rules that exclude specific data during your transfer. For
-	// more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// The exclude filters that define the files, objects, and folders in your source
+	// location that you don't want DataSync to transfer. For more information and
+	// examples, see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
 
-	// A list of filter rules that include specific data during your transfer. For
-	// more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// The include filters that define the files, objects, and folders in your source
+	// location that you want DataSync to transfer. For more information and examples,
+	// see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Includes []*FilterRule `type:"list"`
 
-	// The configuration of the manifest that lists the files or objects to transfer.
-	// For more information, see Specifying what DataSync transfers by using a manifest
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html).
+	// The configuration of the manifest that lists the files or objects that you
+	// want DataSync to transfer. For more information, see Specifying what DataSync
+	// transfers by using a manifest (https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html).
 	ManifestConfig *ManifestConfig `type:"structure"`
 
-	// The name of the task that was described.
-	Name *string `min:"1" type:"string"`
+	// The name of your task.
+	Name *string `type:"string"`
 
-	// The configuration options that control the behavior of the StartTaskExecution
-	// operation. Some options include preserving file or object metadata and verifying
-	// data integrity.
-	//
-	// You can override these options for each task execution. For more information,
-	// see StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	// The task's settings. For example, what file metadata gets preserved, how
+	// data integrity gets verified at the end of your transfer, bandwidth limits,
+	// among other options.
 	Options *Options `type:"structure"`
 
-	// The schedule used to periodically transfer files from a source to a destination
-	// location.
+	// The schedule for when you want your task to run. For more information, see
+	// Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the source file system's location.
+	// The details about your task schedule (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
+	ScheduleDetails *TaskScheduleDetails `type:"structure"`
+
+	// The ARN of your transfer's source location.
 	SourceLocationArn *string `type:"string"`
 
-	// The Amazon Resource Names (ARNs) of the network interfaces created for your
-	// source location. For more information, see Network interface requirements
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces).
+	// The ARNs of the network interfaces (https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces)
+	// that DataSync created for your source location.
 	SourceNetworkInterfaceArns []*string `type:"list"`
 
-	// The status of the task that was described.
-	//
-	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the DataSync User Guide.
+	// The status of your task. For information about what each status means, see
+	// Task statuses (https://docs.aws.amazon.com/datasync/latest/userguide/understand-task-statuses.html#understand-task-creation-statuses).
 	Status *string `type:"string" enum:"TaskStatus"`
 
-	// The Amazon Resource Name (ARN) of the task that was described.
+	// The ARN of your task.
 	TaskArn *string `type:"string"`
 
 	// The configuration of your task report, which provides detailed information
-	// about for your DataSync transfer. For more information, see Creating a task
-	// report (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
+	// about your DataSync transfer. For more information, see Monitoring your DataSync
+	// transfers with task reports (https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html).
 	TaskReportConfig *TaskReportConfig `type:"structure"`
 }
 
@@ -11581,6 +11566,12 @@ func (s *DescribeTaskOutput) SetOptions(v *Options) *DescribeTaskOutput {
 // SetSchedule sets the Schedule field's value.
 func (s *DescribeTaskOutput) SetSchedule(v *TaskSchedule) *DescribeTaskOutput {
 	s.Schedule = v
+	return s
+}
+
+// SetScheduleDetails sets the ScheduleDetails field's value.
+func (s *DescribeTaskOutput) SetScheduleDetails(v *TaskScheduleDetails) *DescribeTaskOutput {
+	s.ScheduleDetails = v
 	return s
 }
 
@@ -14076,7 +14067,10 @@ func (s *OnPremConfig) SetAgentArns(v []*string) *OnPremConfig {
 // limits for your task, among other options.
 //
 // Each option has a default value. Unless you need to, you don't have to configure
-// any of these options before starting your task.
+// any option before calling StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+//
+// You also can override your task options for each task execution. For example,
+// you might want to adjust the LogLevel for an individual execution.
 type Options struct {
 	_ struct{} `type:"structure"`
 
@@ -14264,10 +14258,11 @@ type Options struct {
 	//
 	//    * POINT_IN_TIME_CONSISTENT (default) - At the end of the transfer, DataSync
 	//    scans the entire source and destination to verify that both locations
-	//    are fully synchronized. You can't use this option when transferring to
-	//    S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes.
-	//    For more information, see Storage class considerations with Amazon S3
-	//    locations (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
+	//    are fully synchronized. If you use a manifest (https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html),
+	//    DataSync only scans and verifies what's listed in the manifest. You can't
+	//    use this option when transferring to S3 Glacier Flexible Retrieval or
+	//    S3 Glacier Deep Archive storage classes. For more information, see Storage
+	//    class considerations with Amazon S3 locations (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	//
 	//    * NONE - DataSync doesn't run additional verification at the end of the
 	//    transfer. All data transmissions are still integrity-checked with checksum
@@ -14456,12 +14451,6 @@ type Platform struct {
 	_ struct{} `type:"structure"`
 
 	// The version of the DataSync agent.
-	//
-	// On December 7, 2023, we discontinued version 1 DataSync agents. Check the
-	// DataSync console to see if you have affected agents. If you do, replace (https://docs.aws.amazon.com/datasync/latest/userguide/replacing-agent.html)
-	// those agents or delete (https://docs.aws.amazon.com/datasync/latest/userguide/deleting-agent.html)
-	// them if they aren't in use. If you need more help, contact Amazon Web Services
-	// Support (https://aws.amazon.com/contact-us/).
 	Version *string `min:"1" type:"string"`
 }
 
@@ -15549,7 +15538,10 @@ type StartTaskExecutionInput struct {
 	// limits for your task, among other options.
 	//
 	// Each option has a default value. Unless you need to, you don't have to configure
-	// any of these options before starting your task.
+	// any option before calling StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	//
+	// You also can override your task options for each task execution. For example,
+	// you might want to adjust the LogLevel for an individual execution.
 	OverrideOptions *Options `type:"structure"`
 
 	// Specifies the tags that you want to apply to the Amazon Resource Name (ARN)
@@ -15830,7 +15822,7 @@ type TagListEntry struct {
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value for an Amazon Web Services resource tag.
-	Value *string `min:"1" type:"string"`
+	Value *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -15859,9 +15851,6 @@ func (s *TagListEntry) Validate() error {
 	}
 	if s.Key != nil && len(*s.Key) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
-	}
-	if s.Value != nil && len(*s.Value) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16220,7 +16209,7 @@ type TaskListEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the task.
-	Name *string `min:"1" type:"string"`
+	Name *string `type:"string"`
 
 	// The status of the task.
 	Status *string `type:"string" enum:"TaskStatus"`
@@ -16374,16 +16363,26 @@ func (s *TaskReportConfig) SetReportLevel(v string) *TaskReportConfig {
 	return s
 }
 
-// Specifies the schedule you want your task to use for repeated executions.
-// For more information, see Schedule Expressions for Rules (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html).
+// Configures your DataSync task to run on a schedule (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html)
+// (at a minimum interval of 1 hour).
 type TaskSchedule struct {
 	_ struct{} `type:"structure"`
 
-	// A cron expression that specifies when DataSync initiates a scheduled transfer
-	// from a source to a destination location.
+	// Specifies your task schedule by using a cron expression in UTC time. For
+	// information about cron expression syntax, see the Amazon EventBridge User
+	// Guide (https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html).
 	//
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `type:"string" required:"true"`
+
+	// Specifies whether to enable or disable your task schedule. Your schedule
+	// is enabled by default, but there can be situations where you need to disable
+	// it. For example, you might need to pause a recurring transfer or fix an issue
+	// with your task or perform maintenance on your storage system.
+	//
+	// DataSync might disable your schedule automatically if your task fails repeatedly
+	// with the same error. For more information, see TaskScheduleDetails (https://docs.aws.amazon.com/datasync/latest/userguide/API_TaskScheduleDetails.html).
+	Status *string `type:"string" enum:"ScheduleStatus"`
 }
 
 // String returns the string representation.
@@ -16420,6 +16419,77 @@ func (s *TaskSchedule) Validate() error {
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *TaskSchedule) SetScheduleExpression(v string) *TaskSchedule {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TaskSchedule) SetStatus(v string) *TaskSchedule {
+	s.Status = &v
+	return s
+}
+
+// Provides information about your DataSync task schedule (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
+type TaskScheduleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates how your task schedule was disabled.
+	//
+	//    * USER - Your schedule was manually disabled by using the UpdateTask (https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateTask.html)
+	//    operation or DataSync console.
+	//
+	//    * SERVICE - Your schedule was automatically disabled by DataSync because
+	//    the task failed repeatedly with the same error.
+	DisabledBy *string `type:"string" enum:"ScheduleDisabledBy"`
+
+	// Provides a reason if the task schedule is disabled.
+	//
+	// If your schedule is disabled by USER, you see a Manually disabled by user.
+	// message.
+	//
+	// If your schedule is disabled by SERVICE, you see an error message to help
+	// you understand why the task keeps failing. For information on resolving DataSync
+	// errors, see Troubleshooting issues with DataSync transfers (https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html).
+	DisabledReason *string `type:"string"`
+
+	// Indicates the last time the status of your task schedule changed. For example,
+	// if DataSync automatically disables your schedule because of a repeated error,
+	// you can see when the schedule was disabled.
+	StatusUpdateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskScheduleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TaskScheduleDetails) GoString() string {
+	return s.String()
+}
+
+// SetDisabledBy sets the DisabledBy field's value.
+func (s *TaskScheduleDetails) SetDisabledBy(v string) *TaskScheduleDetails {
+	s.DisabledBy = &v
+	return s
+}
+
+// SetDisabledReason sets the DisabledReason field's value.
+func (s *TaskScheduleDetails) SetDisabledReason(v string) *TaskScheduleDetails {
+	s.DisabledReason = &v
+	return s
+}
+
+// SetStatusUpdateTime sets the StatusUpdateTime field's value.
+func (s *TaskScheduleDetails) SetStatusUpdateTime(v time.Time) *TaskScheduleDetails {
+	s.StatusUpdateTime = &v
 	return s
 }
 
@@ -16580,7 +16650,7 @@ type UpdateAgentInput struct {
 	AgentArn *string `type:"string" required:"true"`
 
 	// The name that you want to use to configure the agent.
-	Name *string `min:"1" type:"string"`
+	Name *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -16606,9 +16676,6 @@ func (s *UpdateAgentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAgentInput"}
 	if s.AgentArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("AgentArn"))
-	}
-	if s.Name != nil && len(*s.Name) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -17662,7 +17729,10 @@ type UpdateTaskExecutionInput struct {
 	// limits for your task, among other options.
 	//
 	// Each option has a default value. Unless you need to, you don't have to configure
-	// any of these options before starting your task.
+	// any option before calling StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	//
+	// You also can override your task options for each task execution. For example,
+	// you might want to adjust the LogLevel for an individual execution.
 	//
 	// Options is a required field
 	Options *Options `type:"structure" required:"true"`
@@ -17751,18 +17821,18 @@ func (s UpdateTaskExecutionOutput) GoString() string {
 type UpdateTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch
-	// log group.
+	// Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group
+	// for monitoring your task.
 	CloudWatchLogGroupArn *string `type:"string"`
 
-	// Specifies a list of filter rules that exclude specific data during your transfer.
-	// For more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// Specifies exclude filters that define the files, objects, and folders in
+	// your source location that you don't want DataSync to transfer. For more information
+	// and examples, see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Excludes []*FilterRule `type:"list"`
 
-	// Specifies a list of filter rules that include specific data during your transfer.
-	// For more information and examples, see Filtering data transferred by DataSync
-	// (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
+	// Specifies include filters define the files, objects, and folders in your
+	// source location that you want DataSync to transfer. For more information
+	// and examples, see Specifying what DataSync transfers by using filters (https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html).
 	Includes []*FilterRule `type:"list"`
 
 	// Configures a manifest, which is a list of files or objects that you want
@@ -17777,8 +17847,8 @@ type UpdateTaskInput struct {
 	// To remove a manifest configuration, specify this parameter as empty.
 	ManifestConfig *ManifestConfig `type:"structure"`
 
-	// The name of the task to update.
-	Name *string `min:"1" type:"string"`
+	// Specifies the name of your task.
+	Name *string `type:"string"`
 
 	// Indicates how your transfer task is configured. These options include how
 	// DataSync handles files, objects, and their associated metadata during your
@@ -17786,17 +17856,17 @@ type UpdateTaskInput struct {
 	// limits for your task, among other options.
 	//
 	// Each option has a default value. Unless you need to, you don't have to configure
-	// any of these options before starting your task.
+	// any option before calling StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
+	//
+	// You also can override your task options for each task execution. For example,
+	// you might want to adjust the LogLevel for an individual execution.
 	Options *Options `type:"structure"`
 
-	// Specifies a schedule used to periodically transfer files from a source to
-	// a destination location. You can configure your task to execute hourly, daily,
-	// weekly or on specific days of the week. You control when in the day or hour
-	// you want the task to execute. The time you specify is UTC time. For more
-	// information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
+	// Specifies a schedule for when you want your task to run. For more information,
+	// see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource name of the task to update.
+	// Specifies the ARN of the task that you want to update.
 	//
 	// TaskArn is a required field
 	TaskArn *string `type:"string" required:"true"`
@@ -17835,9 +17905,6 @@ func (s UpdateTaskInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateTaskInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateTaskInput"}
-	if s.Name != nil && len(*s.Name) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
 	if s.TaskArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskArn"))
 	}
@@ -18613,6 +18680,38 @@ func S3StorageClass_Values() []string {
 		S3StorageClassDeepArchive,
 		S3StorageClassOutposts,
 		S3StorageClassGlacierInstantRetrieval,
+	}
+}
+
+const (
+	// ScheduleDisabledByUser is a ScheduleDisabledBy enum value
+	ScheduleDisabledByUser = "USER"
+
+	// ScheduleDisabledByService is a ScheduleDisabledBy enum value
+	ScheduleDisabledByService = "SERVICE"
+)
+
+// ScheduleDisabledBy_Values returns all elements of the ScheduleDisabledBy enum
+func ScheduleDisabledBy_Values() []string {
+	return []string{
+		ScheduleDisabledByUser,
+		ScheduleDisabledByService,
+	}
+}
+
+const (
+	// ScheduleStatusEnabled is a ScheduleStatus enum value
+	ScheduleStatusEnabled = "ENABLED"
+
+	// ScheduleStatusDisabled is a ScheduleStatus enum value
+	ScheduleStatusDisabled = "DISABLED"
+)
+
+// ScheduleStatus_Values returns all elements of the ScheduleStatus enum
+func ScheduleStatus_Values() []string {
+	return []string{
+		ScheduleStatusEnabled,
+		ScheduleStatusDisabled,
 	}
 }
 

@@ -78,6 +78,12 @@
       "output_token": "NextToken",
       "result_key": "Patches"
     },
+    "DescribeInstanceProperties": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "InstanceProperties"
+    },
     "DescribeInventoryDeletions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

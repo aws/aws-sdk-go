@@ -5115,6 +5115,174 @@ func (c *SSM) DescribeInstancePatchesPagesWithContext(ctx aws.Context, input *De
 	return p.Err()
 }
 
+const opDescribeInstanceProperties = "DescribeInstanceProperties"
+
+// DescribeInstancePropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstanceProperties for more information on using the DescribeInstanceProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeInstancePropertiesRequest method.
+//	req, resp := client.DescribeInstancePropertiesRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstanceProperties
+func (c *SSM) DescribeInstancePropertiesRequest(input *DescribeInstancePropertiesInput) (req *request.Request, output *DescribeInstancePropertiesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstanceProperties,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeInstancePropertiesInput{}
+	}
+
+	output = &DescribeInstancePropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstanceProperties API operation for Amazon Simple Systems Manager (SSM).
+//
+// An API operation used by the Systems Manager console to display information
+// about Systems Manager managed nodes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation DescribeInstanceProperties for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidNextToken
+//     The specified token isn't valid.
+//
+//   - InvalidFilterKey
+//     The specified key isn't valid.
+//
+//   - InvalidInstanceId
+//     The following problems can cause this exception:
+//
+//   - You don't have permission to access the managed node.
+//
+//   - Amazon Web Services Systems Manager Agent (SSM Agent) isn't running.
+//     Verify that SSM Agent is running.
+//
+//   - SSM Agent isn't registered with the SSM endpoint. Try reinstalling SSM
+//     Agent.
+//
+//   - The managed node isn't in a valid state. Valid states are: Running,
+//     Pending, Stopped, and Stopping. Invalid states are: Shutting-down and
+//     Terminated.
+//
+//   - InvalidActivationId
+//     The activation ID isn't valid. Verify the you entered the correct ActivationId
+//     or ActivationCode and try again.
+//
+//   - InvalidInstancePropertyFilterValue
+//     The specified filter value isn't valid.
+//
+//   - InternalServerError
+//     An error occurred on the server side.
+//
+//   - InvalidDocument
+//     The specified SSM document doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstanceProperties
+func (c *SSM) DescribeInstanceProperties(input *DescribeInstancePropertiesInput) (*DescribeInstancePropertiesOutput, error) {
+	req, out := c.DescribeInstancePropertiesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstancePropertiesWithContext is the same as DescribeInstanceProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstanceProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) DescribeInstancePropertiesWithContext(ctx aws.Context, input *DescribeInstancePropertiesInput, opts ...request.Option) (*DescribeInstancePropertiesOutput, error) {
+	req, out := c.DescribeInstancePropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeInstancePropertiesPages iterates over the pages of a DescribeInstanceProperties operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeInstanceProperties method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeInstanceProperties operation.
+//	pageNum := 0
+//	err := client.DescribeInstancePropertiesPages(params,
+//	    func(page *ssm.DescribeInstancePropertiesOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *SSM) DescribeInstancePropertiesPages(input *DescribeInstancePropertiesInput, fn func(*DescribeInstancePropertiesOutput, bool) bool) error {
+	return c.DescribeInstancePropertiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeInstancePropertiesPagesWithContext same as DescribeInstancePropertiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) DescribeInstancePropertiesPagesWithContext(ctx aws.Context, input *DescribeInstancePropertiesInput, fn func(*DescribeInstancePropertiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeInstancePropertiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeInstancePropertiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeInstancePropertiesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeInventoryDeletions = "DescribeInventoryDeletions"
 
 // DescribeInventoryDeletionsRequest generates a "aws/request.Request" representing the
@@ -22610,6 +22778,12 @@ type CreateDocumentInput struct {
 	//
 	//    * amzn
 	//
+	//    * AWSEC2
+	//
+	//    * AWSConfigRemediation
+	//
+	//    * AWSSupport
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
@@ -22883,6 +23057,9 @@ type CreateMaintenanceWindowInput struct {
 	// The date and time, in ISO-8601 Extended format, for when you want the maintenance
 	// window to become active. StartDate allows you to delay activation of the
 	// maintenance window until the specified future date.
+	//
+	// When using a rate schedule, if you provide a start date that occurs in the
+	// past, the current date and time are used as the start date.
 	StartDate *string `type:"string"`
 
 	// Optional metadata that you assign to a resource. Tags enable you to categorize
@@ -27495,6 +27672,147 @@ func (s *DescribeInstancePatchesOutput) SetNextToken(v string) *DescribeInstance
 // SetPatches sets the Patches field's value.
 func (s *DescribeInstancePatchesOutput) SetPatches(v []*PatchComplianceData) *DescribeInstancePatchesOutput {
 	s.Patches = v
+	return s
+}
+
+type DescribeInstancePropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The request filters to use with the operator.
+	FiltersWithOperator []*InstancePropertyStringFilter `min:"1" type:"list"`
+
+	// An array of instance property filters.
+	InstancePropertyFilterList []*InstancePropertyFilter `min:"1" type:"list"`
+
+	// The maximum number of items to return for the call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// The token provided by a previous request to use to return the next set of
+	// properties.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInstancePropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInstancePropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstancePropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstancePropertiesInput"}
+	if s.FiltersWithOperator != nil && len(s.FiltersWithOperator) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FiltersWithOperator", 1))
+	}
+	if s.InstancePropertyFilterList != nil && len(s.InstancePropertyFilterList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstancePropertyFilterList", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+	if s.FiltersWithOperator != nil {
+		for i, v := range s.FiltersWithOperator {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FiltersWithOperator", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.InstancePropertyFilterList != nil {
+		for i, v := range s.InstancePropertyFilterList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstancePropertyFilterList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFiltersWithOperator sets the FiltersWithOperator field's value.
+func (s *DescribeInstancePropertiesInput) SetFiltersWithOperator(v []*InstancePropertyStringFilter) *DescribeInstancePropertiesInput {
+	s.FiltersWithOperator = v
+	return s
+}
+
+// SetInstancePropertyFilterList sets the InstancePropertyFilterList field's value.
+func (s *DescribeInstancePropertiesInput) SetInstancePropertyFilterList(v []*InstancePropertyFilter) *DescribeInstancePropertiesInput {
+	s.InstancePropertyFilterList = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeInstancePropertiesInput) SetMaxResults(v int64) *DescribeInstancePropertiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancePropertiesInput) SetNextToken(v string) *DescribeInstancePropertiesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeInstancePropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Properties for the managed instances.
+	InstanceProperties []*InstanceProperty `type:"list"`
+
+	// The token for the next set of properties to return. Use this token to get
+	// the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInstancePropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInstancePropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceProperties sets the InstanceProperties field's value.
+func (s *DescribeInstancePropertiesOutput) SetInstanceProperties(v []*InstanceProperty) *DescribeInstancePropertiesOutput {
+	s.InstanceProperties = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancePropertiesOutput) SetNextToken(v string) *DescribeInstancePropertiesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -34987,7 +35305,10 @@ type GetParametersInput struct {
 	// To query by parameter label, use "Name": "name:label". To query by parameter
 	// version, use "Name": "name:version".
 	//
-	// For more information about shared parameters, see Working with shared parameters
+	// The results for GetParameters requests are listed in alphabetical order in
+	// query responses.
+	//
+	// For information about shared parameters, see Working with shared parameters
 	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	//
@@ -37057,6 +37378,410 @@ func (s *InstancePatchStateFilter) SetValues(v []*string) *InstancePatchStateFil
 	return s
 }
 
+// An object containing various properties of a managed node.
+type InstanceProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The activation ID created by Systems Manager when the server or virtual machine
+	// (VM) was registered
+	ActivationId *string `type:"string"`
+
+	// The version of SSM Agent running on your managed node.
+	AgentVersion *string `type:"string"`
+
+	// The CPU architecture of the node. For example, x86_64.
+	Architecture *string `type:"string"`
+
+	// Status information about the aggregated associations.
+	AssociationOverview *InstanceAggregatedAssociationOverview `type:"structure"`
+
+	// The status of the State Manager association applied to the managed node.
+	AssociationStatus *string `type:"string"`
+
+	// The fully qualified host name of the managed node.
+	ComputerName *string `min:"1" type:"string"`
+
+	// The public IPv4 address assigned to the node. If a public IPv4 address isn't
+	// assigned to the node, this value is blank.
+	IPAddress *string `min:"1" type:"string"`
+
+	// The IAM role used in the hybrid activation to register the node with Systems
+	// Manager.
+	IamRole *string `type:"string"`
+
+	// The ID of the managed node.
+	InstanceId *string `type:"string"`
+
+	// The instance profile attached to the node. If an instance profile isn't attached
+	// to the node, this value is blank.
+	InstanceRole *string `type:"string"`
+
+	// The current state of the node.
+	InstanceState *string `type:"string"`
+
+	// The instance type of the managed node. For example, t3.large.
+	InstanceType *string `type:"string"`
+
+	// The name of the key pair associated with the node. If a key pair isnt't associated
+	// with the node, this value is blank.
+	KeyName *string `type:"string"`
+
+	// The date the association was last run.
+	LastAssociationExecutionDate *time.Time `type:"timestamp"`
+
+	// The date and time when the SSM Agent last pinged the Systems Manager service.
+	LastPingDateTime *time.Time `type:"timestamp"`
+
+	// The last date the association was successfully run.
+	LastSuccessfulAssociationExecutionDate *time.Time `type:"timestamp"`
+
+	// The timestamp for when the node was launched.
+	LaunchTime *time.Time `type:"timestamp"`
+
+	// The value of the EC2 Name tag associated with the node. If a Name tag hasn't
+	// been applied to the node, this value is blank.
+	Name *string `type:"string"`
+
+	// Connection status of the SSM Agent on the managed node.
+	PingStatus *string `type:"string" enum:"PingStatus"`
+
+	// The name of the operating system platform running on your managed node.
+	PlatformName *string `type:"string"`
+
+	// The operating system platform type of the managed node. For example, Windows.
+	PlatformType *string `type:"string" enum:"PlatformType"`
+
+	// The version of the OS platform running on your managed node.
+	PlatformVersion *string `type:"string"`
+
+	// The date the node was registered with Systems Manager.
+	RegistrationDate *time.Time `type:"timestamp"`
+
+	// The type of managed node.
+	ResourceType *string `type:"string"`
+
+	// The ID of the source resource.
+	SourceId *string `type:"string"`
+
+	// The type of the source resource.
+	SourceType *string `type:"string" enum:"SourceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceProperty) GoString() string {
+	return s.String()
+}
+
+// SetActivationId sets the ActivationId field's value.
+func (s *InstanceProperty) SetActivationId(v string) *InstanceProperty {
+	s.ActivationId = &v
+	return s
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *InstanceProperty) SetAgentVersion(v string) *InstanceProperty {
+	s.AgentVersion = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *InstanceProperty) SetArchitecture(v string) *InstanceProperty {
+	s.Architecture = &v
+	return s
+}
+
+// SetAssociationOverview sets the AssociationOverview field's value.
+func (s *InstanceProperty) SetAssociationOverview(v *InstanceAggregatedAssociationOverview) *InstanceProperty {
+	s.AssociationOverview = v
+	return s
+}
+
+// SetAssociationStatus sets the AssociationStatus field's value.
+func (s *InstanceProperty) SetAssociationStatus(v string) *InstanceProperty {
+	s.AssociationStatus = &v
+	return s
+}
+
+// SetComputerName sets the ComputerName field's value.
+func (s *InstanceProperty) SetComputerName(v string) *InstanceProperty {
+	s.ComputerName = &v
+	return s
+}
+
+// SetIPAddress sets the IPAddress field's value.
+func (s *InstanceProperty) SetIPAddress(v string) *InstanceProperty {
+	s.IPAddress = &v
+	return s
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *InstanceProperty) SetIamRole(v string) *InstanceProperty {
+	s.IamRole = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceProperty) SetInstanceId(v string) *InstanceProperty {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceRole sets the InstanceRole field's value.
+func (s *InstanceProperty) SetInstanceRole(v string) *InstanceProperty {
+	s.InstanceRole = &v
+	return s
+}
+
+// SetInstanceState sets the InstanceState field's value.
+func (s *InstanceProperty) SetInstanceState(v string) *InstanceProperty {
+	s.InstanceState = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceProperty) SetInstanceType(v string) *InstanceProperty {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *InstanceProperty) SetKeyName(v string) *InstanceProperty {
+	s.KeyName = &v
+	return s
+}
+
+// SetLastAssociationExecutionDate sets the LastAssociationExecutionDate field's value.
+func (s *InstanceProperty) SetLastAssociationExecutionDate(v time.Time) *InstanceProperty {
+	s.LastAssociationExecutionDate = &v
+	return s
+}
+
+// SetLastPingDateTime sets the LastPingDateTime field's value.
+func (s *InstanceProperty) SetLastPingDateTime(v time.Time) *InstanceProperty {
+	s.LastPingDateTime = &v
+	return s
+}
+
+// SetLastSuccessfulAssociationExecutionDate sets the LastSuccessfulAssociationExecutionDate field's value.
+func (s *InstanceProperty) SetLastSuccessfulAssociationExecutionDate(v time.Time) *InstanceProperty {
+	s.LastSuccessfulAssociationExecutionDate = &v
+	return s
+}
+
+// SetLaunchTime sets the LaunchTime field's value.
+func (s *InstanceProperty) SetLaunchTime(v time.Time) *InstanceProperty {
+	s.LaunchTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceProperty) SetName(v string) *InstanceProperty {
+	s.Name = &v
+	return s
+}
+
+// SetPingStatus sets the PingStatus field's value.
+func (s *InstanceProperty) SetPingStatus(v string) *InstanceProperty {
+	s.PingStatus = &v
+	return s
+}
+
+// SetPlatformName sets the PlatformName field's value.
+func (s *InstanceProperty) SetPlatformName(v string) *InstanceProperty {
+	s.PlatformName = &v
+	return s
+}
+
+// SetPlatformType sets the PlatformType field's value.
+func (s *InstanceProperty) SetPlatformType(v string) *InstanceProperty {
+	s.PlatformType = &v
+	return s
+}
+
+// SetPlatformVersion sets the PlatformVersion field's value.
+func (s *InstanceProperty) SetPlatformVersion(v string) *InstanceProperty {
+	s.PlatformVersion = &v
+	return s
+}
+
+// SetRegistrationDate sets the RegistrationDate field's value.
+func (s *InstanceProperty) SetRegistrationDate(v time.Time) *InstanceProperty {
+	s.RegistrationDate = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *InstanceProperty) SetResourceType(v string) *InstanceProperty {
+	s.ResourceType = &v
+	return s
+}
+
+// SetSourceId sets the SourceId field's value.
+func (s *InstanceProperty) SetSourceId(v string) *InstanceProperty {
+	s.SourceId = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *InstanceProperty) SetSourceType(v string) *InstanceProperty {
+	s.SourceType = &v
+	return s
+}
+
+// Describes a filter for a specific list of managed nodes. You can filter node
+// information by using tags. You specify tags by using a key-value mapping.
+type InstancePropertyFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Key is a required field
+	Key *string `locationName:"key" type:"string" required:"true" enum:"InstancePropertyFilterKey"`
+
+	// The filter values.
+	//
+	// ValueSet is a required field
+	ValueSet []*string `locationName:"valueSet" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstancePropertyFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstancePropertyFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstancePropertyFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstancePropertyFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.ValueSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValueSet"))
+	}
+	if s.ValueSet != nil && len(s.ValueSet) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueSet", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *InstancePropertyFilter) SetKey(v string) *InstancePropertyFilter {
+	s.Key = &v
+	return s
+}
+
+// SetValueSet sets the ValueSet field's value.
+func (s *InstancePropertyFilter) SetValueSet(v []*string) *InstancePropertyFilter {
+	s.ValueSet = v
+	return s
+}
+
+// The filters to describe or get information about your managed nodes.
+type InstancePropertyStringFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The filter key name to describe your managed nodes.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The operator used by the filter call.
+	Operator *string `type:"string" enum:"InstancePropertyFilterOperator"`
+
+	// The filter key name to describe your managed nodes.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstancePropertyStringFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstancePropertyStringFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstancePropertyStringFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstancePropertyStringFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *InstancePropertyStringFilter) SetKey(v string) *InstancePropertyStringFilter {
+	s.Key = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *InstancePropertyStringFilter) SetOperator(v string) *InstancePropertyStringFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *InstancePropertyStringFilter) SetValues(v []*string) *InstancePropertyStringFilter {
+	s.Values = v
+	return s
+}
+
 // An error occurred on the server side.
 type InternalServerError struct {
 	_            struct{}                  `type:"structure"`
@@ -38685,6 +39410,70 @@ func (s *InvalidInstanceInformationFilterValue) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidInstanceInformationFilterValue) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified filter value isn't valid.
+type InvalidInstancePropertyFilterValue struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidInstancePropertyFilterValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidInstancePropertyFilterValue) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidInstancePropertyFilterValue(v protocol.ResponseMetadata) error {
+	return &InvalidInstancePropertyFilterValue{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidInstancePropertyFilterValue) Code() string {
+	return "InvalidInstancePropertyFilterValue"
+}
+
+// Message returns the exception's message.
+func (s *InvalidInstancePropertyFilterValue) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidInstancePropertyFilterValue) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidInstancePropertyFilterValue) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidInstancePropertyFilterValue) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidInstancePropertyFilterValue) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -51398,13 +52187,16 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM service role for Amazon Web Services
 	// Systems Manager to assume when running a maintenance window task. If you
-	// do not specify a service role ARN, Systems Manager uses your account's service-linked
-	// role. If no service-linked role for Systems Manager exists in your account,
-	// it is created when you run RegisterTaskWithMaintenanceWindow.
+	// do not specify a service role ARN, Systems Manager uses a service-linked
+	// role in your account. If no appropriate service-linked role for Systems Manager
+	// exists in your account, it is created when you run RegisterTaskWithMaintenanceWindow.
 	//
-	// For more information, see Using service-linked roles for Systems Manager
-	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions)
-	// in the in the Amazon Web Services Systems Manager User Guide:
+	// However, for an improved security posture, we strongly recommend creating
+	// a custom policy and custom service role for running your maintenance window
+	// tasks. The policy can be crafted to provide only the permissions needed for
+	// your particular maintenance window tasks. For more information, see Setting
+	// up maintenance windows (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html)
+	// in the in the Amazon Web Services Systems Manager User Guide.
 	ServiceRoleArn *string `type:"string"`
 
 	// The targets (either managed nodes or maintenance window targets).
@@ -56388,39 +57180,39 @@ func (s *Tag) SetValue(v string) *Tag {
 //
 // Supported formats include the following.
 //
-//   - Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>,<instance-id-3>
+// For all Systems Manager capabilities:
 //
-//   - Key=tag:<my-tag-key>,Values=<my-tag-value-1>,<my-tag-value-2>
+//   - Key=tag-key,Values=tag-value-1,tag-value-2
 //
-//   - Key=tag-key,Values=<my-tag-key-1>,<my-tag-key-2>
+// For Automation and Change Manager:
 //
-//   - Run Command and Maintenance window targets only: Key=resource-groups:Name,Values=<resource-group-name>
+//   - Key=tag:tag-key,Values=tag-value
 //
-//   - Maintenance window targets only: Key=resource-groups:ResourceTypeFilters,Values=<resource-type-1>,<resource-type-2>
+//   - Key=ResourceGroup,Values=resource-group-name
 //
-//   - Automation targets only: Key=ResourceGroup;Values=<resource-group-name>
+//   - Key=ParameterValues,Values=value-1,value-2,value-3
 //
-// For example:
+//   - To target all instances in the Amazon Web Services Region: Key=AWS::EC2::Instance,Values=*
+//     Key=InstanceIds,Values=*
 //
-//   - Key=InstanceIds,Values=i-02573cafcfEXAMPLE,i-0471e04240EXAMPLE,i-07782c72faEXAMPLE
+// For Run Command and Maintenance Windows:
 //
-//   - Key=tag:CostCenter,Values=CostCenter1,CostCenter2,CostCenter3
+//   - Key=InstanceIds,Values=instance-id-1,instance-id-2,instance-id-3
 //
-//   - Key=tag-key,Values=Name,Instance-Type,CostCenter
+//   - Key=tag:tag-key,Values=tag-value-1,tag-value-2
 //
-//   - Run Command and Maintenance window targets only: Key=resource-groups:Name,Values=ProductionResourceGroup
-//     This example demonstrates how to target all resources in the resource
-//     group ProductionResourceGroup in your maintenance window.
+//   - Key=resource-groups:Name,Values=resource-group-name
 //
-//   - Maintenance window targets only: Key=resource-groups:ResourceTypeFilters,Values=AWS::EC2::INSTANCE,AWS::EC2::VPC
-//     This example demonstrates how to target only Amazon Elastic Compute Cloud
-//     (Amazon EC2) instances and VPCs in your maintenance window.
+//   - Additionally, Maintenance Windows support targeting resource types:
+//     Key=resource-groups:ResourceTypeFilters,Values=resource-type-1,resource-type-2
 //
-//   - Automation targets only: Key=ResourceGroup,Values=MyResourceGroup
+// For State Manager:
 //
-//   - State Manager association targets only: Key=InstanceIds,Values=* This
-//     example demonstrates how to target all managed instances in the Amazon
-//     Web Services Region where the association was created.
+//   - Key=InstanceIds,Values=instance-id-1,instance-id-2,instance-id-3
+//
+//   - Key=tag:tag-key,Values=tag-value-1,tag-value-2
+//
+//   - To target all instances in the Amazon Web Services Region: Key=InstanceIds,Values=*
 //
 // For more information about how to send commands that target managed nodes
 // using Key,Value parameters, see Targeting multiple managed nodes (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting)
@@ -58540,6 +59332,9 @@ type UpdateMaintenanceWindowInput struct {
 	// The date and time, in ISO-8601 Extended format, for when you want the maintenance
 	// window to become active. StartDate allows you to delay activation of the
 	// maintenance window until the specified future date.
+	//
+	// When using a rate schedule, if you provide a start date that occurs in the
+	// past, the current date and time are used as the start date.
 	StartDate *string `type:"string"`
 
 	// The ID of the maintenance window to update.
@@ -59119,13 +59914,16 @@ type UpdateMaintenanceWindowTaskInput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM service role for Amazon Web Services
 	// Systems Manager to assume when running a maintenance window task. If you
-	// do not specify a service role ARN, Systems Manager uses your account's service-linked
-	// role. If no service-linked role for Systems Manager exists in your account,
-	// it is created when you run RegisterTaskWithMaintenanceWindow.
+	// do not specify a service role ARN, Systems Manager uses a service-linked
+	// role in your account. If no appropriate service-linked role for Systems Manager
+	// exists in your account, it is created when you run RegisterTaskWithMaintenanceWindow.
 	//
-	// For more information, see Using service-linked roles for Systems Manager
-	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/using-service-linked-roles.html#slr-permissions)
-	// in the in the Amazon Web Services Systems Manager User Guide:
+	// However, for an improved security posture, we strongly recommend creating
+	// a custom policy and custom service role for running your maintenance window
+	// tasks. The policy can be crafted to provide only the permissions needed for
+	// your particular maintenance window tasks. For more information, see Setting
+	// up maintenance windows (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-maintenance-permissions.html)
+	// in the in the Amazon Web Services Systems Manager User Guide.
 	ServiceRoleArn *string `type:"string"`
 
 	// The targets (either managed nodes or tags) to modify. Managed nodes are specified
@@ -61600,6 +62398,78 @@ func InstancePatchStateOperatorType_Values() []string {
 		InstancePatchStateOperatorTypeNotEqual,
 		InstancePatchStateOperatorTypeLessThan,
 		InstancePatchStateOperatorTypeGreaterThan,
+	}
+}
+
+const (
+	// InstancePropertyFilterKeyInstanceIds is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyInstanceIds = "InstanceIds"
+
+	// InstancePropertyFilterKeyAgentVersion is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyAgentVersion = "AgentVersion"
+
+	// InstancePropertyFilterKeyPingStatus is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyPingStatus = "PingStatus"
+
+	// InstancePropertyFilterKeyPlatformTypes is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyPlatformTypes = "PlatformTypes"
+
+	// InstancePropertyFilterKeyDocumentName is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyDocumentName = "DocumentName"
+
+	// InstancePropertyFilterKeyActivationIds is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyActivationIds = "ActivationIds"
+
+	// InstancePropertyFilterKeyIamRole is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyIamRole = "IamRole"
+
+	// InstancePropertyFilterKeyResourceType is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyResourceType = "ResourceType"
+
+	// InstancePropertyFilterKeyAssociationStatus is a InstancePropertyFilterKey enum value
+	InstancePropertyFilterKeyAssociationStatus = "AssociationStatus"
+)
+
+// InstancePropertyFilterKey_Values returns all elements of the InstancePropertyFilterKey enum
+func InstancePropertyFilterKey_Values() []string {
+	return []string{
+		InstancePropertyFilterKeyInstanceIds,
+		InstancePropertyFilterKeyAgentVersion,
+		InstancePropertyFilterKeyPingStatus,
+		InstancePropertyFilterKeyPlatformTypes,
+		InstancePropertyFilterKeyDocumentName,
+		InstancePropertyFilterKeyActivationIds,
+		InstancePropertyFilterKeyIamRole,
+		InstancePropertyFilterKeyResourceType,
+		InstancePropertyFilterKeyAssociationStatus,
+	}
+}
+
+const (
+	// InstancePropertyFilterOperatorEqual is a InstancePropertyFilterOperator enum value
+	InstancePropertyFilterOperatorEqual = "Equal"
+
+	// InstancePropertyFilterOperatorNotEqual is a InstancePropertyFilterOperator enum value
+	InstancePropertyFilterOperatorNotEqual = "NotEqual"
+
+	// InstancePropertyFilterOperatorBeginWith is a InstancePropertyFilterOperator enum value
+	InstancePropertyFilterOperatorBeginWith = "BeginWith"
+
+	// InstancePropertyFilterOperatorLessThan is a InstancePropertyFilterOperator enum value
+	InstancePropertyFilterOperatorLessThan = "LessThan"
+
+	// InstancePropertyFilterOperatorGreaterThan is a InstancePropertyFilterOperator enum value
+	InstancePropertyFilterOperatorGreaterThan = "GreaterThan"
+)
+
+// InstancePropertyFilterOperator_Values returns all elements of the InstancePropertyFilterOperator enum
+func InstancePropertyFilterOperator_Values() []string {
+	return []string{
+		InstancePropertyFilterOperatorEqual,
+		InstancePropertyFilterOperatorNotEqual,
+		InstancePropertyFilterOperatorBeginWith,
+		InstancePropertyFilterOperatorLessThan,
+		InstancePropertyFilterOperatorGreaterThan,
 	}
 }
 

@@ -16,7 +16,7 @@
     "CreateLocationObjectStorage": "<p>Creates a transfer <i>location</i> for an object storage system. DataSync can use this location as a source or destination for transferring data.</p> <p>Before you begin, make sure that you understand the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html#create-object-location-prerequisites\">prerequisites</a> for DataSync to work with object storage systems.</p>",
     "CreateLocationS3": "<p>Creates a transfer <i>location</i> for an Amazon S3 bucket. DataSync can use this location as a source or destination for transferring data.</p> <important> <p>Before you begin, make sure that you read the following topics:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">Evaluating S3 request costs when using DataSync</a> </p> </li> </ul> </important> <p> For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html\">Configuring transfers with Amazon S3</a>.</p>",
     "CreateLocationSmb": "<p>Creates a transfer <i>location</i> for a Server Message Block (SMB) file server. DataSync can use this location as a source or destination for transferring data.</p> <p>Before you begin, make sure that you understand how DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html#configuring-smb\">accesses SMB file servers</a>.</p>",
-    "CreateTask": "<p>Configures a transfer task, which defines where and how DataSync moves your data.</p> <p>A task includes a source location, destination location, and the options for how and when you want to transfer your data (such as bandwidth limits, scheduling, among other options).</p> <important> <p>If you're planning to transfer data to or from an Amazon S3 location, review <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">how DataSync can affect your S3 request charges</a> and the <a href=\"http://aws.amazon.com/datasync/pricing/\">DataSync pricing page</a> before you begin.</p> </important>",
+    "CreateTask": "<p>Configures a <i>task</i>, which defines where and how DataSync transfers your data.</p> <p>A task includes a source location, destination location, and transfer options (such as bandwidth limits, scheduling, and more).</p> <important> <p>If you're planning to transfer data to or from an Amazon S3 location, review <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#create-s3-location-s3-requests\">how DataSync can affect your S3 request charges</a> and the <a href=\"http://aws.amazon.com/datasync/pricing/\">DataSync pricing page</a> before you begin.</p> </important>",
     "DeleteAgent": "<p>Removes an DataSync agent resource from your Amazon Web Services account.</p> <p>Keep in mind that this operation (which can't be undone) doesn't remove the agent's virtual machine (VM) or Amazon EC2 instance from your storage environment. For next steps, you can delete the VM or instance from your storage environment or reuse it to <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html\">activate a new agent</a>.</p>",
     "DeleteLocation": "<p>Deletes a transfer location resource from DataSync. </p>",
     "DeleteTask": "<p>Deletes a transfer task resource from DataSync.</p>",
@@ -36,7 +36,7 @@
     "DescribeStorageSystem": "<p>Returns information about an on-premises storage system that you're using with DataSync Discovery.</p>",
     "DescribeStorageSystemResourceMetrics": "<p>Returns information, including performance data and capacity usage, which DataSync Discovery collects about a specific resource in your-premises storage system.</p>",
     "DescribeStorageSystemResources": "<p>Returns information that DataSync Discovery collects about resources in your on-premises storage system.</p>",
-    "DescribeTask": "<p>Provides information about an DataSync transfer task.</p>",
+    "DescribeTask": "<p>Provides information about a <i>task</i>, which defines where and how DataSync transfers your data.</p>",
     "DescribeTaskExecution": "<p>Provides information about an execution of your DataSync task. You can use this operation to help monitor the progress of an ongoing transfer or check the results of the transfer.</p>",
     "GenerateRecommendations": "<p>Creates recommendations about where to migrate your data to in Amazon Web Services. Recommendations are generated based on information that DataSync Discovery collects about your on-premises storage system's resources. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/discovery-understand-recommendations.html\">Recommendations provided by DataSync Discovery</a>.</p> <p>Once generated, you can view your recommendations by using the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeStorageSystemResources.html\">DescribeStorageSystemResources</a> operation.</p>",
     "ListAgents": "<p>Returns a list of DataSync agents that belong to an Amazon Web Services account in the Amazon Web Services Region specified in the request.</p> <p>With pagination, you can reduce the number of agents returned in a response. If you get a truncated list of agents in a response, the response contains a marker that you can specify in your next request to fetch the next page of agents.</p> <p> <code>ListAgents</code> is eventually consistent. This means the result of running the operation might not reflect that you just created or deleted an agent. For example, if you create an agent with <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateAgent.html\">CreateAgent</a> and then immediately run <code>ListAgents</code>, that agent might not show up in the list right away. In situations like this, you can always confirm whether an agent has been created (or deleted) by using <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeAgent.html\">DescribeAgent</a>.</p>",
@@ -60,7 +60,7 @@
     "UpdateLocationObjectStorage": "<p>Updates some parameters of an existing object storage location that DataSync accesses for a transfer. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "UpdateLocationSmb": "<p>Updates some of the parameters of a Server Message Block (SMB) file server location that you can use for DataSync transfers.</p>",
     "UpdateStorageSystem": "<p>Modifies some configurations of an on-premises storage system resource that you're using with DataSync Discovery.</p>",
-    "UpdateTask": "<p>Updates the configuration of an DataSync transfer task.</p>",
+    "UpdateTask": "<p>Updates the configuration of a <i>task</i>, which defines where and how DataSync transfers your data.</p>",
     "UpdateTaskExecution": "<p>Updates the configuration of a running DataSync task execution.</p> <note> <p>Currently, the only <code>Option</code> that you can modify with <code>UpdateTaskExecution</code> is <code> <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond\">BytesPerSecond</a> </code>, which throttles bandwidth for a running or queued task execution.</p> </note>"
   },
   "shapes": {
@@ -135,7 +135,7 @@
     "AgentVersion": {
       "base": null,
       "refs": {
-        "Platform$Version": "<p>The version of the DataSync agent.</p> <important> <p>On December 7, 2023, we discontinued version 1 DataSync agents. Check the DataSync console to see if you have affected agents. If you do, <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/replacing-agent.html\">replace</a> those agents or <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/deleting-agent.html\">delete</a> them if they aren't in use. If you need more help, contact <a href=\"https://aws.amazon.com/contact-us/\">Amazon Web Services Support</a>.</p> </important>"
+        "Platform$Version": "<p>The version of the DataSync agent.</p>"
       }
     },
     "Atime": {
@@ -574,7 +574,7 @@
     "DestinationNetworkInterfaceArns": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$DestinationNetworkInterfaceArns": "<p>The Amazon Resource Names (ARNs) of the network interfaces created for your destination location. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces\">Network interface requirements</a>.</p>"
+        "DescribeTaskResponse$DestinationNetworkInterfaceArns": "<p>The ARNs of the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces\">network interfaces</a> that DataSync created for your destination location.</p>"
       }
     },
     "DiscoveryAgentArnList": {
@@ -794,16 +794,16 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "CreateTaskRequest$Excludes": "<p>Specifies a list of filter rules that exclude specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
-        "CreateTaskRequest$Includes": "<p>Specifies a list of filter rules that include specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
+        "CreateTaskRequest$Excludes": "<p>Specifies exclude filters that define the files, objects, and folders in your source location that you don't want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>",
+        "CreateTaskRequest$Includes": "<p>Specifies include filters define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>",
         "DescribeTaskExecutionResponse$Excludes": "<p>A list of filter rules that exclude specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
         "DescribeTaskExecutionResponse$Includes": "<p>A list of filter rules that include specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
-        "DescribeTaskResponse$Excludes": "<p>A list of filter rules that exclude specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
-        "DescribeTaskResponse$Includes": "<p>A list of filter rules that include specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
+        "DescribeTaskResponse$Excludes": "<p>The exclude filters that define the files, objects, and folders in your source location that you don't want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>",
+        "DescribeTaskResponse$Includes": "<p>The include filters that define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>",
         "StartTaskExecutionRequest$Includes": "<p>Specifies a list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p>",
         "StartTaskExecutionRequest$Excludes": "<p>Specifies a list of filter rules that determines which files to exclude from a task. The list contains a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p>",
-        "UpdateTaskRequest$Excludes": "<p>Specifies a list of filter rules that exclude specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>",
-        "UpdateTaskRequest$Includes": "<p>Specifies a list of filter rules that include specific data during your transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Filtering data transferred by DataSync</a>.</p>"
+        "UpdateTaskRequest$Excludes": "<p>Specifies exclude filters that define the files, objects, and folders in your source location that you don't want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>",
+        "UpdateTaskRequest$Includes": "<p>Specifies include filters define the files, objects, and folders in your source location that you want DataSync to transfer. For more information and examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/filtering.html\">Specifying what DataSync transfers by using filters</a>.</p>"
       }
     },
     "FilterMembers": {
@@ -1016,7 +1016,7 @@
         "CreateLocationObjectStorageRequest$Tags": "<p>Specifies the key-value pair that represents a tag that you want to add to the resource. Tags can help you manage, filter, and search for your resources. We recommend creating a name tag for your location.</p>",
         "CreateLocationS3Request$Tags": "<p>Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your transfer location.</p>",
         "CreateLocationSmbRequest$Tags": "<p>Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location.</p>",
-        "CreateTaskRequest$Tags": "<p>Specifies the tags that you want to apply to the Amazon Resource Name (ARN) representing the task.</p> <p> <i>Tags</i> are key-value pairs that help you manage, filter, and search for your DataSync resources.</p>",
+        "CreateTaskRequest$Tags": "<p>Specifies the tags that you want to apply to your task.</p> <p> <i>Tags</i> are key-value pairs that help you manage, filter, and search for your DataSync resources.</p>",
         "StartDiscoveryJobRequest$Tags": "<p>Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources.</p>",
         "StartTaskExecutionRequest$Tags": "<p>Specifies the tags that you want to apply to the Amazon Resource Name (ARN) representing the task execution.</p> <p> <i>Tags</i> are key-value pairs that help you manage, filter, and search for your DataSync resources.</p>",
         "TagResourceRequest$Tags": "<p>Specifies the tags that you want to apply to the resource.</p>"
@@ -1152,8 +1152,8 @@
         "CreateLocationObjectStorageResponse$LocationArn": "<p>Specifies the ARN of the object storage system location that you create.</p>",
         "CreateLocationS3Response$LocationArn": "<p>The ARN of the S3 location that you created.</p>",
         "CreateLocationSmbResponse$LocationArn": "<p>The ARN of the SMB location that you created.</p>",
-        "CreateTaskRequest$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source location for the task.</p>",
-        "CreateTaskRequest$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of an Amazon Web Services storage resource's location. </p>",
+        "CreateTaskRequest$SourceLocationArn": "<p>Specifies the ARN of your transfer's source location.</p>",
+        "CreateTaskRequest$DestinationLocationArn": "<p>Specifies the ARN of your transfer's destination location. </p>",
         "DeleteLocationRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the location to delete.</p>",
         "DescribeLocationAzureBlobRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of your Azure Blob Storage transfer location.</p>",
         "DescribeLocationAzureBlobResponse$LocationArn": "<p>The ARN of your Azure Blob Storage transfer location.</p>",
@@ -1177,8 +1177,8 @@
         "DescribeLocationS3Response$LocationArn": "<p>The ARN of the Amazon S3 location.</p>",
         "DescribeLocationSmbRequest$LocationArn": "<p>Specifies the Amazon Resource Name (ARN) of the SMB location that you want information about.</p>",
         "DescribeLocationSmbResponse$LocationArn": "<p>The ARN of the SMB location.</p>",
-        "DescribeTaskResponse$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source file system's location.</p>",
-        "DescribeTaskResponse$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services storage resource's location.</p>",
+        "DescribeTaskResponse$SourceLocationArn": "<p>The ARN of your transfer's source location.</p>",
+        "DescribeTaskResponse$DestinationLocationArn": "<p>The ARN of your transfer's destination location.</p>",
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>",
         "UpdateLocationAzureBlobRequest$LocationArn": "<p>Specifies the ARN of the Azure Blob Storage transfer location that you're updating.</p>",
         "UpdateLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>",
@@ -1238,11 +1238,11 @@
       "base": null,
       "refs": {
         "AddStorageSystemRequest$CloudWatchLogGroupArn": "<p>Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging discovery job events.</p>",
-        "CreateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task. </p>",
+        "CreateTaskRequest$CloudWatchLogGroupArn": "<p>Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task.</p>",
         "DescribeStorageSystemResponse$CloudWatchLogGroupArn": "<p>The ARN of the Amazon CloudWatch log group that's used to monitor and log discovery job events.</p>",
-        "DescribeTaskResponse$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that was used to monitor and log events in the task.</p> <p>For more information on these groups, see Working with Log Groups and Log Streams in the <i>Amazon CloudWatch User Guide</i>.</p>",
+        "DescribeTaskResponse$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/monitor-datasync.html\">Monitoring DataSync with Amazon CloudWatch</a>.</p>",
         "UpdateStorageSystemRequest$CloudWatchLogGroupArn": "<p>Specifies the ARN of the Amazon CloudWatch log group for monitoring and logging discovery job events.</p>",
-        "UpdateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch log group.</p>"
+        "UpdateTaskRequest$CloudWatchLogGroupArn": "<p>Specifies the Amazon Resource Name (ARN) of an Amazon CloudWatch log group for monitoring your task.</p>"
       }
     },
     "LogLevel": {
@@ -1262,7 +1262,7 @@
       "refs": {
         "CreateTaskRequest$ManifestConfig": "<p>Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p> <p>When using this parameter, your caller identity (the role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p>",
         "DescribeTaskExecutionResponse$ManifestConfig": "<p>The configuration of the manifest that lists the files or objects to transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p>",
-        "DescribeTaskResponse$ManifestConfig": "<p>The configuration of the manifest that lists the files or objects to transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p>",
+        "DescribeTaskResponse$ManifestConfig": "<p>The configuration of the manifest that lists the files or objects that you want DataSync to transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p>",
         "StartTaskExecutionRequest$ManifestConfig": "<p>Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p> <p>When using this parameter, your caller identity (the role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p> <p>To remove a manifest configuration, specify this parameter with an empty value.</p>",
         "UpdateTaskRequest$ManifestConfig": "<p>Configures a manifest, which is a list of files or objects that you want DataSync to transfer. For more information and configuration examples, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">Specifying what DataSync transfers by using a manifest</a>.</p> <p>When using this parameter, your caller identity (the IAM role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p> <p>To remove a manifest configuration, specify this parameter as empty.</p>"
       }
@@ -1521,11 +1521,11 @@
       }
     },
     "Options": {
-      "base": "<p>Indicates how your transfer task is configured. These options include how DataSync handles files, objects, and their associated metadata during your transfer. You also can specify how to verify data integrity, set bandwidth limits for your task, among other options.</p> <p>Each option has a default value. Unless you need to, you don't have to configure any of these options before starting your task.</p>",
+      "base": "<p>Indicates how your transfer task is configured. These options include how DataSync handles files, objects, and their associated metadata during your transfer. You also can specify how to verify data integrity, set bandwidth limits for your task, among other options.</p> <p>Each option has a default value. Unless you need to, you don't have to configure any option before calling <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html\">StartTaskExecution</a>.</p> <p>You also can override your task options for each task execution. For example, you might want to adjust the <code>LogLevel</code> for an individual execution.</p>",
       "refs": {
-        "CreateTaskRequest$Options": "<p>Specifies the configuration options for a task. Some options include preserving file or object metadata and verifying data integrity.</p> <p>You can also override these options before starting an individual run of a task (also known as a <i>task execution</i>). For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html\">StartTaskExecution</a>.</p>",
+        "CreateTaskRequest$Options": "<p>Specifies your task's settings, such as preserving file metadata, verifying data integrity, among other options.</p>",
         "DescribeTaskExecutionResponse$Options": null,
-        "DescribeTaskResponse$Options": "<p>The configuration options that control the behavior of the <code>StartTaskExecution</code> operation. Some options include preserving file or object metadata and verifying data integrity.</p> <p>You can override these options for each task execution. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html\">StartTaskExecution</a>.</p>",
+        "DescribeTaskResponse$Options": "<p>The task's settings. For example, what file metadata gets preserved, how data integrity gets verified at the end of your transfer, bandwidth limits, among other options.</p>",
         "StartTaskExecutionRequest$OverrideOptions": null,
         "UpdateTaskExecutionRequest$Options": null,
         "UpdateTaskRequest$Options": null
@@ -1818,10 +1818,28 @@
         "UpdateLocationObjectStorageRequest$Subdirectory": "<p>Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix.</p>"
       }
     },
+    "ScheduleDisabledBy": {
+      "base": null,
+      "refs": {
+        "TaskScheduleDetails$DisabledBy": "<p>Indicates how your task schedule was disabled.</p> <ul> <li> <p> <code>USER</code> - Your schedule was manually disabled by using the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateTask.html\">UpdateTask</a> operation or DataSync console.</p> </li> <li> <p> <code>SERVICE</code> - Your schedule was automatically disabled by DataSync because the task failed repeatedly with the same error.</p> </li> </ul>"
+      }
+    },
+    "ScheduleDisabledReason": {
+      "base": null,
+      "refs": {
+        "TaskScheduleDetails$DisabledReason": "<p>Provides a reason if the task schedule is disabled.</p> <p>If your schedule is disabled by <code>USER</code>, you see a <code>Manually disabled by user.</code> message.</p> <p>If your schedule is disabled by <code>SERVICE</code>, you see an error message to help you understand why the task keeps failing. For information on resolving DataSync errors, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html\">Troubleshooting issues with DataSync transfers</a>.</p>"
+      }
+    },
     "ScheduleExpressionCron": {
       "base": null,
       "refs": {
-        "TaskSchedule$ScheduleExpression": "<p>A cron expression that specifies when DataSync initiates a scheduled transfer from a source to a destination location. </p>"
+        "TaskSchedule$ScheduleExpression": "<p>Specifies your task schedule by using a cron expression in UTC time. For information about cron expression syntax, see the <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html\"> <i>Amazon EventBridge User Guide</i> </a>.</p>"
+      }
+    },
+    "ScheduleStatus": {
+      "base": null,
+      "refs": {
+        "TaskSchedule$Status": "<p>Specifies whether to enable or disable your task schedule. Your schedule is enabled by default, but there can be situations where you need to disable it. For example, you might need to pause a recurring transfer or fix an issue with your task or perform maintenance on your storage system.</p> <p>DataSync might disable your schedule automatically if your task fails repeatedly with the same error. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_TaskScheduleDetails.html\">TaskScheduleDetails</a>.</p>"
       }
     },
     "SecretsManagerArn": {
@@ -1906,7 +1924,7 @@
     "SourceNetworkInterfaceArns": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$SourceNetworkInterfaceArns": "<p>The Amazon Resource Names (ARNs) of the network interfaces created for your source location. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces\">Network interface requirements</a>.</p>"
+        "DescribeTaskResponse$SourceNetworkInterfaceArns": "<p>The ARNs of the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/datasync-network.html#required-network-interfaces\">network interfaces</a> that DataSync created for your source location.</p>"
       }
     },
     "StartDiscoveryJobRequest": {
@@ -2013,13 +2031,13 @@
       "refs": {
         "AgentListEntry$Name": "<p>The name of an agent.</p>",
         "CreateAgentRequest$AgentName": "<p>Specifies a name for your agent. You can see this name in the DataSync console.</p>",
-        "CreateTaskRequest$Name": "<p>The name of a task. This value is a text reference that is used to identify the task in the console. </p>",
+        "CreateTaskRequest$Name": "<p>Specifies the name of your task.</p>",
         "DescribeAgentResponse$Name": "<p>The name of the agent.</p>",
-        "DescribeTaskResponse$Name": "<p>The name of the task that was described.</p>",
+        "DescribeTaskResponse$Name": "<p>The name of your task.</p>",
         "TagListEntry$Value": "<p>The value for an Amazon Web Services resource tag.</p>",
         "TaskListEntry$Name": "<p>The name of the task.</p>",
         "UpdateAgentRequest$Name": "<p>The name that you want to use to configure the agent.</p>",
-        "UpdateTaskRequest$Name": "<p>The name of the task to update.</p>"
+        "UpdateTaskRequest$Name": "<p>Specifies the name of your task.</p>"
       }
     },
     "TaggableResourceArn": {
@@ -2035,12 +2053,12 @@
       "refs": {
         "CreateTaskResponse$TaskArn": "<p>The Amazon Resource Name (ARN) of the task.</p>",
         "DeleteTaskRequest$TaskArn": "<p>Specifies the Amazon Resource Name (ARN) of the task that you want to delete.</p>",
-        "DescribeTaskRequest$TaskArn": "<p>Specifies the Amazon Resource Name (ARN) of the transfer task.</p>",
-        "DescribeTaskResponse$TaskArn": "<p>The Amazon Resource Name (ARN) of the task that was described.</p>",
+        "DescribeTaskRequest$TaskArn": "<p>Specifies the Amazon Resource Name (ARN) of the transfer task that you want information about.</p>",
+        "DescribeTaskResponse$TaskArn": "<p>The ARN of your task.</p>",
         "ListTaskExecutionsRequest$TaskArn": "<p>Specifies the Amazon Resource Name (ARN) of the task that you want execution information about.</p>",
         "StartTaskExecutionRequest$TaskArn": "<p>Specifies the Amazon Resource Name (ARN) of the task that you want to start.</p>",
         "TaskListEntry$TaskArn": "<p>The Amazon Resource Name (ARN) of the task.</p>",
-        "UpdateTaskRequest$TaskArn": "<p>The Amazon Resource Name (ARN) of the resource name of the task to update.</p>"
+        "UpdateTaskRequest$TaskArn": "<p>Specifies the ARN of the task that you want to update.</p>"
       }
     },
     "TaskExecutionArn": {
@@ -2049,7 +2067,7 @@
         "CancelTaskExecutionRequest$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution to stop.</p>",
         "DescribeTaskExecutionRequest$TaskExecutionArn": "<p>Specifies the Amazon Resource Name (ARN) of the task execution that you want information about.</p>",
         "DescribeTaskExecutionResponse$TaskExecutionArn": "<p>The ARN of the task execution that you wanted information about. <code>TaskExecutionArn</code> is hierarchical and includes <code>TaskArn</code> for the task that was executed. </p> <p>For example, a <code>TaskExecution</code> value with the ARN <code>arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2/execution/exec-08ef1e88ec491019b</code> executed the task with the ARN <code>arn:aws:datasync:us-east-1:111222333444:task/task-0208075f79cedf4a2</code>. </p>",
-        "DescribeTaskResponse$CurrentTaskExecutionArn": "<p>The Amazon Resource Name (ARN) of the task execution that is transferring files.</p>",
+        "DescribeTaskResponse$CurrentTaskExecutionArn": "<p>The ARN of the most recent task execution.</p>",
         "StartTaskExecutionResponse$TaskExecutionArn": "<p>The ARN of the running task execution.</p>",
         "TaskExecutionListEntry$TaskExecutionArn": "<p>The Amazon Resource Name (ARN) of a task execution.</p>",
         "UpdateTaskExecutionRequest$TaskExecutionArn": "<p>Specifies the Amazon Resource Name (ARN) of the task execution that you're updating.</p>"
@@ -2121,23 +2139,29 @@
       "refs": {
         "CreateTaskRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Monitoring your DataSync transfers with task reports</a>.</p> <p>When using this parameter, your caller identity (the role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p>",
         "DescribeTaskExecutionResponse$TaskReportConfig": "<p>The configuration of your task report, which provides detailed information about for your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Creating a task report</a>.</p>",
-        "DescribeTaskResponse$TaskReportConfig": "<p>The configuration of your task report, which provides detailed information about for your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Creating a task report</a>.</p>",
+        "DescribeTaskResponse$TaskReportConfig": "<p>The configuration of your task report, which provides detailed information about your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Monitoring your DataSync transfers with task reports</a>.</p>",
         "StartTaskExecutionRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Monitoring your DataSync transfers with task reports</a>.</p> <p>When using this parameter, your caller identity (the role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p> <p>To remove a task report configuration, specify this parameter as empty.</p>",
         "UpdateTaskRequest$TaskReportConfig": "<p>Specifies how you want to configure a task report, which provides detailed information about your DataSync transfer. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html\">Monitoring your DataSync transfers with task reports</a>.</p> <p>When using this parameter, your caller identity (the IAM role that you're using DataSync with) must have the <code>iam:PassRole</code> permission. The <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess\">AWSDataSyncFullAccess</a> policy includes this permission.</p> <p>To remove a task report configuration, specify this parameter as empty.</p>"
       }
     },
     "TaskSchedule": {
-      "base": "<p>Specifies the schedule you want your task to use for repeated executions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html\">Schedule Expressions for Rules</a>.</p>",
+      "base": "<p>Configures your DataSync task to run on a <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">schedule</a> (at a minimum interval of 1 hour).</p>",
       "refs": {
-        "CreateTaskRequest$Schedule": "<p>Specifies a schedule used to periodically transfer files from a source to a destination location. The schedule should be specified in UTC time. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">Scheduling your task</a>.</p>",
-        "DescribeTaskResponse$Schedule": "<p>The schedule used to periodically transfer files from a source to a destination location.</p>",
-        "UpdateTaskRequest$Schedule": "<p>Specifies a schedule used to periodically transfer files from a source to a destination location. You can configure your task to execute hourly, daily, weekly or on specific days of the week. You control when in the day or hour you want the task to execute. The time you specify is UTC time. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">Scheduling your task</a>.</p>"
+        "CreateTaskRequest$Schedule": "<p>Specifies a schedule for when you want your task to run. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">Scheduling your task</a>.</p>",
+        "DescribeTaskResponse$Schedule": "<p>The schedule for when you want your task to run. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">Scheduling your task</a>.</p>",
+        "UpdateTaskRequest$Schedule": "<p>Specifies a schedule for when you want your task to run. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">Scheduling your task</a>.</p>"
+      }
+    },
+    "TaskScheduleDetails": {
+      "base": "<p>Provides information about your DataSync <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">task schedule</a>.</p>",
+      "refs": {
+        "DescribeTaskResponse$ScheduleDetails": "<p>The details about your <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html\">task schedule</a>.</p>"
       }
     },
     "TaskStatus": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$Status": "<p>The status of the task that was described.</p> <p>For detailed information about task execution statuses, see Understanding Task Statuses in the <i>DataSync User Guide</i>.</p>",
+        "DescribeTaskResponse$Status": "<p>The status of your task. For information about what each status means, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/understand-task-statuses.html#understand-task-creation-statuses\">Task statuses</a>.</p>",
         "TaskListEntry$Status": "<p>The status of the task.</p>"
       }
     },
@@ -2164,7 +2188,8 @@
         "DescribeLocationS3Response$CreationTime": "<p>The time that the Amazon S3 location was created.</p>",
         "DescribeLocationSmbResponse$CreationTime": "<p>The time that the SMB location was created.</p>",
         "DescribeTaskExecutionResponse$StartTime": "<p>The time when the task execution started.</p>",
-        "DescribeTaskResponse$CreationTime": "<p>The time that the task was created.</p>"
+        "DescribeTaskResponse$CreationTime": "<p>The time that the task was created.</p>",
+        "TaskScheduleDetails$StatusUpdateTime": "<p>Indicates the last time the status of your task schedule changed. For example, if DataSync automatically disables your schedule because of a repeated error, you can see when the schedule was disabled.</p>"
       }
     },
     "Timestamp": {
@@ -2299,7 +2324,7 @@
     "VerifyMode": {
       "base": null,
       "refs": {
-        "Options$VerifyMode": "<p>Specifies how and when DataSync checks the integrity of your data during a transfer.</p> <ul> <li> <p> <code>ONLY_FILES_TRANSFERRED</code> (recommended) - DataSync calculates the checksum of transferred files and metadata at the source location. At the end of the transfer, DataSync then compares this checksum to the checksum calculated on those files at the destination.</p> <p>We recommend this option when transferring to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a>.</p> </li> <li> <p> <code>POINT_IN_TIME_CONSISTENT</code> (default) - At the end of the transfer, DataSync scans the entire source and destination to verify that both locations are fully synchronized.</p> <p>You can't use this option when transferring to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a>.</p> </li> <li> <p> <code>NONE</code> - DataSync doesn't run additional verification at the end of the transfer. All data transmissions are still integrity-checked with checksum verification during the transfer.</p> </li> </ul>"
+        "Options$VerifyMode": "<p>Specifies how and when DataSync checks the integrity of your data during a transfer.</p> <ul> <li> <p> <code>ONLY_FILES_TRANSFERRED</code> (recommended) - DataSync calculates the checksum of transferred files and metadata at the source location. At the end of the transfer, DataSync then compares this checksum to the checksum calculated on those files at the destination.</p> <p>We recommend this option when transferring to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a>.</p> </li> <li> <p> <code>POINT_IN_TIME_CONSISTENT</code> (default) - At the end of the transfer, DataSync scans the entire source and destination to verify that both locations are fully synchronized.</p> <p>If you use a <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html\">manifest</a>, DataSync only scans and verifies what's listed in the manifest.</p> <p>You can't use this option when transferring to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes\">Storage class considerations with Amazon S3 locations</a>.</p> </li> <li> <p> <code>NONE</code> - DataSync doesn't run additional verification at the end of the transfer. All data transmissions are still integrity-checked with checksum verification during the transfer.</p> </li> </ul>"
       }
     },
     "VpcEndpointId": {
@@ -2327,8 +2352,8 @@
     "string": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$ErrorCode": "<p>Errors that DataSync encountered during execution of the task. You can use this error code to help troubleshoot issues.</p>",
-        "DescribeTaskResponse$ErrorDetail": "<p>Detailed description of an error that was encountered during the task execution. You can use this information to help troubleshoot issues. </p>",
+        "DescribeTaskResponse$ErrorCode": "<p>If there's an issue with your task, you can use the error code to help you troubleshoot the problem. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html\">Troubleshooting issues with DataSync transfers</a>.</p>",
+        "DescribeTaskResponse$ErrorDetail": "<p>If there's an issue with your task, you can use the error details to help you troubleshoot the problem. For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/troubleshooting-datasync-locations-tasks.html\">Troubleshooting issues with DataSync transfers</a>.</p>",
         "InternalException$message": null,
         "InternalException$errorCode": null,
         "InvalidRequestException$message": null,

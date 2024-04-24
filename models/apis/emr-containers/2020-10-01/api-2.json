@@ -53,6 +53,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateSecurityConfiguration":{
+      "name":"CreateSecurityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/securityconfigurations"
+      },
+      "input":{"shape":"CreateSecurityConfigurationRequest"},
+      "output":{"shape":"CreateSecurityConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateVirtualCluster":{
       "name":"CreateVirtualCluster",
       "http":{
@@ -149,6 +162,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeSecurityConfiguration":{
+      "name":"DescribeSecurityConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/securityconfigurations/{securityConfigurationId}"
+      },
+      "input":{"shape":"DescribeSecurityConfigurationRequest"},
+      "output":{"shape":"DescribeSecurityConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeVirtualCluster":{
       "name":"DescribeVirtualCluster",
       "http":{
@@ -212,6 +239,19 @@
       },
       "input":{"shape":"ListManagedEndpointsRequest"},
       "output":{"shape":"ListManagedEndpointsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListSecurityConfigurations":{
+      "name":"ListSecurityConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/securityconfigurations"
+      },
+      "input":{"shape":"ListSecurityConfigurationsRequest"},
+      "output":{"shape":"ListSecurityConfigurationsResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
@@ -294,6 +334,13 @@
       "min":44,
       "pattern":"^arn:(aws[a-zA-Z0-9-]*):acm:.+:(\\d{12}):certificate/.+$"
     },
+    "AuthorizationConfiguration":{
+      "type":"structure",
+      "members":{
+        "lakeFormationConfiguration":{"shape":"LakeFormationConfiguration"},
+        "encryptionConfiguration":{"shape":"EncryptionConfiguration"}
+      }
+    },
     "Base64Encoded":{
       "type":"string",
       "max":5000,
@@ -332,6 +379,10 @@
         "certificateArn":{"shape":"ACMCertArn"},
         "certificateData":{"shape":"Base64Encoded"}
       }
+    },
+    "CertificateProviderType":{
+      "type":"string",
+      "enum":["PEM"]
     },
     "ClientToken":{
       "type":"string",
@@ -477,6 +528,31 @@
         "virtualClusterId":{"shape":"ResourceIdString"}
       }
     },
+    "CreateSecurityConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "clientToken",
+        "name",
+        "securityConfigurationData"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "name":{"shape":"ResourceNameString"},
+        "securityConfigurationData":{"shape":"SecurityConfigurationData"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateSecurityConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ResourceIdString"},
+        "name":{"shape":"ResourceNameString"},
+        "arn":{"shape":"SecurityConfigurationArn"}
+      }
+    },
     "CreateVirtualClusterRequest":{
       "type":"structure",
       "required":[
@@ -491,7 +567,8 @@
           "shape":"ClientToken",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "securityConfigurationId":{"shape":"ResourceIdString"}
       }
     },
     "CreateVirtualClusterResponse":{
@@ -646,6 +723,23 @@
         "endpoint":{"shape":"Endpoint"}
       }
     },
+    "DescribeSecurityConfigurationRequest":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{
+          "shape":"ResourceIdString",
+          "location":"uri",
+          "locationName":"securityConfigurationId"
+        }
+      }
+    },
+    "DescribeSecurityConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "securityConfiguration":{"shape":"SecurityConfiguration"}
+      }
+    },
     "DescribeVirtualClusterRequest":{
       "type":"structure",
       "required":["id"],
@@ -675,6 +769,12 @@
       "type":"structure",
       "members":{
         "namespace":{"shape":"KubernetesNamespace"}
+      }
+    },
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "inTransitEncryptionConfiguration":{"shape":"InTransitEncryptionConfiguration"}
       }
     },
     "Endpoint":{
@@ -810,6 +910,12 @@
       "min":20,
       "pattern":"^arn:(aws[a-zA-Z0-9-]*):iam::(\\d{12})?:(role((\\u002F)|(\\u002F[\\u0021-\\u007F]+\\u002F))[\\w+=,.@-]+)$"
     },
+    "InTransitEncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "tlsCertificateConfiguration":{"shape":"TLSCertificateConfiguration"}
+      }
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -928,6 +1034,14 @@
       "max":63,
       "min":1,
       "pattern":"[a-z0-9]([-a-z0-9]*[a-z0-9])?"
+    },
+    "LakeFormationConfiguration":{
+      "type":"structure",
+      "members":{
+        "authorizedSessionTagValue":{"shape":"SessionTagValue"},
+        "secureNamespaceInfo":{"shape":"SecureNamespaceInfo"},
+        "queryEngineRoleArn":{"shape":"IAMRoleArn"}
+      }
     },
     "ListJobRunsRequest":{
       "type":"structure",
@@ -1054,6 +1168,38 @@
       "type":"structure",
       "members":{
         "endpoints":{"shape":"Endpoints"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSecurityConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "createdAfter":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"createdAfter"
+        },
+        "createdBefore":{
+          "shape":"Date",
+          "location":"querystring",
+          "locationName":"createdBefore"
+        },
+        "maxResults":{
+          "shape":"JavaInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListSecurityConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "securityConfigurations":{"shape":"SecurityConfigurations"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1278,12 +1424,59 @@
         "logUri":{"shape":"UriString"}
       }
     },
+    "SecretsManagerArn":{
+      "type":"string",
+      "max":2048,
+      "min":3,
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):secretsmanager:.+:(\\d{12}):secret:[0-9a-zA-Z/_+=.@-]+$"
+    },
+    "SecureNamespaceInfo":{
+      "type":"structure",
+      "members":{
+        "clusterId":{"shape":"ClusterId"},
+        "namespace":{"shape":"KubernetesNamespace"}
+      }
+    },
+    "SecurityConfiguration":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"ResourceIdString"},
+        "name":{"shape":"ResourceNameString"},
+        "arn":{"shape":"SecurityConfigurationArn"},
+        "createdAt":{"shape":"Date"},
+        "createdBy":{"shape":"RequestIdentityUserArn"},
+        "securityConfigurationData":{"shape":"SecurityConfigurationData"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "SecurityConfigurationArn":{
+      "type":"string",
+      "max":1024,
+      "min":60,
+      "pattern":"^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\\d{12}):\\/securityconfigurations\\/[0-9a-zA-Z]+$"
+    },
+    "SecurityConfigurationData":{
+      "type":"structure",
+      "members":{
+        "authorizationConfiguration":{"shape":"AuthorizationConfiguration"}
+      }
+    },
+    "SecurityConfigurations":{
+      "type":"list",
+      "member":{"shape":"SecurityConfiguration"}
+    },
     "SensitivePropertiesMap":{
       "type":"map",
       "key":{"shape":"String1024"},
       "value":{"shape":"String1024"},
       "max":100,
       "sensitive":true
+    },
+    "SessionTagValue":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_/#A-Za-z0-9 ]+"
     },
     "SparkSqlJobDriver":{
       "type":"structure",
@@ -1384,6 +1577,14 @@
     "SubnetIds":{
       "type":"list",
       "member":{"shape":"String256"}
+    },
+    "TLSCertificateConfiguration":{
+      "type":"structure",
+      "members":{
+        "certificateProviderType":{"shape":"CertificateProviderType"},
+        "publicCertificateSecretArn":{"shape":"SecretsManagerArn"},
+        "privateCertificateSecretArn":{"shape":"SecretsManagerArn"}
+      }
     },
     "TagKeyList":{
       "type":"list",
@@ -1509,7 +1710,8 @@
         "state":{"shape":"VirtualClusterState"},
         "containerProvider":{"shape":"ContainerProvider"},
         "createdAt":{"shape":"Date"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "securityConfigurationId":{"shape":"ResourceIdString"}
       }
     },
     "VirtualClusterArn":{

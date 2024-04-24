@@ -1674,7 +1674,8 @@
         "CreationTime":{"shape":"Time"},
         "Includes":{"shape":"FilterList"},
         "ManifestConfig":{"shape":"ManifestConfig"},
-        "TaskReportConfig":{"shape":"TaskReportConfig"}
+        "TaskReportConfig":{"shape":"TaskReportConfig"},
+        "ScheduleDetails":{"shape":"TaskScheduleDetails"}
       }
     },
     "DestinationNetworkInterfaceArns":{
@@ -2794,10 +2795,29 @@
       "max":4096,
       "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
     },
+    "ScheduleDisabledBy":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "SERVICE"
+      ]
+    },
+    "ScheduleDisabledReason":{
+      "type":"string",
+      "max":8192,
+      "pattern":"^[\\w\\s.,'?!:;\\/=|<>()-]*$"
+    },
     "ScheduleExpressionCron":{
       "type":"string",
       "max":256,
       "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
+    },
+    "ScheduleStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "SecretsManagerArn":{
       "type":"string",
@@ -2987,7 +3007,7 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":1,
+      "min":0,
       "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "TaggableResourceArn":{
@@ -3099,7 +3119,16 @@
       "type":"structure",
       "required":["ScheduleExpression"],
       "members":{
-        "ScheduleExpression":{"shape":"ScheduleExpressionCron"}
+        "ScheduleExpression":{"shape":"ScheduleExpressionCron"},
+        "Status":{"shape":"ScheduleStatus"}
+      }
+    },
+    "TaskScheduleDetails":{
+      "type":"structure",
+      "members":{
+        "StatusUpdateTime":{"shape":"Time"},
+        "DisabledReason":{"shape":"ScheduleDisabledReason"},
+        "DisabledBy":{"shape":"ScheduleDisabledBy"}
       }
     },
     "TaskStatus":{

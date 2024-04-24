@@ -5,6 +5,7 @@
     "endpointPrefix":"ssm",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon SSM",
     "serviceFullName":"Amazon Simple Systems Manager (SSM)",
     "serviceId":"SSM",
@@ -680,6 +681,24 @@
         {"shape":"InvalidInstanceId"},
         {"shape":"InvalidFilter"},
         {"shape":"InvalidNextToken"}
+      ]
+    },
+    "DescribeInstanceProperties":{
+      "name":"DescribeInstanceProperties",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstancePropertiesRequest"},
+      "output":{"shape":"DescribeInstancePropertiesResult"},
+      "errors":[
+        {"shape":"InvalidNextToken"},
+        {"shape":"InvalidFilterKey"},
+        {"shape":"InvalidInstanceId"},
+        {"shape":"InvalidActivationId"},
+        {"shape":"InvalidInstancePropertyFilterValue"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidDocument"}
       ]
     },
     "DescribeInventoryDeletions":{
@@ -2213,6 +2232,10 @@
       "type":"integer",
       "max":360,
       "min":0
+    },
+    "Architecture":{
+      "type":"string",
+      "max":120
     },
     "AssociateOpsItemRelatedItemRequest":{
       "type":"structure",
@@ -4278,6 +4301,31 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeInstancePropertiesMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":5
+    },
+    "DescribeInstancePropertiesRequest":{
+      "type":"structure",
+      "members":{
+        "InstancePropertyFilterList":{"shape":"InstancePropertyFilterList"},
+        "FiltersWithOperator":{"shape":"InstancePropertyStringFilterList"},
+        "MaxResults":{
+          "shape":"DescribeInstancePropertiesMaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInstancePropertiesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceProperties":{"shape":"InstanceProperties"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeInventoryDeletionsRequest":{
       "type":"structure",
       "members":{
@@ -5905,6 +5953,10 @@
       "member":{"shape":"InstanceInformationStringFilter"},
       "min":0
     },
+    "InstanceName":{
+      "type":"string",
+      "max":255
+    },
     "InstancePatchState":{
       "type":"structure",
       "required":[
@@ -6008,9 +6060,133 @@
       "max":5,
       "min":1
     },
+    "InstanceProperties":{
+      "type":"list",
+      "member":{"shape":"InstanceProperty"}
+    },
+    "InstanceProperty":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"InstanceName"},
+        "InstanceId":{"shape":"InstanceId"},
+        "InstanceType":{"shape":"InstanceType"},
+        "InstanceRole":{"shape":"InstanceRole"},
+        "KeyName":{"shape":"KeyName"},
+        "InstanceState":{"shape":"InstanceState"},
+        "Architecture":{"shape":"Architecture"},
+        "IPAddress":{"shape":"IPAddress"},
+        "LaunchTime":{"shape":"DateTime"},
+        "PingStatus":{"shape":"PingStatus"},
+        "LastPingDateTime":{"shape":"DateTime"},
+        "AgentVersion":{"shape":"Version"},
+        "PlatformType":{"shape":"PlatformType"},
+        "PlatformName":{"shape":"PlatformName"},
+        "PlatformVersion":{"shape":"PlatformVersion"},
+        "ActivationId":{"shape":"ActivationId"},
+        "IamRole":{"shape":"IamRole"},
+        "RegistrationDate":{"shape":"DateTime"},
+        "ResourceType":{"shape":"String"},
+        "ComputerName":{"shape":"ComputerName"},
+        "AssociationStatus":{"shape":"StatusName"},
+        "LastAssociationExecutionDate":{"shape":"DateTime"},
+        "LastSuccessfulAssociationExecutionDate":{"shape":"DateTime"},
+        "AssociationOverview":{"shape":"InstanceAggregatedAssociationOverview"},
+        "SourceId":{"shape":"SourceId"},
+        "SourceType":{"shape":"SourceType"}
+      }
+    },
+    "InstancePropertyFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "valueSet"
+      ],
+      "members":{
+        "key":{"shape":"InstancePropertyFilterKey"},
+        "valueSet":{"shape":"InstancePropertyFilterValueSet"}
+      }
+    },
+    "InstancePropertyFilterKey":{
+      "type":"string",
+      "enum":[
+        "InstanceIds",
+        "AgentVersion",
+        "PingStatus",
+        "PlatformTypes",
+        "DocumentName",
+        "ActivationIds",
+        "IamRole",
+        "ResourceType",
+        "AssociationStatus"
+      ]
+    },
+    "InstancePropertyFilterList":{
+      "type":"list",
+      "member":{"shape":"InstancePropertyFilter"},
+      "max":40,
+      "min":1
+    },
+    "InstancePropertyFilterOperator":{
+      "type":"string",
+      "enum":[
+        "Equal",
+        "NotEqual",
+        "BeginWith",
+        "LessThan",
+        "GreaterThan"
+      ]
+    },
+    "InstancePropertyFilterValue":{
+      "type":"string",
+      "max":100000,
+      "min":1,
+      "pattern":"^.{1,100000}$"
+    },
+    "InstancePropertyFilterValueSet":{
+      "type":"list",
+      "member":{"shape":"InstancePropertyFilterValue"},
+      "max":40,
+      "min":1
+    },
+    "InstancePropertyStringFilter":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Values"
+      ],
+      "members":{
+        "Key":{"shape":"InstancePropertyStringFilterKey"},
+        "Values":{"shape":"InstancePropertyFilterValueSet"},
+        "Operator":{"shape":"InstancePropertyFilterOperator"}
+      }
+    },
+    "InstancePropertyStringFilterKey":{
+      "type":"string",
+      "max":100000,
+      "min":1,
+      "pattern":"^.{1,100000}$"
+    },
+    "InstancePropertyStringFilterList":{
+      "type":"list",
+      "member":{"shape":"InstancePropertyStringFilter"},
+      "max":40,
+      "min":1
+    },
+    "InstanceRole":{
+      "type":"string",
+      "max":120
+    },
+    "InstanceState":{
+      "type":"string",
+      "max":120
+    },
     "InstanceTagName":{
       "type":"string",
       "max":255
+    },
+    "InstanceType":{
+      "type":"string",
+      "max":120
     },
     "InstancesCount":{"type":"integer"},
     "Integer":{"type":"integer"},
@@ -6182,6 +6358,13 @@
       "exception":true
     },
     "InvalidInstanceInformationFilterValue":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidInstancePropertyFilterValue":{
       "type":"structure",
       "members":{
         "message":{"shape":"String"}
@@ -6665,6 +6848,10 @@
     "KeyList":{
       "type":"list",
       "member":{"shape":"TagKey"}
+    },
+    "KeyName":{
+      "type":"string",
+      "max":255
     },
     "LabelParameterVersionRequest":{
       "type":"structure",
@@ -8999,6 +9186,10 @@
         "Inactive"
       ]
     },
+    "PlatformName":{
+      "type":"string",
+      "max":120
+    },
     "PlatformType":{
       "type":"string",
       "enum":[
@@ -9010,6 +9201,10 @@
     "PlatformTypeList":{
       "type":"list",
       "member":{"shape":"PlatformType"}
+    },
+    "PlatformVersion":{
+      "type":"string",
+      "max":120
     },
     "PoliciesLimitExceededException":{
       "type":"structure",
