@@ -113,6 +113,93 @@ func (c *EntityResolution) AddPolicyStatementWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opBatchDeleteUniqueId = "BatchDeleteUniqueId"
+
+// BatchDeleteUniqueIdRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteUniqueId operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteUniqueId for more information on using the BatchDeleteUniqueId
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchDeleteUniqueIdRequest method.
+//	req, resp := client.BatchDeleteUniqueIdRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/BatchDeleteUniqueId
+func (c *EntityResolution) BatchDeleteUniqueIdRequest(input *BatchDeleteUniqueIdInput) (req *request.Request, output *BatchDeleteUniqueIdOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteUniqueId,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/matchingworkflows/{workflowName}/uniqueids",
+	}
+
+	if input == nil {
+		input = &BatchDeleteUniqueIdInput{}
+	}
+
+	output = &BatchDeleteUniqueIdOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDeleteUniqueId API operation for AWS EntityResolution.
+//
+// Deletes multiple unique IDs in a matching workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS EntityResolution's
+// API operation BatchDeleteUniqueId for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Entity Resolution
+//     service. HTTP Status Code: 500
+//
+//   - ResourceNotFoundException
+//     The resource could not be found. HTTP Status Code: 404
+//
+//   - ValidationException
+//     The input fails to satisfy the constraints specified by Entity Resolution.
+//     HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/entityresolution-2018-05-10/BatchDeleteUniqueId
+func (c *EntityResolution) BatchDeleteUniqueId(input *BatchDeleteUniqueIdInput) (*BatchDeleteUniqueIdOutput, error) {
+	req, out := c.BatchDeleteUniqueIdRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteUniqueIdWithContext is the same as BatchDeleteUniqueId with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteUniqueId for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EntityResolution) BatchDeleteUniqueIdWithContext(ctx aws.Context, input *BatchDeleteUniqueIdInput, opts ...request.Option) (*BatchDeleteUniqueIdOutput, error) {
+	req, out := c.BatchDeleteUniqueIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIdMappingWorkflow = "CreateIdMappingWorkflow"
 
 // CreateIdMappingWorkflowRequest generates a "aws/request.Request" representing the
@@ -4032,6 +4119,144 @@ func (s *AddPolicyStatementOutput) SetToken(v string) *AddPolicyStatementOutput 
 	return s
 }
 
+type BatchDeleteUniqueIdInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The input source for the batch delete unique ID operation.
+	InputSource *string `location:"header" locationName:"inputSource" type:"string"`
+
+	// The unique IDs to delete.
+	//
+	// UniqueIds is a required field
+	UniqueIds []*string `location:"header" locationName:"uniqueIds" type:"list" required:"true"`
+
+	// The name of the workflow.
+	//
+	// WorkflowName is a required field
+	WorkflowName *string `location:"uri" locationName:"workflowName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteUniqueIdInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteUniqueIdInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteUniqueIdInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteUniqueIdInput"}
+	if s.UniqueIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("UniqueIds"))
+	}
+	if s.WorkflowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowName"))
+	}
+	if s.WorkflowName != nil && len(*s.WorkflowName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputSource sets the InputSource field's value.
+func (s *BatchDeleteUniqueIdInput) SetInputSource(v string) *BatchDeleteUniqueIdInput {
+	s.InputSource = &v
+	return s
+}
+
+// SetUniqueIds sets the UniqueIds field's value.
+func (s *BatchDeleteUniqueIdInput) SetUniqueIds(v []*string) *BatchDeleteUniqueIdInput {
+	s.UniqueIds = v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *BatchDeleteUniqueIdInput) SetWorkflowName(v string) *BatchDeleteUniqueIdInput {
+	s.WorkflowName = &v
+	return s
+}
+
+type BatchDeleteUniqueIdOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique IDs that were deleted.
+	//
+	// Deleted is a required field
+	Deleted []*DeletedUniqueId `locationName:"deleted" type:"list" required:"true"`
+
+	// The unique IDs that were disconnected.
+	//
+	// DisconnectedUniqueIds is a required field
+	DisconnectedUniqueIds []*string `locationName:"disconnectedUniqueIds" type:"list" required:"true"`
+
+	// The errors from deleting multiple unique IDs.
+	//
+	// Errors is a required field
+	Errors []*DeleteUniqueIdError `locationName:"errors" type:"list" required:"true"`
+
+	// The status of the batch delete unique ID operation.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"DeleteUniqueIdStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteUniqueIdOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDeleteUniqueIdOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeleted sets the Deleted field's value.
+func (s *BatchDeleteUniqueIdOutput) SetDeleted(v []*DeletedUniqueId) *BatchDeleteUniqueIdOutput {
+	s.Deleted = v
+	return s
+}
+
+// SetDisconnectedUniqueIds sets the DisconnectedUniqueIds field's value.
+func (s *BatchDeleteUniqueIdOutput) SetDisconnectedUniqueIds(v []*string) *BatchDeleteUniqueIdOutput {
+	s.DisconnectedUniqueIds = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchDeleteUniqueIdOutput) SetErrors(v []*DeleteUniqueIdError) *BatchDeleteUniqueIdOutput {
+	s.Errors = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchDeleteUniqueIdOutput) SetStatus(v string) *BatchDeleteUniqueIdOutput {
+	s.Status = &v
+	return s
+}
+
 // The request could not be processed because of conflict in the current state
 // of the resource. Example: Workflow already exists, Schema already exists,
 // Workflow is currently running, etc. HTTP Status Code: 400
@@ -5510,6 +5735,85 @@ func (s DeleteSchemaMappingOutput) GoString() string {
 // SetMessage sets the Message field's value.
 func (s *DeleteSchemaMappingOutput) SetMessage(v string) *DeleteSchemaMappingOutput {
 	s.Message = &v
+	return s
+}
+
+// The Delete Unique Id error.
+type DeleteUniqueIdError struct {
+	_ struct{} `type:"structure"`
+
+	// The error type for the batch delete unique ID operation.
+	//
+	// ErrorType is a required field
+	ErrorType *string `locationName:"errorType" type:"string" required:"true" enum:"DeleteUniqueIdErrorType"`
+
+	// The unique ID that could not be deleted.
+	//
+	// UniqueId is a required field
+	UniqueId *string `locationName:"uniqueId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUniqueIdError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUniqueIdError) GoString() string {
+	return s.String()
+}
+
+// SetErrorType sets the ErrorType field's value.
+func (s *DeleteUniqueIdError) SetErrorType(v string) *DeleteUniqueIdError {
+	s.ErrorType = &v
+	return s
+}
+
+// SetUniqueId sets the UniqueId field's value.
+func (s *DeleteUniqueIdError) SetUniqueId(v string) *DeleteUniqueIdError {
+	s.UniqueId = &v
+	return s
+}
+
+// The deleted unique ID.
+type DeletedUniqueId struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the deleted item.
+	//
+	// UniqueId is a required field
+	UniqueId *string `locationName:"uniqueId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletedUniqueId) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletedUniqueId) GoString() string {
+	return s.String()
+}
+
+// SetUniqueId sets the UniqueId field's value.
+func (s *DeletedUniqueId) SetUniqueId(v string) *DeletedUniqueId {
+	s.UniqueId = &v
 	return s
 }
 
@@ -11090,6 +11394,38 @@ func AttributeMatchingModel_Values() []string {
 	return []string{
 		AttributeMatchingModelOneToOne,
 		AttributeMatchingModelManyToMany,
+	}
+}
+
+const (
+	// DeleteUniqueIdErrorTypeServiceError is a DeleteUniqueIdErrorType enum value
+	DeleteUniqueIdErrorTypeServiceError = "SERVICE_ERROR"
+
+	// DeleteUniqueIdErrorTypeValidationError is a DeleteUniqueIdErrorType enum value
+	DeleteUniqueIdErrorTypeValidationError = "VALIDATION_ERROR"
+)
+
+// DeleteUniqueIdErrorType_Values returns all elements of the DeleteUniqueIdErrorType enum
+func DeleteUniqueIdErrorType_Values() []string {
+	return []string{
+		DeleteUniqueIdErrorTypeServiceError,
+		DeleteUniqueIdErrorTypeValidationError,
+	}
+}
+
+const (
+	// DeleteUniqueIdStatusCompleted is a DeleteUniqueIdStatus enum value
+	DeleteUniqueIdStatusCompleted = "COMPLETED"
+
+	// DeleteUniqueIdStatusAccepted is a DeleteUniqueIdStatus enum value
+	DeleteUniqueIdStatusAccepted = "ACCEPTED"
+)
+
+// DeleteUniqueIdStatus_Values returns all elements of the DeleteUniqueIdStatus enum
+func DeleteUniqueIdStatus_Values() []string {
+	return []string{
+		DeleteUniqueIdStatusCompleted,
+		DeleteUniqueIdStatusAccepted,
 	}
 }
 

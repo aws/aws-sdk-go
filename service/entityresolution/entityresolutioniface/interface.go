@@ -64,6 +64,10 @@ type EntityResolutionAPI interface {
 	AddPolicyStatementWithContext(aws.Context, *entityresolution.AddPolicyStatementInput, ...request.Option) (*entityresolution.AddPolicyStatementOutput, error)
 	AddPolicyStatementRequest(*entityresolution.AddPolicyStatementInput) (*request.Request, *entityresolution.AddPolicyStatementOutput)
 
+	BatchDeleteUniqueId(*entityresolution.BatchDeleteUniqueIdInput) (*entityresolution.BatchDeleteUniqueIdOutput, error)
+	BatchDeleteUniqueIdWithContext(aws.Context, *entityresolution.BatchDeleteUniqueIdInput, ...request.Option) (*entityresolution.BatchDeleteUniqueIdOutput, error)
+	BatchDeleteUniqueIdRequest(*entityresolution.BatchDeleteUniqueIdInput) (*request.Request, *entityresolution.BatchDeleteUniqueIdOutput)
+
 	CreateIdMappingWorkflow(*entityresolution.CreateIdMappingWorkflowInput) (*entityresolution.CreateIdMappingWorkflowOutput, error)
 	CreateIdMappingWorkflowWithContext(aws.Context, *entityresolution.CreateIdMappingWorkflowInput, ...request.Option) (*entityresolution.CreateIdMappingWorkflowOutput, error)
 	CreateIdMappingWorkflowRequest(*entityresolution.CreateIdMappingWorkflowInput) (*request.Request, *entityresolution.CreateIdMappingWorkflowOutput)

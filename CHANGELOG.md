@@ -1,3 +1,17 @@
+Release v1.51.28 (2024-04-24)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Launching capability for customers to enable or disable automatic assignment of public IPv4 addresses to their network interface
+* `service/emr-containers`: Updates service API, documentation, and paginators
+* `service/entityresolution`: Updates service API and documentation
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * Amazon GameLift releases container fleets support for public preview. Deploy Linux-based containerized game server software for hosting on Amazon GameLift.
+* `service/ssm`: Updates service API, documentation, and paginators
+  * Add SSM DescribeInstanceProperties API to public AWS SDK.
+
 Release v1.51.27 (2024-04-23)
 ===
 

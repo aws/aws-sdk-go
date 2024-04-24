@@ -3,6 +3,7 @@
   "service": "<p>Welcome to the <i>Entity Resolution API Reference</i>.</p> <p>Entity Resolution is an Amazon Web Services service that provides pre-configured entity resolution capabilities that enable developers and analysts at advertising and marketing companies to build an accurate and complete view of their consumers.</p> <p> With Entity Resolution, you can match source records containing consumer identifiers, such as name, email address, and phone number. This is true even when these records have incomplete or conflicting identifiers. For example, Entity Resolution can effectively match a source record from a customer relationship management (CRM) system with a source record from a marketing system containing campaign information.</p> <p>To learn more about Entity Resolution concepts, procedures, and best practices, see the <a href=\"https://docs.aws.amazon.com/entityresolution/latest/userguide/what-is-service.html\">Entity Resolution User Guide</a>.</p>",
   "operations": {
     "AddPolicyStatement": "<p>Adds a policy statement object. To retrieve a list of existing policy statements, use the <code>GetPolicy</code> API.</p>",
+    "BatchDeleteUniqueId": "<p>Deletes multiple unique IDs in a matching workflow.</p>",
     "CreateIdMappingWorkflow": "<p>Creates an <code>IdMappingWorkflow</code> object which stores the configuration of the data processing job to be run. Each <code>IdMappingWorkflow</code> must have a unique workflow name. To modify an existing workflow, use the <code>UpdateIdMappingWorkflow</code> API.</p>",
     "CreateIdNamespace": "<p>Creates an ID namespace object which will help customers provide metadata explaining their dataset and how to use it. Each ID namespace must have a unique name. To modify an existing ID namespace, use the <code>UpdateIdNamespace</code> API.</p>",
     "CreateMatchingWorkflow": "<p>Creates a <code>MatchingWorkflow</code> object which stores the configuration of the data processing job to be run. It is important to note that there should not be a pre-existing <code>MatchingWorkflow</code> with the same name. To modify an existing workflow, utilize the <code>UpdateMatchingWorkflow</code> API.</p>",
@@ -84,6 +85,22 @@
       "base": null,
       "refs": {
         "ProviderIntermediateDataAccessConfiguration$awsAccountIds": "<p>The Amazon Web Services account that provider can use to read or write data into the customer's intermediate S3 bucket.</p>"
+      }
+    },
+    "BatchDeleteUniqueIdInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteUniqueIdInputInputSourceString": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdInput$inputSource": "<p>The input source for the batch delete unique ID operation.</p>"
+      }
+    },
+    "BatchDeleteUniqueIdOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "Boolean": {
@@ -194,6 +211,42 @@
       "refs": {
       }
     },
+    "DeleteUniqueIdError": {
+      "base": "<p>The Delete Unique Id error.</p>",
+      "refs": {
+        "DeleteUniqueIdErrorsList$member": null
+      }
+    },
+    "DeleteUniqueIdErrorType": {
+      "base": null,
+      "refs": {
+        "DeleteUniqueIdError$errorType": "<p> The error type for the batch delete unique ID operation.</p>"
+      }
+    },
+    "DeleteUniqueIdErrorsList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdOutput$errors": "<p> The errors from deleting multiple unique IDs.</p>"
+      }
+    },
+    "DeleteUniqueIdStatus": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdOutput$status": "<p>The status of the batch delete unique ID operation.</p>"
+      }
+    },
+    "DeletedUniqueId": {
+      "base": "<p>The deleted unique ID.</p>",
+      "refs": {
+        "DeletedUniqueIdList$member": null
+      }
+    },
+    "DeletedUniqueIdList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdOutput$deleted": "<p>The unique IDs that were deleted.</p>"
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
@@ -220,6 +273,12 @@
         "UpdateSchemaMappingOutput$description": "<p>A description of the schema.</p>"
       }
     },
+    "DisconnectedUniqueIdsList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdOutput$disconnectedUniqueIds": "<p>The unique IDs that were disconnected.</p>"
+      }
+    },
     "Document": {
       "base": null,
       "refs": {
@@ -235,6 +294,7 @@
     "EntityName": {
       "base": null,
       "refs": {
+        "BatchDeleteUniqueIdInput$workflowName": "<p>The name of the workflow.</p>",
         "CreateIdMappingWorkflowInput$workflowName": "<p>The name of the workflow. There can't be multiple <code>IdMappingWorkflows</code> with the same name.</p>",
         "CreateIdMappingWorkflowOutput$workflowName": "<p>The name of the workflow.</p>",
         "CreateIdNamespaceInput$idNamespaceName": "<p>The name of the ID namespace.</p>",
@@ -1333,6 +1393,21 @@
         "SchemaMappingSummary$updatedAt": "<p>The timestamp of when the <code>SchemaMapping</code> was last updated.</p>",
         "UpdateIdNamespaceOutput$createdAt": "<p>The timestamp of when the ID namespace was created.</p>",
         "UpdateIdNamespaceOutput$updatedAt": "<p>The timestamp of when the ID namespace was last updated.</p>"
+      }
+    },
+    "UniqueId": {
+      "base": null,
+      "refs": {
+        "DeleteUniqueIdError$uniqueId": "<p>The unique ID that could not be deleted.</p>",
+        "DeletedUniqueId$uniqueId": "<p> The unique ID of the deleted item.</p>",
+        "DisconnectedUniqueIdsList$member": null,
+        "UniqueIdList$member": null
+      }
+    },
+    "UniqueIdList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteUniqueIdInput$uniqueIds": "<p>The unique IDs to delete.</p>"
       }
     },
     "UntagResourceInput": {

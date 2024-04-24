@@ -77,6 +77,24 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateContainerGroupDefinition":{
+      "name":"CreateContainerGroupDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateContainerGroupDefinitionInput"},
+      "output":{"shape":"CreateContainerGroupDefinitionOutput"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TaggingFailedException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"UnsupportedRegionException"}
+      ]
+    },
     "CreateFleet":{
       "name":"CreateFleet",
       "http":{
@@ -88,6 +106,7 @@
       "errors":[
         {"shape":"InternalServiceException"},
         {"shape":"NotFoundException"},
+        {"shape":"NotReadyException"},
         {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidRequestException"},
@@ -109,6 +128,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"NotReadyException"},
         {"shape":"InvalidFleetStatusException"},
         {"shape":"UnsupportedRegionException"},
         {"shape":"ConflictException"},
@@ -330,6 +350,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"TaggingFailedException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "DeleteContainerGroupDefinition":{
+      "name":"DeleteContainerGroupDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteContainerGroupDefinitionInput"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"TaggingFailedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DeleteFleet":{
@@ -573,6 +609,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"NotFoundException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeContainerGroupDefinition":{
+      "name":"DescribeContainerGroupDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeContainerGroupDefinitionInput"},
+      "output":{"shape":"DescribeContainerGroupDefinitionOutput"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeEC2InstanceLimits":{
@@ -1074,6 +1126,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListContainerGroupDefinitions":{
+      "name":"ListContainerGroupDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListContainerGroupDefinitionsInput"},
+      "output":{"shape":"ListContainerGroupDefinitionsOutput"},
+      "errors":[
+        {"shape":"UnauthorizedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"UnsupportedRegionException"}
+      ]
+    },
     "ListFleets":{
       "name":"ListFleets",
       "http":{
@@ -1188,6 +1255,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServiceException"},
+        {"shape":"NotReadyException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -1597,7 +1665,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"InvalidFleetStatusException"}
+        {"shape":"InvalidFleetStatusException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "UpdateScript":{
@@ -1839,13 +1908,16 @@
         "CreationTime":{"shape":"Timestamp"},
         "OperatingSystem":{"shape":"OperatingSystem"},
         "Type":{"shape":"EC2InstanceType"},
-        "GameLiftServiceSdkEndpoint":{"shape":"GameLiftServiceSdkEndpointOutput"}
+        "GameLiftServiceSdkEndpoint":{"shape":"GameLiftServiceSdkEndpointOutput"},
+        "GameLiftAgentEndpoint":{"shape":"GameLiftAgentEndpointOutput"},
+        "InstanceId":{"shape":"InstanceId"},
+        "ContainerAttributes":{"shape":"ContainerAttributes"}
       }
     },
     "ComputeArn":{
       "type":"string",
       "max":1024,
-      "pattern":"^arn:.*:compute\\/[a-zA-Z0-9\\-]+"
+      "pattern":"^arn:.*:compute\\/[a-zA-Z0-9\\-]+(\\/[a-zA-Z0-9\\-]+)?"
     },
     "ComputeAuthToken":{
       "type":"string",
@@ -1861,12 +1933,12 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^[a-zA-Z0-9\\-]+"
+      "pattern":"^[a-zA-Z0-9\\-]+(\\/[a-zA-Z0-9\\-]+)?"
     },
     "ComputeNameOrArn":{
       "type":"string",
       "max":1024,
-      "pattern":"[a-zA-Z0-9\\-]+|^arn:.*:compute\\/[a-zA-Z0-9\\-]+"
+      "pattern":"^[a-zA-Z0-9\\-]+(\\/[a-zA-Z0-9\\-]+)?$|^arn:.*:compute\\/[a-zA-Z0-9\\-]+(\\/[a-zA-Z0-9\\-]+)?"
     },
     "ComputeStatus":{
       "type":"string",
@@ -1880,7 +1952,8 @@
       "type":"string",
       "enum":[
         "EC2",
-        "ANYWHERE"
+        "ANYWHERE",
+        "CONTAINER"
       ]
     },
     "ConflictException":{
@@ -1889,6 +1962,329 @@
         "Message":{"shape":"NonEmptyString"}
       },
       "exception":true
+    },
+    "ConnectionPortRange":{
+      "type":"structure",
+      "required":[
+        "FromPort",
+        "ToPort"
+      ],
+      "members":{
+        "FromPort":{"shape":"PortNumber"},
+        "ToPort":{"shape":"PortNumber"}
+      }
+    },
+    "ContainerAttributes":{
+      "type":"structure",
+      "members":{
+        "ContainerPortMappings":{"shape":"ContainerPortMappingList"}
+      }
+    },
+    "ContainerCommandStringList":{
+      "type":"list",
+      "member":{"shape":"NonZeroAnd255MaxString"},
+      "max":20,
+      "min":1
+    },
+    "ContainerCpu":{
+      "type":"integer",
+      "max":10240,
+      "min":1
+    },
+    "ContainerDefinition":{
+      "type":"structure",
+      "required":[
+        "ContainerName",
+        "ImageUri"
+      ],
+      "members":{
+        "ContainerName":{"shape":"NonZeroAnd128MaxAsciiString"},
+        "ImageUri":{"shape":"ImageUriString"},
+        "ResolvedImageDigest":{"shape":"Sha256"},
+        "MemoryLimits":{"shape":"ContainerMemoryLimits"},
+        "PortConfiguration":{"shape":"ContainerPortConfiguration"},
+        "Cpu":{"shape":"ContainerCpu"},
+        "HealthCheck":{"shape":"ContainerHealthCheck"},
+        "Command":{"shape":"ContainerCommandStringList"},
+        "Essential":{"shape":"BooleanModel"},
+        "EntryPoint":{"shape":"ContainerEntryPointList"},
+        "WorkingDirectory":{"shape":"NonZeroAnd255MaxString"},
+        "Environment":{"shape":"ContainerEnvironmentList"},
+        "DependsOn":{"shape":"ContainerDependencyList"}
+      }
+    },
+    "ContainerDefinitionInput":{
+      "type":"structure",
+      "required":[
+        "ContainerName",
+        "ImageUri"
+      ],
+      "members":{
+        "ContainerName":{"shape":"NonZeroAnd128MaxAsciiString"},
+        "ImageUri":{"shape":"ImageUriString"},
+        "MemoryLimits":{"shape":"ContainerMemoryLimits"},
+        "PortConfiguration":{"shape":"ContainerPortConfiguration"},
+        "Cpu":{"shape":"ContainerCpu"},
+        "HealthCheck":{"shape":"ContainerHealthCheck"},
+        "Command":{"shape":"ContainerCommandStringList"},
+        "Essential":{"shape":"BooleanModel"},
+        "EntryPoint":{"shape":"ContainerEntryPointList"},
+        "WorkingDirectory":{"shape":"NonZeroAnd255MaxString"},
+        "Environment":{"shape":"ContainerEnvironmentList"},
+        "DependsOn":{"shape":"ContainerDependencyList"}
+      }
+    },
+    "ContainerDefinitionInputList":{
+      "type":"list",
+      "member":{"shape":"ContainerDefinitionInput"},
+      "max":10,
+      "min":1
+    },
+    "ContainerDefinitionList":{
+      "type":"list",
+      "member":{"shape":"ContainerDefinition"},
+      "max":10,
+      "min":1
+    },
+    "ContainerDependency":{
+      "type":"structure",
+      "required":[
+        "ContainerName",
+        "Condition"
+      ],
+      "members":{
+        "ContainerName":{"shape":"NonZeroAnd128MaxAsciiString"},
+        "Condition":{"shape":"ContainerDependencyCondition"}
+      }
+    },
+    "ContainerDependencyCondition":{
+      "type":"string",
+      "enum":[
+        "START",
+        "COMPLETE",
+        "SUCCESS",
+        "HEALTHY"
+      ]
+    },
+    "ContainerDependencyList":{
+      "type":"list",
+      "member":{"shape":"ContainerDependency"},
+      "max":10,
+      "min":1
+    },
+    "ContainerEntryPointList":{
+      "type":"list",
+      "member":{"shape":"NonZeroAndMaxString"},
+      "max":20,
+      "min":1
+    },
+    "ContainerEnvironment":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"NonZeroAnd255MaxString"},
+        "Value":{"shape":"NonZeroAnd255MaxString"}
+      }
+    },
+    "ContainerEnvironmentList":{
+      "type":"list",
+      "member":{"shape":"ContainerEnvironment"},
+      "max":20,
+      "min":1
+    },
+    "ContainerGroupDefinition":{
+      "type":"structure",
+      "members":{
+        "ContainerGroupDefinitionArn":{"shape":"ContainerGroupDefinitionArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "OperatingSystem":{"shape":"ContainerOperatingSystem"},
+        "Name":{"shape":"ContainerGroupDefinitionName"},
+        "SchedulingStrategy":{"shape":"ContainerSchedulingStrategy"},
+        "TotalMemoryLimit":{"shape":"ContainerTotalMemoryLimit"},
+        "TotalCpuLimit":{"shape":"ContainerTotalCpuLimit"},
+        "ContainerDefinitions":{"shape":"ContainerDefinitionList"},
+        "Status":{"shape":"ContainerGroupDefinitionStatus"},
+        "StatusReason":{"shape":"NonZeroAndMaxString"}
+      }
+    },
+    "ContainerGroupDefinitionArn":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^arn:.*:containergroupdefinition\\/containergroupdefinition-[a-zA-Z0-9-]+$"
+    },
+    "ContainerGroupDefinitionList":{
+      "type":"list",
+      "member":{"shape":"ContainerGroupDefinition"}
+    },
+    "ContainerGroupDefinitionName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\-]+$"
+    },
+    "ContainerGroupDefinitionNameOrArn":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\-]+$|^arn:.*:containergroupdefinition\\/[a-zA-Z0-9\\-]+$"
+    },
+    "ContainerGroupDefinitionNameOrArnLimitedList":{
+      "type":"list",
+      "member":{"shape":"ContainerGroupDefinitionNameOrArn"},
+      "max":2,
+      "min":1
+    },
+    "ContainerGroupDefinitionPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ContainerGroupDefinitionProperty"}
+    },
+    "ContainerGroupDefinitionProperty":{
+      "type":"structure",
+      "members":{
+        "SchedulingStrategy":{"shape":"ContainerSchedulingStrategy"},
+        "ContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionName"}
+      }
+    },
+    "ContainerGroupDefinitionStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "COPYING",
+        "FAILED"
+      ]
+    },
+    "ContainerGroupsAttributes":{
+      "type":"structure",
+      "members":{
+        "ContainerGroupDefinitionProperties":{"shape":"ContainerGroupDefinitionPropertiesList"},
+        "ConnectionPortRange":{"shape":"ConnectionPortRange"},
+        "ContainerGroupsPerInstance":{"shape":"ContainerGroupsPerInstance"}
+      }
+    },
+    "ContainerGroupsConfiguration":{
+      "type":"structure",
+      "required":[
+        "ContainerGroupDefinitionNames",
+        "ConnectionPortRange"
+      ],
+      "members":{
+        "ContainerGroupDefinitionNames":{"shape":"ContainerGroupDefinitionNameOrArnLimitedList"},
+        "ConnectionPortRange":{"shape":"ConnectionPortRange"},
+        "DesiredReplicaContainerGroupsPerInstance":{"shape":"ReplicaContainerGroupsPerInstance"}
+      }
+    },
+    "ContainerGroupsPerInstance":{
+      "type":"structure",
+      "members":{
+        "DesiredReplicaContainerGroupsPerInstance":{"shape":"ReplicaContainerGroupsPerInstance"},
+        "MaxReplicaContainerGroupsPerInstance":{"shape":"ReplicaContainerGroupsPerInstance"}
+      }
+    },
+    "ContainerHealthCheck":{
+      "type":"structure",
+      "required":["Command"],
+      "members":{
+        "Command":{"shape":"ContainerCommandStringList"},
+        "Interval":{"shape":"ContainerHealthCheckInterval"},
+        "Timeout":{"shape":"ContainerHealthCheckTimeout"},
+        "Retries":{"shape":"ContainerHealthCheckRetries"},
+        "StartPeriod":{"shape":"ContainerHealthCheckStartPeriod"}
+      }
+    },
+    "ContainerHealthCheckInterval":{
+      "type":"integer",
+      "max":300,
+      "min":60
+    },
+    "ContainerHealthCheckRetries":{
+      "type":"integer",
+      "max":10,
+      "min":5
+    },
+    "ContainerHealthCheckStartPeriod":{
+      "type":"integer",
+      "max":300,
+      "min":0
+    },
+    "ContainerHealthCheckTimeout":{
+      "type":"integer",
+      "max":60,
+      "min":30
+    },
+    "ContainerMemoryLimit":{
+      "type":"integer",
+      "max":1024000,
+      "min":4
+    },
+    "ContainerMemoryLimits":{
+      "type":"structure",
+      "members":{
+        "SoftLimit":{"shape":"ContainerMemoryLimit"},
+        "HardLimit":{"shape":"ContainerMemoryLimit"}
+      }
+    },
+    "ContainerOperatingSystem":{
+      "type":"string",
+      "enum":["AMAZON_LINUX_2023"]
+    },
+    "ContainerPortConfiguration":{
+      "type":"structure",
+      "required":["ContainerPortRanges"],
+      "members":{
+        "ContainerPortRanges":{"shape":"ContainerPortRangeList"}
+      }
+    },
+    "ContainerPortMapping":{
+      "type":"structure",
+      "members":{
+        "ContainerPort":{"shape":"PortNumber"},
+        "ConnectionPort":{"shape":"PortNumber"},
+        "Protocol":{"shape":"IpProtocol"}
+      }
+    },
+    "ContainerPortMappingList":{
+      "type":"list",
+      "member":{"shape":"ContainerPortMapping"}
+    },
+    "ContainerPortRange":{
+      "type":"structure",
+      "required":[
+        "FromPort",
+        "ToPort",
+        "Protocol"
+      ],
+      "members":{
+        "FromPort":{"shape":"PortNumber"},
+        "ToPort":{"shape":"PortNumber"},
+        "Protocol":{"shape":"IpProtocol"}
+      }
+    },
+    "ContainerPortRangeList":{
+      "type":"list",
+      "member":{"shape":"ContainerPortRange"},
+      "max":100,
+      "min":1
+    },
+    "ContainerSchedulingStrategy":{
+      "type":"string",
+      "enum":[
+        "REPLICA",
+        "DAEMON"
+      ]
+    },
+    "ContainerTotalCpuLimit":{
+      "type":"integer",
+      "max":10240,
+      "min":128
+    },
+    "ContainerTotalMemoryLimit":{
+      "type":"integer",
+      "max":1024000,
+      "min":4
     },
     "CreateAliasInput":{
       "type":"structure",
@@ -1928,6 +2324,31 @@
         "StorageLocation":{"shape":"S3Location"}
       }
     },
+    "CreateContainerGroupDefinitionInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TotalMemoryLimit",
+        "TotalCpuLimit",
+        "ContainerDefinitions",
+        "OperatingSystem"
+      ],
+      "members":{
+        "Name":{"shape":"ContainerGroupDefinitionName"},
+        "SchedulingStrategy":{"shape":"ContainerSchedulingStrategy"},
+        "TotalMemoryLimit":{"shape":"ContainerTotalMemoryLimit"},
+        "TotalCpuLimit":{"shape":"ContainerTotalCpuLimit"},
+        "ContainerDefinitions":{"shape":"ContainerDefinitionInputList"},
+        "OperatingSystem":{"shape":"ContainerOperatingSystem"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateContainerGroupDefinitionOutput":{
+      "type":"structure",
+      "members":{
+        "ContainerGroupDefinition":{"shape":"ContainerGroupDefinition"}
+      }
+    },
     "CreateFleetInput":{
       "type":"structure",
       "required":["Name"],
@@ -1954,7 +2375,8 @@
         "Tags":{"shape":"TagList"},
         "ComputeType":{"shape":"ComputeType"},
         "AnywhereConfiguration":{"shape":"AnywhereConfiguration"},
-        "InstanceRoleCredentialsProvider":{"shape":"InstanceRoleCredentialsProvider"}
+        "InstanceRoleCredentialsProvider":{"shape":"InstanceRoleCredentialsProvider"},
+        "ContainerGroupsConfiguration":{"shape":"ContainerGroupsConfiguration"}
       }
     },
     "CreateFleetLocationsInput":{
@@ -2239,6 +2661,13 @@
         "BuildId":{"shape":"BuildIdOrArn"}
       }
     },
+    "DeleteContainerGroupDefinitionInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ContainerGroupDefinitionNameOrArn"}
+      }
+    },
     "DeleteFleetInput":{
       "type":"structure",
       "required":["FleetId"],
@@ -2445,6 +2874,19 @@
       "type":"structure",
       "members":{
         "Compute":{"shape":"Compute"}
+      }
+    },
+    "DescribeContainerGroupDefinitionInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ContainerGroupDefinitionNameOrArn"}
+      }
+    },
+    "DescribeContainerGroupDefinitionOutput":{
+      "type":"structure",
+      "members":{
+        "ContainerGroupDefinition":{"shape":"ContainerGroupDefinition"}
       }
     },
     "DescribeEC2InstanceLimitsInput":{
@@ -3088,7 +3530,8 @@
         "EventCode":{"shape":"EventCode"},
         "Message":{"shape":"NonEmptyString"},
         "EventTime":{"shape":"Timestamp"},
-        "PreSignedLogUrl":{"shape":"NonZeroAndMaxString"}
+        "PreSignedLogUrl":{"shape":"NonZeroAndMaxString"},
+        "Count":{"shape":"EventCount"}
       }
     },
     "EventCode":{
@@ -3129,6 +3572,11 @@
         "INSTANCE_INTERRUPTED",
         "INSTANCE_RECYCLED"
       ]
+    },
+    "EventCount":{
+      "type":"long",
+      "max":101,
+      "min":1
     },
     "EventList":{
       "type":"list",
@@ -3193,7 +3641,8 @@
         "CertificateConfiguration":{"shape":"CertificateConfiguration"},
         "ComputeType":{"shape":"ComputeType"},
         "AnywhereConfiguration":{"shape":"AnywhereConfiguration"},
-        "InstanceRoleCredentialsProvider":{"shape":"InstanceRoleCredentialsProvider"}
+        "InstanceRoleCredentialsProvider":{"shape":"InstanceRoleCredentialsProvider"},
+        "ContainerGroupsAttributes":{"shape":"ContainerGroupsAttributes"}
       }
     },
     "FleetAttributesList":{
@@ -3207,7 +3656,8 @@
         "FleetArn":{"shape":"FleetArn"},
         "InstanceType":{"shape":"EC2InstanceType"},
         "InstanceCounts":{"shape":"EC2InstanceCounts"},
-        "Location":{"shape":"LocationStringModel"}
+        "Location":{"shape":"LocationStringModel"},
+        "ReplicaContainerGroupCounts":{"shape":"ReplicaContainerGroupCounts"}
       }
     },
     "FleetCapacityExceededException":{
@@ -3286,6 +3736,11 @@
     },
     "Float":{"type":"float"},
     "FreeText":{"type":"string"},
+    "GameLiftAgentEndpointOutput":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "GameLiftServiceSdkEndpointOutput":{
       "type":"string",
       "max":128,
@@ -3759,7 +4214,8 @@
         "FleetArn":{"shape":"FleetArn"},
         "ComputeName":{"shape":"ComputeNameOrArn"},
         "ComputeArn":{"shape":"ComputeArn"},
-        "Credentials":{"shape":"AwsCredentials"}
+        "Credentials":{"shape":"AwsCredentials"},
+        "Target":{"shape":"SessionTarget"}
       }
     },
     "GetComputeAuthTokenInput":{
@@ -3832,6 +4288,12 @@
         "Message":{"shape":"NonEmptyString"}
       },
       "exception":true
+    },
+    "ImageUriString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_\\.@\\/:]+$"
     },
     "Instance":{
       "type":"structure",
@@ -4072,11 +4534,32 @@
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
     },
+    "ListContainerGroupDefinitionsInput":{
+      "type":"structure",
+      "members":{
+        "SchedulingStrategy":{"shape":"ContainerSchedulingStrategy"},
+        "Limit":{"shape":"ListContainerGroupDefinitionsLimit"},
+        "NextToken":{"shape":"NonEmptyString"}
+      }
+    },
+    "ListContainerGroupDefinitionsLimit":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
+    "ListContainerGroupDefinitionsOutput":{
+      "type":"structure",
+      "members":{
+        "ContainerGroupDefinitions":{"shape":"ContainerGroupDefinitionList"},
+        "NextToken":{"shape":"NonEmptyString"}
+      }
+    },
     "ListFleetsInput":{
       "type":"structure",
       "members":{
         "BuildId":{"shape":"BuildIdOrArn"},
         "ScriptId":{"shape":"ScriptIdOrArn"},
+        "ContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionNameOrArn"},
         "Limit":{"shape":"PositiveInteger"},
         "NextToken":{"shape":"NonZeroAndMaxString"}
       }
@@ -4438,12 +4921,30 @@
       "min":1,
       "pattern":"^\\d{1,5}(?:\\.\\d{1,5})?$"
     },
+    "NonZeroAnd128MaxAsciiString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\-]+$"
+    },
+    "NonZeroAnd255MaxString":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "NonZeroAndMaxString":{
       "type":"string",
       "max":1024,
       "min":1
     },
     "NotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"NonEmptyString"}
+      },
+      "exception":true
+    },
+    "NotReadyException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"NonEmptyString"}
@@ -4736,6 +5237,20 @@
         "GameServer":{"shape":"GameServer"}
       }
     },
+    "ReplicaContainerGroupCounts":{
+      "type":"structure",
+      "members":{
+        "PENDING":{"shape":"WholeNumber"},
+        "ACTIVE":{"shape":"WholeNumber"},
+        "IDLE":{"shape":"WholeNumber"},
+        "TERMINATING":{"shape":"WholeNumber"}
+      }
+    },
+    "ReplicaContainerGroupsPerInstance":{
+      "type":"integer",
+      "max":5000,
+      "min":1
+    },
     "RequestUploadCredentialsInput":{
       "type":"structure",
       "required":["BuildId"],
@@ -4942,6 +5457,15 @@
       "type":"string",
       "max":128,
       "pattern":"^\\d+\\.\\d+\\.\\d+$"
+    },
+    "SessionTarget":{
+      "type":"string",
+      "max":400,
+      "min":1
+    },
+    "Sha256":{
+      "type":"string",
+      "pattern":"^sha256:[a-fA-F0-9]{64}$"
     },
     "SnsArnStringModel":{
       "type":"string",
