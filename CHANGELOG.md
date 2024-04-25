@@ -1,3 +1,16 @@
+Release v1.51.29 (2024-04-25)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API
+* `service/fms`: Updates service API and documentation
+* `service/ivs`: Updates service API and documentation
+* `service/ivs-realtime`: Updates service API
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Updates Amazon RDS documentation for setting local time zones for RDS for Db2 DB instances.
+* `service/states`: Updates service API and documentation
+  * Add new ValidateStateMachineDefinition operation, which performs syntax checking on the definition of a Amazon States Language (ASL) state machine.
+
 Release v1.51.28 (2024-04-24)
 ===
 

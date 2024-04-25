@@ -2728,6 +2728,8 @@ func (c *IVSRealTime) UpdateStageRequest(input *UpdateStageInput) (req *request.
 //
 //   - ServiceQuotaExceededException
 //
+//   - ConflictException
+//
 //   - PendingVerification
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-realtime-2020-07-14/UpdateStage

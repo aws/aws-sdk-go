@@ -809,7 +809,7 @@
     "ResourceArn": {
       "base": null,
       "refs": {
-        "BatchError$arn": "<p>Channel ARN.</p>",
+        "BatchError$arn": "<p>ARN of an IVS resource; e.g., channel.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource to be retrieved. The ARN must be URL-encoded.</p>",
         "TagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be added or updated. The ARN must be URL-encoded.</p>",
         "UntagResourceRequest$resourceArn": "<p>ARN of the resource for which tags are to be removed. The ARN must be URL-encoded.</p>"

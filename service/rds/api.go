@@ -24479,7 +24479,8 @@ type CreateDBInstanceInput struct {
 	TdeCredentialPassword *string `type:"string"`
 
 	// The time zone of the DB instance. The time zone parameter is currently supported
-	// only by Microsoft SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone).
+	// only by RDS for Db2 (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/db2-time-zone)
+	// and RDS for SQL Server (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone).
 	Timezone *string `type:"string"`
 
 	// A list of Amazon EC2 VPC security groups to associate with this DB instance.
@@ -30804,8 +30805,8 @@ type DBInstance struct {
 	TdeCredentialArn *string `type:"string"`
 
 	// The time zone of the DB instance. In most cases, the Timezone element is
-	// empty. Timezone content appears only for Microsoft SQL Server DB instances
-	// that were created with a time zone specified.
+	// empty. Timezone content appears only for RDS for Db2 and RDS for SQL Server
+	// DB instances that were created with a time zone specified.
 	Timezone *string `type:"string"`
 
 	// The list of Amazon EC2 VPC security groups that the DB instance belongs to.
@@ -48322,7 +48323,7 @@ type ModifyDBInstanceInput struct {
 	// Changing the subnet group causes an outage during the change. The change
 	// is applied during the next maintenance window, unless you enable ApplyImmediately.
 	//
-	// This parameter doesn't apply to RDS Custom DB instances.
+	// This setting doesn't apply to RDS Custom DB instances.
 	//
 	// Constraints:
 	//
@@ -48338,6 +48339,11 @@ type ModifyDBInstanceInput struct {
 	// can't be deleted when deletion protection is enabled. By default, deletion
 	// protection isn't enabled. For more information, see Deleting a DB Instance
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
+	//
+	// This setting doesn't apply to Amazon Aurora DB instances. You can enable
+	// or disable deletion protection for the DB cluster. For more information,
+	// see ModifyDBCluster. DB instances in a DB cluster can be deleted even when
+	// deletion protection is enabled for the DB cluster.
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specifies whether to remove the DB instance from the Active Directory domain.

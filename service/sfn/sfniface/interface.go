@@ -218,6 +218,10 @@ type SFNAPI interface {
 	UpdateStateMachineAlias(*sfn.UpdateStateMachineAliasInput) (*sfn.UpdateStateMachineAliasOutput, error)
 	UpdateStateMachineAliasWithContext(aws.Context, *sfn.UpdateStateMachineAliasInput, ...request.Option) (*sfn.UpdateStateMachineAliasOutput, error)
 	UpdateStateMachineAliasRequest(*sfn.UpdateStateMachineAliasInput) (*request.Request, *sfn.UpdateStateMachineAliasOutput)
+
+	ValidateStateMachineDefinition(*sfn.ValidateStateMachineDefinitionInput) (*sfn.ValidateStateMachineDefinitionOutput, error)
+	ValidateStateMachineDefinitionWithContext(aws.Context, *sfn.ValidateStateMachineDefinitionInput, ...request.Option) (*sfn.ValidateStateMachineDefinitionOutput, error)
+	ValidateStateMachineDefinitionRequest(*sfn.ValidateStateMachineDefinitionInput) (*request.Request, *sfn.ValidateStateMachineDefinitionOutput)
 }
 
 var _ SFNAPI = (*sfn.SFN)(nil)

@@ -23994,12 +23994,25 @@
       },
       "email" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "deprecated" : true,
+            "hostname" : "email-fips.us-gov-east-1.amazonaws.com"
+          },
           "fips-us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
             "deprecated" : true,
             "hostname" : "email-fips.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-east-1" : {
+            "variants" : [ {
+              "hostname" : "email-fips.us-gov-east-1.amazonaws.com",
+              "tags" : [ "fips" ]
+            } ]
           },
           "us-gov-west-1" : {
             "variants" : [ {
@@ -25016,6 +25029,12 @@
         }
       },
       "license-manager-linux-subscriptions" : {
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
+      "license-manager-user-subscriptions" : {
         "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }

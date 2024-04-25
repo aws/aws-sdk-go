@@ -17387,7 +17387,9 @@ type UpdateGraphqlApiInput struct {
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
 
 	// The new authentication type for the GraphqlApi object.
-	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+	//
+	// AuthenticationType is a required field
+	AuthenticationType *string `locationName:"authenticationType" type:"string" required:"true" enum:"AuthenticationType"`
 
 	// The enhancedMetricsConfig object.
 	EnhancedMetricsConfig *EnhancedMetricsConfig `locationName:"enhancedMetricsConfig" type:"structure"`
@@ -17475,6 +17477,9 @@ func (s *UpdateGraphqlApiInput) Validate() error {
 	}
 	if s.ApiId != nil && len(*s.ApiId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApiId", 1))
+	}
+	if s.AuthenticationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationType"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))

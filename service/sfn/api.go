@@ -2746,6 +2746,10 @@ func (c *SFN) RedriveExecutionRequest(input *RedriveExecutionInput) (req *reques
 //   - InvalidArn
 //     The provided Amazon Resource Name (ARN) is not valid.
 //
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/RedriveExecution
 func (c *SFN) RedriveExecution(input *RedriveExecutionInput) (*RedriveExecutionOutput, error) {
 	req, out := c.RedriveExecutionRequest(input)
@@ -4049,6 +4053,104 @@ func (c *SFN) UpdateStateMachineAlias(input *UpdateStateMachineAliasInput) (*Upd
 // for more information on using Contexts.
 func (c *SFN) UpdateStateMachineAliasWithContext(ctx aws.Context, input *UpdateStateMachineAliasInput, opts ...request.Option) (*UpdateStateMachineAliasOutput, error) {
 	req, out := c.UpdateStateMachineAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opValidateStateMachineDefinition = "ValidateStateMachineDefinition"
+
+// ValidateStateMachineDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the ValidateStateMachineDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ValidateStateMachineDefinition for more information on using the ValidateStateMachineDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ValidateStateMachineDefinitionRequest method.
+//	req, resp := client.ValidateStateMachineDefinitionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ValidateStateMachineDefinition
+func (c *SFN) ValidateStateMachineDefinitionRequest(input *ValidateStateMachineDefinitionInput) (req *request.Request, output *ValidateStateMachineDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opValidateStateMachineDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ValidateStateMachineDefinitionInput{}
+	}
+
+	output = &ValidateStateMachineDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ValidateStateMachineDefinition API operation for AWS Step Functions.
+//
+// Validates the syntax of a state machine definition.
+//
+// You can validate that a state machine definition is correct without creating
+// a state machine resource. Step Functions will implicitly perform the same
+// syntax check when you invoke CreateStateMachine and UpdateStateMachine. State
+// machine definitions are specified using a JSON-based, structured language.
+// For more information on Amazon States Language see Amazon States Language
+// (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)
+// (ASL).
+//
+// Suggested uses for ValidateStateMachineDefinition:
+//
+//   - Integrate automated checks into your code review or Continuous Integration
+//     (CI) process to validate state machine definitions before starting deployments.
+//
+//   - Run the validation from a Git pre-commit hook to check your state machine
+//     definitions before committing them to your source repository.
+//
+// Errors found in the state machine definition will be returned in the response
+// as a list of diagnostic elements, rather than raise an exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation ValidateStateMachineDefinition for usage and error information.
+//
+// Returned Error Types:
+//   - ValidationException
+//     The input does not satisfy the constraints specified by an Amazon Web Services
+//     service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ValidateStateMachineDefinition
+func (c *SFN) ValidateStateMachineDefinition(input *ValidateStateMachineDefinitionInput) (*ValidateStateMachineDefinitionOutput, error) {
+	req, out := c.ValidateStateMachineDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// ValidateStateMachineDefinitionWithContext is the same as ValidateStateMachineDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ValidateStateMachineDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) ValidateStateMachineDefinitionWithContext(ctx aws.Context, input *ValidateStateMachineDefinitionInput, opts ...request.Option) (*ValidateStateMachineDefinitionOutput, error) {
+	req, out := c.ValidateStateMachineDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14531,6 +14633,187 @@ func (s *UpdateStateMachineOutput) SetUpdateDate(v time.Time) *UpdateStateMachin
 	return s
 }
 
+// Describes an error found during validation. Validation errors found in the
+// definition return in the response as diagnostic elements, rather than raise
+// an exception.
+type ValidateStateMachineDefinitionDiagnostic struct {
+	_ struct{} `type:"structure"`
+
+	// Identifying code for the diagnostic.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true"`
+
+	// Location of the issue in the state machine, if available.
+	//
+	// For errors specific to a field, the location could be in the format: /States/<StateName>/<FieldName>,
+	// for example: /States/FailState/ErrorPath.
+	Location *string `locationName:"location" type:"string"`
+
+	// Message describing the diagnostic condition.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+
+	// A value of ERROR means that you cannot create or update a state machine with
+	// this definition.
+	//
+	// Severity is a required field
+	Severity *string `locationName:"severity" type:"string" required:"true" enum:"ValidateStateMachineDefinitionSeverity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionDiagnostic) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionDiagnostic) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ValidateStateMachineDefinitionDiagnostic) SetCode(v string) *ValidateStateMachineDefinitionDiagnostic {
+	s.Code = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *ValidateStateMachineDefinitionDiagnostic) SetLocation(v string) *ValidateStateMachineDefinitionDiagnostic {
+	s.Location = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ValidateStateMachineDefinitionDiagnostic) SetMessage(v string) *ValidateStateMachineDefinitionDiagnostic {
+	s.Message = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ValidateStateMachineDefinitionDiagnostic) SetSeverity(v string) *ValidateStateMachineDefinitionDiagnostic {
+	s.Severity = &v
+	return s
+}
+
+type ValidateStateMachineDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon States Language definition of the state machine. For more information,
+	// see Amazon States Language (https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html)
+	// (ASL).
+	//
+	// Definition is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ValidateStateMachineDefinitionInput's
+	// String and GoString methods.
+	//
+	// Definition is a required field
+	Definition *string `locationName:"definition" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The target type of state machine for this definition. The default is STANDARD.
+	Type *string `locationName:"type" type:"string" enum:"StateMachineType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidateStateMachineDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidateStateMachineDefinitionInput"}
+	if s.Definition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Definition"))
+	}
+	if s.Definition != nil && len(*s.Definition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Definition", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *ValidateStateMachineDefinitionInput) SetDefinition(v string) *ValidateStateMachineDefinitionInput {
+	s.Definition = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ValidateStateMachineDefinitionInput) SetType(v string) *ValidateStateMachineDefinitionInput {
+	s.Type = &v
+	return s
+}
+
+type ValidateStateMachineDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the result is OK, this field will be empty. When there are errors, this
+	// field will contain an array of Diagnostic objects to help you troubleshoot.
+	//
+	// Diagnostics is a required field
+	Diagnostics []*ValidateStateMachineDefinitionDiagnostic `locationName:"diagnostics" type:"list" required:"true"`
+
+	// The result value will be OK when no syntax errors are found, or FAIL if the
+	// workflow definition does not pass verification.
+	//
+	// Result is a required field
+	Result *string `locationName:"result" type:"string" required:"true" enum:"ValidateStateMachineDefinitionResultCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidateStateMachineDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetDiagnostics sets the Diagnostics field's value.
+func (s *ValidateStateMachineDefinitionOutput) SetDiagnostics(v []*ValidateStateMachineDefinitionDiagnostic) *ValidateStateMachineDefinitionOutput {
+	s.Diagnostics = v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *ValidateStateMachineDefinitionOutput) SetResult(v string) *ValidateStateMachineDefinitionOutput {
+	s.Result = &v
+	return s
+}
+
 // The input does not satisfy the constraints specified by an Amazon Web Services
 // service.
 type ValidationException struct {
@@ -15061,6 +15344,34 @@ func TestExecutionStatus_Values() []string {
 		TestExecutionStatusFailed,
 		TestExecutionStatusRetriable,
 		TestExecutionStatusCaughtError,
+	}
+}
+
+const (
+	// ValidateStateMachineDefinitionResultCodeOk is a ValidateStateMachineDefinitionResultCode enum value
+	ValidateStateMachineDefinitionResultCodeOk = "OK"
+
+	// ValidateStateMachineDefinitionResultCodeFail is a ValidateStateMachineDefinitionResultCode enum value
+	ValidateStateMachineDefinitionResultCodeFail = "FAIL"
+)
+
+// ValidateStateMachineDefinitionResultCode_Values returns all elements of the ValidateStateMachineDefinitionResultCode enum
+func ValidateStateMachineDefinitionResultCode_Values() []string {
+	return []string{
+		ValidateStateMachineDefinitionResultCodeOk,
+		ValidateStateMachineDefinitionResultCodeFail,
+	}
+}
+
+const (
+	// ValidateStateMachineDefinitionSeverityError is a ValidateStateMachineDefinitionSeverity enum value
+	ValidateStateMachineDefinitionSeverityError = "ERROR"
+)
+
+// ValidateStateMachineDefinitionSeverity_Values returns all elements of the ValidateStateMachineDefinitionSeverity enum
+func ValidateStateMachineDefinitionSeverity_Values() []string {
+	return []string{
+		ValidateStateMachineDefinitionSeverityError,
 	}
 }
 

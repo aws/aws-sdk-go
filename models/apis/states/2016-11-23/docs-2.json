@@ -37,7 +37,8 @@
     "UntagResource": "<p>Remove a tag from a Step Functions resource</p>",
     "UpdateMapRun": "<p>Updates an in-progress Map Run's configuration to include changes to the settings that control maximum concurrency and Map Run failure.</p>",
     "UpdateStateMachine": "<p>Updates an existing state machine by modifying its <code>definition</code>, <code>roleArn</code>, or <code>loggingConfiguration</code>. Running executions will continue to use the previous <code>definition</code> and <code>roleArn</code>. You must include at least one of <code>definition</code> or <code>roleArn</code> or you will receive a <code>MissingRequiredParameter</code> error.</p> <p>A qualified state machine ARN refers to a <i>Distributed Map state</i> defined within a state machine. For example, the qualified state machine ARN <code>arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel</code> refers to a <i>Distributed Map state</i> with a label <code>mapStateLabel</code> in the state machine named <code>stateMachineName</code>.</p> <p>A qualified state machine ARN can either refer to a <i>Distributed Map state</i> defined within a state machine, a version ARN, or an alias ARN.</p> <p>The following are some examples of qualified and unqualified state machine ARNs:</p> <ul> <li> <p>The following qualified state machine ARN refers to a <i>Distributed Map state</i> with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.</p> <p> <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code> </p> <note> <p>If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>, the request fails with <code>ValidationException</code>.</p> </note> </li> <li> <p>The following qualified state machine ARN refers to an alias named <code>PROD</code>.</p> <p> <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code> </p> <note> <p>If you provide a qualified state machine ARN that refers to a version ARN or an alias ARN, the request starts execution for that version or alias.</p> </note> </li> <li> <p>The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.</p> <p> <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code> </p> </li> </ul> <p>After you update your state machine, you can set the <code>publish</code> parameter to <code>true</code> in the same action to publish a new <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html\">version</a>. This way, you can opt-in to strict versioning of your state machine.</p> <note> <p>Step Functions assigns monotonically increasing integers for state machine versions, starting at version number 1.</p> </note> <note> <p>All <code>StartExecution</code> calls within a few seconds use the updated <code>definition</code> and <code>roleArn</code>. Executions started immediately after you call <code>UpdateStateMachine</code> may use the previous state machine <code>definition</code> and <code>roleArn</code>. </p> </note>",
-    "UpdateStateMachineAlias": "<p>Updates the configuration of an existing state machine <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html\">alias</a> by modifying its <code>description</code> or <code>routingConfiguration</code>.</p> <p>You must specify at least one of the <code>description</code> or <code>routingConfiguration</code> parameters to update a state machine alias.</p> <note> <p> <code>UpdateStateMachineAlias</code> is an idempotent API. Step Functions bases the idempotency check on the <code>stateMachineAliasArn</code>, <code>description</code>, and <code>routingConfiguration</code> parameters. Requests with the same parameters return an idempotent response.</p> </note> <note> <p>This operation is eventually consistent. All <a>StartExecution</a> requests made within a few seconds use the latest alias configuration. Executions started immediately after calling <code>UpdateStateMachineAlias</code> may use the previous routing configuration.</p> </note> <p> <b>Related operations:</b> </p> <ul> <li> <p> <a>CreateStateMachineAlias</a> </p> </li> <li> <p> <a>DescribeStateMachineAlias</a> </p> </li> <li> <p> <a>ListStateMachineAliases</a> </p> </li> <li> <p> <a>DeleteStateMachineAlias</a> </p> </li> </ul>"
+    "UpdateStateMachineAlias": "<p>Updates the configuration of an existing state machine <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html\">alias</a> by modifying its <code>description</code> or <code>routingConfiguration</code>.</p> <p>You must specify at least one of the <code>description</code> or <code>routingConfiguration</code> parameters to update a state machine alias.</p> <note> <p> <code>UpdateStateMachineAlias</code> is an idempotent API. Step Functions bases the idempotency check on the <code>stateMachineAliasArn</code>, <code>description</code>, and <code>routingConfiguration</code> parameters. Requests with the same parameters return an idempotent response.</p> </note> <note> <p>This operation is eventually consistent. All <a>StartExecution</a> requests made within a few seconds use the latest alias configuration. Executions started immediately after calling <code>UpdateStateMachineAlias</code> may use the previous routing configuration.</p> </note> <p> <b>Related operations:</b> </p> <ul> <li> <p> <a>CreateStateMachineAlias</a> </p> </li> <li> <p> <a>DescribeStateMachineAlias</a> </p> </li> <li> <p> <a>ListStateMachineAliases</a> </p> </li> <li> <p> <a>DeleteStateMachineAlias</a> </p> </li> </ul>",
+    "ValidateStateMachineDefinition": "<p>Validates the syntax of a state machine definition.</p> <p>You can validate that a state machine definition is correct without creating a state machine resource. Step Functions will implicitly perform the same syntax check when you invoke <code>CreateStateMachine</code> and <code>UpdateStateMachine</code>. State machine definitions are specified using a JSON-based, structured language. For more information on Amazon States Language see <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a> (ASL). </p> <p>Suggested uses for <code>ValidateStateMachineDefinition</code>:</p> <ul> <li> <p>Integrate automated checks into your code review or Continuous Integration (CI) process to validate state machine definitions before starting deployments.</p> </li> <li> <p>Run the validation from a Git pre-commit hook to check your state machine definitions before committing them to your source repository.</p> </li> </ul> <note> <p>Errors found in the state machine definition will be returned in the response as a list of <b>diagnostic elements</b>, rather than raise an exception.</p> </note>"
   },
   "shapes": {
     "ActivityDoesNotExist": {
@@ -273,7 +274,8 @@
         "DescribeStateMachineForExecutionOutput$definition": "<p>The Amazon States Language definition of the state machine. See <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a>.</p>",
         "DescribeStateMachineOutput$definition": "<p>The Amazon States Language definition of the state machine. See <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a>.</p>",
         "TestStateInput$definition": "<p>The <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a> (ASL) definition of the state.</p>",
-        "UpdateStateMachineInput$definition": "<p>The Amazon States Language definition of the state machine. See <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a>.</p>"
+        "UpdateStateMachineInput$definition": "<p>The Amazon States Language definition of the state machine. See <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a>.</p>",
+        "ValidateStateMachineDefinitionInput$definition": "<p>The Amazon States Language definition of the state machine. For more information, see <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html\">Amazon States Language</a> (ASL).</p>"
       }
     },
     "DeleteActivityInput": {
@@ -1288,7 +1290,8 @@
       "refs": {
         "CreateStateMachineInput$type": "<p>Determines whether a Standard or Express state machine is created. The default is <code>STANDARD</code>. You cannot update the <code>type</code> of a state machine once it has been created.</p>",
         "DescribeStateMachineOutput$type": "<p>The <code>type</code> of the state machine (<code>STANDARD</code> or <code>EXPRESS</code>).</p>",
-        "StateMachineListItem$type": "<p/>"
+        "StateMachineListItem$type": "<p/>",
+        "ValidateStateMachineDefinitionInput$type": "<p>The target type of state machine for this definition. The default is <code>STANDARD</code>.</p>"
       }
     },
     "StateMachineTypeNotSupported": {
@@ -1621,6 +1624,58 @@
     "UpdateStateMachineOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "ValidateStateMachineDefinitionCode": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionDiagnostic$code": "<p>Identifying code for the diagnostic.</p>"
+      }
+    },
+    "ValidateStateMachineDefinitionDiagnostic": {
+      "base": "<p>Describes an error found during validation. Validation errors found in the definition return in the response as <b>diagnostic elements</b>, rather than raise an exception.</p>",
+      "refs": {
+        "ValidateStateMachineDefinitionDiagnosticList$member": null
+      }
+    },
+    "ValidateStateMachineDefinitionDiagnosticList": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionOutput$diagnostics": "<p>If the result is <code>OK</code>, this field will be empty. When there are errors, this field will contain an array of <b>Diagnostic</b> objects to help you troubleshoot.</p>"
+      }
+    },
+    "ValidateStateMachineDefinitionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateStateMachineDefinitionLocation": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionDiagnostic$location": "<p>Location of the issue in the state machine, if available.</p> <p>For errors specific to a field, the location could be in the format: <code>/States/&lt;StateName&gt;/&lt;FieldName&gt;</code>, for example: <code>/States/FailState/ErrorPath</code>.</p>"
+      }
+    },
+    "ValidateStateMachineDefinitionMessage": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionDiagnostic$message": "<p>Message describing the diagnostic condition.</p>"
+      }
+    },
+    "ValidateStateMachineDefinitionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateStateMachineDefinitionResultCode": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionOutput$result": "<p>The result value will be <code>OK</code> when no syntax errors are found, or <code>FAIL</code> if the workflow definition does not pass verification.</p>"
+      }
+    },
+    "ValidateStateMachineDefinitionSeverity": {
+      "base": null,
+      "refs": {
+        "ValidateStateMachineDefinitionDiagnostic$severity": "<p>A value of <code>ERROR</code> means that you cannot create or update a state machine with this definition.</p>"
       }
     },
     "ValidationException": {

@@ -5,6 +5,7 @@
     "endpointPrefix":"states",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"AWS SFN",
     "serviceFullName":"AWS Step Functions",
     "serviceId":"SFN",
@@ -359,7 +360,8 @@
         {"shape":"ExecutionDoesNotExist"},
         {"shape":"ExecutionNotRedrivable"},
         {"shape":"ExecutionLimitExceeded"},
-        {"shape":"InvalidArn"}
+        {"shape":"InvalidArn"},
+        {"shape":"ValidationException"}
       ],
       "idempotent":true
     },
@@ -551,6 +553,18 @@
         {"shape":"ResourceNotFound"},
         {"shape":"ConflictException"},
         {"shape":"StateMachineDeleting"}
+      ]
+    },
+    "ValidateStateMachineDefinition":{
+      "name":"ValidateStateMachineDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ValidateStateMachineDefinitionInput"},
+      "output":{"shape":"ValidateStateMachineDefinitionOutput"},
+      "errors":[
+        {"shape":"ValidationException"}
       ]
     }
   },
@@ -2425,6 +2439,57 @@
         "revisionId":{"shape":"RevisionId"},
         "stateMachineVersionArn":{"shape":"Arn"}
       }
+    },
+    "ValidateStateMachineDefinitionCode":{"type":"string"},
+    "ValidateStateMachineDefinitionDiagnostic":{
+      "type":"structure",
+      "required":[
+        "severity",
+        "code",
+        "message"
+      ],
+      "members":{
+        "severity":{"shape":"ValidateStateMachineDefinitionSeverity"},
+        "code":{"shape":"ValidateStateMachineDefinitionCode"},
+        "message":{"shape":"ValidateStateMachineDefinitionMessage"},
+        "location":{"shape":"ValidateStateMachineDefinitionLocation"}
+      }
+    },
+    "ValidateStateMachineDefinitionDiagnosticList":{
+      "type":"list",
+      "member":{"shape":"ValidateStateMachineDefinitionDiagnostic"}
+    },
+    "ValidateStateMachineDefinitionInput":{
+      "type":"structure",
+      "required":["definition"],
+      "members":{
+        "definition":{"shape":"Definition"},
+        "type":{"shape":"StateMachineType"}
+      }
+    },
+    "ValidateStateMachineDefinitionLocation":{"type":"string"},
+    "ValidateStateMachineDefinitionMessage":{"type":"string"},
+    "ValidateStateMachineDefinitionOutput":{
+      "type":"structure",
+      "required":[
+        "result",
+        "diagnostics"
+      ],
+      "members":{
+        "result":{"shape":"ValidateStateMachineDefinitionResultCode"},
+        "diagnostics":{"shape":"ValidateStateMachineDefinitionDiagnosticList"}
+      }
+    },
+    "ValidateStateMachineDefinitionResultCode":{
+      "type":"string",
+      "enum":[
+        "OK",
+        "FAIL"
+      ]
+    },
+    "ValidateStateMachineDefinitionSeverity":{
+      "type":"string",
+      "enum":["ERROR"]
     },
     "ValidationException":{
       "type":"structure",

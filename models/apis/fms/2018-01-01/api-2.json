@@ -5,6 +5,7 @@
     "endpointPrefix":"fms",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"FMS",
     "serviceFullName":"Firewall Management Service",
     "serviceId":"FMS",
@@ -847,6 +848,7 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BooleanObject":{"type":"boolean"},
     "CIDR":{
       "type":"string",
       "max":256,
@@ -870,6 +872,23 @@
     "ComplianceViolators":{
       "type":"list",
       "member":{"shape":"ComplianceViolator"}
+    },
+    "CreateNetworkAclAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "Vpc":{"shape":"ActionTarget"},
+        "FMSCanRemediate":{"shape":"Boolean"}
+      }
+    },
+    "CreateNetworkAclEntriesAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "NetworkAclId":{"shape":"ActionTarget"},
+        "NetworkAclEntriesToBeCreated":{"shape":"EntriesDescription"},
+        "FMSCanRemediate":{"shape":"Boolean"}
+      }
     },
     "CustomerPolicyScopeId":{
       "type":"string",
@@ -905,6 +924,15 @@
       "required":["ListId"],
       "members":{
         "ListId":{"shape":"ListId"}
+      }
+    },
+    "DeleteNetworkAclEntriesAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "NetworkAclId":{"shape":"ActionTarget"},
+        "NetworkAclEntriesToBeDeleted":{"shape":"EntriesDescription"},
+        "FMSCanRemediate":{"shape":"Boolean"}
       }
     },
     "DeleteNotificationChannelRequest":{
@@ -1104,6 +1132,57 @@
         "AssociationId":{"shape":"ActionTarget"},
         "RouteTableId":{"shape":"ActionTarget"}
       }
+    },
+    "EntriesDescription":{
+      "type":"list",
+      "member":{"shape":"EntryDescription"}
+    },
+    "EntriesWithConflicts":{
+      "type":"list",
+      "member":{"shape":"EntryDescription"}
+    },
+    "EntryDescription":{
+      "type":"structure",
+      "members":{
+        "EntryDetail":{"shape":"NetworkAclEntry"},
+        "EntryRuleNumber":{"shape":"IntegerObjectMinimum0"},
+        "EntryType":{"shape":"EntryType"}
+      }
+    },
+    "EntryType":{
+      "type":"string",
+      "enum":[
+        "FMS_MANAGED_FIRST_ENTRY",
+        "FMS_MANAGED_LAST_ENTRY",
+        "CUSTOM_ENTRY"
+      ]
+    },
+    "EntryViolation":{
+      "type":"structure",
+      "members":{
+        "ExpectedEntry":{"shape":"EntryDescription"},
+        "ExpectedEvaluationOrder":{"shape":"LengthBoundedString"},
+        "ActualEvaluationOrder":{"shape":"LengthBoundedString"},
+        "EntryAtExpectedEvaluationOrder":{"shape":"EntryDescription"},
+        "EntriesWithConflicts":{"shape":"EntriesWithConflicts"},
+        "EntryViolationReasons":{"shape":"EntryViolationReasons"}
+      }
+    },
+    "EntryViolationReason":{
+      "type":"string",
+      "enum":[
+        "MISSING_EXPECTED_ENTRY",
+        "INCORRECT_ENTRY_ORDER",
+        "ENTRY_CONFLICT"
+      ]
+    },
+    "EntryViolationReasons":{
+      "type":"list",
+      "member":{"shape":"EntryViolationReason"}
+    },
+    "EntryViolations":{
+      "type":"list",
+      "member":{"shape":"EntryViolation"}
     },
     "ErrorMessage":{"type":"string"},
     "EvaluationResult":{
@@ -1378,6 +1457,11 @@
       "max":65535,
       "min":0
     },
+    "IPPortNumberInteger":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "Identifier":{
       "type":"string",
       "max":2048,
@@ -1387,6 +1471,16 @@
     "IdentifierList":{
       "type":"list",
       "member":{"shape":"Identifier"}
+    },
+    "IntegerObject":{
+      "type":"integer",
+      "max":2147483647,
+      "min":-2147483648
+    },
+    "IntegerObjectMinimum0":{
+      "type":"integer",
+      "max":2147483647,
+      "min":0
     },
     "InternalErrorException":{
       "type":"structure",
@@ -1401,6 +1495,16 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "InvalidNetworkAclEntriesViolation":{
+      "type":"structure",
+      "members":{
+        "Vpc":{"shape":"ResourceId"},
+        "Subnet":{"shape":"ResourceId"},
+        "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
+        "CurrentAssociatedNetworkAcl":{"shape":"ResourceId"},
+        "EntryViolations":{"shape":"EntryViolations"}
+      }
     },
     "InvalidOperationException":{
       "type":"structure",
@@ -1420,6 +1524,11 @@
       "type":"map",
       "key":{"shape":"DependentServiceName"},
       "value":{"shape":"DetailedInfo"}
+    },
+    "LengthBoundedNonEmptyString":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "LengthBoundedString":{
       "type":"string",
@@ -1653,6 +1762,68 @@
       "max":128,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "NetworkAclCommonPolicy":{
+      "type":"structure",
+      "required":["NetworkAclEntrySet"],
+      "members":{
+        "NetworkAclEntrySet":{"shape":"NetworkAclEntrySet"}
+      }
+    },
+    "NetworkAclEntries":{
+      "type":"list",
+      "member":{"shape":"NetworkAclEntry"}
+    },
+    "NetworkAclEntry":{
+      "type":"structure",
+      "required":[
+        "Protocol",
+        "RuleAction",
+        "Egress"
+      ],
+      "members":{
+        "IcmpTypeCode":{"shape":"NetworkAclIcmpTypeCode"},
+        "Protocol":{"shape":"LengthBoundedString"},
+        "PortRange":{"shape":"NetworkAclPortRange"},
+        "CidrBlock":{"shape":"LengthBoundedNonEmptyString"},
+        "Ipv6CidrBlock":{"shape":"LengthBoundedNonEmptyString"},
+        "RuleAction":{"shape":"NetworkAclRuleAction"},
+        "Egress":{"shape":"BooleanObject"}
+      }
+    },
+    "NetworkAclEntrySet":{
+      "type":"structure",
+      "required":[
+        "ForceRemediateForFirstEntries",
+        "ForceRemediateForLastEntries"
+      ],
+      "members":{
+        "FirstEntries":{"shape":"NetworkAclEntries"},
+        "ForceRemediateForFirstEntries":{"shape":"BooleanObject"},
+        "LastEntries":{"shape":"NetworkAclEntries"},
+        "ForceRemediateForLastEntries":{"shape":"BooleanObject"}
+      }
+    },
+    "NetworkAclIcmpTypeCode":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"IntegerObject"},
+        "Type":{"shape":"IntegerObject"}
+      }
+    },
+    "NetworkAclPortRange":{
+      "type":"structure",
+      "members":{
+        "From":{"shape":"IPPortNumberInteger"},
+        "To":{"shape":"IPPortNumberInteger"}
+      }
+    },
+    "NetworkAclRuleAction":{
+      "type":"string",
+      "enum":[
+        "allow",
+        "deny"
+      ]
     },
     "NetworkFirewallAction":{
       "type":"string",
@@ -1936,7 +2107,8 @@
       "type":"structure",
       "members":{
         "NetworkFirewallPolicy":{"shape":"NetworkFirewallPolicy"},
-        "ThirdPartyFirewallPolicy":{"shape":"ThirdPartyFirewallPolicy"}
+        "ThirdPartyFirewallPolicy":{"shape":"ThirdPartyFirewallPolicy"},
+        "NetworkAclCommonPolicy":{"shape":"NetworkAclCommonPolicy"}
       }
     },
     "PolicySummary":{
@@ -2148,7 +2320,11 @@
         "EC2ReplaceRouteTableAssociationAction":{"shape":"EC2ReplaceRouteTableAssociationAction"},
         "EC2AssociateRouteTableAction":{"shape":"EC2AssociateRouteTableAction"},
         "EC2CreateRouteTableAction":{"shape":"EC2CreateRouteTableAction"},
-        "FMSPolicyUpdateFirewallCreationConfigAction":{"shape":"FMSPolicyUpdateFirewallCreationConfigAction"}
+        "FMSPolicyUpdateFirewallCreationConfigAction":{"shape":"FMSPolicyUpdateFirewallCreationConfigAction"},
+        "CreateNetworkAclAction":{"shape":"CreateNetworkAclAction"},
+        "ReplaceNetworkAclAssociationAction":{"shape":"ReplaceNetworkAclAssociationAction"},
+        "CreateNetworkAclEntriesAction":{"shape":"CreateNetworkAclEntriesAction"},
+        "DeleteNetworkAclEntriesAction":{"shape":"DeleteNetworkAclEntriesAction"}
       }
     },
     "RemediationActionDescription":{
@@ -2169,6 +2345,15 @@
       "members":{
         "RemediationAction":{"shape":"RemediationAction"},
         "Order":{"shape":"BasicInteger"}
+      }
+    },
+    "ReplaceNetworkAclAssociationAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "AssociationId":{"shape":"ActionTarget"},
+        "NetworkAclId":{"shape":"ActionTarget"},
+        "FMSCanRemediate":{"shape":"Boolean"}
       }
     },
     "Resource":{
@@ -2284,7 +2469,7 @@
     "ResourceTags":{
       "type":"list",
       "member":{"shape":"ResourceTag"},
-      "max":8,
+      "max":50,
       "min":0
     },
     "ResourceType":{
@@ -2316,13 +2501,14 @@
         "DnsRuleGroupPriorityConflictViolation":{"shape":"DnsRuleGroupPriorityConflictViolation"},
         "DnsDuplicateRuleGroupViolation":{"shape":"DnsDuplicateRuleGroupViolation"},
         "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"},
-        "PossibleRemediationActions":{"shape":"PossibleRemediationActions"},
         "FirewallSubnetIsOutOfScopeViolation":{"shape":"FirewallSubnetIsOutOfScopeViolation"},
         "RouteHasOutOfScopeEndpointViolation":{"shape":"RouteHasOutOfScopeEndpointViolation"},
         "ThirdPartyFirewallMissingFirewallViolation":{"shape":"ThirdPartyFirewallMissingFirewallViolation"},
         "ThirdPartyFirewallMissingSubnetViolation":{"shape":"ThirdPartyFirewallMissingSubnetViolation"},
         "ThirdPartyFirewallMissingExpectedRouteTableViolation":{"shape":"ThirdPartyFirewallMissingExpectedRouteTableViolation"},
-        "FirewallSubnetMissingVPCEndpointViolation":{"shape":"FirewallSubnetMissingVPCEndpointViolation"}
+        "FirewallSubnetMissingVPCEndpointViolation":{"shape":"FirewallSubnetMissingVPCEndpointViolation"},
+        "InvalidNetworkAclEntriesViolation":{"shape":"InvalidNetworkAclEntriesViolation"},
+        "PossibleRemediationActions":{"shape":"PossibleRemediationActions"}
       }
     },
     "ResourceViolations":{
@@ -2411,7 +2597,8 @@
         "NETWORK_FIREWALL",
         "DNS_FIREWALL",
         "THIRD_PARTY_FIREWALL",
-        "IMPORT_NETWORK_FIREWALL"
+        "IMPORT_NETWORK_FIREWALL",
+        "NETWORK_ACL_COMMON"
       ]
     },
     "SecurityServiceTypeList":{
@@ -2666,7 +2853,8 @@
         "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET",
         "RESOURCE_MISSING_DNS_FIREWALL",
         "ROUTE_HAS_OUT_OF_SCOPE_ENDPOINT",
-        "FIREWALL_SUBNET_MISSING_VPCE_ENDPOINT"
+        "FIREWALL_SUBNET_MISSING_VPCE_ENDPOINT",
+        "INVALID_NETWORK_ACL_ENTRY"
       ]
     },
     "ViolationTarget":{
