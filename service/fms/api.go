@@ -1220,7 +1220,7 @@ func (c *FMS) GetAdminScopeRequest(input *GetAdminScopeInput) (req *request.Requ
 // GetAdminScope API operation for Firewall Management Service.
 //
 // Returns information about the specified account's administrative scope. The
-// admistrative scope defines the resources that an Firewall Manager administrator
+// administrative scope defines the resources that an Firewall Manager administrator
 // can manage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1416,22 +1416,8 @@ func (c *FMS) GetComplianceDetailRequest(input *GetComplianceDetailInput) (req *
 // Details include resources that are in and out of compliance with the specified
 // policy.
 //
-//   - Resources are considered noncompliant for WAF and Shield Advanced policies
-//     if the specified policy has not been applied to them.
-//
-//   - Resources are considered noncompliant for security group policies if
-//     they are in scope of the policy, they violate one or more of the policy
-//     rules, and remediation is disabled or not possible.
-//
-//   - Resources are considered noncompliant for Network Firewall policies
-//     if a firewall is missing in the VPC, if the firewall endpoint isn't set
-//     up in an expected Availability Zone and subnet, if a subnet created by
-//     the Firewall Manager doesn't have the expected route table, and for modifications
-//     to a firewall policy that violate the Firewall Manager policy's rules.
-//
-//   - Resources are considered noncompliant for DNS Firewall policies if a
-//     DNS Firewall rule group is missing from the rule group associations for
-//     the VPC.
+// The reasons for resources being considered compliant depend on the Firewall
+// Manager policy type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4056,12 +4042,20 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 //
 // Firewall Manager provides the following types of policies:
 //
+//   - WAF policy - This policy applies WAF web ACL protections to specified
+//     accounts and resources.
+//
 //   - Shield Advanced policy - This policy applies Shield Advanced protection
 //     to specified accounts and resources.
 //
 //   - Security Groups policy - This type of policy gives you control over
 //     security groups that are in use throughout your organization in Organizations
 //     and lets you enforce a baseline set of rules across your organization.
+//
+//   - Network ACL policy - This type of policy gives you control over the
+//     network ACLs that are in use throughout your organization in Organizations
+//     and lets you enforce a baseline set of first and last network ACL rules
+//     across your organization.
 //
 //   - Network Firewall policy - This policy applies Network Firewall protection
 //     to your organization's VPCs.
@@ -4662,7 +4656,7 @@ type AdminAccountSummary struct {
 	DefaultAdmin *bool `type:"boolean"`
 
 	// The current status of the request to onboard a member account as an Firewall
-	// Manager administator.
+	// Manager administrator.
 	//
 	//    * ONBOARDING - The account is onboarding to Firewall Manager as an administrator.
 	//
@@ -5643,6 +5637,121 @@ func (s *ComplianceViolator) SetViolationReason(v string) *ComplianceViolator {
 	return s
 }
 
+// Information about the CreateNetworkAcl action in Amazon EC2. This is a remediation
+// option in RemediationAction.
+type CreateNetworkAclAction struct {
+	_ struct{} `type:"structure"`
+
+	// Brief description of this remediation action.
+	Description *string `type:"string"`
+
+	// Indicates whether it is possible for Firewall Manager to perform this remediation
+	// action. A false value indicates that auto remediation is disabled or Firewall
+	// Manager is unable to perform the action due to a conflict of some kind.
+	FMSCanRemediate *bool `type:"boolean"`
+
+	// The VPC that's associated with the remediation action.
+	Vpc *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNetworkAclAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNetworkAclAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateNetworkAclAction) SetDescription(v string) *CreateNetworkAclAction {
+	s.Description = &v
+	return s
+}
+
+// SetFMSCanRemediate sets the FMSCanRemediate field's value.
+func (s *CreateNetworkAclAction) SetFMSCanRemediate(v bool) *CreateNetworkAclAction {
+	s.FMSCanRemediate = &v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *CreateNetworkAclAction) SetVpc(v *ActionTarget) *CreateNetworkAclAction {
+	s.Vpc = v
+	return s
+}
+
+// Information about the CreateNetworkAclEntries action in Amazon EC2. This
+// is a remediation option in RemediationAction.
+type CreateNetworkAclEntriesAction struct {
+	_ struct{} `type:"structure"`
+
+	// Brief description of this remediation action.
+	Description *string `type:"string"`
+
+	// Indicates whether it is possible for Firewall Manager to perform this remediation
+	// action. A false value indicates that auto remediation is disabled or Firewall
+	// Manager is unable to perform the action due to a conflict of some kind.
+	FMSCanRemediate *bool `type:"boolean"`
+
+	// Lists the entries that the remediation action would create.
+	NetworkAclEntriesToBeCreated []*EntryDescription `type:"list"`
+
+	// The network ACL that's associated with the remediation action.
+	NetworkAclId *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNetworkAclEntriesAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateNetworkAclEntriesAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateNetworkAclEntriesAction) SetDescription(v string) *CreateNetworkAclEntriesAction {
+	s.Description = &v
+	return s
+}
+
+// SetFMSCanRemediate sets the FMSCanRemediate field's value.
+func (s *CreateNetworkAclEntriesAction) SetFMSCanRemediate(v bool) *CreateNetworkAclEntriesAction {
+	s.FMSCanRemediate = &v
+	return s
+}
+
+// SetNetworkAclEntriesToBeCreated sets the NetworkAclEntriesToBeCreated field's value.
+func (s *CreateNetworkAclEntriesAction) SetNetworkAclEntriesToBeCreated(v []*EntryDescription) *CreateNetworkAclEntriesAction {
+	s.NetworkAclEntriesToBeCreated = v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *CreateNetworkAclEntriesAction) SetNetworkAclId(v *ActionTarget) *CreateNetworkAclEntriesAction {
+	s.NetworkAclId = v
+	return s
+}
+
 type DeleteAppsListInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5713,6 +5822,68 @@ func (s DeleteAppsListOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteAppsListOutput) GoString() string {
 	return s.String()
+}
+
+// Information about the DeleteNetworkAclEntries action in Amazon EC2. This
+// is a remediation option in RemediationAction.
+type DeleteNetworkAclEntriesAction struct {
+	_ struct{} `type:"structure"`
+
+	// Brief description of this remediation action.
+	Description *string `type:"string"`
+
+	// Indicates whether it is possible for Firewall Manager to perform this remediation
+	// action. A false value indicates that auto remediation is disabled or Firewall
+	// Manager is unable to perform the action due to a conflict of some kind.
+	FMSCanRemediate *bool `type:"boolean"`
+
+	// Lists the entries that the remediation action would delete.
+	NetworkAclEntriesToBeDeleted []*EntryDescription `type:"list"`
+
+	// The network ACL that's associated with the remediation action.
+	NetworkAclId *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNetworkAclEntriesAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteNetworkAclEntriesAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DeleteNetworkAclEntriesAction) SetDescription(v string) *DeleteNetworkAclEntriesAction {
+	s.Description = &v
+	return s
+}
+
+// SetFMSCanRemediate sets the FMSCanRemediate field's value.
+func (s *DeleteNetworkAclEntriesAction) SetFMSCanRemediate(v bool) *DeleteNetworkAclEntriesAction {
+	s.FMSCanRemediate = &v
+	return s
+}
+
+// SetNetworkAclEntriesToBeDeleted sets the NetworkAclEntriesToBeDeleted field's value.
+func (s *DeleteNetworkAclEntriesAction) SetNetworkAclEntriesToBeDeleted(v []*EntryDescription) *DeleteNetworkAclEntriesAction {
+	s.NetworkAclEntriesToBeDeleted = v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *DeleteNetworkAclEntriesAction) SetNetworkAclId(v *ActionTarget) *DeleteNetworkAclEntriesAction {
+	s.NetworkAclId = v
+	return s
 }
 
 type DeleteNotificationChannelInput struct {
@@ -6826,6 +6997,156 @@ func (s *EC2ReplaceRouteTableAssociationAction) SetRouteTableId(v *ActionTarget)
 	return s
 }
 
+// Describes a single rule in a network ACL.
+type EntryDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a rule in a network ACL.
+	//
+	// Each network ACL has a set of numbered ingress rules and a separate set of
+	// numbered egress rules. When determining whether a packet should be allowed
+	// in or out of a subnet associated with the network ACL, Amazon Web Services
+	// processes the entries in the network ACL according to the rule numbers, in
+	// ascending order.
+	//
+	// When you manage an individual network ACL, you explicitly specify the rule
+	// numbers. When you specify the network ACL rules in a Firewall Manager policy,
+	// you provide the rules to run first, in the order that you want them to run,
+	// and the rules to run last, in the order that you want them to run. Firewall
+	// Manager assigns the rule numbers for you when you save the network ACL policy
+	// specification.
+	EntryDetail *NetworkAclEntry `type:"structure"`
+
+	// The rule number for the entry. ACL entries are processed in ascending order
+	// by rule number. In a Firewall Manager network ACL policy, Firewall Manager
+	// assigns rule numbers.
+	EntryRuleNumber *int64 `type:"integer"`
+
+	// Specifies whether the entry is managed by Firewall Manager or by a user,
+	// and, for Firewall Manager-managed entries, specifies whether the entry is
+	// among those that run first in the network ACL or those that run last.
+	EntryType *string `type:"string" enum:"EntryType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntryDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntryDescription) GoString() string {
+	return s.String()
+}
+
+// SetEntryDetail sets the EntryDetail field's value.
+func (s *EntryDescription) SetEntryDetail(v *NetworkAclEntry) *EntryDescription {
+	s.EntryDetail = v
+	return s
+}
+
+// SetEntryRuleNumber sets the EntryRuleNumber field's value.
+func (s *EntryDescription) SetEntryRuleNumber(v int64) *EntryDescription {
+	s.EntryRuleNumber = &v
+	return s
+}
+
+// SetEntryType sets the EntryType field's value.
+func (s *EntryDescription) SetEntryType(v string) *EntryDescription {
+	s.EntryType = &v
+	return s
+}
+
+// Detailed information about an entry violation in a network ACL. The violation
+// is against the network ACL specification inside the Firewall Manager network
+// ACL policy. This data object is part of InvalidNetworkAclEntriesViolation.
+type EntryViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The evaluation location within the ordered list of entries where the ExpectedEntry
+	// is currently located.
+	ActualEvaluationOrder *string `type:"string"`
+
+	// The list of entries that are in conflict with ExpectedEntry.
+	EntriesWithConflicts []*EntryDescription `type:"list"`
+
+	// The entry that's currently in the ExpectedEvaluationOrder location, in place
+	// of the expected entry.
+	EntryAtExpectedEvaluationOrder *EntryDescription `type:"structure"`
+
+	// Descriptions of the violations that Firewall Manager found for these entries.
+	EntryViolationReasons []*string `type:"list" enum:"EntryViolationReason"`
+
+	// The Firewall Manager-managed network ACL entry that is involved in the entry
+	// violation.
+	ExpectedEntry *EntryDescription `type:"structure"`
+
+	// The evaluation location within the ordered list of entries where the ExpectedEntry
+	// should be, according to the network ACL policy specifications.
+	ExpectedEvaluationOrder *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntryViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntryViolation) GoString() string {
+	return s.String()
+}
+
+// SetActualEvaluationOrder sets the ActualEvaluationOrder field's value.
+func (s *EntryViolation) SetActualEvaluationOrder(v string) *EntryViolation {
+	s.ActualEvaluationOrder = &v
+	return s
+}
+
+// SetEntriesWithConflicts sets the EntriesWithConflicts field's value.
+func (s *EntryViolation) SetEntriesWithConflicts(v []*EntryDescription) *EntryViolation {
+	s.EntriesWithConflicts = v
+	return s
+}
+
+// SetEntryAtExpectedEvaluationOrder sets the EntryAtExpectedEvaluationOrder field's value.
+func (s *EntryViolation) SetEntryAtExpectedEvaluationOrder(v *EntryDescription) *EntryViolation {
+	s.EntryAtExpectedEvaluationOrder = v
+	return s
+}
+
+// SetEntryViolationReasons sets the EntryViolationReasons field's value.
+func (s *EntryViolation) SetEntryViolationReasons(v []*string) *EntryViolation {
+	s.EntryViolationReasons = v
+	return s
+}
+
+// SetExpectedEntry sets the ExpectedEntry field's value.
+func (s *EntryViolation) SetExpectedEntry(v *EntryDescription) *EntryViolation {
+	s.ExpectedEntry = v
+	return s
+}
+
+// SetExpectedEvaluationOrder sets the ExpectedEvaluationOrder field's value.
+func (s *EntryViolation) SetExpectedEvaluationOrder(v string) *EntryViolation {
+	s.ExpectedEvaluationOrder = &v
+	return s
+}
+
 // Describes the compliance status for the account. An account is considered
 // noncompliant if it includes resources that are not protected by the specified
 // policy or that don't comply with the policy.
@@ -7243,7 +7564,7 @@ func (s *GetAdminAccountOutput) SetRoleStatus(v string) *GetAdminAccountOutput {
 type GetAdminScopeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The administator account that you want to get the details for.
+	// The administrator account that you want to get the details for.
 	//
 	// AdminAccount is a required field
 	AdminAccount *string `min:"1" type:"string" required:"true"`
@@ -7296,7 +7617,7 @@ type GetAdminScopeOutput struct {
 	AdminScope *AdminScope `type:"structure"`
 
 	// The current status of the request to onboard a member account as an Firewall
-	// Manager administator.
+	// Manager administrator.
 	//
 	//    * ONBOARDING - The account is onboarding to Firewall Manager as an administrator.
 	//
@@ -8214,6 +8535,8 @@ type GetViolationDetailsInput struct {
 	//
 	//    * Security group content audit
 	//
+	//    * Network ACL
+	//
 	//    * Third-party firewall
 	//
 	// PolicyId is a required field
@@ -8467,6 +8790,74 @@ func (s *InvalidInputException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Violation detail for the entries in a network ACL resource.
+type InvalidNetworkAclEntriesViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The network ACL containing the entry violations.
+	CurrentAssociatedNetworkAcl *string `min:"1" type:"string"`
+
+	// Detailed information about the entry violations in the network ACL.
+	EntryViolations []*EntryViolation `type:"list"`
+
+	// The subnet that's associated with the network ACL.
+	Subnet *string `min:"1" type:"string"`
+
+	// The Availability Zone where the network ACL is in use.
+	SubnetAvailabilityZone *string `type:"string"`
+
+	// The VPC where the violation was found.
+	Vpc *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidNetworkAclEntriesViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidNetworkAclEntriesViolation) GoString() string {
+	return s.String()
+}
+
+// SetCurrentAssociatedNetworkAcl sets the CurrentAssociatedNetworkAcl field's value.
+func (s *InvalidNetworkAclEntriesViolation) SetCurrentAssociatedNetworkAcl(v string) *InvalidNetworkAclEntriesViolation {
+	s.CurrentAssociatedNetworkAcl = &v
+	return s
+}
+
+// SetEntryViolations sets the EntryViolations field's value.
+func (s *InvalidNetworkAclEntriesViolation) SetEntryViolations(v []*EntryViolation) *InvalidNetworkAclEntriesViolation {
+	s.EntryViolations = v
+	return s
+}
+
+// SetSubnet sets the Subnet field's value.
+func (s *InvalidNetworkAclEntriesViolation) SetSubnet(v string) *InvalidNetworkAclEntriesViolation {
+	s.Subnet = &v
+	return s
+}
+
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *InvalidNetworkAclEntriesViolation) SetSubnetAvailabilityZone(v string) *InvalidNetworkAclEntriesViolation {
+	s.SubnetAvailabilityZone = &v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *InvalidNetworkAclEntriesViolation) SetVpc(v string) *InvalidNetworkAclEntriesViolation {
+	s.Vpc = &v
+	return s
 }
 
 // The operation failed because there was nothing to do or the operation wasn't
@@ -10057,6 +10448,425 @@ func (s *ListThirdPartyFirewallFirewallPoliciesOutput) SetThirdPartyFirewallFire
 	return s
 }
 
+// Defines a Firewall Manager network ACL policy. This is used in the PolicyOption
+// of a SecurityServicePolicyData for a Policy, when the SecurityServicePolicyData
+// type is set to NETWORK_ACL_COMMON.
+//
+// For information about network ACLs, see Control traffic to subnets using
+// network ACLs (https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html)
+// in the Amazon Virtual Private Cloud User Guide.
+type NetworkAclCommonPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of the first and last rules for the network ACL policy.
+	//
+	// NetworkAclEntrySet is a required field
+	NetworkAclEntrySet *NetworkAclEntrySet `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclCommonPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclCommonPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkAclCommonPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkAclCommonPolicy"}
+	if s.NetworkAclEntrySet == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetworkAclEntrySet"))
+	}
+	if s.NetworkAclEntrySet != nil {
+		if err := s.NetworkAclEntrySet.Validate(); err != nil {
+			invalidParams.AddNested("NetworkAclEntrySet", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetworkAclEntrySet sets the NetworkAclEntrySet field's value.
+func (s *NetworkAclCommonPolicy) SetNetworkAclEntrySet(v *NetworkAclEntrySet) *NetworkAclCommonPolicy {
+	s.NetworkAclEntrySet = v
+	return s
+}
+
+// Describes a rule in a network ACL.
+//
+// Each network ACL has a set of numbered ingress rules and a separate set of
+// numbered egress rules. When determining whether a packet should be allowed
+// in or out of a subnet associated with the network ACL, Amazon Web Services
+// processes the entries in the network ACL according to the rule numbers, in
+// ascending order.
+//
+// When you manage an individual network ACL, you explicitly specify the rule
+// numbers. When you specify the network ACL rules in a Firewall Manager policy,
+// you provide the rules to run first, in the order that you want them to run,
+// and the rules to run last, in the order that you want them to run. Firewall
+// Manager assigns the rule numbers for you when you save the network ACL policy
+// specification.
+type NetworkAclEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The IPv4 network range to allow or deny, in CIDR notation.
+	CidrBlock *string `min:"1" type:"string"`
+
+	// Indicates whether the rule is an egress, or outbound, rule (applied to traffic
+	// leaving the subnet). If it's not an egress rule, then it's an ingress, or
+	// inbound, rule.
+	//
+	// Egress is a required field
+	Egress *bool `type:"boolean" required:"true"`
+
+	// ICMP protocol: The ICMP type and code.
+	IcmpTypeCode *NetworkAclIcmpTypeCode `type:"structure"`
+
+	// The IPv6 network range to allow or deny, in CIDR notation.
+	Ipv6CidrBlock *string `min:"1" type:"string"`
+
+	// TCP or UDP protocols: The range of ports the rule applies to.
+	PortRange *NetworkAclPortRange `type:"structure"`
+
+	// The protocol number. A value of "-1" means all protocols.
+	//
+	// Protocol is a required field
+	Protocol *string `type:"string" required:"true"`
+
+	// Indicates whether to allow or deny the traffic that matches the rule.
+	//
+	// RuleAction is a required field
+	RuleAction *string `type:"string" required:"true" enum:"NetworkAclRuleAction"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkAclEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkAclEntry"}
+	if s.CidrBlock != nil && len(*s.CidrBlock) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CidrBlock", 1))
+	}
+	if s.Egress == nil {
+		invalidParams.Add(request.NewErrParamRequired("Egress"))
+	}
+	if s.Ipv6CidrBlock != nil && len(*s.Ipv6CidrBlock) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Ipv6CidrBlock", 1))
+	}
+	if s.Protocol == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocol"))
+	}
+	if s.RuleAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleAction"))
+	}
+	if s.IcmpTypeCode != nil {
+		if err := s.IcmpTypeCode.Validate(); err != nil {
+			invalidParams.AddNested("IcmpTypeCode", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *NetworkAclEntry) SetCidrBlock(v string) *NetworkAclEntry {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *NetworkAclEntry) SetEgress(v bool) *NetworkAclEntry {
+	s.Egress = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *NetworkAclEntry) SetIcmpTypeCode(v *NetworkAclIcmpTypeCode) *NetworkAclEntry {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetIpv6CidrBlock sets the Ipv6CidrBlock field's value.
+func (s *NetworkAclEntry) SetIpv6CidrBlock(v string) *NetworkAclEntry {
+	s.Ipv6CidrBlock = &v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *NetworkAclEntry) SetPortRange(v *NetworkAclPortRange) *NetworkAclEntry {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *NetworkAclEntry) SetProtocol(v string) *NetworkAclEntry {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *NetworkAclEntry) SetRuleAction(v string) *NetworkAclEntry {
+	s.RuleAction = &v
+	return s
+}
+
+// The configuration of the first and last rules for the network ACL policy,
+// and the remediation settings for each.
+type NetworkAclEntrySet struct {
+	_ struct{} `type:"structure"`
+
+	// The rules that you want to run first in the Firewall Manager managed network
+	// ACLs.
+	//
+	// Provide these in the order in which you want them to run. Firewall Manager
+	// will assign the specific rule numbers for you, in the network ACLs that it
+	// creates.
+	FirstEntries []*NetworkAclEntry `type:"list"`
+
+	// Applies only when remediation is enabled for the policy as a whole. Firewall
+	// Manager uses this setting when it finds policy violations that involve conflicts
+	// between the custom entries and the policy entries.
+	//
+	// If forced remediation is disabled, Firewall Manager marks the network ACL
+	// as noncompliant and does not try to remediate. For more information about
+	// the remediation behavior, see Network access control list (ACL) policies
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html)
+	// in the Firewall Manager Developer Guide.
+	//
+	// ForceRemediateForFirstEntries is a required field
+	ForceRemediateForFirstEntries *bool `type:"boolean" required:"true"`
+
+	// Applies only when remediation is enabled for the policy as a whole. Firewall
+	// Manager uses this setting when it finds policy violations that involve conflicts
+	// between the custom entries and the policy entries.
+	//
+	// If forced remediation is disabled, Firewall Manager marks the network ACL
+	// as noncompliant and does not try to remediate. For more information about
+	// the remediation behavior, see Network access control list (ACL) policies
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html)
+	// in the Firewall Manager Developer Guide.
+	//
+	// ForceRemediateForLastEntries is a required field
+	ForceRemediateForLastEntries *bool `type:"boolean" required:"true"`
+
+	// The rules that you want to run last in the Firewall Manager managed network
+	// ACLs.
+	//
+	// Provide these in the order in which you want them to run. Firewall Manager
+	// will assign the specific rule numbers for you, in the network ACLs that it
+	// creates.
+	LastEntries []*NetworkAclEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclEntrySet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclEntrySet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkAclEntrySet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkAclEntrySet"}
+	if s.ForceRemediateForFirstEntries == nil {
+		invalidParams.Add(request.NewErrParamRequired("ForceRemediateForFirstEntries"))
+	}
+	if s.ForceRemediateForLastEntries == nil {
+		invalidParams.Add(request.NewErrParamRequired("ForceRemediateForLastEntries"))
+	}
+	if s.FirstEntries != nil {
+		for i, v := range s.FirstEntries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FirstEntries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LastEntries != nil {
+		for i, v := range s.LastEntries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LastEntries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirstEntries sets the FirstEntries field's value.
+func (s *NetworkAclEntrySet) SetFirstEntries(v []*NetworkAclEntry) *NetworkAclEntrySet {
+	s.FirstEntries = v
+	return s
+}
+
+// SetForceRemediateForFirstEntries sets the ForceRemediateForFirstEntries field's value.
+func (s *NetworkAclEntrySet) SetForceRemediateForFirstEntries(v bool) *NetworkAclEntrySet {
+	s.ForceRemediateForFirstEntries = &v
+	return s
+}
+
+// SetForceRemediateForLastEntries sets the ForceRemediateForLastEntries field's value.
+func (s *NetworkAclEntrySet) SetForceRemediateForLastEntries(v bool) *NetworkAclEntrySet {
+	s.ForceRemediateForLastEntries = &v
+	return s
+}
+
+// SetLastEntries sets the LastEntries field's value.
+func (s *NetworkAclEntrySet) SetLastEntries(v []*NetworkAclEntry) *NetworkAclEntrySet {
+	s.LastEntries = v
+	return s
+}
+
+// ICMP protocol: The ICMP type and code.
+type NetworkAclIcmpTypeCode struct {
+	_ struct{} `type:"structure"`
+
+	// ICMP code.
+	Code *int64 `type:"integer"`
+
+	// ICMP type.
+	Type *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclIcmpTypeCode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclIcmpTypeCode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkAclIcmpTypeCode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkAclIcmpTypeCode"}
+	if s.Code != nil && *s.Code < -2.147483648e+09 {
+		invalidParams.Add(request.NewErrParamMinValue("Code", -2.147483648e+09))
+	}
+	if s.Type != nil && *s.Type < -2.147483648e+09 {
+		invalidParams.Add(request.NewErrParamMinValue("Type", -2.147483648e+09))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCode sets the Code field's value.
+func (s *NetworkAclIcmpTypeCode) SetCode(v int64) *NetworkAclIcmpTypeCode {
+	s.Code = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *NetworkAclIcmpTypeCode) SetType(v int64) *NetworkAclIcmpTypeCode {
+	s.Type = &v
+	return s
+}
+
+// TCP or UDP protocols: The range of ports the rule applies to.
+type NetworkAclPortRange struct {
+	_ struct{} `type:"structure"`
+
+	// The beginning port number of the range.
+	From *int64 `type:"integer"`
+
+	// The ending port number of the range.
+	To *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclPortRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkAclPortRange) GoString() string {
+	return s.String()
+}
+
+// SetFrom sets the From field's value.
+func (s *NetworkAclPortRange) SetFrom(v int64) *NetworkAclPortRange {
+	s.From = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *NetworkAclPortRange) SetTo(v int64) *NetworkAclPortRange {
+	s.To = &v
+	return s
+}
+
 // Violation detail for an internet gateway route with an inactive state in
 // the customer subnet route table or Network Firewall subnet route table.
 type NetworkFirewallBlackHoleRouteDetectedViolation struct {
@@ -11279,15 +12089,17 @@ type Policy struct {
 	//    * WAF - AWS::ApiGateway::Stage, AWS::ElasticLoadBalancingV2::LoadBalancer,
 	//    and AWS::CloudFront::Distribution.
 	//
-	//    * DNS Firewall, Network Firewall, and third-party firewall - AWS::EC2::VPC.
-	//
 	//    * Shield Advanced - AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::ElasticLoadBalancing::LoadBalancer,
 	//    AWS::EC2::EIP, and AWS::CloudFront::Distribution.
+	//
+	//    * Network ACL - AWS::EC2::Subnet.
+	//
+	//    * Security group usage audit - AWS::EC2::SecurityGroup.
 	//
 	//    * Security group content audit - AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
 	//    and AWS::EC2::Instance.
 	//
-	//    * Security group usage audit - AWS::EC2::SecurityGroup.
+	//    * DNS Firewall, Network Firewall, and third-party firewall - AWS::EC2::VPC.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
@@ -11644,10 +12456,13 @@ func (s *PolicyComplianceStatus) SetPolicyOwner(v string) *PolicyComplianceStatu
 	return s
 }
 
-// Contains the Network Firewall firewall policy options to configure the policy's
-// deployment model and third-party firewall policy settings.
+// Contains the settings to configure a network ACL policy, a Network Firewall
+// firewall policy deployment model, or a third-party firewall policy.
 type PolicyOption struct {
 	_ struct{} `type:"structure"`
+
+	// Defines a Firewall Manager network ACL policy.
+	NetworkAclCommonPolicy *NetworkAclCommonPolicy `type:"structure"`
 
 	// Defines the deployment model to use for the firewall policy.
 	NetworkFirewallPolicy *NetworkFirewallPolicy `type:"structure"`
@@ -11672,6 +12487,27 @@ func (s PolicyOption) String() string {
 // value will be replaced with "sensitive".
 func (s PolicyOption) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PolicyOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PolicyOption"}
+	if s.NetworkAclCommonPolicy != nil {
+		if err := s.NetworkAclCommonPolicy.Validate(); err != nil {
+			invalidParams.AddNested("NetworkAclCommonPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetworkAclCommonPolicy sets the NetworkAclCommonPolicy field's value.
+func (s *PolicyOption) SetNetworkAclCommonPolicy(v *NetworkAclCommonPolicy) *PolicyOption {
+	s.NetworkAclCommonPolicy = v
+	return s
 }
 
 // SetNetworkFirewallPolicy sets the NetworkFirewallPolicy field's value.
@@ -11727,13 +12563,6 @@ type PolicySummary struct {
 
 	// The type of resource protected by or in scope of the policy. This is in the
 	// format shown in the Amazon Web Services Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
-	// For WAF and Shield Advanced, examples include AWS::ElasticLoadBalancingV2::LoadBalancer
-	// and AWS::CloudFront::Distribution. For a security group common policy, valid
-	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
-	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
-	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup. For an Network Firewall policy or DNS Firewall
-	// policy, the value is AWS::EC2::VPC.
 	ResourceType *string `min:"1" type:"string"`
 
 	// The service that the policy is using to protect the resources. This specifies
@@ -12796,6 +13625,15 @@ func (s *RegionScope) SetRegions(v []*string) *RegionScope {
 type RemediationAction struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the CreateNetworkAcl action in Amazon EC2.
+	CreateNetworkAclAction *CreateNetworkAclAction `type:"structure"`
+
+	// Information about the CreateNetworkAclEntries action in Amazon EC2.
+	CreateNetworkAclEntriesAction *CreateNetworkAclEntriesAction `type:"structure"`
+
+	// Information about the DeleteNetworkAclEntries action in Amazon EC2.
+	DeleteNetworkAclEntriesAction *DeleteNetworkAclEntriesAction `type:"structure"`
+
 	// A description of a remediation action.
 	Description *string `type:"string"`
 
@@ -12823,6 +13661,9 @@ type RemediationAction struct {
 
 	// The remedial action to take when updating a firewall configuration.
 	FMSPolicyUpdateFirewallCreationConfigAction *FMSPolicyUpdateFirewallCreationConfigAction `type:"structure"`
+
+	// Information about the ReplaceNetworkAclAssociation action in Amazon EC2.
+	ReplaceNetworkAclAssociationAction *ReplaceNetworkAclAssociationAction `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12841,6 +13682,24 @@ func (s RemediationAction) String() string {
 // value will be replaced with "sensitive".
 func (s RemediationAction) GoString() string {
 	return s.String()
+}
+
+// SetCreateNetworkAclAction sets the CreateNetworkAclAction field's value.
+func (s *RemediationAction) SetCreateNetworkAclAction(v *CreateNetworkAclAction) *RemediationAction {
+	s.CreateNetworkAclAction = v
+	return s
+}
+
+// SetCreateNetworkAclEntriesAction sets the CreateNetworkAclEntriesAction field's value.
+func (s *RemediationAction) SetCreateNetworkAclEntriesAction(v *CreateNetworkAclEntriesAction) *RemediationAction {
+	s.CreateNetworkAclEntriesAction = v
+	return s
+}
+
+// SetDeleteNetworkAclEntriesAction sets the DeleteNetworkAclEntriesAction field's value.
+func (s *RemediationAction) SetDeleteNetworkAclEntriesAction(v *DeleteNetworkAclEntriesAction) *RemediationAction {
+	s.DeleteNetworkAclEntriesAction = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -12897,6 +13756,12 @@ func (s *RemediationAction) SetFMSPolicyUpdateFirewallCreationConfigAction(v *FM
 	return s
 }
 
+// SetReplaceNetworkAclAssociationAction sets the ReplaceNetworkAclAssociationAction field's value.
+func (s *RemediationAction) SetReplaceNetworkAclAssociationAction(v *ReplaceNetworkAclAssociationAction) *RemediationAction {
+	s.ReplaceNetworkAclAssociationAction = v
+	return s
+}
+
 // An ordered list of actions you can take to remediate a violation.
 type RemediationActionWithOrder struct {
 	_ struct{} `type:"structure"`
@@ -12935,6 +13800,68 @@ func (s *RemediationActionWithOrder) SetOrder(v int64) *RemediationActionWithOrd
 // SetRemediationAction sets the RemediationAction field's value.
 func (s *RemediationActionWithOrder) SetRemediationAction(v *RemediationAction) *RemediationActionWithOrder {
 	s.RemediationAction = v
+	return s
+}
+
+// Information about the ReplaceNetworkAclAssociation action in Amazon EC2.
+// This is a remediation option in RemediationAction.
+type ReplaceNetworkAclAssociationAction struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a remediation action target.
+	AssociationId *ActionTarget `type:"structure"`
+
+	// Brief description of this remediation action.
+	Description *string `type:"string"`
+
+	// Indicates whether it is possible for Firewall Manager to perform this remediation
+	// action. A false value indicates that auto remediation is disabled or Firewall
+	// Manager is unable to perform the action due to a conflict of some kind.
+	FMSCanRemediate *bool `type:"boolean"`
+
+	// The network ACL that's associated with the remediation action.
+	NetworkAclId *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplaceNetworkAclAssociationAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReplaceNetworkAclAssociationAction) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *ReplaceNetworkAclAssociationAction) SetAssociationId(v *ActionTarget) *ReplaceNetworkAclAssociationAction {
+	s.AssociationId = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReplaceNetworkAclAssociationAction) SetDescription(v string) *ReplaceNetworkAclAssociationAction {
+	s.Description = &v
+	return s
+}
+
+// SetFMSCanRemediate sets the FMSCanRemediate field's value.
+func (s *ReplaceNetworkAclAssociationAction) SetFMSCanRemediate(v bool) *ReplaceNetworkAclAssociationAction {
+	s.FMSCanRemediate = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *ReplaceNetworkAclAssociationAction) SetNetworkAclId(v *ActionTarget) *ReplaceNetworkAclAssociationAction {
+	s.NetworkAclId = v
 	return s
 }
 
@@ -13368,6 +14295,9 @@ type ResourceViolation struct {
 	// was deleted.
 	FirewallSubnetMissingVPCEndpointViolation *FirewallSubnetMissingVPCEndpointViolation `type:"structure"`
 
+	// Violation detail for the entries in a network ACL resource.
+	InvalidNetworkAclEntriesViolation *InvalidNetworkAclEntriesViolation `type:"structure"`
+
 	// Violation detail for an internet gateway route with an inactive state in
 	// the customer subnet route table or Network Firewall subnet route table.
 	NetworkFirewallBlackHoleRouteDetectedViolation *NetworkFirewallBlackHoleRouteDetectedViolation `type:"structure"`
@@ -13488,6 +14418,12 @@ func (s *ResourceViolation) SetFirewallSubnetIsOutOfScopeViolation(v *FirewallSu
 // SetFirewallSubnetMissingVPCEndpointViolation sets the FirewallSubnetMissingVPCEndpointViolation field's value.
 func (s *ResourceViolation) SetFirewallSubnetMissingVPCEndpointViolation(v *FirewallSubnetMissingVPCEndpointViolation) *ResourceViolation {
 	s.FirewallSubnetMissingVPCEndpointViolation = v
+	return s
+}
+
+// SetInvalidNetworkAclEntriesViolation sets the InvalidNetworkAclEntriesViolation field's value.
+func (s *ResourceViolation) SetInvalidNetworkAclEntriesViolation(v *InvalidNetworkAclEntriesViolation) *ResourceViolation {
+	s.InvalidNetworkAclEntriesViolation = v
 	return s
 }
 
@@ -13971,7 +14907,7 @@ type SecurityServicePolicyData struct {
 	//    otherwise Firewall Manager won't be able to create the policy. When you
 	//    enable revertManualSecurityGroupChanges, Firewall Manager identifies and
 	//    reports when the security groups created by this policy become non-compliant.
-	//    Firewall Manager won't distrubute system tags added by Amazon Web Services
+	//    Firewall Manager won't distribute system tags added by Amazon Web Services
 	//    services into the replica security groups. System tags begin with the
 	//    aws: prefix.
 	//
@@ -14102,8 +15038,8 @@ type SecurityServicePolicyData struct {
 	//    \"BLOCK\"}}"
 	ManagedServiceData *string `min:"1" type:"string"`
 
-	// Contains the Network Firewall firewall policy options to configure a centralized
-	// deployment model.
+	// Contains the settings to configure a network ACL policy, a Network Firewall
+	// firewall policy deployment model, or a third-party firewall policy.
 	PolicyOption *PolicyOption `type:"structure"`
 
 	// The service that the policy is using to protect the resources. This specifies
@@ -14143,6 +15079,11 @@ func (s *SecurityServicePolicyData) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.PolicyOption != nil {
+		if err := s.PolicyOption.Validate(); err != nil {
+			invalidParams.AddNested("PolicyOption", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15052,6 +15993,46 @@ func DestinationType_Values() []string {
 }
 
 const (
+	// EntryTypeFmsManagedFirstEntry is a EntryType enum value
+	EntryTypeFmsManagedFirstEntry = "FMS_MANAGED_FIRST_ENTRY"
+
+	// EntryTypeFmsManagedLastEntry is a EntryType enum value
+	EntryTypeFmsManagedLastEntry = "FMS_MANAGED_LAST_ENTRY"
+
+	// EntryTypeCustomEntry is a EntryType enum value
+	EntryTypeCustomEntry = "CUSTOM_ENTRY"
+)
+
+// EntryType_Values returns all elements of the EntryType enum
+func EntryType_Values() []string {
+	return []string{
+		EntryTypeFmsManagedFirstEntry,
+		EntryTypeFmsManagedLastEntry,
+		EntryTypeCustomEntry,
+	}
+}
+
+const (
+	// EntryViolationReasonMissingExpectedEntry is a EntryViolationReason enum value
+	EntryViolationReasonMissingExpectedEntry = "MISSING_EXPECTED_ENTRY"
+
+	// EntryViolationReasonIncorrectEntryOrder is a EntryViolationReason enum value
+	EntryViolationReasonIncorrectEntryOrder = "INCORRECT_ENTRY_ORDER"
+
+	// EntryViolationReasonEntryConflict is a EntryViolationReason enum value
+	EntryViolationReasonEntryConflict = "ENTRY_CONFLICT"
+)
+
+// EntryViolationReason_Values returns all elements of the EntryViolationReason enum
+func EntryViolationReason_Values() []string {
+	return []string{
+		EntryViolationReasonMissingExpectedEntry,
+		EntryViolationReasonIncorrectEntryOrder,
+		EntryViolationReasonEntryConflict,
+	}
+}
+
+const (
 	// FailedItemReasonNotValidArn is a FailedItemReason enum value
 	FailedItemReasonNotValidArn = "NOT_VALID_ARN"
 
@@ -15116,6 +16097,22 @@ func MarketplaceSubscriptionOnboardingStatus_Values() []string {
 		MarketplaceSubscriptionOnboardingStatusNoSubscription,
 		MarketplaceSubscriptionOnboardingStatusNotComplete,
 		MarketplaceSubscriptionOnboardingStatusComplete,
+	}
+}
+
+const (
+	// NetworkAclRuleActionAllow is a NetworkAclRuleAction enum value
+	NetworkAclRuleActionAllow = "allow"
+
+	// NetworkAclRuleActionDeny is a NetworkAclRuleAction enum value
+	NetworkAclRuleActionDeny = "deny"
+)
+
+// NetworkAclRuleAction_Values returns all elements of the NetworkAclRuleAction enum
+func NetworkAclRuleAction_Values() []string {
+	return []string{
+		NetworkAclRuleActionAllow,
+		NetworkAclRuleActionDeny,
 	}
 }
 
@@ -15249,6 +16246,9 @@ const (
 
 	// SecurityServiceTypeImportNetworkFirewall is a SecurityServiceType enum value
 	SecurityServiceTypeImportNetworkFirewall = "IMPORT_NETWORK_FIREWALL"
+
+	// SecurityServiceTypeNetworkAclCommon is a SecurityServiceType enum value
+	SecurityServiceTypeNetworkAclCommon = "NETWORK_ACL_COMMON"
 )
 
 // SecurityServiceType_Values returns all elements of the SecurityServiceType enum
@@ -15264,6 +16264,7 @@ func SecurityServiceType_Values() []string {
 		SecurityServiceTypeDnsFirewall,
 		SecurityServiceTypeThirdPartyFirewall,
 		SecurityServiceTypeImportNetworkFirewall,
+		SecurityServiceTypeNetworkAclCommon,
 	}
 }
 
@@ -15443,6 +16444,9 @@ const (
 
 	// ViolationReasonFirewallSubnetMissingVpceEndpoint is a ViolationReason enum value
 	ViolationReasonFirewallSubnetMissingVpceEndpoint = "FIREWALL_SUBNET_MISSING_VPCE_ENDPOINT"
+
+	// ViolationReasonInvalidNetworkAclEntry is a ViolationReason enum value
+	ViolationReasonInvalidNetworkAclEntry = "INVALID_NETWORK_ACL_ENTRY"
 )
 
 // ViolationReason_Values returns all elements of the ViolationReason enum
@@ -15476,5 +16480,6 @@ func ViolationReason_Values() []string {
 		ViolationReasonResourceMissingDnsFirewall,
 		ViolationReasonRouteHasOutOfScopeEndpoint,
 		ViolationReasonFirewallSubnetMissingVpceEndpoint,
+		ViolationReasonInvalidNetworkAclEntry,
 	}
 }

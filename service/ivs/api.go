@@ -3540,7 +3540,7 @@ func (s *AudioConfiguration) SetTargetBitrate(v int64) *AudioConfiguration {
 type BatchError struct {
 	_ struct{} `type:"structure"`
 
-	// Channel ARN.
+	// ARN of an IVS resource; e.g., channel.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Error code.
