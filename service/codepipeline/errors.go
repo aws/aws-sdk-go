@@ -180,6 +180,13 @@ const (
 	// a Stopped state, or it might no longer be in progress.
 	ErrCodePipelineExecutionNotStoppableException = "PipelineExecutionNotStoppableException"
 
+	// ErrCodePipelineExecutionOutdatedException for service response error code
+	// "PipelineExecutionOutdatedException".
+	//
+	// The specified pipeline execution is outdated and cannot be used as a target
+	// pipeline execution for rollback.
+	ErrCodePipelineExecutionOutdatedException = "PipelineExecutionOutdatedException"
+
 	// ErrCodePipelineNameInUseException for service response error code
 	// "PipelineNameInUseException".
 	//
@@ -229,6 +236,14 @@ const (
 	// The tags limit for a resource has been exceeded.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
 
+	// ErrCodeUnableToRollbackStageException for service response error code
+	// "UnableToRollbackStageException".
+	//
+	// Unable to roll back the stage. The cause might be if the pipeline version
+	// has changed since the target pipeline execution was deployed, the stage is
+	// currently running, or an incorrect target pipeline execution ID was provided.
+	ErrCodeUnableToRollbackStageException = "UnableToRollbackStageException"
+
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
@@ -270,6 +285,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"OutputVariablesSizeExceededException":               newErrorOutputVariablesSizeExceededException,
 	"PipelineExecutionNotFoundException":                 newErrorPipelineExecutionNotFoundException,
 	"PipelineExecutionNotStoppableException":             newErrorPipelineExecutionNotStoppableException,
+	"PipelineExecutionOutdatedException":                 newErrorPipelineExecutionOutdatedException,
 	"PipelineNameInUseException":                         newErrorPipelineNameInUseException,
 	"PipelineNotFoundException":                          newErrorPipelineNotFoundException,
 	"PipelineVersionNotFoundException":                   newErrorPipelineVersionNotFoundException,
@@ -278,6 +294,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"StageNotFoundException":                             newErrorStageNotFoundException,
 	"StageNotRetryableException":                         newErrorStageNotRetryableException,
 	"TooManyTagsException":                               newErrorTooManyTagsException,
+	"UnableToRollbackStageException":                     newErrorUnableToRollbackStageException,
 	"ValidationException":                                newErrorValidationException,
 	"WebhookNotFoundException":                           newErrorWebhookNotFoundException,
 }

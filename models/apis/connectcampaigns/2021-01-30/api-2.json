@@ -5,6 +5,7 @@
     "endpointPrefix":"connect-campaigns",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AmazonConnectCampaignService",
     "serviceId":"ConnectCampaigns",
     "signatureVersion":"v4",
@@ -423,7 +424,8 @@
       "type":"structure",
       "required":["enableAnswerMachineDetection"],
       "members":{
-        "enableAnswerMachineDetection":{"shape":"Boolean"}
+        "enableAnswerMachineDetection":{"shape":"Boolean"},
+        "awaitAnswerMachinePrompt":{"shape":"Boolean"}
       }
     },
     "Arn":{

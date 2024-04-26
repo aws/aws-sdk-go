@@ -1673,6 +1673,7 @@
         {"shape":"UsernameExistsException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"},
         {"shape":"InvalidSmsRoleAccessPolicyException"},
         {"shape":"InvalidSmsRoleTrustRelationshipException"},
         {"shape":"InvalidEmailRoleAccessPolicyException"},

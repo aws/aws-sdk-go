@@ -5,6 +5,7 @@
     "endpointPrefix":"codepipeline",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"CodePipeline",
     "serviceFullName":"AWS CodePipeline",
     "serviceId":"CodePipeline",
@@ -480,6 +481,24 @@
         {"shape":"StageNotFoundException"},
         {"shape":"StageNotRetryableException"},
         {"shape":"NotLatestPipelineExecutionException"}
+      ]
+    },
+    "RollbackStage":{
+      "name":"RollbackStage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RollbackStageInput"},
+      "output":{"shape":"RollbackStageOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineExecutionNotFoundException"},
+        {"shape":"PipelineExecutionOutdatedException"},
+        {"shape":"StageNotFoundException"},
+        {"shape":"UnableToRollbackStageException"}
       ]
     },
     "StartPipelineExecution":{
@@ -1453,6 +1472,13 @@
         "triggerDetail":{"shape":"TriggerDetail"}
       }
     },
+    "ExecutionType":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "ROLLBACK"
+      ]
+    },
     "ExecutorConfiguration":{
       "type":"structure",
       "members":{
@@ -1469,6 +1495,12 @@
     },
     "ExternalExecutionId":{"type":"string"},
     "ExternalExecutionSummary":{"type":"string"},
+    "FailureConditions":{
+      "type":"structure",
+      "members":{
+        "result":{"shape":"Result"}
+      }
+    },
     "FailureDetails":{
       "type":"structure",
       "required":[
@@ -1941,6 +1973,7 @@
       "members":{
         "pipelineName":{"shape":"PipelineName"},
         "maxResults":{"shape":"MaxResults"},
+        "filter":{"shape":"PipelineExecutionFilter"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -2149,7 +2182,15 @@
         "artifactRevisions":{"shape":"ArtifactRevisionList"},
         "variables":{"shape":"ResolvedPipelineVariableList"},
         "trigger":{"shape":"ExecutionTrigger"},
-        "executionMode":{"shape":"ExecutionMode"}
+        "executionMode":{"shape":"ExecutionMode"},
+        "executionType":{"shape":"ExecutionType"},
+        "rollbackMetadata":{"shape":"PipelineRollbackMetadata"}
+      }
+    },
+    "PipelineExecutionFilter":{
+      "type":"structure",
+      "members":{
+        "succeededInStage":{"shape":"SucceededInStageFilter"}
       }
     },
     "PipelineExecutionId":{
@@ -2163,6 +2204,13 @@
       "exception":true
     },
     "PipelineExecutionNotStoppableException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
+    "PipelineExecutionOutdatedException":{
       "type":"structure",
       "members":{
         "message":{"shape":"Message"}
@@ -2187,12 +2235,15 @@
       "members":{
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
         "status":{"shape":"PipelineExecutionStatus"},
+        "statusSummary":{"shape":"PipelineExecutionStatusSummary"},
         "startTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "sourceRevisions":{"shape":"SourceRevisionList"},
         "trigger":{"shape":"ExecutionTrigger"},
         "stopTrigger":{"shape":"StopExecutionTrigger"},
-        "executionMode":{"shape":"ExecutionMode"}
+        "executionMode":{"shape":"ExecutionMode"},
+        "executionType":{"shape":"ExecutionType"},
+        "rollbackMetadata":{"shape":"PipelineRollbackMetadata"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -2229,6 +2280,12 @@
       "members":{
       },
       "exception":true
+    },
+    "PipelineRollbackMetadata":{
+      "type":"structure",
+      "members":{
+        "rollbackTargetPipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
     },
     "PipelineStageDeclarationList":{
       "type":"list",
@@ -2541,6 +2598,10 @@
       },
       "exception":true
     },
+    "Result":{
+      "type":"string",
+      "enum":["ROLLBACK"]
+    },
     "RetryStageExecutionInput":{
       "type":"structure",
       "required":[
@@ -2581,6 +2642,26 @@
       "type":"string",
       "max":1024,
       "pattern":"arn:aws(-[\\w]+)*:iam::[0-9]{12}:role/.*"
+    },
+    "RollbackStageInput":{
+      "type":"structure",
+      "required":[
+        "pipelineName",
+        "stageName",
+        "targetPipelineExecutionId"
+      ],
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "stageName":{"shape":"StageName"},
+        "targetPipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
+    },
+    "RollbackStageOutput":{
+      "type":"structure",
+      "required":["pipelineExecutionId"],
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
     },
     "S3ArtifactLocation":{
       "type":"structure",
@@ -2689,7 +2770,8 @@
       "members":{
         "name":{"shape":"StageName"},
         "blockers":{"shape":"StageBlockerDeclarationList"},
-        "actions":{"shape":"StageActionDeclarationList"}
+        "actions":{"shape":"StageActionDeclarationList"},
+        "onFailure":{"shape":"FailureConditions"}
       }
     },
     "StageExecution":{
@@ -2700,7 +2782,8 @@
       ],
       "members":{
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
-        "status":{"shape":"StageExecutionStatus"}
+        "status":{"shape":"StageExecutionStatus"},
+        "type":{"shape":"ExecutionType"}
       }
     },
     "StageExecutionList":{
@@ -2821,6 +2904,12 @@
       "max":200
     },
     "String":{"type":"string"},
+    "SucceededInStageFilter":{
+      "type":"structure",
+      "members":{
+        "stageName":{"shape":"StageName"}
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -2935,8 +3024,17 @@
         "Webhook",
         "CloudWatchEvent",
         "PutActionRevision",
-        "WebhookV2"
+        "WebhookV2",
+        "ManualRollback",
+        "AutomatedRollback"
       ]
+    },
+    "UnableToRollbackStageException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
     },
     "UntagResourceInput":{
       "type":"structure",

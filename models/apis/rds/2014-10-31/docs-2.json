@@ -470,6 +470,7 @@
         "DBEngineVersion$SupportsParallelQuery": "<p>Indicates whether you can use Aurora parallel query with a specific DB engine version.</p>",
         "DBEngineVersion$SupportsGlobalDatabases": "<p>Indicates whether you can use Aurora global databases with a specific DB engine version.</p>",
         "DBEngineVersion$SupportsBabelfish": "<p>Indicates whether the engine version supports Babelfish for Aurora PostgreSQL.</p>",
+        "DBEngineVersion$SupportsLimitlessDatabase": "<p>Indicates whether the DB engine version supports Aurora Limitless Database.</p>",
         "DBEngineVersion$SupportsIntegrations": "<p>Indicates whether the DB engine version supports zero-ETL integrations with Amazon Redshift.</p>",
         "DBInstance$MultiAZ": "<p>Indicates whether the DB instance is a Multi-AZ deployment. This setting doesn't apply to RDS Custom DB instances.</p>",
         "DBInstance$AutoMinorVersionUpgrade": "<p>Indicates whether minor version patches are applied automatically.</p>",
@@ -729,6 +730,7 @@
         "UpgradeTarget$SupportsParallelQuery": "<p>Indicates whether you can use Aurora parallel query with the target engine version.</p>",
         "UpgradeTarget$SupportsGlobalDatabases": "<p>Indicates whether you can use Aurora global databases with the target engine version.</p>",
         "UpgradeTarget$SupportsBabelfish": "<p>Indicates whether you can use Babelfish for Aurora PostgreSQL with the target engine version.</p>",
+        "UpgradeTarget$SupportsLimitlessDatabase": "<p>Indicates whether the DB engine version supports Aurora Limitless Database.</p>",
         "UpgradeTarget$SupportsLocalWriteForwarding": "<p>Indicates whether the target engine version supports forwarding write operations from reader DB instances to the writer DB instance in the DB cluster. By default, write operations aren't allowed on reader DB instances.</p> <p>Valid for: Aurora DB clusters only</p>",
         "UpgradeTarget$SupportsIntegrations": "<p>Indicates whether the DB engine version supports zero-ETL integrations with Amazon Redshift.</p>"
       }

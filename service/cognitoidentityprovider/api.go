@@ -10920,6 +10920,10 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //   - InternalErrorException
 //     This exception is thrown when Amazon Cognito encounters an internal error.
 //
+//   - LimitExceededException
+//     This exception is thrown when a user exceeds the limit for a requested Amazon
+//     Web Services resource.
+//
 //   - InvalidSmsRoleAccessPolicyException
 //     This exception is returned when the role provided for SMS configuration doesn't
 //     have permission to publish using Amazon SNS.
@@ -14606,8 +14610,9 @@ type AdminGetUserOutput struct {
 	// The date the user was created.
 	UserCreateDate *time.Time `type:"timestamp"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	UserLastModifiedDate *time.Time `type:"timestamp"`
 
 	// The MFA options that are activated for the user. The possible values in this
@@ -17507,8 +17512,9 @@ type AuthEventType struct {
 	// The challenge responses.
 	ChallengeResponses []*ChallengeResponseType `type:"list"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The user context data captured at the time of an event request. This value
@@ -19288,8 +19294,12 @@ func (s *CreateIdentityProviderOutput) SetIdentityProvider(v *IdentityProviderTy
 type CreateResourceServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique resource server identifier for the resource server. This could be
-	// an HTTPS endpoint where the resource server is located, such as https://my-weather-api.example.com.
+	// A unique resource server identifier for the resource server. The identifier
+	// can be an API friendly name like solar-system-data. You can also set an API
+	// URL like https://solar-system-data-api.example.com as your identifier.
+	//
+	// Amazon Cognito represents scopes in the access token in the format $resource-server-identifier/$scope.
+	// Longer scope-identifier strings increase the size of your access tokens.
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
@@ -19642,7 +19652,8 @@ type CreateUserPoolClientInput struct {
 	// ClientName is a required field
 	ClientName *string `min:"1" type:"string" required:"true"`
 
-	// The default redirect URI. Must be in the CallbackURLs list.
+	// The default redirect URI. In app clients with one assigned IdP, replaces
+	// redirect_uri in authentication requests. Must be in the CallbackURLs list.
 	//
 	// A redirect URI must:
 	//
@@ -19652,7 +19663,7 @@ type CreateUserPoolClientInput struct {
 	//
 	//    * Not include a fragment component.
 	//
-	// See OAuth 2.0 - Redirection Endpoint (https://tools.ietf.org/html/rfc6749#section-3.1.2).
+	// For more information, see Default redirect URI (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html#cognito-user-pools-app-idp-settings-about).
 	//
 	// Amazon Cognito requires HTTPS over HTTP except for http://localhost for testing
 	// purposes only.
@@ -21551,7 +21562,12 @@ func (s *DescribeIdentityProviderOutput) SetIdentityProvider(v *IdentityProvider
 type DescribeResourceServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the resource server
+	// A unique resource server identifier for the resource server. The identifier
+	// can be an API friendly name like solar-system-data. You can also set an API
+	// URL like https://solar-system-data-api.example.com as your identifier.
+	//
+	// Amazon Cognito represents scopes in the access token in the format $resource-server-identifier/$scope.
+	// Longer scope-identifier strings increase the size of your access tokens.
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
@@ -22243,8 +22259,9 @@ type DeviceType struct {
 	// The date when the device was last authenticated.
 	DeviceLastAuthenticatedDate *time.Time `type:"timestamp"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	DeviceLastModifiedDate *time.Time `type:"timestamp"`
 }
 
@@ -24451,8 +24468,9 @@ func (s *GroupExistsException) RequestID() string {
 type GroupType struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A string containing the description of the group.
@@ -24461,8 +24479,9 @@ type GroupType struct {
 	// The name of the group.
 	GroupName *string `min:"1" type:"string"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// A non-negative integer value that specifies the precedence of this group
@@ -24597,15 +24616,17 @@ type IdentityProviderType struct {
 	// A mapping of IdP attributes to standard and custom user pool attributes.
 	AttributeMapping map[string]*string `type:"map"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A list of IdP identifiers.
 	IdpIdentifiers []*string `type:"list"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// The scopes, URLs, and identifiers for your external identity provider. The
@@ -28184,8 +28205,9 @@ func (s *PreconditionNotMetException) RequestID() string {
 type ProviderDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The date the provider was last modified.
@@ -28699,7 +28721,12 @@ func (s *ResourceServerScopeType) SetScopeName(v string) *ResourceServerScopeTyp
 type ResourceServerType struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the resource server.
+	// A unique resource server identifier for the resource server. The identifier
+	// can be an API friendly name like solar-system-data. You can also set an API
+	// URL like https://solar-system-data-api.example.com as your identifier.
+	//
+	// Amazon Cognito represents scopes in the access token in the format $resource-server-identifier/$scope.
+	// Longer scope-identifier strings increase the size of your access tokens.
 	Identifier *string `min:"1" type:"string"`
 
 	// The name of the resource server.
@@ -29189,8 +29216,9 @@ type RiskConfigurationType struct {
 	// and the EventAction.
 	CompromisedCredentialsRiskConfiguration *CompromisedCredentialsRiskConfigurationType `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// The configuration to override the risk decision.
@@ -31376,15 +31404,17 @@ type UICustomizationType struct {
 	// String and GoString methods.
 	ClientId *string `min:"1" type:"string" sensitive:"true"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The logo image for the UI customization.
 	ImageUrl *string `type:"string"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// The user pool ID for the user pool.
@@ -32527,7 +32557,12 @@ func (s *UpdateIdentityProviderOutput) SetIdentityProvider(v *IdentityProviderTy
 type UpdateResourceServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the resource server.
+	// A unique resource server identifier for the resource server. The identifier
+	// can be an API friendly name like solar-system-data. You can also set an API
+	// URL like https://solar-system-data-api.example.com as your identifier.
+	//
+	// Amazon Cognito represents scopes in the access token in the format $resource-server-identifier/$scope.
+	// Longer scope-identifier strings increase the size of your access tokens.
 	//
 	// Identifier is a required field
 	Identifier *string `min:"1" type:"string" required:"true"`
@@ -33959,8 +33994,9 @@ type UserImportJobType struct {
 	// The message returned when the user import job is completed.
 	CompletionMessage *string `min:"1" type:"string"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The number of users that couldn't be imported.
@@ -34586,8 +34622,9 @@ type UserPoolClientType struct {
 	// String and GoString methods.
 	ClientSecret *string `min:"1" type:"string" sensitive:"true"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The default redirect URI. Must be in the CallbackURLs list.
@@ -34679,8 +34716,9 @@ type UserPoolClientType struct {
 	// ID tokens are valid for one hour.
 	IdTokenValidity *int64 `min:"1" type:"integer"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// A list of allowed logout URLs for the IdPs.
@@ -34944,8 +34982,9 @@ func (s *UserPoolClientType) SetWriteAttributes(v []*string) *UserPoolClientType
 type UserPoolDescriptionType struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// The ID in a user pool description.
@@ -34954,8 +34993,9 @@ type UserPoolDescriptionType struct {
 	// The Lambda configuration information in a user pool description.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// The name in a user pool description.
@@ -35157,8 +35197,9 @@ type UserPoolType struct {
 	// The attributes that are auto-verified in a user pool.
 	AutoVerifiedAttributes []*string `type:"list" enum:"VerifiedAttributeType"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was created.
+	// The date and time when the item was created. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A custom domain name that you provide to Amazon Cognito. This parameter applies
@@ -35213,8 +35254,9 @@ type UserPoolType struct {
 	// The Lambda triggers associated with the user pool.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
 	// Can be one of the following values:
@@ -35550,8 +35592,9 @@ type UserType struct {
 	// The creation date of the user.
 	UserCreateDate *time.Time `type:"timestamp"`
 
-	// The date and time, in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format, when the item was modified.
+	// The date and time when the item was modified. Amazon Cognito returns this
+	// timestamp in UNIX epoch time format. Your SDK might render the output in
+	// a human-readable format like ISO 8601 or a Java Date object.
 	UserLastModifiedDate *time.Time `type:"timestamp"`
 
 	// The user status. This can be one of the following:

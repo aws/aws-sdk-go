@@ -5,6 +5,7 @@
     "endpointPrefix":"oam",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"CloudWatch Observability Access Manager",
     "serviceId":"OAM",
     "signatureVersion":"v4",
@@ -252,7 +253,7 @@
   "shapes":{
     "Arn":{
       "type":"string",
-      "pattern":"arn:(\\w|-)+:oam:.+:.+:.+.*"
+      "pattern":"^arn:(\\w|-)+:oam:.+:.+:.+"
     },
     "ConflictException":{
       "type":"structure",
@@ -279,6 +280,7 @@
       ],
       "members":{
         "LabelTemplate":{"shape":"LabelTemplate"},
+        "LinkConfiguration":{"shape":"LinkConfiguration"},
         "ResourceTypes":{"shape":"ResourceTypesInput"},
         "SinkIdentifier":{"shape":"ResourceIdentifier"},
         "Tags":{"shape":"TagMapInput"}
@@ -291,6 +293,7 @@
         "Id":{"shape":"String"},
         "Label":{"shape":"String"},
         "LabelTemplate":{"shape":"String"},
+        "LinkConfiguration":{"shape":"LinkConfiguration"},
         "ResourceTypes":{"shape":"ResourceTypesOutput"},
         "SinkArn":{"shape":"String"},
         "Tags":{"shape":"TagMapOutput"}
@@ -351,6 +354,7 @@
         "Id":{"shape":"String"},
         "Label":{"shape":"String"},
         "LabelTemplate":{"shape":"String"},
+        "LinkConfiguration":{"shape":"LinkConfiguration"},
         "ResourceTypes":{"shape":"ResourceTypesOutput"},
         "SinkArn":{"shape":"String"},
         "Tags":{"shape":"TagMapOutput"}
@@ -382,9 +386,9 @@
     "GetSinkPolicyOutput":{
       "type":"structure",
       "members":{
+        "Policy":{"shape":"String"},
         "SinkArn":{"shape":"String"},
-        "SinkId":{"shape":"String"},
-        "Policy":{"shape":"String"}
+        "SinkId":{"shape":"String"}
       }
     },
     "InternalServiceFault":{
@@ -404,12 +408,12 @@
     "InvalidParameterException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"},
         "amznErrorType":{
           "shape":"String",
           "location":"header",
           "locationName":"x-amzn-ErrorType"
-        }
+        },
+        "message":{"shape":"String"}
       },
       "error":{
         "httpStatusCode":400,
@@ -421,6 +425,13 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "LinkConfiguration":{
+      "type":"structure",
+      "members":{
+        "LogGroupConfiguration":{"shape":"LogGroupConfiguration"},
+        "MetricConfiguration":{"shape":"MetricConfiguration"}
+      }
     },
     "ListAttachedLinksInput":{
       "type":"structure",
@@ -542,15 +553,39 @@
         "Tags":{"shape":"TagMapOutput"}
       }
     },
+    "LogGroupConfiguration":{
+      "type":"structure",
+      "required":["Filter"],
+      "members":{
+        "Filter":{"shape":"LogsFilter"}
+      }
+    },
+    "LogsFilter":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
+    "MetricConfiguration":{
+      "type":"structure",
+      "required":["Filter"],
+      "members":{
+        "Filter":{"shape":"MetricsFilter"}
+      }
+    },
+    "MetricsFilter":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
     "MissingRequiredParameterException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"String"},
         "amznErrorType":{
           "shape":"String",
           "location":"header",
           "locationName":"x-amzn-ErrorType"
-        }
+        },
+        "message":{"shape":"String"}
       },
       "error":{
         "httpStatusCode":400,
@@ -562,25 +597,25 @@
     "PutSinkPolicyInput":{
       "type":"structure",
       "required":[
-        "SinkIdentifier",
-        "Policy"
+        "Policy",
+        "SinkIdentifier"
       ],
       "members":{
-        "SinkIdentifier":{"shape":"ResourceIdentifier"},
-        "Policy":{"shape":"SinkPolicy"}
+        "Policy":{"shape":"SinkPolicy"},
+        "SinkIdentifier":{"shape":"ResourceIdentifier"}
       }
     },
     "PutSinkPolicyOutput":{
       "type":"structure",
       "members":{
+        "Policy":{"shape":"String"},
         "SinkArn":{"shape":"String"},
-        "SinkId":{"shape":"String"},
-        "Policy":{"shape":"String"}
+        "SinkId":{"shape":"String"}
       }
     },
     "ResourceIdentifier":{
       "type":"string",
-      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_:\\.\\-\\/]{0,2047}"
+      "pattern":"^[a-zA-Z0-9][a-zA-Z0-9_:\\.\\-\\/]{0,2047}$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -636,7 +671,7 @@
     },
     "SinkName":{
       "type":"string",
-      "pattern":"[a-zA-Z0-9_\\.\\-]{1,255}"
+      "pattern":"^[a-zA-Z0-9_\\.\\-]{1,255}$"
     },
     "SinkPolicy":{"type":"string"},
     "String":{"type":"string"},
@@ -729,6 +764,7 @@
       ],
       "members":{
         "Identifier":{"shape":"ResourceIdentifier"},
+        "LinkConfiguration":{"shape":"LinkConfiguration"},
         "ResourceTypes":{"shape":"ResourceTypesInput"}
       }
     },
@@ -739,6 +775,7 @@
         "Id":{"shape":"String"},
         "Label":{"shape":"String"},
         "LabelTemplate":{"shape":"LabelTemplate"},
+        "LinkConfiguration":{"shape":"LinkConfiguration"},
         "ResourceTypes":{"shape":"ResourceTypesOutput"},
         "SinkArn":{"shape":"String"},
         "Tags":{"shape":"TagMapOutput"}

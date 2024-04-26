@@ -2243,6 +2243,9 @@ func (s *AgentlessDialerConfig) SetDialingCapacity(v float64) *AgentlessDialerCo
 type AnswerMachineDetectionConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Enable or disable await answer machine prompt
+	AwaitAnswerMachinePrompt *bool `locationName:"awaitAnswerMachinePrompt" type:"boolean"`
+
 	// Enable or disable answering machine detection
 	//
 	// EnableAnswerMachineDetection is a required field
@@ -2278,6 +2281,12 @@ func (s *AnswerMachineDetectionConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAwaitAnswerMachinePrompt sets the AwaitAnswerMachinePrompt field's value.
+func (s *AnswerMachineDetectionConfig) SetAwaitAnswerMachinePrompt(v bool) *AnswerMachineDetectionConfig {
+	s.AwaitAnswerMachinePrompt = &v
+	return s
 }
 
 // SetEnableAnswerMachineDetection sets the EnableAnswerMachineDetection field's value.

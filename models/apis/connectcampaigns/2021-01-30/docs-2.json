@@ -80,7 +80,8 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "AnswerMachineDetectionConfig$enableAnswerMachineDetection": "<p>Enable or disable answering machine detection</p>"
+        "AnswerMachineDetectionConfig$enableAnswerMachineDetection": "<p>Enable or disable answering machine detection</p>",
+        "AnswerMachineDetectionConfig$awaitAnswerMachinePrompt": "<p>Enable or disable await answer machine prompt</p>"
       }
     },
     "Campaign": {

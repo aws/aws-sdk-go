@@ -21496,6 +21496,9 @@ type CreateCustomDBEngineVersionOutput struct {
 	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
+	// Indicates whether the DB engine version supports Aurora Limitless Database.
+	SupportsLimitlessDatabase *bool `type:"boolean"`
+
 	// Indicates whether the DB engine version supports forwarding write operations
 	// from reader DB instances to the writer DB instance in the DB cluster. By
 	// default, write operations aren't allowed on reader DB instances.
@@ -21700,6 +21703,12 @@ func (s *CreateCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *
 // SetSupportsIntegrations sets the SupportsIntegrations field's value.
 func (s *CreateCustomDBEngineVersionOutput) SetSupportsIntegrations(v bool) *CreateCustomDBEngineVersionOutput {
 	s.SupportsIntegrations = &v
+	return s
+}
+
+// SetSupportsLimitlessDatabase sets the SupportsLimitlessDatabase field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsLimitlessDatabase(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsLimitlessDatabase = &v
 	return s
 }
 
@@ -30136,6 +30145,9 @@ type DBEngineVersion struct {
 	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
+	// Indicates whether the DB engine version supports Aurora Limitless Database.
+	SupportsLimitlessDatabase *bool `type:"boolean"`
+
 	// Indicates whether the DB engine version supports forwarding write operations
 	// from reader DB instances to the writer DB instance in the DB cluster. By
 	// default, write operations aren't allowed on reader DB instances.
@@ -30340,6 +30352,12 @@ func (s *DBEngineVersion) SetSupportsGlobalDatabases(v bool) *DBEngineVersion {
 // SetSupportsIntegrations sets the SupportsIntegrations field's value.
 func (s *DBEngineVersion) SetSupportsIntegrations(v bool) *DBEngineVersion {
 	s.SupportsIntegrations = &v
+	return s
+}
+
+// SetSupportsLimitlessDatabase sets the SupportsLimitlessDatabase field's value.
+func (s *DBEngineVersion) SetSupportsLimitlessDatabase(v bool) *DBEngineVersion {
+	s.SupportsLimitlessDatabase = &v
 	return s
 }
 
@@ -34054,6 +34072,9 @@ type DeleteCustomDBEngineVersionOutput struct {
 	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
+	// Indicates whether the DB engine version supports Aurora Limitless Database.
+	SupportsLimitlessDatabase *bool `type:"boolean"`
+
 	// Indicates whether the DB engine version supports forwarding write operations
 	// from reader DB instances to the writer DB instance in the DB cluster. By
 	// default, write operations aren't allowed on reader DB instances.
@@ -34258,6 +34279,12 @@ func (s *DeleteCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *
 // SetSupportsIntegrations sets the SupportsIntegrations field's value.
 func (s *DeleteCustomDBEngineVersionOutput) SetSupportsIntegrations(v bool) *DeleteCustomDBEngineVersionOutput {
 	s.SupportsIntegrations = &v
+	return s
+}
+
+// SetSupportsLimitlessDatabase sets the SupportsLimitlessDatabase field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsLimitlessDatabase(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsLimitlessDatabase = &v
 	return s
 }
 
@@ -46467,6 +46494,9 @@ type ModifyCustomDBEngineVersionOutput struct {
 	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
+	// Indicates whether the DB engine version supports Aurora Limitless Database.
+	SupportsLimitlessDatabase *bool `type:"boolean"`
+
 	// Indicates whether the DB engine version supports forwarding write operations
 	// from reader DB instances to the writer DB instance in the DB cluster. By
 	// default, write operations aren't allowed on reader DB instances.
@@ -46671,6 +46701,12 @@ func (s *ModifyCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *
 // SetSupportsIntegrations sets the SupportsIntegrations field's value.
 func (s *ModifyCustomDBEngineVersionOutput) SetSupportsIntegrations(v bool) *ModifyCustomDBEngineVersionOutput {
 	s.SupportsIntegrations = &v
+	return s
+}
+
+// SetSupportsLimitlessDatabase sets the SupportsLimitlessDatabase field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsLimitlessDatabase(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsLimitlessDatabase = &v
 	return s
 }
 
@@ -62333,6 +62369,9 @@ type UpgradeTarget struct {
 	// Amazon Redshift.
 	SupportsIntegrations *bool `type:"boolean"`
 
+	// Indicates whether the DB engine version supports Aurora Limitless Database.
+	SupportsLimitlessDatabase *bool `type:"boolean"`
+
 	// Indicates whether the target engine version supports forwarding write operations
 	// from reader DB instances to the writer DB instance in the DB cluster. By
 	// default, write operations aren't allowed on reader DB instances.
@@ -62414,6 +62453,12 @@ func (s *UpgradeTarget) SetSupportsGlobalDatabases(v bool) *UpgradeTarget {
 // SetSupportsIntegrations sets the SupportsIntegrations field's value.
 func (s *UpgradeTarget) SetSupportsIntegrations(v bool) *UpgradeTarget {
 	s.SupportsIntegrations = &v
+	return s
+}
+
+// SetSupportsLimitlessDatabase sets the SupportsLimitlessDatabase field's value.
+func (s *UpgradeTarget) SetSupportsLimitlessDatabase(v bool) *UpgradeTarget {
+	s.SupportsLimitlessDatabase = &v
 	return s
 }
 
