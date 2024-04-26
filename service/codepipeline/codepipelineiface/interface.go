@@ -210,6 +210,10 @@ type CodePipelineAPI interface {
 	RetryStageExecutionWithContext(aws.Context, *codepipeline.RetryStageExecutionInput, ...request.Option) (*codepipeline.RetryStageExecutionOutput, error)
 	RetryStageExecutionRequest(*codepipeline.RetryStageExecutionInput) (*request.Request, *codepipeline.RetryStageExecutionOutput)
 
+	RollbackStage(*codepipeline.RollbackStageInput) (*codepipeline.RollbackStageOutput, error)
+	RollbackStageWithContext(aws.Context, *codepipeline.RollbackStageInput, ...request.Option) (*codepipeline.RollbackStageOutput, error)
+	RollbackStageRequest(*codepipeline.RollbackStageInput) (*request.Request, *codepipeline.RollbackStageOutput)
+
 	StartPipelineExecution(*codepipeline.StartPipelineExecutionInput) (*codepipeline.StartPipelineExecutionOutput, error)
 	StartPipelineExecutionWithContext(aws.Context, *codepipeline.StartPipelineExecutionInput, ...request.Option) (*codepipeline.StartPipelineExecutionOutput, error)
 	StartPipelineExecutionRequest(*codepipeline.StartPipelineExecutionInput) (*request.Request, *codepipeline.StartPipelineExecutionOutput)

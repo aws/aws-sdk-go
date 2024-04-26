@@ -3307,6 +3307,108 @@ func (c *CodePipeline) RetryStageExecutionWithContext(ctx aws.Context, input *Re
 	return out, req.Send()
 }
 
+const opRollbackStage = "RollbackStage"
+
+// RollbackStageRequest generates a "aws/request.Request" representing the
+// client's request for the RollbackStage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RollbackStage for more information on using the RollbackStage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the RollbackStageRequest method.
+//	req, resp := client.RollbackStageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RollbackStage
+func (c *CodePipeline) RollbackStageRequest(input *RollbackStageInput) (req *request.Request, output *RollbackStageOutput) {
+	op := &request.Operation{
+		Name:       opRollbackStage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RollbackStageInput{}
+	}
+
+	output = &RollbackStageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RollbackStage API operation for AWS CodePipeline.
+//
+// Rolls back a stage execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation RollbackStage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ValidationException
+//     The validation was specified in an invalid format.
+//
+//   - ConflictException
+//     Your request cannot be handled because the pipeline is busy handling ongoing
+//     activities. Try again later.
+//
+//   - PipelineNotFoundException
+//     The pipeline was specified in an invalid format or cannot be found.
+//
+//   - PipelineExecutionNotFoundException
+//     The pipeline execution was specified in an invalid format or cannot be found,
+//     or an execution ID does not belong to the specified pipeline.
+//
+//   - PipelineExecutionOutdatedException
+//     The specified pipeline execution is outdated and cannot be used as a target
+//     pipeline execution for rollback.
+//
+//   - StageNotFoundException
+//     The stage was specified in an invalid format or cannot be found.
+//
+//   - UnableToRollbackStageException
+//     Unable to roll back the stage. The cause might be if the pipeline version
+//     has changed since the target pipeline execution was deployed, the stage is
+//     currently running, or an incorrect target pipeline execution ID was provided.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/RollbackStage
+func (c *CodePipeline) RollbackStage(input *RollbackStageInput) (*RollbackStageOutput, error) {
+	req, out := c.RollbackStageRequest(input)
+	return out, req.Send()
+}
+
+// RollbackStageWithContext is the same as RollbackStage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RollbackStage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodePipeline) RollbackStageWithContext(ctx aws.Context, input *RollbackStageInput, opts ...request.Option) (*RollbackStageOutput, error) {
+	req, out := c.RollbackStageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartPipelineExecution = "StartPipelineExecution"
 
 // StartPipelineExecutionRequest generates a "aws/request.Request" representing the
@@ -8422,6 +8524,40 @@ func (s *ExecutorConfiguration) SetLambdaExecutorConfiguration(v *LambdaExecutor
 	return s
 }
 
+// The configuration that specifies the result, such as rollback, to occur upon
+// stage failure.
+type FailureConditions struct {
+	_ struct{} `type:"structure"`
+
+	// The specified result for when the failure conditions are met, such as rolling
+	// back the stage.
+	Result *string `locationName:"result" type:"string" enum:"Result"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailureConditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailureConditions) GoString() string {
+	return s.String()
+}
+
+// SetResult sets the Result field's value.
+func (s *FailureConditions) SetResult(v string) *FailureConditions {
+	s.Result = &v
+	return s
+}
+
 // Represents information about failure details.
 type FailureDetails struct {
 	_ struct{} `type:"structure"`
@@ -11319,6 +11455,9 @@ func (s *ListActionTypesOutput) SetNextToken(v string) *ListActionTypesOutput {
 type ListPipelineExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The pipeline execution to filter on.
+	Filter *PipelineExecutionFilter `locationName:"filter" type:"structure"`
+
 	// The maximum number of results to return in a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value. Pipeline
 	// history is limited to the most recent 12 months, based on pipeline execution
@@ -11368,11 +11507,22 @@ func (s *ListPipelineExecutionsInput) Validate() error {
 	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListPipelineExecutionsInput) SetFilter(v *PipelineExecutionFilter) *ListPipelineExecutionsInput {
+	s.Filter = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -12349,6 +12499,9 @@ type PipelineExecution struct {
 	// default mode is SUPERSEDED.
 	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
 
+	// The type of the pipeline execution.
+	ExecutionType *string `locationName:"executionType" type:"string" enum:"ExecutionType"`
+
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
@@ -12357,6 +12510,9 @@ type PipelineExecution struct {
 
 	// The version number of the pipeline with the specified pipeline execution.
 	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
+
+	// The metadata about the execution pertaining to stage rollback.
+	RollbackMetadata *PipelineRollbackMetadata `locationName:"rollbackMetadata" type:"structure"`
 
 	// The status of the pipeline execution.
 	//
@@ -12423,6 +12579,12 @@ func (s *PipelineExecution) SetExecutionMode(v string) *PipelineExecution {
 	return s
 }
 
+// SetExecutionType sets the ExecutionType field's value.
+func (s *PipelineExecution) SetExecutionType(v string) *PipelineExecution {
+	s.ExecutionType = &v
+	return s
+}
+
 // SetPipelineExecutionId sets the PipelineExecutionId field's value.
 func (s *PipelineExecution) SetPipelineExecutionId(v string) *PipelineExecution {
 	s.PipelineExecutionId = &v
@@ -12438,6 +12600,12 @@ func (s *PipelineExecution) SetPipelineName(v string) *PipelineExecution {
 // SetPipelineVersion sets the PipelineVersion field's value.
 func (s *PipelineExecution) SetPipelineVersion(v int64) *PipelineExecution {
 	s.PipelineVersion = &v
+	return s
+}
+
+// SetRollbackMetadata sets the RollbackMetadata field's value.
+func (s *PipelineExecution) SetRollbackMetadata(v *PipelineRollbackMetadata) *PipelineExecution {
+	s.RollbackMetadata = v
 	return s
 }
 
@@ -12462,6 +12630,54 @@ func (s *PipelineExecution) SetTrigger(v *ExecutionTrigger) *PipelineExecution {
 // SetVariables sets the Variables field's value.
 func (s *PipelineExecution) SetVariables(v []*ResolvedPipelineVariable) *PipelineExecution {
 	s.Variables = v
+	return s
+}
+
+// The pipeline execution to filter on.
+type PipelineExecutionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filter for pipeline executions where the stage was successful in the current
+	// pipeline version.
+	SucceededInStage *SucceededInStageFilter `locationName:"succeededInStage" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineExecutionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineExecutionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PipelineExecutionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PipelineExecutionFilter"}
+	if s.SucceededInStage != nil {
+		if err := s.SucceededInStage.Validate(); err != nil {
+			invalidParams.AddNested("SucceededInStage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSucceededInStage sets the SucceededInStage field's value.
+func (s *PipelineExecutionFilter) SetSucceededInStage(v *SucceededInStageFilter) *PipelineExecutionFilter {
+	s.SucceededInStage = v
 	return s
 }
 
@@ -12595,6 +12811,71 @@ func (s *PipelineExecutionNotStoppableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The specified pipeline execution is outdated and cannot be used as a target
+// pipeline execution for rollback.
+type PipelineExecutionOutdatedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineExecutionOutdatedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineExecutionOutdatedException) GoString() string {
+	return s.String()
+}
+
+func newErrorPipelineExecutionOutdatedException(v protocol.ResponseMetadata) error {
+	return &PipelineExecutionOutdatedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *PipelineExecutionOutdatedException) Code() string {
+	return "PipelineExecutionOutdatedException"
+}
+
+// Message returns the exception's message.
+func (s *PipelineExecutionOutdatedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *PipelineExecutionOutdatedException) OrigErr() error {
+	return nil
+}
+
+func (s *PipelineExecutionOutdatedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *PipelineExecutionOutdatedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *PipelineExecutionOutdatedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Summary information about a pipeline execution.
 type PipelineExecutionSummary struct {
 	_ struct{} `type:"structure"`
@@ -12603,12 +12884,18 @@ type PipelineExecutionSummary struct {
 	// default mode is SUPERSEDED.
 	ExecutionMode *string `locationName:"executionMode" type:"string" enum:"ExecutionMode"`
 
+	// Type of the pipeline execution.
+	ExecutionType *string `locationName:"executionType" type:"string" enum:"ExecutionType"`
+
 	// The date and time of the last change to the pipeline execution, in timestamp
 	// format.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The ID of the pipeline execution.
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
+
+	// The metadata for the stage execution to be rolled back.
+	RollbackMetadata *PipelineRollbackMetadata `locationName:"rollbackMetadata" type:"structure"`
 
 	// A list of the source artifact revisions that initiated a pipeline execution.
 	SourceRevisions []*SourceRevision `locationName:"sourceRevisions" type:"list"`
@@ -12637,6 +12924,9 @@ type PipelineExecutionSummary struct {
 	//
 	//    * Failed: The pipeline execution was not completed successfully.
 	Status *string `locationName:"status" type:"string" enum:"PipelineExecutionStatus"`
+
+	// Status summary for the pipeline.
+	StatusSummary *string `locationName:"statusSummary" type:"string"`
 
 	// The interaction that stopped a pipeline execution.
 	StopTrigger *StopExecutionTrigger `locationName:"stopTrigger" type:"structure"`
@@ -12670,6 +12960,12 @@ func (s *PipelineExecutionSummary) SetExecutionMode(v string) *PipelineExecution
 	return s
 }
 
+// SetExecutionType sets the ExecutionType field's value.
+func (s *PipelineExecutionSummary) SetExecutionType(v string) *PipelineExecutionSummary {
+	s.ExecutionType = &v
+	return s
+}
+
 // SetLastUpdateTime sets the LastUpdateTime field's value.
 func (s *PipelineExecutionSummary) SetLastUpdateTime(v time.Time) *PipelineExecutionSummary {
 	s.LastUpdateTime = &v
@@ -12679,6 +12975,12 @@ func (s *PipelineExecutionSummary) SetLastUpdateTime(v time.Time) *PipelineExecu
 // SetPipelineExecutionId sets the PipelineExecutionId field's value.
 func (s *PipelineExecutionSummary) SetPipelineExecutionId(v string) *PipelineExecutionSummary {
 	s.PipelineExecutionId = &v
+	return s
+}
+
+// SetRollbackMetadata sets the RollbackMetadata field's value.
+func (s *PipelineExecutionSummary) SetRollbackMetadata(v *PipelineRollbackMetadata) *PipelineExecutionSummary {
+	s.RollbackMetadata = v
 	return s
 }
 
@@ -12697,6 +12999,12 @@ func (s *PipelineExecutionSummary) SetStartTime(v time.Time) *PipelineExecutionS
 // SetStatus sets the Status field's value.
 func (s *PipelineExecutionSummary) SetStatus(v string) *PipelineExecutionSummary {
 	s.Status = &v
+	return s
+}
+
+// SetStatusSummary sets the StatusSummary field's value.
+func (s *PipelineExecutionSummary) SetStatusSummary(v string) *PipelineExecutionSummary {
+	s.StatusSummary = &v
 	return s
 }
 
@@ -12903,6 +13211,38 @@ func (s *PipelineNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *PipelineNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The metadata for the stage execution to be rolled back.
+type PipelineRollbackMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The pipeline execution ID to which the stage will be rolled back.
+	RollbackTargetPipelineExecutionId *string `locationName:"rollbackTargetPipelineExecutionId" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineRollbackMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PipelineRollbackMetadata) GoString() string {
+	return s.String()
+}
+
+// SetRollbackTargetPipelineExecutionId sets the RollbackTargetPipelineExecutionId field's value.
+func (s *PipelineRollbackMetadata) SetRollbackTargetPipelineExecutionId(v string) *PipelineRollbackMetadata {
+	s.RollbackTargetPipelineExecutionId = &v
+	return s
 }
 
 // Returns a summary of a pipeline.
@@ -14711,6 +15051,120 @@ func (s *RetryStageExecutionOutput) SetPipelineExecutionId(v string) *RetryStage
 	return s
 }
 
+type RollbackStageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the pipeline for which the stage will be rolled back.
+	//
+	// PipelineName is a required field
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
+
+	// The name of the stage in the pipeline to be rolled back.
+	//
+	// StageName is a required field
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
+
+	// The pipeline execution ID for the stage to be rolled back to.
+	//
+	// TargetPipelineExecutionId is a required field
+	TargetPipelineExecutionId *string `locationName:"targetPipelineExecutionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RollbackStageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RollbackStageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RollbackStageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RollbackStageInput"}
+	if s.PipelineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineName"))
+	}
+	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
+	}
+	if s.StageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StageName"))
+	}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+	if s.TargetPipelineExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetPipelineExecutionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPipelineName sets the PipelineName field's value.
+func (s *RollbackStageInput) SetPipelineName(v string) *RollbackStageInput {
+	s.PipelineName = &v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *RollbackStageInput) SetStageName(v string) *RollbackStageInput {
+	s.StageName = &v
+	return s
+}
+
+// SetTargetPipelineExecutionId sets the TargetPipelineExecutionId field's value.
+func (s *RollbackStageInput) SetTargetPipelineExecutionId(v string) *RollbackStageInput {
+	s.TargetPipelineExecutionId = &v
+	return s
+}
+
+type RollbackStageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The execution ID of the pipeline execution for the stage that has been rolled
+	// back.
+	//
+	// PipelineExecutionId is a required field
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RollbackStageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RollbackStageOutput) GoString() string {
+	return s.String()
+}
+
+// SetPipelineExecutionId sets the PipelineExecutionId field's value.
+func (s *RollbackStageOutput) SetPipelineExecutionId(v string) *RollbackStageOutput {
+	s.PipelineExecutionId = &v
+	return s
+}
+
 // The location of the S3 bucket that contains a revision.
 type S3ArtifactLocation struct {
 	_ struct{} `type:"structure"`
@@ -14999,6 +15453,11 @@ type StageDeclaration struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The method to use when a stage has not completed successfully. For example,
+	// configuring this field for rollback will roll back a failed stage automatically
+	// to the last successful pipeline execution in the stage.
+	OnFailure *FailureConditions `locationName:"onFailure" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15076,6 +15535,12 @@ func (s *StageDeclaration) SetName(v string) *StageDeclaration {
 	return s
 }
 
+// SetOnFailure sets the OnFailure field's value.
+func (s *StageDeclaration) SetOnFailure(v *FailureConditions) *StageDeclaration {
+	s.OnFailure = v
+	return s
+}
+
 // Represents information about the run of a stage.
 type StageExecution struct {
 	_ struct{} `type:"structure"`
@@ -15093,6 +15558,10 @@ type StageExecution struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
+
+	// The type of pipeline execution for the stage, such as a rollback pipeline
+	// execution.
+	Type *string `locationName:"type" type:"string" enum:"ExecutionType"`
 }
 
 // String returns the string representation.
@@ -15122,6 +15591,12 @@ func (s *StageExecution) SetPipelineExecutionId(v string) *StageExecution {
 // SetStatus sets the Status field's value.
 func (s *StageExecution) SetStatus(v string) *StageExecution {
 	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StageExecution) SetType(v string) *StageExecution {
+	s.Type = &v
 	return s
 }
 
@@ -15620,6 +16095,53 @@ func (s *StopPipelineExecutionOutput) SetPipelineExecutionId(v string) *StopPipe
 	return s
 }
 
+// Filter for pipeline executions that have successfully completed the stage
+// in the current pipeline version.
+type SucceededInStageFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the stage for filtering for pipeline executions where the stage
+	// was successful in the current pipeline version.
+	StageName *string `locationName:"stageName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SucceededInStageFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SucceededInStageFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SucceededInStageFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SucceededInStageFilter"}
+	if s.StageName != nil && len(*s.StageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStageName sets the StageName field's value.
+func (s *SucceededInStageFilter) SetStageName(v string) *SucceededInStageFilter {
+	s.StageName = &v
+	return s
+}
+
 // A tag is a key-value pair that is used to manage the resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -16107,6 +16629,72 @@ func (s *TransitionState) SetLastChangedAt(v time.Time) *TransitionState {
 func (s *TransitionState) SetLastChangedBy(v string) *TransitionState {
 	s.LastChangedBy = &v
 	return s
+}
+
+// Unable to roll back the stage. The cause might be if the pipeline version
+// has changed since the target pipeline execution was deployed, the stage is
+// currently running, or an incorrect target pipeline execution ID was provided.
+type UnableToRollbackStageException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnableToRollbackStageException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UnableToRollbackStageException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnableToRollbackStageException(v protocol.ResponseMetadata) error {
+	return &UnableToRollbackStageException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnableToRollbackStageException) Code() string {
+	return "UnableToRollbackStageException"
+}
+
+// Message returns the exception's message.
+func (s *UnableToRollbackStageException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnableToRollbackStageException) OrigErr() error {
+	return nil
+}
+
+func (s *UnableToRollbackStageException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnableToRollbackStageException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnableToRollbackStageException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -16949,6 +17537,22 @@ func ExecutionMode_Values() []string {
 }
 
 const (
+	// ExecutionTypeStandard is a ExecutionType enum value
+	ExecutionTypeStandard = "STANDARD"
+
+	// ExecutionTypeRollback is a ExecutionType enum value
+	ExecutionTypeRollback = "ROLLBACK"
+)
+
+// ExecutionType_Values returns all elements of the ExecutionType enum
+func ExecutionType_Values() []string {
+	return []string{
+		ExecutionTypeStandard,
+		ExecutionTypeRollback,
+	}
+}
+
+const (
 	// ExecutorTypeJobWorker is a ExecutorType enum value
 	ExecutorTypeJobWorker = "JobWorker"
 
@@ -17117,6 +17721,18 @@ func PipelineType_Values() []string {
 }
 
 const (
+	// ResultRollback is a Result enum value
+	ResultRollback = "ROLLBACK"
+)
+
+// Result_Values returns all elements of the Result enum
+func Result_Values() []string {
+	return []string{
+		ResultRollback,
+	}
+}
+
+const (
 	// SourceRevisionTypeCommitId is a SourceRevisionType enum value
 	SourceRevisionTypeCommitId = "COMMIT_ID"
 
@@ -17237,6 +17853,12 @@ const (
 
 	// TriggerTypeWebhookV2 is a TriggerType enum value
 	TriggerTypeWebhookV2 = "WebhookV2"
+
+	// TriggerTypeManualRollback is a TriggerType enum value
+	TriggerTypeManualRollback = "ManualRollback"
+
+	// TriggerTypeAutomatedRollback is a TriggerType enum value
+	TriggerTypeAutomatedRollback = "AutomatedRollback"
 )
 
 // TriggerType_Values returns all elements of the TriggerType enum
@@ -17249,6 +17871,8 @@ func TriggerType_Values() []string {
 		TriggerTypeCloudWatchEvent,
 		TriggerTypePutActionRevision,
 		TriggerTypeWebhookV2,
+		TriggerTypeManualRollback,
+		TriggerTypeAutomatedRollback,
 	}
 }
 

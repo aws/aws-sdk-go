@@ -4673,6 +4673,7 @@
         "TagList":{"shape":"TagList"},
         "SupportsBabelfish":{"shape":"Boolean"},
         "CustomDBEngineVersionManifest":{"shape":"CustomDBEngineVersionManifest"},
+        "SupportsLimitlessDatabase":{"shape":"Boolean"},
         "SupportsCertificateRotationWithoutRestart":{"shape":"BooleanOptional"},
         "SupportedCACertificateIdentifiers":{"shape":"CACertificateIdentifiersList"},
         "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"},
@@ -10125,6 +10126,7 @@
         "SupportsParallelQuery":{"shape":"BooleanOptional"},
         "SupportsGlobalDatabases":{"shape":"BooleanOptional"},
         "SupportsBabelfish":{"shape":"BooleanOptional"},
+        "SupportsLimitlessDatabase":{"shape":"BooleanOptional"},
         "SupportsLocalWriteForwarding":{"shape":"BooleanOptional"},
         "SupportsIntegrations":{"shape":"BooleanOptional"}
       }

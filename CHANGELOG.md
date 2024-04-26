@@ -1,3 +1,18 @@
+Release v1.51.30 (2024-04-26)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * Add ability to manually and automatically roll back a pipeline stage to a previously successful execution.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/connectcampaigns`: Updates service API and documentation
+* `service/entitlement.marketplace`: Updates service API
+* `service/oam`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * SupportsLimitlessDatabase field added to describe-db-engine-versions to indicate whether the DB engine version supports Aurora Limitless Database.
+* `service/support`: Updates service API
+  * Releasing minor endpoint updates.
+
 Release v1.51.29 (2024-04-25)
 ===
 

@@ -56,7 +56,10 @@ func (c *OAM) CreateLinkRequest(input *CreateLinkInput) (req *request.Request, o
 // CreateLink API operation for CloudWatch Observability Access Manager.
 //
 // Creates a link between a source account and a sink that you have created
-// in a monitoring account.
+// in a monitoring account. After the link is created, data is sent from the
+// source account to the monitoring account. When you create a link, you can
+// optionally specify filters that specify which metric namespaces and which
+// log groups are shared from the source account to the monitoring account.
 //
 // Before you create a link, you must create a sink in the monitoring account
 // and create a sink policy in that account. The sink policy must permit the
@@ -167,8 +170,8 @@ func (c *OAM) CreateSinkRequest(input *CreateSinkInput) (req *request.Request, o
 // After you create a sink, you must create a sink policy that allows source
 // accounts to attach to it. For more information, see PutSinkPolicy (https://docs.aws.amazon.com/OAM/latest/APIReference/API_PutSinkPolicy.html).
 //
-// Each account can contain one sink. If you delete a sink, you can then create
-// a new one in that account.
+// Each account can contain one sink per Region. If you delete a sink, you can
+// then create a new one in that Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1542,6 +1545,10 @@ func (c *OAM) UpdateLinkRequest(input *UpdateLinkInput) (req *request.Request, o
 // account to its linked monitoring account sink. You can't change the sink
 // or change the monitoring account with this operation.
 //
+// When you update a link, you can optionally specify filters that specify which
+// metric namespaces and which log groups are shared from the source account
+// to the monitoring account.
+//
 // To update the list of tags associated with the sink, use TagResource (https://docs.aws.amazon.com/OAM/latest/APIReference/API_TagResource.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1672,6 +1679,11 @@ type CreateLinkInput struct {
 	// LabelTemplate is a required field
 	LabelTemplate *string `min:"1" type:"string" required:"true"`
 
+	// Use this structure to optionally create filters that specify that only some
+	// metric namespaces or log groups are to be shared from the source account
+	// to the monitoring account.
+	LinkConfiguration *LinkConfiguration `type:"structure"`
+
 	// An array of strings that define which types of data that the source account
 	// shares with the monitoring account.
 	//
@@ -1733,6 +1745,11 @@ func (s *CreateLinkInput) Validate() error {
 	if s.SinkIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("SinkIdentifier"))
 	}
+	if s.LinkConfiguration != nil {
+		if err := s.LinkConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LinkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1743,6 +1760,12 @@ func (s *CreateLinkInput) Validate() error {
 // SetLabelTemplate sets the LabelTemplate field's value.
 func (s *CreateLinkInput) SetLabelTemplate(v string) *CreateLinkInput {
 	s.LabelTemplate = &v
+	return s
+}
+
+// SetLinkConfiguration sets the LinkConfiguration field's value.
+func (s *CreateLinkInput) SetLinkConfiguration(v *LinkConfiguration) *CreateLinkInput {
+	s.LinkConfiguration = v
 	return s
 }
 
@@ -1780,6 +1803,10 @@ type CreateLinkOutput struct {
 
 	// The exact label template that you specified, with the variables not resolved.
 	LabelTemplate *string `type:"string"`
+
+	// This structure includes filters that specify which metric namespaces and
+	// which log groups are shared from the source account to the monitoring account.
+	LinkConfiguration *LinkConfiguration `type:"structure"`
 
 	// The resource types supported by this link.
 	ResourceTypes []*string `type:"list"`
@@ -1830,6 +1857,12 @@ func (s *CreateLinkOutput) SetLabel(v string) *CreateLinkOutput {
 // SetLabelTemplate sets the LabelTemplate field's value.
 func (s *CreateLinkOutput) SetLabelTemplate(v string) *CreateLinkOutput {
 	s.LabelTemplate = &v
+	return s
+}
+
+// SetLinkConfiguration sets the LinkConfiguration field's value.
+func (s *CreateLinkOutput) SetLinkConfiguration(v *LinkConfiguration) *CreateLinkOutput {
+	s.LinkConfiguration = v
 	return s
 }
 
@@ -2172,6 +2205,10 @@ type GetLinkOutput struct {
 	// the template variables not resolved.
 	LabelTemplate *string `type:"string"`
 
+	// This structure includes filters that specify which metric namespaces and
+	// which log groups are shared from the source account to the monitoring account.
+	LinkConfiguration *LinkConfiguration `type:"structure"`
+
 	// The resource types supported by this link.
 	ResourceTypes []*string `type:"list"`
 
@@ -2221,6 +2258,12 @@ func (s *GetLinkOutput) SetLabel(v string) *GetLinkOutput {
 // SetLabelTemplate sets the LabelTemplate field's value.
 func (s *GetLinkOutput) SetLabelTemplate(v string) *GetLinkOutput {
 	s.LabelTemplate = &v
+	return s
+}
+
+// SetLinkConfiguration sets the LinkConfiguration field's value.
+func (s *GetLinkOutput) SetLinkConfiguration(v *LinkConfiguration) *GetLinkOutput {
+	s.LinkConfiguration = v
 	return s
 }
 
@@ -2575,6 +2618,71 @@ func (s *InvalidParameterException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Use this structure to optionally create filters that specify that only some
+// metric namespaces or log groups are to be shared from the source account
+// to the monitoring account.
+type LinkConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Use this structure to filter which log groups are to send log events from
+	// the source account to the monitoring account.
+	LogGroupConfiguration *LogGroupConfiguration `type:"structure"`
+
+	// Use this structure to filter which metric namespaces are to be shared from
+	// the source account to the monitoring account.
+	MetricConfiguration *MetricConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LinkConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LinkConfiguration"}
+	if s.LogGroupConfiguration != nil {
+		if err := s.LogGroupConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LogGroupConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MetricConfiguration != nil {
+		if err := s.MetricConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MetricConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogGroupConfiguration sets the LogGroupConfiguration field's value.
+func (s *LinkConfiguration) SetLogGroupConfiguration(v *LogGroupConfiguration) *LinkConfiguration {
+	s.LogGroupConfiguration = v
+	return s
+}
+
+// SetMetricConfiguration sets the MetricConfiguration field's value.
+func (s *LinkConfiguration) SetMetricConfiguration(v *MetricConfiguration) *LinkConfiguration {
+	s.MetricConfiguration = v
+	return s
 }
 
 type ListAttachedLinksInput struct {
@@ -3143,6 +3251,171 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// This structure contains the Filter parameter which you can use to specify
+// which log groups are to share log events from this source account to the
+// monitoring account.
+type LogGroupConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Use this field to specify which log groups are to share their log events
+	// with the monitoring account. Use the term LogGroupName and one or more of
+	// the following operands. Use single quotation marks (') around log group names.
+	// The matching of log group names is case sensitive. Each filter has a limit
+	// of five conditional operands. Conditional operands are AND and OR.
+	//
+	//    * = and !=
+	//
+	//    * AND
+	//
+	//    * OR
+	//
+	//    * LIKE and NOT LIKE. These can be used only as prefix searches. Include
+	//    a % at the end of the string that you want to search for and include.
+	//
+	//    * IN and NOT IN, using parentheses ( )
+	//
+	// Examples:
+	//
+	//    * LogGroupName IN ('This-Log-Group', 'Other-Log-Group') includes only
+	//    the log groups with names This-Log-Group and Other-Log-Group.
+	//
+	//    * LogGroupName NOT IN ('Private-Log-Group', 'Private-Log-Group-2') includes
+	//    all log groups except the log groups with names Private-Log-Group and
+	//    Private-Log-Group-2.
+	//
+	//    * LogGroupName LIKE 'aws/lambda/%' OR LogGroupName LIKE 'AWSLogs%' includes
+	//    all log groups that have names that start with aws/lambda/ or AWSLogs.
+	//
+	// If you are updating a link that uses filters, you can specify * as the only
+	// value for the filter parameter to delete the filter and share all log groups
+	// with the monitoring account.
+	//
+	// Filter is a required field
+	Filter *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogGroupConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogGroupConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LogGroupConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LogGroupConfiguration"}
+	if s.Filter == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.Filter != nil && len(*s.Filter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *LogGroupConfiguration) SetFilter(v string) *LogGroupConfiguration {
+	s.Filter = &v
+	return s
+}
+
+// This structure contains the Filter parameter which you can use to specify
+// which metric namespaces are to be shared from this source account to the
+// monitoring account.
+type MetricConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Use this field to specify which metrics are to be shared with the monitoring
+	// account. Use the term Namespace and one or more of the following operands.
+	// Use single quotation marks (') around namespace names. The matching of namespace
+	// names is case sensitive. Each filter has a limit of five conditional operands.
+	// Conditional operands are AND and OR.
+	//
+	//    * = and !=
+	//
+	//    * AND
+	//
+	//    * OR
+	//
+	//    * LIKE and NOT LIKE. These can be used only as prefix searches. Include
+	//    a % at the end of the string that you want to search for and include.
+	//
+	//    * IN and NOT IN, using parentheses ( )
+	//
+	// Examples:
+	//
+	//    * Namespace NOT LIKE 'AWS/%' includes only namespaces that don't start
+	//    with AWS/, such as custom namespaces.
+	//
+	//    * Namespace IN ('AWS/EC2', 'AWS/ELB', 'AWS/S3') includes only the metrics
+	//    in the EC2, Elastic Load Balancing, and Amazon S3 namespaces.
+	//
+	//    * Namespace = 'AWS/EC2' OR Namespace NOT LIKE 'AWS/%' includes only the
+	//    EC2 namespace and your custom namespaces.
+	//
+	// If you are updating a link that uses filters, you can specify * as the only
+	// value for the filter parameter to delete the filter and share all metric
+	// namespaces with the monitoring account.
+	//
+	// Filter is a required field
+	Filter *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricConfiguration"}
+	if s.Filter == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.Filter != nil && len(*s.Filter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *MetricConfiguration) SetFilter(v string) *MetricConfiguration {
+	s.Filter = &v
 	return s
 }
 
@@ -3720,6 +3993,10 @@ type UpdateLinkInput struct {
 	// Identifier is a required field
 	Identifier *string `type:"string" required:"true"`
 
+	// Use this structure to filter which metric namespaces and which log groups
+	// are to be shared from the source account to the monitoring account.
+	LinkConfiguration *LinkConfiguration `type:"structure"`
+
 	// An array of strings that define which types of data that the source account
 	// will send to the monitoring account.
 	//
@@ -3759,6 +4036,11 @@ func (s *UpdateLinkInput) Validate() error {
 	if s.ResourceTypes != nil && len(s.ResourceTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceTypes", 1))
 	}
+	if s.LinkConfiguration != nil {
+		if err := s.LinkConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LinkConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3769,6 +4051,12 @@ func (s *UpdateLinkInput) Validate() error {
 // SetIdentifier sets the Identifier field's value.
 func (s *UpdateLinkInput) SetIdentifier(v string) *UpdateLinkInput {
 	s.Identifier = &v
+	return s
+}
+
+// SetLinkConfiguration sets the LinkConfiguration field's value.
+func (s *UpdateLinkInput) SetLinkConfiguration(v *LinkConfiguration) *UpdateLinkInput {
+	s.LinkConfiguration = v
 	return s
 }
 
@@ -3795,6 +4083,10 @@ type UpdateLinkOutput struct {
 	// The exact label template that was specified when the link was created, with
 	// the template variables not resolved.
 	LabelTemplate *string `min:"1" type:"string"`
+
+	// This structure includes filters that specify which metric namespaces and
+	// which log groups are shared from the source account to the monitoring account.
+	LinkConfiguration *LinkConfiguration `type:"structure"`
 
 	// The resource types now supported by this link.
 	ResourceTypes []*string `type:"list"`
@@ -3845,6 +4137,12 @@ func (s *UpdateLinkOutput) SetLabel(v string) *UpdateLinkOutput {
 // SetLabelTemplate sets the LabelTemplate field's value.
 func (s *UpdateLinkOutput) SetLabelTemplate(v string) *UpdateLinkOutput {
 	s.LabelTemplate = &v
+	return s
+}
+
+// SetLinkConfiguration sets the LinkConfiguration field's value.
+func (s *UpdateLinkOutput) SetLinkConfiguration(v *LinkConfiguration) *UpdateLinkOutput {
+	s.LinkConfiguration = v
 	return s
 }
 
