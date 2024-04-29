@@ -5,6 +5,7 @@
     "endpointPrefix":"query.timestream",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Timestream Query",
     "serviceFullName":"Amazon Timestream Query",
     "serviceId":"Timestream Query",
@@ -69,6 +70,22 @@
       ],
       "endpointdiscovery":{"required":true},
       "idempotent":true
+    },
+    "DescribeAccountSettings":{
+      "name":"DescribeAccountSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccountSettingsRequest"},
+      "output":{"shape":"DescribeAccountSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidEndpointException"}
+      ],
+      "endpointdiscovery":{"required":true}
     },
     "DescribeEndpoints":{
       "name":"DescribeEndpoints",
@@ -225,6 +242,24 @@
       ],
       "endpointdiscovery":{"required":true}
     },
+    "UpdateAccountSettings":{
+      "name":"UpdateAccountSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAccountSettingsRequest"},
+      "output":{"shape":"UpdateAccountSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InvalidEndpointException"}
+      ],
+      "endpointdiscovery":{"required":true},
+      "idempotent":true
+    },
     "UpdateScheduledQuery":{
       "name":"UpdateScheduledQuery",
       "http":{
@@ -355,6 +390,18 @@
         "ScheduledQueryArn":{"shape":"AmazonResourceName"}
       }
     },
+    "DescribeAccountSettingsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeAccountSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "MaxQueryTCU":{"shape":"MaxQueryCapacity"},
+        "QueryPricingModel":{"shape":"QueryPricingModel"}
+      }
+    },
     "DescribeEndpointsRequest":{
       "type":"structure",
       "members":{
@@ -451,6 +498,7 @@
         "ExecutionTimeInMillis":{"shape":"Long"},
         "DataWrites":{"shape":"Long"},
         "BytesMetered":{"shape":"Long"},
+        "CumulativeBytesScanned":{"shape":"Long"},
         "RecordsIngested":{"shape":"Long"},
         "QueryResultRows":{"shape":"Long"}
       }
@@ -502,6 +550,7 @@
       }
     },
     "Long":{"type":"long"},
+    "MaxQueryCapacity":{"type":"integer"},
     "MaxQueryResults":{
       "type":"integer",
       "box":true,
@@ -637,6 +686,13 @@
       "max":64,
       "min":1,
       "pattern":"[a-zA-Z0-9]+"
+    },
+    "QueryPricingModel":{
+      "type":"string",
+      "enum":[
+        "BYTES_SCANNED",
+        "COMPUTE_UNITS"
+      ]
     },
     "QueryRequest":{
       "type":"structure",
@@ -830,7 +886,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z0-9_.-]+"
+      "pattern":"[a-zA-Z0-9|!\\-_*'\\(\\)]([a-zA-Z0-9]|[!\\-_*'\\(\\)\\/.])+"
     },
     "ScheduledQueryRunStatus":{
       "type":"string",
@@ -1033,6 +1089,20 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateAccountSettingsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxQueryTCU":{"shape":"MaxQueryCapacity"},
+        "QueryPricingModel":{"shape":"QueryPricingModel"}
+      }
+    },
+    "UpdateAccountSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "MaxQueryTCU":{"shape":"MaxQueryCapacity"},
+        "QueryPricingModel":{"shape":"QueryPricingModel"}
       }
     },
     "UpdateScheduledQueryRequest":{

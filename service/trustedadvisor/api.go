@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opBatchUpdateRecommendationResourceExclusion = "BatchUpdateRecommendationResourceExclusion"
+
+// BatchUpdateRecommendationResourceExclusionRequest generates a "aws/request.Request" representing the
+// client's request for the BatchUpdateRecommendationResourceExclusion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchUpdateRecommendationResourceExclusion for more information on using the BatchUpdateRecommendationResourceExclusion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchUpdateRecommendationResourceExclusionRequest method.
+//	req, resp := client.BatchUpdateRecommendationResourceExclusionRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/trustedadvisor-2022-09-15/BatchUpdateRecommendationResourceExclusion
+func (c *TrustedAdvisor) BatchUpdateRecommendationResourceExclusionRequest(input *BatchUpdateRecommendationResourceExclusionInput) (req *request.Request, output *BatchUpdateRecommendationResourceExclusionOutput) {
+	op := &request.Operation{
+		Name:       opBatchUpdateRecommendationResourceExclusion,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/batch-update-recommendation-resource-exclusion",
+	}
+
+	if input == nil {
+		input = &BatchUpdateRecommendationResourceExclusionInput{}
+	}
+
+	output = &BatchUpdateRecommendationResourceExclusionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchUpdateRecommendationResourceExclusion API operation for TrustedAdvisor Public API.
+//
+// # Update one or more exclusion status for a list of recommendation resources
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for TrustedAdvisor Public API's
+// API operation BatchUpdateRecommendationResourceExclusion for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     Exception that access has been denied due to insufficient access
+//
+//   - ConflictException
+//     Exception that the request was denied due to conflictions in state
+//
+//   - InternalServerException
+//     Exception to notify that an unexpected internal error occurred during processing
+//     of the request
+//
+//   - ValidationException
+//     Exception that the request failed to satisfy service constraints
+//
+//   - ThrottlingException
+//     Exception to notify that requests are being throttled
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/trustedadvisor-2022-09-15/BatchUpdateRecommendationResourceExclusion
+func (c *TrustedAdvisor) BatchUpdateRecommendationResourceExclusion(input *BatchUpdateRecommendationResourceExclusionInput) (*BatchUpdateRecommendationResourceExclusionOutput, error) {
+	req, out := c.BatchUpdateRecommendationResourceExclusionRequest(input)
+	return out, req.Send()
+}
+
+// BatchUpdateRecommendationResourceExclusionWithContext is the same as BatchUpdateRecommendationResourceExclusion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchUpdateRecommendationResourceExclusion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TrustedAdvisor) BatchUpdateRecommendationResourceExclusionWithContext(ctx aws.Context, input *BatchUpdateRecommendationResourceExclusionInput, opts ...request.Option) (*BatchUpdateRecommendationResourceExclusionOutput, error) {
+	req, out := c.BatchUpdateRecommendationResourceExclusionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetOrganizationRecommendation = "GetOrganizationRecommendation"
 
 // GetOrganizationRecommendationRequest generates a "aws/request.Request" representing the
@@ -1130,7 +1222,7 @@ func (c *TrustedAdvisor) UpdateOrganizationRecommendationLifecycleRequest(input 
 
 // UpdateOrganizationRecommendationLifecycle API operation for TrustedAdvisor Public API.
 //
-// Update the lifecyle of a Recommendation within an Organization. This API
+// Update the lifecycle of a Recommendation within an Organization. This API
 // only supports prioritized recommendations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1446,6 +1538,99 @@ func (s *AccountRecommendationLifecycleSummary) SetUpdatedOnBehalfOf(v string) *
 // SetUpdatedOnBehalfOfJobTitle sets the UpdatedOnBehalfOfJobTitle field's value.
 func (s *AccountRecommendationLifecycleSummary) SetUpdatedOnBehalfOfJobTitle(v string) *AccountRecommendationLifecycleSummary {
 	s.UpdatedOnBehalfOfJobTitle = &v
+	return s
+}
+
+type BatchUpdateRecommendationResourceExclusionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of recommendation resource ARNs and exclusion status to update
+	//
+	// RecommendationResourceExclusions is a required field
+	RecommendationResourceExclusions []*RecommendationResourceExclusion `locationName:"recommendationResourceExclusions" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationResourceExclusionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationResourceExclusionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchUpdateRecommendationResourceExclusionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchUpdateRecommendationResourceExclusionInput"}
+	if s.RecommendationResourceExclusions == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationResourceExclusions"))
+	}
+	if s.RecommendationResourceExclusions != nil && len(s.RecommendationResourceExclusions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendationResourceExclusions", 1))
+	}
+	if s.RecommendationResourceExclusions != nil {
+		for i, v := range s.RecommendationResourceExclusions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RecommendationResourceExclusions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommendationResourceExclusions sets the RecommendationResourceExclusions field's value.
+func (s *BatchUpdateRecommendationResourceExclusionInput) SetRecommendationResourceExclusions(v []*RecommendationResourceExclusion) *BatchUpdateRecommendationResourceExclusionInput {
+	s.RecommendationResourceExclusions = v
+	return s
+}
+
+type BatchUpdateRecommendationResourceExclusionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of recommendation resource ARNs whose exclusion status failed to update,
+	// if any
+	//
+	// BatchUpdateRecommendationResourceExclusionErrors is a required field
+	BatchUpdateRecommendationResourceExclusionErrors []*UpdateRecommendationResourceExclusionError `locationName:"batchUpdateRecommendationResourceExclusionErrors" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationResourceExclusionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchUpdateRecommendationResourceExclusionOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchUpdateRecommendationResourceExclusionErrors sets the BatchUpdateRecommendationResourceExclusionErrors field's value.
+func (s *BatchUpdateRecommendationResourceExclusionOutput) SetBatchUpdateRecommendationResourceExclusionErrors(v []*UpdateRecommendationResourceExclusionError) *BatchUpdateRecommendationResourceExclusionOutput {
+	s.BatchUpdateRecommendationResourceExclusionErrors = v
 	return s
 }
 
@@ -2123,6 +2308,9 @@ type ListOrganizationRecommendationResourcesInput struct {
 	// An account affected by this organization recommendation
 	AffectedAccountId *string `location:"querystring" locationName:"affectedAccountId" min:"12" type:"string"`
 
+	// The exclusion status of the resource
+	ExclusionStatus *string `location:"querystring" locationName:"exclusionStatus" type:"string" enum:"ExclusionStatus"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -2188,6 +2376,12 @@ func (s *ListOrganizationRecommendationResourcesInput) Validate() error {
 // SetAffectedAccountId sets the AffectedAccountId field's value.
 func (s *ListOrganizationRecommendationResourcesInput) SetAffectedAccountId(v string) *ListOrganizationRecommendationResourcesInput {
 	s.AffectedAccountId = &v
+	return s
+}
+
+// SetExclusionStatus sets the ExclusionStatus field's value.
+func (s *ListOrganizationRecommendationResourcesInput) SetExclusionStatus(v string) *ListOrganizationRecommendationResourcesInput {
+	s.ExclusionStatus = &v
 	return s
 }
 
@@ -2445,6 +2639,9 @@ func (s *ListOrganizationRecommendationsOutput) SetOrganizationRecommendationSum
 type ListRecommendationResourcesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The exclusion status of the resource
+	ExclusionStatus *string `location:"querystring" locationName:"exclusionStatus" type:"string" enum:"ExclusionStatus"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -2502,6 +2699,12 @@ func (s *ListRecommendationResourcesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExclusionStatus sets the ExclusionStatus field's value.
+func (s *ListRecommendationResourcesInput) SetExclusionStatus(v string) *ListRecommendationResourcesInput {
+	s.ExclusionStatus = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -3013,6 +3216,9 @@ type OrganizationRecommendationResourceSummary struct {
 	// AwsResourceId is a required field
 	AwsResourceId *string `locationName:"awsResourceId" type:"string" required:"true"`
 
+	// The exclusion status of the Recommendation Resource
+	ExclusionStatus *string `locationName:"exclusionStatus" type:"string" enum:"ExclusionStatus"`
+
 	// The ID of the Recommendation Resource
 	//
 	// Id is a required field
@@ -3077,6 +3283,12 @@ func (s *OrganizationRecommendationResourceSummary) SetArn(v string) *Organizati
 // SetAwsResourceId sets the AwsResourceId field's value.
 func (s *OrganizationRecommendationResourceSummary) SetAwsResourceId(v string) *OrganizationRecommendationResourceSummary {
 	s.AwsResourceId = &v
+	return s
+}
+
+// SetExclusionStatus sets the ExclusionStatus field's value.
+func (s *OrganizationRecommendationResourceSummary) SetExclusionStatus(v string) *OrganizationRecommendationResourceSummary {
+	s.ExclusionStatus = &v
 	return s
 }
 
@@ -3600,6 +3812,71 @@ func (s *RecommendationPillarSpecificAggregates) SetCostOptimizing(v *Recommenda
 	return s
 }
 
+// The request entry for Recommendation Resource exclusion. Each entry is a
+// combination of Recommendation Resource ARN and corresponding exclusion status
+type RecommendationResourceExclusion struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Recommendation Resource
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"20" type:"string" required:"true"`
+
+	// The exclusion status
+	//
+	// IsExcluded is a required field
+	IsExcluded *bool `locationName:"isExcluded" type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationResourceExclusion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationResourceExclusion) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendationResourceExclusion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendationResourceExclusion"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 20))
+	}
+	if s.IsExcluded == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsExcluded"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *RecommendationResourceExclusion) SetArn(v string) *RecommendationResourceExclusion {
+	s.Arn = &v
+	return s
+}
+
+// SetIsExcluded sets the IsExcluded field's value.
+func (s *RecommendationResourceExclusion) SetIsExcluded(v bool) *RecommendationResourceExclusion {
+	s.IsExcluded = &v
+	return s
+}
+
 // Summary of a Recommendation Resource
 type RecommendationResourceSummary struct {
 	_ struct{} `type:"structure"`
@@ -3613,6 +3890,9 @@ type RecommendationResourceSummary struct {
 	//
 	// AwsResourceId is a required field
 	AwsResourceId *string `locationName:"awsResourceId" type:"string" required:"true"`
+
+	// The exclusion status of the Recommendation Resource
+	ExclusionStatus *string `locationName:"exclusionStatus" type:"string" enum:"ExclusionStatus"`
 
 	// The ID of the Recommendation Resource
 	//
@@ -3672,6 +3952,12 @@ func (s *RecommendationResourceSummary) SetArn(v string) *RecommendationResource
 // SetAwsResourceId sets the AwsResourceId field's value.
 func (s *RecommendationResourceSummary) SetAwsResourceId(v string) *RecommendationResourceSummary {
 	s.AwsResourceId = &v
+	return s
+}
+
+// SetExclusionStatus sets the ExclusionStatus field's value.
+func (s *RecommendationResourceSummary) SetExclusionStatus(v string) *RecommendationResourceSummary {
+	s.ExclusionStatus = &v
 	return s
 }
 
@@ -4284,6 +4570,57 @@ func (s UpdateRecommendationLifecycleOutput) GoString() string {
 	return s.String()
 }
 
+// The error entry for Recommendation Resource exclusion. Each entry is a combination
+// of Recommendation Resource ARN, error code and error message
+type UpdateRecommendationResourceExclusionError struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Recommendation Resource
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// The error code
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// The error message
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationResourceExclusionError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommendationResourceExclusionError) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateRecommendationResourceExclusionError) SetArn(v string) *UpdateRecommendationResourceExclusionError {
+	s.Arn = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UpdateRecommendationResourceExclusionError) SetErrorCode(v string) *UpdateRecommendationResourceExclusionError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *UpdateRecommendationResourceExclusionError) SetErrorMessage(v string) *UpdateRecommendationResourceExclusionError {
+	s.ErrorMessage = &v
+	return s
+}
+
 // Exception that the request failed to satisfy service constraints
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -4346,6 +4683,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ExclusionStatusExcluded is a ExclusionStatus enum value
+	ExclusionStatusExcluded = "excluded"
+
+	// ExclusionStatusIncluded is a ExclusionStatus enum value
+	ExclusionStatusIncluded = "included"
+)
+
+// ExclusionStatus_Values returns all elements of the ExclusionStatus enum
+func ExclusionStatus_Values() []string {
+	return []string{
+		ExclusionStatusExcluded,
+		ExclusionStatusIncluded,
+	}
 }
 
 const (

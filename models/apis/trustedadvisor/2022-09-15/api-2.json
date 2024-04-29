@@ -12,6 +12,24 @@
     "uid":"trustedadvisor-2022-09-15"
   },
   "operations":{
+    "BatchUpdateRecommendationResourceExclusion":{
+      "name":"BatchUpdateRecommendationResourceExclusion",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v1/batch-update-recommendation-resource-exclusion",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateRecommendationResourceExclusionRequest"},
+      "output":{"shape":"BatchUpdateRecommendationResourceExclusionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "GetOrganizationRecommendation":{
       "name":"GetOrganizationRecommendation",
       "http":{
@@ -230,6 +248,24 @@
       "type":"list",
       "member":{"shape":"AccountRecommendationLifecycleSummary"}
     },
+    "BatchUpdateRecommendationResourceExclusionRequest":{
+      "type":"structure",
+      "required":["recommendationResourceExclusions"],
+      "members":{
+        "recommendationResourceExclusions":{"shape":"RecommendationResourceExclusionList"}
+      }
+    },
+    "BatchUpdateRecommendationResourceExclusionResponse":{
+      "type":"structure",
+      "required":["batchUpdateRecommendationResourceExclusionErrors"],
+      "members":{
+        "batchUpdateRecommendationResourceExclusionErrors":{"shape":"UpdateRecommendationResourceExclusionErrorList"}
+      }
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "CheckArn":{
       "type":"string",
       "max":2048,
@@ -284,6 +320,13 @@
     "Double":{
       "type":"double",
       "box":true
+    },
+    "ExclusionStatus":{
+      "type":"string",
+      "enum":[
+        "excluded",
+        "included"
+      ]
     },
     "GetOrganizationRecommendationRequest":{
       "type":"structure",
@@ -448,6 +491,11 @@
           "location":"querystring",
           "locationName":"affectedAccountId"
         },
+        "exclusionStatus":{
+          "shape":"ExclusionStatus",
+          "location":"querystring",
+          "locationName":"exclusionStatus"
+        },
         "maxResults":{
           "shape":"ListOrganizationRecommendationResourcesRequestMaxResultsInteger",
           "location":"querystring",
@@ -582,6 +630,11 @@
       "type":"structure",
       "required":["recommendationIdentifier"],
       "members":{
+        "exclusionStatus":{
+          "shape":"ExclusionStatus",
+          "location":"querystring",
+          "locationName":"exclusionStatus"
+        },
         "maxResults":{
           "shape":"ListRecommendationResourcesRequestMaxResultsInteger",
           "location":"querystring",
@@ -781,6 +834,7 @@
         "accountId":{"shape":"AccountId"},
         "arn":{"shape":"RecommendationResourceArn"},
         "awsResourceId":{"shape":"String"},
+        "exclusionStatus":{"shape":"ExclusionStatus"},
         "id":{"shape":"String"},
         "lastUpdatedAt":{"shape":"SyntheticTimestamp_date_time"},
         "metadata":{"shape":"StringMap"},
@@ -940,6 +994,23 @@
       "min":20,
       "pattern":"^arn:[\\w-]+:trustedadvisor::\\d{12}:recommendation-resource\\/[\\w-]+\\/[\\w-]+$"
     },
+    "RecommendationResourceExclusion":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "isExcluded"
+      ],
+      "members":{
+        "arn":{"shape":"RecommendationResourceArn"},
+        "isExcluded":{"shape":"Boolean"}
+      }
+    },
+    "RecommendationResourceExclusionList":{
+      "type":"list",
+      "member":{"shape":"RecommendationResourceExclusion"},
+      "max":100,
+      "min":1
+    },
     "RecommendationResourceSummary":{
       "type":"structure",
       "required":[
@@ -955,6 +1026,7 @@
       "members":{
         "arn":{"shape":"RecommendationResourceArn"},
         "awsResourceId":{"shape":"String"},
+        "exclusionStatus":{"shape":"ExclusionStatus"},
         "id":{"shape":"String"},
         "lastUpdatedAt":{"shape":"SyntheticTimestamp_date_time"},
         "metadata":{"shape":"StringMap"},
@@ -1151,6 +1223,18 @@
         "not_applicable",
         "other"
       ]
+    },
+    "UpdateRecommendationResourceExclusionError":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"RecommendationResourceArn"},
+        "errorCode":{"shape":"String"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "UpdateRecommendationResourceExclusionErrorList":{
+      "type":"list",
+      "member":{"shape":"UpdateRecommendationResourceExclusionError"}
     },
     "ValidationException":{
       "type":"structure",

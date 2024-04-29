@@ -5,6 +5,7 @@
     "endpointPrefix":"transcribe",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon Transcribe Service",
     "serviceId":"Transcribe",
     "signatureVersion":"v4",
@@ -680,11 +681,16 @@
         "ja-JP"
       ]
     },
+    "CallAnalyticsFeature":{
+      "type":"string",
+      "enum":["GENERATIVE_SUMMARIZATION"]
+    },
     "CallAnalyticsJob":{
       "type":"structure",
       "members":{
         "CallAnalyticsJobName":{"shape":"CallAnalyticsJobName"},
         "CallAnalyticsJobStatus":{"shape":"CallAnalyticsJobStatus"},
+        "CallAnalyticsJobDetails":{"shape":"CallAnalyticsJobDetails"},
         "LanguageCode":{"shape":"LanguageCode"},
         "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
         "MediaFormat":{"shape":"MediaFormat"},
@@ -698,6 +704,12 @@
         "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
         "Settings":{"shape":"CallAnalyticsJobSettings"},
         "ChannelDefinitions":{"shape":"ChannelDefinitions"}
+      }
+    },
+    "CallAnalyticsJobDetails":{
+      "type":"structure",
+      "members":{
+        "Skipped":{"shape":"CallAnalyticsSkippedFeatureList"}
       }
     },
     "CallAnalyticsJobName":{
@@ -741,8 +753,28 @@
         "CompletionTime":{"shape":"DateTime"},
         "LanguageCode":{"shape":"LanguageCode"},
         "CallAnalyticsJobStatus":{"shape":"CallAnalyticsJobStatus"},
+        "CallAnalyticsJobDetails":{"shape":"CallAnalyticsJobDetails"},
         "FailureReason":{"shape":"FailureReason"}
       }
+    },
+    "CallAnalyticsSkippedFeature":{
+      "type":"structure",
+      "members":{
+        "Feature":{"shape":"CallAnalyticsFeature"},
+        "ReasonCode":{"shape":"CallAnalyticsSkippedReasonCode"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "CallAnalyticsSkippedFeatureList":{
+      "type":"list",
+      "member":{"shape":"CallAnalyticsSkippedFeature"}
+    },
+    "CallAnalyticsSkippedReasonCode":{
+      "type":"string",
+      "enum":[
+        "INSUFFICIENT_CONVERSATION_CONTENT",
+        "FAILED_SAFETY_GUIDELINES"
+      ]
     },
     "CategoryName":{
       "type":"string",
@@ -1520,7 +1552,7 @@
     },
     "MaxSpeakers":{
       "type":"integer",
-      "max":10,
+      "max":30,
       "min":2
     },
     "Media":{

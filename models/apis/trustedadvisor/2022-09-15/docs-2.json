@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>TrustedAdvisor Public API</p>",
   "operations": {
+    "BatchUpdateRecommendationResourceExclusion": "<p>Update one or more exclusion status for a list of recommendation resources</p>",
     "GetOrganizationRecommendation": "<p>Get a specific recommendation within an AWS Organizations organization. This API supports only prioritized recommendations. </p>",
     "GetRecommendation": "<p>Get a specific Recommendation</p>",
     "ListChecks": "<p>List a filterable set of Checks</p>",
@@ -10,7 +11,7 @@
     "ListOrganizationRecommendations": "<p>List a filterable set of Recommendations within an Organization. This API only supports prioritized recommendations. </p>",
     "ListRecommendationResources": "<p>List Resources of a Recommendation</p>",
     "ListRecommendations": "<p>List a filterable set of Recommendations</p>",
-    "UpdateOrganizationRecommendationLifecycle": "<p>Update the lifecyle of a Recommendation within an Organization. This API only supports prioritized recommendations. </p>",
+    "UpdateOrganizationRecommendationLifecycle": "<p>Update the lifecycle of a Recommendation within an Organization. This API only supports prioritized recommendations. </p>",
     "UpdateRecommendationLifecycle": "<p>Update the lifecyle of a Recommendation. This API only supports prioritized recommendations.</p>"
   },
   "shapes": {
@@ -57,6 +58,22 @@
         "ListOrganizationRecommendationAccountsResponse$accountRecommendationLifecycleSummaries": "<p>The account recommendations lifecycles that are applicable to the Recommendation</p>"
       }
     },
+    "BatchUpdateRecommendationResourceExclusionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchUpdateRecommendationResourceExclusionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "RecommendationResourceExclusion$isExcluded": "<p>The exclusion status</p>"
+      }
+    },
     "CheckArn": {
       "base": null,
       "refs": {
@@ -92,6 +109,15 @@
       "refs": {
         "RecommendationCostOptimizingAggregates$estimatedMonthlySavings": "<p>The estimated monthly savings</p>",
         "RecommendationCostOptimizingAggregates$estimatedPercentMonthlySavings": "<p>The estimated percently monthly savings</p>"
+      }
+    },
+    "ExclusionStatus": {
+      "base": null,
+      "refs": {
+        "ListOrganizationRecommendationResourcesRequest$exclusionStatus": "<p>The exclusion status of the resource</p>",
+        "ListRecommendationResourcesRequest$exclusionStatus": "<p>The exclusion status of the resource</p>",
+        "OrganizationRecommendationResourceSummary$exclusionStatus": "<p>The exclusion status of the Recommendation Resource</p>",
+        "RecommendationResourceSummary$exclusionStatus": "<p>The exclusion status of the Recommendation Resource</p>"
       }
     },
     "GetOrganizationRecommendationRequest": {
@@ -428,7 +454,21 @@
       "base": null,
       "refs": {
         "OrganizationRecommendationResourceSummary$arn": "<p>The ARN of the Recommendation Resource</p>",
-        "RecommendationResourceSummary$arn": "<p>The ARN of the Recommendation Resource</p>"
+        "RecommendationResourceExclusion$arn": "<p>The ARN of the Recommendation Resource</p>",
+        "RecommendationResourceSummary$arn": "<p>The ARN of the Recommendation Resource</p>",
+        "UpdateRecommendationResourceExclusionError$arn": "<p>The ARN of the Recommendation Resource</p>"
+      }
+    },
+    "RecommendationResourceExclusion": {
+      "base": "<p>The request entry for Recommendation Resource exclusion. Each entry is a combination of Recommendation Resource ARN and corresponding exclusion status</p>",
+      "refs": {
+        "RecommendationResourceExclusionList$member": null
+      }
+    },
+    "RecommendationResourceExclusionList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateRecommendationResourceExclusionRequest$recommendationResourceExclusions": "<p>A list of recommendation resource ARNs and exclusion status to update</p>"
       }
     },
     "RecommendationResourceSummary": {
@@ -564,6 +604,8 @@
         "StringMap$key": null,
         "StringMap$value": null,
         "ThrottlingException$message": null,
+        "UpdateRecommendationResourceExclusionError$errorCode": "<p>The error code</p>",
+        "UpdateRecommendationResourceExclusionError$errorMessage": "<p>The error message</p>",
         "ValidationException$message": null
       }
     },
@@ -632,6 +674,18 @@
         "Recommendation$updateReasonCode": "<p>Reason code for the lifecycle state change</p>",
         "UpdateOrganizationRecommendationLifecycleRequest$updateReasonCode": "<p>Reason code for the lifecycle state change</p>",
         "UpdateRecommendationLifecycleRequest$updateReasonCode": "<p>Reason code for the lifecycle state change</p>"
+      }
+    },
+    "UpdateRecommendationResourceExclusionError": {
+      "base": "<p>The error entry for Recommendation Resource exclusion. Each entry is a combination of Recommendation Resource ARN, error code and error message</p>",
+      "refs": {
+        "UpdateRecommendationResourceExclusionErrorList$member": null
+      }
+    },
+    "UpdateRecommendationResourceExclusionErrorList": {
+      "base": null,
+      "refs": {
+        "BatchUpdateRecommendationResourceExclusionResponse$batchUpdateRecommendationResourceExclusionErrors": "<p>A list of recommendation resource ARNs whose exclusion status failed to update, if any</p>"
       }
     },
     "ValidationException": {

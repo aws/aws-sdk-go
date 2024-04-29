@@ -1093,6 +1093,7 @@
         "CoverageFilterCriteria$lambdaFunctionRuntime": "<p>Returns coverage statistics for Amazon Web Services Lambda functions filtered by runtime.</p>",
         "CoverageFilterCriteria$resourceId": "<p>An array of Amazon Web Services resource IDs to return coverage statistics for.</p>",
         "CoverageFilterCriteria$resourceType": "<p>An array of Amazon Web Services resource types to return coverage statistics for. The values can be <code>AWS_EC2_INSTANCE</code>, <code>AWS_LAMBDA_FUNCTION</code>, <code>AWS_ECR_CONTAINER_IMAGE</code>, <code>AWS_ECR_REPOSITORY</code> or <code>AWS_ACCOUNT</code>.</p>",
+        "CoverageFilterCriteria$scanMode": "<p>The filter to search for Amazon EC2 instance coverage by scan mode. Valid values are <code>EC2_SSM_AGENT_BASED</code> and <code>EC2_HYBRID</code>.</p>",
         "CoverageFilterCriteria$scanStatusCode": "<p>The scan status code to filter on. Valid values are: <code>ValidationException</code>, <code>InternalServerException</code>, <code>ResourceNotFoundException</code>, <code>BadRequestException</code>, and <code>ThrottlingException</code>.</p>",
         "CoverageFilterCriteria$scanStatusReason": "<p>The scan status reason to filter on.</p>",
         "CoverageFilterCriteria$scanType": "<p>An array of Amazon Inspector scan types to return coverage statistics for.</p>"
@@ -1289,7 +1290,7 @@
         "Filter$createdAt": "<p>The date and time this filter was created at.</p>",
         "Filter$updatedAt": "<p>The date and time the filter was last updated at.</p>",
         "Finding$firstObservedAt": "<p>The date and time that the finding was first observed.</p>",
-        "Finding$lastObservedAt": "<p>The date and time that the finding was last observed.</p>",
+        "Finding$lastObservedAt": "<p> The date and time the finding was last observed. This timestamp for this field remains unchanged until a finding is updated. </p>",
         "Finding$updatedAt": "<p>The date and time the finding was last updated at.</p>",
         "LambdaFunctionAggregationResponse$lastModifiedAt": "<p>The date that the Amazon Web Services Lambda function included in the aggregation results was last changed.</p>",
         "Member$updatedAt": "<p>A timestamp showing when the status of this member was last updated.</p>",
@@ -1432,6 +1433,18 @@
         "NumberFilter$upperInclusive": "<p>The highest number to be included in the filter.</p>"
       }
     },
+    "Ec2Configuration": {
+      "base": "<p>Enables agent-based scanning, which scans instances that are not managed by SSM.</p>",
+      "refs": {
+        "UpdateConfigurationRequest$ec2Configuration": "<p>Specifies how the Amazon EC2 automated scan will be updated for your environment.</p>"
+      }
+    },
+    "Ec2ConfigurationState": {
+      "base": "<p>Details about the state of the EC2 scan configuration for your environment.</p>",
+      "refs": {
+        "GetConfigurationResponse$ec2Configuration": "<p>Specifies how the Amazon EC2 automated scan mode is currently configured for your environment.</p>"
+      }
+    },
     "Ec2DeepInspectionStatus": {
       "base": null,
       "refs": {
@@ -1468,6 +1481,25 @@
       "base": null,
       "refs": {
         "Ec2Metadata$platform": "<p>The platform of the instance.</p>"
+      }
+    },
+    "Ec2ScanMode": {
+      "base": null,
+      "refs": {
+        "Ec2Configuration$scanMode": "<p>The scan method that is applied to the instance.</p>",
+        "Ec2ScanModeState$scanMode": "<p>The scan method that is applied to the instance.</p>"
+      }
+    },
+    "Ec2ScanModeState": {
+      "base": "<p>The state of your Amazon EC2 scan mode configuration.</p>",
+      "refs": {
+        "Ec2ConfigurationState$scanModeState": "<p>An object that contains details about the state of the Amazon EC2 scan mode.</p>"
+      }
+    },
+    "Ec2ScanModeStatus": {
+      "base": null,
+      "refs": {
+        "Ec2ScanModeState$scanModeStatus": "<p>The status of the Amazon EC2 scan mode setting.</p>"
       }
     },
     "EcrConfiguration": {
@@ -3138,6 +3170,12 @@
         "GetSbomExportResponse$format": "<p>The format of the software bill of materials (SBOM) report.</p>"
       }
     },
+    "ScanMode": {
+      "base": null,
+      "refs": {
+        "CoveredResource$scanMode": "<p>The scan method that is applied to the instance.</p>"
+      }
+    },
     "ScanStatus": {
       "base": "<p>The status of the scan.</p>",
       "refs": {
@@ -3408,7 +3446,7 @@
         "Ec2InstanceAggregationResponse$operatingSystem": "<p>The operating system of the Amazon EC2 instance.</p>",
         "EcrRepositoryMetadata$name": "<p>The name of the Amazon ECR repository.</p>",
         "FreeTrialInfoError$message": "<p>The error message returned.</p>",
-        "GetCisScanReportResponse$url": "<p> The URL where the CIS scan report PDF can be downloaded. </p>",
+        "GetCisScanReportResponse$url": "<p> The URL where a PDF of the CIS scan report can be downloaded. </p>",
         "InternalServerException$message": null,
         "LambdaFunctionAggregationResponse$functionName": "<p>The Amazon Web Services Lambda function names included in the aggregation results.</p>",
         "LambdaFunctionAggregationResponse$runtime": "<p>The runtimes included in the aggregation results.</p>",

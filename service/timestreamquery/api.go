@@ -102,7 +102,7 @@ func (c *TimestreamQuery) CancelQueryRequest(input *CancelQueryInput) (req *requ
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ThrottlingException
@@ -223,7 +223,7 @@ func (c *TimestreamQuery) CreateScheduledQueryRequest(input *CreateScheduledQuer
 //     Unable to poll results for a cancelled query.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ServiceQuotaExceededException
@@ -342,7 +342,7 @@ func (c *TimestreamQuery) DeleteScheduledQueryRequest(input *DeleteScheduledQuer
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ResourceNotFoundException
@@ -374,6 +374,121 @@ func (c *TimestreamQuery) DeleteScheduledQuery(input *DeleteScheduledQueryInput)
 // for more information on using Contexts.
 func (c *TimestreamQuery) DeleteScheduledQueryWithContext(ctx aws.Context, input *DeleteScheduledQueryInput, opts ...request.Option) (*DeleteScheduledQueryOutput, error) {
 	req, out := c.DeleteScheduledQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAccountSettings = "DescribeAccountSettings"
+
+// DescribeAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountSettings for more information on using the DescribeAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeAccountSettingsRequest method.
+//	req, resp := client.DescribeAccountSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-query-2018-11-01/DescribeAccountSettings
+func (c *TimestreamQuery) DescribeAccountSettingsRequest(input *DescribeAccountSettingsInput) (req *request.Request, output *DescribeAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAccountSettingsInput{}
+	}
+
+	output = &DescribeAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// DescribeAccountSettings API operation for Amazon Timestream Query.
+//
+// Describes the settings for your account that include the query pricing model
+// and the configured maximum TCUs the service can use for your query workload.
+//
+// You're charged only for the duration of compute units used for your workloads.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Query's
+// API operation DescribeAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InternalServerException
+//     The service was unable to fully process this request because of an internal
+//     server error.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-query-2018-11-01/DescribeAccountSettings
+func (c *TimestreamQuery) DescribeAccountSettings(input *DescribeAccountSettingsInput) (*DescribeAccountSettingsOutput, error) {
+	req, out := c.DescribeAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountSettingsWithContext is the same as DescribeAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamQuery) DescribeAccountSettingsWithContext(ctx aws.Context, input *DescribeAccountSettingsInput, opts ...request.Option) (*DescribeAccountSettingsOutput, error) {
+	req, out := c.DescribeAccountSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -450,7 +565,7 @@ func (c *TimestreamQuery) DescribeEndpointsRequest(input *DescribeEndpointsInput
 // Returned Error Types:
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ValidationException
@@ -634,7 +749,7 @@ func (c *TimestreamQuery) DescribeScheduledQueryRequest(input *DescribeScheduled
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ResourceNotFoundException
@@ -753,7 +868,7 @@ func (c *TimestreamQuery) ExecuteScheduledQueryRequest(input *ExecuteScheduledQu
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ResourceNotFoundException
@@ -878,7 +993,7 @@ func (c *TimestreamQuery) ListScheduledQueriesRequest(input *ListScheduledQuerie
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ThrottlingException
@@ -1214,7 +1329,7 @@ func (c *TimestreamQuery) PrepareQueryRequest(input *PrepareQueryInput) (req *re
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ThrottlingException
@@ -1359,7 +1474,7 @@ func (c *TimestreamQuery) QueryRequest(input *QueryInput) (req *request.Request,
 //     Unable to poll results for a cancelled query.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - QueryExecutionException
@@ -1676,6 +1791,126 @@ func (c *TimestreamQuery) UntagResourceWithContext(ctx aws.Context, input *Untag
 	return out, req.Send()
 }
 
+const opUpdateAccountSettings = "UpdateAccountSettings"
+
+// UpdateAccountSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccountSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccountSettings for more information on using the UpdateAccountSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateAccountSettingsRequest method.
+//	req, resp := client.UpdateAccountSettingsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-query-2018-11-01/UpdateAccountSettings
+func (c *TimestreamQuery) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) (req *request.Request, output *UpdateAccountSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccountSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAccountSettingsInput{}
+	}
+
+	output = &UpdateAccountSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	// if custom endpoint for the request is set to a non empty string,
+	// we skip the endpoint discovery workflow.
+	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
+		de := discovererDescribeEndpoints{
+			Required:      true,
+			EndpointCache: c.endpointCache,
+			Params: map[string]*string{
+				"op": aws.String(req.Operation.Name),
+			},
+			Client: c,
+		}
+
+		for k, v := range de.Params {
+			if v == nil {
+				delete(de.Params, k)
+			}
+		}
+
+		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+			Name: "crr.endpointdiscovery",
+			Fn:   de.Handler,
+		})
+	}
+	return
+}
+
+// UpdateAccountSettings API operation for Amazon Timestream Query.
+//
+// Transitions your account to use TCUs for query pricing and modifies the maximum
+// query compute units that you've configured. If you reduce the value of MaxQueryTCU
+// to a desired configuration, the new value can take up to 24 hours to be effective.
+//
+// After you've transitioned your account to use TCUs for query pricing, you
+// can't transition to using bytes scanned for query pricing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Timestream Query's
+// API operation UpdateAccountSettings for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You are not authorized to perform this action.
+//
+//   - InternalServerException
+//     The service was unable to fully process this request because of an internal
+//     server error.
+//
+//   - ThrottlingException
+//     The request was denied due to request throttling.
+//
+//   - ValidationException
+//     Invalid or malformed request.
+//
+//   - InvalidEndpointException
+//     The requested endpoint was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-query-2018-11-01/UpdateAccountSettings
+func (c *TimestreamQuery) UpdateAccountSettings(input *UpdateAccountSettingsInput) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccountSettingsWithContext is the same as UpdateAccountSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccountSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TimestreamQuery) UpdateAccountSettingsWithContext(ctx aws.Context, input *UpdateAccountSettingsInput, opts ...request.Option) (*UpdateAccountSettingsOutput, error) {
+	req, out := c.UpdateAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateScheduledQuery = "UpdateScheduledQuery"
 
 // UpdateScheduledQueryRequest generates a "aws/request.Request" representing the
@@ -1758,7 +1993,7 @@ func (c *TimestreamQuery) UpdateScheduledQueryRequest(input *UpdateScheduledQuer
 //     You are not authorized to perform this action.
 //
 //   - InternalServerException
-//     Timestream was unable to fully process this request because of an internal
+//     The service was unable to fully process this request because of an internal
 //     server error.
 //
 //   - ResourceNotFoundException
@@ -2459,6 +2694,69 @@ func (s DeleteScheduledQueryOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeAccountSettingsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Timestream compute units (https://docs.aws.amazon.com/timestream/latest/developerguide/tcu.html)
+	// (TCUs) the service will use at any point in time to serve your queries.
+	MaxQueryTCU *int64 `type:"integer"`
+
+	// The pricing model for queries in your account.
+	QueryPricingModel *string `type:"string" enum:"QueryPricingModel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMaxQueryTCU sets the MaxQueryTCU field's value.
+func (s *DescribeAccountSettingsOutput) SetMaxQueryTCU(v int64) *DescribeAccountSettingsOutput {
+	s.MaxQueryTCU = &v
+	return s
+}
+
+// SetQueryPricingModel sets the QueryPricingModel field's value.
+func (s *DescribeAccountSettingsOutput) SetQueryPricingModel(v string) *DescribeAccountSettingsOutput {
+	s.QueryPricingModel = &v
+	return s
+}
+
 type DescribeEndpointsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2897,6 +3195,9 @@ type ExecutionStats struct {
 	// Bytes metered for a single scheduled query run.
 	BytesMetered *int64 `type:"long"`
 
+	// Bytes scanned for a single scheduled query run.
+	CumulativeBytesScanned *int64 `type:"long"`
+
 	// Data writes metered for records ingested in a single scheduled query run.
 	DataWrites *int64 `type:"long"`
 
@@ -2936,6 +3237,12 @@ func (s *ExecutionStats) SetBytesMetered(v int64) *ExecutionStats {
 	return s
 }
 
+// SetCumulativeBytesScanned sets the CumulativeBytesScanned field's value.
+func (s *ExecutionStats) SetCumulativeBytesScanned(v int64) *ExecutionStats {
+	s.CumulativeBytesScanned = &v
+	return s
+}
+
 // SetDataWrites sets the DataWrites field's value.
 func (s *ExecutionStats) SetDataWrites(v int64) *ExecutionStats {
 	s.DataWrites = &v
@@ -2960,7 +3267,7 @@ func (s *ExecutionStats) SetRecordsIngested(v int64) *ExecutionStats {
 	return s
 }
 
-// Timestream was unable to fully process this request because of an internal
+// The service was unable to fully process this request because of an internal
 // server error.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -5638,6 +5945,94 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateAccountSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of compute units the service will use at any point in
+	// time to serve your queries. To run queries, you must set a minimum capacity
+	// of 4 TCU. You can set the maximum number of TCU in multiples of 4, for example,
+	// 4, 8, 16, 32, and so on.
+	//
+	// The maximum value supported for MaxQueryTCU is 1000. To request an increase
+	// to this soft limit, contact Amazon Web Services Support. For information
+	// about the default quota for maxQueryTCU, see Default quotas (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.default).
+	MaxQueryTCU *int64 `type:"integer"`
+
+	// The pricing model for queries in an account.
+	QueryPricingModel *string `type:"string" enum:"QueryPricingModel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxQueryTCU sets the MaxQueryTCU field's value.
+func (s *UpdateAccountSettingsInput) SetMaxQueryTCU(v int64) *UpdateAccountSettingsInput {
+	s.MaxQueryTCU = &v
+	return s
+}
+
+// SetQueryPricingModel sets the QueryPricingModel field's value.
+func (s *UpdateAccountSettingsInput) SetQueryPricingModel(v string) *UpdateAccountSettingsInput {
+	s.QueryPricingModel = &v
+	return s
+}
+
+type UpdateAccountSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configured maximum number of compute units the service will use at any
+	// point in time to serve your queries.
+	MaxQueryTCU *int64 `type:"integer"`
+
+	// The pricing model for an account.
+	QueryPricingModel *string `type:"string" enum:"QueryPricingModel"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAccountSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMaxQueryTCU sets the MaxQueryTCU field's value.
+func (s *UpdateAccountSettingsOutput) SetMaxQueryTCU(v int64) *UpdateAccountSettingsOutput {
+	s.MaxQueryTCU = &v
+	return s
+}
+
+// SetQueryPricingModel sets the QueryPricingModel field's value.
+func (s *UpdateAccountSettingsOutput) SetQueryPricingModel(v string) *UpdateAccountSettingsOutput {
+	s.QueryPricingModel = &v
+	return s
+}
+
 type UpdateScheduledQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5824,6 +6219,22 @@ func MeasureValueType_Values() []string {
 		MeasureValueTypeDouble,
 		MeasureValueTypeVarchar,
 		MeasureValueTypeMulti,
+	}
+}
+
+const (
+	// QueryPricingModelBytesScanned is a QueryPricingModel enum value
+	QueryPricingModelBytesScanned = "BYTES_SCANNED"
+
+	// QueryPricingModelComputeUnits is a QueryPricingModel enum value
+	QueryPricingModelComputeUnits = "COMPUTE_UNITS"
+)
+
+// QueryPricingModel_Values returns all elements of the QueryPricingModel enum
+func QueryPricingModel_Values() []string {
+	return []string{
+		QueryPricingModelBytesScanned,
+		QueryPricingModelComputeUnits,
 	}
 }
 

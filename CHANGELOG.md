@@ -1,3 +1,14 @@
+Release v1.51.31 (2024-04-29)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/connectcases`: Updates service API and documentation
+* `service/inspector2`: Updates service API and documentation
+* `service/timestream-query`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+* `service/trustedadvisor`: Updates service API and documentation
+
 Release v1.51.30 (2024-04-26)
 ===
 
