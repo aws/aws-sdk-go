@@ -5,6 +5,7 @@
     "CancelQuery": "<p> Cancels a query that has been issued. Cancellation is provided only if the query has not completed running before the cancellation request was issued. Because cancellation is an idempotent operation, subsequent cancellation requests will return a <code>CancellationMessage</code>, indicating that the query has already been canceled. See <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.cancel-query.html\">code sample</a> for details. </p>",
     "CreateScheduledQuery": "<p> Create a scheduled query that will be run on your behalf at the configured schedule. Timestream assumes the execution role provided as part of the <code>ScheduledQueryExecutionRoleArn</code> parameter to run the query. You can use the <code>NotificationConfiguration</code> parameter to configure notification for your scheduled query operations.</p>",
     "DeleteScheduledQuery": "<p>Deletes a given scheduled query. This is an irreversible operation. </p>",
+    "DescribeAccountSettings": "<p>Describes the settings for your account that include the query pricing model and the configured maximum TCUs the service can use for your query workload.</p> <p>You're charged only for the duration of compute units used for your workloads.</p>",
     "DescribeEndpoints": "<p>DescribeEndpoints returns a list of available endpoints to make Timestream API calls against. This API is available through both Write and Query.</p> <p>Because the Timestream SDKs are designed to transparently work with the service’s architecture, including the management and mapping of the service endpoints, <i>it is not recommended that you use this API unless</i>:</p> <ul> <li> <p>You are using <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/VPCEndpoints\">VPC endpoints (Amazon Web Services PrivateLink) with Timestream </a> </p> </li> <li> <p>Your application uses a programming language that does not yet have SDK support</p> </li> <li> <p>You require better control over the client-side implementation</p> </li> </ul> <p>For detailed information on how and when to use and implement DescribeEndpoints, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/Using.API.html#Using-API.endpoint-discovery\">The Endpoint Discovery Pattern</a>.</p>",
     "DescribeScheduledQuery": "<p>Provides detailed information about a scheduled query.</p>",
     "ExecuteScheduledQuery": "<p> You can use this API to run a scheduled query manually. </p>",
@@ -14,6 +15,7 @@
     "Query": "<p> <code>Query</code> is a synchronous operation that enables you to run a query against your Amazon Timestream data. <code>Query</code> will time out after 60 seconds. You must update the default timeout in the SDK to support a timeout of 60 seconds. See the <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.run-query.html\">code sample</a> for details. </p> <p>Your query request will fail in the following cases:</p> <ul> <li> <p> If you submit a <code>Query</code> request with the same client token outside of the 5-minute idempotency window. </p> </li> <li> <p> If you submit a <code>Query</code> request with the same client token, but change other parameters, within the 5-minute idempotency window. </p> </li> <li> <p> If the size of the row (including the query metadata) exceeds 1 MB, then the query will fail with the following error message: </p> <p> <code>Query aborted as max page response size has been exceeded by the output result row</code> </p> </li> <li> <p> If the IAM principal of the query initiator and the result reader are not the same and/or the query initiator and the result reader do not have the same query string in the query requests, the query will fail with an <code>Invalid pagination token</code> error. </p> </li> </ul>",
     "TagResource": "<p>Associate a set of tags with a Timestream resource. You can then activate these user-defined tags so that they appear on the Billing and Cost Management console for cost allocation tracking. </p>",
     "UntagResource": "<p>Removes the association of tags from a Timestream query resource.</p>",
+    "UpdateAccountSettings": "<p>Transitions your account to use TCUs for query pricing and modifies the maximum query compute units that you've configured. If you reduce the value of <code>MaxQueryTCU</code> to a desired configuration, the new value can take up to 24 hours to be effective.</p> <note> <p>After you've transitioned your account to use TCUs for query pricing, you can't transition to using bytes scanned for query pricing.</p> </note>",
     "UpdateScheduledQuery": "<p>Update a scheduled query.</p>"
   },
   "shapes": {
@@ -109,6 +111,16 @@
       }
     },
     "DeleteScheduledQueryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -209,7 +221,7 @@
       }
     },
     "InternalServerException": {
-      "base": "<p> Timestream was unable to fully process this request because of an internal server error. </p>",
+      "base": "<p> The service was unable to fully process this request because of an internal server error. </p>",
       "refs": {
       }
     },
@@ -245,10 +257,19 @@
         "ExecutionStats$ExecutionTimeInMillis": "<p>Total time, measured in milliseconds, that was needed for the scheduled query run to complete.</p>",
         "ExecutionStats$DataWrites": "<p>Data writes metered for records ingested in a single scheduled query run.</p>",
         "ExecutionStats$BytesMetered": "<p>Bytes metered for a single scheduled query run.</p>",
+        "ExecutionStats$CumulativeBytesScanned": "<p>Bytes scanned for a single scheduled query run.</p>",
         "ExecutionStats$RecordsIngested": "<p>The number of records ingested for a single scheduled query run. </p>",
         "ExecutionStats$QueryResultRows": "<p>Number of rows present in the output from running a query before ingestion to destination data source.</p>",
         "QueryStatus$CumulativeBytesScanned": "<p>The amount of data scanned by the query in bytes. This is a cumulative sum and represents the total amount of bytes scanned since the query was started. </p>",
         "QueryStatus$CumulativeBytesMetered": "<p>The amount of data scanned by the query in bytes that you will be charged for. This is a cumulative sum and represents the total amount of data that you will be charged for since the query was started. The charge is applied only once and is either applied when the query completes running or when the query is cancelled. </p>"
+      }
+    },
+    "MaxQueryCapacity": {
+      "base": null,
+      "refs": {
+        "DescribeAccountSettingsResponse$MaxQueryTCU": "<p>The maximum number of <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/tcu.html\">Timestream compute units</a> (TCUs) the service will use at any point in time to serve your queries.</p>",
+        "UpdateAccountSettingsRequest$MaxQueryTCU": "<p>The maximum number of compute units the service will use at any point in time to serve your queries. To run queries, you must set a minimum capacity of 4 TCU. You can set the maximum number of TCU in multiples of 4, for example, 4, 8, 16, 32, and so on.</p> <p>The maximum value supported for <code>MaxQueryTCU</code> is 1000. To request an increase to this soft limit, contact Amazon Web Services Support. For information about the default quota for maxQueryTCU, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.default\">Default quotas</a>.</p>",
+        "UpdateAccountSettingsResponse$MaxQueryTCU": "<p>The configured maximum number of compute units the service will use at any point in time to serve your queries.</p>"
       }
     },
     "MaxQueryResults": {
@@ -374,6 +395,14 @@
       "refs": {
         "CancelQueryRequest$QueryId": "<p> The ID of the query that needs to be cancelled. <code>QueryID</code> is returned as part of the query result. </p>",
         "QueryResponse$QueryId": "<p> A unique ID for the given query. </p>"
+      }
+    },
+    "QueryPricingModel": {
+      "base": null,
+      "refs": {
+        "DescribeAccountSettingsResponse$QueryPricingModel": "<p>The pricing model for queries in your account.</p>",
+        "UpdateAccountSettingsRequest$QueryPricingModel": "<p>The pricing model for queries in an account.</p>",
+        "UpdateAccountSettingsResponse$QueryPricingModel": "<p>The pricing model for an account.</p>"
       }
     },
     "QueryRequest": {
@@ -732,6 +761,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAccountSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAccountSettingsResponse": {
       "base": null,
       "refs": {
       }

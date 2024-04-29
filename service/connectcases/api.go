@@ -969,6 +969,361 @@ func (c *ConnectCases) DeleteDomainWithContext(ctx aws.Context, input *DeleteDom
 	return out, req.Send()
 }
 
+const opDeleteField = "DeleteField"
+
+// DeleteFieldRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteField operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteField for more information on using the DeleteField
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteFieldRequest method.
+//	req, resp := client.DeleteFieldRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteField
+func (c *ConnectCases) DeleteFieldRequest(input *DeleteFieldInput) (req *request.Request, output *DeleteFieldOutput) {
+	op := &request.Operation{
+		Name:       opDeleteField,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{domainId}/fields/{fieldId}",
+	}
+
+	if input == nil {
+		input = &DeleteFieldInput{}
+	}
+
+	output = &DeleteFieldOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteField API operation for Amazon Connect Cases.
+//
+// Deletes a field from a cases template. You can delete up to 100 fields per
+// domain.
+//
+// After a field is deleted:
+//
+//   - You can still retrieve the field by calling BatchGetField.
+//
+//   - You cannot update a deleted field by calling UpdateField; it throws
+//     a ValidationException.
+//
+//   - Deleted fields are not included in the ListFields response.
+//
+//   - Calling CreateCase with a deleted field throws a ValidationException
+//     denoting which field IDs in the request have been deleted.
+//
+//   - Calling GetCase with a deleted field ID returns the deleted field's
+//     value if one exists.
+//
+//   - Calling UpdateCase with a deleted field ID throws a ValidationException
+//     if the case does not already contain a value for the deleted field. Otherwise
+//     it succeeds, allowing you to update or remove (using emptyValue: {}) the
+//     field's value from the case.
+//
+//   - GetTemplate does not return field IDs for deleted fields.
+//
+//   - GetLayout does not return field IDs for deleted fields.
+//
+//   - Calling SearchCases with the deleted field ID as a filter returns any
+//     cases that have a value for the deleted field that matches the filter
+//     criteria.
+//
+//   - Calling SearchCases with a searchTerm value that matches a deleted field's
+//     value on a case returns the case in the response.
+//
+//   - Calling BatchPutFieldOptions with a deleted field ID throw a ValidationException.
+//
+//   - Calling GetCaseEventConfiguration does not return field IDs for deleted
+//     fields.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Cases's
+// API operation DeleteField for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same Amazon Web Services Region as your request,
+//     and try your request again.
+//
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
+//
+//   - ThrottlingException
+//     The rate has been exceeded for this API. Please try again after a few minutes.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request. See the accompanying error message for details.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded. For a list of service quotas, see Amazon
+//     Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+//     in the Amazon Connect Administrator Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteField
+func (c *ConnectCases) DeleteField(input *DeleteFieldInput) (*DeleteFieldOutput, error) {
+	req, out := c.DeleteFieldRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFieldWithContext is the same as DeleteField with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteField for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) DeleteFieldWithContext(ctx aws.Context, input *DeleteFieldInput, opts ...request.Option) (*DeleteFieldOutput, error) {
+	req, out := c.DeleteFieldRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLayout = "DeleteLayout"
+
+// DeleteLayoutRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLayout operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLayout for more information on using the DeleteLayout
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteLayoutRequest method.
+//	req, resp := client.DeleteLayoutRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteLayout
+func (c *ConnectCases) DeleteLayoutRequest(input *DeleteLayoutInput) (req *request.Request, output *DeleteLayoutOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLayout,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{domainId}/layouts/{layoutId}",
+	}
+
+	if input == nil {
+		input = &DeleteLayoutInput{}
+	}
+
+	output = &DeleteLayoutOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLayout API operation for Amazon Connect Cases.
+//
+// Deletes a layout from a cases template. You can delete up to 100 layouts
+// per domain.
+//
+//	<p>After a layout is deleted:</p> <ul> <li> <p>You can still retrieve
+//	the layout by calling <code>GetLayout</code>.</p> </li> <li> <p>You cannot
+//	update a deleted layout by calling <code>UpdateLayout</code>; it throws
+//	a <code>ValidationException</code>.</p> </li> <li> <p>Deleted layouts
+//	are not included in the <code>ListLayouts</code> response.</p> </li> </ul>
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Cases's
+// API operation DeleteLayout for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same Amazon Web Services Region as your request,
+//     and try your request again.
+//
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
+//
+//   - ThrottlingException
+//     The rate has been exceeded for this API. Please try again after a few minutes.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request. See the accompanying error message for details.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteLayout
+func (c *ConnectCases) DeleteLayout(input *DeleteLayoutInput) (*DeleteLayoutOutput, error) {
+	req, out := c.DeleteLayoutRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLayoutWithContext is the same as DeleteLayout with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLayout for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) DeleteLayoutWithContext(ctx aws.Context, input *DeleteLayoutInput, opts ...request.Option) (*DeleteLayoutOutput, error) {
+	req, out := c.DeleteLayoutRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTemplate = "DeleteTemplate"
+
+// DeleteTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTemplate for more information on using the DeleteTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteTemplateRequest method.
+//	req, resp := client.DeleteTemplateRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteTemplate
+func (c *ConnectCases) DeleteTemplateRequest(input *DeleteTemplateInput) (req *request.Request, output *DeleteTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/domains/{domainId}/templates/{templateId}",
+	}
+
+	if input == nil {
+		input = &DeleteTemplateInput{}
+	}
+
+	output = &DeleteTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteTemplate API operation for Amazon Connect Cases.
+//
+// Deletes a cases template. You can delete up to 100 templates per domain.
+//
+//	<p>After a cases template is deleted:</p> <ul> <li> <p>You can still retrieve
+//	the template by calling <code>GetTemplate</code>.</p> </li> <li> <p>You
+//	cannot update the template. </p> </li> <li> <p>You cannot create a case
+//	by using the deleted template.</p> </li> <li> <p>Deleted templates are
+//	not included in the <code>ListTemplates</code> response.</p> </li> </ul>
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Cases's
+// API operation DeleteTemplate for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     We couldn't process your request because of an issue with the server. Try
+//     again later.
+//
+//   - ResourceNotFoundException
+//     We couldn't find the requested resource. Check that your resources exists
+//     and were created in the same Amazon Web Services Region as your request,
+//     and try your request again.
+//
+//   - ValidationException
+//     The request isn't valid. Check the syntax and try again.
+//
+//   - ThrottlingException
+//     The rate has been exceeded for this API. Please try again after a few minutes.
+//
+//   - AccessDeniedException
+//     You do not have sufficient access to perform this action.
+//
+//   - ConflictException
+//     The requested operation would cause a conflict with the current state of
+//     a service resource associated with the request. Resolve the conflict before
+//     retrying this request. See the accompanying error message for details.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectcases-2022-10-03/DeleteTemplate
+func (c *ConnectCases) DeleteTemplate(input *DeleteTemplateInput) (*DeleteTemplateOutput, error) {
+	req, out := c.DeleteTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTemplateWithContext is the same as DeleteTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectCases) DeleteTemplateWithContext(ctx aws.Context, input *DeleteTemplateInput, opts ...request.Option) (*DeleteTemplateOutput, error) {
+	req, out := c.DeleteTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCase = "GetCase"
 
 // GetCaseRequest generates a "aws/request.Request" representing the
@@ -3865,9 +4220,6 @@ func (s *AuditEventField) SetOldValue(v *AuditEventFieldValueUnion) *AuditEventF
 }
 
 // Object to store union of Field values.
-//
-// This data type is a UNION, so only one of the following members can be specified
-// when used or returned.
 type AuditEventFieldValueUnion struct {
 	_ struct{} `type:"structure"`
 
@@ -5711,6 +6063,270 @@ func (s DeleteDomainOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFieldInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Cases domain.
+	//
+	// DomainId is a required field
+	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of a field.
+	//
+	// FieldId is a required field
+	FieldId *string `location:"uri" locationName:"fieldId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFieldInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFieldInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFieldInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFieldInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 1))
+	}
+	if s.FieldId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldId"))
+	}
+	if s.FieldId != nil && len(*s.FieldId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DeleteFieldInput) SetDomainId(v string) *DeleteFieldInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetFieldId sets the FieldId field's value.
+func (s *DeleteFieldInput) SetFieldId(v string) *DeleteFieldInput {
+	s.FieldId = &v
+	return s
+}
+
+type DeleteFieldOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFieldOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFieldOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLayoutInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Cases domain.
+	//
+	// DomainId is a required field
+	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the layout.
+	//
+	// LayoutId is a required field
+	LayoutId *string `location:"uri" locationName:"layoutId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLayoutInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLayoutInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLayoutInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLayoutInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 1))
+	}
+	if s.LayoutId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LayoutId"))
+	}
+	if s.LayoutId != nil && len(*s.LayoutId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LayoutId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DeleteLayoutInput) SetDomainId(v string) *DeleteLayoutInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetLayoutId sets the LayoutId field's value.
+func (s *DeleteLayoutInput) SetLayoutId(v string) *DeleteLayoutInput {
+	s.LayoutId = &v
+	return s
+}
+
+type DeleteLayoutOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLayoutOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteLayoutOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Cases domain.
+	//
+	// DomainId is a required field
+	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
+
+	// A unique identifier of a template.
+	//
+	// TemplateId is a required field
+	TemplateId *string `location:"uri" locationName:"templateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTemplateInput"}
+	if s.DomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainId"))
+	}
+	if s.DomainId != nil && len(*s.DomainId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainId", 1))
+	}
+	if s.TemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateId"))
+	}
+	if s.TemplateId != nil && len(*s.TemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainId sets the DomainId field's value.
+func (s *DeleteTemplateInput) SetDomainId(v string) *DeleteTemplateInput {
+	s.DomainId = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *DeleteTemplateInput) SetTemplateId(v string) *DeleteTemplateInput {
+	s.TemplateId = &v
+	return s
+}
+
+type DeleteTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateOutput) GoString() string {
+	return s.String()
+}
+
 // Object for the summarized details of the domain.
 type DomainSummary struct {
 	_ struct{} `type:"structure"`
@@ -7130,6 +7746,12 @@ func (s *GetDomainOutput) SetTags(v map[string]*string) *GetDomainOutput {
 type GetFieldResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The timestamp for when the resource was created.
+	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the resource has been deleted.
+	Deleted *bool `locationName:"deleted" type:"boolean"`
+
 	// Description of the field.
 	Description *string `locationName:"description" type:"string"`
 
@@ -7142,6 +7764,9 @@ type GetFieldResponse struct {
 	//
 	// FieldId is a required field
 	FieldId *string `locationName:"fieldId" min:"1" type:"string" required:"true"`
+
+	// The timestamp for when the resource was created or last modified.
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Name of the field.
 	//
@@ -7181,6 +7806,18 @@ func (s GetFieldResponse) GoString() string {
 	return s.String()
 }
 
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *GetFieldResponse) SetCreatedTime(v time.Time) *GetFieldResponse {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDeleted sets the Deleted field's value.
+func (s *GetFieldResponse) SetDeleted(v bool) *GetFieldResponse {
+	s.Deleted = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *GetFieldResponse) SetDescription(v string) *GetFieldResponse {
 	s.Description = &v
@@ -7196,6 +7833,12 @@ func (s *GetFieldResponse) SetFieldArn(v string) *GetFieldResponse {
 // SetFieldId sets the FieldId field's value.
 func (s *GetFieldResponse) SetFieldId(v string) *GetFieldResponse {
 	s.FieldId = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetFieldResponse) SetLastModifiedTime(v time.Time) *GetFieldResponse {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -7298,6 +7941,15 @@ type GetLayoutOutput struct {
 	// Content is a required field
 	Content *LayoutContent `locationName:"content" type:"structure" required:"true"`
 
+	// The timestamp for when the resource was created.
+	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the resource has been deleted.
+	Deleted *bool `locationName:"deleted" type:"boolean"`
+
+	// The timestamp for when the resource was created or last modified.
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
+
 	// The Amazon Resource Name (ARN) of the newly created layout.
 	//
 	// LayoutArn is a required field
@@ -7339,6 +7991,24 @@ func (s GetLayoutOutput) GoString() string {
 // SetContent sets the Content field's value.
 func (s *GetLayoutOutput) SetContent(v *LayoutContent) *GetLayoutOutput {
 	s.Content = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *GetLayoutOutput) SetCreatedTime(v time.Time) *GetLayoutOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDeleted sets the Deleted field's value.
+func (s *GetLayoutOutput) SetDeleted(v bool) *GetLayoutOutput {
+	s.Deleted = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetLayoutOutput) SetLastModifiedTime(v time.Time) *GetLayoutOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -7435,8 +8105,17 @@ func (s *GetTemplateInput) SetTemplateId(v string) *GetTemplateInput {
 type GetTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The timestamp for when the resource was created.
+	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the resource has been deleted.
+	Deleted *bool `locationName:"deleted" type:"boolean"`
+
 	// A brief description of the template.
 	Description *string `locationName:"description" type:"string"`
+
+	// The timestamp for when the resource was created or last modified.
+	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Configuration of layouts associated to the template.
 	LayoutConfiguration *LayoutConfiguration `locationName:"layoutConfiguration" type:"structure"`
@@ -7488,9 +8167,27 @@ func (s GetTemplateOutput) GoString() string {
 	return s.String()
 }
 
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *GetTemplateOutput) SetCreatedTime(v time.Time) *GetTemplateOutput {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDeleted sets the Deleted field's value.
+func (s *GetTemplateOutput) SetDeleted(v bool) *GetTemplateOutput {
+	s.Deleted = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *GetTemplateOutput) SetDescription(v string) *GetTemplateOutput {
 	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetTemplateOutput) SetLastModifiedTime(v time.Time) *GetTemplateOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 

@@ -11,6 +11,9 @@
     "CreateRelatedItem": "<p>Creates a related item (comments, tasks, and contacts) and associates it with a case.</p> <note> <ul> <li> <p>A Related Item is a resource that is associated with a case. It may or may not have an external identifier linking it to an external resource (for example, a <code>contactArn</code>). All Related Items have their own internal identifier, the <code>relatedItemArn</code>. Examples of related items include <code>comments</code> and <code>contacts</code>.</p> </li> <li> <p>If you provide a value for <code>performedBy.userArn</code> you must also have <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html\">DescribeUser</a> permission on the ARN of the user that you provide.</p> </li> </ul> <pre><code> &lt;/note&gt; </code></pre>",
     "CreateTemplate": "<p>Creates a template in the Cases domain. This template is used to define the case object model (that is, to define what data can be captured on cases) in a Cases domain. A template must have a unique name within a domain, and it must reference existing field IDs and layout IDs. Additionally, multiple fields with same IDs are not allowed within the same Template. A template can be either Active or Inactive, as indicated by its status. Inactive templates cannot be used to create cases.</p>",
     "DeleteDomain": "<p>Deletes a Cases domain.</p> <pre><code> &lt;note&gt; &lt;p&gt;After deleting your domain you must disassociate the deleted domain from your Amazon Connect instance with another API call before being able to use Cases again with this Amazon Connect instance. See &lt;a href=&quot;https://docs.aws.amazon.com/connect/latest/APIReference/API_DeleteIntegrationAssociation.html&quot;&gt;DeleteIntegrationAssociation&lt;/a&gt;.&lt;/p&gt; &lt;/note&gt; </code></pre>",
+    "DeleteField": "<p>Deletes a field from a cases template. You can delete up to 100 fields per domain.</p> <p>After a field is deleted:</p> <ul> <li> <p>You can still retrieve the field by calling <code>BatchGetField</code>.</p> </li> <li> <p>You cannot update a deleted field by calling <code>UpdateField</code>; it throws a <code>ValidationException</code>.</p> </li> <li> <p>Deleted fields are not included in the <code>ListFields</code> response.</p> </li> <li> <p>Calling <code>CreateCase</code> with a deleted field throws a <code>ValidationException</code> denoting which field IDs in the request have been deleted.</p> </li> <li> <p>Calling <code>GetCase</code> with a deleted field ID returns the deleted field's value if one exists.</p> </li> <li> <p>Calling <code>UpdateCase</code> with a deleted field ID throws a <code>ValidationException</code> if the case does not already contain a value for the deleted field. Otherwise it succeeds, allowing you to update or remove (using <code>emptyValue: {}</code>) the field's value from the case.</p> </li> <li> <p> <code>GetTemplate</code> does not return field IDs for deleted fields.</p> </li> <li> <p> <code>GetLayout</code> does not return field IDs for deleted fields.</p> </li> <li> <p>Calling <code>SearchCases</code> with the deleted field ID as a filter returns any cases that have a value for the deleted field that matches the filter criteria.</p> </li> <li> <p>Calling <code>SearchCases</code> with a <code>searchTerm</code> value that matches a deleted field's value on a case returns the case in the response.</p> </li> <li> <p>Calling <code>BatchPutFieldOptions</code> with a deleted field ID throw a <code>ValidationException</code>.</p> </li> <li> <p>Calling <code>GetCaseEventConfiguration</code> does not return field IDs for deleted fields.</p> </li> </ul>",
+    "DeleteLayout": "<p>Deletes a layout from a cases template. You can delete up to 100 layouts per domain.</p> <pre><code> &lt;p&gt;After a layout is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;You can still retrieve the layout by calling &lt;code&gt;GetLayout&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update a deleted layout by calling &lt;code&gt;UpdateLayout&lt;/code&gt;; it throws a &lt;code&gt;ValidationException&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Deleted layouts are not included in the &lt;code&gt;ListLayouts&lt;/code&gt; response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </code></pre>",
+    "DeleteTemplate": "<p>Deletes a cases template. You can delete up to 100 templates per domain.</p> <pre><code> &lt;p&gt;After a cases template is deleted:&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;p&gt;You can still retrieve the template by calling &lt;code&gt;GetTemplate&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot update the template. &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;You cannot create a case by using the deleted template.&lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Deleted templates are not included in the &lt;code&gt;ListTemplates&lt;/code&gt; response.&lt;/p&gt; &lt;/li&gt; &lt;/ul&gt; </code></pre>",
     "GetCase": "<p>Returns information about a specific case if it exists. </p>",
     "GetCaseAuditEvents": "<p>Returns the audit history about a specific case if it exists.</p>",
     "GetCaseEventConfiguration": "<p>Returns the case event publishing configuration.</p>",
@@ -85,7 +88,7 @@
       }
     },
     "AuditEventFieldValueUnion": {
-      "base": "<p>Object to store union of Field values.</p> <important> <p>This data type is a UNION, so only one of the following members can be specified when used or returned.</p> </important>",
+      "base": "<p>Object to store union of Field values.</p>",
       "refs": {
         "AuditEventField$newValue": "<p>Union of potential field value types.</p>",
         "AuditEventField$oldValue": "<p>Union of potential field value types.</p>"
@@ -390,7 +393,10 @@
     "CreatedTime": {
       "base": null,
       "refs": {
-        "GetDomainResponse$createdTime": "<p>The timestamp when the Cases domain was created.</p>"
+        "GetDomainResponse$createdTime": "<p>The timestamp when the Cases domain was created.</p>",
+        "GetFieldResponse$createdTime": "<p>The timestamp for when the resource was created.</p>",
+        "GetLayoutResponse$createdTime": "<p>The timestamp for when the resource was created.</p>",
+        "GetTemplateResponse$createdTime": "<p>The timestamp for when the resource was created.</p>"
       }
     },
     "DeleteDomainRequest": {
@@ -401,6 +407,44 @@
     "DeleteDomainResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeleteFieldRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFieldResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLayoutRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLayoutResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Deleted": {
+      "base": null,
+      "refs": {
+        "GetFieldResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>",
+        "GetLayoutResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>",
+        "GetTemplateResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>"
       }
     },
     "DomainArn": {
@@ -423,6 +467,9 @@
         "CreateRelatedItemRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
         "CreateTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
         "DeleteDomainRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "DeleteFieldRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "DeleteLayoutRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "DeleteTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
         "DomainSummary$domainId": "<p>The unique identifier of the domain.</p>",
         "GetCaseAuditEventsRequest$domainId": "<p>The unique identifier of the Cases domain.</p>",
         "GetCaseEventConfigurationRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
@@ -550,6 +597,7 @@
       "refs": {
         "BatchPutFieldOptionsRequest$fieldId": "<p>The unique identifier of a field.</p>",
         "CreateFieldResponse$fieldId": "<p>The unique identifier of a field.</p>",
+        "DeleteFieldRequest$fieldId": "<p>The unique identifier of a field.</p>",
         "FieldError$id": "<p>The field identifier that caused the error.</p>",
         "FieldIdentifier$id": "<p>Unique identifier of a field.</p>",
         "FieldItem$id": "<p>Unique identifier of a field.</p>",
@@ -773,6 +821,14 @@
       "refs": {
       }
     },
+    "LastModifiedTime": {
+      "base": null,
+      "refs": {
+        "GetFieldResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>",
+        "GetLayoutResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>",
+        "GetTemplateResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>"
+      }
+    },
     "LayoutArn": {
       "base": null,
       "refs": {
@@ -801,6 +857,7 @@
       "base": null,
       "refs": {
         "CreateLayoutResponse$layoutId": "<p>The unique identifier of the layout.</p>",
+        "DeleteLayoutRequest$layoutId": "<p>The unique identifier of the layout.</p>",
         "GetLayoutRequest$layoutId": "<p>The unique identifier of the layout.</p>",
         "GetLayoutResponse$layoutId": "<p>The unique identifier of the layout.</p>",
         "LayoutConfiguration$defaultLayout": "<p> Unique identifier of a layout. </p>",
@@ -1234,6 +1291,7 @@
         "CaseSummary$templateId": "<p>A unique identifier of a template.</p>",
         "CreateCaseRequest$templateId": "<p>A unique identifier of a template.</p>",
         "CreateTemplateResponse$templateId": "<p>A unique identifier of a template.</p>",
+        "DeleteTemplateRequest$templateId": "<p>A unique identifier of a template.</p>",
         "GetCaseResponse$templateId": "<p>A unique identifier of a template.</p>",
         "GetTemplateRequest$templateId": "<p>A unique identifier of a template.</p>",
         "GetTemplateResponse$templateId": "<p>A unique identifier of a template.</p>",

@@ -5049,6 +5049,10 @@ func (s *BadRequestException) RequestID() string {
 type CallAnalyticsJob struct {
 	_ struct{} `type:"structure"`
 
+	// Provides detailed information about a call analytics job, including information
+	// about skipped analytics features.
+	CallAnalyticsJobDetails *CallAnalyticsJobDetails `type:"structure"`
+
 	// The name of the Call Analytics job. Job names are case sensitive and must
 	// be unique within an Amazon Web Services account.
 	CallAnalyticsJobName *string `min:"1" type:"string"`
@@ -5176,6 +5180,12 @@ func (s CallAnalyticsJob) GoString() string {
 	return s.String()
 }
 
+// SetCallAnalyticsJobDetails sets the CallAnalyticsJobDetails field's value.
+func (s *CallAnalyticsJob) SetCallAnalyticsJobDetails(v *CallAnalyticsJobDetails) *CallAnalyticsJob {
+	s.CallAnalyticsJobDetails = v
+	return s
+}
+
 // SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
 func (s *CallAnalyticsJob) SetCallAnalyticsJobName(v string) *CallAnalyticsJob {
 	s.CallAnalyticsJobName = &v
@@ -5263,6 +5273,43 @@ func (s *CallAnalyticsJob) SetStartTime(v time.Time) *CallAnalyticsJob {
 // SetTranscript sets the Transcript field's value.
 func (s *CallAnalyticsJob) SetTranscript(v *Transcript) *CallAnalyticsJob {
 	s.Transcript = v
+	return s
+}
+
+// Contains details about a call analytics job, including information about
+// skipped analytics features.
+type CallAnalyticsJobDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about any skipped analytics features during the analysis
+	// of a call analytics job.
+	//
+	// This array lists all the analytics features that were skipped, along with
+	// their corresponding reason code and message.
+	Skipped []*CallAnalyticsSkippedFeature `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallAnalyticsJobDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallAnalyticsJobDetails) GoString() string {
+	return s.String()
+}
+
+// SetSkipped sets the Skipped field's value.
+func (s *CallAnalyticsJobDetails) SetSkipped(v []*CallAnalyticsSkippedFeature) *CallAnalyticsJobDetails {
+	s.Skipped = v
 	return s
 }
 
@@ -5470,6 +5517,10 @@ func (s *CallAnalyticsJobSettings) SetVocabularyName(v string) *CallAnalyticsJob
 type CallAnalyticsJobSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Provides detailed information about a call analytics job, including information
+	// about skipped analytics features.
+	CallAnalyticsJobDetails *CallAnalyticsJobDetails `type:"structure"`
+
 	// The name of the Call Analytics job. Job names are case sensitive and must
 	// be unique within an Amazon Web Services account.
 	CallAnalyticsJobName *string `min:"1" type:"string"`
@@ -5529,6 +5580,12 @@ func (s CallAnalyticsJobSummary) GoString() string {
 	return s.String()
 }
 
+// SetCallAnalyticsJobDetails sets the CallAnalyticsJobDetails field's value.
+func (s *CallAnalyticsJobSummary) SetCallAnalyticsJobDetails(v *CallAnalyticsJobDetails) *CallAnalyticsJobSummary {
+	s.CallAnalyticsJobDetails = v
+	return s
+}
+
 // SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
 func (s *CallAnalyticsJobSummary) SetCallAnalyticsJobName(v string) *CallAnalyticsJobSummary {
 	s.CallAnalyticsJobName = &v
@@ -5568,6 +5625,68 @@ func (s *CallAnalyticsJobSummary) SetLanguageCode(v string) *CallAnalyticsJobSum
 // SetStartTime sets the StartTime field's value.
 func (s *CallAnalyticsJobSummary) SetStartTime(v time.Time) *CallAnalyticsJobSummary {
 	s.StartTime = &v
+	return s
+}
+
+// Represents a skipped analytics feature during the analysis of a call analytics
+// job.
+//
+// The Feature field indicates the type of analytics feature that was skipped.
+//
+// The Message field contains additional information or a message explaining
+// why the analytics feature was skipped.
+//
+// The ReasonCode field provides a code indicating the reason why the analytics
+// feature was skipped.
+type CallAnalyticsSkippedFeature struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the type of analytics feature that was skipped during the analysis
+	// of a call analytics job.
+	Feature *string `type:"string" enum:"CallAnalyticsFeature"`
+
+	// Contains additional information or a message explaining why a specific analytics
+	// feature was skipped during the analysis of a call analytics job.
+	Message *string `type:"string"`
+
+	// Provides a code indicating the reason why a specific analytics feature was
+	// skipped during the analysis of a call analytics job.
+	ReasonCode *string `type:"string" enum:"CallAnalyticsSkippedReasonCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallAnalyticsSkippedFeature) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CallAnalyticsSkippedFeature) GoString() string {
+	return s.String()
+}
+
+// SetFeature sets the Feature field's value.
+func (s *CallAnalyticsSkippedFeature) SetFeature(v string) *CallAnalyticsSkippedFeature {
+	s.Feature = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *CallAnalyticsSkippedFeature) SetMessage(v string) *CallAnalyticsSkippedFeature {
+	s.Message = &v
+	return s
+}
+
+// SetReasonCode sets the ReasonCode field's value.
+func (s *CallAnalyticsSkippedFeature) SetReasonCode(v string) *CallAnalyticsSkippedFeature {
+	s.ReasonCode = &v
 	return s
 }
 
@@ -15641,6 +15760,18 @@ func CLMLanguageCode_Values() []string {
 }
 
 const (
+	// CallAnalyticsFeatureGenerativeSummarization is a CallAnalyticsFeature enum value
+	CallAnalyticsFeatureGenerativeSummarization = "GENERATIVE_SUMMARIZATION"
+)
+
+// CallAnalyticsFeature_Values returns all elements of the CallAnalyticsFeature enum
+func CallAnalyticsFeature_Values() []string {
+	return []string{
+		CallAnalyticsFeatureGenerativeSummarization,
+	}
+}
+
+const (
 	// CallAnalyticsJobStatusQueued is a CallAnalyticsJobStatus enum value
 	CallAnalyticsJobStatusQueued = "QUEUED"
 
@@ -15661,6 +15792,22 @@ func CallAnalyticsJobStatus_Values() []string {
 		CallAnalyticsJobStatusInProgress,
 		CallAnalyticsJobStatusFailed,
 		CallAnalyticsJobStatusCompleted,
+	}
+}
+
+const (
+	// CallAnalyticsSkippedReasonCodeInsufficientConversationContent is a CallAnalyticsSkippedReasonCode enum value
+	CallAnalyticsSkippedReasonCodeInsufficientConversationContent = "INSUFFICIENT_CONVERSATION_CONTENT"
+
+	// CallAnalyticsSkippedReasonCodeFailedSafetyGuidelines is a CallAnalyticsSkippedReasonCode enum value
+	CallAnalyticsSkippedReasonCodeFailedSafetyGuidelines = "FAILED_SAFETY_GUIDELINES"
+)
+
+// CallAnalyticsSkippedReasonCode_Values returns all elements of the CallAnalyticsSkippedReasonCode enum
+func CallAnalyticsSkippedReasonCode_Values() []string {
+	return []string{
+		CallAnalyticsSkippedReasonCodeInsufficientConversationContent,
+		CallAnalyticsSkippedReasonCodeFailedSafetyGuidelines,
 	}
 }
 

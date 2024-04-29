@@ -72,6 +72,10 @@ type TimestreamQueryAPI interface {
 	DeleteScheduledQueryWithContext(aws.Context, *timestreamquery.DeleteScheduledQueryInput, ...request.Option) (*timestreamquery.DeleteScheduledQueryOutput, error)
 	DeleteScheduledQueryRequest(*timestreamquery.DeleteScheduledQueryInput) (*request.Request, *timestreamquery.DeleteScheduledQueryOutput)
 
+	DescribeAccountSettings(*timestreamquery.DescribeAccountSettingsInput) (*timestreamquery.DescribeAccountSettingsOutput, error)
+	DescribeAccountSettingsWithContext(aws.Context, *timestreamquery.DescribeAccountSettingsInput, ...request.Option) (*timestreamquery.DescribeAccountSettingsOutput, error)
+	DescribeAccountSettingsRequest(*timestreamquery.DescribeAccountSettingsInput) (*request.Request, *timestreamquery.DescribeAccountSettingsOutput)
+
 	DescribeEndpoints(*timestreamquery.DescribeEndpointsInput) (*timestreamquery.DescribeEndpointsOutput, error)
 	DescribeEndpointsWithContext(aws.Context, *timestreamquery.DescribeEndpointsInput, ...request.Option) (*timestreamquery.DescribeEndpointsOutput, error)
 	DescribeEndpointsRequest(*timestreamquery.DescribeEndpointsInput) (*request.Request, *timestreamquery.DescribeEndpointsOutput)
@@ -116,6 +120,10 @@ type TimestreamQueryAPI interface {
 	UntagResource(*timestreamquery.UntagResourceInput) (*timestreamquery.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *timestreamquery.UntagResourceInput, ...request.Option) (*timestreamquery.UntagResourceOutput, error)
 	UntagResourceRequest(*timestreamquery.UntagResourceInput) (*request.Request, *timestreamquery.UntagResourceOutput)
+
+	UpdateAccountSettings(*timestreamquery.UpdateAccountSettingsInput) (*timestreamquery.UpdateAccountSettingsOutput, error)
+	UpdateAccountSettingsWithContext(aws.Context, *timestreamquery.UpdateAccountSettingsInput, ...request.Option) (*timestreamquery.UpdateAccountSettingsOutput, error)
+	UpdateAccountSettingsRequest(*timestreamquery.UpdateAccountSettingsInput) (*request.Request, *timestreamquery.UpdateAccountSettingsOutput)
 
 	UpdateScheduledQuery(*timestreamquery.UpdateScheduledQueryInput) (*timestreamquery.UpdateScheduledQueryOutput, error)
 	UpdateScheduledQueryWithContext(aws.Context, *timestreamquery.UpdateScheduledQueryInput, ...request.Option) (*timestreamquery.UpdateScheduledQueryOutput, error)

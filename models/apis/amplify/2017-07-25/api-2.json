@@ -5,6 +5,7 @@
     "endpointPrefix":"amplify",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Amplify",
     "serviceFullName":"AWS Amplify",
     "serviceId":"Amplify",
@@ -1706,7 +1707,7 @@
           "locationName":"nextToken"
         },
         "maxResults":{
-          "shape":"MaxResults",
+          "shape":"MaxResultsForListApps",
           "location":"querystring",
           "locationName":"maxResults"
         }
@@ -1948,6 +1949,11 @@
       "pattern":"(?s).*"
     },
     "MaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":0
+    },
+    "MaxResultsForListApps":{
       "type":"integer",
       "max":100,
       "min":0

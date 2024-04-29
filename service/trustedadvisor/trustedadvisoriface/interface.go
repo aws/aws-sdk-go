@@ -26,7 +26,7 @@ import (
 //	// myFunc uses an SDK service client to make a request to
 //	// TrustedAdvisor Public API.
 //	func myFunc(svc trustedadvisoriface.TrustedAdvisorAPI) bool {
-//	    // Make svc.GetOrganizationRecommendation request
+//	    // Make svc.BatchUpdateRecommendationResourceExclusion request
 //	}
 //
 //	func main() {
@@ -42,7 +42,7 @@ import (
 //	type mockTrustedAdvisorClient struct {
 //	    trustedadvisoriface.TrustedAdvisorAPI
 //	}
-//	func (m *mockTrustedAdvisorClient) GetOrganizationRecommendation(input *trustedadvisor.GetOrganizationRecommendationInput) (*trustedadvisor.GetOrganizationRecommendationOutput, error) {
+//	func (m *mockTrustedAdvisorClient) BatchUpdateRecommendationResourceExclusion(input *trustedadvisor.BatchUpdateRecommendationResourceExclusionInput) (*trustedadvisor.BatchUpdateRecommendationResourceExclusionOutput, error) {
 //	    // mock response/functionality
 //	}
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type TrustedAdvisorAPI interface {
+	BatchUpdateRecommendationResourceExclusion(*trustedadvisor.BatchUpdateRecommendationResourceExclusionInput) (*trustedadvisor.BatchUpdateRecommendationResourceExclusionOutput, error)
+	BatchUpdateRecommendationResourceExclusionWithContext(aws.Context, *trustedadvisor.BatchUpdateRecommendationResourceExclusionInput, ...request.Option) (*trustedadvisor.BatchUpdateRecommendationResourceExclusionOutput, error)
+	BatchUpdateRecommendationResourceExclusionRequest(*trustedadvisor.BatchUpdateRecommendationResourceExclusionInput) (*request.Request, *trustedadvisor.BatchUpdateRecommendationResourceExclusionOutput)
+
 	GetOrganizationRecommendation(*trustedadvisor.GetOrganizationRecommendationInput) (*trustedadvisor.GetOrganizationRecommendationOutput, error)
 	GetOrganizationRecommendationWithContext(aws.Context, *trustedadvisor.GetOrganizationRecommendationInput, ...request.Option) (*trustedadvisor.GetOrganizationRecommendationOutput, error)
 	GetOrganizationRecommendationRequest(*trustedadvisor.GetOrganizationRecommendationInput) (*request.Request, *trustedadvisor.GetOrganizationRecommendationOutput)

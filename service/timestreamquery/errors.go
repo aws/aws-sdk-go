@@ -23,7 +23,7 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// Timestream was unable to fully process this request because of an internal
+	// The service was unable to fully process this request because of an internal
 	// server error.
 	ErrCodeInternalServerException = "InternalServerException"
 

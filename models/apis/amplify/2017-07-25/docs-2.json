@@ -1054,13 +1054,18 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListAppsRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>",
         "ListArtifactsRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>",
         "ListBackendEnvironmentsRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>",
         "ListBranchesRequest$maxResults": "<p> The maximum number of records to list in a single response. </p>",
         "ListDomainAssociationsRequest$maxResults": "<p> The maximum number of records to list in a single response. </p>",
         "ListJobsRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>",
         "ListWebhooksRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>"
+      }
+    },
+    "MaxResultsForListApps": {
+      "base": null,
+      "refs": {
+        "ListAppsRequest$maxResults": "<p>The maximum number of records to list in a single response. </p>"
       }
     },
     "Name": {

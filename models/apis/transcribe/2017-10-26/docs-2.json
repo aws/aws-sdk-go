@@ -103,11 +103,24 @@
         "LanguageModel$LanguageCode": "<p>The language code used to create your custom language model. Each custom language model must contain terms in only one language, and the language you select for your custom language model must match the language of your training and tuning data.</p> <p>For a list of supported languages and their associated language codes, refer to the <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html\">Supported languages</a> table. Note that US English (<code>en-US</code>) is the only language supported with Amazon Transcribe Medical.</p>"
       }
     },
+    "CallAnalyticsFeature": {
+      "base": null,
+      "refs": {
+        "CallAnalyticsSkippedFeature$Feature": "<p>Indicates the type of analytics feature that was skipped during the analysis of a call analytics job.</p>"
+      }
+    },
     "CallAnalyticsJob": {
       "base": "<p>Provides detailed information about a Call Analytics job.</p> <p>To view the job's status, refer to <code>CallAnalyticsJobStatus</code>. If the status is <code>COMPLETED</code>, the job is finished. You can find your completed transcript at the URI specified in <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>, <code>FailureReason</code> provides details on why your transcription job failed.</p> <p>If you enabled personally identifiable information (PII) redaction, the redacted transcript appears at the location specified in <code>RedactedTranscriptFileUri</code>.</p> <p>If you chose to redact the audio in your media file, you can find your redacted media file at the location specified in the <code>RedactedMediaFileUri</code> field of your response.</p>",
       "refs": {
         "GetCallAnalyticsJobResponse$CallAnalyticsJob": "<p>Provides detailed information about the specified Call Analytics job, including job status and, if applicable, failure reason.</p>",
         "StartCallAnalyticsJobResponse$CallAnalyticsJob": "<p>Provides detailed information about the current Call Analytics job, including job status and, if applicable, failure reason.</p>"
+      }
+    },
+    "CallAnalyticsJobDetails": {
+      "base": "<p>Contains details about a call analytics job, including information about skipped analytics features.</p>",
+      "refs": {
+        "CallAnalyticsJob$CallAnalyticsJobDetails": "<p>Provides detailed information about a call analytics job, including information about skipped analytics features.</p>",
+        "CallAnalyticsJobSummary$CallAnalyticsJobDetails": "<p>Provides detailed information about a call analytics job, including information about skipped analytics features.</p>"
       }
     },
     "CallAnalyticsJobName": {
@@ -147,6 +160,24 @@
       "base": "<p>Provides detailed information about a specific Call Analytics job.</p>",
       "refs": {
         "CallAnalyticsJobSummaries$member": null
+      }
+    },
+    "CallAnalyticsSkippedFeature": {
+      "base": "<p>Represents a skipped analytics feature during the analysis of a call analytics job.</p> <p>The <code>Feature</code> field indicates the type of analytics feature that was skipped.</p> <p>The <code>Message</code> field contains additional information or a message explaining why the analytics feature was skipped.</p> <p>The <code>ReasonCode</code> field provides a code indicating the reason why the analytics feature was skipped.</p>",
+      "refs": {
+        "CallAnalyticsSkippedFeatureList$member": null
+      }
+    },
+    "CallAnalyticsSkippedFeatureList": {
+      "base": null,
+      "refs": {
+        "CallAnalyticsJobDetails$Skipped": "<p>Contains information about any skipped analytics features during the analysis of a call analytics job.</p> <p>This array lists all the analytics features that were skipped, along with their corresponding reason code and message.</p>"
+      }
+    },
+    "CallAnalyticsSkippedReasonCode": {
+      "base": null,
+      "refs": {
+        "CallAnalyticsSkippedFeature$ReasonCode": "<p>Provides a code indicating the reason why a specific analytics feature was skipped during the analysis of a call analytics job.</p>"
       }
     },
     "CategoryName": {
@@ -1158,6 +1189,7 @@
     "String": {
       "base": null,
       "refs": {
+        "CallAnalyticsSkippedFeature$Message": "<p>Contains additional information or a message explaining why a specific analytics feature was skipped during the analysis of a call analytics job.</p>",
         "ConflictException$Message": null,
         "InternalFailureException$Message": null,
         "LimitExceededException$Message": null,

@@ -184,6 +184,64 @@
       ],
       "idempotent":true
     },
+    "DeleteField":{
+      "name":"DeleteField",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{domainId}/fields/{fieldId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteFieldRequest"},
+      "output":{"shape":"DeleteFieldResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteLayout":{
+      "name":"DeleteLayout",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{domainId}/layouts/{layoutId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteLayoutRequest"},
+      "output":{"shape":"DeleteLayoutResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteTemplate":{
+      "name":"DeleteTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domains/{domainId}/templates/{templateId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteTemplateRequest"},
+      "output":{"shape":"DeleteTemplateResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "GetCase":{
       "name":"GetCase",
       "http":{
@@ -1107,6 +1165,79 @@
       "members":{
       }
     },
+    "DeleteFieldRequest":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "fieldId"
+      ],
+      "members":{
+        "domainId":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainId"
+        },
+        "fieldId":{
+          "shape":"FieldId",
+          "location":"uri",
+          "locationName":"fieldId"
+        }
+      }
+    },
+    "DeleteFieldResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteLayoutRequest":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "layoutId"
+      ],
+      "members":{
+        "domainId":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainId"
+        },
+        "layoutId":{
+          "shape":"LayoutId",
+          "location":"uri",
+          "locationName":"layoutId"
+        }
+      }
+    },
+    "DeleteLayoutResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "domainId",
+        "templateId"
+      ],
+      "members":{
+        "domainId":{
+          "shape":"DomainId",
+          "location":"uri",
+          "locationName":"domainId"
+        },
+        "templateId":{
+          "shape":"TemplateId",
+          "location":"uri",
+          "locationName":"templateId"
+        }
+      }
+    },
+    "DeleteTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "Deleted":{"type":"boolean"},
     "DomainArn":{
       "type":"string",
       "max":500,
@@ -1500,9 +1631,12 @@
         "type"
       ],
       "members":{
+        "createdTime":{"shape":"CreatedTime"},
+        "deleted":{"shape":"Deleted"},
         "description":{"shape":"FieldDescription"},
         "fieldArn":{"shape":"FieldArn"},
         "fieldId":{"shape":"FieldId"},
+        "lastModifiedTime":{"shape":"LastModifiedTime"},
         "name":{"shape":"FieldName"},
         "namespace":{"shape":"FieldNamespace"},
         "tags":{"shape":"Tags"},
@@ -1538,6 +1672,9 @@
       ],
       "members":{
         "content":{"shape":"LayoutContent"},
+        "createdTime":{"shape":"CreatedTime"},
+        "deleted":{"shape":"Deleted"},
+        "lastModifiedTime":{"shape":"LastModifiedTime"},
         "layoutArn":{"shape":"LayoutArn"},
         "layoutId":{"shape":"LayoutId"},
         "name":{"shape":"LayoutName"},
@@ -1572,7 +1709,10 @@
         "templateId"
       ],
       "members":{
+        "createdTime":{"shape":"CreatedTime"},
+        "deleted":{"shape":"Deleted"},
         "description":{"shape":"TemplateDescription"},
+        "lastModifiedTime":{"shape":"LastModifiedTime"},
         "layoutConfiguration":{"shape":"LayoutConfiguration"},
         "name":{"shape":"TemplateName"},
         "requiredFields":{"shape":"RequiredFieldList"},
@@ -1606,6 +1746,10 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "LastModifiedTime":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
     },
     "LayoutArn":{
       "type":"string",
