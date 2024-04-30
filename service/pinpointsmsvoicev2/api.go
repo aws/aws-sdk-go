@@ -123,6 +123,109 @@ func (c *PinpointSMSVoiceV2) AssociateOriginationIdentityWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opAssociateProtectConfiguration = "AssociateProtectConfiguration"
+
+// AssociateProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateProtectConfiguration for more information on using the AssociateProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the AssociateProtectConfigurationRequest method.
+//	req, resp := client.AssociateProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/AssociateProtectConfiguration
+func (c *PinpointSMSVoiceV2) AssociateProtectConfigurationRequest(input *AssociateProtectConfigurationInput) (req *request.Request, output *AssociateProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opAssociateProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateProtectConfigurationInput{}
+	}
+
+	output = &AssociateProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Associate a protect configuration with a configuration set. This replaces
+// the configuration sets current protect configuration. A configuration set
+// can only be associated with one protect configuration at a time. A protect
+// configuration can be associated with multiple configuration sets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation AssociateProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - ConflictException
+//     Your request has conflicting operations. This can occur if you're trying
+//     to perform more than one operation on the same resource at the same time
+//     or it could be that the requested action isn't valid for the current state
+//     or configuration of the resource.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/AssociateProtectConfiguration
+func (c *PinpointSMSVoiceV2) AssociateProtectConfiguration(input *AssociateProtectConfigurationInput) (*AssociateProtectConfigurationOutput, error) {
+	req, out := c.AssociateProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// AssociateProtectConfigurationWithContext is the same as AssociateProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) AssociateProtectConfigurationWithContext(ctx aws.Context, input *AssociateProtectConfigurationInput, opts ...request.Option) (*AssociateProtectConfigurationOutput, error) {
+	req, out := c.AssociateProtectConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConfigurationSet = "CreateConfigurationSet"
 
 // CreateConfigurationSetRequest generates a "aws/request.Request" representing the
@@ -561,6 +664,103 @@ func (c *PinpointSMSVoiceV2) CreatePool(input *CreatePoolInput) (*CreatePoolOutp
 // for more information on using Contexts.
 func (c *PinpointSMSVoiceV2) CreatePoolWithContext(ctx aws.Context, input *CreatePoolInput, opts ...request.Option) (*CreatePoolOutput, error) {
 	req, out := c.CreatePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateProtectConfiguration = "CreateProtectConfiguration"
+
+// CreateProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateProtectConfiguration for more information on using the CreateProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateProtectConfigurationRequest method.
+//	req, resp := client.CreateProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/CreateProtectConfiguration
+func (c *PinpointSMSVoiceV2) CreateProtectConfigurationRequest(input *CreateProtectConfigurationInput) (req *request.Request, output *CreateProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateProtectConfigurationInput{}
+	}
+
+	output = &CreateProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Create a new protect configuration. By default all country rule sets for
+// each capability are set to ALLOW. Update the country rule sets using UpdateProtectConfigurationCountryRuleSet.
+// A protect configurations name is stored as a Tag with the key set to Name
+// and value as the name of the protect configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation CreateProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota to be exceeded.
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/CreateProtectConfiguration
+func (c *PinpointSMSVoiceV2) CreateProtectConfiguration(input *CreateProtectConfigurationInput) (*CreateProtectConfigurationOutput, error) {
+	req, out := c.CreateProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateProtectConfigurationWithContext is the same as CreateProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) CreateProtectConfigurationWithContext(ctx aws.Context, input *CreateProtectConfigurationInput, opts ...request.Option) (*CreateProtectConfigurationOutput, error) {
+	req, out := c.CreateProtectConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1078,6 +1278,100 @@ func (c *PinpointSMSVoiceV2) CreateVerifiedDestinationNumberWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opDeleteAccountDefaultProtectConfiguration = "DeleteAccountDefaultProtectConfiguration"
+
+// DeleteAccountDefaultProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccountDefaultProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccountDefaultProtectConfiguration for more information on using the DeleteAccountDefaultProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAccountDefaultProtectConfigurationRequest method.
+//	req, resp := client.DeleteAccountDefaultProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteAccountDefaultProtectConfiguration
+func (c *PinpointSMSVoiceV2) DeleteAccountDefaultProtectConfigurationRequest(input *DeleteAccountDefaultProtectConfigurationInput) (req *request.Request, output *DeleteAccountDefaultProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccountDefaultProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAccountDefaultProtectConfigurationInput{}
+	}
+
+	output = &DeleteAccountDefaultProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteAccountDefaultProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Removes the current account default protect configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation DeleteAccountDefaultProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteAccountDefaultProtectConfiguration
+func (c *PinpointSMSVoiceV2) DeleteAccountDefaultProtectConfiguration(input *DeleteAccountDefaultProtectConfigurationInput) (*DeleteAccountDefaultProtectConfigurationOutput, error) {
+	req, out := c.DeleteAccountDefaultProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccountDefaultProtectConfigurationWithContext is the same as DeleteAccountDefaultProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccountDefaultProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DeleteAccountDefaultProtectConfigurationWithContext(ctx aws.Context, input *DeleteAccountDefaultProtectConfigurationInput, opts ...request.Option) (*DeleteAccountDefaultProtectConfigurationOutput, error) {
+	req, out := c.DeleteAccountDefaultProtectConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteConfigurationSet = "DeleteConfigurationSet"
 
 // DeleteConfigurationSetRequest generates a "aws/request.Request" representing the
@@ -1581,6 +1875,102 @@ func (c *PinpointSMSVoiceV2) DeleteKeywordWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDeleteMediaMessageSpendLimitOverride = "DeleteMediaMessageSpendLimitOverride"
+
+// DeleteMediaMessageSpendLimitOverrideRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMediaMessageSpendLimitOverride operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMediaMessageSpendLimitOverride for more information on using the DeleteMediaMessageSpendLimitOverride
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteMediaMessageSpendLimitOverrideRequest method.
+//	req, resp := client.DeleteMediaMessageSpendLimitOverrideRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteMediaMessageSpendLimitOverride
+func (c *PinpointSMSVoiceV2) DeleteMediaMessageSpendLimitOverrideRequest(input *DeleteMediaMessageSpendLimitOverrideInput) (req *request.Request, output *DeleteMediaMessageSpendLimitOverrideOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMediaMessageSpendLimitOverride,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMediaMessageSpendLimitOverrideInput{}
+	}
+
+	output = &DeleteMediaMessageSpendLimitOverrideOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteMediaMessageSpendLimitOverride API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Deletes an account-level monthly spending limit override for sending multimedia
+// messages (MMS). Deleting a spend limit override will set the EnforcedLimit
+// to equal the MaxLimit, which is controlled by Amazon Web Services. For more
+// information on spend limits (quotas) see Quotas for Server Migration Service
+// (https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html) in the
+// Server Migration Service User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation DeleteMediaMessageSpendLimitOverride for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteMediaMessageSpendLimitOverride
+func (c *PinpointSMSVoiceV2) DeleteMediaMessageSpendLimitOverride(input *DeleteMediaMessageSpendLimitOverrideInput) (*DeleteMediaMessageSpendLimitOverrideOutput, error) {
+	req, out := c.DeleteMediaMessageSpendLimitOverrideRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMediaMessageSpendLimitOverrideWithContext is the same as DeleteMediaMessageSpendLimitOverride with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMediaMessageSpendLimitOverride for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DeleteMediaMessageSpendLimitOverrideWithContext(ctx aws.Context, input *DeleteMediaMessageSpendLimitOverrideInput, opts ...request.Option) (*DeleteMediaMessageSpendLimitOverrideOutput, error) {
+	req, out := c.DeleteMediaMessageSpendLimitOverrideRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteOptOutList = "DeleteOptOutList"
 
 // DeleteOptOutListRequest generates a "aws/request.Request" representing the
@@ -1894,6 +2284,108 @@ func (c *PinpointSMSVoiceV2) DeletePool(input *DeletePoolInput) (*DeletePoolOutp
 // for more information on using Contexts.
 func (c *PinpointSMSVoiceV2) DeletePoolWithContext(ctx aws.Context, input *DeletePoolInput, opts ...request.Option) (*DeletePoolOutput, error) {
 	req, out := c.DeletePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProtectConfiguration = "DeleteProtectConfiguration"
+
+// DeleteProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProtectConfiguration for more information on using the DeleteProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteProtectConfigurationRequest method.
+//	req, resp := client.DeleteProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteProtectConfiguration
+func (c *PinpointSMSVoiceV2) DeleteProtectConfigurationRequest(input *DeleteProtectConfigurationInput) (req *request.Request, output *DeleteProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProtectConfigurationInput{}
+	}
+
+	output = &DeleteProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Permanently delete the protect configuration. The protect configuration must
+// have deletion protection disabled and must not be associated as the account
+// default protect configuration or associated with a configuration set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation DeleteProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - ConflictException
+//     Your request has conflicting operations. This can occur if you're trying
+//     to perform more than one operation on the same resource at the same time
+//     or it could be that the requested action isn't valid for the current state
+//     or configuration of the resource.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DeleteProtectConfiguration
+func (c *PinpointSMSVoiceV2) DeleteProtectConfiguration(input *DeleteProtectConfigurationInput) (*DeleteProtectConfigurationOutput, error) {
+	req, out := c.DeleteProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProtectConfigurationWithContext is the same as DeleteProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DeleteProtectConfigurationWithContext(ctx aws.Context, input *DeleteProtectConfigurationInput, opts ...request.Option) (*DeleteProtectConfigurationOutput, error) {
+	req, out := c.DeleteProtectConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3761,6 +4253,158 @@ func (c *PinpointSMSVoiceV2) DescribePoolsPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opDescribeProtectConfigurations = "DescribeProtectConfigurations"
+
+// DescribeProtectConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeProtectConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeProtectConfigurations for more information on using the DescribeProtectConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeProtectConfigurationsRequest method.
+//	req, resp := client.DescribeProtectConfigurationsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DescribeProtectConfigurations
+func (c *PinpointSMSVoiceV2) DescribeProtectConfigurationsRequest(input *DescribeProtectConfigurationsInput) (req *request.Request, output *DescribeProtectConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeProtectConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeProtectConfigurationsInput{}
+	}
+
+	output = &DescribeProtectConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeProtectConfigurations API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Retrieves the protect configurations that match any of filters. If a filter
+// isn’t provided then all protect configurations are returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation DescribeProtectConfigurations for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DescribeProtectConfigurations
+func (c *PinpointSMSVoiceV2) DescribeProtectConfigurations(input *DescribeProtectConfigurationsInput) (*DescribeProtectConfigurationsOutput, error) {
+	req, out := c.DescribeProtectConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeProtectConfigurationsWithContext is the same as DescribeProtectConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeProtectConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DescribeProtectConfigurationsWithContext(ctx aws.Context, input *DescribeProtectConfigurationsInput, opts ...request.Option) (*DescribeProtectConfigurationsOutput, error) {
+	req, out := c.DescribeProtectConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeProtectConfigurationsPages iterates over the pages of a DescribeProtectConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeProtectConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a DescribeProtectConfigurations operation.
+//	pageNum := 0
+//	err := client.DescribeProtectConfigurationsPages(params,
+//	    func(page *pinpointsmsvoicev2.DescribeProtectConfigurationsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *PinpointSMSVoiceV2) DescribeProtectConfigurationsPages(input *DescribeProtectConfigurationsInput, fn func(*DescribeProtectConfigurationsOutput, bool) bool) error {
+	return c.DescribeProtectConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeProtectConfigurationsPagesWithContext same as DescribeProtectConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DescribeProtectConfigurationsPagesWithContext(ctx aws.Context, input *DescribeProtectConfigurationsInput, fn func(*DescribeProtectConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeProtectConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeProtectConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeProtectConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeRegistrationAttachments = "DescribeRegistrationAttachments"
 
 // DescribeRegistrationAttachmentsRequest generates a "aws/request.Request" representing the
@@ -5384,6 +6028,106 @@ func (c *PinpointSMSVoiceV2) DisassociateOriginationIdentityWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opDisassociateProtectConfiguration = "DisassociateProtectConfiguration"
+
+// DisassociateProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateProtectConfiguration for more information on using the DisassociateProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DisassociateProtectConfigurationRequest method.
+//	req, resp := client.DisassociateProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DisassociateProtectConfiguration
+func (c *PinpointSMSVoiceV2) DisassociateProtectConfigurationRequest(input *DisassociateProtectConfigurationInput) (req *request.Request, output *DisassociateProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateProtectConfigurationInput{}
+	}
+
+	output = &DisassociateProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Disassociate a protect configuration from a configuration set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation DisassociateProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - ConflictException
+//     Your request has conflicting operations. This can occur if you're trying
+//     to perform more than one operation on the same resource at the same time
+//     or it could be that the requested action isn't valid for the current state
+//     or configuration of the resource.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/DisassociateProtectConfiguration
+func (c *PinpointSMSVoiceV2) DisassociateProtectConfiguration(input *DisassociateProtectConfigurationInput) (*DisassociateProtectConfigurationOutput, error) {
+	req, out := c.DisassociateProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateProtectConfigurationWithContext is the same as DisassociateProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) DisassociateProtectConfigurationWithContext(ctx aws.Context, input *DisassociateProtectConfigurationInput, opts ...request.Option) (*DisassociateProtectConfigurationOutput, error) {
+	req, out := c.DisassociateProtectConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDiscardRegistrationVersion = "DiscardRegistrationVersion"
 
 // DiscardRegistrationVersionRequest generates a "aws/request.Request" representing the
@@ -5479,6 +6223,101 @@ func (c *PinpointSMSVoiceV2) DiscardRegistrationVersion(input *DiscardRegistrati
 // for more information on using Contexts.
 func (c *PinpointSMSVoiceV2) DiscardRegistrationVersionWithContext(ctx aws.Context, input *DiscardRegistrationVersionInput, opts ...request.Option) (*DiscardRegistrationVersionOutput, error) {
 	req, out := c.DiscardRegistrationVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetProtectConfigurationCountryRuleSet = "GetProtectConfigurationCountryRuleSet"
+
+// GetProtectConfigurationCountryRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetProtectConfigurationCountryRuleSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetProtectConfigurationCountryRuleSet for more information on using the GetProtectConfigurationCountryRuleSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetProtectConfigurationCountryRuleSetRequest method.
+//	req, resp := client.GetProtectConfigurationCountryRuleSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/GetProtectConfigurationCountryRuleSet
+func (c *PinpointSMSVoiceV2) GetProtectConfigurationCountryRuleSetRequest(input *GetProtectConfigurationCountryRuleSetInput) (req *request.Request, output *GetProtectConfigurationCountryRuleSetOutput) {
+	op := &request.Operation{
+		Name:       opGetProtectConfigurationCountryRuleSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetProtectConfigurationCountryRuleSetInput{}
+	}
+
+	output = &GetProtectConfigurationCountryRuleSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetProtectConfigurationCountryRuleSet API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Retrieve the CountryRuleSet for the specified NumberCapability from a protect
+// configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation GetProtectConfigurationCountryRuleSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/GetProtectConfigurationCountryRuleSet
+func (c *PinpointSMSVoiceV2) GetProtectConfigurationCountryRuleSet(input *GetProtectConfigurationCountryRuleSetInput) (*GetProtectConfigurationCountryRuleSetOutput, error) {
+	req, out := c.GetProtectConfigurationCountryRuleSetRequest(input)
+	return out, req.Send()
+}
+
+// GetProtectConfigurationCountryRuleSetWithContext is the same as GetProtectConfigurationCountryRuleSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetProtectConfigurationCountryRuleSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) GetProtectConfigurationCountryRuleSetWithContext(ctx aws.Context, input *GetProtectConfigurationCountryRuleSetInput, opts ...request.Option) (*GetProtectConfigurationCountryRuleSetOutput, error) {
+	req, out := c.GetProtectConfigurationCountryRuleSetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6708,6 +7547,110 @@ func (c *PinpointSMSVoiceV2) SendDestinationNumberVerificationCodeWithContext(ct
 	return out, req.Send()
 }
 
+const opSendMediaMessage = "SendMediaMessage"
+
+// SendMediaMessageRequest generates a "aws/request.Request" representing the
+// client's request for the SendMediaMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendMediaMessage for more information on using the SendMediaMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SendMediaMessageRequest method.
+//	req, resp := client.SendMediaMessageRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SendMediaMessage
+func (c *PinpointSMSVoiceV2) SendMediaMessageRequest(input *SendMediaMessageInput) (req *request.Request, output *SendMediaMessageOutput) {
+	op := &request.Operation{
+		Name:       opSendMediaMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendMediaMessageInput{}
+	}
+
+	output = &SendMediaMessageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendMediaMessage API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Creates a new multimedia message (MMS) and sends it to a recipient's phone
+// number.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation SendMediaMessage for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ServiceQuotaExceededException
+//     The request would cause a service quota to be exceeded.
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - ConflictException
+//     Your request has conflicting operations. This can occur if you're trying
+//     to perform more than one operation on the same resource at the same time
+//     or it could be that the requested action isn't valid for the current state
+//     or configuration of the resource.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SendMediaMessage
+func (c *PinpointSMSVoiceV2) SendMediaMessage(input *SendMediaMessageInput) (*SendMediaMessageOutput, error) {
+	req, out := c.SendMediaMessageRequest(input)
+	return out, req.Send()
+}
+
+// SendMediaMessageWithContext is the same as SendMediaMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendMediaMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) SendMediaMessageWithContext(ctx aws.Context, input *SendMediaMessageInput, opts ...request.Option) (*SendMediaMessageOutput, error) {
+	req, out := c.SendMediaMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendTextMessage = "SendTextMessage"
 
 // SendTextMessageRequest generates a "aws/request.Request" representing the
@@ -6922,6 +7865,102 @@ func (c *PinpointSMSVoiceV2) SendVoiceMessageWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opSetAccountDefaultProtectConfiguration = "SetAccountDefaultProtectConfiguration"
+
+// SetAccountDefaultProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the SetAccountDefaultProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SetAccountDefaultProtectConfiguration for more information on using the SetAccountDefaultProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SetAccountDefaultProtectConfigurationRequest method.
+//	req, resp := client.SetAccountDefaultProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SetAccountDefaultProtectConfiguration
+func (c *PinpointSMSVoiceV2) SetAccountDefaultProtectConfigurationRequest(input *SetAccountDefaultProtectConfigurationInput) (req *request.Request, output *SetAccountDefaultProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opSetAccountDefaultProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetAccountDefaultProtectConfigurationInput{}
+	}
+
+	output = &SetAccountDefaultProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SetAccountDefaultProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Set a protect configuration as your account default. You can only have one
+// account default protect configuration at a time. The current account default
+// protect configuration is replaced with the provided protect configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation SetAccountDefaultProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SetAccountDefaultProtectConfiguration
+func (c *PinpointSMSVoiceV2) SetAccountDefaultProtectConfiguration(input *SetAccountDefaultProtectConfigurationInput) (*SetAccountDefaultProtectConfigurationOutput, error) {
+	req, out := c.SetAccountDefaultProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// SetAccountDefaultProtectConfigurationWithContext is the same as SetAccountDefaultProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SetAccountDefaultProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) SetAccountDefaultProtectConfigurationWithContext(ctx aws.Context, input *SetAccountDefaultProtectConfigurationInput, opts ...request.Option) (*SetAccountDefaultProtectConfigurationOutput, error) {
+	req, out := c.SetAccountDefaultProtectConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSetDefaultMessageType = "SetDefaultMessageType"
 
 // SetDefaultMessageTypeRequest generates a "aws/request.Request" representing the
@@ -7116,6 +8155,99 @@ func (c *PinpointSMSVoiceV2) SetDefaultSenderId(input *SetDefaultSenderIdInput) 
 // for more information on using Contexts.
 func (c *PinpointSMSVoiceV2) SetDefaultSenderIdWithContext(ctx aws.Context, input *SetDefaultSenderIdInput, opts ...request.Option) (*SetDefaultSenderIdOutput, error) {
 	req, out := c.SetDefaultSenderIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSetMediaMessageSpendLimitOverride = "SetMediaMessageSpendLimitOverride"
+
+// SetMediaMessageSpendLimitOverrideRequest generates a "aws/request.Request" representing the
+// client's request for the SetMediaMessageSpendLimitOverride operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SetMediaMessageSpendLimitOverride for more information on using the SetMediaMessageSpendLimitOverride
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the SetMediaMessageSpendLimitOverrideRequest method.
+//	req, resp := client.SetMediaMessageSpendLimitOverrideRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SetMediaMessageSpendLimitOverride
+func (c *PinpointSMSVoiceV2) SetMediaMessageSpendLimitOverrideRequest(input *SetMediaMessageSpendLimitOverrideInput) (req *request.Request, output *SetMediaMessageSpendLimitOverrideOutput) {
+	op := &request.Operation{
+		Name:       opSetMediaMessageSpendLimitOverride,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetMediaMessageSpendLimitOverrideInput{}
+	}
+
+	output = &SetMediaMessageSpendLimitOverrideOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SetMediaMessageSpendLimitOverride API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Sets an account level monthly spend limit override for sending MMS messages.
+// The requested spend limit must be less than or equal to the MaxLimit, which
+// is set by Amazon Web Services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation SetMediaMessageSpendLimitOverride for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/SetMediaMessageSpendLimitOverride
+func (c *PinpointSMSVoiceV2) SetMediaMessageSpendLimitOverride(input *SetMediaMessageSpendLimitOverrideInput) (*SetMediaMessageSpendLimitOverrideOutput, error) {
+	req, out := c.SetMediaMessageSpendLimitOverrideRequest(input)
+	return out, req.Send()
+}
+
+// SetMediaMessageSpendLimitOverrideWithContext is the same as SetMediaMessageSpendLimitOverride with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SetMediaMessageSpendLimitOverride for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) SetMediaMessageSpendLimitOverrideWithContext(ctx aws.Context, input *SetMediaMessageSpendLimitOverrideInput, opts ...request.Option) (*SetMediaMessageSpendLimitOverrideOutput, error) {
+	req, out := c.SetMediaMessageSpendLimitOverrideRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7924,6 +9056,196 @@ func (c *PinpointSMSVoiceV2) UpdatePoolWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateProtectConfiguration = "UpdateProtectConfiguration"
+
+// UpdateProtectConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProtectConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProtectConfiguration for more information on using the UpdateProtectConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProtectConfigurationRequest method.
+//	req, resp := client.UpdateProtectConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/UpdateProtectConfiguration
+func (c *PinpointSMSVoiceV2) UpdateProtectConfigurationRequest(input *UpdateProtectConfigurationInput) (req *request.Request, output *UpdateProtectConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProtectConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProtectConfigurationInput{}
+	}
+
+	output = &UpdateProtectConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProtectConfiguration API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Update the setting for an existing protect configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation UpdateProtectConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/UpdateProtectConfiguration
+func (c *PinpointSMSVoiceV2) UpdateProtectConfiguration(input *UpdateProtectConfigurationInput) (*UpdateProtectConfigurationOutput, error) {
+	req, out := c.UpdateProtectConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProtectConfigurationWithContext is the same as UpdateProtectConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProtectConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) UpdateProtectConfigurationWithContext(ctx aws.Context, input *UpdateProtectConfigurationInput, opts ...request.Option) (*UpdateProtectConfigurationOutput, error) {
+	req, out := c.UpdateProtectConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateProtectConfigurationCountryRuleSet = "UpdateProtectConfigurationCountryRuleSet"
+
+// UpdateProtectConfigurationCountryRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProtectConfigurationCountryRuleSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProtectConfigurationCountryRuleSet for more information on using the UpdateProtectConfigurationCountryRuleSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateProtectConfigurationCountryRuleSetRequest method.
+//	req, resp := client.UpdateProtectConfigurationCountryRuleSetRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/UpdateProtectConfigurationCountryRuleSet
+func (c *PinpointSMSVoiceV2) UpdateProtectConfigurationCountryRuleSetRequest(input *UpdateProtectConfigurationCountryRuleSetInput) (req *request.Request, output *UpdateProtectConfigurationCountryRuleSetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProtectConfigurationCountryRuleSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProtectConfigurationCountryRuleSetInput{}
+	}
+
+	output = &UpdateProtectConfigurationCountryRuleSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProtectConfigurationCountryRuleSet API operation for Amazon Pinpoint SMS Voice V2.
+//
+// Update a country rule set to ALLOW or BLOCK messages to be sent to the specified
+// destination counties. You can update one or multiple countries at a time.
+// The updates are only applied to the specified NumberCapability type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint SMS Voice V2's
+// API operation UpdateProtectConfigurationCountryRuleSet for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     An error that occurred because too many requests were sent during a certain
+//     amount of time.
+//
+//   - AccessDeniedException
+//     The request was denied because you don't have sufficient permissions to access
+//     the resource.
+//
+//   - ResourceNotFoundException
+//     A requested resource couldn't be found.
+//
+//   - ValidationException
+//     A validation exception for a field.
+//
+//   - InternalServerException
+//     The API encountered an unexpected error and couldn't complete the request.
+//     You might be able to successfully issue the request again in the future.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-sms-voice-v2-2022-03-31/UpdateProtectConfigurationCountryRuleSet
+func (c *PinpointSMSVoiceV2) UpdateProtectConfigurationCountryRuleSet(input *UpdateProtectConfigurationCountryRuleSetInput) (*UpdateProtectConfigurationCountryRuleSetOutput, error) {
+	req, out := c.UpdateProtectConfigurationCountryRuleSetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProtectConfigurationCountryRuleSetWithContext is the same as UpdateProtectConfigurationCountryRuleSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProtectConfigurationCountryRuleSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PinpointSMSVoiceV2) UpdateProtectConfigurationCountryRuleSetWithContext(ctx aws.Context, input *UpdateProtectConfigurationCountryRuleSetInput, opts ...request.Option) (*UpdateProtectConfigurationCountryRuleSetOutput, error) {
+	req, out := c.UpdateProtectConfigurationCountryRuleSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSenderId = "UpdateSenderId"
 
 // UpdateSenderIdRequest generates a "aws/request.Request" representing the
@@ -8459,13 +9781,145 @@ func (s *AssociateOriginationIdentityOutput) SetPoolId(v string) *AssociateOrigi
 	return s
 }
 
+type AssociateProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the ConfigurationSet.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateProtectConfigurationInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *AssociateProtectConfigurationInput) SetConfigurationSetName(v string) *AssociateProtectConfigurationInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *AssociateProtectConfigurationInput) SetProtectConfigurationId(v string) *AssociateProtectConfigurationInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type AssociateProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configuration set.
+	//
+	// ConfigurationSetArn is a required field
+	ConfigurationSetArn *string `type:"string" required:"true"`
+
+	// The name of the ConfigurationSet.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSetArn sets the ConfigurationSetArn field's value.
+func (s *AssociateProtectConfigurationOutput) SetConfigurationSetArn(v string) *AssociateProtectConfigurationOutput {
+	s.ConfigurationSetArn = &v
+	return s
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *AssociateProtectConfigurationOutput) SetConfigurationSetName(v string) *AssociateProtectConfigurationOutput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *AssociateProtectConfigurationOutput) SetProtectConfigurationArn(v string) *AssociateProtectConfigurationOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *AssociateProtectConfigurationOutput) SetProtectConfigurationId(v string) *AssociateProtectConfigurationOutput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
 // Contains the destination configuration to use when publishing message sending
 // events.
 type CloudWatchLogsDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an Amazon Identity and Access Management
-	// (IAM) role that is able to write event data to an Amazon CloudWatch destination.
+	// The Amazon Resource Name (ARN) of an Identity and Access Management role
+	// that is able to write event data to an Amazon CloudWatch destination.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `min:"20" type:"string" required:"true"`
@@ -8627,6 +10081,9 @@ type ConfigurationSetInformation struct {
 	//
 	// EventDestinations is a required field
 	EventDestinations []*EventDestination `type:"list" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	ProtectConfigurationId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -8680,6 +10137,12 @@ func (s *ConfigurationSetInformation) SetDefaultSenderId(v string) *Configuratio
 // SetEventDestinations sets the EventDestinations field's value.
 func (s *ConfigurationSetInformation) SetEventDestinations(v []*EventDestination) *ConfigurationSetInformation {
 	s.EventDestinations = v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *ConfigurationSetInformation) SetProtectConfigurationId(v string) *ConfigurationSetInformation {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -8911,7 +10374,7 @@ type CreateEventDestinationInput struct {
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// An object that contains information about an event destination for logging
-	// to Amazon CloudWatch logs.
+	// to Amazon CloudWatch Logs.
 	CloudWatchLogsDestination *CloudWatchLogsDestination `type:"structure"`
 
 	// Either the name of the configuration set or the configuration set ARN to
@@ -9520,6 +10983,170 @@ func (s *CreatePoolOutput) SetTwoWayChannelRole(v string) *CreatePoolOutput {
 // SetTwoWayEnabled sets the TwoWayEnabled field's value.
 func (s *CreatePoolOutput) SetTwoWayEnabled(v bool) *CreatePoolOutput {
 	s.TwoWayEnabled = &v
+	return s
+}
+
+type CreateProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don't specify a client token, a randomly generated
+	// token is used for the request to ensure idempotency.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// When set to true deletion protection is enabled. By default this is set to
+	// false.
+	DeletionProtectionEnabled *bool `type:"boolean"`
+
+	// An array of key and value pair tags that are associated with the resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateProtectConfigurationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateProtectConfigurationInput) SetClientToken(v string) *CreateProtectConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *CreateProtectConfigurationInput) SetDeletionProtectionEnabled(v bool) *CreateProtectConfigurationInput {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProtectConfigurationInput) SetTags(v []*Tag) *CreateProtectConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is true if the protect configuration is set as your account default
+	// protect configuration.
+	//
+	// AccountDefault is a required field
+	AccountDefault *bool `type:"boolean" required:"true"`
+
+	// The time when the protect configuration was created, in UNIX epoch time (https://www.epochconverter.com/)
+	// format.
+	//
+	// CreatedTimestamp is a required field
+	CreatedTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// When set to true deletion protection is enabled. By default this is set to
+	// false.
+	//
+	// DeletionProtectionEnabled is a required field
+	DeletionProtectionEnabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+
+	// An array of key and value pair tags that are associated with the resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountDefault sets the AccountDefault field's value.
+func (s *CreateProtectConfigurationOutput) SetAccountDefault(v bool) *CreateProtectConfigurationOutput {
+	s.AccountDefault = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *CreateProtectConfigurationOutput) SetCreatedTimestamp(v time.Time) *CreateProtectConfigurationOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *CreateProtectConfigurationOutput) SetDeletionProtectionEnabled(v bool) *CreateProtectConfigurationOutput {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *CreateProtectConfigurationOutput) SetProtectConfigurationArn(v string) *CreateProtectConfigurationOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *CreateProtectConfigurationOutput) SetProtectConfigurationId(v string) *CreateProtectConfigurationOutput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProtectConfigurationOutput) SetTags(v []*Tag) *CreateProtectConfigurationOutput {
+	s.Tags = v
 	return s
 }
 
@@ -10409,6 +12036,72 @@ func (s *CreateVerifiedDestinationNumberOutput) SetVerifiedDestinationNumberId(v
 	return s
 }
 
+type DeleteAccountDefaultProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountDefaultProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountDefaultProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccountDefaultProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the account default protect configuration.
+	//
+	// DefaultProtectConfigurationArn is a required field
+	DefaultProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the account default protect configuration.
+	//
+	// DefaultProtectConfigurationId is a required field
+	DefaultProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountDefaultProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAccountDefaultProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefaultProtectConfigurationArn sets the DefaultProtectConfigurationArn field's value.
+func (s *DeleteAccountDefaultProtectConfigurationOutput) SetDefaultProtectConfigurationArn(v string) *DeleteAccountDefaultProtectConfigurationOutput {
+	s.DefaultProtectConfigurationArn = &v
+	return s
+}
+
+// SetDefaultProtectConfigurationId sets the DefaultProtectConfigurationId field's value.
+func (s *DeleteAccountDefaultProtectConfigurationOutput) SetDefaultProtectConfigurationId(v string) *DeleteAccountDefaultProtectConfigurationOutput {
+	s.DefaultProtectConfigurationId = &v
+	return s
+}
+
 type DeleteConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10993,6 +12686,59 @@ func (s *DeleteKeywordOutput) SetOriginationIdentityArn(v string) *DeleteKeyword
 	return s
 }
 
+type DeleteMediaMessageSpendLimitOverrideInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaMessageSpendLimitOverrideInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaMessageSpendLimitOverrideInput) GoString() string {
+	return s.String()
+}
+
+type DeleteMediaMessageSpendLimitOverrideOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current monthly limit, in US dollars.
+	MonthlyLimit *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaMessageSpendLimitOverrideOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMediaMessageSpendLimitOverrideOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonthlyLimit sets the MonthlyLimit field's value.
+func (s *DeleteMediaMessageSpendLimitOverrideOutput) SetMonthlyLimit(v int64) *DeleteMediaMessageSpendLimitOverrideOutput {
+	s.MonthlyLimit = &v
+	return s
+}
+
 type DeleteOptOutListInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11410,6 +13156,135 @@ func (s *DeletePoolOutput) SetTwoWayChannelRole(v string) *DeletePoolOutput {
 // SetTwoWayEnabled sets the TwoWayEnabled field's value.
 func (s *DeletePoolOutput) SetTwoWayEnabled(v bool) *DeletePoolOutput {
 	s.TwoWayEnabled = &v
+	return s
+}
+
+type DeleteProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProtectConfigurationInput"}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *DeleteProtectConfigurationInput) SetProtectConfigurationId(v string) *DeleteProtectConfigurationInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type DeleteProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is true if the protect configuration is set as your account default
+	// protect configuration.
+	//
+	// AccountDefault is a required field
+	AccountDefault *bool `type:"boolean" required:"true"`
+
+	// The time when the protect configuration was created, in UNIX epoch time (https://www.epochconverter.com/)
+	// format.
+	//
+	// CreatedTimestamp is a required field
+	CreatedTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// The status of deletion protection for the protect configuration. When set
+	// to true deletion protection is enabled. By default this is set to false.
+	//
+	// DeletionProtectionEnabled is a required field
+	DeletionProtectionEnabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountDefault sets the AccountDefault field's value.
+func (s *DeleteProtectConfigurationOutput) SetAccountDefault(v bool) *DeleteProtectConfigurationOutput {
+	s.AccountDefault = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *DeleteProtectConfigurationOutput) SetCreatedTimestamp(v time.Time) *DeleteProtectConfigurationOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *DeleteProtectConfigurationOutput) SetDeletionProtectionEnabled(v bool) *DeleteProtectConfigurationOutput {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *DeleteProtectConfigurationOutput) SetProtectConfigurationArn(v string) *DeleteProtectConfigurationOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *DeleteProtectConfigurationOutput) SetProtectConfigurationId(v string) *DeleteProtectConfigurationOutput {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -13129,6 +15004,133 @@ func (s *DescribePoolsOutput) SetPools(v []*PoolInformation) *DescribePoolsOutpu
 	return s
 }
 
+type DescribeProtectConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of ProtectConfigurationFilter objects to filter the results.
+	Filters []*ProtectConfigurationFilter `type:"list"`
+
+	// The maximum number of results to return per each request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results. You don't need
+	// to supply a value for this field in the initial request.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of protect configuration identifiers to search for.
+	ProtectConfigurationIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProtectConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProtectConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeProtectConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeProtectConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeProtectConfigurationsInput) SetFilters(v []*ProtectConfigurationFilter) *DescribeProtectConfigurationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeProtectConfigurationsInput) SetMaxResults(v int64) *DescribeProtectConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeProtectConfigurationsInput) SetNextToken(v string) *DescribeProtectConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProtectConfigurationIds sets the ProtectConfigurationIds field's value.
+func (s *DescribeProtectConfigurationsInput) SetProtectConfigurationIds(v []*string) *DescribeProtectConfigurationsInput {
+	s.ProtectConfigurationIds = v
+	return s
+}
+
+type DescribeProtectConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to be used for the next set of paginated results. You don't need
+	// to supply a value for this field in the initial request.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of ProtectConfigurationInformation objects that contain the details
+	// for the request.
+	ProtectConfigurations []*ProtectConfigurationInformation `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProtectConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeProtectConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeProtectConfigurationsOutput) SetNextToken(v string) *DescribeProtectConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProtectConfigurations sets the ProtectConfigurations field's value.
+func (s *DescribeProtectConfigurationsOutput) SetProtectConfigurations(v []*ProtectConfigurationInformation) *DescribeProtectConfigurationsOutput {
+	s.ProtectConfigurations = v
+	return s
+}
+
 type DescribeRegistrationAttachmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14702,6 +16704,138 @@ func (s *DisassociateOriginationIdentityOutput) SetPoolId(v string) *Disassociat
 	return s
 }
 
+type DisassociateProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the ConfigurationSet.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateProtectConfigurationInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *DisassociateProtectConfigurationInput) SetConfigurationSetName(v string) *DisassociateProtectConfigurationInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *DisassociateProtectConfigurationInput) SetProtectConfigurationId(v string) *DisassociateProtectConfigurationInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type DisassociateProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the configuration set.
+	//
+	// ConfigurationSetArn is a required field
+	ConfigurationSetArn *string `type:"string" required:"true"`
+
+	// The name of the ConfigurationSet.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSetArn sets the ConfigurationSetArn field's value.
+func (s *DisassociateProtectConfigurationOutput) SetConfigurationSetArn(v string) *DisassociateProtectConfigurationOutput {
+	s.ConfigurationSetArn = &v
+	return s
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *DisassociateProtectConfigurationOutput) SetConfigurationSetName(v string) *DisassociateProtectConfigurationOutput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *DisassociateProtectConfigurationOutput) SetProtectConfigurationArn(v string) *DisassociateProtectConfigurationOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *DisassociateProtectConfigurationOutput) SetProtectConfigurationId(v string) *DisassociateProtectConfigurationOutput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
 type DiscardRegistrationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14850,7 +16984,7 @@ func (s *DiscardRegistrationVersionOutput) SetVersionNumber(v int64) *DiscardReg
 // Contains information about an event destination.
 //
 // Event destinations are associated with configuration sets, which enable you
-// to publish message sending events to CloudWatch, Kinesis Data Firehose,or
+// to publish message sending events to CloudWatch, Kinesis Data Firehose, or
 // Amazon SNS.
 type EventDestination struct {
 	_ struct{} `type:"structure"`
@@ -14936,6 +17070,141 @@ func (s *EventDestination) SetMatchingEventTypes(v []*string) *EventDestination 
 // SetSnsDestination sets the SnsDestination field's value.
 func (s *EventDestination) SetSnsDestination(v *SnsDestination) *EventDestination {
 	s.SnsDestination = v
+	return s
+}
+
+type GetProtectConfigurationCountryRuleSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The capability type to return the CountryRuleSet for. Valid values are SMS,
+	// VOICE, or MMS.
+	//
+	// NumberCapability is a required field
+	NumberCapability *string `type:"string" required:"true" enum:"NumberCapability"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProtectConfigurationCountryRuleSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProtectConfigurationCountryRuleSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetProtectConfigurationCountryRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetProtectConfigurationCountryRuleSetInput"}
+	if s.NumberCapability == nil {
+		invalidParams.Add(request.NewErrParamRequired("NumberCapability"))
+	}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumberCapability sets the NumberCapability field's value.
+func (s *GetProtectConfigurationCountryRuleSetInput) SetNumberCapability(v string) *GetProtectConfigurationCountryRuleSetInput {
+	s.NumberCapability = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *GetProtectConfigurationCountryRuleSetInput) SetProtectConfigurationId(v string) *GetProtectConfigurationCountryRuleSetInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type GetProtectConfigurationCountryRuleSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of ProtectConfigurationCountryRuleSetInformation objects that contain
+	// the details for the requested NumberCapability. The Key is the two-letter
+	// ISO country code. For a list of supported ISO country codes, see Supported
+	// countries and regions (SMS channel) (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html)
+	// in the Amazon Pinpoint SMS user guide.
+	//
+	// CountryRuleSet is a required field
+	CountryRuleSet map[string]*ProtectConfigurationCountryRuleSetInformation `min:"1" type:"map" required:"true"`
+
+	// The capability type associated with the returned ProtectConfigurationCountryRuleSetInformation
+	// objects.
+	//
+	// NumberCapability is a required field
+	NumberCapability *string `type:"string" required:"true" enum:"NumberCapability"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProtectConfigurationCountryRuleSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetProtectConfigurationCountryRuleSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCountryRuleSet sets the CountryRuleSet field's value.
+func (s *GetProtectConfigurationCountryRuleSetOutput) SetCountryRuleSet(v map[string]*ProtectConfigurationCountryRuleSetInformation) *GetProtectConfigurationCountryRuleSetOutput {
+	s.CountryRuleSet = v
+	return s
+}
+
+// SetNumberCapability sets the NumberCapability field's value.
+func (s *GetProtectConfigurationCountryRuleSetOutput) SetNumberCapability(v string) *GetProtectConfigurationCountryRuleSetOutput {
+	s.NumberCapability = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *GetProtectConfigurationCountryRuleSetOutput) SetProtectConfigurationArn(v string) *GetProtectConfigurationCountryRuleSetOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *GetProtectConfigurationCountryRuleSetOutput) SetProtectConfigurationId(v string) *GetProtectConfigurationCountryRuleSetOutput {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -15128,7 +17397,7 @@ func (s *KeywordInformation) SetKeywordMessage(v string) *KeywordInformation {
 }
 
 // Contains the delivery stream Amazon Resource Name (ARN), and the ARN of the
-// Identity and Access Management (IAM) role associated with an Kinesis Data
+// Identity and Access Management (IAM) role associated with a Kinesis Data
 // Firehose event destination.
 //
 // Event destinations, such as Kinesis Data Firehose, are associated with configuration
@@ -15141,8 +17410,8 @@ type KinesisFirehoseDestination struct {
 	// DeliveryStreamArn is a required field
 	DeliveryStreamArn *string `min:"20" type:"string" required:"true"`
 
-	// The ARN of an Amazon Identity and Access Management (IAM) role that is able
-	// to write event data to an Amazon Firehose destination.
+	// The ARN of an Identity and Access Management role that is able to write event
+	// data to an Amazon Kinesis Data Firehose destination.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `min:"20" type:"string" required:"true"`
@@ -16450,6 +18719,199 @@ func (s *PoolOriginationIdentitiesFilter) SetName(v string) *PoolOriginationIden
 // SetValues sets the Values field's value.
 func (s *PoolOriginationIdentitiesFilter) SetValues(v []*string) *PoolOriginationIdentitiesFilter {
 	s.Values = v
+	return s
+}
+
+// The types of statuses that can be used.
+type ProtectConfigurationCountryRuleSetInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The types of protection that can be used.
+	//
+	// ProtectStatus is a required field
+	ProtectStatus *string `type:"string" required:"true" enum:"ProtectStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationCountryRuleSetInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationCountryRuleSetInformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProtectConfigurationCountryRuleSetInformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProtectConfigurationCountryRuleSetInformation"}
+	if s.ProtectStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectStatus"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProtectStatus sets the ProtectStatus field's value.
+func (s *ProtectConfigurationCountryRuleSetInformation) SetProtectStatus(v string) *ProtectConfigurationCountryRuleSetInformation {
+	s.ProtectStatus = &v
+	return s
+}
+
+// The filter definition for filtering protect configurations that meet a specified
+// criteria.
+type ProtectConfigurationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the attribute to filter on.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"ProtectConfigurationFilterName"`
+
+	// An array of values to filter for.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProtectConfigurationFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProtectConfigurationFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ProtectConfigurationFilter) SetName(v string) *ProtectConfigurationFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *ProtectConfigurationFilter) SetValues(v []*string) *ProtectConfigurationFilter {
+	s.Values = v
+	return s
+}
+
+// Provides information on the specified protect configuration.
+type ProtectConfigurationInformation struct {
+	_ struct{} `type:"structure"`
+
+	// This is true if the protect configuration is set as your account default
+	// protect configuration.
+	//
+	// AccountDefault is a required field
+	AccountDefault *bool `type:"boolean" required:"true"`
+
+	// The time when the protect configuration was created, in UNIX epoch time (https://www.epochconverter.com/)
+	// format.
+	//
+	// CreatedTimestamp is a required field
+	CreatedTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// The status of deletion protection for the protect configuration. When set
+	// to true deletion protection is enabled. By default this is set to false.
+	//
+	// DeletionProtectionEnabled is a required field
+	DeletionProtectionEnabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProtectConfigurationInformation) GoString() string {
+	return s.String()
+}
+
+// SetAccountDefault sets the AccountDefault field's value.
+func (s *ProtectConfigurationInformation) SetAccountDefault(v bool) *ProtectConfigurationInformation {
+	s.AccountDefault = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ProtectConfigurationInformation) SetCreatedTimestamp(v time.Time) *ProtectConfigurationInformation {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *ProtectConfigurationInformation) SetDeletionProtectionEnabled(v bool) *ProtectConfigurationInformation {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *ProtectConfigurationInformation) SetProtectConfigurationArn(v string) *ProtectConfigurationInformation {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *ProtectConfigurationInformation) SetProtectConfigurationId(v string) *ProtectConfigurationInformation {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -19687,6 +22149,205 @@ func (s *SendDestinationNumberVerificationCodeOutput) SetMessageId(v string) *Se
 	return s
 }
 
+type SendMediaMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set to use. This can be either the ConfigurationSetName
+	// or ConfigurationSetArn.
+	ConfigurationSetName *string `min:"1" type:"string"`
+
+	// You can specify custom data in this field. If you do, that data is logged
+	// to the event destination.
+	Context map[string]*string `type:"map"`
+
+	// The destination phone number in E.164 format.
+	//
+	// DestinationPhoneNumber is a required field
+	DestinationPhoneNumber *string `min:"1" type:"string" required:"true"`
+
+	// When set to true, the message is checked and validated, but isn't sent to
+	// the end recipient.
+	DryRun *bool `type:"boolean"`
+
+	// The maximum amount that you want to spend, in US dollars, per each MMS message.
+	MaxPrice *string `min:"2" type:"string"`
+
+	// An array of URLs to each media file to send.
+	//
+	// The media files have to be stored in a publicly available S3 bucket. Supported
+	// media file formats are listed in MMS file types, size and character limits
+	// (https://docs.aws.amazon.com/sms-voice/latest/userguide/mms-limitations-character.html).
+	// For more information on creating an S3 bucket and managing objects, see Creating
+	// a bucket (https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html)
+	// and Uploading objects (https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
+	// in the S3 user guide.
+	MediaUrls []*string `min:"1" type:"list"`
+
+	// The text body of the message.
+	MessageBody *string `min:"1" type:"string"`
+
+	// The origination identity of the message. This can be either the PhoneNumber,
+	// PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.
+	//
+	// OriginationIdentity is a required field
+	OriginationIdentity *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the protect configuration to use.
+	ProtectConfigurationId *string `min:"1" type:"string"`
+
+	// How long the text message is valid for. By default this is 72 hours.
+	TimeToLive *int64 `min:"5" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendMediaMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendMediaMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendMediaMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendMediaMessageInput"}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
+	if s.DestinationPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationPhoneNumber"))
+	}
+	if s.DestinationPhoneNumber != nil && len(*s.DestinationPhoneNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationPhoneNumber", 1))
+	}
+	if s.MaxPrice != nil && len(*s.MaxPrice) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MaxPrice", 2))
+	}
+	if s.MediaUrls != nil && len(s.MediaUrls) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaUrls", 1))
+	}
+	if s.MessageBody != nil && len(*s.MessageBody) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageBody", 1))
+	}
+	if s.OriginationIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginationIdentity"))
+	}
+	if s.OriginationIdentity != nil && len(*s.OriginationIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OriginationIdentity", 1))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+	if s.TimeToLive != nil && *s.TimeToLive < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeToLive", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *SendMediaMessageInput) SetConfigurationSetName(v string) *SendMediaMessageInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *SendMediaMessageInput) SetContext(v map[string]*string) *SendMediaMessageInput {
+	s.Context = v
+	return s
+}
+
+// SetDestinationPhoneNumber sets the DestinationPhoneNumber field's value.
+func (s *SendMediaMessageInput) SetDestinationPhoneNumber(v string) *SendMediaMessageInput {
+	s.DestinationPhoneNumber = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *SendMediaMessageInput) SetDryRun(v bool) *SendMediaMessageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxPrice sets the MaxPrice field's value.
+func (s *SendMediaMessageInput) SetMaxPrice(v string) *SendMediaMessageInput {
+	s.MaxPrice = &v
+	return s
+}
+
+// SetMediaUrls sets the MediaUrls field's value.
+func (s *SendMediaMessageInput) SetMediaUrls(v []*string) *SendMediaMessageInput {
+	s.MediaUrls = v
+	return s
+}
+
+// SetMessageBody sets the MessageBody field's value.
+func (s *SendMediaMessageInput) SetMessageBody(v string) *SendMediaMessageInput {
+	s.MessageBody = &v
+	return s
+}
+
+// SetOriginationIdentity sets the OriginationIdentity field's value.
+func (s *SendMediaMessageInput) SetOriginationIdentity(v string) *SendMediaMessageInput {
+	s.OriginationIdentity = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *SendMediaMessageInput) SetProtectConfigurationId(v string) *SendMediaMessageInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+// SetTimeToLive sets the TimeToLive field's value.
+func (s *SendMediaMessageInput) SetTimeToLive(v int64) *SendMediaMessageInput {
+	s.TimeToLive = &v
+	return s
+}
+
+type SendMediaMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the message.
+	MessageId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendMediaMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendMediaMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SendMediaMessageOutput) SetMessageId(v string) *SendMediaMessageOutput {
+	s.MessageId = &v
+	return s
+}
+
 type SendTextMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19731,6 +22392,9 @@ type SendTextMessageInput struct {
 	// The origination identity of the message. This can be either the PhoneNumber,
 	// PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.
 	OriginationIdentity *string `min:"1" type:"string"`
+
+	// The unique identifier for the protect configuration.
+	ProtectConfigurationId *string `min:"1" type:"string"`
 
 	// How long the text message is valid for. By default this is 72 hours.
 	TimeToLive *int64 `min:"5" type:"integer"`
@@ -19777,6 +22441,9 @@ func (s *SendTextMessageInput) Validate() error {
 	}
 	if s.OriginationIdentity != nil && len(*s.OriginationIdentity) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OriginationIdentity", 1))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
 	}
 	if s.TimeToLive != nil && *s.TimeToLive < 5 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeToLive", 5))
@@ -19845,6 +22512,12 @@ func (s *SendTextMessageInput) SetMessageType(v string) *SendTextMessageInput {
 // SetOriginationIdentity sets the OriginationIdentity field's value.
 func (s *SendTextMessageInput) SetOriginationIdentity(v string) *SendTextMessageInput {
 	s.OriginationIdentity = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *SendTextMessageInput) SetProtectConfigurationId(v string) *SendTextMessageInput {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -19926,6 +22599,9 @@ type SendVoiceMessageInput struct {
 	// OriginationIdentity is a required field
 	OriginationIdentity *string `min:"1" type:"string" required:"true"`
 
+	// The unique identifier for the protect configuration.
+	ProtectConfigurationId *string `min:"1" type:"string"`
+
 	// How long the voice message is valid for. By default this is 72 hours.
 	TimeToLive *int64 `min:"5" type:"integer"`
 
@@ -19975,6 +22651,9 @@ func (s *SendVoiceMessageInput) Validate() error {
 	}
 	if s.OriginationIdentity != nil && len(*s.OriginationIdentity) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OriginationIdentity", 1))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
 	}
 	if s.TimeToLive != nil && *s.TimeToLive < 5 {
 		invalidParams.Add(request.NewErrParamMinValue("TimeToLive", 5))
@@ -20031,6 +22710,12 @@ func (s *SendVoiceMessageInput) SetMessageBodyTextType(v string) *SendVoiceMessa
 // SetOriginationIdentity sets the OriginationIdentity field's value.
 func (s *SendVoiceMessageInput) SetOriginationIdentity(v string) *SendVoiceMessageInput {
 	s.OriginationIdentity = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *SendVoiceMessageInput) SetProtectConfigurationId(v string) *SendVoiceMessageInput {
+	s.ProtectConfigurationId = &v
 	return s
 }
 
@@ -20392,6 +23077,99 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type SetAccountDefaultProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetAccountDefaultProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetAccountDefaultProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetAccountDefaultProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetAccountDefaultProtectConfigurationInput"}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *SetAccountDefaultProtectConfigurationInput) SetProtectConfigurationId(v string) *SetAccountDefaultProtectConfigurationInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type SetAccountDefaultProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the account default protect configuration.
+	//
+	// DefaultProtectConfigurationArn is a required field
+	DefaultProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the account default protect configuration.
+	//
+	// DefaultProtectConfigurationId is a required field
+	DefaultProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetAccountDefaultProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetAccountDefaultProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefaultProtectConfigurationArn sets the DefaultProtectConfigurationArn field's value.
+func (s *SetAccountDefaultProtectConfigurationOutput) SetDefaultProtectConfigurationArn(v string) *SetAccountDefaultProtectConfigurationOutput {
+	s.DefaultProtectConfigurationArn = &v
+	return s
+}
+
+// SetDefaultProtectConfigurationId sets the DefaultProtectConfigurationId field's value.
+func (s *SetAccountDefaultProtectConfigurationOutput) SetDefaultProtectConfigurationId(v string) *SetAccountDefaultProtectConfigurationOutput {
+	s.DefaultProtectConfigurationId = &v
+	return s
+}
+
 type SetDefaultMessageTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20624,6 +23402,83 @@ func (s *SetDefaultSenderIdOutput) SetConfigurationSetName(v string) *SetDefault
 // SetSenderId sets the SenderId field's value.
 func (s *SetDefaultSenderIdOutput) SetSenderId(v string) *SetDefaultSenderIdOutput {
 	s.SenderId = &v
+	return s
+}
+
+type SetMediaMessageSpendLimitOverrideInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new monthly limit to enforce on text messages.
+	//
+	// MonthlyLimit is a required field
+	MonthlyLimit *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetMediaMessageSpendLimitOverrideInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetMediaMessageSpendLimitOverrideInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetMediaMessageSpendLimitOverrideInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetMediaMessageSpendLimitOverrideInput"}
+	if s.MonthlyLimit == nil {
+		invalidParams.Add(request.NewErrParamRequired("MonthlyLimit"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMonthlyLimit sets the MonthlyLimit field's value.
+func (s *SetMediaMessageSpendLimitOverrideInput) SetMonthlyLimit(v int64) *SetMediaMessageSpendLimitOverrideInput {
+	s.MonthlyLimit = &v
+	return s
+}
+
+type SetMediaMessageSpendLimitOverrideOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current monthly limit to enforce on sending text messages.
+	MonthlyLimit *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetMediaMessageSpendLimitOverrideOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SetMediaMessageSpendLimitOverrideOutput) GoString() string {
+	return s.String()
+}
+
+// SetMonthlyLimit sets the MonthlyLimit field's value.
+func (s *SetMediaMessageSpendLimitOverrideOutput) SetMonthlyLimit(v int64) *SetMediaMessageSpendLimitOverrideOutput {
+	s.MonthlyLimit = &v
 	return s
 }
 
@@ -22270,6 +25125,306 @@ func (s *UpdatePoolOutput) SetTwoWayEnabled(v bool) *UpdatePoolOutput {
 	return s
 }
 
+type UpdateProtectConfigurationCountryRuleSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of ProtectConfigurationCountryRuleSetInformation objects that contain
+	// the details for the requested NumberCapability. The Key is the two-letter
+	// ISO country code. For a list of supported ISO country codes, see Supported
+	// countries and regions (SMS channel) (https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html)
+	// in the Amazon Pinpoint SMS user guide.
+	//
+	// CountryRuleSetUpdates is a required field
+	CountryRuleSetUpdates map[string]*ProtectConfigurationCountryRuleSetInformation `min:"1" type:"map" required:"true"`
+
+	// The number capability to apply the CountryRuleSetUpdates updates to.
+	//
+	// NumberCapability is a required field
+	NumberCapability *string `type:"string" required:"true" enum:"NumberCapability"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationCountryRuleSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationCountryRuleSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProtectConfigurationCountryRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProtectConfigurationCountryRuleSetInput"}
+	if s.CountryRuleSetUpdates == nil {
+		invalidParams.Add(request.NewErrParamRequired("CountryRuleSetUpdates"))
+	}
+	if s.CountryRuleSetUpdates != nil && len(s.CountryRuleSetUpdates) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CountryRuleSetUpdates", 1))
+	}
+	if s.NumberCapability == nil {
+		invalidParams.Add(request.NewErrParamRequired("NumberCapability"))
+	}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+	if s.CountryRuleSetUpdates != nil {
+		for i, v := range s.CountryRuleSetUpdates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CountryRuleSetUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCountryRuleSetUpdates sets the CountryRuleSetUpdates field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetInput) SetCountryRuleSetUpdates(v map[string]*ProtectConfigurationCountryRuleSetInformation) *UpdateProtectConfigurationCountryRuleSetInput {
+	s.CountryRuleSetUpdates = v
+	return s
+}
+
+// SetNumberCapability sets the NumberCapability field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetInput) SetNumberCapability(v string) *UpdateProtectConfigurationCountryRuleSetInput {
+	s.NumberCapability = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetInput) SetProtectConfigurationId(v string) *UpdateProtectConfigurationCountryRuleSetInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type UpdateProtectConfigurationCountryRuleSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of ProtectConfigurationCountryRuleSetInformation containing the
+	// rules for the NumberCapability.
+	//
+	// CountryRuleSet is a required field
+	CountryRuleSet map[string]*ProtectConfigurationCountryRuleSetInformation `min:"1" type:"map" required:"true"`
+
+	// The number capability that was updated
+	//
+	// NumberCapability is a required field
+	NumberCapability *string `type:"string" required:"true" enum:"NumberCapability"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationCountryRuleSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationCountryRuleSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCountryRuleSet sets the CountryRuleSet field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetOutput) SetCountryRuleSet(v map[string]*ProtectConfigurationCountryRuleSetInformation) *UpdateProtectConfigurationCountryRuleSetOutput {
+	s.CountryRuleSet = v
+	return s
+}
+
+// SetNumberCapability sets the NumberCapability field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetOutput) SetNumberCapability(v string) *UpdateProtectConfigurationCountryRuleSetOutput {
+	s.NumberCapability = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetOutput) SetProtectConfigurationArn(v string) *UpdateProtectConfigurationCountryRuleSetOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *UpdateProtectConfigurationCountryRuleSetOutput) SetProtectConfigurationId(v string) *UpdateProtectConfigurationCountryRuleSetOutput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type UpdateProtectConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// When set to true deletion protection is enabled. By default this is set to
+	// false.
+	DeletionProtectionEnabled *bool `type:"boolean"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProtectConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProtectConfigurationInput"}
+	if s.ProtectConfigurationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtectConfigurationId"))
+	}
+	if s.ProtectConfigurationId != nil && len(*s.ProtectConfigurationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProtectConfigurationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *UpdateProtectConfigurationInput) SetDeletionProtectionEnabled(v bool) *UpdateProtectConfigurationInput {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *UpdateProtectConfigurationInput) SetProtectConfigurationId(v string) *UpdateProtectConfigurationInput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
+type UpdateProtectConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// This is true if the protect configuration is set as your account default
+	// protect configuration.
+	//
+	// AccountDefault is a required field
+	AccountDefault *bool `type:"boolean" required:"true"`
+
+	// The time when the protect configuration was created, in UNIX epoch time (https://www.epochconverter.com/)
+	// format.
+	//
+	// CreatedTimestamp is a required field
+	CreatedTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// The status of deletion protection for the protect configuration. When set
+	// to true deletion protection is enabled. By default this is set to false.
+	//
+	// DeletionProtectionEnabled is a required field
+	DeletionProtectionEnabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the protect configuration.
+	//
+	// ProtectConfigurationArn is a required field
+	ProtectConfigurationArn *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the protect configuration.
+	//
+	// ProtectConfigurationId is a required field
+	ProtectConfigurationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProtectConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountDefault sets the AccountDefault field's value.
+func (s *UpdateProtectConfigurationOutput) SetAccountDefault(v bool) *UpdateProtectConfigurationOutput {
+	s.AccountDefault = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *UpdateProtectConfigurationOutput) SetCreatedTimestamp(v time.Time) *UpdateProtectConfigurationOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDeletionProtectionEnabled sets the DeletionProtectionEnabled field's value.
+func (s *UpdateProtectConfigurationOutput) SetDeletionProtectionEnabled(v bool) *UpdateProtectConfigurationOutput {
+	s.DeletionProtectionEnabled = &v
+	return s
+}
+
+// SetProtectConfigurationArn sets the ProtectConfigurationArn field's value.
+func (s *UpdateProtectConfigurationOutput) SetProtectConfigurationArn(v string) *UpdateProtectConfigurationOutput {
+	s.ProtectConfigurationArn = &v
+	return s
+}
+
+// SetProtectConfigurationId sets the ProtectConfigurationId field's value.
+func (s *UpdateProtectConfigurationOutput) SetProtectConfigurationId(v string) *UpdateProtectConfigurationOutput {
+	s.ProtectConfigurationId = &v
+	return s
+}
+
 type UpdateSenderIdInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22887,12 +26042,16 @@ func AccessDeniedExceptionReason_Values() []string {
 const (
 	// AccountAttributeNameAccountTier is a AccountAttributeName enum value
 	AccountAttributeNameAccountTier = "ACCOUNT_TIER"
+
+	// AccountAttributeNameDefaultProtectConfigurationId is a AccountAttributeName enum value
+	AccountAttributeNameDefaultProtectConfigurationId = "DEFAULT_PROTECT_CONFIGURATION_ID"
 )
 
 // AccountAttributeName_Values returns all elements of the AccountAttributeName enum
 func AccountAttributeName_Values() []string {
 	return []string{
 		AccountAttributeNameAccountTier,
+		AccountAttributeNameDefaultProtectConfigurationId,
 	}
 }
 
@@ -22984,6 +26143,9 @@ const (
 
 	// ConfigurationSetFilterNameDefaultSenderId is a ConfigurationSetFilterName enum value
 	ConfigurationSetFilterNameDefaultSenderId = "default-sender-id"
+
+	// ConfigurationSetFilterNameProtectConfigurationId is a ConfigurationSetFilterName enum value
+	ConfigurationSetFilterNameProtectConfigurationId = "protect-configuration-id"
 )
 
 // ConfigurationSetFilterName_Values returns all elements of the ConfigurationSetFilterName enum
@@ -22993,6 +26155,7 @@ func ConfigurationSetFilterName_Values() []string {
 		ConfigurationSetFilterNameMatchingEventTypes,
 		ConfigurationSetFilterNameDefaultMessageType,
 		ConfigurationSetFilterNameDefaultSenderId,
+		ConfigurationSetFilterNameProtectConfigurationId,
 	}
 }
 
@@ -23089,6 +26252,18 @@ const (
 
 	// ConflictExceptionReasonVerificationAlreadyComplete is a ConflictExceptionReason enum value
 	ConflictExceptionReasonVerificationAlreadyComplete = "VERIFICATION_ALREADY_COMPLETE"
+
+	// ConflictExceptionReasonProtectConfigurationIsAccountDefault is a ConflictExceptionReason enum value
+	ConflictExceptionReasonProtectConfigurationIsAccountDefault = "PROTECT_CONFIGURATION_IS_ACCOUNT_DEFAULT"
+
+	// ConflictExceptionReasonProtectConfigurationAssociatedWithConfigurationSet is a ConflictExceptionReason enum value
+	ConflictExceptionReasonProtectConfigurationAssociatedWithConfigurationSet = "PROTECT_CONFIGURATION_ASSOCIATED_WITH_CONFIGURATION_SET"
+
+	// ConflictExceptionReasonProtectConfigurationNotAssociatedWithConfigurationSet is a ConflictExceptionReason enum value
+	ConflictExceptionReasonProtectConfigurationNotAssociatedWithConfigurationSet = "PROTECT_CONFIGURATION_NOT_ASSOCIATED_WITH_CONFIGURATION_SET"
+
+	// ConflictExceptionReasonDestinationCountryBlockedByProtectConfiguration is a ConflictExceptionReason enum value
+	ConflictExceptionReasonDestinationCountryBlockedByProtectConfiguration = "DESTINATION_COUNTRY_BLOCKED_BY_PROTECT_CONFIGURATION"
 )
 
 // ConflictExceptionReason_Values returns all elements of the ConflictExceptionReason enum
@@ -23125,6 +26300,10 @@ func ConflictExceptionReason_Values() []string {
 		ConflictExceptionReasonTwoWayConfigMismatch,
 		ConflictExceptionReasonVerificationCodeExpired,
 		ConflictExceptionReasonVerificationAlreadyComplete,
+		ConflictExceptionReasonProtectConfigurationIsAccountDefault,
+		ConflictExceptionReasonProtectConfigurationAssociatedWithConfigurationSet,
+		ConflictExceptionReasonProtectConfigurationNotAssociatedWithConfigurationSet,
+		ConflictExceptionReasonDestinationCountryBlockedByProtectConfiguration,
 	}
 }
 
@@ -23219,6 +26398,57 @@ const (
 
 	// EventTypeVoiceTtlExpired is a EventType enum value
 	EventTypeVoiceTtlExpired = "VOICE_TTL_EXPIRED"
+
+	// EventTypeMediaAll is a EventType enum value
+	EventTypeMediaAll = "MEDIA_ALL"
+
+	// EventTypeMediaPending is a EventType enum value
+	EventTypeMediaPending = "MEDIA_PENDING"
+
+	// EventTypeMediaQueued is a EventType enum value
+	EventTypeMediaQueued = "MEDIA_QUEUED"
+
+	// EventTypeMediaSuccessful is a EventType enum value
+	EventTypeMediaSuccessful = "MEDIA_SUCCESSFUL"
+
+	// EventTypeMediaDelivered is a EventType enum value
+	EventTypeMediaDelivered = "MEDIA_DELIVERED"
+
+	// EventTypeMediaInvalid is a EventType enum value
+	EventTypeMediaInvalid = "MEDIA_INVALID"
+
+	// EventTypeMediaInvalidMessage is a EventType enum value
+	EventTypeMediaInvalidMessage = "MEDIA_INVALID_MESSAGE"
+
+	// EventTypeMediaUnreachable is a EventType enum value
+	EventTypeMediaUnreachable = "MEDIA_UNREACHABLE"
+
+	// EventTypeMediaCarrierUnreachable is a EventType enum value
+	EventTypeMediaCarrierUnreachable = "MEDIA_CARRIER_UNREACHABLE"
+
+	// EventTypeMediaBlocked is a EventType enum value
+	EventTypeMediaBlocked = "MEDIA_BLOCKED"
+
+	// EventTypeMediaCarrierBlocked is a EventType enum value
+	EventTypeMediaCarrierBlocked = "MEDIA_CARRIER_BLOCKED"
+
+	// EventTypeMediaSpam is a EventType enum value
+	EventTypeMediaSpam = "MEDIA_SPAM"
+
+	// EventTypeMediaUnknown is a EventType enum value
+	EventTypeMediaUnknown = "MEDIA_UNKNOWN"
+
+	// EventTypeMediaTtlExpired is a EventType enum value
+	EventTypeMediaTtlExpired = "MEDIA_TTL_EXPIRED"
+
+	// EventTypeMediaFileInaccessible is a EventType enum value
+	EventTypeMediaFileInaccessible = "MEDIA_FILE_INACCESSIBLE"
+
+	// EventTypeMediaFileTypeUnsupported is a EventType enum value
+	EventTypeMediaFileTypeUnsupported = "MEDIA_FILE_TYPE_UNSUPPORTED"
+
+	// EventTypeMediaFileSizeExceeded is a EventType enum value
+	EventTypeMediaFileSizeExceeded = "MEDIA_FILE_SIZE_EXCEEDED"
 )
 
 // EventType_Values returns all elements of the EventType enum
@@ -23249,6 +26479,23 @@ func EventType_Values() []string {
 		EventTypeVoiceNoAnswer,
 		EventTypeVoiceFailed,
 		EventTypeVoiceTtlExpired,
+		EventTypeMediaAll,
+		EventTypeMediaPending,
+		EventTypeMediaQueued,
+		EventTypeMediaSuccessful,
+		EventTypeMediaDelivered,
+		EventTypeMediaInvalid,
+		EventTypeMediaInvalidMessage,
+		EventTypeMediaUnreachable,
+		EventTypeMediaCarrierUnreachable,
+		EventTypeMediaBlocked,
+		EventTypeMediaCarrierBlocked,
+		EventTypeMediaSpam,
+		EventTypeMediaUnknown,
+		EventTypeMediaTtlExpired,
+		EventTypeMediaFileInaccessible,
+		EventTypeMediaFileTypeUnsupported,
+		EventTypeMediaFileSizeExceeded,
 	}
 }
 
@@ -23406,6 +26653,9 @@ const (
 
 	// NumberCapabilityVoice is a NumberCapability enum value
 	NumberCapabilityVoice = "VOICE"
+
+	// NumberCapabilityMms is a NumberCapability enum value
+	NumberCapabilityMms = "MMS"
 )
 
 // NumberCapability_Values returns all elements of the NumberCapability enum
@@ -23413,6 +26663,7 @@ func NumberCapability_Values() []string {
 	return []string{
 		NumberCapabilitySms,
 		NumberCapabilityVoice,
+		NumberCapabilityMms,
 	}
 }
 
@@ -23605,6 +26856,38 @@ func PoolStatus_Values() []string {
 		PoolStatusCreating,
 		PoolStatusActive,
 		PoolStatusDeleting,
+	}
+}
+
+const (
+	// ProtectConfigurationFilterNameAccountDefault is a ProtectConfigurationFilterName enum value
+	ProtectConfigurationFilterNameAccountDefault = "account-default"
+
+	// ProtectConfigurationFilterNameDeletionProtectionEnabled is a ProtectConfigurationFilterName enum value
+	ProtectConfigurationFilterNameDeletionProtectionEnabled = "deletion-protection-enabled"
+)
+
+// ProtectConfigurationFilterName_Values returns all elements of the ProtectConfigurationFilterName enum
+func ProtectConfigurationFilterName_Values() []string {
+	return []string{
+		ProtectConfigurationFilterNameAccountDefault,
+		ProtectConfigurationFilterNameDeletionProtectionEnabled,
+	}
+}
+
+const (
+	// ProtectStatusAllow is a ProtectStatus enum value
+	ProtectStatusAllow = "ALLOW"
+
+	// ProtectStatusBlock is a ProtectStatus enum value
+	ProtectStatusBlock = "BLOCK"
+)
+
+// ProtectStatus_Values returns all elements of the ProtectStatus enum
+func ProtectStatus_Values() []string {
+	return []string{
+		ProtectStatusAllow,
+		ProtectStatusBlock,
 	}
 }
 
@@ -23860,6 +27143,9 @@ const (
 
 	// ResourceTypeVerifiedDestinationNumber is a ResourceType enum value
 	ResourceTypeVerifiedDestinationNumber = "verified-destination-number"
+
+	// ResourceTypeProtectConfiguration is a ResourceType enum value
+	ResourceTypeProtectConfiguration = "protect-configuration"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -23877,6 +27163,7 @@ func ResourceType_Values() []string {
 		ResourceTypeRegistration,
 		ResourceTypeRegistrationAttachment,
 		ResourceTypeVerifiedDestinationNumber,
+		ResourceTypeProtectConfiguration,
 	}
 }
 
@@ -23927,6 +27214,9 @@ const (
 	// ServiceQuotaExceededExceptionReasonKeywordsPerPool is a ServiceQuotaExceededExceptionReason enum value
 	ServiceQuotaExceededExceptionReasonKeywordsPerPool = "KEYWORDS_PER_POOL"
 
+	// ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForMedia is a ServiceQuotaExceededExceptionReason enum value
+	ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForMedia = "MONTHLY_SPEND_LIMIT_REACHED_FOR_MEDIA"
+
 	// ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForText is a ServiceQuotaExceededExceptionReason enum value
 	ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForText = "MONTHLY_SPEND_LIMIT_REACHED_FOR_TEXT"
 
@@ -23971,6 +27261,9 @@ const (
 
 	// ServiceQuotaExceededExceptionReasonVerificationAttemptsPerDay is a ServiceQuotaExceededExceptionReason enum value
 	ServiceQuotaExceededExceptionReasonVerificationAttemptsPerDay = "VERIFICATION_ATTEMPTS_PER_DAY"
+
+	// ServiceQuotaExceededExceptionReasonProtectConfigurationsPerAccount is a ServiceQuotaExceededExceptionReason enum value
+	ServiceQuotaExceededExceptionReasonProtectConfigurationsPerAccount = "PROTECT_CONFIGURATIONS_PER_ACCOUNT"
 )
 
 // ServiceQuotaExceededExceptionReason_Values returns all elements of the ServiceQuotaExceededExceptionReason enum
@@ -23982,6 +27275,7 @@ func ServiceQuotaExceededExceptionReason_Values() []string {
 		ServiceQuotaExceededExceptionReasonEventDestinationsPerConfigurationSet,
 		ServiceQuotaExceededExceptionReasonKeywordsPerPhoneNumber,
 		ServiceQuotaExceededExceptionReasonKeywordsPerPool,
+		ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForMedia,
 		ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForText,
 		ServiceQuotaExceededExceptionReasonMonthlySpendLimitReachedForVoice,
 		ServiceQuotaExceededExceptionReasonOptOutListsPerAccount,
@@ -23997,6 +27291,7 @@ func ServiceQuotaExceededExceptionReason_Values() []string {
 		ServiceQuotaExceededExceptionReasonTagsPerResource,
 		ServiceQuotaExceededExceptionReasonVerifiedDestinationNumbersPerAccount,
 		ServiceQuotaExceededExceptionReasonVerificationAttemptsPerDay,
+		ServiceQuotaExceededExceptionReasonProtectConfigurationsPerAccount,
 	}
 }
 
@@ -24006,6 +27301,9 @@ const (
 
 	// SpendLimitNameVoiceMessageMonthlySpendLimit is a SpendLimitName enum value
 	SpendLimitNameVoiceMessageMonthlySpendLimit = "VOICE_MESSAGE_MONTHLY_SPEND_LIMIT"
+
+	// SpendLimitNameMediaMessageMonthlySpendLimit is a SpendLimitName enum value
+	SpendLimitNameMediaMessageMonthlySpendLimit = "MEDIA_MESSAGE_MONTHLY_SPEND_LIMIT"
 )
 
 // SpendLimitName_Values returns all elements of the SpendLimitName enum
@@ -24013,6 +27311,7 @@ func SpendLimitName_Values() []string {
 	return []string{
 		SpendLimitNameTextMessageMonthlySpendLimit,
 		SpendLimitNameVoiceMessageMonthlySpendLimit,
+		SpendLimitNameMediaMessageMonthlySpendLimit,
 	}
 }
 
@@ -24058,6 +27357,9 @@ const (
 
 	// ValidationExceptionReasonMaximumSizeExceeded is a ValidationExceptionReason enum value
 	ValidationExceptionReasonMaximumSizeExceeded = "MAXIMUM_SIZE_EXCEEDED"
+
+	// ValidationExceptionReasonMediaTypeNotSupported is a ValidationExceptionReason enum value
+	ValidationExceptionReasonMediaTypeNotSupported = "MEDIA_TYPE_NOT_SUPPORTED"
 
 	// ValidationExceptionReasonMissingParameter is a ValidationExceptionReason enum value
 	ValidationExceptionReasonMissingParameter = "MISSING_PARAMETER"
@@ -24149,6 +27451,7 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonInvalidRequest,
 		ValidationExceptionReasonInvalidRegistrationAssociation,
 		ValidationExceptionReasonMaximumSizeExceeded,
+		ValidationExceptionReasonMediaTypeNotSupported,
 		ValidationExceptionReasonMissingParameter,
 		ValidationExceptionReasonParametersCannotBeUsedTogether,
 		ValidationExceptionReasonPhoneNumberCannotBeOptedIn,

@@ -163,7 +163,7 @@ func (c *Omics) AcceptShareRequest(input *AcceptShareInput) (req *request.Reques
 
 // AcceptShare API operation for Amazon Omics.
 //
-// Accepts a share for an analytics store.
+// Accept a resource share request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1345,8 +1345,17 @@ func (c *Omics) CreateShareRequest(input *CreateShareInput) (req *request.Reques
 
 // CreateShare API operation for Amazon Omics.
 //
-// Creates a share offer that can be accepted outside the account by a subscriber.
-// The share is created by the owner and accepted by the principal subscriber.
+// Creates a cross-account shared resource. The resource owner makes an offer
+// to share the resource with the principal subscriber (an AWS user with a different
+// account than the resource owner).
+//
+// The following resources support cross-account sharing:
+//
+//   - Healthomics variant stores
+//
+//   - Healthomics annotation stores
+//
+//   - Private workflows
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2344,7 +2353,9 @@ func (c *Omics) DeleteShareRequest(input *DeleteShareInput) (req *request.Reques
 
 // DeleteShare API operation for Amazon Omics.
 //
-// Deletes a share of an analytics store.
+// Deletes a resource share. If you are the resource owner, the subscriber will
+// no longer have access to the shared resource. If you are the subscriber,
+// this operation deletes your access to the share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3796,6 +3807,9 @@ func (c *Omics) GetRunRequest(input *GetRunInput) (req *request.Request, output 
 //
 // Gets information about a workflow run.
 //
+// If a workflow is shared with you, you cannot export information about the
+// run.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4196,7 +4210,7 @@ func (c *Omics) GetShareRequest(input *GetShareInput) (req *request.Request, out
 
 // GetShare API operation for Amazon Omics.
 //
-// Retrieves the metadata for a share.
+// Retrieves the metadata for the specified resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4482,6 +4496,8 @@ func (c *Omics) GetWorkflowRequest(input *GetWorkflowInput) (req *request.Reques
 // GetWorkflow API operation for Amazon Omics.
 //
 // Gets information about a workflow.
+//
+// If a workflow is shared with you, you cannot export the workflow.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7055,7 +7071,8 @@ func (c *Omics) ListSharesRequest(input *ListSharesInput) (req *request.Request,
 
 // ListShares API operation for Amazon Omics.
 //
-// Lists all shares associated with an account.
+// Retrieves the resource shares associated with an account. Use the filter
+// parameter to retrieve a specific subset of the shares.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8262,10 +8279,19 @@ func (c *Omics) StartRunRequest(input *StartRunInput) (req *request.Request, out
 // Starts a workflow run. To duplicate a run, specify the run's ID and a role
 // ARN. The remaining parameters are copied from the previous run.
 //
+// StartRun will not support re-run for a workflow that is shared with you.
+//
 // The total number of runs in your account is subject to a quota per Region.
 // To avoid needing to delete runs manually, you can set the retention mode
 // to REMOVE. Runs with this setting are deleted automatically when the run
 // quoata is exceeded.
+//
+// By default, the run uses STATIC storage. For STATIC storage, set the storageCapacity
+// field. You can set the storage type to DYNAMIC. You do not set storageCapacity,
+// because HealthOmics dynamically scales the storage up or down as required.
+// For more information about static and dynamic storage, see Running workflows
+// (https://docs.aws.amazon.com/omics/latest/dev/Using-workflows.html) in the
+// AWS HealthOmics User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9307,7 +9333,7 @@ func (s AbortMultipartReadSetUploadOutput) GoString() string {
 type AcceptShareInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for a share offer for analytics store data.
+	// The ID of the resource share.
 	//
 	// ShareId is a required field
 	ShareId *string `location:"uri" locationName:"shareId" type:"string" required:"true"`
@@ -9356,7 +9382,7 @@ func (s *AcceptShareInput) SetShareId(v string) *AcceptShareInput {
 type AcceptShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of an analytics store share.
+	// The status of the resource share.
 	Status *string `locationName:"status" type:"string" enum:"ShareStatus"`
 }
 
@@ -12028,18 +12054,18 @@ func (s *CreateSequenceStoreOutput) SetSseConfig(v *SseConfig) *CreateSequenceSt
 type CreateShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// The principal subscriber is the account being given access to the analytics
-	// store data through the share offer.
+	// The principal subscriber is the account being offered shared access to the
+	// resource.
 	//
 	// PrincipalSubscriber is a required field
 	PrincipalSubscriber *string `locationName:"principalSubscriber" type:"string" required:"true"`
 
-	// The resource ARN for the analytics store to be shared.
+	// The ARN of the resource to be shared.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
-	// A name given to the share.
+	// A name that the owner defines for the share.
 	ShareName *string `locationName:"shareName" min:"1" type:"string"`
 }
 
@@ -12101,13 +12127,13 @@ func (s *CreateShareInput) SetShareName(v string) *CreateShareInput {
 type CreateShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An ID generated for the share.
+	// The ID that HealthOmics generates for the share.
 	ShareId *string `locationName:"shareId" type:"string"`
 
-	// A name given to the share.
+	// The name of the share.
 	ShareName *string `locationName:"shareName" min:"1" type:"string"`
 
-	// The status of a share.
+	// The status of the share.
 	Status *string `locationName:"status" type:"string" enum:"ShareStatus"`
 }
 
@@ -12349,7 +12375,7 @@ type CreateWorkflowInput struct {
 	// each request.
 	RequestId *string `locationName:"requestId" min:"1" type:"string" idempotencyToken:"true"`
 
-	// A storage capacity for the workflow in gibibytes.
+	// The storage capacity for the workflow in gibibytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// Tags for the workflow.
@@ -13104,7 +13130,7 @@ func (s DeleteSequenceStoreOutput) GoString() string {
 type DeleteShareInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the share request to be deleted.
+	// The ID for the resource share to be deleted.
 	//
 	// ShareId is a required field
 	ShareId *string `location:"uri" locationName:"shareId" type:"string" required:"true"`
@@ -13693,16 +13719,21 @@ func (s *FileInformation) SetTotalParts(v int64) *FileInformation {
 	return s
 }
 
-// Use filters to focus the returned annotation store versions on a specific
-// parameter, such as the status of the annotation store.
+// Use filters to return a subset of resources. You can define filters for specific
+// parameters, such as the resource status.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (Arn) for an analytics store.
+	// Filter based on the Amazon Resource Number (ARN) of the resource. You can
+	// specify up to 10 values.
 	ResourceArns []*string `locationName:"resourceArns" min:"1" type:"list"`
 
-	// The status of an annotation store version.
-	Status []*string `locationName:"status" type:"list" enum:"ShareStatus"`
+	// Filter based on the resource status. You can specify up to 10 values.
+	Status []*string `locationName:"status" min:"1" type:"list" enum:"ShareStatus"`
+
+	// The type of resources to be filtered. You can specify one or more of the
+	// resource types.
+	Type []*string `locationName:"type" min:"1" type:"list" enum:"ShareResourceType"`
 }
 
 // String returns the string representation.
@@ -13729,6 +13760,12 @@ func (s *Filter) Validate() error {
 	if s.ResourceArns != nil && len(s.ResourceArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArns", 1))
 	}
+	if s.Status != nil && len(s.Status) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Status", 1))
+	}
+	if s.Type != nil && len(s.Type) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Type", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13745,6 +13782,12 @@ func (s *Filter) SetResourceArns(v []*string) *Filter {
 // SetStatus sets the Status field's value.
 func (s *Filter) SetStatus(v []*string) *Filter {
 	s.Status = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Filter) SetType(v []*string) *Filter {
+	s.Type = v
 	return s
 }
 
@@ -16257,8 +16300,13 @@ type GetRunOutput struct {
 	// The run's stop time.
 	StopTime *time.Time `locationName:"stopTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The run's storage capacity in gigabytes.
+	// The run's storage capacity in gibibytes. For dynamic storage, after the run
+	// has completed, this value is the maximum amount of storage used during the
+	// run.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
+
+	// The run's storage type.
+	StorageType *string `locationName:"storageType" min:"1" type:"string" enum:"StorageType"`
 
 	// The run's tags.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -16268,6 +16316,9 @@ type GetRunOutput struct {
 
 	// The run's workflow ID.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
+
+	// The ID of the workflow owner.
+	WorkflowOwnerId *string `locationName:"workflowOwnerId" type:"string"`
 
 	// The run's workflow type.
 	WorkflowType *string `locationName:"workflowType" min:"1" type:"string" enum:"WorkflowType"`
@@ -16435,6 +16486,12 @@ func (s *GetRunOutput) SetStorageCapacity(v int64) *GetRunOutput {
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *GetRunOutput) SetStorageType(v string) *GetRunOutput {
+	s.StorageType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *GetRunOutput) SetTags(v map[string]*string) *GetRunOutput {
 	s.Tags = v
@@ -16450,6 +16507,12 @@ func (s *GetRunOutput) SetUuid(v string) *GetRunOutput {
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *GetRunOutput) SetWorkflowId(v string) *GetRunOutput {
 	s.WorkflowId = &v
+	return s
+}
+
+// SetWorkflowOwnerId sets the WorkflowOwnerId field's value.
+func (s *GetRunOutput) SetWorkflowOwnerId(v string) *GetRunOutput {
+	s.WorkflowOwnerId = &v
 	return s
 }
 
@@ -16826,7 +16889,7 @@ func (s *GetSequenceStoreOutput) SetSseConfig(v *SseConfig) *GetSequenceStoreOut
 type GetShareInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The generated ID for a share.
+	// The ID of the share.
 	//
 	// ShareId is a required field
 	ShareId *string `location:"uri" locationName:"shareId" type:"string" required:"true"`
@@ -16875,8 +16938,8 @@ func (s *GetShareInput) SetShareId(v string) *GetShareInput {
 type GetShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An analytic store share details object. contains status, resourceArn, ownerId,
-	// etc.
+	// A resource share details object. The object includes the status, the resourceArn,
+	// and ownerId.
 	Share *ShareDetails `locationName:"share" type:"structure"`
 }
 
@@ -17308,6 +17371,9 @@ type GetWorkflowInput struct {
 
 	// The workflow's type.
 	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" enum:"WorkflowType"`
+
+	// The ID of the workflow owner.
+	WorkflowOwnerId *string `location:"querystring" locationName:"workflowOwnerId" type:"string"`
 }
 
 // String returns the string representation.
@@ -17365,6 +17431,12 @@ func (s *GetWorkflowInput) SetType(v string) *GetWorkflowInput {
 	return s
 }
 
+// SetWorkflowOwnerId sets the WorkflowOwnerId field's value.
+func (s *GetWorkflowInput) SetWorkflowOwnerId(v string) *GetWorkflowInput {
+	s.WorkflowOwnerId = &v
+	return s
+}
+
 type GetWorkflowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17410,7 +17482,7 @@ type GetWorkflowOutput struct {
 	// The workflow's status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The workflow's storage capacity in gigabytes.
+	// The workflow's storage capacity in gibibytes.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
 
 	// The workflow's tags.
@@ -20176,7 +20248,7 @@ func (s *ListSequenceStoresOutput) SetSequenceStores(v []*SequenceStoreDetail) *
 type ListSharesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Attributes used to filter for a specific subset of shares.
+	// Attributes that you use to filter for a specific subset of resource shares.
 	Filter *Filter `locationName:"filter" type:"structure"`
 
 	// The maximum number of shares to return in one page of results.
@@ -20186,7 +20258,7 @@ type ListSharesInput struct {
 	// call. Used to get the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	// The account that owns the analytics store shared.
+	// The account that owns the resource shares.
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
@@ -20259,7 +20331,7 @@ type ListSharesOutput struct {
 	// Used to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The shares available and their meta details.
+	// The shares available and their metadata details.
 	//
 	// Shares is a required field
 	Shares []*ShareDetails `locationName:"shares" type:"list" required:"true"`
@@ -20692,14 +20764,14 @@ type ListWorkflowsInput struct {
 	// The maximum number of workflows to return in one page of results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The workflows' name.
+	// Filter the list by workflow name.
 	Name *string `location:"querystring" locationName:"name" min:"1" type:"string"`
 
 	// Specify the pagination token from a previous request to retrieve the next
 	// page of results.
 	StartingToken *string `location:"querystring" locationName:"startingToken" min:"1" type:"string"`
 
-	// The workflows' type.
+	// Filter the list by workflow type.
 	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" enum:"WorkflowType"`
 }
 
@@ -20770,7 +20842,7 @@ func (s *ListWorkflowsInput) SetType(v string) *ListWorkflowsInput {
 type ListWorkflowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The workflows' items.
+	// A list of workflow items.
 	Items []*WorkflowListItem `locationName:"items" type:"list"`
 
 	// A pagination token that's included if more results are available.
@@ -22444,8 +22516,13 @@ type RunListItem struct {
 	// When the run stopped.
 	StopTime *time.Time `locationName:"stopTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The run's storage capacity.
+	// The run's storage capacity in gibibytes. For dynamic storage, after the run
+	// has completed, this value is the maximum amount of storage used during the
+	// run.
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
+
+	// The run's storage type.
+	StorageType *string `locationName:"storageType" min:"1" type:"string" enum:"StorageType"`
 
 	// The run's workflow ID.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
@@ -22520,6 +22597,12 @@ func (s *RunListItem) SetStopTime(v time.Time) *RunListItem {
 // SetStorageCapacity sets the StorageCapacity field's value.
 func (s *RunListItem) SetStorageCapacity(v int64) *RunListItem {
 	s.StorageCapacity = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RunListItem) SetStorageType(v string) *RunListItem {
+	s.StorageType = &v
 	return s
 }
 
@@ -22899,37 +22982,39 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The details of a share.
+// The details of a resource share.
 type ShareDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the share was created.
+	// The timestamp of when the resource share was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The account ID for the data owner. The owner creates the share offer.
+	// The account ID for the data owner. The owner creates the resource share.
 	OwnerId *string `locationName:"ownerId" type:"string"`
 
-	// The principal subscriber is the account the analytics store data is being
-	// shared with.
+	// The principal subscriber is the account that is sharing the resource.
 	PrincipalSubscriber *string `locationName:"principalSubscriber" type:"string"`
 
-	// The resource Arn of the analytics store being shared.
+	// The Arn of the shared resource.
 	ResourceArn *string `locationName:"resourceArn" type:"string"`
 
-	// The ID for a share offer for an analytics store .
+	// The ID of the shared resource.
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The ID of the resource share.
 	ShareId *string `locationName:"shareId" type:"string"`
 
-	// The name of the share.
+	// The name of the resource share.
 	ShareName *string `locationName:"shareName" min:"1" type:"string"`
 
-	// The status of a share.
+	// The status of the share.
 	Status *string `locationName:"status" type:"string" enum:"ShareStatus"`
 
-	// The status message for a share. It provides more details on the status of
-	// the share.
+	// The status message for a resource share. It provides additional details about
+	// the share status.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// The timestamp of the share update.
+	// The timestamp of the resource share update.
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -22972,6 +23057,12 @@ func (s *ShareDetails) SetPrincipalSubscriber(v string) *ShareDetails {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *ShareDetails) SetResourceArn(v string) *ShareDetails {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ShareDetails) SetResourceId(v string) *ShareDetails {
+	s.ResourceId = &v
 	return s
 }
 
@@ -24333,14 +24424,24 @@ type StartRunInput struct {
 	// The ID of a run to duplicate.
 	RunId *string `locationName:"runId" min:"1" type:"string"`
 
-	// A storage capacity for the run in gibibytes.
+	// A storage capacity for the run in gibibytes. This field is not required if
+	// the storage type is dynamic (the system ignores any value that you enter).
 	StorageCapacity *int64 `locationName:"storageCapacity" type:"integer"`
+
+	// The run's storage type. By default, the run uses STATIC storage type, which
+	// allocates a fixed amount of storage. If you set the storage type to DYNAMIC,
+	// HealthOmics dynamically scales the storage up or down, based on file system
+	// utilization.
+	StorageType *string `locationName:"storageType" min:"1" type:"string" enum:"StorageType"`
 
 	// Tags for the run.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The run's workflow ID.
 	WorkflowId *string `locationName:"workflowId" min:"1" type:"string"`
+
+	// The ID of the workflow owner.
+	WorkflowOwnerId *string `locationName:"workflowOwnerId" type:"string"`
 
 	// The run's workflow type.
 	WorkflowType *string `locationName:"workflowType" min:"1" type:"string" enum:"WorkflowType"`
@@ -24393,6 +24494,9 @@ func (s *StartRunInput) Validate() error {
 	}
 	if s.RunId != nil && len(*s.RunId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+	if s.StorageType != nil && len(*s.StorageType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageType", 1))
 	}
 	if s.WorkflowId != nil && len(*s.WorkflowId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 1))
@@ -24467,6 +24571,12 @@ func (s *StartRunInput) SetStorageCapacity(v int64) *StartRunInput {
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *StartRunInput) SetStorageType(v string) *StartRunInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *StartRunInput) SetTags(v map[string]*string) *StartRunInput {
 	s.Tags = v
@@ -24476,6 +24586,12 @@ func (s *StartRunInput) SetTags(v map[string]*string) *StartRunInput {
 // SetWorkflowId sets the WorkflowId field's value.
 func (s *StartRunInput) SetWorkflowId(v string) *StartRunInput {
 	s.WorkflowId = &v
+	return s
+}
+
+// SetWorkflowOwnerId sets the WorkflowOwnerId field's value.
+func (s *StartRunInput) SetWorkflowOwnerId(v string) *StartRunInput {
+	s.WorkflowOwnerId = &v
 	return s
 }
 
@@ -27577,6 +27693,26 @@ func SchemaValueType_Values() []string {
 }
 
 const (
+	// ShareResourceTypeVariantStore is a ShareResourceType enum value
+	ShareResourceTypeVariantStore = "VARIANT_STORE"
+
+	// ShareResourceTypeAnnotationStore is a ShareResourceType enum value
+	ShareResourceTypeAnnotationStore = "ANNOTATION_STORE"
+
+	// ShareResourceTypeWorkflow is a ShareResourceType enum value
+	ShareResourceTypeWorkflow = "WORKFLOW"
+)
+
+// ShareResourceType_Values returns all elements of the ShareResourceType enum
+func ShareResourceType_Values() []string {
+	return []string{
+		ShareResourceTypeVariantStore,
+		ShareResourceTypeAnnotationStore,
+		ShareResourceTypeWorkflow,
+	}
+}
+
+const (
 	// ShareStatusPending is a ShareStatus enum value
 	ShareStatusPending = "PENDING"
 
@@ -27605,6 +27741,22 @@ func ShareStatus_Values() []string {
 		ShareStatusDeleting,
 		ShareStatusDeleted,
 		ShareStatusFailed,
+	}
+}
+
+const (
+	// StorageTypeStatic is a StorageType enum value
+	StorageTypeStatic = "STATIC"
+
+	// StorageTypeDynamic is a StorageType enum value
+	StorageTypeDynamic = "DYNAMIC"
+)
+
+// StorageType_Values returns all elements of the StorageType enum
+func StorageType_Values() []string {
+	return []string{
+		StorageTypeStatic,
+		StorageTypeDynamic,
 	}
 }
 

@@ -5,7 +5,7 @@
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates phone numbers with the specified Amazon Chime SDK Voice Connector.</p>",
     "AssociatePhoneNumbersWithVoiceConnectorGroup": "<p>Associates phone numbers with the specified Amazon Chime SDK Voice Connector group.</p>",
     "BatchDeletePhoneNumber": "<p> Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime SDK Voice Connectors before they can be deleted. </p> <p> Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
-    "BatchUpdatePhoneNumber": "<p>Updates one or more phone numbers.</p>",
+    "BatchUpdatePhoneNumber": "<p>Updates phone number product types, calling names, or phone number names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update the product type, the calling name, or phone name. </p> <note> <p>You cannot have a duplicate <code>phoneNumberId</code> in a request.</p> </note>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. For numbers outside the U.S., you must use the Amazon Chime SDK SIP media application dial-in product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session for the specified Amazon Chime SDK Voice Connector for the specified participant phone numbers.</p>",
     "CreateSipMediaApplication": "<p>Creates a SIP media application. For more information about SIP media applications, see <a href=\"https://docs.aws.amazon.com/chime-sdk/latest/ag/manage-sip-applications.html\">Managing SIP media applications and rules</a> in the <i>Amazon Chime SDK Administrator Guide</i>.</p>",
@@ -37,7 +37,7 @@
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
     "GetProxySession": "<p>Retrieves the specified proxy session details for the specified Amazon Chime SDK Voice Connector.</p>",
     "GetSipMediaApplication": "<p>Retrieves the information for a SIP media application, including name, AWS Region, and endpoints.</p>",
-    "GetSipMediaApplicationAlexaSkillConfiguration": "<p>Gets the Alexa Skill configuration for the SIP media application.</p>",
+    "GetSipMediaApplicationAlexaSkillConfiguration": "<p>Gets the Alexa Skill configuration for the SIP media application.</p> <important> <p>Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the <a href=\"https://developer.amazon.com/en-US/alexa/alexasmartproperties\">Alexa Smart Properties</a> page.</p> </important>",
     "GetSipMediaApplicationLoggingConfiguration": "<p>Retrieves the logging configuration for the specified SIP media application.</p>",
     "GetSipRule": "<p>Retrieves the details of a SIP rule, such as the rule ID, name, triggers, and target endpoints.</p>",
     "GetSpeakerSearchTask": "<p>Retrieves the details of the specified speaker search task.</p>",
@@ -66,7 +66,7 @@
     "ListVoiceConnectors": "<p>Lists the Amazon Chime SDK Voice Connectors in the administrators AWS account.</p>",
     "ListVoiceProfileDomains": "<p>Lists the specified voice profile domains in the administrator's AWS account. </p>",
     "ListVoiceProfiles": "<p>Lists the voice profiles in a voice profile domain.</p>",
-    "PutSipMediaApplicationAlexaSkillConfiguration": "<p>Updates the Alexa Skill configuration for the SIP media application.</p>",
+    "PutSipMediaApplicationAlexaSkillConfiguration": "<p>Updates the Alexa Skill configuration for the SIP media application.</p> <important> <p>Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the <a href=\"https://developer.amazon.com/en-US/alexa/alexasmartproperties\">Alexa Smart Properties</a> page.</p> </important>",
     "PutSipMediaApplicationLoggingConfiguration": "<p>Updates the logging configuration for the specified SIP media application.</p>",
     "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Updates a Voice Connector's emergency calling configuration.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Updates a Voice Connector's logging configuration.</p>",
@@ -84,7 +84,7 @@
     "TagResource": "<p>Adds a tag to the specified resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateGlobalSettings": "<p>Updates global settings for the Amazon Chime SDK Voice Connectors in an AWS account.</p>",
-    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For numbers outside the U.S., you must use the Amazon Chime SDK SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
+    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type, calling name, or phone number name for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type, calling name, or phone number name in one action.</p> <p>For numbers outside the U.S., you must use the Amazon Chime SDK SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
     "UpdateProxySession": "<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p>",
     "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
@@ -1341,7 +1341,7 @@
       "refs": {
         "CreatePhoneNumberOrderRequest$Name": "<p>Specifies the name assigned to one or more phone numbers.</p>",
         "PhoneNumber$Name": "<p>The name of the phone number.</p>",
-        "UpdatePhoneNumberRequest$Name": "<p>Specifies the name assigned to one or more phone numbers.</p>",
+        "UpdatePhoneNumberRequest$Name": "<p>Specifies the updated name assigned to one or more phone numbers.</p>",
         "UpdatePhoneNumberRequestItem$Name": "<p>The name of the phone number.</p>"
       }
     },
@@ -1683,7 +1683,7 @@
       }
     },
     "SipMediaApplicationAlexaSkillConfiguration": {
-      "base": "<p>The Alexa Skill configuration of a SIP media application.</p>",
+      "base": "<p>The Alexa Skill configuration of a SIP media application.</p> <important> <p>Due to changes made by the Amazon Alexa service, this data type is no longer available for use. For more information, refer to the <a href=\"https://developer.amazon.com/en-US/alexa/alexasmartproperties\">Alexa Smart Properties</a> page.</p> </important>",
       "refs": {
         "GetSipMediaApplicationAlexaSkillConfigurationResponse$SipMediaApplicationAlexaSkillConfiguration": "<p>Returns the Alexa Skill configuration.</p>",
         "PutSipMediaApplicationAlexaSkillConfigurationRequest$SipMediaApplicationAlexaSkillConfiguration": "<p>The Alexa Skill configuration.</p>",

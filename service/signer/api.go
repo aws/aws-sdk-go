@@ -1741,6 +1741,9 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 //   - You specify the name of the source and destination buckets when calling
 //     the StartSigningJob operation.
 //
+//   - You must ensure the S3 buckets are from the same Region as the signing
+//     profile. Cross-Region signing isn't supported.
+//
 //   - You must also specify a request token that identifies your request to
 //     Signer.
 //
@@ -2060,7 +2063,23 @@ func (s *AccessDeniedException) RequestID() string {
 type AddProfilePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Signer action permitted as part of cross-account permissions.
+	// For cross-account signing. Grant a designated account permission to perform
+	// one or more of the following actions. Each action is associated with a specific
+	// API's operations. For more information about cross-account signing, see Using
+	// cross-account signing with signing profiles (https://docs.aws.amazon.com/signer/latest/developerguide/signing-profile-cross-account.html)
+	// in the AWS Signer Developer Guide.
+	//
+	// You can designate the following actions to an account.
+	//
+	//    * signer:StartSigningJob. This action isn't supported for container image
+	//    workflows. For details, see StartSigningJob.
+	//
+	//    * signer:SignPayload. This action isn't supported for AWS Lambda workflows.
+	//    For details, see SignPayload
+	//
+	//    * signer:GetSigningProfile. For details, see GetSigningProfile.
+	//
+	//    * signer:RevokeSignature. For details, see RevokeSignature.
 	//
 	// Action is a required field
 	Action *string `locationName:"action" type:"string" required:"true"`

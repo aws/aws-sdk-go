@@ -698,7 +698,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties)."
     },
     "GetSipMediaApplicationLoggingConfiguration":{
       "name":"GetSipMediaApplicationLoggingConfiguration",
@@ -1245,7 +1247,9 @@
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties)."
     },
     "PutSipMediaApplicationLoggingConfiguration":{
       "name":"PutSipMediaApplicationLoggingConfiguration",

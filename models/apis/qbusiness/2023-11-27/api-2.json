@@ -2,8 +2,13 @@
   "metadata": {
     "apiVersion": "2023-11-27",
     "endpointPrefix": "qbusiness",
-    "jsonVersion": "1.1",
     "protocol": "rest-json",
+    "protocolSettings": {
+      "h2": "eventstream"
+    },
+    "protocols": [
+      "rest-json"
+    ],
     "serviceFullName": "QBusiness",
     "serviceId": "QBusiness",
     "signatureVersion": "v4",
@@ -80,6 +85,43 @@
       "name": "BatchPutDocument",
       "output": {
         "shape": "BatchPutDocumentResponse"
+      }
+    },
+    "Chat": {
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "LicenseNotFoundException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "http": {
+        "method": "POST",
+        "requestUri": "/applications/{applicationId}/conversations",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ChatInput"
+      },
+      "name": "Chat",
+      "output": {
+        "shape": "ChatOutput"
       }
     },
     "ChatSync": {
@@ -1849,6 +1891,24 @@
     }
   },
   "shapes": {
+    "APISchema": {
+      "members": {
+        "payload": {
+          "shape": "Payload"
+        },
+        "s3": {
+          "shape": "S3"
+        }
+      },
+      "type": "structure",
+      "union": true
+    },
+    "APISchemaType": {
+      "enum": [
+        "OPEN_API_V3"
+      ],
+      "type": "string"
+    },
     "AccessConfiguration": {
       "members": {
         "accessControls": {
@@ -1934,6 +1994,33 @@
       },
       "type": "structure"
     },
+    "ActionReviewEvent": {
+      "event": true,
+      "members": {
+        "conversationId": {
+          "shape": "ConversationId"
+        },
+        "payload": {
+          "shape": "ActionReviewPayload"
+        },
+        "payloadFieldNameSeparator": {
+          "shape": "ActionPayloadFieldNameSeparator"
+        },
+        "pluginId": {
+          "shape": "PluginId"
+        },
+        "pluginType": {
+          "shape": "PluginType"
+        },
+        "systemMessageId": {
+          "shape": "MessageId"
+        },
+        "userMessageId": {
+          "shape": "MessageId"
+        }
+      },
+      "type": "structure"
+    },
     "ActionReviewPayload": {
       "key": {
         "shape": "ActionPayloadFieldKey"
@@ -1945,8 +2032,14 @@
     },
     "ActionReviewPayloadField": {
       "members": {
+        "allowedFormat": {
+          "shape": "String"
+        },
         "allowedValues": {
           "shape": "ActionReviewPayloadFieldAllowedValues"
+        },
+        "displayDescription": {
+          "shape": "String"
         },
         "displayName": {
           "shape": "String"
@@ -2001,19 +2094,19 @@
     "ApplicationArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "ApplicationId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "ApplicationName": {
       "max": 1000,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "ApplicationStatus": {
@@ -2061,15 +2154,24 @@
         }
       },
       "required": [
-        "data",
-        "name"
+        "name",
+        "data"
       ],
+      "type": "structure"
+    },
+    "AttachmentInputEvent": {
+      "event": true,
+      "members": {
+        "attachment": {
+          "shape": "AttachmentInput"
+        }
+      },
       "type": "structure"
     },
     "AttachmentName": {
       "max": 1000,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "AttachmentOutput": {
@@ -2180,6 +2282,71 @@
       ],
       "type": "string"
     },
+    "AuthChallengeRequest": {
+      "members": {
+        "authorizationUrl": {
+          "shape": "Url"
+        }
+      },
+      "required": [
+        "authorizationUrl"
+      ],
+      "type": "structure"
+    },
+    "AuthChallengeRequestEvent": {
+      "event": true,
+      "members": {
+        "authorizationUrl": {
+          "shape": "Url"
+        }
+      },
+      "required": [
+        "authorizationUrl"
+      ],
+      "type": "structure"
+    },
+    "AuthChallengeResponse": {
+      "members": {
+        "responseMap": {
+          "shape": "AuthorizationResponseMap"
+        }
+      },
+      "required": [
+        "responseMap"
+      ],
+      "type": "structure"
+    },
+    "AuthChallengeResponseEvent": {
+      "event": true,
+      "members": {
+        "responseMap": {
+          "shape": "AuthorizationResponseMap"
+        }
+      },
+      "required": [
+        "responseMap"
+      ],
+      "type": "structure"
+    },
+    "AuthResponseKey": {
+      "max": 100,
+      "min": 1,
+      "type": "string"
+    },
+    "AuthResponseValue": {
+      "max": 2048,
+      "min": 1,
+      "type": "string"
+    },
+    "AuthorizationResponseMap": {
+      "key": {
+        "shape": "AuthResponseKey"
+      },
+      "type": "map",
+      "value": {
+        "shape": "AuthResponseValue"
+      }
+    },
     "BasicAuthConfiguration": {
       "members": {
         "roleArn": {
@@ -2190,8 +2357,8 @@
         }
       },
       "required": [
-        "roleArn",
-        "secretArn"
+        "secretArn",
+        "roleArn"
       ],
       "type": "structure"
     },
@@ -2216,8 +2383,8 @@
       },
       "required": [
         "applicationId",
-        "documents",
-        "indexId"
+        "indexId",
+        "documents"
       ],
       "type": "structure"
     },
@@ -2253,8 +2420,8 @@
       },
       "required": [
         "applicationId",
-        "documents",
-        "indexId"
+        "indexId",
+        "documents"
       ],
       "type": "structure"
     },
@@ -2272,7 +2439,7 @@
     "BlockedPhrase": {
       "max": 36,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "BlockedPhrases": {
@@ -2318,6 +2485,70 @@
       "min": 0,
       "type": "long"
     },
+    "ChatInput": {
+      "members": {
+        "applicationId": {
+          "location": "uri",
+          "locationName": "applicationId",
+          "shape": "ApplicationId"
+        },
+        "clientToken": {
+          "idempotencyToken": true,
+          "location": "querystring",
+          "locationName": "clientToken",
+          "shape": "ClientToken"
+        },
+        "conversationId": {
+          "location": "querystring",
+          "locationName": "conversationId",
+          "shape": "ConversationId"
+        },
+        "inputStream": {
+          "shape": "ChatInputStream"
+        },
+        "parentMessageId": {
+          "location": "querystring",
+          "locationName": "parentMessageId",
+          "shape": "MessageId"
+        },
+        "userGroups": {
+          "location": "querystring",
+          "locationName": "userGroups",
+          "shape": "UserGroups"
+        },
+        "userId": {
+          "location": "querystring",
+          "locationName": "userId",
+          "shape": "UserId"
+        }
+      },
+      "payload": "inputStream",
+      "required": [
+        "applicationId"
+      ],
+      "type": "structure"
+    },
+    "ChatInputStream": {
+      "eventstream": true,
+      "members": {
+        "attachmentEvent": {
+          "shape": "AttachmentInputEvent"
+        },
+        "authChallengeResponseEvent": {
+          "shape": "AuthChallengeResponseEvent"
+        },
+        "configurationEvent": {
+          "shape": "ConfigurationEvent"
+        },
+        "endOfInputEvent": {
+          "shape": "EndOfInputEvent"
+        },
+        "textEvent": {
+          "shape": "TextInputEvent"
+        }
+      },
+      "type": "structure"
+    },
     "ChatMode": {
       "enum": [
         "RETRIEVAL_MODE",
@@ -2335,6 +2566,36 @@
       "type": "structure",
       "union": true
     },
+    "ChatOutput": {
+      "members": {
+        "outputStream": {
+          "shape": "ChatOutputStream"
+        }
+      },
+      "payload": "outputStream",
+      "type": "structure"
+    },
+    "ChatOutputStream": {
+      "eventstream": true,
+      "members": {
+        "actionReviewEvent": {
+          "shape": "ActionReviewEvent"
+        },
+        "authChallengeRequestEvent": {
+          "shape": "AuthChallengeRequestEvent"
+        },
+        "failedAttachmentEvent": {
+          "shape": "FailedAttachmentEvent"
+        },
+        "metadataEvent": {
+          "shape": "MetadataEvent"
+        },
+        "textEvent": {
+          "shape": "TextOutputEvent"
+        }
+      },
+      "type": "structure"
+    },
     "ChatSyncInput": {
       "members": {
         "applicationId": {
@@ -2347,6 +2608,9 @@
         },
         "attributeFilter": {
           "shape": "AttributeFilter"
+        },
+        "authChallengeResponse": {
+          "shape": "AuthChallengeResponse"
         },
         "chatMode": {
           "shape": "ChatMode"
@@ -2388,6 +2652,9 @@
         "actionReview": {
           "shape": "ActionReview"
         },
+        "authChallengeRequest": {
+          "shape": "AuthChallengeRequest"
+        },
         "conversationId": {
           "shape": "ConversationId"
         },
@@ -2413,6 +2680,21 @@
       "max": 100,
       "min": 1,
       "type": "string"
+    },
+    "ConfigurationEvent": {
+      "event": true,
+      "members": {
+        "attributeFilter": {
+          "shape": "AttributeFilter"
+        },
+        "chatMode": {
+          "shape": "ChatMode"
+        },
+        "chatModeConfiguration": {
+          "shape": "ChatModeConfiguration"
+        }
+      },
+      "type": "structure"
     },
     "ConflictException": {
       "error": {
@@ -2488,7 +2770,7 @@
     "ConversationId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "ConversationTitle": {
@@ -2529,8 +2811,7 @@
         }
       },
       "required": [
-        "displayName",
-        "roleArn"
+        "displayName"
       ],
       "type": "structure"
     },
@@ -2578,6 +2859,9 @@
         },
         "tags": {
           "shape": "Tags"
+        },
+        "type": {
+          "shape": "IndexType"
         }
       },
       "required": [
@@ -2611,6 +2895,9 @@
           "idempotencyToken": true,
           "shape": "ClientToken"
         },
+        "customPluginConfiguration": {
+          "shape": "CustomPluginConfiguration"
+        },
         "displayName": {
           "shape": "PluginName"
         },
@@ -2626,15 +2913,17 @@
       },
       "required": [
         "applicationId",
-        "authConfiguration",
         "displayName",
-        "serverUrl",
-        "type"
+        "type",
+        "authConfiguration"
       ],
       "type": "structure"
     },
     "CreatePluginResponse": {
       "members": {
+        "buildStatus": {
+          "shape": "PluginBuildStatus"
+        },
         "pluginArn": {
           "shape": "PluginArn"
         },
@@ -2673,9 +2962,9 @@
       },
       "required": [
         "applicationId",
-        "configuration",
+        "type",
         "displayName",
-        "type"
+        "configuration"
       ],
       "type": "structure"
     },
@@ -2790,6 +3079,25 @@
       ],
       "type": "string"
     },
+    "CustomPluginConfiguration": {
+      "members": {
+        "apiSchema": {
+          "shape": "APISchema"
+        },
+        "apiSchemaType": {
+          "shape": "APISchemaType"
+        },
+        "description": {
+          "shape": "PluginDescription"
+        }
+      },
+      "required": [
+        "description",
+        "apiSchemaType",
+        "apiSchema"
+      ],
+      "type": "structure"
+    },
     "DataSource": {
       "members": {
         "createdAt": {
@@ -2816,13 +3124,13 @@
     "DataSourceArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "DataSourceId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "DataSourceIds": {
@@ -2836,7 +3144,7 @@
     "DataSourceName": {
       "max": 1000,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "DataSourceStatus": {
@@ -2917,7 +3225,7 @@
     "DataSourceUserId": {
       "max": 1024,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "DataSourceVpcConfiguration": {
@@ -2930,8 +3238,8 @@
         }
       },
       "required": [
-        "securityGroupIds",
-        "subnetIds"
+        "subnetIds",
+        "securityGroupIds"
       ],
       "type": "structure"
     },
@@ -3008,8 +3316,8 @@
         }
       },
       "required": [
-        "applicationId",
-        "conversationId"
+        "conversationId",
+        "applicationId"
       ],
       "type": "structure"
     },
@@ -3037,8 +3345,8 @@
       },
       "required": [
         "applicationId",
-        "dataSourceId",
-        "indexId"
+        "indexId",
+        "dataSourceId"
       ],
       "type": "structure"
     },
@@ -3088,8 +3396,8 @@
       },
       "required": [
         "applicationId",
-        "groupName",
-        "indexId"
+        "indexId",
+        "groupName"
       ],
       "type": "structure"
     },
@@ -3215,7 +3523,7 @@
     "Description": {
       "max": 1000,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "Document": {
@@ -3321,7 +3629,7 @@
     "DocumentAttributeConfiguration": {
       "members": {
         "name": {
-          "shape": "String"
+          "shape": "DocumentMetadataConfigurationName"
         },
         "search": {
           "shape": "Status"
@@ -3343,7 +3651,7 @@
     "DocumentAttributeKey": {
       "max": 200,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9_][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9_][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "DocumentAttributeStringListValue": {
@@ -3477,7 +3785,13 @@
     "DocumentId": {
       "max": 1825,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
+      "type": "string"
+    },
+    "DocumentMetadataConfigurationName": {
+      "max": 30,
+      "min": 1,
+      "pattern": "[a-zA-Z0-9_][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "DocumentStatus": {
@@ -3528,6 +3842,11 @@
       },
       "type": "structure"
     },
+    "EndOfInputEvent": {
+      "event": true,
+      "members": {},
+      "type": "structure"
+    },
     "ErrorCode": {
       "enum": [
         "InternalError",
@@ -3551,13 +3870,13 @@
     "ErrorMessage": {
       "max": 2048,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "ExampleChatMessage": {
       "max": 350,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "ExampleChatMessages": {
@@ -3571,8 +3890,26 @@
     "ExecutionId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
+    },
+    "FailedAttachmentEvent": {
+      "event": true,
+      "members": {
+        "attachment": {
+          "shape": "AttachmentOutput"
+        },
+        "conversationId": {
+          "shape": "ConversationId"
+        },
+        "systemMessageId": {
+          "shape": "MessageId"
+        },
+        "userMessageId": {
+          "shape": "MessageId"
+        }
+      },
+      "type": "structure"
     },
     "FailedDocument": {
       "members": {
@@ -3711,8 +4048,8 @@
       },
       "required": [
         "applicationId",
-        "dataSourceId",
-        "indexId"
+        "indexId",
+        "dataSourceId"
       ],
       "type": "structure"
     },
@@ -3791,8 +4128,8 @@
       },
       "required": [
         "applicationId",
-        "groupName",
-        "indexId"
+        "indexId",
+        "groupName"
       ],
       "type": "structure"
     },
@@ -3861,6 +4198,9 @@
         "status": {
           "shape": "IndexStatus"
         },
+        "type": {
+          "shape": "IndexType"
+        },
         "updatedAt": {
           "shape": "Timestamp"
         }
@@ -3894,8 +4234,14 @@
         "authConfiguration": {
           "shape": "PluginAuthConfiguration"
         },
+        "buildStatus": {
+          "shape": "PluginBuildStatus"
+        },
         "createdAt": {
           "shape": "Timestamp"
+        },
+        "customPluginConfiguration": {
+          "shape": "CustomPluginConfiguration"
         },
         "displayName": {
           "shape": "PluginName"
@@ -4027,6 +4373,8 @@
           "shape": "ApplicationId"
         },
         "authenticationConfiguration": {
+          "deprecated": true,
+          "deprecatedMessage": "Property associated with legacy SAML IdP flow. Deprecated in favor of using AWS IAM Identity Center for user management.",
           "shape": "WebExperienceAuthConfiguration"
         },
         "createdAt": {
@@ -4082,7 +4430,7 @@
     "GroupName": {
       "max": 1024,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "GroupStatus": {
@@ -4149,7 +4497,7 @@
     "IdcApplicationArn": {
       "max": 1224,
       "min": 10,
-      "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}$",
+      "pattern": "arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso::\\d{12}:application/(sso)?ins-[a-zA-Z0-9-.]{16}/apl-[a-zA-Z0-9]{16}",
       "type": "string"
     },
     "Index": {
@@ -4175,7 +4523,7 @@
     "IndexArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "IndexCapacityConfiguration": {
@@ -4194,13 +4542,13 @@
     "IndexId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "IndexName": {
       "max": 1000,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "IndexStatistics": {
@@ -4218,6 +4566,13 @@
         "DELETING",
         "FAILED",
         "UPDATING"
+      ],
+      "type": "string"
+    },
+    "IndexType": {
+      "enum": [
+        "ENTERPRISE",
+        "STARTER"
       ],
       "type": "string"
     },
@@ -4262,7 +4617,7 @@
     "InstanceArn": {
       "max": 1224,
       "min": 10,
-      "pattern": "^arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}$",
+      "pattern": "arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}",
       "type": "string"
     },
     "Integer": {
@@ -4299,7 +4654,7 @@
     "KendraIndexId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "KmsKeyId": {
@@ -4311,7 +4666,7 @@
     "LambdaArn": {
       "max": 2048,
       "min": 1,
-      "pattern": "^arn:aws[a-zA-Z-]*:lambda:[a-z-]*-[0-9]:[0-9]{12}:function:[a-zA-Z0-9-_]+(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?(:[a-zA-Z0-9-_]+)?$",
+      "pattern": "arn:aws[a-zA-Z-]*:lambda:[a-z-]*-[0-9]:[0-9]{12}:function:[a-zA-Z0-9-_]+(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?(:[a-zA-Z0-9-_]+)?",
       "type": "string"
     },
     "LicenseNotFoundException": {
@@ -4439,8 +4794,8 @@
         }
       },
       "required": [
-        "applicationId",
         "dataSourceId",
+        "applicationId",
         "indexId"
       ],
       "type": "structure"
@@ -4655,8 +5010,8 @@
         }
       },
       "required": [
-        "applicationId",
-        "conversationId"
+        "conversationId",
+        "applicationId"
       ],
       "type": "structure"
     },
@@ -4957,13 +5312,13 @@
     "MessageBody": {
       "max": 1000,
       "min": 0,
-      "pattern": "^\\P{C}*$}$",
+      "pattern": "\\P{C}*$}",
       "type": "string"
     },
     "MessageId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "MessageType": {
@@ -4983,7 +5338,7 @@
     "MessageUsefulnessComment": {
       "max": 1000,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "MessageUsefulnessFeedback": {
@@ -5002,8 +5357,8 @@
         }
       },
       "required": [
-        "submittedAt",
-        "usefulness"
+        "usefulness",
+        "submittedAt"
       ],
       "type": "structure"
     },
@@ -5030,8 +5385,29 @@
       },
       "type": "list"
     },
+    "MetadataEvent": {
+      "event": true,
+      "members": {
+        "conversationId": {
+          "shape": "ConversationId"
+        },
+        "finalTextMessage": {
+          "shape": "String"
+        },
+        "sourceAttributions": {
+          "shape": "SourceAttributions"
+        },
+        "systemMessageId": {
+          "shape": "MessageId"
+        },
+        "userMessageId": {
+          "shape": "MessageId"
+        }
+      },
+      "type": "structure"
+    },
     "MetricValue": {
-      "pattern": "^(([1-9][0-9]*)|0)$",
+      "pattern": "(([1-9][0-9]*)|0)",
       "type": "string"
     },
     "NativeIndexConfiguration": {
@@ -5052,6 +5428,10 @@
       "max": 800,
       "min": 1,
       "type": "string"
+    },
+    "NoAuthConfiguration": {
+      "members": {},
+      "type": "structure"
     },
     "NumberAttributeBoostingConfiguration": {
       "members": {
@@ -5084,13 +5464,20 @@
         }
       },
       "required": [
-        "roleArn",
-        "secretArn"
+        "secretArn",
+        "roleArn"
       ],
       "type": "structure"
     },
+    "Payload": {
+      "sensitive": true,
+      "type": "string"
+    },
     "Plugin": {
       "members": {
+        "buildStatus": {
+          "shape": "PluginBuildStatus"
+        },
         "createdAt": {
           "shape": "Timestamp"
         },
@@ -5118,7 +5505,7 @@
     "PluginArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "PluginAuthConfiguration": {
@@ -5126,12 +5513,27 @@
         "basicAuthConfiguration": {
           "shape": "BasicAuthConfiguration"
         },
+        "noAuthConfiguration": {
+          "shape": "NoAuthConfiguration"
+        },
         "oAuth2ClientCredentialConfiguration": {
           "shape": "OAuth2ClientCredentialConfiguration"
         }
       },
       "type": "structure",
       "union": true
+    },
+    "PluginBuildStatus": {
+      "enum": [
+        "READY",
+        "CREATE_IN_PROGRESS",
+        "CREATE_FAILED",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED",
+        "DELETE_IN_PROGRESS",
+        "DELETE_FAILED"
+      ],
+      "type": "string"
     },
     "PluginConfiguration": {
       "members": {
@@ -5144,16 +5546,21 @@
       ],
       "type": "structure"
     },
+    "PluginDescription": {
+      "max": 200,
+      "min": 1,
+      "type": "string"
+    },
     "PluginId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$",
+      "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
       "type": "string"
     },
     "PluginName": {
       "max": 100,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "PluginState": {
@@ -5168,7 +5575,8 @@
         "SERVICE_NOW",
         "SALESFORCE",
         "JIRA",
-        "ZENDESK"
+        "ZENDESK",
+        "CUSTOM"
       ],
       "type": "string"
     },
@@ -5293,10 +5701,10 @@
       },
       "required": [
         "applicationId",
-        "groupMembers",
-        "groupName",
         "indexId",
-        "type"
+        "groupName",
+        "type",
+        "groupMembers"
       ],
       "type": "structure"
     },
@@ -5365,7 +5773,7 @@
     "RetrieverArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "RetrieverConfiguration": {
@@ -5383,13 +5791,13 @@
     "RetrieverId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "RetrieverName": {
       "max": 1000,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9_-]*",
       "type": "string"
     },
     "RetrieverStatus": {
@@ -5416,7 +5824,7 @@
     "RoleArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "Rule": {
@@ -5484,7 +5892,7 @@
     "S3BucketName": {
       "max": 63,
       "min": 1,
-      "pattern": "^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$",
+      "pattern": "[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]",
       "type": "string"
     },
     "S3ObjectKey": {
@@ -5522,19 +5930,19 @@
     "SamlMetadataXML": {
       "max": 10000000,
       "min": 1000,
-      "pattern": "^.*$",
+      "pattern": ".*",
       "type": "string"
     },
     "SecretArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "SecurityGroupId": {
       "max": 200,
       "min": 1,
-      "pattern": "^[-0-9a-zA-Z]+$",
+      "pattern": "[-0-9a-zA-Z]+",
       "type": "string"
     },
     "SecurityGroupIds": {
@@ -5568,6 +5976,17 @@
         "resourceType"
       ],
       "type": "structure"
+    },
+    "SnippetExcerpt": {
+      "members": {
+        "text": {
+          "shape": "SnippetExcerptText"
+        }
+      },
+      "type": "structure"
+    },
+    "SnippetExcerptText": {
+      "type": "string"
     },
     "SourceAttribution": {
       "members": {
@@ -5617,8 +6036,8 @@
         }
       },
       "required": [
-        "applicationId",
         "dataSourceId",
+        "applicationId",
         "indexId"
       ],
       "type": "structure"
@@ -5657,8 +6076,8 @@
         }
       },
       "required": [
-        "applicationId",
         "dataSourceId",
+        "applicationId",
         "indexId"
       ],
       "type": "structure"
@@ -5720,7 +6139,7 @@
     "SubnetId": {
       "max": 200,
       "min": 1,
-      "pattern": "^[-0-9a-zA-Z]+$",
+      "pattern": "[-0-9a-zA-Z]+",
       "type": "string"
     },
     "SubnetIds": {
@@ -5732,19 +6151,19 @@
     "SyncSchedule": {
       "max": 998,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "SystemMessageId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{35}",
       "type": "string"
     },
     "SystemMessageOverride": {
       "max": 350,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "Tag": {
@@ -5820,6 +6239,36 @@
       },
       "type": "structure"
     },
+    "TextInputEvent": {
+      "event": true,
+      "members": {
+        "userMessage": {
+          "shape": "UserMessage"
+        }
+      },
+      "required": [
+        "userMessage"
+      ],
+      "type": "structure"
+    },
+    "TextOutputEvent": {
+      "event": true,
+      "members": {
+        "conversationId": {
+          "shape": "ConversationId"
+        },
+        "systemMessage": {
+          "shape": "String"
+        },
+        "systemMessageId": {
+          "shape": "MessageId"
+        },
+        "userMessageId": {
+          "shape": "MessageId"
+        }
+      },
+      "type": "structure"
+    },
     "TextSegment": {
       "members": {
         "beginOffset": {
@@ -5827,6 +6276,9 @@
         },
         "endOffset": {
           "shape": "Integer"
+        },
+        "snippetExcerpt": {
+          "shape": "SnippetExcerpt"
         }
       },
       "type": "structure"
@@ -5885,7 +6337,7 @@
     "TopicConfigurationName": {
       "max": 36,
       "min": 1,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{0,35}$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]{0,35}",
       "type": "string"
     },
     "TopicConfigurations": {
@@ -5899,7 +6351,7 @@
     "TopicDescription": {
       "max": 350,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "UntagResourceRequest": {
@@ -5940,6 +6392,9 @@
         },
         "displayName": {
           "shape": "ApplicationName"
+        },
+        "identityCenterInstanceArn": {
+          "shape": "InstanceArn"
         },
         "roleArn": {
           "shape": "RoleArn"
@@ -6028,8 +6483,8 @@
       },
       "required": [
         "applicationId",
-        "dataSourceId",
-        "indexId"
+        "indexId",
+        "dataSourceId"
       ],
       "type": "structure"
     },
@@ -6081,6 +6536,9 @@
         },
         "authConfiguration": {
           "shape": "PluginAuthConfiguration"
+        },
+        "customPluginConfiguration": {
+          "shape": "CustomPluginConfiguration"
         },
         "displayName": {
           "shape": "PluginName"
@@ -6186,7 +6644,12 @@
           "shape": "ApplicationId"
         },
         "authenticationConfiguration": {
+          "deprecated": true,
+          "deprecatedMessage": "Property associated with legacy SAML IdP flow. Deprecated in favor of using AWS IAM Identity Center for user management.",
           "shape": "WebExperienceAuthConfiguration"
+        },
+        "roleArn": {
+          "shape": "RoleArn"
         },
         "samplePromptsControlMode": {
           "shape": "WebExperienceSamplePromptsControlMode"
@@ -6219,7 +6682,7 @@
     "Url": {
       "max": 2048,
       "min": 1,
-      "pattern": "^(https?|ftp|file)://([^\\s]*)$",
+      "pattern": "(https?|ftp|file)://([^\\s]*)",
       "type": "string"
     },
     "UserAlias": {
@@ -6254,7 +6717,7 @@
     "UserId": {
       "max": 1024,
       "min": 1,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "UserIds": {
@@ -6312,8 +6775,8 @@
         }
       },
       "required": [
-        "message",
-        "name"
+        "name",
+        "message"
       ],
       "type": "structure"
     },
@@ -6354,7 +6817,7 @@
     "WebExperienceArn": {
       "max": 1284,
       "min": 0,
-      "pattern": "^arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}$",
+      "pattern": "arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
       "type": "string"
     },
     "WebExperienceAuthConfiguration": {
@@ -6369,7 +6832,7 @@
     "WebExperienceId": {
       "max": 36,
       "min": 36,
-      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+      "pattern": "[a-zA-Z0-9][a-zA-Z0-9-]*",
       "type": "string"
     },
     "WebExperienceSamplePromptsControlMode": {
@@ -6392,13 +6855,13 @@
     "WebExperienceSubtitle": {
       "max": 500,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "WebExperienceTitle": {
       "max": 500,
       "min": 0,
-      "pattern": "^\\P{C}*$",
+      "pattern": "\\P{C}*",
       "type": "string"
     },
     "WebExperienceWelcomeMessage": {

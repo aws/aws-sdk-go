@@ -2610,7 +2610,8 @@
     "StatefulEngineOptions":{
       "type":"structure",
       "members":{
-        "RuleOrder":{"shape":"RuleOrder"}
+        "RuleOrder":{"shape":"RuleOrder"},
+        "StreamExceptionPolicy":{"shape":"StreamExceptionPolicy"}
       }
     },
     "StatefulRuleGroup":{
@@ -2642,6 +2643,15 @@
       "type":"integer",
       "max":65535,
       "min":1
+    },
+    "StreamExceptionPolicy":{
+      "type":"string",
+      "enum":[
+        "DROP",
+        "CONTINUE",
+        "REJECT",
+        "FMS_IGNORE"
+      ]
     },
     "Tag":{
       "type":"structure",
