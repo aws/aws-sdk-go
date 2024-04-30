@@ -13514,6 +13514,9 @@ type DomainStatus struct {
 	// for all traffic.
 	DomainEndpointOptions *DomainEndpointOptions `type:"structure"`
 
+	// The DualStack Hosted Zone Id for the domain.
+	DomainEndpointV2HostedZoneId *string `type:"string"`
+
 	// Unique identifier for the domain.
 	//
 	// DomainId is a required field
@@ -13545,7 +13548,11 @@ type DomainStatus struct {
 	EndpointV2 *string `type:"string"`
 
 	// The key-value pair that exists if the OpenSearch Service domain uses VPC
-	// endpoints. Example key, value: 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'.
+	// endpoints. For example:
+	//
+	//    * IPv4 IP addresses - 'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'
+	//
+	//    * Dual stack IP addresses - 'vpcv2':'vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.aos.us-east-1.on.aws'
 	Endpoints map[string]*string `type:"map"`
 
 	// Version of OpenSearch or Elasticsearch that the domain is running, in the
@@ -13672,6 +13679,12 @@ func (s *DomainStatus) SetDeleted(v bool) *DomainStatus {
 // SetDomainEndpointOptions sets the DomainEndpointOptions field's value.
 func (s *DomainStatus) SetDomainEndpointOptions(v *DomainEndpointOptions) *DomainStatus {
 	s.DomainEndpointOptions = v
+	return s
+}
+
+// SetDomainEndpointV2HostedZoneId sets the DomainEndpointV2HostedZoneId field's value.
+func (s *DomainStatus) SetDomainEndpointV2HostedZoneId(v string) *DomainStatus {
+	s.DomainEndpointV2HostedZoneId = &v
 	return s
 }
 

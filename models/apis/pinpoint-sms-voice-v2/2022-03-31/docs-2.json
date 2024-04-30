@@ -1,25 +1,30 @@
 {
   "version": "2.0",
-  "service": "<p>Welcome to the <i>Amazon Pinpoint SMS and Voice, version 2 API Reference</i>. This guide provides information about Amazon Pinpoint SMS and Voice, version 2 API resources, including supported HTTP methods, parameters, and schemas.</p> <p>Amazon Pinpoint is an Amazon Web Services service that you can use to engage with your recipients across multiple messaging channels. The Amazon Pinpoint SMS and Voice, version 2 API provides programmatic access to options that are unique to the SMS and voice channels and supplements the resources provided by the Amazon Pinpoint API.</p> <p>If you're new to Amazon Pinpoint, it's also helpful to review the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\"> Amazon Pinpoint Developer Guide</a>. The <i>Amazon Pinpoint Developer Guide</i> provides tutorials, code samples, and procedures that demonstrate how to use Amazon Pinpoint features programmatically and how to integrate Amazon Pinpoint functionality into mobile apps and other types of applications. The guide also provides key information, such as Amazon Pinpoint integration with other Amazon Web Services services, and the quotas that apply to use of the service.</p> <p> <b>Regional availability</b> </p> <p>The <i>Amazon Pinpoint SMS and Voice, version 2 API Reference</i> is available in several Amazon Web Services Regions and it provides an endpoint for each of these Regions. For a list of all the Regions and endpoints where the API is currently available, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#pinpoint_region\">Amazon Web Services Service Endpoints</a> and <a href=\"https://docs.aws.amazon.com/general/latest/gr/pinpoint.html\">Amazon Pinpoint endpoints and quotas</a> in the Amazon Web Services General Reference. To learn more about Amazon Web Services Regions, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande-manage.html\">Managing Amazon Web Services Regions</a> in the Amazon Web Services General Reference.</p> <p>In each Region, Amazon Web Services maintains multiple Availability Zones. These Availability Zones are physically isolated from each other, but are united by private, low-latency, high-throughput, and highly redundant network connections. These Availability Zones enable us to provide very high levels of availability and redundancy, while also minimizing latency. To learn more about the number of Availability Zones that are available in each Region, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/\">Amazon Web Services Global Infrastructure.</a> </p>",
+  "service": "<p>Welcome to the <i>Amazon Pinpoint SMS and Voice, version 2 API Reference</i>. This guide provides information about Amazon Pinpoint SMS and Voice, version 2 API resources, including supported HTTP methods, parameters, and schemas.</p> <p>Amazon Pinpoint is an Amazon Web Services service that you can use to engage with your recipients across multiple messaging channels. The Amazon Pinpoint SMS and Voice, version 2 API provides programmatic access to options that are unique to the SMS and voice channels. Amazon Pinpoint SMS and Voice, version 2 resources such as phone numbers, sender IDs, and opt-out lists can be used by the Amazon Pinpoint API.</p> <p>If you're new to Amazon Pinpoint SMS, it's also helpful to review the <a href=\"https://docs.aws.amazon.com/sms-voice/latest/userguide/what-is-service.html\"> Amazon Pinpoint SMS User Guide</a>. The <i>Amazon Pinpoint Developer Guide</i> provides tutorials, code samples, and procedures that demonstrate how to use Amazon Pinpoint SMS features programmatically and how to integrate Amazon Pinpoint functionality into mobile apps and other types of applications. The guide also provides key information, such as Amazon Pinpoint integration with other Amazon Web Services services, and the quotas that apply to use of the service.</p> <p> <b>Regional availability</b> </p> <p>The <i>Amazon Pinpoint SMS and Voice, version 2 API Reference</i> is available in several Amazon Web Services Regions and it provides an endpoint for each of these Regions. For a list of all the Regions and endpoints where the API is currently available, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#pinpoint_region\">Amazon Web Services Service Endpoints</a> and <a href=\"https://docs.aws.amazon.com/general/latest/gr/pinpoint.html\">Amazon Pinpoint endpoints and quotas</a> in the Amazon Web Services General Reference. To learn more about Amazon Web Services Regions, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande-manage.html\">Managing Amazon Web Services Regions</a> in the Amazon Web Services General Reference.</p> <p>In each Region, Amazon Web Services maintains multiple Availability Zones. These Availability Zones are physically isolated from each other, but are united by private, low-latency, high-throughput, and highly redundant network connections. These Availability Zones enable us to provide very high levels of availability and redundancy, while also minimizing latency. To learn more about the number of Availability Zones that are available in each Region, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/\">Amazon Web Services Global Infrastructure.</a> </p>",
   "operations": {
     "AssociateOriginationIdentity": "<p>Associates the specified origination identity with a pool.</p> <p>If the origination identity is a phone number and is already associated with another pool, an error is returned. A sender ID can be associated with multiple pools.</p> <p>If the origination identity configuration doesn't match the pool's configuration, an error is returned.</p>",
+    "AssociateProtectConfiguration": "<p>Associate a protect configuration with a configuration set. This replaces the configuration sets current protect configuration. A configuration set can only be associated with one protect configuration at a time. A protect configuration can be associated with multiple configuration sets.</p>",
     "CreateConfigurationSet": "<p>Creates a new configuration set. After you create the configuration set, you can add one or more event destinations to it.</p> <p>A configuration set is a set of rules that you apply to the SMS and voice messages that you send.</p> <p>When you send a message, you can optionally specify a single configuration set.</p>",
     "CreateEventDestination": "<p>Creates a new event destination in a configuration set.</p> <p>An event destination is a location where you send message events. The event options are Amazon CloudWatch, Amazon Kinesis Data Firehose, or Amazon SNS. For example, when a message is delivered successfully, you can send information about that event to an event destination, or send notifications to endpoints that are subscribed to an Amazon SNS topic.</p> <p>Each configuration set can contain between 0 and 5 event destinations. Each event destination can contain a reference to a single destination, such as a CloudWatch or Kinesis Data Firehose destination.</p>",
     "CreateOptOutList": "<p>Creates a new opt-out list.</p> <p>If the opt-out list name already exists, an error is returned.</p> <p>An opt-out list is a list of phone numbers that are opted out, meaning you can't send SMS or voice messages to them. If end user replies with the keyword \"STOP,\" an entry for the phone number is added to the opt-out list. In addition to STOP, your recipients can use any supported opt-out keyword, such as CANCEL or OPTOUT. For a list of supported opt-out keywords, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-manage.html#channels-sms-manage-optout\"> SMS opt out </a> in the <i>Amazon Pinpoint User Guide</i>.</p>",
     "CreatePool": "<p>Creates a new pool and associates the specified origination identity to the pool. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account.</p> <p>The new pool inherits its configuration from the specified origination identity. This includes keywords, message type, opt-out list, two-way configuration, and self-managed opt-out configuration. Deletion protection isn't inherited from the origination identity and defaults to false.</p> <p>If the origination identity is a phone number and is already associated with another pool, an error is returned. A sender ID can be associated with multiple pools.</p>",
+    "CreateProtectConfiguration": "<p>Create a new protect configuration. By default all country rule sets for each capability are set to <code>ALLOW</code>. Update the country rule sets using <code>UpdateProtectConfigurationCountryRuleSet</code>. A protect configurations name is stored as a Tag with the key set to <code>Name</code> and value as the name of the protect configuration.</p>",
     "CreateRegistration": "<p>Creates a new registration based on the <b>RegistrationType</b> field. </p>",
     "CreateRegistrationAssociation": "<p>Associate the registration with an origination identity such as a phone number or sender ID.</p>",
     "CreateRegistrationAttachment": "<p>Create a new registration attachment to use for uploading a file or a URL to a file. The maximum file size is 1MiB and valid file extensions are PDF, JPEG and PNG. For example, many sender ID registrations require a signed “letter of authorization” (LOA) to be submitted.</p>",
     "CreateRegistrationVersion": "<p>Create a new version of the registration and increase the <b>VersionNumber</b>. The previous version of the registration becomes read-only.</p>",
     "CreateVerifiedDestinationNumber": "<p>You can only send messages to verified destination numbers when your account is in the sandbox. You can add up to 10 verified destination numbers.</p>",
+    "DeleteAccountDefaultProtectConfiguration": "<p>Removes the current account default protect configuration.</p>",
     "DeleteConfigurationSet": "<p>Deletes an existing configuration set.</p> <p>A configuration set is a set of rules that you apply to voice and SMS messages that you send. In a configuration set, you can specify a destination for specific types of events related to voice and SMS messages. </p>",
     "DeleteDefaultMessageType": "<p>Deletes an existing default message type on a configuration set.</p> <p> A message type is a type of messages that you plan to send. If you send account-related messages or time-sensitive messages such as one-time passcodes, choose <b>Transactional</b>. If you plan to send messages that contain marketing material or other promotional content, choose <b>Promotional</b>. This setting applies to your entire Amazon Web Services account. </p>",
     "DeleteDefaultSenderId": "<p>Deletes an existing default sender ID on a configuration set.</p> <p>A default sender ID is the identity that appears on recipients' devices when they receive SMS messages. Support for sender ID capabilities varies by country or region.</p>",
     "DeleteEventDestination": "<p>Deletes an existing event destination.</p> <p>An event destination is a location where you send response information about the messages that you send. For example, when a message is delivered successfully, you can send information about that event to an Amazon CloudWatch destination, or send notifications to endpoints that are subscribed to an Amazon SNS topic.</p>",
     "DeleteKeyword": "<p>Deletes an existing keyword from an origination phone number or pool.</p> <p>A keyword is a word that you can search for on a particular phone number or pool. It is also a specific word or phrase that an end user can send to your number to elicit a response, such as an informational message or a special offer. When your number receives a message that begins with a keyword, Amazon Pinpoint responds with a customizable message.</p> <p>Keywords \"HELP\" and \"STOP\" can't be deleted or modified.</p>",
+    "DeleteMediaMessageSpendLimitOverride": "<p>Deletes an account-level monthly spending limit override for sending multimedia messages (MMS). Deleting a spend limit override will set the <code>EnforcedLimit</code> to equal the <code>MaxLimit</code>, which is controlled by Amazon Web Services. For more information on spend limits (quotas) see <a href=\"https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html\">Quotas for Server Migration Service</a> in the <i>Server Migration Service User Guide</i>.</p>",
     "DeleteOptOutList": "<p>Deletes an existing opt-out list. All opted out phone numbers in the opt-out list are deleted.</p> <p>If the specified opt-out list name doesn't exist or is in-use by an origination phone number or pool, an error is returned.</p>",
     "DeleteOptedOutNumber": "<p>Deletes an existing opted out destination phone number from the specified opt-out list.</p> <p>Each destination phone number can only be deleted once every 30 days.</p> <p>If the specified destination phone number doesn't exist or if the opt-out list doesn't exist, an error is returned.</p>",
     "DeletePool": "<p>Deletes an existing pool. Deleting a pool disassociates all origination identities from that pool.</p> <p>If the pool status isn't active or if deletion protection is enabled, an error is returned.</p> <p>A pool is a collection of phone numbers and SenderIds. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account.</p>",
+    "DeleteProtectConfiguration": "<p>Permanently delete the protect configuration. The protect configuration must have deletion protection disabled and must not be associated as the account default protect configuration or associated with a configuration set.</p>",
     "DeleteRegistration": "<p>Permanently delete an existing registration from your account.</p>",
     "DeleteRegistrationAttachment": "<p>Permanently delete the specified registration attachment.</p>",
     "DeleteRegistrationFieldValue": "<p>Delete the value in a registration form field.</p>",
@@ -34,6 +39,7 @@
     "DescribeOptedOutNumbers": "<p>Describes the specified opted out destination numbers or all opted out destination numbers in an opt-out list.</p> <p>If you specify opted out numbers, the output includes information for only the specified opted out numbers. If you specify filters, the output includes information for only those opted out numbers that meet the filter criteria. If you don't specify opted out numbers or filters, the output includes information for all opted out destination numbers in your opt-out list.</p> <p>If you specify an opted out number that isn't valid, an error is returned.</p>",
     "DescribePhoneNumbers": "<p>Describes the specified origination phone number, or all the phone numbers in your account.</p> <p>If you specify phone number IDs, the output includes information for only the specified phone numbers. If you specify filters, the output includes information for only those phone numbers that meet the filter criteria. If you don't specify phone number IDs or filters, the output includes information for all phone numbers.</p> <p>If you specify a phone number ID that isn't valid, an error is returned.</p>",
     "DescribePools": "<p>Retrieves the specified pools or all pools associated with your Amazon Web Services account.</p> <p>If you specify pool IDs, the output includes information for only the specified pools. If you specify filters, the output includes information for only those pools that meet the filter criteria. If you don't specify pool IDs or filters, the output includes information for all pools.</p> <p>If you specify a pool ID that isn't valid, an error is returned.</p> <p>A pool is a collection of phone numbers and SenderIds. A pool can include one or more phone numbers and SenderIds that are associated with your Amazon Web Services account.</p>",
+    "DescribeProtectConfigurations": "<p>Retrieves the protect configurations that match any of filters. If a filter isn’t provided then all protect configurations are returned.</p>",
     "DescribeRegistrationAttachments": "<p>Retrieves the specified registration attachments or all registration attachments associated with your Amazon Web Services account.</p>",
     "DescribeRegistrationFieldDefinitions": "<p>Retrieves the specified registration type field definitions. You can use DescribeRegistrationFieldDefinitions to view the requirements for creating, filling out, and submitting each registration type.</p>",
     "DescribeRegistrationFieldValues": "<p>Retrieves the specified registration field values.</p>",
@@ -45,7 +51,9 @@
     "DescribeSpendLimits": "<p>Describes the current Amazon Pinpoint monthly spend limits for sending voice and text messages.</p> <p>When you establish an Amazon Web Services account, the account has initial monthly spend limit in a given Region. For more information on increasing your monthly spend limit, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-awssupport-spend-threshold.html\"> Requesting increases to your monthly SMS spending quota for Amazon Pinpoint </a> in the <i>Amazon Pinpoint User Guide</i>.</p>",
     "DescribeVerifiedDestinationNumbers": "<p>Retrieves the specified verified destiona numbers.</p>",
     "DisassociateOriginationIdentity": "<p>Removes the specified origination identity from an existing pool.</p> <p>If the origination identity isn't associated with the specified pool, an error is returned.</p>",
+    "DisassociateProtectConfiguration": "<p>Disassociate a protect configuration from a configuration set.</p>",
     "DiscardRegistrationVersion": "<p>Discard the current version of the registration.</p>",
+    "GetProtectConfigurationCountryRuleSet": "<p>Retrieve the CountryRuleSet for the specified NumberCapability from a protect configuration.</p>",
     "ListPoolOriginationIdentities": "<p>Lists all associated origination identities in your pool.</p> <p>If you specify filters, the output includes information for only those origination identities that meet the filter criteria.</p>",
     "ListRegistrationAssociations": "<p>Retreive all of the origination identies that are associated with a registration.</p>",
     "ListTagsForResource": "<p>List all tags associated with a resource.</p>",
@@ -57,10 +65,13 @@
     "RequestPhoneNumber": "<p>Request an origination phone number for use in your account. For more information on phone number request see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-request-number.html\"> Requesting a number </a> in the <i>Amazon Pinpoint User Guide</i>.</p>",
     "RequestSenderId": "<p>Request a new sender ID that doesn't require registration. </p>",
     "SendDestinationNumberVerificationCode": "<p>Before you can send test messages to a verified destination phone number you need to opt-in the verified destination phone number. Creates a new text message with a verification code and send it to a verified destination phone number. Once you have the verification code use <a>VerifyDestinationNumber</a> to opt-in the verified destination phone number to receive messages.</p>",
+    "SendMediaMessage": "<p>Creates a new multimedia message (MMS) and sends it to a recipient's phone number. </p>",
     "SendTextMessage": "<p>Creates a new text message and sends it to a recipient's phone number.</p> <p>SMS throughput limits are measured in Message Parts per Second (MPS). Your MPS limit depends on the destination country of your messages, as well as the type of phone number (origination number) that you use to send the message. For more information, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-limitations-mps.html\">Message Parts per Second (MPS) limits</a> in the <i>Amazon Pinpoint User Guide</i>.</p>",
     "SendVoiceMessage": "<p>Allows you to send a request that sends a voice message through Amazon Pinpoint. This operation uses <a href=\"http://aws.amazon.com/polly/\">Amazon Polly</a> to convert a text script into a voice message.</p>",
+    "SetAccountDefaultProtectConfiguration": "<p>Set a protect configuration as your account default. You can only have one account default protect configuration at a time. The current account default protect configuration is replaced with the provided protect configuration.</p>",
     "SetDefaultMessageType": "<p>Sets the default message type on a configuration set.</p> <p>Choose the category of SMS messages that you plan to send from this account. If you send account-related messages or time-sensitive messages such as one-time passcodes, choose <b>Transactional</b>. If you plan to send messages that contain marketing material or other promotional content, choose <b>Promotional</b>. This setting applies to your entire Amazon Web Services account.</p>",
     "SetDefaultSenderId": "<p>Sets default sender ID on a configuration set.</p> <p>When sending a text message to a destination country that supports sender IDs, the default sender ID on the configuration set specified will be used if no dedicated origination phone numbers or registered sender IDs are available in your account.</p>",
+    "SetMediaMessageSpendLimitOverride": "<p>Sets an account level monthly spend limit override for sending MMS messages. The requested spend limit must be less than or equal to the <code>MaxLimit</code>, which is set by Amazon Web Services. </p>",
     "SetTextMessageSpendLimitOverride": "<p>Sets an account level monthly spend limit override for sending text messages. The requested spend limit must be less than or equal to the <code>MaxLimit</code>, which is set by Amazon Web Services. </p>",
     "SetVoiceMessageSpendLimitOverride": "<p>Sets an account level monthly spend limit override for sending voice messages. The requested spend limit must be less than or equal to the <code>MaxLimit</code>, which is set by Amazon Web Services. </p>",
     "SubmitRegistrationVersion": "<p>Submit the specified registration for review and approval.</p>",
@@ -69,6 +80,8 @@
     "UpdateEventDestination": "<p>Updates an existing event destination in a configuration set. You can update the IAM role ARN for CloudWatch Logs and Kinesis Data Firehose. You can also enable or disable the event destination.</p> <p>You may want to update an event destination to change its matching event types or updating the destination resource ARN. You can't change an event destination's type between CloudWatch Logs, Kinesis Data Firehose, and Amazon SNS.</p>",
     "UpdatePhoneNumber": "<p>Updates the configuration of an existing origination phone number. You can update the opt-out list, enable or disable two-way messaging, change the TwoWayChannelArn, enable or disable self-managed opt-outs, and enable or disable deletion protection.</p> <p>If the origination phone number is associated with a pool, an error is returned.</p>",
     "UpdatePool": "<p>Updates the configuration of an existing pool. You can update the opt-out list, enable or disable two-way messaging, change the <code>TwoWayChannelArn</code>, enable or disable self-managed opt-outs, enable or disable deletion protection, and enable or disable shared routes.</p>",
+    "UpdateProtectConfiguration": "<p>Update the setting for an existing protect configuration.</p>",
+    "UpdateProtectConfigurationCountryRuleSet": "<p>Update a country rule set to <code>ALLOW</code> or <code>BLOCK</code> messages to be sent to the specified destination counties. You can update one or multiple countries at a time. The updates are only applied to the specified NumberCapability type.</p>",
     "UpdateSenderId": "<p>Updates the configuration of an existing sender ID.</p>",
     "VerifyDestinationNumber": "<p>Use the verification code that was received by the verified destination phone number to opt-in the verified destination phone number to receive more messages.</p>"
   },
@@ -139,6 +152,16 @@
       "refs": {
       }
     },
+    "AssociateProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateProtectConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AttachmentBody": {
       "base": null,
       "refs": {
@@ -170,6 +193,7 @@
       "base": null,
       "refs": {
         "CreatePoolRequest$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the pool can't be deleted. You can change this value using the <a>UpdatePool</a> action.</p>",
+        "CreateProtectConfigurationRequest$DeletionProtectionEnabled": "<p>When set to true deletion protection is enabled. By default this is set to false. </p>",
         "EventDestination$Enabled": "<p>When set to true events will be logged.</p>",
         "RequestPhoneNumberRequest$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the phone number can't be deleted.</p>",
         "RequestSenderIdRequest$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the sender ID can't be deleted.</p>",
@@ -181,6 +205,7 @@
         "UpdatePoolRequest$SelfManagedOptOutsEnabled": "<p>By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.</p>",
         "UpdatePoolRequest$SharedRoutesEnabled": "<p>Indicates whether shared routes are enabled for the pool.</p>",
         "UpdatePoolRequest$DeletionProtectionEnabled": "<p>When set to true the pool can't be deleted.</p>",
+        "UpdateProtectConfigurationRequest$DeletionProtectionEnabled": "<p>When set to true deletion protection is enabled. By default this is set to false. </p>",
         "UpdateSenderIdRequest$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the sender ID can't be deleted.</p>"
       }
     },
@@ -192,6 +217,7 @@
         "CreateEventDestinationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
         "CreateOptOutListRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
         "CreatePoolRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
+        "CreateProtectConfigurationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
         "CreateRegistrationAttachmentRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
         "CreateRegistrationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
         "CreateVerifiedDestinationNumberRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.</p>",
@@ -203,7 +229,7 @@
     "CloudWatchLogsDestination": {
       "base": "<p>Contains the destination configuration to use when publishing message sending events. </p>",
       "refs": {
-        "CreateEventDestinationRequest$CloudWatchLogsDestination": "<p>An object that contains information about an event destination for logging to Amazon CloudWatch logs.</p>",
+        "CreateEventDestinationRequest$CloudWatchLogsDestination": "<p>An object that contains information about an event destination for logging to Amazon CloudWatch Logs.</p>",
         "EventDestination$CloudWatchLogsDestination": "<p>An object that contains information about an event destination that sends logging events to Amazon CloudWatch logs.</p>",
         "UpdateEventDestinationRequest$CloudWatchLogsDestination": "<p>An object that contains information about an event destination that sends data to CloudWatch Logs.</p>"
       }
@@ -241,6 +267,7 @@
     "ConfigurationSetName": {
       "base": null,
       "refs": {
+        "AssociateProtectConfigurationResult$ConfigurationSetName": "<p>The name of the ConfigurationSet.</p>",
         "ConfigurationSetInformation$ConfigurationSetName": "<p>The name of the ConfigurationSet.</p>",
         "CreateConfigurationSetRequest$ConfigurationSetName": "<p>The name to use for the new configuration set.</p>",
         "CreateConfigurationSetResult$ConfigurationSetName": "<p>The name of the new configuration set.</p>",
@@ -249,6 +276,7 @@
         "DeleteDefaultMessageTypeResult$ConfigurationSetName": "<p>The name of the configuration set.</p>",
         "DeleteDefaultSenderIdResult$ConfigurationSetName": "<p>The name of the configuration set.</p>",
         "DeleteEventDestinationResult$ConfigurationSetName": "<p>The name of the configuration set the event destination was deleted from.</p>",
+        "DisassociateProtectConfigurationResult$ConfigurationSetName": "<p>The name of the ConfigurationSet.</p>",
         "SetDefaultMessageTypeResult$ConfigurationSetName": "<p>The name of the configuration set that was updated.</p>",
         "SetDefaultSenderIdResult$ConfigurationSetName": "<p>The name of the configuration set that was updated.</p>",
         "UpdateEventDestinationResult$ConfigurationSetName": "<p>The name of the configuration set.</p>"
@@ -263,13 +291,16 @@
     "ConfigurationSetNameOrArn": {
       "base": null,
       "refs": {
+        "AssociateProtectConfigurationRequest$ConfigurationSetName": "<p>The name of the ConfigurationSet.</p>",
         "ConfigurationSetNameList$member": null,
         "CreateEventDestinationRequest$ConfigurationSetName": "<p>Either the name of the configuration set or the configuration set ARN to apply event logging to. The ConfigurateSetName and ConfigurationSetArn can be found using the <a>DescribeConfigurationSets</a> action.</p>",
         "DeleteConfigurationSetRequest$ConfigurationSetName": "<p>The name of the configuration set or the configuration set ARN that you want to delete. The ConfigurationSetName and ConfigurationSetArn can be found using the <a>DescribeConfigurationSets</a> action.</p>",
         "DeleteDefaultMessageTypeRequest$ConfigurationSetName": "<p>The name of the configuration set or the configuration set Amazon Resource Name (ARN) to delete the default message type from. The ConfigurationSetName and ConfigurationSetArn can be found using the <a>DescribeConfigurationSets</a> action.</p>",
         "DeleteDefaultSenderIdRequest$ConfigurationSetName": "<p>The name of the configuration set or the configuration set Amazon Resource Name (ARN) to delete the default sender ID from. The ConfigurationSetName and ConfigurationSetArn can be found using the <a>DescribeConfigurationSets</a> action.</p>",
         "DeleteEventDestinationRequest$ConfigurationSetName": "<p>The name of the configuration set or the configuration set's Amazon Resource Name (ARN) to remove the event destination from. The ConfigurateSetName and ConfigurationSetArn can be found using the <a>DescribeConfigurationSets</a> action.</p>",
+        "DisassociateProtectConfigurationRequest$ConfigurationSetName": "<p>The name of the ConfigurationSet.</p>",
         "SendDestinationNumberVerificationCodeRequest$ConfigurationSetName": "<p>The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.</p>",
+        "SendMediaMessageRequest$ConfigurationSetName": "<p>The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.</p>",
         "SendTextMessageRequest$ConfigurationSetName": "<p>The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.</p>",
         "SendVoiceMessageRequest$ConfigurationSetName": "<p>The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.</p>",
         "SetDefaultMessageTypeRequest$ConfigurationSetName": "<p>The configuration set to update with a new default message type. This field can be the ConsigurationSetName or ConfigurationSetArn.</p>",
@@ -298,6 +329,7 @@
       "base": null,
       "refs": {
         "SendDestinationNumberVerificationCodeRequest$Context": "<p>You can specify custom data in this field. If you do, that data is logged to the event destination.</p>",
+        "SendMediaMessageRequest$Context": "<p>You can specify custom data in this field. If you do, that data is logged to the event destination.</p>",
         "SendTextMessageRequest$Context": "<p>You can specify custom data in this field. If you do, that data is logged to the event destination.</p>",
         "SendVoiceMessageRequest$Context": "<p>You can specify custom data in this field. If you do, that data is logged to the event destination.</p>"
       }
@@ -344,6 +376,16 @@
       }
     },
     "CreatePoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProtectConfigurationResult": {
       "base": null,
       "refs": {
       }
@@ -398,6 +440,16 @@
       "refs": {
       }
     },
+    "DeleteAccountDefaultProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccountDefaultProtectConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteConfigurationSetRequest": {
       "base": null,
       "refs": {
@@ -448,6 +500,16 @@
       "refs": {
       }
     },
+    "DeleteMediaMessageSpendLimitOverrideRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMediaMessageSpendLimitOverrideResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteOptOutListRequest": {
       "base": null,
       "refs": {
@@ -474,6 +536,16 @@
       }
     },
     "DeletePoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProtectConfigurationResult": {
       "base": null,
       "refs": {
       }
@@ -624,6 +696,16 @@
       "refs": {
       }
     },
+    "DescribeProtectConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProtectConfigurationsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeRegistrationAttachmentsRequest": {
       "base": null,
       "refs": {
@@ -759,6 +841,16 @@
       "refs": {
       }
     },
+    "DisassociateProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateProtectConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DiscardRegistrationVersionRequest": {
       "base": null,
       "refs": {
@@ -770,7 +862,7 @@
       }
     },
     "EventDestination": {
-      "base": "<p>Contains information about an event destination.</p> <p>Event destinations are associated with configuration sets, which enable you to publish message sending events to CloudWatch, Kinesis Data Firehose,or Amazon SNS.</p>",
+      "base": "<p>Contains information about an event destination.</p> <p>Event destinations are associated with configuration sets, which enable you to publish message sending events to CloudWatch, Kinesis Data Firehose, or Amazon SNS.</p>",
       "refs": {
         "CreateEventDestinationResult$EventDestination": "<p>The details of the destination where events are logged.</p>",
         "DeleteEventDestinationResult$EventDestination": "<p>The event destination object that was deleted.</p>",
@@ -854,6 +946,7 @@
         "PhoneNumberFilter$Values": "<p>An array values to filter for.</p>",
         "PoolFilter$Values": "<p>An array values to filter for.</p>",
         "PoolOriginationIdentitiesFilter$Values": "<p>An array values to filter for.</p>",
+        "ProtectConfigurationFilter$Values": "<p>An array of values to filter for.</p>",
         "RegistrationAssociationFilter$Values": "<p>An array of values to filter for.</p>",
         "RegistrationAttachmentFilter$Values": "<p>An array of values to filter on.</p>",
         "RegistrationFilter$Values": "<p>An array of values to filter on.</p>",
@@ -863,13 +956,23 @@
         "VerifiedDestinationNumberFilter$Values": "<p>An array of values to filter on.</p>"
       }
     },
+    "GetProtectConfigurationCountryRuleSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProtectConfigurationCountryRuleSetResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "CloudWatchLogsDestination$IamRoleArn": "<p>The Amazon Resource Name (ARN) of an Amazon Identity and Access Management (IAM) role that is able to write event data to an Amazon CloudWatch destination.</p>",
+        "CloudWatchLogsDestination$IamRoleArn": "<p>The Amazon Resource Name (ARN) of an Identity and Access Management role that is able to write event data to an Amazon CloudWatch destination.</p>",
         "CreatePoolResult$TwoWayChannelRole": "<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>",
         "DeletePoolResult$TwoWayChannelRole": "<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>",
-        "KinesisFirehoseDestination$IamRoleArn": "<p>The ARN of an Amazon Identity and Access Management (IAM) role that is able to write event data to an Amazon Firehose destination.</p>",
+        "KinesisFirehoseDestination$IamRoleArn": "<p>The ARN of an Identity and Access Management role that is able to write event data to an Amazon Kinesis Data Firehose destination.</p>",
         "PhoneNumberInformation$TwoWayChannelRole": "<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>",
         "PoolInformation$TwoWayChannelRole": "<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>",
         "ReleasePhoneNumberResult$TwoWayChannelRole": "<p>An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.</p>",
@@ -905,6 +1008,7 @@
         "DisassociateOriginationIdentityResult$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>",
         "OriginationIdentityMetadata$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region. </p>",
         "PhoneNumberInformation$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region. </p>",
+        "ProtectConfigurationCountryRuleSet$key": null,
         "RegistrationAssociationMetadata$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>",
         "ReleasePhoneNumberResult$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>",
         "ReleaseSenderIdRequest$IsoCountryCode": "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.</p>",
@@ -988,7 +1092,7 @@
       }
     },
     "KinesisFirehoseDestination": {
-      "base": "<p>Contains the delivery stream Amazon Resource Name (ARN), and the ARN of the Identity and Access Management (IAM) role associated with an Kinesis Data Firehose event destination.</p> <p>Event destinations, such as Kinesis Data Firehose, are associated with configuration sets, which enable you to publish message sending events.</p>",
+      "base": "<p>Contains the delivery stream Amazon Resource Name (ARN), and the ARN of the Identity and Access Management (IAM) role associated with a Kinesis Data Firehose event destination.</p> <p>Event destinations, such as Kinesis Data Firehose, are associated with configuration sets, which enable you to publish message sending events.</p>",
       "refs": {
         "CreateEventDestinationRequest$KinesisFirehoseDestination": "<p>An object that contains information about an event destination for logging to Amazon Kinesis Data Firehose.</p>",
         "EventDestination$KinesisFirehoseDestination": "<p>An object that contains information about an event destination for logging to Amazon Kinesis Data Firehose.</p>",
@@ -1040,6 +1144,7 @@
     "MaxPrice": {
       "base": null,
       "refs": {
+        "SendMediaMessageRequest$MaxPrice": "<p>The maximum amount that you want to spend, in US dollars, per each MMS message.</p>",
         "SendTextMessageRequest$MaxPrice": "<p>The maximum amount that you want to spend, in US dollars, per each text message part. A text message can contain multiple parts.</p>",
         "SendVoiceMessageRequest$MaxPricePerMinute": "<p>The maximum amount to spend per voice message, in US dollars.</p>"
       }
@@ -1055,6 +1160,7 @@
         "DescribeOptedOutNumbersRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "DescribePhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "DescribePoolsRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
+        "DescribeProtectConfigurationsRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "DescribeRegistrationAttachmentsRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "DescribeRegistrationFieldDefinitionsRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "DescribeRegistrationFieldValuesRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
@@ -1067,6 +1173,24 @@
         "DescribeVerifiedDestinationNumbersRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "ListPoolOriginationIdentitiesRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>",
         "ListRegistrationAssociationsRequest$MaxResults": "<p>The maximum number of results to return per each request.</p>"
+      }
+    },
+    "MediaMessageOriginationIdentity": {
+      "base": null,
+      "refs": {
+        "SendMediaMessageRequest$OriginationIdentity": "<p>The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.</p>"
+      }
+    },
+    "MediaUrlList": {
+      "base": null,
+      "refs": {
+        "SendMediaMessageRequest$MediaUrls": "<p>An array of URLs to each media file to send. </p> <p>The media files have to be stored in a publicly available S3 bucket. Supported media file formats are listed in <a href=\"https://docs.aws.amazon.com/sms-voice/latest/userguide/mms-limitations-character.html\">MMS file types, size and character limits</a>. For more information on creating an S3 bucket and managing objects, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html\">Creating a bucket</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html\">Uploading objects</a> in the S3 user guide.</p>"
+      }
+    },
+    "MediaUrlValue": {
+      "base": null,
+      "refs": {
+        "MediaUrlList$member": null
       }
     },
     "MessageType": {
@@ -1104,8 +1228,11 @@
     "MonthlyLimit": {
       "base": null,
       "refs": {
+        "DeleteMediaMessageSpendLimitOverrideResult$MonthlyLimit": "<p>The current monthly limit, in US dollars.</p>",
         "DeleteTextMessageSpendLimitOverrideResult$MonthlyLimit": "<p>The current monthly limit, in US dollars.</p>",
         "DeleteVoiceMessageSpendLimitOverrideResult$MonthlyLimit": "<p>The current monthly limit, in US dollars.</p>",
+        "SetMediaMessageSpendLimitOverrideRequest$MonthlyLimit": "<p>The new monthly limit to enforce on text messages.</p>",
+        "SetMediaMessageSpendLimitOverrideResult$MonthlyLimit": "<p>The current monthly limit to enforce on sending text messages.</p>",
         "SetTextMessageSpendLimitOverrideRequest$MonthlyLimit": "<p>The new monthly limit to enforce on text messages.</p>",
         "SetTextMessageSpendLimitOverrideResult$MonthlyLimit": "<p>The current monthly limit to enforce on sending text messages.</p>",
         "SetVoiceMessageSpendLimitOverrideRequest$MonthlyLimit": "<p>The new monthly limit to enforce on voice messages.</p>",
@@ -1131,6 +1258,8 @@
         "DescribePhoneNumbersResult$NextToken": "<p>The token to be used for the next set of paginated results. If this field is empty then there are no more results.</p>",
         "DescribePoolsRequest$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
         "DescribePoolsResult$NextToken": "<p>The token to be used for the next set of paginated results. If this field is empty then there are no more results.</p>",
+        "DescribeProtectConfigurationsRequest$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
+        "DescribeProtectConfigurationsResult$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
         "DescribeRegistrationAttachmentsRequest$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
         "DescribeRegistrationAttachmentsResult$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
         "DescribeRegistrationFieldDefinitionsRequest$NextToken": "<p>The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.</p>",
@@ -1166,7 +1295,11 @@
     "NumberCapability": {
       "base": null,
       "refs": {
-        "NumberCapabilityList$member": null
+        "GetProtectConfigurationCountryRuleSetRequest$NumberCapability": "<p>The capability type to return the CountryRuleSet for. Valid values are <code>SMS</code>, <code>VOICE</code>, or <code>MMS</code>.</p>",
+        "GetProtectConfigurationCountryRuleSetResult$NumberCapability": "<p>The capability type associated with the returned ProtectConfigurationCountryRuleSetInformation objects.</p>",
+        "NumberCapabilityList$member": null,
+        "UpdateProtectConfigurationCountryRuleSetRequest$NumberCapability": "<p>The number capability to apply the CountryRuleSetUpdates updates to.</p>",
+        "UpdateProtectConfigurationCountryRuleSetResult$NumberCapability": "<p>The number capability that was updated</p>"
       }
     },
     "NumberCapabilityList": {
@@ -1315,6 +1448,7 @@
         "RegistrationAssociationMetadata$PhoneNumber": "<p>The phone number associated with the registration in E.164 format.</p>",
         "ReleasePhoneNumberResult$PhoneNumber": "<p>The phone number that was released.</p>",
         "RequestPhoneNumberResult$PhoneNumber": "<p>The new phone number that was requested.</p>",
+        "SendMediaMessageRequest$DestinationPhoneNumber": "<p>The destination phone number in E.164 format.</p>",
         "SendTextMessageRequest$DestinationPhoneNumber": "<p>The destination phone number in E.164 format.</p>",
         "SendVoiceMessageRequest$DestinationPhoneNumber": "<p>The destination phone number in E.164 format.</p>",
         "UpdatePhoneNumberResult$PhoneNumber": "<p>The phone number that was updated.</p>",
@@ -1464,10 +1598,14 @@
         "CreatePoolResult$SelfManagedOptOutsEnabled": "<p>By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.</p>",
         "CreatePoolResult$SharedRoutesEnabled": "<p>Indicates whether shared routes are enabled for the pool.</p>",
         "CreatePoolResult$DeletionProtectionEnabled": "<p>When set to true deletion protection is enabled. By default this is set to false. </p>",
+        "CreateProtectConfigurationResult$AccountDefault": "<p>This is true if the protect configuration is set as your account default protect configuration.</p>",
+        "CreateProtectConfigurationResult$DeletionProtectionEnabled": "<p>When set to true deletion protection is enabled. By default this is set to false. </p>",
         "DeleteOptedOutNumberResult$EndUserOptedOut": "<p>This is true if it was the end user who requested their phone number be removed. </p>",
         "DeletePoolResult$TwoWayEnabled": "<p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients.</p>",
         "DeletePoolResult$SelfManagedOptOutsEnabled": "<p>By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.</p>",
         "DeletePoolResult$SharedRoutesEnabled": "<p>Indicates whether shared routes are enabled for the pool.</p>",
+        "DeleteProtectConfigurationResult$AccountDefault": "<p>This is true if the protect configuration is set as your account default protect configuration.</p>",
+        "DeleteProtectConfigurationResult$DeletionProtectionEnabled": "<p>The status of deletion protection for the protect configuration. When set to true deletion protection is enabled. By default this is set to false. </p>",
         "OptedOutNumberInformation$EndUserOptedOut": "<p>This is set to true if it was the end recipient that opted out.</p>",
         "PhoneNumberInformation$TwoWayEnabled": "<p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients using the TwoWayChannelArn.</p>",
         "PhoneNumberInformation$SelfManagedOptOutsEnabled": "<p>When set to false an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out request. For more information see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out\">Self-managed opt-outs</a> </p>",
@@ -1476,6 +1614,8 @@
         "PoolInformation$SelfManagedOptOutsEnabled": "<p>When set to false, an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests. For more information see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out\">Self-managed opt-outs</a> </p>",
         "PoolInformation$SharedRoutesEnabled": "<p>Allows you to enable shared routes on your pool.</p> <p>By default, this is set to <code>False</code>. If you set this value to <code>True</code>, your messages are sent using phone numbers or sender IDs (depending on the country) that are shared with other Amazon Pinpoint users. In some countries, such as the United States, senders aren't allowed to use shared routes and must use a dedicated phone number or short code.</p>",
         "PoolInformation$DeletionProtectionEnabled": "<p>When set to true the pool can't be deleted.</p>",
+        "ProtectConfigurationInformation$AccountDefault": "<p>This is true if the protect configuration is set as your account default protect configuration.</p>",
+        "ProtectConfigurationInformation$DeletionProtectionEnabled": "<p>The status of deletion protection for the protect configuration. When set to true deletion protection is enabled. By default this is set to false. </p>",
         "PutOptedOutNumberResult$EndUserOptedOut": "<p>This is true if it was the end user who requested their phone number be removed. </p>",
         "ReleasePhoneNumberResult$TwoWayEnabled": "<p>By default this is set to false. When set to true you can receive incoming text messages from your end recipients.</p>",
         "ReleasePhoneNumberResult$SelfManagedOptOutsEnabled": "<p>By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.</p>",
@@ -1485,6 +1625,7 @@
         "RequestPhoneNumberResult$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the phone number can't be deleted. </p>",
         "RequestSenderIdResult$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the sender ID can't be deleted.</p>",
         "RequestSenderIdResult$Registered": "<p>True if the sender ID is registered.</p>",
+        "SendMediaMessageRequest$DryRun": "<p>When set to true, the message is checked and validated, but isn't sent to the end recipient.</p>",
         "SendTextMessageRequest$DryRun": "<p>When set to true, the message is checked and validated, but isn't sent to the end recipient.</p>",
         "SendVoiceMessageRequest$DryRun": "<p>When set to true, the message is checked and validated, but isn't sent to the end recipient.</p>",
         "SenderIdInformation$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the sender ID can't be deleted.</p>",
@@ -1497,6 +1638,8 @@
         "UpdatePoolResult$SelfManagedOptOutsEnabled": "<p>When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.</p>",
         "UpdatePoolResult$SharedRoutesEnabled": "<p>Indicates whether shared routes are enabled for the pool.</p>",
         "UpdatePoolResult$DeletionProtectionEnabled": "<p>When set to true the pool can't be deleted.</p>",
+        "UpdateProtectConfigurationResult$AccountDefault": "<p>This is true if the protect configuration is set as your account default protect configuration.</p>",
+        "UpdateProtectConfigurationResult$DeletionProtectionEnabled": "<p>The status of deletion protection for the protect configuration. When set to true deletion protection is enabled. By default this is set to false. </p>",
         "UpdateSenderIdResult$DeletionProtectionEnabled": "<p>By default this is set to false. When set to true the sender ID can't be deleted.</p>",
         "UpdateSenderIdResult$Registered": "<p>True if the sender ID is registered..</p>"
       }
@@ -1508,6 +1651,109 @@
         "AccountLimit$Max": "<p>The Amazon Web Services set limit for that resource type, in US dollars.</p>",
         "SpendLimit$EnforcedLimit": "<p>The maximum amount of money, in US dollars, that you want to be able to spend sending messages each month. This value has to be less than or equal to the amount in <code>MaxLimit</code>. To use this custom limit, <code>Overridden</code> must be set to true.</p>",
         "SpendLimit$MaxLimit": "<p> The maximum amount of money that you are able to spend to send messages each month, in US dollars.</p>"
+      }
+    },
+    "ProtectConfigurationArn": {
+      "base": null,
+      "refs": {
+        "AssociateProtectConfigurationResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "CreateProtectConfigurationResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "DeleteAccountDefaultProtectConfigurationResult$DefaultProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the account default protect configuration.</p>",
+        "DeleteProtectConfigurationResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "DisassociateProtectConfigurationResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "GetProtectConfigurationCountryRuleSetResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "ProtectConfigurationInformation$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "SetAccountDefaultProtectConfigurationResult$DefaultProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the account default protect configuration.</p>",
+        "UpdateProtectConfigurationCountryRuleSetResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>",
+        "UpdateProtectConfigurationResult$ProtectConfigurationArn": "<p>The Amazon Resource Name (ARN) of the protect configuration.</p>"
+      }
+    },
+    "ProtectConfigurationCountryRuleSet": {
+      "base": null,
+      "refs": {
+        "GetProtectConfigurationCountryRuleSetResult$CountryRuleSet": "<p>A map of ProtectConfigurationCountryRuleSetInformation objects that contain the details for the requested NumberCapability. The Key is the two-letter ISO country code. For a list of supported ISO country codes, see <a href=\"https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html\">Supported countries and regions (SMS channel)</a> in the Amazon Pinpoint SMS user guide.</p>",
+        "UpdateProtectConfigurationCountryRuleSetRequest$CountryRuleSetUpdates": "<p>A map of ProtectConfigurationCountryRuleSetInformation objects that contain the details for the requested NumberCapability. The Key is the two-letter ISO country code. For a list of supported ISO country codes, see <a href=\"https://docs.aws.amazon.com/sms-voice/latest/userguide/phone-numbers-sms-by-country.html\">Supported countries and regions (SMS channel)</a> in the Amazon Pinpoint SMS user guide.</p>",
+        "UpdateProtectConfigurationCountryRuleSetResult$CountryRuleSet": "<p>An array of ProtectConfigurationCountryRuleSetInformation containing the rules for the NumberCapability.</p>"
+      }
+    },
+    "ProtectConfigurationCountryRuleSetInformation": {
+      "base": "<p>The types of statuses that can be used.</p>",
+      "refs": {
+        "ProtectConfigurationCountryRuleSet$value": null
+      }
+    },
+    "ProtectConfigurationFilter": {
+      "base": "<p>The filter definition for filtering protect configurations that meet a specified criteria.</p>",
+      "refs": {
+        "ProtectConfigurationFilterList$member": null
+      }
+    },
+    "ProtectConfigurationFilterList": {
+      "base": null,
+      "refs": {
+        "DescribeProtectConfigurationsRequest$Filters": "<p>An array of ProtectConfigurationFilter objects to filter the results.</p>"
+      }
+    },
+    "ProtectConfigurationFilterName": {
+      "base": null,
+      "refs": {
+        "ProtectConfigurationFilter$Name": "<p>The name of the attribute to filter on.</p>"
+      }
+    },
+    "ProtectConfigurationId": {
+      "base": null,
+      "refs": {
+        "AssociateProtectConfigurationResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "CreateProtectConfigurationResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "DeleteAccountDefaultProtectConfigurationResult$DefaultProtectConfigurationId": "<p>The unique identifier of the account default protect configuration.</p>",
+        "DeleteProtectConfigurationResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "DisassociateProtectConfigurationResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "GetProtectConfigurationCountryRuleSetResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "ProtectConfigurationInformation$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "SetAccountDefaultProtectConfigurationResult$DefaultProtectConfigurationId": "<p>The unique identifier of the account default protect configuration.</p>",
+        "UpdateProtectConfigurationCountryRuleSetResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "UpdateProtectConfigurationResult$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>"
+      }
+    },
+    "ProtectConfigurationIdList": {
+      "base": null,
+      "refs": {
+        "DescribeProtectConfigurationsRequest$ProtectConfigurationIds": "<p>An array of protect configuration identifiers to search for.</p>"
+      }
+    },
+    "ProtectConfigurationIdOrArn": {
+      "base": null,
+      "refs": {
+        "AssociateProtectConfigurationRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "ConfigurationSetInformation$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "DeleteProtectConfigurationRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "DisassociateProtectConfigurationRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "GetProtectConfigurationCountryRuleSetRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "ProtectConfigurationIdList$member": null,
+        "SendMediaMessageRequest$ProtectConfigurationId": "<p>The unique identifier of the protect configuration to use.</p>",
+        "SendTextMessageRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "SendVoiceMessageRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "SetAccountDefaultProtectConfigurationRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "UpdateProtectConfigurationCountryRuleSetRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>",
+        "UpdateProtectConfigurationRequest$ProtectConfigurationId": "<p>The unique identifier for the protect configuration.</p>"
+      }
+    },
+    "ProtectConfigurationInformation": {
+      "base": "<p>Provides information on the specified protect configuration.</p>",
+      "refs": {
+        "ProtectConfigurationInformationList$member": null
+      }
+    },
+    "ProtectConfigurationInformationList": {
+      "base": null,
+      "refs": {
+        "DescribeProtectConfigurationsResult$ProtectConfigurations": "<p>An array of ProtectConfigurationInformation objects that contain the details for the request. </p>"
+      }
+    },
+    "ProtectStatus": {
+      "base": null,
+      "refs": {
+        "ProtectConfigurationCountryRuleSetInformation$ProtectStatus": "<p>The types of protection that can be used.</p>"
       }
     },
     "PutKeywordRequest": {
@@ -2006,6 +2252,16 @@
       "refs": {
       }
     },
+    "SendMediaMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendMediaMessageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SendTextMessageRequest": {
       "base": null,
       "refs": {
@@ -2102,6 +2358,16 @@
         "ServiceQuotaExceededException$Reason": "<p>The reason for the exception.</p>"
       }
     },
+    "SetAccountDefaultProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetAccountDefaultProtectConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "SetDefaultMessageTypeRequest": {
       "base": null,
       "refs": {
@@ -2118,6 +2384,16 @@
       }
     },
     "SetDefaultSenderIdResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetMediaMessageSpendLimitOverrideRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetMediaMessageSpendLimitOverrideResult": {
       "base": null,
       "refs": {
       }
@@ -2183,6 +2459,7 @@
         "AssociateOriginationIdentityResult$PoolId": "<p>The PoolId of the pool that is now associated with the origination identity.</p>",
         "AssociateOriginationIdentityResult$OriginationIdentityArn": "<p>The PhoneNumberArn or SenderIdArn of the origination identity.</p>",
         "AssociateOriginationIdentityResult$OriginationIdentity": "<p>The PhoneNumberId or SenderId of the origination identity.</p>",
+        "AssociateProtectConfigurationResult$ConfigurationSetArn": "<p>The Amazon Resource Name (ARN) of the configuration set.</p>",
         "ConfigurationSetInformation$ConfigurationSetArn": "<p>The Resource Name (ARN) of the ConfigurationSet.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>The unique identifier of the request.</p>",
@@ -2234,6 +2511,7 @@
         "DisassociateOriginationIdentityResult$PoolId": "<p>The PoolId of the pool no longer associated with the origination identity.</p>",
         "DisassociateOriginationIdentityResult$OriginationIdentityArn": "<p>The PhoneNumberArn or SenderIdArn of the origination identity.</p>",
         "DisassociateOriginationIdentityResult$OriginationIdentity": "<p>The PhoneNumberId or SenderId of the origination identity.</p>",
+        "DisassociateProtectConfigurationResult$ConfigurationSetArn": "<p>The Amazon Resource Name (ARN) of the configuration set.</p>",
         "DiscardRegistrationVersionResult$RegistrationArn": "<p>The Amazon Resource Name (ARN) for the registration.</p>",
         "DiscardRegistrationVersionResult$RegistrationId": "<p>The unique identifier for the registration.</p>",
         "InternalServerException$Message": null,
@@ -2308,6 +2586,7 @@
         "SelectOptionDescription$Title": "<p>The title of the select option.</p>",
         "SelectOptionDescription$Description": "<p>A description of the option meaning.</p>",
         "SendDestinationNumberVerificationCodeResult$MessageId": "<p>The unique identifier for the message.</p>",
+        "SendMediaMessageResult$MessageId": "<p>The unique identifier for the message.</p>",
         "SendTextMessageResult$MessageId": "<p>The unique identifier for the message.</p>",
         "SendVoiceMessageResult$MessageId": "<p>The unique identifier for the message.</p>",
         "SenderIdInformation$SenderIdArn": "<p>The Amazon Resource Name (ARN) associated with the SenderId.</p>",
@@ -2408,6 +2687,8 @@
         "CreateOptOutListResult$Tags": "<p>An array of tags (key and value pairs) associated with the new OptOutList.</p>",
         "CreatePoolRequest$Tags": "<p>An array of tags (key and value pairs) associated with the pool.</p>",
         "CreatePoolResult$Tags": "<p>An array of tags (key and value pairs) associated with the pool.</p>",
+        "CreateProtectConfigurationRequest$Tags": "<p>An array of key and value pair tags that are associated with the resource.</p>",
+        "CreateProtectConfigurationResult$Tags": "<p>An array of key and value pair tags that are associated with the resource.</p>",
         "CreateRegistrationAttachmentRequest$Tags": "<p>An array of tags (key and value pairs) to associate with the registration attachment.</p>",
         "CreateRegistrationAttachmentResult$Tags": "<p>An array of tags (key and value pairs) to associate with the registration attachment.</p>",
         "CreateRegistrationRequest$Tags": "<p>An array of tags (key and value pairs) to associate with the registration.</p>",
@@ -2440,6 +2721,7 @@
     "TextMessageBody": {
       "base": null,
       "refs": {
+        "SendMediaMessageRequest$MessageBody": "<p>The text body of the message.</p>",
         "SendTextMessageRequest$MessageBody": "<p>The body of the text message.</p>"
       }
     },
@@ -2472,6 +2754,7 @@
     "TimeToLive": {
       "base": null,
       "refs": {
+        "SendMediaMessageRequest$TimeToLive": "<p>How long the text message is valid for. By default this is 72 hours.</p>",
         "SendTextMessageRequest$TimeToLive": "<p>How long the text message is valid for. By default this is 72 hours.</p>",
         "SendVoiceMessageRequest$TimeToLive": "<p>How long the voice message is valid for. By default this is 72 hours.</p>"
       }
@@ -2483,6 +2766,7 @@
         "CreateConfigurationSetResult$CreatedTimestamp": "<p>The time when the configuration set was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "CreateOptOutListResult$CreatedTimestamp": "<p>The time when the pool was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "CreatePoolResult$CreatedTimestamp": "<p>The time when the pool was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
+        "CreateProtectConfigurationResult$CreatedTimestamp": "<p>The time when the protect configuration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "CreateRegistrationAttachmentResult$CreatedTimestamp": "<p>The time when the registration attachment was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "CreateRegistrationResult$CreatedTimestamp": "<p>The time when the registration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "CreateVerifiedDestinationNumberResult$CreatedTimestamp": "<p>The time when the verified phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
@@ -2490,6 +2774,7 @@
         "DeleteOptOutListResult$CreatedTimestamp": "<p>The time when the OptOutList was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "DeleteOptedOutNumberResult$OptedOutTimestamp": "<p>The time that the number was removed at, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "DeletePoolResult$CreatedTimestamp": "<p>The time when the pool was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
+        "DeleteProtectConfigurationResult$CreatedTimestamp": "<p>The time when the protect configuration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "DeleteRegistrationAttachmentResult$CreatedTimestamp": "<p>The time when the registration attachment was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "DeleteRegistrationResult$CreatedTimestamp": "<p>The time when the registration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "DeleteVerifiedDestinationNumberResult$CreatedTimestamp": "<p>The time when the destination phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
@@ -2497,6 +2782,7 @@
         "OptedOutNumberInformation$OptedOutTimestamp": "<p>The time that the op tout occurred, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "PhoneNumberInformation$CreatedTimestamp": "<p>The time when the phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "PoolInformation$CreatedTimestamp": "<p>The time when the pool was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
+        "ProtectConfigurationInformation$CreatedTimestamp": "<p>The time when the protect configuration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "PutOptedOutNumberResult$OptedOutTimestamp": "<p>The time that the phone number was added to the OptOutList, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "RegistrationAttachmentsInformation$CreatedTimestamp": "<p>The time when the registration attachment was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "RegistrationInformation$CreatedTimestamp": "<p>The time when the registration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
@@ -2512,6 +2798,7 @@
         "RequestPhoneNumberResult$CreatedTimestamp": "<p>The time when the phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "UpdatePhoneNumberResult$CreatedTimestamp": "<p>The time when the phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "UpdatePoolResult$CreatedTimestamp": "<p>The time when the pool was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
+        "UpdateProtectConfigurationResult$CreatedTimestamp": "<p>The time when the protect configuration was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "VerifiedDestinationNumberInformation$CreatedTimestamp": "<p>The time when the destination phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>",
         "VerifyDestinationNumberResult$CreatedTimestamp": "<p>The time when the destination phone number was created, in <a href=\"https://www.epochconverter.com/\">UNIX epoch time</a> format.</p>"
       }
@@ -2567,6 +2854,26 @@
       }
     },
     "UpdatePoolResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectConfigurationCountryRuleSetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectConfigurationCountryRuleSetResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectConfigurationResult": {
       "base": null,
       "refs": {
       }

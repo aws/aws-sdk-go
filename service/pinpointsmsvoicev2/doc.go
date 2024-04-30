@@ -10,13 +10,14 @@
 // Amazon Pinpoint is an Amazon Web Services service that you can use to engage
 // with your recipients across multiple messaging channels. The Amazon Pinpoint
 // SMS and Voice, version 2 API provides programmatic access to options that
-// are unique to the SMS and voice channels and supplements the resources provided
-// by the Amazon Pinpoint API.
+// are unique to the SMS and voice channels. Amazon Pinpoint SMS and Voice,
+// version 2 resources such as phone numbers, sender IDs, and opt-out lists
+// can be used by the Amazon Pinpoint API.
 //
-// If you're new to Amazon Pinpoint, it's also helpful to review the Amazon
-// Pinpoint Developer Guide (https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html).
+// If you're new to Amazon Pinpoint SMS, it's also helpful to review the Amazon
+// Pinpoint SMS User Guide (https://docs.aws.amazon.com/sms-voice/latest/userguide/what-is-service.html).
 // The Amazon Pinpoint Developer Guide provides tutorials, code samples, and
-// procedures that demonstrate how to use Amazon Pinpoint features programmatically
+// procedures that demonstrate how to use Amazon Pinpoint SMS features programmatically
 // and how to integrate Amazon Pinpoint functionality into mobile apps and other
 // types of applications. The guide also provides key information, such as Amazon
 // Pinpoint integration with other Amazon Web Services services, and the quotas

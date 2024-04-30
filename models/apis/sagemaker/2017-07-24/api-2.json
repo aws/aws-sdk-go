@@ -5,6 +5,7 @@
     "endpointPrefix":"api.sagemaker",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"SageMaker",
     "serviceFullName":"Amazon SageMaker Service",
     "serviceId":"SageMaker",
@@ -7487,7 +7488,8 @@
         "Environment":{"shape":"TrainingEnvironmentMap"},
         "RetryStrategy":{"shape":"RetryStrategy"},
         "RemoteDebugConfig":{"shape":"RemoteDebugConfig"},
-        "InfraCheckConfig":{"shape":"InfraCheckConfig"}
+        "InfraCheckConfig":{"shape":"InfraCheckConfig"},
+        "SessionChainingConfig":{"shape":"SessionChainingConfig"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -11056,6 +11058,7 @@
       "members":{
       }
     },
+    "EnableSessionTagChaining":{"type":"boolean"},
     "Endpoint":{
       "type":"structure",
       "required":[
@@ -18642,6 +18645,14 @@
         "ml.g5.16xlarge",
         "ml.g5.24xlarge",
         "ml.g5.48xlarge",
+        "ml.g6.xlarge",
+        "ml.g6.2xlarge",
+        "ml.g6.4xlarge",
+        "ml.g6.8xlarge",
+        "ml.g6.12xlarge",
+        "ml.g6.16xlarge",
+        "ml.g6.24xlarge",
+        "ml.g6.48xlarge",
         "ml.p4d.24xlarge",
         "ml.c7g.large",
         "ml.c7g.xlarge",
@@ -20272,6 +20283,12 @@
       "members":{
         "ProvisioningArtifactId":{"shape":"ServiceCatalogEntityId"},
         "ProvisioningParameters":{"shape":"ProvisioningParameters"}
+      }
+    },
+    "SessionChainingConfig":{
+      "type":"structure",
+      "members":{
+        "EnableSessionTagChaining":{"shape":"EnableSessionTagChaining"}
       }
     },
     "SessionExpirationDurationInSeconds":{

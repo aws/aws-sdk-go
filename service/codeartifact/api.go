@@ -2460,6 +2460,8 @@ func (c *CodeArtifact) GetRepositoryEndpointRequest(input *GetRepositoryEndpoint
 //
 //   - pypi
 //
+//   - ruby
+//
 //   - swift
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5614,8 +5616,8 @@ type AssociatedPackage struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the associated package.
@@ -5785,8 +5787,8 @@ type CopyPackageVersionsInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the versions to be copied.
@@ -6768,8 +6770,8 @@ type DeletePackageInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package to delete.
@@ -6943,8 +6945,8 @@ type DeletePackageVersionsInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions to delete.
@@ -7598,8 +7600,8 @@ type DescribePackageInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package.
@@ -7774,8 +7776,8 @@ type DescribePackageVersionInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the requested package version.
@@ -8207,8 +8209,8 @@ type DisposePackageVersionsInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the versions you want to dispose.
@@ -8670,8 +8672,8 @@ type GetAssociatedPackageGroupInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The package from which to get the associated package group.
@@ -9050,8 +9052,8 @@ type GetPackageVersionAssetInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the requested asset.
@@ -9292,8 +9294,8 @@ type GetPackageVersionReadmeInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package version that contains the requested readme file.
@@ -9430,8 +9432,8 @@ type GetPackageVersionReadmeOutput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that contains the returned readme file.
@@ -10437,8 +10439,8 @@ type ListPackageVersionAssetsInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -10603,8 +10605,8 @@ type ListPackageVersionAssetsOutput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -10716,8 +10718,8 @@ type ListPackageVersionDependenciesInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -10873,8 +10875,8 @@ type ListPackageVersionDependenciesOutput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -10991,8 +10993,8 @@ type ListPackageVersionsInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -11172,8 +11174,8 @@ type ListPackageVersionsOutput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -11274,8 +11276,8 @@ type ListPackagesInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -11975,8 +11977,8 @@ type PackageDependency struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that this package depends on.
@@ -12049,8 +12051,8 @@ type PackageDescription struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The package origin configuration for the package.
@@ -12627,8 +12629,8 @@ type PackageSummary struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageOriginConfiguration (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageOriginConfiguration.html)
@@ -12711,8 +12713,8 @@ type PackageVersionDescription struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// A PackageVersionOrigin (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionOrigin.html)
@@ -13460,8 +13462,8 @@ type PutPackageOriginConfigurationInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package to be updated.
@@ -14913,8 +14915,8 @@ type UpdatePackageVersionsStatusInput struct {
 	//
 	//    * The namespace of a generic package is its namespace.
 	//
-	//    * Python and NuGet package versions do not contain a corresponding component,
-	//    package versions of those formats do not have a namespace.
+	//    * Python, NuGet, and Ruby package versions do not contain a corresponding
+	//    component, package versions of those formats do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package with the version statuses to update.
@@ -15500,6 +15502,9 @@ const (
 	// PackageFormatGeneric is a PackageFormat enum value
 	PackageFormatGeneric = "generic"
 
+	// PackageFormatRuby is a PackageFormat enum value
+	PackageFormatRuby = "ruby"
+
 	// PackageFormatSwift is a PackageFormat enum value
 	PackageFormatSwift = "swift"
 )
@@ -15512,6 +15517,7 @@ func PackageFormat_Values() []string {
 		PackageFormatMaven,
 		PackageFormatNuget,
 		PackageFormatGeneric,
+		PackageFormatRuby,
 		PackageFormatSwift,
 	}
 }

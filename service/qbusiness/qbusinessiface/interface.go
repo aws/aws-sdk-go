@@ -68,6 +68,10 @@ type QBusinessAPI interface {
 	BatchPutDocumentWithContext(aws.Context, *qbusiness.BatchPutDocumentInput, ...request.Option) (*qbusiness.BatchPutDocumentOutput, error)
 	BatchPutDocumentRequest(*qbusiness.BatchPutDocumentInput) (*request.Request, *qbusiness.BatchPutDocumentOutput)
 
+	Chat(*qbusiness.ChatInput) (*qbusiness.ChatOutput, error)
+	ChatWithContext(aws.Context, *qbusiness.ChatInput, ...request.Option) (*qbusiness.ChatOutput, error)
+	ChatRequest(*qbusiness.ChatInput) (*request.Request, *qbusiness.ChatOutput)
+
 	ChatSync(*qbusiness.ChatSyncInput) (*qbusiness.ChatSyncOutput, error)
 	ChatSyncWithContext(aws.Context, *qbusiness.ChatSyncInput, ...request.Option) (*qbusiness.ChatSyncOutput, error)
 	ChatSyncRequest(*qbusiness.ChatSyncInput) (*request.Request, *qbusiness.ChatSyncOutput)

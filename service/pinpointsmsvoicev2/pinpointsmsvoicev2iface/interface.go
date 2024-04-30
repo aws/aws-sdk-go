@@ -64,6 +64,10 @@ type PinpointSMSVoiceV2API interface {
 	AssociateOriginationIdentityWithContext(aws.Context, *pinpointsmsvoicev2.AssociateOriginationIdentityInput, ...request.Option) (*pinpointsmsvoicev2.AssociateOriginationIdentityOutput, error)
 	AssociateOriginationIdentityRequest(*pinpointsmsvoicev2.AssociateOriginationIdentityInput) (*request.Request, *pinpointsmsvoicev2.AssociateOriginationIdentityOutput)
 
+	AssociateProtectConfiguration(*pinpointsmsvoicev2.AssociateProtectConfigurationInput) (*pinpointsmsvoicev2.AssociateProtectConfigurationOutput, error)
+	AssociateProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.AssociateProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.AssociateProtectConfigurationOutput, error)
+	AssociateProtectConfigurationRequest(*pinpointsmsvoicev2.AssociateProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.AssociateProtectConfigurationOutput)
+
 	CreateConfigurationSet(*pinpointsmsvoicev2.CreateConfigurationSetInput) (*pinpointsmsvoicev2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetWithContext(aws.Context, *pinpointsmsvoicev2.CreateConfigurationSetInput, ...request.Option) (*pinpointsmsvoicev2.CreateConfigurationSetOutput, error)
 	CreateConfigurationSetRequest(*pinpointsmsvoicev2.CreateConfigurationSetInput) (*request.Request, *pinpointsmsvoicev2.CreateConfigurationSetOutput)
@@ -79,6 +83,10 @@ type PinpointSMSVoiceV2API interface {
 	CreatePool(*pinpointsmsvoicev2.CreatePoolInput) (*pinpointsmsvoicev2.CreatePoolOutput, error)
 	CreatePoolWithContext(aws.Context, *pinpointsmsvoicev2.CreatePoolInput, ...request.Option) (*pinpointsmsvoicev2.CreatePoolOutput, error)
 	CreatePoolRequest(*pinpointsmsvoicev2.CreatePoolInput) (*request.Request, *pinpointsmsvoicev2.CreatePoolOutput)
+
+	CreateProtectConfiguration(*pinpointsmsvoicev2.CreateProtectConfigurationInput) (*pinpointsmsvoicev2.CreateProtectConfigurationOutput, error)
+	CreateProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.CreateProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.CreateProtectConfigurationOutput, error)
+	CreateProtectConfigurationRequest(*pinpointsmsvoicev2.CreateProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.CreateProtectConfigurationOutput)
 
 	CreateRegistration(*pinpointsmsvoicev2.CreateRegistrationInput) (*pinpointsmsvoicev2.CreateRegistrationOutput, error)
 	CreateRegistrationWithContext(aws.Context, *pinpointsmsvoicev2.CreateRegistrationInput, ...request.Option) (*pinpointsmsvoicev2.CreateRegistrationOutput, error)
@@ -100,6 +108,10 @@ type PinpointSMSVoiceV2API interface {
 	CreateVerifiedDestinationNumberWithContext(aws.Context, *pinpointsmsvoicev2.CreateVerifiedDestinationNumberInput, ...request.Option) (*pinpointsmsvoicev2.CreateVerifiedDestinationNumberOutput, error)
 	CreateVerifiedDestinationNumberRequest(*pinpointsmsvoicev2.CreateVerifiedDestinationNumberInput) (*request.Request, *pinpointsmsvoicev2.CreateVerifiedDestinationNumberOutput)
 
+	DeleteAccountDefaultProtectConfiguration(*pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationInput) (*pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationOutput, error)
+	DeleteAccountDefaultProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationOutput, error)
+	DeleteAccountDefaultProtectConfigurationRequest(*pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.DeleteAccountDefaultProtectConfigurationOutput)
+
 	DeleteConfigurationSet(*pinpointsmsvoicev2.DeleteConfigurationSetInput) (*pinpointsmsvoicev2.DeleteConfigurationSetOutput, error)
 	DeleteConfigurationSetWithContext(aws.Context, *pinpointsmsvoicev2.DeleteConfigurationSetInput, ...request.Option) (*pinpointsmsvoicev2.DeleteConfigurationSetOutput, error)
 	DeleteConfigurationSetRequest(*pinpointsmsvoicev2.DeleteConfigurationSetInput) (*request.Request, *pinpointsmsvoicev2.DeleteConfigurationSetOutput)
@@ -120,6 +132,10 @@ type PinpointSMSVoiceV2API interface {
 	DeleteKeywordWithContext(aws.Context, *pinpointsmsvoicev2.DeleteKeywordInput, ...request.Option) (*pinpointsmsvoicev2.DeleteKeywordOutput, error)
 	DeleteKeywordRequest(*pinpointsmsvoicev2.DeleteKeywordInput) (*request.Request, *pinpointsmsvoicev2.DeleteKeywordOutput)
 
+	DeleteMediaMessageSpendLimitOverride(*pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideInput) (*pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideOutput, error)
+	DeleteMediaMessageSpendLimitOverrideWithContext(aws.Context, *pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideInput, ...request.Option) (*pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideOutput, error)
+	DeleteMediaMessageSpendLimitOverrideRequest(*pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideInput) (*request.Request, *pinpointsmsvoicev2.DeleteMediaMessageSpendLimitOverrideOutput)
+
 	DeleteOptOutList(*pinpointsmsvoicev2.DeleteOptOutListInput) (*pinpointsmsvoicev2.DeleteOptOutListOutput, error)
 	DeleteOptOutListWithContext(aws.Context, *pinpointsmsvoicev2.DeleteOptOutListInput, ...request.Option) (*pinpointsmsvoicev2.DeleteOptOutListOutput, error)
 	DeleteOptOutListRequest(*pinpointsmsvoicev2.DeleteOptOutListInput) (*request.Request, *pinpointsmsvoicev2.DeleteOptOutListOutput)
@@ -131,6 +147,10 @@ type PinpointSMSVoiceV2API interface {
 	DeletePool(*pinpointsmsvoicev2.DeletePoolInput) (*pinpointsmsvoicev2.DeletePoolOutput, error)
 	DeletePoolWithContext(aws.Context, *pinpointsmsvoicev2.DeletePoolInput, ...request.Option) (*pinpointsmsvoicev2.DeletePoolOutput, error)
 	DeletePoolRequest(*pinpointsmsvoicev2.DeletePoolInput) (*request.Request, *pinpointsmsvoicev2.DeletePoolOutput)
+
+	DeleteProtectConfiguration(*pinpointsmsvoicev2.DeleteProtectConfigurationInput) (*pinpointsmsvoicev2.DeleteProtectConfigurationOutput, error)
+	DeleteProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.DeleteProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.DeleteProtectConfigurationOutput, error)
+	DeleteProtectConfigurationRequest(*pinpointsmsvoicev2.DeleteProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.DeleteProtectConfigurationOutput)
 
 	DeleteRegistration(*pinpointsmsvoicev2.DeleteRegistrationInput) (*pinpointsmsvoicev2.DeleteRegistrationOutput, error)
 	DeleteRegistrationWithContext(aws.Context, *pinpointsmsvoicev2.DeleteRegistrationInput, ...request.Option) (*pinpointsmsvoicev2.DeleteRegistrationOutput, error)
@@ -212,6 +232,13 @@ type PinpointSMSVoiceV2API interface {
 	DescribePoolsPages(*pinpointsmsvoicev2.DescribePoolsInput, func(*pinpointsmsvoicev2.DescribePoolsOutput, bool) bool) error
 	DescribePoolsPagesWithContext(aws.Context, *pinpointsmsvoicev2.DescribePoolsInput, func(*pinpointsmsvoicev2.DescribePoolsOutput, bool) bool, ...request.Option) error
 
+	DescribeProtectConfigurations(*pinpointsmsvoicev2.DescribeProtectConfigurationsInput) (*pinpointsmsvoicev2.DescribeProtectConfigurationsOutput, error)
+	DescribeProtectConfigurationsWithContext(aws.Context, *pinpointsmsvoicev2.DescribeProtectConfigurationsInput, ...request.Option) (*pinpointsmsvoicev2.DescribeProtectConfigurationsOutput, error)
+	DescribeProtectConfigurationsRequest(*pinpointsmsvoicev2.DescribeProtectConfigurationsInput) (*request.Request, *pinpointsmsvoicev2.DescribeProtectConfigurationsOutput)
+
+	DescribeProtectConfigurationsPages(*pinpointsmsvoicev2.DescribeProtectConfigurationsInput, func(*pinpointsmsvoicev2.DescribeProtectConfigurationsOutput, bool) bool) error
+	DescribeProtectConfigurationsPagesWithContext(aws.Context, *pinpointsmsvoicev2.DescribeProtectConfigurationsInput, func(*pinpointsmsvoicev2.DescribeProtectConfigurationsOutput, bool) bool, ...request.Option) error
+
 	DescribeRegistrationAttachments(*pinpointsmsvoicev2.DescribeRegistrationAttachmentsInput) (*pinpointsmsvoicev2.DescribeRegistrationAttachmentsOutput, error)
 	DescribeRegistrationAttachmentsWithContext(aws.Context, *pinpointsmsvoicev2.DescribeRegistrationAttachmentsInput, ...request.Option) (*pinpointsmsvoicev2.DescribeRegistrationAttachmentsOutput, error)
 	DescribeRegistrationAttachmentsRequest(*pinpointsmsvoicev2.DescribeRegistrationAttachmentsInput) (*request.Request, *pinpointsmsvoicev2.DescribeRegistrationAttachmentsOutput)
@@ -286,9 +313,17 @@ type PinpointSMSVoiceV2API interface {
 	DisassociateOriginationIdentityWithContext(aws.Context, *pinpointsmsvoicev2.DisassociateOriginationIdentityInput, ...request.Option) (*pinpointsmsvoicev2.DisassociateOriginationIdentityOutput, error)
 	DisassociateOriginationIdentityRequest(*pinpointsmsvoicev2.DisassociateOriginationIdentityInput) (*request.Request, *pinpointsmsvoicev2.DisassociateOriginationIdentityOutput)
 
+	DisassociateProtectConfiguration(*pinpointsmsvoicev2.DisassociateProtectConfigurationInput) (*pinpointsmsvoicev2.DisassociateProtectConfigurationOutput, error)
+	DisassociateProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.DisassociateProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.DisassociateProtectConfigurationOutput, error)
+	DisassociateProtectConfigurationRequest(*pinpointsmsvoicev2.DisassociateProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.DisassociateProtectConfigurationOutput)
+
 	DiscardRegistrationVersion(*pinpointsmsvoicev2.DiscardRegistrationVersionInput) (*pinpointsmsvoicev2.DiscardRegistrationVersionOutput, error)
 	DiscardRegistrationVersionWithContext(aws.Context, *pinpointsmsvoicev2.DiscardRegistrationVersionInput, ...request.Option) (*pinpointsmsvoicev2.DiscardRegistrationVersionOutput, error)
 	DiscardRegistrationVersionRequest(*pinpointsmsvoicev2.DiscardRegistrationVersionInput) (*request.Request, *pinpointsmsvoicev2.DiscardRegistrationVersionOutput)
+
+	GetProtectConfigurationCountryRuleSet(*pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetInput) (*pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetOutput, error)
+	GetProtectConfigurationCountryRuleSetWithContext(aws.Context, *pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetInput, ...request.Option) (*pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetOutput, error)
+	GetProtectConfigurationCountryRuleSetRequest(*pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetInput) (*request.Request, *pinpointsmsvoicev2.GetProtectConfigurationCountryRuleSetOutput)
 
 	ListPoolOriginationIdentities(*pinpointsmsvoicev2.ListPoolOriginationIdentitiesInput) (*pinpointsmsvoicev2.ListPoolOriginationIdentitiesOutput, error)
 	ListPoolOriginationIdentitiesWithContext(aws.Context, *pinpointsmsvoicev2.ListPoolOriginationIdentitiesInput, ...request.Option) (*pinpointsmsvoicev2.ListPoolOriginationIdentitiesOutput, error)
@@ -340,6 +375,10 @@ type PinpointSMSVoiceV2API interface {
 	SendDestinationNumberVerificationCodeWithContext(aws.Context, *pinpointsmsvoicev2.SendDestinationNumberVerificationCodeInput, ...request.Option) (*pinpointsmsvoicev2.SendDestinationNumberVerificationCodeOutput, error)
 	SendDestinationNumberVerificationCodeRequest(*pinpointsmsvoicev2.SendDestinationNumberVerificationCodeInput) (*request.Request, *pinpointsmsvoicev2.SendDestinationNumberVerificationCodeOutput)
 
+	SendMediaMessage(*pinpointsmsvoicev2.SendMediaMessageInput) (*pinpointsmsvoicev2.SendMediaMessageOutput, error)
+	SendMediaMessageWithContext(aws.Context, *pinpointsmsvoicev2.SendMediaMessageInput, ...request.Option) (*pinpointsmsvoicev2.SendMediaMessageOutput, error)
+	SendMediaMessageRequest(*pinpointsmsvoicev2.SendMediaMessageInput) (*request.Request, *pinpointsmsvoicev2.SendMediaMessageOutput)
+
 	SendTextMessage(*pinpointsmsvoicev2.SendTextMessageInput) (*pinpointsmsvoicev2.SendTextMessageOutput, error)
 	SendTextMessageWithContext(aws.Context, *pinpointsmsvoicev2.SendTextMessageInput, ...request.Option) (*pinpointsmsvoicev2.SendTextMessageOutput, error)
 	SendTextMessageRequest(*pinpointsmsvoicev2.SendTextMessageInput) (*request.Request, *pinpointsmsvoicev2.SendTextMessageOutput)
@@ -348,6 +387,10 @@ type PinpointSMSVoiceV2API interface {
 	SendVoiceMessageWithContext(aws.Context, *pinpointsmsvoicev2.SendVoiceMessageInput, ...request.Option) (*pinpointsmsvoicev2.SendVoiceMessageOutput, error)
 	SendVoiceMessageRequest(*pinpointsmsvoicev2.SendVoiceMessageInput) (*request.Request, *pinpointsmsvoicev2.SendVoiceMessageOutput)
 
+	SetAccountDefaultProtectConfiguration(*pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationInput) (*pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationOutput, error)
+	SetAccountDefaultProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationOutput, error)
+	SetAccountDefaultProtectConfigurationRequest(*pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.SetAccountDefaultProtectConfigurationOutput)
+
 	SetDefaultMessageType(*pinpointsmsvoicev2.SetDefaultMessageTypeInput) (*pinpointsmsvoicev2.SetDefaultMessageTypeOutput, error)
 	SetDefaultMessageTypeWithContext(aws.Context, *pinpointsmsvoicev2.SetDefaultMessageTypeInput, ...request.Option) (*pinpointsmsvoicev2.SetDefaultMessageTypeOutput, error)
 	SetDefaultMessageTypeRequest(*pinpointsmsvoicev2.SetDefaultMessageTypeInput) (*request.Request, *pinpointsmsvoicev2.SetDefaultMessageTypeOutput)
@@ -355,6 +398,10 @@ type PinpointSMSVoiceV2API interface {
 	SetDefaultSenderId(*pinpointsmsvoicev2.SetDefaultSenderIdInput) (*pinpointsmsvoicev2.SetDefaultSenderIdOutput, error)
 	SetDefaultSenderIdWithContext(aws.Context, *pinpointsmsvoicev2.SetDefaultSenderIdInput, ...request.Option) (*pinpointsmsvoicev2.SetDefaultSenderIdOutput, error)
 	SetDefaultSenderIdRequest(*pinpointsmsvoicev2.SetDefaultSenderIdInput) (*request.Request, *pinpointsmsvoicev2.SetDefaultSenderIdOutput)
+
+	SetMediaMessageSpendLimitOverride(*pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideInput) (*pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideOutput, error)
+	SetMediaMessageSpendLimitOverrideWithContext(aws.Context, *pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideInput, ...request.Option) (*pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideOutput, error)
+	SetMediaMessageSpendLimitOverrideRequest(*pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideInput) (*request.Request, *pinpointsmsvoicev2.SetMediaMessageSpendLimitOverrideOutput)
 
 	SetTextMessageSpendLimitOverride(*pinpointsmsvoicev2.SetTextMessageSpendLimitOverrideInput) (*pinpointsmsvoicev2.SetTextMessageSpendLimitOverrideOutput, error)
 	SetTextMessageSpendLimitOverrideWithContext(aws.Context, *pinpointsmsvoicev2.SetTextMessageSpendLimitOverrideInput, ...request.Option) (*pinpointsmsvoicev2.SetTextMessageSpendLimitOverrideOutput, error)
@@ -387,6 +434,14 @@ type PinpointSMSVoiceV2API interface {
 	UpdatePool(*pinpointsmsvoicev2.UpdatePoolInput) (*pinpointsmsvoicev2.UpdatePoolOutput, error)
 	UpdatePoolWithContext(aws.Context, *pinpointsmsvoicev2.UpdatePoolInput, ...request.Option) (*pinpointsmsvoicev2.UpdatePoolOutput, error)
 	UpdatePoolRequest(*pinpointsmsvoicev2.UpdatePoolInput) (*request.Request, *pinpointsmsvoicev2.UpdatePoolOutput)
+
+	UpdateProtectConfiguration(*pinpointsmsvoicev2.UpdateProtectConfigurationInput) (*pinpointsmsvoicev2.UpdateProtectConfigurationOutput, error)
+	UpdateProtectConfigurationWithContext(aws.Context, *pinpointsmsvoicev2.UpdateProtectConfigurationInput, ...request.Option) (*pinpointsmsvoicev2.UpdateProtectConfigurationOutput, error)
+	UpdateProtectConfigurationRequest(*pinpointsmsvoicev2.UpdateProtectConfigurationInput) (*request.Request, *pinpointsmsvoicev2.UpdateProtectConfigurationOutput)
+
+	UpdateProtectConfigurationCountryRuleSet(*pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetInput) (*pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetOutput, error)
+	UpdateProtectConfigurationCountryRuleSetWithContext(aws.Context, *pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetInput, ...request.Option) (*pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetOutput, error)
+	UpdateProtectConfigurationCountryRuleSetRequest(*pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetInput) (*request.Request, *pinpointsmsvoicev2.UpdateProtectConfigurationCountryRuleSetOutput)
 
 	UpdateSenderId(*pinpointsmsvoicev2.UpdateSenderIdInput) (*pinpointsmsvoicev2.UpdateSenderIdOutput, error)
 	UpdateSenderIdWithContext(aws.Context, *pinpointsmsvoicev2.UpdateSenderIdInput, ...request.Option) (*pinpointsmsvoicev2.UpdateSenderIdOutput, error)

@@ -2620,6 +2620,7 @@
         "maven",
         "nuget",
         "generic",
+        "ruby",
         "swift"
       ]
     },

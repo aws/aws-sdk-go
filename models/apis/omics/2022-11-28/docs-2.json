@@ -3,7 +3,7 @@
   "service": "<p>This is the <i>AWS HealthOmics API Reference</i>. For an introduction to the service, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/\">What is AWS HealthOmics?</a> in the <i>AWS HealthOmics User Guide</i>.</p>",
   "operations": {
     "AbortMultipartReadSetUpload": "<p>Stops a multipart upload.</p>",
-    "AcceptShare": "<p> Accepts a share for an analytics store. </p>",
+    "AcceptShare": "<p>Accept a resource share request.</p>",
     "BatchDeleteReadSet": "<p>Deletes one or more read sets.</p>",
     "CancelAnnotationImportJob": "<p>Cancels an annotation import job.</p>",
     "CancelRun": "<p>Cancels a run.</p>",
@@ -15,7 +15,7 @@
     "CreateReferenceStore": "<p>Creates a reference store.</p>",
     "CreateRunGroup": "<p>Creates a run group.</p>",
     "CreateSequenceStore": "<p>Creates a sequence store.</p>",
-    "CreateShare": "<p> Creates a share offer that can be accepted outside the account by a subscriber. The share is created by the owner and accepted by the principal subscriber. </p>",
+    "CreateShare": "<p>Creates a cross-account shared resource. The resource owner makes an offer to share the resource with the principal subscriber (an AWS user with a different account than the resource owner).</p> <p>The following resources support cross-account sharing:</p> <ul> <li> <p>Healthomics variant stores</p> </li> <li> <p>Healthomics annotation stores</p> </li> <li> <p>Private workflows</p> </li> </ul>",
     "CreateVariantStore": "<p>Creates a variant store.</p>",
     "CreateWorkflow": "<p>Creates a workflow.</p>",
     "DeleteAnnotationStore": "<p>Deletes an annotation store.</p>",
@@ -25,7 +25,7 @@
     "DeleteRun": "<p>Deletes a workflow run.</p>",
     "DeleteRunGroup": "<p>Deletes a workflow run group.</p>",
     "DeleteSequenceStore": "<p>Deletes a sequence store.</p>",
-    "DeleteShare": "<p> Deletes a share of an analytics store. </p>",
+    "DeleteShare": "<p>Deletes a resource share. If you are the resource owner, the subscriber will no longer have access to the shared resource. If you are the subscriber, this operation deletes your access to the share.</p>",
     "DeleteVariantStore": "<p>Deletes a variant store.</p>",
     "DeleteWorkflow": "<p>Deletes a workflow.</p>",
     "GetAnnotationImportJob": "<p>Gets information about an annotation import job.</p>",
@@ -40,14 +40,14 @@
     "GetReferenceImportJob": "<p>Gets information about a reference import job.</p>",
     "GetReferenceMetadata": "<p>Gets information about a genome reference's metadata.</p>",
     "GetReferenceStore": "<p>Gets information about a reference store.</p>",
-    "GetRun": "<p>Gets information about a workflow run.</p>",
+    "GetRun": "<p>Gets information about a workflow run.</p> <p>If a workflow is shared with you, you cannot export information about the run.</p>",
     "GetRunGroup": "<p>Gets information about a workflow run group.</p>",
     "GetRunTask": "<p>Gets information about a workflow run task.</p>",
     "GetSequenceStore": "<p>Gets information about a sequence store.</p>",
-    "GetShare": "<p> Retrieves the metadata for a share. </p>",
+    "GetShare": "<p>Retrieves the metadata for the specified resource share.</p>",
     "GetVariantImportJob": "<p>Gets information about a variant import job.</p>",
     "GetVariantStore": "<p>Gets information about a variant store.</p>",
-    "GetWorkflow": "<p>Gets information about a workflow.</p>",
+    "GetWorkflow": "<p>Gets information about a workflow.</p> <p>If a workflow is shared with you, you cannot export the workflow.</p>",
     "ListAnnotationImportJobs": "<p>Retrieves a list of annotation import jobs.</p>",
     "ListAnnotationStoreVersions": "<p> Lists the versions of an annotation store. </p>",
     "ListAnnotationStores": "<p>Retrieves a list of annotation stores.</p>",
@@ -64,7 +64,7 @@
     "ListRunTasks": "<p>Retrieves a list of tasks for a run.</p>",
     "ListRuns": "<p>Retrieves a list of runs.</p>",
     "ListSequenceStores": "<p>Retrieves a list of sequence stores.</p>",
-    "ListShares": "<p> Lists all shares associated with an account. </p>",
+    "ListShares": "<p>Retrieves the resource shares associated with an account. Use the filter parameter to retrieve a specific subset of the shares.</p>",
     "ListTagsForResource": "<p>Retrieves a list of tags for a resource.</p>",
     "ListVariantImportJobs": "<p>Retrieves a list of variant import jobs.</p>",
     "ListVariantStores": "<p>Retrieves a list of variant stores.</p>",
@@ -74,7 +74,7 @@
     "StartReadSetExportJob": "<p>Exports a read set to Amazon S3.</p>",
     "StartReadSetImportJob": "<p>Starts a read set import job.</p>",
     "StartReferenceImportJob": "<p>Starts a reference import job.</p>",
-    "StartRun": "<p>Starts a workflow run. To duplicate a run, specify the run's ID and a role ARN. The remaining parameters are copied from the previous run.</p> <p>The total number of runs in your account is subject to a quota per Region. To avoid needing to delete runs manually, you can set the retention mode to <code>REMOVE</code>. Runs with this setting are deleted automatically when the run quoata is exceeded.</p>",
+    "StartRun": "<p>Starts a workflow run. To duplicate a run, specify the run's ID and a role ARN. The remaining parameters are copied from the previous run.</p> <p>StartRun will not support re-run for a workflow that is shared with you.</p> <p>The total number of runs in your account is subject to a quota per Region. To avoid needing to delete runs manually, you can set the retention mode to <code>REMOVE</code>. Runs with this setting are deleted automatically when the run quoata is exceeded.</p> <p>By default, the run uses STATIC storage. For STATIC storage, set the <code>storageCapacity</code> field. You can set the storage type to DYNAMIC. You do not set <code>storageCapacity</code>, because HealthOmics dynamically scales the storage up or down as required. For more information about static and dynamic storage, see <a href=\"https://docs.aws.amazon.com/omics/latest/dev/Using-workflows.html\">Running workflows</a> in the <i>AWS HealthOmics User Guide</i>.</p>",
     "StartVariantImportJob": "<p>Starts a variant import job.</p>",
     "TagResource": "<p>Tags a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
@@ -268,7 +268,7 @@
     "ArnList": {
       "base": null,
       "refs": {
-        "Filter$resourceArns": "<p> The Amazon Resource Number (Arn) for an analytics store. </p>"
+        "Filter$resourceArns": "<p>Filter based on the Amazon Resource Number (ARN) of the resource. You can specify up to 10 values.</p>"
       }
     },
     "BatchDeleteReadSetRequest": {
@@ -498,7 +498,7 @@
     "CreateWorkflowRequestStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "CreateWorkflowRequest$storageCapacity": "<p>A storage capacity for the workflow in gibibytes.</p>"
+        "CreateWorkflowRequest$storageCapacity": "<p>The storage capacity for the workflow in gibibytes.</p>"
       }
     },
     "CreateWorkflowResponse": {
@@ -520,7 +520,7 @@
         "GetAnnotationStoreVersionResponse$creationTime": "<p> The time stamp for when an annotation store version was created. </p>",
         "GetVariantImportResponse$creationTime": "<p>When the job was created.</p>",
         "GetVariantStoreResponse$creationTime": "<p>When the store was created.</p>",
-        "ShareDetails$creationTime": "<p> The timestamp for when the share was created. </p>",
+        "ShareDetails$creationTime": "<p>The timestamp of when the resource share was created.</p>",
         "UpdateAnnotationStoreResponse$creationTime": "<p>When the store was created.</p>",
         "UpdateAnnotationStoreVersionResponse$creationTime": "<p> The time stamp for when an annotation store version was created. </p>",
         "UpdateVariantStoreResponse$creationTime": "<p>When the store was created.</p>",
@@ -779,9 +779,9 @@
       }
     },
     "Filter": {
-      "base": "<p> Use filters to focus the returned annotation store versions on a specific parameter, such as the status of the annotation store. </p>",
+      "base": "<p>Use filters to return a subset of resources. You can define filters for specific parameters, such as the resource status.</p>",
       "refs": {
-        "ListSharesRequest$filter": "<p> Attributes used to filter for a specific subset of shares. </p>"
+        "ListSharesRequest$filter": "<p>Attributes that you use to filter for a specific subset of resource shares.</p>"
       }
     },
     "FormatOptions": {
@@ -1007,7 +1007,7 @@
     "GetRunResponseStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "GetRunResponse$storageCapacity": "<p>The run's storage capacity in gigabytes.</p>"
+        "GetRunResponse$storageCapacity": "<p>The run's storage capacity in gibibytes. For dynamic storage, after the run has completed, this value is the maximum amount of storage used during the run.</p>"
       }
     },
     "GetRunTaskRequest": {
@@ -1091,7 +1091,7 @@
     "GetWorkflowResponseStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "GetWorkflowResponse$storageCapacity": "<p>The workflow's storage capacity in gigabytes.</p>"
+        "GetWorkflowResponse$storageCapacity": "<p>The workflow's storage capacity in gibibytes.</p>"
       }
     },
     "Header": {
@@ -1177,7 +1177,7 @@
       "base": null,
       "refs": {
         "GetAnnotationStoreResponse$numVersions": "<p> An integer indicating how many versions of an annotation store exist. </p>",
-        "ListSharesRequest$maxResults": "<p> The maximum number of shares to return in one page of results. </p>"
+        "ListSharesRequest$maxResults": "<p>The maximum number of shares to return in one page of results.</p>"
       }
     },
     "InternalServerException": {
@@ -1260,7 +1260,7 @@
       }
     },
     "ListAnnotationStoreVersionsFilter": {
-      "base": "<p> Use filters to focus the returned annotation store versions on a specific parameter, such as the status of the annotation store. </p>",
+      "base": "<p>Use filters to focus the returned annotation store versions on a specific parameter, such as the status of the annotation store.</p>",
       "refs": {
         "ListAnnotationStoreVersionsRequest$filter": "<p> A filter to apply to the list of annotation store versions. </p>"
       }
@@ -2187,7 +2187,7 @@
     "ResourceOwner": {
       "base": null,
       "refs": {
-        "ListSharesRequest$resourceOwner": "<p> The account that owns the analytics store shared. </p>"
+        "ListSharesRequest$resourceOwner": "<p>The account that owns the resource shares.</p>"
       }
     },
     "RoleArn": {
@@ -2365,7 +2365,7 @@
     "RunListItemStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "RunListItem$storageCapacity": "<p>The run's storage capacity.</p>"
+        "RunListItem$storageCapacity": "<p>The run's storage capacity in gibibytes. For dynamic storage, after the run has completed, this value is the maximum amount of storage used during the run.</p>"
       }
     },
     "RunListToken": {
@@ -2674,33 +2674,39 @@
       }
     },
     "ShareDetails": {
-      "base": "<p> The details of a share. </p>",
+      "base": "<p>The details of a resource share.</p>",
       "refs": {
-        "GetShareResponse$share": "<p> An analytic store share details object. contains status, resourceArn, ownerId, etc. </p>",
+        "GetShareResponse$share": "<p>A resource share details object. The object includes the status, the resourceArn, and ownerId.</p>",
         "ShareDetailsList$member": null
       }
     },
     "ShareDetailsList": {
       "base": null,
       "refs": {
-        "ListSharesResponse$shares": "<p> The shares available and their meta details. </p>"
+        "ListSharesResponse$shares": "<p>The shares available and their metadata details.</p>"
       }
     },
     "ShareName": {
       "base": null,
       "refs": {
-        "CreateShareRequest$shareName": "<p> A name given to the share. </p>",
-        "CreateShareResponse$shareName": "<p> A name given to the share. </p>",
-        "ShareDetails$shareName": "<p> The name of the share. </p>"
+        "CreateShareRequest$shareName": "<p>A name that the owner defines for the share.</p>",
+        "CreateShareResponse$shareName": "<p>The name of the share.</p>",
+        "ShareDetails$shareName": "<p>The name of the resource share.</p>"
+      }
+    },
+    "ShareResourceType": {
+      "base": null,
+      "refs": {
+        "TypeList$member": null
       }
     },
     "ShareStatus": {
       "base": null,
       "refs": {
-        "AcceptShareResponse$status": "<p> The status of an analytics store share. </p>",
-        "CreateShareResponse$status": "<p> The status of a share. </p>",
-        "DeleteShareResponse$status": "<p> The status of the share being deleted. </p>",
-        "ShareDetails$status": "<p> The status of a share. </p>",
+        "AcceptShareResponse$status": "<p>The status of the resource share.</p>",
+        "CreateShareResponse$status": "<p>The status of the share.</p>",
+        "DeleteShareResponse$status": "<p>The status of the share being deleted.</p>",
+        "ShareDetails$status": "<p>The status of the share.</p>",
         "StatusList$member": null
       }
     },
@@ -2842,7 +2848,7 @@
     "StartRunRequestStorageCapacityInteger": {
       "base": null,
       "refs": {
-        "StartRunRequest$storageCapacity": "<p>A storage capacity for the run in gibibytes.</p>"
+        "StartRunRequest$storageCapacity": "<p>A storage capacity for the run in gibibytes. This field is not required if the storage type is dynamic (the system ignores any value that you enter).</p>"
       }
     },
     "StartRunResponse": {
@@ -2863,7 +2869,7 @@
     "StatusList": {
       "base": null,
       "refs": {
-        "Filter$status": "<p> The status of an annotation store version. </p>"
+        "Filter$status": "<p>Filter based on the resource status. You can specify up to 10 values.</p>"
       }
     },
     "StatusMessage": {
@@ -2874,8 +2880,16 @@
         "GetAnnotationStoreResponse$statusMessage": "<p>A status message.</p>",
         "GetAnnotationStoreVersionResponse$statusMessage": "<p> The status of an annotation store version. </p>",
         "GetVariantStoreResponse$statusMessage": "<p>The store's status message.</p>",
-        "ShareDetails$statusMessage": "<p> The status message for a share. It provides more details on the status of the share. </p>",
+        "ShareDetails$statusMessage": "<p>The status message for a resource share. It provides additional details about the share status.</p>",
         "VariantStoreItem$statusMessage": "<p>The store's status message.</p>"
+      }
+    },
+    "StorageType": {
+      "base": null,
+      "refs": {
+        "GetRunResponse$storageType": "<p>The run's storage type.</p>",
+        "RunListItem$storageType": "<p>The run's storage type.</p>",
+        "StartRunRequest$storageType": "<p>The run's storage type. By default, the run uses STATIC storage type, which allocates a fixed amount of storage. If you set the storage type to DYNAMIC, HealthOmics dynamically scales the storage up or down, based on file system utilization.</p>"
       }
     },
     "StoreFormat": {
@@ -2933,7 +2947,7 @@
     "String": {
       "base": null,
       "refs": {
-        "AcceptShareRequest$shareId": "<p> The ID for a share offer for analytics store data. </p>",
+        "AcceptShareRequest$shareId": "<p>The ID of the resource share.</p>",
         "AccessDeniedException$message": null,
         "AnnotationImportJobItem$id": "<p>The job's ID.</p>",
         "AnnotationImportJobItem$destinationName": "<p>The job's destination annotation store.</p>",
@@ -2941,13 +2955,13 @@
         "ArnList$member": null,
         "ConflictException$message": null,
         "CreateAnnotationStoreResponse$name": "<p>The store's name.</p>",
-        "CreateShareRequest$resourceArn": "<p> The resource ARN for the analytics store to be shared. </p>",
-        "CreateShareRequest$principalSubscriber": "<p> The principal subscriber is the account being given access to the analytics store data through the share offer. </p>",
-        "CreateShareResponse$shareId": "<p> An ID generated for the share. </p>",
+        "CreateShareRequest$resourceArn": "<p>The ARN of the resource to be shared.</p>",
+        "CreateShareRequest$principalSubscriber": "<p>The principal subscriber is the account being offered shared access to the resource. </p>",
+        "CreateShareResponse$shareId": "<p>The ID that HealthOmics generates for the share.</p>",
         "CreateVariantStoreResponse$name": "<p>The store's name.</p>",
         "DeleteAnnotationStoreRequest$name": "<p>The store's name.</p>",
         "DeleteAnnotationStoreVersionsRequest$name": "<p> The name of the annotation store from which versions are being deleted. </p>",
-        "DeleteShareRequest$shareId": "<p> The ID for the share request to be deleted. </p>",
+        "DeleteShareRequest$shareId": "<p>The ID for the resource share to be deleted.</p>",
         "DeleteVariantStoreRequest$name": "<p>The store's name.</p>",
         "ETag$source1": "<p>The ETag hash calculated on Source1 of the read set.</p>",
         "ETag$source2": "<p>The ETag hash calculated on Source2 of the read set.</p>",
@@ -2955,7 +2969,7 @@
         "GetAnnotationStoreResponse$name": "<p>The store's name.</p>",
         "GetAnnotationStoreVersionRequest$name": "<p> The name given to an annotation store version to distinguish it from others. </p>",
         "GetAnnotationStoreVersionRequest$versionName": "<p> The name given to an annotation store version to distinguish it from others. </p>",
-        "GetShareRequest$shareId": "<p> The generated ID for a share. </p>",
+        "GetShareRequest$shareId": "<p>The ID of the share.</p>",
         "GetVariantStoreRequest$name": "<p>The store's name.</p>",
         "GetVariantStoreResponse$name": "<p>The store's name.</p>",
         "InternalServerException$message": null,
@@ -2964,7 +2978,7 @@
         "ListAnnotationStoreVersionsRequest$name": "<p> The name of an annotation store. </p>",
         "ListAnnotationStoreVersionsResponse$nextToken": "<p> Specifies the pagination token from a previous request to retrieve the next page of results. </p>",
         "ListAnnotationStoresResponse$nextToken": "<p>A pagination token that's included if more results are available.</p>",
-        "ListSharesRequest$nextToken": "<p> Next token returned in the response of a previous ListReadSetUploadPartsRequest call. Used to get the next page of results. </p>",
+        "ListSharesRequest$nextToken": "<p>Next token returned in the response of a previous ListReadSetUploadPartsRequest call. Used to get the next page of results.</p>",
         "ListSharesResponse$nextToken": "<p> Next token returned in the response of a previous ListSharesResponse call. Used to get the next page of results. </p>",
         "ListVariantImportJobsFilter$storeName": "<p>A store name to filter on.</p>",
         "ListVariantImportJobsResponse$nextToken": "<p>A pagination token that's included if more results are available.</p>",
@@ -2978,10 +2992,11 @@
         "ResourceNotFoundException$message": null,
         "SequenceInformation$alignment": "<p>The sequence's alignment setting.</p>",
         "ServiceQuotaExceededException$message": null,
-        "ShareDetails$shareId": "<p> The ID for a share offer for an analytics store . </p>",
-        "ShareDetails$resourceArn": "<p> The resource Arn of the analytics store being shared. </p>",
-        "ShareDetails$principalSubscriber": "<p> The principal subscriber is the account the analytics store data is being shared with. </p>",
-        "ShareDetails$ownerId": "<p> The account ID for the data owner. The owner creates the share offer. </p>",
+        "ShareDetails$shareId": "<p>The ID of the resource share.</p>",
+        "ShareDetails$resourceArn": "<p>The Arn of the shared resource. </p>",
+        "ShareDetails$resourceId": "<p>The ID of the shared resource. </p>",
+        "ShareDetails$principalSubscriber": "<p>The principal subscriber is the account that is sharing the resource.</p>",
+        "ShareDetails$ownerId": "<p>The account ID for the data owner. The owner creates the resource share.</p>",
         "ThrottlingException$message": null,
         "UpdateAnnotationStoreRequest$name": "<p>A name for the store.</p>",
         "UpdateAnnotationStoreResponse$name": "<p>The store's name.</p>",
@@ -3275,6 +3290,12 @@
         "TsvVersionOptions$schema": "<p> The TSV schema for an annotation store version. </p>"
       }
     },
+    "TypeList": {
+      "base": null,
+      "refs": {
+        "Filter$type": "<p>The type of resources to be filtered. You can specify one or more of the resource types.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -3345,7 +3366,7 @@
         "GetAnnotationStoreVersionResponse$updateTime": "<p> The time stamp for when an annotation store version was updated. </p>",
         "GetVariantImportResponse$updateTime": "<p>When the job was updated.</p>",
         "GetVariantStoreResponse$updateTime": "<p>When the store was updated.</p>",
-        "ShareDetails$updateTime": "<p> The timestamp of the share update. </p>",
+        "ShareDetails$updateTime": "<p>The timestamp of the resource share update.</p>",
         "UpdateAnnotationStoreResponse$updateTime": "<p>When the store was updated.</p>",
         "UpdateAnnotationStoreVersionResponse$updateTime": "<p> The time stamp for when an annotation store version was updated. </p>",
         "UpdateVariantStoreResponse$updateTime": "<p>When the store was updated.</p>",
@@ -3503,7 +3524,7 @@
         "AnnotationStoreVersionItem$status": "<p> The status of an annotation store version. </p>",
         "CreateAnnotationStoreVersionResponse$status": "<p> The status of a annotation store version. </p>",
         "GetAnnotationStoreVersionResponse$status": "<p> The status of an annotation store version. </p>",
-        "ListAnnotationStoreVersionsFilter$status": "<p> The status of an annotation store version. </p>",
+        "ListAnnotationStoreVersionsFilter$status": "<p>The status of an annotation store version.</p>",
         "UpdateAnnotationStoreVersionResponse$status": "<p> The status of an annotation store version. </p>"
       }
     },
@@ -3575,7 +3596,7 @@
     "WorkflowList": {
       "base": null,
       "refs": {
-        "ListWorkflowsResponse$items": "<p>The workflows' items.</p>"
+        "ListWorkflowsResponse$items": "<p>A list of workflow items.</p>"
       }
     },
     "WorkflowListItem": {
@@ -3622,9 +3643,17 @@
       "refs": {
         "CreateWorkflowRequest$name": "<p>A name for the workflow.</p>",
         "GetWorkflowResponse$name": "<p>The workflow's name.</p>",
-        "ListWorkflowsRequest$name": "<p>The workflows' name.</p>",
+        "ListWorkflowsRequest$name": "<p>Filter the list by workflow name.</p>",
         "UpdateWorkflowRequest$name": "<p>A name for the workflow.</p>",
         "WorkflowListItem$name": "<p>The workflow's name.</p>"
+      }
+    },
+    "WorkflowOwnerId": {
+      "base": null,
+      "refs": {
+        "GetRunResponse$workflowOwnerId": "<p>The ID of the workflow owner.</p>",
+        "GetWorkflowRequest$workflowOwnerId": "<p>The ID of the workflow owner.</p>",
+        "StartRunRequest$workflowOwnerId": "<p>The ID of the workflow owner. </p>"
       }
     },
     "WorkflowParameter": {
@@ -3685,7 +3714,7 @@
         "GetRunResponse$workflowType": "<p>The run's workflow type.</p>",
         "GetWorkflowRequest$type": "<p>The workflow's type.</p>",
         "GetWorkflowResponse$type": "<p>The workflow's type.</p>",
-        "ListWorkflowsRequest$type": "<p>The workflows' type.</p>",
+        "ListWorkflowsRequest$type": "<p>Filter the list by workflow type.</p>",
         "StartRunRequest$workflowType": "<p>The run's workflow type.</p>",
         "WorkflowListItem$type": "<p>The workflow's type.</p>"
       }

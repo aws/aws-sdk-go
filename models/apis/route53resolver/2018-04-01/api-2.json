@@ -5,6 +5,7 @@
     "endpointPrefix":"route53resolver",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Route53Resolver",
     "serviceFullName":"Amazon Route 53 Resolver",
     "serviceId":"Route53Resolver",
@@ -1382,6 +1383,10 @@
           "box":true
         },
         "Name":{"shape":"Name"},
+        "FirewallDomainRedirectionAction":{
+          "shape":"FirewallDomainRedirectionAction",
+          "box":true
+        },
         "Qtype":{
           "shape":"Qtype",
           "box":true
@@ -1795,6 +1800,13 @@
       "max":255,
       "min":1
     },
+    "FirewallDomainRedirectionAction":{
+      "type":"string",
+      "enum":[
+        "INSPECT_REDIRECTION_DOMAIN",
+        "TRUST_REDIRECTION_DOMAIN"
+      ]
+    },
     "FirewallDomainUpdateOperation":{
       "type":"string",
       "enum":[
@@ -1830,6 +1842,7 @@
         "CreatorRequestId":{"shape":"CreatorRequestId"},
         "CreationTime":{"shape":"Rfc3339TimeString"},
         "ModificationTime":{"shape":"Rfc3339TimeString"},
+        "FirewallDomainRedirectionAction":{"shape":"FirewallDomainRedirectionAction"},
         "Qtype":{"shape":"Qtype"}
       }
     },
@@ -3352,6 +3365,10 @@
         },
         "Name":{
           "shape":"Name",
+          "box":true
+        },
+        "FirewallDomainRedirectionAction":{
+          "shape":"FirewallDomainRedirectionAction",
           "box":true
         },
         "Qtype":{"shape":"Qtype"}
