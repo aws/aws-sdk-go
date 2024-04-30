@@ -358,7 +358,12 @@ func (c *ChimeSDKVoice) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNum
 
 // BatchUpdatePhoneNumber API operation for Amazon Chime SDK Voice.
 //
-// Updates one or more phone numbers.
+// Updates phone number product types, calling names, or phone number names.
+// You can update one attribute at a time for each UpdatePhoneNumberRequestItem.
+// For example, you can update the product type, the calling name, or phone
+// name.
+//
+// You cannot have a duplicate phoneNumberId in a request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3587,7 +3592,12 @@ const opGetSipMediaApplicationAlexaSkillConfiguration = "GetSipMediaApplicationA
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplicationAlexaSkillConfiguration
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationRequest(input *GetSipMediaApplicationAlexaSkillConfigurationInput) (req *request.Request, output *GetSipMediaApplicationAlexaSkillConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetSipMediaApplicationAlexaSkillConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetSipMediaApplicationAlexaSkillConfiguration,
 		HTTPMethod: "GET",
@@ -3606,6 +3616,10 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationRequest(inp
 // GetSipMediaApplicationAlexaSkillConfiguration API operation for Amazon Chime SDK Voice.
 //
 // Gets the Alexa Skill configuration for the SIP media application.
+//
+// Due to changes made by the Amazon Alexa service, this API is no longer available
+// for use. For more information, refer to the Alexa Smart Properties (https://developer.amazon.com/en-US/alexa/alexasmartproperties)
+// page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3638,6 +3652,8 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationRequest(inp
 //     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/GetSipMediaApplicationAlexaSkillConfiguration
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfiguration(input *GetSipMediaApplicationAlexaSkillConfigurationInput) (*GetSipMediaApplicationAlexaSkillConfigurationOutput, error) {
 	req, out := c.GetSipMediaApplicationAlexaSkillConfigurationRequest(input)
 	return out, req.Send()
@@ -3652,6 +3668,8 @@ func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfiguration(input *Get
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) GetSipMediaApplicationAlexaSkillConfigurationWithContext(ctx aws.Context, input *GetSipMediaApplicationAlexaSkillConfigurationInput, opts ...request.Option) (*GetSipMediaApplicationAlexaSkillConfigurationOutput, error) {
 	req, out := c.GetSipMediaApplicationAlexaSkillConfigurationRequest(input)
 	req.SetContext(ctx)
@@ -6925,7 +6943,12 @@ const opPutSipMediaApplicationAlexaSkillConfiguration = "PutSipMediaApplicationA
 //	}
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutSipMediaApplicationAlexaSkillConfiguration
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationRequest(input *PutSipMediaApplicationAlexaSkillConfigurationInput) (req *request.Request, output *PutSipMediaApplicationAlexaSkillConfigurationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, PutSipMediaApplicationAlexaSkillConfiguration, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opPutSipMediaApplicationAlexaSkillConfiguration,
 		HTTPMethod: "PUT",
@@ -6944,6 +6967,10 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationRequest(inp
 // PutSipMediaApplicationAlexaSkillConfiguration API operation for Amazon Chime SDK Voice.
 //
 // Updates the Alexa Skill configuration for the SIP media application.
+//
+// Due to changes made by the Amazon Alexa service, this API is no longer available
+// for use. For more information, refer to the Alexa Smart Properties (https://developer.amazon.com/en-US/alexa/alexasmartproperties)
+// page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6976,6 +7003,8 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationRequest(inp
 //     The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-voice-2022-08-03/PutSipMediaApplicationAlexaSkillConfiguration
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfiguration(input *PutSipMediaApplicationAlexaSkillConfigurationInput) (*PutSipMediaApplicationAlexaSkillConfigurationOutput, error) {
 	req, out := c.PutSipMediaApplicationAlexaSkillConfigurationRequest(input)
 	return out, req.Send()
@@ -6990,6 +7019,8 @@ func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfiguration(input *Put
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: Due to changes made by the Amazon Alexa service, this API is no longer available for use. For more information, refer to the Alexa Smart Properties page(https://developer.amazon.com/en-US/alexa/alexasmartproperties).
 func (c *ChimeSDKVoice) PutSipMediaApplicationAlexaSkillConfigurationWithContext(ctx aws.Context, input *PutSipMediaApplicationAlexaSkillConfigurationInput, opts ...request.Option) (*PutSipMediaApplicationAlexaSkillConfigurationOutput, error) {
 	req, out := c.PutSipMediaApplicationAlexaSkillConfigurationRequest(input)
 	req.SetContext(ctx)
@@ -8819,10 +8850,10 @@ func (c *ChimeSDKVoice) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) 
 
 // UpdatePhoneNumber API operation for Amazon Chime SDK Voice.
 //
-// Updates phone number details, such as product type or calling name, for the
-// specified phone number ID. You can update one phone number detail at a time.
-// For example, you can update either the product type or the calling name in
-// one action.
+// Updates phone number details, such as product type, calling name, or phone
+// number name for the specified phone number ID. You can update one phone number
+// detail at a time. For example, you can update either the product type, calling
+// name, or phone number name in one action.
 //
 // For numbers outside the U.S., you must use the Amazon Chime SDK SIP Media
 // Application Dial-In product type.
@@ -19119,6 +19150,10 @@ func (s *SipMediaApplication) SetUpdatedTimestamp(v time.Time) *SipMediaApplicat
 }
 
 // The Alexa Skill configuration of a SIP media application.
+//
+// Due to changes made by the Amazon Alexa service, this data type is no longer
+// available for use. For more information, refer to the Alexa Smart Properties
+// (https://developer.amazon.com/en-US/alexa/alexasmartproperties) page.
 type SipMediaApplicationAlexaSkillConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20830,7 +20865,7 @@ type UpdatePhoneNumberInput struct {
 	// String and GoString methods.
 	CallingName *string `type:"string" sensitive:"true"`
 
-	// Specifies the name assigned to one or more phone numbers.
+	// Specifies the updated name assigned to one or more phone numbers.
 	//
 	// Name is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdatePhoneNumberInput's

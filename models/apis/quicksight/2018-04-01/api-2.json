@@ -5,6 +5,7 @@
     "endpointPrefix":"quicksight",
     "jsonVersion":"1.0",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"Amazon QuickSight",
     "serviceId":"QuickSight",
     "signatureVersion":"v4",
@@ -2844,6 +2845,22 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "UpdateSPICECapacityConfiguration":{
+      "name":"UpdateSPICECapacityConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/spice-capacity-configuration"
+      },
+      "input":{"shape":"UpdateSPICECapacityConfigurationRequest"},
+      "output":{"shape":"UpdateSPICECapacityConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateTemplate":{
       "name":"UpdateTemplate",
       "http":{
@@ -3336,7 +3353,15 @@
       "members":{
         "Dashboard":{"shape":"AnonymousUserDashboardEmbeddingConfiguration"},
         "DashboardVisual":{"shape":"AnonymousUserDashboardVisualEmbeddingConfiguration"},
-        "QSearchBar":{"shape":"AnonymousUserQSearchBarEmbeddingConfiguration"}
+        "QSearchBar":{"shape":"AnonymousUserQSearchBarEmbeddingConfiguration"},
+        "GenerativeQnA":{"shape":"AnonymousUserGenerativeQnAEmbeddingConfiguration"}
+      }
+    },
+    "AnonymousUserGenerativeQnAEmbeddingConfiguration":{
+      "type":"structure",
+      "required":["InitialTopicId"],
+      "members":{
+        "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
     },
     "AnonymousUserQSearchBarEmbeddingConfiguration":{
@@ -5479,7 +5504,6 @@
     "CreateAccountSubscriptionRequest":{
       "type":"structure",
       "required":[
-        "Edition",
         "AuthenticationMethod",
         "AwsAccountId",
         "AccountName",
@@ -5501,6 +5525,9 @@
         "AdminGroup":{"shape":"GroupsList"},
         "AuthorGroup":{"shape":"GroupsList"},
         "ReaderGroup":{"shape":"GroupsList"},
+        "AdminProGroup":{"shape":"GroupsList"},
+        "AuthorProGroup":{"shape":"GroupsList"},
+        "ReaderProGroup":{"shape":"GroupsList"},
         "FirstName":{"shape":"String"},
         "LastName":{"shape":"String"},
         "EmailAddress":{"shape":"String"},
@@ -11164,6 +11191,13 @@
         "ForegroundColor":{"shape":"ConditionalFormattingColor"}
       }
     },
+    "GaugeChartColorConfiguration":{
+      "type":"structure",
+      "members":{
+        "ForegroundColor":{"shape":"HexColor"},
+        "BackgroundColor":{"shape":"HexColor"}
+      }
+    },
     "GaugeChartConditionalFormatting":{
       "type":"structure",
       "members":{
@@ -11190,6 +11224,7 @@
         "DataLabels":{"shape":"DataLabelOptions"},
         "TooltipOptions":{"shape":"TooltipOptions"},
         "VisualPalette":{"shape":"VisualPalette"},
+        "ColorConfiguration":{"shape":"GaugeChartColorConfiguration"},
         "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
@@ -15053,7 +15088,7 @@
     "PivotTableConditionalFormattingOptionList":{
       "type":"list",
       "member":{"shape":"PivotTableConditionalFormattingOption"},
-      "max":100
+      "max":500
     },
     "PivotTableConditionalFormattingScope":{
       "type":"structure",
@@ -15419,6 +15454,13 @@
         "INHERIT",
         "DIMENSION",
         "MEASURE"
+      ]
+    },
+    "PurchaseMode":{
+      "type":"string",
+      "enum":[
+        "MANUAL",
+        "AUTO_PURCHASE"
       ]
     },
     "PutDataSetRefreshPropertiesRequest":{
@@ -15872,7 +15914,14 @@
         "Dashboard":{"shape":"RegisteredUserDashboardEmbeddingConfiguration"},
         "QuickSightConsole":{"shape":"RegisteredUserQuickSightConsoleEmbeddingConfiguration"},
         "QSearchBar":{"shape":"RegisteredUserQSearchBarEmbeddingConfiguration"},
-        "DashboardVisual":{"shape":"RegisteredUserDashboardVisualEmbeddingConfiguration"}
+        "DashboardVisual":{"shape":"RegisteredUserDashboardVisualEmbeddingConfiguration"},
+        "GenerativeQnA":{"shape":"RegisteredUserGenerativeQnAEmbeddingConfiguration"}
+      }
+    },
+    "RegisteredUserGenerativeQnAEmbeddingConfiguration":{
+      "type":"structure",
+      "members":{
+        "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
     },
     "RegisteredUserQSearchBarEmbeddingConfiguration":{
@@ -16096,7 +16145,10 @@
       "enum":[
         "ADMIN",
         "AUTHOR",
-        "READER"
+        "READER",
+        "ADMIN_PRO",
+        "AUTHOR_PRO",
+        "READER_PRO"
       ]
     },
     "RoleArn":{
@@ -16803,7 +16855,7 @@
     "SeriesItemList":{
       "type":"list",
       "member":{"shape":"SeriesItem"},
-      "max":10
+      "max":2000
     },
     "ServiceNowParameters":{
       "type":"structure",
@@ -17832,7 +17884,7 @@
     "TableConditionalFormattingOptionList":{
       "type":"list",
       "member":{"shape":"TableConditionalFormattingOption"},
-      "max":100
+      "max":500
     },
     "TableConfiguration":{
       "type":"structure",
@@ -18934,7 +18986,8 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "TopicId":{"shape":"TopicId"},
-        "Name":{"shape":"ResourceName"}
+        "Name":{"shape":"ResourceName"},
+        "UserExperienceVersion":{"shape":"TopicUserExperienceVersion"}
       }
     },
     "TopicTimeGranularity":{
@@ -19981,6 +20034,31 @@
         "Status":{"shape":"StatusCode"}
       }
     },
+    "UpdateSPICECapacityConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "PurchaseMode"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "PurchaseMode":{"shape":"PurchaseMode"}
+      }
+    },
+    "UpdateSPICECapacityConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "UpdateTemplateAliasRequest":{
       "type":"structure",
       "required":[
@@ -20444,7 +20522,10 @@
         "AUTHOR",
         "READER",
         "RESTRICTED_AUTHOR",
-        "RESTRICTED_READER"
+        "RESTRICTED_READER",
+        "ADMIN_PRO",
+        "AUTHOR_PRO",
+        "READER_PRO"
       ]
     },
     "VPCConnection":{

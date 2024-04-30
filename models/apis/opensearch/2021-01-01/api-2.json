@@ -2436,6 +2436,7 @@
         "Endpoint":{"shape":"ServiceUrl"},
         "EndpointV2":{"shape":"ServiceUrl"},
         "Endpoints":{"shape":"EndpointsMap"},
+        "DomainEndpointV2HostedZoneId":{"shape":"HostedZoneId"},
         "Processing":{"shape":"Boolean"},
         "UpgradeProcessing":{"shape":"Boolean"},
         "EngineVersion":{"shape":"VersionString"},
@@ -2757,6 +2758,7 @@
         "UpgradeName":{"shape":"UpgradeName"}
       }
     },
+    "HostedZoneId":{"type":"string"},
     "IPAddressType":{
       "type":"string",
       "enum":[

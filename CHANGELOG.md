@@ -1,3 +1,22 @@
+Release v1.51.32 (2024-04-30)
+===
+
+### Service Client Updates
+* `service/chime-sdk-voice`: Updates service API and documentation
+* `service/codeartifact`: Updates service API and documentation
+* `service/fms`: Updates service API and documentation
+* `service/omics`: Updates service API and documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/pinpoint-sms-voice-v2`: Updates service API, documentation, and paginators
+* `service/qbusiness`: Updates service API, documentation, and waiters
+* `service/quicksight`: Updates service API and documentation
+  * New Q embedding supporting Generative Q&A
+* `service/route53resolver`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Training now supports the use of attribute-based access control (ABAC) roles for training job execution roles. Amazon SageMaker Inference now supports G6 instance types.
+* `service/signer`: Updates service API and documentation
+  * Documentation updates for AWS Signer. Adds cross-account signing constraint and definitions for cross-account actions.
+
 Release v1.51.31 (2024-04-29)
 ===
 

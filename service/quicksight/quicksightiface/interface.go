@@ -799,6 +799,10 @@ type QuickSightAPI interface {
 	UpdateRoleCustomPermissionWithContext(aws.Context, *quicksight.UpdateRoleCustomPermissionInput, ...request.Option) (*quicksight.UpdateRoleCustomPermissionOutput, error)
 	UpdateRoleCustomPermissionRequest(*quicksight.UpdateRoleCustomPermissionInput) (*request.Request, *quicksight.UpdateRoleCustomPermissionOutput)
 
+	UpdateSPICECapacityConfiguration(*quicksight.UpdateSPICECapacityConfigurationInput) (*quicksight.UpdateSPICECapacityConfigurationOutput, error)
+	UpdateSPICECapacityConfigurationWithContext(aws.Context, *quicksight.UpdateSPICECapacityConfigurationInput, ...request.Option) (*quicksight.UpdateSPICECapacityConfigurationOutput, error)
+	UpdateSPICECapacityConfigurationRequest(*quicksight.UpdateSPICECapacityConfigurationInput) (*request.Request, *quicksight.UpdateSPICECapacityConfigurationOutput)
+
 	UpdateTemplate(*quicksight.UpdateTemplateInput) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateWithContext(aws.Context, *quicksight.UpdateTemplateInput, ...request.Option) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateRequest(*quicksight.UpdateTemplateInput) (*request.Request, *quicksight.UpdateTemplateOutput)

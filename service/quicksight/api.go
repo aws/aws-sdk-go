@@ -18576,6 +18576,101 @@ func (c *QuickSight) UpdateRoleCustomPermissionWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opUpdateSPICECapacityConfiguration = "UpdateSPICECapacityConfiguration"
+
+// UpdateSPICECapacityConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSPICECapacityConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSPICECapacityConfiguration for more information on using the UpdateSPICECapacityConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UpdateSPICECapacityConfigurationRequest method.
+//	req, resp := client.UpdateSPICECapacityConfigurationRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateSPICECapacityConfiguration
+func (c *QuickSight) UpdateSPICECapacityConfigurationRequest(input *UpdateSPICECapacityConfigurationInput) (req *request.Request, output *UpdateSPICECapacityConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSPICECapacityConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/spice-capacity-configuration",
+	}
+
+	if input == nil {
+		input = &UpdateSPICECapacityConfigurationInput{}
+	}
+
+	output = &UpdateSPICECapacityConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSPICECapacityConfiguration API operation for Amazon QuickSight.
+//
+// Updates the SPICE capacity configuration for a Amazon QuickSight account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateSPICECapacityConfiguration for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You don't have access to this item. The provided credentials couldn't be
+//     validated. You might not be authorized to carry out the request. Make sure
+//     that your account is authorized to use the Amazon QuickSight service, that
+//     your policies have the correct permissions, and that you are using the correct
+//     credentials.
+//
+//   - InvalidParameterValueException
+//     One or more parameters has a value that isn't valid.
+//
+//   - ResourceNotFoundException
+//     One or more resources can't be found.
+//
+//   - ThrottlingException
+//     Access is throttled.
+//
+//   - InternalFailureException
+//     An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateSPICECapacityConfiguration
+func (c *QuickSight) UpdateSPICECapacityConfiguration(input *UpdateSPICECapacityConfigurationInput) (*UpdateSPICECapacityConfigurationOutput, error) {
+	req, out := c.UpdateSPICECapacityConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSPICECapacityConfigurationWithContext is the same as UpdateSPICECapacityConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSPICECapacityConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateSPICECapacityConfigurationWithContext(ctx aws.Context, input *UpdateSPICECapacityConfigurationInput, opts ...request.Option) (*UpdateSPICECapacityConfigurationOutput, error) {
+	req, out := c.UpdateSPICECapacityConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -21245,6 +21340,9 @@ type AnonymousUserEmbeddingExperienceConfiguration struct {
 	// The type of embedding experience. In this case, Amazon QuickSight visuals.
 	DashboardVisual *AnonymousUserDashboardVisualEmbeddingConfiguration `type:"structure"`
 
+	// The Generative Q&A experience that you want to use for anonymous user embedding.
+	GenerativeQnA *AnonymousUserGenerativeQnAEmbeddingConfiguration `type:"structure"`
+
 	// The Q search bar that you want to use for anonymous user embedding.
 	QSearchBar *AnonymousUserQSearchBarEmbeddingConfiguration `type:"structure"`
 }
@@ -21280,6 +21378,11 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("DashboardVisual", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.GenerativeQnA != nil {
+		if err := s.GenerativeQnA.Validate(); err != nil {
+			invalidParams.AddNested("GenerativeQnA", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QSearchBar != nil {
 		if err := s.QSearchBar.Validate(); err != nil {
 			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
@@ -21304,9 +21407,72 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) SetDashboardVisual(v *An
 	return s
 }
 
+// SetGenerativeQnA sets the GenerativeQnA field's value.
+func (s *AnonymousUserEmbeddingExperienceConfiguration) SetGenerativeQnA(v *AnonymousUserGenerativeQnAEmbeddingConfiguration) *AnonymousUserEmbeddingExperienceConfiguration {
+	s.GenerativeQnA = v
+	return s
+}
+
 // SetQSearchBar sets the QSearchBar field's value.
 func (s *AnonymousUserEmbeddingExperienceConfiguration) SetQSearchBar(v *AnonymousUserQSearchBarEmbeddingConfiguration) *AnonymousUserEmbeddingExperienceConfiguration {
 	s.QSearchBar = v
+	return s
+}
+
+// The settings that you want to use for the Generative Q&A experience.
+type AnonymousUserGenerativeQnAEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon QuickSight Q topic ID of the new reader experience topic that
+	// you want the anonymous user to see first. This ID is included in the output
+	// URL. When the URL in response is accessed, Amazon QuickSight renders the
+	// Generative Q&A experience with this new reader experience topic pre selected.
+	//
+	// The Amazon Resource Name (ARN) of this Q new reader experience topic must
+	// be included in the AuthorizedResourceArns parameter. Otherwise, the request
+	// fails with an InvalidParameterValueException error.
+	//
+	// InitialTopicId is a required field
+	InitialTopicId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserGenerativeQnAEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnonymousUserGenerativeQnAEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnonymousUserGenerativeQnAEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnonymousUserGenerativeQnAEmbeddingConfiguration"}
+	if s.InitialTopicId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InitialTopicId"))
+	}
+	if s.InitialTopicId != nil && len(*s.InitialTopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialTopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialTopicId sets the InitialTopicId field's value.
+func (s *AnonymousUserGenerativeQnAEmbeddingConfiguration) SetInitialTopicId(v string) *AnonymousUserGenerativeQnAEmbeddingConfiguration {
+	s.InitialTopicId = &v
 	return s
 }
 
@@ -21314,12 +21480,14 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) SetQSearchBar(v *Anonymo
 type AnonymousUserQSearchBarEmbeddingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight Q topic ID of the topic that you want the anonymous user to
-	// see first. This ID is included in the output URL. When the URL in response
-	// is accessed, Amazon QuickSight renders the Q search bar with this topic pre-selected.
+	// The Amazon QuickSight Q topic ID of the legacy topic that you want the anonymous
+	// user to see first. This ID is included in the output URL. When the URL in
+	// response is accessed, Amazon QuickSight renders the Q search bar with this
+	// legacy topic pre-selected.
 	//
-	// The Amazon Resource Name (ARN) of this Q topic must be included in the AuthorizedResourceArns
-	// parameter. Otherwise, the request will fail with InvalidParameterValueException.
+	// The Amazon Resource Name (ARN) of this Q legacy topic must be included in
+	// the AuthorizedResourceArns parameter. Otherwise, the request fails with an
+	// InvalidParameterValueException error.
 	//
 	// InitialTopicId is a required field
 	InitialTopicId *string `min:"1" type:"string" required:"true"`
@@ -31563,8 +31731,9 @@ type CreateAccountSubscriptionInput struct {
 	ActiveDirectoryName *string `type:"string"`
 
 	// The admin group associated with your Active Directory or IAM Identity Center
-	// account. This field is required if ACTIVE_DIRECTORY or IAM_IDENTITY_CENTER
-	// is the selected authentication method of the new Amazon QuickSight account.
+	// account. Either this field or the AdminProGroup field is required if ACTIVE_DIRECTORY
+	// or IAM_IDENTITY_CENTER is the selected authentication method of the new Amazon
+	// QuickSight account.
 	//
 	// For more information about using IAM Identity Center in Amazon QuickSight,
 	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
@@ -31573,6 +31742,19 @@ type CreateAccountSubscriptionInput struct {
 	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	AdminGroup []*string `type:"list"`
+
+	// The admin pro group associated with your Active Directory or IAM Identity
+	// Center account. Either this field or the AdminGroup field is required if
+	// ACTIVE_DIRECTORY or IAM_IDENTITY_CENTER is the selected authentication method
+	// of the new Amazon QuickSight account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	AdminProGroup []*string `type:"list"`
 
 	// The method that you want to use to authenticate your Amazon QuickSight account.
 	//
@@ -31595,6 +31777,17 @@ type CreateAccountSubscriptionInput struct {
 	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	AuthorGroup []*string `type:"list"`
+
+	// The author pro group associated with your Active Directory or IAM Identity
+	// Center account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	AuthorProGroup []*string `type:"list"`
 
 	// The Amazon Web Services account ID of the account that you're using to create
 	// your Amazon QuickSight account.
@@ -31623,9 +31816,7 @@ type CreateAccountSubscriptionInput struct {
 	//    * EmailAddress
 	//
 	//    * ContactNumber
-	//
-	// Edition is a required field
-	Edition *string `type:"string" required:"true" enum:"Edition"`
+	Edition *string `type:"string" enum:"Edition"`
 
 	// The email address of the author of the Amazon QuickSight account to use for
 	// future communications. This field is required if ENTERPPRISE_AND_Q is the
@@ -31661,6 +31852,17 @@ type CreateAccountSubscriptionInput struct {
 	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
 	// in the Amazon QuickSight User Guide.
 	ReaderGroup []*string `type:"list"`
+
+	// The reader pro group associated with your Active Directory or IAM Identity
+	// Center account.
+	//
+	// For more information about using IAM Identity Center in Amazon QuickSight,
+	// see Using IAM Identity Center with Amazon QuickSight Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/sec-identity-management-identity-center.html)
+	// in the Amazon QuickSight User Guide. For more information about using Active
+	// Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight
+	// Enterprise Edition (https://docs.aws.amazon.com/quicksight/latest/user/aws-directory-service.html)
+	// in the Amazon QuickSight User Guide.
+	ReaderProGroup []*string `type:"list"`
 
 	// The realm of the Active Directory that is associated with your Amazon QuickSight
 	// account. This field is required if ACTIVE_DIRECTORY is the selected authentication
@@ -31704,9 +31906,6 @@ func (s *CreateAccountSubscriptionInput) Validate() error {
 	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
 		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
 	}
-	if s.Edition == nil {
-		invalidParams.Add(request.NewErrParamRequired("Edition"))
-	}
 	if s.NotificationEmail == nil {
 		invalidParams.Add(request.NewErrParamRequired("NotificationEmail"))
 	}
@@ -31735,6 +31934,12 @@ func (s *CreateAccountSubscriptionInput) SetAdminGroup(v []*string) *CreateAccou
 	return s
 }
 
+// SetAdminProGroup sets the AdminProGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetAdminProGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.AdminProGroup = v
+	return s
+}
+
 // SetAuthenticationMethod sets the AuthenticationMethod field's value.
 func (s *CreateAccountSubscriptionInput) SetAuthenticationMethod(v string) *CreateAccountSubscriptionInput {
 	s.AuthenticationMethod = &v
@@ -31744,6 +31949,12 @@ func (s *CreateAccountSubscriptionInput) SetAuthenticationMethod(v string) *Crea
 // SetAuthorGroup sets the AuthorGroup field's value.
 func (s *CreateAccountSubscriptionInput) SetAuthorGroup(v []*string) *CreateAccountSubscriptionInput {
 	s.AuthorGroup = v
+	return s
+}
+
+// SetAuthorProGroup sets the AuthorProGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetAuthorProGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.AuthorProGroup = v
 	return s
 }
 
@@ -31804,6 +32015,12 @@ func (s *CreateAccountSubscriptionInput) SetNotificationEmail(v string) *CreateA
 // SetReaderGroup sets the ReaderGroup field's value.
 func (s *CreateAccountSubscriptionInput) SetReaderGroup(v []*string) *CreateAccountSubscriptionInput {
 	s.ReaderGroup = v
+	return s
+}
+
+// SetReaderProGroup sets the ReaderProGroup field's value.
+func (s *CreateAccountSubscriptionInput) SetReaderProGroup(v []*string) *CreateAccountSubscriptionInput {
+	s.ReaderProGroup = v
 	return s
 }
 
@@ -59257,6 +59474,47 @@ func (s *GaugeChartArcConditionalFormatting) SetForegroundColor(v *ConditionalFo
 	return s
 }
 
+// The color configuration of a GaugeChartVisual.
+type GaugeChartColorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The background color configuration of a GaugeChartVisual.
+	BackgroundColor *string `type:"string"`
+
+	// The foreground color configuration of a GaugeChartVisual.
+	ForegroundColor *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GaugeChartColorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GaugeChartColorConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBackgroundColor sets the BackgroundColor field's value.
+func (s *GaugeChartColorConfiguration) SetBackgroundColor(v string) *GaugeChartColorConfiguration {
+	s.BackgroundColor = &v
+	return s
+}
+
+// SetForegroundColor sets the ForegroundColor field's value.
+func (s *GaugeChartColorConfiguration) SetForegroundColor(v string) *GaugeChartColorConfiguration {
+	s.ForegroundColor = &v
+	return s
+}
+
 // The conditional formatting of a GaugeChartVisual.
 type GaugeChartConditionalFormatting struct {
 	_ struct{} `type:"structure"`
@@ -59374,6 +59632,9 @@ func (s *GaugeChartConditionalFormattingOption) SetPrimaryValue(v *GaugeChartPri
 type GaugeChartConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The color configuration of a GaugeChartVisual.
+	ColorConfiguration *GaugeChartColorConfiguration `type:"structure"`
+
 	// The data label configuration of a GaugeChartVisual.
 	DataLabels *DataLabelOptions `type:"structure"`
 
@@ -59444,6 +59705,12 @@ func (s *GaugeChartConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetColorConfiguration sets the ColorConfiguration field's value.
+func (s *GaugeChartConfiguration) SetColorConfiguration(v *GaugeChartColorConfiguration) *GaugeChartConfiguration {
+	s.ColorConfiguration = v
+	return s
 }
 
 // SetDataLabels sets the DataLabels field's value.
@@ -60083,9 +60350,10 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The experience you are embedding. For registered users, you can embed Amazon
-	// QuickSight dashboards, Amazon QuickSight visuals, the Amazon QuickSight Q
-	// search bar, or the entire Amazon QuickSight console.
+	// The experience that you want to embed. For registered users, you can embed
+	// Amazon QuickSight dashboards, Amazon QuickSight visuals, the Amazon QuickSight
+	// Q search bar, the Amazon QuickSight Generative Q&A experience, or the entire
+	// Amazon QuickSight console.
 	//
 	// ExperienceConfiguration is a required field
 	ExperienceConfiguration *RegisteredUserEmbeddingExperienceConfiguration `type:"structure" required:"true"`
@@ -60182,7 +60450,7 @@ type GenerateEmbedUrlForRegisteredUserOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The embed URL for the Amazon QuickSight dashboard, visual, Q search bar,
-	// or console.
+	// Generative Q&A experience, or console.
 	//
 	// EmbedUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GenerateEmbedUrlForRegisteredUserOutput's
@@ -81099,7 +81367,7 @@ type RegisterUserInput struct {
 	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
 	// they override the permissions typically granted by assigning Amazon QuickSight
 	// users to one of the default security cohorts in Amazon QuickSight (admin,
-	// author, reader).
+	// author, reader, admin pro, author pro, reader pro).
 	//
 	// This feature is available only to Amazon QuickSight Enterprise edition subscriptions.
 	CustomPermissionsName *string `min:"1" type:"string"`
@@ -81129,13 +81397,8 @@ type RegisterUserInput struct {
 	// The ARN of the IAM user or role that you are registering with Amazon QuickSight.
 	IamArn *string `type:"string"`
 
-	// Amazon QuickSight supports several ways of managing the identity of users.
-	// This parameter accepts two values:
-	//
-	//    * IAM: A user whose identity maps to an existing IAM user or role.
-	//
-	//    * QUICKSIGHT: A user whose identity is owned and managed internally by
-	//    Amazon QuickSight.
+	// The identity type that your Amazon QuickSight account uses to manage the
+	// identity of users.
 	//
 	// IdentityType is a required field
 	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
@@ -81639,6 +81902,13 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 	// The type of embedding experience. In this case, Amazon QuickSight visuals.
 	DashboardVisual *RegisteredUserDashboardVisualEmbeddingConfiguration `type:"structure"`
 
+	// The configuration details for embedding the Generative Q&A experience.
+	//
+	// For more information about embedding the Generative Q&A experience, see Embedding
+	// Overview (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html)
+	// in the Amazon QuickSight User Guide.
+	GenerativeQnA *RegisteredUserGenerativeQnAEmbeddingConfiguration `type:"structure"`
+
 	// The configuration details for embedding the Q search bar.
 	//
 	// For more information about embedding the Q search bar, see Embedding Overview
@@ -81705,6 +81975,11 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("DashboardVisual", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.GenerativeQnA != nil {
+		if err := s.GenerativeQnA.Validate(); err != nil {
+			invalidParams.AddNested("GenerativeQnA", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QSearchBar != nil {
 		if err := s.QSearchBar.Validate(); err != nil {
 			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
@@ -81734,6 +82009,12 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) SetDashboardVisual(v *R
 	return s
 }
 
+// SetGenerativeQnA sets the GenerativeQnA field's value.
+func (s *RegisteredUserEmbeddingExperienceConfiguration) SetGenerativeQnA(v *RegisteredUserGenerativeQnAEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
+	s.GenerativeQnA = v
+	return s
+}
+
 // SetQSearchBar sets the QSearchBar field's value.
 func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQSearchBar(v *RegisteredUserQSearchBarEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
 	s.QSearchBar = v
@@ -81746,19 +82027,75 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQuickSightConsole(v 
 	return s
 }
 
+// An object that provides information about the configuration of a Generative
+// Q&A experience.
+type RegisteredUserGenerativeQnAEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the new Q reader experience topic that you want to make the starting
+	// topic in the Generative Q&A experience. You can find a topic ID by navigating
+	// to the Topics pane in the Amazon QuickSight application and opening a topic.
+	// The ID is in the URL for the topic that you open.
+	//
+	// If you don't specify an initial topic or you specify a legacy topic, a list
+	// of all shared new reader experience topics is shown in the Generative Q&A
+	// experience for your readers. When you select an initial new reader experience
+	// topic, you can specify whether or not readers are allowed to select other
+	// new reader experience topics from the available ones in the list.
+	InitialTopicId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserGenerativeQnAEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserGenerativeQnAEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserGenerativeQnAEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserGenerativeQnAEmbeddingConfiguration"}
+	if s.InitialTopicId != nil && len(*s.InitialTopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialTopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialTopicId sets the InitialTopicId field's value.
+func (s *RegisteredUserGenerativeQnAEmbeddingConfiguration) SetInitialTopicId(v string) *RegisteredUserGenerativeQnAEmbeddingConfiguration {
+	s.InitialTopicId = &v
+	return s
+}
+
 // Information about the Q search bar embedding experience.
 type RegisteredUserQSearchBarEmbeddingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Q topic that you want to make the starting topic in the Q search
-	// bar. You can find a topic ID by navigating to the Topics pane in the Amazon
-	// QuickSight application and opening a topic. The ID is in the URL for the
-	// topic that you open.
+	// The ID of the legacy Q topic that you want to use as the starting topic in
+	// the Q search bar. To locate the topic ID of the topic that you want to use,
+	// open the Amazon QuickSight console (https://quicksight.aws.amazon.com/),
+	// navigate to the Topics pane, and choose thre topic that you want to use.
+	// The TopicID is located in the URL of the topic that opens. When you select
+	// an initial topic, you can specify whether or not readers are allowed to select
+	// other topics from the list of available topics.
 	//
-	// If you don't specify an initial topic, a list of all shared topics is shown
-	// in the Q bar for your readers. When you select an initial topic, you can
-	// specify whether or not readers are allowed to select other topics from the
-	// available ones in the list.
+	// If you don't specify an initial topic or if you specify a new reader experience
+	// topic, a list of all shared legacy topics is shown in the Q bar.
 	InitialTopicId *string `min:"1" type:"string"`
 }
 
@@ -96629,6 +96966,9 @@ type TopicSummary struct {
 	// The ID for the topic. This ID is unique per Amazon Web Services Region for
 	// each Amazon Web Services account.
 	TopicId *string `type:"string"`
+
+	// The user experience version of the topic.
+	UserExperienceVersion *string `type:"string" enum:"TopicUserExperienceVersion"`
 }
 
 // String returns the string representation.
@@ -96664,6 +97004,12 @@ func (s *TopicSummary) SetName(v string) *TopicSummary {
 // SetTopicId sets the TopicId field's value.
 func (s *TopicSummary) SetTopicId(v string) *TopicSummary {
 	s.TopicId = &v
+	return s
+}
+
+// SetUserExperienceVersion sets the UserExperienceVersion field's value.
+func (s *TopicSummary) SetUserExperienceVersion(v string) *TopicSummary {
+	s.UserExperienceVersion = &v
 	return s
 }
 
@@ -102132,6 +102478,117 @@ func (s *UpdateRoleCustomPermissionOutput) SetStatus(v int64) *UpdateRoleCustomP
 	return s
 }
 
+type UpdateSPICECapacityConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the SPICE configuration
+	// that you want to update.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// Determines how SPICE capacity can be purchased. The following options are
+	// available.
+	//
+	//    * MANUAL: SPICE capacity can only be purchased manually.
+	//
+	//    * AUTO_PURCHASE: Extra SPICE capacity is automatically purchased on your
+	//    behalf as needed. SPICE capacity can also be purchased manually with this
+	//    option.
+	//
+	// PurchaseMode is a required field
+	PurchaseMode *string `type:"string" required:"true" enum:"PurchaseMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSPICECapacityConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSPICECapacityConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSPICECapacityConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSPICECapacityConfigurationInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.PurchaseMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PurchaseMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateSPICECapacityConfigurationInput) SetAwsAccountId(v string) *UpdateSPICECapacityConfigurationInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetPurchaseMode sets the PurchaseMode field's value.
+func (s *UpdateSPICECapacityConfigurationInput) SetPurchaseMode(v string) *UpdateSPICECapacityConfigurationInput {
+	s.PurchaseMode = &v
+	return s
+}
+
+type UpdateSPICECapacityConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSPICECapacityConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSPICECapacityConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateSPICECapacityConfigurationOutput) SetRequestId(v string) *UpdateSPICECapacityConfigurationOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateSPICECapacityConfigurationOutput) SetStatus(v int64) *UpdateSPICECapacityConfigurationOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -103784,6 +104241,18 @@ type UpdateUserInput struct {
 	//    * ADMIN: A user who is an author, who can also manage Amazon QuickSight
 	//    settings.
 	//
+	//    * READER_PRO: Reader Pro adds Generative BI capabilities to the Reader
+	//    role. Reader Pros have access to Amazon Q Business, can build stories
+	//    with Amazon Q, and can generate executive summaries from dashboards.
+	//
+	//    * AUTHOR_PRO: Author Pro adds Generative BI capabilities to the Author
+	//    role. Author Pros can author dashboards with natural language with Amazon
+	//    Q, build stories with Amazon Q, create Topics for Q&A, and generate executive
+	//    summaries from dashboards.
+	//
+	//    * ADMIN_PRO: Admin Pros are Author Pros who can also manage Amazon QuickSight
+	//    administrative settings. Admin Pro users are billed at Author Pro pricing.
+	//
 	// The name of the Amazon QuickSight role is invisible to the user except for
 	// the console screens dealing with permissions.
 	//
@@ -104321,6 +104790,18 @@ type User struct {
 	//
 	//    * ADMIN: A user who is an author, who can also manage Amazon Amazon QuickSight
 	//    settings.
+	//
+	//    * READER_PRO: Reader Pro adds Generative BI capabilities to the Reader
+	//    role. Reader Pros have access to Amazon Q Business, can build stories
+	//    with Amazon Q, and can generate executive summaries from dashboards.
+	//
+	//    * AUTHOR_PRO: Author Pro adds Generative BI capabilities to the Author
+	//    role. Author Pros can author dashboards with natural language with Amazon
+	//    Q, build stories with Amazon Q, create Topics for Q&A, and generate executive
+	//    summaries from dashboards.
+	//
+	//    * ADMIN_PRO: Admin Pros are Author Pros who can also manage Amazon QuickSight
+	//    administrative settings. Admin Pro users are billed at Author Pro pricing.
 	//
 	//    * RESTRICTED_READER: This role isn't currently available for use.
 	//
@@ -110538,6 +111019,22 @@ func PropertyUsage_Values() []string {
 }
 
 const (
+	// PurchaseModeManual is a PurchaseMode enum value
+	PurchaseModeManual = "MANUAL"
+
+	// PurchaseModeAutoPurchase is a PurchaseMode enum value
+	PurchaseModeAutoPurchase = "AUTO_PURCHASE"
+)
+
+// PurchaseMode_Values returns all elements of the PurchaseMode enum
+func PurchaseMode_Values() []string {
+	return []string{
+		PurchaseModeManual,
+		PurchaseModeAutoPurchase,
+	}
+}
+
+const (
 	// RadarChartAxesRangeScaleAuto is a RadarChartAxesRangeScale enum value
 	RadarChartAxesRangeScaleAuto = "AUTO"
 
@@ -110810,6 +111307,15 @@ const (
 
 	// RoleReader is a Role enum value
 	RoleReader = "READER"
+
+	// RoleAdminPro is a Role enum value
+	RoleAdminPro = "ADMIN_PRO"
+
+	// RoleAuthorPro is a Role enum value
+	RoleAuthorPro = "AUTHOR_PRO"
+
+	// RoleReaderPro is a Role enum value
+	RoleReaderPro = "READER_PRO"
 )
 
 // Role_Values returns all elements of the Role enum
@@ -110818,6 +111324,9 @@ func Role_Values() []string {
 		RoleAdmin,
 		RoleAuthor,
 		RoleReader,
+		RoleAdminPro,
+		RoleAuthorPro,
+		RoleReaderPro,
 	}
 }
 
@@ -111804,6 +112313,15 @@ const (
 
 	// UserRoleRestrictedReader is a UserRole enum value
 	UserRoleRestrictedReader = "RESTRICTED_READER"
+
+	// UserRoleAdminPro is a UserRole enum value
+	UserRoleAdminPro = "ADMIN_PRO"
+
+	// UserRoleAuthorPro is a UserRole enum value
+	UserRoleAuthorPro = "AUTHOR_PRO"
+
+	// UserRoleReaderPro is a UserRole enum value
+	UserRoleReaderPro = "READER_PRO"
 )
 
 // UserRole_Values returns all elements of the UserRole enum
@@ -111814,6 +112332,9 @@ func UserRole_Values() []string {
 		UserRoleReader,
 		UserRoleRestrictedAuthor,
 		UserRoleRestrictedReader,
+		UserRoleAdminPro,
+		UserRoleAuthorPro,
+		UserRoleReaderPro,
 	}
 }
 

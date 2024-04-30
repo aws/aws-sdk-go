@@ -3,13 +3,22 @@
 package qbusiness
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
+	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
@@ -235,6 +244,400 @@ func (c *QBusiness) BatchPutDocumentWithContext(ctx aws.Context, input *BatchPut
 	return out, req.Send()
 }
 
+const opChat = "Chat"
+
+// ChatRequest generates a "aws/request.Request" representing the
+// client's request for the Chat operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See Chat for more information on using the Chat
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ChatRequest method.
+//	req, resp := client.ChatRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qbusiness-2023-11-27/Chat
+func (c *QBusiness) ChatRequest(input *ChatInput) (req *request.Request, output *ChatOutput) {
+	op := &request.Operation{
+		Name:       opChat,
+		HTTPMethod: "POST",
+		HTTPPath:   "/applications/{applicationId}/conversations",
+	}
+
+	if input == nil {
+		input = &ChatInput{}
+	}
+
+	output = &ChatOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.UnmarshalMeta.PushBack(
+		protocol.RequireHTTPMinProtocol{Major: 2}.Handler,
+	)
+
+	es := NewChatEventStream()
+	output.eventStream = es
+
+	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+		Name: "InputPipeCloser",
+		Fn: func(r *request.Request) {
+			err := es.closeInputPipe()
+			if err != nil {
+				r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+			}
+		},
+	})
+	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
+		"Content-Type":         "application/vnd.amazon.eventstream",
+		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
+	}))
+	req.Handlers.Build.Swap(restjson.BuildHandler.Name, rest.BuildHandler)
+	eventstreamapi.ApplyHTTPTransportFixes(req)
+	req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
+	req.Handlers.Unmarshal.PushBack(es.runInputStream)
+
+	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
+	return
+}
+
+// Chat API operation for QBusiness.
+//
+// Starts or continues a streaming Amazon Q Business conversation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for QBusiness's
+// API operation Chat for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ResourceNotFoundException
+//     The resource you want to use doesn’t exist. Make sure you have provided
+//     the correct resource and try again.
+//
+//   - InternalServerException
+//     An issue occurred with the internal server used for your Amazon Q Business
+//     service. Wait some minutes and try again, or contact Support (http://aws.amazon.com/contact-us/)
+//     for help.
+//
+//   - LicenseNotFoundException
+//     You don't have permissions to perform the action because your license is
+//     inactive. Ask your admin to activate your license and try again after your
+//     licence is active.
+//
+//   - ConflictException
+//     You are trying to perform an action that conflicts with the current status
+//     of your resource. Fix any inconsistences with your resources and try again.
+//
+//   - ThrottlingException
+//     The request was denied due to throttling. Reduce the number of requests and
+//     try again.
+//
+//   - ValidationException
+//     The input doesn't meet the constraints set by the Amazon Q Business service.
+//     Provide the correct input and try again.
+//
+//   - AccessDeniedException
+//     You don't have access to perform this action. Make sure you have the required
+//     permission policies and user accounts and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qbusiness-2023-11-27/Chat
+func (c *QBusiness) Chat(input *ChatInput) (*ChatOutput, error) {
+	req, out := c.ChatRequest(input)
+	return out, req.Send()
+}
+
+// ChatWithContext is the same as Chat with the addition of
+// the ability to pass a context and additional request options.
+//
+// See Chat for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QBusiness) ChatWithContext(ctx aws.Context, input *ChatInput, opts ...request.Option) (*ChatOutput, error) {
+	req, out := c.ChatRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+var _ awserr.Error
+var _ time.Time
+
+// ChatEventStream provides the event stream handling for the Chat.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewChatEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
+type ChatEventStream struct {
+
+	// Writer is the EventStream writer for the ChatInputStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Writer.
+	//
+	// Must not be nil.
+	Writer ChatInputStreamWriter
+
+	inputWriter io.WriteCloser
+
+	// Reader is the EventStream reader for the ChatOutputStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader ChatOutputStreamReader
+
+	outputReader io.ReadCloser
+
+	done      chan struct{}
+	closeOnce sync.Once
+	err       *eventstreamapi.OnceError
+}
+
+// NewChatEventStream initializes an ChatEventStream.
+// This function should only be used for testing and mocking the ChatEventStream
+// stream within your application.
+//
+// The Writer member must be set before writing events to the stream.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//	es := NewChatEventStream(func(o *ChatEventStream){
+//	    es.Writer = myMockStreamWriter
+//	    es.Reader = myMockStreamReader
+//	})
+func NewChatEventStream(opts ...func(*ChatEventStream)) *ChatEventStream {
+	es := &ChatEventStream{
+		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
+}
+
+func (es *ChatEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *ChatEventStream) waitStreamPartClose() {
+	var inputErrCh <-chan struct{}
+	if v, ok := es.Writer.(interface{ ErrorSet() <-chan struct{} }); ok {
+		inputErrCh = v.ErrorSet()
+	}
+	var outputErrCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
+	}
+
+	select {
+	case <-es.done:
+	case <-inputErrCh:
+		es.err.SetError(es.Writer.Err())
+		es.Close()
+	case <-outputErrCh:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
+		es.Close()
+	}
+}
+
+func (es *ChatEventStream) setupInputPipe(r *request.Request) {
+	inputReader, inputWriter := io.Pipe()
+	r.SetStreamingBody(inputReader)
+	es.inputWriter = inputWriter
+}
+
+// Closes the input-pipe writer
+func (es *ChatEventStream) closeInputPipe() error {
+	if es.inputWriter != nil {
+		return es.inputWriter.Close()
+	}
+	return nil
+}
+
+// Send writes the event to the stream blocking until the event is written.
+// Returns an error if the event was not written.
+//
+// These events are:
+//
+//   - AttachmentInputEvent
+//   - AuthChallengeResponseEvent
+//   - ConfigurationEvent
+//   - EndOfInputEvent
+//   - TextInputEvent
+func (es *ChatEventStream) Send(ctx aws.Context, event ChatInputStreamEvent) error {
+	return es.Writer.Send(ctx, event)
+}
+
+func (es *ChatEventStream) runInputStream(r *request.Request) {
+	var opts []func(*eventstream.Encoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+	}
+	var encoder eventstreamapi.Encoder = eventstream.NewEncoder(es.inputWriter, opts...)
+
+	var closer aws.MultiCloser
+	sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
+	if err != nil {
+		r.Error = awserr.New(request.ErrCodeSerialization,
+			"unable to get initial request's signature", err)
+		return
+	}
+	signer := eventstreamapi.NewSignEncoder(
+		v4.NewStreamSigner(r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
+			sigSeed, r.Config.Credentials),
+		encoder,
+	)
+	encoder = signer
+	closer = append(closer, signer)
+	closer = append(closer, es.inputWriter)
+
+	eventWriter := eventstreamapi.NewEventWriter(encoder,
+		protocol.HandlerPayloadMarshal{
+			Marshalers: r.Handlers.BuildStream,
+		},
+		eventTypeForChatInputStreamEvent,
+	)
+
+	es.Writer = &writeChatInputStream{
+		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
+	}
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//   - ActionReviewEvent
+//   - AuthChallengeRequestEvent
+//   - FailedAttachmentEvent
+//   - MetadataEvent
+//   - TextOutputEvent
+//   - ChatOutputStreamUnknownEvent
+func (es *ChatEventStream) Events() <-chan ChatOutputStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *ChatEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	unmarshalerForEvent := unmarshalerForChatOutputStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEvent,
+	)
+
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadChatOutputStream(eventReader)
+}
+
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
+// may result in resource leaks.
+//
+// Will close the underlying EventStream writer, and no more events can be
+// sent.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+func (es *ChatEventStream) Close() (err error) {
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *ChatEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+
+	t := time.NewTicker(time.Second)
+	defer t.Stop()
+	writeCloseDone := make(chan error)
+	go func() {
+		if err := es.Writer.Close(); err != nil {
+			es.err.SetError(err)
+		}
+		close(writeCloseDone)
+	}()
+	select {
+	case <-t.C:
+	case <-writeCloseDone:
+	}
+	if err := es.closeInputPipe(); err != nil {
+		es.err.SetError(err)
+	}
+
+	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *ChatEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
+	if err := es.Writer.Err(); err != nil {
+		return err
+	}
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 const opChatSync = "ChatSync"
 
 // ChatSyncRequest generates a "aws/request.Request" representing the
@@ -385,6 +788,13 @@ func (c *QBusiness) CreateApplicationRequest(input *CreateApplicationInput) (req
 // CreateApplication API operation for QBusiness.
 //
 // Creates an Amazon Q Business application.
+//
+// There are new tiers for Amazon Q Business. Not all features in Amazon Q Business
+// Pro are also available in Amazon Q Business Lite. For information on what's
+// included in Amazon Q Business Lite and what's included in Amazon Q Business
+// Pro, see Amazon Q Business tiers (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers).
+// You must use the Amazon Q Business console to assign subscription tiers to
+// users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6192,6 +6602,71 @@ func (c *QBusiness) UpdateWebExperienceWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+// Contains details about the OpenAPI schema for a custom plugin. For more information,
+// see custom plugin OpenAPI schemas (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/custom-plugin.html#plugins-api-schema).
+// You can either include the schema directly in the payload field or you can
+// upload it to an S3 bucket and specify the S3 bucket location in the s3 field.
+type APISchema struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON or YAML-formatted payload defining the OpenAPI schema for a custom
+	// plugin.
+	//
+	// Payload is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by APISchema's
+	// String and GoString methods.
+	Payload *string `locationName:"payload" type:"string" sensitive:"true"`
+
+	// Contains details about the S3 object containing the OpenAPI schema for a
+	// custom plugin. The schema could be in either JSON or YAML format.
+	S3 *S3 `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APISchema) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s APISchema) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *APISchema) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "APISchema"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPayload sets the Payload field's value.
+func (s *APISchema) SetPayload(v string) *APISchema {
+	s.Payload = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *APISchema) SetS3(v *S3) *APISchema {
+	s.S3 = v
+	return s
+}
+
 // Used to configure access permissions for a document.
 type AccessConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6456,13 +6931,145 @@ func (s *ActionReview) SetPluginType(v string) *ActionReview {
 	return s
 }
 
+// An output event that Amazon Q Business returns to an user who wants to perform
+// a plugin action during a streaming chat conversation. It contains information
+// about the selected action with a list of possible user input fields, some
+// pre-populated by Amazon Q Business.
+type ActionReviewEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the conversation with which the action review event is
+	// associated.
+	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
+
+	// Field values that an end user needs to provide to Amazon Q Business for Amazon
+	// Q Business to perform the requested plugin action.
+	Payload map[string]*ActionReviewPayloadField `locationName:"payload" type:"map"`
+
+	// A string used to retain information about the hierarchical contexts within
+	// an action review event payload.
+	PayloadFieldNameSeparator *string `locationName:"payloadFieldNameSeparator" min:"1" type:"string"`
+
+	// The identifier of the plugin associated with the action review event.
+	PluginId *string `locationName:"pluginId" min:"36" type:"string"`
+
+	// The type of plugin.
+	PluginType *string `locationName:"pluginType" type:"string" enum:"PluginType"`
+
+	// The identifier of an Amazon Q Business AI generated associated with the action
+	// review event.
+	SystemMessageId *string `locationName:"systemMessageId" min:"36" type:"string"`
+
+	// The identifier of the conversation with which the plugin action is associated.
+	UserMessageId *string `locationName:"userMessageId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionReviewEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ActionReviewEvent) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *ActionReviewEvent) SetConversationId(v string) *ActionReviewEvent {
+	s.ConversationId = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *ActionReviewEvent) SetPayload(v map[string]*ActionReviewPayloadField) *ActionReviewEvent {
+	s.Payload = v
+	return s
+}
+
+// SetPayloadFieldNameSeparator sets the PayloadFieldNameSeparator field's value.
+func (s *ActionReviewEvent) SetPayloadFieldNameSeparator(v string) *ActionReviewEvent {
+	s.PayloadFieldNameSeparator = &v
+	return s
+}
+
+// SetPluginId sets the PluginId field's value.
+func (s *ActionReviewEvent) SetPluginId(v string) *ActionReviewEvent {
+	s.PluginId = &v
+	return s
+}
+
+// SetPluginType sets the PluginType field's value.
+func (s *ActionReviewEvent) SetPluginType(v string) *ActionReviewEvent {
+	s.PluginType = &v
+	return s
+}
+
+// SetSystemMessageId sets the SystemMessageId field's value.
+func (s *ActionReviewEvent) SetSystemMessageId(v string) *ActionReviewEvent {
+	s.SystemMessageId = &v
+	return s
+}
+
+// SetUserMessageId sets the UserMessageId field's value.
+func (s *ActionReviewEvent) SetUserMessageId(v string) *ActionReviewEvent {
+	s.UserMessageId = &v
+	return s
+}
+
+// The ActionReviewEvent is and event in the ChatOutputStream group of events.
+func (s *ActionReviewEvent) eventChatOutputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ActionReviewEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ActionReviewEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ActionReviewEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 // A user input field in an plugin action review payload.
 type ActionReviewPayloadField struct {
 	_ struct{} `type:"structure"`
 
+	// The expected data format for the action review input field value. For example,
+	// in PTO request, from and to would be of datetime allowed format.
+	AllowedFormat *string `locationName:"allowedFormat" min:"1" type:"string"`
+
 	// Information about the field values that an end user can use to provide to
 	// Amazon Q Business for Amazon Q Business to perform the requested plugin action.
 	AllowedValues []*ActionReviewPayloadFieldAllowedValue `locationName:"allowedValues" type:"list"`
+
+	// The field level description of each action review input field. This could
+	// be an explanation of the field. In the Amazon Q Business web experience,
+	// these descriptions could be used to display as tool tips to help users understand
+	// the field.
+	DisplayDescription *string `locationName:"displayDescription" min:"1" type:"string"`
 
 	// The name of the field.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
@@ -6495,9 +7102,21 @@ func (s ActionReviewPayloadField) GoString() string {
 	return s.String()
 }
 
+// SetAllowedFormat sets the AllowedFormat field's value.
+func (s *ActionReviewPayloadField) SetAllowedFormat(v string) *ActionReviewPayloadField {
+	s.AllowedFormat = &v
+	return s
+}
+
 // SetAllowedValues sets the AllowedValues field's value.
 func (s *ActionReviewPayloadField) SetAllowedValues(v []*ActionReviewPayloadFieldAllowedValue) *ActionReviewPayloadField {
 	s.AllowedValues = v
+	return s
+}
+
+// SetDisplayDescription sets the DisplayDescription field's value.
+func (s *ActionReviewPayloadField) SetDisplayDescription(v string) *ActionReviewPayloadField {
+	s.DisplayDescription = &v
 	return s
 }
 
@@ -6690,6 +7309,68 @@ func (s AppliedCreatorModeConfiguration) GoString() string {
 func (s *AppliedCreatorModeConfiguration) SetCreatorModeControl(v string) *AppliedCreatorModeConfiguration {
 	s.CreatorModeControl = &v
 	return s
+}
+
+// A file input event activated by a end user request to upload files into their
+// web experience chat.
+type AttachmentInputEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A file directly uploaded into a web experience chat.
+	Attachment *AttachmentInput_ `locationName:"attachment" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentInputEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentInputEvent) GoString() string {
+	return s.String()
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *AttachmentInputEvent) SetAttachment(v *AttachmentInput_) *AttachmentInputEvent {
+	s.Attachment = v
+	return s
+}
+
+// The AttachmentInputEvent is and event in the ChatInputStream group of events.
+func (s *AttachmentInputEvent) eventChatInputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the AttachmentInputEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *AttachmentInputEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *AttachmentInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // A file directly uploaded into a web experience chat.
@@ -7043,6 +7724,220 @@ func (s *AttributeFilter) SetNotFilter(v *AttributeFilter) *AttributeFilter {
 func (s *AttributeFilter) SetOrAllFilters(v []*AttributeFilter) *AttributeFilter {
 	s.OrAllFilters = v
 	return s
+}
+
+// A request made by Amazon Q Business to a third paty authentication server
+// to authenticate a custom plugin user.
+type AuthChallengeRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The URL sent by Amazon Q Business to the third party authentication server
+	// to authenticate a custom plugin user through an OAuth protocol.
+	//
+	// AuthorizationUrl is a required field
+	AuthorizationUrl *string `locationName:"authorizationUrl" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeRequest) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationUrl sets the AuthorizationUrl field's value.
+func (s *AuthChallengeRequest) SetAuthorizationUrl(v string) *AuthChallengeRequest {
+	s.AuthorizationUrl = &v
+	return s
+}
+
+// An authentication verification event activated by an end user request to
+// use a custom plugin.
+type AuthChallengeRequestEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The URL sent by Amazon Q Business to a third party authentication server
+	// in response to an authentication verification event activated by an end user
+	// request to use a custom plugin.
+	//
+	// AuthorizationUrl is a required field
+	AuthorizationUrl *string `locationName:"authorizationUrl" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeRequestEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeRequestEvent) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationUrl sets the AuthorizationUrl field's value.
+func (s *AuthChallengeRequestEvent) SetAuthorizationUrl(v string) *AuthChallengeRequestEvent {
+	s.AuthorizationUrl = &v
+	return s
+}
+
+// The AuthChallengeRequestEvent is and event in the ChatOutputStream group of events.
+func (s *AuthChallengeRequestEvent) eventChatOutputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the AuthChallengeRequestEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *AuthChallengeRequestEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *AuthChallengeRequestEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// Contains details of the authentication information received from a third
+// party authentication server in response to an authentication challenge.
+type AuthChallengeResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The mapping of key-value pairs in an authentication challenge response.
+	//
+	// ResponseMap is a required field
+	ResponseMap map[string]*string `locationName:"responseMap" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeResponse) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthChallengeResponse) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthChallengeResponse"}
+	if s.ResponseMap == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseMap"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResponseMap sets the ResponseMap field's value.
+func (s *AuthChallengeResponse) SetResponseMap(v map[string]*string) *AuthChallengeResponse {
+	s.ResponseMap = v
+	return s
+}
+
+// An authentication verification event response by a third party authentication
+// server to Amazon Q Business.
+type AuthChallengeResponseEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The mapping of key-value pairs in an authentication challenge response.
+	//
+	// ResponseMap is a required field
+	ResponseMap map[string]*string `locationName:"responseMap" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeResponseEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AuthChallengeResponseEvent) GoString() string {
+	return s.String()
+}
+
+// SetResponseMap sets the ResponseMap field's value.
+func (s *AuthChallengeResponseEvent) SetResponseMap(v map[string]*string) *AuthChallengeResponseEvent {
+	s.ResponseMap = v
+	return s
+}
+
+// The AuthChallengeResponseEvent is and event in the ChatInputStream group of events.
+func (s *AuthChallengeResponseEvent) eventChatInputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the AuthChallengeResponseEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *AuthChallengeResponseEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *AuthChallengeResponseEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // Information about the basic authentication credentials used to configure
@@ -7488,6 +8383,182 @@ func (s *BlockedPhrasesConfigurationUpdate) SetSystemMessageOverride(v string) *
 	return s
 }
 
+type ChatInput struct {
+	_ struct{} `type:"structure" payload:"InputStream"`
+
+	// The identifier of the Amazon Q Business application linked to a streaming
+	// Amazon Q Business conversation.
+	//
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"applicationId" min:"36" type:"string" required:"true"`
+
+	// A token that you provide to identify the chat input.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The identifier of the Amazon Q Business conversation.
+	ConversationId *string `location:"querystring" locationName:"conversationId" min:"36" type:"string"`
+
+	// The identifier used to associate a user message with a AI generated response.
+	ParentMessageId *string `location:"querystring" locationName:"parentMessageId" min:"36" type:"string"`
+
+	// The groups that a user associated with the chat input belongs to.
+	UserGroups []*string `location:"querystring" locationName:"userGroups" type:"list"`
+
+	// The identifier of the user attached to the chat input.
+	UserId *string `location:"querystring" locationName:"userId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChatInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChatInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 36))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ConversationId != nil && len(*s.ConversationId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ConversationId", 36))
+	}
+	if s.ParentMessageId != nil && len(*s.ParentMessageId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ParentMessageId", 36))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ChatInput) SetApplicationId(v string) *ChatInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ChatInput) SetClientToken(v string) *ChatInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *ChatInput) SetConversationId(v string) *ChatInput {
+	s.ConversationId = &v
+	return s
+}
+
+// SetParentMessageId sets the ParentMessageId field's value.
+func (s *ChatInput) SetParentMessageId(v string) *ChatInput {
+	s.ParentMessageId = &v
+	return s
+}
+
+// SetUserGroups sets the UserGroups field's value.
+func (s *ChatInput) SetUserGroups(v []*string) *ChatInput {
+	s.UserGroups = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ChatInput) SetUserId(v string) *ChatInput {
+	s.UserId = &v
+	return s
+}
+
+// ChatInputStreamEvent groups together all EventStream
+// events writes for ChatInputStream.
+//
+// These events are:
+//
+//   - AttachmentInputEvent
+//   - AuthChallengeResponseEvent
+//   - ConfigurationEvent
+//   - EndOfInputEvent
+//   - TextInputEvent
+type ChatInputStreamEvent interface {
+	eventChatInputStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
+// ChatInputStreamWriter provides the interface for writing events to the stream.
+// The default implementation for this interface will be ChatInputStream.
+//
+// The writer's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//   - AttachmentInputEvent
+//   - AuthChallengeResponseEvent
+//   - ConfigurationEvent
+//   - EndOfInputEvent
+//   - TextInputEvent
+type ChatInputStreamWriter interface {
+	// Sends writes events to the stream blocking until the event has been
+	// written. An error is returned if the write fails.
+	Send(aws.Context, ChatInputStreamEvent) error
+
+	// Close will stop the writer writing to the event stream.
+	Close() error
+
+	// Returns any error that has occurred while writing to the event stream.
+	Err() error
+}
+
+type writeChatInputStream struct {
+	*eventstreamapi.StreamWriter
+}
+
+func (w *writeChatInputStream) Send(ctx aws.Context, event ChatInputStreamEvent) error {
+	return w.StreamWriter.Send(ctx, event)
+}
+
+func eventTypeForChatInputStreamEvent(event eventstreamapi.Marshaler) (string, error) {
+	switch event.(type) {
+	case *AttachmentInputEvent:
+		return "attachmentEvent", nil
+	case *AuthChallengeResponseEvent:
+		return "authChallengeResponseEvent", nil
+	case *ConfigurationEvent:
+		return "configurationEvent", nil
+	case *EndOfInputEvent:
+		return "endOfInputEvent", nil
+	case *TextInputEvent:
+		return "textEvent", nil
+	default:
+		return "", awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type, %T, for ChatInputStream", event),
+			nil,
+		)
+	}
+}
+
 // Configuration information for Amazon Q Business conversation modes.
 //
 // For more information, see Admin controls and guardrails (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/guardrails.html)
@@ -7538,6 +8609,203 @@ func (s *ChatModeConfiguration) SetPluginConfiguration(v *PluginConfiguration) *
 	return s
 }
 
+type ChatOutput struct {
+	_ struct{} `type:"structure" payload:"OutputStream"`
+
+	eventStream *ChatEventStream
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatOutput) GoString() string {
+	return s.String()
+}
+
+// GetStream returns the type to interact with the event stream.
+func (s *ChatOutput) GetStream() *ChatEventStream {
+	return s.eventStream
+}
+
+// ChatOutputStreamEvent groups together all EventStream
+// events writes for ChatOutputStream.
+//
+// These events are:
+//
+//   - ActionReviewEvent
+//   - AuthChallengeRequestEvent
+//   - FailedAttachmentEvent
+//   - MetadataEvent
+//   - TextOutputEvent
+type ChatOutputStreamEvent interface {
+	eventChatOutputStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
+// ChatOutputStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be ChatOutputStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//   - ActionReviewEvent
+//   - AuthChallengeRequestEvent
+//   - FailedAttachmentEvent
+//   - MetadataEvent
+//   - TextOutputEvent
+//   - ChatOutputStreamUnknownEvent
+type ChatOutputStreamReader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan ChatOutputStreamEvent
+
+	// Close will stop the reader reading events from the stream.
+	Close() error
+
+	// Returns any error that has occurred while reading from the event stream.
+	Err() error
+}
+
+type readChatOutputStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan ChatOutputStreamEvent
+	err         *eventstreamapi.OnceError
+
+	done      chan struct{}
+	closeOnce sync.Once
+}
+
+func newReadChatOutputStream(eventReader *eventstreamapi.EventReader) *readChatOutputStream {
+	r := &readChatOutputStream{
+		eventReader: eventReader,
+		stream:      make(chan ChatOutputStreamEvent),
+		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
+	}
+	go r.readEventStream()
+
+	return r
+}
+
+// Close will close the underlying event stream reader.
+func (r *readChatOutputStream) Close() error {
+	r.closeOnce.Do(r.safeClose)
+	return r.Err()
+}
+
+func (r *readChatOutputStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
+func (r *readChatOutputStream) Closed() <-chan struct{} {
+	return r.done
+}
+
+func (r *readChatOutputStream) safeClose() {
+	close(r.done)
+}
+
+func (r *readChatOutputStream) Err() error {
+	return r.err.Err()
+}
+
+func (r *readChatOutputStream) Events() <-chan ChatOutputStreamEvent {
+	return r.stream
+}
+
+func (r *readChatOutputStream) readEventStream() {
+	defer r.Close()
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
+			r.err.SetError(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(ChatOutputStreamEvent):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+type unmarshalerForChatOutputStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForChatOutputStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "actionReviewEvent":
+		return &ActionReviewEvent{}, nil
+	case "authChallengeRequestEvent":
+		return &AuthChallengeRequestEvent{}, nil
+	case "failedAttachmentEvent":
+		return &FailedAttachmentEvent{}, nil
+	case "metadataEvent":
+		return &MetadataEvent{}, nil
+	case "textEvent":
+		return &TextOutputEvent{}, nil
+	default:
+		return &ChatOutputStreamUnknownEvent{Type: eventType}, nil
+	}
+}
+
+// ChatOutputStreamUnknownEvent provides a failsafe event for the
+// ChatOutputStream group of events when an unknown event is received.
+type ChatOutputStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The ChatOutputStreamUnknownEvent is and event in the ChatOutputStream
+// group of events.
+func (s *ChatOutputStreamUnknownEvent) eventChatOutputStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *ChatOutputStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ChatOutputStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *ChatOutputStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
+}
+
 type ChatSyncInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7555,7 +8823,11 @@ type ChatSyncInput struct {
 	// document attributes or metadata fields.
 	AttributeFilter *AttributeFilter `locationName:"attributeFilter" type:"structure"`
 
-	// The chat modes available in an Amazon Q Business web experience.
+	// An authentication verification event response by a third party authentication
+	// server to Amazon Q Business.
+	AuthChallengeResponse *AuthChallengeResponse `locationName:"authChallengeResponse" type:"structure"`
+
+	// The chat modes available to an Amazon Q Business end user.
 	//
 	//    * RETRIEVAL_MODE - The default chat mode for an Amazon Q Business application.
 	//    When this mode is enabled, Amazon Q Business generates responses only
@@ -7655,6 +8927,11 @@ func (s *ChatSyncInput) Validate() error {
 			invalidParams.AddNested("AttributeFilter", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.AuthChallengeResponse != nil {
+		if err := s.AuthChallengeResponse.Validate(); err != nil {
+			invalidParams.AddNested("AuthChallengeResponse", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ChatModeConfiguration != nil {
 		if err := s.ChatModeConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ChatModeConfiguration", err.(request.ErrInvalidParams))
@@ -7682,6 +8959,12 @@ func (s *ChatSyncInput) SetAttachments(v []*AttachmentInput_) *ChatSyncInput {
 // SetAttributeFilter sets the AttributeFilter field's value.
 func (s *ChatSyncInput) SetAttributeFilter(v *AttributeFilter) *ChatSyncInput {
 	s.AttributeFilter = v
+	return s
+}
+
+// SetAuthChallengeResponse sets the AuthChallengeResponse field's value.
+func (s *ChatSyncInput) SetAuthChallengeResponse(v *AuthChallengeResponse) *ChatSyncInput {
+	s.AuthChallengeResponse = v
 	return s
 }
 
@@ -7740,6 +9023,10 @@ type ChatSyncOutput struct {
 	// Business needs to successfully complete a requested plugin action.
 	ActionReview *ActionReview `locationName:"actionReview" type:"structure"`
 
+	// An authentication verification event activated by an end user request to
+	// use a custom plugin.
+	AuthChallengeRequest *AuthChallengeRequest `locationName:"authChallengeRequest" type:"structure"`
+
 	// The identifier of the Amazon Q Business conversation.
 	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
 
@@ -7784,6 +9071,12 @@ func (s *ChatSyncOutput) SetActionReview(v *ActionReview) *ChatSyncOutput {
 	return s
 }
 
+// SetAuthChallengeRequest sets the AuthChallengeRequest field's value.
+func (s *ChatSyncOutput) SetAuthChallengeRequest(v *AuthChallengeRequest) *ChatSyncOutput {
+	s.AuthChallengeRequest = v
+	return s
+}
+
 // SetConversationId sets the ConversationId field's value.
 func (s *ChatSyncOutput) SetConversationId(v string) *ChatSyncOutput {
 	s.ConversationId = &v
@@ -7818,6 +9111,104 @@ func (s *ChatSyncOutput) SetSystemMessageId(v string) *ChatSyncOutput {
 func (s *ChatSyncOutput) SetUserMessageId(v string) *ChatSyncOutput {
 	s.UserMessageId = &v
 	return s
+}
+
+// A configuration event activated by an end user request to select a specific
+// chat mode.
+type ConfigurationEvent struct {
+	_ struct{} `type:"structure"`
+
+	// Enables filtering of responses based on document attributes or metadata fields.
+	AttributeFilter *AttributeFilter `locationName:"attributeFilter" type:"structure"`
+
+	// The chat modes available to an Amazon Q Business end user.
+	//
+	//    * RETRIEVAL_MODE - The default chat mode for an Amazon Q Business application.
+	//    When this mode is enabled, Amazon Q Business generates responses only
+	//    from data sources connected to an Amazon Q Business application.
+	//
+	//    * CREATOR_MODE - By selecting this mode, users can choose to generate
+	//    responses only from the LLM knowledge, without consulting connected data
+	//    sources, for a chat request.
+	//
+	//    * PLUGIN_MODE - By selecting this mode, users can choose to use plugins
+	//    in chat.
+	//
+	// For more information, see Admin controls and guardrails (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/guardrails.html),
+	// Plugins (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/plugins.html),
+	// and Conversation settings (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/using-web-experience.html#chat-source-scope).
+	ChatMode *string `locationName:"chatMode" type:"string" enum:"ChatMode"`
+
+	// Configuration information for Amazon Q Business conversation modes.
+	//
+	// For more information, see Admin controls and guardrails (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/guardrails.html)
+	// and Conversation settings (https://docs.aws.amazon.com/amazonq/latest/business-use-dg/using-web-experience.html#chat-source-scope).
+	ChatModeConfiguration *ChatModeConfiguration `locationName:"chatModeConfiguration" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigurationEvent) GoString() string {
+	return s.String()
+}
+
+// SetAttributeFilter sets the AttributeFilter field's value.
+func (s *ConfigurationEvent) SetAttributeFilter(v *AttributeFilter) *ConfigurationEvent {
+	s.AttributeFilter = v
+	return s
+}
+
+// SetChatMode sets the ChatMode field's value.
+func (s *ConfigurationEvent) SetChatMode(v string) *ConfigurationEvent {
+	s.ChatMode = &v
+	return s
+}
+
+// SetChatModeConfiguration sets the ChatModeConfiguration field's value.
+func (s *ConfigurationEvent) SetChatModeConfiguration(v *ChatModeConfiguration) *ConfigurationEvent {
+	s.ChatModeConfiguration = v
+	return s
+}
+
+// The ConfigurationEvent is and event in the ChatInputStream group of events.
+func (s *ConfigurationEvent) eventChatInputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the ConfigurationEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *ConfigurationEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *ConfigurationEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // You are trying to perform an action that conflicts with the current status
@@ -8064,9 +9455,7 @@ type CreateApplicationInput struct {
 
 	// The Amazon Resource Name (ARN) of an IAM role with permissions to access
 	// your Amazon CloudWatch logs and metrics.
-	//
-	// RoleArn is a required field
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// A list of key-value pairs that identify or categorize your Amazon Q Business
 	// application. You can also use tags to help control access to the application.
@@ -8107,9 +9496,6 @@ func (s *CreateApplicationInput) Validate() error {
 	}
 	if s.IdentityCenterInstanceArn != nil && len(*s.IdentityCenterInstanceArn) < 10 {
 		invalidParams.Add(request.NewErrParamMinLen("IdentityCenterInstanceArn", 10))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
 	if s.AttachmentsConfiguration != nil {
 		if err := s.AttachmentsConfiguration.Validate(); err != nil {
@@ -8256,6 +9642,11 @@ type CreateIndexInput struct {
 	// consist of Unicode letters, digits, white space, and any of the following
 	// symbols: _ . : / = + - @.
 	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The index type that's suitable for your needs. For more information on what's
+	// included in each type of index or index tier, see Amazon Q Business tiers
+	// (https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html#tiers).
+	Type *string `locationName:"type" type:"string" enum:"IndexType"`
 }
 
 // String returns the string representation.
@@ -8352,6 +9743,12 @@ func (s *CreateIndexInput) SetTags(v []*Tag) *CreateIndexInput {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *CreateIndexInput) SetType(v string) *CreateIndexInput {
+	s.Type = &v
+	return s
+}
+
 type CreateIndexOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8409,15 +9806,16 @@ type CreatePluginInput struct {
 	// Business plugin.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// Contains configuration for a custom plugin.
+	CustomPluginConfiguration *CustomPluginConfiguration `locationName:"customPluginConfiguration" type:"structure"`
+
 	// A the name for your plugin.
 	//
 	// DisplayName is a required field
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" required:"true"`
 
 	// The source URL used for plugin configuration.
-	//
-	// ServerUrl is a required field
-	ServerUrl *string `locationName:"serverUrl" min:"1" type:"string" required:"true"`
+	ServerUrl *string `locationName:"serverUrl" min:"1" type:"string"`
 
 	// A list of key-value pairs that identify or categorize the data source connector.
 	// You can also use tags to help control access to the data source connector.
@@ -8470,9 +9868,6 @@ func (s *CreatePluginInput) Validate() error {
 	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
 	}
-	if s.ServerUrl == nil {
-		invalidParams.Add(request.NewErrParamRequired("ServerUrl"))
-	}
 	if s.ServerUrl != nil && len(*s.ServerUrl) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ServerUrl", 1))
 	}
@@ -8482,6 +9877,11 @@ func (s *CreatePluginInput) Validate() error {
 	if s.AuthConfiguration != nil {
 		if err := s.AuthConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("AuthConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomPluginConfiguration != nil {
+		if err := s.CustomPluginConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomPluginConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -8519,6 +9919,12 @@ func (s *CreatePluginInput) SetClientToken(v string) *CreatePluginInput {
 	return s
 }
 
+// SetCustomPluginConfiguration sets the CustomPluginConfiguration field's value.
+func (s *CreatePluginInput) SetCustomPluginConfiguration(v *CustomPluginConfiguration) *CreatePluginInput {
+	s.CustomPluginConfiguration = v
+	return s
+}
+
 // SetDisplayName sets the DisplayName field's value.
 func (s *CreatePluginInput) SetDisplayName(v string) *CreatePluginInput {
 	s.DisplayName = &v
@@ -8546,6 +9952,9 @@ func (s *CreatePluginInput) SetType(v string) *CreatePluginInput {
 type CreatePluginOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The current status of a plugin. A plugin is modified asynchronously.
+	BuildStatus *string `locationName:"buildStatus" type:"string" enum:"PluginBuildStatus"`
+
 	// The Amazon Resource Name (ARN) of a plugin.
 	PluginArn *string `locationName:"pluginArn" type:"string"`
 
@@ -8569,6 +9978,12 @@ func (s CreatePluginOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreatePluginOutput) GoString() string {
 	return s.String()
+}
+
+// SetBuildStatus sets the BuildStatus field's value.
+func (s *CreatePluginOutput) SetBuildStatus(v string) *CreatePluginOutput {
+	s.BuildStatus = &v
+	return s
 }
 
 // SetPluginArn sets the PluginArn field's value.
@@ -9107,6 +10522,90 @@ func (s *CreatorModeConfiguration) Validate() error {
 // SetCreatorModeControl sets the CreatorModeControl field's value.
 func (s *CreatorModeConfiguration) SetCreatorModeControl(v string) *CreatorModeConfiguration {
 	s.CreatorModeControl = &v
+	return s
+}
+
+// Configuration information required to create a custom plugin.
+type CustomPluginConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains either details about the S3 object containing the OpenAPI schema
+	// for the action group or the JSON or YAML-formatted payload defining the schema.
+	//
+	// ApiSchema is a required field
+	ApiSchema *APISchema `locationName:"apiSchema" type:"structure" required:"true"`
+
+	// The type of OpenAPI schema to use.
+	//
+	// ApiSchemaType is a required field
+	ApiSchemaType *string `locationName:"apiSchemaType" type:"string" required:"true" enum:"APISchemaType"`
+
+	// A description for your custom plugin configuration.
+	//
+	// Description is a required field
+	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomPluginConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomPluginConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomPluginConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomPluginConfiguration"}
+	if s.ApiSchema == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiSchema"))
+	}
+	if s.ApiSchemaType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiSchemaType"))
+	}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.ApiSchema != nil {
+		if err := s.ApiSchema.Validate(); err != nil {
+			invalidParams.AddNested("ApiSchema", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiSchema sets the ApiSchema field's value.
+func (s *CustomPluginConfiguration) SetApiSchema(v *APISchema) *CustomPluginConfiguration {
+	s.ApiSchema = v
+	return s
+}
+
+// SetApiSchemaType sets the ApiSchemaType field's value.
+func (s *CustomPluginConfiguration) SetApiSchemaType(v string) *CustomPluginConfiguration {
+	s.ApiSchemaType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CustomPluginConfiguration) SetDescription(v string) *CustomPluginConfiguration {
+	s.Description = &v
 	return s
 }
 
@@ -10790,8 +12289,8 @@ type DocumentAttributeCondition struct {
 	// For example, 'Source_URI' could be an identifier for the attribute or metadata
 	// field that contains source URIs associated with the documents.
 	//
-	// Amazon Kendra currently does not support _document_body as an attribute key
-	// used for the condition.
+	// Amazon Q Business currently does not support _document_body as an attribute
+	// key used for the condition.
 	//
 	// Operator is a required field
 	Operator *string `locationName:"operator" type:"string" required:"true" enum:"DocumentEnrichmentConditionOperator"`
@@ -11220,13 +12719,12 @@ type DocumentEnrichmentConfiguration struct {
 	// Lambda to alter document metadata and content when ingesting documents into
 	// Amazon Q Business.
 	//
-	// You can configure your Lambda function using PreExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
-	// if you want to apply advanced alterations on the original or raw documents.
+	// You can configure your Lambda function using the PreExtractionHookConfiguration
+	// parameter if you want to apply advanced alterations on the original or raw
+	// documents.
 	//
 	// If you want to apply advanced alterations on the Amazon Q Business structured
-	// documents, you must configure your Lambda function using PostExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
+	// documents, you must configure your Lambda function using PostExtractionHookConfiguration.
 	//
 	// You can only invoke one Lambda function. However, this function can invoke
 	// other functions it requires.
@@ -11238,13 +12736,12 @@ type DocumentEnrichmentConfiguration struct {
 	// Lambda to alter document metadata and content when ingesting documents into
 	// Amazon Q Business.
 	//
-	// You can configure your Lambda function using PreExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
-	// if you want to apply advanced alterations on the original or raw documents.
+	// You can configure your Lambda function using the PreExtractionHookConfiguration
+	// parameter if you want to apply advanced alterations on the original or raw
+	// documents.
 	//
 	// If you want to apply advanced alterations on the Amazon Q Business structured
-	// documents, you must configure your Lambda function using PostExtractionHookConfiguration
-	// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
+	// documents, you must configure your Lambda function using PostExtractionHookConfiguration.
 	//
 	// You can only invoke one Lambda function. However, this function can invoke
 	// other functions it requires.
@@ -11431,6 +12928,48 @@ func (s *EncryptionConfiguration) SetKmsKeyId(v string) *EncryptionConfiguration
 	return s
 }
 
+// The end of the streaming input for the Chat API.
+type EndOfInputEvent struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndOfInputEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndOfInputEvent) GoString() string {
+	return s.String()
+}
+
+// The EndOfInputEvent is and event in the ChatInputStream group of events.
+func (s *EndOfInputEvent) eventChatInputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the EndOfInputEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *EndOfInputEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *EndOfInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	return msg, err
+}
+
 // Provides information about a data source sync error.
 type ErrorDetail struct {
 	_ struct{} `type:"structure"`
@@ -11470,6 +13009,94 @@ func (s *ErrorDetail) SetErrorCode(v string) *ErrorDetail {
 func (s *ErrorDetail) SetErrorMessage(v string) *ErrorDetail {
 	s.ErrorMessage = &v
 	return s
+}
+
+// A failed file upload during web experience chat.
+type FailedAttachmentEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The details of a file uploaded during chat.
+	Attachment *AttachmentOutput_ `locationName:"attachment" type:"structure"`
+
+	// The identifier of the conversation associated with the failed file upload.
+	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
+
+	// The identifier of the AI-generated message associated with the file upload.
+	SystemMessageId *string `locationName:"systemMessageId" min:"36" type:"string"`
+
+	// The identifier of the end user chat message associated with the file upload.
+	UserMessageId *string `locationName:"userMessageId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedAttachmentEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedAttachmentEvent) GoString() string {
+	return s.String()
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *FailedAttachmentEvent) SetAttachment(v *AttachmentOutput_) *FailedAttachmentEvent {
+	s.Attachment = v
+	return s
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *FailedAttachmentEvent) SetConversationId(v string) *FailedAttachmentEvent {
+	s.ConversationId = &v
+	return s
+}
+
+// SetSystemMessageId sets the SystemMessageId field's value.
+func (s *FailedAttachmentEvent) SetSystemMessageId(v string) *FailedAttachmentEvent {
+	s.SystemMessageId = &v
+	return s
+}
+
+// SetUserMessageId sets the UserMessageId field's value.
+func (s *FailedAttachmentEvent) SetUserMessageId(v string) *FailedAttachmentEvent {
+	s.UserMessageId = &v
+	return s
+}
+
+// The FailedAttachmentEvent is and event in the ChatOutputStream group of events.
+func (s *FailedAttachmentEvent) eventChatOutputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the FailedAttachmentEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *FailedAttachmentEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *FailedAttachmentEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // A list of documents that could not be removed from an Amazon Q Business index.
@@ -12349,6 +13976,9 @@ type GetIndexOutput struct {
 	// a message that explains why.
 	Status *string `locationName:"status" type:"string" enum:"IndexStatus"`
 
+	// The type of index attached to your Amazon Q Business application.
+	Type *string `locationName:"type" type:"string" enum:"IndexType"`
+
 	// The Unix timestamp when the Amazon Q Business index was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 }
@@ -12437,6 +14067,12 @@ func (s *GetIndexOutput) SetStatus(v string) *GetIndexOutput {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *GetIndexOutput) SetType(v string) *GetIndexOutput {
+	s.Type = &v
+	return s
+}
+
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *GetIndexOutput) SetUpdatedAt(v time.Time) *GetIndexOutput {
 	s.UpdatedAt = &v
@@ -12518,8 +14154,14 @@ type GetPluginOutput struct {
 	// Authentication configuration information for an Amazon Q Business plugin.
 	AuthConfiguration *PluginAuthConfiguration `locationName:"authConfiguration" type:"structure"`
 
+	// The current status of a plugin. A plugin is modified asynchronously.
+	BuildStatus *string `locationName:"buildStatus" type:"string" enum:"PluginBuildStatus"`
+
 	// The timestamp for when the plugin was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// Configuration information required to create a custom plugin.
+	CustomPluginConfiguration *CustomPluginConfiguration `locationName:"customPluginConfiguration" type:"structure"`
 
 	// The name of the plugin.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
@@ -12574,9 +14216,21 @@ func (s *GetPluginOutput) SetAuthConfiguration(v *PluginAuthConfiguration) *GetP
 	return s
 }
 
+// SetBuildStatus sets the BuildStatus field's value.
+func (s *GetPluginOutput) SetBuildStatus(v string) *GetPluginOutput {
+	s.BuildStatus = &v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *GetPluginOutput) SetCreatedAt(v time.Time) *GetPluginOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomPluginConfiguration sets the CustomPluginConfiguration field's value.
+func (s *GetPluginOutput) SetCustomPluginConfiguration(v *CustomPluginConfiguration) *GetPluginOutput {
+	s.CustomPluginConfiguration = v
 	return s
 }
 
@@ -12973,9 +14627,11 @@ type GetWebExperienceOutput struct {
 
 	// The authentication configuration information for your Amazon Q Business web
 	// experience.
-	AuthenticationConfiguration *WebExperienceAuthConfiguration `locationName:"authenticationConfiguration" type:"structure"`
+	//
+	// Deprecated: Property associated with legacy SAML IdP flow. Deprecated in favor of using AWS IAM Identity Center for user management.
+	AuthenticationConfiguration *WebExperienceAuthConfiguration `locationName:"authenticationConfiguration" deprecated:"true" type:"structure"`
 
-	// The Unix timestamp when the retriever was created.
+	// The Unix timestamp when the Amazon Q Business web experience was last created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The endpoint of your Amazon Q Business web experience.
@@ -13003,7 +14659,7 @@ type GetWebExperienceOutput struct {
 	// The title for your Amazon Q Business web experience.
 	Title *string `locationName:"title" type:"string"`
 
-	// The Unix timestamp when the data source connector was last updated.
+	// The Unix timestamp when the Amazon Q Business web experience was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp"`
 
 	// The Amazon Resource Name (ARN) of the role with the permission to access
@@ -13287,13 +14943,12 @@ func (s *GroupSummary) SetGroupName(v string) *GroupSummary {
 // Lambda to alter document metadata and content when ingesting documents into
 // Amazon Q Business.
 //
-// You can configure your Lambda function using PreExtractionHookConfiguration
-// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html)
-// if you want to apply advanced alterations on the original or raw documents.
+// You can configure your Lambda function using the PreExtractionHookConfiguration
+// parameter if you want to apply advanced alterations on the original or raw
+// documents.
 //
 // If you want to apply advanced alterations on the Amazon Q Business structured
-// documents, you must configure your Lambda function using PostExtractionHookConfiguration
-// (https://docs.aws.amazon.com/amazonq/latest/api-reference/API_DocumentEnrichmentConfiguration.html).
+// documents, you must configure your Lambda function using PostExtractionHookConfiguration.
 //
 // You can only invoke one Lambda function. However, this function can invoke
 // other functions it requires.
@@ -15656,6 +17311,105 @@ func (s *MessageUsefulnessFeedback) SetUsefulness(v string) *MessageUsefulnessFe
 	return s
 }
 
+// A metadata event for a AI-generated text output message in a Amazon Q Business
+// conversation, containing associated metadata generated.
+type MetadataEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the conversation with which the generated metadata is associated.
+	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
+
+	// The final text output message generated by the system.
+	FinalTextMessage *string `locationName:"finalTextMessage" min:"1" type:"string"`
+
+	// The source documents used to generate the conversation response.
+	SourceAttributions []*SourceAttribution `locationName:"sourceAttributions" type:"list"`
+
+	// The identifier of an Amazon Q Business AI generated message within the conversation.
+	SystemMessageId *string `locationName:"systemMessageId" min:"36" type:"string"`
+
+	// The identifier of an Amazon Q Business end user text input message within
+	// the conversation.
+	UserMessageId *string `locationName:"userMessageId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetadataEvent) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *MetadataEvent) SetConversationId(v string) *MetadataEvent {
+	s.ConversationId = &v
+	return s
+}
+
+// SetFinalTextMessage sets the FinalTextMessage field's value.
+func (s *MetadataEvent) SetFinalTextMessage(v string) *MetadataEvent {
+	s.FinalTextMessage = &v
+	return s
+}
+
+// SetSourceAttributions sets the SourceAttributions field's value.
+func (s *MetadataEvent) SetSourceAttributions(v []*SourceAttribution) *MetadataEvent {
+	s.SourceAttributions = v
+	return s
+}
+
+// SetSystemMessageId sets the SystemMessageId field's value.
+func (s *MetadataEvent) SetSystemMessageId(v string) *MetadataEvent {
+	s.SystemMessageId = &v
+	return s
+}
+
+// SetUserMessageId sets the UserMessageId field's value.
+func (s *MetadataEvent) SetUserMessageId(v string) *MetadataEvent {
+	s.UserMessageId = &v
+	return s
+}
+
+// The MetadataEvent is and event in the ChatOutputStream group of events.
+func (s *MetadataEvent) eventChatOutputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the MetadataEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *MetadataEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *MetadataEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 // Configuration information for an Amazon Q Business index.
 type NativeIndexConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -15727,6 +17481,30 @@ func (s *NativeIndexConfiguration) SetBoostingOverride(v map[string]*DocumentAtt
 func (s *NativeIndexConfiguration) SetIndexId(v string) *NativeIndexConfiguration {
 	s.IndexId = &v
 	return s
+}
+
+// Information about invoking a custom plugin without any authentication or
+// authorization requirement.
+type NoAuthConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoAuthConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NoAuthConfiguration) GoString() string {
+	return s.String()
 }
 
 // Provides information on boosting NUMBER type document attributes.
@@ -15857,6 +17635,9 @@ func (s *OAuth2ClientCredentialConfiguration) SetSecretArn(v string) *OAuth2Clie
 type Plugin struct {
 	_ struct{} `type:"structure"`
 
+	// The status of the plugin.
+	BuildStatus *string `locationName:"buildStatus" type:"string" enum:"PluginBuildStatus"`
+
 	// The timestamp for when the plugin was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
@@ -15895,6 +17676,12 @@ func (s Plugin) String() string {
 // value will be replaced with "sensitive".
 func (s Plugin) GoString() string {
 	return s.String()
+}
+
+// SetBuildStatus sets the BuildStatus field's value.
+func (s *Plugin) SetBuildStatus(v string) *Plugin {
+	s.BuildStatus = &v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -15947,6 +17734,9 @@ type PluginAuthConfiguration struct {
 	// a plugin.
 	BasicAuthConfiguration *BasicAuthConfiguration `locationName:"basicAuthConfiguration" type:"structure"`
 
+	// Information about invoking a custom plugin without any authentication.
+	NoAuthConfiguration *NoAuthConfiguration `locationName:"noAuthConfiguration" type:"structure"`
+
 	// Information about the OAuth 2.0 authentication credential/token used to configure
 	// a plugin.
 	OAuth2ClientCredentialConfiguration *OAuth2ClientCredentialConfiguration `locationName:"oAuth2ClientCredentialConfiguration" type:"structure"`
@@ -15993,6 +17783,12 @@ func (s *PluginAuthConfiguration) Validate() error {
 // SetBasicAuthConfiguration sets the BasicAuthConfiguration field's value.
 func (s *PluginAuthConfiguration) SetBasicAuthConfiguration(v *BasicAuthConfiguration) *PluginAuthConfiguration {
 	s.BasicAuthConfiguration = v
+	return s
+}
+
+// SetNoAuthConfiguration sets the NoAuthConfiguration field's value.
+func (s *PluginAuthConfiguration) SetNoAuthConfiguration(v *NoAuthConfiguration) *PluginAuthConfiguration {
+	s.NoAuthConfiguration = v
 	return s
 }
 
@@ -17144,6 +18940,40 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the relevant text excerpt from a source that was used to generate
+// a citation text segment in an Amazon Q Business chat response.
+type SnippetExcerpt struct {
+	_ struct{} `type:"structure"`
+
+	// The relevant text excerpt from a source that was used to generate a citation
+	// text segment in an Amazon Q chat response.
+	Text *string `locationName:"text" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnippetExcerpt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SnippetExcerpt) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *SnippetExcerpt) SetText(v string) *SnippetExcerpt {
+	s.Text = &v
+	return s
+}
+
 // The documents used to generate an Amazon Q Business web experience response.
 type SourceAttribution struct {
 	_ struct{} `type:"structure"`
@@ -17777,6 +19607,158 @@ func (s *TextDocumentStatistics) SetIndexedTextDocumentCount(v int64) *TextDocum
 	return s
 }
 
+// An input event for a end user message in an Amazon Q Business web experience.
+type TextInputEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A user message in a text message input event.
+	//
+	// UserMessage is a required field
+	UserMessage *string `locationName:"userMessage" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInputEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextInputEvent) GoString() string {
+	return s.String()
+}
+
+// SetUserMessage sets the UserMessage field's value.
+func (s *TextInputEvent) SetUserMessage(v string) *TextInputEvent {
+	s.UserMessage = &v
+	return s
+}
+
+// The TextInputEvent is and event in the ChatInputStream group of events.
+func (s *TextInputEvent) eventChatInputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the TextInputEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *TextInputEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *TextInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// An output event for an AI-generated response in an Amazon Q Business web
+// experience.
+type TextOutputEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the conversation with which the text output event is associated.
+	ConversationId *string `locationName:"conversationId" min:"36" type:"string"`
+
+	// An AI-generated message in a TextOutputEvent.
+	SystemMessage *string `locationName:"systemMessage" min:"1" type:"string"`
+
+	// The identifier of an AI-generated message in a TextOutputEvent.
+	SystemMessageId *string `locationName:"systemMessageId" min:"36" type:"string"`
+
+	// The identifier of an end user message in a TextOutputEvent.
+	UserMessageId *string `locationName:"userMessageId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextOutputEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TextOutputEvent) GoString() string {
+	return s.String()
+}
+
+// SetConversationId sets the ConversationId field's value.
+func (s *TextOutputEvent) SetConversationId(v string) *TextOutputEvent {
+	s.ConversationId = &v
+	return s
+}
+
+// SetSystemMessage sets the SystemMessage field's value.
+func (s *TextOutputEvent) SetSystemMessage(v string) *TextOutputEvent {
+	s.SystemMessage = &v
+	return s
+}
+
+// SetSystemMessageId sets the SystemMessageId field's value.
+func (s *TextOutputEvent) SetSystemMessageId(v string) *TextOutputEvent {
+	s.SystemMessageId = &v
+	return s
+}
+
+// SetUserMessageId sets the UserMessageId field's value.
+func (s *TextOutputEvent) SetUserMessageId(v string) *TextOutputEvent {
+	s.UserMessageId = &v
+	return s
+}
+
+// The TextOutputEvent is and event in the ChatOutputStream group of events.
+func (s *TextOutputEvent) eventChatOutputStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the TextOutputEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *TextOutputEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *TextOutputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 // Provides information about a text extract in a chat response that can be
 // attributed to a source document.
 type TextSegment struct {
@@ -17789,6 +19771,10 @@ type TextSegment struct {
 	// The zero-based location in the response string where the source attribution
 	// ends.
 	EndOffset *int64 `locationName:"endOffset" type:"integer"`
+
+	// The relevant text excerpt from a source that was used to generate a citation
+	// text segment in an Amazon Q Business chat response.
+	SnippetExcerpt *SnippetExcerpt `locationName:"snippetExcerpt" type:"structure"`
 }
 
 // String returns the string representation.
@@ -17818,6 +19804,12 @@ func (s *TextSegment) SetBeginOffset(v int64) *TextSegment {
 // SetEndOffset sets the EndOffset field's value.
 func (s *TextSegment) SetEndOffset(v int64) *TextSegment {
 	s.EndOffset = &v
+	return s
+}
+
+// SetSnippetExcerpt sets the SnippetExcerpt field's value.
+func (s *TextSegment) SetSnippetExcerpt(v *SnippetExcerpt) *TextSegment {
+	s.SnippetExcerpt = v
 	return s
 }
 
@@ -18084,6 +20076,10 @@ type UpdateApplicationInput struct {
 	// A name for the Amazon Q Business application.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the IAM Identity Center instance you are
+	// either creating for—or connecting to—your Amazon Q Business application.
+	IdentityCenterInstanceArn *string `locationName:"identityCenterInstanceArn" min:"10" type:"string"`
+
 	// An Amazon Web Services Identity and Access Management (IAM) role that gives
 	// Amazon Q Business permission to access Amazon CloudWatch logs and metrics.
 	RoleArn *string `locationName:"roleArn" type:"string"`
@@ -18119,6 +20115,9 @@ func (s *UpdateApplicationInput) Validate() error {
 	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
 	}
+	if s.IdentityCenterInstanceArn != nil && len(*s.IdentityCenterInstanceArn) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityCenterInstanceArn", 10))
+	}
 	if s.AttachmentsConfiguration != nil {
 		if err := s.AttachmentsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("AttachmentsConfiguration", err.(request.ErrInvalidParams))
@@ -18152,6 +20151,12 @@ func (s *UpdateApplicationInput) SetDescription(v string) *UpdateApplicationInpu
 // SetDisplayName sets the DisplayName field's value.
 func (s *UpdateApplicationInput) SetDisplayName(v string) *UpdateApplicationInput {
 	s.DisplayName = &v
+	return s
+}
+
+// SetIdentityCenterInstanceArn sets the IdentityCenterInstanceArn field's value.
+func (s *UpdateApplicationInput) SetIdentityCenterInstanceArn(v string) *UpdateApplicationInput {
+	s.IdentityCenterInstanceArn = &v
 	return s
 }
 
@@ -18678,6 +20683,9 @@ type UpdatePluginInput struct {
 	// The authentication configuration the plugin is using.
 	AuthConfiguration *PluginAuthConfiguration `locationName:"authConfiguration" type:"structure"`
 
+	// The configuration for a custom plugin.
+	CustomPluginConfiguration *CustomPluginConfiguration `locationName:"customPluginConfiguration" type:"structure"`
+
 	// The name of the plugin.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
 
@@ -18737,6 +20745,11 @@ func (s *UpdatePluginInput) Validate() error {
 			invalidParams.AddNested("AuthConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CustomPluginConfiguration != nil {
+		if err := s.CustomPluginConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomPluginConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -18753,6 +20766,12 @@ func (s *UpdatePluginInput) SetApplicationId(v string) *UpdatePluginInput {
 // SetAuthConfiguration sets the AuthConfiguration field's value.
 func (s *UpdatePluginInput) SetAuthConfiguration(v *PluginAuthConfiguration) *UpdatePluginInput {
 	s.AuthConfiguration = v
+	return s
+}
+
+// SetCustomPluginConfiguration sets the CustomPluginConfiguration field's value.
+func (s *UpdatePluginInput) SetCustomPluginConfiguration(v *CustomPluginConfiguration) *UpdatePluginInput {
+	s.CustomPluginConfiguration = v
 	return s
 }
 
@@ -19089,7 +21108,13 @@ type UpdateWebExperienceInput struct {
 	ApplicationId *string `location:"uri" locationName:"applicationId" min:"36" type:"string" required:"true"`
 
 	// The authentication configuration of the Amazon Q Business web experience.
-	AuthenticationConfiguration *WebExperienceAuthConfiguration `locationName:"authenticationConfiguration" type:"structure"`
+	//
+	// Deprecated: Property associated with legacy SAML IdP flow. Deprecated in favor of using AWS IAM Identity Center for user management.
+	AuthenticationConfiguration *WebExperienceAuthConfiguration `locationName:"authenticationConfiguration" deprecated:"true" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the role with permission to access the
+	// Amazon Q Business web experience and required resources.
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// Determines whether sample prompts are enabled in the web experience for an
 	// end user.
@@ -19165,6 +21190,12 @@ func (s *UpdateWebExperienceInput) SetApplicationId(v string) *UpdateWebExperien
 // SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
 func (s *UpdateWebExperienceInput) SetAuthenticationConfiguration(v *WebExperienceAuthConfiguration) *UpdateWebExperienceInput {
 	s.AuthenticationConfiguration = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateWebExperienceInput) SetRoleArn(v string) *UpdateWebExperienceInput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -19572,6 +21603,18 @@ func (s *WebExperienceAuthConfiguration) Validate() error {
 func (s *WebExperienceAuthConfiguration) SetSamlConfiguration(v *SamlConfiguration) *WebExperienceAuthConfiguration {
 	s.SamlConfiguration = v
 	return s
+}
+
+const (
+	// APISchemaTypeOpenApiV3 is a APISchemaType enum value
+	APISchemaTypeOpenApiV3 = "OPEN_API_V3"
+)
+
+// APISchemaType_Values returns all elements of the APISchemaType enum
+func APISchemaType_Values() []string {
+	return []string{
+		APISchemaTypeOpenApiV3,
+	}
 }
 
 const (
@@ -20067,6 +22110,22 @@ func IndexStatus_Values() []string {
 }
 
 const (
+	// IndexTypeEnterprise is a IndexType enum value
+	IndexTypeEnterprise = "ENTERPRISE"
+
+	// IndexTypeStarter is a IndexType enum value
+	IndexTypeStarter = "STARTER"
+)
+
+// IndexType_Values returns all elements of the IndexType enum
+func IndexType_Values() []string {
+	return []string{
+		IndexTypeEnterprise,
+		IndexTypeStarter,
+	}
+}
+
+const (
 	// MemberRelationAnd is a MemberRelation enum value
 	MemberRelationAnd = "AND"
 
@@ -20203,6 +22262,42 @@ func NumberAttributeBoostingType_Values() []string {
 }
 
 const (
+	// PluginBuildStatusReady is a PluginBuildStatus enum value
+	PluginBuildStatusReady = "READY"
+
+	// PluginBuildStatusCreateInProgress is a PluginBuildStatus enum value
+	PluginBuildStatusCreateInProgress = "CREATE_IN_PROGRESS"
+
+	// PluginBuildStatusCreateFailed is a PluginBuildStatus enum value
+	PluginBuildStatusCreateFailed = "CREATE_FAILED"
+
+	// PluginBuildStatusUpdateInProgress is a PluginBuildStatus enum value
+	PluginBuildStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// PluginBuildStatusUpdateFailed is a PluginBuildStatus enum value
+	PluginBuildStatusUpdateFailed = "UPDATE_FAILED"
+
+	// PluginBuildStatusDeleteInProgress is a PluginBuildStatus enum value
+	PluginBuildStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+
+	// PluginBuildStatusDeleteFailed is a PluginBuildStatus enum value
+	PluginBuildStatusDeleteFailed = "DELETE_FAILED"
+)
+
+// PluginBuildStatus_Values returns all elements of the PluginBuildStatus enum
+func PluginBuildStatus_Values() []string {
+	return []string{
+		PluginBuildStatusReady,
+		PluginBuildStatusCreateInProgress,
+		PluginBuildStatusCreateFailed,
+		PluginBuildStatusUpdateInProgress,
+		PluginBuildStatusUpdateFailed,
+		PluginBuildStatusDeleteInProgress,
+		PluginBuildStatusDeleteFailed,
+	}
+}
+
+const (
 	// PluginStateEnabled is a PluginState enum value
 	PluginStateEnabled = "ENABLED"
 
@@ -20230,6 +22325,9 @@ const (
 
 	// PluginTypeZendesk is a PluginType enum value
 	PluginTypeZendesk = "ZENDESK"
+
+	// PluginTypeCustom is a PluginType enum value
+	PluginTypeCustom = "CUSTOM"
 )
 
 // PluginType_Values returns all elements of the PluginType enum
@@ -20239,6 +22337,7 @@ func PluginType_Values() []string {
 		PluginTypeSalesforce,
 		PluginTypeJira,
 		PluginTypeZendesk,
+		PluginTypeCustom,
 	}
 }
 

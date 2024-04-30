@@ -3,8 +3,6 @@
 // Package qbusiness provides the client and types for making API
 // requests to QBusiness.
 //
-// Amazon Q is in preview release and is subject to change.
-//
 // This is the Amazon Q Business API Reference. Amazon Q Business is a fully
 // managed, generative-AI powered enterprise chat assistant that you can deploy
 // within your organization. Amazon Q Business enhances employee productivity
