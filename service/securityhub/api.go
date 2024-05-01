@@ -8234,11 +8234,16 @@ func (c *SecurityHub) UpdateFindingsRequest(input *UpdateFindingsInput) (req *re
 
 // UpdateFindings API operation for AWS SecurityHub.
 //
-// UpdateFindings is deprecated. Instead of UpdateFindings, use BatchUpdateFindings.
+// UpdateFindings is a deprecated operation. Instead of UpdateFindings, use
+// the BatchUpdateFindings operation.
 //
 // Updates the Note and RecordState of the Security Hub-aggregated findings
 // that the filter attributes specify. Any member account that can view the
 // finding also sees the update to the finding.
+//
+// Finding updates made with UpdateFindings might not be persisted if the same
+// finding is later updated by the finding provider through the BatchImportFindings
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -50720,7 +50725,7 @@ type CreateMembersInput struct {
 	// address.
 	//
 	// AccountDetails is a required field
-	AccountDetails []*AccountDetails `type:"list" required:"true"`
+	AccountDetails []*AccountDetails `min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -50746,6 +50751,9 @@ func (s *CreateMembersInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateMembersInput"}
 	if s.AccountDetails == nil {
 		invalidParams.Add(request.NewErrParamRequired("AccountDetails"))
+	}
+	if s.AccountDetails != nil && len(s.AccountDetails) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountDetails", 1))
 	}
 	if s.AccountDetails != nil {
 		for i, v := range s.AccountDetails {
@@ -63740,8 +63748,9 @@ func (s *StandardsSubscriptionRequest) SetStandardsInput(v map[string]*string) *
 type StartConfigurationPolicyAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
-	// the configuration policy.
+	// The Amazon Resource Name (ARN) of a configuration policy, the universally
+	// unique identifier (UUID) of a configuration policy, or a value of SELF_MANAGED_SECURITY_HUB
+	// for a self-managed configuration.
 	//
 	// ConfigurationPolicyIdentifier is a required field
 	ConfigurationPolicyIdentifier *string `type:"string" required:"true"`
@@ -63893,8 +63902,9 @@ func (s *StartConfigurationPolicyAssociationOutput) SetUpdatedAt(v time.Time) *S
 type StartConfigurationPolicyDisassociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) or universally unique identifier (UUID) of
-	// the configuration policy.
+	// The Amazon Resource Name (ARN) of a configuration policy, the universally
+	// unique identifier (UUID) of a configuration policy, or a value of SELF_MANAGED_SECURITY_HUB
+	// for a self-managed configuration.
 	//
 	// ConfigurationPolicyIdentifier is a required field
 	ConfigurationPolicyIdentifier *string `type:"string" required:"true"`

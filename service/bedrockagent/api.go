@@ -6729,7 +6729,7 @@ type CreateDataSourceInput struct {
 	// see Ensuring idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" min:"33" type:"string" idempotencyToken:"true"`
 
-	// The deletion policy for the requested data source
+	// The data deletion policy assigned to the data source.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
 	// Contains metadata about where the data source is stored.
@@ -7078,7 +7078,7 @@ type DataSource struct {
 	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The deletion policy for the data source.
+	// The data deletion policy for a data source.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
 	// Contains details about how the data source is stored.
@@ -7094,7 +7094,7 @@ type DataSource struct {
 	// The description of the data source.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The details of the failure reasons related to the data source.
+	// The detailed reasons on the failure to delete a data source.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
 	// The unique identifier of the knowledge base to which the data source belongs.
@@ -11212,6 +11212,223 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 // Contains details about the storage configuration of the knowledge base in
+// MongoDB Atlas.
+type MongoDbAtlasConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The collection name of the knowledge base in MongoDB Atlas.
+	//
+	// CollectionName is a required field
+	CollectionName *string `locationName:"collectionName" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the secret that you created in Secrets
+	// Manager that contains user credentials for your MongoDB Atlas cluster.
+	//
+	// CredentialsSecretArn is a required field
+	CredentialsSecretArn *string `locationName:"credentialsSecretArn" type:"string" required:"true"`
+
+	// The database name in your MongoDB Atlas cluster for your knowledge base.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
+
+	// The endpoint URL of your MongoDB Atlas cluster for your knowledge base.
+	//
+	// Endpoint is a required field
+	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
+
+	// The name of the VPC endpoint service in your account that is connected to
+	// your MongoDB Atlas cluster.
+	EndpointServiceName *string `locationName:"endpointServiceName" min:"1" type:"string"`
+
+	// Contains the names of the fields to which to map information about the vector
+	// store.
+	//
+	// FieldMapping is a required field
+	FieldMapping *MongoDbAtlasFieldMapping `locationName:"fieldMapping" type:"structure" required:"true"`
+
+	// The name of the MongoDB Atlas vector search index.
+	//
+	// VectorIndexName is a required field
+	VectorIndexName *string `locationName:"vectorIndexName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbAtlasConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbAtlasConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MongoDbAtlasConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MongoDbAtlasConfiguration"}
+	if s.CollectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CollectionName"))
+	}
+	if s.CredentialsSecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CredentialsSecretArn"))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.Endpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoint"))
+	}
+	if s.EndpointServiceName != nil && len(*s.EndpointServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointServiceName", 1))
+	}
+	if s.FieldMapping == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldMapping"))
+	}
+	if s.VectorIndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VectorIndexName"))
+	}
+	if s.FieldMapping != nil {
+		if err := s.FieldMapping.Validate(); err != nil {
+			invalidParams.AddNested("FieldMapping", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCollectionName sets the CollectionName field's value.
+func (s *MongoDbAtlasConfiguration) SetCollectionName(v string) *MongoDbAtlasConfiguration {
+	s.CollectionName = &v
+	return s
+}
+
+// SetCredentialsSecretArn sets the CredentialsSecretArn field's value.
+func (s *MongoDbAtlasConfiguration) SetCredentialsSecretArn(v string) *MongoDbAtlasConfiguration {
+	s.CredentialsSecretArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *MongoDbAtlasConfiguration) SetDatabaseName(v string) *MongoDbAtlasConfiguration {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *MongoDbAtlasConfiguration) SetEndpoint(v string) *MongoDbAtlasConfiguration {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointServiceName sets the EndpointServiceName field's value.
+func (s *MongoDbAtlasConfiguration) SetEndpointServiceName(v string) *MongoDbAtlasConfiguration {
+	s.EndpointServiceName = &v
+	return s
+}
+
+// SetFieldMapping sets the FieldMapping field's value.
+func (s *MongoDbAtlasConfiguration) SetFieldMapping(v *MongoDbAtlasFieldMapping) *MongoDbAtlasConfiguration {
+	s.FieldMapping = v
+	return s
+}
+
+// SetVectorIndexName sets the VectorIndexName field's value.
+func (s *MongoDbAtlasConfiguration) SetVectorIndexName(v string) *MongoDbAtlasConfiguration {
+	s.VectorIndexName = &v
+	return s
+}
+
+// Contains the names of the fields to which to map information about the vector
+// store.
+type MongoDbAtlasFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in which Amazon Bedrock stores metadata about the vector
+	// store.
+	//
+	// MetadataField is a required field
+	MetadataField *string `locationName:"metadataField" type:"string" required:"true"`
+
+	// The name of the field in which Amazon Bedrock stores the raw text from your
+	// data. The text is split according to the chunking strategy you choose.
+	//
+	// TextField is a required field
+	TextField *string `locationName:"textField" type:"string" required:"true"`
+
+	// The name of the field in which Amazon Bedrock stores the vector embeddings
+	// for your data sources.
+	//
+	// VectorField is a required field
+	VectorField *string `locationName:"vectorField" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbAtlasFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MongoDbAtlasFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MongoDbAtlasFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MongoDbAtlasFieldMapping"}
+	if s.MetadataField == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetadataField"))
+	}
+	if s.TextField == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextField"))
+	}
+	if s.VectorField == nil {
+		invalidParams.Add(request.NewErrParamRequired("VectorField"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetadataField sets the MetadataField field's value.
+func (s *MongoDbAtlasFieldMapping) SetMetadataField(v string) *MongoDbAtlasFieldMapping {
+	s.MetadataField = &v
+	return s
+}
+
+// SetTextField sets the TextField field's value.
+func (s *MongoDbAtlasFieldMapping) SetTextField(v string) *MongoDbAtlasFieldMapping {
+	s.TextField = &v
+	return s
+}
+
+// SetVectorField sets the VectorField field's value.
+func (s *MongoDbAtlasFieldMapping) SetVectorField(v string) *MongoDbAtlasFieldMapping {
+	s.VectorField = &v
+	return s
+}
+
+// Contains details about the storage configuration of the knowledge base in
 // Amazon OpenSearch Service. For more information, see Create a vector index
 // in Amazon OpenSearch Service (https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-setup-oss.html).
 type OpenSearchServerlessConfiguration struct {
@@ -12365,7 +12582,7 @@ type S3DataSourceConfiguration struct {
 	// BucketArn is a required field
 	BucketArn *string `locationName:"bucketArn" min:"1" type:"string" required:"true"`
 
-	// The account ID for the owner of the S3 bucket.
+	// The bucket account owner ID for the S3 bucket.
 	BucketOwnerAccountId *string `locationName:"bucketOwnerAccountId" min:"12" type:"string"`
 
 	// A list of S3 prefixes that define the object containing the data sources.
@@ -12727,6 +12944,9 @@ func (s *StartIngestionJobOutput) SetIngestionJob(v *IngestionJob) *StartIngesti
 type StorageConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the storage configuration of the knowledge base in MongoDB Atlas.
+	MongoDbAtlasConfiguration *MongoDbAtlasConfiguration `locationName:"mongoDbAtlasConfiguration" type:"structure"`
+
 	// Contains the storage configuration of the knowledge base in Amazon OpenSearch
 	// Service.
 	OpensearchServerlessConfiguration *OpenSearchServerlessConfiguration `locationName:"opensearchServerlessConfiguration" type:"structure"`
@@ -12773,6 +12993,11 @@ func (s *StorageConfiguration) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.MongoDbAtlasConfiguration != nil {
+		if err := s.MongoDbAtlasConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MongoDbAtlasConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OpensearchServerlessConfiguration != nil {
 		if err := s.OpensearchServerlessConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("OpensearchServerlessConfiguration", err.(request.ErrInvalidParams))
@@ -12798,6 +13023,12 @@ func (s *StorageConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMongoDbAtlasConfiguration sets the MongoDbAtlasConfiguration field's value.
+func (s *StorageConfiguration) SetMongoDbAtlasConfiguration(v *MongoDbAtlasConfiguration) *StorageConfiguration {
+	s.MongoDbAtlasConfiguration = v
+	return s
 }
 
 // SetOpensearchServerlessConfiguration sets the OpensearchServerlessConfiguration field's value.
@@ -13773,7 +14004,7 @@ func (s *UpdateAgentOutput) SetAgent(v *Agent) *UpdateAgentOutput {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data deletion policy of the updated data source.
+	// The data deletion policy assigned to the data source.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
 	// Contains details about the storage configuration of the data source.
@@ -14642,6 +14873,9 @@ const (
 
 	// KnowledgeBaseStorageTypeRds is a KnowledgeBaseStorageType enum value
 	KnowledgeBaseStorageTypeRds = "RDS"
+
+	// KnowledgeBaseStorageTypeMongoDbAtlas is a KnowledgeBaseStorageType enum value
+	KnowledgeBaseStorageTypeMongoDbAtlas = "MONGO_DB_ATLAS"
 )
 
 // KnowledgeBaseStorageType_Values returns all elements of the KnowledgeBaseStorageType enum
@@ -14651,6 +14885,7 @@ func KnowledgeBaseStorageType_Values() []string {
 		KnowledgeBaseStorageTypePinecone,
 		KnowledgeBaseStorageTypeRedisEnterpriseCloud,
 		KnowledgeBaseStorageTypeRds,
+		KnowledgeBaseStorageTypeMongoDbAtlas,
 	}
 }
 

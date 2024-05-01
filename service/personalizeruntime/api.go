@@ -910,10 +910,33 @@ type PredictedItem struct {
 	ItemId *string `locationName:"itemId" type:"string"`
 
 	// Metadata about the item from your Items dataset.
-	Metadata map[string]*string `locationName:"metadata" type:"map"`
+	//
+	// Metadata is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PredictedItem's
+	// String and GoString methods.
+	Metadata map[string]*string `locationName:"metadata" type:"map" sensitive:"true"`
 
 	// The name of the promotion that included the predicted item.
 	PromotionName *string `locationName:"promotionName" min:"1" type:"string"`
+
+	// If you use User-Personalization-v2, a list of reasons for why the item was
+	// included in recommendations. Possible reasons include the following:
+	//
+	//    * Promoted item - Indicates the item was included as part of a promotion
+	//    that you applied in your recommendation request.
+	//
+	//    * Exploration - Indicates the item was included with exploration. With
+	//    exploration, recommendations include items with less interactions data
+	//    or relevance for the user. For more information about exploration, see
+	//    Exploration (https://docs.aws.amazon.com/personalize/latest/dg/use-case-recipe-features.html#about-exploration).
+	//
+	//    * Popular item - Indicates the item was included as a placeholder popular
+	//    item. If you use a filter, depending on how many recommendations the filter
+	//    removes, Amazon Personalize might add placeholder items to meet the numResults
+	//    for your recommendation request. These items are popular items, based
+	//    on interactions data, that satisfy your filter criteria. They don't have
+	//    a relevance score for the user.
+	Reason []*string `locationName:"reason" type:"list"`
 
 	// A numeric representation of the model's certainty that the item will be the
 	// next user selection. For more information on scoring logic, see how-scores-work.
@@ -953,6 +976,12 @@ func (s *PredictedItem) SetMetadata(v map[string]*string) *PredictedItem {
 // SetPromotionName sets the PromotionName field's value.
 func (s *PredictedItem) SetPromotionName(v string) *PredictedItem {
 	s.PromotionName = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *PredictedItem) SetReason(v []*string) *PredictedItem {
+	s.Reason = v
 	return s
 }
 

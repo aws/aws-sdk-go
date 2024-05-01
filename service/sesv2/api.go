@@ -4488,8 +4488,8 @@ const opListContacts = "ListContacts"
 func (c *SESV2) ListContactsRequest(input *ListContactsInput) (req *request.Request, output *ListContactsOutput) {
 	op := &request.Operation{
 		Name:       opListContacts,
-		HTTPMethod: "GET",
-		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts",
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts/list",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -5629,8 +5629,8 @@ const opListImportJobs = "ListImportJobs"
 func (c *SESV2) ListImportJobsRequest(input *ListImportJobsInput) (req *request.Request, output *ListImportJobsOutput) {
 	op := &request.Operation{
 		Name:       opListImportJobs,
-		HTTPMethod: "GET",
-		HTTPPath:   "/v2/email/import-jobs",
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/import-jobs/list",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -18466,14 +18466,14 @@ type ListContactsInput struct {
 	// to be listed. Use the token provided in the Response to use in the subsequent
 	// call to ListContacts with the same parameters to retrieve the next page of
 	// contacts.
-	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+	NextToken *string `type:"string"`
 
 	// The number of contacts that may be returned at once, which is dependent on
 	// if there are more or less contacts than the value of the PageSize. Use this
 	// parameter to paginate results. If additional contacts exist beyond the specified
 	// limit, the NextToken element is sent in the response. Use the NextToken value
 	// in subsequent requests to retrieve additional contacts.
-	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+	PageSize *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -19313,13 +19313,13 @@ type ListImportJobsInput struct {
 	// A string token indicating that there might be additional import jobs available
 	// to be listed. Copy this token to a subsequent call to ListImportJobs with
 	// the same parameters to retrieve the next page of import jobs.
-	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+	NextToken *string `type:"string"`
 
 	// Maximum number of import jobs to return at once. Use this parameter to paginate
 	// results. If additional import jobs exist beyond the specified limit, the
 	// NextToken element is sent in the response. Use the NextToken value in subsequent
 	// requests to retrieve additional addresses.
-	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+	PageSize *int64 `type:"integer"`
 }
 
 // String returns the string representation.

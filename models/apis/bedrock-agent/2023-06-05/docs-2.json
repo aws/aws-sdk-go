@@ -295,7 +295,7 @@
     "BucketOwnerAccountId": {
       "base": null,
       "refs": {
-        "S3DataSourceConfiguration$bucketOwnerAccountId": "<p>The account ID for the owner of the S3 bucket.</p>"
+        "S3DataSourceConfiguration$bucketOwnerAccountId": "<p>The bucket account owner ID for the S3 bucket.</p>"
       }
     },
     "ChunkingConfiguration": {
@@ -404,9 +404,9 @@
     "DataDeletionPolicy": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$dataDeletionPolicy": "<p>The deletion policy for the requested data source</p>",
-        "DataSource$dataDeletionPolicy": "<p>The deletion policy for the data source.</p>",
-        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy of the updated data source.</p>"
+        "CreateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy assigned to the data source.</p>",
+        "DataSource$dataDeletionPolicy": "<p>The data deletion policy for a data source.</p>",
+        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy assigned to the data source.</p>"
       }
     },
     "DataSource": {
@@ -614,7 +614,7 @@
       "refs": {
         "Agent$failureReasons": "<p>Contains reasons that the agent-related API that you invoked failed.</p>",
         "AgentVersion$failureReasons": "<p>A list of reasons that the API operation on the version failed.</p>",
-        "DataSource$failureReasons": "<p>The details of the failure reasons related to the data source.</p>",
+        "DataSource$failureReasons": "<p>The detailed reasons on the failure to delete a data source.</p>",
         "IngestionJob$failureReasons": "<p>A list of reasons that the ingestion job failed.</p>",
         "KnowledgeBase$failureReasons": "<p>A list of reasons that the API operation on the knowledge base failed.</p>"
       }
@@ -622,6 +622,9 @@
     "FieldName": {
       "base": null,
       "refs": {
+        "MongoDbAtlasFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
+        "MongoDbAtlasFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
+        "MongoDbAtlasFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>",
         "OpenSearchServerlessFieldMapping$metadataField": "<p>The name of the field in which Amazon Bedrock stores metadata about the vector store.</p>",
         "OpenSearchServerlessFieldMapping$textField": "<p>The name of the field in which Amazon Bedrock stores the raw text from your data. The text is split according to the chunking strategy you choose.</p>",
         "OpenSearchServerlessFieldMapping$vectorField": "<p>The name of the field in which Amazon Bedrock stores the vector embeddings for your data sources.</p>",
@@ -1144,6 +1147,48 @@
         "UpdateAgentRequest$foundationModel": "<p>Specifies a new foundation model to be used for orchestration by the agent.</p>"
       }
     },
+    "MongoDbAtlasCollectionName": {
+      "base": null,
+      "refs": {
+        "MongoDbAtlasConfiguration$collectionName": "<p>The collection name of the knowledge base in MongoDB Atlas.</p>"
+      }
+    },
+    "MongoDbAtlasConfiguration": {
+      "base": "<p>Contains details about the storage configuration of the knowledge base in MongoDB Atlas. </p>",
+      "refs": {
+        "StorageConfiguration$mongoDbAtlasConfiguration": "<p>Contains the storage configuration of the knowledge base in MongoDB Atlas.</p>"
+      }
+    },
+    "MongoDbAtlasDatabaseName": {
+      "base": null,
+      "refs": {
+        "MongoDbAtlasConfiguration$databaseName": "<p>The database name in your MongoDB Atlas cluster for your knowledge base.</p>"
+      }
+    },
+    "MongoDbAtlasEndpoint": {
+      "base": null,
+      "refs": {
+        "MongoDbAtlasConfiguration$endpoint": "<p>The endpoint URL of your MongoDB Atlas cluster for your knowledge base.</p>"
+      }
+    },
+    "MongoDbAtlasEndpointServiceName": {
+      "base": null,
+      "refs": {
+        "MongoDbAtlasConfiguration$endpointServiceName": "<p>The name of the VPC endpoint service in your account that is connected to your MongoDB Atlas cluster.</p>"
+      }
+    },
+    "MongoDbAtlasFieldMapping": {
+      "base": "<p>Contains the names of the fields to which to map information about the vector store.</p>",
+      "refs": {
+        "MongoDbAtlasConfiguration$fieldMapping": "<p>Contains the names of the fields to which to map information about the vector store.</p>"
+      }
+    },
+    "MongoDbAtlasIndexName": {
+      "base": null,
+      "refs": {
+        "MongoDbAtlasConfiguration$vectorIndexName": "<p>The name of the MongoDB Atlas vector search index.</p>"
+      }
+    },
     "Name": {
       "base": null,
       "refs": {
@@ -1461,6 +1506,7 @@
     "SecretArn": {
       "base": null,
       "refs": {
+        "MongoDbAtlasConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that contains user credentials for your MongoDB Atlas cluster.</p>",
         "PineconeConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Pinecone API key.</p>",
         "RdsConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Amazon RDS database.</p>",
         "RedisEnterpriseCloudConfiguration$credentialsSecretArn": "<p>The Amazon Resource Name (ARN) of the secret that you created in Secrets Manager that is linked to your Redis Enterprise Cloud database.</p>"
