@@ -1330,7 +1330,9 @@
     },
     "AccountDetailsList":{
       "type":"list",
-      "member":{"shape":"AccountDetails"}
+      "member":{"shape":"AccountDetails"},
+      "max":50,
+      "min":1
     },
     "AccountId":{"type":"string"},
     "AccountIdList":{

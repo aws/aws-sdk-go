@@ -1,3 +1,18 @@
+Release v1.52.0 (2024-05-01)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2.
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+* `service/sesv2`: Updates service API
+
+### SDK Features
+* `service/alexaforbusiness`: Remove Alexaforbusiness
+  * This change removes the Alexaforbusiness service, since it is deprecated.
+
 Release v1.51.32 (2024-04-30)
 ===
 
