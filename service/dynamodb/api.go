@@ -4067,11 +4067,11 @@ func (c *DynamoDB) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req 
 // a few seconds, and then retry the GetResourcePolicy request.
 //
 // After a GetResourcePolicy request returns a policy created using the PutResourcePolicy
-// request, you can assume the policy will start getting applied in the authorization
-// of requests to the resource. Because this process is eventually consistent,
-// it will take some time to apply the policy to all requests to a resource.
-// Policies that you attach while creating a table using the CreateTable request
-// will always be applied to all requests for that table.
+// request, the policy will be applied in the authorization of requests to the
+// resource. Because this process is eventually consistent, it will take some
+// time to apply the policy to all requests to a resource. Policies that you
+// attach while creating a table using the CreateTable request will always be
+// applied to all requests for that table.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5412,8 +5412,8 @@ func (c *DynamoDB) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req 
 //
 // PutResourcePolicy is an idempotent operation; running it multiple times on
 // the same resource using the same policy document will return the same revision
-// ID. If you specify an ExpectedRevisionId which doesn't match the current
-// policy's RevisionId, the PolicyNotFoundException will be returned.
+// ID. If you specify an ExpectedRevisionId that doesn't match the current policy's
+// RevisionId, the PolicyNotFoundException will be returned.
 //
 // PutResourcePolicy is an asynchronous operation. If you issue a GetResourcePolicy
 // request immediately after a PutResourcePolicy request, DynamoDB might return
@@ -11159,6 +11159,11 @@ type CreateGlobalSecondaryIndexAction struct {
 	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
+	// The maximum number of read and write units for the global secondary index
+	// being created. If you use this parameter, you must specify MaxReadRequestUnits,
+	// MaxWriteRequestUnits, or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
@@ -11247,6 +11252,12 @@ func (s *CreateGlobalSecondaryIndexAction) SetIndexName(v string) *CreateGlobalS
 // SetKeySchema sets the KeySchema field's value.
 func (s *CreateGlobalSecondaryIndexAction) SetKeySchema(v []*KeySchemaElement) *CreateGlobalSecondaryIndexAction {
 	s.KeySchema = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *CreateGlobalSecondaryIndexAction) SetOnDemandThroughput(v *OnDemandThroughput) *CreateGlobalSecondaryIndexAction {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -11416,6 +11427,11 @@ type CreateReplicationGroupMemberAction struct {
 	// different from the default DynamoDB KMS key alias/aws/dynamodb.
 	KMSMasterKeyId *string `type:"string"`
 
+	// The maximum on-demand throughput settings for the specified replica table
+	// being created. You can only modify MaxReadRequestUnits, because you can't
+	// modify MaxWriteRequestUnits for individual replica tables.
+	OnDemandThroughputOverride *OnDemandThroughputOverride `type:"structure"`
+
 	// Replica-specific provisioned throughput. If not specified, uses the source
 	// table's provisioned throughput settings.
 	ProvisionedThroughputOverride *ProvisionedThroughputOverride `type:"structure"`
@@ -11488,6 +11504,12 @@ func (s *CreateReplicationGroupMemberAction) SetGlobalSecondaryIndexes(v []*Repl
 // SetKMSMasterKeyId sets the KMSMasterKeyId field's value.
 func (s *CreateReplicationGroupMemberAction) SetKMSMasterKeyId(v string) *CreateReplicationGroupMemberAction {
 	s.KMSMasterKeyId = &v
+	return s
+}
+
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *CreateReplicationGroupMemberAction) SetOnDemandThroughputOverride(v *OnDemandThroughputOverride) *CreateReplicationGroupMemberAction {
+	s.OnDemandThroughputOverride = v
 	return s
 }
 
@@ -11620,6 +11642,11 @@ type CreateTableInput struct {
 	//    attributes when determining the total.
 	LocalSecondaryIndexes []*LocalSecondaryIndex `type:"list"`
 
+	// Sets the maximum number of read and write units for the specified table in
+	// on-demand capacity mode. If you use this parameter, you must specify MaxReadRequestUnits,
+	// MaxWriteRequestUnits, or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Represents the provisioned throughput settings for a specified table or index.
 	// The settings can be modified using the UpdateTable operation.
 	//
@@ -11635,13 +11662,12 @@ type CreateTableInput struct {
 	// will be attached to the table.
 	//
 	// When you attach a resource-based policy while creating a table, the policy
-	// creation is strongly consistent.
+	// application is strongly consistent.
 	//
 	// The maximum size supported for a resource-based policy document is 20 KB.
 	// DynamoDB counts whitespaces when calculating the size of a policy against
-	// this limit. You can’t request an increase for this limit. For a full list
-	// of all considerations that you should keep in mind while attaching a resource-based
-	// policy, see Resource-based policy considerations (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
+	// this limit. For a full list of all considerations that apply for resource-based
+	// policies, see Resource-based policy considerations (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
 	ResourcePolicy *string `type:"string"`
 
 	// Represents the settings used to enable server-side encryption.
@@ -11812,6 +11838,12 @@ func (s *CreateTableInput) SetKeySchema(v []*KeySchemaElement) *CreateTableInput
 // SetLocalSecondaryIndexes sets the LocalSecondaryIndexes field's value.
 func (s *CreateTableInput) SetLocalSecondaryIndexes(v []*LocalSecondaryIndex) *CreateTableInput {
 	s.LocalSecondaryIndexes = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *CreateTableInput) SetOnDemandThroughput(v *OnDemandThroughput) *CreateTableInput {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -12714,7 +12746,7 @@ func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePoli
 type DeleteResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique string that represents the revision ID of the policy. If you are
+	// A unique string that represents the revision ID of the policy. If you're
 	// comparing revision IDs, make sure to always use string comparison logic.
 	//
 	// This value will be empty if you make a request against a resource without
@@ -15954,7 +15986,7 @@ type GetResourcePolicyOutput struct {
 	// a table or stream, in JSON format.
 	Policy *string `type:"string"`
 
-	// A unique string that represents the revision ID of the policy. If you are
+	// A unique string that represents the revision ID of the policy. If you're
 	// comparing revision IDs, make sure to always use string comparison logic.
 	RevisionId *string `min:"1" type:"string"`
 }
@@ -16017,6 +16049,11 @@ type GlobalSecondaryIndex struct {
 	//
 	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
+
+	// The maximum number of read and write units for the specified global secondary
+	// index. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
 
 	// Represents attributes that are copied (projected) from the table into the
 	// global secondary index. These are in addition to the primary key attributes
@@ -16106,6 +16143,12 @@ func (s *GlobalSecondaryIndex) SetIndexName(v string) *GlobalSecondaryIndex {
 // SetKeySchema sets the KeySchema field's value.
 func (s *GlobalSecondaryIndex) SetKeySchema(v []*KeySchemaElement) *GlobalSecondaryIndex {
 	s.KeySchema = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *GlobalSecondaryIndex) SetOnDemandThroughput(v *OnDemandThroughput) *GlobalSecondaryIndex {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -16245,6 +16288,11 @@ type GlobalSecondaryIndexDescription struct {
 	// key physically close together, in sorted order by the sort key value.
 	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
+	// The maximum number of read and write units for the specified global secondary
+	// index. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Represents attributes that are copied (projected) from the table into the
 	// global secondary index. These are in addition to the primary key attributes
 	// and index key attributes, which are automatically projected.
@@ -16319,6 +16367,12 @@ func (s *GlobalSecondaryIndexDescription) SetKeySchema(v []*KeySchemaElement) *G
 	return s
 }
 
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *GlobalSecondaryIndexDescription) SetOnDemandThroughput(v *OnDemandThroughput) *GlobalSecondaryIndexDescription {
+	s.OnDemandThroughput = v
+	return s
+}
+
 // SetProjection sets the Projection field's value.
 func (s *GlobalSecondaryIndexDescription) SetProjection(v *Projection) *GlobalSecondaryIndexDescription {
 	s.Projection = v
@@ -16355,6 +16409,11 @@ type GlobalSecondaryIndexInfo struct {
 	// attribute" derives from the way DynamoDB stores items with the same partition
 	// key physically close together, in sorted order by the sort key value.
 	KeySchema []*KeySchemaElement `min:"1" type:"list"`
+
+	// Sets the maximum number of read and write units for the specified on-demand
+	// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
 
 	// Represents attributes that are copied (projected) from the table into the
 	// global secondary index. These are in addition to the primary key attributes
@@ -16393,6 +16452,12 @@ func (s *GlobalSecondaryIndexInfo) SetIndexName(v string) *GlobalSecondaryIndexI
 // SetKeySchema sets the KeySchema field's value.
 func (s *GlobalSecondaryIndexInfo) SetKeySchema(v []*KeySchemaElement) *GlobalSecondaryIndexInfo {
 	s.KeySchema = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *GlobalSecondaryIndexInfo) SetOnDemandThroughput(v *OnDemandThroughput) *GlobalSecondaryIndexInfo {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -19458,6 +19523,92 @@ func (s *LocalSecondaryIndexInfo) SetProjection(v *Projection) *LocalSecondaryIn
 	return s
 }
 
+// Sets the maximum number of read and write units for the specified on-demand
+// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+// or both.
+type OnDemandThroughput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of read request units for the specified table.
+	//
+	// To specify a maximum OnDemandThroughput on your table, set the value of MaxReadRequestUnits
+	// as greater than or equal to 1. To remove the maximum OnDemandThroughput that
+	// is currently set on your table, set the value of MaxReadRequestUnits to -1.
+	MaxReadRequestUnits *int64 `type:"long"`
+
+	// Maximum number of write request units for the specified table.
+	//
+	// To specify a maximum OnDemandThroughput on your table, set the value of MaxWriteRequestUnits
+	// as greater than or equal to 1. To remove the maximum OnDemandThroughput that
+	// is currently set on your table, set the value of MaxWriteRequestUnits to
+	// -1.
+	MaxWriteRequestUnits *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandThroughput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandThroughput) GoString() string {
+	return s.String()
+}
+
+// SetMaxReadRequestUnits sets the MaxReadRequestUnits field's value.
+func (s *OnDemandThroughput) SetMaxReadRequestUnits(v int64) *OnDemandThroughput {
+	s.MaxReadRequestUnits = &v
+	return s
+}
+
+// SetMaxWriteRequestUnits sets the MaxWriteRequestUnits field's value.
+func (s *OnDemandThroughput) SetMaxWriteRequestUnits(v int64) *OnDemandThroughput {
+	s.MaxWriteRequestUnits = &v
+	return s
+}
+
+// Overrides the on-demand throughput settings for this replica table. If you
+// don't specify a value for this parameter, it uses the source table's on-demand
+// throughput settings.
+type OnDemandThroughputOverride struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of read request units for the specified replica table.
+	MaxReadRequestUnits *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandThroughputOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OnDemandThroughputOverride) GoString() string {
+	return s.String()
+}
+
+// SetMaxReadRequestUnits sets the MaxReadRequestUnits field's value.
+func (s *OnDemandThroughputOverride) SetMaxReadRequestUnits(v int64) *OnDemandThroughputOverride {
+	s.MaxReadRequestUnits = &v
+	return s
+}
+
 // Represents a PartiQL statement that uses parameters.
 type ParameterizedStatement struct {
 	_ struct{} `type:"structure"`
@@ -20615,21 +20766,28 @@ type PutResourcePolicyInput struct {
 
 	// A string value that you can use to conditionally update your policy. You
 	// can provide the revision ID of your existing policy to make mutating requests
-	// against that policy. When you provide an expected revision ID, if the revision
-	// ID of the existing policy on the resource doesn't match or if there's no
-	// policy attached to the resource, your request will be rejected with a PolicyNotFoundException.
+	// against that policy.
 	//
-	// To conditionally put a policy when no policy exists for the resource, specify
-	// NO_POLICY for the revision ID.
+	// When you provide an expected revision ID, if the revision ID of the existing
+	// policy on the resource doesn't match or if there's no policy attached to
+	// the resource, your request will be rejected with a PolicyNotFoundException.
+	//
+	// To conditionally attach a policy when no policy exists for the resource,
+	// specify NO_POLICY for the revision ID.
 	ExpectedRevisionId *string `min:"1" type:"string"`
 
 	// An Amazon Web Services resource-based policy document in JSON format.
 	//
-	// The maximum size supported for a resource-based policy document is 20 KB.
-	// DynamoDB counts whitespaces when calculating the size of a policy against
-	// this limit. For a full list of all considerations that you should keep in
-	// mind while attaching a resource-based policy, see Resource-based policy considerations
-	// (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
+	//    * The maximum size supported for a resource-based policy document is 20
+	//    KB. DynamoDB counts whitespaces when calculating the size of a policy
+	//    against this limit.
+	//
+	//    * Within a resource-based policy, if the action for a DynamoDB service-linked
+	//    role (SLR) to replicate data for a global table is denied, adding or deleting
+	//    a replica will fail with an error.
+	//
+	// For a full list of all considerations that apply while attaching a resource-based
+	// policy, see Resource-based policy considerations (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-considerations.html).
 	//
 	// Policy is a required field
 	Policy *string `type:"string" required:"true"`
@@ -20715,7 +20873,7 @@ func (s *PutResourcePolicyInput) SetResourceArn(v string) *PutResourcePolicyInpu
 type PutResourcePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique string that represents the revision ID of the policy. If you are
+	// A unique string that represents the revision ID of the policy. If you're
 	// comparing revision IDs, make sure to always use string comparison logic.
 	RevisionId *string `min:"1" type:"string"`
 }
@@ -21564,6 +21722,10 @@ type ReplicaDescription struct {
 	// The KMS key of the replica that will be used for KMS encryption.
 	KMSMasterKeyId *string `type:"string"`
 
+	// Overrides the maximum on-demand throughput settings for the specified replica
+	// table.
+	OnDemandThroughputOverride *OnDemandThroughputOverride `type:"structure"`
+
 	// Replica-specific provisioned throughput. If not described, uses the source
 	// table's provisioned throughput settings.
 	ProvisionedThroughputOverride *ProvisionedThroughputOverride `type:"structure"`
@@ -21639,6 +21801,12 @@ func (s *ReplicaDescription) SetKMSMasterKeyId(v string) *ReplicaDescription {
 	return s
 }
 
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *ReplicaDescription) SetOnDemandThroughputOverride(v *OnDemandThroughputOverride) *ReplicaDescription {
+	s.OnDemandThroughputOverride = v
+	return s
+}
+
 // SetProvisionedThroughputOverride sets the ProvisionedThroughputOverride field's value.
 func (s *ReplicaDescription) SetProvisionedThroughputOverride(v *ProvisionedThroughputOverride) *ReplicaDescription {
 	s.ProvisionedThroughputOverride = v
@@ -21690,6 +21858,10 @@ type ReplicaGlobalSecondaryIndex struct {
 	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
+	// Overrides the maximum on-demand throughput settings for the specified global
+	// secondary index in the specified replica table.
+	OnDemandThroughputOverride *OnDemandThroughputOverride `type:"structure"`
+
 	// Replica table GSI-specific provisioned throughput. If not specified, uses
 	// the source table GSI's read capacity settings.
 	ProvisionedThroughputOverride *ProvisionedThroughputOverride `type:"structure"`
@@ -21737,6 +21909,12 @@ func (s *ReplicaGlobalSecondaryIndex) Validate() error {
 // SetIndexName sets the IndexName field's value.
 func (s *ReplicaGlobalSecondaryIndex) SetIndexName(v string) *ReplicaGlobalSecondaryIndex {
 	s.IndexName = &v
+	return s
+}
+
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *ReplicaGlobalSecondaryIndex) SetOnDemandThroughputOverride(v *OnDemandThroughputOverride) *ReplicaGlobalSecondaryIndex {
+	s.OnDemandThroughputOverride = v
 	return s
 }
 
@@ -21885,6 +22063,10 @@ type ReplicaGlobalSecondaryIndexDescription struct {
 	// The name of the global secondary index.
 	IndexName *string `min:"3" type:"string"`
 
+	// Overrides the maximum on-demand throughput for the specified global secondary
+	// index in the specified replica table.
+	OnDemandThroughputOverride *OnDemandThroughputOverride `type:"structure"`
+
 	// If not described, uses the source table GSI's read capacity settings.
 	ProvisionedThroughputOverride *ProvisionedThroughputOverride `type:"structure"`
 }
@@ -21910,6 +22092,12 @@ func (s ReplicaGlobalSecondaryIndexDescription) GoString() string {
 // SetIndexName sets the IndexName field's value.
 func (s *ReplicaGlobalSecondaryIndexDescription) SetIndexName(v string) *ReplicaGlobalSecondaryIndexDescription {
 	s.IndexName = &v
+	return s
+}
+
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *ReplicaGlobalSecondaryIndexDescription) SetOnDemandThroughputOverride(v *OnDemandThroughputOverride) *ReplicaGlobalSecondaryIndexDescription {
+	s.OnDemandThroughputOverride = v
 	return s
 }
 
@@ -22824,6 +23012,11 @@ type RestoreTableFromBackupInput struct {
 	// all of the indexes at the time of restore.
 	LocalSecondaryIndexOverride []*LocalSecondaryIndex `type:"list"`
 
+	// Sets the maximum number of read and write units for the specified on-demand
+	// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughputOverride *OnDemandThroughput `type:"structure"`
+
 	// Provisioned throughput settings for the restored table.
 	ProvisionedThroughputOverride *ProvisionedThroughput `type:"structure"`
 
@@ -22925,6 +23118,12 @@ func (s *RestoreTableFromBackupInput) SetLocalSecondaryIndexOverride(v []*LocalS
 	return s
 }
 
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *RestoreTableFromBackupInput) SetOnDemandThroughputOverride(v *OnDemandThroughput) *RestoreTableFromBackupInput {
+	s.OnDemandThroughputOverride = v
+	return s
+}
+
 // SetProvisionedThroughputOverride sets the ProvisionedThroughputOverride field's value.
 func (s *RestoreTableFromBackupInput) SetProvisionedThroughputOverride(v *ProvisionedThroughput) *RestoreTableFromBackupInput {
 	s.ProvisionedThroughputOverride = v
@@ -22989,6 +23188,11 @@ type RestoreTableToPointInTimeInput struct {
 	// should match existing secondary indexes. You can choose to exclude some or
 	// all of the indexes at the time of restore.
 	LocalSecondaryIndexOverride []*LocalSecondaryIndex `type:"list"`
+
+	// Sets the maximum number of read and write units for the specified on-demand
+	// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughputOverride *OnDemandThroughput `type:"structure"`
 
 	// Provisioned throughput settings for the restored table.
 	ProvisionedThroughputOverride *ProvisionedThroughput `type:"structure"`
@@ -23096,6 +23300,12 @@ func (s *RestoreTableToPointInTimeInput) SetGlobalSecondaryIndexOverride(v []*Gl
 // SetLocalSecondaryIndexOverride sets the LocalSecondaryIndexOverride field's value.
 func (s *RestoreTableToPointInTimeInput) SetLocalSecondaryIndexOverride(v []*LocalSecondaryIndex) *RestoreTableToPointInTimeInput {
 	s.LocalSecondaryIndexOverride = v
+	return s
+}
+
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *RestoreTableToPointInTimeInput) SetOnDemandThroughputOverride(v *OnDemandThroughput) *RestoreTableToPointInTimeInput {
+	s.OnDemandThroughputOverride = v
 	return s
 }
 
@@ -23883,6 +24093,11 @@ type SourceTableDetails struct {
 	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
+	// Sets the maximum number of read and write units for the specified on-demand
+	// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Read IOPs and Write IOPS on the table when the backup was created.
 	//
 	// ProvisionedThroughput is a required field
@@ -23943,6 +24158,12 @@ func (s *SourceTableDetails) SetItemCount(v int64) *SourceTableDetails {
 // SetKeySchema sets the KeySchema field's value.
 func (s *SourceTableDetails) SetKeySchema(v []*KeySchemaElement) *SourceTableDetails {
 	s.KeySchema = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *SourceTableDetails) SetOnDemandThroughput(v *OnDemandThroughput) *SourceTableDetails {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -24313,6 +24534,11 @@ type TableCreationParameters struct {
 	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
+	// Sets the maximum number of read and write units for the specified on-demand
+	// table. If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Represents the provisioned throughput settings for a specified table or index.
 	// The settings can be modified using the UpdateTable operation.
 	//
@@ -24429,6 +24655,12 @@ func (s *TableCreationParameters) SetGlobalSecondaryIndexes(v []*GlobalSecondary
 // SetKeySchema sets the KeySchema field's value.
 func (s *TableCreationParameters) SetKeySchema(v []*KeySchemaElement) *TableCreationParameters {
 	s.KeySchema = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *TableCreationParameters) SetOnDemandThroughput(v *OnDemandThroughput) *TableCreationParameters {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -24613,6 +24845,11 @@ type TableDescription struct {
 	// be returned.
 	LocalSecondaryIndexes []*LocalSecondaryIndexDescription `type:"list"`
 
+	// The maximum number of read and write units for the specified on-demand table.
+	// If you use this parameter, you must specify MaxReadRequestUnits, MaxWriteRequestUnits,
+	// or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// The provisioned throughput settings for the table, consisting of read and
 	// write capacity units, along with data about increases and decreases.
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
@@ -24757,6 +24994,12 @@ func (s *TableDescription) SetLatestStreamLabel(v string) *TableDescription {
 // SetLocalSecondaryIndexes sets the LocalSecondaryIndexes field's value.
 func (s *TableDescription) SetLocalSecondaryIndexes(v []*LocalSecondaryIndexDescription) *TableDescription {
 	s.LocalSecondaryIndexes = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *TableDescription) SetOnDemandThroughput(v *OnDemandThroughput) *TableDescription {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -26438,15 +26681,18 @@ type UpdateGlobalSecondaryIndexAction struct {
 	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
+	// Updates the maximum number of read and write units for the specified global
+	// secondary index. If you use this parameter, you must specify MaxReadRequestUnits,
+	// MaxWriteRequestUnits, or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
+
 	// Represents the provisioned throughput settings for the specified global secondary
 	// index.
 	//
 	// For current minimum and maximum provisioned throughput values, see Service,
 	// Account, and Table Quotas (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
-	//
-	// ProvisionedThroughput is a required field
-	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
+	ProvisionedThroughput *ProvisionedThroughput `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26476,9 +26722,6 @@ func (s *UpdateGlobalSecondaryIndexAction) Validate() error {
 	if s.IndexName != nil && len(*s.IndexName) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexName", 3))
 	}
-	if s.ProvisionedThroughput == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProvisionedThroughput"))
-	}
 	if s.ProvisionedThroughput != nil {
 		if err := s.ProvisionedThroughput.Validate(); err != nil {
 			invalidParams.AddNested("ProvisionedThroughput", err.(request.ErrInvalidParams))
@@ -26494,6 +26737,12 @@ func (s *UpdateGlobalSecondaryIndexAction) Validate() error {
 // SetIndexName sets the IndexName field's value.
 func (s *UpdateGlobalSecondaryIndexAction) SetIndexName(v string) *UpdateGlobalSecondaryIndexAction {
 	s.IndexName = &v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *UpdateGlobalSecondaryIndexAction) SetOnDemandThroughput(v *OnDemandThroughput) *UpdateGlobalSecondaryIndexAction {
+	s.OnDemandThroughput = v
 	return s
 }
 
@@ -27382,6 +27631,9 @@ type UpdateReplicationGroupMemberAction struct {
 	// from the default DynamoDB KMS key alias/aws/dynamodb.
 	KMSMasterKeyId *string `type:"string"`
 
+	// Overrides the maximum on-demand throughput for the replica table.
+	OnDemandThroughputOverride *OnDemandThroughputOverride `type:"structure"`
+
 	// Replica-specific provisioned throughput. If not specified, uses the source
 	// table's provisioned throughput settings.
 	ProvisionedThroughputOverride *ProvisionedThroughputOverride `type:"structure"`
@@ -27457,6 +27709,12 @@ func (s *UpdateReplicationGroupMemberAction) SetKMSMasterKeyId(v string) *Update
 	return s
 }
 
+// SetOnDemandThroughputOverride sets the OnDemandThroughputOverride field's value.
+func (s *UpdateReplicationGroupMemberAction) SetOnDemandThroughputOverride(v *OnDemandThroughputOverride) *UpdateReplicationGroupMemberAction {
+	s.OnDemandThroughputOverride = v
+	return s
+}
+
 // SetProvisionedThroughputOverride sets the ProvisionedThroughputOverride field's value.
 func (s *UpdateReplicationGroupMemberAction) SetProvisionedThroughputOverride(v *ProvisionedThroughputOverride) *UpdateReplicationGroupMemberAction {
 	s.ProvisionedThroughputOverride = v
@@ -27517,6 +27775,11 @@ type UpdateTableInput struct {
 	// For more information, see Managing Global Secondary Indexes (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html)
 	// in the Amazon DynamoDB Developer Guide.
 	GlobalSecondaryIndexUpdates []*GlobalSecondaryIndexUpdate `type:"list"`
+
+	// Updates the maximum number of read and write units for the specified table
+	// in on-demand capacity mode. If you use this parameter, you must specify MaxReadRequestUnits,
+	// MaxWriteRequestUnits, or both.
+	OnDemandThroughput *OnDemandThroughput `type:"structure"`
 
 	// The new provisioned throughput settings for the specified table or index.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure"`
@@ -27646,6 +27909,12 @@ func (s *UpdateTableInput) SetDeletionProtectionEnabled(v bool) *UpdateTableInpu
 // SetGlobalSecondaryIndexUpdates sets the GlobalSecondaryIndexUpdates field's value.
 func (s *UpdateTableInput) SetGlobalSecondaryIndexUpdates(v []*GlobalSecondaryIndexUpdate) *UpdateTableInput {
 	s.GlobalSecondaryIndexUpdates = v
+	return s
+}
+
+// SetOnDemandThroughput sets the OnDemandThroughput field's value.
+func (s *UpdateTableInput) SetOnDemandThroughput(v *OnDemandThroughput) *UpdateTableInput {
+	s.OnDemandThroughput = v
 	return s
 }
 

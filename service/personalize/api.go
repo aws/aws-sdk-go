@@ -376,6 +376,139 @@ func (c *Personalize) CreateCampaignWithContext(ctx aws.Context, input *CreateCa
 	return out, req.Send()
 }
 
+const opCreateDataDeletionJob = "CreateDataDeletionJob"
+
+// CreateDataDeletionJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataDeletionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataDeletionJob for more information on using the CreateDataDeletionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CreateDataDeletionJobRequest method.
+//	req, resp := client.CreateDataDeletionJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataDeletionJob
+func (c *Personalize) CreateDataDeletionJobRequest(input *CreateDataDeletionJobInput) (req *request.Request, output *CreateDataDeletionJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataDeletionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDataDeletionJobInput{}
+	}
+
+	output = &CreateDataDeletionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataDeletionJob API operation for Amazon Personalize.
+//
+// Creates a batch job that deletes all references to specific users from an
+// Amazon Personalize dataset group in batches. You specify the users to delete
+// in a CSV file of userIds in an Amazon S3 bucket. After a job completes, Amazon
+// Personalize no longer trains on the users’ data and no longer considers
+// the users when generating user segments. For more information about creating
+// a data deletion job, see Deleting users (https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html).
+//
+//   - Your input file must be a CSV file with a single USER_ID column that
+//     lists the users IDs. For more information about preparing the CSV file,
+//     see Preparing your data deletion file and uploading it to Amazon S3 (https://docs.aws.amazon.com/personalize/latest/dg/prepare-deletion-input-file.html).
+//
+//   - To give Amazon Personalize permission to access your input CSV file
+//     of userIds, you must specify an IAM service role that has permission to
+//     read from the data source. This role needs GetObject and ListBucket permissions
+//     for the bucket and its content. These permissions are the same as importing
+//     data. For information on granting access to your Amazon S3 bucket, see
+//     Giving Amazon Personalize Access to Amazon S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
+//
+// After you create a job, it can take up to a day to delete all references
+// to the users from datasets and models. Until the job completes, Amazon Personalize
+// continues to use the data when training. And if you use a User Segmentation
+// recipe, the users might appear in user segments.
+//
+// # Status
+//
+// A data deletion job can have one of the following statuses:
+//
+//   - PENDING > IN_PROGRESS > COMPLETED -or- FAILED
+//
+// To get the status of the data deletion job, call DescribeDataDeletionJob
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html)
+// API operation and specify the Amazon Resource Name (ARN) of the job. If the
+// status is FAILED, the response includes a failureReason key, which describes
+// why the job failed.
+//
+// Related APIs
+//
+//   - ListDataDeletionJobs (https://docs.aws.amazon.com/personalize/latest/dg/API_ListDataDeletionJobs.html)
+//
+//   - DescribeDataDeletionJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateDataDeletionJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+//   - ResourceAlreadyExistsException
+//     The specified resource already exists.
+//
+//   - LimitExceededException
+//     The limit on the number of requests per second has been exceeded.
+//
+//   - ResourceInUseException
+//     The specified resource is in use.
+//
+//   - TooManyTagsException
+//     You have exceeded the maximum number of tags you can apply to this resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDataDeletionJob
+func (c *Personalize) CreateDataDeletionJob(input *CreateDataDeletionJobInput) (*CreateDataDeletionJobOutput, error) {
+	req, out := c.CreateDataDeletionJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataDeletionJobWithContext is the same as CreateDataDeletionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataDeletionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateDataDeletionJobWithContext(ctx aws.Context, input *CreateDataDeletionJobInput, opts ...request.Option) (*CreateDataDeletionJobOutput, error) {
+	req, out := c.CreateDataDeletionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDataset = "CreateDataset"
 
 // CreateDatasetRequest generates a "aws/request.Request" representing the
@@ -2876,6 +3009,89 @@ func (c *Personalize) DescribeCampaignWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeDataDeletionJob = "DescribeDataDeletionJob"
+
+// DescribeDataDeletionJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataDeletionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataDeletionJob for more information on using the DescribeDataDeletionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DescribeDataDeletionJobRequest method.
+//	req, resp := client.DescribeDataDeletionJobRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataDeletionJob
+func (c *Personalize) DescribeDataDeletionJobRequest(input *DescribeDataDeletionJobInput) (req *request.Request, output *DescribeDataDeletionJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataDeletionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDataDeletionJobInput{}
+	}
+
+	output = &DescribeDataDeletionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataDeletionJob API operation for Amazon Personalize.
+//
+// Describes the data deletion job created by CreateDataDeletionJob (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataDeletionJob.html),
+// including the job status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeDataDeletionJob for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - ResourceNotFoundException
+//     Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDataDeletionJob
+func (c *Personalize) DescribeDataDeletionJob(input *DescribeDataDeletionJobInput) (*DescribeDataDeletionJobOutput, error) {
+	req, out := c.DescribeDataDeletionJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataDeletionJobWithContext is the same as DescribeDataDeletionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataDeletionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeDataDeletionJobWithContext(ctx aws.Context, input *DescribeDataDeletionJobInput, opts ...request.Option) (*DescribeDataDeletionJobOutput, error) {
+	req, out := c.DescribeDataDeletionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDataset = "DescribeDataset"
 
 // DescribeDatasetRequest generates a "aws/request.Request" representing the
@@ -4488,6 +4704,92 @@ func (c *Personalize) ListCampaignsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	return p.Err()
+}
+
+const opListDataDeletionJobs = "ListDataDeletionJobs"
+
+// ListDataDeletionJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataDeletionJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataDeletionJobs for more information on using the ListDataDeletionJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListDataDeletionJobsRequest method.
+//	req, resp := client.ListDataDeletionJobsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDataDeletionJobs
+func (c *Personalize) ListDataDeletionJobsRequest(input *ListDataDeletionJobsInput) (req *request.Request, output *ListDataDeletionJobsOutput) {
+	op := &request.Operation{
+		Name:       opListDataDeletionJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListDataDeletionJobsInput{}
+	}
+
+	output = &ListDataDeletionJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataDeletionJobs API operation for Amazon Personalize.
+//
+// Returns a list of data deletion jobs for a dataset group ordered by creation
+// time, with the most recent first. When a dataset group is not specified,
+// all the data deletion jobs associated with the account are listed. The response
+// provides the properties for each job, including the Amazon Resource Name
+// (ARN). For more information on data deletion jobs, see Deleting users (https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListDataDeletionJobs for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InvalidInputException
+//     Provide a valid value for the field or parameter.
+//
+//   - InvalidNextTokenException
+//     The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDataDeletionJobs
+func (c *Personalize) ListDataDeletionJobs(input *ListDataDeletionJobsInput) (*ListDataDeletionJobsOutput, error) {
+	req, out := c.ListDataDeletionJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataDeletionJobsWithContext is the same as ListDataDeletionJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataDeletionJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListDataDeletionJobsWithContext(ctx aws.Context, input *ListDataDeletionJobsInput, opts ...request.Option) (*ListDataDeletionJobsOutput, error) {
+	req, out := c.ListDataDeletionJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListDatasetExportJobs = "ListDatasetExportJobs"
@@ -9335,6 +9637,150 @@ func (s *CreateCampaignOutput) SetCampaignArn(v string) *CreateCampaignOutput {
 	return s
 }
 
+type CreateDataDeletionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket that contains the list of userIds of the users to delete.
+	//
+	// DataSource is a required field
+	DataSource *DataSource `locationName:"dataSource" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the dataset group that has the datasets
+	// you want to delete records from.
+	//
+	// DatasetGroupArn is a required field
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
+
+	// The name for the data deletion job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that has permissions to read
+	// from the Amazon S3 data source.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// A list of tags (https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html)
+	// to apply to the data deletion job.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataDeletionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataDeletionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataDeletionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataDeletionJobInput"}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.DatasetGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetGroupArn"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *CreateDataDeletionJobInput) SetDataSource(v *DataSource) *CreateDataDeletionJobInput {
+	s.DataSource = v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *CreateDataDeletionJobInput) SetDatasetGroupArn(v string) *CreateDataDeletionJobInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateDataDeletionJobInput) SetJobName(v string) *CreateDataDeletionJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateDataDeletionJobInput) SetRoleArn(v string) *CreateDataDeletionJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataDeletionJobInput) SetTags(v []*Tag) *CreateDataDeletionJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDataDeletionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the data deletion job.
+	DataDeletionJobArn *string `locationName:"dataDeletionJobArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataDeletionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataDeletionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataDeletionJobArn sets the DataDeletionJobArn field's value.
+func (s *CreateDataDeletionJobOutput) SetDataDeletionJobArn(v string) *CreateDataDeletionJobOutput {
+	s.DataDeletionJobArn = &v
+	return s
+}
+
 type CreateDatasetExportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10968,12 +11414,239 @@ func (s *CreateSolutionVersionOutput) SetSolutionVersionArn(v string) *CreateSol
 	return s
 }
 
-// Describes the data source that contains the data to upload to a dataset.
+// Describes a job that deletes all references to specific users from an Amazon
+// Personalize dataset group in batches. For information about creating a data
+// deletion job, see Deleting users (https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html).
+type DataDeletionJob struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time (in Unix time) of the data deletion job.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the data deletion job.
+	DataDeletionJobArn *string `locationName:"dataDeletionJobArn" type:"string"`
+
+	// Describes the data source that contains the data to upload to a dataset,
+	// or the list of records to delete from Amazon Personalize.
+	DataSource *DataSource `locationName:"dataSource" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset group the job deletes records
+	// from.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If a data deletion job fails, provides the reason why.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the data deletion job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The date and time (in Unix time) the data deletion job was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The number of records deleted by a COMPLETED job.
+	NumDeleted *int64 `locationName:"numDeleted" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that has permissions to read
+	// from the Amazon S3 data source.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The status of the data deletion job.
+	//
+	// A data deletion job can have one of the following statuses:
+	//
+	//    * PENDING > IN_PROGRESS > COMPLETED -or- FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDeletionJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDeletionJob) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DataDeletionJob) SetCreationDateTime(v time.Time) *DataDeletionJob {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDataDeletionJobArn sets the DataDeletionJobArn field's value.
+func (s *DataDeletionJob) SetDataDeletionJobArn(v string) *DataDeletionJob {
+	s.DataDeletionJobArn = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DataDeletionJob) SetDataSource(v *DataSource) *DataDeletionJob {
+	s.DataSource = v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *DataDeletionJob) SetDatasetGroupArn(v string) *DataDeletionJob {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DataDeletionJob) SetFailureReason(v string) *DataDeletionJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DataDeletionJob) SetJobName(v string) *DataDeletionJob {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DataDeletionJob) SetLastUpdatedDateTime(v time.Time) *DataDeletionJob {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetNumDeleted sets the NumDeleted field's value.
+func (s *DataDeletionJob) SetNumDeleted(v int64) *DataDeletionJob {
+	s.NumDeleted = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DataDeletionJob) SetRoleArn(v string) *DataDeletionJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataDeletionJob) SetStatus(v string) *DataDeletionJob {
+	s.Status = &v
+	return s
+}
+
+// Provides a summary of the properties of a data deletion job. For a complete
+// listing, call the DescribeDataDeletionJob (https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html)
+// API operation.
+type DataDeletionJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time (in Unix time) of the data deletion job.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the data deletion job.
+	DataDeletionJobArn *string `locationName:"dataDeletionJobArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the dataset group the job deleted records
+	// from.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If a data deletion job fails, provides the reason why.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the data deletion job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The date and time (in Unix time) the data deletion job was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The status of the data deletion job.
+	//
+	// A data deletion job can have one of the following statuses:
+	//
+	//    * PENDING > IN_PROGRESS > COMPLETED -or- FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDeletionJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataDeletionJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DataDeletionJobSummary) SetCreationDateTime(v time.Time) *DataDeletionJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDataDeletionJobArn sets the DataDeletionJobArn field's value.
+func (s *DataDeletionJobSummary) SetDataDeletionJobArn(v string) *DataDeletionJobSummary {
+	s.DataDeletionJobArn = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *DataDeletionJobSummary) SetDatasetGroupArn(v string) *DataDeletionJobSummary {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DataDeletionJobSummary) SetFailureReason(v string) *DataDeletionJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DataDeletionJobSummary) SetJobName(v string) *DataDeletionJobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DataDeletionJobSummary) SetLastUpdatedDateTime(v time.Time) *DataDeletionJobSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataDeletionJobSummary) SetStatus(v string) *DataDeletionJobSummary {
+	s.Status = &v
+	return s
+}
+
+// Describes the data source that contains the data to upload to a dataset,
+// or the list of records to delete from Amazon Personalize.
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
-	// The path to the Amazon S3 bucket where the data that you want to upload to
-	// your dataset is stored. For example:
+	// For dataset import jobs, the path to the Amazon S3 bucket where the data
+	// that you want to upload to your dataset is stored. For data deletion jobs,
+	// the path to the Amazon S3 bucket that stores the list of records to delete.
+	//
+	// For example:
+	//
+	// s3://bucket-name/folder-name/fileName.csv
+	//
+	// If your CSV files are in a folder in your Amazon S3 bucket and you want your
+	// import job or data deletion job to consider multiple files, you can specify
+	// the path to the folder. With a data deletion job, Amazon Personalize uses
+	// all files in the folder and any sub folder. Use the following syntax with
+	// a / after the folder name:
 	//
 	// s3://bucket-name/folder-name/
 	DataLocation *string `locationName:"dataLocation" type:"string"`
@@ -13299,6 +13972,93 @@ func (s DescribeCampaignOutput) GoString() string {
 // SetCampaign sets the Campaign field's value.
 func (s *DescribeCampaignOutput) SetCampaign(v *Campaign) *DescribeCampaignOutput {
 	s.Campaign = v
+	return s
+}
+
+type DescribeDataDeletionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the data deletion job.
+	//
+	// DataDeletionJobArn is a required field
+	DataDeletionJobArn *string `locationName:"dataDeletionJobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataDeletionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataDeletionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDataDeletionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDataDeletionJobInput"}
+	if s.DataDeletionJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataDeletionJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataDeletionJobArn sets the DataDeletionJobArn field's value.
+func (s *DescribeDataDeletionJobInput) SetDataDeletionJobArn(v string) *DescribeDataDeletionJobInput {
+	s.DataDeletionJobArn = &v
+	return s
+}
+
+type DescribeDataDeletionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the data deletion job, including the status.
+	//
+	// The status is one of the following values:
+	//
+	//    * PENDING
+	//
+	//    * IN_PROGRESS
+	//
+	//    * COMPLETED
+	//
+	//    * FAILED
+	DataDeletionJob *DataDeletionJob `locationName:"dataDeletionJob" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataDeletionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDataDeletionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataDeletionJob sets the DataDeletionJob field's value.
+func (s *DescribeDataDeletionJobOutput) SetDataDeletionJob(v *DataDeletionJob) *DescribeDataDeletionJobOutput {
+	s.DataDeletionJob = v
 	return s
 }
 
@@ -15717,6 +16477,110 @@ func (s *ListCampaignsOutput) SetCampaigns(v []*CampaignSummary) *ListCampaignsO
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCampaignsOutput) SetNextToken(v string) *ListCampaignsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataDeletionJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset group to list data deletion
+	// jobs for.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The maximum number of data deletion jobs to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListDataDeletionJobs for getting
+	// the next set of jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataDeletionJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataDeletionJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataDeletionJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataDeletionJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *ListDataDeletionJobsInput) SetDatasetGroupArn(v string) *ListDataDeletionJobsInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataDeletionJobsInput) SetMaxResults(v int64) *ListDataDeletionJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataDeletionJobsInput) SetNextToken(v string) *ListDataDeletionJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataDeletionJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of data deletion jobs.
+	DataDeletionJobs []*DataDeletionJobSummary `locationName:"dataDeletionJobs" type:"list"`
+
+	// A token for getting the next set of data deletion jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataDeletionJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataDeletionJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataDeletionJobs sets the DataDeletionJobs field's value.
+func (s *ListDataDeletionJobsOutput) SetDataDeletionJobs(v []*DataDeletionJobSummary) *ListDataDeletionJobsOutput {
+	s.DataDeletionJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataDeletionJobsOutput) SetNextToken(v string) *ListDataDeletionJobsOutput {
 	s.NextToken = &v
 	return s
 }

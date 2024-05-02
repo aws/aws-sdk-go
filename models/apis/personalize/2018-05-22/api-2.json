@@ -5,6 +5,7 @@
     "endpointPrefix":"personalize",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon Personalize",
     "serviceId":"Personalize",
     "signatureVersion":"v4",
@@ -64,6 +65,23 @@
         {"shape":"TooManyTagsException"}
       ],
       "idempotent":true
+    },
+    "CreateDataDeletionJob":{
+      "name":"CreateDataDeletionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDataDeletionJobRequest"},
+      "output":{"shape":"CreateDataDeletionJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"TooManyTagsException"}
+      ]
     },
     "CreateDataset":{
       "name":"CreateDataset",
@@ -431,6 +449,20 @@
       ],
       "idempotent":true
     },
+    "DescribeDataDeletionJob":{
+      "name":"DescribeDataDeletionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDataDeletionJobRequest"},
+      "output":{"shape":"DescribeDataDeletionJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribeDataset":{
       "name":"DescribeDataset",
       "http":{
@@ -662,6 +694,20 @@
       },
       "input":{"shape":"ListCampaignsRequest"},
       "output":{"shape":"ListCampaignsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
+    "ListDataDeletionJobs":{
+      "name":"ListDataDeletionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDataDeletionJobsRequest"},
+      "output":{"shape":"ListDataDeletionJobsResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InvalidNextTokenException"}
@@ -1351,6 +1397,28 @@
         "campaignArn":{"shape":"Arn"}
       }
     },
+    "CreateDataDeletionJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "datasetGroupArn",
+        "dataSource",
+        "roleArn"
+      ],
+      "members":{
+        "jobName":{"shape":"Name"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "dataSource":{"shape":"DataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateDataDeletionJobResponse":{
+      "type":"structure",
+      "members":{
+        "dataDeletionJobArn":{"shape":"Arn"}
+      }
+    },
     "CreateDatasetExportJobRequest":{
       "type":"structure",
       "required":[
@@ -1576,6 +1644,38 @@
       "members":{
         "solutionVersionArn":{"shape":"Arn"}
       }
+    },
+    "DataDeletionJob":{
+      "type":"structure",
+      "members":{
+        "jobName":{"shape":"Name"},
+        "dataDeletionJobArn":{"shape":"Arn"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "dataSource":{"shape":"DataSource"},
+        "roleArn":{"shape":"RoleArn"},
+        "status":{"shape":"Status"},
+        "numDeleted":{"shape":"Integer"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "DataDeletionJobSummary":{
+      "type":"structure",
+      "members":{
+        "dataDeletionJobArn":{"shape":"Arn"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "jobName":{"shape":"Name"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "DataDeletionJobs":{
+      "type":"list",
+      "member":{"shape":"DataDeletionJobSummary"},
+      "max":100
     },
     "DataSource":{
       "type":"structure",
@@ -1914,6 +2014,19 @@
       "type":"structure",
       "members":{
         "campaign":{"shape":"Campaign"}
+      }
+    },
+    "DescribeDataDeletionJobRequest":{
+      "type":"structure",
+      "required":["dataDeletionJobArn"],
+      "members":{
+        "dataDeletionJobArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeDataDeletionJobResponse":{
+      "type":"structure",
+      "members":{
+        "dataDeletionJob":{"shape":"DataDeletionJob"}
       }
     },
     "DescribeDatasetExportJobRequest":{
@@ -2281,6 +2394,7 @@
         "ALL"
       ]
     },
+    "Integer":{"type":"integer"},
     "IntegerHyperParameterRange":{
       "type":"structure",
       "members":{
@@ -2375,6 +2489,21 @@
       "type":"structure",
       "members":{
         "campaigns":{"shape":"Campaigns"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDataDeletionJobsRequest":{
+      "type":"structure",
+      "members":{
+        "datasetGroupArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListDataDeletionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "dataDeletionJobs":{"shape":"DataDeletionJobs"},
         "nextToken":{"shape":"NextToken"}
       }
     },

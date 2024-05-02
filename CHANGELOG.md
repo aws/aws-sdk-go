@@ -1,3 +1,14 @@
+Release v1.52.1 (2024-05-02)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support to specify an optional, maximum OnDemandThroughput for DynamoDB tables and global secondary indexes in the CreateTable or UpdateTable APIs. You can also override the OnDemandThroughput settings by calling the ImportTable, RestoreFromPointInTime, or RestoreFromBackup APIs.
+* `service/ec2`: Updates service API and documentation
+  * This release includes a new API for retrieving the public endorsement key of the EC2 instance's Nitro Trusted Platform Module (NitroTPM).
+* `service/personalize`: Updates service API and documentation
+* `service/redshift-serverless`: Updates service API and documentation
+
 Release v1.52.0 (2024-05-01)
 ===
 

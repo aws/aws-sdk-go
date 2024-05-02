@@ -108,7 +108,7 @@
         "UpdateWorkgroupRequest$enhancedVpcRouting": "<p>The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
         "UpdateWorkgroupRequest$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network.</p>",
         "Workgroup$enhancedVpcRouting": "<p>The value that specifies whether to enable enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.</p>",
-        "Workgroup$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network</p>"
+        "Workgroup$publiclyAccessible": "<p>A value that specifies whether the workgroup can be accessible from a public network.</p>"
       }
     },
     "ConfigParameter": {
@@ -120,9 +120,9 @@
     "ConfigParameterList": {
       "base": null,
       "refs": {
-        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
-        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
-        "Workgroup$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
+        "CreateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, <code>use_fips_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "UpdateWorkgroupRequest$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, <code>use_fips_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>",
+        "Workgroup$configParameters": "<p>An array of parameters to set for advanced control over a database. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, <code>use_fips_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\"> Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ConflictException": {
@@ -813,6 +813,7 @@
         "RecoveryPoint$namespaceName": "<p>The name of the namespace the recovery point is associated with.</p>",
         "RestoreFromRecoveryPointRequest$namespaceName": "<p>The name of the namespace to restore data into.</p>",
         "RestoreFromSnapshotRequest$namespaceName": "<p>The name of the namespace to restore the snapshot to.</p>",
+        "ScheduledActionAssociation$namespaceName": "<p>Name of associated Amazon Redshift Serverless namespace.</p>",
         "ScheduledActionResponse$namespaceName": "<p>The end time in UTC when the schedule is no longer active. After this time, the scheduled action does not trigger.</p>",
         "SnapshotCopyConfiguration$namespaceName": "<p>The name of the namespace to copy snapshots from in the source Amazon Web Services Region.</p>",
         "UpdateNamespaceRequest$namespaceName": "<p>The name of the namespace to update. You can't update the name of a namespace once it is created.</p>"
@@ -868,7 +869,7 @@
     "ParameterKey": {
       "base": null,
       "refs": {
-        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\">Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
+        "ConfigParameter$parameterKey": "<p>The key of the parameter. The options are <code>auto_mv</code>, <code>datestyle</code>, <code>enable_case_sensitive_identifier</code>, <code>enable_user_activity_logging</code>, <code>query_group</code>, <code>search_path</code>, <code>require_ssl</code>, <code>use_fips_ssl</code>, and query monitoring metrics that let you define performance boundaries. For more information about query monitoring rules and available metrics, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless\">Query monitoring metrics for Amazon Redshift Serverless</a>.</p>"
       }
     },
     "ParameterValue": {
@@ -966,14 +967,20 @@
         "UpdateScheduledActionRequest$schedule": "<p>The schedule for a one-time (at timestamp format) or recurring (cron format) scheduled action. Schedule invocations must be separated by at least one hour. Times are in UTC.</p> <ul> <li> <p>Format of at timestamp is <code>yyyy-mm-ddThh:mm:ss</code>. For example, <code>2016-03-04T17:27:00</code>.</p> </li> <li> <p>Format of cron expression is <code>(Minutes Hours Day-of-month Month Day-of-week Year)</code>. For example, <code>\"(0 10 ? * MON *)\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p> </li> </ul>"
       }
     },
+    "ScheduledActionAssociation": {
+      "base": "<p>Contains names of objects associated with a scheduled action.</p>",
+      "refs": {
+        "ScheduledActionsList$member": null
+      }
+    },
     "ScheduledActionName": {
       "base": null,
       "refs": {
         "CreateScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action.</p>",
         "DeleteScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action to delete.</p>",
         "GetScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action.</p>",
+        "ScheduledActionAssociation$scheduledActionName": "<p>Name of associated scheduled action.</p>",
         "ScheduledActionResponse$scheduledActionName": "<p>The name of the scheduled action.</p>",
-        "ScheduledActionsList$member": null,
         "UpdateScheduledActionRequest$scheduledActionName": "<p>The name of the scheduled action to update to.</p>"
       }
     },
@@ -989,7 +996,7 @@
     "ScheduledActionsList": {
       "base": null,
       "refs": {
-        "ListScheduledActionsResponse$scheduledActions": "<p>All of the returned scheduled action objects.</p>"
+        "ListScheduledActionsResponse$scheduledActions": "<p>All of the returned scheduled action association objects.</p>"
       }
     },
     "SecurityGroupId": {

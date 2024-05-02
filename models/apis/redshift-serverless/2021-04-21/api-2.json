@@ -2018,6 +2018,13 @@
       },
       "union":true
     },
+    "ScheduledActionAssociation":{
+      "type":"structure",
+      "members":{
+        "namespaceName":{"shape":"NamespaceName"},
+        "scheduledActionName":{"shape":"ScheduledActionName"}
+      }
+    },
     "ScheduledActionName":{
       "type":"string",
       "max":60,
@@ -2042,7 +2049,7 @@
     },
     "ScheduledActionsList":{
       "type":"list",
-      "member":{"shape":"ScheduledActionName"}
+      "member":{"shape":"ScheduledActionAssociation"}
     },
     "SecurityGroupId":{"type":"string"},
     "SecurityGroupIdList":{

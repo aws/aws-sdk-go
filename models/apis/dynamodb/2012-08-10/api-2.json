@@ -1528,7 +1528,8 @@
         "IndexName":{"shape":"IndexName"},
         "KeySchema":{"shape":"KeySchema"},
         "Projection":{"shape":"Projection"},
-        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "CreateGlobalTableInput":{
@@ -1562,6 +1563,7 @@
         "RegionName":{"shape":"RegionName"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughputOverride"},
         "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"},
         "TableClassOverride":{"shape":"TableClass"}
       }
@@ -1586,7 +1588,8 @@
         "Tags":{"shape":"TagList"},
         "TableClass":{"shape":"TableClass"},
         "DeletionProtectionEnabled":{"shape":"DeletionProtectionEnabled"},
-        "ResourcePolicy":{"shape":"ResourcePolicy"}
+        "ResourcePolicy":{"shape":"ResourcePolicy"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "CreateTableOutput":{
@@ -2222,7 +2225,8 @@
         "IndexName":{"shape":"IndexName"},
         "KeySchema":{"shape":"KeySchema"},
         "Projection":{"shape":"Projection"},
-        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "GlobalSecondaryIndexAutoScalingUpdate":{
@@ -2248,7 +2252,8 @@
         "ProvisionedThroughput":{"shape":"ProvisionedThroughputDescription"},
         "IndexSizeBytes":{"shape":"LongObject"},
         "ItemCount":{"shape":"LongObject"},
-        "IndexArn":{"shape":"String"}
+        "IndexArn":{"shape":"String"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "GlobalSecondaryIndexDescriptionList":{
@@ -2261,7 +2266,8 @@
         "IndexName":{"shape":"IndexName"},
         "KeySchema":{"shape":"KeySchema"},
         "Projection":{"shape":"Projection"},
-        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "GlobalSecondaryIndexList":{
@@ -2892,6 +2898,19 @@
       "type":"list",
       "member":{"shape":"NumberAttributeValue"}
     },
+    "OnDemandThroughput":{
+      "type":"structure",
+      "members":{
+        "MaxReadRequestUnits":{"shape":"LongObject"},
+        "MaxWriteRequestUnits":{"shape":"LongObject"}
+      }
+    },
+    "OnDemandThroughputOverride":{
+      "type":"structure",
+      "members":{
+        "MaxReadRequestUnits":{"shape":"LongObject"}
+      }
+    },
     "ParameterizedStatement":{
       "type":"structure",
       "required":["Statement"],
@@ -3193,6 +3212,7 @@
         "ReplicaStatusPercentProgress":{"shape":"ReplicaStatusPercentProgress"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughputOverride"},
         "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexDescriptionList"},
         "ReplicaInaccessibleDateTime":{"shape":"Date"},
         "ReplicaTableClassSummary":{"shape":"TableClassSummary"}
@@ -3207,7 +3227,8 @@
       "required":["IndexName"],
       "members":{
         "IndexName":{"shape":"IndexName"},
-        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"}
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughputOverride"}
       }
     },
     "ReplicaGlobalSecondaryIndexAutoScalingDescription":{
@@ -3238,7 +3259,8 @@
       "type":"structure",
       "members":{
         "IndexName":{"shape":"IndexName"},
-        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"}
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughputOverride"}
       }
     },
     "ReplicaGlobalSecondaryIndexDescriptionList":{
@@ -3420,6 +3442,7 @@
         "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
         "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughput"},
         "SSESpecificationOverride":{"shape":"SSESpecification"}
       }
     },
@@ -3442,6 +3465,7 @@
         "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
         "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughput"},
         "SSESpecificationOverride":{"shape":"SSESpecification"}
       }
     },
@@ -3633,6 +3657,7 @@
         "KeySchema":{"shape":"KeySchema"},
         "TableCreationDateTime":{"shape":"TableCreationDateTime"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"},
         "ItemCount":{"shape":"ItemCount"},
         "BillingMode":{"shape":"BillingMode"}
       }
@@ -3724,6 +3749,7 @@
         "KeySchema":{"shape":"KeySchema"},
         "BillingMode":{"shape":"BillingMode"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"},
         "SSESpecification":{"shape":"SSESpecification"},
         "GlobalSecondaryIndexes":{"shape":"GlobalSecondaryIndexList"}
       }
@@ -3753,7 +3779,8 @@
         "SSEDescription":{"shape":"SSEDescription"},
         "ArchivalSummary":{"shape":"ArchivalSummary"},
         "TableClassSummary":{"shape":"TableClassSummary"},
-        "DeletionProtectionEnabled":{"shape":"DeletionProtectionEnabled"}
+        "DeletionProtectionEnabled":{"shape":"DeletionProtectionEnabled"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "TableId":{
@@ -4024,13 +4051,11 @@
     "UpdateExpression":{"type":"string"},
     "UpdateGlobalSecondaryIndexAction":{
       "type":"structure",
-      "required":[
-        "IndexName",
-        "ProvisionedThroughput"
-      ],
+      "required":["IndexName"],
       "members":{
         "IndexName":{"shape":"IndexName"},
-        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "UpdateGlobalTableInput":{
@@ -4133,6 +4158,7 @@
         "RegionName":{"shape":"RegionName"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
+        "OnDemandThroughputOverride":{"shape":"OnDemandThroughputOverride"},
         "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"},
         "TableClassOverride":{"shape":"TableClass"}
       }
@@ -4150,7 +4176,8 @@
         "SSESpecification":{"shape":"SSESpecification"},
         "ReplicaUpdates":{"shape":"ReplicationGroupUpdateList"},
         "TableClass":{"shape":"TableClass"},
-        "DeletionProtectionEnabled":{"shape":"DeletionProtectionEnabled"}
+        "DeletionProtectionEnabled":{"shape":"DeletionProtectionEnabled"},
+        "OnDemandThroughput":{"shape":"OnDemandThroughput"}
       }
     },
     "UpdateTableOutput":{

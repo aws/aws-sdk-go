@@ -5676,10 +5676,10 @@ type ConfigParameter struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the parameter. The options are auto_mv, datestyle, enable_case_sensitive_identifier,
-	// enable_user_activity_logging, query_group, search_path, require_ssl, and
-	// query monitoring metrics that let you define performance boundaries. For
-	// more information about query monitoring rules and available metrics, see
-	// Query monitoring metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
+	// enable_user_activity_logging, query_group, search_path, require_ssl, use_fips_ssl,
+	// and query monitoring metrics that let you define performance boundaries.
+	// For more information about query monitoring rules and available metrics,
+	// see Query monitoring metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ParameterKey *string `locationName:"parameterKey" type:"string"`
 
 	// The value of the parameter to set.
@@ -7064,10 +7064,10 @@ type CreateWorkgroupInput struct {
 
 	// An array of parameters to set for advanced control over a database. The options
 	// are auto_mv, datestyle, enable_case_sensitive_identifier, enable_user_activity_logging,
-	// query_group, search_path, require_ssl, and query monitoring metrics that
-	// let you define performance boundaries. For more information about query monitoring
-	// rules and available metrics, see Query monitoring metrics for Amazon Redshift
-	// Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
+	// query_group, search_path, require_ssl, use_fips_ssl, and query monitoring
+	// metrics that let you define performance boundaries. For more information
+	// about query monitoring rules and available metrics, see Query monitoring
+	// metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The value that specifies whether to turn on enhanced virtual private cloud
@@ -9908,8 +9908,8 @@ type ListScheduledActionsOutput struct {
 	// using the returned token to retrieve the next page.
 	NextToken *string `locationName:"nextToken" min:"8" type:"string"`
 
-	// All of the returned scheduled action objects.
-	ScheduledActions []*string `locationName:"scheduledActions" type:"list"`
+	// All of the returned scheduled action association objects.
+	ScheduledActions []*ScheduledActionAssociation `locationName:"scheduledActions" type:"list"`
 }
 
 // String returns the string representation.
@@ -9937,7 +9937,7 @@ func (s *ListScheduledActionsOutput) SetNextToken(v string) *ListScheduledAction
 }
 
 // SetScheduledActions sets the ScheduledActions field's value.
-func (s *ListScheduledActionsOutput) SetScheduledActions(v []*string) *ListScheduledActionsOutput {
+func (s *ListScheduledActionsOutput) SetScheduledActions(v []*ScheduledActionAssociation) *ListScheduledActionsOutput {
 	s.ScheduledActions = v
 	return s
 }
@@ -11837,6 +11837,47 @@ func (s *Schedule) SetAt(v time.Time) *Schedule {
 // SetCron sets the Cron field's value.
 func (s *Schedule) SetCron(v string) *Schedule {
 	s.Cron = &v
+	return s
+}
+
+// Contains names of objects associated with a scheduled action.
+type ScheduledActionAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// Name of associated Amazon Redshift Serverless namespace.
+	NamespaceName *string `locationName:"namespaceName" min:"3" type:"string"`
+
+	// Name of associated scheduled action.
+	ScheduledActionName *string `locationName:"scheduledActionName" min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledActionAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduledActionAssociation) GoString() string {
+	return s.String()
+}
+
+// SetNamespaceName sets the NamespaceName field's value.
+func (s *ScheduledActionAssociation) SetNamespaceName(v string) *ScheduledActionAssociation {
+	s.NamespaceName = &v
+	return s
+}
+
+// SetScheduledActionName sets the ScheduledActionName field's value.
+func (s *ScheduledActionAssociation) SetScheduledActionName(v string) *ScheduledActionAssociation {
+	s.ScheduledActionName = &v
 	return s
 }
 
@@ -13809,10 +13850,10 @@ type UpdateWorkgroupInput struct {
 
 	// An array of parameters to set for advanced control over a database. The options
 	// are auto_mv, datestyle, enable_case_sensitive_identifier, enable_user_activity_logging,
-	// query_group, search_path, require_ssl, and query monitoring metrics that
-	// let you define performance boundaries. For more information about query monitoring
-	// rules and available metrics, see Query monitoring metrics for Amazon Redshift
-	// Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
+	// query_group, search_path, require_ssl, use_fips_ssl, and query monitoring
+	// metrics that let you define performance boundaries. For more information
+	// about query monitoring rules and available metrics, see Query monitoring
+	// metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The value that specifies whether to turn on enhanced virtual private cloud
@@ -14224,10 +14265,10 @@ type Workgroup struct {
 
 	// An array of parameters to set for advanced control over a database. The options
 	// are auto_mv, datestyle, enable_case_sensitive_identifier, enable_user_activity_logging,
-	// query_group, search_path, require_ssl, and query monitoring metrics that
-	// let you define performance boundaries. For more information about query monitoring
-	// rules and available metrics, see Query monitoring metrics for Amazon Redshift
-	// Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
+	// query_group, search_path, require_ssl, use_fips_ssl, and query monitoring
+	// metrics that let you define performance boundaries. For more information
+	// about query monitoring rules and available metrics, see Query monitoring
+	// metrics for Amazon Redshift Serverless (https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html#cm-c-wlm-query-monitoring-metrics-serverless).
 	ConfigParameters []*ConfigParameter `locationName:"configParameters" type:"list"`
 
 	// The creation date of the workgroup.
@@ -14272,7 +14313,7 @@ type Workgroup struct {
 	Port *int64 `locationName:"port" type:"integer"`
 
 	// A value that specifies whether the workgroup can be accessible from a public
-	// network
+	// network.
 	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
 
 	// An array of security group IDs to associate with the workgroup.
