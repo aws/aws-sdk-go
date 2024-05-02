@@ -72,6 +72,10 @@ type PersonalizeAPI interface {
 	CreateCampaignWithContext(aws.Context, *personalize.CreateCampaignInput, ...request.Option) (*personalize.CreateCampaignOutput, error)
 	CreateCampaignRequest(*personalize.CreateCampaignInput) (*request.Request, *personalize.CreateCampaignOutput)
 
+	CreateDataDeletionJob(*personalize.CreateDataDeletionJobInput) (*personalize.CreateDataDeletionJobOutput, error)
+	CreateDataDeletionJobWithContext(aws.Context, *personalize.CreateDataDeletionJobInput, ...request.Option) (*personalize.CreateDataDeletionJobOutput, error)
+	CreateDataDeletionJobRequest(*personalize.CreateDataDeletionJobInput) (*request.Request, *personalize.CreateDataDeletionJobOutput)
+
 	CreateDataset(*personalize.CreateDatasetInput) (*personalize.CreateDatasetOutput, error)
 	CreateDatasetWithContext(aws.Context, *personalize.CreateDatasetInput, ...request.Option) (*personalize.CreateDatasetOutput, error)
 	CreateDatasetRequest(*personalize.CreateDatasetInput) (*request.Request, *personalize.CreateDatasetOutput)
@@ -168,6 +172,10 @@ type PersonalizeAPI interface {
 	DescribeCampaignWithContext(aws.Context, *personalize.DescribeCampaignInput, ...request.Option) (*personalize.DescribeCampaignOutput, error)
 	DescribeCampaignRequest(*personalize.DescribeCampaignInput) (*request.Request, *personalize.DescribeCampaignOutput)
 
+	DescribeDataDeletionJob(*personalize.DescribeDataDeletionJobInput) (*personalize.DescribeDataDeletionJobOutput, error)
+	DescribeDataDeletionJobWithContext(aws.Context, *personalize.DescribeDataDeletionJobInput, ...request.Option) (*personalize.DescribeDataDeletionJobOutput, error)
+	DescribeDataDeletionJobRequest(*personalize.DescribeDataDeletionJobInput) (*request.Request, *personalize.DescribeDataDeletionJobOutput)
+
 	DescribeDataset(*personalize.DescribeDatasetInput) (*personalize.DescribeDatasetOutput, error)
 	DescribeDatasetWithContext(aws.Context, *personalize.DescribeDatasetInput, ...request.Option) (*personalize.DescribeDatasetOutput, error)
 	DescribeDatasetRequest(*personalize.DescribeDatasetInput) (*request.Request, *personalize.DescribeDatasetOutput)
@@ -244,6 +252,10 @@ type PersonalizeAPI interface {
 
 	ListCampaignsPages(*personalize.ListCampaignsInput, func(*personalize.ListCampaignsOutput, bool) bool) error
 	ListCampaignsPagesWithContext(aws.Context, *personalize.ListCampaignsInput, func(*personalize.ListCampaignsOutput, bool) bool, ...request.Option) error
+
+	ListDataDeletionJobs(*personalize.ListDataDeletionJobsInput) (*personalize.ListDataDeletionJobsOutput, error)
+	ListDataDeletionJobsWithContext(aws.Context, *personalize.ListDataDeletionJobsInput, ...request.Option) (*personalize.ListDataDeletionJobsOutput, error)
+	ListDataDeletionJobsRequest(*personalize.ListDataDeletionJobsInput) (*request.Request, *personalize.ListDataDeletionJobsOutput)
 
 	ListDatasetExportJobs(*personalize.ListDatasetExportJobsInput) (*personalize.ListDatasetExportJobsOutput, error)
 	ListDatasetExportJobsWithContext(aws.Context, *personalize.ListDatasetExportJobsInput, ...request.Option) (*personalize.ListDatasetExportJobsOutput, error)

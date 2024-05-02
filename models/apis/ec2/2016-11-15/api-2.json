@@ -3964,6 +3964,15 @@
       "input":{"shape":"GetInstanceMetadataDefaultsRequest"},
       "output":{"shape":"GetInstanceMetadataDefaultsResult"}
     },
+    "GetInstanceTpmEkPub":{
+      "name":"GetInstanceTpmEkPub",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetInstanceTpmEkPubRequest"},
+      "output":{"shape":"GetInstanceTpmEkPubResult"}
+    },
     "GetInstanceTypesFromInstanceRequirements":{
       "name":"GetInstanceTypesFromInstanceRequirements",
       "http":{
@@ -21055,6 +21064,24 @@
         "locationName":"item"
       }
     },
+    "EkPubKeyFormat":{
+      "type":"string",
+      "enum":[
+        "der",
+        "tpmt"
+      ]
+    },
+    "EkPubKeyType":{
+      "type":"string",
+      "enum":[
+        "rsa-2048",
+        "ecc-sec-p384"
+      ]
+    },
+    "EkPubKeyValue":{
+      "type":"string",
+      "sensitive":true
+    },
     "ElasticGpuAssociation":{
       "type":"structure",
       "members":{
@@ -23703,6 +23730,41 @@
         "AccountLevel":{
           "shape":"InstanceMetadataDefaultsResponse",
           "locationName":"accountLevel"
+        }
+      }
+    },
+    "GetInstanceTpmEkPubRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "KeyType",
+        "KeyFormat"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "KeyType":{"shape":"EkPubKeyType"},
+        "KeyFormat":{"shape":"EkPubKeyFormat"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetInstanceTpmEkPubResult":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "locationName":"instanceId"
+        },
+        "KeyType":{
+          "shape":"EkPubKeyType",
+          "locationName":"keyType"
+        },
+        "KeyFormat":{
+          "shape":"EkPubKeyFormat",
+          "locationName":"keyFormat"
+        },
+        "KeyValue":{
+          "shape":"EkPubKeyValue",
+          "locationName":"keyValue"
         }
       }
     },

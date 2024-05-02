@@ -5,6 +5,7 @@
     "CreateBatchInferenceJob": "<p>Generates batch recommendations based on a list of items or users stored in Amazon S3 and exports the recommendations to an Amazon S3 bucket.</p> <p>To generate batch recommendations, specify the ARN of a solution version and an Amazon S3 URI for the input and output data. For user personalization, popular items, and personalized ranking solutions, the batch inference job generates a list of recommended items for each user ID in the input file. For related items solutions, the job generates a list of recommended items for each item ID in the input file.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/getting-batch-recommendations.html\">Creating a batch inference job </a>.</p> <p> If you use the Similar-Items recipe, Amazon Personalize can add descriptive themes to batch recommendations. To generate themes, set the job's mode to <code>THEME_GENERATION</code> and specify the name of the field that contains item names in the input data.</p> <p> For more information about generating themes, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/themed-batch-recommendations.html\">Batch recommendations with themes from Content Generator </a>. </p> <p>You can't get batch recommendations with the Trending-Now or Next-Best-Action recipes.</p>",
     "CreateBatchSegmentJob": "<p>Creates a batch segment job. The operation can handle up to 50 million records and the input file must be in JSON format. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/recommendations-batch.html\">Getting batch recommendations and user segments</a>.</p>",
     "CreateCampaign": "<important> <p> You incur campaign costs while it is active. To avoid unnecessary costs, make sure to delete the campaign when you are finished. For information about campaign costs, see <a href=\"https://aws.amazon.com/personalize/pricing/\">Amazon Personalize pricing</a>.</p> </important> <p>Creates a campaign that deploys a solution version. When a client calls the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> and <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html\">GetPersonalizedRanking</a> APIs, a campaign is specified in the request.</p> <p> <b>Minimum Provisioned TPS and Auto-Scaling</b> </p> <important> <p> A high <code>minProvisionedTPS</code> will increase your cost. We recommend starting with 1 for <code>minProvisionedTPS</code> (the default). Track your usage using Amazon CloudWatch metrics, and increase the <code>minProvisionedTPS</code> as necessary.</p> </important> <p> When you create an Amazon Personalize campaign, you can specify the minimum provisioned transactions per second (<code>minProvisionedTPS</code>) for the campaign. This is the baseline transaction throughput for the campaign provisioned by Amazon Personalize. It sets the minimum billing charge for the campaign while it is active. A transaction is a single <code>GetRecommendations</code> or <code>GetPersonalizedRanking</code> request. The default <code>minProvisionedTPS</code> is 1.</p> <p> If your TPS increases beyond the <code>minProvisionedTPS</code>, Amazon Personalize auto-scales the provisioned capacity up and down, but never below <code>minProvisionedTPS</code>. There's a short time delay while the capacity is increased that might cause loss of transactions. When your traffic reduces, capacity returns to the <code>minProvisionedTPS</code>. </p> <p>You are charged for the the minimum provisioned TPS or, if your requests exceed the <code>minProvisionedTPS</code>, the actual TPS. The actual TPS is the total number of recommendation requests you make. We recommend starting with a low <code>minProvisionedTPS</code>, track your usage using Amazon CloudWatch metrics, and then increase the <code>minProvisionedTPS</code> as necessary.</p> <p>For more information about campaign costs, see <a href=\"https://aws.amazon.com/personalize/pricing/\">Amazon Personalize pricing</a>.</p> <p> <b>Status</b> </p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the campaign status, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a>.</p> <note> <p>Wait until the <code>status</code> of the campaign is <code>ACTIVE</code> before asking the campaign for recommendations.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html\">ListCampaigns</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html\">DescribeCampaign</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html\">UpdateCampaign</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html\">DeleteCampaign</a> </p> </li> </ul>",
+    "CreateDataDeletionJob": "<p>Creates a batch job that deletes all references to specific users from an Amazon Personalize dataset group in batches. You specify the users to delete in a CSV file of userIds in an Amazon S3 bucket. After a job completes, Amazon Personalize no longer trains on the users’ data and no longer considers the users when generating user segments. For more information about creating a data deletion job, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html\">Deleting users</a>.</p> <ul> <li> <p>Your input file must be a CSV file with a single USER_ID column that lists the users IDs. For more information about preparing the CSV file, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/prepare-deletion-input-file.html\">Preparing your data deletion file and uploading it to Amazon S3</a>.</p> </li> <li> <p>To give Amazon Personalize permission to access your input CSV file of userIds, you must specify an IAM service role that has permission to read from the data source. This role needs <code>GetObject</code> and <code>ListBucket</code> permissions for the bucket and its content. These permissions are the same as importing data. For information on granting access to your Amazon S3 bucket, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html\">Giving Amazon Personalize Access to Amazon S3 Resources</a>. </p> </li> </ul> <p> After you create a job, it can take up to a day to delete all references to the users from datasets and models. Until the job completes, Amazon Personalize continues to use the data when training. And if you use a User Segmentation recipe, the users might appear in user segments. </p> <p> <b>Status</b> </p> <p>A data deletion job can have one of the following statuses:</p> <ul> <li> <p>PENDING &gt; IN_PROGRESS &gt; COMPLETED -or- FAILED</p> </li> </ul> <p>To get the status of the data deletion job, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html\">DescribeDataDeletionJob</a> API operation and specify the Amazon Resource Name (ARN) of the job. If the status is FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListDataDeletionJobs.html\">ListDataDeletionJobs</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html\">DescribeDataDeletionJob</a> </p> </li> </ul>",
     "CreateDataset": "<p>Creates an empty dataset and adds it to the specified dataset group. Use <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html\">CreateDatasetImportJob</a> to import your training data to a dataset.</p> <p>There are 5 types of datasets:</p> <ul> <li> <p>Item interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> <li> <p>Action interactions</p> </li> <li> <p>Actions</p> </li> </ul> <p>Each dataset type has an associated schema with required field types. Only the <code>Item interactions</code> dataset is required in order to train a model (also referred to as creating a solution).</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the dataset, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html\">DescribeDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html\">CreateDatasetGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html\">ListDatasets</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html\">DescribeDataset</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html\">DeleteDataset</a> </p> </li> </ul>",
     "CreateDatasetExportJob": "<p> Creates a job that exports data from your dataset to an Amazon S3 bucket. To allow Amazon Personalize to export the training data, you must specify an service-linked IAM role that gives Amazon Personalize <code>PutObject</code> permissions for your Amazon S3 bucket. For information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/export-data.html\">Exporting a dataset</a> in the Amazon Personalize developer guide. </p> <p> <b>Status</b> </p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p> To get the status of the export job, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html\">DescribeDatasetExportJob</a>, and specify the Amazon Resource Name (ARN) of the dataset export job. The dataset export is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed. </p>",
     "CreateDatasetGroup": "<p>Creates an empty dataset group. A dataset group is a container for Amazon Personalize resources. A dataset group can contain at most three datasets, one for each type of dataset:</p> <ul> <li> <p>Item interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> <li> <p>Actions</p> </li> <li> <p>Action interactions</p> </li> </ul> <p> A dataset group can be a Domain dataset group, where you specify a domain and use pre-configured resources like recommenders, or a Custom dataset group, where you use custom resources, such as a solution with a solution version, that you deploy with a campaign. If you start with a Domain dataset group, you can still add custom resources such as solutions and solution versions trained with recipes for custom use cases and deployed with campaigns. </p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul> <p>To get the status of the dataset group, call <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html\">DescribeDatasetGroup</a>. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the creation failed.</p> <note> <p>You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code> before adding a dataset to the group.</p> </note> <p>You can specify an Key Management Service (KMS) key to encrypt the datasets in the group. If you specify a KMS key, you must also include an Identity and Access Management (IAM) role that has permission to access the key.</p> <p class=\"title\"> <b>APIs that require a dataset group ARN in the request</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html\">CreateEventTracker</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html\">CreateSolution</a> </p> </li> </ul> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html\">ListDatasetGroups</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html\">DescribeDatasetGroup</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html\">DeleteDatasetGroup</a> </p> </li> </ul>",
@@ -29,6 +30,7 @@
     "DescribeBatchInferenceJob": "<p>Gets the properties of a batch inference job including name, Amazon Resource Name (ARN), status, input and output configurations, and the ARN of the solution version used to generate the recommendations.</p>",
     "DescribeBatchSegmentJob": "<p>Gets the properties of a batch segment job including name, Amazon Resource Name (ARN), status, input and output configurations, and the ARN of the solution version used to generate segments.</p>",
     "DescribeCampaign": "<p>Describes the given campaign, including its status.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>When the <code>status</code> is <code>CREATE FAILED</code>, the response includes the <code>failureReason</code> key, which describes why.</p> <p>For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
+    "DescribeDataDeletionJob": "<p>Describes the data deletion job created by <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataDeletionJob.html\">CreateDataDeletionJob</a>, including the job status.</p>",
     "DescribeDataset": "<p>Describes the given dataset. For more information on datasets, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a>.</p>",
     "DescribeDatasetExportJob": "<p>Describes the dataset export job created by <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html\">CreateDatasetExportJob</a>, including the export job status.</p>",
     "DescribeDatasetGroup": "<p>Describes the given dataset group. For more information on dataset groups, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html\">CreateDatasetGroup</a>.</p>",
@@ -46,6 +48,7 @@
     "ListBatchInferenceJobs": "<p>Gets a list of the batch inference jobs that have been performed off of a solution version.</p>",
     "ListBatchSegmentJobs": "<p>Gets a list of the batch segment jobs that have been performed off of a solution version that you specify.</p>",
     "ListCampaigns": "<p>Returns a list of campaigns that use the given solution. When a solution is not specified, all the campaigns associated with the account are listed. The response provides the properties for each campaign, including the Amazon Resource Name (ARN). For more information on campaigns, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html\">CreateCampaign</a>.</p>",
+    "ListDataDeletionJobs": "<p>Returns a list of data deletion jobs for a dataset group ordered by creation time, with the most recent first. When a dataset group is not specified, all the data deletion jobs associated with the account are listed. The response provides the properties for each job, including the Amazon Resource Name (ARN). For more information on data deletion jobs, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html\">Deleting users</a>.</p>",
     "ListDatasetExportJobs": "<p>Returns a list of dataset export jobs that use the given dataset. When a dataset is not specified, all the dataset export jobs associated with the account are listed. The response provides the properties for each dataset export job, including the Amazon Resource Name (ARN). For more information on dataset export jobs, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html\">CreateDatasetExportJob</a>. For more information on datasets, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a>.</p>",
     "ListDatasetGroups": "<p>Returns a list of dataset groups. The response provides the properties for each dataset group, including the Amazon Resource Name (ARN). For more information on dataset groups, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html\">CreateDatasetGroup</a>.</p>",
     "ListDatasetImportJobs": "<p>Returns a list of dataset import jobs that use the given dataset. When a dataset is not specified, all the dataset import jobs associated with the account are listed. The response provides the properties for each dataset import job, including the Amazon Resource Name (ARN). For more information on dataset import jobs, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html\">CreateDatasetImportJob</a>. For more information on datasets, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html\">CreateDataset</a>.</p>",
@@ -118,6 +121,8 @@
         "CreateBatchSegmentJobResponse$batchSegmentJobArn": "<p>The ARN of the batch segment job.</p>",
         "CreateCampaignRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the trained model to deploy with the campaign. To specify the latest solution version of your solution, specify the ARN of your <i>solution</i> in <code>SolutionArn/$LATEST</code> format. You must use this format if you set <code>syncWithLatestSolutionVersion</code> to <code>True</code> in the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_CampaignConfig.html\">CampaignConfig</a>. </p> <p> To deploy a model that isn't the latest solution version of your solution, specify the ARN of the solution version. </p> <p> For more information about automatic campaign updates, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-automatic-latest-sv-update\">Enabling automatic campaign updates</a>. </p>",
         "CreateCampaignResponse$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
+        "CreateDataDeletionJobRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that has the datasets you want to delete records from.</p>",
+        "CreateDataDeletionJobResponse$dataDeletionJobArn": "<p>The Amazon Resource Name (ARN) of the data deletion job.</p>",
         "CreateDatasetExportJobRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that contains the data to export.</p>",
         "CreateDatasetExportJobResponse$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job.</p>",
         "CreateDatasetGroupResponse$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the new dataset group.</p>",
@@ -141,6 +146,10 @@
         "CreateSolutionResponse$solutionArn": "<p>The ARN of the solution.</p>",
         "CreateSolutionVersionRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution containing the training configuration information.</p>",
         "CreateSolutionVersionResponse$solutionVersionArn": "<p>The ARN of the new solution version.</p>",
+        "DataDeletionJob$dataDeletionJobArn": "<p>The Amazon Resource Name (ARN) of the data deletion job.</p>",
+        "DataDeletionJob$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group the job deletes records from.</p>",
+        "DataDeletionJobSummary$dataDeletionJobArn": "<p>The Amazon Resource Name (ARN) of the data deletion job.</p>",
+        "DataDeletionJobSummary$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group the job deleted records from.</p>",
         "Dataset$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that you want metadata for.</p>",
         "Dataset$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "Dataset$schemaArn": "<p>The ARN of the associated schema.</p>",
@@ -171,6 +180,7 @@
         "DescribeBatchInferenceJobRequest$batchInferenceJobArn": "<p>The ARN of the batch inference job to describe.</p>",
         "DescribeBatchSegmentJobRequest$batchSegmentJobArn": "<p>The ARN of the batch segment job to describe.</p>",
         "DescribeCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
+        "DescribeDataDeletionJobRequest$dataDeletionJobArn": "<p>The Amazon Resource Name (ARN) of the data deletion job.</p>",
         "DescribeDatasetExportJobRequest$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job to describe.</p>",
         "DescribeDatasetGroupRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group to describe.</p>",
         "DescribeDatasetImportJobRequest$datasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job to describe.</p>",
@@ -197,6 +207,7 @@
         "ListBatchInferenceJobsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference jobs were created.</p>",
         "ListBatchSegmentJobsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version that the batch segment jobs used to generate batch segments.</p>",
         "ListCampaignsRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution to list the campaigns for. When a solution is not specified, all the campaigns associated with the account are listed.</p>",
+        "ListDataDeletionJobsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group to list data deletion jobs for.</p>",
         "ListDatasetExportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset export jobs for.</p>",
         "ListDatasetImportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset import jobs for.</p>",
         "ListDatasetsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the datasets to list.</p>",
@@ -498,6 +509,16 @@
       "refs": {
       }
     },
+    "CreateDataDeletionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDataDeletionJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateDatasetExportJobRequest": {
       "base": null,
       "refs": {
@@ -608,10 +629,30 @@
       "refs": {
       }
     },
-    "DataSource": {
-      "base": "<p>Describes the data source that contains the data to upload to a dataset.</p>",
+    "DataDeletionJob": {
+      "base": "<p>Describes a job that deletes all references to specific users from an Amazon Personalize dataset group in batches. For information about creating a data deletion job, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/delete-records.html\">Deleting users</a>.</p>",
       "refs": {
+        "DescribeDataDeletionJobResponse$dataDeletionJob": "<p>Information about the data deletion job, including the status.</p> <p>The status is one of the following values:</p> <ul> <li> <p>PENDING</p> </li> <li> <p>IN_PROGRESS</p> </li> <li> <p>COMPLETED</p> </li> <li> <p>FAILED</p> </li> </ul>"
+      }
+    },
+    "DataDeletionJobSummary": {
+      "base": "<p>Provides a summary of the properties of a data deletion job. For a complete listing, call the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataDeletionJob.html\">DescribeDataDeletionJob</a> API operation.</p>",
+      "refs": {
+        "DataDeletionJobs$member": null
+      }
+    },
+    "DataDeletionJobs": {
+      "base": null,
+      "refs": {
+        "ListDataDeletionJobsResponse$dataDeletionJobs": "<p>The list of data deletion jobs.</p>"
+      }
+    },
+    "DataSource": {
+      "base": "<p>Describes the data source that contains the data to upload to a dataset, or the list of records to delete from Amazon Personalize.</p>",
+      "refs": {
+        "CreateDataDeletionJobRequest$dataSource": "<p>The Amazon S3 bucket that contains the list of userIds of the users to delete.</p>",
         "CreateDatasetImportJobRequest$dataSource": "<p>The Amazon S3 bucket that contains the training data to import.</p>",
+        "DataDeletionJob$dataSource": null,
         "DatasetImportJob$dataSource": "<p>The Amazon S3 bucket that contains the training data to import.</p>"
       }
     },
@@ -740,6 +781,10 @@
         "CampaignSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the campaign was last updated.</p>",
         "CampaignUpdateSummary$creationDateTime": "<p>The date and time (in Unix time) that the campaign update was created.</p>",
         "CampaignUpdateSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the campaign update was last updated.</p>",
+        "DataDeletionJob$creationDateTime": "<p>The creation date and time (in Unix time) of the data deletion job.</p>",
+        "DataDeletionJob$lastUpdatedDateTime": "<p>The date and time (in Unix time) the data deletion job was last updated.</p>",
+        "DataDeletionJobSummary$creationDateTime": "<p>The creation date and time (in Unix time) of the data deletion job.</p>",
+        "DataDeletionJobSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) the data deletion job was last updated.</p>",
         "Dataset$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset.</p>",
         "Dataset$lastUpdatedDateTime": "<p>A time stamp that shows when the dataset was updated.</p>",
         "DatasetExportJob$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset export job.</p>",
@@ -919,6 +964,16 @@
       }
     },
     "DescribeCampaignResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDataDeletionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDataDeletionJobResponse": {
       "base": null,
       "refs": {
       }
@@ -1141,6 +1196,8 @@
         "Campaign$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignSummary$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignUpdateSummary$failureReason": "<p>If a campaign update fails, the reason behind the failure.</p>",
+        "DataDeletionJob$failureReason": "<p>If a data deletion job fails, provides the reason why.</p>",
+        "DataDeletionJobSummary$failureReason": "<p>If a data deletion job fails, provides the reason why.</p>",
         "DatasetExportJob$failureReason": "<p>If a dataset export job fails, provides the reason why.</p>",
         "DatasetExportJobSummary$failureReason": "<p>If a dataset export job fails, the reason behind the failure.</p>",
         "DatasetGroup$failureReason": "<p>If creating a dataset group fails, provides the reason why.</p>",
@@ -1280,6 +1337,12 @@
         "DatasetExportJob$ingestionMode": "<p>The data to export, based on how you imported the data. You can choose to export <code>BULK</code> data that you imported using a dataset import job, <code>PUT</code> data that you imported incrementally (using the console, PutEvents, PutUsers and PutItems operations), or <code>ALL</code> for both types. The default value is <code>PUT</code>. </p>"
       }
     },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "DataDeletionJob$numDeleted": "<p>The number of records deleted by a COMPLETED job.</p>"
+      }
+    },
     "IntegerHyperParameterRange": {
       "base": "<p>Provides the name and range of an integer-valued hyperparameter.</p>",
       "refs": {
@@ -1361,6 +1424,16 @@
       }
     },
     "ListCampaignsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataDeletionJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataDeletionJobsResponse": {
       "base": null,
       "refs": {
       }
@@ -1511,6 +1584,7 @@
         "ListBatchInferenceJobsRequest$maxResults": "<p>The maximum number of batch inference job results to return in each page. The default value is 100.</p>",
         "ListBatchSegmentJobsRequest$maxResults": "<p>The maximum number of batch segment job results to return in each page. The default value is 100.</p>",
         "ListCampaignsRequest$maxResults": "<p>The maximum number of campaigns to return.</p>",
+        "ListDataDeletionJobsRequest$maxResults": "<p>The maximum number of data deletion jobs to return.</p>",
         "ListDatasetExportJobsRequest$maxResults": "<p>The maximum number of dataset export jobs to return.</p>",
         "ListDatasetGroupsRequest$maxResults": "<p>The maximum number of dataset groups to return.</p>",
         "ListDatasetImportJobsRequest$maxResults": "<p>The maximum number of dataset import jobs to return.</p>",
@@ -1621,6 +1695,7 @@
         "CreateBatchInferenceJobRequest$jobName": "<p>The name of the batch inference job to create.</p>",
         "CreateBatchSegmentJobRequest$jobName": "<p>The name of the batch segment job to create.</p>",
         "CreateCampaignRequest$name": "<p>A name for the new campaign. The campaign name must be unique within your account.</p>",
+        "CreateDataDeletionJobRequest$jobName": "<p>The name for the data deletion job.</p>",
         "CreateDatasetExportJobRequest$jobName": "<p>The name for the dataset export job.</p>",
         "CreateDatasetGroupRequest$name": "<p>The name for the new dataset group.</p>",
         "CreateDatasetImportJobRequest$jobName": "<p>The name for the dataset import job.</p>",
@@ -1632,6 +1707,8 @@
         "CreateSchemaRequest$name": "<p>The name for the schema.</p>",
         "CreateSolutionRequest$name": "<p>The name for the solution.</p>",
         "CreateSolutionVersionRequest$name": "<p>The name of the solution version.</p>",
+        "DataDeletionJob$jobName": "<p>The name of the data deletion job.</p>",
+        "DataDeletionJobSummary$jobName": "<p>The name of the data deletion job.</p>",
         "Dataset$name": "<p>The name of the dataset.</p>",
         "DatasetExportJob$jobName": "<p>The name of the export job.</p>",
         "DatasetExportJobSummary$jobName": "<p>The name of the dataset export job.</p>",
@@ -1667,6 +1744,8 @@
         "ListBatchSegmentJobsResponse$nextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "ListCampaignsRequest$nextToken": "<p>A token returned from the previous call to <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html\">ListCampaigns</a> for getting the next set of campaigns (if they exist).</p>",
         "ListCampaignsResponse$nextToken": "<p>A token for getting the next set of campaigns (if they exist).</p>",
+        "ListDataDeletionJobsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDataDeletionJobs</code> for getting the next set of jobs (if they exist).</p>",
+        "ListDataDeletionJobsResponse$nextToken": "<p>A token for getting the next set of data deletion jobs (if they exist).</p>",
         "ListDatasetExportJobsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetExportJobs</code> for getting the next set of dataset export jobs (if they exist).</p>",
         "ListDatasetExportJobsResponse$nextToken": "<p>A token for getting the next set of dataset export jobs (if they exist).</p>",
         "ListDatasetGroupsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetGroups</code> for getting the next set of dataset groups (if they exist).</p>",
@@ -1854,9 +1933,11 @@
         "BatchSegmentJob$roleArn": "<p>The ARN of the Amazon Identity and Access Management (IAM) role that requested the batch segment job.</p>",
         "CreateBatchInferenceJobRequest$roleArn": "<p>The ARN of the Amazon Identity and Access Management role that has permissions to read and write to your input and output Amazon S3 buckets respectively.</p>",
         "CreateBatchSegmentJobRequest$roleArn": "<p>The ARN of the Amazon Identity and Access Management role that has permissions to read and write to your input and output Amazon S3 buckets respectively.</p>",
+        "CreateDataDeletionJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
         "CreateDatasetExportJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that has permissions to add data to your output Amazon S3 bucket.</p>",
         "CreateDatasetGroupRequest$roleArn": "<p>The ARN of the Identity and Access Management (IAM) role that has permissions to access the Key Management Service (KMS) key. Supplying an IAM role is only valid when also specifying a KMS key.</p>",
         "CreateDatasetImportJobRequest$roleArn": "<p>The ARN of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
+        "DataDeletionJob$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
         "DatasetGroup$roleArn": "<p>The ARN of the Identity and Access Management (IAM) role that has permissions to access the Key Management Service (KMS) key. Supplying an IAM role is only valid when also specifying a KMS key.</p>",
         "MetricAttributionOutput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM service role that has permissions to add data to your output Amazon S3 bucket and add metrics to Amazon CloudWatch. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/measuring-recommendation-impact.html\">Measuring impact of recommendations</a>.</p>"
       }
@@ -1875,7 +1956,7 @@
     "S3Location": {
       "base": null,
       "refs": {
-        "DataSource$dataLocation": "<p>The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For example: </p> <p> <code>s3://bucket-name/folder-name/</code> </p>",
+        "DataSource$dataLocation": "<p>For dataset import jobs, the path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For data deletion jobs, the path to the Amazon S3 bucket that stores the list of records to delete. </p> <p> For example: </p> <p> <code>s3://bucket-name/folder-name/fileName.csv</code> </p> <p>If your CSV files are in a folder in your Amazon S3 bucket and you want your import job or data deletion job to consider multiple files, you can specify the path to the folder. With a data deletion job, Amazon Personalize uses all files in the folder and any sub folder. Use the following syntax with a <code>/</code> after the folder name:</p> <p> <code>s3://bucket-name/folder-name/</code> </p>",
         "S3DataConfig$path": "<p>The file path of the Amazon S3 bucket.</p>"
       }
     },
@@ -1956,6 +2037,8 @@
         "Campaign$status": "<p>The status of the campaign.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "CampaignSummary$status": "<p>The status of the campaign.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "CampaignUpdateSummary$status": "<p>The status of the campaign update.</p> <p>A campaign update can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
+        "DataDeletionJob$status": "<p>The status of the data deletion job.</p> <p>A data deletion job can have one of the following statuses:</p> <ul> <li> <p>PENDING &gt; IN_PROGRESS &gt; COMPLETED -or- FAILED</p> </li> </ul>",
+        "DataDeletionJobSummary$status": "<p>The status of the data deletion job.</p> <p>A data deletion job can have one of the following statuses:</p> <ul> <li> <p>PENDING &gt; IN_PROGRESS &gt; COMPLETED -or- FAILED</p> </li> </ul>",
         "Dataset$status": "<p>The status of the dataset.</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "DatasetExportJob$status": "<p>The status of the dataset export job.</p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
         "DatasetExportJobSummary$status": "<p>The status of the dataset export job.</p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
@@ -2039,6 +2122,7 @@
         "CreateBatchInferenceJobRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the batch inference job.</p>",
         "CreateBatchSegmentJobRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the batch segment job.</p>",
         "CreateCampaignRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the campaign.</p>",
+        "CreateDataDeletionJobRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the data deletion job.</p>",
         "CreateDatasetExportJobRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the dataset export job.</p>",
         "CreateDatasetGroupRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the dataset group.</p>",
         "CreateDatasetImportJobRequest$tags": "<p>A list of <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/tagging-resources.html\">tags</a> to apply to the dataset import job.</p>",
