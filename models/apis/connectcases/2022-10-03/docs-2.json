@@ -394,9 +394,9 @@
       "base": null,
       "refs": {
         "GetDomainResponse$createdTime": "<p>The timestamp when the Cases domain was created.</p>",
-        "GetFieldResponse$createdTime": "<p>The timestamp for when the resource was created.</p>",
-        "GetLayoutResponse$createdTime": "<p>The timestamp for when the resource was created.</p>",
-        "GetTemplateResponse$createdTime": "<p>The timestamp for when the resource was created.</p>"
+        "GetFieldResponse$createdTime": "<p>Timestamp at which the resource was created.</p>",
+        "GetLayoutResponse$createdTime": "<p>Timestamp at which the resource was created.</p>",
+        "GetTemplateResponse$createdTime": "<p>Timestamp at which the resource was created.</p>"
       }
     },
     "DeleteDomainRequest": {
@@ -442,9 +442,9 @@
     "Deleted": {
       "base": null,
       "refs": {
-        "GetFieldResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>",
-        "GetLayoutResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>",
-        "GetTemplateResponse$deleted": "<p>Indicates whether the resource has been deleted.</p>"
+        "GetFieldResponse$deleted": "<p>Denotes whether or not the resource has been deleted.</p>",
+        "GetLayoutResponse$deleted": "<p>Denotes whether or not the resource has been deleted.</p>",
+        "GetTemplateResponse$deleted": "<p>Denotes whether or not the resource has been deleted.</p>"
       }
     },
     "DomainArn": {
@@ -467,9 +467,9 @@
         "CreateRelatedItemRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
         "CreateTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
         "DeleteDomainRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
-        "DeleteFieldRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
-        "DeleteLayoutRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
-        "DeleteTemplateRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
+        "DeleteFieldRequest$domainId": "<p>The unique identifier of the Cases domain.</p>",
+        "DeleteLayoutRequest$domainId": "<p>The unique identifier of the Cases domain.</p>",
+        "DeleteTemplateRequest$domainId": "<p>The unique identifier of the Cases domain.</p>",
         "DomainSummary$domainId": "<p>The unique identifier of the domain.</p>",
         "GetCaseAuditEventsRequest$domainId": "<p>The unique identifier of the Cases domain.</p>",
         "GetCaseEventConfigurationRequest$domainId": "<p>The unique identifier of the Cases domain. </p>",
@@ -597,7 +597,7 @@
       "refs": {
         "BatchPutFieldOptionsRequest$fieldId": "<p>The unique identifier of a field.</p>",
         "CreateFieldResponse$fieldId": "<p>The unique identifier of a field.</p>",
-        "DeleteFieldRequest$fieldId": "<p>The unique identifier of a field.</p>",
+        "DeleteFieldRequest$fieldId": "<p>Unique identifier of the field.</p>",
         "FieldError$id": "<p>The field identifier that caused the error.</p>",
         "FieldIdentifier$id": "<p>Unique identifier of a field.</p>",
         "FieldItem$id": "<p>Unique identifier of a field.</p>",
@@ -714,6 +714,26 @@
         "FieldValueUnion$stringValue": "<p>String value type.</p>"
       }
     },
+    "FileArn": {
+      "base": null,
+      "refs": {
+        "FileContent$fileArn": "<p>The Amazon Resource Name (ARN) of a File in Amazon Connect.</p>",
+        "FileFilter$fileArn": "<p>The Amazon Resource Name (ARN) of the file.</p>"
+      }
+    },
+    "FileContent": {
+      "base": "<p>An object that represents a content of an Amazon Connect file object.</p>",
+      "refs": {
+        "RelatedItemContent$file": "<p>Represents the content of a File to be returned to agents.</p>",
+        "RelatedItemInputContent$file": "<p>A file of related items.</p>"
+      }
+    },
+    "FileFilter": {
+      "base": "<p>A filter for related items of type <code>File</code>.</p>",
+      "refs": {
+        "RelatedItemTypeFilter$file": "<p>A filter for related items of this type of <code>File</code>.</p>"
+      }
+    },
     "GetCaseAuditEventsRequest": {
       "base": null,
       "refs": {
@@ -824,9 +844,9 @@
     "LastModifiedTime": {
       "base": null,
       "refs": {
-        "GetFieldResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>",
-        "GetLayoutResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>",
-        "GetTemplateResponse$lastModifiedTime": "<p>The timestamp for when the resource was created or last modified.</p>"
+        "GetFieldResponse$lastModifiedTime": "<p>Timestamp at which the resource was created or last modified.</p>",
+        "GetLayoutResponse$lastModifiedTime": "<p>Timestamp at which the resource was created or last modified.</p>",
+        "GetTemplateResponse$lastModifiedTime": "<p>Timestamp at which the resource was created or last modified.</p>"
       }
     },
     "LayoutArn": {

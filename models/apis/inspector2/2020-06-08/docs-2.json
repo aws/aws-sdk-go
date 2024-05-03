@@ -547,6 +547,12 @@
         "CisScanConfiguration$ownerId": "<p>The CIS scan configuration's owner ID.</p>"
       }
     },
+    "CisReportFormat": {
+      "base": null,
+      "refs": {
+        "GetCisScanReportRequest$reportFormat": "<p> The format of the report. Valid values are <code>PDF</code> and <code>CSV</code>. If no value is specified, the report format defaults to <code>PDF</code>. </p>"
+      }
+    },
     "CisReportStatus": {
       "base": null,
       "refs": {
@@ -3446,7 +3452,7 @@
         "Ec2InstanceAggregationResponse$operatingSystem": "<p>The operating system of the Amazon EC2 instance.</p>",
         "EcrRepositoryMetadata$name": "<p>The name of the Amazon ECR repository.</p>",
         "FreeTrialInfoError$message": "<p>The error message returned.</p>",
-        "GetCisScanReportResponse$url": "<p> The URL where a PDF of the CIS scan report can be downloaded. </p>",
+        "GetCisScanReportResponse$url": "<p> The URL where a PDF or CSV of the CIS scan report can be downloaded. </p>",
         "InternalServerException$message": null,
         "LambdaFunctionAggregationResponse$functionName": "<p>The Amazon Web Services Lambda function names included in the aggregation results.</p>",
         "LambdaFunctionAggregationResponse$runtime": "<p>The runtimes included in the aggregation results.</p>",

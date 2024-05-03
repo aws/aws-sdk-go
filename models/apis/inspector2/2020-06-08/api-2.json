@@ -380,6 +380,7 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1579,6 +1580,13 @@
     "CisOwnerId":{
       "type":"string",
       "pattern":"^\\d{12}|o-[a-z0-9]{10,32}$"
+    },
+    "CisReportFormat":{
+      "type":"string",
+      "enum":[
+        "PDF",
+        "CSV"
+      ]
     },
     "CisReportStatus":{
       "type":"string",
@@ -3335,6 +3343,7 @@
       "type":"structure",
       "required":["scanArn"],
       "members":{
+        "reportFormat":{"shape":"CisReportFormat"},
         "scanArn":{"shape":"CisScanArn"},
         "targetAccounts":{"shape":"ReportTargetAccounts"}
       }

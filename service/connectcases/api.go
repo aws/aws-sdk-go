@@ -6071,7 +6071,7 @@ type DeleteFieldInput struct {
 	// DomainId is a required field
 	DomainId *string `location:"uri" locationName:"domainId" min:"1" type:"string" required:"true"`
 
-	// The unique identifier of a field.
+	// Unique identifier of the field.
 	//
 	// FieldId is a required field
 	FieldId *string `location:"uri" locationName:"fieldId" min:"1" type:"string" required:"true"`
@@ -7224,6 +7224,101 @@ func (s *FieldValueUnion) SetUserArnValue(v string) *FieldValueUnion {
 	return s
 }
 
+// An object that represents a content of an Amazon Connect file object.
+type FileContent struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a File in Amazon Connect.
+	//
+	// FileArn is a required field
+	FileArn *string `locationName:"fileArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileContent) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileContent) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileContent"}
+	if s.FileArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileArn"))
+	}
+	if s.FileArn != nil && len(*s.FileArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileArn sets the FileArn field's value.
+func (s *FileContent) SetFileArn(v string) *FileContent {
+	s.FileArn = &v
+	return s
+}
+
+// A filter for related items of type File.
+type FileFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the file.
+	FileArn *string `locationName:"fileArn" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileFilter"}
+	if s.FileArn != nil && len(*s.FileArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileArn sets the FileArn field's value.
+func (s *FileFilter) SetFileArn(v string) *FileFilter {
+	s.FileArn = &v
+	return s
+}
+
 type GetCaseAuditEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7746,10 +7841,10 @@ func (s *GetDomainOutput) SetTags(v map[string]*string) *GetDomainOutput {
 type GetFieldResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the resource was created.
+	// Timestamp at which the resource was created.
 	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Indicates whether the resource has been deleted.
+	// Denotes whether or not the resource has been deleted.
 	Deleted *bool `locationName:"deleted" type:"boolean"`
 
 	// Description of the field.
@@ -7765,7 +7860,7 @@ type GetFieldResponse struct {
 	// FieldId is a required field
 	FieldId *string `locationName:"fieldId" min:"1" type:"string" required:"true"`
 
-	// The timestamp for when the resource was created or last modified.
+	// Timestamp at which the resource was created or last modified.
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Name of the field.
@@ -7941,13 +8036,13 @@ type GetLayoutOutput struct {
 	// Content is a required field
 	Content *LayoutContent `locationName:"content" type:"structure" required:"true"`
 
-	// The timestamp for when the resource was created.
+	// Timestamp at which the resource was created.
 	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Indicates whether the resource has been deleted.
+	// Denotes whether or not the resource has been deleted.
 	Deleted *bool `locationName:"deleted" type:"boolean"`
 
-	// The timestamp for when the resource was created or last modified.
+	// Timestamp at which the resource was created or last modified.
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The Amazon Resource Name (ARN) of the newly created layout.
@@ -8105,16 +8200,16 @@ func (s *GetTemplateInput) SetTemplateId(v string) *GetTemplateInput {
 type GetTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the resource was created.
+	// Timestamp at which the resource was created.
 	CreatedTime *time.Time `locationName:"createdTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Indicates whether the resource has been deleted.
+	// Denotes whether or not the resource has been deleted.
 	Deleted *bool `locationName:"deleted" type:"boolean"`
 
 	// A brief description of the template.
 	Description *string `locationName:"description" type:"string"`
 
-	// The timestamp for when the resource was created or last modified.
+	// Timestamp at which the resource was created or last modified.
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Configuration of layouts associated to the template.
@@ -9406,6 +9501,9 @@ type RelatedItemContent struct {
 
 	// Represents the content of a contact to be returned to agents.
 	Contact *ContactContent `locationName:"contact" type:"structure"`
+
+	// Represents the content of a File to be returned to agents.
+	File *FileContent `locationName:"file" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9435,6 +9533,12 @@ func (s *RelatedItemContent) SetComment(v *CommentContent) *RelatedItemContent {
 // SetContact sets the Contact field's value.
 func (s *RelatedItemContent) SetContact(v *ContactContent) *RelatedItemContent {
 	s.Contact = v
+	return s
+}
+
+// SetFile sets the File field's value.
+func (s *RelatedItemContent) SetFile(v *FileContent) *RelatedItemContent {
+	s.File = v
 	return s
 }
 
@@ -9494,6 +9598,9 @@ type RelatedItemInputContent struct {
 
 	// Object representing a contact in Amazon Connect as an API request field.
 	Contact *Contact `locationName:"contact" type:"structure"`
+
+	// A file of related items.
+	File *FileContent `locationName:"file" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9527,6 +9634,11 @@ func (s *RelatedItemInputContent) Validate() error {
 			invalidParams.AddNested("Contact", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9546,6 +9658,12 @@ func (s *RelatedItemInputContent) SetContact(v *Contact) *RelatedItemInputConten
 	return s
 }
 
+// SetFile sets the File field's value.
+func (s *RelatedItemInputContent) SetFile(v *FileContent) *RelatedItemInputContent {
+	s.File = v
+	return s
+}
+
 // The list of types of related items and their parameters to use for filtering.
 type RelatedItemTypeFilter struct {
 	_ struct{} `type:"structure"`
@@ -9555,6 +9673,9 @@ type RelatedItemTypeFilter struct {
 
 	// A filter for related items of type Contact.
 	Contact *ContactFilter `locationName:"contact" type:"structure"`
+
+	// A filter for related items of this type of File.
+	File *FileFilter `locationName:"file" type:"structure"`
 }
 
 // String returns the string representation.
@@ -9583,6 +9704,11 @@ func (s *RelatedItemTypeFilter) Validate() error {
 			invalidParams.AddNested("Contact", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9599,6 +9725,12 @@ func (s *RelatedItemTypeFilter) SetComment(v *CommentFilter) *RelatedItemTypeFil
 // SetContact sets the Contact field's value.
 func (s *RelatedItemTypeFilter) SetContact(v *ContactFilter) *RelatedItemTypeFilter {
 	s.Contact = v
+	return s
+}
+
+// SetFile sets the File field's value.
+func (s *RelatedItemTypeFilter) SetFile(v *FileFilter) *RelatedItemTypeFilter {
+	s.File = v
 	return s
 }
 
@@ -11425,6 +11557,9 @@ const (
 
 	// RelatedItemTypeComment is a RelatedItemType enum value
 	RelatedItemTypeComment = "Comment"
+
+	// RelatedItemTypeFile is a RelatedItemType enum value
+	RelatedItemTypeFile = "File"
 )
 
 // RelatedItemType_Values returns all elements of the RelatedItemType enum
@@ -11432,6 +11567,7 @@ func RelatedItemType_Values() []string {
 	return []string{
 		RelatedItemTypeContact,
 		RelatedItemTypeComment,
+		RelatedItemTypeFile,
 	}
 }
 

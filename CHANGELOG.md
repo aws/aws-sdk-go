@@ -1,3 +1,16 @@
+Release v1.52.2 (2024-05-03)
+===
+
+### Service Client Updates
+* `service/bedrock-agent`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/connectcases`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/inspector2`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Inference now supports m6i, c6i, r6i, m7i, c7i, r7i and g5 instance types for Batch Transform Jobs
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.52.1 (2024-05-02)
 ===
 

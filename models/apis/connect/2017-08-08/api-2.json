@@ -5,6 +5,7 @@
     "endpointPrefix":"connect",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceAbbreviation":"Amazon Connect",
     "serviceFullName":"Amazon Connect Service",
     "serviceId":"Connect",
@@ -292,6 +293,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "BatchGetAttachedFileMetadata":{
+      "name":"BatchGetAttachedFileMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/attached-files/{InstanceId}"
+      },
+      "input":{"shape":"BatchGetAttachedFileMetadataRequest"},
+      "output":{"shape":"BatchGetAttachedFileMetadataResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "BatchGetFlowAssociation":{
       "name":"BatchGetFlowAssociation",
       "http":{
@@ -342,6 +359,22 @@
         {"shape":"InternalServiceException"},
         {"shape":"IdempotencyException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CompleteAttachedFileUpload":{
+      "name":"CompleteAttachedFileUpload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/attached-files/{InstanceId}/{FileId}"
+      },
+      "input":{"shape":"CompleteAttachedFileUploadRequest"},
+      "output":{"shape":"CompleteAttachedFileUploadResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateAgentStatus":{
@@ -788,6 +821,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "DeleteAttachedFile":{
+      "name":"DeleteAttachedFile",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/attached-files/{InstanceId}/{FileId}"
+      },
+      "input":{"shape":"DeleteAttachedFileRequest"},
+      "output":{"shape":"DeleteAttachedFileResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteContactEvaluation":{
@@ -1736,6 +1785,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetAttachedFile":{
+      "name":"GetAttachedFile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/attached-files/{InstanceId}/{FileId}"
+      },
+      "input":{"shape":"GetAttachedFileRequest"},
+      "output":{"shape":"GetAttachedFileResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetContactAttributes":{
@@ -2940,6 +3005,23 @@
         {"shape":"InternalServiceException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "StartAttachedFileUpload":{
+      "name":"StartAttachedFileUpload",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/attached-files/{InstanceId}"
+      },
+      "input":{"shape":"StartAttachedFileUploadRequest"},
+      "output":{"shape":"StartAttachedFileUploadResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "StartChatContact":{
@@ -4550,6 +4632,56 @@
       "max":100,
       "min":1
     },
+    "AttachedFile":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "FileArn",
+        "FileId",
+        "FileName",
+        "FileSizeInBytes",
+        "FileStatus"
+      ],
+      "members":{
+        "CreationTime":{"shape":"ISO8601Datetime"},
+        "FileArn":{"shape":"ARN"},
+        "FileId":{"shape":"FileId"},
+        "FileName":{"shape":"FileName"},
+        "FileSizeInBytes":{
+          "shape":"FileSizeInBytes",
+          "box":true
+        },
+        "FileStatus":{"shape":"FileStatusType"},
+        "CreatedBy":{"shape":"CreatedByInfo"},
+        "FileUseCaseType":{"shape":"FileUseCaseType"},
+        "AssociatedResourceArn":{"shape":"ARN"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "AttachedFileError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "FileId":{"shape":"FileId"}
+      }
+    },
+    "AttachedFileErrorsList":{
+      "type":"list",
+      "member":{"shape":"AttachedFileError"}
+    },
+    "AttachedFileInvalidRequestExceptionReason":{
+      "type":"string",
+      "enum":[
+        "INVALID_FILE_SIZE",
+        "INVALID_FILE_TYPE",
+        "INVALID_FILE_NAME"
+      ]
+    },
+    "AttachedFilesList":{
+      "type":"list",
+      "member":{"shape":"AttachedFile"}
+    },
     "AttachmentName":{
       "type":"string",
       "max":256,
@@ -4677,6 +4809,34 @@
       "members":{
         "Deleted":{"shape":"DataSetIds"},
         "Errors":{"shape":"ErrorResults"}
+      }
+    },
+    "BatchGetAttachedFileMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "FileIds",
+        "InstanceId",
+        "AssociatedResourceArn"
+      ],
+      "members":{
+        "FileIds":{"shape":"FileIdList"},
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AssociatedResourceArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"associatedResourceArn"
+        }
+      }
+    },
+    "BatchGetAttachedFileMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "Files":{"shape":"AttachedFilesList"},
+        "Errors":{"shape":"AttachedFileErrorsList"}
       }
     },
     "BatchGetFlowAssociationRequest":{
@@ -4890,6 +5050,36 @@
     "Comparison":{
       "type":"string",
       "enum":["LT"]
+    },
+    "CompleteAttachedFileUploadRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FileId",
+        "AssociatedResourceArn"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FileId":{
+          "shape":"FileId",
+          "location":"uri",
+          "locationName":"FileId"
+        },
+        "AssociatedResourceArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"associatedResourceArn"
+        }
+      }
+    },
+    "CompleteAttachedFileUploadResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Concurrency":{
       "type":"integer",
@@ -5948,6 +6138,14 @@
         "State":{"shape":"VocabularyState"}
       }
     },
+    "CreatedByInfo":{
+      "type":"structure",
+      "members":{
+        "ConnectUserArn":{"shape":"ARN"},
+        "AWSIdentityArn":{"shape":"ARN"}
+      },
+      "union":true
+    },
     "Credentials":{
       "type":"structure",
       "members":{
@@ -6105,6 +6303,36 @@
       "type":"integer",
       "max":9999,
       "min":0
+    },
+    "DeleteAttachedFileRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FileId",
+        "AssociatedResourceArn"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FileId":{
+          "shape":"FileId",
+          "location":"uri",
+          "locationName":"FileId"
+        },
+        "AssociatedResourceArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"associatedResourceArn"
+        }
+      }
+    },
+    "DeleteAttachedFileResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteContactEvaluationRequest":{
       "type":"structure",
@@ -7552,6 +7780,13 @@
       "member":{"shape":"Distribution"}
     },
     "Double":{"type":"double"},
+    "DownloadUrlMetadata":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"MetadataUrl"},
+        "UrlExpiry":{"shape":"ISO8601Datetime"}
+      }
+    },
     "DuplicateResourceException":{
       "type":"structure",
       "members":{
@@ -7616,6 +7851,8 @@
         "CONTACT_FLOW"
       ]
     },
+    "ErrorCode":{"type":"string"},
+    "ErrorMessage":{"type":"string"},
     "ErrorResult":{
       "type":"structure",
       "members":{
@@ -8213,6 +8450,40 @@
       "type":"list",
       "member":{"shape":"FieldValue"}
     },
+    "FileId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "FileIdList":{
+      "type":"list",
+      "member":{"shape":"FileId"},
+      "min":1
+    },
+    "FileName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "FileSizeInBytes":{
+      "type":"long",
+      "box":true,
+      "min":1
+    },
+    "FileStatusType":{
+      "type":"string",
+      "enum":[
+        "APPROVED",
+        "REJECTED",
+        "PROCESSING",
+        "FAILED"
+      ]
+    },
+    "FileUseCaseType":{
+      "type":"string",
+      "enum":["ATTACHMENT"]
+    },
     "FilterV2":{
       "type":"structure",
       "members":{
@@ -8265,6 +8536,56 @@
     "FunctionArnsList":{
       "type":"list",
       "member":{"shape":"FunctionArn"}
+    },
+    "GetAttachedFileRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FileId",
+        "AssociatedResourceArn"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FileId":{
+          "shape":"FileId",
+          "location":"uri",
+          "locationName":"FileId"
+        },
+        "UrlExpiryInSeconds":{
+          "shape":"URLExpiryInSeconds",
+          "location":"querystring",
+          "locationName":"urlExpiryInSeconds"
+        },
+        "AssociatedResourceArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"associatedResourceArn"
+        }
+      }
+    },
+    "GetAttachedFileResponse":{
+      "type":"structure",
+      "required":["FileSizeInBytes"],
+      "members":{
+        "FileArn":{"shape":"ARN"},
+        "FileId":{"shape":"FileId"},
+        "CreationTime":{"shape":"ISO8601Datetime"},
+        "FileStatus":{"shape":"FileStatusType"},
+        "FileName":{"shape":"FileName"},
+        "FileSizeInBytes":{
+          "shape":"FileSizeInBytes",
+          "box":true
+        },
+        "AssociatedResourceArn":{"shape":"ARN"},
+        "FileUseCaseType":{"shape":"FileUseCaseType"},
+        "CreatedBy":{"shape":"CreatedByInfo"},
+        "DownloadUrlMetadata":{"shape":"DownloadUrlMetadata"},
+        "Tags":{"shape":"TagMap"}
+      }
     },
     "GetContactAttributesRequest":{
       "type":"structure",
@@ -9146,10 +9467,18 @@
     "InvalidRequestException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"Message"}
+        "Message":{"shape":"Message"},
+        "Reason":{"shape":"InvalidRequestExceptionReason"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "InvalidRequestExceptionReason":{
+      "type":"structure",
+      "members":{
+        "AttachedFileInvalidRequestExceptionReason":{"shape":"AttachedFileInvalidRequestExceptionReason"}
+      },
+      "union":true
     },
     "InvisibleFieldInfo":{
       "type":"structure",
@@ -10811,6 +11140,11 @@
     },
     "MeetingId":{"type":"string"},
     "Message":{"type":"string"},
+    "MetadataUrl":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
     "MetricDataCollectionsV2":{
       "type":"list",
       "member":{"shape":"MetricDataV2"}
@@ -13377,6 +13711,52 @@
         "CASES"
       ]
     },
+    "StartAttachedFileUploadRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FileName",
+        "FileSizeInBytes",
+        "FileUseCaseType",
+        "AssociatedResourceArn"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FileName":{"shape":"FileName"},
+        "FileSizeInBytes":{
+          "shape":"FileSizeInBytes",
+          "box":true
+        },
+        "UrlExpiryInSeconds":{"shape":"URLExpiryInSeconds"},
+        "FileUseCaseType":{"shape":"FileUseCaseType"},
+        "AssociatedResourceArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"associatedResourceArn"
+        },
+        "CreatedBy":{"shape":"CreatedByInfo"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "StartAttachedFileUploadResponse":{
+      "type":"structure",
+      "members":{
+        "FileArn":{"shape":"ARN"},
+        "FileId":{"shape":"FileId"},
+        "CreationTime":{"shape":"ISO8601Datetime"},
+        "FileStatus":{"shape":"FileStatusType"},
+        "CreatedBy":{"shape":"CreatedByInfo"},
+        "UploadUrlMetadata":{"shape":"UploadUrlMetadata"}
+      }
+    },
     "StartChatContactRequest":{
       "type":"structure",
       "required":[
@@ -14226,6 +14606,11 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "URLExpiryInSeconds":{
+      "type":"integer",
+      "max":300,
+      "min":5
     },
     "Unit":{
       "type":"string",
@@ -15412,7 +15797,30 @@
       "members":{
       }
     },
+    "UploadUrlMetadata":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"MetadataUrl"},
+        "UrlExpiry":{"shape":"ISO8601Datetime"},
+        "HeadersToInclude":{"shape":"UrlMetadataSignedHeaders"}
+      }
+    },
     "Url":{"type":"string"},
+    "UrlMetadataSignedHeaders":{
+      "type":"map",
+      "key":{"shape":"UrlMetadataSignedHeadersKey"},
+      "value":{"shape":"UrlMetadataSignedHeadersValue"}
+    },
+    "UrlMetadataSignedHeadersKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "UrlMetadataSignedHeadersValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "UrlReference":{
       "type":"structure",
       "members":{
