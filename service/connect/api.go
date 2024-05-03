@@ -1659,6 +1659,99 @@ func (c *Connect) BatchDisassociateAnalyticsDataSetWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opBatchGetAttachedFileMetadata = "BatchGetAttachedFileMetadata"
+
+// BatchGetAttachedFileMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetAttachedFileMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetAttachedFileMetadata for more information on using the BatchGetAttachedFileMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the BatchGetAttachedFileMetadataRequest method.
+//	req, resp := client.BatchGetAttachedFileMetadataRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchGetAttachedFileMetadata
+func (c *Connect) BatchGetAttachedFileMetadataRequest(input *BatchGetAttachedFileMetadataInput) (req *request.Request, output *BatchGetAttachedFileMetadataOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetAttachedFileMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/attached-files/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &BatchGetAttachedFileMetadataInput{}
+	}
+
+	output = &BatchGetAttachedFileMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetAttachedFileMetadata API operation for Amazon Connect Service.
+//
+// Allows you to retrieve metadata about multiple attached files on an associated
+// resource. Each attached file provided in the input list must be associated
+// with the input AssociatedResourceArn.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation BatchGetAttachedFileMetadata for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/BatchGetAttachedFileMetadata
+func (c *Connect) BatchGetAttachedFileMetadata(input *BatchGetAttachedFileMetadataInput) (*BatchGetAttachedFileMetadataOutput, error) {
+	req, out := c.BatchGetAttachedFileMetadataRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetAttachedFileMetadataWithContext is the same as BatchGetAttachedFileMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetAttachedFileMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) BatchGetAttachedFileMetadataWithContext(ctx aws.Context, input *BatchGetAttachedFileMetadataInput, opts ...request.Option) (*BatchGetAttachedFileMetadataOutput, error) {
+	req, out := c.BatchGetAttachedFileMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetFlowAssociation = "BatchGetFlowAssociation"
 
 // BatchGetFlowAssociationRequest generates a "aws/request.Request" representing the
@@ -1975,6 +2068,99 @@ func (c *Connect) ClaimPhoneNumber(input *ClaimPhoneNumberInput) (*ClaimPhoneNum
 // for more information on using Contexts.
 func (c *Connect) ClaimPhoneNumberWithContext(ctx aws.Context, input *ClaimPhoneNumberInput, opts ...request.Option) (*ClaimPhoneNumberOutput, error) {
 	req, out := c.ClaimPhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCompleteAttachedFileUpload = "CompleteAttachedFileUpload"
+
+// CompleteAttachedFileUploadRequest generates a "aws/request.Request" representing the
+// client's request for the CompleteAttachedFileUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CompleteAttachedFileUpload for more information on using the CompleteAttachedFileUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the CompleteAttachedFileUploadRequest method.
+//	req, resp := client.CompleteAttachedFileUploadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CompleteAttachedFileUpload
+func (c *Connect) CompleteAttachedFileUploadRequest(input *CompleteAttachedFileUploadInput) (req *request.Request, output *CompleteAttachedFileUploadOutput) {
+	op := &request.Operation{
+		Name:       opCompleteAttachedFileUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/attached-files/{InstanceId}/{FileId}",
+	}
+
+	if input == nil {
+		input = &CompleteAttachedFileUploadInput{}
+	}
+
+	output = &CompleteAttachedFileUploadOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CompleteAttachedFileUpload API operation for Amazon Connect Service.
+//
+// Allows you to confirm that the attached file has been uploaded using the
+// pre-signed URL provided in the StartAttachedFileUpload API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CompleteAttachedFileUpload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CompleteAttachedFileUpload
+func (c *Connect) CompleteAttachedFileUpload(input *CompleteAttachedFileUploadInput) (*CompleteAttachedFileUploadOutput, error) {
+	req, out := c.CompleteAttachedFileUploadRequest(input)
+	return out, req.Send()
+}
+
+// CompleteAttachedFileUploadWithContext is the same as CompleteAttachedFileUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CompleteAttachedFileUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CompleteAttachedFileUploadWithContext(ctx aws.Context, input *CompleteAttachedFileUploadInput, opts ...request.Option) (*CompleteAttachedFileUploadOutput, error) {
+	req, out := c.CompleteAttachedFileUploadRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4474,6 +4660,100 @@ func (c *Connect) DeactivateEvaluationForm(input *DeactivateEvaluationFormInput)
 // for more information on using Contexts.
 func (c *Connect) DeactivateEvaluationFormWithContext(ctx aws.Context, input *DeactivateEvaluationFormInput, opts ...request.Option) (*DeactivateEvaluationFormOutput, error) {
 	req, out := c.DeactivateEvaluationFormRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAttachedFile = "DeleteAttachedFile"
+
+// DeleteAttachedFileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAttachedFile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAttachedFile for more information on using the DeleteAttachedFile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the DeleteAttachedFileRequest method.
+//	req, resp := client.DeleteAttachedFileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteAttachedFile
+func (c *Connect) DeleteAttachedFileRequest(input *DeleteAttachedFileInput) (req *request.Request, output *DeleteAttachedFileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAttachedFile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/attached-files/{InstanceId}/{FileId}",
+	}
+
+	if input == nil {
+		input = &DeleteAttachedFileInput{}
+	}
+
+	output = &DeleteAttachedFileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAttachedFile API operation for Amazon Connect Service.
+//
+// Deletes an attached file along with the underlying S3 Object.
+//
+// The attached file is permanently deleted if S3 bucket versioning is not enabled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteAttachedFile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteAttachedFile
+func (c *Connect) DeleteAttachedFile(input *DeleteAttachedFileInput) (*DeleteAttachedFileOutput, error) {
+	req, out := c.DeleteAttachedFileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAttachedFileWithContext is the same as DeleteAttachedFile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAttachedFile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteAttachedFileWithContext(ctx aws.Context, input *DeleteAttachedFileInput, opts ...request.Option) (*DeleteAttachedFileOutput, error) {
+	req, out := c.DeleteAttachedFileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10134,6 +10414,99 @@ func (c *Connect) DismissUserContact(input *DismissUserContactInput) (*DismissUs
 // for more information on using Contexts.
 func (c *Connect) DismissUserContactWithContext(ctx aws.Context, input *DismissUserContactInput, opts ...request.Option) (*DismissUserContactOutput, error) {
 	req, out := c.DismissUserContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAttachedFile = "GetAttachedFile"
+
+// GetAttachedFileRequest generates a "aws/request.Request" representing the
+// client's request for the GetAttachedFile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAttachedFile for more information on using the GetAttachedFile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the GetAttachedFileRequest method.
+//	req, resp := client.GetAttachedFileRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetAttachedFile
+func (c *Connect) GetAttachedFileRequest(input *GetAttachedFileInput) (req *request.Request, output *GetAttachedFileOutput) {
+	op := &request.Operation{
+		Name:       opGetAttachedFile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/attached-files/{InstanceId}/{FileId}",
+	}
+
+	if input == nil {
+		input = &GetAttachedFileInput{}
+	}
+
+	output = &GetAttachedFileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAttachedFile API operation for Amazon Connect Service.
+//
+// Provides a pre-signed URL for download of an approved attached file. This
+// API also returns metadata about the attached file. It will only return a
+// downloadURL if the status of the attached file is APPROVED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation GetAttachedFile for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ResourceNotFoundException
+//     The specified resource was not found.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetAttachedFile
+func (c *Connect) GetAttachedFile(input *GetAttachedFileInput) (*GetAttachedFileOutput, error) {
+	req, out := c.GetAttachedFileRequest(input)
+	return out, req.Send()
+}
+
+// GetAttachedFileWithContext is the same as GetAttachedFile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAttachedFile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) GetAttachedFileWithContext(ctx aws.Context, input *GetAttachedFileInput, opts ...request.Option) (*GetAttachedFileOutput, error) {
+	req, out := c.GetAttachedFileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20516,6 +20889,102 @@ func (c *Connect) SendChatIntegrationEventWithContext(ctx aws.Context, input *Se
 	return out, req.Send()
 }
 
+const opStartAttachedFileUpload = "StartAttachedFileUpload"
+
+// StartAttachedFileUploadRequest generates a "aws/request.Request" representing the
+// client's request for the StartAttachedFileUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartAttachedFileUpload for more information on using the StartAttachedFileUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the StartAttachedFileUploadRequest method.
+//	req, resp := client.StartAttachedFileUploadRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartAttachedFileUpload
+func (c *Connect) StartAttachedFileUploadRequest(input *StartAttachedFileUploadInput) (req *request.Request, output *StartAttachedFileUploadOutput) {
+	op := &request.Operation{
+		Name:       opStartAttachedFileUpload,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/attached-files/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &StartAttachedFileUploadInput{}
+	}
+
+	output = &StartAttachedFileUploadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartAttachedFileUpload API operation for Amazon Connect Service.
+//
+// Provides a pre-signed Amazon S3 URL in response for uploading your content.
+//
+// You may only use this API to upload attachments to a Connect Case (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartAttachedFileUpload for usage and error information.
+//
+// Returned Error Types:
+//
+//   - AccessDeniedException
+//     You do not have sufficient permissions to perform this action.
+//
+//   - InvalidRequestException
+//     The request is not valid.
+//
+//   - InternalServiceException
+//     Request processing failed because of an error or failure with the service.
+//
+//   - ThrottlingException
+//     The throttling limit has been exceeded.
+//
+//   - ResourceConflictException
+//     A resource already has that name.
+//
+//   - ServiceQuotaExceededException
+//     The service quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartAttachedFileUpload
+func (c *Connect) StartAttachedFileUpload(input *StartAttachedFileUploadInput) (*StartAttachedFileUploadOutput, error) {
+	req, out := c.StartAttachedFileUploadRequest(input)
+	return out, req.Send()
+}
+
+// StartAttachedFileUploadWithContext is the same as StartAttachedFileUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartAttachedFileUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartAttachedFileUploadWithContext(ctx aws.Context, input *StartAttachedFileUploadInput, opts ...request.Option) (*StartAttachedFileUploadOutput, error) {
+	req, out := c.StartAttachedFileUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartChatContact = "StartChatContact"
 
 // StartChatContactRequest generates a "aws/request.Request" representing the
@@ -29192,6 +29661,187 @@ func (s AssociateUserProficienciesOutput) GoString() string {
 	return s.String()
 }
 
+// Information about the attached file.
+type AttachedFile struct {
+	_ struct{} `type:"structure"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	AssociatedResourceArn *string `type:"string"`
+
+	// Represents the identity that created the file.
+	CreatedBy *CreatedByInfo `type:"structure"`
+
+	// The time of Creation of the file resource as an ISO timestamp. It's specified
+	// in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2024-05-03T02:41:28.172Z.
+	//
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// The unique identifier of the attached file resource (ARN).
+	//
+	// FileArn is a required field
+	FileArn *string `type:"string" required:"true"`
+
+	// The unique identifier of the attached file resource.
+	//
+	// FileId is a required field
+	FileId *string `min:"1" type:"string" required:"true"`
+
+	// A case-sensitive name of the attached file being uploaded.
+	//
+	// FileName is a required field
+	FileName *string `min:"1" type:"string" required:"true"`
+
+	// The size of the attached file in bytes.
+	//
+	// FileSizeInBytes is a required field
+	FileSizeInBytes *int64 `min:"1" type:"long" required:"true"`
+
+	// The current status of the attached file.
+	//
+	// FileStatus is a required field
+	FileStatus *string `type:"string" required:"true" enum:"FileStatusType"`
+
+	// The use case for the file.
+	FileUseCaseType *string `type:"string" enum:"FileUseCaseType"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachedFile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachedFile) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *AttachedFile) SetAssociatedResourceArn(v string) *AttachedFile {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *AttachedFile) SetCreatedBy(v *CreatedByInfo) *AttachedFile {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AttachedFile) SetCreationTime(v string) *AttachedFile {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFileArn sets the FileArn field's value.
+func (s *AttachedFile) SetFileArn(v string) *AttachedFile {
+	s.FileArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *AttachedFile) SetFileId(v string) *AttachedFile {
+	s.FileId = &v
+	return s
+}
+
+// SetFileName sets the FileName field's value.
+func (s *AttachedFile) SetFileName(v string) *AttachedFile {
+	s.FileName = &v
+	return s
+}
+
+// SetFileSizeInBytes sets the FileSizeInBytes field's value.
+func (s *AttachedFile) SetFileSizeInBytes(v int64) *AttachedFile {
+	s.FileSizeInBytes = &v
+	return s
+}
+
+// SetFileStatus sets the FileStatus field's value.
+func (s *AttachedFile) SetFileStatus(v string) *AttachedFile {
+	s.FileStatus = &v
+	return s
+}
+
+// SetFileUseCaseType sets the FileUseCaseType field's value.
+func (s *AttachedFile) SetFileUseCaseType(v string) *AttachedFile {
+	s.FileUseCaseType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AttachedFile) SetTags(v map[string]*string) *AttachedFile {
+	s.Tags = v
+	return s
+}
+
+// Error describing a failure to retrieve attached file metadata through BatchGetAttachedFileMetadata
+// action.
+type AttachedFileError struct {
+	_ struct{} `type:"structure"`
+
+	// Status code describing the failure.
+	ErrorCode *string `type:"string"`
+
+	// Why the attached file couldn't be retrieved.
+	ErrorMessage *string `type:"string"`
+
+	// The unique identifier of the attached file resource.
+	FileId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachedFileError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachedFileError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *AttachedFileError) SetErrorCode(v string) *AttachedFileError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *AttachedFileError) SetErrorMessage(v string) *AttachedFileError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *AttachedFileError) SetFileId(v string) *AttachedFileError {
+	s.FileId = &v
+	return s
+}
+
 // Information about a reference when the referenceType is ATTACHMENT. Otherwise,
 // null.
 type AttachmentReference struct {
@@ -29686,6 +30336,129 @@ func (s *BatchDisassociateAnalyticsDataSetOutput) SetDeleted(v []*string) *Batch
 // SetErrors sets the Errors field's value.
 func (s *BatchDisassociateAnalyticsDataSetOutput) SetErrors(v []*ErrorResult) *BatchDisassociateAnalyticsDataSetOutput {
 	s.Errors = v
+	return s
+}
+
+type BatchGetAttachedFileMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	//
+	// AssociatedResourceArn is a required field
+	AssociatedResourceArn *string `location:"querystring" locationName:"associatedResourceArn" type:"string" required:"true"`
+
+	// The unique identifiers of the attached file resource.
+	//
+	// FileIds is a required field
+	FileIds []*string `min:"1" type:"list" required:"true"`
+
+	// The unique identifier of the Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAttachedFileMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAttachedFileMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetAttachedFileMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetAttachedFileMetadataInput"}
+	if s.AssociatedResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociatedResourceArn"))
+	}
+	if s.FileIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileIds"))
+	}
+	if s.FileIds != nil && len(s.FileIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileIds", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *BatchGetAttachedFileMetadataInput) SetAssociatedResourceArn(v string) *BatchGetAttachedFileMetadataInput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetFileIds sets the FileIds field's value.
+func (s *BatchGetAttachedFileMetadataInput) SetFileIds(v []*string) *BatchGetAttachedFileMetadataInput {
+	s.FileIds = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *BatchGetAttachedFileMetadataInput) SetInstanceId(v string) *BatchGetAttachedFileMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+type BatchGetAttachedFileMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of errors of attached files that could not be retrieved.
+	Errors []*AttachedFileError `type:"list"`
+
+	// List of attached files that were successfully retrieved.
+	Files []*AttachedFile `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAttachedFileMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchGetAttachedFileMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetAttachedFileMetadataOutput) SetErrors(v []*AttachedFileError) *BatchGetAttachedFileMetadataOutput {
+	s.Errors = v
+	return s
+}
+
+// SetFiles sets the Files field's value.
+func (s *BatchGetAttachedFileMetadataOutput) SetFiles(v []*AttachedFile) *BatchGetAttachedFileMetadataOutput {
+	s.Files = v
 	return s
 }
 
@@ -30557,6 +31330,113 @@ func (s *ClaimedPhoneNumberSummary) SetTags(v map[string]*string) *ClaimedPhoneN
 func (s *ClaimedPhoneNumberSummary) SetTargetArn(v string) *ClaimedPhoneNumberSummary {
 	s.TargetArn = &v
 	return s
+}
+
+// Request to CompleteAttachedFileUpload API
+type CompleteAttachedFileUploadInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	//
+	// AssociatedResourceArn is a required field
+	AssociatedResourceArn *string `location:"querystring" locationName:"associatedResourceArn" type:"string" required:"true"`
+
+	// The unique identifier of the attached file resource.
+	//
+	// FileId is a required field
+	FileId *string `location:"uri" locationName:"FileId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteAttachedFileUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteAttachedFileUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompleteAttachedFileUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompleteAttachedFileUploadInput"}
+	if s.AssociatedResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociatedResourceArn"))
+	}
+	if s.FileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileId"))
+	}
+	if s.FileId != nil && len(*s.FileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *CompleteAttachedFileUploadInput) SetAssociatedResourceArn(v string) *CompleteAttachedFileUploadInput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *CompleteAttachedFileUploadInput) SetFileId(v string) *CompleteAttachedFileUploadInput {
+	s.FileId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CompleteAttachedFileUploadInput) SetInstanceId(v string) *CompleteAttachedFileUploadInput {
+	s.InstanceId = &v
+	return s
+}
+
+// Response from CompleteAttachedFileUpload API
+type CompleteAttachedFileUploadOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteAttachedFileUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CompleteAttachedFileUploadOutput) GoString() string {
+	return s.String()
 }
 
 // Operation cannot be performed at this time as there is a conflict with another
@@ -36004,6 +36884,49 @@ func (s *CreateVocabularyOutput) SetVocabularyId(v string) *CreateVocabularyOutp
 	return s
 }
 
+// Information on the identity that created the file.
+type CreatedByInfo struct {
+	_ struct{} `type:"structure"`
+
+	// STS or IAM ARN representing the identity of API Caller. SDK users cannot
+	// populate this and this value is calculated automatically if ConnectUserArn
+	// is not provided.
+	AWSIdentityArn *string `type:"string"`
+
+	// An agent ARN representing a connect user (https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-resources-for-iam-policies).
+	ConnectUserArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatedByInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatedByInfo) GoString() string {
+	return s.String()
+}
+
+// SetAWSIdentityArn sets the AWSIdentityArn field's value.
+func (s *CreatedByInfo) SetAWSIdentityArn(v string) *CreatedByInfo {
+	s.AWSIdentityArn = &v
+	return s
+}
+
+// SetConnectUserArn sets the ConnectUserArn field's value.
+func (s *CreatedByInfo) SetConnectUserArn(v string) *CreatedByInfo {
+	s.ConnectUserArn = &v
+	return s
+}
+
 // Contains credentials to use for federation.
 type Credentials struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -36540,6 +37463,113 @@ func (s *DefaultVocabulary) SetVocabularyId(v string) *DefaultVocabulary {
 func (s *DefaultVocabulary) SetVocabularyName(v string) *DefaultVocabulary {
 	s.VocabularyName = &v
 	return s
+}
+
+// Request to DeleteAttachedFile API
+type DeleteAttachedFileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	//
+	// AssociatedResourceArn is a required field
+	AssociatedResourceArn *string `location:"querystring" locationName:"associatedResourceArn" type:"string" required:"true"`
+
+	// The unique identifier of the attached file resource.
+	//
+	// FileId is a required field
+	FileId *string `location:"uri" locationName:"FileId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttachedFileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttachedFileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAttachedFileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAttachedFileInput"}
+	if s.AssociatedResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociatedResourceArn"))
+	}
+	if s.FileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileId"))
+	}
+	if s.FileId != nil && len(*s.FileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *DeleteAttachedFileInput) SetAssociatedResourceArn(v string) *DeleteAttachedFileInput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *DeleteAttachedFileInput) SetFileId(v string) *DeleteAttachedFileInput {
+	s.FileId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteAttachedFileInput) SetInstanceId(v string) *DeleteAttachedFileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// Response from DeleteAttachedFile API
+type DeleteAttachedFileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttachedFileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAttachedFileOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteContactEvaluationInput struct {
@@ -42557,6 +43587,48 @@ func (s *Distribution) SetRegion(v string) *Distribution {
 	return s
 }
 
+// Metadata used to download the attached file.
+type DownloadUrlMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A pre-signed URL that should be used to download the attached file.
+	Url *string `min:"1" type:"string"`
+
+	// The expiration time of the URL in ISO timestamp. It's specified in ISO 8601
+	// format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
+	UrlExpiry *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DownloadUrlMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DownloadUrlMetadata) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *DownloadUrlMetadata) SetUrl(v string) *DownloadUrlMetadata {
+	s.Url = &v
+	return s
+}
+
+// SetUrlExpiry sets the UrlExpiry field's value.
+func (s *DownloadUrlMetadata) SetUrlExpiry(v string) *DownloadUrlMetadata {
+	s.UrlExpiry = &v
+	return s
+}
+
 // A resource with the specified name already exists.
 type DuplicateResourceException struct {
 	_            struct{}                  `type:"structure"`
@@ -45271,6 +46343,231 @@ func (s *FlowAssociationSummary) SetResourceType(v string) *FlowAssociationSumma
 	return s
 }
 
+// Request to GetAttachedFile API.
+type GetAttachedFileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	//
+	// AssociatedResourceArn is a required field
+	AssociatedResourceArn *string `location:"querystring" locationName:"associatedResourceArn" type:"string" required:"true"`
+
+	// The unique identifier of the attached file resource.
+	//
+	// FileId is a required field
+	FileId *string `location:"uri" locationName:"FileId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Optional override for the expiry of the pre-signed S3 URL in seconds.
+	UrlExpiryInSeconds *int64 `location:"querystring" locationName:"urlExpiryInSeconds" min:"5" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAttachedFileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAttachedFileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAttachedFileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAttachedFileInput"}
+	if s.AssociatedResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociatedResourceArn"))
+	}
+	if s.FileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileId"))
+	}
+	if s.FileId != nil && len(*s.FileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.UrlExpiryInSeconds != nil && *s.UrlExpiryInSeconds < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("UrlExpiryInSeconds", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *GetAttachedFileInput) SetAssociatedResourceArn(v string) *GetAttachedFileInput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *GetAttachedFileInput) SetFileId(v string) *GetAttachedFileInput {
+	s.FileId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetAttachedFileInput) SetInstanceId(v string) *GetAttachedFileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetUrlExpiryInSeconds sets the UrlExpiryInSeconds field's value.
+func (s *GetAttachedFileInput) SetUrlExpiryInSeconds(v int64) *GetAttachedFileInput {
+	s.UrlExpiryInSeconds = &v
+	return s
+}
+
+// Response from GetAttachedFile API.
+type GetAttachedFileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	AssociatedResourceArn *string `type:"string"`
+
+	// Represents the identity that created the file.
+	CreatedBy *CreatedByInfo `type:"structure"`
+
+	// The time of Creation of the file resource as an ISO timestamp. It's specified
+	// in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2024-05-03T02:41:28.172Z.
+	CreationTime *string `type:"string"`
+
+	// URL and expiry to be used when downloading the attached file.
+	DownloadUrlMetadata *DownloadUrlMetadata `type:"structure"`
+
+	// The unique identifier of the attached file resource (ARN).
+	FileArn *string `type:"string"`
+
+	// The unique identifier of the attached file resource.
+	FileId *string `min:"1" type:"string"`
+
+	// A case-sensitive name of the attached file being uploaded.
+	FileName *string `min:"1" type:"string"`
+
+	// The size of the attached file in bytes.
+	//
+	// FileSizeInBytes is a required field
+	FileSizeInBytes *int64 `min:"1" type:"long" required:"true"`
+
+	// The current status of the attached file.
+	FileStatus *string `type:"string" enum:"FileStatusType"`
+
+	// The use case for the file.
+	FileUseCaseType *string `type:"string" enum:"FileUseCaseType"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAttachedFileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetAttachedFileOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *GetAttachedFileOutput) SetAssociatedResourceArn(v string) *GetAttachedFileOutput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *GetAttachedFileOutput) SetCreatedBy(v *CreatedByInfo) *GetAttachedFileOutput {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetAttachedFileOutput) SetCreationTime(v string) *GetAttachedFileOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDownloadUrlMetadata sets the DownloadUrlMetadata field's value.
+func (s *GetAttachedFileOutput) SetDownloadUrlMetadata(v *DownloadUrlMetadata) *GetAttachedFileOutput {
+	s.DownloadUrlMetadata = v
+	return s
+}
+
+// SetFileArn sets the FileArn field's value.
+func (s *GetAttachedFileOutput) SetFileArn(v string) *GetAttachedFileOutput {
+	s.FileArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *GetAttachedFileOutput) SetFileId(v string) *GetAttachedFileOutput {
+	s.FileId = &v
+	return s
+}
+
+// SetFileName sets the FileName field's value.
+func (s *GetAttachedFileOutput) SetFileName(v string) *GetAttachedFileOutput {
+	s.FileName = &v
+	return s
+}
+
+// SetFileSizeInBytes sets the FileSizeInBytes field's value.
+func (s *GetAttachedFileOutput) SetFileSizeInBytes(v int64) *GetAttachedFileOutput {
+	s.FileSizeInBytes = &v
+	return s
+}
+
+// SetFileStatus sets the FileStatus field's value.
+func (s *GetAttachedFileOutput) SetFileStatus(v string) *GetAttachedFileOutput {
+	s.FileStatus = &v
+	return s
+}
+
+// SetFileUseCaseType sets the FileUseCaseType field's value.
+func (s *GetAttachedFileOutput) SetFileUseCaseType(v string) *GetAttachedFileOutput {
+	s.FileUseCaseType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetAttachedFileOutput) SetTags(v map[string]*string) *GetAttachedFileOutput {
+	s.Tags = v
+	return s
+}
+
 type GetContactAttributesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -46773,7 +48070,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Average greeting time agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-greeting-time-agent-historical)
+	// UI name: Average agent greeting time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-greeting-time-agent-historical)
 	//
 	// AVG_HANDLE_TIME
 	//
@@ -46848,7 +48145,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Average interruptions agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-agent-historical)
+	// UI name: Average agent interruptions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-agent-historical)
 	//
 	// AVG_INTERRUPTION_TIME_AGENT
 	//
@@ -46860,7 +48157,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Average interruption time agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-time-agent-historical)
+	// UI name: Average agent interruption time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-interruptions-time-agent-historical)
 	//
 	// AVG_NON_TALK_TIME
 	//
@@ -46914,7 +48211,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Average talk time agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-agent-historical)
+	// UI name: Average agent talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-agent-historical)
 	//
 	// AVG_TALK_TIME_CUSTOMER
 	//
@@ -46926,7 +48223,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Average talk time customer (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-customer-historical)
+	// UI name: Average customer talk time (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#average-talk-time-customer-historical)
 	//
 	// CASES_CREATED
 	//
@@ -46980,7 +48277,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Contacts handled by Connected to agent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-handled-by-connected-to-agent-historical)
+	// UI name: Contacts handled (connected to agent timestamp) (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-handled-by-connected-to-agent-historical)
 	//
 	// CONTACTS_HOLD_ABANDONS
 	//
@@ -47051,7 +48348,7 @@ type GetMetricDataV2Input struct {
 	//
 	// Valid groupings and filters: Queue, Channel, Agent, Agent Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Contacts queued by Enqueue (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-queued-by-enqueue-historical)
+	// UI name: Contacts queued (enqueue timestamp) (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#contacts-queued-by-enqueue-historical)
 	//
 	// CONTACTS_RESOLVED_IN_X
 	//
@@ -47172,7 +48469,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Talk time agent percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttagent-historical)
+	// UI name: Agent talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttagent-historical)
 	//
 	// PERCENT_TALK_TIME_CUSTOMER
 	//
@@ -47184,7 +48481,7 @@ type GetMetricDataV2Input struct {
 	// Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent
 	// Hierarchy, contact/segmentAttributes/connect:Subtype
 	//
-	// UI name: Talk time customer percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttcustomer-historical)
+	// UI name: Customer talk time percent (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#ttcustomer-historical)
 	//
 	// REOPENED_CASE_ACTIONS
 	//
@@ -50304,6 +51601,9 @@ type InvalidRequestException struct {
 
 	// The message about the request.
 	Message_ *string `locationName:"Message" type:"string"`
+
+	// Reason why the request was invalid.
+	Reason *InvalidRequestExceptionReason `type:"structure"`
 }
 
 // String returns the string representation.
@@ -50349,7 +51649,7 @@ func (s *InvalidRequestException) OrigErr() error {
 }
 
 func (s *InvalidRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -50360,6 +51660,38 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Reason why the request was invalid.
+type InvalidRequestExceptionReason struct {
+	_ struct{} `type:"structure"`
+
+	// Reason why the StartAttachedFiledUpload request was invalid.
+	AttachedFileInvalidRequestExceptionReason *string `type:"string" enum:"AttachedFileInvalidRequestExceptionReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestExceptionReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestExceptionReason) GoString() string {
+	return s.String()
+}
+
+// SetAttachedFileInvalidRequestExceptionReason sets the AttachedFileInvalidRequestExceptionReason field's value.
+func (s *InvalidRequestExceptionReason) SetAttachedFileInvalidRequestExceptionReason(v string) *InvalidRequestExceptionReason {
+	s.AttachedFileInvalidRequestExceptionReason = &v
+	return s
 }
 
 // A field that is invisible to an agent.
@@ -65945,6 +67277,244 @@ func (s *Sort) SetOrder(v string) *Sort {
 	return s
 }
 
+type StartAttachedFileUploadInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource to which the attached file is (being) uploaded to. Cases (https://docs.aws.amazon.com/connect/latest/APIReference/API_connect-cases_CreateCase.html)
+	// are the only current supported resource.
+	//
+	// This value must be a valid ARN.
+	//
+	// AssociatedResourceArn is a required field
+	AssociatedResourceArn *string `location:"querystring" locationName:"associatedResourceArn" type:"string" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If not provided, the Amazon Web Services SDK populates this
+	// field. For more information about idempotency, see Making retries safe with
+	// idempotent APIs (https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// Represents the identity that created the file.
+	CreatedBy *CreatedByInfo `type:"structure"`
+
+	// A case-sensitive name of the attached file being uploaded.
+	//
+	// FileName is a required field
+	FileName *string `min:"1" type:"string" required:"true"`
+
+	// The size of the attached file in bytes.
+	//
+	// FileSizeInBytes is a required field
+	FileSizeInBytes *int64 `min:"1" type:"long" required:"true"`
+
+	// The use case for the file.
+	//
+	// FileUseCaseType is a required field
+	FileUseCaseType *string `type:"string" required:"true" enum:"FileUseCaseType"`
+
+	// The unique identifier of the Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource. For
+	// example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// Optional override for the expiry of the pre-signed S3 URL in seconds.
+	UrlExpiryInSeconds *int64 `min:"5" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAttachedFileUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAttachedFileUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAttachedFileUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAttachedFileUploadInput"}
+	if s.AssociatedResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociatedResourceArn"))
+	}
+	if s.FileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileName"))
+	}
+	if s.FileName != nil && len(*s.FileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileName", 1))
+	}
+	if s.FileSizeInBytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSizeInBytes"))
+	}
+	if s.FileSizeInBytes != nil && *s.FileSizeInBytes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FileSizeInBytes", 1))
+	}
+	if s.FileUseCaseType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileUseCaseType"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.UrlExpiryInSeconds != nil && *s.UrlExpiryInSeconds < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("UrlExpiryInSeconds", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedResourceArn sets the AssociatedResourceArn field's value.
+func (s *StartAttachedFileUploadInput) SetAssociatedResourceArn(v string) *StartAttachedFileUploadInput {
+	s.AssociatedResourceArn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartAttachedFileUploadInput) SetClientToken(v string) *StartAttachedFileUploadInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *StartAttachedFileUploadInput) SetCreatedBy(v *CreatedByInfo) *StartAttachedFileUploadInput {
+	s.CreatedBy = v
+	return s
+}
+
+// SetFileName sets the FileName field's value.
+func (s *StartAttachedFileUploadInput) SetFileName(v string) *StartAttachedFileUploadInput {
+	s.FileName = &v
+	return s
+}
+
+// SetFileSizeInBytes sets the FileSizeInBytes field's value.
+func (s *StartAttachedFileUploadInput) SetFileSizeInBytes(v int64) *StartAttachedFileUploadInput {
+	s.FileSizeInBytes = &v
+	return s
+}
+
+// SetFileUseCaseType sets the FileUseCaseType field's value.
+func (s *StartAttachedFileUploadInput) SetFileUseCaseType(v string) *StartAttachedFileUploadInput {
+	s.FileUseCaseType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartAttachedFileUploadInput) SetInstanceId(v string) *StartAttachedFileUploadInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartAttachedFileUploadInput) SetTags(v map[string]*string) *StartAttachedFileUploadInput {
+	s.Tags = v
+	return s
+}
+
+// SetUrlExpiryInSeconds sets the UrlExpiryInSeconds field's value.
+func (s *StartAttachedFileUploadInput) SetUrlExpiryInSeconds(v int64) *StartAttachedFileUploadInput {
+	s.UrlExpiryInSeconds = &v
+	return s
+}
+
+// Response from StartAttachedFileUpload API.
+type StartAttachedFileUploadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the identity that created the file.
+	CreatedBy *CreatedByInfo `type:"structure"`
+
+	// The time of Creation of the file resource as an ISO timestamp. It's specified
+	// in ISO 8601 format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2024-05-03T02:41:28.172Z.
+	CreationTime *string `type:"string"`
+
+	// The unique identifier of the attached file resource (ARN).
+	FileArn *string `type:"string"`
+
+	// The unique identifier of the attached file resource.
+	FileId *string `min:"1" type:"string"`
+
+	// The current status of the attached file.
+	FileStatus *string `type:"string" enum:"FileStatusType"`
+
+	// Information to be used while uploading the attached file.
+	UploadUrlMetadata *UploadUrlMetadata `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAttachedFileUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAttachedFileUploadOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *StartAttachedFileUploadOutput) SetCreatedBy(v *CreatedByInfo) *StartAttachedFileUploadOutput {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StartAttachedFileUploadOutput) SetCreationTime(v string) *StartAttachedFileUploadOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFileArn sets the FileArn field's value.
+func (s *StartAttachedFileUploadOutput) SetFileArn(v string) *StartAttachedFileUploadOutput {
+	s.FileArn = &v
+	return s
+}
+
+// SetFileId sets the FileId field's value.
+func (s *StartAttachedFileUploadOutput) SetFileId(v string) *StartAttachedFileUploadOutput {
+	s.FileId = &v
+	return s
+}
+
+// SetFileStatus sets the FileStatus field's value.
+func (s *StartAttachedFileUploadOutput) SetFileStatus(v string) *StartAttachedFileUploadOutput {
+	s.FileStatus = &v
+	return s
+}
+
+// SetUploadUrlMetadata sets the UploadUrlMetadata field's value.
+func (s *StartAttachedFileUploadOutput) SetUploadUrlMetadata(v *UploadUrlMetadata) *StartAttachedFileUploadOutput {
+	s.UploadUrlMetadata = v
+	return s
+}
+
 type StartChatContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -70221,6 +71791,18 @@ type UpdateContactAttributesInput struct {
 	//
 	// You can have up to 32,768 UTF-8 bytes across all attributes for a contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
+	//
+	// When the attributes for a contact exceed 32 KB, the contact is routed down
+	// the Error branch of the flow. As a mitigation, consider the following options:
+	//
+	//    * Remove unnecessary attributes by setting their values to empty.
+	//
+	//    * If the attributes are only used in one flow and don't need to be referred
+	//    to outside of that flow (for example, by a Lambda or another flow), then
+	//    use flow attributes. This way you aren't needlessly persisting the 32
+	//    KB of information from one flow to another. For more information, see
+	//    Flow block: Set contact attributes (https://docs.aws.amazon.com/connect/latest/adminguide/set-contact-attributes.html)
+	//    in the Amazon Connect Administrator Guide.
 	//
 	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`
@@ -75736,6 +77318,57 @@ func (s UpdateViewMetadataOutput) GoString() string {
 	return s.String()
 }
 
+// Fields required when uploading an attached file.
+type UploadUrlMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A map of headers that should be provided when uploading the attached file.
+	HeadersToInclude map[string]*string `type:"map"`
+
+	// A pre-signed S3 URL that should be used for uploading the attached file.
+	Url *string `min:"1" type:"string"`
+
+	// The expiration time of the URL in ISO timestamp. It's specified in ISO 8601
+	// format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
+	UrlExpiry *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadUrlMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UploadUrlMetadata) GoString() string {
+	return s.String()
+}
+
+// SetHeadersToInclude sets the HeadersToInclude field's value.
+func (s *UploadUrlMetadata) SetHeadersToInclude(v map[string]*string) *UploadUrlMetadata {
+	s.HeadersToInclude = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *UploadUrlMetadata) SetUrl(v string) *UploadUrlMetadata {
+	s.Url = &v
+	return s
+}
+
+// SetUrlExpiry sets the UrlExpiry field's value.
+func (s *UploadUrlMetadata) SetUrlExpiry(v string) *UploadUrlMetadata {
+	s.UrlExpiry = &v
+	return s
+}
+
 // The URL reference.
 type UrlReference struct {
 	_ struct{} `type:"structure"`
@@ -77848,6 +79481,26 @@ func ArtifactStatus_Values() []string {
 }
 
 const (
+	// AttachedFileInvalidRequestExceptionReasonInvalidFileSize is a AttachedFileInvalidRequestExceptionReason enum value
+	AttachedFileInvalidRequestExceptionReasonInvalidFileSize = "INVALID_FILE_SIZE"
+
+	// AttachedFileInvalidRequestExceptionReasonInvalidFileType is a AttachedFileInvalidRequestExceptionReason enum value
+	AttachedFileInvalidRequestExceptionReasonInvalidFileType = "INVALID_FILE_TYPE"
+
+	// AttachedFileInvalidRequestExceptionReasonInvalidFileName is a AttachedFileInvalidRequestExceptionReason enum value
+	AttachedFileInvalidRequestExceptionReasonInvalidFileName = "INVALID_FILE_NAME"
+)
+
+// AttachedFileInvalidRequestExceptionReason_Values returns all elements of the AttachedFileInvalidRequestExceptionReason enum
+func AttachedFileInvalidRequestExceptionReason_Values() []string {
+	return []string{
+		AttachedFileInvalidRequestExceptionReasonInvalidFileSize,
+		AttachedFileInvalidRequestExceptionReasonInvalidFileType,
+		AttachedFileInvalidRequestExceptionReasonInvalidFileName,
+	}
+}
+
+const (
 	// BehaviorTypeRouteCurrentChannelOnly is a BehaviorType enum value
 	BehaviorTypeRouteCurrentChannelOnly = "ROUTE_CURRENT_CHANNEL_ONLY"
 
@@ -78405,6 +80058,42 @@ func FailureReasonCode_Values() []string {
 		FailureReasonCodeRequestThrottled,
 		FailureReasonCodeIdempotencyException,
 		FailureReasonCodeInternalError,
+	}
+}
+
+const (
+	// FileStatusTypeApproved is a FileStatusType enum value
+	FileStatusTypeApproved = "APPROVED"
+
+	// FileStatusTypeRejected is a FileStatusType enum value
+	FileStatusTypeRejected = "REJECTED"
+
+	// FileStatusTypeProcessing is a FileStatusType enum value
+	FileStatusTypeProcessing = "PROCESSING"
+
+	// FileStatusTypeFailed is a FileStatusType enum value
+	FileStatusTypeFailed = "FAILED"
+)
+
+// FileStatusType_Values returns all elements of the FileStatusType enum
+func FileStatusType_Values() []string {
+	return []string{
+		FileStatusTypeApproved,
+		FileStatusTypeRejected,
+		FileStatusTypeProcessing,
+		FileStatusTypeFailed,
+	}
+}
+
+const (
+	// FileUseCaseTypeAttachment is a FileUseCaseType enum value
+	FileUseCaseTypeAttachment = "ATTACHMENT"
+)
+
+// FileUseCaseType_Values returns all elements of the FileUseCaseType enum
+func FileUseCaseType_Values() []string {
+	return []string{
+		FileUseCaseTypeAttachment,
 	}
 }
 

@@ -886,6 +886,7 @@
         "clientToken":{"shape":"ClientToken"},
         "createdAt":{"shape":"DateTimestamp"},
         "description":{"shape":"Description"},
+        "failureReasons":{"shape":"FailureReasons"},
         "routingConfiguration":{"shape":"AgentAliasRoutingConfiguration"},
         "updatedAt":{"shape":"DateTimestamp"}
       }
@@ -924,9 +925,9 @@
     },
     "AgentAliasRoutingConfigurationListItem":{
       "type":"structure",
-      "required":["agentVersion"],
       "members":{
-        "agentVersion":{"shape":"Version"}
+        "agentVersion":{"shape":"Version"},
+        "provisionedThroughput":{"shape":"ProvisionedModelIdentifier"}
       }
     },
     "AgentAliasStatus":{
@@ -2671,6 +2672,12 @@
         "POST_PROCESSING",
         "KNOWLEDGE_BASE_RESPONSE_GENERATION"
       ]
+    },
+    "ProvisionedModelIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^((([0-9a-zA-Z][_-]?){1,63})|(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:provisioned-model/[a-z0-9]{12}))$"
     },
     "RdsArn":{
       "type":"string",

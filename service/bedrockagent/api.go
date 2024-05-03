@@ -4449,7 +4449,8 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // Contains details about the Lambda function containing the business logic
-// that is carried out upon invoking the action.
+// that is carried out upon invoking the action or the custom control method
+// for handling the information elicited from the user.
 type ActionGroupExecutor struct {
 	_ struct{} `type:"structure"`
 
@@ -4813,7 +4814,8 @@ type AgentActionGroup struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function containing the business
-	// logic that is carried out upon invoking the action.
+	// logic that is carried out upon invoking the action or the custom control
+	// method for handling the information elicited from the user.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
 	// The unique identifier of the action group.
@@ -5037,6 +5039,10 @@ type AgentAlias struct {
 	// The description of the alias of the agent.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// Information on the failure of Provisioned Throughput assigned to an agent
+	// alias.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
 	// Contains details about the routing configuration of the alias.
 	//
 	// RoutingConfiguration is a required field
@@ -5120,6 +5126,12 @@ func (s *AgentAlias) SetDescription(v string) *AgentAlias {
 	return s
 }
 
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *AgentAlias) SetFailureReasons(v []*string) *AgentAlias {
+	s.FailureReasons = v
+	return s
+}
+
 // SetRoutingConfiguration sets the RoutingConfiguration field's value.
 func (s *AgentAlias) SetRoutingConfiguration(v []*AgentAliasRoutingConfigurationListItem) *AgentAlias {
 	s.RoutingConfiguration = v
@@ -5189,9 +5201,10 @@ type AgentAliasRoutingConfigurationListItem struct {
 	_ struct{} `type:"structure"`
 
 	// The version of the agent with which the alias is associated.
-	//
-	// AgentVersion is a required field
-	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string" required:"true"`
+	AgentVersion *string `locationName:"agentVersion" min:"1" type:"string"`
+
+	// Information on the Provisioned Throughput assigned to an agent alias.
+	ProvisionedThroughput *string `locationName:"provisionedThroughput" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5215,11 +5228,11 @@ func (s AgentAliasRoutingConfigurationListItem) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AgentAliasRoutingConfigurationListItem) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AgentAliasRoutingConfigurationListItem"}
-	if s.AgentVersion == nil {
-		invalidParams.Add(request.NewErrParamRequired("AgentVersion"))
-	}
 	if s.AgentVersion != nil && len(*s.AgentVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AgentVersion", 1))
+	}
+	if s.ProvisionedThroughput != nil && len(*s.ProvisionedThroughput) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedThroughput", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5231,6 +5244,12 @@ func (s *AgentAliasRoutingConfigurationListItem) Validate() error {
 // SetAgentVersion sets the AgentVersion field's value.
 func (s *AgentAliasRoutingConfigurationListItem) SetAgentVersion(v string) *AgentAliasRoutingConfigurationListItem {
 	s.AgentVersion = &v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *AgentAliasRoutingConfigurationListItem) SetProvisionedThroughput(v string) *AgentAliasRoutingConfigurationListItem {
+	s.ProvisionedThroughput = &v
 	return s
 }
 
@@ -6161,7 +6180,8 @@ type CreateAgentActionGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function containing the business
-	// logic that is carried out upon invoking the action.
+	// logic that is carried out upon invoking the action or the custom control
+	// method for handling the information elicited from the user.
 	ActionGroupExecutor *ActionGroupExecutor `locationName:"actionGroupExecutor" type:"structure"`
 
 	// The name to give the action group.
@@ -14004,7 +14024,7 @@ func (s *UpdateAgentOutput) SetAgent(v *Agent) *UpdateAgentOutput {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data deletion policy assigned to the data source.
+	// The data deletion policy of the updated data source.
 	DataDeletionPolicy *string `locationName:"dataDeletionPolicy" type:"string" enum:"DataDeletionPolicy"`
 
 	// Contains details about the storage configuration of the data source.

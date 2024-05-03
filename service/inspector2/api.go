@@ -2042,6 +2042,10 @@ func (c *Inspector2) GetCisScanReportRequest(input *GetCisScanReportInput) (req 
 //   - ThrottlingException
 //     The limit on the number of requests per second was exceeded.
 //
+//   - ResourceNotFoundException
+//     The operation tried to access an invalid resource. Make sure the resource
+//     is specified correctly.
+//
 //   - InternalServerException
 //     The request has failed due to an internal failure of the Amazon Inspector
 //     service.
@@ -15958,6 +15962,10 @@ func (s *FreeTrialInfoError) SetMessage(v string) *FreeTrialInfoError {
 type GetCisScanReportInput struct {
 	_ struct{} `type:"structure"`
 
+	// The format of the report. Valid values are PDF and CSV. If no value is specified,
+	// the report format defaults to PDF.
+	ReportFormat *string `locationName:"reportFormat" type:"string" enum:"CisReportFormat"`
+
 	// The scan ARN.
 	//
 	// ScanArn is a required field
@@ -15998,6 +16006,12 @@ func (s *GetCisScanReportInput) Validate() error {
 	return nil
 }
 
+// SetReportFormat sets the ReportFormat field's value.
+func (s *GetCisScanReportInput) SetReportFormat(v string) *GetCisScanReportInput {
+	s.ReportFormat = &v
+	return s
+}
+
 // SetScanArn sets the ScanArn field's value.
 func (s *GetCisScanReportInput) SetScanArn(v string) *GetCisScanReportInput {
 	s.ScanArn = &v
@@ -16016,7 +16030,7 @@ type GetCisScanReportOutput struct {
 	// The status.
 	Status *string `locationName:"status" type:"string" enum:"CisReportStatus"`
 
-	// The URL where a PDF of the CIS scan report can be downloaded.
+	// The URL where a PDF or CSV of the CIS scan report can be downloaded.
 	Url *string `locationName:"url" type:"string"`
 }
 
@@ -25304,6 +25318,22 @@ const (
 func CisFindingStatusComparison_Values() []string {
 	return []string{
 		CisFindingStatusComparisonEquals,
+	}
+}
+
+const (
+	// CisReportFormatPdf is a CisReportFormat enum value
+	CisReportFormatPdf = "PDF"
+
+	// CisReportFormatCsv is a CisReportFormat enum value
+	CisReportFormatCsv = "CSV"
+)
+
+// CisReportFormat_Values returns all elements of the CisReportFormat enum
+func CisReportFormat_Values() []string {
+	return []string{
+		CisReportFormatPdf,
+		CisReportFormatCsv,
 	}
 }
 

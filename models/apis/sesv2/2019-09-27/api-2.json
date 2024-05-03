@@ -1494,7 +1494,8 @@
       "members":{
         "Destination":{"shape":"Destination"},
         "ReplacementTags":{"shape":"MessageTagList"},
-        "ReplacementEmailContent":{"shape":"ReplacementEmailContent"}
+        "ReplacementEmailContent":{"shape":"ReplacementEmailContent"},
+        "ReplacementHeaders":{"shape":"MessageHeaderList"}
       }
     },
     "BulkEmailEntryList":{

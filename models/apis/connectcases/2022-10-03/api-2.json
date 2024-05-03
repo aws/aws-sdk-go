@@ -1486,6 +1486,24 @@
       "max":1500,
       "min":0
     },
+    "FileArn":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "FileContent":{
+      "type":"structure",
+      "required":["fileArn"],
+      "members":{
+        "fileArn":{"shape":"FileArn"}
+      }
+    },
+    "FileFilter":{
+      "type":"structure",
+      "members":{
+        "fileArn":{"shape":"FileArn"}
+      }
+    },
     "GetCaseAuditEventsRequest":{
       "type":"structure",
       "required":[
@@ -2079,7 +2097,8 @@
       "type":"structure",
       "members":{
         "comment":{"shape":"CommentContent"},
-        "contact":{"shape":"ContactContent"}
+        "contact":{"shape":"ContactContent"},
+        "file":{"shape":"FileContent"}
       },
       "union":true
     },
@@ -2099,7 +2118,8 @@
       "type":"structure",
       "members":{
         "comment":{"shape":"CommentContent"},
-        "contact":{"shape":"Contact"}
+        "contact":{"shape":"Contact"},
+        "file":{"shape":"FileContent"}
       },
       "union":true
     },
@@ -2107,14 +2127,16 @@
       "type":"string",
       "enum":[
         "Contact",
-        "Comment"
+        "Comment",
+        "File"
       ]
     },
     "RelatedItemTypeFilter":{
       "type":"structure",
       "members":{
         "comment":{"shape":"CommentFilter"},
-        "contact":{"shape":"ContactFilter"}
+        "contact":{"shape":"ContactFilter"},
+        "file":{"shape":"FileFilter"}
       },
       "union":true
     },

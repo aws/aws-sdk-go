@@ -58,10 +58,10 @@
       }
     },
     "ActionGroupExecutor": {
-      "base": "<p>Contains details about the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+      "base": "<p>Contains details about the Lambda function containing the business logic that is carried out upon invoking the action or the custom control method for handling the information elicited from the user.</p>",
       "refs": {
-        "AgentActionGroup$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
-        "CreateAgentActionGroupRequest$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>",
+        "AgentActionGroup$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action or the custom control method for handling the information elicited from the user.</p>",
+        "CreateAgentActionGroupRequest$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action or the custom control method for handling the information elicited from the user.</p>",
         "UpdateAgentActionGroupRequest$actionGroupExecutor": "<p>The Amazon Resource Name (ARN) of the Lambda function containing the business logic that is carried out upon invoking the action.</p>"
       }
     },
@@ -406,7 +406,7 @@
       "refs": {
         "CreateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy assigned to the data source.</p>",
         "DataSource$dataDeletionPolicy": "<p>The data deletion policy for a data source.</p>",
-        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy assigned to the data source.</p>"
+        "UpdateDataSourceRequest$dataDeletionPolicy": "<p>The data deletion policy of the updated data source.</p>"
       }
     },
     "DataSource": {
@@ -613,6 +613,7 @@
       "base": null,
       "refs": {
         "Agent$failureReasons": "<p>Contains reasons that the agent-related API that you invoked failed.</p>",
+        "AgentAlias$failureReasons": "<p>Information on the failure of Provisioned Throughput assigned to an agent alias.</p>",
         "AgentVersion$failureReasons": "<p>A list of reasons that the API operation on the version failed.</p>",
         "DataSource$failureReasons": "<p>The detailed reasons on the failure to delete a data source.</p>",
         "IngestionJob$failureReasons": "<p>A list of reasons that the ingestion job failed.</p>",
@@ -1387,6 +1388,12 @@
       "base": null,
       "refs": {
         "PromptConfiguration$promptType": "<p>The step in the agent sequence that this prompt configuration applies to.</p>"
+      }
+    },
+    "ProvisionedModelIdentifier": {
+      "base": null,
+      "refs": {
+        "AgentAliasRoutingConfigurationListItem$provisionedThroughput": "<p>Information on the Provisioned Throughput assigned to an agent alias.</p>"
       }
     },
     "RdsArn": {
