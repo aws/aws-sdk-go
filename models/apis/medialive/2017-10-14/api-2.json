@@ -4083,6 +4083,10 @@
         "AvailSettings": {
           "shape": "AvailSettings",
           "locationName": "availSettings"
+        },
+        "Scte35SegmentationScope": {
+          "shape": "Scte35SegmentationScope",
+          "locationName": "scte35SegmentationScope"
         }
       }
     },
@@ -19979,6 +19983,13 @@
     "__stringPatternS": {
       "type": "string",
       "pattern": "^[^\\s]+$"
+    },
+    "Scte35SegmentationScope": {
+      "type": "string",
+      "enum": [
+        "ALL_OUTPUT_GROUPS",
+        "SCTE35_ENABLED_OUTPUT_GROUPS"
+      ]
     }
   }
 }
