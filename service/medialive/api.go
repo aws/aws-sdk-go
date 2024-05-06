@@ -11147,6 +11147,17 @@ type AvailConfiguration struct {
 	// Signal Placement Opportunity and Break messages create segment breaks. With
 	// ESAM mode, signals are forwarded to an ESAM server for possible update.
 	AvailSettings *AvailSettings `locationName:"availSettings" type:"structure"`
+
+	// Configures whether SCTE 35 passthrough triggers segment breaks in all output
+	// groups that use segmented outputs. Insertion of a SCTE 35 message typically
+	// results in a segment break, in addition to the regular cadence of breaks.
+	// The segment breaks appear in video outputs, audio outputs, and captions outputs
+	// (if any).ALL_OUTPUT_GROUPS: Default. Insert the segment break in in all output
+	// groups that have segmented outputs. This is the legacy behavior.SCTE35_ENABLED_OUTPUT_GROUPS:
+	// Insert the segment break only in output groups that have SCTE 35 passthrough
+	// enabled. This is the recommended value, because it reduces unnecessary segment
+	// breaks.
+	Scte35SegmentationScope *string `locationName:"scte35SegmentationScope" type:"string" enum:"Scte35SegmentationScope"`
 }
 
 // String returns the string representation.
@@ -11185,6 +11196,12 @@ func (s *AvailConfiguration) Validate() error {
 // SetAvailSettings sets the AvailSettings field's value.
 func (s *AvailConfiguration) SetAvailSettings(v *AvailSettings) *AvailConfiguration {
 	s.AvailSettings = v
+	return s
+}
+
+// SetScte35SegmentationScope sets the Scte35SegmentationScope field's value.
+func (s *AvailConfiguration) SetScte35SegmentationScope(v string) *AvailConfiguration {
+	s.Scte35SegmentationScope = &v
 	return s
 }
 
@@ -48140,6 +48157,23 @@ func Scte35SegmentationCancelIndicator_Values() []string {
 	return []string{
 		Scte35SegmentationCancelIndicatorSegmentationEventNotCanceled,
 		Scte35SegmentationCancelIndicatorSegmentationEventCanceled,
+	}
+}
+
+// Scte35 Segmentation Scope
+const (
+	// Scte35SegmentationScopeAllOutputGroups is a Scte35SegmentationScope enum value
+	Scte35SegmentationScopeAllOutputGroups = "ALL_OUTPUT_GROUPS"
+
+	// Scte35SegmentationScopeScte35EnabledOutputGroups is a Scte35SegmentationScope enum value
+	Scte35SegmentationScopeScte35EnabledOutputGroups = "SCTE35_ENABLED_OUTPUT_GROUPS"
+)
+
+// Scte35SegmentationScope_Values returns all elements of the Scte35SegmentationScope enum
+func Scte35SegmentationScope_Values() []string {
+	return []string{
+		Scte35SegmentationScopeAllOutputGroups,
+		Scte35SegmentationScopeScte35EnabledOutputGroups,
 	}
 }
 
