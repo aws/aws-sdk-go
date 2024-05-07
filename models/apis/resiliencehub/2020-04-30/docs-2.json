@@ -28,6 +28,7 @@
     "ImportResourcesToDraftAppVersion": "<p>Imports resources to Resilience Hub application draft version from different input sources. For more information about the input sources supported by Resilience Hub, see <a href=\"https://docs.aws.amazon.com/resilience-hub/latest/userguide/discover-structure.html\">Discover the structure and describe your Resilience Hub application</a>.</p>",
     "ListAlarmRecommendations": "<p>Lists the alarm recommendations for an Resilience Hub application.</p>",
     "ListAppAssessmentComplianceDrifts": "<p>List of compliance drifts that were detected while running an assessment.</p>",
+    "ListAppAssessmentResourceDrifts": "<p>Indicates the list of resource drifts that were detected while running an assessment.</p>",
     "ListAppAssessments": "<p>Lists the assessments for an Resilience Hub application. You can use request parameters to refine the results for the response object.</p>",
     "ListAppComponentCompliances": "<p>Lists the compliances for an Resilience Hub Application Component.</p>",
     "ListAppComponentRecommendations": "<p>Lists the recommendations for an Resilience Hub Application Component.</p>",
@@ -308,6 +309,7 @@
         "ImportResourcesToDraftAppVersionResponse$appArn": "<p>Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ListAlarmRecommendationsRequest$assessmentArn": "<p>Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ListAppAssessmentComplianceDriftsRequest$assessmentArn": "<p>Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
+        "ListAppAssessmentResourceDriftsRequest$assessmentArn": "<p>Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ListAppAssessmentsRequest$appArn": "<p>Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ListAppComponentCompliancesRequest$assessmentArn": "<p>Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ListAppComponentRecommendationsRequest$assessmentArn": "<p>Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
@@ -336,6 +338,7 @@
         "ResiliencyPolicy$policyArn": "<p>Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:resiliency-policy/<code>policy-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ResolveAppVersionResourcesRequest$appArn": "<p>Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "ResolveAppVersionResourcesResponse$appArn": "<p>Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
+        "ResourceDrift$appArn": "<p>Amazon Resource Name (ARN) of the application whose resources have drifted. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "StartAppAssessmentRequest$appArn": "<p>Amazon Resource Name (ARN) of the Resilience Hub application. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>. For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\"> Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i> guide.</p>",
         "TagResourceRequest$resourceArn": "<p>Amazon Resource Name (ARN) of the resource. </p>",
         "UntagResourceRequest$resourceArn": "<p>Amazon Resource Name (ARN) of the resource. </p>",
@@ -790,7 +793,8 @@
     "DifferenceType": {
       "base": null,
       "refs": {
-        "ComplianceDrift$diffType": "<p>Difference type between actual and expected recovery point objective (RPO) and recovery time objective (RTO) values. Currently, Resilience Hub supports only <b>NotEqual</b> difference type.</p>"
+        "ComplianceDrift$diffType": "<p>Difference type between actual and expected recovery point objective (RPO) and recovery time objective (RTO) values. Currently, Resilience Hub supports only <b>NotEqual</b> difference type.</p>",
+        "ResourceDrift$diffType": "<p>Indicates if the resource was added or removed.</p>"
       }
     },
     "DisruptionCompliance": {
@@ -838,8 +842,8 @@
         "Cost$amount": "<p>The cost amount.</p>",
         "DisruptionResiliencyScore$value": null,
         "ResiliencyScore$score": "<p>The outage score for a valid key.</p>",
-        "ScoringComponentResiliencyScore$possibleScore": "<p>Maximum possible score that can be obtained for the scoring component. If the <code>Possible score</code> is 20 points, it indicates the maximum possible score you can achieve for your application when you run a new assessment after implementing all the Resilience Hub recommendations.</p>",
-        "ScoringComponentResiliencyScore$score": "<p>Resiliency score of your application.</p>"
+        "ScoringComponentResiliencyScore$possibleScore": "<p>Maximum possible score that can be obtained for the scoring component. </p> <p>For example, if the <code>possibleScore</code> is 20 points, it indicates the maximum possible score you can achieve for the scoring component when you run a new assessment after implementing all the Resilience Hub recommendations.</p>",
+        "ScoringComponentResiliencyScore$score": "<p>Resiliency score points given for the scoring component. The score is always less than or equal to the <code>possibleScore</code>.</p>"
       }
     },
     "DriftStatus": {
@@ -911,6 +915,7 @@
         "AppComponentCompliance$appComponentName": "<p>Name of the Application Component.</p>",
         "ComponentRecommendation$appComponentName": "<p>Name of the Application Component.</p>",
         "ConfigRecommendation$appComponentName": "<p>Name of the Application Component.</p>",
+        "ResourceDrift$referenceId": "<p>Reference identifier of the resource drift.</p>",
         "SopRecommendation$appComponentName": "<p>Name of the Application Component.</p>",
         "TestRecommendation$appComponentName": "<p>Name of the Application Component.</p>"
       }
@@ -940,9 +945,9 @@
         "PhysicalResource$resourceName": "<p>The name of the resource.</p>",
         "RecommendationTemplate$name": "<p>Name for the recommendation template.</p>",
         "ResiliencyPolicy$policyName": "<p>The name of the policy</p>",
-        "ResourceMapping$appRegistryAppName": "<p>The name of the application this resource is mapped to.</p>",
-        "ResourceMapping$resourceGroupName": "<p>Name of the resource group that the resource is mapped to.</p>",
-        "ResourceMapping$resourceName": "<p>Name of the resource that the resource is mapped to.</p>",
+        "ResourceMapping$appRegistryAppName": "<p>Name of the application this resource is mapped to when the <code>mappingType</code> is <code>AppRegistryApp</code>.</p>",
+        "ResourceMapping$resourceGroupName": "<p>Name of the Resource Groups that this resource is mapped to when the <code>mappingType</code> is <code>ResourceGroup</code>.</p>",
+        "ResourceMapping$resourceName": "<p>Name of the resource that this resource is mapped to when the <code>mappingType</code> is <code>Resource</code>.</p>",
         "StartAppAssessmentRequest$assessmentName": "<p>The name for the assessment.</p>",
         "UpdateAppVersionResourceRequest$resourceName": "<p>Name of the resource.</p>",
         "UpdateResiliencyPolicyRequest$policyName": "<p>The name of the policy</p>"
@@ -995,6 +1000,7 @@
         "RemoveDraftAppVersionResourceMappingsResponse$appVersion": "<p>The version of the application.</p>",
         "ResolveAppVersionResourcesRequest$appVersion": "<p>The version of the application.</p>",
         "ResolveAppVersionResourcesResponse$appVersion": "<p>The version of the application.</p>",
+        "ResourceDrift$appVersion": "<p>Version of the application whose resources have drifted.</p>",
         "StartAppAssessmentRequest$appVersion": "<p>The version of the application.</p>",
         "UpdateAppVersionAppComponentResponse$appVersion": "<p>Resilience Hub application version.</p>",
         "UpdateAppVersionResourceResponse$appVersion": "<p>Resilience Hub application version.</p>",
@@ -1118,6 +1124,16 @@
       }
     },
     "ListAppAssessmentComplianceDriftsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAppAssessmentResourceDriftsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAppAssessmentResourceDriftsResponse": {
       "base": null,
       "refs": {
       }
@@ -1289,6 +1305,7 @@
         "DeleteAppVersionResourceRequest$logicalResourceId": "<p>Logical identifier of the resource.</p>",
         "DescribeAppVersionResourceRequest$logicalResourceId": "<p>Logical identifier of the resource.</p>",
         "PhysicalResource$logicalResourceId": "<p>Logical identifier of the resource.</p>",
+        "ResourceIdentifier$logicalResourceId": "<p>Logical identifier of the drifted resource.</p>",
         "UnsupportedResource$logicalResourceId": "<p>Logical resource identifier for the unsupported resource.</p>",
         "UpdateAppVersionResourceRequest$logicalResourceId": "<p>Logical identifier of the resource.</p>"
       }
@@ -1296,8 +1313,8 @@
     "Long": {
       "base": null,
       "refs": {
-        "ScoringComponentResiliencyScore$excludedCount": "<p>Number of recommendations that were excluded from the assessment.</p> <p>For example, if the <code>Excluded count</code> for Resilience Hub recommended Amazon CloudWatch alarms is 7, it indicates that 7 Amazon CloudWatch alarms are excluded from the assessment.</p>",
-        "ScoringComponentResiliencyScore$outstandingCount": "<p>Number of issues that must be resolved to obtain the maximum possible score for the scoring component. For SOPs, alarms, and FIS experiments, these are the number of recommendations that must be implemented. For compliance, it is the number of Application Components that has breached the resiliency policy.</p> <p>For example, if the <code>Outstanding count</code> for Resilience Hub recommended Amazon CloudWatch alarms is 5, it indicates that 5 Amazon CloudWatch alarms must be fixed to achieve the maximum possible score.</p>"
+        "ScoringComponentResiliencyScore$excludedCount": "<p>Number of recommendations that were excluded from the assessment.</p> <p>For example, if the <code>excludedCount</code> for Alarms coverage scoring component is 7, it indicates that 7 Amazon CloudWatch alarms are excluded from the assessment.</p>",
+        "ScoringComponentResiliencyScore$outstandingCount": "<p>Number of recommendations that must be implemented to obtain the maximum possible score for the scoring component. For SOPs, alarms, and tests, these are the number of recommendations that must be implemented. For compliance, these are the number of Application Components that have breached the resiliency policy.</p> <p>For example, if the <code>outstandingCount</code> for Alarms coverage scoring component is 5, it indicates that 5 Amazon CloudWatch alarms need to be implemented to achieve the maximum possible score.</p>"
       }
     },
     "LongOptional": {
@@ -1312,6 +1329,7 @@
       "refs": {
         "ListAlarmRecommendationsRequest$maxResults": "<p>Maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListAppAssessmentComplianceDriftsRequest$maxResults": "<p>Indicates the maximum number of applications requested.</p>",
+        "ListAppAssessmentResourceDriftsRequest$maxResults": "<p>Indicates the maximum number of drift results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListAppAssessmentsRequest$maxResults": "<p>Maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListAppComponentCompliancesRequest$maxResults": "<p>Maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListAppComponentRecommendationsRequest$maxResults": "<p>Maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
@@ -1336,6 +1354,8 @@
         "ListAlarmRecommendationsResponse$nextToken": "<p>Token for the next set of results, or null if there are no more results.</p>",
         "ListAppAssessmentComplianceDriftsRequest$nextToken": "<p>Indicates the unique token number of the next application to be checked for compliance and regulatory requirements from the list of applications.</p>",
         "ListAppAssessmentComplianceDriftsResponse$nextToken": "<p>Token number of the next application to be checked for compliance and regulatory requirements from the list of applications.</p>",
+        "ListAppAssessmentResourceDriftsRequest$nextToken": "<p>Null, or the token from a previous call to get the next set of results.</p>",
+        "ListAppAssessmentResourceDriftsResponse$nextToken": "<p>Null, or the token from a previous call to get the next set of results.</p>",
         "ListAppAssessmentsRequest$nextToken": "<p>Null, or the token from a previous call to get the next set of results.</p>",
         "ListAppAssessmentsResponse$nextToken": "<p>Token for the next set of results, or null if there are no more results.</p>",
         "ListAppComponentCompliancesRequest$nextToken": "<p>Null, or the token from a previous call to get the next set of results.</p>",
@@ -1577,6 +1597,18 @@
       "refs": {
       }
     },
+    "ResourceDrift": {
+      "base": "<p>Indicates the resources that have drifted in the current application version.</p>",
+      "refs": {
+        "ResourceDriftList$member": null
+      }
+    },
+    "ResourceDriftList": {
+      "base": null,
+      "refs": {
+        "ListAppAssessmentResourceDriftsResponse$resourceDrifts": "<p>Indicates all the resource drifts detected for an assessed entity.</p>"
+      }
+    },
     "ResourceError": {
       "base": "<p> Defines application resource errors. </p>",
       "refs": {
@@ -1600,6 +1632,12 @@
       "refs": {
         "ConflictException$resourceId": "<p>The identifier of the resource that the exception applies to.</p>",
         "ResourceNotFoundException$resourceId": "<p>The identifier of the resource that the exception applies to.</p>"
+      }
+    },
+    "ResourceIdentifier": {
+      "base": "<p>Defines a resource identifier for the drifted resource.</p>",
+      "refs": {
+        "ResourceDrift$resourceIdentifier": "<p>Identifier of the drifted resource.</p>"
       }
     },
     "ResourceImportStatusType": {
@@ -1633,7 +1671,7 @@
       "base": null,
       "refs": {
         "AppInputSource$importType": "<p>The resource type of the input source.</p>",
-        "ResourceMapping$mappingType": "<p>Specifies the type of resource mapping.</p> <dl> <dt>AppRegistryApp</dt> <dd> <p>The resource is mapped to another application. The name of the application is contained in the <code>appRegistryAppName</code> property.</p> </dd> <dt>CfnStack</dt> <dd> <p>The resource is mapped to a CloudFormation stack. The name of the CloudFormation stack is contained in the <code>logicalStackName</code> property.</p> </dd> <dt>Resource</dt> <dd> <p>The resource is mapped to another resource. The name of the resource is contained in the <code>resourceName</code> property.</p> </dd> <dt>ResourceGroup</dt> <dd> <p>The resource is mapped to Resource Groups. The name of the resource group is contained in the <code>resourceGroupName</code> property.</p> </dd> </dl>"
+        "ResourceMapping$mappingType": "<p>Specifies the type of resource mapping.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1802,14 +1840,15 @@
         "LogicalResourceId$identifier": "<p>Identifier of the resource.</p>",
         "LogicalResourceId$logicalStackName": "<p>The name of the CloudFormation stack this resource belongs to.</p>",
         "LogicalResourceId$terraformSourceName": "<p> The name of the Terraform S3 state file this resource belongs to. </p>",
-        "PhysicalResource$resourceType": "<p>The type of resource.</p>",
+        "PhysicalResource$resourceType": "<p>Type of resource.</p>",
         "PhysicalResourceId$identifier": "<p>Identifier of the physical resource.</p>",
         "ResolveAppVersionResourcesResponse$resolutionId": "<p>The identifier for a specific resolution.</p>",
         "ResourceError$logicalResourceId": "<p>Identifier of the logical resource. </p>",
         "ResourceError$physicalResourceId": "<p>Identifier of the physical resource. </p>",
-        "ResourceMapping$eksSourceName": "<p>Name of the Amazon Elastic Kubernetes Service cluster and namespace this resource belongs to.</p> <note> <p>This parameter accepts values in \"eks-cluster/namespace\" format.</p> </note>",
-        "ResourceMapping$logicalStackName": "<p>The name of the CloudFormation stack this resource is mapped to.</p>",
-        "ResourceMapping$terraformSourceName": "<p> The short name of the Terraform source. </p>",
+        "ResourceIdentifier$resourceType": "<p>Type of the drifted resource.</p>",
+        "ResourceMapping$eksSourceName": "<p>Name of the Amazon Elastic Kubernetes Service cluster and namespace that this resource is mapped to when the <code>mappingType</code> is <code>EKS</code>.</p> <note> <p>This parameter accepts values in \"eks-cluster/namespace\" format.</p> </note>",
+        "ResourceMapping$logicalStackName": "<p>Name of the CloudFormation stack this resource is mapped to when the <code>mappingType</code> is <code>CfnStack</code>.</p>",
+        "ResourceMapping$terraformSourceName": "<p>Name of the Terraform source that this resource is mapped to when the <code>mappingType</code> is <code>Terraform</code>.</p>",
         "String255List$member": null,
         "UnsupportedResource$resourceType": "<p>The type of resource.</p>",
         "UnsupportedResource$unsupportedResourceStatus": "<p>The status of the unsupported resource.</p>",

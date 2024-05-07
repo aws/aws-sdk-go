@@ -416,13 +416,13 @@
     "MappingTemplate": {
       "base": null,
       "refs": {
-        "CreateTransformerRequest$mappingTemplate": "<p>Specifies the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "CreateTransformerResponse$mappingTemplate": "<p>Returns the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "GetTransformerResponse$mappingTemplate": "<p>Returns the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "TestMappingRequest$mappingTemplate": "<p>Specifies the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "TransformerSummary$mappingTemplate": "<p>Returns the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "UpdateTransformerRequest$mappingTemplate": "<p>Specifies the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>",
-        "UpdateTransformerResponse$mappingTemplate": "<p>Returns the name of the mapping template for the transformer. This template is used to convert the input document into the correct set of objects.</p>"
+        "CreateTransformerRequest$mappingTemplate": "<p>Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "CreateTransformerResponse$mappingTemplate": "<p>Returns the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "GetTransformerResponse$mappingTemplate": "<p>Returns the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "TestMappingRequest$mappingTemplate": "<p>Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "TransformerSummary$mappingTemplate": "<p>Returns the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "UpdateTransformerRequest$mappingTemplate": "<p>Specifies the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>",
+        "UpdateTransformerResponse$mappingTemplate": "<p>Returns the mapping template for the transformer. This template is used to map the parsed EDI file using JSONata or XSLT.</p>"
       }
     },
     "MaxResults": {

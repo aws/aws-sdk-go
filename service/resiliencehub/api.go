@@ -2789,6 +2789,156 @@ func (c *ResilienceHub) ListAppAssessmentComplianceDriftsPagesWithContext(ctx aw
 	return p.Err()
 }
 
+const opListAppAssessmentResourceDrifts = "ListAppAssessmentResourceDrifts"
+
+// ListAppAssessmentResourceDriftsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppAssessmentResourceDrifts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppAssessmentResourceDrifts for more information on using the ListAppAssessmentResourceDrifts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListAppAssessmentResourceDriftsRequest method.
+//	req, resp := client.ListAppAssessmentResourceDriftsRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentResourceDrifts
+func (c *ResilienceHub) ListAppAssessmentResourceDriftsRequest(input *ListAppAssessmentResourceDriftsInput) (req *request.Request, output *ListAppAssessmentResourceDriftsOutput) {
+	op := &request.Operation{
+		Name:       opListAppAssessmentResourceDrifts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/list-app-assessment-resource-drifts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppAssessmentResourceDriftsInput{}
+	}
+
+	output = &ListAppAssessmentResourceDriftsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAppAssessmentResourceDrifts API operation for AWS Resilience Hub.
+//
+// Indicates the list of resource drifts that were detected while running an
+// assessment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resilience Hub's
+// API operation ListAppAssessmentResourceDrifts for usage and error information.
+//
+// Returned Error Types:
+//
+//   - InternalServerException
+//     This exception occurs when there is an internal failure in the Resilience
+//     Hub service.
+//
+//   - ThrottlingException
+//     This exception occurs when you have exceeded the limit on the number of requests
+//     per second.
+//
+//   - ValidationException
+//     This exception occurs when a request is not valid.
+//
+//   - AccessDeniedException
+//     You don't have permissions to perform the requested operation. The user or
+//     role that is making the request must have at least one IAM permissions policy
+//     attached that grants the required permissions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resiliencehub-2020-04-30/ListAppAssessmentResourceDrifts
+func (c *ResilienceHub) ListAppAssessmentResourceDrifts(input *ListAppAssessmentResourceDriftsInput) (*ListAppAssessmentResourceDriftsOutput, error) {
+	req, out := c.ListAppAssessmentResourceDriftsRequest(input)
+	return out, req.Send()
+}
+
+// ListAppAssessmentResourceDriftsWithContext is the same as ListAppAssessmentResourceDrifts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppAssessmentResourceDrifts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResilienceHub) ListAppAssessmentResourceDriftsWithContext(ctx aws.Context, input *ListAppAssessmentResourceDriftsInput, opts ...request.Option) (*ListAppAssessmentResourceDriftsOutput, error) {
+	req, out := c.ListAppAssessmentResourceDriftsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppAssessmentResourceDriftsPages iterates over the pages of a ListAppAssessmentResourceDrifts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppAssessmentResourceDrifts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//	// Example iterating over at most 3 pages of a ListAppAssessmentResourceDrifts operation.
+//	pageNum := 0
+//	err := client.ListAppAssessmentResourceDriftsPages(params,
+//	    func(page *resiliencehub.ListAppAssessmentResourceDriftsOutput, lastPage bool) bool {
+//	        pageNum++
+//	        fmt.Println(page)
+//	        return pageNum <= 3
+//	    })
+func (c *ResilienceHub) ListAppAssessmentResourceDriftsPages(input *ListAppAssessmentResourceDriftsInput, fn func(*ListAppAssessmentResourceDriftsOutput, bool) bool) error {
+	return c.ListAppAssessmentResourceDriftsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppAssessmentResourceDriftsPagesWithContext same as ListAppAssessmentResourceDriftsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResilienceHub) ListAppAssessmentResourceDriftsPagesWithContext(ctx aws.Context, input *ListAppAssessmentResourceDriftsInput, fn func(*ListAppAssessmentResourceDriftsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppAssessmentResourceDriftsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppAssessmentResourceDriftsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppAssessmentResourceDriftsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListAppAssessments = "ListAppAssessments"
 
 // ListAppAssessmentsRequest generates a "aws/request.Request" representing the
@@ -12308,6 +12458,120 @@ func (s *ListAppAssessmentComplianceDriftsOutput) SetNextToken(v string) *ListAp
 	return s
 }
 
+type ListAppAssessmentResourceDriftsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the assessment. The format for this ARN is:
+	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
+	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference guide.
+	//
+	// AssessmentArn is a required field
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
+
+	// Indicates the maximum number of drift results to include in the response.
+	// If more results exist than the specified MaxResults value, a token is included
+	// in the response so that the remaining results can be retrieved.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Null, or the token from a previous call to get the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentResourceDriftsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentResourceDriftsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppAssessmentResourceDriftsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppAssessmentResourceDriftsInput"}
+	if s.AssessmentArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentArn sets the AssessmentArn field's value.
+func (s *ListAppAssessmentResourceDriftsInput) SetAssessmentArn(v string) *ListAppAssessmentResourceDriftsInput {
+	s.AssessmentArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppAssessmentResourceDriftsInput) SetMaxResults(v int64) *ListAppAssessmentResourceDriftsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppAssessmentResourceDriftsInput) SetNextToken(v string) *ListAppAssessmentResourceDriftsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppAssessmentResourceDriftsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Null, or the token from a previous call to get the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Indicates all the resource drifts detected for an assessed entity.
+	//
+	// ResourceDrifts is a required field
+	ResourceDrifts []*ResourceDrift `locationName:"resourceDrifts" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentResourceDriftsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppAssessmentResourceDriftsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppAssessmentResourceDriftsOutput) SetNextToken(v string) *ListAppAssessmentResourceDriftsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceDrifts sets the ResourceDrifts field's value.
+func (s *ListAppAssessmentResourceDriftsOutput) SetResourceDrifts(v []*ResourceDrift) *ListAppAssessmentResourceDriftsOutput {
+	s.ResourceDrifts = v
+	return s
+}
+
 type ListAppAssessmentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -13548,9 +13812,7 @@ type ListRecommendationTemplatesInput struct {
 	// arn:partition:resiliencehub:region:account:app-assessment/app-id. For more
 	// information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the Amazon Web Services General Reference guide.
-	//
-	// AssessmentArn is a required field
-	AssessmentArn *string `location:"querystring" locationName:"assessmentArn" type:"string" required:"true"`
+	AssessmentArn *string `location:"querystring" locationName:"assessmentArn" type:"string"`
 
 	// Maximum number of results to include in the response. If more results exist
 	// than the specified MaxResults value, a token is included in the response
@@ -13595,9 +13857,6 @@ func (s ListRecommendationTemplatesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListRecommendationTemplatesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationTemplatesInput"}
-	if s.AssessmentArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("AssessmentArn"))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -14585,7 +14844,7 @@ type PhysicalResource struct {
 	// The name of the resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of resource.
+	// Type of resource.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" min:"1" type:"string" required:"true"`
@@ -15905,6 +16164,77 @@ func (s *ResolveAppVersionResourcesOutput) SetStatus(v string) *ResolveAppVersio
 	return s
 }
 
+// Indicates the resources that have drifted in the current application version.
+type ResourceDrift struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the application whose resources have drifted.
+	// The format for this ARN is: arn:partition:resiliencehub:region:account:app-assessment/app-id.
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference guide.
+	AppArn *string `locationName:"appArn" type:"string"`
+
+	// Version of the application whose resources have drifted.
+	AppVersion *string `locationName:"appVersion" type:"string"`
+
+	// Indicates if the resource was added or removed.
+	DiffType *string `locationName:"diffType" type:"string" enum:"DifferenceType"`
+
+	// Reference identifier of the resource drift.
+	ReferenceId *string `locationName:"referenceId" type:"string"`
+
+	// Identifier of the drifted resource.
+	ResourceIdentifier *ResourceIdentifier `locationName:"resourceIdentifier" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDrift) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceDrift) GoString() string {
+	return s.String()
+}
+
+// SetAppArn sets the AppArn field's value.
+func (s *ResourceDrift) SetAppArn(v string) *ResourceDrift {
+	s.AppArn = &v
+	return s
+}
+
+// SetAppVersion sets the AppVersion field's value.
+func (s *ResourceDrift) SetAppVersion(v string) *ResourceDrift {
+	s.AppVersion = &v
+	return s
+}
+
+// SetDiffType sets the DiffType field's value.
+func (s *ResourceDrift) SetDiffType(v string) *ResourceDrift {
+	s.DiffType = &v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *ResourceDrift) SetReferenceId(v string) *ResourceDrift {
+	s.ReferenceId = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ResourceDrift) SetResourceIdentifier(v *ResourceIdentifier) *ResourceDrift {
+	s.ResourceIdentifier = v
+	return s
+}
+
 // Defines application resource errors.
 type ResourceError struct {
 	_ struct{} `type:"structure"`
@@ -15997,43 +16327,66 @@ func (s *ResourceErrorsDetails) SetResourceErrors(v []*ResourceError) *ResourceE
 	return s
 }
 
+// Defines a resource identifier for the drifted resource.
+type ResourceIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// Logical identifier of the drifted resource.
+	LogicalResourceId *LogicalResourceId `locationName:"logicalResourceId" type:"structure"`
+
+	// Type of the drifted resource.
+	ResourceType *string `locationName:"resourceType" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *ResourceIdentifier) SetLogicalResourceId(v *LogicalResourceId) *ResourceIdentifier {
+	s.LogicalResourceId = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
+	s.ResourceType = &v
+	return s
+}
+
 // Defines a resource mapping.
 type ResourceMapping struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the application this resource is mapped to.
+	// Name of the application this resource is mapped to when the mappingType is
+	// AppRegistryApp.
 	AppRegistryAppName *string `locationName:"appRegistryAppName" type:"string"`
 
-	// Name of the Amazon Elastic Kubernetes Service cluster and namespace this
-	// resource belongs to.
+	// Name of the Amazon Elastic Kubernetes Service cluster and namespace that
+	// this resource is mapped to when the mappingType is EKS.
 	//
 	// This parameter accepts values in "eks-cluster/namespace" format.
 	EksSourceName *string `locationName:"eksSourceName" min:"1" type:"string"`
 
-	// The name of the CloudFormation stack this resource is mapped to.
+	// Name of the CloudFormation stack this resource is mapped to when the mappingType
+	// is CfnStack.
 	LogicalStackName *string `locationName:"logicalStackName" min:"1" type:"string"`
 
 	// Specifies the type of resource mapping.
-	//
-	// AppRegistryApp
-	//
-	// The resource is mapped to another application. The name of the application
-	// is contained in the appRegistryAppName property.
-	//
-	// CfnStack
-	//
-	// The resource is mapped to a CloudFormation stack. The name of the CloudFormation
-	// stack is contained in the logicalStackName property.
-	//
-	// Resource
-	//
-	// The resource is mapped to another resource. The name of the resource is contained
-	// in the resourceName property.
-	//
-	// ResourceGroup
-	//
-	// The resource is mapped to Resource Groups. The name of the resource group
-	// is contained in the resourceGroupName property.
 	//
 	// MappingType is a required field
 	MappingType *string `locationName:"mappingType" type:"string" required:"true" enum:"ResourceMappingType"`
@@ -16043,13 +16396,16 @@ type ResourceMapping struct {
 	// PhysicalResourceId is a required field
 	PhysicalResourceId *PhysicalResourceId `locationName:"physicalResourceId" type:"structure" required:"true"`
 
-	// Name of the resource group that the resource is mapped to.
+	// Name of the Resource Groups that this resource is mapped to when the mappingType
+	// is ResourceGroup.
 	ResourceGroupName *string `locationName:"resourceGroupName" type:"string"`
 
-	// Name of the resource that the resource is mapped to.
+	// Name of the resource that this resource is mapped to when the mappingType
+	// is Resource.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The short name of the Terraform source.
+	// Name of the Terraform source that this resource is mapped to when the mappingType
+	// is Terraform.
 	TerraformSourceName *string `locationName:"terraformSourceName" min:"1" type:"string"`
 }
 
@@ -16267,29 +16623,30 @@ type ScoringComponentResiliencyScore struct {
 
 	// Number of recommendations that were excluded from the assessment.
 	//
-	// For example, if the Excluded count for Resilience Hub recommended Amazon
-	// CloudWatch alarms is 7, it indicates that 7 Amazon CloudWatch alarms are
-	// excluded from the assessment.
+	// For example, if the excludedCount for Alarms coverage scoring component is
+	// 7, it indicates that 7 Amazon CloudWatch alarms are excluded from the assessment.
 	ExcludedCount *int64 `locationName:"excludedCount" type:"long"`
 
-	// Number of issues that must be resolved to obtain the maximum possible score
-	// for the scoring component. For SOPs, alarms, and FIS experiments, these are
-	// the number of recommendations that must be implemented. For compliance, it
-	// is the number of Application Components that has breached the resiliency
+	// Number of recommendations that must be implemented to obtain the maximum
+	// possible score for the scoring component. For SOPs, alarms, and tests, these
+	// are the number of recommendations that must be implemented. For compliance,
+	// these are the number of Application Components that have breached the resiliency
 	// policy.
 	//
-	// For example, if the Outstanding count for Resilience Hub recommended Amazon
-	// CloudWatch alarms is 5, it indicates that 5 Amazon CloudWatch alarms must
-	// be fixed to achieve the maximum possible score.
+	// For example, if the outstandingCount for Alarms coverage scoring component
+	// is 5, it indicates that 5 Amazon CloudWatch alarms need to be implemented
+	// to achieve the maximum possible score.
 	OutstandingCount *int64 `locationName:"outstandingCount" type:"long"`
 
-	// Maximum possible score that can be obtained for the scoring component. If
-	// the Possible score is 20 points, it indicates the maximum possible score
-	// you can achieve for your application when you run a new assessment after
-	// implementing all the Resilience Hub recommendations.
+	// Maximum possible score that can be obtained for the scoring component.
+	//
+	// For example, if the possibleScore is 20 points, it indicates the maximum
+	// possible score you can achieve for the scoring component when you run a new
+	// assessment after implementing all the Resilience Hub recommendations.
 	PossibleScore *float64 `locationName:"possibleScore" type:"double"`
 
-	// Resiliency score of your application.
+	// Resiliency score points given for the scoring component. The score is always
+	// less than or equal to the possibleScore.
 	Score *float64 `locationName:"score" type:"double"`
 }
 
@@ -18415,12 +18772,20 @@ func DataLocationConstraint_Values() []string {
 const (
 	// DifferenceTypeNotEqual is a DifferenceType enum value
 	DifferenceTypeNotEqual = "NotEqual"
+
+	// DifferenceTypeAdded is a DifferenceType enum value
+	DifferenceTypeAdded = "Added"
+
+	// DifferenceTypeRemoved is a DifferenceType enum value
+	DifferenceTypeRemoved = "Removed"
 )
 
 // DifferenceType_Values returns all elements of the DifferenceType enum
 func DifferenceType_Values() []string {
 	return []string{
 		DifferenceTypeNotEqual,
+		DifferenceTypeAdded,
+		DifferenceTypeRemoved,
 	}
 }
 
@@ -18471,12 +18836,16 @@ func DriftStatus_Values() []string {
 const (
 	// DriftTypeApplicationCompliance is a DriftType enum value
 	DriftTypeApplicationCompliance = "ApplicationCompliance"
+
+	// DriftTypeAppComponentResiliencyComplianceStatus is a DriftType enum value
+	DriftTypeAppComponentResiliencyComplianceStatus = "AppComponentResiliencyComplianceStatus"
 )
 
 // DriftType_Values returns all elements of the DriftType enum
 func DriftType_Values() []string {
 	return []string{
 		DriftTypeApplicationCompliance,
+		DriftTypeAppComponentResiliencyComplianceStatus,
 	}
 }
 

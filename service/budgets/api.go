@@ -91,6 +91,9 @@ func (c *Budgets) CreateBudgetRequest(input *CreateBudgetInput) (req *request.Re
 //   - ThrottlingException
 //     The number of API requests has exceeded the maximum allowed API request throttling
 //     limit for the account.
+//
+//   - ServiceQuotaExceededException
+//     You've reached the limit on the number of tags you can associate with a resource.
 func (c *Budgets) CreateBudget(input *CreateBudgetInput) (*CreateBudgetOutput, error) {
 	req, out := c.CreateBudgetRequest(input)
 	return out, req.Send()
@@ -187,6 +190,9 @@ func (c *Budgets) CreateBudgetActionRequest(input *CreateBudgetActionInput) (req
 //   - ThrottlingException
 //     The number of API requests has exceeded the maximum allowed API request throttling
 //     limit for the account.
+//
+//   - ServiceQuotaExceededException
+//     You've reached the limit on the number of tags you can associate with a resource.
 func (c *Budgets) CreateBudgetAction(input *CreateBudgetActionInput) (*CreateBudgetActionOutput, error) {
 	req, out := c.CreateBudgetActionRequest(input)
 	return out, req.Send()
@@ -2274,6 +2280,281 @@ func (c *Budgets) ExecuteBudgetActionWithContext(ctx aws.Context, input *Execute
 	return out, req.Send()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the ListTagsForResourceRequest method.
+//	req, resp := client.ListTagsForResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Budgets) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS Budgets.
+//
+// Lists tags associated with a budget or budget action resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Budgets's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the account.
+//
+//   - NotFoundException
+//     We can’t locate the resource that you specified.
+//
+//   - AccessDeniedException
+//     You are not authorized to use this operation with the given parameters.
+//
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - InvalidParameterException
+//     An error on the client occurred. Typically, the cause is an invalid input
+//     value.
+func (c *Budgets) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Budgets) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the TagResourceRequest method.
+//	req, resp := client.TagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Budgets) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS Budgets.
+//
+// Creates tags for a budget or budget action resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Budgets's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the account.
+//
+//   - ServiceQuotaExceededException
+//     You've reached the limit on the number of tags you can associate with a resource.
+//
+//   - NotFoundException
+//     We can’t locate the resource that you specified.
+//
+//   - AccessDeniedException
+//     You are not authorized to use this operation with the given parameters.
+//
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - InvalidParameterException
+//     An error on the client occurred. Typically, the cause is an invalid input
+//     value.
+func (c *Budgets) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Budgets) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//	// Example sending a request using the UntagResourceRequest method.
+//	req, resp := client.UntagResourceRequest(params)
+//
+//	err := req.Send()
+//	if err == nil { // resp is now filled
+//	    fmt.Println(resp)
+//	}
+func (c *Budgets) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS Budgets.
+//
+// Deletes tags associated with a budget or budget action resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Budgets's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//
+//   - ThrottlingException
+//     The number of API requests has exceeded the maximum allowed API request throttling
+//     limit for the account.
+//
+//   - NotFoundException
+//     We can’t locate the resource that you specified.
+//
+//   - AccessDeniedException
+//     You are not authorized to use this operation with the given parameters.
+//
+//   - InternalErrorException
+//     An error on the server occurred during the processing of your request. Try
+//     again later.
+//
+//   - InvalidParameterException
+//     An error on the client occurred. Typically, the cause is an invalid input
+//     value.
+func (c *Budgets) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Budgets) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateBudget = "UpdateBudget"
 
 // UpdateBudgetRequest generates a "aws/request.Request" representing the
@@ -3139,7 +3420,7 @@ type Budget struct {
 	// The actual and forecasted cost or usage that the budget tracks.
 	CalculatedSpend *CalculatedSpend `type:"structure"`
 
-	// The cost filters, such as Region, Service, member account, Tag, or Cost Category,
+	// The cost filters, such as Region, Service, LinkedAccount, Tag, or CostCategory,
 	// that are applied to a budget.
 	//
 	// Amazon Web Services Budgets supports the following services as a Service
@@ -3795,6 +4076,10 @@ type CreateBudgetActionInput struct {
 	// NotificationType is a required field
 	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 
+	// An optional list of tags to associate with the specified budget action. Each
+	// tag consists of a key and a value, and each key must be unique for the resource.
+	ResourceTags []*ResourceTag `type:"list"`
+
 	// A list of subscribers.
 	//
 	// Subscribers is a required field
@@ -3871,6 +4156,16 @@ func (s *CreateBudgetActionInput) Validate() error {
 			invalidParams.AddNested("Definition", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Subscribers != nil {
 		for i, v := range s.Subscribers {
 			if v == nil {
@@ -3933,6 +4228,12 @@ func (s *CreateBudgetActionInput) SetExecutionRoleArn(v string) *CreateBudgetAct
 // SetNotificationType sets the NotificationType field's value.
 func (s *CreateBudgetActionInput) SetNotificationType(v string) *CreateBudgetActionInput {
 	s.NotificationType = &v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *CreateBudgetActionInput) SetResourceTags(v []*ResourceTag) *CreateBudgetActionInput {
+	s.ResourceTags = v
 	return s
 }
 
@@ -4018,6 +4319,10 @@ type CreateBudgetInput struct {
 	// in your CreateBudget call, Amazon Web Services creates the notifications
 	// and subscribers for you.
 	NotificationsWithSubscribers []*NotificationWithSubscribers `type:"list"`
+
+	// An optional list of tags to associate with the specified budget. Each tag
+	// consists of a key and a value, and each key must be unique for the resource.
+	ResourceTags []*ResourceTag `type:"list"`
 }
 
 // String returns the string representation.
@@ -4065,6 +4370,16 @@ func (s *CreateBudgetInput) Validate() error {
 			}
 		}
 	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4087,6 +4402,12 @@ func (s *CreateBudgetInput) SetBudget(v *Budget) *CreateBudgetInput {
 // SetNotificationsWithSubscribers sets the NotificationsWithSubscribers field's value.
 func (s *CreateBudgetInput) SetNotificationsWithSubscribers(v []*NotificationWithSubscribers) *CreateBudgetInput {
 	s.NotificationsWithSubscribers = v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *CreateBudgetInput) SetResourceTags(v []*ResourceTag) *CreateBudgetInput {
+	s.ResourceTags = v
 	return s
 }
 
@@ -6952,6 +7273,86 @@ func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags associated with the resource.
+	ResourceTags []*ResourceTag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *ListTagsForResourceOutput) SetResourceTags(v []*ResourceTag) *ListTagsForResourceOutput {
+	s.ResourceTags = v
+	return s
+}
+
 // We can’t locate the resource that you specified.
 type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -7282,6 +7683,70 @@ func (s *ResourceLockedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The tag structure that contains a tag key and value.
+type ResourceTag struct {
+	_ struct{} `type:"structure"`
+
+	// The key that's associated with the tag.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value that's associated with the tag.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceTag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *ResourceTag) SetKey(v string) *ResourceTag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ResourceTag) SetValue(v string) *ResourceTag {
+	s.Value = &v
+	return s
+}
+
 // The service control policies (SCP) action definition details.
 type ScpActionDefinition struct {
 	_ struct{} `type:"structure"`
@@ -7347,6 +7812,71 @@ func (s *ScpActionDefinition) SetPolicyId(v string) *ScpActionDefinition {
 func (s *ScpActionDefinition) SetTargetIds(v []*string) *ScpActionDefinition {
 	s.TargetIds = v
 	return s
+}
+
+// You've reached the limit on the number of tags you can associate with a resource.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The error message the exception carries.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The amount of cost or usage that's measured for a budget.
@@ -7589,6 +8119,101 @@ func (s *Subscriber) SetSubscriptionType(v string) *Subscriber {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The tags associated with the resource.
+	//
+	// ResourceTags is a required field
+	ResourceTags []*ResourceTag `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.ResourceTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTags"))
+	}
+	if s.ResourceTags != nil {
+		for i, v := range s.ResourceTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResourceTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetResourceTags sets the ResourceTags field's value.
+func (s *TagResourceInput) SetResourceTags(v []*ResourceTag) *TagResourceInput {
+	s.ResourceTags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The number of API requests has exceeded the maximum allowed API request throttling
 // limit for the account.
 type ThrottlingException struct {
@@ -7711,6 +8336,91 @@ func (s *TimePeriod) SetEnd(v time.Time) *TimePeriod {
 func (s *TimePeriod) SetStart(v time.Time) *TimePeriod {
 	s.Start = &v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The key that's associated with the tag.
+	//
+	// ResourceTagKeys is a required field
+	ResourceTagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.ResourceTagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceTagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetResourceTagKeys sets the ResourceTagKeys field's value.
+func (s *UntagResourceInput) SetResourceTagKeys(v []*string) *UntagResourceInput {
+	s.ResourceTagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateBudgetActionInput struct {

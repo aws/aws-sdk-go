@@ -57,8 +57,9 @@ func (c *Route53Profiles) AssociateProfileRequest(input *AssociateProfileInput) 
 // AssociateProfile API operation for Route 53 Profiles.
 //
 // Associates a Route 53 Profiles profile with a VPC. A VPC can have only one
-// Profile associated with it, but a Profile can be associated with up to 5000
-// VPCs.
+// Profile associated with it, but a Profile can be associated with 1000 of
+// VPCs (and you can request a higher quota). For more information, see https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities
+// (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1914,10 +1915,11 @@ type AssociateResourceToProfileInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 
-	// If you are adding a DNS Firewall rule group, include also a priority in this
-	// format:
+	// If you are adding a DNS Firewall rule group, include also a priority. The
+	// priority indicates the processing order for the rule groups, starting with
+	// the priority assinged the lowest value.
 	//
-	// Key=FirewallRuleGroupPriority,Value=100
+	// The allowed values for priority are between 100 and 9900.
 	ResourceProperties *string `type:"string"`
 }
 
@@ -4279,10 +4281,11 @@ type UpdateProfileResourceAssociationInput struct {
 	// ProfileResourceAssociationId is a required field
 	ProfileResourceAssociationId *string `location:"uri" locationName:"ProfileResourceAssociationId" min:"1" type:"string" required:"true"`
 
-	// If you are adding a DNS Firewall rule group, include also a priority in this
-	// format:
+	// If you are adding a DNS Firewall rule group, include also a priority. The
+	// priority indicates the processing order for the rule groups, starting with
+	// the priority assinged the lowest value.
 	//
-	// Key=FirewallRuleGroupPriority,Value=100.
+	// The allowed values for priority are between 100 and 9900.
 	ResourceProperties *string `type:"string"`
 }
 
