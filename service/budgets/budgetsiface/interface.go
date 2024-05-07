@@ -160,6 +160,18 @@ type BudgetsAPI interface {
 	ExecuteBudgetActionWithContext(aws.Context, *budgets.ExecuteBudgetActionInput, ...request.Option) (*budgets.ExecuteBudgetActionOutput, error)
 	ExecuteBudgetActionRequest(*budgets.ExecuteBudgetActionInput) (*request.Request, *budgets.ExecuteBudgetActionOutput)
 
+	ListTagsForResource(*budgets.ListTagsForResourceInput) (*budgets.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *budgets.ListTagsForResourceInput, ...request.Option) (*budgets.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*budgets.ListTagsForResourceInput) (*request.Request, *budgets.ListTagsForResourceOutput)
+
+	TagResource(*budgets.TagResourceInput) (*budgets.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *budgets.TagResourceInput, ...request.Option) (*budgets.TagResourceOutput, error)
+	TagResourceRequest(*budgets.TagResourceInput) (*request.Request, *budgets.TagResourceOutput)
+
+	UntagResource(*budgets.UntagResourceInput) (*budgets.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *budgets.UntagResourceInput, ...request.Option) (*budgets.UntagResourceOutput, error)
+	UntagResourceRequest(*budgets.UntagResourceInput) (*request.Request, *budgets.UntagResourceOutput)
+
 	UpdateBudget(*budgets.UpdateBudgetInput) (*budgets.UpdateBudgetOutput, error)
 	UpdateBudgetWithContext(aws.Context, *budgets.UpdateBudgetInput, ...request.Option) (*budgets.UpdateBudgetOutput, error)
 	UpdateBudgetRequest(*budgets.UpdateBudgetInput) (*request.Request, *budgets.UpdateBudgetOutput)

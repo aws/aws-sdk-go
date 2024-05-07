@@ -170,6 +170,13 @@ type ResilienceHubAPI interface {
 	ListAppAssessmentComplianceDriftsPages(*resiliencehub.ListAppAssessmentComplianceDriftsInput, func(*resiliencehub.ListAppAssessmentComplianceDriftsOutput, bool) bool) error
 	ListAppAssessmentComplianceDriftsPagesWithContext(aws.Context, *resiliencehub.ListAppAssessmentComplianceDriftsInput, func(*resiliencehub.ListAppAssessmentComplianceDriftsOutput, bool) bool, ...request.Option) error
 
+	ListAppAssessmentResourceDrifts(*resiliencehub.ListAppAssessmentResourceDriftsInput) (*resiliencehub.ListAppAssessmentResourceDriftsOutput, error)
+	ListAppAssessmentResourceDriftsWithContext(aws.Context, *resiliencehub.ListAppAssessmentResourceDriftsInput, ...request.Option) (*resiliencehub.ListAppAssessmentResourceDriftsOutput, error)
+	ListAppAssessmentResourceDriftsRequest(*resiliencehub.ListAppAssessmentResourceDriftsInput) (*request.Request, *resiliencehub.ListAppAssessmentResourceDriftsOutput)
+
+	ListAppAssessmentResourceDriftsPages(*resiliencehub.ListAppAssessmentResourceDriftsInput, func(*resiliencehub.ListAppAssessmentResourceDriftsOutput, bool) bool) error
+	ListAppAssessmentResourceDriftsPagesWithContext(aws.Context, *resiliencehub.ListAppAssessmentResourceDriftsInput, func(*resiliencehub.ListAppAssessmentResourceDriftsOutput, bool) bool, ...request.Option) error
+
 	ListAppAssessments(*resiliencehub.ListAppAssessmentsInput) (*resiliencehub.ListAppAssessmentsOutput, error)
 	ListAppAssessmentsWithContext(aws.Context, *resiliencehub.ListAppAssessmentsInput, ...request.Option) (*resiliencehub.ListAppAssessmentsOutput, error)
 	ListAppAssessmentsRequest(*resiliencehub.ListAppAssessmentsInput) (*request.Request, *resiliencehub.ListAppAssessmentsOutput)

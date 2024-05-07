@@ -1,3 +1,13 @@
+Release v1.52.4 (2024-05-07)
+===
+
+### Service Client Updates
+* `service/b2bi`: Updates service documentation
+* `service/budgets`: Updates service API and documentation
+  * This release adds tag support for budgets and budget actions.
+* `service/resiliencehub`: Updates service API, documentation, and paginators
+* `service/route53profiles`: Updates service API and documentation
+
 Release v1.52.3 (2024-05-06)
 ===
 

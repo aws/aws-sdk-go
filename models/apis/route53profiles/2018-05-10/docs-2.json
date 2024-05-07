@@ -2,7 +2,7 @@
   "version": "2.0",
   "service": "<p> With Amazon Route 53 Profiles you can share Route 53 configurations with VPCs and AWS accounts </p>",
   "operations": {
-    "AssociateProfile": "<p> Associates a Route 53 Profiles profile with a VPC. A VPC can have only one Profile associated with it, but a Profile can be associated with up to 5000 VPCs. </p>",
+    "AssociateProfile": "<p> Associates a Route 53 Profiles profile with a VPC. A VPC can have only one Profile associated with it, but a Profile can be associated with 1000 of VPCs (and you can request a higher quota). For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities\">https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html#limits-api-entities</a>. </p>",
     "AssociateResourceToProfile": "<p> Associates a DNS reource configuration to a Route 53 Profile. </p>",
     "CreateProfile": "<p> Creates an empty Route 53 Profile. </p>",
     "DeleteProfile": "<p> Deletes the specified Route 53 Profile. Before you can delete a profile, you must first disassociate it from all VPCs. </p>",
@@ -349,9 +349,9 @@
     "ResourceProperties": {
       "base": null,
       "refs": {
-        "AssociateResourceToProfileRequest$ResourceProperties": "<p> If you are adding a DNS Firewall rule group, include also a priority in this format: </p> <p> <code>Key=FirewallRuleGroupPriority,Value=100</code> </p>",
+        "AssociateResourceToProfileRequest$ResourceProperties": "<p> If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value. </p> <p>The allowed values for priority are between 100 and 9900.</p>",
         "ProfileResourceAssociation$ResourceProperties": "<p> If the DNS resource is a DNS Firewall rule group, this indicates the priority. </p>",
-        "UpdateProfileResourceAssociationRequest$ResourceProperties": "<p> If you are adding a DNS Firewall rule group, include also a priority in this format:</p> <p> <code>Key=FirewallRuleGroupPriority,Value=100</code>. </p>"
+        "UpdateProfileResourceAssociationRequest$ResourceProperties": "<p> If you are adding a DNS Firewall rule group, include also a priority. The priority indicates the processing order for the rule groups, starting with the priority assinged the lowest value. </p> <p>The allowed values for priority are between 100 and 9900.</p>"
       }
     },
     "Rfc3339Timestamp": {

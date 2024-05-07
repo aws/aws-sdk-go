@@ -3938,8 +3938,8 @@ type CreateTransformerInput struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Specifies the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Specifies the mapping template for the transformer. This template is used
+	// to map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`
@@ -4075,8 +4075,8 @@ type CreateTransformerOutput struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Returns the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Returns the mapping template for the transformer. This template is used to
+	// map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`
@@ -5316,8 +5316,8 @@ type GetTransformerOutput struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Returns the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Returns the mapping template for the transformer. This template is used to
+	// map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`
@@ -6721,8 +6721,8 @@ type TestMappingInput struct {
 	// InputFileContent is a required field
 	InputFileContent *string `locationName:"inputFileContent" type:"string" required:"true"`
 
-	// Specifies the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Specifies the mapping template for the transformer. This template is used
+	// to map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`
@@ -7027,8 +7027,8 @@ type TransformerSummary struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Returns the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Returns the mapping template for the transformer. This template is used to
+	// map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`
@@ -7875,8 +7875,8 @@ type UpdateTransformerInput struct {
 	// are JSON and XML.
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
-	// Specifies the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Specifies the mapping template for the transformer. This template is used
+	// to map the parsed EDI file using JSONata or XSLT.
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string"`
 
 	// Specify a new name for the transformer, if you want to update it.
@@ -7996,8 +7996,8 @@ type UpdateTransformerOutput struct {
 	// FileFormat is a required field
 	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"FileFormat"`
 
-	// Returns the name of the mapping template for the transformer. This template
-	// is used to convert the input document into the correct set of objects.
+	// Returns the mapping template for the transformer. This template is used to
+	// map the parsed EDI file using JSONata or XSLT.
 	//
 	// MappingTemplate is a required field
 	MappingTemplate *string `locationName:"mappingTemplate" type:"string" required:"true"`

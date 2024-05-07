@@ -65,6 +65,12 @@ const (
 	// that particular method for the requested resource.
 	ErrCodeResourceLockedException = "ResourceLockedException"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// You've reached the limit on the number of tags you can associate with a resource.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -83,5 +89,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidParameterException":      newErrorInvalidParameterException,
 	"NotFoundException":              newErrorNotFoundException,
 	"ResourceLockedException":        newErrorResourceLockedException,
+	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
 	"ThrottlingException":            newErrorThrottlingException,
 }

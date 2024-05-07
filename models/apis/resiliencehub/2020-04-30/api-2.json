@@ -5,6 +5,7 @@
     "endpointPrefix":"resiliencehub",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWS Resilience Hub",
     "serviceId":"resiliencehub",
     "signatureVersion":"v4",
@@ -465,6 +466,22 @@
       },
       "input":{"shape":"ListAppAssessmentComplianceDriftsRequest"},
       "output":{"shape":"ListAppAssessmentComplianceDriftsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAppAssessmentResourceDrifts":{
+      "name":"ListAppAssessmentResourceDrifts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-app-assessment-resource-drifts",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAppAssessmentResourceDriftsRequest"},
+      "output":{"shape":"ListAppAssessmentResourceDriftsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
@@ -2002,7 +2019,11 @@
     },
     "DifferenceType":{
       "type":"string",
-      "enum":["NotEqual"]
+      "enum":[
+        "NotEqual",
+        "Added",
+        "Removed"
+      ]
     },
     "DisruptionCompliance":{
       "type":"structure",
@@ -2055,7 +2076,10 @@
     },
     "DriftType":{
       "type":"string",
-      "enum":["ApplicationCompliance"]
+      "enum":[
+        "ApplicationCompliance",
+        "AppComponentResiliencyComplianceStatus"
+      ]
     },
     "EksNamespace":{
       "type":"string",
@@ -2269,6 +2293,23 @@
       "members":{
         "complianceDrifts":{"shape":"ComplianceDriftList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppAssessmentResourceDriftsRequest":{
+      "type":"structure",
+      "required":["assessmentArn"],
+      "members":{
+        "assessmentArn":{"shape":"Arn"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppAssessmentResourceDriftsResponse":{
+      "type":"structure",
+      "required":["resourceDrifts"],
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "resourceDrifts":{"shape":"ResourceDriftList"}
       }
     },
     "ListAppAssessmentsRequest":{
@@ -2521,7 +2562,6 @@
     },
     "ListRecommendationTemplatesRequest":{
       "type":"structure",
-      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{
           "shape":"Arn",
@@ -3026,6 +3066,20 @@
         "status":{"shape":"ResourceResolutionStatusType"}
       }
     },
+    "ResourceDrift":{
+      "type":"structure",
+      "members":{
+        "appArn":{"shape":"Arn"},
+        "appVersion":{"shape":"EntityVersion"},
+        "diffType":{"shape":"DifferenceType"},
+        "referenceId":{"shape":"EntityId"},
+        "resourceIdentifier":{"shape":"ResourceIdentifier"}
+      }
+    },
+    "ResourceDriftList":{
+      "type":"list",
+      "member":{"shape":"ResourceDrift"}
+    },
     "ResourceError":{
       "type":"structure",
       "members":{
@@ -3048,6 +3102,13 @@
     "ResourceId":{
       "type":"string",
       "pattern":".*"
+    },
+    "ResourceIdentifier":{
+      "type":"structure",
+      "members":{
+        "logicalResourceId":{"shape":"LogicalResourceId"},
+        "resourceType":{"shape":"String255"}
+      }
     },
     "ResourceImportStatusType":{
       "type":"string",
@@ -3269,7 +3330,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^(?!aws:)[^\\x00-\\x1f\\x22]+$"
+      "pattern":"^[^\\x00-\\x1f\\x22]+$"
     },
     "TagKeyList":{
       "type":"list",

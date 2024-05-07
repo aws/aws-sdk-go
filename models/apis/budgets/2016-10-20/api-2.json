@@ -5,6 +5,7 @@
     "endpointPrefix":"budgets",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"AWSBudgets",
     "serviceFullName":"AWS Budgets",
     "serviceId":"Budgets",
@@ -27,7 +28,8 @@
         {"shape":"CreationLimitExceededException"},
         {"shape":"DuplicateRecordException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateBudgetAction":{
@@ -45,7 +47,8 @@
         {"shape":"DuplicateRecordException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateNotification":{
@@ -338,6 +341,55 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "UpdateBudget":{
       "name":"UpdateBudget",
       "http":{
@@ -538,6 +590,11 @@
       "max":60,
       "min":1
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
     "ApprovalModel":{
       "type":"string",
       "enum":[
@@ -586,7 +643,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^(?![^:\\\\]*/action/)[^:\\\\]+$"
+      "pattern":"^(?![^:\\\\]*/action/|(?i).*<script>.*</script>.*)[^:\\\\]+$"
     },
     "BudgetNotificationsForAccount":{
       "type":"structure",
@@ -697,7 +754,8 @@
         "Definition":{"shape":"Definition"},
         "ExecutionRoleArn":{"shape":"RoleArn"},
         "ApprovalModel":{"shape":"ApprovalModel"},
-        "Subscribers":{"shape":"Subscribers"}
+        "Subscribers":{"shape":"Subscribers"},
+        "ResourceTags":{"shape":"ResourceTagList"}
       }
     },
     "CreateBudgetActionResponse":{
@@ -722,7 +780,8 @@
       "members":{
         "AccountId":{"shape":"AccountId"},
         "Budget":{"shape":"Budget"},
-        "NotificationsWithSubscribers":{"shape":"NotificationWithSubscribersList"}
+        "NotificationsWithSubscribers":{"shape":"NotificationWithSubscribersList"},
+        "ResourceTags":{"shape":"ResourceTagList"}
       }
     },
     "CreateBudgetResponse":{
@@ -1208,6 +1267,19 @@
       },
       "exception":true
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceTags":{"shape":"ResourceTagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -1327,6 +1399,39 @@
       },
       "exception":true
     },
+    "ResourceTag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"ResourceTagKey"},
+        "Value":{"shape":"ResourceTagValue"}
+      }
+    },
+    "ResourceTagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "ResourceTagKeyList":{
+      "type":"list",
+      "member":{"shape":"ResourceTagKey"},
+      "max":200,
+      "min":0
+    },
+    "ResourceTagList":{
+      "type":"list",
+      "member":{"shape":"ResourceTag"},
+      "max":200,
+      "min":0
+    },
+    "ResourceTagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Role":{
       "type":"string",
       "max":576,
@@ -1355,6 +1460,13 @@
         "PolicyId":{"shape":"PolicyId"},
         "TargetIds":{"shape":"TargetIds"}
       }
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
     },
     "Spend":{
       "type":"structure",
@@ -1411,6 +1523,22 @@
         "EMAIL"
       ]
     },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "ResourceTags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "ResourceTags":{"shape":"ResourceTagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "TargetId":{
       "type":"string",
       "max":68,
@@ -1458,6 +1586,22 @@
       "max":2147483647,
       "min":1,
       "pattern":".*"
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "ResourceTagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "ResourceTagKeys":{"shape":"ResourceTagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateBudgetActionRequest":{
       "type":"structure",

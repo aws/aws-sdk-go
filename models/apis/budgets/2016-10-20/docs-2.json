@@ -21,6 +21,9 @@
     "DescribeNotificationsForBudget": "<p>Lists the notifications that are associated with a budget.</p>",
     "DescribeSubscribersForNotification": "<p>Lists the subscribers that are associated with a notification.</p>",
     "ExecuteBudgetAction": "<p> Executes a budget action. </p>",
+    "ListTagsForResource": "<p>Lists tags associated with a budget or budget action resource.</p>",
+    "TagResource": "<p>Creates tags for a budget or budget action resource.</p>",
+    "UntagResource": "<p>Deletes tags associated with a budget or budget action resource.</p>",
     "UpdateBudget": "<p>Updates a budget. You can change every part of a budget except for the <code>budgetName</code> and the <code>calculatedSpend</code>. When you modify a budget, the <code>calculatedSpend</code> drops to zero until Amazon Web Services has new usage data to use for forecasting.</p> <important> <p>Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present in the syntax at one time. Use the syntax that matches your case. The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>, see the <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html#API_UpdateBudget_Examples\">Examples</a> section. </p> </important>",
     "UpdateBudgetAction": "<p> Updates a budget action. </p>",
     "UpdateNotification": "<p>Updates a notification.</p>",
@@ -149,6 +152,14 @@
         "HistoricalOptions$LookBackAvailablePeriods": "<p>The integer that describes how many budget periods in your <code>BudgetAdjustmentPeriod</code> are included in the calculation of your current <code>BudgetLimit</code>. If the first budget period in your <code>BudgetAdjustmentPeriod</code> has no cost data, then that budget period isn’t included in the average that determines your budget limit. </p> <p>For example, if you set <code>BudgetAdjustmentPeriod</code> as <code>4</code> quarters, but your account had no cost data in the first quarter, then only the last three quarters are included in the calculation. In this scenario, <code>LookBackAvailablePeriods</code> returns <code>3</code>. </p> <p>You can’t set your own <code>LookBackAvailablePeriods</code>. The value is automatically calculated from the <code>BudgetAdjustmentPeriod</code> and your historical cost data.</p>"
       }
     },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": "<p>The unique identifier for the resource.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The unique identifier for the resource.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The unique identifier for the resource.</p>"
+      }
+    },
     "ApprovalModel": {
       "base": null,
       "refs": {
@@ -268,7 +279,7 @@
     "CostFilters": {
       "base": "<p> A map that represents the cost filters that are applied to the budget.</p>",
       "refs": {
-        "Budget$CostFilters": "<p>The cost filters, such as <code>Region</code>, <code>Service</code>, <code>member account</code>, <code>Tag</code>, or <code>Cost Category</code>, that are applied to a budget.</p> <p>Amazon Web Services Budgets supports the following services as a <code>Service</code> filter for RI budgets:</p> <ul> <li> <p>Amazon EC2</p> </li> <li> <p>Amazon Redshift</p> </li> <li> <p>Amazon Relational Database Service</p> </li> <li> <p>Amazon ElastiCache</p> </li> <li> <p>Amazon OpenSearch Service</p> </li> </ul>",
+        "Budget$CostFilters": "<p>The cost filters, such as <code>Region</code>, <code>Service</code>, <code>LinkedAccount</code>, <code>Tag</code>, or <code>CostCategory</code>, that are applied to a budget.</p> <p>Amazon Web Services Budgets supports the following services as a <code>Service</code> filter for RI budgets:</p> <ul> <li> <p>Amazon EC2</p> </li> <li> <p>Amazon Redshift</p> </li> <li> <p>Amazon Relational Database Service</p> </li> <li> <p>Amazon ElastiCache</p> </li> <li> <p>Amazon OpenSearch Service</p> </li> </ul>",
         "BudgetPerformanceHistory$CostFilters": "<p>The history of the cost filters for a budget during the specified time period.</p>"
       }
     },
@@ -602,6 +613,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": "<p> An integer that represents how many entries a paginated response contains. The maximum is 100.</p>",
       "refs": {
@@ -733,8 +754,42 @@
       }
     },
     "ResourceLockedException": {
-      "base": "<p> The request was received and recognized by the server, but the server rejected that particular method for the requested resource. </p>",
+      "base": "<p>The request was received and recognized by the server, but the server rejected that particular method for the requested resource.</p>",
       "refs": {
+      }
+    },
+    "ResourceTag": {
+      "base": "<p>The tag structure that contains a tag key and value.</p>",
+      "refs": {
+        "ResourceTagList$member": null
+      }
+    },
+    "ResourceTagKey": {
+      "base": null,
+      "refs": {
+        "ResourceTag$Key": "<p>The key that's associated with the tag.</p>",
+        "ResourceTagKeyList$member": null
+      }
+    },
+    "ResourceTagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$ResourceTagKeys": "<p>The key that's associated with the tag.</p>"
+      }
+    },
+    "ResourceTagList": {
+      "base": null,
+      "refs": {
+        "CreateBudgetActionRequest$ResourceTags": "<p>An optional list of tags to associate with the specified budget action. Each tag consists of a key and a value, and each key must be unique for the resource.</p>",
+        "CreateBudgetRequest$ResourceTags": "<p>An optional list of tags to associate with the specified budget. Each tag consists of a key and a value, and each key must be unique for the resource.</p>",
+        "ListTagsForResourceResponse$ResourceTags": "<p>The tags associated with the resource.</p>",
+        "TagResourceRequest$ResourceTags": "<p>The tags associated with the resource.</p>"
+      }
+    },
+    "ResourceTagValue": {
+      "base": null,
+      "refs": {
+        "ResourceTag$Value": "<p>The value that's associated with the tag.</p>"
       }
     },
     "Role": {
@@ -761,6 +816,11 @@
       "base": "<p>The service control policies (SCP) action definition details. </p>",
       "refs": {
         "Definition$ScpActionDefinition": "<p>The service control policies (SCPs) action definition details. </p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You've reached the limit on the number of tags you can associate with a resource.</p>",
+      "refs": {
       }
     },
     "Spend": {
@@ -813,6 +873,16 @@
         "Subscriber$SubscriptionType": "<p>The type of notification that Amazon Web Services sends to a subscriber.</p>"
       }
     },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "TargetId": {
       "base": null,
       "refs": {
@@ -857,6 +927,16 @@
       "base": "<p> A string that represents the spend unit of a budget. It can't be null or empty.</p>",
       "refs": {
         "Spend$Unit": "<p>The unit of measurement that's used for the budget forecast, actual spend, or budget threshold.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateBudgetActionRequest": {
@@ -923,6 +1003,7 @@
         "InvalidParameterException$Message": null,
         "NotFoundException$Message": null,
         "ResourceLockedException$Message": null,
+        "ServiceQuotaExceededException$Message": null,
         "ThrottlingException$Message": null
       }
     }
