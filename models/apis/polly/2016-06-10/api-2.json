@@ -221,7 +221,8 @@
       "enum":[
         "standard",
         "neural",
-        "long-form"
+        "long-form",
+        "generative"
       ]
     },
     "EngineList":{
@@ -592,7 +593,7 @@
     "Size":{"type":"integer"},
     "SnsTopicArn":{
       "type":"string",
-      "pattern":"^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\\d{12}:[a-zA-Z0-9_-]{1,256}$"
+      "pattern":"^arn:aws(-(cn|iso(-b)?|us-gov))?:sns:[a-z0-9_-]{1,50}:\\d{12}:[a-zA-Z0-9_-]{1,251}([a-zA-Z0-9_-]{0,5}|\\.fifo)$"
     },
     "SpeechMarkType":{
       "type":"string",

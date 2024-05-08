@@ -5330,6 +5330,8 @@ type CreatePullThroughCacheRuleInput struct {
 	//
 	//    * Microsoft Azure Container Registry (azure-container-registry) - <custom>.azurecr.io
 	//
+	//    * GitLab Container Registry (gitlab-container-registry) - registry.gitlab.com
+	//
 	// UpstreamRegistryUrl is a required field
 	UpstreamRegistryUrl *string `locationName:"upstreamRegistryUrl" type:"string" required:"true"`
 }
@@ -15363,6 +15365,9 @@ const (
 
 	// UpstreamRegistryAzureContainerRegistry is a UpstreamRegistry enum value
 	UpstreamRegistryAzureContainerRegistry = "azure-container-registry"
+
+	// UpstreamRegistryGitlabContainerRegistry is a UpstreamRegistry enum value
+	UpstreamRegistryGitlabContainerRegistry = "gitlab-container-registry"
 )
 
 // UpstreamRegistry_Values returns all elements of the UpstreamRegistry enum
@@ -15374,5 +15379,6 @@ func UpstreamRegistry_Values() []string {
 		UpstreamRegistryDockerHub,
 		UpstreamRegistryGithubContainerRegistry,
 		UpstreamRegistryAzureContainerRegistry,
+		UpstreamRegistryGitlabContainerRegistry,
 	}
 }

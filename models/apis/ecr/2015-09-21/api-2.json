@@ -5,6 +5,7 @@
     "endpointPrefix":"api.ecr",
     "jsonVersion":"1.1",
     "protocol":"json",
+    "protocols":["json"],
     "serviceAbbreviation":"Amazon ECR",
     "serviceFullName":"Amazon EC2 Container Registry",
     "serviceId":"ECR",
@@ -2598,7 +2599,8 @@
         "k8s",
         "docker-hub",
         "github-container-registry",
-        "azure-container-registry"
+        "azure-container-registry",
+        "gitlab-container-registry"
       ]
     },
     "Url":{"type":"string"},
