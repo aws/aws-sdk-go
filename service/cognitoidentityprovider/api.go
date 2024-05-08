@@ -36966,6 +36966,9 @@ const (
 
 	// UserStatusTypeForceChangePassword is a UserStatusType enum value
 	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
+
+	// UserStatusTypeExternalProvider is a UserStatusType enum value
+	UserStatusTypeExternalProvider = "EXTERNAL_PROVIDER"
 )
 
 // UserStatusType_Values returns all elements of the UserStatusType enum
@@ -36978,6 +36981,7 @@ func UserStatusType_Values() []string {
 		UserStatusTypeUnknown,
 		UserStatusTypeResetRequired,
 		UserStatusTypeForceChangePassword,
+		UserStatusTypeExternalProvider,
 	}
 }
 

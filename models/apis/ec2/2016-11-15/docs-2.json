@@ -16556,6 +16556,12 @@
         "Phase2IntegrityAlgorithmsRequestList$member": null
       }
     },
+    "PhcSupport": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$PhcSupport": "<p>Indicates whether a local Precision Time Protocol (PTP) hardware clock (PHC) is supported.</p>"
+      }
+    },
     "Placement": {
       "base": "<p>Describes the placement of an instance.</p>",
       "refs": {

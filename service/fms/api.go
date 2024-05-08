@@ -4066,7 +4066,7 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 //   - Third-party firewall policy - This policy applies third-party firewall
 //     protections. Third-party firewalls are available by subscription through
 //     the Amazon Web Services Marketplace console at Amazon Web Services Marketplace
-//     (https://aws.amazon.com/marketplace). Palo Alto Networks Cloud NGFW policy
+//     (http://aws.amazon.com/marketplace). Palo Alto Networks Cloud NGFW policy
 //
 //   - This policy applies Palo Alto Networks Cloud Next Generation Firewall
 //     (NGFW) protections and Palo Alto Networks Cloud NGFW rulestacks to your
@@ -10665,8 +10665,7 @@ type NetworkAclEntrySet struct {
 	//
 	// If forced remediation is disabled, Firewall Manager marks the network ACL
 	// as noncompliant and does not try to remediate. For more information about
-	// the remediation behavior, see Network access control list (ACL) policies
-	// (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html)
+	// the remediation behavior, see Remediation for managed network ACLs (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html#network-acls-remediation)
 	// in the Firewall Manager Developer Guide.
 	//
 	// ForceRemediateForFirstEntries is a required field
@@ -10678,8 +10677,7 @@ type NetworkAclEntrySet struct {
 	//
 	// If forced remediation is disabled, Firewall Manager marks the network ACL
 	// as noncompliant and does not try to remediate. For more information about
-	// the remediation behavior, see Network access control list (ACL) policies
-	// (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html)
+	// the remediation behavior, see Remediation for managed network ACLs (https://docs.aws.amazon.com/waf/latest/developerguide/network-acl-policies.html#network-acls-remediation)
 	// in the Firewall Manager Developer Guide.
 	//
 	// ForceRemediateForLastEntries is a required field
@@ -12044,7 +12042,7 @@ type Policy struct {
 	//    “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}.
 	IncludeMap map[string][]*string `type:"map"`
 
-	// The definition of the Network Firewall firewall policy.
+	// Your description of the Firewall Manager policy.
 	PolicyDescription *string `type:"string"`
 
 	// The ID of the Firewall Manager policy.
@@ -14208,6 +14206,13 @@ func (s *ResourceSetSummary) SetResourceSetStatus(v string) *ResourceSetSummary 
 // so that, if you add more than one tag to a policy scope, a resource must
 // have all the specified tags to be included or excluded. For more information,
 // see Working with Tag Editor (https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html).
+//
+// Every resource tag must have a string value, either a non-empty string or
+// an empty string. If you don't provide a value for a resource tag, Firewall
+// Manager saves the value as an empty string: "". When Firewall Manager compares
+// tags, it only matches two tags if they have the same key and the same value.
+// A tag with an empty string value only matches with tags that also have an
+// empty string value.
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
 
@@ -14216,7 +14221,8 @@ type ResourceTag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The resource tag value.
+	// The resource tag value. To specify an empty string value, either don't provide
+	// this or specify it as "".
 	Value *string `type:"string"`
 }
 

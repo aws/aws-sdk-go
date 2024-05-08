@@ -28829,6 +28829,10 @@
         "NeuronInfo":{
           "shape":"NeuronInfo",
           "locationName":"neuronInfo"
+        },
+        "PhcSupport":{
+          "shape":"PhcSupport",
+          "locationName":"phcSupport"
         }
       }
     },
@@ -36229,6 +36233,13 @@
       "members":{
         "Value":{"shape":"String"}
       }
+    },
+    "PhcSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported"
+      ]
     },
     "Placement":{
       "type":"structure",

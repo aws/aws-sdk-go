@@ -1,3 +1,18 @@
+Release v1.52.5 (2024-05-08)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * Adding Precision Hardware Clock (PHC) to public API DescribeInstanceTypes
+* `service/ecr`: Updates service API and documentation
+  * This release adds pull through cache rules support for GitLab container registry in Amazon ECR.
+* `service/fms`: Updates service documentation
+* `service/polly`: Updates service API and documentation
+  * Add new engine - generative - that builds the most expressive conversational voices.
+* `service/sqs`: Updates service API and documentation
+  * This release adds MessageSystemAttributeNames to ReceiveMessageRequest to replace AttributeNames.
+
 Release v1.52.4 (2024-05-07)
 ===
 

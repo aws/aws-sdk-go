@@ -1048,8 +1048,8 @@ func (s DeleteLexiconOutput) GoString() string {
 type DescribeVoicesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Specifies the engine (standard, neural or long-form) used by Amazon Polly
-	// when processing input text for speech synthesis.
+	// Specifies the engine (standard, neural, long-form or generative) used by
+	// Amazon Polly when processing input text for speech synthesis.
 	Engine *string `location:"querystring" locationName:"Engine" type:"string" enum:"Engine"`
 
 	// Boolean value indicating whether to return any bilingual voices that use
@@ -2869,9 +2869,9 @@ func (s *SsmlMarksNotSupportedForTextTypeException) RequestID() string {
 type StartSpeechSynthesisTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the engine (standard, neural or long-form) for Amazon Polly to
-	// use when processing input text for speech synthesis. Using a voice that is
-	// not supported for the engine selected will result in an error.
+	// Specifies the engine (standard, neural, long-form or generative) for Amazon
+	// Polly to use when processing input text for speech synthesis. Using a voice
+	// that is not supported for the engine selected will result in an error.
 	Engine *string `type:"string" enum:"Engine"`
 
 	// Optional language code for the Speech Synthesis request. This is only necessary
@@ -2909,6 +2909,7 @@ type StartSpeechSynthesisTaskInput struct {
 	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
 	// "24000". The default value for standard voices is "22050". The default value
 	// for neural voices is "24000". The default value for long-form voices is "24000".
+	// The default value for generative voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -3087,9 +3088,9 @@ type SynthesisTask struct {
 	// Timestamp for the time the synthesis task was started.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// Specifies the engine (standard, neural or long-form) for Amazon Polly to
-	// use when processing input text for speech synthesis. Using a voice that is
-	// not supported for the engine selected will result in an error.
+	// Specifies the engine (standard, neural, long-form or generative) for Amazon
+	// Polly to use when processing input text for speech synthesis. Using a voice
+	// that is not supported for the engine selected will result in an error.
 	Engine *string `type:"string" enum:"Engine"`
 
 	// Optional language code for a synthesis task. This is only necessary if using
@@ -3123,6 +3124,7 @@ type SynthesisTask struct {
 	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
 	// "24000". The default value for standard voices is "22050". The default value
 	// for neural voices is "24000". The default value for long-form voices is "24000".
+	// The default value for generative voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -3327,34 +3329,19 @@ func (s *SynthesisTaskNotFoundException) RequestID() string {
 type SynthesizeSpeechInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the engine (standard, neural or long-form) for Amazon Polly to
-	// use when processing input text for speech synthesis. For information on Amazon
-	// Polly voices and which voices are available for each engine, see Available
-	// Voices (https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
-	//
-	// NTTS-only voices
-	//
-	// When using NTTS-only voices such as Kevin (en-US), this parameter is required
-	// and must be set to neural. If the engine is not specified, or is set to standard,
-	// this will result in an error.
-	//
-	// long-form-only voices
-	//
-	// When using long-form-only voices such as Danielle (en-US), this parameter
-	// is required and must be set to long-form. If the engine is not specified,
-	// or is set to standard or neural, this will result in an error.
+	// Specifies the engine (standard, neural, long-form, or generative) for Amazon
+	// Polly to use when processing input text for speech synthesis. Provide an
+	// engine that is supported by the voice you select. If you don't provide an
+	// engine, the standard engine is selected by default. If a chosen voice isn't
+	// supported by the standard engine, this will result in an error. For information
+	// on Amazon Polly voices and which voices are available for each engine, see
+	// Available Voices (https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
 	//
 	// Type: String
 	//
-	// Valid Values: standard | neural | long-form
+	// Valid Values: standard | neural | long-form | generative
 	//
 	// Required: Yes
-	//
-	// Standard voices
-	//
-	// For standard voices, this is not required; the engine parameter defaults
-	// to standard. If the engine is not specified, or is set to standard and an
-	// NTTS-only voice is selected, this will result in an error.
 	Engine *string `type:"string" enum:"Engine"`
 
 	// Optional language code for the Synthesize Speech request. This is only necessary
@@ -3388,6 +3375,7 @@ type SynthesizeSpeechInput struct {
 	// The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
 	// "24000". The default value for standard voices is "22050". The default value
 	// for neural voices is "24000". The default value for long-form voices is "24000".
+	// The default value for generative voices is "24000".
 	//
 	// Valid values for pcm are "8000" and "16000" The default value is "16000".
 	SampleRate *string `type:"string"`
@@ -3793,8 +3781,8 @@ type Voice struct {
 	// readable voice name that you might display in your application.
 	Name *string `type:"string"`
 
-	// Specifies which engines (standard, neural or long-form) are supported by
-	// a given voice.
+	// Specifies which engines (standard, neural, long-form or generative) are supported
+	// by a given voice.
 	SupportedEngines []*string `type:"list" enum:"Engine"`
 }
 
@@ -3867,6 +3855,9 @@ const (
 
 	// EngineLongForm is a Engine enum value
 	EngineLongForm = "long-form"
+
+	// EngineGenerative is a Engine enum value
+	EngineGenerative = "generative"
 )
 
 // Engine_Values returns all elements of the Engine enum
@@ -3875,6 +3866,7 @@ func Engine_Values() []string {
 		EngineStandard,
 		EngineNeural,
 		EngineLongForm,
+		EngineGenerative,
 	}
 }
 
