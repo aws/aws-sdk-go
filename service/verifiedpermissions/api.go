@@ -4940,8 +4940,8 @@ func (s *BatchIsAuthorizedWithTokenOutputItem) SetRequest(v *BatchIsAuthorizedWi
 	return s
 }
 
-// A list of user groups and entities from an Amazon Cognito user pool identity
-// source.
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
 //
 // This data type is part of a CognitoUserPoolConfiguration (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfiguration.html)
 // structure and is a request parameter in CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
@@ -4999,8 +4999,8 @@ func (s *CognitoGroupConfiguration) SetGroupEntityType(v string) *CognitoGroupCo
 	return s
 }
 
-// A list of user groups and entities from an Amazon Cognito user pool identity
-// source.
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
 //
 // This data type is part of an CognitoUserPoolConfigurationDetail (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationItem.html)
 // structure and is a response parameter to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
@@ -5040,8 +5040,8 @@ func (s *CognitoGroupConfigurationDetail) SetGroupEntityType(v string) *CognitoG
 	return s
 }
 
-// A list of user groups and entities from an Amazon Cognito user pool identity
-// source.
+// The type of entity that a policy store maps to groups from an Amazon Cognito
+// user pool identity source.
 //
 // This data type is part of an CognitoUserPoolConfigurationItem (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CognitoUserPoolConfigurationDetail.html)
 // structure and is a response parameter to ListIdentitySources (http://forums.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
@@ -5088,7 +5088,8 @@ func (s *CognitoGroupConfigurationItem) SetGroupEntityType(v string) *CognitoGro
 // structure that is used as a parameter to CreateIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5098,8 +5099,8 @@ type CognitoUserPoolConfiguration struct {
 	// Example: "ClientIds": ["&ExampleCogClientId;"]
 	ClientIds []*string `locationName:"clientIds" type:"list"`
 
-	// The configuration of the user groups from an Amazon Cognito user pool identity
-	// source.
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
 	GroupConfiguration *CognitoGroupConfiguration `locationName:"groupConfiguration" type:"structure"`
 
 	// The Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
@@ -5176,7 +5177,8 @@ func (s *CognitoUserPoolConfiguration) SetUserPoolArn(v string) *CognitoUserPool
 // structure that is part of the response to GetIdentitySource (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_GetIdentitySource.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfigurationDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -5188,8 +5190,8 @@ type CognitoUserPoolConfigurationDetail struct {
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
 
-	// The configuration of the user groups from an Amazon Cognito user pool identity
-	// source.
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
 	GroupConfiguration *CognitoGroupConfigurationDetail `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
@@ -5258,7 +5260,8 @@ func (s *CognitoUserPoolConfigurationDetail) SetUserPoolArn(v string) *CognitoUs
 // structure that is part of the response to ListIdentitySources (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ListIdentitySources.html).
 //
 // Example:"CognitoUserPoolConfiguration":{"UserPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","ClientIds":
-// ["a1b2c3d4e5f6g7h8i9j0kalbmc"]}
+// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
+// "MyCorp::Group"}}
 type CognitoUserPoolConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
@@ -5270,8 +5273,8 @@ type CognitoUserPoolConfigurationItem struct {
 	// ClientIds is a required field
 	ClientIds []*string `locationName:"clientIds" type:"list" required:"true"`
 
-	// The configuration of the user groups from an Amazon Cognito user pool identity
-	// source.
+	// The type of entity that a policy store maps to groups from an Amazon Cognito
+	// user pool identity source.
 	GroupConfiguration *CognitoGroupConfigurationItem `locationName:"groupConfiguration" type:"structure"`
 
 	// The OpenID Connect (OIDC) issuer ID of the Amazon Cognito user pool that
@@ -5338,7 +5341,7 @@ func (s *CognitoUserPoolConfigurationItem) SetUserPoolArn(v string) *CognitoUser
 // At this time, the only valid member of this structure is a Amazon Cognito
 // user pool configuration.
 //
-// You must specify a userPoolArn, and optionally, a ClientId.
+// Specifies a userPoolArn, a groupConfiguration, and a ClientId.
 //
 // This data type is used as a request parameter for the CreateIdentitySource
 // (https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_CreateIdentitySource.html)
@@ -5406,7 +5409,8 @@ type ConfigurationDetail struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool and one or more application client IDs.
+	// of a Amazon Cognito user pool, the policy store entity that you want to assign
+	// to user groups, and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
@@ -5448,7 +5452,8 @@ type ConfigurationItem struct {
 	// Contains configuration details of a Amazon Cognito user pool that Verified
 	// Permissions can use as a source of authenticated identities as entities.
 	// It specifies the Amazon Resource Name (ARN) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a Amazon Cognito user pool and one or more application client IDs.
+	// of a Amazon Cognito user pool, the policy store entity that you want to assign
+	// to user groups, and one or more application client IDs.
 	//
 	// Example: "configuration":{"cognitoUserPoolConfiguration":{"userPoolArn":"arn:aws:cognito-idp:us-east-1:123456789012:userpool/us-east-1_1a2b3c4d5","clientIds":
 	// ["a1b2c3d4e5f6g7h8i9j0kalbmc"],"groupConfiguration": {"groupEntityType":
@@ -5900,10 +5905,19 @@ func (s *CreatePolicyInput) SetPolicyStoreId(v string) *CreatePolicyInput {
 type CreatePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The action that a policy permits or forbids. For example, {"actions": [{"actionId":
+	// "ViewPhoto", "actionType": "PhotoFlash::Action"}, {"entityID": "SharePhoto",
+	// "entityType": "PhotoFlash::Action"}]}.
+	Actions []*ActionIdentifier `locationName:"actions" type:"list"`
+
 	// The date and time the policy was originally created.
 	//
 	// CreatedDate is a required field
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The effect of the decision that a policy returns to an authorization request.
+	// For example, "effect": "Permit".
+	Effect *string `locationName:"effect" type:"string" enum:"PolicyEffect"`
 
 	// The date and time the policy was last updated.
 	//
@@ -5952,9 +5966,21 @@ func (s CreatePolicyOutput) GoString() string {
 	return s.String()
 }
 
+// SetActions sets the Actions field's value.
+func (s *CreatePolicyOutput) SetActions(v []*ActionIdentifier) *CreatePolicyOutput {
+	s.Actions = v
+	return s
+}
+
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *CreatePolicyOutput) SetCreatedDate(v time.Time) *CreatePolicyOutput {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *CreatePolicyOutput) SetEffect(v string) *CreatePolicyOutput {
+	s.Effect = &v
 	return s
 }
 
@@ -7306,6 +7332,11 @@ func (s *GetPolicyInput) SetPolicyStoreId(v string) *GetPolicyInput {
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The action that a policy permits or forbids. For example, {"actions": [{"actionId":
+	// "ViewPhoto", "actionType": "PhotoFlash::Action"}, {"entityID": "SharePhoto",
+	// "entityType": "PhotoFlash::Action"}]}.
+	Actions []*ActionIdentifier `locationName:"actions" type:"list"`
+
 	// The date and time that the policy was originally created.
 	//
 	// CreatedDate is a required field
@@ -7315,6 +7346,10 @@ type GetPolicyOutput struct {
 	//
 	// Definition is a required field
 	Definition *PolicyDefinitionDetail `locationName:"definition" type:"structure" required:"true"`
+
+	// The effect of the decision that a policy returns to an authorization request.
+	// For example, "effect": "Permit".
+	Effect *string `locationName:"effect" type:"string" enum:"PolicyEffect"`
 
 	// The date and time that the policy was last updated.
 	//
@@ -7364,6 +7399,12 @@ func (s GetPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// SetActions sets the Actions field's value.
+func (s *GetPolicyOutput) SetActions(v []*ActionIdentifier) *GetPolicyOutput {
+	s.Actions = v
+	return s
+}
+
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *GetPolicyOutput) SetCreatedDate(v time.Time) *GetPolicyOutput {
 	s.CreatedDate = &v
@@ -7373,6 +7414,12 @@ func (s *GetPolicyOutput) SetCreatedDate(v time.Time) *GetPolicyOutput {
 // SetDefinition sets the Definition field's value.
 func (s *GetPolicyOutput) SetDefinition(v *PolicyDefinitionDetail) *GetPolicyOutput {
 	s.Definition = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *GetPolicyOutput) SetEffect(v string) *GetPolicyOutput {
+	s.Effect = &v
 	return s
 }
 
@@ -8672,7 +8719,7 @@ type ListIdentitySourcesInput struct {
 	// NextToken after every operation to ensure that you receive all of the results.
 	//
 	// If you do not specify this parameter, the operation defaults to 10 identity
-	// sources per response. You can specify a maximum of 200 identity sources per
+	// sources per response. You can specify a maximum of 50 identity sources per
 	// response.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -9465,6 +9512,11 @@ func (s *PolicyFilter) SetResource(v *EntityReference) *PolicyFilter {
 type PolicyItem struct {
 	_ struct{} `type:"structure"`
 
+	// The action that a policy permits or forbids. For example, {"actions": [{"actionId":
+	// "ViewPhoto", "actionType": "PhotoFlash::Action"}, {"entityID": "SharePhoto",
+	// "entityType": "PhotoFlash::Action"}]}.
+	Actions []*ActionIdentifier `locationName:"actions" type:"list"`
+
 	// The date and time the policy was created.
 	//
 	// CreatedDate is a required field
@@ -9474,6 +9526,10 @@ type PolicyItem struct {
 	//
 	// Definition is a required field
 	Definition *PolicyDefinitionItem `locationName:"definition" type:"structure" required:"true"`
+
+	// The effect of the decision that a policy returns to an authorization request.
+	// For example, "effect": "Permit".
+	Effect *string `locationName:"effect" type:"string" enum:"PolicyEffect"`
 
 	// The date and time the policy was most recently updated.
 	//
@@ -9525,6 +9581,12 @@ func (s PolicyItem) GoString() string {
 	return s.String()
 }
 
+// SetActions sets the Actions field's value.
+func (s *PolicyItem) SetActions(v []*ActionIdentifier) *PolicyItem {
+	s.Actions = v
+	return s
+}
+
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *PolicyItem) SetCreatedDate(v time.Time) *PolicyItem {
 	s.CreatedDate = &v
@@ -9534,6 +9596,12 @@ func (s *PolicyItem) SetCreatedDate(v time.Time) *PolicyItem {
 // SetDefinition sets the Definition field's value.
 func (s *PolicyItem) SetDefinition(v *PolicyDefinitionItem) *PolicyItem {
 	s.Definition = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *PolicyItem) SetEffect(v string) *PolicyItem {
+	s.Effect = &v
 	return s
 }
 
@@ -10561,8 +10629,7 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A list of user groups and entities from an Amazon Cognito user pool identity
-// source.
+// The user group entities from an Amazon Cognito user pool identity source.
 type UpdateCognitoGroupConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -11079,10 +11146,19 @@ func (s *UpdatePolicyInput) SetPolicyStoreId(v string) *UpdatePolicyInput {
 type UpdatePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The action that a policy permits or forbids. For example, {"actions": [{"actionId":
+	// "ViewPhoto", "actionType": "PhotoFlash::Action"}, {"entityID": "SharePhoto",
+	// "entityType": "PhotoFlash::Action"}]}.
+	Actions []*ActionIdentifier `locationName:"actions" type:"list"`
+
 	// The date and time that the policy was originally created.
 	//
 	// CreatedDate is a required field
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The effect of the decision that a policy returns to an authorization request.
+	// For example, "effect": "Permit".
+	Effect *string `locationName:"effect" type:"string" enum:"PolicyEffect"`
 
 	// The date and time that the policy was most recently updated.
 	//
@@ -11131,9 +11207,21 @@ func (s UpdatePolicyOutput) GoString() string {
 	return s.String()
 }
 
+// SetActions sets the Actions field's value.
+func (s *UpdatePolicyOutput) SetActions(v []*ActionIdentifier) *UpdatePolicyOutput {
+	s.Actions = v
+	return s
+}
+
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *UpdatePolicyOutput) SetCreatedDate(v time.Time) *UpdatePolicyOutput {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *UpdatePolicyOutput) SetEffect(v string) *UpdatePolicyOutput {
+	s.Effect = &v
 	return s
 }
 
@@ -11841,6 +11929,22 @@ const (
 func OpenIdIssuer_Values() []string {
 	return []string{
 		OpenIdIssuerCognito,
+	}
+}
+
+const (
+	// PolicyEffectPermit is a PolicyEffect enum value
+	PolicyEffectPermit = "Permit"
+
+	// PolicyEffectForbid is a PolicyEffect enum value
+	PolicyEffectForbid = "Forbid"
+)
+
+// PolicyEffect_Values returns all elements of the PolicyEffect enum
+func PolicyEffect_Values() []string {
+	return []string{
+		PolicyEffectPermit,
+		PolicyEffectForbid,
 	}
 }
 

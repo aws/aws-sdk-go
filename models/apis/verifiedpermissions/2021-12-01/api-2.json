@@ -5,6 +5,7 @@
     "endpointPrefix":"verifiedpermissions",
     "jsonVersion":"1.0",
     "protocol":"json",
+    "protocols":["json"],
     "serviceFullName":"Amazon Verified Permissions",
     "serviceId":"VerifiedPermissions",
     "signatureVersion":"v4",
@@ -485,6 +486,10 @@
         "actionId":{"shape":"ActionId"}
       }
     },
+    "ActionIdentifierList":{
+      "type":"list",
+      "member":{"shape":"ActionIdentifier"}
+    },
     "ActionType":{
       "type":"string",
       "max":200,
@@ -794,8 +799,10 @@
         "policyType":{"shape":"PolicyType"},
         "principal":{"shape":"EntityIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
+        "actions":{"shape":"ActionIdentifierList"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "effect":{"shape":"PolicyEffect"}
       }
     },
     "CreatePolicyStoreInput":{
@@ -1071,9 +1078,11 @@
         "policyType":{"shape":"PolicyType"},
         "principal":{"shape":"EntityIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
+        "actions":{"shape":"ActionIdentifierList"},
         "definition":{"shape":"PolicyDefinitionDetail"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "effect":{"shape":"PolicyEffect"}
       }
     },
     "GetPolicyStoreInput":{
@@ -1467,6 +1476,13 @@
       },
       "union":true
     },
+    "PolicyEffect":{
+      "type":"string",
+      "enum":[
+        "Permit",
+        "Forbid"
+      ]
+    },
     "PolicyFilter":{
       "type":"structure",
       "members":{
@@ -1498,9 +1514,11 @@
         "policyType":{"shape":"PolicyType"},
         "principal":{"shape":"EntityIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
+        "actions":{"shape":"ActionIdentifierList"},
         "definition":{"shape":"PolicyDefinitionItem"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "effect":{"shape":"PolicyEffect"}
       }
     },
     "PolicyList":{
@@ -1867,8 +1885,10 @@
         "policyType":{"shape":"PolicyType"},
         "principal":{"shape":"EntityIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
+        "actions":{"shape":"ActionIdentifierList"},
         "createdDate":{"shape":"TimestampFormat"},
-        "lastUpdatedDate":{"shape":"TimestampFormat"}
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "effect":{"shape":"PolicyEffect"}
       }
     },
     "UpdatePolicyStoreInput":{

@@ -161,6 +161,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListOperationEvents":{
+      "name":"ListOperationEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list-operation-events",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOperationEventsInput"},
+      "output":{"shape":"ListOperationEventsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListOperations":{
       "name":"ListOperations",
       "http":{
@@ -221,6 +235,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StartApplication":{
+      "name":"StartApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/start-application",
+        "responseCode":200
+      },
+      "input":{"shape":"StartApplicationInput"},
+      "output":{"shape":"StartApplicationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StartApplicationRefresh":{
       "name":"StartApplicationRefresh",
       "http":{
@@ -232,6 +262,22 @@
       "output":{"shape":"StartApplicationRefreshOutput"},
       "errors":[
         {"shape":"UnauthorizedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StopApplication":{
+      "name":"StopApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/stop-application",
+        "responseCode":200
+      },
+      "input":{"shape":"StopApplicationInput"},
+      "output":{"shape":"StopApplicationOutput"},
+      "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
@@ -514,6 +560,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ConnectedEntityType":{
+      "type":"string",
+      "enum":["DBMS"]
     },
     "CredentialType":{
       "type":"string",
@@ -841,6 +891,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListOperationEventsInput":{
+      "type":"structure",
+      "required":["OperationId"],
+      "members":{
+        "OperationId":{"shape":"OperationId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"FilterList"}
+      }
+    },
+    "ListOperationEventsOutput":{
+      "type":"structure",
+      "members":{
+        "OperationEvents":{"shape":"OperationEventList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListOperationsInput":{
       "type":"structure",
       "required":["ApplicationId"],
@@ -900,6 +967,32 @@
         "EndTime":{"shape":"Timestamp"},
         "LastUpdatedTime":{"shape":"Timestamp"}
       }
+    },
+    "OperationEvent":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "Resource":{"shape":"Resource"},
+        "Status":{"shape":"OperationEventStatus"},
+        "StatusMessage":{"shape":"String"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "OperationEventList":{
+      "type":"list",
+      "member":{"shape":"OperationEvent"}
+    },
+    "OperationEventResourceType":{
+      "type":"string",
+      "pattern":"[\\w]+::[\\w]+::[\\w]+"
+    },
+    "OperationEventStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
     },
     "OperationId":{
       "type":"string",
@@ -1005,6 +1098,13 @@
         "EnqueueReplication":{"shape":"Boolean"}
       }
     },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"Arn"},
+        "ResourceType":{"shape":"OperationEventResourceType"}
+      }
+    },
     "ResourceId":{
       "type":"string",
       "max":64,
@@ -1044,6 +1144,19 @@
       "type":"string",
       "pattern":"arn:(.+:){2,4}.+$|^arn:(.+:){1,3}.+\\/.+"
     },
+    "StartApplicationInput":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{"shape":"ApplicationId"}
+      }
+    },
+    "StartApplicationOutput":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
     "StartApplicationRefreshInput":{
       "type":"structure",
       "required":["ApplicationId"],
@@ -1052,6 +1165,21 @@
       }
     },
     "StartApplicationRefreshOutput":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"OperationId"}
+      }
+    },
+    "StopApplicationInput":{
+      "type":"structure",
+      "required":["ApplicationId"],
+      "members":{
+        "ApplicationId":{"shape":"ApplicationId"},
+        "StopConnectedEntity":{"shape":"ConnectedEntityType"},
+        "IncludeEc2InstanceShutdown":{"shape":"Boolean"}
+      }
+    },
+    "StopApplicationOutput":{
       "type":"structure",
       "members":{
         "OperationId":{"shape":"OperationId"}

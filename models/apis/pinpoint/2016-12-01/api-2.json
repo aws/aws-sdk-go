@@ -5426,6 +5426,9 @@
         "FromAddress": {
           "shape": "__string"
         },
+        "Headers": {
+           "shape": "ListOfMessageHeader"
+        },
         "HtmlBody": {
           "shape": "__string"
         },
@@ -7124,6 +7127,9 @@
         "Subject": {
           "shape": "__string"
         },
+        "Headers": {
+           "shape": "ListOfMessageHeader"
+        },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
@@ -7159,6 +7165,9 @@
         },
         "Subject": {
           "shape": "__string"
+        },
+        "Headers": {
+           "shape": "ListOfMessageHeader"
         },
         "tags": {
           "shape": "MapOf__string",
@@ -11934,8 +11943,28 @@
         },
         "TextPart": {
           "shape": "SimpleEmailPart"
+        },
+        "Headers": {
+           "shape": "ListOfMessageHeader"
         }
       }
+    },
+    "ListOfMessageHeader": {
+       "type": "list",
+       "member": {
+         "shape": "MessageHeader"
+       }
+    },
+    "MessageHeader": {
+       "type": "structure",
+       "members": {
+         "Name": {
+           "shape": "__string"
+         },
+         "Value": {
+           "shape": "__string"
+         }
+       }
     },
     "SimpleEmailPart": {
       "type": "structure",

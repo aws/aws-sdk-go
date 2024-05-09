@@ -194,6 +194,11 @@
       "sensitive": true,
       "type": "string"
     },
+    "AdditionalModelRequestFieldsKey": {
+      "max": 100,
+      "min": 1,
+      "type": "string"
+    },
     "AgentAliasId": {
       "max": 10,
       "min": 0,
@@ -473,6 +478,12 @@
     },
     "ExternalSourcesGenerationConfiguration": {
       "members": {
+        "guardrailConfiguration": {
+          "shape": "GuardrailConfiguration"
+        },
+        "inferenceConfig": {
+          "shape": "InferenceConfig"
+        },
         "promptTemplate": {
           "shape": "PromptTemplate"
         }
@@ -601,17 +612,65 @@
     },
     "GenerationConfiguration": {
       "members": {
+        "guardrailConfiguration": {
+          "shape": "GuardrailConfiguration"
+        },
+        "inferenceConfig": {
+          "shape": "InferenceConfig"
+        },
         "promptTemplate": {
           "shape": "PromptTemplate"
         }
       },
       "type": "structure"
     },
+    "GuadrailAction": {
+      "enum": [
+        "INTERVENED",
+        "NONE"
+      ],
+      "type": "string"
+    },
+    "GuardrailConfiguration": {
+      "members": {
+        "guardrailId": {
+          "shape": "GuardrailConfigurationGuardrailIdString"
+        },
+        "guardrailVersion": {
+          "shape": "GuardrailConfigurationGuardrailVersionString"
+        }
+      },
+      "required": [
+        "guardrailId",
+        "guardrailVersion"
+      ],
+      "type": "structure"
+    },
+    "GuardrailConfigurationGuardrailIdString": {
+      "max": 64,
+      "min": 0,
+      "pattern": "^[a-z0-9]+$",
+      "type": "string"
+    },
+    "GuardrailConfigurationGuardrailVersionString": {
+      "max": 5,
+      "min": 1,
+      "pattern": "^(([1-9][0-9]{0,7})|(DRAFT))$",
+      "type": "string"
+    },
     "Identifier": {
       "max": 1024,
       "min": 1,
       "sensitive": true,
       "type": "string"
+    },
+    "InferenceConfig": {
+      "members": {
+        "textInferenceConfig": {
+          "shape": "TextInferenceConfig"
+        }
+      },
+      "type": "structure"
     },
     "InferenceConfiguration": {
       "members": {
@@ -907,6 +966,12 @@
     "LambdaArn": {
       "type": "string"
     },
+    "MaxTokens": {
+      "box": true,
+      "max": 65536,
+      "min": 0,
+      "type": "integer"
+    },
     "MaximumLength": {
       "box": true,
       "max": 4096,
@@ -1154,6 +1219,19 @@
       },
       "type": "structure"
     },
+    "RAGStopSequences": {
+      "max": 4,
+      "member": {
+        "shape": "RAGStopSequencesMemberString"
+      },
+      "min": 0,
+      "type": "list"
+    },
+    "RAGStopSequencesMemberString": {
+      "max": 1000,
+      "min": 1,
+      "type": "string"
+    },
     "Rationale": {
       "members": {
         "text": {
@@ -1399,6 +1477,9 @@
         "citations": {
           "shape": "Citations"
         },
+        "guardrailAction": {
+          "shape": "GuadrailAction"
+        },
         "output": {
           "shape": "RetrieveAndGenerateOutput"
         },
@@ -1620,6 +1701,23 @@
       "max": 1,
       "min": 0,
       "type": "float"
+    },
+    "TextInferenceConfig": {
+      "members": {
+        "maxTokens": {
+          "shape": "MaxTokens"
+        },
+        "stopSequences": {
+          "shape": "RAGStopSequences"
+        },
+        "temperature": {
+          "shape": "Temperature"
+        },
+        "topP": {
+          "shape": "TopP"
+        }
+      },
+      "type": "structure"
     },
     "TextPromptTemplate": {
       "max": 4000,
